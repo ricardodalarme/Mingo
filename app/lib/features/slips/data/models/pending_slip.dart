@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 
 /// A slip saved on the device that has not reached the server yet.
@@ -8,7 +9,7 @@ final class const PendingSlip({
   required final String body,
   required final DateTime createdAt,
   final SlipCategory? category,
-  final String kind = 'quick',
+  final SlipKind kind = SlipKind.quick,
   final String? feeling,
   final String? planNote,
   final SlipWorkArea? workArea,
@@ -18,7 +19,7 @@ final class const PendingSlip({
     body: map['body'] as String,
     createdAt: DateTime.parse(map['createdAt'] as String),
     category: SlipCategory.values.asNameMap()[map['category'] as String?],
-    kind: map['kind'] as String? ?? 'quick',
+    kind: SlipKind.values.asNameMap()[map['kind'] as String?] ?? SlipKind.quick,
     feeling: map['feeling'] as String?,
     planNote: map['planNote'] as String?,
     workArea: SlipWorkArea.values.asNameMap()[map['workArea'] as String?],
@@ -29,7 +30,7 @@ final class const PendingSlip({
     'body': body,
     'createdAt': createdAt.toUtc().toIso8601String(),
     'category': category?.name,
-    'kind': kind,
+    'kind': kind.name,
     'feeling': feeling,
     'planNote': planNote,
     'workArea': workArea?.name,

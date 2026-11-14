@@ -17,6 +17,7 @@ import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_s
 import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
 import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -47,7 +48,7 @@ class _MockDevicesRepository() extends Mock implements DevicesRepository;
 final _slip = SlipDetail(
   id: 's1',
   body: 'Fez café',
-  kind: 'quick',
+  kind: SlipKind.quick,
   createdAt: DateTime(2026),
   forCard: false,
 );

@@ -4,7 +4,7 @@
   "needEntry": "Preciso de…",
   "kinds(map)": {
     "specific": "Específico",
-    "if_then": "Se… então",
+    "ifThen": "Se… então",
     "invisible": "Invisível",
     "other": ""
   },

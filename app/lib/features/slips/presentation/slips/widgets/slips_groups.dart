@@ -3,6 +3,7 @@ import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -58,9 +59,9 @@ class const SlipsGroups({required final List<SlipEntry> slips, super.key}) exten
     if (category != null) {
       return l10n.dayLine(weekday: day, category: l10n.categories.selectOrFallback(category.name));
     }
-    if (slip.kind == 'quick') return day;
+    if (slip.kind == SlipKind.quick) return day;
 
-    return l10n.dayLine(weekday: day, category: l10n.kinds.selectOrFallback(slip.kind));
+    return l10n.dayLine(weekday: day, category: l10n.kinds.selectOrFallback(slip.kind.name));
   }
 }
 

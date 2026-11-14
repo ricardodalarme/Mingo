@@ -1,11 +1,13 @@
 import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/fragments/generated/CardFragment.graphql.dart';
+import 'package:flutter_bloc_starter/features/cards/data/mappers/card_enum_mapper.dart';
+import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:flutter_bloc_starter/features/slips/data/mappers/slip_enum_mapper.dart';
 
 extension CardFragmentMapper on FragmentCardFragment {
   SundayCard toModel() => SundayCard(
     id: id,
-    status: status.name,
+    status: status.toModel() ?? CardStatus.draft,
     weekStart: weekStart,
     note: note,
     sentAt: sentAt,

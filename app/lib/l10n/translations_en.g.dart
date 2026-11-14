@@ -4818,7 +4818,7 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   Map<String, String> get kinds => {
     'quick': 'Quick',
     'specific': 'Specific',
-    'if_then': 'If… then',
+    'ifThen': 'If… then',
     'invisible': 'Invisible',
     'other': '',
   };
@@ -4916,7 +4916,7 @@ class _Translations$slipKind$en extends Translations$slipKind$pt {
   @override
   Map<String, String> get kinds => {
     'specific': 'Specific',
-    'if_then': 'If… then',
+    'ifThen': 'If… then',
     'invisible': 'Invisible',
     'other': '',
   };
@@ -5033,7 +5033,7 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   Map<String, String> get kinds => {
     'quick': 'Quick',
     'specific': 'Specific',
-    'if_then': 'If… then',
+    'ifThen': 'If… then',
     'invisible': 'Invisible',
     'other': '',
   };
@@ -10101,7 +10101,7 @@ extension on TranslationsEn {
           'slipDetail.monthsShort.11' => 'Dec',
           'slipDetail.kinds.quick' => 'Quick',
           'slipDetail.kinds.specific' => 'Specific',
-          'slipDetail.kinds.if_then' => 'If… then',
+          'slipDetail.kinds.ifThen' => 'If… then',
           'slipDetail.kinds.invisible' => 'Invisible',
           'slipDetail.kinds.other' => '',
           'slipDetail.private' => 'Only you see this slip.',
@@ -10145,7 +10145,7 @@ extension on TranslationsEn {
           'slipKind.quickEntry' => 'Quick',
           'slipKind.needEntry' => 'I need…',
           'slipKind.kinds.specific' => 'Specific',
-          'slipKind.kinds.if_then' => 'If… then',
+          'slipKind.kinds.ifThen' => 'If… then',
           'slipKind.kinds.invisible' => 'Invisible',
           'slipKind.kinds.other' => '',
           'slipKind.specific.title' => 'What exactly did they do?',
@@ -10241,7 +10241,7 @@ extension on TranslationsEn {
           'slipsList.categories.other' => '',
           'slipsList.kinds.quick' => 'Quick',
           'slipsList.kinds.specific' => 'Specific',
-          'slipsList.kinds.if_then' => 'If… then',
+          'slipsList.kinds.ifThen' => 'If… then',
           'slipsList.kinds.invisible' => 'Invisible',
           'slipsList.kinds.other' => '',
           'slipsList.pastCards' => 'Past cards',

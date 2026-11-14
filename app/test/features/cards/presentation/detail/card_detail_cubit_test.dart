@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_detail.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_reaction.dart';
+import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
@@ -14,7 +15,7 @@ void main() {
 
   final card = SundayCard(
     id: 'c1',
-    status: 'sent',
+    status: CardStatus.sent,
     weekStart: DateTime(2026, 11, 9),
     items: const [CardItem(slipId: 's1', body: 'Uma coisa boa')],
   );

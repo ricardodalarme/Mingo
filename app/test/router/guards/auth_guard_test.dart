@@ -5,6 +5,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/cubit/sign_in_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/translations.g.dart';
@@ -21,7 +22,7 @@ class _MockSlipRepository() extends Mock implements SlipRepository;
 final _slip = SlipDetail(
   id: 's1',
   body: 'Fez café',
-  kind: 'quick',
+  kind: SlipKind.quick,
   createdAt: DateTime(2026),
   forCard: false,
 );

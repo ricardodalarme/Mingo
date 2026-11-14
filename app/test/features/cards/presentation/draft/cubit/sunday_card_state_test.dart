@@ -1,9 +1,15 @@
+import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final draft = SundayCard(id: 'card', status: 'draft', weekStart: DateTime(2026), items: const []);
+  final draft = SundayCard(
+    id: 'card',
+    status: CardStatus.draft,
+    weekStart: DateTime(2026),
+    items: const [],
+  );
 
   test('clearDraft drops the draft and leaves editing', () {
     final state = SundayCardState(draft: draft);

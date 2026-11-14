@@ -2188,14 +2188,14 @@ class SlipDetailRouteArgs {
 /// [SlipKindPage]
 class SlipKindRoute extends PageRouteInfo<SlipKindRouteArgs> {
   SlipKindRoute({
-    String kind = 'specific',
+    SlipKind kind = SlipKind.specific,
     String text = '',
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
          SlipKindRoute.name,
          args: SlipKindRouteArgs(kind: kind, text: text, key: key),
-         rawQueryParams: {'kind': kind, 'text': text},
+         rawQueryParams: {'text': text},
          initialChildren: children,
        );
 
@@ -2206,10 +2206,8 @@ class SlipKindRoute extends PageRouteInfo<SlipKindRouteArgs> {
     builder: (data) {
       final queryParams = data.queryParams;
       final args = data.argsAs<SlipKindRouteArgs>(
-        orElse: () => SlipKindRouteArgs(
-          kind: queryParams.getString('kind', 'specific'),
-          text: queryParams.getString('text', ''),
-        ),
+        orElse: () =>
+            SlipKindRouteArgs(text: queryParams.getString('text', '')),
       );
       return WrappedRoute(
         child: SlipKindPage(kind: args.kind, text: args.text, key: args.key),
@@ -2219,9 +2217,13 @@ class SlipKindRoute extends PageRouteInfo<SlipKindRouteArgs> {
 }
 
 class SlipKindRouteArgs {
-  const SlipKindRouteArgs({this.kind = 'specific', this.text = '', this.key});
+  const SlipKindRouteArgs({
+    this.kind = SlipKind.specific,
+    this.text = '',
+    this.key,
+  });
 
-  final String kind;
+  final SlipKind kind;
 
   final String text;
 

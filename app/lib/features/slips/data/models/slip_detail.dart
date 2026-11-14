@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 
 /// One slip with everything needed to read, edit and decide on it.
 final class const SlipDetail({
   required final String id,
   required final String body,
-  required final String kind,
+  required final SlipKind kind,
   required final DateTime createdAt,
   required final bool forCard,
   final String? feeling,
@@ -21,13 +22,13 @@ final class const SlipDetail({
   factory fake() => SlipDetail(
     id: 'fake',
     body: 'Fez café sem eu pedir',
-    kind: 'quick',
+    kind: SlipKind.quick,
     createdAt: DateTime(2026),
     forCard: true,
   );
 
   /// Whether the slip may appear in a card.
-  bool get canGoInCard => kind != 'invisible';
+  bool get canGoInCard => kind != SlipKind.invisible;
 
   SlipDetail copyWith({
     String? body,

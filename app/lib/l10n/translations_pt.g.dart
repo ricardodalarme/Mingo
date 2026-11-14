@@ -5926,7 +5926,7 @@ class Translations$slipDetail$pt {
   Map<String, String> get kinds => {
     'quick': 'Rápido',
     'specific': 'Específico',
-    'if_then': 'Se… então',
+    'ifThen': 'Se… então',
     'invisible': 'Invisível',
     'other': '',
   };
@@ -6059,7 +6059,7 @@ class Translations$slipKind$pt {
 
   Map<String, String> get kinds => {
     'specific': 'Específico',
-    'if_then': 'Se… então',
+    'ifThen': 'Se… então',
     'invisible': 'Invisível',
     'other': '',
   };
@@ -6182,7 +6182,7 @@ class Translations$slipsList$pt {
   Map<String, String> get kinds => {
     'quick': 'Rápido',
     'specific': 'Específico',
-    'if_then': 'Se… então',
+    'ifThen': 'Se… então',
     'invisible': 'Invisível',
     'other': '',
   };
@@ -11914,7 +11914,7 @@ extension on Translations {
           'slipDetail.monthsShort.11' => 'dez',
           'slipDetail.kinds.quick' => 'Rápido',
           'slipDetail.kinds.specific' => 'Específico',
-          'slipDetail.kinds.if_then' => 'Se… então',
+          'slipDetail.kinds.ifThen' => 'Se… então',
           'slipDetail.kinds.invisible' => 'Invisível',
           'slipDetail.kinds.other' => '',
           'slipDetail.private' => 'Só você vê este slip.',
@@ -11958,7 +11958,7 @@ extension on Translations {
           'slipKind.quickEntry' => 'Rápido',
           'slipKind.needEntry' => 'Preciso de…',
           'slipKind.kinds.specific' => 'Específico',
-          'slipKind.kinds.if_then' => 'Se… então',
+          'slipKind.kinds.ifThen' => 'Se… então',
           'slipKind.kinds.invisible' => 'Invisível',
           'slipKind.kinds.other' => '',
           'slipKind.specific.title' => 'O que exatamente ele fez?',
@@ -12053,7 +12053,7 @@ extension on Translations {
           'slipsList.categories.other' => '',
           'slipsList.kinds.quick' => 'Rápido',
           'slipsList.kinds.specific' => 'Específico',
-          'slipsList.kinds.if_then' => 'Se… então',
+          'slipsList.kinds.ifThen' => 'Se… então',
           'slipsList.kinds.invisible' => 'Invisível',
           'slipsList.kinds.other' => '',
           'slipsList.pastCards' => 'Cartões anteriores',

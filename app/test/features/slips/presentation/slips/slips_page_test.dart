@@ -4,6 +4,7 @@ import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slips/slips_page.dart';
@@ -134,7 +135,7 @@ void main() {
         SlipEntry(
           id: 'a',
           body: 'Deixou um bilhete no espelho',
-          kind: 'specific',
+          kind: SlipKind.specific,
           createdAt: clock.now(),
         ),
       ]);

@@ -3,6 +3,7 @@ import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
@@ -115,7 +116,7 @@ class const _OtherKinds() extends StatelessWidget {
           children: [
             for (final kind in slipKinds)
               BaseChoiceChip(
-                label: l10n.kinds.selectOrFallback(kind),
+                label: l10n.kinds.selectOrFallback(kind.name),
                 onTap: () => _open(context, kind),
               ),
             BaseChoiceChip(
@@ -128,7 +129,7 @@ class const _OtherKinds() extends StatelessWidget {
     );
   }
 
-  void _open(BuildContext context, String kind) {
+  void _open(BuildContext context, SlipKind kind) {
     final text = context.read<QuickSlipCubit>().state.text.value;
     context.router.replace(SlipKindRoute(kind: kind, text: text));
   }

@@ -26,7 +26,7 @@
   "kinds(map)": {
     "quick": "Quick",
     "specific": "Specific",
-    "if_then": "If… then",
+    "ifThen": "If… then",
     "invisible": "Invisible",
     "other": ""
   },

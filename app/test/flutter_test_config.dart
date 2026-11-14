@@ -32,6 +32,7 @@ import 'package:flutter_bloc_starter/features/repair/data/models/guided_session.
 import 'package:flutter_bloc_starter/features/repair/data/models/received_signal.dart';
 import 'package:flutter_bloc_starter/features/repair/data/models/repair_path.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/spice/data/repositories/spice_repository.dart';
@@ -136,6 +137,7 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(Temperature.good);
   registerFallbackValue(RepairPath.pause);
   registerFallbackValue(SlipCategory.said);
+  registerFallbackValue(SlipKind.quick);
   registerFallbackValue(SlipWorkArea.planning);
   registerFallbackValue(SlipSaveOutcome.synced);
   registerFallbackValue(SpiceStage.off);

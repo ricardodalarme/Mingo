@@ -68,7 +68,7 @@ class const _Header({required final SlipDetail slip}) extends StatelessWidget {
 
     return Row(
       children: [
-        BaseTag(text: l10n.kinds.selectOrFallback(slip.kind)),
+        BaseTag(text: l10n.kinds.selectOrFallback(slip.kind.name)),
         if (slip.isArchived) ...[const SizedBox(width: AppSpace.s8), BaseTag(text: l10n.archived)],
         const Spacer(),
         Text(line, style: context.text.label.copyWith(color: context.colors.textSecondary)),

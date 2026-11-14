@@ -1,0 +1,16 @@
+import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:flutter_bloc_starter/features/cards/data/mappers/card_enum_mapper.dart';
+import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  test('every remote card status maps to its model', () {
+    expect(EnumCardStatus.draft.toModel(), CardStatus.draft);
+    expect(EnumCardStatus.held.toModel(), CardStatus.held);
+    expect(EnumCardStatus.sent.toModel(), CardStatus.sent);
+  });
+
+  test('an unknown card status is left out', () {
+    expect(EnumCardStatus.$unknown.toModel(), isNull);
+  });
+}

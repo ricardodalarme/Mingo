@@ -1,11 +1,17 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/card_detail.dart';
+import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final card = SundayCard(id: 'card', status: 'sent', weekStart: DateTime(2026), items: const []);
+  final card = SundayCard(
+    id: 'card',
+    status: CardStatus.sent,
+    weekStart: DateTime(2026),
+    items: const [],
+  );
 
   CardDetailState stateWith({required bool isMine, String? reaction}) => CardDetailState(
     card: Success(CardDetail(card: card, isMine: isMine)),

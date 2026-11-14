@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,7 +14,7 @@ void main() {
   final slip = SlipDetail(
     id: 's1',
     body: 'Fez café',
-    kind: 'quick',
+    kind: SlipKind.quick,
     createdAt: DateTime(2026, 11, 9),
     forCard: true,
   );
@@ -92,7 +93,7 @@ void main() {
     final invisible = SlipDetail(
       id: 's2',
       body: 'Marquei a consulta',
-      kind: 'invisible',
+      kind: SlipKind.invisible,
       createdAt: DateTime(2026, 11, 9),
       forCard: false,
     );

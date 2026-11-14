@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/forms/discard_changes.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/widgets/slip_kind_form.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/widgets/slip_kind_saved.dart';
@@ -11,7 +12,7 @@ import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
 class const SlipKindPage({
-  @QueryParam('kind') final String kind = 'specific',
+  final SlipKind kind = SlipKind.specific,
   @QueryParam('text') final String text = '',
   super.key,
 }) extends StatelessWidget implements AutoRouteWrapper {

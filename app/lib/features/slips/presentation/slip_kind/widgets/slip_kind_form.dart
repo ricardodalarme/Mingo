@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
@@ -13,9 +14,14 @@ class const SlipKindForm({super.key}) extends StatelessWidget {
     final kind = context.select((SlipKindCubit cubit) => cubit.state.kind);
     final l10n = context.l10n.slipKind;
     final (title, highlight, subtitle) = switch (kind) {
-      'if_then' => (l10n.ifThen.title, l10n.ifThen.titleHighlight, l10n.ifThen.subtitle),
-      'invisible' => (l10n.invisible.title, l10n.invisible.titleHighlight, l10n.invisible.subtitle),
-      _ => (l10n.specific.title, l10n.specific.titleHighlight, l10n.specific.subtitle),
+      SlipKind.ifThen => (l10n.ifThen.title, l10n.ifThen.titleHighlight, l10n.ifThen.subtitle),
+      SlipKind.invisible => (
+        l10n.invisible.title,
+        l10n.invisible.titleHighlight,
+        l10n.invisible.subtitle,
+      ),
+      SlipKind.specific ||
+      SlipKind.quick => (l10n.specific.title, l10n.specific.titleHighlight, l10n.specific.subtitle),
     };
 
     return BaseStackedContent(
@@ -36,9 +42,9 @@ class const SlipKindForm({super.key}) extends StatelessWidget {
           Text(subtitle, style: context.text.body.copyWith(color: context.colors.textSecondary)),
           const SizedBox(height: AppSpace.s20),
           switch (kind) {
-            'if_then' => const _IfThenFields(),
-            'invisible' => const _InvisibleFields(),
-            _ => const _SpecificFields(),
+            SlipKind.ifThen => const _IfThenFields(),
+            SlipKind.invisible => const _InvisibleFields(),
+            SlipKind.specific || SlipKind.quick => const _SpecificFields(),
           },
         ],
       ),
@@ -60,7 +66,7 @@ class const _KindChips() extends StatelessWidget {
       children: [
         for (final kind in slipKinds)
           BaseChoiceChip(
-            label: labels.selectOrFallback(kind),
+            label: labels.selectOrFallback(kind.name),
             isSelected: selected == kind,
             onTap: () => context.read<SlipKindCubit>().onKindChanged(kind),
           ),

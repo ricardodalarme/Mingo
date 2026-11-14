@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_starter/features/_shared/presentation/forms/discard_changes.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/slip_kind_page.dart';
@@ -17,7 +18,7 @@ void main() {
 
   testWidgets('every slip type stays reachable from the detailed form', (tester) async {
     final cubit = SlipKindCubit(slipRepository: _MockSlipRepository())
-      ..start(kind: 'specific', text: 'Fez café');
+      ..start(kind: SlipKind.specific, text: 'Fez café');
     addTearDown(cubit.close);
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const SlipKindPage()));
@@ -36,7 +37,7 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     final cubit = SlipKindCubit(slipRepository: _MockSlipRepository())
-      ..start(kind: 'if_then', text: 'Quando eu estiver cansada');
+      ..start(kind: SlipKind.ifThen, text: 'Quando eu estiver cansada');
     addTearDown(cubit.close);
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const SlipKindPage()));

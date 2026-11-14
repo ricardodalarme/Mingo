@@ -1,3 +1,4 @@
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
@@ -49,25 +50,28 @@ void main() {
     ),
   );
 
-  test('start keeps the carried text and falls back to specific for unknown kinds', () {
-    final cubit = build()..start(kind: 'nope', text: 'Fez café');
+  test(
+    'start keeps the carried text and falls back to specific for a kind this form does not write',
+    () {
+      final cubit = build()..start(kind: SlipKind.quick, text: 'Fez café');
 
-    expect(cubit.state.kind, 'specific');
-    expect(cubit.state.text.value, 'Fez café');
-  });
+      expect(cubit.state.kind, SlipKind.specific);
+      expect(cubit.state.text.value, 'Fez café');
+    },
+  );
 
   test('switching the kind keeps the text', () {
     final cubit = build()
-      ..start(kind: 'specific', text: 'Fez café')
-      ..onKindChanged('invisible');
+      ..start(kind: SlipKind.specific, text: 'Fez café')
+      ..onKindChanged(SlipKind.invisible);
 
-    expect(cubit.state.kind, 'invisible');
+    expect(cubit.state.kind, SlipKind.invisible);
     expect(cubit.state.text.value, 'Fez café');
   });
 
   test('keeping a quick draft saves the current text', () async {
     final cubit = build()
-      ..start(kind: 'specific', text: 'Fez café')
+      ..start(kind: SlipKind.specific, text: 'Fez café')
       ..onTextChanged('Fez café e pão');
 
     await cubit.keepQuickDraft();
@@ -82,7 +86,7 @@ void main() {
 
   test('if-then needs the plan before saving', () async {
     final cubit = build()
-      ..start(kind: 'if_then', text: 'Quando eu estiver cansada')
+      ..start(kind: SlipKind.ifThen, text: 'Quando eu estiver cansada')
       ..onPlanChanged('  ');
 
     await cubit.save();
@@ -104,7 +108,7 @@ void main() {
         id: any(named: 'id'),
         body: 'Quando eu estiver cansada',
         createdAt: any(named: 'createdAt'),
-        kind: 'if_then',
+        kind: SlipKind.ifThen,
         feeling: null,
         planNote: 'peço um tempo',
         workArea: null,
@@ -114,7 +118,7 @@ void main() {
 
   test('specific rejects an over-long feeling', () async {
     final cubit = build()
-      ..start(kind: 'specific', text: 'Fez café')
+      ..start(kind: SlipKind.specific, text: 'Fez café')
       ..onFeelingChanged('a' * (slipKindNoteMaxLength + 1));
 
     await cubit.save();
@@ -133,7 +137,7 @@ void main() {
 
   test('saving an if-then slip sends the plan note and no work area', () async {
     final cubit = build()
-      ..start(kind: 'if_then', text: 'Quando eu estiver cansada')
+      ..start(kind: SlipKind.ifThen, text: 'Quando eu estiver cansada')
       ..onPlanChanged('peço um tempo')
       ..onWorkAreaToggled(SlipWorkArea.kids);
 
@@ -144,7 +148,7 @@ void main() {
         id: any(named: 'id'),
         body: 'Quando eu estiver cansada',
         createdAt: any(named: 'createdAt'),
-        kind: 'if_then',
+        kind: SlipKind.ifThen,
         feeling: null,
         planNote: 'peço um tempo',
         workArea: null,
@@ -154,7 +158,7 @@ void main() {
 
   test('saving an invisible slip sends the work area', () async {
     final cubit = build()
-      ..start(kind: 'invisible', text: 'Marquei a consulta')
+      ..start(kind: SlipKind.invisible, text: 'Marquei a consulta')
       ..onWorkAreaToggled(SlipWorkArea.planning);
 
     await cubit.save();
@@ -164,7 +168,7 @@ void main() {
         id: any(named: 'id'),
         body: 'Marquei a consulta',
         createdAt: any(named: 'createdAt'),
-        kind: 'invisible',
+        kind: SlipKind.invisible,
         feeling: null,
         planNote: null,
         workArea: SlipWorkArea.planning,

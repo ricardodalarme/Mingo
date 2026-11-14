@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
 
 /// One slip on a card.
@@ -15,20 +16,20 @@ final class const CardItem({
 /// The weekly card, in any state from draft to sent.
 final class const SundayCard({
   required final String id,
-  required final String status,
+  required final CardStatus status,
   required final DateTime weekStart,
   required final List<CardItem> items,
   final String? note,
   final DateTime? sentAt,
 }) with Equatable {
   /// Whether the person can still change the card.
-  bool get isDraft => status == 'draft';
+  bool get isDraft => status == CardStatus.draft;
 
   /// Whether the person chose to keep the card for later.
-  bool get isHeld => status == 'held';
+  bool get isHeld => status == CardStatus.held;
 
   /// Whether the card reached the partner.
-  bool get isSent => status == 'sent';
+  bool get isSent => status == CardStatus.sent;
 
   SundayCard copyWith({List<CardItem>? items, String? note}) => SundayCard(
     id: id,

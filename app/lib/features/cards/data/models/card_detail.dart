@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 
 /// One sent card with who wrote it and how the other person answered.
@@ -14,7 +15,7 @@ final class const CardDetail({
   factory fake() => CardDetail(
     card: SundayCard(
       id: 'fake',
-      status: 'sent',
+      status: CardStatus.sent,
       weekStart: DateTime(2026),
       items: const [
         CardItem(slipId: 'fake', body: 'Uma coisa boa desta semana'),

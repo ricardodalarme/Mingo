@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
 import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
 import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
 import 'package:flutter_bloc_starter/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
@@ -23,7 +24,7 @@ void main() {
 
   final card = SundayCard(
     id: 'c1',
-    status: 'draft',
+    status: CardStatus.draft,
     weekStart: DateTime(2026, 11, 9),
     items: const [
       CardItem(slipId: 'a', body: 'Um'),
@@ -91,8 +92,12 @@ void main() {
 
   test('a sent card cannot be edited', () async {
     when(() => cards.getDraft()).thenAnswer(
-      (_) async =>
-          SundayCard(id: 'c1', status: 'sent', weekStart: DateTime(2026, 11, 9), items: const []),
+      (_) async => SundayCard(
+        id: 'c1',
+        status: CardStatus.sent,
+        weekStart: DateTime(2026, 11, 9),
+        items: const [],
+      ),
     );
     final cubit = await loaded()
       ..startEditing();
@@ -160,7 +165,12 @@ void main() {
   });
 
   test('send marks the card as sent', () async {
-    final sent = SundayCard(id: 'c1', status: 'sent', weekStart: card.weekStart, items: card.items);
+    final sent = SundayCard(
+      id: 'c1',
+      status: CardStatus.sent,
+      weekStart: card.weekStart,
+      items: card.items,
+    );
     when(() => cards.send('c1')).thenAnswer((_) async => sent);
     final cubit = await loaded();
 
@@ -170,7 +180,12 @@ void main() {
   });
 
   test('a double tap on send sends once', () async {
-    final sent = SundayCard(id: 'c1', status: 'sent', weekStart: card.weekStart, items: card.items);
+    final sent = SundayCard(
+      id: 'c1',
+      status: CardStatus.sent,
+      weekStart: card.weekStart,
+      items: card.items,
+    );
     when(() => cards.send('c1')).thenAnswer((_) async => sent);
     final cubit = await loaded();
 
@@ -190,8 +205,18 @@ void main() {
   });
 
   test('hold keeps the card and can be followed by a send', () async {
-    final held = SundayCard(id: 'c1', status: 'held', weekStart: card.weekStart, items: card.items);
-    final sent = SundayCard(id: 'c1', status: 'sent', weekStart: card.weekStart, items: card.items);
+    final held = SundayCard(
+      id: 'c1',
+      status: CardStatus.held,
+      weekStart: card.weekStart,
+      items: card.items,
+    );
+    final sent = SundayCard(
+      id: 'c1',
+      status: CardStatus.sent,
+      weekStart: card.weekStart,
+      items: card.items,
+    );
     when(() => cards.hold('c1')).thenAnswer((_) async => held);
     when(() => cards.send('c1')).thenAnswer((_) async => sent);
     final cubit = await loaded();
@@ -204,7 +229,12 @@ void main() {
   });
 
   test('a sent card is never sent again', () async {
-    final sent = SundayCard(id: 'c1', status: 'sent', weekStart: card.weekStart, items: card.items);
+    final sent = SundayCard(
+      id: 'c1',
+      status: CardStatus.sent,
+      weekStart: card.weekStart,
+      items: card.items,
+    );
     when(() => cards.getDraft()).thenAnswer((_) async => sent);
     final cubit = await loaded();
 

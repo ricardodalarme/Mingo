@@ -4,6 +4,7 @@ import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
@@ -17,8 +18,8 @@ const int slipKindMaxLength = 280;
 /// The longest feeling or plan note a detailed slip accepts.
 const int slipKindNoteMaxLength = 200;
 
-/// The slip kinds this screen writes, matching the server kinds.
-const List<String> slipKinds = ['specific', 'if_then', 'invisible'];
+/// The slip kinds this screen writes.
+const List<SlipKind> slipKinds = [SlipKind.specific, SlipKind.ifThen, SlipKind.invisible];
 
 class SlipKindCubit({required final SlipRepository _slipRepository}) extends Cubit<SlipKindState> {
   this : super(const SlipKindState());
@@ -27,12 +28,17 @@ class SlipKindCubit({required final SlipRepository _slipRepository}) extends Cub
   String? _savedId;
 
   /// Opens the form with the kind and text carried over from the previous screen.
-  void start({required String kind, required String text}) {
-    emit(state.copyWith(kind: slipKinds.contains(kind) ? kind : 'specific', text: FormInput(text)));
+  void start({required SlipKind kind, required String text}) {
+    emit(
+      state.copyWith(
+        kind: slipKinds.contains(kind) ? kind : SlipKind.specific,
+        text: FormInput(text),
+      ),
+    );
   }
 
   /// Switches the kind, keeping the main text.
-  void onKindChanged(String kind) => emit(state.copyWith(kind: kind));
+  void onKindChanged(SlipKind kind) => emit(state.copyWith(kind: kind));
 
   /// Keeps the text for the quick form when another kind is opened from it.
   /// Forgets the stored draft so the next visit starts clean.
@@ -64,9 +70,9 @@ class SlipKindCubit({required final SlipRepository _slipRepository}) extends Cub
         body: state.text.value.trim(),
         createdAt: clock.now(),
         kind: kind,
-        feeling: kind == 'specific' ? _trimmedOrNull(state.feeling.value) : null,
-        planNote: kind == 'if_then' ? state.plan.value.trim() : null,
-        workArea: kind == 'invisible' ? state.workArea : null,
+        feeling: kind == SlipKind.specific ? _trimmedOrNull(state.feeling.value) : null,
+        planNote: kind == SlipKind.ifThen ? state.plan.value.trim() : null,
+        workArea: kind == SlipKind.invisible ? state.workArea : null,
       );
       emit(state.copyWith(saveAction: Success(outcome)));
     } catch (exception) {
@@ -79,10 +85,10 @@ class SlipKindCubit({required final SlipRepository _slipRepository}) extends Cub
     final validatedText = state.text.validate(
       CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(slipKindMaxLength)]),
     );
-    final validatedFeeling = state.kind == 'specific'
+    final validatedFeeling = state.kind == SlipKind.specific
         ? state.feeling.validate(MaxLengthValidator(slipKindNoteMaxLength))
         : state.feeling.toPure();
-    final validatedPlan = state.kind == 'if_then'
+    final validatedPlan = state.kind == SlipKind.ifThen
         ? state.plan.validate(
             CompositeValidator<String>([
               NonEmptyValidator(),

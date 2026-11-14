@@ -9,6 +9,7 @@ import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.da
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_draft.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 import 'package:logger/logger.dart';
 import 'package:network/network.dart';
@@ -46,7 +47,7 @@ class SlipRepository({
     required String body,
     required DateTime createdAt,
     SlipCategory? category,
-    String kind = 'quick',
+    SlipKind kind = SlipKind.quick,
     String? feeling,
     String? planNote,
     SlipWorkArea? workArea,
@@ -85,7 +86,7 @@ class SlipRepository({
       return SlipDetail(
         id: node.id,
         body: node.body,
-        kind: node.kind.name,
+        kind: node.kind.toModel() ?? SlipKind.quick,
         createdAt: node.createdAt,
         forCard: node.forCard,
         feeling: node.feeling,
@@ -109,7 +110,7 @@ class SlipRepository({
         id: slip.id,
         body: slip.body.trim(),
         createdAt: slip.createdAt,
-        kind: slip.kind,
+        kind: slip.kind.toRpc(),
         feeling: slip.feeling,
         planNote: slip.planNote,
         forCard: slip.forCard && slip.canGoInCard,
@@ -184,7 +185,7 @@ class SlipRepository({
             SlipEntry(
               id: edge.node.id,
               body: edge.node.body,
-              kind: edge.node.kind.name,
+              kind: edge.node.kind.toModel() ?? SlipKind.quick,
               category: edge.node.category?.toModel(),
               createdAt: edge.node.createdAt,
             ),
@@ -257,7 +258,7 @@ class SlipRepository({
       id: slip.id,
       body: slip.body,
       createdAt: slip.createdAt,
-      kind: slip.kind,
+      kind: slip.kind.toRpc(),
       feeling: slip.feeling,
       planNote: slip.planNote,
     );

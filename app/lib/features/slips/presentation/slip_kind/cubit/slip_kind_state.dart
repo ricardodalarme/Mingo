@@ -1,7 +1,7 @@
 part of 'slip_kind_cubit.dart';
 
 final class const SlipKindState({
-  final String kind = 'specific',
+  final SlipKind kind = SlipKind.specific,
   final FormInput<String> text = const FormInput(''),
   final FormInput<String> feeling = const FormInput(''),
   final FormInput<String> plan = const FormInput(''),
@@ -16,7 +16,7 @@ final class const SlipKindState({
       workArea != null;
 
   SlipKindState copyWith({
-    String? kind,
+    SlipKind? kind,
     FormInput<String>? text,
     FormInput<String>? feeling,
     FormInput<String>? plan,

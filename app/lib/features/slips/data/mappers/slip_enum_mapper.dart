@@ -1,5 +1,6 @@
 import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
+import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 
 extension EnumSlipCategoryMapper on EnumSlipCategory {
@@ -49,5 +50,26 @@ extension SlipWorkAreaMapper on SlipWorkArea {
     SlipWorkArea.emotional => EnumWorkArea.emotional,
     SlipWorkArea.finances => EnumWorkArea.finances,
     SlipWorkArea.other => EnumWorkArea.other,
+  };
+}
+
+extension EnumSlipKindMapper on EnumSlipKind {
+  SlipKind? toModel() => switch (this) {
+    EnumSlipKind.quick => SlipKind.quick,
+    EnumSlipKind.specific => SlipKind.specific,
+    EnumSlipKind.if_then => SlipKind.ifThen,
+    EnumSlipKind.invisible => SlipKind.invisible,
+    EnumSlipKind.$unknown => null,
+  };
+}
+
+extension SlipKindMapper on SlipKind {
+  String toRpc() => toRemote().toJson();
+
+  EnumSlipKind toRemote() => switch (this) {
+    SlipKind.quick => EnumSlipKind.quick,
+    SlipKind.specific => EnumSlipKind.specific,
+    SlipKind.ifThen => EnumSlipKind.if_then,
+    SlipKind.invisible => EnumSlipKind.invisible,
   };
 }
