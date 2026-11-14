@@ -2,8 +2,9 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { isServiceCaller } from "../_shared/auth.ts";
 import { json, log, sql } from "../_shared/db.ts";
+import { serve } from "../_shared/serve.ts";
 
-Deno.serve(async (req) => {
+serve("storage-cleanup", async (req) => {
   if (!(await isServiceCaller(req))) return json({ error: "UNAUTHORIZED" }, 401);
   const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
   const rows = await sql<{ id: number; bucket: string; path: string }[]>`

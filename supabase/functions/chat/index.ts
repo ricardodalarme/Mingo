@@ -12,6 +12,7 @@
 // verify_jwt = true also lets the project's API keys through, so callerId verifies the user token itself.
 import { callerId } from "../_shared/auth.ts";
 import { cors, json, log, sql } from "../_shared/db.ts";
+import { serve } from "../_shared/serve.ts";
 import { looksLikeCrisis } from "./crisis.ts";
 import { type ChatEvent, relay } from "./relay.ts";
 
@@ -66,7 +67,7 @@ const extraHeaders = (session: string): Record<string, string> =>
     ]),
   );
 
-Deno.serve(async (req) => {
+serve("chat", async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
   if (req.method !== "POST") return json({ error: "METHOD_NOT_ALLOWED" }, 405);
   const userId = await callerId(req);

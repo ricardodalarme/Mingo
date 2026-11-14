@@ -6,6 +6,7 @@
 // network) = transient: the job is left unsent and claim_notifications retries it in 5 minutes (max 5 attempts).
 import { isServiceCaller } from "../_shared/auth.ts";
 import { json, log, sql } from "../_shared/db.ts";
+import { serve } from "../_shared/serve.ts";
 import { JWT } from "npm:google-auth-library@9";
 
 type Job = { outbox_id: string; type: string; ref_id: string | null; discreet: boolean; tokens: string[] };
@@ -27,7 +28,7 @@ async function accessToken(account: Account): Promise<string> {
   return (await jwt.authorize()).access_token!;
 }
 
-Deno.serve(async (req) => {
+serve("push-sender", async (req) => {
   if (!(await isServiceCaller(req))) return json({ error: "UNAUTHORIZED" }, 401);
   const account = loadAccount();
   if (account === null) return json({ skipped: "FCM_SERVICE_ACCOUNT not set" });

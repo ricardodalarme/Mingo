@@ -5,8 +5,9 @@
 // verify_jwt = true also lets the project's API keys through, so callerId verifies the user token itself.
 import { callerId } from "../_shared/auth.ts";
 import { cors, json, log } from "../_shared/db.ts";
+import { serve } from "../_shared/serve.ts";
 
-Deno.serve(async (req) => {
+serve("places", async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
   if (!(await callerId(req))) return json({ error: "UNAUTHORIZED" }, 401);
   const token = Deno.env.get("MAPBOX_TOKEN");

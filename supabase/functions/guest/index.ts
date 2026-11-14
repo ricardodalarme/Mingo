@@ -9,10 +9,11 @@
 //   GET  /guest/invite/:code         -> { inviterName, expiresAt } for the invite landing page
 // Every invalid, expired, revoked or stopped token gets the same 404 body.
 import { clientIp, cors, json, log, sql } from "../_shared/db.ts";
+import { serve } from "../_shared/serve.ts";
 
 const GONE = { error: "LINK_NOT_AVAILABLE" };
 
-Deno.serve(async (req) => {
+serve("guest", async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
   const parts = new URL(req.url).pathname.split("/").filter(Boolean);
   const at = parts.indexOf("card");

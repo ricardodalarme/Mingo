@@ -3,13 +3,14 @@
 // app_user_id must be the Supabase user id (set it with Purchases.logIn(userId) in the app).
 import { safeEqual } from "../_shared/auth.ts";
 import { json, log, sql } from "../_shared/db.ts";
+import { serve } from "../_shared/serve.ts";
 
 const STATUS: Record<string, string> = {
   INITIAL_PURCHASE: "active", RENEWAL: "active", UNCANCELLATION: "active", PRODUCT_CHANGE: "active",
   CANCELLATION: "active", BILLING_ISSUE: "billing_issue", EXPIRATION: "expired", SUBSCRIPTION_PAUSED: "expired",
 };
 
-Deno.serve(async (req) => {
+serve("purchases-webhook", async (req) => {
   const secret = Deno.env.get("REVENUECAT_WEBHOOK_AUTH");
   if (!secret || !(await safeEqual(req.headers.get("authorization") ?? "", secret))) return json({ error: "UNAUTHORIZED" }, 401);
   const { event } = await req.json().catch(() => ({ event: null }));
