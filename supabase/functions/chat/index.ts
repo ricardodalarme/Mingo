@@ -9,7 +9,8 @@
 // daily limit, and that is all. Message texts and the model reply are never logged.
 // Requires secrets CHAT_API_URL (an OpenAI-compatible base, e.g. https://host/v1), CHAT_API_KEY and CHAT_MODEL;
 // CHAT_EXTRA_BODY and CHAT_EXTRA_HEADERS (JSON objects) are optional.
-// verify_jwt = true only proves the token is valid, and the public anon key is a valid JWT, so the role is checked here.
+// verify_jwt = true also lets the project's API keys through, so callerId verifies the user token itself.
+import { callerId } from "../_shared/auth.ts";
 import { cors, json, log, sql } from "../_shared/db.ts";
 import { looksLikeCrisis } from "./crisis.ts";
 import { type ChatEvent, relay } from "./relay.ts";
@@ -17,15 +18,6 @@ import { type ChatEvent, relay } from "./relay.ts";
 const MAX_MESSAGE = 1000;
 const MAX_HISTORY = 12;
 const SESSION = /^[A-Za-z0-9_-]{1,80}$/;
-
-function claims(token: string): { role?: string; sub?: string } | null {
-  try {
-    const part = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
-    return JSON.parse(atob(part));
-  } catch {
-    return null;
-  }
-}
 
 const sse = (stream: ReadableStream<Uint8Array>) =>
   new Response(stream, {
@@ -77,9 +69,8 @@ const extraHeaders = (session: string): Record<string, string> =>
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
   if (req.method !== "POST") return json({ error: "METHOD_NOT_ALLOWED" }, 405);
-  const c = claims((req.headers.get("authorization") ?? "").replace(/^Bearer /i, ""));
-  if (c?.role !== "authenticated" || !c?.sub) return json({ error: "UNAUTHORIZED" }, 401);
-  const userId = c.sub;
+  const userId = await callerId(req);
+  if (!userId) return json({ error: "UNAUTHORIZED" }, 401);
 
   const body = await req.json().catch(() => ({}));
   const message = String(body.message ?? "").trim().slice(0, MAX_MESSAGE);

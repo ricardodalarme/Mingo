@@ -2,22 +2,13 @@
 //   GET /places?q=bistro&near=-46.63,-23.55   (near = "lng,lat" of an address the person typed; optional)
 // No location tracking: nothing is stored here, and the app never sends the device position on its own.
 // Requires secret MAPBOX_TOKEN.
-// verify_jwt = true only proves the token is valid, and the public anon key is a valid JWT, so the role is checked here.
+// verify_jwt = true also lets the project's API keys through, so callerId verifies the user token itself.
+import { callerId } from "../_shared/auth.ts";
 import { cors, json, log } from "../_shared/db.ts";
-
-function claims(token: string): { role?: string; sub?: string } | null {
-  try {
-    const part = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
-    return JSON.parse(atob(part));
-  } catch {
-    return null;
-  }
-}
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
-  const c = claims((req.headers.get("authorization") ?? "").replace(/^Bearer /i, ""));
-  if (c?.role !== "authenticated" || !c?.sub) return json({ error: "UNAUTHORIZED" }, 401);
+  if (!(await callerId(req))) return json({ error: "UNAUTHORIZED" }, 401);
   const token = Deno.env.get("MAPBOX_TOKEN");
   if (!token) return json({ error: "PLACES_NOT_CONFIGURED" }, 503);
   const url = new URL(req.url);
