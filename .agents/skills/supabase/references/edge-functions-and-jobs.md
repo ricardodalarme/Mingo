@@ -26,8 +26,10 @@ Read this when adding or changing an Edge Function, a cron job, a Vault secret o
 
 ## Writing a function
 
-- Folder `supabase/functions/<name>/index.ts` using `Deno.serve`. Shared code is in `_shared/`: `db.ts` (`sql`, `json`, `cors`,
-  `clientIp`, `log`) and `auth.ts` (`isServiceCaller`, `safeEqual`).
+- Folder `supabase/functions/<name>/index.ts`. Start the handler with `serve("<name>", async (req) => { ... })` from
+  `_shared/serve.ts`, which turns an unexpected failure into a JSON `INTERNAL` 500 and logs only the function and the error kind.
+  Shared code is in `_shared/`: `db.ts` (`sql`, `json`, `cors`, `clientIp`, `log`), `auth.ts` (`callerId`, `isServiceCaller`,
+  `safeEqual`, `adminKey`) and `serve.ts`.
 - Database access uses the built-in `SUPABASE_DB_URL` through `sql` from `_shared/db.ts`, because functions call into the
   `private` schema, which the REST API does not expose. Keep the SQL in the schema as a function and call it; avoid ad hoc queries
   in TypeScript.
@@ -35,21 +37,26 @@ Read this when adding or changing an Edge Function, a cron job, a Vault secret o
 - Log with `log(event, fields)`: structured lines, never tokens, message bodies or names. A function that handles private text (chat)
   stores and logs none of it.
 - Compare secrets with `safeEqual` (constant time) and put a timeout on outbound calls.
+- Rate-limit anything a signed-in person can repeat that costs money or reveals existence, with `private.hit_rate_limit` and a key
+  that names the function and the person (`places:<user id>`, 30 a minute).
 - Answer unknown or unauthorized callers uniformly (one 404 or 401 body) so a response cannot be used to enumerate.
-- Tests: Deno tests next to the code (`relay_test.ts`, `auth_test.ts`), run with `deno test --allow-env supabase/functions/_shared`
-  or the function's folder. CI type-checks the functions.
+- Dependencies: every `npm:` import names an exact version. Prefer `jose` for tokens (the Firebase assertion in `push-sender/fcm.ts`
+  and `callerId` use it) and keep `supabase-js` to the one function that needs Storage; it pulls in several MB. Check the size of a
+  function's graph with `deno info supabase/functions/<name>/index.ts` before adding a dependency.
+- Tests: Deno tests next to the code (`relay_test.ts`, `auth_test.ts`, `fcm_test.ts`, `crisis_test.ts`, `serve_test.ts`), run with
+  `deno test --allow-env $(find supabase/functions -name '*_test.ts')`. CI type-checks every entrypoint and runs them.
 
 ## Authentication per function
 
 `verify_jwt = true` also lets the project's API keys through on either header, so it does not prove a caller is a signed-in user.
-A function for signed-in users calls `callerId(req)` from `_shared/auth.ts`, which verifies the user token against the project's
-signing keys (`@supabase/server`, `auth: "user"`, audience `authenticated`) and returns the user id or null. Never decode a JWT by
-hand. A function with `verify_jwt = false` authenticates itself: `isServiceCaller(req)` for cron-invoked functions, a `safeEqual`
-shared secret for a webhook, a link token for `guest`.
+A function for signed-in users calls `callerId(req)` from `_shared/auth.ts`, which verifies the user token with `jose` against the
+project's signing keys (the inline `SUPABASE_JWKS`, else the project's public key endpoint) for the audience `authenticated`, and
+returns the user id or null. Never decode a JWT by hand. A function with `verify_jwt = false` authenticates itself:
+`isServiceCaller(req)` for cron-invoked functions, a `safeEqual` shared secret for a webhook, a link token for `guest`.
 
 Every function already receives `SUPABASE_SECRET_KEYS` and `SUPABASE_DB_URL`, so any code it imports could reach the database as
 the owner or through the Data API with RLS bypassed. A restricted database role would not change that, which is why the functions
-use the platform connection. Keep the dependency list short, pin exact versions in `npm:` imports, and keep personal data out of logs.
+use the platform connection. Keep the dependency list short and keep personal data out of logs.
 
 ## Cron jobs and Vault
 
