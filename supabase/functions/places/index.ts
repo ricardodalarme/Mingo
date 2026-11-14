@@ -1,21 +1,27 @@
 // Place search for date ideas (Y-34, Y-35) through Mapbox. Signed-in users only.
 //   GET /places?q=bistro&near=-46.63,-23.55   (near = "lng,lat" of an address the person typed; optional)
 // No location tracking: nothing is stored here, and the app never sends the device position on its own.
+// Limited to a few searches a minute per person (RATE_LIMITED, 429), because every search is billed by Mapbox.
 // Requires secret MAPBOX_TOKEN.
 // verify_jwt = true also lets the project's API keys through, so callerId verifies the user token itself.
 import { callerId } from "../_shared/auth.ts";
-import { cors, json, log } from "../_shared/db.ts";
+import { cors, json, log, sql } from "../_shared/db.ts";
 import { serve } from "../_shared/serve.ts";
+
+const SEARCHES_PER_MINUTE = 30;
 
 serve("places", async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
-  if (!(await callerId(req))) return json({ error: "UNAUTHORIZED" }, 401);
+  const userId = await callerId(req);
+  if (!userId) return json({ error: "UNAUTHORIZED" }, 401);
   const token = Deno.env.get("MAPBOX_TOKEN");
   if (!token) return json({ error: "PLACES_NOT_CONFIGURED" }, 503);
   const url = new URL(req.url);
   const q = (url.searchParams.get("q") ?? "").trim().slice(0, 80);
   const near = url.searchParams.get("near") ?? "";
   if (q.length < 2) return json({ places: [] });
+  const [{ ok }] = await sql`select private.hit_rate_limit(${"places:" + userId}, ${SEARCHES_PER_MINUTE}, interval '1 minute') as ok`;
+  if (!ok) return json({ error: "RATE_LIMITED" }, 429);
 
   const api = new URL("https://api.mapbox.com/search/geocode/v6/forward");
   api.searchParams.set("q", q);
