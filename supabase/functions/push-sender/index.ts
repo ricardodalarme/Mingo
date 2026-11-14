@@ -7,30 +7,13 @@
 import { isServiceCaller } from "../_shared/auth.ts";
 import { json, log, sql } from "../_shared/db.ts";
 import { serve } from "../_shared/serve.ts";
-import { JWT } from "npm:google-auth-library@9";
+import { accessToken, loadAccount } from "./fcm.ts";
 
 type Job = { outbox_id: string; type: string; ref_id: string | null; discreet: boolean; tokens: string[] };
-type Account = { client_email: string; private_key: string; project_id: string };
-
-function loadAccount(): Account | null | "invalid" {
-  const raw = Deno.env.get("FCM_SERVICE_ACCOUNT");
-  if (!raw) return null;
-  try {
-    const a = JSON.parse(raw);
-    return a?.client_email && a?.private_key && a?.project_id ? a : "invalid";
-  } catch (_e) {
-    return "invalid";
-  }
-}
-
-async function accessToken(account: Account): Promise<string> {
-  const jwt = new JWT({ email: account.client_email, key: account.private_key, scopes: ["https://www.googleapis.com/auth/firebase.messaging"] });
-  return (await jwt.authorize()).access_token!;
-}
 
 serve("push-sender", async (req) => {
   if (!(await isServiceCaller(req))) return json({ error: "UNAUTHORIZED" }, 401);
-  const account = loadAccount();
+  const account = loadAccount(Deno.env.get("FCM_SERVICE_ACCOUNT"));
   if (account === null) return json({ skipped: "FCM_SERVICE_ACCOUNT not set" });
   if (account === "invalid") {
     log("push_config_invalid");
