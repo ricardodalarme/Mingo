@@ -1,6 +1,6 @@
 import { assertEquals } from "jsr:@std/assert@1";
-import { exportJWK, generateKeyPair, SignJWT } from "npm:jose@6";
-import { callerId, isServiceCaller, safeEqual } from "./auth.ts";
+import { exportJWK, generateKeyPair, SignJWT } from "npm:jose@6.2.17";
+import { adminKey, callerId, isServiceCaller, safeEqual } from "./auth.ts";
 
 const request = (headers: Record<string, string>) => new Request("https://example.test/fn", { method: "POST", headers });
 
@@ -119,4 +119,18 @@ Deno.test("callerId rejects everyone when the project has no signing keys to che
   Deno.env.delete("SUPABASE_URL");
   Deno.env.delete("SUPABASE_JWKS");
   assertEquals(await callerId(request({ authorization: `Bearer ${await token()}` })), null);
+});
+
+Deno.test("adminKey prefers the default secret key, then a named one, then the legacy key", () => {
+  Deno.env.set("SUPABASE_SERVICE_ROLE_KEY", "legacy.jwt.value");
+  Deno.env.set("SUPABASE_SECRET_KEYS", JSON.stringify({ automations: "sb_secret_auto", default: "sb_secret_default" }));
+  assertEquals(adminKey(), "sb_secret_default");
+  Deno.env.set("SUPABASE_SECRET_KEYS", JSON.stringify({ automations: "sb_secret_auto" }));
+  assertEquals(adminKey(), "sb_secret_auto");
+  Deno.env.set("SUPABASE_SECRET_KEYS", "not json");
+  assertEquals(adminKey(), "legacy.jwt.value");
+  Deno.env.delete("SUPABASE_SECRET_KEYS");
+  assertEquals(adminKey(), "legacy.jwt.value");
+  Deno.env.delete("SUPABASE_SERVICE_ROLE_KEY");
+  assertEquals(adminKey(), null);
 });

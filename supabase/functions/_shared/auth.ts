@@ -28,6 +28,19 @@ function secretKeys(): string[] {
   return keys;
 }
 
+// The key for server-side calls to the Data API and Storage: the named `default` secret key, else the first named one,
+// else the legacy service-role key. Null when the project provides none.
+export function adminKey(): string | null {
+  try {
+    const named = JSON.parse(Deno.env.get("SUPABASE_SECRET_KEYS") ?? "{}");
+    const preferred = named.default ?? Object.values(named)[0];
+    if (typeof preferred === "string" && preferred) return preferred;
+  } catch (_e) {
+    // A malformed dictionary leaves only the legacy key.
+  }
+  return Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || null;
+}
+
 // Whether the request presents a project secret key in the `apikey` header or as a bearer token.
 export async function isServiceCaller(req: Request): Promise<boolean> {
   const presented = [req.headers.get("apikey"), (req.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "")]
