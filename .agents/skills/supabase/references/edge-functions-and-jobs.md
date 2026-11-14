@@ -41,9 +41,15 @@ Read this when adding or changing an Edge Function, a cron job, a Vault secret o
 
 ## Authentication per function
 
-`verify_jwt = true` only proves the token is valid, and the public anon key is a valid JWT, so a function that must be signed-in
-only also reads the token's claims and checks `role` (see `chat/index.ts`). A function with `verify_jwt = false` must authenticate
-itself: `isServiceCaller(req)` for cron-invoked functions, a `safeEqual` shared secret for a webhook, a link token for `guest`.
+`verify_jwt = true` also lets the project's API keys through on either header, so it does not prove a caller is a signed-in user.
+A function for signed-in users calls `callerId(req)` from `_shared/auth.ts`, which verifies the user token against the project's
+signing keys (`@supabase/server`, `auth: "user"`, audience `authenticated`) and returns the user id or null. Never decode a JWT by
+hand. A function with `verify_jwt = false` authenticates itself: `isServiceCaller(req)` for cron-invoked functions, a `safeEqual`
+shared secret for a webhook, a link token for `guest`.
+
+Every function already receives `SUPABASE_SECRET_KEYS` and `SUPABASE_DB_URL`, so any code it imports could reach the database as
+the owner or through the Data API with RLS bypassed. A restricted database role would not change that, which is why the functions
+use the platform connection. Keep the dependency list short, pin exact versions in `npm:` imports, and keep personal data out of logs.
 
 ## Cron jobs and Vault
 
