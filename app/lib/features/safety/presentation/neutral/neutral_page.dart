@@ -12,7 +12,7 @@ class const NeutralPage({super.key}) extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onLongPress: () => context.router.root.replaceAll([const HomeRoute()]),
-      child: const ColoredBox(color: Color(0xFFFFFFFF), child: SizedBox.expand()),
+      child: const ColoredBox(color: AppPalette.white, child: SizedBox.expand()),
     );
   }
 }

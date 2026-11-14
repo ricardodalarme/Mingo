@@ -41,7 +41,8 @@ class _SafeModeShieldState() extends State<SafeModeShield> with WidgetsBindingOb
       textDirection: TextDirection.ltr,
       children: [
         widget.child,
-        if (hides && _isHidden) const Positioned.fill(child: ColoredBox(color: Color(0xFFFFFFFF))),
+        // Fixed white, not a theme color, so the hidden screen reads as blank in every theme.
+        if (hides && _isHidden) const Positioned.fill(child: ColoredBox(color: AppPalette.white)),
       ],
     );
   }
