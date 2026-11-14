@@ -1,6 +1,6 @@
 // Caller checks: who is behind a request. `callerId` is for the app's users; `isServiceCaller` is for functions that run
 // with verify_jwt = false and are invoked by a server (pg_cron through pg_net, a webhook).
-import { verifyAuth } from "npm:@supabase/server@1.9.2/core";
+import { createLocalJWKSet, createRemoteJWKSet, type JWTVerifyGetKey, jwtVerify } from "npm:jose@6.2.17";
 
 const encoder = new TextEncoder();
 
@@ -40,10 +40,38 @@ export async function isServiceCaller(req: Request): Promise<boolean> {
   return ok;
 }
 
+// The project's signing keys: the inline set the platform provides, else the public endpoint of the project.
+let projectKeys: { source: string; getKey: JWTVerifyGetKey } | undefined;
+function signingKeys(): JWTVerifyGetKey | null {
+  const inline = Deno.env.get("SUPABASE_JWKS");
+  const url = Deno.env.get("SUPABASE_URL");
+  const source = inline || (url ? `${url.replace(/\/$/, "")}/auth/v1/.well-known/jwks.json` : "");
+  if (!source) return null;
+  if (projectKeys?.source !== source) {
+    try {
+      const parsed = inline ? JSON.parse(inline) : null;
+      projectKeys = {
+        source,
+        getKey: parsed ? createLocalJWKSet(Array.isArray(parsed) ? { keys: parsed } : parsed) : createRemoteJWKSet(new URL(source)),
+      };
+    } catch (_e) {
+      return null;
+    }
+  }
+  return projectKeys.getKey;
+}
+
 // The id of the signed-in user who made the request, or null for anyone else.
 // verify_jwt = true also lets the project's API keys through, so the user token is verified here against the project's
 // signing keys: an API key, an expired token, a token from another project or one for another audience never passes.
 export async function callerId(req: Request): Promise<string | null> {
-  const { data } = await verifyAuth(req, { auth: "user", audience: "authenticated" });
-  return data?.userClaims?.role === "authenticated" ? data.userClaims.id : null;
+  const token = (req.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "");
+  const getKey = signingKeys();
+  if (!token || !getKey) return null;
+  try {
+    const { payload } = await jwtVerify(token, getKey, { audience: "authenticated", algorithms: ["ES256", "RS256", "EdDSA"] });
+    return payload.role === "authenticated" && typeof payload.sub === "string" ? payload.sub : null;
+  } catch (_e) {
+    return null;
+  }
 }

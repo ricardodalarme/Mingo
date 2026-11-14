@@ -88,9 +88,31 @@ Deno.test("callerId rejects API keys, garbage and a missing header", async () =>
     assertEquals(await callerId(request({ authorization: "Bearer sb_publishable_abc" })), null);
     assertEquals(await callerId(request({ apikey: "sb_secret_abc" })), null);
     assertEquals(await callerId(request({ authorization: "Bearer not.a.token" })), null);
-    assertEquals(await callerId(request({ authorization: `Bearer ${await token()}`.replace(/.$/, "x") })), null);
+    const [header, payload, signature] = (await token()).split(".");
+    const flipped = signature[10] === "A" ? "B" : "A";
+    const tampered = `${header}.${payload}.${signature.slice(0, 10)}${flipped}${signature.slice(11)}`;
+    assertEquals(await callerId(request({ authorization: `Bearer ${tampered}` })), null);
     assertEquals(await callerId(request({})), null);
   });
+});
+
+Deno.test("callerId falls back to the project's public key endpoint", async () => {
+  const jwk = { ...(await exportJWK(signingKey.publicKey)), alg: "ES256", kid: "test" };
+  const requested: string[] = [];
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = (input: RequestInfo | URL) => {
+    requested.push(String(input));
+    return Promise.resolve(Response.json({ keys: [jwk] }));
+  };
+  Deno.env.delete("SUPABASE_JWKS");
+  Deno.env.set("SUPABASE_URL", "https://remote.test");
+  try {
+    assertEquals(await callerId(request({ authorization: `Bearer ${await token()}` })), USER);
+    assertEquals(requested, ["https://remote.test/auth/v1/.well-known/jwks.json"]);
+  } finally {
+    globalThis.fetch = realFetch;
+    Deno.env.delete("SUPABASE_URL");
+  }
 });
 
 Deno.test("callerId rejects everyone when the project has no signing keys to check against", async () => {
