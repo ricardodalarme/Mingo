@@ -2,6 +2,7 @@ import 'package:app/features/mood/data/data_sources/local/mood_local_data_source
 import 'package:app/features/mood/data/data_sources/remote/mood_data_source.dart';
 import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
+import 'package:app/features/mood/presentation/need_sheet/cubit/need_sheet_cubit.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:core/core.dart';
 import 'package:network/network.dart';
@@ -25,5 +26,6 @@ class MoodInjectionModule() implements InjectionModule {
         moodRepository: injector.get<MoodRepository>(),
         slipRepository: injector.get<SlipRepository>(),
       ),
-    );
+    )
+    ..registerFactory<NeedSheetCubit>(NeedSheetCubit.new);
 }

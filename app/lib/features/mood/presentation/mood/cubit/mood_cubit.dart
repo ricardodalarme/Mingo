@@ -121,7 +121,26 @@ class MoodCubit({
     }
   }
 
-  /// Sends the partner a one-tap hug when their shared mood is a good one.
+  /// Saves what the person needs today, keeping the mood and audience already chosen.
+  ///
+  /// A need cleared while the audience shared it falls back to sharing the mood only.
+  Future<void> saveNeed({required MoodKind mood, required NeedKind? need}) async {
+    if (isClosed || state.needAction.isLoading) return;
+
+    final share = need == null && state.share == MoodShare.moodNeed ? MoodShare.mood : state.share;
+    emit(state.copyWith(needAction: const Loading()));
+    try {
+      final entry = await _moodRepository.saveMood(mood: mood, need: need, share: share);
+      if (isClosed) return;
+      emit(_fromEntry(entry).copyWith(needAction: const Success(null)));
+    } catch (exception) {
+      if (isClosed) return;
+      emit(state.copyWith(needAction: Failure.fromObject(exception)));
+      emit(state.copyWith(needAction: const Initial()));
+    }
+  }
+
+  /// Sends the partner a one-tap hug when their shared mood is a good one or asks for one.
   Future<void> reactToPartner() async {
     if (isClosed || state.reactAction.isLoading) return;
 

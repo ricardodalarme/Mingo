@@ -5783,6 +5783,11 @@ enum MoodNeed {
   opinion
   hug
   space
+  chocolate
+  cute_message
+  forehead_kiss
+  company
+  rest
 }
 
 """

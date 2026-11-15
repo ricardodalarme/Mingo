@@ -34,6 +34,11 @@ extension EnumMoodNeedMapper on EnumMoodNeed {
     EnumMoodNeed.opinion => NeedKind.opinion,
     EnumMoodNeed.hug => NeedKind.hug,
     EnumMoodNeed.space => NeedKind.space,
+    EnumMoodNeed.chocolate => NeedKind.chocolate,
+    EnumMoodNeed.cute_message => NeedKind.cuteMessage,
+    EnumMoodNeed.forehead_kiss => NeedKind.foreheadKiss,
+    EnumMoodNeed.company => NeedKind.company,
+    EnumMoodNeed.rest => NeedKind.rest,
     EnumMoodNeed.$unknown => null,
   };
 }
@@ -44,6 +49,11 @@ extension NeedKindMapper on NeedKind {
     NeedKind.opinion => EnumMoodNeed.opinion,
     NeedKind.hug => EnumMoodNeed.hug,
     NeedKind.space => EnumMoodNeed.space,
+    NeedKind.chocolate => EnumMoodNeed.chocolate,
+    NeedKind.cuteMessage => EnumMoodNeed.cute_message,
+    NeedKind.foreheadKiss => EnumMoodNeed.forehead_kiss,
+    NeedKind.company => EnumMoodNeed.company,
+    NeedKind.rest => EnumMoodNeed.rest,
   };
 }
 

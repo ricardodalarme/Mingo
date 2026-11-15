@@ -38,16 +38,35 @@ class const MoodPage({final String? initialMood, super.key})
       body: BlocListener<MoodCubit, MoodState>(
         listenWhen: (previous, current) => previous.saveAction != current.saveAction,
         listener: _onSaveChanged,
-        child: switch (entry) {
-          Failure() => AppErrorView(
-            exception: entry.exception,
-            onRetry: context.read<MoodCubit>().load,
-          ),
-          Loading() => const Center(child: BaseLoadingDots()),
-          _ => const MoodForm(),
-        },
+        child: BlocListener<MoodCubit, MoodState>(
+          listenWhen: (previous, current) => previous.needAction != current.needAction,
+          listener: _onNeedChanged,
+          child: switch (entry) {
+            Failure() => AppErrorView(
+              exception: entry.exception,
+              onRetry: context.read<MoodCubit>().load,
+            ),
+            Loading() => const Center(child: BaseLoadingDots()),
+            _ => const MoodForm(),
+          },
+        ),
       ),
     );
+  }
+
+  void _onNeedChanged(BuildContext context, MoodState state) {
+    final action = state.needAction;
+    final l10n = context.l10n.mood;
+    if (action is Failure) {
+      BaseToast.show(
+        context,
+        l10n.errors.selectOrFallback(action.exception.l10nKey),
+        variant: BaseToastVariant.error,
+      );
+
+      return;
+    }
+    if (action is Success) BaseToast.show(context, l10n.needSaved);
   }
 
   void _onSaveChanged(BuildContext context, MoodState state) {

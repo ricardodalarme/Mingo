@@ -4,13 +4,17 @@ import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/mood/presentation/mood/mood_faces.dart';
 import 'package:app/features/mood/presentation/mood/widgets/partner_mood_help_sheet.dart';
 import 'package:app/features/mood/presentation/mood/widgets/partner_mood_listen_sheet.dart';
+import 'package:app/features/mood/presentation/mood/widgets/partner_need_sheet.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 
 /// The partner's shared mood for today, hidden entirely in discreet mode.
 ///
-/// A good mood offers a one-tap reaction; a low one opens the help that fits it. The bad-day
-/// screen belongs to the person's own jar and never opens from here.
+/// A shared need opens the sheet that answers it, before any mood routing. Otherwise a good mood
+/// offers a one-tap reaction and a low one opens the help that fits it. The bad-day screen belongs
+/// to the person's own jar and never opens from here.
 class const PartnerMoodHint({
   required final PartnerMood partnerMood,
   required final bool isDiscreet,
@@ -41,8 +45,14 @@ class const PartnerMoodHint({
       NeedKind.opinion => l10n.partnerNeedOpinion,
       NeedKind.hug => l10n.partnerNeedHug,
       NeedKind.space => l10n.partnerNeedSpace,
+      NeedKind.chocolate => l10n.partnerNeedChocolate,
+      NeedKind.cuteMessage => l10n.partnerNeedCuteMessage,
+      NeedKind.foreheadKiss => l10n.partnerNeedForeheadKiss,
+      NeedKind.company => l10n.partnerNeedCompany,
+      NeedKind.rest => l10n.partnerNeedRest,
       null => null,
     };
+    final need = partnerMood.need;
     final isGoodMood =
         mood == MoodKind.happy || mood == MoodKind.loving || mood == MoodKind.playful;
 
@@ -64,12 +74,37 @@ class const PartnerMoodHint({
           ],
         ],
       ),
-      onTap: switch (mood) {
-        MoodKind.happy || MoodKind.loving || MoodKind.playful => null,
-        MoodKind.tired || MoodKind.stressed => () => _openHelp(context, mood),
-        MoodKind.sad => () => _openListen(context),
-      },
+      onTap: need != null
+          ? () => _openNeed(context, need)
+          : switch (mood) {
+              MoodKind.happy || MoodKind.loving || MoodKind.playful => null,
+              MoodKind.tired || MoodKind.stressed => () => _openHelp(context, mood),
+              MoodKind.sad => () => _openListen(context),
+            },
     );
+  }
+
+  Future<void> _openNeed(BuildContext context, NeedKind need) async {
+    final l10n = context.l10n.moodHelp;
+    final name = partnerName?.trim();
+    final answer = await BaseSheet.show<PartnerNeedAnswer>(
+      context: context,
+      title: name == null || name.isEmpty
+          ? l10n.partnerNeedTitleGeneric
+          : l10n.partnerNeedTitle(name: name),
+      subtitle: l10n.partnerNeedSubtitle,
+      child: PartnerNeedSheet(need: need),
+    );
+    if (!context.mounted) return;
+
+    switch (answer) {
+      case PartnerNeedAnswer.hug:
+        onReact?.call();
+      case PartnerNeedAnswer.chat:
+        await context.pushRoute(ChatRoute());
+      case null:
+        return;
+    }
   }
 
   Future<void> _openHelp(BuildContext context, MoodKind mood) async {

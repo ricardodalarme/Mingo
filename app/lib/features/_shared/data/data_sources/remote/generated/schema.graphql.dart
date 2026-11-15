@@ -84459,6 +84459,11 @@ enum EnumMoodNeed {
   opinion,
   hug,
   space,
+  chocolate,
+  cute_message,
+  forehead_kiss,
+  company,
+  rest,
   $unknown;
 
   factory EnumMoodNeed.fromJson(String value) => fromJsonEnumMoodNeed(value);
@@ -84476,6 +84481,16 @@ String toJsonEnumMoodNeed(EnumMoodNeed e) {
       return r'hug';
     case EnumMoodNeed.space:
       return r'space';
+    case EnumMoodNeed.chocolate:
+      return r'chocolate';
+    case EnumMoodNeed.cute_message:
+      return r'cute_message';
+    case EnumMoodNeed.forehead_kiss:
+      return r'forehead_kiss';
+    case EnumMoodNeed.company:
+      return r'company';
+    case EnumMoodNeed.rest:
+      return r'rest';
     case EnumMoodNeed.$unknown:
       return r'$unknown';
   }
@@ -84491,6 +84506,16 @@ EnumMoodNeed fromJsonEnumMoodNeed(String value) {
       return EnumMoodNeed.hug;
     case r'space':
       return EnumMoodNeed.space;
+    case r'chocolate':
+      return EnumMoodNeed.chocolate;
+    case r'cute_message':
+      return EnumMoodNeed.cute_message;
+    case r'forehead_kiss':
+      return EnumMoodNeed.forehead_kiss;
+    case r'company':
+      return EnumMoodNeed.company;
+    case r'rest':
+      return EnumMoodNeed.rest;
     default:
       return EnumMoodNeed.$unknown;
   }

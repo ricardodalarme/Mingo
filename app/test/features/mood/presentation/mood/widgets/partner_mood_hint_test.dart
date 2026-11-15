@@ -1,4 +1,5 @@
 import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/need_kind.dart';
 import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
 import 'package:app/l10n/translations.g.dart';
@@ -29,6 +30,23 @@ void main() {
         onReact: onReact,
         onAskToTalk: onAskToTalk,
         onSendMessage: onSendMessage,
+      ),
+    );
+    await tester.pump();
+  }
+
+  Future<void> pumpHintWithNeed(
+    WidgetTester tester, {
+    required MoodKind value,
+    required NeedKind need,
+    VoidCallback? onReact,
+  }) async {
+    await tester.pumpApp(
+      PartnerMoodHint(
+        partnerMood: PartnerMood(day: day, mood: value, need: need),
+        partnerName: 'Marina',
+        isDiscreet: false,
+        onReact: onReact,
       ),
     );
     await tester.pump();
@@ -164,5 +182,47 @@ void main() {
 
     expect(messages, 0);
     expect(find.text('Como ajudar hoje'), findsOneWidget);
+  });
+
+  testWidgets('a shared need replaces the mood routing', (tester) async {
+    await pumpHintWithNeed(tester, value: MoodKind.tired, need: NeedKind.chocolate);
+
+    expect(find.text('O que ajuda: um chocolate.'), findsOneWidget);
+
+    await tester.tap(find.textContaining('sem energia'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('O que Marina precisa'), findsOneWidget);
+    expect(find.text('Levar um chocolate'), findsOneWidget);
+    expect(find.text('Como ajudar hoje'), findsNothing);
+    expect(find.text('Escuta primeiro'), findsNothing);
+    expectNoBadDay();
+  });
+
+  testWidgets('a sad partner who shared a need no longer opens listening first', (tester) async {
+    await pumpHintWithNeed(tester, value: MoodKind.sad, need: NeedKind.space);
+
+    await tester.tap(find.textContaining('para baixo'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('O que Marina precisa'), findsOneWidget);
+    expect(find.text('Escuta primeiro'), findsNothing);
+  });
+
+  testWidgets('a hug asked for today can be sent from the sheet', (tester) async {
+    var reactions = 0;
+    await pumpHintWithNeed(
+      tester,
+      value: MoodKind.tired,
+      need: NeedKind.hug,
+      onReact: () => reactions++,
+    );
+
+    await tester.tap(find.textContaining('sem energia'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Mandar um abraço'));
+    await tester.pumpAndSettle();
+
+    expect(reactions, 1);
   });
 }

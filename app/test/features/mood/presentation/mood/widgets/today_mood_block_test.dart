@@ -104,6 +104,25 @@ void main() {
     expect(find.text('Tenso'), findsOneWidget);
   });
 
+  testWidgets('the need entry shows the need already asked for', (tester) async {
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+
+    expect(find.text('Preciso de: Um abraço'), findsOneWidget);
+  });
+
+  testWidgets('the need entry invites a need when the day has none', (tester) async {
+    when(() => repository.getTodayMood()).thenAnswer((_) async => today());
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+
+    expect(find.text('Preciso de…'), findsOneWidget);
+  });
+
   testWidgets('shows the mood cached on the device while the read is in flight', (tester) async {
     final pending = Completer<MoodToday>();
     when(() => repository.readCachedTodayMood()).thenReturn(entry);
@@ -268,7 +287,7 @@ void main() {
     );
   });
 
-  testWidgets('the block link opens the need and share flow', (tester) async {
+  testWidgets('the block link opens the mood page for the share choice', (tester) async {
     final router = _MockStackRouter();
     when(() => router.push<Object?>(any(), onFailure: any(named: 'onFailure')))
         .thenAnswer((_) async => null);
@@ -283,7 +302,7 @@ void main() {
       ),
     );
 
-    await tester.tap(find.text('Preciso de… e o que seu par vê'));
+    await tester.tap(find.text('O que seu par vê'));
     await tester.pump();
 
     final route = verify(
