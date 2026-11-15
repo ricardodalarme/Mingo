@@ -14,9 +14,9 @@ grant select on public.today_state to authenticated;
 
 -- The widget summary ------------------------------------------------------------------------------------
 
--- Widgets: counters and dates only. In discreet mode (unless the person opted in) nothing with names or text.
+-- Widgets: counters and dates, plus the note and mood the person chose to share.
 create view public.widget_state with (security_invoker = true) as
-  select p.id as profile_id, false as discreet, false as is_paired, null::date as together_since, null::text as partner_name,
+  select p.id as profile_id, false as is_paired, null::date as together_since, null::text as partner_name,
          null::text as next_date_title, null::date as next_date_on, 0 as unopened_cards,
          null::text as partner_note, null::text as partner_note_media, null::timestamptz as partner_note_at, null::text as partner_mood
   from public.profiles p where false;

@@ -26,8 +26,7 @@ insert into public.content_items (kind, slug, locale, title, body, tags, positio
   ('notification', 'card_ready', 'pt-BR', 'Seu cartão está pronto', 'Abra para ler.', '{}', 0),
   ('notification', 'card_received', 'pt-BR', 'Você tem um cartão', 'Alguém te enviou algo.', '{}', 0),
   ('notification', 'daily_idea', 'pt-BR', 'Pequeno momento', 'Uma ideia para hoje.', '{}', 0),
-  ('notification', 'date_coming', 'pt-BR', 'Data chegando', 'Em alguns dias.', '{}', 0),
-  ('notification', 'discreet', 'pt-BR', 'Lembrete', 'Você tem uma novidade.', '{}', 0)
+  ('notification', 'date_coming', 'pt-BR', 'Data chegando', 'Em alguns dias.', '{}', 0)
 on conflict do nothing;
 insert into public.content_items (kind, slug, locale, title, body, parent_slug, position, plus_only) values
   ('lesson', 'gratitude-7-d1', 'pt-BR', 'Perceba as pequenas coisas', 'Tente isto hoje: diga um obrigado em voz alta.', 'gratitude-7', 1, false),
@@ -81,8 +80,7 @@ insert into public.content_items (kind, slug, locale, title, body, tags, positio
   ('notification', 'ritual', 'pt-BR', 'Um ritual de vocês', 'Fazer ou pular, os dois são normais.', '{}', 0, false, false),
   ('notification', 'gentle_return', 'pt-BR', 'Quer anotar algo bom?', 'Sem pressa.', '{}', 0, false, false),
   ('notification', 'card_ready', 'en', 'Your card is ready', 'Open to read.', '{}', 0, false, false),
-  ('notification', 'card_received', 'en', 'You have a card', 'Someone sent you something.', '{}', 0, false, false),
-  ('notification', 'discreet', 'en', 'Reminder', 'You have something new.', '{}', 0, false, false)
+  ('notification', 'card_received', 'en', 'You have a card', 'Someone sent you something.', '{}', 0, false, false)
 on conflict do nothing;
 insert into public.content_items (kind, slug, locale, title, body, parent_slug, position, plus_only) values
   ('lesson', 'gratitude-7-d3', 'pt-BR', 'Diga em voz alta', 'Escolha um slip desta semana e leia para ele.', 'gratitude-7', 3, true),

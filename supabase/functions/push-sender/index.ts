@@ -9,7 +9,7 @@ import { json, log, sql } from "../_shared/db.ts";
 import { serve } from "../_shared/serve.ts";
 import { accessToken, loadAccount } from "./fcm.ts";
 
-type Job = { outbox_id: string; type: string; ref_id: string | null; discreet: boolean; tokens: string[] };
+type Job = { outbox_id: string; type: string; ref_id: string | null; tokens: string[] };
 
 serve("push-sender", async (req) => {
   if (!(await isServiceCaller(req))) return json({ error: "UNAUTHORIZED" }, 401);
@@ -37,7 +37,7 @@ serve("push-sender", async (req) => {
     let delivered = 0, transient = 0;
     for (const token of job.tokens) {
       try {
-        // Data-only message: the app renders localized generic text (or the neutral text in discreet mode).
+        // Data-only message: the app renders the localized text for the type.
         const res = await fetch(`https://fcm.googleapis.com/v1/projects/${account.project_id}/messages:send`, {
           method: "POST",
           signal: AbortSignal.timeout(10_000),
@@ -45,7 +45,7 @@ serve("push-sender", async (req) => {
           body: JSON.stringify({
             message: {
               token,
-              data: { type: job.discreet ? "discreet" : job.type, ref: job.ref_id ?? "", id: job.outbox_id },
+              data: { type: job.type, ref: job.ref_id ?? "", id: job.outbox_id },
               apns: { payload: { aps: { "mutable-content": 1, "content-available": 1 } } },
               android: { priority: "high" },
             },

@@ -1,6 +1,6 @@
 begin;
 set local search_path = tap, public, extensions;
-select plan(28);
+select plan(26);
 select tests.create_user('ana', 'Ana'); select tests.create_user('bia', 'Bia'); select tests.create_user('caio');
 create temp table ids (k text primary key, id uuid) on commit drop; grant all on ids to authenticated;
 
@@ -29,9 +29,6 @@ select public.send_partner_message('drawing', null, 'ana/drawing.png', true);
 select tests.as('bia');
 select is((select partner_note from public.widget()), 'Te amo', 'a newer drawing does not blank the text note');
 select is((select partner_note_media from public.widget()), null, 'the widget keeps showing text only');
-update public.notification_settings set discreet = true where profile_id = tests.uid('bia');
-select is((select partner_note from public.widget()), null, 'discreet mode: the widget carries no text');
-select is((select next_date_title from public.widget()), null, 'discreet mode: no date title either');
 select tests.as('caio');
 select is((select count(*)::int from public.signals) + (select count(*)::int from public.partner_messages), 0, 'stranger sees no signals or messages');
 
