@@ -37,6 +37,10 @@ class ComposeCubit({
 
   void onKindChanged(MessageKind kind) => emit(state.copyWith(kind: kind));
 
+  void startDrawing() => emit(state.copyWith(isDrawing: true));
+
+  void finishDrawing() => emit(state.copyWith(isDrawing: false));
+
   void onTextChanged(String text) => emit(state.copyWith(text: FormInput(text)));
 
   void onForWidgetChanged(bool value) => emit(state.copyWith(forWidget: value));

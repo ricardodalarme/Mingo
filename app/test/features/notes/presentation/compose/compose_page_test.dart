@@ -4,6 +4,7 @@ import 'package:app/features/notes/data/models/sent_message.dart';
 import 'package:app/features/notes/data/repositories/notes_repository.dart';
 import 'package:app/features/notes/presentation/compose/compose_page.dart';
 import 'package:app/features/notes/presentation/compose/cubit/compose_cubit.dart';
+import 'package:app/features/notes/presentation/compose/widgets/drawing_canvas.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
@@ -78,6 +79,35 @@ void main() {
       ),
       findsOneWidget,
     );
+  });
+
+  testWidgets('drawing opens a full-screen canvas with no scroll and done keeps the strokes', (
+    tester,
+  ) async {
+    final cubit = await pumpCompose(tester);
+
+    await tester.tap(find.text('Desenho'));
+    await tester.pump();
+
+    await tester.ensureVisible(find.text('Desenhar'));
+    await tester.tap(find.text('Desenhar'));
+    await tester.pump();
+
+    expect(find.byType(DrawingCanvas), findsOneWidget);
+    expect(find.byType(BaseStackedContent), findsNothing);
+    expect(find.byType(Scrollable), findsNothing);
+
+    await tester.drag(find.byType(DrawingCanvas), const Offset(40, 40));
+    await tester.pump();
+
+    expect(cubit.state.strokes, isNotEmpty);
+
+    await tester.tap(find.text('Concluído'));
+    await tester.pump();
+
+    expect(cubit.state.isDrawing, isFalse);
+    expect(cubit.state.strokes, isNotEmpty);
+    expect(find.byType(Scrollable), findsOneWidget);
   });
 
   testWidgets('deleting asks for confirmation before calling the RPC', (tester) async {

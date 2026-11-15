@@ -1,6 +1,7 @@
 import 'package:app/features/notes/data/models/sent_message.dart';
 import 'package:app/features/notes/presentation/compose/cubit/compose_cubit.dart';
-import 'package:app/features/notes/presentation/compose/widgets/drawing_canvas.dart';
+import 'package:app/features/notes/presentation/compose/widgets/drawing_entry.dart';
+import 'package:app/features/notes/presentation/compose/widgets/drawing_surface.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
@@ -27,12 +28,15 @@ class const ComposePage({super.key}) extends StatelessWidget implements AutoRout
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.notes;
+    final isDrawing = context.select((ComposeCubit cubit) => cubit.state.isDrawing);
     final kind = context.select((ComposeCubit cubit) => cubit.state.kind);
     final text = context.select((ComposeCubit cubit) => cubit.state.text);
     final forWidget = context.select((ComposeCubit cubit) => cubit.state.forWidget);
     final isUnpaired = context.select((ComposeCubit cubit) => cubit.state.isUnpaired);
     final isSending = context.select((ComposeCubit cubit) => cubit.state.sendAction.isLoading);
     final cubit = context.read<ComposeCubit>();
+
+    if (isDrawing) return const DrawingSurface();
 
     return BaseView(
       body: BlocListener<ComposeCubit, ComposeState>(
@@ -93,7 +97,7 @@ class const ComposePage({super.key}) extends StatelessWidget implements AutoRout
                   onChanged: cubit.onTextChanged,
                 )
               else
-                AbsorbPointer(absorbing: isSending, child: const DrawingCanvas()),
+                AbsorbPointer(absorbing: isSending, child: const DrawingEntry()),
               const SizedBox(height: AppSpace.s16),
               if (kind == MessageKind.note)
                 BaseListTile(

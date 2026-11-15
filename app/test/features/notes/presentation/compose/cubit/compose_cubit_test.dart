@@ -114,6 +114,20 @@ void main() {
     );
   });
 
+  test('drawing mode opens and closes with the strokes kept', () {
+    final cubit = build()
+      ..onKindChanged(MessageKind.drawing)
+      ..onStrokeStarted(const Offset(0.1, 0.1))
+      ..startDrawing();
+
+    expect(cubit.state.isDrawing, isTrue);
+
+    cubit.finishDrawing();
+
+    expect(cubit.state.isDrawing, isFalse);
+    expect(cubit.state.strokes, hasLength(1));
+  });
+
   test('the eraser removes the strokes it touches', () {
     final cubit = build()
       ..onStrokeStarted(const Offset(0.1, 0.1))

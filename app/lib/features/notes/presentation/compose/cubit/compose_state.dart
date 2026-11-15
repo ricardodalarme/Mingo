@@ -8,6 +8,7 @@ enum DrawingTool() {
 final class const ComposeState({
   final Resource<List<SentMessage>> sent = const Loading(),
   final MessageKind kind = MessageKind.note,
+  final bool isDrawing = false,
   final FormInput<String> text = const FormInput(''),
   final List<DrawingStroke> strokes = const [],
   final DrawingTool tool = DrawingTool.pen,
@@ -23,6 +24,7 @@ final class const ComposeState({
   ComposeState copyWith({
     Resource<List<SentMessage>>? sent,
     MessageKind? kind,
+    bool? isDrawing,
     FormInput<String>? text,
     List<DrawingStroke>? strokes,
     DrawingTool? tool,
@@ -35,6 +37,7 @@ final class const ComposeState({
     return ComposeState(
       sent: sent ?? this.sent,
       kind: kind ?? this.kind,
+      isDrawing: isDrawing ?? this.isDrawing,
       text: text ?? this.text,
       strokes: strokes ?? this.strokes,
       tool: tool ?? this.tool,
@@ -50,6 +53,7 @@ final class const ComposeState({
   List<Object?> get props => [
     sent,
     kind,
+    isDrawing,
     text,
     strokes,
     tool,

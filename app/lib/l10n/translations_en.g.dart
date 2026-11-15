@@ -3271,6 +3271,12 @@ class _Translations$notes$en extends Translations$notes$pt {
   @override
   String get emptyDrawing => 'Draw something to be able to send it.';
   @override
+  String get startDrawing => 'Draw';
+  @override
+  String get continueDrawing => 'Keep drawing';
+  @override
+  String get done => 'Done';
+  @override
   String get widgetLabel => 'Send to the widget';
   @override
   String get widgetText => 'It appears on their widget if they allow notes.';
@@ -9220,6 +9226,9 @@ extension on TranslationsEn {
           'notes.undo' => 'Undo',
           'notes.clear' => 'Clear',
           'notes.emptyDrawing' => 'Draw something to be able to send it.',
+          'notes.startDrawing' => 'Draw',
+          'notes.continueDrawing' => 'Keep drawing',
+          'notes.done' => 'Done',
           'notes.widgetLabel' => 'Send to the widget',
           'notes.widgetText' => 'It appears on their widget if they allow notes.',
           'notes.drawingHint' =>
@@ -9263,13 +9272,13 @@ extension on TranslationsEn {
           'notes.emptyTitle' => 'Nothing sent yet',
           'notes.emptyText' => 'When you send a note or a drawing, it shows up here.',
           'notes.errorTitle' => 'Couldn\'t load',
+          _ => null,
+        } ??
+        switch (path) {
           'notes.errorText' => 'Try again in a moment.',
           'notes.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'notes.errors.NOT_PAIRED' =>
             'To send this, you need to be connected with your partner in the app.',
-          _ => null,
-        } ??
-        switch (path) {
           'notes.errors.other' => 'Couldn\'t send right now. What you wrote is still here.',
           'notificationPermission.label' => 'Reminders',
           'notificationPermission.title' => 'Gentle reminders?',
@@ -9837,12 +9846,12 @@ extension on TranslationsEn {
           'relationshipSettings.phasePlaceholder' => 'Pick a phase',
           'relationshipSettings.phases.beginning' => 'Just starting',
           'relationshipSettings.phases.dating' => 'Dating',
-          'relationshipSettings.phases.livingTogether' => 'Living together',
-          'relationshipSettings.phases.engaged' => 'Engaged',
-          'relationshipSettings.phases.married' => 'Married',
           _ => null,
         } ??
         switch (path) {
+          'relationshipSettings.phases.livingTogether' => 'Living together',
+          'relationshipSettings.phases.engaged' => 'Engaged',
+          'relationshipSettings.phases.married' => 'Married',
           'relationshipSettings.phases.withKids' => 'With kids',
           'relationshipSettings.phases.longDistance' => 'Long distance',
           'relationshipSettings.phases.restarting' => 'Starting over',
@@ -10407,12 +10416,12 @@ extension on TranslationsEn {
           'tabs.plusTitle' => 'Free and Plus',
           'tabs.plusText' => 'What each plan includes, no pressure.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
-          'tabs.temperatureTitle' => 'How is it between you?',
-          'tabs.temperatureText' => 'A private check-in, never a score.',
-          'tabs.learningLabel' => 'JUST FOR YOU',
           _ => null,
         } ??
         switch (path) {
+          'tabs.temperatureTitle' => 'How is it between you?',
+          'tabs.temperatureText' => 'A private check-in, never a score.',
+          'tabs.learningLabel' => 'JUST FOR YOU',
           'tabs.learningTitle' => 'What you learned',
           'tabs.learningText' => 'Private notes you can delete.',
           'tabs.fightStyleLabel' => 'JUST FOR YOU',

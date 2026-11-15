@@ -3966,6 +3966,15 @@ class Translations$notes$pt {
   /// pt: 'Faça um traço para poder enviar.'
   String get emptyDrawing => 'Faça um traço para poder enviar.';
 
+  /// pt: 'Desenhar'
+  String get startDrawing => 'Desenhar';
+
+  /// pt: 'Continuar desenhando'
+  String get continueDrawing => 'Continuar desenhando';
+
+  /// pt: 'Concluído'
+  String get done => 'Concluído';
+
   /// pt: 'Enviar para o widget'
   String get widgetLabel => 'Enviar para o widget';
 
@@ -11030,6 +11039,9 @@ extension on Translations {
           'notes.undo' => 'Desfazer',
           'notes.clear' => 'Limpar',
           'notes.emptyDrawing' => 'Faça um traço para poder enviar.',
+          'notes.startDrawing' => 'Desenhar',
+          'notes.continueDrawing' => 'Continuar desenhando',
+          'notes.done' => 'Concluído',
           'notes.widgetLabel' => 'Enviar para o widget',
           'notes.widgetText' => 'Aparece no widget dele se ele permitir recados.',
           'notes.drawingHint' =>
@@ -11073,12 +11085,12 @@ extension on Translations {
           'notes.emptyTitle' => 'Nada enviado ainda',
           'notes.emptyText' => 'Quando você mandar um bilhete ou desenho, ele aparece aqui.',
           'notes.errorTitle' => 'Não deu para carregar',
-          'notes.errorText' => 'Tente de novo em instantes.',
-          'notes.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'notes.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
           _ => null,
         } ??
         switch (path) {
+          'notes.errorText' => 'Tente de novo em instantes.',
+          'notes.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'notes.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
           'notes.errors.other' => 'Não deu para enviar agora. O que você escreveu continua aqui.',
           'notificationPermission.label' => 'Lembretes',
           'notificationPermission.title' => 'Lembretes gentis?',
@@ -11648,12 +11660,12 @@ extension on Translations {
           'relationshipSettings.phasePlaceholder' => 'Escolha uma fase',
           'relationshipSettings.phases.beginning' => 'Começando',
           'relationshipSettings.phases.dating' => 'Namorando',
-          'relationshipSettings.phases.livingTogether' => 'Moramos juntos',
-          'relationshipSettings.phases.engaged' => 'Noivos',
-          'relationshipSettings.phases.married' => 'Casados',
           _ => null,
         } ??
         switch (path) {
+          'relationshipSettings.phases.livingTogether' => 'Moramos juntos',
+          'relationshipSettings.phases.engaged' => 'Noivos',
+          'relationshipSettings.phases.married' => 'Casados',
           'relationshipSettings.phases.withKids' => 'Com filhos',
           'relationshipSettings.phases.longDistance' => 'Namoro à distância',
           'relationshipSettings.phases.restarting' => 'Recomeçando',
@@ -12220,12 +12232,12 @@ extension on Translations {
           'tabs.plusTitle' => 'Grátis e Plus',
           'tabs.plusText' => 'O que cada plano inclui, sem pressão.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
-          'tabs.temperatureTitle' => 'Como está entre vocês?',
-          'tabs.temperatureText' => 'Um registro privado, sem nota.',
-          'tabs.learningLabel' => 'SÓ PARA VOCÊ',
           _ => null,
         } ??
         switch (path) {
+          'tabs.temperatureTitle' => 'Como está entre vocês?',
+          'tabs.temperatureText' => 'Um registro privado, sem nota.',
+          'tabs.learningLabel' => 'SÓ PARA VOCÊ',
           'tabs.learningTitle' => 'O que você aprendeu',
           'tabs.learningText' => 'Anotações privadas que você pode apagar.',
           'tabs.fightStyleLabel' => 'SÓ PARA VOCÊ',
