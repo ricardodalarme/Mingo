@@ -9,15 +9,15 @@ void main() {
   setUp(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
   testWidgets('the theme page offers the three app colours', (tester) async {
-    final l10n = Translations().intro.theme;
+    final l10n = Translations().profileSetup;
 
     await tester.pumpApp(const SettingsThemePage());
     await tester.pumpAndSettle();
 
-    final rose = tester.widget<BaseOptionTile>(find.widgetWithText(BaseOptionTile, l10n.rose));
+    final rose = tester.widget<BaseChoiceChip>(find.widgetWithText(BaseChoiceChip, l10n.themeRose));
 
     expect(rose.isSelected, isTrue);
-    expect(find.text(l10n.blue), findsOneWidget);
-    expect(find.text(l10n.neutral), findsOneWidget);
+    expect(find.text(l10n.themeBlue), findsOneWidget);
+    expect(find.text(l10n.themeNeutral), findsOneWidget);
   });
 }

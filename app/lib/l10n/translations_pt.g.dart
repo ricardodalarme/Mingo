@@ -57,15 +57,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$account$pt account = Translations$account$pt.internal(_root);
-  late final Translations$agreements$pt agreements = Translations$agreements$pt.internal(_root);
-  late final Translations$annoyanceCheck$pt annoyanceCheck =
-      Translations$annoyanceCheck$pt.internal(_root);
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
   late final Translations$capsules$pt capsules = Translations$capsules$pt.internal(_root);
-  late final Translations$cardSettings$pt cardSettings = Translations$cardSettings$pt.internal(
-    _root,
-  );
   late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
   late final Translations$cardsList$pt cardsList = Translations$cardsList$pt.internal(_root);
   late final Translations$chat$pt chat = Translations$chat$pt.internal(_root);
@@ -75,23 +69,16 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$connectUs$pt connectUs = Translations$connectUs$pt.internal(_root);
-  late final Translations$createAccount$pt createAccount = Translations$createAccount$pt.internal(
-    _root,
-  );
   late final Translations$dateNight$pt dateNight = Translations$dateNight$pt.internal(_root);
   late final Translations$dates$pt dates = Translations$dates$pt.internal(_root);
   late final Translations$day$pt day = Translations$day$pt.internal(_root);
   late final Translations$debugSignIn$pt debugSignIn = Translations$debugSignIn$pt.internal(_root);
   late final Translations$devices$pt devices = Translations$devices$pt.internal(_root);
+  late final Translations$discreet$pt discreet = Translations$discreet$pt.internal(_root);
   late final Translations$distance$pt distance = Translations$distance$pt.internal(_root);
   late final Translations$fightStyle$pt fightStyle = Translations$fightStyle$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$games$pt games = Translations$games$pt.internal(_root);
-  late final Translations$gentleRequest$pt gentleRequest = Translations$gentleRequest$pt.internal(
-    _root,
-  );
-  late final Translations$gentleRequestDetail$pt gentleRequestDetail =
-      Translations$gentleRequestDetail$pt.internal(_root);
   late final Translations$gifts$pt gifts = Translations$gifts$pt.internal(_root);
   late final Translations$globalErrors$pt globalErrors = Translations$globalErrors$pt.internal(
     _root,
@@ -102,11 +89,11 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$guides$pt guides = Translations$guides$pt.internal(_root);
   late final Translations$hardConversation$pt hardConversation =
       Translations$hardConversation$pt.internal(_root);
+  late final Translations$heavyDay$pt heavyDay = Translations$heavyDay$pt.internal(_root);
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
   late final Translations$history$pt history = Translations$history$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
-  late final Translations$inbox$pt inbox = Translations$inbox$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
   late final Translations$language$pt language = Translations$language$pt.internal(_root);
@@ -127,6 +114,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$partnerProfile$pt partnerProfile =
       Translations$partnerProfile$pt.internal(_root);
   late final Translations$partnerStep$pt partnerStep = Translations$partnerStep$pt.internal(_root);
+  late final Translations$pause$pt pause = Translations$pause$pt.internal(_root);
+  late final Translations$places$pt places = Translations$places$pt.internal(_root);
   late final Translations$plus$pt plus = Translations$plus$pt.internal(_root);
   late final Translations$privacy$pt privacy = Translations$privacy$pt.internal(_root);
   late final Translations$profileDetails$pt profileDetails =
@@ -135,12 +124,10 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$programs$pt programs = Translations$programs$pt.internal(_root);
-  late final Translations$pronouns$pt pronouns = Translations$pronouns$pt.internal(_root);
   late final Translations$questions$pt questions = Translations$questions$pt.internal(_root);
   late final Translations$questionsEntry$pt questionsEntry =
       Translations$questionsEntry$pt.internal(_root);
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
-  late final Translations$quizzes$pt quizzes = Translations$quizzes$pt.internal(_root);
   late final Translations$received$pt received = Translations$received$pt.internal(_root);
   late final Translations$relationshipChanged$pt relationshipChanged =
       Translations$relationshipChanged$pt.internal(_root);
@@ -149,12 +136,13 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
   late final Translations$repair$pt repair = Translations$repair$pt.internal(_root);
   late final Translations$rituals$pt rituals = Translations$rituals$pt.internal(_root);
+  late final Translations$safeMode$pt safeMode = Translations$safeMode$pt.internal(_root);
+  late final Translations$safety$pt safety = Translations$safety$pt.internal(_root);
   late final Translations$sessionExpired$pt sessionExpired =
       Translations$sessionExpired$pt.internal(_root);
   late final Translations$settingsHome$pt settingsHome = Translations$settingsHome$pt.internal(
     _root,
   );
-  late final Translations$share$pt share = Translations$share$pt.internal(_root);
   late final Translations$slipDetail$pt slipDetail = Translations$slipDetail$pt.internal(_root);
   late final Translations$slipKind$pt slipKind = Translations$slipKind$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
@@ -166,9 +154,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$timeInApp$pt timeInApp = Translations$timeInApp$pt.internal(_root);
   late final Translations$today$pt today = Translations$today$pt.internal(_root);
   late final Translations$unpair$pt unpair = Translations$unpair$pt.internal(_root);
-  late final Translations$weeklyReview$pt weeklyReview = Translations$weeklyReview$pt.internal(
-    _root,
-  );
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
   late final Translations$widgets$pt widgets = Translations$widgets$pt.internal(_root);
 }
@@ -186,9 +171,6 @@ class Translations$acceptInvite$pt {
 
   /// pt: 'convite'
   String get titleHighlight => 'convite';
-
-  /// pt: 'Conectar com código'
-  String get connectTitle => 'Conectar com código';
 
   /// pt: 'Digite o código que a outra pessoa enviou para vocês se conectarem.'
   String get subtitle => 'Digite o código que a outra pessoa enviou para vocês se conectarem.';
@@ -217,17 +199,6 @@ class Translations$acceptInvite$pt {
       Translations$acceptInvite$connected$pt.internal(_root);
   late final Translations$acceptInvite$unusable$pt unusable =
       Translations$acceptInvite$unusable$pt.internal(_root);
-
-  /// pt: 'Esse código é seu'
-  String get ownCodeTitle => 'Esse código é seu';
-
-  /// pt: 'seu'
-  String get ownCodeHighlight => 'seu';
-
-  /// pt: 'Esse é o seu próprio código. Para conectar, use o código da sua pessoa.'
-  String get ownCodeText =>
-      'Esse é o seu próprio código. Para conectar, use o código da sua pessoa.';
-
   Map<String, String> get errors => {
     'ALREADY_PAIRED': 'Você já está conectado com alguém.',
     'COUPLE_FULL': 'Esse espaço já tem duas pessoas.',
@@ -235,34 +206,6 @@ class Translations$acceptInvite$pt {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'other': 'Não deu para conectar agora. Tente de novo.',
   };
-
-  /// pt: 'Conectar com {name}'
-  String headline({required Object name}) => 'Conectar com ${name}';
-
-  /// pt: 'Conectar com sua pessoa'
-  String get headlineNoName => 'Conectar com sua pessoa';
-
-  /// pt: 'sua pessoa'
-  String get headlineNoNameHighlight => 'sua pessoa';
-
-  /// pt: 'Os dois já usam o app? Um convida e o outro digita o código.'
-  String get pageSubtitle => 'Os dois já usam o app? Um convida e o outro digita o código.';
-
-  /// pt: 'Tenho um código'
-  String get segmentHaveCode => 'Tenho um código';
-
-  /// pt: 'Quero convidar'
-  String get segmentInvite => 'Quero convidar';
-
-  /// pt: 'Conectar'
-  String get connectAction => 'Conectar';
-
-  /// pt: 'Seu código de convite'
-  String get ownCodeLabel => 'Seu código de convite';
-
-  /// pt: 'Envie esse código para sua pessoa. O que cada um anotou até agora continua privado.'
-  String get ownCodeNote =>
-      'Envie esse código para sua pessoa. O que cada um anotou até agora continua privado.';
 }
 
 // Path: account
@@ -279,8 +222,8 @@ class Translations$account$pt {
   /// pt: 'conta'
   String get deleteHighlight => 'conta';
 
-  /// pt: 'Os dados são apagados após 30 dias. Precisa de nova autenticação.'
-  String get deleteText => 'Os dados são apagados após 30 dias. Precisa de nova autenticação.';
+  /// pt: 'Os dados são apagados após 14 dias. Precisa de nova autenticação.'
+  String get deleteText => 'Os dados são apagados após 14 dias. Precisa de nova autenticação.';
 
   /// pt: 'Isso também desfaz o vínculo'
   String get deleteWarningTitle => 'Isso também desfaz o vínculo';
@@ -297,9 +240,9 @@ class Translations$account$pt {
   /// pt: 'Apagar sua conta?'
   String get deleteConfirmTitle => 'Apagar sua conta?';
 
-  /// pt: 'Você terá 30 dias para mudar de ideia. Depois disso, nada pode ser recuperado.'
+  /// pt: 'Você terá 14 dias para mudar de ideia. Depois disso, nada pode ser recuperado.'
   String get deleteConfirmText =>
-      'Você terá 30 dias para mudar de ideia. Depois disso, nada pode ser recuperado.';
+      'Você terá 14 dias para mudar de ideia. Depois disso, nada pode ser recuperado.';
 
   /// pt: 'Confirme para apagar sua conta.'
   String get reauthReason => 'Confirme para apagar sua conta.';
@@ -351,169 +294,6 @@ class Translations$account$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para concluir agora. Tente de novo.',
   };
-  late final Translations$account$export$pt export = Translations$account$export$pt.internal(_root);
-}
-
-// Path: agreements
-class Translations$agreements$pt {
-  Translations$agreements$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Acordos'
-  String get title => 'Acordos';
-
-  /// pt: 'Novo acordo'
-  String get add => 'Novo acordo';
-
-  /// pt: 'Novo acordo'
-  String get addTitle => 'Novo acordo';
-
-  /// pt: 'O que vocês combinam'
-  String get bodyLabel => 'O que vocês combinam';
-
-  /// pt: 'Ex.: Conversar sobre dinheiro uma vez por mês'
-  String get bodyHint => 'Ex.: Conversar sobre dinheiro uma vez por mês';
-
-  Map<String, String> get bodyErrors => {
-    'empty': 'Escreva o acordo.',
-    'tooLong': 'Use no máximo 200 caracteres.',
-  };
-
-  /// pt: 'Propor'
-  String get propose => 'Propor';
-
-  /// pt: 'Confirmar'
-  String get confirm => 'Confirmar';
-
-  /// pt: 'Opções do acordo'
-  String get options => 'Opções do acordo';
-
-  /// pt: 'Frases curtas que vocês combinam. Só valem quando a outra pessoa confirma.'
-  String get subtitleShared =>
-      'Frases curtas que vocês combinam. Só valem quando a outra pessoa confirma.';
-
-  /// pt: 'Anotações suas. Quando você tiver alguém por perto, viram acordos.'
-  String get subtitlePrivate =>
-      'Anotações suas. Quando você tiver alguém por perto, viram acordos.';
-
-  /// pt: 'Nenhum acordo ainda'
-  String get emptyTitle => 'Nenhum acordo ainda';
-
-  /// pt: 'Combine algo pequeno e peça para a outra pessoa confirmar.'
-  String get emptyTextShared => 'Combine algo pequeno e peça para a outra pessoa confirmar.';
-
-  /// pt: 'Anote algo que você gostaria de combinar.'
-  String get emptyTextPrivate => 'Anote algo que você gostaria de combinar.';
-
-  /// pt: 'Só você vê'
-  String get statusPrivate => 'Só você vê';
-
-  /// pt: 'Confirmado pelos dois'
-  String get statusConfirmed => 'Confirmado pelos dois';
-
-  /// pt: 'Esperando a outra pessoa'
-  String get statusWaitingPartner => 'Esperando a outra pessoa';
-
-  /// pt: 'Esperando você'
-  String get statusWaitingYou => 'Esperando você';
-
-  /// pt: 'Guardar este acordo?'
-  String get archiveTitle => 'Guardar este acordo?';
-
-  /// pt: 'Ele sai da lista para vocês dois.'
-  String get archiveTextShared => 'Ele sai da lista para vocês dois.';
-
-  /// pt: 'Ele sai da sua lista.'
-  String get archiveTextPrivate => 'Ele sai da sua lista.';
-
-  /// pt: 'Guardar'
-  String get archiveConfirm => 'Guardar';
-
-  /// pt: 'O que vocês combinaram'
-  String get metaShared => 'O que vocês combinaram';
-
-  /// pt: 'Anotações suas'
-  String get metaPrivate => 'Anotações suas';
-
-  Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED':
-        'Você chegou ao limite de acordos do plano grátis. Guarde um ou conheça o Plus.',
-    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para concluir agora. Tente de novo.',
-  };
-}
-
-// Path: annoyanceCheck
-class Translations$annoyanceCheck$pt {
-  Translations$annoyanceCheck$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Isso ainda incomoda?'
-  String get title => 'Isso ainda incomoda?';
-
-  /// pt: 'incomoda'
-  String get titleHighlight => 'incomoda';
-
-  /// pt: 'Você anotou há {days} dias · some em {left} dias'
-  String age({required Object days, required Object left}) =>
-      'Você anotou há ${days} dias · some em ${left} dias';
-
-  /// pt: 'Conversar sobre isso'
-  String get talkTitle => 'Conversar sobre isso';
-
-  /// pt: 'Escrever um pedido gentil'
-  String get talkText => 'Escrever um pedido gentil';
-
-  /// pt: 'Falar com a Conversa'
-  String get chatTitle => 'Falar com a Conversa';
-
-  /// pt: 'Só você e o chat'
-  String get chatText => 'Só você e o chat';
-
-  /// pt: 'Deixar ir'
-  String get letGoTitle => 'Deixar ir';
-
-  /// pt: 'Apagar agora, sem aviso a ninguém'
-  String get letGoText => 'Apagar agora, sem aviso a ninguém';
-
-  /// pt: 'Coisas boas ficam para sempre. O que incomodou some sozinho, se você não fizer nada.'
-  String get note =>
-      'Coisas boas ficam para sempre. O que incomodou some sozinho, se você não fizer nada.';
-
-  /// pt: 'Deixar ir?'
-  String get letGoConfirmTitle => 'Deixar ir?';
-
-  /// pt: 'A anotação é apagada agora e ninguém é avisado.'
-  String get letGoConfirmText => 'A anotação é apagada agora e ninguém é avisado.';
-
-  /// pt: 'Apagar agora'
-  String get letGoConfirm => 'Apagar agora';
-
-  /// pt: 'Anotação apagada'
-  String get letGoDone => 'Anotação apagada';
-
-  /// pt: 'Essa anotação já saiu'
-  String get goneTitle => 'Essa anotação já saiu';
-
-  /// pt: 'Ela expirou, foi apagada ou virou um pedido.'
-  String get goneText => 'Ela expirou, foi apagada ou virou um pedido.';
-
-  /// pt: 'Fechar'
-  String get close => 'Fechar';
-
-  /// pt: 'Não deu para abrir a anotação'
-  String get errorTitle => 'Não deu para abrir a anotação';
-
-  Map<String, String> get errors => {
-    'NETWORK': 'Sem conexão. Tente de novo.',
-    'other': 'Algo deu errado. Tente de novo.',
-  };
 }
 
 // Path: authentication
@@ -530,8 +310,15 @@ class Translations$authentication$pt {
   /// pt: 'Sem e-mail e senha. Só Apple ou Google.'
   String get signInSubtitle => 'Sem e-mail e senha. Só Apple ou Google.';
 
+  /// pt: 'Neste build de teste, entre com e-mail e senha.'
+  String get signInDebugSubtitle => 'Neste build de teste, entre com e-mail e senha.';
+
   /// pt: 'Entrar leva direto para o seu Hoje.'
   String get signInNote => 'Entrar leva direto para o seu Hoje.';
+
+  /// pt: 'Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.'
+  String get providersUnavailable =>
+      'Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.';
 
   /// pt: 'Entrar com e-mail e senha'
   String get emailSignInFallback => 'Entrar com e-mail e senha';
@@ -630,23 +417,6 @@ class Translations$authentication$pt {
     'weak_password': 'Escolha uma senha mais forte.',
     'other': 'Não deu para entrar agora. Tente de novo.',
   };
-
-  /// pt: 'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os {terms} e a {privacy}.'
-  String legal({required Object terms, required Object privacy}) =>
-      'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os ${terms} e a ${privacy}.';
-
-  /// pt: 'Termos'
-  String get legalTerms => 'Termos';
-
-  /// pt: 'Política de Privacidade'
-  String get legalPrivacy => 'Política de Privacidade';
-
-  /// pt: 'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os Termos e a Política de Privacidade.'
-  String get legalPlain =>
-      'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os Termos e a Política de Privacidade.';
-
-  /// pt: 'Tentar de novo'
-  String get tryAgain => 'Tentar de novo';
 }
 
 // Path: capsules
@@ -759,47 +529,6 @@ class Translations$capsules$pt {
   Map<String, String> get deleteErrors => {
     'other': 'Não deu para apagar esta cápsula. Ela continua aqui.',
   };
-}
-
-// Path: cardSettings
-class Translations$cardSettings$pt {
-  Translations$cardSettings$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Cartão semanal'
-  String get title => 'Cartão semanal';
-
-  /// pt: 'Dia'
-  String get day => 'Dia';
-
-  /// pt: 'Hora'
-  String get hour => 'Hora';
-
-  /// pt: 'Slips novos entram no cartão'
-  String get defaultTitle => 'Slips novos entram no cartão';
-
-  /// pt: 'Cada slip pode mudar isso depois.'
-  String get defaultSubtitle => 'Cada slip pode mudar isso depois.';
-
-  /// pt: 'Mudanças valem para o próximo cartão.'
-  String get note => 'Mudanças valem para o próximo cartão.';
-
-  /// pt: 'Não deu para salvar. Sua escolha anterior foi mantida.'
-  String get saveError => 'Não deu para salvar. Sua escolha anterior foi mantida.';
-
-  /// pt: 'Não deu para abrir as configurações'
-  String get errorTitle => 'Não deu para abrir as configurações';
-
-  Map<String, String> get errors => {
-    'NETWORK': 'Sem conexão. Tente de novo.',
-    'other': 'Suas escolhas continuam salvas. Tente de novo.',
-  };
-
-  /// pt: 'Configurações do cartão'
-  String get open => 'Configurações do cartão';
 }
 
 // Path: cardView
@@ -959,6 +688,20 @@ class Translations$chat$pt {
   /// pt: 'Mascote'
   String get title => 'Mascote';
 
+  /// pt: 'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.'
+  String get consentText =>
+      'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.';
+
+  /// pt: 'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.'
+  String get consentPrivacy =>
+      'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.';
+
+  /// pt: 'Ligar a conversa'
+  String get consentTurnOn => 'Ligar a conversa';
+
+  /// pt: 'Diga como você está, ou comece por uma coisa pequena.'
+  String get emptyHint => 'Diga como você está, ou comece por uma coisa pequena.';
+
   /// pt: 'Escreva aqui'
   String get inputHint => 'Escreva aqui';
 
@@ -1016,6 +759,12 @@ class Translations$chat$pt {
   /// pt: 'Configurações da conversa'
   String get settingsTitle => 'Configurações da conversa';
 
+  /// pt: 'Conversar com a mascote'
+  String get toggleLabel => 'Conversar com a mascote';
+
+  /// pt: 'Só você decide quando a conversa está ligada.'
+  String get toggleSubtitle => 'Só você decide quando a conversa está ligada.';
+
   /// pt: 'Plano Plus'
   String get planPlus => 'Plano Plus';
 
@@ -1035,6 +784,16 @@ class Translations$chat$pt {
   /// pt: 'Só o texto que você escreve e os últimos turnos da conversa vão para o modelo, para gerar a resposta. Nada é guardado, a menos que você salve como slip ou aprendizado.'
   String get sendingText =>
       'Só o texto que você escreve e os últimos turnos da conversa vão para o modelo, para gerar a resposta. Nada é guardado, a menos que você salve como slip ou aprendizado.';
+
+  /// pt: 'Ao desligar, o passo de consentimento volta. A próxima mensagem só é enviada depois que você ligar de novo.'
+  String get disableNote =>
+      'Ao desligar, o passo de consentimento volta. A próxima mensagem só é enviada depois que você ligar de novo.';
+
+  /// pt: 'Conversa ligada'
+  String get settingsOn => 'Conversa ligada';
+
+  /// pt: 'Conversa desligada'
+  String get settingsOff => 'Conversa desligada';
 
   /// pt: 'Sem conexão. A conversa volta quando você reconectar.'
   String get offline => 'Sem conexão. A conversa volta quando você reconectar.';
@@ -1060,6 +819,16 @@ class Translations$chat$pt {
   /// pt: 'Ver planos'
   String get plusCta => 'Ver planos';
 
+  /// pt: 'Você não está sozinho'
+  String get crisisTitle => 'Você não está sozinho';
+
+  /// pt: 'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.'
+  String get crisisText =>
+      'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.';
+
+  /// pt: 'Esconder o app (modo seguro)'
+  String get crisisSafeMode => 'Esconder o app (modo seguro)';
+
   /// pt: 'A conversa não está disponível agora'
   String get unavailableTitle => 'A conversa não está disponível agora';
 
@@ -1077,52 +846,17 @@ class Translations$chat$pt {
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
 
+  /// pt: 'Um momento difícil'
+  String get starterHard => 'Um momento difícil';
+
+  /// pt: 'Uma ideia'
+  String get starterIdea => 'Uma ideia';
+
+  /// pt: 'Um plano de encontro'
+  String get starterPlan => 'Um plano de encontro';
+
   /// pt: 'Mais opções'
   String get menuLabel => 'Mais opções';
-
-  late final Translations$chat$action$pt action = Translations$chat$action$pt.internal(_root);
-  Map<String, String> get greeting => {
-    'morning': 'Bom dia',
-    'afternoon': 'Boa tarde',
-    'evening': 'Boa noite',
-  };
-
-  /// pt: 'Sobre o que você quer falar?'
-  String get entryTitle => 'Sobre o que você quer falar?';
-
-  /// pt: 'falar'
-  String get entryHighlight => 'falar';
-
-  /// pt: 'Algo me incomodou'
-  String get starterBothered => 'Algo me incomodou';
-
-  /// pt: 'Quero agradecer'
-  String get starterThanks => 'Quero agradecer';
-
-  /// pt: 'Ideia de encontro'
-  String get starterDate => 'Ideia de encontro';
-
-  /// pt: 'Preparar uma conversa'
-  String get starterTalk => 'Preparar uma conversa';
-
-  /// pt: 'Começar por aqui'
-  String get startHere => 'Começar por aqui';
-
-  /// pt: 'Virar slip'
-  String get offlineSlip => 'Virar slip';
-
-  /// pt: 'Anotar no diário'
-  String get offlineDiary => 'Anotar no diário';
-
-  /// pt: 'O que ele vê e lembra'
-  String get remembersTitle => 'O que ele vê e lembra';
-
-  /// pt: 'O que aprendi'
-  String get remembersAction => 'O que aprendi';
-
-  /// pt: 'Só guarda o que você confirmar, item por item. Você pode rever e apagar quando quiser.'
-  String get remembersText =>
-      'Só guarda o que você confirmar, item por item. Você pode rever e apagar quando quiser.';
 }
 
 // Path: checkin
@@ -1361,8 +1095,8 @@ class Translations$connectUs$pt {
 
   // Translations
 
-  /// pt: 'Saudade de nós'
-  String get title => 'Saudade de nós';
+  /// pt: 'Nós'
+  String get title => 'Nós';
 
   /// pt: 'Envie “sinto saudade de nós” com um toque. Leve, sem culpa. Seu par não precisa responder.'
   String get text =>
@@ -1381,34 +1115,6 @@ class Translations$connectUs$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para enviar agora. Tente de novo.',
   };
-
-  /// pt: 'nós'
-  String get titleHighlight => 'nós';
-}
-
-// Path: createAccount
-class Translations$createAccount$pt {
-  Translations$createAccount$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Criar conta'
-  String get title => 'Criar conta';
-
-  /// pt: 'Mantenha seguro'
-  String get headline => 'Mantenha seguro';
-
-  /// pt: 'seguro'
-  String get headlineHighlight => 'seguro';
-
-  /// pt: 'Seu primeiro slip está salvo neste celular. Crie a conta para não perdê-lo.'
-  String get subtitleWithSlip =>
-      'Seu primeiro slip está salvo neste celular. Crie a conta para não perdê-lo.';
-
-  /// pt: 'Crie a conta para guardar seus slips e não perdê-los.'
-  String get subtitleWithoutSlip => 'Crie a conta para guardar seus slips e não perdê-los.';
 }
 
 // Path: dateNight
@@ -1783,6 +1489,34 @@ class Translations$devices$pt {
   };
 }
 
+// Path: discreet
+class Translations$discreet$pt {
+  Translations$discreet$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Modo discreto'
+  String get title => 'Modo discreto';
+
+  /// pt: 'Ícone neutro'
+  String get neutralIcon => 'Ícone neutro';
+
+  /// pt: 'Notificações neutras'
+  String get neutralNotifications => 'Notificações neutras';
+
+  /// pt: 'Ocultar texto do widget'
+  String get hideWidgetText => 'Ocultar texto do widget';
+
+  /// pt: 'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.'
+  String get note =>
+      'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.';
+
+  /// pt: 'Não deu para salvar agora. Tente de novo.'
+  String get saveError => 'Não deu para salvar agora. Tente de novo.';
+}
+
 // Path: distance
 class Translations$distance$pt {
   Translations$distance$pt.internal(this._root);
@@ -1842,6 +1576,15 @@ class Translations$fightStyle$pt {
 
   // Translations
 
+  /// pt: 'Como eu reajo numa briga'
+  String get exerciseTitle => 'Como eu reajo numa briga';
+
+  /// pt: 'reajo'
+  String get exerciseHighlight => 'reajo';
+
+  /// pt: 'Seis perguntas rápidas, só para você.'
+  String get exerciseSubtitle => 'Seis perguntas rápidas, só para você.';
+
   /// pt: 'Pergunta {current} de {total}'
   String questionOf({required Object current, required Object total}) =>
       'Pergunta ${current} de ${total}';
@@ -1853,14 +1596,6 @@ class Translations$fightStyle$pt {
     'O que mais te incomoda numa briga?',
     'Quando percebe que exagerou, você...',
     'O que te ajuda a voltar ao normal?',
-  ];
-  List<String> get questionHighlights => [
-    'primeiro',
-    'cala',
-    'acontecer',
-    'incomoda',
-    'exagerou',
-    'normal',
   ];
   Map<String, String> get options1 => {
     'pursue': 'Continuo falando até resolver.',
@@ -1973,9 +1708,6 @@ class Translations$fightStyle$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para adicionar agora. Tente de novo.',
   };
-
-  /// pt: 'Resultado'
-  String get resultBarTitle => 'Resultado';
 }
 
 // Path: firstSlip
@@ -2032,8 +1764,8 @@ class Translations$games$pt {
   late final Translations$games$date$pt date = Translations$games$date$pt.internal(_root);
   Map<String, String> get reflections => {
     'great': 'Foi ótimo',
-    'ok': 'Foi ok',
-    'did_not_happen': 'Não rolou',
+    'ok': 'Foi bom',
+    'did_not_happen': 'Não aconteceu',
     'other': 'Sem resposta',
   };
   late final Translations$games$waitingPartner$pt waitingPartner =
@@ -2048,6 +1780,7 @@ class Translations$games$pt {
   late final Translations$games$noPartner$pt noPartner = Translations$games$noPartner$pt.internal(
     _root,
   );
+  late final Translations$games$common$pt common = Translations$games$common$pt.internal(_root);
 
   /// pt: 'Não deu para abrir o jogo'
   String get loadErrorTitle => 'Não deu para abrir o jogo';
@@ -2065,145 +1798,7 @@ class Translations$games$pt {
     'ANSWER_LOCKED': 'As respostas deste jogo já foram fechadas. Não dá para editar agora.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
-  late final Translations$games$common$pt common = Translations$games$common$pt.internal(_root);
-}
-
-// Path: gentleRequest
-class Translations$gentleRequest$pt {
-  Translations$gentleRequest$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Pedido gentil'
-  String get title => 'Pedido gentil';
-
-  /// pt: 'gentil'
-  String get titleHighlight => 'gentil';
-
-  /// pt: 'Quando…'
-  String get whenLabel => 'Quando…';
-
-  /// pt: 'Eu me sinto…'
-  String get feelLabel => 'Eu me sinto…';
-
-  /// pt: 'Eu gostaria de…'
-  String get wishLabel => 'Eu gostaria de…';
-
-  /// pt: 'chego e a casa está bagunçada'
-  String get whenHint => 'chego e a casa está bagunçada';
-
-  /// pt: 'sozinha com as tarefas'
-  String get feelHint => 'sozinha com as tarefas';
-
-  /// pt: 'dividir a tarde de sábado com você'
-  String get wishHint => 'dividir a tarde de sábado com você';
-
-  /// pt: 'O que o {name} vai ler'
-  String previewTitle({required Object name}) => 'O que o ${name} vai ler';
-
-  /// pt: 'O que sua pessoa vai ler'
-  String get previewTitleNoName => 'O que sua pessoa vai ler';
-
-  /// pt: 'Complete as três frases para ver o pedido.'
-  String get previewEmpty => 'Complete as três frases para ver o pedido.';
-
-  /// pt: 'Quando {when}, me sinto {feel}. Eu gostaria de {wish}.'
-  String sentence({required Object when, required Object feel, required Object wish}) =>
-      'Quando ${when}, me sinto ${feel}. Eu gostaria de ${wish}.';
-
-  /// pt: 'Não vai para o cartão de domingo. O pedido some 7 dias depois de respondido.'
-  String get note => 'Não vai para o cartão de domingo. O pedido some 7 dias depois de respondido.';
-
-  /// pt: 'Guardar'
-  String get keep => 'Guardar';
-
-  /// pt: 'Enviar agora'
-  String get sendNow => 'Enviar agora';
-
-  /// pt: 'Enviar este pedido?'
-  String get confirmTitle => 'Enviar este pedido?';
-
-  /// pt: 'Sua pessoa vai ler as três frases. A anotação de origem deixa de existir.'
-  String get confirmText =>
-      'Sua pessoa vai ler as três frases. A anotação de origem deixa de existir.';
-
-  /// pt: 'Pedido enviado'
-  String get sent => 'Pedido enviado';
-
-  Map<String, String> get fieldErrors => {
-    'empty': 'Preencha esta frase.',
-    'tooLong': 'Use no máximo 140 caracteres.',
-  };
-  Map<String, String> get errors => {
-    'NOT_PAIRED': 'Um pedido gentil precisa de uma pessoa conectada.',
-    'NETWORK': 'Sem conexão. Tente de novo.',
-    'other': 'Não deu para enviar agora. Tente de novo.',
-  };
-}
-
-// Path: gentleRequestDetail
-class Translations$gentleRequestDetail$pt {
-  Translations$gentleRequestDetail$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'sua pessoa'
-  String get partnerFallback => 'sua pessoa';
-
-  /// pt: 'Você escreveu para {name}.'
-  String fromYou({required Object name}) => 'Você escreveu para ${name}.';
-
-  /// pt: '{name} escreveu para você.'
-  String toYou({required Object name}) => '${name} escreveu para você.';
-
-  /// pt: 'Como você quer responder?'
-  String get answerTitle => 'Como você quer responder?';
-
-  Map<String, String> get responses => {
-    'willDo': 'Vou providenciar',
-    'later': 'Mais tarde',
-    'notNow': 'Agora não',
-    'talk': 'Quero conversar',
-    'moreTime': 'Preciso de mais tempo',
-    'other': '',
-  };
-
-  /// pt: '{name} respondeu: {answer}'
-  String answeredBy({required Object name, required Object answer}) =>
-      '${name} respondeu: ${answer}';
-
-  /// pt: 'Você respondeu: {answer}'
-  String youAnswered({required Object answer}) => 'Você respondeu: ${answer}';
-
-  /// pt: 'Ainda sem resposta.'
-  String get waiting => 'Ainda sem resposta.';
-
-  /// pt: 'Agradecer'
-  String get thankAction => 'Agradecer';
-
-  /// pt: 'Você agradeceu. O agradecimento virou um slip seu.'
-  String get thanked => 'Você agradeceu. O agradecimento virou um slip seu.';
-
-  /// pt: '{name} cuidou disso: {wish}'
-  String thankBody({required Object name, required Object wish}) => '${name} cuidou disso: ${wish}';
-
-  /// pt: 'Esse pedido já saiu'
-  String get goneTitle => 'Esse pedido já saiu';
-
-  /// pt: 'Ele foi respondido há mais de 7 dias ou não existe mais.'
-  String get goneText => 'Ele foi respondido há mais de 7 dias ou não existe mais.';
-
-  /// pt: 'Não deu para abrir o pedido'
-  String get errorTitle => 'Não deu para abrir o pedido';
-
-  Map<String, String> get errors => {
-    'NETWORK': 'Sem conexão. Tente de novo.',
-    'other': 'Algo deu errado. Tente de novo.',
-  };
+  late final Translations$games$review$pt review = Translations$games$review$pt.internal(_root);
 }
 
 // Path: gifts
@@ -2523,6 +2118,9 @@ class Translations$hardConversation$pt {
   /// pt: 'Voltar'
   String get back => 'Voltar';
 
+  /// pt: 'Preciso de pausa'
+  String get needPause => 'Preciso de pausa';
+
   /// pt: 'Tentar de novo'
   String get retry => 'Tentar de novo';
 
@@ -2565,6 +2163,68 @@ class Translations$hardConversation$pt {
     'NOT_PAIRED': 'Para enviar, você precisa estar conectado com seu par no app.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
+}
+
+// Path: heavyDay
+class Translations$heavyDay$pt {
+  Translations$heavyDay$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Aviso de dias pesados'
+  String get title => 'Aviso de dias pesados';
+
+  /// pt: 'Aviso de dias pesados'
+  String get gateTitle => 'Aviso de dias pesados';
+
+  /// pt: 'Às vezes um dia pesa. Você pode avisar seu par com uma frase curta, sem detalhes. Seu par não vê seus programas nem o que você escreve.'
+  String get gateText =>
+      'Às vezes um dia pesa. Você pode avisar seu par com uma frase curta, sem detalhes. Seu par não vê seus programas nem o que você escreve.';
+
+  /// pt: 'Ligar'
+  String get activate => 'Ligar';
+
+  /// pt: 'Agora não'
+  String get notNow => 'Agora não';
+
+  /// pt: 'Um dia delicado. Um pouco mais de carinho ajuda.'
+  String get noticeBody => 'Um dia delicado. Um pouco mais de carinho ajuda.';
+
+  /// pt: '{name} veria: “Um dia delicado. Um pouco mais de carinho ajuda.”'
+  String previewPartner({required Object name}) =>
+      '${name} veria: “Um dia delicado. Um pouco mais de carinho ajuda.”';
+
+  /// pt: 'Seu par veria: “Um dia delicado. Um pouco mais de carinho ajuda.”'
+  String get previewGeneric => 'Seu par veria: “Um dia delicado. Um pouco mais de carinho ajuda.”';
+
+  /// pt: 'A cada vez'
+  String get frequencyAsk => 'A cada vez';
+
+  /// pt: 'Sempre'
+  String get frequencyAlways => 'Sempre';
+
+  /// pt: 'Compartilhar'
+  String get share => 'Compartilhar';
+
+  /// pt: 'Não compartilhar'
+  String get cancel => 'Não compartilhar';
+
+  /// pt: 'Aviso enviado para {name}'
+  String confirmationTitle({required Object name}) => 'Aviso enviado para ${name}';
+
+  /// pt: 'Aviso enviado'
+  String get confirmationGeneric => 'Aviso enviado';
+
+  /// pt: 'Seu par vê no widget de recados, se estiver ativado.'
+  String get confirmationHint => 'Seu par vê no widget de recados, se estiver ativado.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Não deu para fazer isso agora. Tente de novo.'
+  String get errorText => 'Não deu para fazer isso agora. Tente de novo.';
 }
 
 // Path: help
@@ -3311,171 +2971,6 @@ class Translations$ideaDetail$pt {
   String get errorText => 'Tente de novo em instantes.';
 }
 
-// Path: inbox
-class Translations$inbox$pt {
-  Translations$inbox$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Notificações'
-  String get title => 'Notificações';
-
-  /// pt: 'Notificações, há novidades'
-  String get bellUnread => 'Notificações, há novidades';
-
-  /// pt: 'Hoje'
-  String get todayTitle => 'Hoje';
-
-  /// pt: 'Esta semana'
-  String get earlierTitle => 'Esta semana';
-
-  /// pt: 'Marcar como lidas'
-  String get markAllRead => 'Marcar como lidas';
-
-  /// pt: 'Ajustes de notificação'
-  String get settingsAction => 'Ajustes de notificação';
-
-  /// pt: 'No máximo 2 avisos por dia chegam como notificação. O resto fica só aqui.'
-  String get footnote =>
-      'No máximo 2 avisos por dia chegam como notificação. O resto fica só aqui.';
-
-  /// pt: 'Nada novo por aqui'
-  String get emptyTitle => 'Nada novo por aqui';
-
-  /// pt: 'Quando alguém mandar um cartão ou responder, aparece aqui.'
-  String get emptyText => 'Quando alguém mandar um cartão ou responder, aparece aqui.';
-
-  /// pt: 'Não deu para carregar as notificações'
-  String get errorTitle => 'Não deu para carregar as notificações';
-
-  /// pt: 'Seu par'
-  String get partnerFallback => 'Seu par';
-
-  /// pt: 'Toque para ver'
-  String get tapToSee => 'Toque para ver';
-
-  /// pt: 'Seu cartão da semana está pronto'
-  String get cardReadyTitle => 'Seu cartão da semana está pronto';
-
-  /// pt: 'Abra para ver o rascunho'
-  String get cardReadyText => 'Abra para ver o rascunho';
-
-  /// pt: '{name} te mandou um cartão'
-  String cardReceivedTitle({required Object name}) => '${name} te mandou um cartão';
-
-  /// pt: '{name} reagiu ao seu cartão'
-  String cardReactionTitle({required Object name}) => '${name} reagiu ao seu cartão';
-
-  /// pt: '{name} entrou'
-  String partnerJoinedTitle({required Object name}) => '${name} entrou';
-
-  /// pt: 'Agora vocês estão conectados'
-  String get partnerJoinedText => 'Agora vocês estão conectados';
-
-  /// pt: 'A conexão terminou'
-  String get unpairedTitle => 'A conexão terminou';
-
-  /// pt: 'Seus dados continuam seus'
-  String get unpairedText => 'Seus dados continuam seus';
-
-  /// pt: '{name} mandou uma mensagem'
-  String partnerMessageTitle({required Object name}) => '${name} mandou uma mensagem';
-
-  /// pt: '{name} chamou você para jogar'
-  String gameInviteTitle({required Object name}) => '${name} chamou você para jogar';
-
-  /// pt: 'Escolha quando quiser'
-  String get gameInviteText => 'Escolha quando quiser';
-
-  /// pt: '{name} mandou um recado'
-  String signalTitle({required Object name}) => '${name} mandou um recado';
-
-  /// pt: 'Uma data está chegando'
-  String get dateComingTitle => 'Uma data está chegando';
-
-  /// pt: 'Veja ideias para vocês'
-  String get dateComingText => 'Veja ideias para vocês';
-
-  /// pt: 'Hora de um ritual de vocês'
-  String get ritualTitle => 'Hora de um ritual de vocês';
-
-  /// pt: 'Ideia do dia'
-  String get dailyIdeaTitle => 'Ideia do dia';
-
-  /// pt: 'Uma ideia pequena para hoje'
-  String get dailyIdeaText => 'Uma ideia pequena para hoje';
-
-  /// pt: 'Sentimos sua falta'
-  String get gentleReturnTitle => 'Sentimos sua falta';
-
-  /// pt: 'Quando quiser, é só voltar'
-  String get gentleReturnText => 'Quando quiser, é só voltar';
-
-  /// pt: 'Uma cápsula do tempo abriu'
-  String get capsuleOpenedTitle => 'Uma cápsula do tempo abriu';
-
-  /// pt: 'Veja o que vocês guardaram'
-  String get capsuleOpenedText => 'Veja o que vocês guardaram';
-
-  Map<String, String> get errors => {
-    'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
-    'other': 'Algo deu errado. Tente de novo.',
-  };
-
-  /// pt: '{name} escreveu um pedido gentil'
-  String gentleRequestTitle({required Object name}) => '${name} escreveu um pedido gentil';
-
-  /// pt: '{name} respondeu seu pedido'
-  String gentleRequestAnsweredTitle({required Object name}) => '${name} respondeu seu pedido';
-
-  /// pt: 'Isso ainda incomoda?'
-  String get annoyanceCheckTitle => 'Isso ainda incomoda?';
-
-  /// pt: 'Uma anotação sua some em breve'
-  String get annoyanceCheckText => 'Uma anotação sua some em breve';
-
-  /// pt: '{name} mostrou um quiz'
-  String quizSharedTitle({required Object name}) => '${name} mostrou um quiz';
-
-  /// pt: 'Um convite do Tempero'
-  String get spiceInviteTitle => 'Um convite do Tempero';
-
-  /// pt: 'Só aparece se vocês dois ligarem'
-  String get spiceInviteText => 'Só aparece se vocês dois ligarem';
-
-  /// pt: 'O Tempero foi desligado'
-  String get spiceOffTitle => 'O Tempero foi desligado';
-
-  /// pt: 'Nada do modo ficou guardado'
-  String get spiceOffText => 'Nada do modo ficou guardado';
-
-  /// pt: '{name} quer guardar uma memória com você'
-  String memoryProposedTitle({required Object name}) => '${name} quer guardar uma memória com você';
-
-  /// pt: '{name} aceitou a memória'
-  String memoryAcceptedTitle({required Object name}) => '${name} aceitou a memória';
-
-  /// pt: '{name} preferiu não guardar a memória'
-  String memoryDeclinedTitle({required Object name}) => '${name} preferiu não guardar a memória';
-
-  /// pt: 'Ela deixou de ser compartilhada'
-  String get memoryDeclinedText => 'Ela deixou de ser compartilhada';
-
-  /// pt: 'Há um problema com o pagamento do Plus'
-  String get plusBillingIssueTitle => 'Há um problema com o pagamento do Plus';
-
-  /// pt: 'Veja o que fazer para continuar'
-  String get plusBillingIssueText => 'Veja o que fazer para continuar';
-
-  /// pt: 'A cobertura do Plus terminou'
-  String get plusCoverageEndedTitle => 'A cobertura do Plus terminou';
-
-  /// pt: 'Você mantém tudo que já criou'
-  String get plusCoverageEndedText => 'Você mantém tudo que já criou';
-}
-
 // Path: intro
 class Translations$intro$pt {
   Translations$intro$pt.internal(this._root);
@@ -3555,12 +3050,6 @@ class Translations$invite$pt {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'other': 'Algo deu errado. Tente de novo.',
   };
-
-  /// pt: 'Compartilhar convite'
-  String get shareTitle => 'Compartilhar convite';
-
-  /// pt: 'Esperando o parceiro'
-  String get waitingTitle => 'Esperando o parceiro';
 }
 
 // Path: language
@@ -3901,15 +3390,6 @@ class Translations$logistics$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
-
-  /// pt: 'Confirmar'
-  String get confirm => 'Confirmar';
-
-  /// pt: 'Esperando você'
-  String get waitingYou => 'Esperando você';
-
-  /// pt: 'Esperando a outra pessoa'
-  String get waitingPartner => 'Esperando a outra pessoa';
 }
 
 // Path: loveStyle
@@ -3920,25 +3400,35 @@ class Translations$loveStyle$pt {
 
   // Translations
 
+  /// pt: 'SÓ PARA VOCÊ'
+  String get entryLabel => 'SÓ PARA VOCÊ';
+
+  /// pt: 'Como eu me sinto querido(a)'
+  String get entryTitle => 'Como eu me sinto querido(a)';
+
+  /// pt: 'Seis perguntas rápidas para notar o que te faz sentir querido(a).'
+  String get entryText => 'Seis perguntas rápidas para notar o que te faz sentir querido(a).';
+
+  /// pt: 'Como eu me sinto querido(a)'
+  String get exerciseTitle => 'Como eu me sinto querido(a)';
+
+  /// pt: 'querido(a)'
+  String get exerciseHighlight => 'querido(a)';
+
+  /// pt: 'Seis perguntas rápidas, só para você.'
+  String get exerciseSubtitle => 'Seis perguntas rápidas, só para você.';
+
   /// pt: 'Pergunta {current} de {total}'
   String questionOf({required Object current, required Object total}) =>
       'Pergunta ${current} de ${total}';
 
   List<String> get questions => [
-    'O que mais faz você se sentir amado?',
+    'O que mais faz você se sentir querido(a)?',
     'Num dia difícil, o que mais te conforta?',
     'O que você nota primeiro quando seu par demonstra carinho?',
     'Qual desses gestos aquece seu coração?',
     'O que te faz sentir importante para alguém?',
     'Se pudesse escolher um gesto para hoje, qual seria?',
-  ];
-  List<String> get questionHighlights => [
-    'amado',
-    'conforta',
-    'carinho',
-    'coração',
-    'importante',
-    'gesto',
   ];
   Map<String, String> get options1 => {
     'time': 'Passar um tempo junto, sem pressa.',
@@ -4001,45 +3491,38 @@ class Translations$loveStyle$pt {
   /// pt: 'Só você vê as respostas. Você escolhe se quer mostrar o resultado.'
   String get privateNote => 'Só você vê as respostas. Você escolhe se quer mostrar o resultado.';
 
-  /// pt: 'O que faz você se sentir amado'
-  String get resultTitle => 'O que faz você se sentir amado';
+  /// pt: 'O que faz você se sentir querido(a)'
+  String get resultTitle => 'O que faz você se sentir querido(a)';
 
-  /// pt: 'amado'
-  String get resultHighlight => 'amado';
+  /// pt: 'querido(a)'
+  String get resultHighlight => 'querido(a)';
 
-  /// pt: 'Uma leitura do que mais combina com você.'
-  String get resultSubtitle => 'Uma leitura do que mais combina com você.';
+  /// pt: 'Uma descrição do que te faz sentir querido(a), do seu jeito.'
+  String get resultSubtitle => 'Uma descrição do que te faz sentir querido(a), do seu jeito.';
 
-  Map<String, String> get labels => {
-    'time': 'Tempo só nosso',
-    'words': 'Palavras de carinho',
-    'acts': 'Ajuda com as tarefas',
-    'gifts': 'Presentes pequenos',
-    'touch': 'Toque e abraço',
-    'other': '',
-  };
-  Map<String, String> get commonLabels => {
-    'time': 'tempo só nosso',
-    'words': 'palavras de carinho',
-    'acts': 'ajuda com as tarefas',
-    'gifts': 'presentes pequenos',
-    'touch': 'toque e abraço',
-    'other': '',
-  };
+  /// pt: 'O que mais combina com você'
+  String get topTag => 'O que mais combina com você';
+
   Map<String, String> get descriptions => {
-    'time': 'Você se sente amado quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
-    'words':
-        'Você se sente amado quando ouve, de forma sincera, o que a outra pessoa sente por você.',
-    'acts':
-        'Você se sente amado quando alguém percebe o que você precisa e ajuda sem que você peça.',
-    'gifts': 'Você se sente amado quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
-    'touch': 'Você se sente amado quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+    'time': 'Você se sente querido(a) quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
+    'words': 'Você se sente querido(a) quando ouve, de forma sincera, o que a outra pessoa sente por você.',
+    'acts': 'Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.',
+    'gifts': 'Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
+    'touch': 'Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+    'other': '',
+  };
+  Map<String, String> get shareDescriptions => {
+    'time': 'Eu me sinto querido(a) quando a gente passa um tempo junto, sem pressa e sem telas.',
+    'words': 'Eu me sinto querido(a) quando ouço, com sinceridade, o que você sente por mim.',
+    'acts': 'Eu me sinto querido(a) quando você percebe o que eu preciso e me ajuda sem eu pedir.',
+    'gifts': 'Eu me sinto querido(a) quando você lembra de mim num detalhe pequeno, escolhido com carinho.',
+    'touch': 'Eu me sinto querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
     'other': '',
   };
 
-  /// pt: 'Salvo só para você até você mostrar. Você pode desfazer quando quiser.'
+  /// pt: 'Salvo só para você. Mostrar no widget do seu par é uma escolha sua, e você pode desfazer.'
   String get resultPrivacyNote =>
-      'Salvo só para você até você mostrar. Você pode desfazer quando quiser.';
+      'Salvo só para você. Mostrar no widget do seu par é uma escolha sua, e você pode desfazer.';
 
   /// pt: 'Salvar no Meu manual'
   String get saveManualAction => 'Salvar no Meu manual';
@@ -4053,69 +3536,18 @@ class Translations$loveStyle$pt {
   /// pt: 'Mostrar para {name}'
   String shareAction({required Object name}) => 'Mostrar para ${name}';
 
-  /// pt: 'Deixar de mostrar para {name}'
-  String revokeAction({required Object name}) => 'Deixar de mostrar para ${name}';
+  /// pt: 'Tirar do widget dele(a)'
+  String get revokeAction => 'Tirar do widget dele(a)';
 
-  /// pt: 'Mostrar para {name}?'
-  String shareConfirmTitle({required Object name}) => 'Mostrar para ${name}?';
+  /// pt: 'Aparece no widget dele(a) se ele(a) permitir recados.'
+  String get shareToast => 'Aparece no widget dele(a) se ele(a) permitir recados.';
 
-  /// pt: 'Só o resultado aparece, nunca as suas respostas. {name} recebe um aviso e pode escolher não responder nada.'
-  String shareConfirmText({required Object name}) =>
-      'Só o resultado aparece, nunca as suas respostas. ${name} recebe um aviso e pode escolher não responder nada.';
+  /// pt: 'Não aparece mais no widget dele(a).'
+  String get revokeToast => 'Não aparece mais no widget dele(a).';
 
-  /// pt: 'Mostrar'
-  String get shareConfirm => 'Mostrar';
-
-  /// pt: 'Agora não'
-  String get shareCancel => 'Agora não';
-
-  /// pt: 'Pronto. Agora {name} vê o resultado.'
-  String shareToast({required Object name}) => 'Pronto. Agora ${name} vê o resultado.';
-
-  /// pt: 'Não aparece mais para {name}.'
-  String revokeToast({required Object name}) => 'Não aparece mais para ${name}.';
-
-  /// pt: 'Fica só com você. Quando alguém entrar, você decide se mostra.'
-  String get shareSoloNote => 'Fica só com você. Quando alguém entrar, você decide se mostra.';
-
-  /// pt: 'Convidar minha pessoa'
-  String get inviteAction => 'Convidar minha pessoa';
-
-  /// pt: 'Comparar os dois'
-  String get compareAction => 'Comparar os dois';
-
-  /// pt: 'Vocês dois'
-  String get compareTitle => 'Vocês dois';
-
-  /// pt: 'O que faz vocês se sentirem amados'
-  String get compareHeadline => 'O que faz vocês se sentirem amados';
-
-  /// pt: 'amados'
-  String get compareHighlight => 'amados';
-
-  /// pt: 'Você'
-  String get compareYou => 'Você';
-
-  /// pt: 'Mais importante'
-  String get compareMost => 'Mais importante';
-
-  /// pt: 'Depois'
-  String get compareNext => 'Depois';
-
-  /// pt: 'Em comum'
-  String get compareCommon => 'Em comum';
-
-  /// pt: 'Os dois valorizam {label}.'
-  String compareCommonText({required Object label}) => 'Os dois valorizam ${label}.';
-
-  /// pt: 'Planejar um tempo só nosso'
-  String get comparePlan => 'Planejar um tempo só nosso';
-
-  /// pt: 'A comparação ainda não está pronta'
-  String get compareMissingTitle => 'A comparação ainda não está pronta';
-
-  /// pt: 'Ela aparece quando os dois mostrarem o resultado.'
-  String get compareMissingText => 'Ela aparece quando os dois mostrarem o resultado.';
+  /// pt: 'Quando vocês estiverem conectados, você pode mostrar isso no widget do seu par.'
+  String get shareSoloNote =>
+      'Quando vocês estiverem conectados, você pode mostrar isso no widget do seu par.';
 
   /// pt: 'seu par'
   String get partnerFallback => 'seu par';
@@ -4126,8 +3558,8 @@ class Translations$loveStyle$pt {
   /// pt: 'Tentar de novo'
   String get retryPairing => 'Tentar de novo';
 
-  /// pt: 'Refazer o quiz'
-  String get retake => 'Refazer o quiz';
+  /// pt: 'Refazer o exercício'
+  String get retake => 'Refazer o exercício';
 
   /// pt: 'Não deu para carregar'
   String get loadErrorTitle => 'Não deu para carregar';
@@ -4150,7 +3582,7 @@ class Translations$loveStyle$pt {
   };
   Map<String, String> get revokeErrors => {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para deixar de mostrar agora. Tente de novo.',
+    'other': 'Não deu para tirar do widget agora. Tente de novo.',
   };
 }
 
@@ -4174,8 +3606,20 @@ class Translations$memories$pt {
   /// pt: 'Marcos, datas, lugares e a nossa história em números.'
   String get historyText => 'Marcos, datas, lugares e a nossa história em números.';
 
+  /// pt: 'COMPARTILHAR'
+  String get storyLabel => 'COMPARTILHAR';
+
+  /// pt: 'Imagem para compartilhar'
+  String get storyTitle => 'Imagem para compartilhar';
+
+  /// pt: 'Seus números em uma imagem, só com o que você escolher.'
+  String get storyText => 'Seus números em uma imagem, só com o que você escolher.';
+
   /// pt: 'LUGARES'
   String get placesLabel => 'LUGARES';
+
+  /// pt: 'Lugares onde vocês estiveram'
+  String get placesTitle => 'Lugares onde vocês estiveram';
 
   /// pt: 'Só o nome do lugar, nunca a localização.'
   String get placesText => 'Só o nome do lugar, nunca a localização.';
@@ -4286,9 +3730,8 @@ class Translations$memories$pt {
   /// pt: 'Ver meus slips'
   String get jarEmptyAction => 'Ver meus slips';
 
-  late final Translations$memories$menu$pt menu = Translations$memories$menu$pt.internal(_root);
-  late final Translations$memories$onThisDay$pt onThisDay =
-      Translations$memories$onThisDay$pt.internal(_root);
+  /// pt: 'Mais'
+  String get moreTitle => 'Mais';
 }
 
 // Path: mood
@@ -4311,12 +3754,6 @@ class Translations$mood$pt {
   /// pt: 'só você vê'
   String get privateCue => 'só você vê';
 
-  /// pt: 'compartilhado com {name}'
-  String sharedCue({required Object name}) => 'compartilhado com ${name}';
-
-  /// pt: 'compartilhado com seu par'
-  String get sharedCueNoName => 'compartilhado com seu par';
-
   Map<String, String> get moods => {
     'happy': 'Feliz',
     'tired': 'Cansado(a)',
@@ -4334,31 +3771,16 @@ class Translations$mood$pt {
     'opinion': 'Uma opinião',
     'hug': 'Um abraço',
     'space': 'Um tempo',
-    'chocolate': 'Um chocolate',
-    'cuteMessage': 'Uma mensagem fofa',
-    'foreheadKiss': 'Um beijinho na testa',
-    'company': 'Companhia',
-    'rest': 'Descansar',
   };
 
-  /// pt: 'Preciso de…'
-  String get needMenuAction => 'Preciso de…';
+  /// pt: 'O que seu par vê'
+  String get shareTitle => 'O que seu par vê';
 
-  /// pt: 'Preciso de: {need}'
-  String needMenuActionSelected({required Object need}) => 'Preciso de: ${need}';
-
-  /// pt: 'Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.'
-  String get needSheetSubtitle =>
-      'Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.';
-
-  /// pt: 'Salvo'
-  String get needSaved => 'Salvo';
+  /// pt: 'O que {name} vê'
+  String shareTitleNamed({required Object name}) => 'O que ${name} vê';
 
   /// pt: 'Quem cria o dado decide. O padrão é privado.'
   String get shareSubtitle => 'Quem cria o dado decide. O padrão é privado.';
-
-  /// pt: 'Escolha um “Preciso de...” primeiro.'
-  String get shareNeedFirst => 'Escolha um “Preciso de...” primeiro.';
 
   Map<String, String> get share => {
     'none': 'Manter privado',
@@ -4431,42 +3853,11 @@ class Translations$mood$pt {
   /// pt: 'O que ajuda: um pouco de espaço.'
   String get partnerNeedSpace => 'O que ajuda: um pouco de espaço.';
 
-  /// pt: 'O que ajuda: um chocolate.'
-  String get partnerNeedChocolate => 'O que ajuda: um chocolate.';
-
-  /// pt: 'O que ajuda: uma mensagem fofa.'
-  String get partnerNeedCuteMessage => 'O que ajuda: uma mensagem fofa.';
-
-  /// pt: 'O que ajuda: um beijinho na testa.'
-  String get partnerNeedForeheadKiss => 'O que ajuda: um beijinho na testa.';
-
-  /// pt: 'O que ajuda: companhia.'
-  String get partnerNeedCompany => 'O que ajuda: companhia.';
-
-  /// pt: 'O que ajuda: descanso.'
-  String get partnerNeedRest => 'O que ajuda: descanso.';
-
-  /// pt: '{name} escolheu compartilhar isso com você.'
-  String partnerSharedChoice({required Object name}) =>
-      '${name} escolheu compartilhar isso com você.';
-
   /// pt: 'Como você está?'
   String get homeTitle => 'Como você está?';
 
   /// pt: 'Só você vê'
   String get homePrivacy => 'Só você vê';
-
-  /// pt: '{name} vê'
-  String homePrivacyShared({required Object name}) => '${name} vê';
-
-  /// pt: 'Seu par vê'
-  String get homePrivacySharedNoName => 'Seu par vê';
-
-  /// pt: 'Não deu para carregar. Toque para abrir.'
-  String get homeLoadFailed => 'Não deu para carregar. Toque para abrir.';
-
-  /// pt: 'O que seu par vê'
-  String get homeDetailsLink => 'O que seu par vê';
 
   Map<String, String> get homeMoods => {
     'happy': 'Bem',
@@ -4475,58 +3866,6 @@ class Translations$mood$pt {
     'stressed': 'Tenso',
     'sad': 'Triste',
   };
-
-  /// pt: 'Próximo'
-  String get next => 'Próximo';
-
-  /// pt: 'Compartilhar'
-  String get shareAction => 'Compartilhar';
-
-  /// pt: 'Compartilhar com {name}?'
-  String shareHeadline({required Object name}) => 'Compartilhar com ${name}?';
-
-  /// pt: 'Compartilhar com sua pessoa?'
-  String get shareHeadlineNoName => 'Compartilhar com sua pessoa?';
-
-  /// pt: 'sua pessoa'
-  String get shareHeadlineNoNameHighlight => 'sua pessoa';
-
-  /// pt: 'Meus humores'
-  String get calendarTitle => 'Meus humores';
-
-  /// pt: '{month} de {year}'
-  String calendarMonth({required Object month, required Object year}) => '${month} de ${year}';
-
-  /// pt: 'Nenhum humor neste mês ainda.'
-  String get calendarEmpty => 'Nenhum humor neste mês ainda.';
-
-  /// pt: 'Só você vê isto. Não aparece para o parceiro, a menos que seja compartilhado por dia.'
-  String get calendarPrivacyNote =>
-      'Só você vê isto. Não aparece para o parceiro, a menos que seja compartilhado por dia.';
-
-  /// pt: 'Registrar meu humor'
-  String get calendarAction => 'Registrar meu humor';
-
-  /// pt: 'Não deu para abrir seus humores'
-  String get calendarErrorTitle => 'Não deu para abrir seus humores';
-
-  /// pt: 'Nada se perdeu. Tente de novo.'
-  String get calendarErrorText => 'Nada se perdeu. Tente de novo.';
-
-  List<String> get monthNames => [
-    'janeiro',
-    'fevereiro',
-    'março',
-    'abril',
-    'maio',
-    'junho',
-    'julho',
-    'agosto',
-    'setembro',
-    'outubro',
-    'novembro',
-    'dezembro',
-  ];
 }
 
 // Path: moodHelp
@@ -4576,8 +3915,8 @@ class Translations$moodHelp$pt {
   /// pt: 'Pequenas coisas, no ritmo de hoje.'
   String get helpSubtitle => 'Pequenas coisas, no ritmo de hoje.';
 
-  /// pt: 'Sugestão'
-  String get suggestionLabel => 'Sugestão';
+  /// pt: 'Tarefa'
+  String get choreLabel => 'Tarefa';
 
   /// pt: 'Assumir uma tarefa'
   String get takeChore => 'Assumir uma tarefa';
@@ -4594,11 +3933,11 @@ class Translations$moodHelp$pt {
   /// pt: 'Mandar uma mensagem curta e carinhosa'
   String get sendSweetMessage => 'Mandar uma mensagem curta e carinhosa';
 
-  /// pt: 'Vai assim: “{body}”'
-  String sweetMessagePreview({required Object body}) => 'Vai assim: “${body}”';
+  /// pt: 'Uma linha basta. Sem pedir explicação.'
+  String get sendSweetMessageSupport => 'Uma linha basta. Sem pedir explicação.';
 
-  /// pt: 'Sem pressa. Estou por aqui.'
-  String get sweetMessageBody => 'Sem pressa. Estou por aqui.';
+  /// pt: 'Casa'
+  String get homeLabel => 'Casa';
 
   /// pt: 'Fazer café ou o jantar'
   String get makeCoffeeOrDinner => 'Fazer café ou o jantar';
@@ -4606,57 +3945,12 @@ class Translations$moodHelp$pt {
   /// pt: 'Sem transformar em tarefa combinada.'
   String get makeCoffeeOrDinnerSupport => 'Sem transformar em tarefa combinada.';
 
-  /// pt: 'Sugestões do app, sem diagnóstico. Sem pressa.'
-  String get noDiagnosisNote => 'Sugestões do app, sem diagnóstico. Sem pressa.';
-
   /// pt: 'Mandar um coração'
   String get reactionLabel => 'Mandar um coração';
 
   /// pt: 'Coração enviado'
   String get sent => 'Coração enviado';
 
-  /// pt: 'Pergunta enviada'
-  String get askSent => 'Pergunta enviada';
-
-  /// pt: 'Mensagem enviada'
-  String get messageSent => 'Mensagem enviada';
-
-  /// pt: 'O que {name} precisa'
-  String partnerNeedTitle({required Object name}) => 'O que ${name} precisa';
-
-  /// pt: 'O que seu par precisa'
-  String get partnerNeedTitleGeneric => 'O que seu par precisa';
-
-  /// pt: 'O pedido de hoje. Sem cobrança.'
-  String get partnerNeedSubtitle => 'O pedido de hoje. Sem cobrança.';
-
-  /// pt: 'Isso vem do humor que seu par compartilhou hoje.'
-  String get partnerNeedNote => 'Isso vem do humor que seu par compartilhou hoje.';
-
-  Map<String, String> get partnerNeedActions => {
-    'listen': 'Só ouvir',
-    'opinion': 'Dar uma opinião',
-    'hug': 'Mandar um abraço',
-    'space': 'Dar espaço',
-    'chocolate': 'Levar um chocolate',
-    'cuteMessage': 'Abrir a conversa',
-    'foreheadKiss': 'Um beijinho na testa',
-    'company': 'Ficar por perto',
-    'rest': 'Deixar descansar',
-    'other': '',
-  };
-  Map<String, String> get partnerNeedSupports => {
-    'listen': 'Sem dar opinião nem tentar resolver.',
-    'opinion': 'Uma opinião honesta, sem julgar.',
-    'hug': 'Chega como um sinal no app.',
-    'space': 'Um tempo sem cobrar resposta.',
-    'chocolate': 'Um chocolate pequeno, sem motivo.',
-    'cuteMessage': 'Uma linha carinhosa já basta.',
-    'foreheadKiss': 'Pequeno e sem pressa.',
-    'company': 'Sentar perto, sem precisar falar.',
-    'rest': 'Assumir o que der e deixar quieto.',
-    'other': '',
-  };
   Map<String, String> get errors => {
     'NOT_PAIRED': 'Vocês ainda não estão conectados.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
@@ -4939,8 +4233,11 @@ class Translations$notificationPreferences$pt {
 
   // Translations
 
-  /// pt: 'Lembretes'
-  String get title => 'Lembretes';
+  /// pt: 'Notificações'
+  String get title => 'Notificações';
+
+  /// pt: 'Escolha o que chega e quando. Nada de cobrança.'
+  String get subtitle => 'Escolha o que chega e quando. Nada de cobrança.';
 
   /// pt: 'As notificações estão desligadas neste celular. Suas escolhas valem quando você ligar.'
   String get systemOff =>
@@ -4949,39 +4246,54 @@ class Translations$notificationPreferences$pt {
   /// pt: 'Abrir configurações'
   String get openSystem => 'Abrir configurações';
 
-  /// pt: 'Por dia'
-  String get perDayTitle => 'Por dia';
+  /// pt: 'Receber notificações'
+  String get all => 'Receber notificações';
 
-  /// pt: 'No máximo'
-  String get perDaySupport => 'No máximo';
+  /// pt: 'Desligue para pausar tudo.'
+  String get allText => 'Desligue para pausar tudo.';
 
-  /// pt: 'Até {count}'
-  String perDayValue({required Object count}) => 'Até ${count}';
+  /// pt: 'O que você quer receber'
+  String get typesTitle => 'O que você quer receber';
 
-  /// pt: 'Quantos lembretes por dia?'
-  String get perDaySheetTitle => 'Quantos lembretes por dia?';
+  Map<String, String> get types => {
+    'card_ready': 'Cartão pronto',
+    'card_received': 'Cartão recebido',
+    'card_reaction': 'Resposta ao seu cartão',
+    'daily_idea': 'Ideia do dia',
+    'date_coming': 'Datas chegando',
+    'other': '',
+  };
 
-  /// pt: 'Tipos'
-  String get typesTitle => 'Tipos';
+  /// pt: 'Cartão de domingo'
+  String get cardTitle => 'Cartão de domingo';
 
-  late final Translations$notificationPreferences$types$pt types =
-      Translations$notificationPreferences$types$pt.internal(_root);
+  /// pt: 'Dia'
+  String get cardDay => 'Dia';
+
+  /// pt: 'Horário'
+  String get cardHour => 'Horário';
+
   List<String> get days => ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 
   /// pt: '{hour}:00'
   String hourFormat({required Object hour}) => '${hour}:00';
 
-  /// pt: 'Limite rígido de 1 a 2 mensagens por dia. Cada tipo pode ser desligado.'
-  String get note => 'Limite rígido de 1 a 2 mensagens por dia. Cada tipo pode ser desligado.';
+  /// pt: 'Como a notificação aparece'
+  String get previewTitle => 'Como a notificação aparece';
 
-  /// pt: 'Não deu para abrir seus lembretes'
-  String get loadErrorTitle => 'Não deu para abrir seus lembretes';
+  /// pt: 'Sempre curta e sem detalhes pessoais.'
+  String get previewText => 'Sempre curta e sem detalhes pessoais.';
 
-  /// pt: 'Eles continuam salvos. Tente de novo.'
-  String get loadErrorText => 'Eles continuam salvos. Tente de novo.';
+  /// pt: 'Não deu para abrir suas preferências'
+  String get loadErrorTitle => 'Não deu para abrir suas preferências';
 
-  late final Translations$notificationPreferences$errors$pt errors =
-      Translations$notificationPreferences$errors$pt.internal(_root);
+  /// pt: 'Elas continuam salvas. Tente de novo.'
+  String get loadErrorText => 'Elas continuam salvas. Tente de novo.';
+
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para salvar agora. Sua escolha anterior foi mantida.',
+  };
 }
 
 // Path: partnerProfile
@@ -5086,17 +4398,130 @@ class Translations$partnerStep$pt {
 
   /// pt: 'Continuar'
   String get continueButton => 'Continuar';
+}
 
-  /// pt: 'Só para mim'
-  String get soloOnlyTitle => 'Só para mim';
+// Path: pause
+class Translations$pause$pt {
+  Translations$pause$pt.internal(this._root);
 
-  /// pt: 'Sem convidar ninguém'
-  String get soloOnlySupport => 'Sem convidar ninguém';
+  final Translations _root; // ignore: unused_field
 
-  /// pt: 'Por que convidar?'
-  String get whyInvite => 'Por que convidar?';
+  // Translations
 
-  late final Translations$partnerStep$why$pt why = Translations$partnerStep$why$pt.internal(_root);
+  /// pt: 'Pedir um tempo'
+  String get title => 'Pedir um tempo';
+
+  /// pt: 'tempo'
+  String get titleHighlight => 'tempo';
+
+  /// pt: 'Uma mensagem curta e gentil. Seu par vê só o que você escrever.'
+  String get subtitle => 'Uma mensagem curta e gentil. Seu par vê só o que você escrever.';
+
+  Map<String, String> get presets => {
+    'space': 'Preciso de um tempo para respirar. Volto logo.',
+    'later': 'Vamos conversar mais tarde, com calma?',
+    'calm': 'Quero te ouvir bem. Preciso me acalmar antes.',
+    'other': '',
+  };
+
+  /// pt: 'Escrever a minha'
+  String get hint => 'Escrever a minha';
+
+  Map<String, String> get messageErrors => {
+    'empty': 'Escreva uma mensagem curta',
+    'tooLong': 'A mensagem está muito longa',
+  };
+
+  /// pt: 'Volto em'
+  String get returnTitle => 'Volto em';
+
+  Map<String, String> get returns => {
+    'oneHour': '1 hora',
+    'threeHours': '3 horas',
+    'eightHours': '8 horas',
+    'tomorrow': 'Amanhã',
+    'other': '',
+  };
+
+  /// pt: 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.'
+  String get note => 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.';
+
+  /// pt: 'Enviar e pausar'
+  String get send => 'Enviar e pausar';
+
+  /// pt: 'Pausa enviada'
+  String get sentTitle => 'Pausa enviada';
+
+  /// pt: 'O Hoje fica em pausa para os dois. Quando estiver pronto(a), volte por lá.'
+  String get sentText =>
+      'O Hoje fica em pausa para os dois. Quando estiver pronto(a), volte por lá.';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+
+  Map<String, String> get errors => {
+    'INVALID_RETURN_TIME': 'Esse horário de volta não vale. Escolha outro.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para enviar agora. Sua mensagem continua aqui.',
+  };
+}
+
+// Path: places
+class Translations$places$pt {
+  Translations$places$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Lugares'
+  String get title => 'Lugares';
+
+  /// pt: 'Só o nome do lugar. O app nunca lê nem guarda sua localização.'
+  String get privacyNote => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.';
+
+  /// pt: '1 memória'
+  String get memoryOne => '1 memória';
+
+  /// pt: '{count} memórias'
+  String memoryMany({required Object count}) => '${count} memórias';
+
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+
+  /// pt: '{day} {month} {year}'
+  String dateLine({required Object day, required Object month, required Object year}) =>
+      '${day} ${month} ${year}';
+
+  /// pt: 'Nenhum lugar ainda'
+  String get emptyTitle => 'Nenhum lugar ainda';
+
+  /// pt: 'Ao guardar uma memória, escreva o nome do lugar e ele aparece aqui.'
+  String get emptyText => 'Ao guardar uma memória, escreva o nome do lugar e ele aparece aqui.';
+
+  /// pt: 'Nada neste lugar'
+  String get detailEmptyTitle => 'Nada neste lugar';
+
+  /// pt: 'As memórias deste lugar não estão mais aqui.'
+  String get detailEmptyText => 'As memórias deste lugar não estão mais aqui.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Suas memórias continuam salvas. Tente de novo.'
+  String get errorText => 'Suas memórias continuam salvas. Tente de novo.';
 }
 
 // Path: plus
@@ -5122,53 +4547,48 @@ class Translations$plus$pt {
   /// pt: 'Seu par tem o Plus e ele vale para vocês dois.'
   String get paidByPartner => 'Seu par tem o Plus e ele vale para vocês dois.';
 
-  /// pt: 'No plano grátis, restam {games}, {rituals} e {lists}.'
-  String freeLeft({required Object games, required Object rituals, required Object lists}) =>
-      'No plano grátis, restam ${games}, ${rituals} e ${lists}.';
+  /// pt: 'No plano grátis, este mês: {slips} e {cards}.'
+  String freeLeft({required Object slips, required Object cards}) =>
+      'No plano grátis, este mês: ${slips} e ${cards}.';
 
-  /// pt: '(one) {1 jogo nesta semana} (other) {{count} jogos nesta semana}'
-  String gameCount({required num count}) =>
+  /// pt: '(one) {1 slip} (other) {{count} slips}'
+  String slipCount({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
         count,
-        one: '1 jogo nesta semana',
-        other: '${count} jogos nesta semana',
+        one: '1 slip',
+        other: '${count} slips',
       );
 
-  /// pt: '(one) {1 ritual} (other) {{count} rituais}'
-  String ritualCount({required num count}) =>
+  /// pt: '(one) {1 cartão enviado} (other) {{count} cartões enviados}'
+  String cardCount({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
         count,
-        one: '1 ritual',
-        other: '${count} rituais',
-      );
-
-  /// pt: '(one) {1 lista} (other) {{count} listas}'
-  String listCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '1 lista',
-        other: '${count} listas',
+        one: '1 cartão enviado',
+        other: '${count} cartões enviados',
       );
 
   /// pt: 'Grátis'
   String get freeName => 'Grátis';
 
-  /// pt: 'Slips e cartões sem limite, repair, 3 jogos por semana, 3 rituais, 3 listas e tudo o que você já guardou.'
+  /// pt: 'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.'
   String get freeFeatures =>
-      'Slips e cartões sem limite, repair, 3 jogos por semana, 3 rituais, 3 listas e tudo o que você já guardou.';
+      'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.';
 
   /// pt: 'Plus'
   String get plusName => 'Plus';
 
-  /// pt: 'Jogos, rituais e listas sem limite, mais conversas com a mascote e mais recursos para os dois, cobrindo você e seu par.'
+  /// pt: 'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.'
   String get plusFeatures =>
-      'Jogos, rituais e listas sem limite, mais conversas com a mascote e mais recursos para os dois, cobrindo você e seu par.';
+      'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.';
 
   /// pt: 'Mensal'
   String get monthly => 'Mensal';
 
   /// pt: 'Anual'
   String get yearly => 'Anual';
+
+  /// pt: 'Presente'
+  String get giftPlan => 'Presente';
 
   /// pt: 'Não deu para ver os preços'
   String get storeTitle => 'Não deu para ver os preços';
@@ -5195,8 +4615,8 @@ class Translations$plus$pt {
   String get billingText =>
       'O último pagamento não passou. O Plus continua por enquanto. Abra suas assinaturas na loja e atualize a forma de pagamento.';
 
-  /// pt: 'Desparear nunca fica trancado.'
-  String get alwaysFree => 'Desparear nunca fica trancado.';
+  /// pt: 'Segurança, pausa e desparear nunca ficam trancados.'
+  String get alwaysFree => 'Segurança, pausa e desparear nunca ficam trancados.';
 
   /// pt: 'PLUS'
   String get lockLabel => 'PLUS';
@@ -5329,6 +4749,9 @@ class Translations$privacy$pt {
   /// pt: 'Privacidade e segurança'
   String get title => 'Privacidade e segurança';
 
+  /// pt: 'Modo discreto'
+  String get discreetMode => 'Modo discreto';
+
   /// pt: 'O que o parceiro vê'
   String get partnerTitle => 'O que o parceiro vê';
 
@@ -5346,6 +4769,12 @@ class Translations$privacy$pt {
 
   /// pt: 'Diário'
   String get partnerJournal => 'Diário';
+
+  /// pt: 'Pausa'
+  String get partnerPause => 'Pausa';
+
+  /// pt: 'A mensagem que você escreveu'
+  String get partnerPauseText => 'A mensagem que você escreveu';
 
   /// pt: 'Nunca'
   String get never => 'Nunca';
@@ -5371,6 +4800,9 @@ class Translations$privacy$pt {
   /// pt: 'Consentimentos'
   String get consents => 'Consentimentos';
 
+  /// pt: 'Dados sensíveis'
+  String get sensitiveData => 'Dados sensíveis';
+
   /// pt: 'Análises'
   String get analytics => 'Análises';
 
@@ -5386,8 +4818,8 @@ class Translations$privacy$pt {
   /// pt: 'Obrigatório'
   String get required => 'Obrigatório';
 
-  /// pt: 'Aceitar os Termos é obrigatório para usar o app.'
-  String get requiredNote => 'Aceitar os Termos é obrigatório para usar o app.';
+  /// pt: 'Dados sensíveis e Termos são obrigatórios para usar o app.'
+  String get requiredNote => 'Dados sensíveis e Termos são obrigatórios para usar o app.';
 
   /// pt: 'Mudanças valem agora.'
   String get consentsNote => 'Mudanças valem agora.';
@@ -5400,6 +4832,12 @@ class Translations$privacy$pt {
 
   /// pt: 'Tente de novo em instantes.'
   String get errorText => 'Tente de novo em instantes.';
+
+  /// pt: 'Trilhas e avisos sensíveis'
+  String get sensitiveTracks => 'Trilhas e avisos sensíveis';
+
+  /// pt: 'Aviso de dias pesados'
+  String get heavyDayNotice => 'Aviso de dias pesados';
 }
 
 // Path: profileDetails
@@ -5416,8 +4854,8 @@ class Translations$profileDetails$pt {
   /// pt: 'Seu nome'
   String get nameLabel => 'Seu nome';
 
-  /// pt: 'Seu primeiro nome'
-  String get nameHint => 'Seu primeiro nome';
+  /// pt: 'Marina'
+  String get nameHint => 'Marina';
 
   Map<String, String> get nameErrors => {
     'empty': 'Seu nome não pode ficar vazio.',
@@ -5426,6 +4864,11 @@ class Translations$profileDetails$pt {
 
   /// pt: 'Pronomes'
   String get pronounsLabel => 'Pronomes';
+
+  /// pt: 'Opcional'
+  String get pronounsHint => 'Opcional';
+
+  Map<String, String> get pronounsErrors => {'tooLong': 'Use no máximo 30 caracteres.'};
 
   /// pt: 'Fuso horário'
   String get timeZoneLabel => 'Fuso horário';
@@ -5503,8 +4946,8 @@ class Translations$profileSetup$pt {
   /// pt: 'Seu nome'
   String get nameLabel => 'Seu nome';
 
-  /// pt: 'Seu primeiro nome'
-  String get nameHint => 'Seu primeiro nome';
+  /// pt: 'Marina'
+  String get nameHint => 'Marina';
 
   Map<String, String> get nameErrors => {
     'empty': 'Seu nome não pode ficar vazio.',
@@ -5514,10 +4957,25 @@ class Translations$profileSetup$pt {
   /// pt: 'Nome do parceiro'
   String get partnerNameLabel => 'Nome do parceiro';
 
-  /// pt: 'O primeiro nome dele ou dela'
-  String get partnerNameHint => 'O primeiro nome dele ou dela';
+  /// pt: 'Ricardo'
+  String get partnerNameHint => 'Ricardo';
 
   Map<String, String> get partnerNameErrors => {'tooLong': 'Use no máximo 30 caracteres.'};
+
+  /// pt: 'O nome do parceiro fica só na sua conta.'
+  String get partnerNameNote => 'O nome do parceiro fica só na sua conta.';
+
+  /// pt: 'Cor do seu app'
+  String get themeLabel => 'Cor do seu app';
+
+  /// pt: 'Rosa'
+  String get themeRose => 'Rosa';
+
+  /// pt: 'Azul'
+  String get themeBlue => 'Azul';
+
+  /// pt: 'Neutro'
+  String get themeNeutral => 'Neutro';
 
   /// pt: 'Quando começaram?'
   String get dateLabel => 'Quando começaram?';
@@ -5554,18 +5012,6 @@ class Translations$profileSetup$pt {
     'NETWORK': 'Sem conexão. Seus dados continuam aqui, tente de novo.',
     'other': 'Não deu para salvar agora. Tente de novo.',
   };
-
-  /// pt: 'Cor do seu app'
-  String get themeLabel => 'Cor do seu app';
-
-  /// pt: 'Rosa'
-  String get themeRose => 'Rosa';
-
-  /// pt: 'Azul'
-  String get themeBlue => 'Azul';
-
-  /// pt: 'Neutro'
-  String get themeNeutral => 'Neutro';
 }
 
 // Path: programs
@@ -5787,23 +5233,41 @@ class Translations$programs$pt {
     'other': 'Não deu para salvar agora. Seu texto continua aqui.',
   };
 
+  /// pt: 'SENSÍVEL'
+  String get sensitive => 'SENSÍVEL';
+
+  /// pt: 'Uma trilha só sua'
+  String get sensitiveGateTitle => 'Uma trilha só sua';
+
+  /// pt: 'Estas lições falam de luto, doença e confiança. Seu par não vê que você entrou nem o que você lê. Você pode sair quando quiser.'
+  String get sensitiveGateText =>
+      'Estas lições falam de luto, doença e confiança. Seu par não vê que você entrou nem o que você lê. Você pode sair quando quiser.';
+
+  /// pt: 'Entrar nesta trilha'
+  String get sensitiveGateAction => 'Entrar nesta trilha';
+
+  /// pt: 'Entrar nesta trilha?'
+  String get sensitiveConsentTitle => 'Entrar nesta trilha?';
+
+  /// pt: 'Estas lições falam de luto, doença e confiança. Elas ficam só para você: seu par não vê sua participação. Você pode retirar este consentimento em Privacidade e segurança.'
+  String get sensitiveConsentText =>
+      'Estas lições falam de luto, doença e confiança. Elas ficam só para você: seu par não vê sua participação. Você pode retirar este consentimento em Privacidade e segurança.';
+
+  /// pt: 'Entrar'
+  String get sensitiveConsentConfirm => 'Entrar';
+
+  /// pt: 'Agora não'
+  String get sensitiveConsentCancel => 'Agora não';
+
+  /// pt: 'Trilha sensível'
+  String get sensitiveLessonLockedTitle => 'Trilha sensível';
+
+  /// pt: 'Para abrir esta lição, ative o consentimento das trilhas sensíveis.'
+  String get sensitiveLessonLockedText =>
+      'Para abrir esta lição, ative o consentimento das trilhas sensíveis.';
+
   /// pt: 'No grátis aparece só a primeira lição.'
   String get freeNote => 'No grátis aparece só a primeira lição.';
-}
-
-// Path: pronouns
-class Translations$pronouns$pt {
-  Translations$pronouns$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-  Map<String, String> get options => {
-    'she': 'Ela',
-    'he': 'Ele',
-    'nameOnly': 'Só o nome',
-    'other': 'Só o nome',
-  };
 }
 
 // Path: questions
@@ -5814,14 +5278,17 @@ class Translations$questions$pt {
 
   // Translations
 
-  /// pt: 'Pergunta do casal'
-  String get tag => 'Pergunta do casal';
+  /// pt: 'Pergunta para vocês dois'
+  String get tag => 'Pergunta para vocês dois';
+
+  /// pt: 'Pergunta do dia'
+  String get eyebrow => 'Pergunta do dia';
 
   /// pt: 'Responder'
   String get answerCta => 'Responder';
 
-  /// pt: 'Uma pergunta por dia ou por semana.'
-  String get introNote => 'Uma pergunta por dia ou por semana.';
+  /// pt: 'Editar minha resposta'
+  String get editCta => 'Editar minha resposta';
 
   /// pt: 'Escreva o quanto quiser.'
   String get answerHint => 'Escreva o quanto quiser.';
@@ -5831,16 +5298,11 @@ class Translations$questions$pt {
     'tooLong': 'A resposta está muito longa',
   };
 
+  /// pt: 'Só você vê isto até seu par responder também.'
+  String get privateNote => 'Só você vê isto até seu par responder também.';
+
   /// pt: 'Seu par já respondeu. Envie a sua para ver as duas.'
   String get partnerAnsweredNote => 'Seu par já respondeu. Envie a sua para ver as duas.';
-
-  /// pt: 'Só depois que você enviar a sua e {name} responder também.'
-  String partnerSeesAfter({required Object name}) =>
-      'Só depois que você enviar a sua e ${name} responder também.';
-
-  /// pt: 'Só depois que você enviar a sua e seu par responder também.'
-  String get partnerSeesAfterFallback =>
-      'Só depois que você enviar a sua e seu par responder também.';
 
   /// pt: 'Sua resposta fica privada. Seu par vai ver depois que vocês se conectarem.'
   String get soloNote =>
@@ -5851,9 +5313,6 @@ class Translations$questions$pt {
 
   /// pt: 'Cancelar'
   String get cancel => 'Cancelar';
-
-  /// pt: 'Pular'
-  String get skip => 'Pular';
 
   /// pt: 'Sua resposta ficou guardada'
   String get waitingTitle => 'Sua resposta ficou guardada';
@@ -5867,20 +5326,23 @@ class Translations$questions$pt {
   /// pt: 'Verificar de novo'
   String get checkAgain => 'Verificar de novo';
 
-  /// pt: 'As duas lembranças'
-  String get revealTitle => 'As duas lembranças';
+  /// pt: 'Recado de voz'
+  String get voiceSoon => 'Recado de voz';
 
-  /// pt: 'lembranças'
-  String get revealHighlight => 'lembranças';
+  /// pt: 'Por enquanto as respostas são escritas. A voz vem depois.'
+  String get voiceSoonNote => 'Por enquanto as respostas são escritas. A voz vem depois.';
 
-  /// pt: 'Querem guardar isso na história de vocês?'
-  String get keepPrompt => 'Querem guardar isso na história de vocês?';
+  /// pt: 'Suas respostas juntas'
+  String get revealTitle => 'Suas respostas juntas';
 
-  /// pt: 'Salvar como marco'
-  String get saveMilestone => 'Salvar como marco';
+  /// pt: 'juntas'
+  String get revealHighlight => 'juntas';
 
-  /// pt: 'Agora não'
-  String get notNow => 'Agora não';
+  /// pt: 'Agora que os dois responderam, vocês veem as duas.'
+  String get revealSubtitle => 'Agora que os dois responderam, vocês veem as duas.';
+
+  /// pt: 'Sem notas. Só o que cada um escreveu.'
+  String get revealNote => 'Sem notas. Só o que cada um escreveu.';
 
   /// pt: 'Você'
   String get you => 'Você';
@@ -5910,9 +5372,6 @@ class Translations$questions$pt {
   String get close => 'Fechar';
 
   Map<String, String> get errors => {'other': 'Não deu para salvar agora. Tente de novo.'};
-
-  /// pt: 'Editar minha resposta'
-  String get editCta => 'Editar minha resposta';
 }
 
 // Path: questionsEntry
@@ -5978,15 +5437,6 @@ class Translations$quickSlip$pt {
   /// pt: 'Uma linha basta. 30 segundos.'
   String get subtitle => 'Uma linha basta. 30 segundos.';
 
-  /// pt: 'Gostei ou me incomodou'
-  String get polarityLabel => 'Gostei ou me incomodou';
-
-  /// pt: 'Gostei'
-  String get polarityLiked => 'Gostei';
-
-  /// pt: 'Me incomodou'
-  String get polarityBothered => 'Me incomodou';
-
   /// pt: 'Ex.: fez café antes de eu acordar'
   String get hint => 'Ex.: fez café antes de eu acordar';
 
@@ -6005,9 +5455,6 @@ class Translations$quickSlip$pt {
   /// pt: 'Fica privado. No domingo você escolhe o que vai para o cartão.'
   String get privacyNote => 'Fica privado. No domingo você escolhe o que vai para o cartão.';
 
-  /// pt: 'Entra no seu cartão semanal. Você pode tirar quando quiser.'
-  String get cardNote => 'Entra no seu cartão semanal. Você pode tirar quando quiser.';
-
   /// pt: 'Salvar'
   String get save => 'Salvar';
 
@@ -6018,112 +5465,10 @@ class Translations$quickSlip$pt {
     _root,
   );
   Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'Você chegou ao limite de slips do plano grátis.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
   };
-
-  /// pt: 'O que te incomodou?'
-  String get annoyanceTitle => 'O que te incomodou?';
-
-  /// pt: 'incomodou'
-  String get annoyanceTitleHighlight => 'incomodou';
-
-  /// pt: 'Uma linha basta. Só você vê.'
-  String get annoyanceSubtitle => 'Uma linha basta. Só você vê.';
-
-  /// pt: 'Ex.: fiquei com a louça sozinha de novo'
-  String get annoyanceHint => 'Ex.: fiquei com a louça sozinha de novo';
-
-  /// pt: 'Fica só com você e some sozinho em 14 dias. Nunca vai para o cartão. Só continua se você transformar em um pedido gentil.'
-  String get annoyanceNote =>
-      'Fica só com você e some sozinho em 14 dias. Nunca vai para o cartão. Só continua se você transformar em um pedido gentil.';
-
-  /// pt: 'Pedido gentil'
-  String get gentleRequest => 'Pedido gentil';
-
-  /// pt: 'Guardar'
-  String get keep => 'Guardar';
-
-  /// pt: 'Adicionar detalhes'
-  String get addDetails => 'Adicionar detalhes';
-}
-
-// Path: quizzes
-class Translations$quizzes$pt {
-  Translations$quizzes$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Quizzes'
-  String get title => 'Quizzes';
-
-  /// pt: 'Se conhecer'
-  String get headline => 'Se conhecer';
-
-  /// pt: 'melhor'
-  String get headlineHighlight => 'melhor';
-
-  /// pt: 'Dois quizzes curtos, de 6 perguntas. Você vê o resultado primeiro e decide se mostra.'
-  String get intro =>
-      'Dois quizzes curtos, de 6 perguntas. Você vê o resultado primeiro e decide se mostra.';
-
-  /// pt: 'Quizzes'
-  String get entryTitle => 'Quizzes';
-
-  /// pt: 'Se conhecer melhor'
-  String get entryText => 'Se conhecer melhor';
-
-  /// pt: 'Como eu me sinto amado'
-  String get lovedTitle => 'Como eu me sinto amado';
-
-  /// pt: 'Como eu reajo numa briga'
-  String get fightTitle => 'Como eu reajo numa briga';
-
-  /// pt: '(one) {1 pergunta} (other) {{count} perguntas}'
-  String questionCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '1 pergunta',
-        other: '${count} perguntas',
-      );
-
-  /// pt: '{minutes} min'
-  String minutes({required Object minutes}) => '${minutes} min';
-
-  /// pt: '{questions} · {minutes}'
-  String meta({required Object questions, required Object minutes}) => '${questions} · ${minutes}';
-
-  /// pt: 'Começar'
-  String get start => 'Começar';
-
-  /// pt: 'Feito em {date}'
-  String lastDone({required Object date}) => 'Feito em ${date}';
-
-  List<String> get monthsShort => [
-    'jan',
-    'fev',
-    'mar',
-    'abr',
-    'mai',
-    'jun',
-    'jul',
-    'ago',
-    'set',
-    'out',
-    'nov',
-    'dez',
-  ];
-
-  /// pt: 'Só você vê o resultado, até você tocar em Mostrar. Não é teste psicológico.'
-  String get note => 'Só você vê o resultado, até você tocar em Mostrar. Não é teste psicológico.';
-
-  /// pt: 'Não deu para abrir os quizzes'
-  String get loadErrorTitle => 'Não deu para abrir os quizzes';
-
-  /// pt: 'Nada foi perdido. Tente de novo.'
-  String get loadErrorText => 'Nada foi perdido. Tente de novo.';
 }
 
 // Path: received
@@ -6139,6 +5484,7 @@ class Translations$received$pt {
     'missUs': 'Saudade',
     'hug': 'Um abraço',
     'distance': 'Um pouco de distância',
+    'heavyDay': 'Um dia pesado',
     'goodNews': 'Boa notícia',
     'other': '',
   };
@@ -6146,6 +5492,7 @@ class Translations$received$pt {
     'missUs': 'Seu par está com saudade de vocês.',
     'hug': 'Seu par quer um abraço.',
     'distance': 'Seu par precisa de um pouco de distância.',
+    'heavyDay': 'Seu par está tendo um dia pesado.',
     'goodNews': 'Seu par tem uma boa notícia.',
     'other': '',
   };
@@ -6157,25 +5504,17 @@ class Translations$received$pt {
   String get privateFirst => 'Sua resposta é privada primeiro. Não tem certo nem errado.';
 
   Map<String, String> get responses => {
-    'here': 'Estou aqui',
-    'talk': 'Vamos conversar',
+    'talk': 'Sim, vamos conversar',
     'moreTime': 'Preciso de mais um tempo',
-    'willDo': 'Vou fazer',
-    'notNow': 'Agora não',
-    'plan': 'Planejar algo',
     'later': 'Respondo depois',
-    'heart': 'Mandar um coração',
     'other': '',
   };
 
   /// pt: 'Entendi'
   String get seen => 'Entendi';
 
-  /// pt: 'Você respondeu: {response}'
-  String answered({required Object response}) => 'Você respondeu: ${response}';
-
-  /// pt: 'Próxima mensagem'
-  String get next => 'Próxima mensagem';
+  /// pt: 'Sugerir um plano pequeno'
+  String get suggestPlan => 'Sugerir um plano pequeno';
 
   /// pt: 'Tudo certo'
   String get doneTitle => 'Tudo certo';
@@ -6228,6 +5567,9 @@ class Translations$relationshipChanged$pt {
   /// pt: 'Perdi a pessoa'
   String get optionBereaved => 'Perdi a pessoa';
 
+  /// pt: 'Um tempo'
+  String get optionOnBreak => 'Um tempo';
+
   /// pt: 'Está tudo bem'
   String get optionTogether => 'Está tudo bem';
 
@@ -6266,6 +5608,7 @@ class Translations$relationshipSettings$pt {
     'livingTogether': 'Moramos juntos',
     'engaged': 'Noivos',
     'married': 'Casados',
+    'withKids': 'Com filhos',
     'longDistance': 'Namoro à distância',
     'restarting': 'Recomeçando',
   };
@@ -6355,7 +5698,7 @@ class Translations$reminders$pt {
   String get weeklyCard => 'Seu cartão está pronto.';
 
   /// pt: 'Abra o app para ver.'
-  String get generic => 'Abra o app para ver.';
+  String get discreet => 'Abra o app para ver.';
 }
 
 // Path: repair
@@ -6375,7 +5718,6 @@ class Translations$repair$pt {
     _root,
   );
   late final Translations$repair$next$pt next = Translations$repair$next$pt.internal(_root);
-  late final Translations$repair$sos$pt sos = Translations$repair$sos$pt.internal(_root);
 }
 
 // Path: rituals
@@ -6482,20 +5824,46 @@ class Translations$rituals$pt {
     'NOT_FOUND': 'Esse ritual não está mais aqui.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
-    'INVALID_PLANNER': 'Quem planeja precisa ser uma das duas pessoas.',
   };
+}
 
-  /// pt: 'Quem planeja'
-  String get plannerLabel => 'Quem planeja';
+// Path: safeMode
+class Translations$safeMode$pt {
+  Translations$safeMode$pt.internal(this._root);
 
-  /// pt: 'Ninguém em especial'
-  String get plannerNobody => 'Ninguém em especial';
+  final Translations _root; // ignore: unused_field
 
-  /// pt: 'Eu'
-  String get plannerMe => 'Eu';
+  // Translations
 
-  /// pt: 'A outra pessoa'
-  String get plannerPartner => 'A outra pessoa';
+  /// pt: 'Modo seguro'
+  String get title => 'Modo seguro';
+
+  /// pt: 'Para quando o app precisa ficar discreto neste celular.'
+  String get text => 'Para quando o app precisa ficar discreto neste celular.';
+
+  /// pt: 'Esconder o app'
+  String get toggle => 'Esconder o app';
+
+  /// pt: 'Quando você troca de app, a tela fica em branco.'
+  String get toggleText => 'Quando você troca de app, a tela fica em branco.';
+
+  /// pt: 'Isto fica só neste celular. Nada é enviado nem registrado.'
+  String get localOnly => 'Isto fica só neste celular. Nada é enviado nem registrado.';
+
+  /// pt: 'Sair agora'
+  String get quickExit => 'Sair agora';
+}
+
+// Path: safety
+class Translations$safety$pt {
+  Translations$safety$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Segurança e apoio'
+  String get entry => 'Segurança e apoio';
 }
 
 // Path: sessionExpired
@@ -6530,6 +5898,12 @@ class Translations$settingsHome$pt {
   /// pt: 'Configurações'
   String get title => 'Configurações';
 
+  /// pt: 'Segurança e apoio'
+  String get safety => 'Segurança e apoio';
+
+  /// pt: 'Modo seguro'
+  String get safetyStatus => 'Modo seguro';
+
   /// pt: 'Perfil'
   String get profile => 'Perfil';
 
@@ -6563,8 +5937,17 @@ class Translations$settingsHome$pt {
   /// pt: 'Plus'
   String get planPlus => 'Plus';
 
-  /// pt: 'Tempero'
-  String get spice => 'Tempero';
+  /// pt: 'Momentos a dois'
+  String get spice => 'Momentos a dois';
+
+  /// pt: 'Modo discreto'
+  String get discreet => 'Modo discreto';
+
+  /// pt: 'Ligado'
+  String get discreetOn => 'Ligado';
+
+  /// pt: 'Desligado'
+  String get discreetOff => 'Desligado';
 
   /// pt: 'Privacidade e segurança'
   String get privacy => 'Privacidade e segurança';
@@ -6599,17 +5982,8 @@ class Translations$settingsHome$pt {
   /// pt: 'Aparência, texto e idioma'
   String get appPreferencesStatus => 'Aparência, texto e idioma';
 
-  /// pt: 'Cor do app'
-  String get theme => 'Cor do app';
-
-  /// pt: 'Qual cor combina com você?'
-  String get themeTitle => 'Qual cor combina com você?';
-
-  /// pt: 'cor'
-  String get themeHighlight => 'cor';
-
-  /// pt: 'Vale para o app e para os widgets. Os recursos são os mesmos.'
-  String get themeSubtitle => 'Vale para o app e para os widgets. Os recursos são os mesmos.';
+  /// pt: 'Tema'
+  String get theme => 'Tema';
 
   /// pt: 'Cartão semanal'
   String get weeklyCard => 'Cartão semanal';
@@ -6628,121 +6002,6 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Conectado com {name}'
   String connectedWith({required Object name}) => 'Conectado com ${name}';
-}
-
-// Path: share
-class Translations$share$pt {
-  Translations$share$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Compartilhar imagem'
-  String get entryTitle => 'Compartilhar imagem';
-
-  /// pt: 'O tempo de vocês e a lua do dia em que tudo começou.'
-  String get entrySubtitleToday => 'O tempo de vocês e a lua do dia em que tudo começou.';
-
-  /// pt: 'Uma linha do tempo com os momentos que vocês guardaram.'
-  String get entrySubtitleMemories => 'Uma linha do tempo com os momentos que vocês guardaram.';
-
-  /// pt: 'Uma frase do cartão que chegou para você.'
-  String get entrySubtitleCard => 'Uma frase do cartão que chegou para você.';
-
-  /// pt: 'Compartilhar imagem'
-  String get sheetTitle => 'Compartilhar imagem';
-
-  /// pt: 'A imagem é feita no seu aparelho e só sai daqui quando você compartilhar.'
-  String get sheetSubtitle =>
-      'A imagem é feita no seu aparelho e só sai daqui quando você compartilhar.';
-
-  /// pt: 'Compartilhar'
-  String get shareAction => 'Compartilhar';
-
-  Map<String, String> get cardLabels => {
-    'counter': 'Nosso tempo',
-    'moon': 'A lua do nosso dia',
-    'timeline': 'Nossa linha do tempo',
-    'quote': 'De um cartão',
-    'other': '',
-  };
-
-  /// pt: 'NOSSO TEMPO'
-  String get counterEyebrow => 'NOSSO TEMPO';
-
-  /// pt: '(one) {dia juntos} (other) {dias juntos}'
-  String counterDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'dia juntos',
-        other: 'dias juntos',
-      );
-
-  /// pt: 'Desde {date}'
-  String counterSince({required Object date}) => 'Desde ${date}';
-
-  /// pt: 'A LUA DO NOSSO DIA'
-  String get moonEyebrow => 'A LUA DO NOSSO DIA';
-
-  /// pt: 'Foi assim que o céu estava quando tudo começou.'
-  String get moonSupport => 'Foi assim que o céu estava quando tudo começou.';
-
-  /// pt: 'NOSSA LINHA DO TEMPO'
-  String get timelineEyebrow => 'NOSSA LINHA DO TEMPO';
-
-  /// pt: 'Momentos que a gente guardou'
-  String get timelineTitle => 'Momentos que a gente guardou';
-
-  /// pt: 'DE UM CARTÃO'
-  String get quoteEyebrow => 'DE UM CARTÃO';
-
-  /// pt: '“{quote}”'
-  String quoteText({required Object quote}) => '“${quote}”';
-
-  /// pt: '— {name}'
-  String quoteFromName({required Object name}) => '— ${name}';
-
-  /// pt: 'Cartão de {date}'
-  String quoteDate({required Object date}) => 'Cartão de ${date}';
-
-  /// pt: '{day} de {month} de {year}'
-  String dateLine({required Object day, required Object month, required Object year}) =>
-      '${day} de ${month} de ${year}';
-
-  /// pt: '{day} de {month}'
-  String dateShort({required Object day, required Object month}) => '${day} de ${month}';
-
-  List<String> get monthsLong => [
-    'janeiro',
-    'fevereiro',
-    'março',
-    'abril',
-    'maio',
-    'junho',
-    'julho',
-    'agosto',
-    'setembro',
-    'outubro',
-    'novembro',
-    'dezembro',
-  ];
-  Map<String, String> get phases => {
-    'newMoon': 'Lua nova',
-    'waxingCrescent': 'Lua crescente',
-    'firstQuarter': 'Quarto crescente',
-    'waxingGibbous': 'Crescente gibosa',
-    'fullMoon': 'Lua cheia',
-    'waningGibbous': 'Minguante gibosa',
-    'lastQuarter': 'Quarto minguante',
-    'waningCrescent': 'Lua minguante',
-    'other': '',
-  };
-
-  /// pt: 'Mingo'
-  String get productMark => 'Mingo';
-
-  Map<String, String> get errors => {'other': 'Não deu para compartilhar agora. Tente de novo.'};
 }
 
 // Path: slipDetail
@@ -6788,6 +6047,12 @@ class Translations$slipDetail$pt {
     'other': '',
   };
 
+  /// pt: 'Só você vê este slip.'
+  String get private => 'Só você vê este slip.';
+
+  /// pt: 'Arquivado'
+  String get archived => 'Arquivado';
+
   /// pt: 'Como você se sentiu'
   String get feeling => 'Como você se sentiu';
 
@@ -6799,6 +6064,30 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Para abrir em um dia ruim. Só você vê.'
   String get jarText => 'Para abrir em um dia ruim. Só você vê.';
+
+  /// pt: 'Quem vê isto'
+  String get cardTitle => 'Quem vê isto';
+
+  /// pt: 'Só eu'
+  String get cardOff => 'Só eu';
+
+  /// pt: 'Fica na sua semana e não entra no cartão.'
+  String get cardOffText => 'Fica na sua semana e não entra no cartão.';
+
+  /// pt: 'Pode entrar no cartão'
+  String get cardOn => 'Pode entrar no cartão';
+
+  /// pt: 'No domingo você escolhe se ele vai.'
+  String get cardOnText => 'No domingo você escolhe se ele vai.';
+
+  /// pt: 'Slips invisíveis nunca entram em um cartão.'
+  String get cardInvisible => 'Slips invisíveis nunca entram em um cartão.';
+
+  /// pt: 'O que seu par leria'
+  String get previewTitle => 'O que seu par leria';
+
+  /// pt: 'Se este slip entrar no cartão, é este texto que aparece.'
+  String get previewText => 'Se este slip entrar no cartão, é este texto que aparece.';
 
   /// pt: 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.'
   String get sentNote =>
@@ -6818,6 +6107,12 @@ class Translations$slipDetail$pt {
   /// pt: 'Cancelar'
   String get editCancel => 'Cancelar';
 
+  /// pt: 'Arquivar'
+  String get archive => 'Arquivar';
+
+  /// pt: 'Restaurar'
+  String get restore => 'Restaurar';
+
   /// pt: 'Apagar'
   String get delete => 'Apagar';
 
@@ -6833,6 +6128,9 @@ class Translations$slipDetail$pt {
   /// pt: 'Salvo'
   String get saved => 'Salvo';
 
+  /// pt: 'Arquivado'
+  String get archivedToast => 'Arquivado';
+
   /// pt: 'Slip apagado'
   String get deleted => 'Slip apagado';
 
@@ -6842,6 +6140,12 @@ class Translations$slipDetail$pt {
   /// pt: 'Ele pode ter sido apagado.'
   String get notFoundText => 'Ele pode ter sido apagado.';
 
+  /// pt: 'Não deu para abrir este slip'
+  String get errorTitle => 'Não deu para abrir este slip';
+
+  /// pt: 'Ele continua salvo. Tente de novo.'
+  String get errorText => 'Ele continua salvo. Tente de novo.';
+
   Map<String, String> get errors => {
     'SLIP_NOT_FOUND': 'Este slip não existe mais.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
@@ -6850,49 +6154,6 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Descartar este slip?'
   String get discardTitle => 'Descartar este slip?';
-
-  List<String> get weekdaysShort => ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
-
-  /// pt: '{weekday} {day} de {month}'
-  String factDate({required Object weekday, required Object day, required Object month}) =>
-      '${weekday} ${day} de ${month}';
-
-  /// pt: 'Data'
-  String get factDateLabel => 'Data';
-
-  /// pt: 'Tipo'
-  String get factType => 'Tipo';
-
-  /// pt: 'Visibilidade'
-  String get factVisibility => 'Visibilidade';
-
-  /// pt: 'Incluído no cartão'
-  String get factInCard => 'Incluído no cartão';
-
-  /// pt: 'Privado'
-  String get visibilityPrivate => 'Privado';
-
-  /// pt: 'No cartão semanal'
-  String get visibilityCard => 'No cartão semanal';
-
-  /// pt: 'Enviado'
-  String get visibilitySent => 'Enviado';
-
-  /// pt: 'Sim'
-  String get yes => 'Sim';
-
-  /// pt: 'Não'
-  String get no => 'Não';
-
-  Map<String, String> get categories => {
-    'said': 'Disse algo',
-    'did': 'Fez algo',
-    'noticed': 'Me notou',
-    'helped': 'Me ajudou',
-    'other': '',
-  };
-  late final Translations$slipDetail$visibility$pt visibility =
-      Translations$slipDetail$visibility$pt.internal(_root);
 }
 
 // Path: slipKind
@@ -6926,13 +6187,13 @@ class Translations$slipKind$pt {
   late final Translations$slipKind$invisible$pt invisible =
       Translations$slipKind$invisible$pt.internal(_root);
   Map<String, String> get workAreas => {
-    'planning': 'Planejamento',
-    'dates': 'Lembrar de datas',
+    'planning': 'Planejar',
+    'dates': 'Datas',
     'kitchen': 'Cozinha',
     'cleaning': 'Limpeza',
-    'kids': 'Logística dos filhos',
-    'emotional': 'Apoio emocional',
-    'finances': 'Finanças da casa',
+    'kids': 'Filhos',
+    'emotional': 'Emocional',
+    'finances': 'Finanças',
     'other': 'Outro',
   };
   Map<String, String> get textErrors => {
@@ -6953,6 +6214,7 @@ class Translations$slipKind$pt {
 
   late final Translations$slipKind$saved$pt saved = Translations$slipKind$saved$pt.internal(_root);
   Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'Você chegou ao limite de slips do plano grátis.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
   };
@@ -6975,8 +6237,14 @@ class Translations$slipsList$pt {
   /// pt: 'Todos'
   String get scopeAll => 'Todos';
 
+  /// pt: 'Arquivados'
+  String get scopeArchived => 'Arquivados';
+
   /// pt: 'Buscar'
   String get search => 'Buscar';
+
+  /// pt: 'Fechar busca'
+  String get searchClose => 'Fechar busca';
 
   /// pt: 'Buscar nos seus slips'
   String get searchHint => 'Buscar nos seus slips';
@@ -6986,6 +6254,9 @@ class Translations$slipsList$pt {
 
   /// pt: 'Tente outra palavra.'
   String get searchEmptyText => 'Tente outra palavra.';
+
+  /// pt: 'Limpar busca'
+  String get clearSearch => 'Limpar busca';
 
   /// pt: 'Esta semana'
   String get thisWeek => 'Esta semana';
@@ -7032,6 +6303,9 @@ class Translations$slipsList$pt {
     'other': '',
   };
 
+  /// pt: 'Cartões anteriores'
+  String get pastCards => 'Cartões anteriores';
+
   /// pt: 'Nada ainda'
   String get emptyTitle => 'Nada ainda';
 
@@ -7041,32 +6315,11 @@ class Translations$slipsList$pt {
   /// pt: 'Adicionar um slip'
   String get emptyAction => 'Adicionar um slip';
 
-  /// pt: 'Nada privado por aqui'
-  String get privateEmptyTitle => 'Nada privado por aqui';
+  /// pt: 'Não deu para carregar seus slips'
+  String get errorTitle => 'Não deu para carregar seus slips';
 
-  /// pt: 'Os slips que você deixa fora do cartão aparecem aqui.'
-  String get privateEmptyText => 'Os slips que você deixa fora do cartão aparecem aqui.';
-
-  /// pt: 'Slip privado'
-  String get privateMarker => 'Slip privado';
-
-  /// pt: 'Privado'
-  String get scopePrivate => 'Privado';
-
-  /// pt: 'Slips são sempre livres.'
-  String get freeNote => 'Slips são sempre livres.';
-
-  /// pt: 'Este mês'
-  String get filterThisMonth => 'Este mês';
-
-  /// pt: 'Em um cartão'
-  String get filterInCard => 'Em um cartão';
-
-  /// pt: 'Trabalho invisível'
-  String get filterInvisible => 'Trabalho invisível';
-
-  /// pt: 'Ajuste a busca ou os filtros.'
-  String get searchFiltersEmptyText => 'Ajuste a busca ou os filtros.';
+  /// pt: 'Eles continuam salvos. Tente de novo.'
+  String get errorText => 'Eles continuam salvos. Tente de novo.';
 }
 
 // Path: spice
@@ -7077,34 +6330,12 @@ class Translations$spice$pt {
 
   // Translations
 
-  /// pt: 'Tempero'
-  String get title => 'Tempero';
+  /// pt: 'Momentos a dois'
+  String get title => 'Momentos a dois';
 
-  /// pt: 'Tempero, só para vocês dois'
-  String get introTitle => 'Tempero, só para vocês dois';
-
-  /// pt: 'vocês dois'
-  String get introHighlight => 'vocês dois';
-
-  /// pt: 'Um espaço para adultos, opcional, com cartas e desejos para o casal. Só 18+.'
-  String get introText =>
-      'Um espaço para adultos, opcional, com cartas e desejos para o casal. Só 18+.';
-
-  /// pt: 'A outra pessoa quis ligar. Só começa quando você também ligar.'
-  String get partnerWantsText => 'A outra pessoa quis ligar. Só começa quando você também ligar.';
-
-  List<String> get promises => [
-    'Só vale quando vocês dois ligam.',
-    'Qualquer um desliga a qualquer momento, e tudo some para os dois.',
-    'Suas respostas são só suas. Só aparece o que os dois querem.',
-    'Um "hoje não" nunca é explicado nem avisado.',
-  ];
-
-  /// pt: 'Tenho 18 anos ou mais'
-  String get adultLabel => 'Tenho 18 anos ou mais';
-
-  /// pt: 'Confirme para continuar.'
-  String get adultError => 'Confirme para continuar.';
+  /// pt: 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.'
+  String get offText =>
+      'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.';
 
   /// pt: 'Ligar'
   String get turnOn => 'Ligar';
@@ -7112,42 +6343,28 @@ class Translations$spice$pt {
   /// pt: 'Agora não'
   String get notNow => 'Agora não';
 
+  /// pt: 'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.'
+  String get waitingText =>
+      'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.';
+
+  /// pt: 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.'
+  String get readyText => 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.';
+
+  /// pt: 'Tirar uma carta'
+  String get drawCard => 'Tirar uma carta';
+
   /// pt: 'Desligar'
   String get turnOff => 'Desligar';
 
-  /// pt: 'Esperando a outra pessoa'
-  String get waitingTitle => 'Esperando a outra pessoa';
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
 
-  /// pt: 'Nada foi avisado. Quando ela também ligar, o Tempero abre para vocês dois.'
-  String get waitingText =>
-      'Nada foi avisado. Quando ela também ligar, o Tempero abre para vocês dois.';
+  /// pt: 'Tente de novo em instantes.'
+  String get errorText => 'Tente de novo em instantes.';
 
-  /// pt: 'O Tempero é a dois'
-  String get soloTitle => 'O Tempero é a dois';
-
-  /// pt: 'Precisa de duas pessoas conectadas. Quando a outra pessoa entrar, ele fica disponível.'
-  String get soloText =>
-      'Precisa de duas pessoas conectadas. Quando a outra pessoa entrar, ele fica disponível.';
-
-  /// pt: 'Voltar'
-  String get soloAction => 'Voltar';
-
-  late final Translations$spice$home$pt home = Translations$spice$home$pt.internal(_root);
-  late final Translations$spice$cards$pt cards = Translations$spice$cards$pt.internal(_root);
-  late final Translations$spice$desires$pt desires = Translations$spice$desires$pt.internal(_root);
-  late final Translations$spice$challenge$pt challenge = Translations$spice$challenge$pt.internal(
-    _root,
-  );
-  late final Translations$spice$settingsPage$pt settingsPage =
-      Translations$spice$settingsPage$pt.internal(_root);
   Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'Você usou as cartas grátis desta semana. O Plus libera mais.',
-    'PLUS_REQUIRED': 'Isso faz parte do Plus.',
-    'ADULT_REQUIRED': 'Confirme que você tem 18 anos ou mais.',
-    'SPICE_NOT_ON': 'O Tempero não está ligado para os dois.',
-    'SWAP_LIMIT': 'Você já trocou o desafio três vezes esta semana.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para concluir agora. Tente de novo.',
+    'other': 'Não deu para mudar agora. Tente de novo.',
   };
 }
 
@@ -7229,6 +6446,15 @@ class Translations$sundayCard$pt {
   /// pt: 'Obrigada por essa semana.'
   String get noteHint => 'Obrigada por essa semana.';
 
+  /// pt: 'Subir'
+  String get moveUp => 'Subir';
+
+  /// pt: 'Descer'
+  String get moveDown => 'Descer';
+
+  /// pt: 'Tirar do cartão'
+  String get remove => 'Tirar do cartão';
+
   /// pt: 'Semana sem slips'
   String get emptyTitle => 'Semana sem slips';
 
@@ -7257,32 +6483,6 @@ class Translations$sundayCard$pt {
   late final Translations$sundayCard$hold$pt hold = Translations$sundayCard$hold$pt.internal(_root);
   late final Translations$sundayCard$held$pt held = Translations$sundayCard$held$pt.internal(_root);
   late final Translations$sundayCard$sent$pt sent = Translations$sundayCard$sent$pt.internal(_root);
-  late final Translations$sundayCard$heldByRule$pt heldByRule =
-      Translations$sundayCard$heldByRule$pt.internal(_root);
-
-  /// pt: 'Dia'
-  String get dayTitle => 'Dia';
-
-  /// pt: 'Não deu para mudar o dia. O anterior foi mantido.'
-  String get dayError => 'Não deu para mudar o dia. O anterior foi mantido.';
-
-  /// pt: 'Vale para o próximo cartão.'
-  String get dayNote => 'Vale para o próximo cartão.';
-
-  /// pt: 'Editar esta semana'
-  String get editTitle => 'Editar esta semana';
-
-  /// pt: 'Escolha o que entra'
-  String get editSubtitle => 'Escolha o que entra';
-
-  /// pt: 'Incluído'
-  String get included => 'Incluído';
-
-  /// pt: 'Não incluído'
-  String get notIncluded => 'Não incluído';
-
-  /// pt: 'Prévia'
-  String get preview => 'Prévia';
 }
 
 // Path: tabs
@@ -7534,6 +6734,12 @@ class Translations$tabs$pt {
   /// pt: 'SÓ PARA VOCÊ'
   String get fightStyleLabel => 'SÓ PARA VOCÊ';
 
+  /// pt: 'Como eu reajo numa briga'
+  String get fightStyleTitle => 'Como eu reajo numa briga';
+
+  /// pt: 'Uma reflexão curta e privada sobre o seu jeito.'
+  String get fightStyleText => 'Uma reflexão curta e privada sobre o seu jeito.';
+
   /// pt: 'CONVERSAS'
   String get guidesLabel => 'CONVERSAS';
 
@@ -7566,6 +6772,9 @@ class Translations$tabs$pt {
 
   /// pt: 'Só seu'
   String get sectionPrivate => 'Só seu';
+
+  /// pt: 'Meus padrões'
+  String get sectionPatterns => 'Meus padrões';
 
   /// pt: '15 min · semanal'
   String get logisticsMeta => '15 min · semanal';
@@ -7635,12 +6844,6 @@ class Translations$tabs$pt {
   /// pt: 'Só seu'
   String get diaryMeta => 'Só seu';
 
-  /// pt: 'Meus humores'
-  String get moodCalendarTitle => 'Meus humores';
-
-  /// pt: 'Seu mês, só você vê'
-  String get moodCalendarMeta => 'Seu mês, só você vê';
-
   /// pt: 'Notas antes de falar'
   String get hardTalkMeta => 'Notas antes de falar';
 
@@ -7653,66 +6856,17 @@ class Translations$tabs$pt {
   /// pt: 'Só para você'
   String get partnerMeta => 'Só para você';
 
+  /// pt: 'Como você reage'
+  String get fightStyleMeta => 'Como você reage';
+
+  /// pt: 'Como você se sente amado'
+  String get loveStyleMeta => 'Como você se sente amado';
+
   /// pt: 'Uma conversa calma'
   String get chatMeta => 'Uma conversa calma';
 
   /// pt: 'Nenhuma ainda'
   String get listsNone => 'Nenhuma ainda';
-
-  /// pt: 'Precisa dos dois · Convidar'
-  String get needsBoth => 'Precisa dos dois · Convidar';
-
-  /// pt: '{years} {yearsUnit} e {months} {monthsUnit}'
-  String durationYearsMonths({
-    required Object years,
-    required Object yearsUnit,
-    required Object months,
-    required Object monthsUnit,
-  }) => '${years} ${yearsUnit} e ${months} ${monthsUnit}';
-
-  /// pt: '{years} {yearsUnit}'
-  String durationYears({required Object years, required Object yearsUnit}) =>
-      '${years} ${yearsUnit}';
-
-  /// pt: '{months} {monthsUnit}'
-  String durationMonths({required Object months, required Object monthsUnit}) =>
-      '${months} ${monthsUnit}';
-
-  /// pt: '{days} {daysUnit}'
-  String durationDays({required Object days, required Object daysUnit}) => '${days} ${daysUnit}';
-
-  /// pt: '(one) {ano} (other) {anos}'
-  String unitYear({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'ano',
-        other: 'anos',
-      );
-
-  /// pt: '(one) {mês} (other) {meses}'
-  String unitMonth({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'mês',
-        other: 'meses',
-      );
-
-  /// pt: '(one) {dia} (other) {dias}'
-  String unitDay({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'dia',
-        other: 'dias',
-      );
-
-  /// pt: 'Conversa'
-  String get chat => 'Conversa';
-
-  /// pt: 'Nós'
-  String get couple => 'Nós';
-
-  /// pt: 'Nossa história'
-  String get storyChip => 'Nossa história';
 }
 
 // Path: temperature
@@ -7776,8 +6930,6 @@ class Translations$temperature$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Suas respostas continuam aqui.',
   };
-  late final Translations$temperature$history$pt history =
-      Translations$temperature$history$pt.internal(_root);
 }
 
 // Path: timeInApp
@@ -7796,6 +6948,9 @@ class Translations$timeInApp$pt {
 
   /// pt: 'Escondemos cartões e lembretes até você voltar.'
   String get text => 'Escondemos cartões e lembretes até você voltar.';
+
+  /// pt: 'Pausar o app'
+  String get pause => 'Pausar o app';
 
   /// pt: 'Cancelar'
   String get cancel => 'Cancelar';
@@ -7849,6 +7004,36 @@ class Translations$today$pt {
     'dezembro',
   ];
 
+  /// pt: '(one) {1 ano} (other) {{count} anos}'
+  String togetherYears({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 ano',
+        other: '${count} anos',
+      );
+
+  /// pt: '(one) {1 mês} (other) {{count} meses}'
+  String togetherMonths({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 mês',
+        other: '${count} meses',
+      );
+
+  /// pt: '(one) {1 dia} (other) {{count} dias}'
+  String togetherDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 dia',
+        other: '${count} dias',
+      );
+
+  /// pt: 'Abrir nossa história'
+  String get togetherChipAction => 'Abrir nossa história';
+
+  /// pt: '{first} e {second}'
+  String togetherJoin({required Object first, required Object second}) => '${first} e ${second}';
+
   /// pt: 'Convidar sua pessoa'
   String get invitePerson => 'Convidar sua pessoa';
 
@@ -7857,6 +7042,9 @@ class Translations$today$pt {
 
   /// pt: 'A pessoa ainda não entrou. Reenviar ou revogar.'
   String get pendingInviteText => 'A pessoa ainda não entrou. Reenviar ou revogar.';
+
+  /// pt: 'Ver convite'
+  String get pendingInviteAction => 'Ver convite';
 
   /// pt: 'Responder'
   String get answer => 'Responder';
@@ -7873,14 +7061,23 @@ class Translations$today$pt {
   /// pt: 'sem pressa'
   String get weekHintEmpty => 'sem pressa';
 
-  /// pt: 'cartão da semana'
-  String get weekHint => 'cartão da semana';
+  /// pt: 'cartão no domingo'
+  String get weekHint => 'cartão no domingo';
 
   /// pt: 'Para hoje'
   String get forToday => 'Para hoje';
 
   /// pt: 'Ideia do dia'
   String get ideaLabel => 'Ideia do dia';
+
+  /// pt: '(zero) {Seus slips privados: nenhum esta semana} (one) {Seus slips privados: 1 esta semana} (other) {Seus slips privados: {count} esta semana}'
+  String slipsThisWeekPrivate({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        zero: 'Seus slips privados: nenhum esta semana',
+        one: 'Seus slips privados: 1 esta semana',
+        other: 'Seus slips privados: ${count} esta semana',
+      );
 
   /// pt: 'Cartão de domingo'
   String get sundayCardLabel => 'Cartão de domingo';
@@ -7930,6 +7127,12 @@ class Translations$today$pt {
   /// pt: 'Você recebeu um cartão'
   String get cardReceived => 'Você recebeu um cartão';
 
+  /// pt: 'Ver cartão'
+  String get cardReceivedAction => 'Ver cartão';
+
+  /// pt: 'Começando'
+  String get firstDayLabel => 'Começando';
+
   /// pt: 'Oi, {name}'
   String firstDayGreeting({required Object name}) => 'Oi, ${name}';
 
@@ -7971,72 +7174,36 @@ class Translations$today$pt {
   /// pt: '{name} te mandou um cartão'
   String cardReceivedNamed({required Object name}) => '${name} te mandou um cartão';
 
-  /// pt: 'Seu espaço já funciona. A outra pessoa entra quando quiser.'
-  String get inviteCardSupport => 'Seu espaço já funciona. A outra pessoa entra quando quiser.';
+  /// pt: 'Você pediu um tempo'
+  String get pauseOwnTitle => 'Você pediu um tempo';
 
-  /// pt: 'Convidar'
-  String get inviteCardAction => 'Convidar';
+  /// pt: 'Você volta por volta das {time}. Nada para fazer agora.'
+  String pauseOwnText({required Object time}) =>
+      'Você volta por volta das ${time}. Nada para fazer agora.';
 
-  /// pt: 'Cartão'
-  String get carouselCardTag => 'Cartão';
+  /// pt: 'Seu par pediu um tempo'
+  String get pausePartnerTitle => 'Seu par pediu um tempo';
 
-  /// pt: 'Abra para ver as coisas boas desta semana.'
-  String get carouselCardSupport => 'Abra para ver as coisas boas desta semana.';
+  /// pt: 'Sem pressa. Não tem nada para fazer agora.'
+  String get pausePartnerText => 'Sem pressa. Não tem nada para fazer agora.';
 
-  /// pt: 'Abrir'
-  String get carouselCardAction => 'Abrir';
-
-  /// pt: 'Sua semana'
-  String get weekTag => 'Sua semana';
-
-  /// pt: 'Sua semana está pronta'
-  String get weekReadyTitle => 'Sua semana está pronta';
-
-  /// pt: 'Um resumo do que vocês fizeram.'
-  String get weekReadySupport => 'Um resumo do que vocês fizeram.';
-
-  /// pt: 'Um resumo só seu.'
-  String get weekReadySupportPrivate => 'Um resumo só seu.';
+  /// pt: 'Seu par te mandou uma mensagem'
+  String get signalReceived => 'Seu par te mandou uma mensagem';
 
   /// pt: 'Ver'
-  String get weekReadyAction => 'Ver';
+  String get signalReceivedAction => 'Ver';
 
-  /// pt: 'Já tenho um código'
-  String get haveCode => 'Já tenho um código';
+  /// pt: 'Voltar agora'
+  String get pauseBack => 'Voltar agora';
 
-  /// pt: 'Perfil do parceiro'
-  String get partnerProfile => 'Perfil do parceiro';
+  /// pt: 'Voltar e fazer um reparo'
+  String get pauseBackRepair => 'Voltar e fazer um reparo';
 
-  /// pt: 'Seus slips privados'
-  String get privateWeekTitle => 'Seus slips privados';
+  /// pt: 'Anotar um slip'
+  String get pauseWriteSlip => 'Anotar um slip';
 
-  /// pt: '(zero) {sem pressa} (one) {1 nesta semana} (other) {{count} nesta semana}'
-  String privateWeekCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        zero: 'sem pressa',
-        one: '1 nesta semana',
-        other: '${count} nesta semana',
-      );
-
-  late final Translations$today$conflict$pt conflict = Translations$today$conflict$pt.internal(
-    _root,
-  );
-
-  /// pt: 'Hoje'
-  String get questionTag => 'Hoje';
-
-  /// pt: 'Para este momento'
-  String get partnerMomentTag => 'Para este momento';
-
-  /// pt: 'Uma ideia pequena pode ajudar.'
-  String get partnerMomentSupport => 'Uma ideia pequena pode ajudar.';
-
-  /// pt: 'Ver ideias'
-  String get partnerMomentAction => 'Ver ideias';
-
-  /// pt: 'Sem conexão. Mostrando o que já estava no seu celular.'
-  String get offlineBand => 'Sem conexão. Mostrando o que já estava no seu celular.';
+  /// pt: 'cartão sai hoje, 18:00'
+  String get weekHintToday => 'cartão sai hoje, 18:00';
 }
 
 // Path: unpair
@@ -8077,101 +7244,6 @@ class Translations$unpair$pt {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'STILL_PAIRED': 'A relação ainda está ativa. Tente de novo.',
     'other': 'Não deu para desvincular agora. Tente de novo.',
-  };
-}
-
-// Path: weeklyReview
-class Translations$weeklyReview$pt {
-  Translations$weeklyReview$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Sua semana'
-  String get title => 'Sua semana';
-
-  /// pt: 'semana'
-  String get titleHighlight => 'semana';
-
-  /// pt: '{start} a {end} de {month}'
-  String range({required Object start, required Object end, required Object month}) =>
-      '${start} a ${end} de ${month}';
-
-  List<String> get months => [
-    'janeiro',
-    'fevereiro',
-    'março',
-    'abril',
-    'maio',
-    'junho',
-    'julho',
-    'agosto',
-    'setembro',
-    'outubro',
-    'novembro',
-    'dezembro',
-  ];
-
-  /// pt: '(one) {slip} (other) {slips}'
-  String slips({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'slip',
-        other: 'slips',
-      );
-
-  /// pt: '(zero) {dias de humor} (one) {dia de humor} (other) {dias de humor}'
-  String moodDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        zero: 'dias de humor',
-        one: 'dia de humor',
-        other: 'dias de humor',
-      );
-
-  /// pt: '(zero) {rituais feitos} (one) {ritual feito} (other) {rituais feitos}'
-  String rituals({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        zero: 'rituais feitos',
-        one: 'ritual feito',
-        other: 'rituais feitos',
-      );
-
-  /// pt: 'Calculado pelo app, sem IA. Só você vê.'
-  String get note => 'Calculado pelo app, sem IA. Só você vê.';
-
-  /// pt: 'Conversar sobre isso'
-  String get talk => 'Conversar sobre isso';
-
-  /// pt: 'Fechar'
-  String get close => 'Fechar';
-
-  /// pt: 'Semana tranquila'
-  String get quietTitle => 'Semana tranquila';
-
-  /// pt: 'tranquila'
-  String get quietHighlight => 'tranquila';
-
-  /// pt: 'Sem pressa'
-  String get quietCardTitle => 'Sem pressa';
-
-  /// pt: 'Anotar uma coisa boa leva 30 segundos. Começa quando você quiser.'
-  String get quietCardText => 'Anotar uma coisa boa leva 30 segundos. Começa quando você quiser.';
-
-  /// pt: 'Sem comparação com outras semanas.'
-  String get quietNote => 'Sem comparação com outras semanas.';
-
-  /// pt: 'Anotar um slip'
-  String get writeSlip => 'Anotar um slip';
-
-  /// pt: 'Não deu para abrir sua semana'
-  String get errorTitle => 'Não deu para abrir sua semana';
-
-  Map<String, String> get errors => {
-    'NETWORK': 'Sem conexão. Tente de novo.',
-    'other': 'Algo deu errado. Tente de novo.',
   };
 }
 
@@ -8217,13 +7289,13 @@ class Translations$widgets$pt {
   String get settingsSubtitle => 'Na tela inicial';
 
   /// pt: 'TELA INICIAL'
-  String get togetherCategory => 'TELA INICIAL';
+  String get juntosCategory => 'TELA INICIAL';
 
   /// pt: 'Widgets do Mingo'
-  String get togetherTitle => 'Widgets do Mingo';
+  String get juntosTitle => 'Widgets do Mingo';
 
   /// pt: 'Lembretes calmos para você ou para vocês dois.'
-  String get togetherSubtitle => 'Lembretes calmos para você ou para vocês dois.';
+  String get juntosSubtitle => 'Lembretes calmos para você ou para vocês dois.';
 
   /// pt: 'Widgets'
   String get galleryTitle => 'Widgets';
@@ -8233,6 +7305,12 @@ class Translations$widgets$pt {
 
   /// pt: 'Do casal'
   String get segmentCouple => 'Do casal';
+
+  /// pt: 'Como colocar na tela'
+  String get howToAddAction => 'Como colocar na tela';
+
+  /// pt: 'Configurar'
+  String get configureAction => 'Configurar';
 
   /// pt: 'ANOTAR SLIP'
   String get ownSlipLabel => 'ANOTAR SLIP';
@@ -8249,8 +7327,8 @@ class Translations$widgets$pt {
   /// pt: 'Deixe um bilhete hoje'
   String get ownIdeaDefault => 'Deixe um bilhete hoje';
 
-  /// pt: 'Uma ideia para hoje.'
-  String get ownIdeaHint => 'Uma ideia para hoje.';
+  /// pt: 'Toque para abrir'
+  String get ownIdeaHint => 'Toque para abrir';
 
   /// pt: 'POTINHO DO DIA RUIM'
   String get ownJarLabel => 'POTINHO DO DIA RUIM';
@@ -8290,6 +7368,18 @@ class Translations$widgets$pt {
   /// pt: 'Disponível no plano Plus'
   String get couplePhotosPlusHint => 'Disponível no plano Plus';
 
+  /// pt: 'RECADO DO PAR'
+  String get partnerNoteLabel => 'RECADO DO PAR';
+
+  /// pt: 'Sem recado novo no momento'
+  String get partnerNoteEmpty => 'Sem recado novo no momento';
+
+  /// pt: 'De {name}'
+  String partnerNoteFrom({required Object name}) => 'De ${name}';
+
+  /// pt: 'Do seu par'
+  String get partnerNoteFromDefault => 'Do seu par';
+
   /// pt: 'CARTÃO E ENCONTRO'
   String get cardEncounterLabel => 'CARTÃO E ENCONTRO';
 
@@ -8299,14 +7389,104 @@ class Translations$widgets$pt {
   /// pt: 'Cartão enviado · Aguardando domingo'
   String get cardStateSent => 'Cartão enviado · Aguardando domingo';
 
+  /// pt: 'Pausa em andamento'
+  String get cardStatePause => 'Pausa em andamento';
+
   /// pt: 'Cartão de domingo em preparação'
   String get cardStateNone => 'Cartão de domingo em preparação';
+
+  /// pt: 'Modo discreto ativo: nomes, fotos e recados estão ocultos nos widgets.'
+  String get discreetBanner =>
+      'Modo discreto ativo: nomes, fotos e recados estão ocultos nos widgets.';
 
   /// pt: 'Sem par conectado: os widgets do casal mostram o estado neutro.'
   String get unpairedBanner => 'Sem par conectado: os widgets do casal mostram o estado neutro.';
 
   /// pt: 'Mostrando o último dado salvo. Atualiza quando voltar a internet.'
   String get offlineBanner => 'Mostrando o último dado salvo. Atualiza quando voltar a internet.';
+
+  /// pt: 'Como adicionar'
+  String get howToAddTitle => 'Como adicionar';
+
+  /// pt: 'Segure a tela inicial'
+  String get howToAddStep1Title => 'Segure a tela inicial';
+
+  /// pt: 'Toque e segure um espaço vazio até os ícones tremerem.'
+  String get howToAddStep1Body => 'Toque e segure um espaço vazio até os ícones tremerem.';
+
+  /// pt: 'Toque no botão +'
+  String get howToAddStep2Title => 'Toque no botão +';
+
+  /// pt: 'No canto superior, busque por Mingo.'
+  String get howToAddStep2Body => 'No canto superior, busque por Mingo.';
+
+  /// pt: 'Escolha o tamanho'
+  String get howToAddStep3Title => 'Escolha o tamanho';
+
+  /// pt: 'Pequeno ou médio.'
+  String get howToAddStep3Body => 'Pequeno ou médio.';
+
+  /// pt: 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.'
+  String get howToAddAndroidLockNote =>
+      'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.';
+
+  /// pt: 'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.'
+  String get howToAddIosLockNote =>
+      'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.';
+
+  /// pt: 'Entendi'
+  String get howToAddDone => 'Entendi';
+
+  /// pt: 'Configurar widget'
+  String get configureTitle => 'Configurar widget';
+
+  /// pt: 'PRÉVIA'
+  String get configurePreviewLabel => 'PRÉVIA';
+
+  /// pt: 'Conteúdo'
+  String get configureContentSection => 'Conteúdo';
+
+  /// pt: 'Favoritas'
+  String get configureContentFavorites => 'Favoritas';
+
+  /// pt: 'Recentes'
+  String get configureContentRecent => 'Recentes';
+
+  /// pt: 'Ideia do dia'
+  String get configureContentDailyIdea => 'Ideia do dia';
+
+  /// pt: 'Troca de foto'
+  String get configureRotationSection => 'Troca de foto';
+
+  /// pt: 'Todo dia'
+  String get configureRotationDaily => 'Todo dia';
+
+  /// pt: 'A cada 6h'
+  String get configureRotationSixHours => 'A cada 6h';
+
+  /// pt: 'Manual'
+  String get configureRotationManual => 'Manual';
+
+  /// pt: 'Privacidade'
+  String get configurePrivacySection => 'Privacidade';
+
+  /// pt: 'Mostrar nomes'
+  String get configureShowNames => 'Mostrar nomes';
+
+  /// pt: 'Ocultar em modo discreto'
+  String get configureHideInDiscreet => 'Ocultar em modo discreto';
+
+  /// pt: 'Permitir recado do parceiro'
+  String get configureAllowPartnerNotes => 'Permitir recado do parceiro';
+
+  /// pt: 'Permitir na tela de bloqueio'
+  String get configureOnLockScreen => 'Permitir na tela de bloqueio';
+
+  /// pt: 'Salvar'
+  String get configureSave => 'Salvar';
+
+  /// pt: 'Preferências do widget salvas.'
+  String get configureSavedToast => 'Preferências do widget salvas.';
 
   /// pt: 'Não foi possível carregar os widgets'
   String get loadErrorTitle => 'Não foi possível carregar os widgets';
@@ -8322,6 +7502,12 @@ class Translations$widgets$pt {
 
   /// pt: 'Escuro'
   String get themeDark => 'Escuro';
+
+  /// pt: 'Lembrete'
+  String get discreetReminderLabel => 'Lembrete';
+
+  /// pt: 'Texto neutro'
+  String get discreetNeutralBody => 'Texto neutro';
 
   /// pt: 'Mingo'
   String get signedOutLabel => 'Mingo';
@@ -8385,11 +7571,23 @@ class Translations$widgets$pt {
   /// pt: 'Sexta, 10 de abril'
   String get lockScreenClockDate => 'Sexta, 10 de abril';
 
+  /// pt: 'Pausa em andamento'
+  String get lockScreenPauseTitle => 'Pausa em andamento';
+
+  /// pt: 'até {time}'
+  String lockScreenPauseUntil({required Object time}) => 'até ${time}';
+
+  /// pt: 'até 20:00'
+  String get lockScreenPauseUntilDefault => 'até 20:00';
+
   /// pt: 'Estou pronto'
   String get lockScreenReadyAction => 'Estou pronto';
 
   /// pt: 'Momento calmo'
   String get lockScreenGenericPhrase => 'Momento calmo';
+
+  /// pt: 'Lembrete'
+  String get lockScreenDiscreetPhrase => 'Lembrete';
 
   /// pt: 'Sem nomes nem mensagens na tela bloqueada.'
   String get lockScreenPrivacyRule => 'Sem nomes nem mensagens na tela bloqueada.';
@@ -8437,9 +7635,9 @@ class Translations$widgets$pt {
   /// pt: 'PLUS'
   String get photosPlusBadge => 'PLUS';
 
-  /// pt: 'Quando nenhuma foto local está salva, o widget mostra apenas o cartão neutro com o tempo juntos.'
+  /// pt: 'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.'
   String get photosNeutralFallbackNote =>
-      'Quando nenhuma foto local está salva, o widget mostra apenas o cartão neutro com o tempo juntos.';
+      'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.';
 
   /// pt: 'Conhecer o Plus'
   String get photosUnlockPlusAction => 'Conhecer o Plus';
@@ -8455,6 +7653,26 @@ class Translations$widgets$pt {
 
   /// pt: 'Foto removida do widget.'
   String get photosRemovedToast => 'Foto removida do widget.';
+
+  /// pt: 'Recado do parceiro'
+  String get partnerNotePageTitle => 'Recado do parceiro';
+
+  /// pt: 'Médio'
+  String get partnerNoteMediumSection => 'Médio';
+
+  /// pt: 'Responder com um coração'
+  String get partnerNoteReplyHint => 'Responder com um coração';
+
+  /// pt: 'desenho'
+  String get partnerNoteDrawingPlaceholder => 'desenho';
+
+  /// pt: 'Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.'
+  String get partnerNoteSafeNote =>
+      'Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.';
+
+  /// pt: 'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.'
+  String get partnerNoteDisabledNote =>
+      'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.';
 
   /// pt: 'Cartão e próximo encontro'
   String get cardEncounterPageTitle => 'Cartão e próximo encontro';
@@ -8480,6 +7698,12 @@ class Translations$widgets$pt {
   /// pt: 'Em preparação'
   String get cardNoneSubtitle => 'Em preparação';
 
+  /// pt: 'Pausa em andamento'
+  String get cardPauseTitle => 'Pausa em andamento';
+
+  /// pt: 'Toque quando estiver pronto'
+  String get cardPauseSubtitle => 'Toque quando estiver pronto';
+
   /// pt: 'Próximo encontro'
   String get nextEncounterLabel => 'Próximo encontro';
 
@@ -8493,11 +7717,39 @@ class Translations$widgets$pt {
   String get cardEncounterPrivacyNote =>
       'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.';
 
+  /// pt: 'Estados do widget'
+  String get statesPageTitle => 'Estados do widget';
+
+  /// pt: 'Ver estados (discreto e sem par)'
+  String get statesAction => 'Ver estados (discreto e sem par)';
+
+  /// pt: 'Modo discreto'
+  String get statesDiscreetSection => 'Modo discreto';
+
+  /// pt: 'Ativar modo discreto agora'
+  String get statesDiscreetToggle => 'Ativar modo discreto agora';
+
+  /// pt: 'Sem parceiro'
+  String get statesUnpairedSection => 'Sem parceiro';
+
   /// pt: 'Convide para ver aqui'
   String get statesUnpairedTitle => 'Convide para ver aqui';
 
   /// pt: 'Convidar'
   String get statesUnpairedAction => 'Convidar';
+
+  /// pt: 'Sem conexão'
+  String get statesOfflineSection => 'Sem conexão';
+
+  /// pt: 'Mostrando o último dado'
+  String get statesOfflineTitle => 'Mostrando o último dado';
+
+  /// pt: 'Atualiza quando voltar a internet'
+  String get statesOfflineSubtitle => 'Atualiza quando voltar a internet';
+
+  /// pt: 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).'
+  String get statesPrecedenceNote =>
+      'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).';
 
   Map<String, String> get errors => {
     'WIDGET_PREFERENCES_SAVE_FAILED': 'Não foi possível salvar as preferências agora.',
@@ -8511,362 +7763,6 @@ class Translations$widgets$pt {
     'COUPLE_PHOTO_NOT_PAIRED': 'Conecte-se com seu par para escolher uma foto do casal.',
     'other': 'Não foi possível salvar as preferências agora.',
   };
-
-  /// pt: 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.'
-  String get howToAddAndroidLockNote =>
-      'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.';
-
-  /// pt: 'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.'
-  String get howToAddIosLockNote =>
-      'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.';
-
-  /// pt: 'DO CASAL'
-  String get coupleLabel => 'DO CASAL';
-
-  /// pt: 'Pequenos pedaços do app na sua tela inicial.'
-  String get gallerySubtitle => 'Pequenos pedaços do app na sua tela inicial.';
-
-  /// pt: 'Os mais queridos'
-  String get favoritesGroup => 'Os mais queridos';
-
-  /// pt: 'Médios'
-  String get mediumGroup => 'Médios';
-
-  /// pt: 'Anotar e lembrar'
-  String get ownSmallGroup => 'Anotar e lembrar';
-
-  /// pt: 'Funcionam sem parceiro e só mostram o que é seu.'
-  String get ownGroupHint => 'Funcionam sem parceiro e só mostram o que é seu.';
-
-  /// pt: 'Pequenos'
-  String get ownSmallEntryTitle => 'Pequenos';
-
-  /// pt: 'Anotar, lembrar e o cartão de domingo.'
-  String get ownSmallEntryHint => 'Anotar, lembrar e o cartão de domingo.';
-
-  /// pt: 'Médios'
-  String get ownMediumEntryTitle => 'Médios';
-
-  /// pt: 'Sua semana, uma ideia e a próxima data.'
-  String get ownMediumEntryHint => 'Sua semana, uma ideia e a próxima data.';
-
-  /// pt: 'Só meus: pequenos'
-  String get ownSmallTitle => 'Só meus: pequenos';
-
-  /// pt: 'Só meus: médios'
-  String get ownMediumTitle => 'Só meus: médios';
-
-  /// pt: 'JUNTOS'
-  String get counterEyebrow => 'JUNTOS';
-
-  /// pt: 'Defina a data de vocês'
-  String get counterNeedDate => 'Defina a data de vocês';
-
-  /// pt: '(one) {{count} dia} (other) {{count} dias}'
-  String counterDaysUnit({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '${count} dia',
-        other: '${count} dias',
-      );
-
-  /// pt: '{years} anos, {months} meses e {days} dias'
-  String counterBreakdown({required Object years, required Object months, required Object days}) =>
-      '${years} anos, ${months} meses e ${days} dias';
-
-  /// pt: 'Hoje'
-  String get counterToday => 'Hoje';
-
-  /// pt: 'Desde {date}'
-  String counterSince({required Object date}) => 'Desde ${date}';
-
-  /// pt: 'HUMOR DO PARCEIRO'
-  String get partnerMoodLabel => 'HUMOR DO PARCEIRO';
-
-  /// pt: '{name} agora'
-  String partnerMoodNow({required Object name}) => '${name} agora';
-
-  /// pt: 'Agora'
-  String get partnerMoodNowAnonymous => 'Agora';
-
-  /// pt: 'O humor aparece quando seu par compartilhar.'
-  String get partnerMoodHidden => 'O humor aparece quando seu par compartilhar.';
-
-  /// pt: 'SAUDADE DE NÓS'
-  String get longingLabel => 'SAUDADE DE NÓS';
-
-  /// pt: 'Mandar saudade'
-  String get longingAction => 'Mandar saudade';
-
-  /// pt: 'Seu par mandou saudade'
-  String get longingReceived => 'Seu par mandou saudade';
-
-  /// pt: 'Um toque e a pessoa sente.'
-  String get longingHint => 'Um toque e a pessoa sente.';
-
-  /// pt: 'RITUAL'
-  String get ritualLabel => 'RITUAL';
-
-  /// pt: 'Criem um ritual'
-  String get ritualEmptyTitle => 'Criem um ritual';
-
-  /// pt: 'Um momento só de vocês.'
-  String get ritualEmptyHint => 'Um momento só de vocês.';
-
-  /// pt: 'do seu par · {time}'
-  String noteFromPartner({required Object time}) => 'do seu par · ${time}';
-
-  /// pt: 'de {name} · {time}'
-  String noteFromName({required Object name, required Object time}) => 'de ${name} · ${time}';
-
-  /// pt: 'Sem recado por aqui'
-  String get noteEmpty => 'Sem recado por aqui';
-
-  /// pt: 'Um recado aparece quando seu par escolhe mandar.'
-  String get noteEmptyHint => 'Um recado aparece quando seu par escolhe mandar.';
-
-  /// pt: 'Recados estão desligados'
-  String get noteDisabled => 'Recados estão desligados';
-
-  /// pt: 'Ligue em “Recados no widget” para ver.'
-  String get noteDisabledHint => 'Ligue em “Recados no widget” para ver.';
-
-  /// pt: '(one) {em {count} dia} (other) {em {count} dias}'
-  String nextEncounterInDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'em ${count} dia',
-        other: 'em ${count} dias',
-      );
-
-  /// pt: 'Cartão de domingo'
-  String get cardSundayTitle => 'Cartão de domingo';
-
-  /// pt: 'sai {day}, {time}'
-  String cardSendAt({required Object day, required Object time}) => 'sai ${day}, ${time}';
-
-  /// pt: 'Chegou um cartão'
-  String get cardReadyShort => 'Chegou um cartão';
-
-  /// pt: 'Cartão enviado'
-  String get cardSentShort => 'Cartão enviado';
-
-  /// pt: 'Cartão de domingo'
-  String get cardNoneShort => 'Cartão de domingo';
-
-  /// pt: 'NAMORO À DISTÂNCIA'
-  String get distanceLabel => 'NAMORO À DISTÂNCIA';
-
-  /// pt: 'Fuso do seu par ainda não definido'
-  String get distanceHidden => 'Fuso do seu par ainda não definido';
-
-  /// pt: 'Cada um no seu fuso.'
-  String get distanceHint => 'Cada um no seu fuso.';
-
-  /// pt: '(one) {{count} dia até se verem} (other) {{count} dias até se verem}'
-  String distanceUntil({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '${count} dia até se verem',
-        other: '${count} dias até se verem',
-      );
-
-  /// pt: 'Próximo encontro sem data'
-  String get distanceNoReunion => 'Próximo encontro sem data';
-
-  /// pt: '{city} · você'
-  String distanceYou({required Object city}) => '${city} · você';
-
-  /// pt: 'PRÓXIMA DATA'
-  String get ownNextDateLabel => 'PRÓXIMA DATA';
-
-  /// pt: 'Toque para ver as datas'
-  String get ownNextDateHint => 'Toque para ver as datas';
-
-  /// pt: '(one) {{count} dia} (other) {{count} dias}'
-  String ownDateCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '${count} dia',
-        other: '${count} dias',
-      );
-
-  /// pt: 'Minha semana'
-  String get ownWeekTitle => 'Minha semana';
-
-  /// pt: '(one) {{count} slip} (other) {{count} slips}'
-  String ownWeekCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '${count} slip',
-        other: '${count} slips',
-      );
-
-  List<String> get weekdays => ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom'];
-  Map<String, String> get familyLabels => {
-    'counter': 'Contador',
-    'counterMedium': 'Contador',
-    'partnerMood': 'Humor do parceiro',
-    'longing': 'Saudade de nós',
-    'ritual': 'Ritual',
-    'partnerNote': 'Recado do parceiro',
-    'cardEncounter': 'Cartão e encontro',
-    'distance': 'Namoro à distância',
-    'ownSlip': 'Anotar slip',
-    'ownNextDate': 'Próxima data',
-    'ownRitual': 'Ritual',
-    'ownSundayCard': 'Cartão de domingo',
-    'ownWeek': 'Minha semana',
-    'ownIdea': 'Ideia do dia',
-    'ownMediumDate': 'Próxima data',
-    'other': 'Widget',
-  };
-
-  /// pt: 'agora'
-  String get moodJustNow => 'agora';
-
-  /// pt: 'há {minutes} min'
-  String moodMinutesAgo({required Object minutes}) => 'há ${minutes} min';
-
-  /// pt: 'há {hours} h'
-  String moodHoursAgo({required Object hours}) => 'há ${hours} h';
-
-  /// pt: 'há {days} d'
-  String moodDaysAgo({required Object days}) => 'há ${days} d';
-
-  /// pt: 'Como foi o seu dia?'
-  String get ownSlipQuestion => 'Como foi o seu dia?';
-
-  /// pt: 'Anotar um slip'
-  String get ownSlipAction => 'Anotar um slip';
-
-  /// pt: 'Como adicionar'
-  String get howToAddAction => 'Como adicionar';
-
-  /// pt: 'Como adicionar'
-  String get howToAddTitle => 'Como adicionar';
-
-  /// pt: 'Direto da tela inicial, sem permissão extra do Mingo.'
-  String get howToAddSubtitle => 'Direto da tela inicial, sem permissão extra do Mingo.';
-
-  /// pt: 'Toque e segure em um espaço vazio da tela inicial.'
-  String get howToAddIosStep1 => 'Toque e segure em um espaço vazio da tela inicial.';
-
-  /// pt: 'Toque em + no canto superior.'
-  String get howToAddIosStep2 => 'Toque em + no canto superior.';
-
-  /// pt: 'Escolha Mingo e o tamanho do widget.'
-  String get howToAddIosStep3 => 'Escolha Mingo e o tamanho do widget.';
-
-  /// pt: 'Toque e segure em um espaço vazio da tela inicial.'
-  String get howToAddAndroidStep1 => 'Toque e segure em um espaço vazio da tela inicial.';
-
-  /// pt: 'Toque em Widgets.'
-  String get howToAddAndroidStep2 => 'Toque em Widgets.';
-
-  /// pt: 'Escolha Mingo e arraste para a tela.'
-  String get howToAddAndroidStep3 => 'Escolha Mingo e arraste para a tela.';
-
-  /// pt: 'Toque e segure na tela bloqueada.'
-  String get howToAddLockIosStep1 => 'Toque e segure na tela bloqueada.';
-
-  /// pt: 'Toque em Personalizar.'
-  String get howToAddLockIosStep2 => 'Toque em Personalizar.';
-
-  /// pt: 'Adicione o widget do Mingo na linha de baixo.'
-  String get howToAddLockIosStep3 => 'Adicione o widget do Mingo na linha de baixo.';
-
-  /// pt: 'Você pode remover o widget quando quiser; nada é apagado.'
-  String get howToAddNote => 'Você pode remover o widget quando quiser; nada é apagado.';
-
-  /// pt: 'O que aparece nos widgets'
-  String get widgetPrivacyTitle => 'O que aparece nos widgets';
-
-  /// pt: 'Nomes e iniciais'
-  String get showNamesTitle => 'Nomes e iniciais';
-
-  /// pt: 'Quando desligado, os widgets mostram só o conteúdo.'
-  String get showNamesHint => 'Quando desligado, os widgets mostram só o conteúdo.';
-
-  /// pt: 'Recados no widget'
-  String get allowNotesTitle => 'Recados no widget';
-
-  /// pt: 'Só recados que seu par marcou para o widget.'
-  String get allowNotesHint => 'Só recados que seu par marcou para o widget.';
-
-  /// pt: 'Segue as suas escolhas de privacidade. O que está oculto no app continua oculto aqui.'
-  String get privacySectionHint =>
-      'Segue as suas escolhas de privacidade. O que está oculto no app continua oculto aqui.';
-
-  /// pt: 'Preferências atualizadas.'
-  String get settingsSaved => 'Preferências atualizadas.';
-
-  /// pt: 'Circular'
-  String get lockScreenCircular => 'Circular';
-
-  /// pt: 'Retangular'
-  String get lockScreenRectangular => 'Retangular';
-
-  /// pt: 'Linha'
-  String get lockScreenInline => 'Linha';
-
-  /// pt: 'TEXTO NEUTRO'
-  String get lockScreenNeutralLabel => 'TEXTO NEUTRO';
-
-  /// pt: 'Sem nomes na tela bloqueada'
-  String get lockScreenNeutralPhrase => 'Sem nomes na tela bloqueada';
-
-  /// pt: 'A tela de bloqueio do Android não aceita widgets. Use os widgets da tela inicial.'
-  String get lockScreenAndroidUnavailable =>
-      'A tela de bloqueio do Android não aceita widgets. Use os widgets da tela inicial.';
-
-  /// pt: 'Próxima data'
-  String get ownNextDateDefault => 'Próxima data';
-
-  /// pt: 'CARTÃO DE DOMINGO'
-  String get ownSundayCardLabel => 'CARTÃO DE DOMINGO';
-
-  /// pt: 'Só meus'
-  String get ownGroupTitle => 'Só meus';
-
-  /// pt: 'Os widgets do casal aparecem quando vocês se conectarem.'
-  String get soloBanner => 'Os widgets do casal aparecem quando vocês se conectarem.';
-
-  /// pt: 'Pequeno'
-  String get previewSmall => 'Pequeno';
-
-  /// pt: 'Médio'
-  String get previewMedium => 'Médio';
-
-  /// pt: 'Pequeno'
-  String get counterSmallLabel => 'Pequeno';
-
-  /// pt: 'Médio, com linha do tempo'
-  String get counterMediumLabel => 'Médio, com linha do tempo';
-
-  /// pt: 'Recado do parceiro'
-  String get partnerNotePageTitle => 'Recado do parceiro';
-
-  /// pt: 'Só aparece o que seu par escolheu mandar para o widget.'
-  String get partnerNotePrivacy => 'Só aparece o que seu par escolheu mandar para o widget.';
-
-  /// pt: 'Humor e saudade'
-  String get moodLongingPageTitle => 'Humor e saudade';
-
-  /// pt: 'O humor só aparece se seu par compartilhou.'
-  String get partnerMoodPrivacy => 'O humor só aparece se seu par compartilhou.';
-
-  /// pt: 'A saudade aparece quando seu par manda.'
-  String get longingPrivacy => 'A saudade aparece quando seu par manda.';
-
-  /// pt: 'Atualizar meu humor'
-  String get moodUpdateAction => 'Atualizar meu humor';
-
-  /// pt: 'Ver datas'
-  String get openDatesAction => 'Ver datas';
-
-  /// pt: 'Lembrete'
-  String get lockReminderShortLabel => 'Lembrete';
 }
 
 // Path: acceptInvite.connected
@@ -8913,115 +7809,6 @@ class Translations$acceptInvite$unusable$pt {
 
   /// pt: 'Fechar'
   String get close => 'Fechar';
-}
-
-// Path: account.export
-class Translations$account$export$pt {
-  Translations$account$export$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Exportar meus dados'
-  String get appBarTitle => 'Exportar meus dados';
-
-  /// pt: 'Levar seus dados com você'
-  String get title => 'Levar seus dados com você';
-
-  /// pt: 'seus dados'
-  String get titleHighlight => 'seus dados';
-
-  /// pt: 'Geramos um arquivo só com o que é seu: slips, anotações e respostas. Nada da outra pessoa vai nele.'
-  String get text =>
-      'Geramos um arquivo só com o que é seu: slips, anotações e respostas. Nada da outra pessoa vai nele.';
-
-  /// pt: 'O link dura poucos minutos. Dá para gerar um arquivo por dia.'
-  String get note => 'O link dura poucos minutos. Dá para gerar um arquivo por dia.';
-
-  /// pt: 'Gerar o arquivo'
-  String get action => 'Gerar o arquivo';
-
-  /// pt: 'Gerar de novo'
-  String get again => 'Gerar de novo';
-
-  /// pt: 'Exportar antes de apagar'
-  String get beforeDelete => 'Exportar antes de apagar';
-
-  /// pt: 'Não deu para abrir o arquivo. Tente gerar de novo.'
-  String get openFailed => 'Não deu para abrir o arquivo. Tente gerar de novo.';
-
-  Map<String, String> get errors => {
-    'EXPORT_LIMIT': 'Você já gerou um arquivo hoje. Tente de novo amanhã.',
-    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para gerar o arquivo agora. Tente de novo.',
-  };
-}
-
-// Path: chat.action
-class Translations$chat$action$pt {
-  Translations$chat$action$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Fica só com você.'
-  String get privateHint => 'Fica só com você.';
-
-  /// pt: 'Só vai depois que você tocar.'
-  String get partnerHint => 'Só vai depois que você tocar.';
-
-  /// pt: 'Hoje: {mood}'
-  String moodText({required Object mood}) => 'Hoje: ${mood}';
-
-  Map<String, String> get moods => {
-    'happy': 'feliz',
-    'tired': 'cansado',
-    'sad': 'triste',
-    'stressed': 'estressado',
-    'loving': 'amoroso',
-    'playful': 'brincalhão',
-  };
-
-  /// pt: 'Agora não'
-  String get dismiss => 'Agora não';
-
-  /// pt: 'Um instante…'
-  String get running => 'Um instante…';
-
-  /// pt: 'Pronto'
-  String get done => 'Pronto';
-
-  /// pt: 'Deixado de lado'
-  String get dismissed => 'Deixado de lado';
-
-  /// pt: 'Não deu certo'
-  String get failed => 'Não deu certo';
-
-  /// pt: 'Tentar de novo'
-  String get retry => 'Tentar de novo';
-
-  Map<String, String> get runLabels => {
-    'create_private_slip': 'Anotar',
-    'send_slip_to_partner': 'Enviar',
-    'log_mood': 'Registrar',
-    'share_mood': 'Compartilhar',
-    'save_learning': 'Guardar',
-    'open_purchase': 'Conhecer o Plus',
-    'other': 'Fazer',
-  };
-  Map<String, String> get tags => {
-    'create_private_slip': 'Sugestão · Anotar um slip',
-    'send_slip_to_partner': 'Sugestão · Enviar um slip',
-    'log_mood': 'Sugestão · Registrar humor',
-    'share_mood': 'Sugestão · Compartilhar humor',
-    'save_learning': 'Sugestão · Lembrar disto',
-    'suggest_couple_question': 'Pergunta para conversar',
-    'draft_note': 'Rascunho de recado',
-    'open_purchase': 'Plus',
-    'other': 'Sugestão',
-  };
 }
 
 // Path: games.hub
@@ -9210,8 +7997,8 @@ class Translations$games$waiting$pt {
   /// pt: 'Ainda não entrou. O convite continua aqui.'
   String get stillWaiting => 'Ainda não entrou. O convite continua aqui.';
 
-  /// pt: 'Cancelar'
-  String get cancel => 'Cancelar';
+  /// pt: 'Cancelar o convite'
+  String get cancel => 'Cancelar o convite';
 }
 
 // Path: games.active
@@ -9221,6 +8008,12 @@ class Translations$games$active$pt {
   final Translations _root; // ignore: unused_field
 
   // Translations
+
+  /// pt: 'O jogo começou'
+  String get title => 'O jogo começou';
+
+  /// pt: 'Os dois estão dentro. As telas deste jogo aparecem aqui.'
+  String get text => 'Os dois estão dentro. As telas deste jogo aparecem aqui.';
 
   /// pt: 'Encerrar o jogo'
   String get cancel => 'Encerrar o jogo';
@@ -9238,21 +8031,14 @@ class Translations$games$playing$pt {
   String progress({required Object current, required Object total}) =>
       'Pergunta ${current} de ${total}';
 
-  /// pt: 'Palpite {current} de {total}'
-  String guessProgress({required Object current, required Object total}) =>
-      'Palpite ${current} de ${total}';
-
-  /// pt: 'Eu'
-  String get me => 'Eu';
-
-  /// pt: 'Os dois'
-  String get both => 'Os dois';
+  /// pt: 'Você'
+  String get you => 'Você';
 
   /// pt: 'Seu par'
   String get partnerFallback => 'Seu par';
 
-  /// pt: 'Pular'
-  String get skip => 'Pular';
+  /// pt: 'Pular esta'
+  String get skip => 'Pular esta';
 
   /// pt: 'Sobre você'
   String get guessAboutYou => 'Sobre você';
@@ -9269,6 +8055,9 @@ class Translations$games$playing$pt {
   /// pt: 'O que seu par respondeu?'
   String get guessPromptFallback => 'O que seu par respondeu?';
 
+  /// pt: 'Seu palpite'
+  String get guessYourGuess => 'Seu palpite';
+
   /// pt: 'Responda do seu jeito.'
   String get answerHint => 'Responda do seu jeito.';
 
@@ -9278,34 +8067,17 @@ class Translations$games$playing$pt {
   /// pt: 'Escreva sua resposta. Só você lê até os dois terminarem.'
   String get talkHint => 'Escreva sua resposta. Só você lê até os dois terminarem.';
 
-  /// pt: 'Responder em privado, revelar juntos.'
-  String get talkSubtitle => 'Responder em privado, revelar juntos.';
-
   /// pt: 'Seu par só vê depois que os dois responderem.'
   String get talkNote => 'Seu par só vê depois que os dois responderem.';
 
-  /// pt: 'Cada um responde em privado. Pular é sempre permitido.'
-  String get privacyNote => 'Cada um responde em privado. Pular é sempre permitido.';
+  /// pt: 'Começar a responder'
+  String get introCta => 'Começar a responder';
 
-  /// pt: 'Você pode mudar sua resposta até {name} responder esta pergunta.'
-  String changeNote({required Object name}) =>
-      'Você pode mudar sua resposta até ${name} responder esta pergunta.';
+  /// pt: 'Continuar'
+  String get next => 'Continuar';
 
-  /// pt: 'Você pode mudar sua resposta até seu par responder esta pergunta.'
-  String get changeNoteFallback =>
-      'Você pode mudar sua resposta até seu par responder esta pergunta.';
-
-  /// pt: 'Este jogo já foi fechado. Esta resposta não pode mais ser editada.'
-  String get lockedNote => 'Este jogo já foi fechado. Esta resposta não pode mais ser editada.';
-
-  /// pt: 'Começar'
-  String get introCta => 'Começar';
-
-  /// pt: 'Próxima'
-  String get next => 'Próxima';
-
-  /// pt: 'Próximo'
-  String get nextGuess => 'Próximo';
+  /// pt: 'Revisar respostas'
+  String get reviewAction => 'Revisar respostas';
 }
 
 // Path: games.date
@@ -9316,11 +8088,8 @@ class Translations$games$date$pt {
 
   // Translations
 
-  /// pt: 'Missão'
-  String get missionTag => 'Missão';
-
-  /// pt: 'Aceitar'
-  String get start => 'Aceitar';
+  /// pt: 'Começar o encontro'
+  String get start => 'Começar o encontro';
 
   /// pt: 'Façam a missão juntos e voltem para contar como foi.'
   String get startNote => 'Façam a missão juntos e voltem para contar como foi.';
@@ -9331,9 +8100,6 @@ class Translations$games$date$pt {
   /// pt: 'Escolha o que aconteceu. Seu par só vê depois que os dois responderem.'
   String get reflectionText =>
       'Escolha o que aconteceu. Seu par só vê depois que os dois responderem.';
-
-  /// pt: 'Salvar'
-  String get save => 'Salvar';
 }
 
 // Path: games.waitingPartner
@@ -9344,31 +8110,25 @@ class Translations$games$waitingPartner$pt {
 
   // Translations
 
-  /// pt: 'Terminei'
-  String get title => 'Terminei';
+  /// pt: 'Você respondeu tudo'
+  String get title => 'Você respondeu tudo';
 
-  /// pt: 'Agora é a vez de {name}. Você vê o resultado quando os dois terminarem.'
+  /// pt: 'Agora é só esperar {name}. Nada do que você escreveu aparece antes dos dois terminarem.'
   String text({required Object name}) =>
-      'Agora é a vez de ${name}. Você vê o resultado quando os dois terminarem.';
+      'Agora é só esperar ${name}. Nada do que você escreveu aparece antes dos dois terminarem.';
 
-  /// pt: 'Agora é a vez do seu par. Você vê o resultado quando os dois terminarem.'
+  /// pt: 'Agora é só esperar seu par. Nada do que você escreveu aparece antes dos dois terminarem.'
   String get textFallback =>
-      'Agora é a vez do seu par. Você vê o resultado quando os dois terminarem.';
+      'Agora é só esperar seu par. Nada do que você escreveu aparece antes dos dois terminarem.';
 
-  /// pt: 'Ver se já terminou'
-  String get checkAgain => 'Ver se já terminou';
+  /// pt: 'O que você salvou'
+  String get answersTitle => 'O que você salvou';
 
-  /// pt: 'Fechar'
-  String get close => 'Fechar';
+  /// pt: 'Ver de novo'
+  String get checkAgain => 'Ver de novo';
 
   /// pt: 'Encerrar o jogo'
   String get cancel => 'Encerrar o jogo';
-
-  /// pt: 'Nada do que você respondeu aparece antes de os dois terminarem.'
-  String get note => 'Nada do que você respondeu aparece antes de os dois terminarem.';
-
-  /// pt: 'Ainda não terminou. O resultado aparece quando os dois terminarem.'
-  String get stillWaiting => 'Ainda não terminou. O resultado aparece quando os dois terminarem.';
 }
 
 // Path: games.finished
@@ -9379,55 +8139,30 @@ class Translations$games$finished$pt {
 
   // Translations
 
-  /// pt: 'Vocês concordaram em {agreed} de {total}'
-  String pickTitle({required Object agreed, required Object total}) =>
-      'Vocês concordaram em ${agreed} de ${total}';
+  /// pt: 'Que conversa boa'
+  String get title => 'Que conversa boa';
 
-  /// pt: '{agreed} de {total}'
-  String pickHighlight({required Object agreed, required Object total}) => '${agreed} de ${total}';
-
-  /// pt: 'As diferenças viram assunto, não placar.'
-  String get pickNote => 'As diferenças viram assunto, não placar.';
-
-  /// pt: 'Descobertas'
-  String get discoveriesTitle => 'Descobertas';
-
-  /// pt: 'Coisas que vocês ainda não sabiam um do outro.'
-  String get discoveriesText => 'Coisas que vocês ainda não sabiam um do outro.';
-
-  /// pt: 'Você não sabia'
-  String get youDidNotKnow => 'Você não sabia';
-
-  /// pt: '{name} não sabia'
-  String partnerDidNotKnow({required Object name}) => '${name} não sabia';
-
-  /// pt: '{name} respondeu: {value}'
-  String partnerAnswered({required Object name, required Object value}) =>
-      '${name} respondeu: ${value}';
-
-  /// pt: 'Você respondeu: {value}'
-  String youAnswered({required Object value}) => 'Você respondeu: ${value}';
-
-  /// pt: 'Nenhuma descoberta desta vez: vocês já sabiam o que o outro responderia.'
-  String get noDiscoveries =>
-      'Nenhuma descoberta desta vez: vocês já sabiam o que o outro responderia.';
-
-  /// pt: 'Pronto'
-  String get doneTitle => 'Pronto';
-
-  /// pt: '(one) {Você respondeu 1 pergunta. Sem vencedor, sem pontuação.} (other) {Você respondeu {count} perguntas. Sem vencedor, sem pontuação.}'
-  String doneText({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'Você respondeu 1 pergunta. Sem vencedor, sem pontuação.',
-        other: 'Você respondeu ${count} perguntas. Sem vencedor, sem pontuação.',
-      );
-
-  /// pt: 'Sem vencedor, sem pontuação. Só o encontro de vocês.'
-  String get dateText => 'Sem vencedor, sem pontuação. Só o encontro de vocês.';
+  /// pt: 'Sem placar, sem vencedor. Só vocês dois.'
+  String get text => 'Sem placar, sem vencedor. Só vocês dois.';
 
   /// pt: 'Você'
   String get you => 'Você';
+
+  /// pt: 'Você escolheu: {value}'
+  String youChose({required Object value}) => 'Você escolheu: ${value}';
+
+  /// pt: '{name} escolheu: {value}'
+  String partnerChose({required Object name, required Object value}) =>
+      '${name} escolheu: ${value}';
+
+  /// pt: 'Seu palpite'
+  String get yourGuess => 'Seu palpite';
+
+  /// pt: 'O palpite do seu par'
+  String get partnerGuess => 'O palpite do seu par';
+
+  /// pt: 'Acertou'
+  String get matched => 'Acertou';
 
   /// pt: 'Sem resposta'
   String get noAnswer => 'Sem resposta';
@@ -9435,56 +8170,11 @@ class Translations$games$finished$pt {
   /// pt: 'Os dois'
   String get both => 'Os dois';
 
-  /// pt: 'Os dois disseram: {value}'
-  String bothSaid({required Object value}) => 'Os dois disseram: ${value}';
+  /// pt: 'Vocês combinaram'
+  String get agreed => 'Vocês combinaram';
 
-  /// pt: 'Você disse {you} · {name} disse {partner}'
-  String eachSaid({required Object you, required Object name, required Object partner}) =>
-      'Você disse ${you} · ${name} disse ${partner}';
-
-  /// pt: 'Igual'
-  String get matchedLabel => 'Igual';
-
-  /// pt: 'Diferente'
-  String get differentLabel => 'Diferente';
-
-  /// pt: 'Nova rodada'
-  String get replayTag => 'Nova rodada';
-
-  /// pt: '(one) {1 pergunta que vocês ainda não viram} (other) {{count} perguntas que vocês ainda não viram}'
-  String replayQuestions({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '1 pergunta que vocês ainda não viram',
-        other: '${count} perguntas que vocês ainda não viram',
-      );
-
-  /// pt: '(one) {1 palpite que vocês ainda não viram} (other) {{count} palpites que vocês ainda não viram}'
-  String replayGuesses({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '1 palpite que vocês ainda não viram',
-        other: '${count} palpites que vocês ainda não viram',
-      );
-
-  /// pt: 'Uma nova missão para vocês'
-  String get replayMission => 'Uma nova missão para vocês';
-
-  /// pt: 'Cada rodada traz conteúdo novo. Quando acabar, o app avisa e mistura o que já passou.'
-  String get replayText =>
-      'Cada rodada traz conteúdo novo. Quando acabar, o app avisa e mistura o que já passou.';
-
-  /// pt: 'Jogar de novo'
-  String get playAgain => 'Jogar de novo';
-
-  /// pt: 'Escolher outro jogo'
-  String get chooseAnother => 'Escolher outro jogo';
-
-  /// pt: 'Esta rodada não está mais disponível'
-  String get missingTitle => 'Esta rodada não está mais disponível';
-
-  /// pt: 'O conteúdo mudou desde que vocês jogaram. Vocês podem começar outra.'
-  String get missingText => 'O conteúdo mudou desde que vocês jogaram. Vocês podem começar outra.';
+  /// pt: 'Voltar'
+  String get back => 'Voltar';
 }
 
 // Path: games.notFound
@@ -9549,8 +8239,36 @@ class Translations$games$common$pt {
 
   // Translations
 
-  /// pt: 'Voltar'
-  String get back => 'Voltar';
+  /// pt: 'Fechar'
+  String get close => 'Fechar';
+}
+
+// Path: games.review
+class Translations$games$review$pt {
+  Translations$games$review$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Revisar respostas'
+  String get title => 'Revisar respostas';
+
+  /// pt: 'Confira o que você respondeu. Toque em uma resposta para editar. Nada é enviado antes de você confirmar.'
+  String get text =>
+      'Confira o que você respondeu. Toque em uma resposta para editar. Nada é enviado antes de você confirmar.';
+
+  /// pt: 'Enviar respostas'
+  String get confirm => 'Enviar respostas';
+
+  /// pt: 'Voltar para a revisão'
+  String get back => 'Voltar para a revisão';
+
+  /// pt: 'Fechado'
+  String get locked => 'Fechado';
+
+  /// pt: 'Este jogo já foi fechado. Esta resposta não pode mais ser editada.'
+  String get lockedNote => 'Este jogo já foi fechado. Esta resposta não pode mais ser editada.';
 }
 
 // Path: guides.hub
@@ -9700,6 +8418,7 @@ class Translations$intro$phase$pt {
     'livingTogether': 'Moramos juntos',
     'engaged': 'Noivos',
     'married': 'Casados',
+    'withKids': 'Com filhos',
     'longDistance': 'Namoro à distância',
     'restarting': 'Recomeçando',
     'other': '',
@@ -9773,68 +8492,6 @@ class Translations$intro$theme$pt {
   String get footnote => 'Dá para trocar depois em Configurações, Aparência.';
 }
 
-// Path: memories.menu
-class Translations$memories$menu$pt {
-  Translations$memories$menu$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Linha do tempo'
-  String get timeline => 'Linha do tempo';
-
-  /// pt: 'Memórias que vocês guardaram'
-  String get timelineText => 'Memórias que vocês guardaram';
-
-  /// pt: 'Potinho'
-  String get jar => 'Potinho';
-
-  /// pt: 'Um slip bom para um dia ruim'
-  String get jarText => 'Um slip bom para um dia ruim';
-
-  /// pt: 'Marcos, lugares e números'
-  String get storyText => 'Marcos, lugares e números';
-
-  /// pt: 'Datas e números'
-  String get dates => 'Datas e números';
-
-  /// pt: 'Aniversários, feriados e contagens'
-  String get datesText => 'Aniversários, feriados e contagens';
-
-  /// pt: 'Diário'
-  String get diary => 'Diário';
-
-  /// pt: 'Só seu, nunca vai para a outra pessoa'
-  String get diaryText => 'Só seu, nunca vai para a outra pessoa';
-
-  /// pt: 'Ideias de presente'
-  String get gifts => 'Ideias de presente';
-
-  /// pt: 'Desejos de cada um e ideias para o outro'
-  String get giftsText => 'Desejos de cada um e ideias para o outro';
-}
-
-// Path: memories.onThisDay
-class Translations$memories$onThisDay$pt {
-  Translations$memories$onThisDay$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'NESTE DIA'
-  String get label => 'NESTE DIA';
-
-  /// pt: '(one) {Há 1 ano} (other) {Há {count} anos}'
-  String yearsAgo({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'Há 1 ano',
-        other: 'Há ${count} anos',
-      );
-}
-
 // Path: need.sent
 class Translations$need$sent$pt {
   Translations$need$sent$pt.internal(this._root);
@@ -9851,60 +8508,6 @@ class Translations$need$sent$pt {
 
   /// pt: 'Pronto'
   String get done => 'Pronto';
-}
-
-// Path: notificationPreferences.types
-class Translations$notificationPreferences$types$pt {
-  Translations$notificationPreferences$types$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Ideia do dia'
-  String get dailyIdea => 'Ideia do dia';
-
-  /// pt: 'Datas e feriados'
-  String get dateComing => 'Datas e feriados';
-
-  /// pt: 'Cartão semanal'
-  String get cardReady => 'Cartão semanal';
-
-  /// pt: ''
-  String get other => '';
-}
-
-// Path: notificationPreferences.errors
-class Translations$notificationPreferences$errors$pt {
-  Translations$notificationPreferences$errors$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Muitas tentativas seguidas. Espere um instante.'
-  String get rateLimited => 'Muitas tentativas seguidas. Espere um instante.';
-
-  /// pt: 'Não deu para salvar agora. Sua escolha anterior foi mantida.'
-  String get other => 'Não deu para salvar agora. Sua escolha anterior foi mantida.';
-}
-
-// Path: partnerStep.why
-class Translations$partnerStep$why$pt {
-  Translations$partnerStep$why$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Por que convidar?'
-  String get title => 'Por que convidar?';
-
-  /// pt: 'Cartões e ferramentas compartilhadas precisam dos dois.'
-  String get shared => 'Cartões e ferramentas compartilhadas precisam dos dois.';
-
-  /// pt: 'Seus slips e notas privadas continuam só seus até você compartilhar.'
-  String get privacy => 'Seus slips e notas privadas continuam só seus até você compartilhar.';
 }
 
 // Path: quickSlip.saved
@@ -9932,12 +8535,6 @@ class Translations$quickSlip$saved$pt {
 
   /// pt: 'Pronto'
   String get done => 'Pronto';
-
-  /// pt: 'Guardado'
-  String get annoyanceTitle => 'Guardado';
-
-  /// pt: 'Fica só com você e some sozinho em 14 dias.'
-  String get annoyanceAdded => 'Fica só com você e some sozinho em 14 dias.';
 }
 
 // Path: repair.calm
@@ -9965,6 +8562,9 @@ class Translations$repair$calm$pt {
 
   /// pt: 'Sair'
   String get leave => 'Sair';
+
+  /// pt: 'Pedir um tempo ao meu par'
+  String get askPause => 'Pedir um tempo ao meu par';
 }
 
 // Path: repair.softStart
@@ -10145,10 +8745,6 @@ class Translations$repair$guided$pt {
 
   /// pt: 'Nada se perdeu. Tente de novo.'
   String get loadErrorText => 'Nada se perdeu. Tente de novo.';
-
-  late final Translations$repair$guided$done$pt done = Translations$repair$guided$done$pt.internal(
-    _root,
-  );
 }
 
 // Path: repair.learning
@@ -10231,87 +8827,6 @@ class Translations$repair$next$pt {
   String get quick => 'Enviar um reparo';
 }
 
-// Path: repair.sos
-class Translations$repair$sos$pt {
-  Translations$repair$sos$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Estamos brigando'
-  String get title => 'Estamos brigando';
-
-  /// pt: 'brigando'
-  String get titleHighlight => 'brigando';
-
-  /// pt: 'Escolha por onde começar. Nada é enviado sem você confirmar.'
-  String get subtitle => 'Escolha por onde começar. Nada é enviado sem você confirmar.';
-
-  /// pt: 'Começo suave'
-  String get softStartTitle => 'Começo suave';
-
-  /// pt: 'Um modelo para abrir a conversa sem culpa'
-  String get softStartText => 'Um modelo para abrir a conversa sem culpa';
-
-  /// pt: 'Reparar'
-  String get repairTitle => 'Reparar';
-
-  /// pt: 'Ver como está e escolher um passo'
-  String get repairText => 'Ver como está e escolher um passo';
-
-  /// pt: 'Preparar o que dizer'
-  String get talkTitle => 'Preparar o que dizer';
-
-  /// pt: 'Organize as ideias antes de falar'
-  String get talkText => 'Organize as ideias antes de falar';
-
-  /// pt: 'Funciona sem internet e fica só com você.'
-  String get note => 'Funciona sem internet e fica só com você.';
-
-  /// pt: 'Estamos brigando'
-  String get action => 'Estamos brigando';
-}
-
-// Path: slipDetail.visibility
-class Translations$slipDetail$visibility$pt {
-  Translations$slipDetail$visibility$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Quem vê este slip?'
-  String get title => 'Quem vê este slip?';
-
-  /// pt: 'O padrão é privado.'
-  String get subtitle => 'O padrão é privado.';
-
-  /// pt: 'Só eu'
-  String get onlyMe => 'Só eu';
-
-  /// pt: 'Fica na sua semana'
-  String get onlyMeText => 'Fica na sua semana';
-
-  /// pt: 'Colocar no meu cartão semanal'
-  String get weeklyCard => 'Colocar no meu cartão semanal';
-
-  /// pt: 'Enviar agora'
-  String get sendNow => 'Enviar agora';
-
-  /// pt: 'Pronto'
-  String get done => 'Pronto';
-
-  /// pt: 'Slip enviado'
-  String get sentToast => 'Slip enviado';
-
-  /// pt: 'O texto parece duro e o cartão ficou retido. Reescreva e tente de novo.'
-  String get heldToast => 'O texto parece duro e o cartão ficou retido. Reescreva e tente de novo.';
-
-  /// pt: 'Não foi enviado. Confira se vocês estão conectados.'
-  String get notSentToast => 'Não foi enviado. Confira se vocês estão conectados.';
-}
-
 // Path: slipKind.specific
 class Translations$slipKind$specific$pt {
   Translations$slipKind$specific$pt.internal(this._root);
@@ -10383,8 +8898,8 @@ class Translations$slipKind$invisible$pt {
   /// pt: 'ninguém percebe'
   String get titleHighlight => 'ninguém percebe';
 
-  /// pt: 'Dê nome ao trabalho que ninguém vê.'
-  String get subtitle => 'Dê nome ao trabalho que ninguém vê.';
+  /// pt: 'Só para você. Isto nunca vai para o cartão.'
+  String get subtitle => 'Só para você. Isto nunca vai para o cartão.';
 
   /// pt: 'Ex.: lembrei da consulta das crianças'
   String get hint => 'Ex.: lembrei da consulta das crianças';
@@ -10415,248 +8930,6 @@ class Translations$slipKind$saved$pt {
 
   /// pt: 'Pronto'
   String get done => 'Pronto';
-}
-
-// Path: spice.home
-class Translations$spice$home$pt {
-  Translations$spice$home$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Tudo aqui é opcional e fica entre vocês.'
-  String get subtitle => 'Tudo aqui é opcional e fica entre vocês.';
-
-  /// pt: 'Cartas da noite'
-  String get cards => 'Cartas da noite';
-
-  /// pt: 'Uma carta de cada vez'
-  String get cardsText => 'Uma carta de cada vez';
-
-  /// pt: 'Desejos'
-  String get desires => 'Desejos';
-
-  /// pt: 'Responda em segredo e veja o que os dois querem'
-  String get desiresText => 'Responda em segredo e veja o que os dois querem';
-
-  /// pt: 'Desafio da semana'
-  String get challenge => 'Desafio da semana';
-
-  /// pt: 'Um convite, sem pontos nem prazo'
-  String get challengeText => 'Um convite, sem pontos nem prazo';
-
-  /// pt: 'Configurações'
-  String get settings => 'Configurações';
-
-  /// pt: 'Seu limite e os avisos'
-  String get settingsText => 'Seu limite e os avisos';
-}
-
-// Path: spice.cards
-class Translations$spice$cards$pt {
-  Translations$spice$cards$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Cartas da noite'
-  String get title => 'Cartas da noite';
-
-  Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'Você usou as cartas grátis desta semana. O Plus libera mais.',
-    'PLUS_REQUIRED': 'Isso faz parte do Plus.',
-    'ADULT_REQUIRED': 'Confirme que você tem 18 anos ou mais.',
-    'SPICE_NOT_ON': 'O Tempero não está ligado para os dois.',
-    'SWAP_LIMIT': 'Você já trocou o desafio três vezes esta semana.',
-    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para concluir agora. Tente de novo.',
-  };
-
-  /// pt: 'Combinado'
-  String get answeredTitle => 'Combinado';
-
-  /// pt: 'Quando quiserem, tem outra carta.'
-  String get answeredText => 'Quando quiserem, tem outra carta.';
-
-  /// pt: 'Outra carta'
-  String get next => 'Outra carta';
-
-  /// pt: 'Acabaram as cartas'
-  String get emptyTitle => 'Acabaram as cartas';
-
-  /// pt: 'Por enquanto não há mais cartas neste nível.'
-  String get emptyText => 'Por enquanto não há mais cartas neste nível.';
-
-  /// pt: 'Você propôs esta carta. A outra pessoa responde quando quiser.'
-  String get mineHint => 'Você propôs esta carta. A outra pessoa responde quando quiser.';
-
-  /// pt: 'A outra pessoa propôs esta carta. Você escolhe.'
-  String get theirsHint => 'A outra pessoa propôs esta carta. Você escolhe.';
-
-  /// pt: 'Ver se já respondeu'
-  String get refresh => 'Ver se já respondeu';
-
-  /// pt: 'Quero'
-  String get accept => 'Quero';
-
-  /// pt: 'Hoje não'
-  String get notToday => 'Hoje não';
-}
-
-// Path: spice.desires
-class Translations$spice$desires$pt {
-  Translations$spice$desires$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Desejos'
-  String get title => 'Desejos';
-
-  Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'Você usou as cartas grátis desta semana. O Plus libera mais.',
-    'PLUS_REQUIRED': 'Isso faz parte do Plus.',
-    'ADULT_REQUIRED': 'Confirme que você tem 18 anos ou mais.',
-    'SPICE_NOT_ON': 'O Tempero não está ligado para os dois.',
-    'SWAP_LIMIT': 'Você já trocou o desafio três vezes esta semana.',
-    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para concluir agora. Tente de novo.',
-  };
-
-  /// pt: 'Só você vê o que responde. Se os dois quiserem, aparece em "Os dois querem".'
-  String get subtitle =>
-      'Só você vê o que responde. Se os dois quiserem, aparece em "Os dois querem".';
-
-  /// pt: 'Nada por aqui ainda'
-  String get emptyTitle => 'Nada por aqui ainda';
-
-  /// pt: 'Quando houver desejos neste nível, eles aparecem aqui.'
-  String get emptyText => 'Quando houver desejos neste nível, eles aparecem aqui.';
-
-  /// pt: 'Os dois querem'
-  String get matchesTitle => 'Os dois querem';
-
-  /// pt: 'Ainda nada em comum. Sem pressa.'
-  String get matchesEmpty => 'Ainda nada em comum. Sem pressa.';
-
-  Map<String, String> get answers => {
-    'want': 'Quero',
-    'maybe': 'Talvez',
-    'notToday': 'Hoje não',
-    'other': '',
-  };
-}
-
-// Path: spice.challenge
-class Translations$spice$challenge$pt {
-  Translations$spice$challenge$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Desafio da semana'
-  String get title => 'Desafio da semana';
-
-  Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'Você usou as cartas grátis desta semana. O Plus libera mais.',
-    'PLUS_REQUIRED': 'Isso faz parte do Plus.',
-    'ADULT_REQUIRED': 'Confirme que você tem 18 anos ou mais.',
-    'SPICE_NOT_ON': 'O Tempero não está ligado para os dois.',
-    'SWAP_LIMIT': 'Você já trocou o desafio três vezes esta semana.',
-    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para concluir agora. Tente de novo.',
-  };
-
-  /// pt: 'Sem desafio agora'
-  String get emptyTitle => 'Sem desafio agora';
-
-  /// pt: 'Volte na semana que vem.'
-  String get emptyText => 'Volte na semana que vem.';
-
-  /// pt: 'Um convite para vocês. Sem pontos e sem prazo.'
-  String get subtitle => 'Um convite para vocês. Sem pontos e sem prazo.';
-
-  /// pt: 'Você fez. Obrigado por cuidar disso.'
-  String get statusDone => 'Você fez. Obrigado por cuidar disso.';
-
-  /// pt: 'Os dois toparam.'
-  String get statusBothAccepted => 'Os dois toparam.';
-
-  /// pt: 'Você topou. Esperando a outra pessoa.'
-  String get statusWaitingPartner => 'Você topou. Esperando a outra pessoa.';
-
-  /// pt: 'A outra pessoa topou.'
-  String get statusPartnerAccepted => 'A outra pessoa topou.';
-
-  /// pt: 'Ninguém respondeu ainda.'
-  String get statusNew => 'Ninguém respondeu ainda.';
-
-  /// pt: 'Topo'
-  String get accept => 'Topo';
-
-  /// pt: 'Já fizemos'
-  String get done => 'Já fizemos';
-
-  /// pt: 'Trocar o desafio'
-  String get swap => 'Trocar o desafio';
-}
-
-// Path: spice.settingsPage
-class Translations$spice$settingsPage$pt {
-  Translations$spice$settingsPage$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Configurações do Tempero'
-  String get title => 'Configurações do Tempero';
-
-  Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'Você usou as cartas grátis desta semana. O Plus libera mais.',
-    'PLUS_REQUIRED': 'Isso faz parte do Plus.',
-    'ADULT_REQUIRED': 'Confirme que você tem 18 anos ou mais.',
-    'SPICE_NOT_ON': 'O Tempero não está ligado para os dois.',
-    'SWAP_LIMIT': 'Você já trocou o desafio três vezes esta semana.',
-    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para concluir agora. Tente de novo.',
-  };
-
-  /// pt: 'Até onde ir'
-  String get levelTitle => 'Até onde ir';
-
-  Map<String, String> get levels => {
-    'soft': 'Suave',
-    'warm': 'Quente',
-    'hot': 'Picante',
-    'other': '',
-  };
-
-  /// pt: 'Vale o mais suave dos dois limites. A outra pessoa não vê o seu.'
-  String get levelNote => 'Vale o mais suave dos dois limites. A outra pessoa não vê o seu.';
-
-  /// pt: 'Avisos do Tempero'
-  String get notifications => 'Avisos do Tempero';
-
-  /// pt: 'Um aviso curto, sem dizer nada do conteúdo.'
-  String get notificationsText => 'Um aviso curto, sem dizer nada do conteúdo.';
-
-  /// pt: 'Desligar o Tempero'
-  String get turnOff => 'Desligar o Tempero';
-
-  /// pt: 'Desligar o Tempero?'
-  String get turnOffTitle => 'Desligar o Tempero?';
-
-  /// pt: 'Desliga para vocês dois e apaga respostas, cartas e desafios. Não dá para desfazer.'
-  String get turnOffText =>
-      'Desliga para vocês dois e apaga respostas, cartas e desafios. Não dá para desfazer.';
-
-  /// pt: 'Desligar'
-  String get turnOffConfirm => 'Desligar';
 }
 
 // Path: sundayCard.send
@@ -10756,38 +9029,6 @@ class Translations$sundayCard$sent$pt {
   String get done => 'Pronto';
 }
 
-// Path: sundayCard.heldByRule
-class Translations$sundayCard$heldByRule$pt {
-  Translations$sundayCard$heldByRule$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Vale reler antes de enviar'
-  String get title => 'Vale reler antes de enviar';
-
-  /// pt: 'reler'
-  String get titleHighlight => 'reler';
-
-  Map<String, String> get reasons => {
-    'absolute': 'Palavras como “sempre” e “nunca” podem soar como acusação.',
-    'insult': 'Alguma palavra do cartão pode ferir.',
-    'blame': 'O texto soa como culpa em vez de gratidão.',
-    'contempt': 'O texto pode soar como desprezo.',
-    'other': 'O texto pode soar mais duro do que você quer.',
-  };
-
-  /// pt: 'Nada foi enviado e nada se perde.'
-  String get reassurance => 'Nada foi enviado e nada se perde.';
-
-  /// pt: 'Reescrever'
-  String get rewrite => 'Reescrever';
-
-  /// pt: 'Enviar mesmo assim'
-  String get sendAnyway => 'Enviar mesmo assim';
-}
-
 // Path: temperature.result
 class Translations$temperature$result$pt {
   Translations$temperature$result$pt.internal(this._root);
@@ -10806,67 +9047,6 @@ class Translations$temperature$result$pt {
 
   /// pt: 'Pronto'
   String get done => 'Pronto';
-}
-
-// Path: temperature.history
-class Translations$temperature$history$pt {
-  Translations$temperature$history$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Ver as últimas semanas'
-  String get action => 'Ver as últimas semanas';
-
-  /// pt: 'Últimas 8 semanas'
-  String get title => 'Últimas 8 semanas';
-
-  /// pt: '8 semanas'
-  String get titleHighlight => '8 semanas';
-
-  /// pt: 'Um ponto por semana, com a última resposta dela.'
-  String get subtitle => 'Um ponto por semana, com a última resposta dela.';
-
-  /// pt: 'Temperatura de cada semana, da mais calma à briga'
-  String get chartLabel => 'Temperatura de cada semana, da mais calma à briga';
-
-  /// pt: 'Nada por aqui ainda'
-  String get emptyTitle => 'Nada por aqui ainda';
-
-  /// pt: 'Quando você responder como está entre vocês, as semanas aparecem aqui.'
-  String get emptyText => 'Quando você responder como está entre vocês, as semanas aparecem aqui.';
-
-  /// pt: 'Só você vê isto. Nunca vira nota e nunca vai para a outra pessoa.'
-  String get note => 'Só você vê isto. Nunca vira nota e nunca vai para a outra pessoa.';
-}
-
-// Path: today.conflict
-class Translations$today$conflict$pt {
-  Translations$today$conflict$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Agora'
-  String get tag => 'Agora';
-
-  /// pt: 'Primeiro, cuidar de vocês'
-  String get title => 'Primeiro, cuidar de vocês';
-
-  /// pt: 'cuidar'
-  String get highlight => 'cuidar';
-
-  /// pt: 'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.'
-  String get text =>
-      'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.';
-
-  /// pt: 'Começar o reparo'
-  String get repair => 'Começar o reparo';
-
-  /// pt: 'Conversar para me organizar'
-  String get chat => 'Conversar para me organizar';
 }
 
 // Path: unpair.done
@@ -10979,9 +9159,9 @@ class Translations$games$kinds$meOrYou$pt {
   /// pt: 'Eu ou ele'
   String get title => 'Eu ou ele';
 
-  /// pt: 'Respondam em separado quem combina mais com cada frase. Depois vejam onde concordaram.'
+  /// pt: 'Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual.'
   String get intro =>
-      'Respondam em separado quem combina mais com cada frase. Depois vejam onde concordaram.';
+      'Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual.';
 }
 
 // Path: games.kinds.howWell
@@ -11044,31 +9224,6 @@ class Translations$games$kinds$mission$pt {
 
   /// pt: 'Uma ideia de encontro para fazer juntos e uma reflexão curta depois.'
   String get intro => 'Uma ideia de encontro para fazer juntos e uma reflexão curta depois.';
-}
-
-// Path: repair.guided.done
-class Translations$repair$guided$done$pt {
-  Translations$repair$guided$done$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Reparo concluído'
-  String get title => 'Reparo concluído';
-
-  /// pt: 'concluído'
-  String get highlight => 'concluído';
-
-  /// pt: 'Cuidar disso já é um passo. Se quiser, guarde o que você aprendeu, só para você.'
-  String get text =>
-      'Cuidar disso já é um passo. Se quiser, guarde o que você aprendeu, só para você.';
-
-  /// pt: 'Guardar o que aprendi'
-  String get learn => 'Guardar o que aprendi';
-
-  /// pt: 'Agora não'
-  String get close => 'Agora não';
 }
 
 // Path: temperature.result.good
@@ -11142,7 +9297,6 @@ extension on Translations {
     return switch (path) {
           'acceptInvite.title' => 'Tem um convite?',
           'acceptInvite.titleHighlight' => 'convite',
-          'acceptInvite.connectTitle' => 'Conectar com código',
           'acceptInvite.subtitle' =>
             'Digite o código que a outra pessoa enviou para vocês se conectarem.',
           'acceptInvite.codeLabel' => 'Código do convite',
@@ -11165,31 +9319,16 @@ extension on Translations {
             'Confira o código ou peça um novo convite para quem convidou.',
           'acceptInvite.unusable.tryAgain' => 'Digitar de novo',
           'acceptInvite.unusable.close' => 'Fechar',
-          'acceptInvite.ownCodeTitle' => 'Esse código é seu',
-          'acceptInvite.ownCodeHighlight' => 'seu',
-          'acceptInvite.ownCodeText' =>
-            'Esse é o seu próprio código. Para conectar, use o código da sua pessoa.',
           'acceptInvite.errors.ALREADY_PAIRED' => 'Você já está conectado com alguém.',
           'acceptInvite.errors.COUPLE_FULL' => 'Esse espaço já tem duas pessoas.',
           'acceptInvite.errors.RATE_LIMITED' =>
             'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
           'acceptInvite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'acceptInvite.errors.other' => 'Não deu para conectar agora. Tente de novo.',
-          'acceptInvite.headline' => ({required Object name}) => 'Conectar com ${name}',
-          'acceptInvite.headlineNoName' => 'Conectar com sua pessoa',
-          'acceptInvite.headlineNoNameHighlight' => 'sua pessoa',
-          'acceptInvite.pageSubtitle' =>
-            'Os dois já usam o app? Um convida e o outro digita o código.',
-          'acceptInvite.segmentHaveCode' => 'Tenho um código',
-          'acceptInvite.segmentInvite' => 'Quero convidar',
-          'acceptInvite.connectAction' => 'Conectar',
-          'acceptInvite.ownCodeLabel' => 'Seu código de convite',
-          'acceptInvite.ownCodeNote' =>
-            'Envie esse código para sua pessoa. O que cada um anotou até agora continua privado.',
           'account.deleteTitle' => 'Apagar conta',
           'account.deleteHighlight' => 'conta',
           'account.deleteText' =>
-            'Os dados são apagados após 30 dias. Precisa de nova autenticação.',
+            'Os dados são apagados após 14 dias. Precisa de nova autenticação.',
           'account.deleteWarningTitle' => 'Isso também desfaz o vínculo',
           'account.deleteWarning' => ({
             required Object name,
@@ -11198,7 +9337,7 @@ extension on Translations {
           'account.deleteAction' => 'Apagar conta',
           'account.deleteConfirmTitle' => 'Apagar sua conta?',
           'account.deleteConfirmText' =>
-            'Você terá 30 dias para mudar de ideia. Depois disso, nada pode ser recuperado.',
+            'Você terá 14 dias para mudar de ideia. Depois disso, nada pode ser recuperado.',
           'account.reauthReason' => 'Confirme para apagar sua conta.',
           'account.pendingTitle' => ({
             required Object day,
@@ -11231,78 +9370,12 @@ extension on Translations {
           'account.months.11' => 'dez',
           'account.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'account.errors.other' => 'Não deu para concluir agora. Tente de novo.',
-          'account.export.appBarTitle' => 'Exportar meus dados',
-          'account.export.title' => 'Levar seus dados com você',
-          'account.export.titleHighlight' => 'seus dados',
-          'account.export.text' => 'Geramos um arquivo só com o que é seu: slips, anotações e respostas. Nada da outra pessoa vai nele.',
-          'account.export.note' => 'O link dura poucos minutos. Dá para gerar um arquivo por dia.',
-          'account.export.action' => 'Gerar o arquivo',
-          'account.export.again' => 'Gerar de novo',
-          'account.export.beforeDelete' => 'Exportar antes de apagar',
-          'account.export.openFailed' => 'Não deu para abrir o arquivo. Tente gerar de novo.',
-          'account.export.errors.EXPORT_LIMIT' =>
-            'Você já gerou um arquivo hoje. Tente de novo amanhã.',
-          'account.export.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'account.export.errors.other' => 'Não deu para gerar o arquivo agora. Tente de novo.',
-          'agreements.title' => 'Acordos',
-          'agreements.add' => 'Novo acordo',
-          'agreements.addTitle' => 'Novo acordo',
-          'agreements.bodyLabel' => 'O que vocês combinam',
-          'agreements.bodyHint' => 'Ex.: Conversar sobre dinheiro uma vez por mês',
-          'agreements.bodyErrors.empty' => 'Escreva o acordo.',
-          'agreements.bodyErrors.tooLong' => 'Use no máximo 200 caracteres.',
-          'agreements.propose' => 'Propor',
-          'agreements.confirm' => 'Confirmar',
-          'agreements.options' => 'Opções do acordo',
-          'agreements.subtitleShared' =>
-            'Frases curtas que vocês combinam. Só valem quando a outra pessoa confirma.',
-          'agreements.subtitlePrivate' =>
-            'Anotações suas. Quando você tiver alguém por perto, viram acordos.',
-          'agreements.emptyTitle' => 'Nenhum acordo ainda',
-          'agreements.emptyTextShared' =>
-            'Combine algo pequeno e peça para a outra pessoa confirmar.',
-          'agreements.emptyTextPrivate' => 'Anote algo que você gostaria de combinar.',
-          'agreements.statusPrivate' => 'Só você vê',
-          'agreements.statusConfirmed' => 'Confirmado pelos dois',
-          'agreements.statusWaitingPartner' => 'Esperando a outra pessoa',
-          'agreements.statusWaitingYou' => 'Esperando você',
-          'agreements.archiveTitle' => 'Guardar este acordo?',
-          'agreements.archiveTextShared' => 'Ele sai da lista para vocês dois.',
-          'agreements.archiveTextPrivate' => 'Ele sai da sua lista.',
-          'agreements.archiveConfirm' => 'Guardar',
-          'agreements.metaShared' => 'O que vocês combinaram',
-          'agreements.metaPrivate' => 'Anotações suas',
-          'agreements.errors.FREE_LIMIT_REACHED' =>
-            'Você chegou ao limite de acordos do plano grátis. Guarde um ou conheça o Plus.',
-          'agreements.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'agreements.errors.other' => 'Não deu para concluir agora. Tente de novo.',
-          'annoyanceCheck.title' => 'Isso ainda incomoda?',
-          'annoyanceCheck.titleHighlight' => 'incomoda',
-          'annoyanceCheck.age' => ({
-            required Object days,
-            required Object left,
-          }) => 'Você anotou há ${days} dias · some em ${left} dias',
-          'annoyanceCheck.talkTitle' => 'Conversar sobre isso',
-          'annoyanceCheck.talkText' => 'Escrever um pedido gentil',
-          'annoyanceCheck.chatTitle' => 'Falar com a Conversa',
-          'annoyanceCheck.chatText' => 'Só você e o chat',
-          'annoyanceCheck.letGoTitle' => 'Deixar ir',
-          'annoyanceCheck.letGoText' => 'Apagar agora, sem aviso a ninguém',
-          'annoyanceCheck.note' =>
-            'Coisas boas ficam para sempre. O que incomodou some sozinho, se você não fizer nada.',
-          'annoyanceCheck.letGoConfirmTitle' => 'Deixar ir?',
-          'annoyanceCheck.letGoConfirmText' => 'A anotação é apagada agora e ninguém é avisado.',
-          'annoyanceCheck.letGoConfirm' => 'Apagar agora',
-          'annoyanceCheck.letGoDone' => 'Anotação apagada',
-          'annoyanceCheck.goneTitle' => 'Essa anotação já saiu',
-          'annoyanceCheck.goneText' => 'Ela expirou, foi apagada ou virou um pedido.',
-          'annoyanceCheck.close' => 'Fechar',
-          'annoyanceCheck.errorTitle' => 'Não deu para abrir a anotação',
-          'annoyanceCheck.errors.NETWORK' => 'Sem conexão. Tente de novo.',
-          'annoyanceCheck.errors.other' => 'Algo deu errado. Tente de novo.',
           'authentication.signInTitle' => 'Entrar',
           'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
+          'authentication.signInDebugSubtitle' => 'Neste build de teste, entre com e-mail e senha.',
           'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
+          'authentication.providersUnavailable' =>
+            'Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.',
           'authentication.emailSignInFallback' => 'Entrar com e-mail e senha',
           'authentication.existingAccountTitle' => 'Você já tem uma conta',
           'authentication.existingAccountSubtitle' => 'Entre para continuar de onde parou.',
@@ -11426,14 +9499,6 @@ extension on Translations {
           'authentication.errors.validation_failed' => 'Confira as informações e tente de novo.',
           'authentication.errors.weak_password' => 'Escolha uma senha mais forte.',
           'authentication.errors.other' => 'Não deu para entrar agora. Tente de novo.',
-          'authentication.legal' => ({
-            required Object terms,
-            required Object privacy,
-          }) => 'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os ${terms} e a ${privacy}.',
-          'authentication.legalTerms' => 'Termos',
-          'authentication.legalPrivacy' => 'Política de Privacidade',
-          'authentication.legalPlain' => 'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os Termos e a Política de Privacidade.',
-          'authentication.tryAgain' => 'Tentar de novo',
           'capsules.title' => 'Cápsula do tempo',
           'capsules.text' =>
             'Escreva algo para ser aberto em uma data futura. Até lá, ninguém lê, nem você.',
@@ -11485,17 +9550,6 @@ extension on Translations {
           'capsules.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'capsules.errors.other' => 'Não deu para guardar agora. Seu texto continua aqui.',
           'capsules.deleteErrors.other' => 'Não deu para apagar esta cápsula. Ela continua aqui.',
-          'cardSettings.title' => 'Cartão semanal',
-          'cardSettings.day' => 'Dia',
-          'cardSettings.hour' => 'Hora',
-          'cardSettings.defaultTitle' => 'Slips novos entram no cartão',
-          'cardSettings.defaultSubtitle' => 'Cada slip pode mudar isso depois.',
-          'cardSettings.note' => 'Mudanças valem para o próximo cartão.',
-          'cardSettings.saveError' => 'Não deu para salvar. Sua escolha anterior foi mantida.',
-          'cardSettings.errorTitle' => 'Não deu para abrir as configurações',
-          'cardSettings.errors.NETWORK' => 'Sem conexão. Tente de novo.',
-          'cardSettings.errors.other' => 'Suas escolhas continuam salvas. Tente de novo.',
-          'cardSettings.open' => 'Configurações do cartão',
           'cardView.forPartner' => ({required Object name}) => 'Para ${name}',
           'cardView.forPartnerNoName' => 'Para sua pessoa',
           'cardView.goodThings' =>
@@ -11570,6 +9624,10 @@ extension on Translations {
           'cardsList.notFound' => 'Esse cartão não está mais disponível.',
           'cardsList.reactionQuoteMadeMyDay' => 'Isso fez a minha semana.',
           'chat.title' => 'Mascote',
+          'chat.consentText' => 'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.',
+          'chat.consentPrivacy' => 'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.',
+          'chat.consentTurnOn' => 'Ligar a conversa',
+          'chat.emptyHint' => 'Diga como você está, ou comece por uma coisa pequena.',
           'chat.inputHint' => 'Escreva aqui',
           'chat.draftErrors.empty' => 'Escreva algo para enviar',
           'chat.draftErrors.tooLong' => 'Esta mensagem está muito longa',
@@ -11594,6 +9652,8 @@ extension on Translations {
           'chat.learningSaved' => 'Aprendizado guardado',
           'chat.learnedLink' => 'O que aprendi',
           'chat.settingsTitle' => 'Configurações da conversa',
+          'chat.toggleLabel' => 'Conversar com a mascote',
+          'chat.toggleSubtitle' => 'Só você decide quando a conversa está ligada.',
           'chat.planPlus' => 'Plano Plus',
           'chat.planFree' => 'Plano gratuito',
           'chat.usagePlus' => ({
@@ -11603,6 +9663,9 @@ extension on Translations {
           'chat.usageFree' => 'A conversa faz parte do Plus. O plano gratuito não tem mensagens.',
           'chat.sendingTitle' => 'O que é enviado',
           'chat.sendingText' => 'Só o texto que você escreve e os últimos turnos da conversa vão para o modelo, para gerar a resposta. Nada é guardado, a menos que você salve como slip ou aprendizado.',
+          'chat.disableNote' => 'Ao desligar, o passo de consentimento volta. A próxima mensagem só é enviada depois que você ligar de novo.',
+          'chat.settingsOn' => 'Conversa ligada',
+          'chat.settingsOff' => 'Conversa desligada',
           'chat.offline' => 'Sem conexão. A conversa volta quando você reconectar.',
           'chat.interrupted' => 'A resposta foi interrompida.',
           'chat.retry' => 'Tentar de novo',
@@ -11611,59 +9674,19 @@ extension on Translations {
           'chat.plusTitle' => 'A conversa faz parte do Plus',
           'chat.plusText' => 'A mascote está disponível no Plus, com 20 mensagens por dia.',
           'chat.plusCta' => 'Ver planos',
+          'chat.crisisTitle' => 'Você não está sozinho',
+          'chat.crisisText' => 'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.',
+          'chat.crisisSafeMode' => 'Esconder o app (modo seguro)',
           'chat.unavailableTitle' => 'A conversa não está disponível agora',
           'chat.unavailableText' => 'Tente de novo mais tarde.',
           'chat.errorTitle' => 'Não deu para carregar',
           'chat.errorText' => 'Tente de novo em instantes.',
           'chat.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'chat.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'chat.starterHard' => 'Um momento difícil',
+          'chat.starterIdea' => 'Uma ideia',
+          'chat.starterPlan' => 'Um plano de encontro',
           'chat.menuLabel' => 'Mais opções',
-          'chat.action.privateHint' => 'Fica só com você.',
-          'chat.action.partnerHint' => 'Só vai depois que você tocar.',
-          'chat.action.moodText' => ({required Object mood}) => 'Hoje: ${mood}',
-          'chat.action.moods.happy' => 'feliz',
-          'chat.action.moods.tired' => 'cansado',
-          'chat.action.moods.sad' => 'triste',
-          'chat.action.moods.stressed' => 'estressado',
-          'chat.action.moods.loving' => 'amoroso',
-          'chat.action.moods.playful' => 'brincalhão',
-          'chat.action.dismiss' => 'Agora não',
-          'chat.action.running' => 'Um instante…',
-          'chat.action.done' => 'Pronto',
-          'chat.action.dismissed' => 'Deixado de lado',
-          'chat.action.failed' => 'Não deu certo',
-          'chat.action.retry' => 'Tentar de novo',
-          'chat.action.runLabels.create_private_slip' => 'Anotar',
-          'chat.action.runLabels.send_slip_to_partner' => 'Enviar',
-          'chat.action.runLabels.log_mood' => 'Registrar',
-          'chat.action.runLabels.share_mood' => 'Compartilhar',
-          'chat.action.runLabels.save_learning' => 'Guardar',
-          'chat.action.runLabels.open_purchase' => 'Conhecer o Plus',
-          'chat.action.runLabels.other' => 'Fazer',
-          'chat.action.tags.create_private_slip' => 'Sugestão · Anotar um slip',
-          'chat.action.tags.send_slip_to_partner' => 'Sugestão · Enviar um slip',
-          'chat.action.tags.log_mood' => 'Sugestão · Registrar humor',
-          'chat.action.tags.share_mood' => 'Sugestão · Compartilhar humor',
-          'chat.action.tags.save_learning' => 'Sugestão · Lembrar disto',
-          'chat.action.tags.suggest_couple_question' => 'Pergunta para conversar',
-          'chat.action.tags.draft_note' => 'Rascunho de recado',
-          'chat.action.tags.open_purchase' => 'Plus',
-          'chat.action.tags.other' => 'Sugestão',
-          'chat.greeting.morning' => 'Bom dia',
-          'chat.greeting.afternoon' => 'Boa tarde',
-          'chat.greeting.evening' => 'Boa noite',
-          'chat.entryTitle' => 'Sobre o que você quer falar?',
-          'chat.entryHighlight' => 'falar',
-          'chat.starterBothered' => 'Algo me incomodou',
-          'chat.starterThanks' => 'Quero agradecer',
-          'chat.starterDate' => 'Ideia de encontro',
-          'chat.starterTalk' => 'Preparar uma conversa',
-          'chat.startHere' => 'Começar por aqui',
-          'chat.offlineSlip' => 'Virar slip',
-          'chat.offlineDiary' => 'Anotar no diário',
-          'chat.remembersTitle' => 'O que ele vê e lembra',
-          'chat.remembersAction' => 'O que aprendi',
-          'chat.remembersText' => 'Só guarda o que você confirmar, item por item. Você pode rever e apagar quando quiser.',
           'checkin.title' => 'Check-in semanal',
           'checkin.titleHighlight' => 'semanal',
           'checkin.introSubtitle' => 'Dez minutos. Cada um responde em privado primeiro.',
@@ -11737,21 +9760,13 @@ extension on Translations {
           'connectTouch.errorText' => 'Tente de novo em instantes.',
           'connectTouch.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'connectTouch.errors.other' => 'Não deu para mudar agora. Tente de novo.',
-          'connectUs.title' => 'Saudade de nós',
+          'connectUs.title' => 'Nós',
           'connectUs.text' => 'Envie “sinto saudade de nós” com um toque. Leve, sem culpa. Seu par não precisa responder.',
           'connectUs.send' => 'Enviar com carinho',
           'connectUs.plan' => 'Sugerir um plano pequeno',
           'connectUs.sentNote' => 'Enviado. Sem pressa de resposta.',
           'connectUs.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'connectUs.errors.other' => 'Não deu para enviar agora. Tente de novo.',
-          'connectUs.titleHighlight' => 'nós',
-          'createAccount.title' => 'Criar conta',
-          'createAccount.headline' => 'Mantenha seguro',
-          'createAccount.headlineHighlight' => 'seguro',
-          'createAccount.subtitleWithSlip' =>
-            'Seu primeiro slip está salvo neste celular. Crie a conta para não perdê-lo.',
-          'createAccount.subtitleWithoutSlip' =>
-            'Crie a conta para guardar seus slips e não perdê-los.',
           'dateNight.title' => 'Encontro',
           'dateNight.subtitle' => 'Ideias para vocês dois, escolhidas juntos.',
           'dateNight.hint' => 'Ex.: piquenique no parque',
@@ -11768,9 +9783,6 @@ extension on Translations {
           'dateNight.monthsShort.1' => 'fev',
           'dateNight.monthsShort.2' => 'mar',
           'dateNight.monthsShort.3' => 'abr',
-          _ => null,
-        } ??
-        switch (path) {
           'dateNight.monthsShort.4' => 'mai',
           'dateNight.monthsShort.5' => 'jun',
           'dateNight.monthsShort.6' => 'jul',
@@ -11907,6 +9919,9 @@ extension on Translations {
           'devices.registeredOn' => ({required Object date}) => 'Registrado em ${date}',
           'devices.platformIos' => 'iPhone',
           'devices.platformAndroid' => 'Android',
+          _ => null,
+        } ??
+        switch (path) {
           'devices.revokeTitle' => 'Parar notificações deste dispositivo?',
           'devices.revokeText' => ({
             required Object name,
@@ -11922,6 +9937,13 @@ extension on Translations {
             'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
           'devices.errors.other' =>
             'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
+          'discreet.title' => 'Modo discreto',
+          'discreet.neutralIcon' => 'Ícone neutro',
+          'discreet.neutralNotifications' => 'Notificações neutras',
+          'discreet.hideWidgetText' => 'Ocultar texto do widget',
+          'discreet.note' =>
+            'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.',
+          'discreet.saveError' => 'Não deu para salvar agora. Tente de novo.',
           'distance.title' => 'Distância',
           'distance.text' => 'Dois relógios, cada um no seu fuso, sem confusão.',
           'distance.you' => 'Você',
@@ -11936,6 +9958,9 @@ extension on Translations {
           'distance.addReunion' => 'Salvar uma data',
           'distance.errorTitle' => 'Não deu para carregar',
           'distance.errorText' => 'Tente de novo em instantes.',
+          'fightStyle.exerciseTitle' => 'Como eu reajo numa briga',
+          'fightStyle.exerciseHighlight' => 'reajo',
+          'fightStyle.exerciseSubtitle' => 'Seis perguntas rápidas, só para você.',
           'fightStyle.questionOf' => ({
             required Object current,
             required Object total,
@@ -11946,12 +9971,6 @@ extension on Translations {
           'fightStyle.questions.3' => 'O que mais te incomoda numa briga?',
           'fightStyle.questions.4' => 'Quando percebe que exagerou, você...',
           'fightStyle.questions.5' => 'O que te ajuda a voltar ao normal?',
-          'fightStyle.questionHighlights.0' => 'primeiro',
-          'fightStyle.questionHighlights.1' => 'cala',
-          'fightStyle.questionHighlights.2' => 'acontecer',
-          'fightStyle.questionHighlights.3' => 'incomoda',
-          'fightStyle.questionHighlights.4' => 'exagerou',
-          'fightStyle.questionHighlights.5' => 'normal',
           'fightStyle.options1.pursue' => 'Continuo falando até resolver.',
           'fightStyle.options1.withdraw' => 'Preciso de um tempo antes de continuar.',
           'fightStyle.options1.repair' => 'Tento aliviar o clima com algo mais leve.',
@@ -12020,7 +10039,6 @@ extension on Translations {
           'fightStyle.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
           'fightStyle.addErrors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'fightStyle.addErrors.other' => 'Não deu para adicionar agora. Tente de novo.',
-          'fightStyle.resultBarTitle' => 'Resultado',
           'firstSlip.title' => 'Comece com uma coisa boa',
           'firstSlip.titleHighlight' => 'uma coisa boa',
           'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
@@ -12067,7 +10085,7 @@ extension on Translations {
                   other: '${count} palpites',
                 ),
           'games.kinds.meOrYou.title' => 'Eu ou ele',
-          'games.kinds.meOrYou.intro' => 'Respondam em separado quem combina mais com cada frase. Depois vejam onde concordaram.',
+          'games.kinds.meOrYou.intro' => 'Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual.',
           'games.kinds.howWell.title' => 'Quanto você me conhece',
           'games.kinds.howWell.intro' => 'Cada um responde sobre si e tenta adivinhar a resposta do outro. Depois vem a conversa.',
           'games.kinds.twentyQuestions.title' => '20 perguntas',
@@ -12098,128 +10116,62 @@ extension on Translations {
           'games.waiting.window' => 'O convite espera por até 48 horas.',
           'games.waiting.checkAgain' => 'Ver se já entrou',
           'games.waiting.stillWaiting' => 'Ainda não entrou. O convite continua aqui.',
-          'games.waiting.cancel' => 'Cancelar',
+          'games.waiting.cancel' => 'Cancelar o convite',
+          'games.active.title' => 'O jogo começou',
+          'games.active.text' => 'Os dois estão dentro. As telas deste jogo aparecem aqui.',
           'games.active.cancel' => 'Encerrar o jogo',
           'games.playing.progress' => ({
             required Object current,
             required Object total,
           }) => 'Pergunta ${current} de ${total}',
-          'games.playing.guessProgress' => ({
-            required Object current,
-            required Object total,
-          }) => 'Palpite ${current} de ${total}',
-          'games.playing.me' => 'Eu',
-          'games.playing.both' => 'Os dois',
+          'games.playing.you' => 'Você',
           'games.playing.partnerFallback' => 'Seu par',
-          'games.playing.skip' => 'Pular',
+          'games.playing.skip' => 'Pular esta',
           'games.playing.guessAboutYou' => 'Sobre você',
           'games.playing.guessAboutPartner' => ({required Object name}) => 'Sobre ${name}',
           'games.playing.guessAboutPartnerFallback' => 'Sobre seu par',
           'games.playing.guessPrompt' => ({required Object name}) => 'O que ${name} respondeu?',
           'games.playing.guessPromptFallback' => 'O que seu par respondeu?',
+          'games.playing.guessYourGuess' => 'Seu palpite',
           'games.playing.answerHint' => 'Responda do seu jeito.',
           'games.playing.guessHint' => 'Tente adivinhar a resposta.',
           'games.playing.talkHint' => 'Escreva sua resposta. Só você lê até os dois terminarem.',
-          'games.playing.talkSubtitle' => 'Responder em privado, revelar juntos.',
           'games.playing.talkNote' => 'Seu par só vê depois que os dois responderem.',
-          'games.playing.privacyNote' => 'Cada um responde em privado. Pular é sempre permitido.',
-          'games.playing.changeNote' => ({
-            required Object name,
-          }) => 'Você pode mudar sua resposta até ${name} responder esta pergunta.',
-          'games.playing.changeNoteFallback' =>
-            'Você pode mudar sua resposta até seu par responder esta pergunta.',
-          'games.playing.lockedNote' =>
-            'Este jogo já foi fechado. Esta resposta não pode mais ser editada.',
-          'games.playing.introCta' => 'Começar',
-          'games.playing.next' => 'Próxima',
-          'games.playing.nextGuess' => 'Próximo',
-          'games.date.missionTag' => 'Missão',
-          'games.date.start' => 'Aceitar',
+          'games.playing.introCta' => 'Começar a responder',
+          'games.playing.next' => 'Continuar',
+          'games.playing.reviewAction' => 'Revisar respostas',
+          'games.date.start' => 'Começar o encontro',
           'games.date.startNote' => 'Façam a missão juntos e voltem para contar como foi.',
           'games.date.reflectionTitle' => 'Como foi?',
           'games.date.reflectionText' =>
             'Escolha o que aconteceu. Seu par só vê depois que os dois responderem.',
-          'games.date.save' => 'Salvar',
           'games.reflections.great' => 'Foi ótimo',
-          'games.reflections.ok' => 'Foi ok',
-          'games.reflections.did_not_happen' => 'Não rolou',
+          'games.reflections.ok' => 'Foi bom',
+          'games.reflections.did_not_happen' => 'Não aconteceu',
           'games.reflections.other' => 'Sem resposta',
-          'games.waitingPartner.title' => 'Terminei',
+          'games.waitingPartner.title' => 'Você respondeu tudo',
           'games.waitingPartner.text' => ({
             required Object name,
-          }) => 'Agora é a vez de ${name}. Você vê o resultado quando os dois terminarem.',
-          'games.waitingPartner.textFallback' =>
-            'Agora é a vez do seu par. Você vê o resultado quando os dois terminarem.',
-          'games.waitingPartner.checkAgain' => 'Ver se já terminou',
-          'games.waitingPartner.close' => 'Fechar',
+          }) => 'Agora é só esperar ${name}. Nada do que você escreveu aparece antes dos dois terminarem.',
+          'games.waitingPartner.textFallback' => 'Agora é só esperar seu par. Nada do que você escreveu aparece antes dos dois terminarem.',
+          'games.waitingPartner.answersTitle' => 'O que você salvou',
+          'games.waitingPartner.checkAgain' => 'Ver de novo',
           'games.waitingPartner.cancel' => 'Encerrar o jogo',
-          'games.waitingPartner.note' =>
-            'Nada do que você respondeu aparece antes de os dois terminarem.',
-          'games.waitingPartner.stillWaiting' =>
-            'Ainda não terminou. O resultado aparece quando os dois terminarem.',
-          'games.finished.pickTitle' => ({
-            required Object agreed,
-            required Object total,
-          }) => 'Vocês concordaram em ${agreed} de ${total}',
-          'games.finished.pickHighlight' => ({
-            required Object agreed,
-            required Object total,
-          }) => '${agreed} de ${total}',
-          'games.finished.pickNote' => 'As diferenças viram assunto, não placar.',
-          'games.finished.discoveriesTitle' => 'Descobertas',
-          'games.finished.discoveriesText' => 'Coisas que vocês ainda não sabiam um do outro.',
-          'games.finished.youDidNotKnow' => 'Você não sabia',
-          'games.finished.partnerDidNotKnow' => ({required Object name}) => '${name} não sabia',
-          'games.finished.partnerAnswered' => ({
+          'games.finished.title' => 'Que conversa boa',
+          'games.finished.text' => 'Sem placar, sem vencedor. Só vocês dois.',
+          'games.finished.you' => 'Você',
+          'games.finished.youChose' => ({required Object value}) => 'Você escolheu: ${value}',
+          'games.finished.partnerChose' => ({
             required Object name,
             required Object value,
-          }) => '${name} respondeu: ${value}',
-          'games.finished.youAnswered' => ({required Object value}) => 'Você respondeu: ${value}',
-          'games.finished.noDiscoveries' =>
-            'Nenhuma descoberta desta vez: vocês já sabiam o que o outro responderia.',
-          'games.finished.doneTitle' => 'Pronto',
-          'games.finished.doneText' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'Você respondeu 1 pergunta. Sem vencedor, sem pontuação.',
-                  other: 'Você respondeu ${count} perguntas. Sem vencedor, sem pontuação.',
-                ),
-          'games.finished.dateText' => 'Sem vencedor, sem pontuação. Só o encontro de vocês.',
-          'games.finished.you' => 'Você',
+          }) => '${name} escolheu: ${value}',
+          'games.finished.yourGuess' => 'Seu palpite',
+          'games.finished.partnerGuess' => 'O palpite do seu par',
+          'games.finished.matched' => 'Acertou',
           'games.finished.noAnswer' => 'Sem resposta',
           'games.finished.both' => 'Os dois',
-          'games.finished.bothSaid' => ({required Object value}) => 'Os dois disseram: ${value}',
-          'games.finished.eachSaid' => ({
-            required Object you,
-            required Object name,
-            required Object partner,
-          }) => 'Você disse ${you} · ${name} disse ${partner}',
-          'games.finished.matchedLabel' => 'Igual',
-          'games.finished.differentLabel' => 'Diferente',
-          'games.finished.replayTag' => 'Nova rodada',
-          'games.finished.replayQuestions' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '1 pergunta que vocês ainda não viram',
-                  other: '${count} perguntas que vocês ainda não viram',
-                ),
-          'games.finished.replayGuesses' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '1 palpite que vocês ainda não viram',
-                  other: '${count} palpites que vocês ainda não viram',
-                ),
-          'games.finished.replayMission' => 'Uma nova missão para vocês',
-          'games.finished.replayText' =>
-            'Cada rodada traz conteúdo novo. Quando acabar, o app avisa e mistura o que já passou.',
-          'games.finished.playAgain' => 'Jogar de novo',
-          'games.finished.chooseAnother' => 'Escolher outro jogo',
-          'games.finished.missingTitle' => 'Esta rodada não está mais disponível',
-          'games.finished.missingText' =>
-            'O conteúdo mudou desde que vocês jogaram. Vocês podem começar outra.',
+          'games.finished.agreed' => 'Vocês combinaram',
+          'games.finished.back' => 'Voltar',
           'games.notFound.title' => 'Este jogo não existe',
           'games.notFound.text' =>
             'Ele pode ter mudado ou nunca ter existido. Volte e escolha outro.',
@@ -12230,6 +10182,7 @@ extension on Translations {
           'games.cancel.keep' => 'Continuar',
           'games.noPartner.title' => 'Os jogos são para os dois',
           'games.noPartner.text' => 'Quando seu par entrar, vocês podem jogar juntos.',
+          'games.common.close' => 'Fechar',
           'games.loadErrorTitle' => 'Não deu para abrir o jogo',
           'games.loadErrorText' => 'Nada foi perdido. Tente de novo.',
           'games.errors.NOT_PAIRED' => 'Os jogos precisam dos dois conectados.',
@@ -12243,68 +10196,13 @@ extension on Translations {
           'games.errors.ANSWER_LOCKED' =>
             'As respostas deste jogo já foram fechadas. Não dá para editar agora.',
           'games.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          'games.common.back' => 'Voltar',
-          'gentleRequest.title' => 'Pedido gentil',
-          'gentleRequest.titleHighlight' => 'gentil',
-          'gentleRequest.whenLabel' => 'Quando…',
-          'gentleRequest.feelLabel' => 'Eu me sinto…',
-          'gentleRequest.wishLabel' => 'Eu gostaria de…',
-          'gentleRequest.whenHint' => 'chego e a casa está bagunçada',
-          'gentleRequest.feelHint' => 'sozinha com as tarefas',
-          'gentleRequest.wishHint' => 'dividir a tarde de sábado com você',
-          'gentleRequest.previewTitle' => ({required Object name}) => 'O que o ${name} vai ler',
-          'gentleRequest.previewTitleNoName' => 'O que sua pessoa vai ler',
-          'gentleRequest.previewEmpty' => 'Complete as três frases para ver o pedido.',
-          'gentleRequest.sentence' => ({
-            required Object when,
-            required Object feel,
-            required Object wish,
-          }) => 'Quando ${when}, me sinto ${feel}. Eu gostaria de ${wish}.',
-          'gentleRequest.note' =>
-            'Não vai para o cartão de domingo. O pedido some 7 dias depois de respondido.',
-          'gentleRequest.keep' => 'Guardar',
-          'gentleRequest.sendNow' => 'Enviar agora',
-          'gentleRequest.confirmTitle' => 'Enviar este pedido?',
-          'gentleRequest.confirmText' =>
-            'Sua pessoa vai ler as três frases. A anotação de origem deixa de existir.',
-          'gentleRequest.sent' => 'Pedido enviado',
-          'gentleRequest.fieldErrors.empty' => 'Preencha esta frase.',
-          'gentleRequest.fieldErrors.tooLong' => 'Use no máximo 140 caracteres.',
-          'gentleRequest.errors.NOT_PAIRED' => 'Um pedido gentil precisa de uma pessoa conectada.',
-          'gentleRequest.errors.NETWORK' => 'Sem conexão. Tente de novo.',
-          'gentleRequest.errors.other' => 'Não deu para enviar agora. Tente de novo.',
-          'gentleRequestDetail.partnerFallback' => 'sua pessoa',
-          'gentleRequestDetail.fromYou' => ({
-            required Object name,
-          }) => 'Você escreveu para ${name}.',
-          'gentleRequestDetail.toYou' => ({required Object name}) => '${name} escreveu para você.',
-          'gentleRequestDetail.answerTitle' => 'Como você quer responder?',
-          'gentleRequestDetail.responses.willDo' => 'Vou providenciar',
-          'gentleRequestDetail.responses.later' => 'Mais tarde',
-          'gentleRequestDetail.responses.notNow' => 'Agora não',
-          'gentleRequestDetail.responses.talk' => 'Quero conversar',
-          'gentleRequestDetail.responses.moreTime' => 'Preciso de mais tempo',
-          'gentleRequestDetail.responses.other' => '',
-          'gentleRequestDetail.answeredBy' => ({
-            required Object name,
-            required Object answer,
-          }) => '${name} respondeu: ${answer}',
-          'gentleRequestDetail.youAnswered' => ({
-            required Object answer,
-          }) => 'Você respondeu: ${answer}',
-          'gentleRequestDetail.waiting' => 'Ainda sem resposta.',
-          'gentleRequestDetail.thankAction' => 'Agradecer',
-          'gentleRequestDetail.thanked' => 'Você agradeceu. O agradecimento virou um slip seu.',
-          'gentleRequestDetail.thankBody' => ({
-            required Object name,
-            required Object wish,
-          }) => '${name} cuidou disso: ${wish}',
-          'gentleRequestDetail.goneTitle' => 'Esse pedido já saiu',
-          'gentleRequestDetail.goneText' =>
-            'Ele foi respondido há mais de 7 dias ou não existe mais.',
-          'gentleRequestDetail.errorTitle' => 'Não deu para abrir o pedido',
-          'gentleRequestDetail.errors.NETWORK' => 'Sem conexão. Tente de novo.',
-          'gentleRequestDetail.errors.other' => 'Algo deu errado. Tente de novo.',
+          'games.review.title' => 'Revisar respostas',
+          'games.review.text' => 'Confira o que você respondeu. Toque em uma resposta para editar. Nada é enviado antes de você confirmar.',
+          'games.review.confirm' => 'Enviar respostas',
+          'games.review.back' => 'Voltar para a revisão',
+          'games.review.locked' => 'Fechado',
+          'games.review.lockedNote' =>
+            'Este jogo já foi fechado. Esta resposta não pode mais ser editada.',
           'gifts.title' => 'Página de presentes',
           'gifts.subtitle' => 'Uma página que seu par vê no app. Você escolhe o que compartilhar.',
           'gifts.myTitle' => 'Meus desejos',
@@ -12417,9 +10315,6 @@ extension on Translations {
           }) => 'Passo ${current} de ${total}',
           'hardConversation.whatTitle' => 'O que aconteceu?',
           'hardConversation.whatHint' => 'Se quiser, conte do seu jeito',
-          _ => null,
-        } ??
-        switch (path) {
           'hardConversation.whatIgnored' => 'Ela se sentiu ignorada',
           'hardConversation.whatMoney' => 'Brigamos por dinheiro',
           'hardConversation.whatMisunderstanding' => 'Foi um mal-entendido',
@@ -12444,6 +10339,7 @@ extension on Translations {
           'hardConversation.exit' => 'Sair',
           'hardConversation.next' => 'Próximo',
           'hardConversation.back' => 'Voltar',
+          'hardConversation.needPause' => 'Preciso de pausa',
           'hardConversation.retry' => 'Tentar de novo',
           'hardConversation.generationFailed' => 'Não deu para escrever uma frase agora.',
           'hardConversation.privateNote' =>
@@ -12466,6 +10362,26 @@ extension on Translations {
           'hardConversation.errors.NOT_PAIRED' =>
             'Para enviar, você precisa estar conectado com seu par no app.',
           'hardConversation.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'heavyDay.title' => 'Aviso de dias pesados',
+          'heavyDay.gateTitle' => 'Aviso de dias pesados',
+          'heavyDay.gateText' => 'Às vezes um dia pesa. Você pode avisar seu par com uma frase curta, sem detalhes. Seu par não vê seus programas nem o que você escreve.',
+          'heavyDay.activate' => 'Ligar',
+          'heavyDay.notNow' => 'Agora não',
+          'heavyDay.noticeBody' => 'Um dia delicado. Um pouco mais de carinho ajuda.',
+          'heavyDay.previewPartner' => ({
+            required Object name,
+          }) => '${name} veria: “Um dia delicado. Um pouco mais de carinho ajuda.”',
+          'heavyDay.previewGeneric' =>
+            'Seu par veria: “Um dia delicado. Um pouco mais de carinho ajuda.”',
+          'heavyDay.frequencyAsk' => 'A cada vez',
+          'heavyDay.frequencyAlways' => 'Sempre',
+          'heavyDay.share' => 'Compartilhar',
+          'heavyDay.cancel' => 'Não compartilhar',
+          'heavyDay.confirmationTitle' => ({required Object name}) => 'Aviso enviado para ${name}',
+          'heavyDay.confirmationGeneric' => 'Aviso enviado',
+          'heavyDay.confirmationHint' => 'Seu par vê no widget de recados, se estiver ativado.',
+          'heavyDay.errorTitle' => 'Não deu para carregar',
+          'heavyDay.errorText' => 'Não deu para fazer isso agora. Tente de novo.',
           'help.badDayTitle' => 'Um dia difícil',
           'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
           'help.starterTitle' => 'Começar uma conversa',
@@ -12665,6 +10581,9 @@ extension on Translations {
           'history.milestonePlaceHint' => 'Ex.: Paraty',
           'history.milestonePlaceErrors.tooLong' => 'O lugar está muito longo',
           'history.milestoneBodyHint' => 'Uma nota sobre esse momento (opcional)',
+          _ => null,
+        } ??
+        switch (path) {
           'history.milestoneBodyErrors.tooLong' => 'A nota está muito longa',
           'history.milestoneKindLabel' => 'Tipo de marco',
           'history.kindFirst' => 'Primeira vez',
@@ -12831,67 +10750,6 @@ extension on Translations {
           'ideaDetail.emptyText' => 'Volte mais tarde. Enquanto isso, anote um slip.',
           'ideaDetail.errorTitle' => 'Não deu para carregar a ideia',
           'ideaDetail.errorText' => 'Tente de novo em instantes.',
-          'inbox.title' => 'Notificações',
-          'inbox.bellUnread' => 'Notificações, há novidades',
-          'inbox.todayTitle' => 'Hoje',
-          'inbox.earlierTitle' => 'Esta semana',
-          'inbox.markAllRead' => 'Marcar como lidas',
-          'inbox.settingsAction' => 'Ajustes de notificação',
-          'inbox.footnote' =>
-            'No máximo 2 avisos por dia chegam como notificação. O resto fica só aqui.',
-          'inbox.emptyTitle' => 'Nada novo por aqui',
-          'inbox.emptyText' => 'Quando alguém mandar um cartão ou responder, aparece aqui.',
-          'inbox.errorTitle' => 'Não deu para carregar as notificações',
-          'inbox.partnerFallback' => 'Seu par',
-          'inbox.tapToSee' => 'Toque para ver',
-          'inbox.cardReadyTitle' => 'Seu cartão da semana está pronto',
-          'inbox.cardReadyText' => 'Abra para ver o rascunho',
-          'inbox.cardReceivedTitle' => ({required Object name}) => '${name} te mandou um cartão',
-          'inbox.cardReactionTitle' => ({required Object name}) => '${name} reagiu ao seu cartão',
-          'inbox.partnerJoinedTitle' => ({required Object name}) => '${name} entrou',
-          'inbox.partnerJoinedText' => 'Agora vocês estão conectados',
-          'inbox.unpairedTitle' => 'A conexão terminou',
-          'inbox.unpairedText' => 'Seus dados continuam seus',
-          'inbox.partnerMessageTitle' => ({required Object name}) => '${name} mandou uma mensagem',
-          'inbox.gameInviteTitle' => ({required Object name}) => '${name} chamou você para jogar',
-          'inbox.gameInviteText' => 'Escolha quando quiser',
-          'inbox.signalTitle' => ({required Object name}) => '${name} mandou um recado',
-          'inbox.dateComingTitle' => 'Uma data está chegando',
-          'inbox.dateComingText' => 'Veja ideias para vocês',
-          'inbox.ritualTitle' => 'Hora de um ritual de vocês',
-          'inbox.dailyIdeaTitle' => 'Ideia do dia',
-          'inbox.dailyIdeaText' => 'Uma ideia pequena para hoje',
-          'inbox.gentleReturnTitle' => 'Sentimos sua falta',
-          'inbox.gentleReturnText' => 'Quando quiser, é só voltar',
-          'inbox.capsuleOpenedTitle' => 'Uma cápsula do tempo abriu',
-          'inbox.capsuleOpenedText' => 'Veja o que vocês guardaram',
-          'inbox.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
-          'inbox.errors.other' => 'Algo deu errado. Tente de novo.',
-          'inbox.gentleRequestTitle' => ({
-            required Object name,
-          }) => '${name} escreveu um pedido gentil',
-          'inbox.gentleRequestAnsweredTitle' => ({
-            required Object name,
-          }) => '${name} respondeu seu pedido',
-          'inbox.annoyanceCheckTitle' => 'Isso ainda incomoda?',
-          'inbox.annoyanceCheckText' => 'Uma anotação sua some em breve',
-          'inbox.quizSharedTitle' => ({required Object name}) => '${name} mostrou um quiz',
-          'inbox.spiceInviteTitle' => 'Um convite do Tempero',
-          'inbox.spiceInviteText' => 'Só aparece se vocês dois ligarem',
-          'inbox.spiceOffTitle' => 'O Tempero foi desligado',
-          'inbox.spiceOffText' => 'Nada do modo ficou guardado',
-          'inbox.memoryProposedTitle' => ({
-            required Object name,
-          }) => '${name} quer guardar uma memória com você',
-          'inbox.memoryAcceptedTitle' => ({required Object name}) => '${name} aceitou a memória',
-          'inbox.memoryDeclinedTitle' => ({
-            required Object name,
-          }) => '${name} preferiu não guardar a memória',
-          'inbox.memoryDeclinedText' => 'Ela deixou de ser compartilhada',
-          'inbox.plusBillingIssueTitle' => 'Há um problema com o pagamento do Plus',
-          'inbox.plusBillingIssueText' => 'Veja o que fazer para continuar',
-          'inbox.plusCoverageEndedTitle' => 'A cobertura do Plus terminou',
-          'inbox.plusCoverageEndedText' => 'Você mantém tudo que já criou',
           'intro.skip' => 'Pular',
           'intro.continueButton' => 'Continuar',
           'intro.phase.title' => 'Onde vocês estão agora?',
@@ -12901,6 +10759,7 @@ extension on Translations {
           'intro.phase.options.livingTogether' => 'Moramos juntos',
           'intro.phase.options.engaged' => 'Noivos',
           'intro.phase.options.married' => 'Casados',
+          'intro.phase.options.withKids' => 'Com filhos',
           'intro.phase.options.longDistance' => 'Namoro à distância',
           'intro.phase.options.restarting' => 'Recomeçando',
           'intro.phase.options.other' => '',
@@ -12949,8 +10808,6 @@ extension on Translations {
           'invite.errors.RATE_LIMITED' => 'Você criou muitos convites hoje. Tente de novo amanhã.',
           'invite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'invite.errors.other' => 'Algo deu errado. Tente de novo.',
-          'invite.shareTitle' => 'Compartilhar convite',
-          'invite.waitingTitle' => 'Esperando o parceiro',
           'language.language' => 'Idioma',
           'language.languagePortuguese' => 'Português (Brasil)',
           'language.languageEnglish' => 'Inglês',
@@ -13061,25 +10918,23 @@ extension on Translations {
           'logistics.errorText' => 'A lista continua salva. Tente de novo.',
           'logistics.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'logistics.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          'logistics.confirm' => 'Confirmar',
-          'logistics.waitingYou' => 'Esperando você',
-          'logistics.waitingPartner' => 'Esperando a outra pessoa',
+          'loveStyle.entryLabel' => 'SÓ PARA VOCÊ',
+          'loveStyle.entryTitle' => 'Como eu me sinto querido(a)',
+          'loveStyle.entryText' =>
+            'Seis perguntas rápidas para notar o que te faz sentir querido(a).',
+          'loveStyle.exerciseTitle' => 'Como eu me sinto querido(a)',
+          'loveStyle.exerciseHighlight' => 'querido(a)',
+          'loveStyle.exerciseSubtitle' => 'Seis perguntas rápidas, só para você.',
           'loveStyle.questionOf' => ({
             required Object current,
             required Object total,
           }) => 'Pergunta ${current} de ${total}',
-          'loveStyle.questions.0' => 'O que mais faz você se sentir amado?',
+          'loveStyle.questions.0' => 'O que mais faz você se sentir querido(a)?',
           'loveStyle.questions.1' => 'Num dia difícil, o que mais te conforta?',
           'loveStyle.questions.2' => 'O que você nota primeiro quando seu par demonstra carinho?',
           'loveStyle.questions.3' => 'Qual desses gestos aquece seu coração?',
           'loveStyle.questions.4' => 'O que te faz sentir importante para alguém?',
           'loveStyle.questions.5' => 'Se pudesse escolher um gesto para hoje, qual seria?',
-          'loveStyle.questionHighlights.0' => 'amado',
-          'loveStyle.questionHighlights.1' => 'conforta',
-          'loveStyle.questionHighlights.2' => 'carinho',
-          'loveStyle.questionHighlights.3' => 'coração',
-          'loveStyle.questionHighlights.4' => 'importante',
-          'loveStyle.questionHighlights.5' => 'gesto',
           'loveStyle.options1.time' => 'Passar um tempo junto, sem pressa.',
           'loveStyle.options1.words' => 'Ouvir que sou importante.',
           'loveStyle.options1.acts' => 'Ver que a pessoa me ajuda com algo.',
@@ -13097,9 +10952,6 @@ extension on Translations {
           'loveStyle.options3.acts' => 'Quando a pessoa percebe o que eu preciso e faz.',
           'loveStyle.options3.gifts' => 'Quando a pessoa lembra de algo que eu gosto.',
           'loveStyle.options3.touch' => 'Quando a pessoa me toca de leve ao passar.',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.options3.other' => '',
           'loveStyle.options4.time' => 'Um encontro tranquilo, só nós dois.',
           'loveStyle.options4.words' => 'Uma conversa em que me sinto ouvido(a).',
@@ -13124,65 +10976,40 @@ extension on Translations {
           'loveStyle.back' => 'Voltar',
           'loveStyle.privateNote' =>
             'Só você vê as respostas. Você escolhe se quer mostrar o resultado.',
-          'loveStyle.resultTitle' => 'O que faz você se sentir amado',
-          'loveStyle.resultHighlight' => 'amado',
-          'loveStyle.resultSubtitle' => 'Uma leitura do que mais combina com você.',
-          'loveStyle.labels.time' => 'Tempo só nosso',
-          'loveStyle.labels.words' => 'Palavras de carinho',
-          'loveStyle.labels.acts' => 'Ajuda com as tarefas',
-          'loveStyle.labels.gifts' => 'Presentes pequenos',
-          'loveStyle.labels.touch' => 'Toque e abraço',
-          'loveStyle.labels.other' => '',
-          'loveStyle.commonLabels.time' => 'tempo só nosso',
-          'loveStyle.commonLabels.words' => 'palavras de carinho',
-          'loveStyle.commonLabels.acts' => 'ajuda com as tarefas',
-          'loveStyle.commonLabels.gifts' => 'presentes pequenos',
-          'loveStyle.commonLabels.touch' => 'toque e abraço',
-          'loveStyle.commonLabels.other' => '',
-          'loveStyle.descriptions.time' => 'Você se sente amado quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
-          'loveStyle.descriptions.words' => 'Você se sente amado quando ouve, de forma sincera, o que a outra pessoa sente por você.',
-          'loveStyle.descriptions.acts' => 'Você se sente amado quando alguém percebe o que você precisa e ajuda sem que você peça.',
-          'loveStyle.descriptions.gifts' => 'Você se sente amado quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
-          'loveStyle.descriptions.touch' => 'Você se sente amado quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+          'loveStyle.resultTitle' => 'O que faz você se sentir querido(a)',
+          'loveStyle.resultHighlight' => 'querido(a)',
+          'loveStyle.resultSubtitle' =>
+            'Uma descrição do que te faz sentir querido(a), do seu jeito.',
+          'loveStyle.topTag' => 'O que mais combina com você',
+          'loveStyle.descriptions.time' => 'Você se sente querido(a) quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
+          'loveStyle.descriptions.words' => 'Você se sente querido(a) quando ouve, de forma sincera, o que a outra pessoa sente por você.',
+          'loveStyle.descriptions.acts' => 'Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.',
+          'loveStyle.descriptions.gifts' => 'Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
+          'loveStyle.descriptions.touch' => 'Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
           'loveStyle.descriptions.other' => '',
-          'loveStyle.resultPrivacyNote' =>
-            'Salvo só para você até você mostrar. Você pode desfazer quando quiser.',
+          'loveStyle.shareDescriptions.time' =>
+            'Eu me sinto querido(a) quando a gente passa um tempo junto, sem pressa e sem telas.',
+          'loveStyle.shareDescriptions.words' =>
+            'Eu me sinto querido(a) quando ouço, com sinceridade, o que você sente por mim.',
+          'loveStyle.shareDescriptions.acts' =>
+            'Eu me sinto querido(a) quando você percebe o que eu preciso e me ajuda sem eu pedir.',
+          'loveStyle.shareDescriptions.gifts' => 'Eu me sinto querido(a) quando você lembra de mim num detalhe pequeno, escolhido com carinho.',
+          'loveStyle.shareDescriptions.touch' => 'Eu me sinto querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+          'loveStyle.shareDescriptions.other' => '',
+          'loveStyle.resultPrivacyNote' => 'Salvo só para você. Mostrar no widget do seu par é uma escolha sua, e você pode desfazer.',
           'loveStyle.saveManualAction' => 'Salvar no Meu manual',
           'loveStyle.savedManualAction' => 'Salvo no Meu manual',
           'loveStyle.manualToast' => 'Salvo no Meu manual.',
           'loveStyle.shareAction' => ({required Object name}) => 'Mostrar para ${name}',
-          'loveStyle.revokeAction' => ({required Object name}) => 'Deixar de mostrar para ${name}',
-          'loveStyle.shareConfirmTitle' => ({required Object name}) => 'Mostrar para ${name}?',
-          'loveStyle.shareConfirmText' => ({
-            required Object name,
-          }) => 'Só o resultado aparece, nunca as suas respostas. ${name} recebe um aviso e pode escolher não responder nada.',
-          'loveStyle.shareConfirm' => 'Mostrar',
-          'loveStyle.shareCancel' => 'Agora não',
-          'loveStyle.shareToast' => ({
-            required Object name,
-          }) => 'Pronto. Agora ${name} vê o resultado.',
-          'loveStyle.revokeToast' => ({required Object name}) => 'Não aparece mais para ${name}.',
+          'loveStyle.revokeAction' => 'Tirar do widget dele(a)',
+          'loveStyle.shareToast' => 'Aparece no widget dele(a) se ele(a) permitir recados.',
+          'loveStyle.revokeToast' => 'Não aparece mais no widget dele(a).',
           'loveStyle.shareSoloNote' =>
-            'Fica só com você. Quando alguém entrar, você decide se mostra.',
-          'loveStyle.inviteAction' => 'Convidar minha pessoa',
-          'loveStyle.compareAction' => 'Comparar os dois',
-          'loveStyle.compareTitle' => 'Vocês dois',
-          'loveStyle.compareHeadline' => 'O que faz vocês se sentirem amados',
-          'loveStyle.compareHighlight' => 'amados',
-          'loveStyle.compareYou' => 'Você',
-          'loveStyle.compareMost' => 'Mais importante',
-          'loveStyle.compareNext' => 'Depois',
-          'loveStyle.compareCommon' => 'Em comum',
-          'loveStyle.compareCommonText' => ({
-            required Object label,
-          }) => 'Os dois valorizam ${label}.',
-          'loveStyle.comparePlan' => 'Planejar um tempo só nosso',
-          'loveStyle.compareMissingTitle' => 'A comparação ainda não está pronta',
-          'loveStyle.compareMissingText' => 'Ela aparece quando os dois mostrarem o resultado.',
+            'Quando vocês estiverem conectados, você pode mostrar isso no widget do seu par.',
           'loveStyle.partnerFallback' => 'seu par',
           'loveStyle.pairingErrorNote' => 'Não deu para verificar seu par agora.',
           'loveStyle.retryPairing' => 'Tentar de novo',
-          'loveStyle.retake' => 'Refazer o quiz',
+          'loveStyle.retake' => 'Refazer o exercício',
           'loveStyle.loadErrorTitle' => 'Não deu para carregar',
           'loveStyle.loadErrorText' => 'Não deu para abrir seu resultado agora. Tente de novo.',
           'loveStyle.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
@@ -13196,12 +11023,16 @@ extension on Translations {
           'loveStyle.shareErrors.other' => 'Não deu para mostrar agora. Tente de novo.',
           'loveStyle.revokeErrors.RATE_LIMITED' =>
             'Muitas tentativas seguidas. Espere um instante.',
-          'loveStyle.revokeErrors.other' => 'Não deu para deixar de mostrar agora. Tente de novo.',
+          'loveStyle.revokeErrors.other' => 'Não deu para tirar do widget agora. Tente de novo.',
           'memories.title' => 'Memórias',
           'memories.historyLabel' => 'NOSSA HISTÓRIA',
           'memories.historyTitle' => 'Nossa história',
           'memories.historyText' => 'Marcos, datas, lugares e a nossa história em números.',
+          'memories.storyLabel' => 'COMPARTILHAR',
+          'memories.storyTitle' => 'Imagem para compartilhar',
+          'memories.storyText' => 'Seus números em uma imagem, só com o que você escolher.',
           'memories.placesLabel' => 'LUGARES',
+          'memories.placesTitle' => 'Lugares onde vocês estiveram',
           'memories.placesText' => 'Só o nome do lugar, nunca a localização.',
           'memories.placeLabel' => 'Lugar (opcional)',
           'memories.placeHint' => 'Ex.: Paraty',
@@ -13252,31 +11083,11 @@ extension on Translations {
           'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
           'memories.jarEmptyTitle' => 'O potinho está vazio',
           'memories.jarEmptyAction' => 'Ver meus slips',
-          'memories.menu.timeline' => 'Linha do tempo',
-          'memories.menu.timelineText' => 'Memórias que vocês guardaram',
-          'memories.menu.jar' => 'Potinho',
-          'memories.menu.jarText' => 'Um slip bom para um dia ruim',
-          'memories.menu.storyText' => 'Marcos, lugares e números',
-          'memories.menu.dates' => 'Datas e números',
-          'memories.menu.datesText' => 'Aniversários, feriados e contagens',
-          'memories.menu.diary' => 'Diário',
-          'memories.menu.diaryText' => 'Só seu, nunca vai para a outra pessoa',
-          'memories.menu.gifts' => 'Ideias de presente',
-          'memories.menu.giftsText' => 'Desejos de cada um e ideias para o outro',
-          'memories.onThisDay.label' => 'NESTE DIA',
-          'memories.onThisDay.yearsAgo' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'Há 1 ano',
-                  other: 'Há ${count} anos',
-                ),
+          'memories.moreTitle' => 'Mais',
           'mood.title' => 'Como você está hoje?',
           'mood.titleHighlight' => 'hoje',
           'mood.subtitle' => 'Um toque. A etiqueta “Preciso de...” é opcional.',
           'mood.privateCue' => 'só você vê',
-          'mood.sharedCue' => ({required Object name}) => 'compartilhado com ${name}',
-          'mood.sharedCueNoName' => 'compartilhado com seu par',
           'mood.moods.happy' => 'Feliz',
           'mood.moods.tired' => 'Cansado(a)',
           'mood.moods.sad' => 'Triste',
@@ -13288,18 +11099,9 @@ extension on Translations {
           'mood.needs.opinion' => 'Uma opinião',
           'mood.needs.hug' => 'Um abraço',
           'mood.needs.space' => 'Um tempo',
-          'mood.needs.chocolate' => 'Um chocolate',
-          'mood.needs.cuteMessage' => 'Uma mensagem fofa',
-          'mood.needs.foreheadKiss' => 'Um beijinho na testa',
-          'mood.needs.company' => 'Companhia',
-          'mood.needs.rest' => 'Descansar',
-          'mood.needMenuAction' => 'Preciso de…',
-          'mood.needMenuActionSelected' => ({required Object need}) => 'Preciso de: ${need}',
-          'mood.needSheetSubtitle' =>
-            'Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.',
-          'mood.needSaved' => 'Salvo',
+          'mood.shareTitle' => 'O que seu par vê',
+          'mood.shareTitleNamed' => ({required Object name}) => 'O que ${name} vê',
           'mood.shareSubtitle' => 'Quem cria o dado decide. O padrão é privado.',
-          'mood.shareNeedFirst' => 'Escolha um “Preciso de...” primeiro.',
           'mood.share.none' => 'Manter privado',
           'mood.share.mood' => 'Só meu humor',
           'mood.share.moodNeed' => 'Humor e o que preciso',
@@ -13335,53 +11137,13 @@ extension on Translations {
           'mood.partnerNeedOpinion' => 'O que ajuda: uma opinião.',
           'mood.partnerNeedHug' => 'O que ajuda: um abraço.',
           'mood.partnerNeedSpace' => 'O que ajuda: um pouco de espaço.',
-          'mood.partnerNeedChocolate' => 'O que ajuda: um chocolate.',
-          'mood.partnerNeedCuteMessage' => 'O que ajuda: uma mensagem fofa.',
-          'mood.partnerNeedForeheadKiss' => 'O que ajuda: um beijinho na testa.',
-          'mood.partnerNeedCompany' => 'O que ajuda: companhia.',
-          'mood.partnerNeedRest' => 'O que ajuda: descanso.',
-          'mood.partnerSharedChoice' => ({
-            required Object name,
-          }) => '${name} escolheu compartilhar isso com você.',
           'mood.homeTitle' => 'Como você está?',
           'mood.homePrivacy' => 'Só você vê',
-          'mood.homePrivacyShared' => ({required Object name}) => '${name} vê',
-          'mood.homePrivacySharedNoName' => 'Seu par vê',
-          'mood.homeLoadFailed' => 'Não deu para carregar. Toque para abrir.',
-          'mood.homeDetailsLink' => 'O que seu par vê',
           'mood.homeMoods.happy' => 'Bem',
           'mood.homeMoods.loving' => 'Carinhoso',
           'mood.homeMoods.tired' => 'Cansado',
           'mood.homeMoods.stressed' => 'Tenso',
           'mood.homeMoods.sad' => 'Triste',
-          'mood.next' => 'Próximo',
-          'mood.shareAction' => 'Compartilhar',
-          'mood.shareHeadline' => ({required Object name}) => 'Compartilhar com ${name}?',
-          'mood.shareHeadlineNoName' => 'Compartilhar com sua pessoa?',
-          'mood.shareHeadlineNoNameHighlight' => 'sua pessoa',
-          'mood.calendarTitle' => 'Meus humores',
-          'mood.calendarMonth' => ({
-            required Object month,
-            required Object year,
-          }) => '${month} de ${year}',
-          'mood.calendarEmpty' => 'Nenhum humor neste mês ainda.',
-          'mood.calendarPrivacyNote' =>
-            'Só você vê isto. Não aparece para o parceiro, a menos que seja compartilhado por dia.',
-          'mood.calendarAction' => 'Registrar meu humor',
-          'mood.calendarErrorTitle' => 'Não deu para abrir seus humores',
-          'mood.calendarErrorText' => 'Nada se perdeu. Tente de novo.',
-          'mood.monthNames.0' => 'janeiro',
-          'mood.monthNames.1' => 'fevereiro',
-          'mood.monthNames.2' => 'março',
-          'mood.monthNames.3' => 'abril',
-          'mood.monthNames.4' => 'maio',
-          'mood.monthNames.5' => 'junho',
-          'mood.monthNames.6' => 'julho',
-          'mood.monthNames.7' => 'agosto',
-          'mood.monthNames.8' => 'setembro',
-          'mood.monthNames.9' => 'outubro',
-          'mood.monthNames.10' => 'novembro',
-          'mood.monthNames.11' => 'dezembro',
           'moodHelp.listenTitle' => 'Escuta primeiro',
           'moodHelp.listenSubtitle' => 'Sem pressa e sem cobrar resposta.',
           'moodHelp.talkLabel' => 'Conversa',
@@ -13395,45 +11157,18 @@ extension on Translations {
           'moodHelp.seeHowToHelpSupport' => 'Coisas pequenas para hoje.',
           'moodHelp.helpTitle' => 'Como ajudar hoje',
           'moodHelp.helpSubtitle' => 'Pequenas coisas, no ritmo de hoje.',
-          'moodHelp.suggestionLabel' => 'Sugestão',
+          'moodHelp.choreLabel' => 'Tarefa',
           'moodHelp.takeChore' => 'Assumir uma tarefa',
           'moodHelp.takeChoreSupport' => 'Escolha uma coisa da casa e resolva sem avisar.',
           'moodHelp.askListenOrSpace' => 'Perguntar: quer ouvir ou espaço?',
           'moodHelp.askListenOrSpaceSupport' => 'Deixe a resposta decidir o próximo passo.',
           'moodHelp.sendSweetMessage' => 'Mandar uma mensagem curta e carinhosa',
-          'moodHelp.sweetMessagePreview' => ({required Object body}) => 'Vai assim: “${body}”',
-          'moodHelp.sweetMessageBody' => 'Sem pressa. Estou por aqui.',
+          'moodHelp.sendSweetMessageSupport' => 'Uma linha basta. Sem pedir explicação.',
+          'moodHelp.homeLabel' => 'Casa',
           'moodHelp.makeCoffeeOrDinner' => 'Fazer café ou o jantar',
           'moodHelp.makeCoffeeOrDinnerSupport' => 'Sem transformar em tarefa combinada.',
-          'moodHelp.noDiagnosisNote' => 'Sugestões do app, sem diagnóstico. Sem pressa.',
           'moodHelp.reactionLabel' => 'Mandar um coração',
           'moodHelp.sent' => 'Coração enviado',
-          'moodHelp.askSent' => 'Pergunta enviada',
-          'moodHelp.messageSent' => 'Mensagem enviada',
-          'moodHelp.partnerNeedTitle' => ({required Object name}) => 'O que ${name} precisa',
-          'moodHelp.partnerNeedTitleGeneric' => 'O que seu par precisa',
-          'moodHelp.partnerNeedSubtitle' => 'O pedido de hoje. Sem cobrança.',
-          'moodHelp.partnerNeedNote' => 'Isso vem do humor que seu par compartilhou hoje.',
-          'moodHelp.partnerNeedActions.listen' => 'Só ouvir',
-          'moodHelp.partnerNeedActions.opinion' => 'Dar uma opinião',
-          'moodHelp.partnerNeedActions.hug' => 'Mandar um abraço',
-          'moodHelp.partnerNeedActions.space' => 'Dar espaço',
-          'moodHelp.partnerNeedActions.chocolate' => 'Levar um chocolate',
-          'moodHelp.partnerNeedActions.cuteMessage' => 'Abrir a conversa',
-          'moodHelp.partnerNeedActions.foreheadKiss' => 'Um beijinho na testa',
-          'moodHelp.partnerNeedActions.company' => 'Ficar por perto',
-          'moodHelp.partnerNeedActions.rest' => 'Deixar descansar',
-          'moodHelp.partnerNeedActions.other' => '',
-          'moodHelp.partnerNeedSupports.listen' => 'Sem dar opinião nem tentar resolver.',
-          'moodHelp.partnerNeedSupports.opinion' => 'Uma opinião honesta, sem julgar.',
-          'moodHelp.partnerNeedSupports.hug' => 'Chega como um sinal no app.',
-          'moodHelp.partnerNeedSupports.space' => 'Um tempo sem cobrar resposta.',
-          'moodHelp.partnerNeedSupports.chocolate' => 'Um chocolate pequeno, sem motivo.',
-          'moodHelp.partnerNeedSupports.cuteMessage' => 'Uma linha carinhosa já basta.',
-          'moodHelp.partnerNeedSupports.foreheadKiss' => 'Pequeno e sem pressa.',
-          'moodHelp.partnerNeedSupports.company' => 'Sentar perto, sem precisar falar.',
-          'moodHelp.partnerNeedSupports.rest' => 'Assumir o que der e deixar quieto.',
-          'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'Vocês ainda não estão conectados.',
           'moodHelp.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'moodHelp.errors.NETWORK' =>
@@ -13464,6 +11199,9 @@ extension on Translations {
           'notes.title' => 'Bilhete ou desenho',
           'notes.intro' =>
             'Um recado curto para seu par, ou um desenho que fica na sua lista de enviados.',
+          _ => null,
+        } ??
+        switch (path) {
           'notes.kinds.0' => 'Bilhete',
           'notes.kinds.1' => 'Desenho',
           'notes.noteHint' => 'Ex.: boa sorte na reunião de hoje',
@@ -13549,18 +11287,22 @@ extension on Translations {
             'Não foi possível ativar as notificações neste aparelho. Tente de novo mais tarde.',
           'notificationPermission.errors.other' =>
             'Não foi possível ativar as notificações. Tente de novo.',
-          'notificationPreferences.title' => 'Lembretes',
+          'notificationPreferences.title' => 'Notificações',
+          'notificationPreferences.subtitle' => 'Escolha o que chega e quando. Nada de cobrança.',
           'notificationPreferences.systemOff' => 'As notificações estão desligadas neste celular. Suas escolhas valem quando você ligar.',
           'notificationPreferences.openSystem' => 'Abrir configurações',
-          'notificationPreferences.perDayTitle' => 'Por dia',
-          'notificationPreferences.perDaySupport' => 'No máximo',
-          'notificationPreferences.perDayValue' => ({required Object count}) => 'Até ${count}',
-          'notificationPreferences.perDaySheetTitle' => 'Quantos lembretes por dia?',
-          'notificationPreferences.typesTitle' => 'Tipos',
-          'notificationPreferences.types.dailyIdea' => 'Ideia do dia',
-          'notificationPreferences.types.dateComing' => 'Datas e feriados',
-          'notificationPreferences.types.cardReady' => 'Cartão semanal',
+          'notificationPreferences.all' => 'Receber notificações',
+          'notificationPreferences.allText' => 'Desligue para pausar tudo.',
+          'notificationPreferences.typesTitle' => 'O que você quer receber',
+          'notificationPreferences.types.card_ready' => 'Cartão pronto',
+          'notificationPreferences.types.card_received' => 'Cartão recebido',
+          'notificationPreferences.types.card_reaction' => 'Resposta ao seu cartão',
+          'notificationPreferences.types.daily_idea' => 'Ideia do dia',
+          'notificationPreferences.types.date_coming' => 'Datas chegando',
           'notificationPreferences.types.other' => '',
+          'notificationPreferences.cardTitle' => 'Cartão de domingo',
+          'notificationPreferences.cardDay' => 'Dia',
+          'notificationPreferences.cardHour' => 'Horário',
           'notificationPreferences.days.0' => 'Domingo',
           'notificationPreferences.days.1' => 'Segunda',
           'notificationPreferences.days.2' => 'Terça',
@@ -13569,11 +11311,11 @@ extension on Translations {
           'notificationPreferences.days.5' => 'Sexta',
           'notificationPreferences.days.6' => 'Sábado',
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
-          'notificationPreferences.note' =>
-            'Limite rígido de 1 a 2 mensagens por dia. Cada tipo pode ser desligado.',
-          'notificationPreferences.loadErrorTitle' => 'Não deu para abrir seus lembretes',
-          'notificationPreferences.loadErrorText' => 'Eles continuam salvos. Tente de novo.',
-          'notificationPreferences.errors.rateLimited' =>
+          'notificationPreferences.previewTitle' => 'Como a notificação aparece',
+          'notificationPreferences.previewText' => 'Sempre curta e sem detalhes pessoais.',
+          'notificationPreferences.loadErrorTitle' => 'Não deu para abrir suas preferências',
+          'notificationPreferences.loadErrorText' => 'Elas continuam salvas. Tente de novo.',
+          'notificationPreferences.errors.RATE_LIMITED' =>
             'Muitas tentativas seguidas. Espere um instante.',
           'notificationPreferences.errors.other' =>
             'Não deu para salvar agora. Sua escolha anterior foi mantida.',
@@ -13613,50 +11355,90 @@ extension on Translations {
           'partnerStep.aloneSupport' => 'Seus slips ficam só com você',
           'partnerStep.haveCode' => 'Tenho um código de convite',
           'partnerStep.continueButton' => 'Continuar',
-          'partnerStep.soloOnlyTitle' => 'Só para mim',
-          'partnerStep.soloOnlySupport' => 'Sem convidar ninguém',
-          'partnerStep.whyInvite' => 'Por que convidar?',
-          'partnerStep.why.title' => 'Por que convidar?',
-          'partnerStep.why.shared' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
-          'partnerStep.why.privacy' =>
-            'Seus slips e notas privadas continuam só seus até você compartilhar.',
+          'pause.title' => 'Pedir um tempo',
+          'pause.titleHighlight' => 'tempo',
+          'pause.subtitle' => 'Uma mensagem curta e gentil. Seu par vê só o que você escrever.',
+          'pause.presets.space' => 'Preciso de um tempo para respirar. Volto logo.',
+          'pause.presets.later' => 'Vamos conversar mais tarde, com calma?',
+          'pause.presets.calm' => 'Quero te ouvir bem. Preciso me acalmar antes.',
+          'pause.presets.other' => '',
+          'pause.hint' => 'Escrever a minha',
+          'pause.messageErrors.empty' => 'Escreva uma mensagem curta',
+          'pause.messageErrors.tooLong' => 'A mensagem está muito longa',
+          'pause.returnTitle' => 'Volto em',
+          'pause.returns.oneHour' => '1 hora',
+          'pause.returns.threeHours' => '3 horas',
+          'pause.returns.eightHours' => '8 horas',
+          'pause.returns.tomorrow' => 'Amanhã',
+          'pause.returns.other' => '',
+          'pause.note' => 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.',
+          'pause.send' => 'Enviar e pausar',
+          'pause.sentTitle' => 'Pausa enviada',
+          'pause.sentText' =>
+            'O Hoje fica em pausa para os dois. Quando estiver pronto(a), volte por lá.',
+          'pause.done' => 'Pronto',
+          'pause.errors.INVALID_RETURN_TIME' => 'Esse horário de volta não vale. Escolha outro.',
+          'pause.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
+          'places.title' => 'Lugares',
+          'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
+          'places.memoryOne' => '1 memória',
+          'places.memoryMany' => ({required Object count}) => '${count} memórias',
+          'places.monthsShort.0' => 'jan',
+          'places.monthsShort.1' => 'fev',
+          'places.monthsShort.2' => 'mar',
+          'places.monthsShort.3' => 'abr',
+          'places.monthsShort.4' => 'mai',
+          'places.monthsShort.5' => 'jun',
+          'places.monthsShort.6' => 'jul',
+          'places.monthsShort.7' => 'ago',
+          'places.monthsShort.8' => 'set',
+          'places.monthsShort.9' => 'out',
+          'places.monthsShort.10' => 'nov',
+          'places.monthsShort.11' => 'dez',
+          'places.dateLine' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} ${month} ${year}',
+          'places.emptyTitle' => 'Nenhum lugar ainda',
+          'places.emptyText' =>
+            'Ao guardar uma memória, escreva o nome do lugar e ele aparece aqui.',
+          'places.detailEmptyTitle' => 'Nada neste lugar',
+          'places.detailEmptyText' => 'As memórias deste lugar não estão mais aqui.',
+          'places.errorTitle' => 'Não deu para carregar',
+          'places.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
           'plus.title' => 'Mingo Plus',
           'plus.subtitle' => 'Compare com calma. O plano grátis continua inteiro para o essencial.',
           'plus.activeTitle' => 'Você tem o Plus',
           'plus.activeText' => 'Obrigado. Tudo está liberado para você e para seu par.',
           'plus.paidByPartner' => 'Seu par tem o Plus e ele vale para vocês dois.',
           'plus.freeLeft' => ({
-            required Object games,
-            required Object rituals,
-            required Object lists,
-          }) => 'No plano grátis, restam ${games}, ${rituals} e ${lists}.',
-          'plus.gameCount' =>
+            required Object slips,
+            required Object cards,
+          }) => 'No plano grátis, este mês: ${slips} e ${cards}.',
+          'plus.slipCount' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
                   count,
-                  one: '1 jogo nesta semana',
-                  other: '${count} jogos nesta semana',
+                  one: '1 slip',
+                  other: '${count} slips',
                 ),
-          'plus.ritualCount' =>
+          'plus.cardCount' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
                   count,
-                  one: '1 ritual',
-                  other: '${count} rituais',
-                ),
-          'plus.listCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '1 lista',
-                  other: '${count} listas',
+                  one: '1 cartão enviado',
+                  other: '${count} cartões enviados',
                 ),
           'plus.freeName' => 'Grátis',
-          'plus.freeFeatures' => 'Slips e cartões sem limite, repair, 3 jogos por semana, 3 rituais, 3 listas e tudo o que você já guardou.',
+          'plus.freeFeatures' => 'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.',
           'plus.plusName' => 'Plus',
-          'plus.plusFeatures' => 'Jogos, rituais e listas sem limite, mais conversas com a mascote e mais recursos para os dois, cobrindo você e seu par.',
+          'plus.plusFeatures' =>
+            'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.',
           'plus.monthly' => 'Mensal',
           'plus.yearly' => 'Anual',
+          'plus.giftPlan' => 'Presente',
           'plus.storeTitle' => 'Não deu para ver os preços',
           'plus.storeText' => 'A loja não respondeu. Nada foi cobrado. Tente de novo.',
           'plus.subscribe' => 'Assinar',
@@ -13665,7 +11447,7 @@ extension on Translations {
           'plus.purchaseError' => 'Não deu para concluir a compra. Nada foi cobrado.',
           'plus.billingTitle' => 'Problema no pagamento',
           'plus.billingText' => 'O último pagamento não passou. O Plus continua por enquanto. Abra suas assinaturas na loja e atualize a forma de pagamento.',
-          'plus.alwaysFree' => 'Desparear nunca fica trancado.',
+          'plus.alwaysFree' => 'Segurança, pausa e desparear nunca ficam trancados.',
           'plus.lockLabel' => 'PLUS',
           'plus.lockText' => 'Disponível no Plus. Toque para ver os planos.',
           'plus.errorTitle' => 'Não deu para carregar',
@@ -13707,16 +11489,16 @@ extension on Translations {
           'plus.errors.storeUnavailable' => 'A loja não está disponível neste aparelho agora.',
           'plus.errors.manageUnavailable' => 'Não há uma página da loja para esta assinatura aqui.',
           'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          _ => null,
-        } ??
-        switch (path) {
           'privacy.title' => 'Privacidade e segurança',
+          'privacy.discreetMode' => 'Modo discreto',
           'privacy.partnerTitle' => 'O que o parceiro vê',
           'privacy.partnerSlips' => 'Slips enviados',
           'privacy.partnerSlipsText' => 'Só o que você envia',
           'privacy.partnerPrivateSlips' => 'Slips privados',
           'privacy.partnerTemperature' => 'Temperatura',
           'privacy.partnerJournal' => 'Diário',
+          'privacy.partnerPause' => 'Pausa',
+          'privacy.partnerPauseText' => 'A mensagem que você escreveu',
           'privacy.never' => 'Nunca',
           'privacy.partnerNote' => 'Quem produz o dado decide quem vê.',
           'privacy.ourTitle' => 'O que podemos ver',
@@ -13725,22 +11507,27 @@ extension on Translations {
           'privacy.ourAnalytics' => 'Análises: só contagens.',
           'privacy.ourPlain' => 'Página em linguagem simples.',
           'privacy.consents' => 'Consentimentos',
+          'privacy.sensitiveData' => 'Dados sensíveis',
           'privacy.analytics' => 'Análises',
           'privacy.marketing' => 'Marketing',
           'privacy.ai' => 'IA (quando disponível)',
           'privacy.terms' => 'Termos',
           'privacy.required' => 'Obrigatório',
-          'privacy.requiredNote' => 'Aceitar os Termos é obrigatório para usar o app.',
+          'privacy.requiredNote' => 'Dados sensíveis e Termos são obrigatórios para usar o app.',
           'privacy.consentsNote' => 'Mudanças valem agora.',
           'privacy.saveError' => 'Não deu para salvar agora. Tente de novo.',
           'privacy.errorTitle' => 'Não deu para carregar os consentimentos',
           'privacy.errorText' => 'Tente de novo em instantes.',
+          'privacy.sensitiveTracks' => 'Trilhas e avisos sensíveis',
+          'privacy.heavyDayNotice' => 'Aviso de dias pesados',
           'profileDetails.title' => 'Perfil',
           'profileDetails.nameLabel' => 'Seu nome',
-          'profileDetails.nameHint' => 'Seu primeiro nome',
+          'profileDetails.nameHint' => 'Marina',
           'profileDetails.nameErrors.empty' => 'Seu nome não pode ficar vazio.',
           'profileDetails.nameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileDetails.pronounsLabel' => 'Pronomes',
+          'profileDetails.pronounsHint' => 'Opcional',
+          'profileDetails.pronounsErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileDetails.timeZoneLabel' => 'Fuso horário',
           'profileDetails.timeZonePlaceholder' => 'Escolha um fuso',
           'profileDetails.loginLabel' => 'Login',
@@ -13774,12 +11561,17 @@ extension on Translations {
           'profileSetup.subtitle' =>
             'Usado para as palavras do app e para a primeira data da sua história.',
           'profileSetup.nameLabel' => 'Seu nome',
-          'profileSetup.nameHint' => 'Seu primeiro nome',
+          'profileSetup.nameHint' => 'Marina',
           'profileSetup.nameErrors.empty' => 'Seu nome não pode ficar vazio.',
           'profileSetup.nameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileSetup.partnerNameLabel' => 'Nome do parceiro',
-          'profileSetup.partnerNameHint' => 'O primeiro nome dele ou dela',
+          'profileSetup.partnerNameHint' => 'Ricardo',
           'profileSetup.partnerNameErrors.tooLong' => 'Use no máximo 30 caracteres.',
+          'profileSetup.partnerNameNote' => 'O nome do parceiro fica só na sua conta.',
+          'profileSetup.themeLabel' => 'Cor do seu app',
+          'profileSetup.themeRose' => 'Rosa',
+          'profileSetup.themeBlue' => 'Azul',
+          'profileSetup.themeNeutral' => 'Neutro',
           'profileSetup.dateLabel' => 'Quando começaram?',
           'profileSetup.dateHint' => 'Escolha uma data',
           'profileSetup.dateErrors.empty' => 'Escolha a data de vocês.',
@@ -13805,10 +11597,6 @@ extension on Translations {
             'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
           'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
           'profileSetup.errors.other' => 'Não deu para salvar agora. Tente de novo.',
-          'profileSetup.themeLabel' => 'Cor do seu app',
-          'profileSetup.themeRose' => 'Rosa',
-          'profileSetup.themeBlue' => 'Azul',
-          'profileSetup.themeNeutral' => 'Neutro',
           'programs.label' => 'PROGRAMAS',
           'programs.title' => 'Programas',
           'programs.entryText' => 'Programas curtos e guiados, no seu ritmo.',
@@ -13899,38 +11687,42 @@ extension on Translations {
           'programs.moods.other' => 'Como estou',
           'programs.lessonErrors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'programs.diaryErrors.other' => 'Não deu para salvar agora. Seu texto continua aqui.',
+          'programs.sensitive' => 'SENSÍVEL',
+          'programs.sensitiveGateTitle' => 'Uma trilha só sua',
+          'programs.sensitiveGateText' => 'Estas lições falam de luto, doença e confiança. Seu par não vê que você entrou nem o que você lê. Você pode sair quando quiser.',
+          'programs.sensitiveGateAction' => 'Entrar nesta trilha',
+          'programs.sensitiveConsentTitle' => 'Entrar nesta trilha?',
+          'programs.sensitiveConsentText' => 'Estas lições falam de luto, doença e confiança. Elas ficam só para você: seu par não vê sua participação. Você pode retirar este consentimento em Privacidade e segurança.',
+          'programs.sensitiveConsentConfirm' => 'Entrar',
+          'programs.sensitiveConsentCancel' => 'Agora não',
+          'programs.sensitiveLessonLockedTitle' => 'Trilha sensível',
+          'programs.sensitiveLessonLockedText' =>
+            'Para abrir esta lição, ative o consentimento das trilhas sensíveis.',
           'programs.freeNote' => 'No grátis aparece só a primeira lição.',
-          'pronouns.options.she' => 'Ela',
-          'pronouns.options.he' => 'Ele',
-          'pronouns.options.nameOnly' => 'Só o nome',
-          'pronouns.options.other' => 'Só o nome',
-          'questions.tag' => 'Pergunta do casal',
+          'questions.tag' => 'Pergunta para vocês dois',
+          'questions.eyebrow' => 'Pergunta do dia',
           'questions.answerCta' => 'Responder',
-          'questions.introNote' => 'Uma pergunta por dia ou por semana.',
+          'questions.editCta' => 'Editar minha resposta',
           'questions.answerHint' => 'Escreva o quanto quiser.',
           'questions.answerErrors.empty' => 'Escreva uma resposta',
           'questions.answerErrors.tooLong' => 'A resposta está muito longa',
+          'questions.privateNote' => 'Só você vê isto até seu par responder também.',
           'questions.partnerAnsweredNote' => 'Seu par já respondeu. Envie a sua para ver as duas.',
-          'questions.partnerSeesAfter' => ({
-            required Object name,
-          }) => 'Só depois que você enviar a sua e ${name} responder também.',
-          'questions.partnerSeesAfterFallback' =>
-            'Só depois que você enviar a sua e seu par responder também.',
           'questions.soloNote' =>
             'Sua resposta fica privada. Seu par vai ver depois que vocês se conectarem.',
           'questions.save' => 'Enviar',
           'questions.cancel' => 'Cancelar',
-          'questions.skip' => 'Pular',
           'questions.waitingTitle' => 'Sua resposta ficou guardada',
           'questions.waitingText' => 'Ela aparece aqui quando seu par responder também.',
           'questions.waitingSoloText' =>
             'Quando seu par entrar, ele vê a sua resposta e você vê a dele.',
           'questions.checkAgain' => 'Verificar de novo',
-          'questions.revealTitle' => 'As duas lembranças',
-          'questions.revealHighlight' => 'lembranças',
-          'questions.keepPrompt' => 'Querem guardar isso na história de vocês?',
-          'questions.saveMilestone' => 'Salvar como marco',
-          'questions.notNow' => 'Agora não',
+          'questions.voiceSoon' => 'Recado de voz',
+          'questions.voiceSoonNote' => 'Por enquanto as respostas são escritas. A voz vem depois.',
+          'questions.revealTitle' => 'Suas respostas juntas',
+          'questions.revealHighlight' => 'juntas',
+          'questions.revealSubtitle' => 'Agora que os dois responderam, vocês veem as duas.',
+          'questions.revealNote' => 'Sem notas. Só o que cada um escreveu.',
           'questions.you' => 'Você',
           'questions.partnerFallback' => 'Seu par',
           'questions.discardTitle' => 'Descartar esta resposta?',
@@ -13941,7 +11733,6 @@ extension on Translations {
           'questions.loadErrorText' => 'Nada foi perdido. Tente de novo.',
           'questions.close' => 'Fechar',
           'questions.errors.other' => 'Não deu para salvar agora. Tente de novo.',
-          'questions.editCta' => 'Editar minha resposta',
           'questionsEntry.label' => 'PERGUNTA DO DIA',
           'questionsEntry.title' => 'Pergunta do dia',
           'questionsEntry.text' => 'Uma pergunta para os dois responderem.',
@@ -13972,9 +11763,6 @@ extension on Translations {
           'quickSlip.title' => 'O que te deixou feliz?',
           'quickSlip.titleHighlight' => 'feliz',
           'quickSlip.subtitle' => 'Uma linha basta. 30 segundos.',
-          'quickSlip.polarityLabel' => 'Gostei ou me incomodou',
-          'quickSlip.polarityLiked' => 'Gostei',
-          'quickSlip.polarityBothered' => 'Me incomodou',
           'quickSlip.hint' => 'Ex.: fez café antes de eu acordar',
           'quickSlip.textErrors.empty' => 'Escreva o slip primeiro',
           'quickSlip.textErrors.tooLong' => 'Este slip está muito longo',
@@ -13985,7 +11773,6 @@ extension on Translations {
           'quickSlip.categories.other' => '',
           'quickSlip.privacyNote' =>
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
-          'quickSlip.cardNote' => 'Entra no seu cartão semanal. Você pode tirar quando quiser.',
           'quickSlip.save' => 'Salvar',
           'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
@@ -13994,84 +11781,36 @@ extension on Translations {
           'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
           'quickSlip.saved.undo' => 'Desfazer',
           'quickSlip.saved.done' => 'Pronto',
-          'quickSlip.saved.annoyanceTitle' => 'Guardado',
-          'quickSlip.saved.annoyanceAdded' => 'Fica só com você e some sozinho em 14 dias.',
+          'quickSlip.errors.FREE_LIMIT_REACHED' =>
+            'Você chegou ao limite de slips do plano grátis.',
           'quickSlip.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'quickSlip.errors.other' =>
             'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
-          'quickSlip.annoyanceTitle' => 'O que te incomodou?',
-          'quickSlip.annoyanceTitleHighlight' => 'incomodou',
-          'quickSlip.annoyanceSubtitle' => 'Uma linha basta. Só você vê.',
-          'quickSlip.annoyanceHint' => 'Ex.: fiquei com a louça sozinha de novo',
-          'quickSlip.annoyanceNote' => 'Fica só com você e some sozinho em 14 dias. Nunca vai para o cartão. Só continua se você transformar em um pedido gentil.',
-          'quickSlip.gentleRequest' => 'Pedido gentil',
-          'quickSlip.keep' => 'Guardar',
-          'quickSlip.addDetails' => 'Adicionar detalhes',
-          'quizzes.title' => 'Quizzes',
-          'quizzes.headline' => 'Se conhecer',
-          'quizzes.headlineHighlight' => 'melhor',
-          'quizzes.intro' =>
-            'Dois quizzes curtos, de 6 perguntas. Você vê o resultado primeiro e decide se mostra.',
-          'quizzes.entryTitle' => 'Quizzes',
-          'quizzes.entryText' => 'Se conhecer melhor',
-          'quizzes.lovedTitle' => 'Como eu me sinto amado',
-          'quizzes.fightTitle' => 'Como eu reajo numa briga',
-          'quizzes.questionCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '1 pergunta',
-                  other: '${count} perguntas',
-                ),
-          'quizzes.minutes' => ({required Object minutes}) => '${minutes} min',
-          'quizzes.meta' => ({
-            required Object questions,
-            required Object minutes,
-          }) => '${questions} · ${minutes}',
-          'quizzes.start' => 'Começar',
-          'quizzes.lastDone' => ({required Object date}) => 'Feito em ${date}',
-          'quizzes.monthsShort.0' => 'jan',
-          'quizzes.monthsShort.1' => 'fev',
-          'quizzes.monthsShort.2' => 'mar',
-          'quizzes.monthsShort.3' => 'abr',
-          'quizzes.monthsShort.4' => 'mai',
-          'quizzes.monthsShort.5' => 'jun',
-          'quizzes.monthsShort.6' => 'jul',
-          'quizzes.monthsShort.7' => 'ago',
-          'quizzes.monthsShort.8' => 'set',
-          'quizzes.monthsShort.9' => 'out',
-          'quizzes.monthsShort.10' => 'nov',
-          'quizzes.monthsShort.11' => 'dez',
-          'quizzes.note' =>
-            'Só você vê o resultado, até você tocar em Mostrar. Não é teste psicológico.',
-          'quizzes.loadErrorTitle' => 'Não deu para abrir os quizzes',
-          'quizzes.loadErrorText' => 'Nada foi perdido. Tente de novo.',
           'received.kinds.repair' => 'Cartão de reparo',
           'received.kinds.need' => 'Preciso de…',
           'received.kinds.missUs' => 'Saudade',
           'received.kinds.hug' => 'Um abraço',
           'received.kinds.distance' => 'Um pouco de distância',
+          'received.kinds.heavyDay' => 'Um dia pesado',
           'received.kinds.goodNews' => 'Boa notícia',
           'received.kinds.other' => '',
           'received.bodies.missUs' => 'Seu par está com saudade de vocês.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.bodies.hug' => 'Seu par quer um abraço.',
           'received.bodies.distance' => 'Seu par precisa de um pouco de distância.',
+          'received.bodies.heavyDay' => 'Seu par está tendo um dia pesado.',
           'received.bodies.goodNews' => 'Seu par tem uma boa notícia.',
           'received.bodies.other' => '',
           'received.fromPartner' => 'Do seu par',
           'received.privateFirst' => 'Sua resposta é privada primeiro. Não tem certo nem errado.',
-          'received.responses.here' => 'Estou aqui',
-          'received.responses.talk' => 'Vamos conversar',
+          'received.responses.talk' => 'Sim, vamos conversar',
           'received.responses.moreTime' => 'Preciso de mais um tempo',
-          'received.responses.willDo' => 'Vou fazer',
-          'received.responses.notNow' => 'Agora não',
-          'received.responses.plan' => 'Planejar algo',
           'received.responses.later' => 'Respondo depois',
-          'received.responses.heart' => 'Mandar um coração',
           'received.responses.other' => '',
           'received.seen' => 'Entendi',
-          'received.answered' => ({required Object response}) => 'Você respondeu: ${response}',
-          'received.next' => 'Próxima mensagem',
+          'received.suggestPlan' => 'Sugerir um plano pequeno',
           'received.doneTitle' => 'Tudo certo',
           'received.doneText' => 'Que bom que você leu com calma.',
           'received.emptyTitle' => 'Nada novo',
@@ -14087,6 +11826,7 @@ extension on Translations {
           'relationshipChanged.subtitle' => 'Conte com calma. Isso só muda o que o app mostra.',
           'relationshipChanged.optionEnded' => 'Terminamos',
           'relationshipChanged.optionBereaved' => 'Perdi a pessoa',
+          'relationshipChanged.optionOnBreak' => 'Um tempo',
           'relationshipChanged.optionTogether' => 'Está tudo bem',
           'relationshipChanged.continueLabel' => 'Continuar',
           'relationshipChanged.saved' => 'Salvo',
@@ -14100,6 +11840,7 @@ extension on Translations {
           'relationshipSettings.phases.livingTogether' => 'Moramos juntos',
           'relationshipSettings.phases.engaged' => 'Noivos',
           'relationshipSettings.phases.married' => 'Casados',
+          'relationshipSettings.phases.withKids' => 'Com filhos',
           'relationshipSettings.phases.longDistance' => 'Namoro à distância',
           'relationshipSettings.phases.restarting' => 'Recomeçando',
           'relationshipSettings.dateLabel' => 'Juntos desde',
@@ -14139,7 +11880,7 @@ extension on Translations {
           'reminders.dailyIdea' => 'Uma ideia pequena para hoje.',
           'reminders.dates' => 'Uma data está chegando.',
           'reminders.weeklyCard' => 'Seu cartão está pronto.',
-          'reminders.generic' => 'Abra o app para ver.',
+          'reminders.discreet' => 'Abra o app para ver.',
           'repair.calm.title' => 'Um momento para respirar',
           'repair.calm.titleHighlight' => 'respirar',
           'repair.calm.cadence' =>
@@ -14147,6 +11888,7 @@ extension on Translations {
           'repair.calm.text' => 'Não tem pressa e não tem tempo contado. Saia quando quiser.',
           'repair.calm.ready' => 'Estou mais calmo(a)',
           'repair.calm.leave' => 'Sair',
+          'repair.calm.askPause' => 'Pedir um tempo ao meu par',
           'repair.softStart.title' => 'Comece com suavidade',
           'repair.softStart.titleHighlight' => 'suavidade',
           'repair.softStart.subtitle' => 'Um modelo sem culpa para abrir a conversa.',
@@ -14220,12 +11962,6 @@ extension on Translations {
             'Não deu para salvar agora. Suas respostas continuam aqui.',
           'repair.guided.loadErrorTitle' => 'Não deu para abrir',
           'repair.guided.loadErrorText' => 'Nada se perdeu. Tente de novo.',
-          'repair.guided.done.title' => 'Reparo concluído',
-          'repair.guided.done.highlight' => 'concluído',
-          'repair.guided.done.text' =>
-            'Cuidar disso já é um passo. Se quiser, guarde o que você aprendeu, só para você.',
-          'repair.guided.done.learn' => 'Guardar o que aprendi',
-          'repair.guided.done.close' => 'Agora não',
           'repair.learning.title' => 'O que você aprendeu?',
           'repair.learning.titleHighlight' => 'aprendeu',
           'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
@@ -14250,17 +11986,6 @@ extension on Translations {
           'repair.next.pause' => 'Respirar um pouco',
           'repair.next.guided' => 'Começar o reparo guiado',
           'repair.next.quick' => 'Enviar um reparo',
-          'repair.sos.title' => 'Estamos brigando',
-          'repair.sos.titleHighlight' => 'brigando',
-          'repair.sos.subtitle' => 'Escolha por onde começar. Nada é enviado sem você confirmar.',
-          'repair.sos.softStartTitle' => 'Começo suave',
-          'repair.sos.softStartText' => 'Um modelo para abrir a conversa sem culpa',
-          'repair.sos.repairTitle' => 'Reparar',
-          'repair.sos.repairText' => 'Ver como está e escolher um passo',
-          'repair.sos.talkTitle' => 'Preparar o que dizer',
-          'repair.sos.talkText' => 'Organize as ideias antes de falar',
-          'repair.sos.note' => 'Funciona sem internet e fica só com você.',
-          'repair.sos.action' => 'Estamos brigando',
           'rituals.title' => 'Rituais',
           'rituals.subtitle' =>
             'Pequenos hábitos que vocês querem proteger. Sem sequências, sem cobrança.',
@@ -14284,9 +12009,6 @@ extension on Translations {
           'rituals.weekdays.2' => 'terça',
           'rituals.weekdays.3' => 'quarta',
           'rituals.weekdays.4' => 'quinta',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.weekdays.5' => 'sexta',
           'rituals.weekdays.6' => 'sábado',
           'rituals.createTitle' => 'Novo ritual',
@@ -14308,16 +12030,20 @@ extension on Translations {
           'rituals.errors.NOT_FOUND' => 'Esse ritual não está mais aqui.',
           'rituals.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'rituals.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          'rituals.errors.INVALID_PLANNER' => 'Quem planeja precisa ser uma das duas pessoas.',
-          'rituals.plannerLabel' => 'Quem planeja',
-          'rituals.plannerNobody' => 'Ninguém em especial',
-          'rituals.plannerMe' => 'Eu',
-          'rituals.plannerPartner' => 'A outra pessoa',
+          'safeMode.title' => 'Modo seguro',
+          'safeMode.text' => 'Para quando o app precisa ficar discreto neste celular.',
+          'safeMode.toggle' => 'Esconder o app',
+          'safeMode.toggleText' => 'Quando você troca de app, a tela fica em branco.',
+          'safeMode.localOnly' => 'Isto fica só neste celular. Nada é enviado nem registrado.',
+          'safeMode.quickExit' => 'Sair agora',
+          'safety.entry' => 'Segurança e apoio',
           'sessionExpired.title' => 'Sua sessão terminou',
           'sessionExpired.highlight' => 'terminou',
           'sessionExpired.text' => 'Entre de novo para continuar. Seus dados estão seguros.',
           'sessionExpired.action' => 'Entrar',
           'settingsHome.title' => 'Configurações',
+          'settingsHome.safety' => 'Segurança e apoio',
+          'settingsHome.safetyStatus' => 'Modo seguro',
           'settingsHome.profile' => 'Perfil',
           'settingsHome.relationship' => 'Relacionamento',
           'settingsHome.connected' => 'Vocês estão conectados',
@@ -14329,7 +12055,10 @@ extension on Translations {
           'settingsHome.plan' => 'Plano',
           'settingsHome.planFree' => 'Grátis',
           'settingsHome.planPlus' => 'Plus',
-          'settingsHome.spice' => 'Tempero',
+          'settingsHome.spice' => 'Momentos a dois',
+          'settingsHome.discreet' => 'Modo discreto',
+          'settingsHome.discreetOn' => 'Ligado',
+          'settingsHome.discreetOff' => 'Desligado',
           'settingsHome.privacy' => 'Privacidade e segurança',
           'settingsHome.privacyStatus' => 'Quem vê o quê',
           'settingsHome.signOut' => 'Sair',
@@ -14343,80 +12072,13 @@ extension on Translations {
           'settingsHome.helpStatus' => 'Perguntas e contato',
           'settingsHome.appPreferences' => 'Preferências do app',
           'settingsHome.appPreferencesStatus' => 'Aparência, texto e idioma',
-          'settingsHome.theme' => 'Cor do app',
-          'settingsHome.themeTitle' => 'Qual cor combina com você?',
-          'settingsHome.themeHighlight' => 'cor',
-          'settingsHome.themeSubtitle' =>
-            'Vale para o app e para os widgets. Os recursos são os mesmos.',
+          'settingsHome.theme' => 'Tema',
           'settingsHome.weeklyCard' => 'Cartão semanal',
           'settingsHome.language' => 'Idioma',
           'settingsHome.accountSection' => 'Conta',
           'settingsHome.preferencesSection' => 'Preferências',
           'settingsHome.privacySection' => 'Privacidade e ajuda',
           'settingsHome.connectedWith' => ({required Object name}) => 'Conectado com ${name}',
-          'share.entryTitle' => 'Compartilhar imagem',
-          'share.entrySubtitleToday' => 'O tempo de vocês e a lua do dia em que tudo começou.',
-          'share.entrySubtitleMemories' =>
-            'Uma linha do tempo com os momentos que vocês guardaram.',
-          'share.entrySubtitleCard' => 'Uma frase do cartão que chegou para você.',
-          'share.sheetTitle' => 'Compartilhar imagem',
-          'share.sheetSubtitle' =>
-            'A imagem é feita no seu aparelho e só sai daqui quando você compartilhar.',
-          'share.shareAction' => 'Compartilhar',
-          'share.cardLabels.counter' => 'Nosso tempo',
-          'share.cardLabels.moon' => 'A lua do nosso dia',
-          'share.cardLabels.timeline' => 'Nossa linha do tempo',
-          'share.cardLabels.quote' => 'De um cartão',
-          'share.cardLabels.other' => '',
-          'share.counterEyebrow' => 'NOSSO TEMPO',
-          'share.counterDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'dia juntos',
-                  other: 'dias juntos',
-                ),
-          'share.counterSince' => ({required Object date}) => 'Desde ${date}',
-          'share.moonEyebrow' => 'A LUA DO NOSSO DIA',
-          'share.moonSupport' => 'Foi assim que o céu estava quando tudo começou.',
-          'share.timelineEyebrow' => 'NOSSA LINHA DO TEMPO',
-          'share.timelineTitle' => 'Momentos que a gente guardou',
-          'share.quoteEyebrow' => 'DE UM CARTÃO',
-          'share.quoteText' => ({required Object quote}) => '“${quote}”',
-          'share.quoteFromName' => ({required Object name}) => '— ${name}',
-          'share.quoteDate' => ({required Object date}) => 'Cartão de ${date}',
-          'share.dateLine' => ({
-            required Object day,
-            required Object month,
-            required Object year,
-          }) => '${day} de ${month} de ${year}',
-          'share.dateShort' => ({
-            required Object day,
-            required Object month,
-          }) => '${day} de ${month}',
-          'share.monthsLong.0' => 'janeiro',
-          'share.monthsLong.1' => 'fevereiro',
-          'share.monthsLong.2' => 'março',
-          'share.monthsLong.3' => 'abril',
-          'share.monthsLong.4' => 'maio',
-          'share.monthsLong.5' => 'junho',
-          'share.monthsLong.6' => 'julho',
-          'share.monthsLong.7' => 'agosto',
-          'share.monthsLong.8' => 'setembro',
-          'share.monthsLong.9' => 'outubro',
-          'share.monthsLong.10' => 'novembro',
-          'share.monthsLong.11' => 'dezembro',
-          'share.phases.newMoon' => 'Lua nova',
-          'share.phases.waxingCrescent' => 'Lua crescente',
-          'share.phases.firstQuarter' => 'Quarto crescente',
-          'share.phases.waxingGibbous' => 'Crescente gibosa',
-          'share.phases.fullMoon' => 'Lua cheia',
-          'share.phases.waningGibbous' => 'Minguante gibosa',
-          'share.phases.lastQuarter' => 'Quarto minguante',
-          'share.phases.waningCrescent' => 'Lua minguante',
-          'share.phases.other' => '',
-          'share.productMark' => 'Mingo',
-          'share.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -14446,66 +12108,43 @@ extension on Translations {
           'slipDetail.kinds.ifThen' => 'Se… então',
           'slipDetail.kinds.invisible' => 'Invisível',
           'slipDetail.kinds.other' => '',
+          'slipDetail.private' => 'Só você vê este slip.',
+          'slipDetail.archived' => 'Arquivado',
           'slipDetail.feeling' => 'Como você se sentiu',
           'slipDetail.plan' => 'Então eu…',
           'slipDetail.jarTitle' => 'Guardar no potinho',
           'slipDetail.jarText' => 'Para abrir em um dia ruim. Só você vê.',
+          'slipDetail.cardTitle' => 'Quem vê isto',
+          'slipDetail.cardOff' => 'Só eu',
+          'slipDetail.cardOffText' => 'Fica na sua semana e não entra no cartão.',
+          'slipDetail.cardOn' => 'Pode entrar no cartão',
+          'slipDetail.cardOnText' => 'No domingo você escolhe se ele vai.',
+          'slipDetail.cardInvisible' => 'Slips invisíveis nunca entram em um cartão.',
+          'slipDetail.previewTitle' => 'O que seu par leria',
+          'slipDetail.previewText' => 'Se este slip entrar no cartão, é este texto que aparece.',
           'slipDetail.sentNote' => 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.',
           'slipDetail.draftBodyErrors.empty' => 'Escreva o slip primeiro',
           'slipDetail.draftBodyErrors.tooLong' => 'Este slip está muito longo',
           'slipDetail.edit' => 'Editar',
           'slipDetail.editSave' => 'Salvar',
           'slipDetail.editCancel' => 'Cancelar',
+          'slipDetail.archive' => 'Arquivar',
+          'slipDetail.restore' => 'Restaurar',
           'slipDetail.delete' => 'Apagar',
           'slipDetail.deleteTitle' => 'Apagar este slip?',
           'slipDetail.deleteText' => 'Será removido da sua semana e da linha do tempo.',
           'slipDetail.deleteConfirm' => 'Apagar',
           'slipDetail.saved' => 'Salvo',
+          'slipDetail.archivedToast' => 'Arquivado',
           'slipDetail.deleted' => 'Slip apagado',
           'slipDetail.notFoundTitle' => 'Este slip não existe mais',
           'slipDetail.notFoundText' => 'Ele pode ter sido apagado.',
+          'slipDetail.errorTitle' => 'Não deu para abrir este slip',
+          'slipDetail.errorText' => 'Ele continua salvo. Tente de novo.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
           'slipDetail.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'slipDetail.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'slipDetail.discardTitle' => 'Descartar este slip?',
-          'slipDetail.weekdaysShort.0' => 'Seg',
-          'slipDetail.weekdaysShort.1' => 'Ter',
-          'slipDetail.weekdaysShort.2' => 'Qua',
-          'slipDetail.weekdaysShort.3' => 'Qui',
-          'slipDetail.weekdaysShort.4' => 'Sex',
-          'slipDetail.weekdaysShort.5' => 'Sáb',
-          'slipDetail.weekdaysShort.6' => 'Dom',
-          'slipDetail.factDate' => ({
-            required Object weekday,
-            required Object day,
-            required Object month,
-          }) => '${weekday} ${day} de ${month}',
-          'slipDetail.factDateLabel' => 'Data',
-          'slipDetail.factType' => 'Tipo',
-          'slipDetail.factVisibility' => 'Visibilidade',
-          'slipDetail.factInCard' => 'Incluído no cartão',
-          'slipDetail.visibilityPrivate' => 'Privado',
-          'slipDetail.visibilityCard' => 'No cartão semanal',
-          'slipDetail.visibilitySent' => 'Enviado',
-          'slipDetail.yes' => 'Sim',
-          'slipDetail.no' => 'Não',
-          'slipDetail.categories.said' => 'Disse algo',
-          'slipDetail.categories.did' => 'Fez algo',
-          'slipDetail.categories.noticed' => 'Me notou',
-          'slipDetail.categories.helped' => 'Me ajudou',
-          'slipDetail.categories.other' => '',
-          'slipDetail.visibility.title' => 'Quem vê este slip?',
-          'slipDetail.visibility.subtitle' => 'O padrão é privado.',
-          'slipDetail.visibility.onlyMe' => 'Só eu',
-          'slipDetail.visibility.onlyMeText' => 'Fica na sua semana',
-          'slipDetail.visibility.weeklyCard' => 'Colocar no meu cartão semanal',
-          'slipDetail.visibility.sendNow' => 'Enviar agora',
-          'slipDetail.visibility.done' => 'Pronto',
-          'slipDetail.visibility.sentToast' => 'Slip enviado',
-          'slipDetail.visibility.heldToast' =>
-            'O texto parece duro e o cartão ficou retido. Reescreva e tente de novo.',
-          'slipDetail.visibility.notSentToast' =>
-            'Não foi enviado. Confira se vocês estão conectados.',
           'slipKind.switcherTitle' => 'Outras formas de registrar',
           'slipKind.quickEntry' => 'Rápido',
           'slipKind.needEntry' => 'Preciso de…',
@@ -14528,17 +12167,17 @@ extension on Translations {
           'slipKind.ifThen.thenHint' => 'Ex.: peço um tempo de 10 minutos',
           'slipKind.invisible.title' => 'Coisas que ninguém percebe',
           'slipKind.invisible.titleHighlight' => 'ninguém percebe',
-          'slipKind.invisible.subtitle' => 'Dê nome ao trabalho que ninguém vê.',
+          'slipKind.invisible.subtitle' => 'Só para você. Isto nunca vai para o cartão.',
           'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
           'slipKind.invisible.areaLabel' => 'Que tipo de trabalho?',
           'slipKind.invisible.private' => 'Fica só com você, não entra em nenhum cartão.',
-          'slipKind.workAreas.planning' => 'Planejamento',
-          'slipKind.workAreas.dates' => 'Lembrar de datas',
+          'slipKind.workAreas.planning' => 'Planejar',
+          'slipKind.workAreas.dates' => 'Datas',
           'slipKind.workAreas.kitchen' => 'Cozinha',
           'slipKind.workAreas.cleaning' => 'Limpeza',
-          'slipKind.workAreas.kids' => 'Logística dos filhos',
-          'slipKind.workAreas.emotional' => 'Apoio emocional',
-          'slipKind.workAreas.finances' => 'Finanças da casa',
+          'slipKind.workAreas.kids' => 'Filhos',
+          'slipKind.workAreas.emotional' => 'Emocional',
+          'slipKind.workAreas.finances' => 'Finanças',
           'slipKind.workAreas.other' => 'Outro',
           'slipKind.textErrors.empty' => 'Escreva o slip primeiro',
           'slipKind.textErrors.tooLong' => 'Este slip está muito longo',
@@ -14551,16 +12190,20 @@ extension on Translations {
           'slipKind.saved.added' => 'Registrado.',
           'slipKind.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
           'slipKind.saved.done' => 'Pronto',
+          'slipKind.errors.FREE_LIMIT_REACHED' => 'Você chegou ao limite de slips do plano grátis.',
           'slipKind.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'slipKind.errors.other' =>
             'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'Esta semana',
           'slipsList.scopeAll' => 'Todos',
+          'slipsList.scopeArchived' => 'Arquivados',
           'slipsList.search' => 'Buscar',
+          'slipsList.searchClose' => 'Fechar busca',
           'slipsList.searchHint' => 'Buscar nos seus slips',
           'slipsList.searchEmptyTitle' => 'Nada encontrado',
           'slipsList.searchEmptyText' => 'Tente outra palavra.',
+          'slipsList.clearSearch' => 'Limpar busca',
           'slipsList.thisWeek' => 'Esta semana',
           'slipsList.lastWeek' => 'Semana passada',
           'slipsList.weekRange' => ({
@@ -14604,142 +12247,24 @@ extension on Translations {
           'slipsList.kinds.ifThen' => 'Se… então',
           'slipsList.kinds.invisible' => 'Invisível',
           'slipsList.kinds.other' => '',
+          'slipsList.pastCards' => 'Cartões anteriores',
           'slipsList.emptyTitle' => 'Nada ainda',
           'slipsList.emptyText' => 'Um slip é uma coisa boa, em uma linha.',
           'slipsList.emptyAction' => 'Adicionar um slip',
-          'slipsList.privateEmptyTitle' => 'Nada privado por aqui',
-          'slipsList.privateEmptyText' => 'Os slips que você deixa fora do cartão aparecem aqui.',
-          'slipsList.privateMarker' => 'Slip privado',
-          'slipsList.scopePrivate' => 'Privado',
-          'slipsList.freeNote' => 'Slips são sempre livres.',
-          'slipsList.filterThisMonth' => 'Este mês',
-          'slipsList.filterInCard' => 'Em um cartão',
-          'slipsList.filterInvisible' => 'Trabalho invisível',
-          'slipsList.searchFiltersEmptyText' => 'Ajuste a busca ou os filtros.',
-          'spice.title' => 'Tempero',
-          'spice.introTitle' => 'Tempero, só para vocês dois',
-          'spice.introHighlight' => 'vocês dois',
-          'spice.introText' =>
-            'Um espaço para adultos, opcional, com cartas e desejos para o casal. Só 18+.',
-          'spice.partnerWantsText' =>
-            'A outra pessoa quis ligar. Só começa quando você também ligar.',
-          'spice.promises.0' => 'Só vale quando vocês dois ligam.',
-          'spice.promises.1' => 'Qualquer um desliga a qualquer momento, e tudo some para os dois.',
-          'spice.promises.2' => 'Suas respostas são só suas. Só aparece o que os dois querem.',
-          'spice.promises.3' => 'Um "hoje não" nunca é explicado nem avisado.',
-          'spice.adultLabel' => 'Tenho 18 anos ou mais',
-          'spice.adultError' => 'Confirme para continuar.',
+          'slipsList.errorTitle' => 'Não deu para carregar seus slips',
+          'slipsList.errorText' => 'Eles continuam salvos. Tente de novo.',
+          'spice.title' => 'Momentos a dois',
+          'spice.offText' => 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.',
           'spice.turnOn' => 'Ligar',
           'spice.notNow' => 'Agora não',
+          'spice.waitingText' => 'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.',
+          'spice.readyText' => 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.',
+          'spice.drawCard' => 'Tirar uma carta',
           'spice.turnOff' => 'Desligar',
-          'spice.waitingTitle' => 'Esperando a outra pessoa',
-          'spice.waitingText' =>
-            'Nada foi avisado. Quando ela também ligar, o Tempero abre para vocês dois.',
-          'spice.soloTitle' => 'O Tempero é a dois',
-          'spice.soloText' => 'Precisa de duas pessoas conectadas. Quando a outra pessoa entrar, ele fica disponível.',
-          'spice.soloAction' => 'Voltar',
-          'spice.home.subtitle' => 'Tudo aqui é opcional e fica entre vocês.',
-          'spice.home.cards' => 'Cartas da noite',
-          'spice.home.cardsText' => 'Uma carta de cada vez',
-          'spice.home.desires' => 'Desejos',
-          'spice.home.desiresText' => 'Responda em segredo e veja o que os dois querem',
-          'spice.home.challenge' => 'Desafio da semana',
-          'spice.home.challengeText' => 'Um convite, sem pontos nem prazo',
-          'spice.home.settings' => 'Configurações',
-          'spice.home.settingsText' => 'Seu limite e os avisos',
-          'spice.cards.title' => 'Cartas da noite',
-          'spice.cards.errors.FREE_LIMIT_REACHED' =>
-            'Você usou as cartas grátis desta semana. O Plus libera mais.',
-          'spice.cards.errors.PLUS_REQUIRED' => 'Isso faz parte do Plus.',
-          'spice.cards.errors.ADULT_REQUIRED' => 'Confirme que você tem 18 anos ou mais.',
-          'spice.cards.errors.SPICE_NOT_ON' => 'O Tempero não está ligado para os dois.',
-          'spice.cards.errors.SWAP_LIMIT' => 'Você já trocou o desafio três vezes esta semana.',
-          'spice.cards.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'spice.cards.errors.other' => 'Não deu para concluir agora. Tente de novo.',
-          'spice.cards.answeredTitle' => 'Combinado',
-          'spice.cards.answeredText' => 'Quando quiserem, tem outra carta.',
-          'spice.cards.next' => 'Outra carta',
-          'spice.cards.emptyTitle' => 'Acabaram as cartas',
-          'spice.cards.emptyText' => 'Por enquanto não há mais cartas neste nível.',
-          'spice.cards.mineHint' =>
-            'Você propôs esta carta. A outra pessoa responde quando quiser.',
-          'spice.cards.theirsHint' => 'A outra pessoa propôs esta carta. Você escolhe.',
-          'spice.cards.refresh' => 'Ver se já respondeu',
-          'spice.cards.accept' => 'Quero',
-          'spice.cards.notToday' => 'Hoje não',
-          'spice.desires.title' => 'Desejos',
-          'spice.desires.errors.FREE_LIMIT_REACHED' =>
-            'Você usou as cartas grátis desta semana. O Plus libera mais.',
-          'spice.desires.errors.PLUS_REQUIRED' => 'Isso faz parte do Plus.',
-          'spice.desires.errors.ADULT_REQUIRED' => 'Confirme que você tem 18 anos ou mais.',
-          'spice.desires.errors.SPICE_NOT_ON' => 'O Tempero não está ligado para os dois.',
-          'spice.desires.errors.SWAP_LIMIT' => 'Você já trocou o desafio três vezes esta semana.',
-          'spice.desires.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'spice.desires.errors.other' => 'Não deu para concluir agora. Tente de novo.',
-          'spice.desires.subtitle' =>
-            'Só você vê o que responde. Se os dois quiserem, aparece em "Os dois querem".',
-          'spice.desires.emptyTitle' => 'Nada por aqui ainda',
-          'spice.desires.emptyText' => 'Quando houver desejos neste nível, eles aparecem aqui.',
-          'spice.desires.matchesTitle' => 'Os dois querem',
-          'spice.desires.matchesEmpty' => 'Ainda nada em comum. Sem pressa.',
-          'spice.desires.answers.want' => 'Quero',
-          'spice.desires.answers.maybe' => 'Talvez',
-          'spice.desires.answers.notToday' => 'Hoje não',
-          'spice.desires.answers.other' => '',
-          'spice.challenge.title' => 'Desafio da semana',
-          'spice.challenge.errors.FREE_LIMIT_REACHED' =>
-            'Você usou as cartas grátis desta semana. O Plus libera mais.',
-          'spice.challenge.errors.PLUS_REQUIRED' => 'Isso faz parte do Plus.',
-          'spice.challenge.errors.ADULT_REQUIRED' => 'Confirme que você tem 18 anos ou mais.',
-          'spice.challenge.errors.SPICE_NOT_ON' => 'O Tempero não está ligado para os dois.',
-          'spice.challenge.errors.SWAP_LIMIT' => 'Você já trocou o desafio três vezes esta semana.',
-          'spice.challenge.errors.RATE_LIMITED' =>
-            'Muitas tentativas seguidas. Espere um instante.',
-          'spice.challenge.errors.other' => 'Não deu para concluir agora. Tente de novo.',
-          'spice.challenge.emptyTitle' => 'Sem desafio agora',
-          'spice.challenge.emptyText' => 'Volte na semana que vem.',
-          'spice.challenge.subtitle' => 'Um convite para vocês. Sem pontos e sem prazo.',
-          'spice.challenge.statusDone' => 'Você fez. Obrigado por cuidar disso.',
-          'spice.challenge.statusBothAccepted' => 'Os dois toparam.',
-          'spice.challenge.statusWaitingPartner' => 'Você topou. Esperando a outra pessoa.',
-          'spice.challenge.statusPartnerAccepted' => 'A outra pessoa topou.',
-          'spice.challenge.statusNew' => 'Ninguém respondeu ainda.',
-          'spice.challenge.accept' => 'Topo',
-          'spice.challenge.done' => 'Já fizemos',
-          'spice.challenge.swap' => 'Trocar o desafio',
-          'spice.settingsPage.title' => 'Configurações do Tempero',
-          'spice.settingsPage.errors.FREE_LIMIT_REACHED' =>
-            'Você usou as cartas grátis desta semana. O Plus libera mais.',
-          'spice.settingsPage.errors.PLUS_REQUIRED' => 'Isso faz parte do Plus.',
-          'spice.settingsPage.errors.ADULT_REQUIRED' => 'Confirme que você tem 18 anos ou mais.',
-          'spice.settingsPage.errors.SPICE_NOT_ON' => 'O Tempero não está ligado para os dois.',
-          'spice.settingsPage.errors.SWAP_LIMIT' =>
-            'Você já trocou o desafio três vezes esta semana.',
-          'spice.settingsPage.errors.RATE_LIMITED' =>
-            'Muitas tentativas seguidas. Espere um instante.',
-          'spice.settingsPage.errors.other' => 'Não deu para concluir agora. Tente de novo.',
-          'spice.settingsPage.levelTitle' => 'Até onde ir',
-          'spice.settingsPage.levels.soft' => 'Suave',
-          'spice.settingsPage.levels.warm' => 'Quente',
-          'spice.settingsPage.levels.hot' => 'Picante',
-          'spice.settingsPage.levels.other' => '',
-          'spice.settingsPage.levelNote' =>
-            'Vale o mais suave dos dois limites. A outra pessoa não vê o seu.',
-          'spice.settingsPage.notifications' => 'Avisos do Tempero',
-          'spice.settingsPage.notificationsText' => 'Um aviso curto, sem dizer nada do conteúdo.',
-          'spice.settingsPage.turnOff' => 'Desligar o Tempero',
-          'spice.settingsPage.turnOffTitle' => 'Desligar o Tempero?',
-          'spice.settingsPage.turnOffText' =>
-            'Desliga para vocês dois e apaga respostas, cartas e desafios. Não dá para desfazer.',
-          'spice.settingsPage.turnOffConfirm' => 'Desligar',
-          'spice.errors.FREE_LIMIT_REACHED' =>
-            'Você usou as cartas grátis desta semana. O Plus libera mais.',
-          'spice.errors.PLUS_REQUIRED' => 'Isso faz parte do Plus.',
-          'spice.errors.ADULT_REQUIRED' => 'Confirme que você tem 18 anos ou mais.',
-          'spice.errors.SPICE_NOT_ON' => 'O Tempero não está ligado para os dois.',
-          'spice.errors.SWAP_LIMIT' => 'Você já trocou o desafio três vezes esta semana.',
+          'spice.errorTitle' => 'Não deu para carregar',
+          'spice.errorText' => 'Tente de novo em instantes.',
           'spice.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'spice.errors.other' => 'Não deu para concluir agora. Tente de novo.',
+          'spice.errors.other' => 'Não deu para mudar agora. Tente de novo.',
           'story.title' => 'Imagem para compartilhar',
           'story.privacyNote' => 'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.',
           'story.days' => 'dias',
@@ -14761,6 +12286,9 @@ extension on Translations {
           'sundayCard.cancel' => 'Cancelar',
           'sundayCard.noteLabel' => 'Mensagem final',
           'sundayCard.noteHint' => 'Obrigada por essa semana.',
+          'sundayCard.moveUp' => 'Subir',
+          'sundayCard.moveDown' => 'Descer',
+          'sundayCard.remove' => 'Tirar do cartão',
           'sundayCard.emptyTitle' => 'Semana sem slips',
           'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
           'sundayCard.emptyAction' => 'Anotar um slip',
@@ -14796,25 +12324,6 @@ extension on Translations {
           'sundayCard.sent.text' => ({required Object name}) => 'O cartão foi para ${name}.',
           'sundayCard.sent.textNoName' => 'O cartão foi para sua pessoa.',
           'sundayCard.sent.done' => 'Pronto',
-          'sundayCard.heldByRule.title' => 'Vale reler antes de enviar',
-          'sundayCard.heldByRule.titleHighlight' => 'reler',
-          'sundayCard.heldByRule.reasons.absolute' =>
-            'Palavras como “sempre” e “nunca” podem soar como acusação.',
-          'sundayCard.heldByRule.reasons.insult' => 'Alguma palavra do cartão pode ferir.',
-          'sundayCard.heldByRule.reasons.blame' => 'O texto soa como culpa em vez de gratidão.',
-          'sundayCard.heldByRule.reasons.contempt' => 'O texto pode soar como desprezo.',
-          'sundayCard.heldByRule.reasons.other' => 'O texto pode soar mais duro do que você quer.',
-          'sundayCard.heldByRule.reassurance' => 'Nada foi enviado e nada se perde.',
-          'sundayCard.heldByRule.rewrite' => 'Reescrever',
-          'sundayCard.heldByRule.sendAnyway' => 'Enviar mesmo assim',
-          'sundayCard.dayTitle' => 'Dia',
-          'sundayCard.dayError' => 'Não deu para mudar o dia. O anterior foi mantido.',
-          'sundayCard.dayNote' => 'Vale para o próximo cartão.',
-          'sundayCard.editTitle' => 'Editar esta semana',
-          'sundayCard.editSubtitle' => 'Escolha o que entra',
-          'sundayCard.included' => 'Incluído',
-          'sundayCard.notIncluded' => 'Não incluído',
-          'sundayCard.preview' => 'Prévia',
           'tabs.today' => 'Hoje',
           'tabs.slips' => 'Slips',
           'tabs.together' => 'Juntos',
@@ -14858,6 +12367,9 @@ extension on Translations {
           'tabs.dateNightText' => 'Ideias para vocês dois, escolhidas juntos.',
           'tabs.partnerLabel' => 'SÓ PARA VOCÊ',
           'tabs.partnerTitle' => 'Sobre seu par',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.partnerText' => 'Notas privadas para lembrar do que ele ou ela gosta.',
           'tabs.chatLabel' => 'CONVERSAR',
           'tabs.chatTitle' => 'Mascote',
@@ -14873,9 +12385,6 @@ extension on Translations {
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
           'tabs.touchLabel' => 'TOQUE',
           'tabs.touchTitle' => 'Cartas de toque',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.touchText' => 'Neutras, para fazer ou pular.',
           'tabs.distanceLabel' => 'DISTÂNCIA',
           'tabs.distanceTitle' => 'Nossos dois relógios',
@@ -14907,6 +12416,8 @@ extension on Translations {
           'tabs.learningTitle' => 'O que você aprendeu',
           'tabs.learningText' => 'Anotações privadas que você pode apagar.',
           'tabs.fightStyleLabel' => 'SÓ PARA VOCÊ',
+          'tabs.fightStyleTitle' => 'Como eu reajo numa briga',
+          'tabs.fightStyleText' => 'Uma reflexão curta e privada sobre o seu jeito.',
           'tabs.guidesLabel' => 'CONVERSAS',
           'tabs.guidesTitle' => 'Conversas difíceis',
           'tabs.guidesText' => 'Um passo de cada vez, só para você.',
@@ -14918,6 +12429,7 @@ extension on Translations {
           'tabs.sectionTools' => 'Ferramentas',
           'tabs.sectionMore' => 'Mais',
           'tabs.sectionPrivate' => 'Só seu',
+          'tabs.sectionPatterns' => 'Meus padrões',
           'tabs.logisticsMeta' => '15 min · semanal',
           'tabs.ritualsMeta' => 'Pequenos hábitos',
           'tabs.dateNightMeta' => 'Para vocês dois',
@@ -14945,57 +12457,14 @@ extension on Translations {
           'tabs.badDayMeta' => 'Três coisas pequenas',
           'tabs.distanceMeta' => 'Fusos e reencontro',
           'tabs.diaryMeta' => 'Só seu',
-          'tabs.moodCalendarTitle' => 'Meus humores',
-          'tabs.moodCalendarMeta' => 'Seu mês, só você vê',
           'tabs.hardTalkMeta' => 'Notas antes de falar',
           'tabs.notesMeta' => 'Quando quiser',
           'tabs.learningMeta' => 'Anotações privadas',
           'tabs.partnerMeta' => 'Só para você',
+          'tabs.fightStyleMeta' => 'Como você reage',
+          'tabs.loveStyleMeta' => 'Como você se sente amado',
           'tabs.chatMeta' => 'Uma conversa calma',
           'tabs.listsNone' => 'Nenhuma ainda',
-          'tabs.needsBoth' => 'Precisa dos dois · Convidar',
-          'tabs.durationYearsMonths' => ({
-            required Object years,
-            required Object yearsUnit,
-            required Object months,
-            required Object monthsUnit,
-          }) => '${years} ${yearsUnit} e ${months} ${monthsUnit}',
-          'tabs.durationYears' => ({
-            required Object years,
-            required Object yearsUnit,
-          }) => '${years} ${yearsUnit}',
-          'tabs.durationMonths' => ({
-            required Object months,
-            required Object monthsUnit,
-          }) => '${months} ${monthsUnit}',
-          'tabs.durationDays' => ({
-            required Object days,
-            required Object daysUnit,
-          }) => '${days} ${daysUnit}',
-          'tabs.unitYear' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'ano',
-                  other: 'anos',
-                ),
-          'tabs.unitMonth' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'mês',
-                  other: 'meses',
-                ),
-          'tabs.unitDay' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'dia',
-                  other: 'dias',
-                ),
-          'tabs.chat' => 'Conversa',
-          'tabs.couple' => 'Nós',
-          'tabs.storyChip' => 'Nossa história',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
@@ -15026,19 +12495,10 @@ extension on Translations {
           'temperature.result.done' => 'Pronto',
           'temperature.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'temperature.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
-          'temperature.history.action' => 'Ver as últimas semanas',
-          'temperature.history.title' => 'Últimas 8 semanas',
-          'temperature.history.titleHighlight' => '8 semanas',
-          'temperature.history.subtitle' => 'Um ponto por semana, com a última resposta dela.',
-          'temperature.history.chartLabel' => 'Temperatura de cada semana, da mais calma à briga',
-          'temperature.history.emptyTitle' => 'Nada por aqui ainda',
-          'temperature.history.emptyText' =>
-            'Quando você responder como está entre vocês, as semanas aparecem aqui.',
-          'temperature.history.note' =>
-            'Só você vê isto. Nunca vira nota e nunca vai para a outra pessoa.',
           'timeInApp.title' => 'Um tempo no app',
           'timeInApp.titleHighlight' => 'app',
           'timeInApp.text' => 'Escondemos cartões e lembretes até você voltar.',
+          'timeInApp.pause' => 'Pausar o app',
           'timeInApp.cancel' => 'Cancelar',
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
@@ -15068,9 +12528,36 @@ extension on Translations {
           'today.months.9' => 'outubro',
           'today.months.10' => 'novembro',
           'today.months.11' => 'dezembro',
+          'today.togetherYears' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 ano',
+                  other: '${count} anos',
+                ),
+          'today.togetherMonths' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 mês',
+                  other: '${count} meses',
+                ),
+          'today.togetherDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 dia',
+                  other: '${count} dias',
+                ),
+          'today.togetherChipAction' => 'Abrir nossa história',
+          'today.togetherJoin' => ({
+            required Object first,
+            required Object second,
+          }) => '${first} e ${second}',
           'today.invitePerson' => 'Convidar sua pessoa',
           'today.pendingInviteTitle' => 'Convite enviado',
           'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
+          'today.pendingInviteAction' => 'Ver convite',
           'today.answer' => 'Responder',
           'today.slipsThisWeek' =>
             ({required num count}) =>
@@ -15081,9 +12568,17 @@ extension on Translations {
                   other: '${count} slips esta semana',
                 ),
           'today.weekHintEmpty' => 'sem pressa',
-          'today.weekHint' => 'cartão da semana',
+          'today.weekHint' => 'cartão no domingo',
           'today.forToday' => 'Para hoje',
           'today.ideaLabel' => 'Ideia do dia',
+          'today.slipsThisWeekPrivate' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  zero: 'Seus slips privados: nenhum esta semana',
+                  one: 'Seus slips privados: 1 esta semana',
+                  other: 'Seus slips privados: ${count} esta semana',
+                ),
           'today.sundayCardLabel' => 'Cartão de domingo',
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',
@@ -15100,6 +12595,8 @@ extension on Translations {
           'today.emptyWeekAction' => 'Anotar um slip',
           'today.nothingReceived' => 'Nenhum cartão novo. Sem pressa.',
           'today.cardReceived' => 'Você recebeu um cartão',
+          'today.cardReceivedAction' => 'Ver cartão',
+          'today.firstDayLabel' => 'Começando',
           'today.firstDayGreeting' => ({required Object name}) => 'Oi, ${name}',
           'today.firstDaySubtitle' => 'que bom ter você por aqui',
           'today.firstDayTag' => 'Bom começo',
@@ -15123,40 +12620,18 @@ extension on Translations {
           'today.errorTitle' => 'Não deu para carregar o Hoje',
           'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} te mandou um cartão',
-          'today.inviteCardSupport' =>
-            'Seu espaço já funciona. A outra pessoa entra quando quiser.',
-          'today.inviteCardAction' => 'Convidar',
-          'today.carouselCardTag' => 'Cartão',
-          'today.carouselCardSupport' => 'Abra para ver as coisas boas desta semana.',
-          'today.carouselCardAction' => 'Abrir',
-          'today.weekTag' => 'Sua semana',
-          'today.weekReadyTitle' => 'Sua semana está pronta',
-          'today.weekReadySupport' => 'Um resumo do que vocês fizeram.',
-          'today.weekReadySupportPrivate' => 'Um resumo só seu.',
-          'today.weekReadyAction' => 'Ver',
-          'today.haveCode' => 'Já tenho um código',
-          'today.partnerProfile' => 'Perfil do parceiro',
-          'today.privateWeekTitle' => 'Seus slips privados',
-          'today.privateWeekCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  zero: 'sem pressa',
-                  one: '1 nesta semana',
-                  other: '${count} nesta semana',
-                ),
-          'today.conflict.tag' => 'Agora',
-          'today.conflict.title' => 'Primeiro, cuidar de vocês',
-          'today.conflict.highlight' => 'cuidar',
-          'today.conflict.text' =>
-            'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.',
-          'today.conflict.repair' => 'Começar o reparo',
-          'today.conflict.chat' => 'Conversar para me organizar',
-          'today.questionTag' => 'Hoje',
-          'today.partnerMomentTag' => 'Para este momento',
-          'today.partnerMomentSupport' => 'Uma ideia pequena pode ajudar.',
-          'today.partnerMomentAction' => 'Ver ideias',
-          'today.offlineBand' => 'Sem conexão. Mostrando o que já estava no seu celular.',
+          'today.pauseOwnTitle' => 'Você pediu um tempo',
+          'today.pauseOwnText' => ({
+            required Object time,
+          }) => 'Você volta por volta das ${time}. Nada para fazer agora.',
+          'today.pausePartnerTitle' => 'Seu par pediu um tempo',
+          'today.pausePartnerText' => 'Sem pressa. Não tem nada para fazer agora.',
+          'today.signalReceived' => 'Seu par te mandou uma mensagem',
+          'today.signalReceivedAction' => 'Ver',
+          'today.pauseBack' => 'Voltar agora',
+          'today.pauseBackRepair' => 'Voltar e fazer um reparo',
+          'today.pauseWriteSlip' => 'Anotar um slip',
+          'today.weekHintToday' => 'cartão sai hoje, 18:00',
           'unpair.appBarTitle' => 'Desvincular',
           'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
           'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',
@@ -15188,61 +12663,6 @@ extension on Translations {
           'unpair.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'unpair.errors.STILL_PAIRED' => 'A relação ainda está ativa. Tente de novo.',
           'unpair.errors.other' => 'Não deu para desvincular agora. Tente de novo.',
-          'weeklyReview.title' => 'Sua semana',
-          'weeklyReview.titleHighlight' => 'semana',
-          'weeklyReview.range' => ({
-            required Object start,
-            required Object end,
-            required Object month,
-          }) => '${start} a ${end} de ${month}',
-          'weeklyReview.months.0' => 'janeiro',
-          'weeklyReview.months.1' => 'fevereiro',
-          'weeklyReview.months.2' => 'março',
-          'weeklyReview.months.3' => 'abril',
-          'weeklyReview.months.4' => 'maio',
-          'weeklyReview.months.5' => 'junho',
-          'weeklyReview.months.6' => 'julho',
-          'weeklyReview.months.7' => 'agosto',
-          'weeklyReview.months.8' => 'setembro',
-          'weeklyReview.months.9' => 'outubro',
-          'weeklyReview.months.10' => 'novembro',
-          'weeklyReview.months.11' => 'dezembro',
-          'weeklyReview.slips' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'slip',
-                  other: 'slips',
-                ),
-          'weeklyReview.moodDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  zero: 'dias de humor',
-                  one: 'dia de humor',
-                  other: 'dias de humor',
-                ),
-          'weeklyReview.rituals' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  zero: 'rituais feitos',
-                  one: 'ritual feito',
-                  other: 'rituais feitos',
-                ),
-          'weeklyReview.note' => 'Calculado pelo app, sem IA. Só você vê.',
-          'weeklyReview.talk' => 'Conversar sobre isso',
-          'weeklyReview.close' => 'Fechar',
-          'weeklyReview.quietTitle' => 'Semana tranquila',
-          'weeklyReview.quietHighlight' => 'tranquila',
-          'weeklyReview.quietCardTitle' => 'Sem pressa',
-          'weeklyReview.quietCardText' =>
-            'Anotar uma coisa boa leva 30 segundos. Começa quando você quiser.',
-          'weeklyReview.quietNote' => 'Sem comparação com outras semanas.',
-          'weeklyReview.writeSlip' => 'Anotar um slip',
-          'weeklyReview.errorTitle' => 'Não deu para abrir sua semana',
-          'weeklyReview.errors.NETWORK' => 'Sem conexão. Tente de novo.',
-          'weeklyReview.errors.other' => 'Algo deu errado. Tente de novo.',
           'welcome.headline' => 'Pequenas coisas boas, ditas em voz alta.',
           'welcome.headlineHighlight' => 'ditas em voz alta',
           'welcome.subtitle' => 'Um jeito leve de notar o que o outro faz de bom, a cada semana.',
@@ -15251,18 +12671,20 @@ extension on Translations {
           'welcome.debugSignIn' => 'Entrar (debug)',
           'widgets.settingsTitle' => 'Widgets',
           'widgets.settingsSubtitle' => 'Na tela inicial',
-          'widgets.togetherCategory' => 'TELA INICIAL',
-          'widgets.togetherTitle' => 'Widgets do Mingo',
-          'widgets.togetherSubtitle' => 'Lembretes calmos para você ou para vocês dois.',
+          'widgets.juntosCategory' => 'TELA INICIAL',
+          'widgets.juntosTitle' => 'Widgets do Mingo',
+          'widgets.juntosSubtitle' => 'Lembretes calmos para você ou para vocês dois.',
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Só meus',
           'widgets.segmentCouple' => 'Do casal',
+          'widgets.howToAddAction' => 'Como colocar na tela',
+          'widgets.configureAction' => 'Configurar',
           'widgets.ownSlipLabel' => 'ANOTAR SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Toque para anotar',
           'widgets.ownIdeaLabel' => 'IDEIA DO DIA',
           'widgets.ownIdeaDefault' => 'Deixe um bilhete hoje',
-          'widgets.ownIdeaHint' => 'Uma ideia para hoje.',
+          'widgets.ownIdeaHint' => 'Toque para abrir',
           'widgets.ownJarLabel' => 'POTINHO DO DIA RUIM',
           'widgets.ownJarTitle' => 'Abrir um slip guardado',
           'widgets.ownJarPrivacy' => 'Privado: só no seu aparelho',
@@ -15280,19 +12702,56 @@ extension on Translations {
           'widgets.couplePhotosLabel' => 'FOTOS DO CASAL · PLUS',
           'widgets.couplePhotosPrompt' => 'Escolha uma foto de vocês dois',
           'widgets.couplePhotosPlusHint' => 'Disponível no plano Plus',
+          'widgets.partnerNoteLabel' => 'RECADO DO PAR',
+          'widgets.partnerNoteEmpty' => 'Sem recado novo no momento',
+          'widgets.partnerNoteFrom' => ({required Object name}) => 'De ${name}',
+          'widgets.partnerNoteFromDefault' => 'Do seu par',
           'widgets.cardEncounterLabel' => 'CARTÃO E ENCONTRO',
           'widgets.cardStateReady' => 'Chegou um cartão · Toque para abrir',
           'widgets.cardStateSent' => 'Cartão enviado · Aguardando domingo',
+          'widgets.cardStatePause' => 'Pausa em andamento',
           'widgets.cardStateNone' => 'Cartão de domingo em preparação',
+          'widgets.discreetBanner' =>
+            'Modo discreto ativo: nomes, fotos e recados estão ocultos nos widgets.',
           'widgets.unpairedBanner' =>
             'Sem par conectado: os widgets do casal mostram o estado neutro.',
           'widgets.offlineBanner' =>
             'Mostrando o último dado salvo. Atualiza quando voltar a internet.',
+          'widgets.howToAddTitle' => 'Como adicionar',
+          'widgets.howToAddStep1Title' => 'Segure a tela inicial',
+          'widgets.howToAddStep1Body' => 'Toque e segure um espaço vazio até os ícones tremerem.',
+          'widgets.howToAddStep2Title' => 'Toque no botão +',
+          'widgets.howToAddStep2Body' => 'No canto superior, busque por Mingo.',
+          'widgets.howToAddStep3Title' => 'Escolha o tamanho',
+          'widgets.howToAddStep3Body' => 'Pequeno ou médio.',
+          'widgets.howToAddAndroidLockNote' => 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.',
+          'widgets.howToAddIosLockNote' =>
+            'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.',
+          'widgets.howToAddDone' => 'Entendi',
+          'widgets.configureTitle' => 'Configurar widget',
+          'widgets.configurePreviewLabel' => 'PRÉVIA',
+          'widgets.configureContentSection' => 'Conteúdo',
+          'widgets.configureContentFavorites' => 'Favoritas',
+          'widgets.configureContentRecent' => 'Recentes',
+          'widgets.configureContentDailyIdea' => 'Ideia do dia',
+          'widgets.configureRotationSection' => 'Troca de foto',
+          'widgets.configureRotationDaily' => 'Todo dia',
+          'widgets.configureRotationSixHours' => 'A cada 6h',
+          'widgets.configureRotationManual' => 'Manual',
+          'widgets.configurePrivacySection' => 'Privacidade',
+          'widgets.configureShowNames' => 'Mostrar nomes',
+          'widgets.configureHideInDiscreet' => 'Ocultar em modo discreto',
+          'widgets.configureAllowPartnerNotes' => 'Permitir recado do parceiro',
+          'widgets.configureOnLockScreen' => 'Permitir na tela de bloqueio',
+          'widgets.configureSave' => 'Salvar',
+          'widgets.configureSavedToast' => 'Preferências do widget salvas.',
           'widgets.loadErrorTitle' => 'Não foi possível carregar os widgets',
           'widgets.loadErrorBody' => 'Verifique sua conexão e tente novamente.',
           'widgets.retryAction' => 'Tentar novamente',
           'widgets.themeLight' => 'Claro',
           'widgets.themeDark' => 'Escuro',
+          'widgets.discreetReminderLabel' => 'Lembrete',
+          'widgets.discreetNeutralBody' => 'Texto neutro',
           'widgets.signedOutLabel' => 'Mingo',
           'widgets.signedOutBody' => 'Toque para entrar',
           'widgets.ownSmallPageTitle' => 'Widget · Meu (pequeno)',
@@ -15318,8 +12777,12 @@ extension on Translations {
           'widgets.lockScreenPageTitle' => 'Tela de bloqueio',
           'widgets.lockScreenClockTime' => '19:38',
           'widgets.lockScreenClockDate' => 'Sexta, 10 de abril',
+          'widgets.lockScreenPauseTitle' => 'Pausa em andamento',
+          'widgets.lockScreenPauseUntil' => ({required Object time}) => 'até ${time}',
+          'widgets.lockScreenPauseUntilDefault' => 'até 20:00',
           'widgets.lockScreenReadyAction' => 'Estou pronto',
           'widgets.lockScreenGenericPhrase' => 'Momento calmo',
+          'widgets.lockScreenDiscreetPhrase' => 'Lembrete',
           'widgets.lockScreenPrivacyRule' => 'Sem nomes nem mensagens na tela bloqueada.',
           'widgets.lockScreenDisabledNote' =>
             'O widget da tela de bloqueio está desativado nas configurações.',
@@ -15342,12 +12805,20 @@ extension on Translations {
           'widgets.counterSetDateAction' => 'Definir data do relacionamento',
           'widgets.photosPageTitle' => 'Widget · Fotos do casal',
           'widgets.photosPlusBadge' => 'PLUS',
-          'widgets.photosNeutralFallbackNote' => 'Quando nenhuma foto local está salva, o widget mostra apenas o cartão neutro com o tempo juntos.',
+          'widgets.photosNeutralFallbackNote' => 'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.',
           'widgets.photosUnlockPlusAction' => 'Conhecer o Plus',
           'widgets.photosChooseAction' => 'Escolher foto',
           'widgets.photosRemoveAction' => 'Remover foto',
           'widgets.photosSavedToast' => 'Foto salva no widget.',
           'widgets.photosRemovedToast' => 'Foto removida do widget.',
+          'widgets.partnerNotePageTitle' => 'Recado do parceiro',
+          'widgets.partnerNoteMediumSection' => 'Médio',
+          'widgets.partnerNoteReplyHint' => 'Responder com um coração',
+          'widgets.partnerNoteDrawingPlaceholder' => 'desenho',
+          'widgets.partnerNoteSafeNote' =>
+            'Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.',
+          'widgets.partnerNoteDisabledNote' =>
+            'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.',
           'widgets.cardEncounterPageTitle' => 'Cartão e próximo encontro',
           'widgets.cardWeeklyLabel' => 'Cartão da semana',
           'widgets.cardReadyTitle' => 'Chegou um cartão',
@@ -15356,12 +12827,23 @@ extension on Translations {
           'widgets.cardSentSubtitle' => 'Aguardando domingo',
           'widgets.cardNoneTitle' => 'Cartão de domingo',
           'widgets.cardNoneSubtitle' => 'Em preparação',
+          'widgets.cardPauseTitle' => 'Pausa em andamento',
+          'widgets.cardPauseSubtitle' => 'Toque quando estiver pronto',
           'widgets.nextEncounterLabel' => 'Próximo encontro',
           'widgets.nextEncounterEmptyTitle' => 'Sem data futura',
           'widgets.nextEncounterEmptySubtitle' => 'Toque para agendar',
           'widgets.cardEncounterPrivacyNote' => 'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.',
+          'widgets.statesPageTitle' => 'Estados do widget',
+          'widgets.statesAction' => 'Ver estados (discreto e sem par)',
+          'widgets.statesDiscreetSection' => 'Modo discreto',
+          'widgets.statesDiscreetToggle' => 'Ativar modo discreto agora',
+          'widgets.statesUnpairedSection' => 'Sem parceiro',
           'widgets.statesUnpairedTitle' => 'Convide para ver aqui',
           'widgets.statesUnpairedAction' => 'Convidar',
+          'widgets.statesOfflineSection' => 'Sem conexão',
+          'widgets.statesOfflineTitle' => 'Mostrando o último dado',
+          'widgets.statesOfflineSubtitle' => 'Atualiza quando voltar a internet',
+          'widgets.statesPrecedenceNote' => 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Não foi possível salvar as preferências agora.',
           'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' =>
@@ -15379,174 +12861,6 @@ extension on Translations {
           'widgets.errors.COUPLE_PHOTO_NOT_PAIRED' =>
             'Conecte-se com seu par para escolher uma foto do casal.',
           'widgets.errors.other' => 'Não foi possível salvar as preferências agora.',
-          'widgets.howToAddAndroidLockNote' => 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.',
-          'widgets.howToAddIosLockNote' =>
-            'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.',
-          'widgets.coupleLabel' => 'DO CASAL',
-          'widgets.gallerySubtitle' => 'Pequenos pedaços do app na sua tela inicial.',
-          'widgets.favoritesGroup' => 'Os mais queridos',
-          'widgets.mediumGroup' => 'Médios',
-          'widgets.ownSmallGroup' => 'Anotar e lembrar',
-          'widgets.ownGroupHint' => 'Funcionam sem parceiro e só mostram o que é seu.',
-          'widgets.ownSmallEntryTitle' => 'Pequenos',
-          'widgets.ownSmallEntryHint' => 'Anotar, lembrar e o cartão de domingo.',
-          'widgets.ownMediumEntryTitle' => 'Médios',
-          'widgets.ownMediumEntryHint' => 'Sua semana, uma ideia e a próxima data.',
-          'widgets.ownSmallTitle' => 'Só meus: pequenos',
-          'widgets.ownMediumTitle' => 'Só meus: médios',
-          'widgets.counterEyebrow' => 'JUNTOS',
-          'widgets.counterNeedDate' => 'Defina a data de vocês',
-          'widgets.counterDaysUnit' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '${count} dia',
-                  other: '${count} dias',
-                ),
-          'widgets.counterBreakdown' => ({
-            required Object years,
-            required Object months,
-            required Object days,
-          }) => '${years} anos, ${months} meses e ${days} dias',
-          'widgets.counterToday' => 'Hoje',
-          'widgets.counterSince' => ({required Object date}) => 'Desde ${date}',
-          'widgets.partnerMoodLabel' => 'HUMOR DO PARCEIRO',
-          'widgets.partnerMoodNow' => ({required Object name}) => '${name} agora',
-          'widgets.partnerMoodNowAnonymous' => 'Agora',
-          'widgets.partnerMoodHidden' => 'O humor aparece quando seu par compartilhar.',
-          'widgets.longingLabel' => 'SAUDADE DE NÓS',
-          'widgets.longingAction' => 'Mandar saudade',
-          'widgets.longingReceived' => 'Seu par mandou saudade',
-          'widgets.longingHint' => 'Um toque e a pessoa sente.',
-          'widgets.ritualLabel' => 'RITUAL',
-          'widgets.ritualEmptyTitle' => 'Criem um ritual',
-          'widgets.ritualEmptyHint' => 'Um momento só de vocês.',
-          'widgets.noteFromPartner' => ({required Object time}) => 'do seu par · ${time}',
-          'widgets.noteFromName' => ({
-            required Object name,
-            required Object time,
-          }) => 'de ${name} · ${time}',
-          'widgets.noteEmpty' => 'Sem recado por aqui',
-          'widgets.noteEmptyHint' => 'Um recado aparece quando seu par escolhe mandar.',
-          'widgets.noteDisabled' => 'Recados estão desligados',
-          'widgets.noteDisabledHint' => 'Ligue em “Recados no widget” para ver.',
-          'widgets.nextEncounterInDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'em ${count} dia',
-                  other: 'em ${count} dias',
-                ),
-          'widgets.cardSundayTitle' => 'Cartão de domingo',
-          'widgets.cardSendAt' => ({
-            required Object day,
-            required Object time,
-          }) => 'sai ${day}, ${time}',
-          'widgets.cardReadyShort' => 'Chegou um cartão',
-          'widgets.cardSentShort' => 'Cartão enviado',
-          'widgets.cardNoneShort' => 'Cartão de domingo',
-          'widgets.distanceLabel' => 'NAMORO À DISTÂNCIA',
-          'widgets.distanceHidden' => 'Fuso do seu par ainda não definido',
-          'widgets.distanceHint' => 'Cada um no seu fuso.',
-          'widgets.distanceUntil' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '${count} dia até se verem',
-                  other: '${count} dias até se verem',
-                ),
-          'widgets.distanceNoReunion' => 'Próximo encontro sem data',
-          'widgets.distanceYou' => ({required Object city}) => '${city} · você',
-          'widgets.ownNextDateLabel' => 'PRÓXIMA DATA',
-          'widgets.ownNextDateHint' => 'Toque para ver as datas',
-          'widgets.ownDateCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '${count} dia',
-                  other: '${count} dias',
-                ),
-          'widgets.ownWeekTitle' => 'Minha semana',
-          'widgets.ownWeekCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '${count} slip',
-                  other: '${count} slips',
-                ),
-          'widgets.weekdays.0' => 'seg',
-          'widgets.weekdays.1' => 'ter',
-          'widgets.weekdays.2' => 'qua',
-          'widgets.weekdays.3' => 'qui',
-          'widgets.weekdays.4' => 'sex',
-          'widgets.weekdays.5' => 'sáb',
-          'widgets.weekdays.6' => 'dom',
-          'widgets.familyLabels.counter' => 'Contador',
-          'widgets.familyLabels.counterMedium' => 'Contador',
-          'widgets.familyLabels.partnerMood' => 'Humor do parceiro',
-          'widgets.familyLabels.longing' => 'Saudade de nós',
-          'widgets.familyLabels.ritual' => 'Ritual',
-          'widgets.familyLabels.partnerNote' => 'Recado do parceiro',
-          'widgets.familyLabels.cardEncounter' => 'Cartão e encontro',
-          'widgets.familyLabels.distance' => 'Namoro à distância',
-          'widgets.familyLabels.ownSlip' => 'Anotar slip',
-          'widgets.familyLabels.ownNextDate' => 'Próxima data',
-          'widgets.familyLabels.ownRitual' => 'Ritual',
-          'widgets.familyLabels.ownSundayCard' => 'Cartão de domingo',
-          'widgets.familyLabels.ownWeek' => 'Minha semana',
-          'widgets.familyLabels.ownIdea' => 'Ideia do dia',
-          'widgets.familyLabels.ownMediumDate' => 'Próxima data',
-          'widgets.familyLabels.other' => 'Widget',
-          'widgets.moodJustNow' => 'agora',
-          'widgets.moodMinutesAgo' => ({required Object minutes}) => 'há ${minutes} min',
-          'widgets.moodHoursAgo' => ({required Object hours}) => 'há ${hours} h',
-          'widgets.moodDaysAgo' => ({required Object days}) => 'há ${days} d',
-          'widgets.ownSlipQuestion' => 'Como foi o seu dia?',
-          'widgets.ownSlipAction' => 'Anotar um slip',
-          'widgets.howToAddAction' => 'Como adicionar',
-          'widgets.howToAddTitle' => 'Como adicionar',
-          'widgets.howToAddSubtitle' => 'Direto da tela inicial, sem permissão extra do Mingo.',
-          'widgets.howToAddIosStep1' => 'Toque e segure em um espaço vazio da tela inicial.',
-          'widgets.howToAddIosStep2' => 'Toque em + no canto superior.',
-          'widgets.howToAddIosStep3' => 'Escolha Mingo e o tamanho do widget.',
-          'widgets.howToAddAndroidStep1' => 'Toque e segure em um espaço vazio da tela inicial.',
-          'widgets.howToAddAndroidStep2' => 'Toque em Widgets.',
-          'widgets.howToAddAndroidStep3' => 'Escolha Mingo e arraste para a tela.',
-          'widgets.howToAddLockIosStep1' => 'Toque e segure na tela bloqueada.',
-          'widgets.howToAddLockIosStep2' => 'Toque em Personalizar.',
-          'widgets.howToAddLockIosStep3' => 'Adicione o widget do Mingo na linha de baixo.',
-          'widgets.howToAddNote' => 'Você pode remover o widget quando quiser; nada é apagado.',
-          'widgets.widgetPrivacyTitle' => 'O que aparece nos widgets',
-          'widgets.showNamesTitle' => 'Nomes e iniciais',
-          'widgets.showNamesHint' => 'Quando desligado, os widgets mostram só o conteúdo.',
-          'widgets.allowNotesTitle' => 'Recados no widget',
-          'widgets.allowNotesHint' => 'Só recados que seu par marcou para o widget.',
-          'widgets.privacySectionHint' =>
-            'Segue as suas escolhas de privacidade. O que está oculto no app continua oculto aqui.',
-          'widgets.settingsSaved' => 'Preferências atualizadas.',
-          'widgets.lockScreenCircular' => 'Circular',
-          'widgets.lockScreenRectangular' => 'Retangular',
-          'widgets.lockScreenInline' => 'Linha',
-          'widgets.lockScreenNeutralLabel' => 'TEXTO NEUTRO',
-          'widgets.lockScreenNeutralPhrase' => 'Sem nomes na tela bloqueada',
-          'widgets.lockScreenAndroidUnavailable' =>
-            'A tela de bloqueio do Android não aceita widgets. Use os widgets da tela inicial.',
-          'widgets.ownNextDateDefault' => 'Próxima data',
-          'widgets.ownSundayCardLabel' => 'CARTÃO DE DOMINGO',
-          'widgets.ownGroupTitle' => 'Só meus',
-          'widgets.soloBanner' => 'Os widgets do casal aparecem quando vocês se conectarem.',
-          'widgets.previewSmall' => 'Pequeno',
-          'widgets.previewMedium' => 'Médio',
-          'widgets.counterSmallLabel' => 'Pequeno',
-          'widgets.counterMediumLabel' => 'Médio, com linha do tempo',
-          'widgets.partnerNotePageTitle' => 'Recado do parceiro',
-          'widgets.partnerNotePrivacy' => 'Só aparece o que seu par escolheu mandar para o widget.',
-          'widgets.moodLongingPageTitle' => 'Humor e saudade',
-          'widgets.partnerMoodPrivacy' => 'O humor só aparece se seu par compartilhou.',
-          'widgets.longingPrivacy' => 'A saudade aparece quando seu par manda.',
-          'widgets.moodUpdateAction' => 'Atualizar meu humor',
-          'widgets.openDatesAction' => 'Ver datas',
-          'widgets.lockReminderShortLabel' => 'Lembrete',
           _ => null,
         };
   }

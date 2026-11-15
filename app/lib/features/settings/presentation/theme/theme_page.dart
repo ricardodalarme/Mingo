@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:app/features/profile/presentation/widgets/theme_option_selector.dart';
+import 'package:app/features/profile/presentation/widgets/profile_theme_picker.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
@@ -17,25 +17,9 @@ class const SettingsThemePage({super.key}) extends StatelessWidget {
     return BaseView(
       appBar: BaseAppBar(title: l10n.theme),
       body: BaseStackedContent(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            AppHighlightedText(
-              text: l10n.themeTitle,
-              highlight: l10n.themeHighlight,
-              style: context.text.titleXl.copyWith(color: context.colors.textPrimary),
-            ),
-            const SizedBox(height: AppSpace.s8),
-            Text(
-              l10n.themeSubtitle,
-              style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
-            ),
-            const SizedBox(height: AppSpace.s24),
-            ThemeOptionSelector(
-              selected: AppThemeScope.of(context),
-              onChanged: (variant) => unawaited(_select(context, variant)),
-            ),
-          ],
+        body: ProfileThemePicker(
+          selected: AppThemeScope.of(context),
+          onChanged: (variant) => unawaited(_select(context, variant)),
         ),
       ),
     );

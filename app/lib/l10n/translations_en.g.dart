@@ -56,19 +56,11 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$account$en account = _Translations$account$en._(_root);
   @override
-  late final _Translations$agreements$en agreements = _Translations$agreements$en._(_root);
-  @override
-  late final _Translations$annoyanceCheck$en annoyanceCheck = _Translations$annoyanceCheck$en._(
-    _root,
-  );
-  @override
   late final _Translations$authentication$en authentication = _Translations$authentication$en._(
     _root,
   );
   @override
   late final _Translations$capsules$en capsules = _Translations$capsules$en._(_root);
-  @override
-  late final _Translations$cardSettings$en cardSettings = _Translations$cardSettings$en._(_root);
   @override
   late final _Translations$cardView$en cardView = _Translations$cardView$en._(_root);
   @override
@@ -84,8 +76,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$connectUs$en connectUs = _Translations$connectUs$en._(_root);
   @override
-  late final _Translations$createAccount$en createAccount = _Translations$createAccount$en._(_root);
-  @override
   late final _Translations$dateNight$en dateNight = _Translations$dateNight$en._(_root);
   @override
   late final _Translations$dates$en dates = _Translations$dates$en._(_root);
@@ -96,6 +86,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$devices$en devices = _Translations$devices$en._(_root);
   @override
+  late final _Translations$discreet$en discreet = _Translations$discreet$en._(_root);
+  @override
   late final _Translations$distance$en distance = _Translations$distance$en._(_root);
   @override
   late final _Translations$fightStyle$en fightStyle = _Translations$fightStyle$en._(_root);
@@ -103,11 +95,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$firstSlip$en firstSlip = _Translations$firstSlip$en._(_root);
   @override
   late final _Translations$games$en games = _Translations$games$en._(_root);
-  @override
-  late final _Translations$gentleRequest$en gentleRequest = _Translations$gentleRequest$en._(_root);
-  @override
-  late final _Translations$gentleRequestDetail$en gentleRequestDetail =
-      _Translations$gentleRequestDetail$en._(_root);
   @override
   late final _Translations$gifts$en gifts = _Translations$gifts$en._(_root);
   @override
@@ -120,6 +107,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$hardConversation$en hardConversation =
       _Translations$hardConversation$en._(_root);
   @override
+  late final _Translations$heavyDay$en heavyDay = _Translations$heavyDay$en._(_root);
+  @override
   late final _Translations$help$en help = _Translations$help$en._(_root);
   @override
   late final _Translations$helpSupport$en helpSupport = _Translations$helpSupport$en._(_root);
@@ -127,8 +116,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$history$en history = _Translations$history$en._(_root);
   @override
   late final _Translations$ideaDetail$en ideaDetail = _Translations$ideaDetail$en._(_root);
-  @override
-  late final _Translations$inbox$en inbox = _Translations$inbox$en._(_root);
   @override
   late final _Translations$intro$en intro = _Translations$intro$en._(_root);
   @override
@@ -168,6 +155,10 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$partnerStep$en partnerStep = _Translations$partnerStep$en._(_root);
   @override
+  late final _Translations$pause$en pause = _Translations$pause$en._(_root);
+  @override
+  late final _Translations$places$en places = _Translations$places$en._(_root);
+  @override
   late final _Translations$plus$en plus = _Translations$plus$en._(_root);
   @override
   late final _Translations$privacy$en privacy = _Translations$privacy$en._(_root);
@@ -180,8 +171,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$programs$en programs = _Translations$programs$en._(_root);
   @override
-  late final _Translations$pronouns$en pronouns = _Translations$pronouns$en._(_root);
-  @override
   late final _Translations$questions$en questions = _Translations$questions$en._(_root);
   @override
   late final _Translations$questionsEntry$en questionsEntry = _Translations$questionsEntry$en._(
@@ -189,8 +178,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   );
   @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
-  @override
-  late final _Translations$quizzes$en quizzes = _Translations$quizzes$en._(_root);
   @override
   late final _Translations$received$en received = _Translations$received$en._(_root);
   @override
@@ -206,13 +193,15 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$rituals$en rituals = _Translations$rituals$en._(_root);
   @override
+  late final _Translations$safeMode$en safeMode = _Translations$safeMode$en._(_root);
+  @override
+  late final _Translations$safety$en safety = _Translations$safety$en._(_root);
+  @override
   late final _Translations$sessionExpired$en sessionExpired = _Translations$sessionExpired$en._(
     _root,
   );
   @override
   late final _Translations$settingsHome$en settingsHome = _Translations$settingsHome$en._(_root);
-  @override
-  late final _Translations$share$en share = _Translations$share$en._(_root);
   @override
   late final _Translations$slipDetail$en slipDetail = _Translations$slipDetail$en._(_root);
   @override
@@ -236,8 +225,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$unpair$en unpair = _Translations$unpair$en._(_root);
   @override
-  late final _Translations$weeklyReview$en weeklyReview = _Translations$weeklyReview$en._(_root);
-  @override
   late final _Translations$welcome$en welcome = _Translations$welcome$en._(_root);
   @override
   late final _Translations$widgets$en widgets = _Translations$widgets$en._(_root);
@@ -254,8 +241,6 @@ class _Translations$acceptInvite$en extends Translations$acceptInvite$pt {
   String get title => 'Got an invite?';
   @override
   String get titleHighlight => 'invite';
-  @override
-  String get connectTitle => 'Connect with a code';
   @override
   String get subtitle => 'Type the code the other person sent so you can connect.';
   @override
@@ -280,12 +265,6 @@ class _Translations$acceptInvite$en extends Translations$acceptInvite$pt {
   late final _Translations$acceptInvite$unusable$en unusable =
       _Translations$acceptInvite$unusable$en._(_root);
   @override
-  String get ownCodeTitle => 'That code is yours';
-  @override
-  String get ownCodeHighlight => 'yours';
-  @override
-  String get ownCodeText => 'That is your own code. To connect, use your partner\'s code.';
-  @override
   Map<String, String> get errors => {
     'ALREADY_PAIRED': 'You are already connected with someone.',
     'COUPLE_FULL': 'That space already has two people.',
@@ -293,25 +272,6 @@ class _Translations$acceptInvite$en extends Translations$acceptInvite$pt {
     'NETWORK': 'No connection. Check your internet and try again.',
     'other': 'Could not connect right now. Try again.',
   };
-  @override
-  String headline({required Object name}) => 'Connect with ${name}';
-  @override
-  String get headlineNoName => 'Connect with your person';
-  @override
-  String get headlineNoNameHighlight => 'your person';
-  @override
-  String get pageSubtitle => 'Both already use the app? One invites and the other types the code.';
-  @override
-  String get segmentHaveCode => 'I have a code';
-  @override
-  String get segmentInvite => 'I want to invite';
-  @override
-  String get connectAction => 'Connect';
-  @override
-  String get ownCodeLabel => 'Your invite code';
-  @override
-  String get ownCodeNote =>
-      'Send this code to your person. What each of you has written so far stays private.';
 }
 
 // Path: account
@@ -326,7 +286,7 @@ class _Translations$account$en extends Translations$account$pt {
   @override
   String get deleteHighlight => 'account';
   @override
-  String get deleteText => 'Your data is erased after 30 days. This needs a fresh sign-in.';
+  String get deleteText => 'Your data is erased after 14 days. This needs a fresh sign-in.';
   @override
   String get deleteWarningTitle => 'This also ends the link';
   @override
@@ -339,7 +299,7 @@ class _Translations$account$en extends Translations$account$pt {
   String get deleteConfirmTitle => 'Delete your account?';
   @override
   String get deleteConfirmText =>
-      'You have 30 days to change your mind. After that, nothing can be recovered.';
+      'You have 14 days to change your mind. After that, nothing can be recovered.';
   @override
   String get reauthReason => 'Confirm to delete your account.';
   @override
@@ -382,129 +342,6 @@ class _Translations$account$en extends Translations$account$pt {
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'Could not finish now. Try again.',
   };
-  @override
-  late final _Translations$account$export$en export = _Translations$account$export$en._(_root);
-}
-
-// Path: agreements
-class _Translations$agreements$en extends Translations$agreements$pt {
-  _Translations$agreements$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Agreements';
-  @override
-  String get add => 'New agreement';
-  @override
-  String get addTitle => 'New agreement';
-  @override
-  String get bodyLabel => 'What you agree on';
-  @override
-  String get bodyHint => 'E.g. Talk about money once a month';
-  @override
-  Map<String, String> get bodyErrors => {
-    'empty': 'Write the agreement.',
-    'tooLong': 'Use 200 characters at most.',
-  };
-  @override
-  String get propose => 'Propose';
-  @override
-  String get confirm => 'Confirm';
-  @override
-  String get options => 'Agreement options';
-  @override
-  String get subtitleShared =>
-      'Short sentences you agree on. They only count once the other person confirms.';
-  @override
-  String get subtitlePrivate =>
-      'Notes for yourself. When someone joins you they become agreements.';
-  @override
-  String get emptyTitle => 'No agreements yet';
-  @override
-  String get emptyTextShared => 'Agree on something small and ask the other person to confirm.';
-  @override
-  String get emptyTextPrivate => 'Note something you would like to agree on.';
-  @override
-  String get statusPrivate => 'Only you see it';
-  @override
-  String get statusConfirmed => 'Confirmed by both';
-  @override
-  String get statusWaitingPartner => 'Waiting for the other person';
-  @override
-  String get statusWaitingYou => 'Waiting for you';
-  @override
-  String get archiveTitle => 'Put this agreement away?';
-  @override
-  String get archiveTextShared => 'It leaves the list for both of you.';
-  @override
-  String get archiveTextPrivate => 'It leaves your list.';
-  @override
-  String get archiveConfirm => 'Put away';
-  @override
-  String get metaShared => 'What you agreed on';
-  @override
-  String get metaPrivate => 'Notes for yourself';
-  @override
-  Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED':
-        'You reached the free plan limit of agreements. Put one away or see Plus.',
-    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
-    'other': 'We could not finish that now. Try again.',
-  };
-}
-
-// Path: annoyanceCheck
-class _Translations$annoyanceCheck$en extends Translations$annoyanceCheck$pt {
-  _Translations$annoyanceCheck$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Does this still bother you?';
-  @override
-  String get titleHighlight => 'bother';
-  @override
-  String age({required Object days, required Object left}) =>
-      'You wrote it ${days} days ago · gone in ${left} days';
-  @override
-  String get talkTitle => 'Talk about it';
-  @override
-  String get talkText => 'Write a gentle request';
-  @override
-  String get chatTitle => 'Talk to the chat';
-  @override
-  String get chatText => 'Only you and the chat';
-  @override
-  String get letGoTitle => 'Let it go';
-  @override
-  String get letGoText => 'Delete now, without telling anyone';
-  @override
-  String get note =>
-      'Good things stay forever. What bothered you goes away on its own if you do nothing.';
-  @override
-  String get letGoConfirmTitle => 'Let it go?';
-  @override
-  String get letGoConfirmText => 'The note is deleted now and nobody is told.';
-  @override
-  String get letGoConfirm => 'Delete now';
-  @override
-  String get letGoDone => 'Note deleted';
-  @override
-  String get goneTitle => 'That note is gone';
-  @override
-  String get goneText => 'It expired, was deleted or became a request.';
-  @override
-  String get close => 'Close';
-  @override
-  String get errorTitle => 'We could not open the note';
-  @override
-  Map<String, String> get errors => {
-    'NETWORK': 'No connection. Try again.',
-    'other': 'Something went wrong. Try again.',
-  };
 }
 
 // Path: authentication
@@ -519,7 +356,12 @@ class _Translations$authentication$en extends Translations$authentication$pt {
   @override
   String get signInSubtitle => 'No email and password. Just Apple or Google.';
   @override
+  String get signInDebugSubtitle => 'In this test build, sign in with email and password.';
+  @override
   String get signInNote => 'Signing in takes you straight to your Today.';
+  @override
+  String get providersUnavailable =>
+      'Apple and Google are off in this test build. Sign in with email and password.';
   @override
   String get emailSignInFallback => 'Sign in with email and password';
   @override
@@ -613,18 +455,6 @@ class _Translations$authentication$en extends Translations$authentication$pt {
     'weak_password': 'Choose a stronger password.',
     'other': 'Could not sign you in right now. Try again.',
   };
-  @override
-  String legal({required Object terms, required Object privacy}) =>
-      'By continuing, you confirm you are 18 or older and agree to the ${terms} and the ${privacy}.';
-  @override
-  String get legalTerms => 'Terms';
-  @override
-  String get legalPrivacy => 'Privacy Policy';
-  @override
-  String get legalPlain =>
-      'By continuing, you confirm you are 18 or older and agree to the Terms and the Privacy Policy.';
-  @override
-  String get tryAgain => 'Try again';
 }
 
 // Path: capsules
@@ -716,38 +546,6 @@ class _Translations$capsules$en extends Translations$capsules$pt {
   Map<String, String> get deleteErrors => {
     'other': 'Couldn\'t delete this capsule. It\'s still here.',
   };
-}
-
-// Path: cardSettings
-class _Translations$cardSettings$en extends Translations$cardSettings$pt {
-  _Translations$cardSettings$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Weekly card';
-  @override
-  String get day => 'Day';
-  @override
-  String get hour => 'Time';
-  @override
-  String get defaultTitle => 'New slips go on the card';
-  @override
-  String get defaultSubtitle => 'Each slip can change this later.';
-  @override
-  String get note => 'Changes apply to the next card.';
-  @override
-  String get saveError => 'Could not save. Your earlier choice was kept.';
-  @override
-  String get errorTitle => 'We could not open the settings';
-  @override
-  Map<String, String> get errors => {
-    'NETWORK': 'No connection. Try again.',
-    'other': 'Your choices are still saved. Try again.',
-  };
-  @override
-  String get open => 'Card settings';
 }
 
 // Path: cardView
@@ -878,6 +676,16 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get title => 'Mascot';
   @override
+  String get consentText =>
+      'A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.';
+  @override
+  String get consentPrivacy =>
+      'What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.';
+  @override
+  String get consentTurnOn => 'Turn on the chat';
+  @override
+  String get emptyHint => 'Say how you are, or start with something small.';
+  @override
   String get inputHint => 'Write here';
   @override
   Map<String, String> get draftErrors => {
@@ -921,6 +729,10 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get settingsTitle => 'Conversation settings';
   @override
+  String get toggleLabel => 'Talk with the mascot';
+  @override
+  String get toggleSubtitle => 'Only you decide when the conversation is on.';
+  @override
   String get planPlus => 'Plus plan';
   @override
   String get planFree => 'Free plan';
@@ -934,6 +746,13 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get sendingText =>
       'Only the text you type and the last turns of the conversation go to the model, to produce the reply. Nothing is stored unless you save it as a slip or a learning.';
+  @override
+  String get disableNote =>
+      'Turning it off brings back the consent step. The next message is only sent after you turn it on again.';
+  @override
+  String get settingsOn => 'Chat turned on';
+  @override
+  String get settingsOff => 'Chat turned off';
   @override
   String get offline => 'You\'re offline. The chat resumes when you reconnect.';
   @override
@@ -951,6 +770,13 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get plusCta => 'See plans';
   @override
+  String get crisisTitle => 'You are not alone';
+  @override
+  String get crisisText =>
+      'It sounds like you are going through something very heavy. If you are in danger right now, call your local emergency service or reach someone you trust. I am not the right help for this.';
+  @override
+  String get crisisSafeMode => 'Hide the app (safe mode)';
+  @override
   String get unavailableTitle => 'The chat is not available right now';
   @override
   String get unavailableText => 'Try again later.';
@@ -964,40 +790,13 @@ class _Translations$chat$en extends Translations$chat$pt {
     'other': 'Couldn\'t do that right now. Try again.',
   };
   @override
+  String get starterHard => 'A hard moment';
+  @override
+  String get starterIdea => 'An idea';
+  @override
+  String get starterPlan => 'A date plan';
+  @override
   String get menuLabel => 'More options';
-  @override
-  late final _Translations$chat$action$en action = _Translations$chat$action$en._(_root);
-  @override
-  Map<String, String> get greeting => {
-    'morning': 'Good morning',
-    'afternoon': 'Good afternoon',
-    'evening': 'Good evening',
-  };
-  @override
-  String get entryTitle => 'What do you want to talk about?';
-  @override
-  String get entryHighlight => 'talk';
-  @override
-  String get starterBothered => 'Something bothered me';
-  @override
-  String get starterThanks => 'I want to say thanks';
-  @override
-  String get starterDate => 'A date idea';
-  @override
-  String get starterTalk => 'Prepare a conversation';
-  @override
-  String get startHere => 'Start here';
-  @override
-  String get offlineSlip => 'Make a slip';
-  @override
-  String get offlineDiary => 'Write in the diary';
-  @override
-  String get remembersTitle => 'What it sees and remembers';
-  @override
-  String get remembersAction => 'What I learned';
-  @override
-  String get remembersText =>
-      'It only keeps what you confirm, item by item. You can review and delete it any time.';
 }
 
 // Path: checkin
@@ -1176,7 +975,7 @@ class _Translations$connectUs$en extends Translations$connectUs$pt {
 
   // Translations
   @override
-  String get title => 'I miss us';
+  String get title => 'Us';
   @override
   String get text =>
       'Send “I miss us” with one tap. Light, no guilt. Your partner doesn\'t have to answer.';
@@ -1191,28 +990,6 @@ class _Translations$connectUs$en extends Translations$connectUs$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t send right now. Try again.',
   };
-  @override
-  String get titleHighlight => 'us';
-}
-
-// Path: createAccount
-class _Translations$createAccount$en extends Translations$createAccount$pt {
-  _Translations$createAccount$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Create account';
-  @override
-  String get headline => 'Keep it safe';
-  @override
-  String get headlineHighlight => 'safe';
-  @override
-  String get subtitleWithSlip =>
-      'Your first slip is saved on this phone. Create the account so you do not lose it.';
-  @override
-  String get subtitleWithoutSlip => 'Create the account to keep your slips and not lose them.';
 }
 
 // Path: dateNight
@@ -1518,6 +1295,28 @@ class _Translations$devices$en extends Translations$devices$pt {
   };
 }
 
+// Path: discreet
+class _Translations$discreet$en extends Translations$discreet$pt {
+  _Translations$discreet$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Discreet mode';
+  @override
+  String get neutralIcon => 'Neutral icon';
+  @override
+  String get neutralNotifications => 'Neutral notifications';
+  @override
+  String get hideWidgetText => 'Hide widget text';
+  @override
+  String get note =>
+      'Hides names and content in notifications and widgets. No couple photo on the icon.';
+  @override
+  String get saveError => 'Could not save now. Try again.';
+}
+
 // Path: distance
 class _Translations$distance$en extends Translations$distance$pt {
   _Translations$distance$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1563,6 +1362,12 @@ class _Translations$fightStyle$en extends Translations$fightStyle$pt {
 
   // Translations
   @override
+  String get exerciseTitle => 'How I react in a fight';
+  @override
+  String get exerciseHighlight => 'react';
+  @override
+  String get exerciseSubtitle => 'Six quick questions, just for you.';
+  @override
   String questionOf({required Object current, required Object total}) =>
       'Question ${current} of ${total}';
   @override
@@ -1573,15 +1378,6 @@ class _Translations$fightStyle$en extends Translations$fightStyle$pt {
     'What bothers you most in a fight?',
     'When you notice you went too far, you...',
     'What helps you feel normal again?',
-  ];
-  @override
-  List<String> get questionHighlights => [
-    'first',
-    'goes quiet',
-    'happens',
-    'bothers',
-    'went too far',
-    'back to normal',
   ];
   @override
   Map<String, String> get options1 => {
@@ -1687,8 +1483,6 @@ class _Translations$fightStyle$en extends Translations$fightStyle$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t add it right now. Try again.',
   };
-  @override
-  String get resultBarTitle => 'Result';
 }
 
 // Path: firstSlip
@@ -1748,7 +1542,7 @@ class _Translations$games$en extends Translations$games$pt {
   @override
   Map<String, String> get reflections => {
     'great': 'It was great',
-    'ok': 'It was ok',
+    'ok': 'It was nice',
     'did_not_happen': 'It did not happen',
     'other': 'No answer',
   };
@@ -1763,6 +1557,8 @@ class _Translations$games$en extends Translations$games$pt {
   late final _Translations$games$cancel$en cancel = _Translations$games$cancel$en._(_root);
   @override
   late final _Translations$games$noPartner$en noPartner = _Translations$games$noPartner$en._(_root);
+  @override
+  late final _Translations$games$common$en common = _Translations$games$common$en._(_root);
   @override
   String get loadErrorTitle => 'Could not open the game';
   @override
@@ -1779,119 +1575,7 @@ class _Translations$games$en extends Translations$games$pt {
     'other': 'Could not do that right now. Try again.',
   };
   @override
-  late final _Translations$games$common$en common = _Translations$games$common$en._(_root);
-}
-
-// Path: gentleRequest
-class _Translations$gentleRequest$en extends Translations$gentleRequest$pt {
-  _Translations$gentleRequest$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Gentle request';
-  @override
-  String get titleHighlight => 'Gentle';
-  @override
-  String get whenLabel => 'When…';
-  @override
-  String get feelLabel => 'I feel…';
-  @override
-  String get wishLabel => 'I would like to…';
-  @override
-  String get whenHint => 'I get home and the house is a mess';
-  @override
-  String get feelHint => 'alone with the chores';
-  @override
-  String get wishHint => 'share Saturday afternoon with you';
-  @override
-  String previewTitle({required Object name}) => 'What ${name} will read';
-  @override
-  String get previewTitleNoName => 'What your person will read';
-  @override
-  String get previewEmpty => 'Fill in the three sentences to see the request.';
-  @override
-  String sentence({required Object when, required Object feel, required Object wish}) =>
-      'When ${when}, I feel ${feel}. I would like to ${wish}.';
-  @override
-  String get note =>
-      'It does not go on the Sunday card. The request goes away 7 days after it is answered.';
-  @override
-  String get keep => 'Keep';
-  @override
-  String get sendNow => 'Send now';
-  @override
-  String get confirmTitle => 'Send this request?';
-  @override
-  String get confirmText =>
-      'Your person will read the three sentences. The note it came from stops existing.';
-  @override
-  String get sent => 'Request sent';
-  @override
-  Map<String, String> get fieldErrors => {
-    'empty': 'Fill in this sentence.',
-    'tooLong': 'Use at most 140 characters.',
-  };
-  @override
-  Map<String, String> get errors => {
-    'NOT_PAIRED': 'A gentle request needs a connected person.',
-    'NETWORK': 'No connection. Try again.',
-    'other': 'We could not send it now. Try again.',
-  };
-}
-
-// Path: gentleRequestDetail
-class _Translations$gentleRequestDetail$en extends Translations$gentleRequestDetail$pt {
-  _Translations$gentleRequestDetail$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get partnerFallback => 'your person';
-  @override
-  String fromYou({required Object name}) => 'You wrote to ${name}.';
-  @override
-  String toYou({required Object name}) => '${name} wrote to you.';
-  @override
-  String get answerTitle => 'How do you want to answer?';
-  @override
-  Map<String, String> get responses => {
-    'willDo': 'I will take care of it',
-    'later': 'Later',
-    'notNow': 'Not now',
-    'talk': 'I want to talk',
-    'moreTime': 'I need more time',
-    'other': '',
-  };
-  @override
-  String answeredBy({required Object name, required Object answer}) =>
-      '${name} answered: ${answer}';
-  @override
-  String youAnswered({required Object answer}) => 'You answered: ${answer}';
-  @override
-  String get waiting => 'No answer yet.';
-  @override
-  String get thankAction => 'Say thanks';
-  @override
-  String get thanked => 'You said thanks. It became a slip of yours.';
-  @override
-  String thankBody({required Object name, required Object wish}) =>
-      '${name} took care of it: ${wish}';
-  @override
-  String get goneTitle => 'That request is gone';
-  @override
-  String get goneText => 'It was answered more than 7 days ago or no longer exists.';
-  @override
-  String get errorTitle => 'We could not open the request';
-  @override
-  Map<String, String> get errors => {
-    'NETWORK': 'No connection. Try again.',
-    'other': 'Something went wrong. Try again.',
-  };
+  late final _Translations$games$review$en review = _Translations$games$review$en._(_root);
 }
 
 // Path: gifts
@@ -2136,6 +1820,8 @@ class _Translations$hardConversation$en extends Translations$hardConversation$pt
   @override
   String get back => 'Back';
   @override
+  String get needPause => 'I need a pause';
+  @override
   String get retry => 'Try again';
   @override
   String get generationFailed => 'Couldn\'t write a sentence right now.';
@@ -2167,6 +1853,52 @@ class _Translations$hardConversation$en extends Translations$hardConversation$pt
     'NOT_PAIRED': 'To send this, you need to be connected with your partner in the app.',
     'other': 'Couldn\'t do that right now. Try again.',
   };
+}
+
+// Path: heavyDay
+class _Translations$heavyDay$en extends Translations$heavyDay$pt {
+  _Translations$heavyDay$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Heavy-day notice';
+  @override
+  String get gateTitle => 'Heavy-day notice';
+  @override
+  String get gateText =>
+      'Some days weigh more. You can tell your partner with one short sentence, without details. Your partner does not see your programs or what you write.';
+  @override
+  String get activate => 'Turn on';
+  @override
+  String get notNow => 'Not now';
+  @override
+  String get noticeBody => 'A delicate day. A little extra care helps.';
+  @override
+  String previewPartner({required Object name}) =>
+      '${name} would see: “A delicate day. A little extra care helps.”';
+  @override
+  String get previewGeneric =>
+      'Your partner would see: “A delicate day. A little extra care helps.”';
+  @override
+  String get frequencyAsk => 'Each time';
+  @override
+  String get frequencyAlways => 'Always';
+  @override
+  String get share => 'Share';
+  @override
+  String get cancel => 'Don\'t share';
+  @override
+  String confirmationTitle({required Object name}) => 'Notice sent to ${name}';
+  @override
+  String get confirmationGeneric => 'Notice sent';
+  @override
+  String get confirmationHint => 'Your partner sees it on the notes widget, if it is on.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Couldn\'t do that right now. Try again.';
 }
 
 // Path: help
@@ -2741,121 +2473,6 @@ class _Translations$ideaDetail$en extends Translations$ideaDetail$pt {
   String get errorText => 'Try again in a moment.';
 }
 
-// Path: inbox
-class _Translations$inbox$en extends Translations$inbox$pt {
-  _Translations$inbox$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Notifications';
-  @override
-  String get bellUnread => 'Notifications, something new';
-  @override
-  String get todayTitle => 'Today';
-  @override
-  String get earlierTitle => 'This week';
-  @override
-  String get markAllRead => 'Mark all as read';
-  @override
-  String get settingsAction => 'Notification settings';
-  @override
-  String get footnote =>
-      'At most 2 alerts a day arrive as a notification. The rest stay only here.';
-  @override
-  String get emptyTitle => 'Nothing new here';
-  @override
-  String get emptyText => 'When someone sends a card or replies, it shows up here.';
-  @override
-  String get errorTitle => 'We could not load your notifications';
-  @override
-  String get partnerFallback => 'Your partner';
-  @override
-  String get tapToSee => 'Tap to see';
-  @override
-  String get cardReadyTitle => 'Your weekly card is ready';
-  @override
-  String get cardReadyText => 'Open to see the draft';
-  @override
-  String cardReceivedTitle({required Object name}) => '${name} sent you a card';
-  @override
-  String cardReactionTitle({required Object name}) => '${name} reacted to your card';
-  @override
-  String partnerJoinedTitle({required Object name}) => '${name} joined';
-  @override
-  String get partnerJoinedText => 'You are connected now';
-  @override
-  String get unpairedTitle => 'The connection ended';
-  @override
-  String get unpairedText => 'Your data is still yours';
-  @override
-  String partnerMessageTitle({required Object name}) => '${name} sent a message';
-  @override
-  String gameInviteTitle({required Object name}) => '${name} invited you to play';
-  @override
-  String get gameInviteText => 'Pick a time when you like';
-  @override
-  String signalTitle({required Object name}) => '${name} sent a note';
-  @override
-  String get dateComingTitle => 'A date is coming up';
-  @override
-  String get dateComingText => 'See ideas for the two of you';
-  @override
-  String get ritualTitle => 'Time for one of your rituals';
-  @override
-  String get dailyIdeaTitle => 'Idea of the day';
-  @override
-  String get dailyIdeaText => 'A small idea for today';
-  @override
-  String get gentleReturnTitle => 'We miss you';
-  @override
-  String get gentleReturnText => 'Come back whenever you like';
-  @override
-  String get capsuleOpenedTitle => 'A time capsule opened';
-  @override
-  String get capsuleOpenedText => 'See what you kept';
-  @override
-  Map<String, String> get errors => {
-    'NETWORK': 'No connection. Check the internet and try again.',
-    'other': 'Something went wrong. Try again.',
-  };
-  @override
-  String gentleRequestTitle({required Object name}) => '${name} wrote a gentle request';
-  @override
-  String gentleRequestAnsweredTitle({required Object name}) => '${name} answered your request';
-  @override
-  String get annoyanceCheckTitle => 'Does this still bother you?';
-  @override
-  String get annoyanceCheckText => 'One of your notes goes away soon';
-  @override
-  String quizSharedTitle({required Object name}) => '${name} showed a quiz';
-  @override
-  String get spiceInviteTitle => 'An invite from Tempero';
-  @override
-  String get spiceInviteText => 'It only shows up if you both turn it on';
-  @override
-  String get spiceOffTitle => 'Tempero was turned off';
-  @override
-  String get spiceOffText => 'Nothing from the mode was kept';
-  @override
-  String memoryProposedTitle({required Object name}) => '${name} wants to keep a memory with you';
-  @override
-  String memoryAcceptedTitle({required Object name}) => '${name} accepted the memory';
-  @override
-  String memoryDeclinedTitle({required Object name}) => '${name} preferred not to keep the memory';
-  @override
-  String get memoryDeclinedText => 'It is no longer shared';
-  @override
-  String get plusBillingIssueTitle => 'There is a problem with the Plus payment';
-  @override
-  String get plusBillingIssueText => 'See what to do to keep it';
-  @override
-  String get plusCoverageEndedTitle => 'Plus coverage ended';
-  @override
-  String get plusCoverageEndedText => 'You keep everything you created';
-}
-
 // Path: intro
 class _Translations$intro$en extends Translations$intro$pt {
   _Translations$intro$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -2921,10 +2538,6 @@ class _Translations$invite$en extends Translations$invite$pt {
     'NETWORK': 'No connection. Check your internet and try again.',
     'other': 'Something went wrong. Try again.',
   };
-  @override
-  String get shareTitle => 'Share invite';
-  @override
-  String get waitingTitle => 'Waiting for your partner';
 }
 
 // Path: language
@@ -3181,12 +2794,6 @@ class _Translations$logistics$en extends Translations$logistics$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Try again.',
   };
-  @override
-  String get confirm => 'Confirm';
-  @override
-  String get waitingYou => 'Waiting for you';
-  @override
-  String get waitingPartner => 'Waiting for the other person';
 }
 
 // Path: loveStyle
@@ -3196,6 +2803,18 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
   final TranslationsEn _root; // ignore: unused_field
 
   // Translations
+  @override
+  String get entryLabel => 'ONLY FOR YOU';
+  @override
+  String get entryTitle => 'What makes me feel loved';
+  @override
+  String get entryText => 'Six quick questions to notice what makes you feel loved.';
+  @override
+  String get exerciseTitle => 'How I feel loved';
+  @override
+  String get exerciseHighlight => 'loved';
+  @override
+  String get exerciseSubtitle => 'Six quick questions, just for you.';
   @override
   String questionOf({required Object current, required Object total}) =>
       'Question ${current} of ${total}';
@@ -3207,15 +2826,6 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
     'Which of these gestures warms your heart?',
     'What makes you feel important to someone?',
     'If you could choose one gesture for today, what would it be?',
-  ];
-  @override
-  List<String> get questionHighlights => [
-    'loved',
-    'comforts',
-    'care',
-    'heart',
-    'important',
-    'gesture',
   ];
   @override
   Map<String, String> get options1 => {
@@ -3284,25 +2894,9 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
   @override
   String get resultHighlight => 'loved';
   @override
-  String get resultSubtitle => 'A reading of what fits you best.';
+  String get resultSubtitle => 'A description of what makes you feel loved, in your own way.';
   @override
-  Map<String, String> get labels => {
-    'time': 'Time just for us',
-    'words': 'Words of care',
-    'acts': 'Help with tasks',
-    'gifts': 'Small gifts',
-    'touch': 'Touch and hugs',
-    'other': '',
-  };
-  @override
-  Map<String, String> get commonLabels => {
-    'time': 'time just for us',
-    'words': 'words of care',
-    'acts': 'help with tasks',
-    'gifts': 'small gifts',
-    'touch': 'touch and hugs',
-    'other': '',
-  };
+  String get topTag => 'What fits you best';
   @override
   Map<String, String> get descriptions => {
     'time': 'You feel loved when you have real time with someone you care about: unhurried, no screens, just presence.',
@@ -3313,8 +2907,17 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
     'other': '',
   };
   @override
+  Map<String, String> get shareDescriptions => {
+    'time': 'I feel loved when we spend unhurried time together, with no screens.',
+    'words': 'I feel loved when I hear, honestly, what you feel for me.',
+    'acts': 'I feel loved when you notice what I need and help without me asking.',
+    'gifts': 'I feel loved when you remember me in a small detail, chosen with care.',
+    'touch': 'I feel loved when a hug, a held hand or a caress says what words cannot.',
+    'other': '',
+  };
+  @override
   String get resultPrivacyNote =>
-      'Saved only for you until you show it. You can undo it whenever you want.';
+      'Saved only for you. Showing it on your partner\'s widget is your choice, and you can undo it.';
   @override
   String get saveManualAction => 'Save to My manual';
   @override
@@ -3324,49 +2927,14 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
   @override
   String shareAction({required Object name}) => 'Show ${name}';
   @override
-  String revokeAction({required Object name}) => 'Stop showing ${name}';
+  String get revokeAction => 'Remove from their widget';
   @override
-  String shareConfirmTitle({required Object name}) => 'Show ${name}?';
+  String get shareToast => 'It appears on their widget if they allow notes.';
   @override
-  String shareConfirmText({required Object name}) =>
-      'Only the result appears, never your answers. ${name} gets a notice and may choose not to respond.';
-  @override
-  String get shareConfirm => 'Show';
-  @override
-  String get shareCancel => 'Not now';
-  @override
-  String shareToast({required Object name}) => 'Done. ${name} can see the result now.';
-  @override
-  String revokeToast({required Object name}) => '${name} can no longer see it.';
+  String get revokeToast => 'It\'s no longer on their widget.';
   @override
   String get shareSoloNote =>
-      'It stays with you. When someone joins, you decide whether to show it.';
-  @override
-  String get inviteAction => 'Invite my person';
-  @override
-  String get compareAction => 'Compare the two';
-  @override
-  String get compareTitle => 'The two of you';
-  @override
-  String get compareHeadline => 'What makes you both feel loved';
-  @override
-  String get compareHighlight => 'both';
-  @override
-  String get compareYou => 'You';
-  @override
-  String get compareMost => 'Most important';
-  @override
-  String get compareNext => 'Then';
-  @override
-  String get compareCommon => 'In common';
-  @override
-  String compareCommonText({required Object label}) => 'You both value ${label}.';
-  @override
-  String get comparePlan => 'Plan time just for us';
-  @override
-  String get compareMissingTitle => 'The comparison is not ready yet';
-  @override
-  String get compareMissingText => 'It appears when both of you have shown your result.';
+      'When you\'re connected with a partner, you can show this on their widget.';
   @override
   String get partnerFallback => 'your partner';
   @override
@@ -3374,7 +2942,7 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
   @override
   String get retryPairing => 'Try again';
   @override
-  String get retake => 'Take the quiz again';
+  String get retake => 'Take it again';
   @override
   String get loadErrorTitle => 'Couldn\'t load';
   @override
@@ -3398,7 +2966,7 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
   @override
   Map<String, String> get revokeErrors => {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
-    'other': 'Couldn\'t stop showing it right now. Try again.',
+    'other': 'Couldn\'t remove it from their widget right now. Try again.',
   };
 }
 
@@ -3418,7 +2986,15 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get historyText => 'Milestones, dates, places and our story in numbers.';
   @override
+  String get storyLabel => 'SHARE';
+  @override
+  String get storyTitle => 'Image to share';
+  @override
+  String get storyText => 'Your numbers in an image, with only what you choose.';
+  @override
   String get placesLabel => 'PLACES';
+  @override
+  String get placesTitle => 'Places you have been';
   @override
   String get placesText => 'Only the name of the place, never the location.';
   @override
@@ -3504,11 +3080,7 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get jarEmptyAction => 'See my slips';
   @override
-  late final _Translations$memories$menu$en menu = _Translations$memories$menu$en._(_root);
-  @override
-  late final _Translations$memories$onThisDay$en onThisDay = _Translations$memories$onThisDay$en._(
-    _root,
-  );
+  String get moreTitle => 'More';
 }
 
 // Path: mood
@@ -3527,10 +3099,6 @@ class _Translations$mood$en extends Translations$mood$pt {
   @override
   String get privateCue => 'Only you see this';
   @override
-  String sharedCue({required Object name}) => 'shared with ${name}';
-  @override
-  String get sharedCueNoName => 'shared with your partner';
-  @override
   Map<String, String> get moods => {
     'happy': 'Happy',
     'tired': 'Tired',
@@ -3547,29 +3115,17 @@ class _Translations$mood$en extends Translations$mood$pt {
     'opinion': 'An opinion',
     'hug': 'A hug',
     'space': 'Some space',
-    'chocolate': 'Chocolate',
-    'cuteMessage': 'A cute message',
-    'foreheadKiss': 'A kiss on the forehead',
-    'company': 'Some company',
-    'rest': 'To rest',
   };
   @override
-  String get needMenuAction => 'I need…';
+  String get shareTitle => 'What your partner sees';
   @override
-  String needMenuActionSelected({required Object need}) => 'I need: ${need}';
-  @override
-  String get needSheetSubtitle =>
-      'One thing a day. Your partner sees it only if you share your mood.';
-  @override
-  String get needSaved => 'Saved';
+  String shareTitleNamed({required Object name}) => 'What ${name} sees';
   @override
   String get shareSubtitle => 'You decide. Nothing is shared by default.';
   @override
-  String get shareNeedFirst => 'Pick an “I need…” first.';
-  @override
   Map<String, String> get share => {
     'none': 'Keep private',
-    'mood': 'Only my mood',
+    'mood': 'Just my mood',
     'moodNeed': 'Mood and what I need',
   };
   @override
@@ -3622,29 +3178,9 @@ class _Translations$mood$en extends Translations$mood$pt {
   @override
   String get partnerNeedSpace => 'What helps: some space.';
   @override
-  String get partnerNeedChocolate => 'What helps: some chocolate.';
-  @override
-  String get partnerNeedCuteMessage => 'What helps: a cute message.';
-  @override
-  String get partnerNeedForeheadKiss => 'What helps: a kiss on the forehead.';
-  @override
-  String get partnerNeedCompany => 'What helps: some company.';
-  @override
-  String get partnerNeedRest => 'What helps: rest.';
-  @override
-  String partnerSharedChoice({required Object name}) => '${name} chose to share this with you.';
-  @override
   String get homeTitle => 'How are you?';
   @override
   String get homePrivacy => 'Only you see it';
-  @override
-  String homePrivacyShared({required Object name}) => '${name} sees it';
-  @override
-  String get homePrivacySharedNoName => 'Your partner sees it';
-  @override
-  String get homeLoadFailed => 'Couldn\'t load it. Tap to open.';
-  @override
-  String get homeDetailsLink => 'What your partner sees';
   @override
   Map<String, String> get homeMoods => {
     'happy': 'Good',
@@ -3653,46 +3189,6 @@ class _Translations$mood$en extends Translations$mood$pt {
     'stressed': 'Tense',
     'sad': 'Sad',
   };
-  @override
-  String get next => 'Next';
-  @override
-  String get shareAction => 'Share';
-  @override
-  String shareHeadline({required Object name}) => 'Share with ${name}?';
-  @override
-  String get shareHeadlineNoName => 'Share with your person?';
-  @override
-  String get shareHeadlineNoNameHighlight => 'your person';
-  @override
-  String get calendarTitle => 'My moods';
-  @override
-  String calendarMonth({required Object month, required Object year}) => '${month} ${year}';
-  @override
-  String get calendarEmpty => 'No mood recorded this month yet.';
-  @override
-  String get calendarPrivacyNote =>
-      'Only you see this. It never shows up for your partner unless it was shared for the day.';
-  @override
-  String get calendarAction => 'Record my mood';
-  @override
-  String get calendarErrorTitle => 'Couldn\'t open your moods';
-  @override
-  String get calendarErrorText => 'Nothing was lost. Try again.';
-  @override
-  List<String> get monthNames => [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
 }
 
 // Path: moodHelp
@@ -3729,7 +3225,7 @@ class _Translations$moodHelp$en extends Translations$moodHelp$pt {
   @override
   String get helpSubtitle => 'Small things, at today\'s pace.';
   @override
-  String get suggestionLabel => 'Suggestion';
+  String get choreLabel => 'Chore';
   @override
   String get takeChore => 'Take on a chore';
   @override
@@ -3741,57 +3237,17 @@ class _Translations$moodHelp$en extends Translations$moodHelp$pt {
   @override
   String get sendSweetMessage => 'Send a short, sweet message';
   @override
-  String sweetMessagePreview({required Object body}) => 'It reads: “${body}”';
+  String get sendSweetMessageSupport => 'One line is enough. No explanation needed.';
   @override
-  String get sweetMessageBody => 'No rush. I\'m here.';
+  String get homeLabel => 'Home';
   @override
   String get makeCoffeeOrDinner => 'Make coffee or dinner';
   @override
   String get makeCoffeeOrDinnerSupport => 'Without turning it into a shared task.';
   @override
-  String get noDiagnosisNote => 'App suggestions, not a diagnosis. No rush.';
-  @override
   String get reactionLabel => 'Send a heart';
   @override
   String get sent => 'Heart sent';
-  @override
-  String get askSent => 'Question sent';
-  @override
-  String get messageSent => 'Message sent';
-  @override
-  String partnerNeedTitle({required Object name}) => 'What ${name} needs';
-  @override
-  String get partnerNeedTitleGeneric => 'What your partner needs';
-  @override
-  String get partnerNeedSubtitle => 'Today\'s ask. No pressure.';
-  @override
-  String get partnerNeedNote => 'This comes from the mood your partner shared today.';
-  @override
-  Map<String, String> get partnerNeedActions => {
-    'listen': 'Just listen',
-    'opinion': 'Give an opinion',
-    'hug': 'Send a hug',
-    'space': 'Give some space',
-    'chocolate': 'Bring some chocolate',
-    'cuteMessage': 'Open the chat',
-    'foreheadKiss': 'A kiss on the forehead',
-    'company': 'Stay close',
-    'rest': 'Let them rest',
-    'other': '',
-  };
-  @override
-  Map<String, String> get partnerNeedSupports => {
-    'listen': 'No advice, no fixing.',
-    'opinion': 'An honest opinion, without judging.',
-    'hug': 'It arrives as a signal in the app.',
-    'space': 'Some time without asking for an answer.',
-    'chocolate': 'A small chocolate, no reason needed.',
-    'cuteMessage': 'One kind line is enough.',
-    'foreheadKiss': 'Small and unhurried.',
-    'company': 'Sit nearby, no words needed.',
-    'rest': 'Take what you can off their plate.',
-    'other': '',
-  };
   @override
   Map<String, String> get errors => {
     'NOT_PAIRED': 'You are not connected yet.',
@@ -4020,25 +3476,35 @@ class _Translations$notificationPreferences$en extends Translations$notification
 
   // Translations
   @override
-  String get title => 'Reminders';
+  String get title => 'Notifications';
+  @override
+  String get subtitle => 'Choose what arrives and when. No pressure.';
   @override
   String get systemOff =>
-      'Notifications are off on this phone. Your choices apply when you turn them on.';
+      'Notifications are off on this phone. Your choices apply once you turn them on.';
   @override
   String get openSystem => 'Open settings';
   @override
-  String get perDayTitle => 'Per day';
+  String get all => 'Receive notifications';
   @override
-  String get perDaySupport => 'At most';
+  String get allText => 'Turn off to pause everything.';
   @override
-  String perDayValue({required Object count}) => 'Up to ${count}';
+  String get typesTitle => 'What you want to receive';
   @override
-  String get perDaySheetTitle => 'How many reminders a day?';
+  Map<String, String> get types => {
+    'card_ready': 'Card ready',
+    'card_received': 'Card received',
+    'card_reaction': 'Reply to your card',
+    'daily_idea': 'Idea of the day',
+    'date_coming': 'Dates coming up',
+    'other': '',
+  };
   @override
-  String get typesTitle => 'Types';
+  String get cardTitle => 'Sunday card';
   @override
-  late final _Translations$notificationPreferences$types$en types =
-      _Translations$notificationPreferences$types$en._(_root);
+  String get cardDay => 'Day';
+  @override
+  String get cardHour => 'Time';
   @override
   List<String> get days => [
     'Sunday',
@@ -4052,14 +3518,18 @@ class _Translations$notificationPreferences$en extends Translations$notification
   @override
   String hourFormat({required Object hour}) => '${hour}:00';
   @override
-  String get note => 'A hard limit of 1 to 2 messages a day. Each type can be switched off.';
+  String get previewTitle => 'How a notification looks';
   @override
-  String get loadErrorTitle => 'Could not open your reminders';
+  String get previewText => 'Always short, with no personal details.';
+  @override
+  String get loadErrorTitle => 'Couldn\'t open your preferences';
   @override
   String get loadErrorText => 'They are still saved. Try again.';
   @override
-  late final _Translations$notificationPreferences$errors$en errors =
-      _Translations$notificationPreferences$errors$en._(_root);
+  Map<String, String> get errors => {
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t save right now. Your previous choice was kept.',
+  };
 }
 
 // Path: partnerProfile
@@ -4144,14 +3614,110 @@ class _Translations$partnerStep$en extends Translations$partnerStep$pt {
   String get haveCode => 'I have an invite code';
   @override
   String get continueButton => 'Continue';
+}
+
+// Path: pause
+class _Translations$pause$en extends Translations$pause$pt {
+  _Translations$pause$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
   @override
-  String get soloOnlyTitle => 'Just for me';
+  String get title => 'Ask for some space';
   @override
-  String get soloOnlySupport => 'Without inviting anyone';
+  String get titleHighlight => 'space';
   @override
-  String get whyInvite => 'Why invite?';
+  String get subtitle => 'A short, kind message. Your partner sees only what you write.';
   @override
-  late final _Translations$partnerStep$why$en why = _Translations$partnerStep$why$en._(_root);
+  Map<String, String> get presets => {
+    'space': 'I need some time to breathe. I\'ll be back soon.',
+    'later': 'Can we talk later, calmly?',
+    'calm': 'I want to listen well. I need to calm down first.',
+    'other': '',
+  };
+  @override
+  String get hint => 'Write my own';
+  @override
+  Map<String, String> get messageErrors => {
+    'empty': 'Write a short message',
+    'tooLong': 'The message is too long',
+  };
+  @override
+  String get returnTitle => 'I\'ll be back in';
+  @override
+  Map<String, String> get returns => {
+    'oneHour': '1 hour',
+    'threeHours': '3 hours',
+    'eightHours': '8 hours',
+    'tomorrow': 'Tomorrow',
+    'other': '',
+  };
+  @override
+  String get note => 'You both see Today on pause. You can come back whenever you like.';
+  @override
+  String get send => 'Send and pause';
+  @override
+  String get sentTitle => 'Pause sent';
+  @override
+  String get sentText => 'Today is on pause for both of you. When you\'re ready, come back there.';
+  @override
+  String get done => 'Done';
+  @override
+  Map<String, String> get errors => {
+    'INVALID_RETURN_TIME': 'That return time doesn\'t work. Pick another.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t send right now. Your message is still here.',
+  };
+}
+
+// Path: places
+class _Translations$places$en extends Translations$places$pt {
+  _Translations$places$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Places';
+  @override
+  String get privacyNote =>
+      'Only the name of the place. The app never reads or stores your location.';
+  @override
+  String get memoryOne => '1 memory';
+  @override
+  String memoryMany({required Object count}) => '${count} memories';
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  String dateLine({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  String get emptyTitle => 'No places yet';
+  @override
+  String get emptyText =>
+      'When you save a memory, write the name of the place and it shows up here.';
+  @override
+  String get detailEmptyTitle => 'Nothing at this place';
+  @override
+  String get detailEmptyText => 'The memories of this place are not here anymore.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Your memories are still saved. Try again.';
 }
 
 // Path: plus
@@ -4172,43 +3738,38 @@ class _Translations$plus$en extends Translations$plus$pt {
   @override
   String get paidByPartner => 'Your partner has Plus and it covers you both.';
   @override
-  String freeLeft({required Object games, required Object rituals, required Object lists}) =>
-      'On the free plan you have ${games}, ${rituals} and ${lists} left.';
+  String freeLeft({required Object slips, required Object cards}) =>
+      'Free plan, this month: ${slips} and ${cards}.';
   @override
-  String gameCount({required num count}) =>
+  String slipCount({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
         count,
-        one: '1 game this week',
-        other: '${count} games this week',
+        one: '1 slip',
+        other: '${count} slips',
       );
   @override
-  String ritualCount({required num count}) =>
+  String cardCount({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
         count,
-        one: '1 ritual',
-        other: '${count} rituals',
-      );
-  @override
-  String listCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 list',
-        other: '${count} lists',
+        one: '1 sent card',
+        other: '${count} sent cards',
       );
   @override
   String get freeName => 'Free';
   @override
   String get freeFeatures =>
-      'Unlimited slips and cards, repair, 3 games a week, 3 rituals, 3 lists and everything you already saved.';
+      'Slips every month, one sent card a month, repair, pause, safety and everything you already saved.';
   @override
   String get plusName => 'Plus';
   @override
   String get plusFeatures =>
-      'Unlimited games, rituals and lists, more chats with the mascot and more for both of you, covering you and your partner.';
+      'More slips and cards each month and more for both of you, covering you and your partner.';
   @override
   String get monthly => 'Monthly';
   @override
   String get yearly => 'Yearly';
+  @override
+  String get giftPlan => 'Gift';
   @override
   String get storeTitle => 'Couldn\'t load the prices';
   @override
@@ -4227,7 +3788,7 @@ class _Translations$plus$en extends Translations$plus$pt {
   String get billingText =>
       'The last payment didn\'t go through. Plus stays on for now. Open your subscriptions in the store and update the payment method.';
   @override
-  String get alwaysFree => 'Unpairing is never locked.';
+  String get alwaysFree => 'Safety, pause and unpair are never locked.';
   @override
   String get lockLabel => 'PLUS';
   @override
@@ -4322,6 +3883,8 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   @override
   String get title => 'Privacy and security';
   @override
+  String get discreetMode => 'Discreet mode';
+  @override
   String get partnerTitle => 'What your partner sees';
   @override
   String get partnerSlips => 'Sent slips';
@@ -4333,6 +3896,10 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   String get partnerTemperature => 'Temperature';
   @override
   String get partnerJournal => 'Journal';
+  @override
+  String get partnerPause => 'Pause';
+  @override
+  String get partnerPauseText => 'The message you wrote';
   @override
   String get never => 'Never';
   @override
@@ -4350,6 +3917,8 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   @override
   String get consents => 'Consents';
   @override
+  String get sensitiveData => 'Sensitive data';
+  @override
   String get analytics => 'Analytics';
   @override
   String get marketing => 'Marketing';
@@ -4360,7 +3929,7 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   @override
   String get required => 'Required';
   @override
-  String get requiredNote => 'Accepting the Terms is required to use the app.';
+  String get requiredNote => 'Sensitive data and Terms are required to use the app.';
   @override
   String get consentsNote => 'Changes apply now.';
   @override
@@ -4369,6 +3938,10 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   String get errorTitle => 'Could not load the consents';
   @override
   String get errorText => 'Try again in a moment.';
+  @override
+  String get sensitiveTracks => 'Sensitive tracks and notices';
+  @override
+  String get heavyDayNotice => 'Heavy-day notice';
 }
 
 // Path: profileDetails
@@ -4383,7 +3956,7 @@ class _Translations$profileDetails$en extends Translations$profileDetails$pt {
   @override
   String get nameLabel => 'Your name';
   @override
-  String get nameHint => 'Your first name';
+  String get nameHint => 'Marina';
   @override
   Map<String, String> get nameErrors => {
     'empty': 'Your name cannot be empty.',
@@ -4391,6 +3964,10 @@ class _Translations$profileDetails$en extends Translations$profileDetails$pt {
   };
   @override
   String get pronounsLabel => 'Pronouns';
+  @override
+  String get pronounsHint => 'Optional';
+  @override
+  Map<String, String> get pronounsErrors => {'tooLong': 'Use at most 30 characters.'};
   @override
   String get timeZoneLabel => 'Time zone';
   @override
@@ -4454,7 +4031,7 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   @override
   String get nameLabel => 'Your name';
   @override
-  String get nameHint => 'Your first name';
+  String get nameHint => 'Marina';
   @override
   Map<String, String> get nameErrors => {
     'empty': 'Your name cannot be empty.',
@@ -4463,9 +4040,19 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   @override
   String get partnerNameLabel => 'Partner\'s name';
   @override
-  String get partnerNameHint => 'Their first name';
+  String get partnerNameHint => 'Ricardo';
   @override
   Map<String, String> get partnerNameErrors => {'tooLong': 'Use at most 30 characters.'};
+  @override
+  String get partnerNameNote => 'Your partner\'s name stays on your account only.';
+  @override
+  String get themeLabel => 'Your app colour';
+  @override
+  String get themeRose => 'Rose';
+  @override
+  String get themeBlue => 'Blue';
+  @override
+  String get themeNeutral => 'Neutral';
   @override
   String get dateLabel => 'When did you start?';
   @override
@@ -4498,14 +4085,6 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
     'NETWORK': 'No connection. Your answers are still here, try again.',
     'other': 'Could not save right now. Try again.',
   };
-  @override
-  String get themeLabel => 'Your app colour';
-  @override
-  String get themeRose => 'Rose';
-  @override
-  String get themeBlue => 'Blue';
-  @override
-  String get themeNeutral => 'Neutral';
 }
 
 // Path: programs
@@ -4670,23 +4249,30 @@ class _Translations$programs$en extends Translations$programs$pt {
     'other': 'Couldn\'t save right now. Your text is still here.',
   };
   @override
-  String get freeNote => 'Free shows only the first lesson.';
-}
-
-// Path: pronouns
-class _Translations$pronouns$en extends Translations$pronouns$pt {
-  _Translations$pronouns$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
+  String get sensitive => 'SENSITIVE';
   @override
-  Map<String, String> get options => {
-    'she': 'She',
-    'he': 'He',
-    'nameOnly': 'Name only',
-    'other': 'Name only',
-  };
+  String get sensitiveGateTitle => 'A track just for you';
+  @override
+  String get sensitiveGateText =>
+      'These lessons talk about grief, illness and trust. Your partner does not see that you joined or what you read. You can leave whenever you want.';
+  @override
+  String get sensitiveGateAction => 'Join this track';
+  @override
+  String get sensitiveConsentTitle => 'Join this track?';
+  @override
+  String get sensitiveConsentText =>
+      'These lessons talk about grief, illness and trust. They stay just for you: your partner does not see your participation. You can withdraw this consent in Privacy and security.';
+  @override
+  String get sensitiveConsentConfirm => 'Join';
+  @override
+  String get sensitiveConsentCancel => 'Not now';
+  @override
+  String get sensitiveLessonLockedTitle => 'Sensitive track';
+  @override
+  String get sensitiveLessonLockedText =>
+      'To open this lesson, turn on the sensitive tracks consent.';
+  @override
+  String get freeNote => 'Free shows only the first lesson.';
 }
 
 // Path: questions
@@ -4697,51 +4283,51 @@ class _Translations$questions$en extends Translations$questions$pt {
 
   // Translations
   @override
-  String get tag => 'Couple question';
+  String get tag => 'Question for you two';
+  @override
+  String get eyebrow => 'Question of the day';
   @override
   String get answerCta => 'Answer';
   @override
-  String get introNote => 'One question a day or a week.';
+  String get editCta => 'Edit my answer';
   @override
-  String get answerHint => 'Write as much as you like.';
+  String get answerHint => 'Write as much or as little as you want.';
   @override
   Map<String, String> get answerErrors => {
     'empty': 'Write an answer',
     'tooLong': 'The answer is too long',
   };
   @override
+  String get privateNote => 'Only you can see this until your partner answers too.';
+  @override
   String get partnerAnsweredNote => 'Your partner already answered. Send yours to see both.';
   @override
-  String partnerSeesAfter({required Object name}) =>
-      'Only after you send yours and ${name} answers too.';
-  @override
-  String get partnerSeesAfterFallback => 'Only after you send yours and your partner answers too.';
-  @override
-  String get soloNote => 'Your answer stays private. Your partner sees it after you connect.';
+  String get soloNote => 'Your answer stays private. Your partner will see it after you connect.';
   @override
   String get save => 'Send';
   @override
   String get cancel => 'Cancel';
   @override
-  String get skip => 'Skip';
-  @override
   String get waitingTitle => 'Your answer is saved';
   @override
   String get waitingText => 'It appears here when your partner answers too.';
   @override
-  String get waitingSoloText => 'When your partner joins, they see your answer and you see theirs.';
+  String get waitingSoloText =>
+      'When your partner joins, they will see your answer and you can see theirs.';
   @override
   String get checkAgain => 'Check again';
   @override
-  String get revealTitle => 'The two memories';
+  String get voiceSoon => 'Voice note';
   @override
-  String get revealHighlight => 'memories';
+  String get voiceSoonNote => 'For now answers are written. Voice will come later.';
   @override
-  String get keepPrompt => 'Do you want to keep this in your story?';
+  String get revealTitle => 'Your answers together';
   @override
-  String get saveMilestone => 'Save as milestone';
+  String get revealHighlight => 'together';
   @override
-  String get notNow => 'Not now';
+  String get revealSubtitle => 'Now that you both answered, you can see each one.';
+  @override
+  String get revealNote => 'No scores. Just what each of you wrote.';
   @override
   String get you => 'You';
   @override
@@ -4755,15 +4341,13 @@ class _Translations$questions$en extends Translations$questions$pt {
   @override
   String get keepWriting => 'Keep writing';
   @override
-  String get loadErrorTitle => 'Could not open the question';
+  String get loadErrorTitle => 'Couldn\'t open the question';
   @override
   String get loadErrorText => 'Nothing was lost. Try again.';
   @override
   String get close => 'Close';
   @override
-  Map<String, String> get errors => {'other': 'Could not save right now. Try again.'};
-  @override
-  String get editCta => 'Edit my answer';
+  Map<String, String> get errors => {'other': 'Couldn\'t save that now. Try again.'};
 }
 
 // Path: questionsEntry
@@ -4823,12 +4407,6 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   @override
   String get subtitle => 'One line is enough. 30 seconds.';
   @override
-  String get polarityLabel => 'Liked or bothered me';
-  @override
-  String get polarityLiked => 'Liked';
-  @override
-  String get polarityBothered => 'Bothered me';
-  @override
   String get hint => 'E.g. made coffee before I woke up';
   @override
   Map<String, String> get textErrors => {
@@ -4846,8 +4424,6 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   @override
   String get privacyNote => 'It stays private. On Sunday you choose what goes on the card.';
   @override
-  String get cardNote => 'It goes on your weekly card. You can take it out anytime.';
-  @override
   String get save => 'Save';
   @override
   String get discardTitle => 'Discard this slip?';
@@ -4855,88 +4431,10 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   late final _Translations$quickSlip$saved$en saved = _Translations$quickSlip$saved$en._(_root);
   @override
   Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'You reached the free plan\'s slip limit.',
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'Could not save right now. Your text is still here, try again.',
   };
-  @override
-  String get annoyanceTitle => 'What bothered you?';
-  @override
-  String get annoyanceTitleHighlight => 'bothered';
-  @override
-  String get annoyanceSubtitle => 'One line is enough. Only you see it.';
-  @override
-  String get annoyanceHint => 'E.g. I was left with the dishes again';
-  @override
-  String get annoyanceNote =>
-      'It stays with you and goes away on its own in 14 days. It never goes on the card. It only continues if you turn it into a gentle request.';
-  @override
-  String get gentleRequest => 'Gentle request';
-  @override
-  String get keep => 'Keep';
-  @override
-  String get addDetails => 'Add details';
-}
-
-// Path: quizzes
-class _Translations$quizzes$en extends Translations$quizzes$pt {
-  _Translations$quizzes$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Quizzes';
-  @override
-  String get headline => 'Getting to know';
-  @override
-  String get headlineHighlight => 'each other';
-  @override
-  String get intro =>
-      'Two short quizzes, six questions each. You see the result first and decide whether to show it.';
-  @override
-  String get entryTitle => 'Quizzes';
-  @override
-  String get entryText => 'Get to know each other';
-  @override
-  String get lovedTitle => 'How I feel loved';
-  @override
-  String get fightTitle => 'How I react in a fight';
-  @override
-  String questionCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 question',
-        other: '${count} questions',
-      );
-  @override
-  String minutes({required Object minutes}) => '${minutes} min';
-  @override
-  String meta({required Object questions, required Object minutes}) => '${questions} · ${minutes}';
-  @override
-  String get start => 'Start';
-  @override
-  String lastDone({required Object date}) => 'Done on ${date}';
-  @override
-  List<String> get monthsShort => [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  @override
-  String get note => 'Only you see the result, until you tap Show. It is not a psychological test.';
-  @override
-  String get loadErrorTitle => 'Could not open the quizzes';
-  @override
-  String get loadErrorText => 'Nothing was lost. Try again.';
 }
 
 // Path: received
@@ -4953,6 +4451,7 @@ class _Translations$received$en extends Translations$received$pt {
     'missUs': 'Missing you',
     'hug': 'A hug',
     'distance': 'A little distance',
+    'heavyDay': 'A heavy day',
     'goodNews': 'Good news',
     'other': '',
   };
@@ -4961,6 +4460,7 @@ class _Translations$received$en extends Translations$received$pt {
     'missUs': 'Your partner is missing you both.',
     'hug': 'Your partner would like a hug.',
     'distance': 'Your partner needs a little distance.',
+    'heavyDay': 'Your partner is having a heavy day.',
     'goodNews': 'Your partner has good news.',
     'other': '',
   };
@@ -4970,22 +4470,15 @@ class _Translations$received$en extends Translations$received$pt {
   String get privateFirst => 'Your answer is private first. There is no right or wrong.';
   @override
   Map<String, String> get responses => {
-    'here': 'I\'m here',
-    'talk': 'Let\'s talk',
+    'talk': 'Yes, let\'s talk',
     'moreTime': 'I need a bit more time',
-    'willDo': 'I\'ll do it',
-    'notNow': 'Not now',
-    'plan': 'Plan something',
     'later': 'I\'ll answer later',
-    'heart': 'Send a heart',
     'other': '',
   };
   @override
   String get seen => 'Got it';
   @override
-  String answered({required Object response}) => 'You answered: ${response}';
-  @override
-  String get next => 'Next message';
+  String get suggestPlan => 'Suggest a small plan';
   @override
   String get doneTitle => 'All good';
   @override
@@ -5028,6 +4521,8 @@ class _Translations$relationshipChanged$en extends Translations$relationshipChan
   @override
   String get optionBereaved => 'I lost them';
   @override
+  String get optionOnBreak => 'A break';
+  @override
   String get optionTogether => 'Everything is fine';
   @override
   String get continueLabel => 'Continue';
@@ -5062,6 +4557,7 @@ class _Translations$relationshipSettings$en extends Translations$relationshipSet
     'livingTogether': 'Living together',
     'engaged': 'Engaged',
     'married': 'Married',
+    'withKids': 'With kids',
     'longDistance': 'Long distance',
     'restarting': 'Starting over',
   };
@@ -5132,7 +4628,7 @@ class _Translations$reminders$en extends Translations$reminders$pt {
   @override
   String get weeklyCard => 'Your card is ready.';
   @override
-  String get generic => 'Open the app to see.';
+  String get discreet => 'Open the app to see.';
 }
 
 // Path: repair
@@ -5156,8 +4652,6 @@ class _Translations$repair$en extends Translations$repair$pt {
   late final _Translations$repair$learning$en learning = _Translations$repair$learning$en._(_root);
   @override
   late final _Translations$repair$next$en next = _Translations$repair$next$en._(_root);
-  @override
-  late final _Translations$repair$sos$en sos = _Translations$repair$sos$en._(_root);
 }
 
 // Path: rituals
@@ -5238,16 +4732,39 @@ class _Translations$rituals$en extends Translations$rituals$pt {
     'NOT_FOUND': 'That ritual isn\'t here anymore.',
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Try again.',
-    'INVALID_PLANNER': 'The planner has to be one of the two people.',
   };
+}
+
+// Path: safeMode
+class _Translations$safeMode$en extends Translations$safeMode$pt {
+  _Translations$safeMode$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
   @override
-  String get plannerLabel => 'Who plans it';
+  String get title => 'Safe mode';
   @override
-  String get plannerNobody => 'Nobody in particular';
+  String get text => 'For when the app needs to stay discreet on this phone.';
   @override
-  String get plannerMe => 'Me';
+  String get toggle => 'Hide the app';
   @override
-  String get plannerPartner => 'The other person';
+  String get toggleText => 'When you switch apps, the screen goes blank.';
+  @override
+  String get localOnly => 'This stays only on this phone. Nothing is sent or recorded.';
+  @override
+  String get quickExit => 'Leave now';
+}
+
+// Path: safety
+class _Translations$safety$en extends Translations$safety$pt {
+  _Translations$safety$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get entry => 'Safety and support';
 }
 
 // Path: sessionExpired
@@ -5277,6 +4794,10 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get title => 'Settings';
   @override
+  String get safety => 'Safety and support';
+  @override
+  String get safetyStatus => 'Safe mode';
+  @override
   String get profile => 'Profile';
   @override
   String get relationship => 'Relationship';
@@ -5299,7 +4820,13 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get planPlus => 'Plus';
   @override
-  String get spice => 'Tempero';
+  String get spice => 'Moments for two';
+  @override
+  String get discreet => 'Discreet mode';
+  @override
+  String get discreetOn => 'On';
+  @override
+  String get discreetOff => 'Off';
   @override
   String get privacy => 'Privacy and security';
   @override
@@ -5323,13 +4850,7 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get appPreferencesStatus => 'Appearance, text and language';
   @override
-  String get theme => 'App colour';
-  @override
-  String get themeTitle => 'Which colour suits you?';
-  @override
-  String get themeHighlight => 'colour';
-  @override
-  String get themeSubtitle => 'Applies to the app and to the widgets. The features are the same.';
+  String get theme => 'Theme';
   @override
   String get weeklyCard => 'Weekly card';
   @override
@@ -5342,100 +4863,6 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get privacySection => 'Privacy and help';
   @override
   String connectedWith({required Object name}) => 'Connected with ${name}';
-}
-
-// Path: share
-class _Translations$share$en extends Translations$share$pt {
-  _Translations$share$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get entryTitle => 'Share image';
-  @override
-  String get entrySubtitleToday => 'Your time together and the moon from the day it began.';
-  @override
-  String get entrySubtitleMemories => 'A timeline of the moments you kept.';
-  @override
-  String get entrySubtitleCard => 'A line from the card that reached you.';
-  @override
-  String get sheetTitle => 'Share image';
-  @override
-  String get sheetSubtitle => 'The image is made on your device and only leaves when you share it.';
-  @override
-  String get shareAction => 'Share';
-  @override
-  Map<String, String> get cardLabels => {
-    'counter': 'Our time',
-    'moon': 'The moon of our day',
-    'timeline': 'Our timeline',
-    'quote': 'From a card',
-    'other': '',
-  };
-  @override
-  String get counterEyebrow => 'OUR TIME';
-  @override
-  String counterDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: 'day together',
-        other: 'days together',
-      );
-  @override
-  String counterSince({required Object date}) => 'Since ${date}';
-  @override
-  String get moonEyebrow => 'THE MOON OF OUR DAY';
-  @override
-  String get moonSupport => 'This is how the sky looked when it all began.';
-  @override
-  String get timelineEyebrow => 'OUR TIMELINE';
-  @override
-  String get timelineTitle => 'Moments we kept';
-  @override
-  String get quoteEyebrow => 'FROM A CARD';
-  @override
-  String quoteText({required Object quote}) => '“${quote}”';
-  @override
-  String quoteFromName({required Object name}) => '— ${name}';
-  @override
-  String quoteDate({required Object date}) => 'Card from ${date}';
-  @override
-  String dateLine({required Object month, required Object day, required Object year}) =>
-      '${month} ${day}, ${year}';
-  @override
-  String dateShort({required Object month, required Object day}) => '${month} ${day}';
-  @override
-  List<String> get monthsLong => [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  @override
-  Map<String, String> get phases => {
-    'newMoon': 'New moon',
-    'waxingCrescent': 'Waxing crescent',
-    'firstQuarter': 'First quarter',
-    'waxingGibbous': 'Waxing gibbous',
-    'fullMoon': 'Full moon',
-    'waningGibbous': 'Waning gibbous',
-    'lastQuarter': 'Last quarter',
-    'waningCrescent': 'Waning crescent',
-    'other': '',
-  };
-  @override
-  String get productMark => 'Mingo';
-  @override
-  Map<String, String> get errors => {'other': 'Couldn\'t share right now. Try again.'};
 }
 
 // Path: slipDetail
@@ -5482,6 +4909,10 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
     'other': '',
   };
   @override
+  String get private => 'Only you see this slip.';
+  @override
+  String get archived => 'Archived';
+  @override
   String get feeling => 'How you felt';
   @override
   String get plan => 'Then I…';
@@ -5489,6 +4920,22 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   String get jarTitle => 'Keep in the jar';
   @override
   String get jarText => 'To open on a bad day. Only you see it.';
+  @override
+  String get cardTitle => 'Who sees this';
+  @override
+  String get cardOff => 'Only me';
+  @override
+  String get cardOffText => 'Stays in your week and does not go in the card.';
+  @override
+  String get cardOn => 'Can go in the card';
+  @override
+  String get cardOnText => 'On Sunday you choose whether it goes.';
+  @override
+  String get cardInvisible => 'Invisible slips never go in a card.';
+  @override
+  String get previewTitle => 'What your partner would read';
+  @override
+  String get previewText => 'If this slip goes in the card, this is the text that shows.';
   @override
   String get sentNote =>
       'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.';
@@ -5504,6 +4951,10 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   @override
   String get editCancel => 'Cancel';
   @override
+  String get archive => 'Archive';
+  @override
+  String get restore => 'Restore';
+  @override
   String get delete => 'Delete';
   @override
   String get deleteTitle => 'Delete this slip?';
@@ -5514,11 +4965,17 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   @override
   String get saved => 'Saved';
   @override
+  String get archivedToast => 'Archived';
+  @override
   String get deleted => 'Slip deleted';
   @override
   String get notFoundTitle => 'This slip no longer exists';
   @override
   String get notFoundText => 'It may have been deleted.';
+  @override
+  String get errorTitle => 'Couldn\'t open this slip';
+  @override
+  String get errorText => 'It is still saved. Try again.';
   @override
   Map<String, String> get errors => {
     'SLIP_NOT_FOUND': 'This slip no longer exists.',
@@ -5527,40 +4984,6 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   };
   @override
   String get discardTitle => 'Discard this slip?';
-  @override
-  List<String> get weekdaysShort => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  @override
-  String factDate({required Object weekday, required Object month, required Object day}) =>
-      '${weekday} ${month} ${day}';
-  @override
-  String get factDateLabel => 'Date';
-  @override
-  String get factType => 'Type';
-  @override
-  String get factVisibility => 'Visibility';
-  @override
-  String get factInCard => 'Included in a card';
-  @override
-  String get visibilityPrivate => 'Private';
-  @override
-  String get visibilityCard => 'In the weekly card';
-  @override
-  String get visibilitySent => 'Sent';
-  @override
-  String get yes => 'Yes';
-  @override
-  String get no => 'No';
-  @override
-  Map<String, String> get categories => {
-    'said': 'Said something',
-    'did': 'Did something',
-    'noticed': 'Noticed me',
-    'helped': 'Helped me',
-    'other': '',
-  };
-  @override
-  late final _Translations$slipDetail$visibility$en visibility =
-      _Translations$slipDetail$visibility$en._(_root);
 }
 
 // Path: slipKind
@@ -5596,12 +5019,12 @@ class _Translations$slipKind$en extends Translations$slipKind$pt {
   @override
   Map<String, String> get workAreas => {
     'planning': 'Planning',
-    'dates': 'Remembering dates',
+    'dates': 'Dates',
     'kitchen': 'Kitchen',
     'cleaning': 'Cleaning',
-    'kids': 'Kids\' logistics',
-    'emotional': 'Emotional support',
-    'finances': 'Household finances',
+    'kids': 'Kids',
+    'emotional': 'Emotional',
+    'finances': 'Finances',
     'other': 'Other',
   };
   @override
@@ -5624,6 +5047,7 @@ class _Translations$slipKind$en extends Translations$slipKind$pt {
   late final _Translations$slipKind$saved$en saved = _Translations$slipKind$saved$en._(_root);
   @override
   Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'You reached the free plan\'s slip limit.',
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t save right now. Your text is still here, try again.',
   };
@@ -5643,13 +5067,19 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   @override
   String get scopeAll => 'All';
   @override
+  String get scopeArchived => 'Archived';
+  @override
   String get search => 'Search';
+  @override
+  String get searchClose => 'Close search';
   @override
   String get searchHint => 'Search your slips';
   @override
   String get searchEmptyTitle => 'Nothing found';
   @override
   String get searchEmptyText => 'Try another word.';
+  @override
+  String get clearSearch => 'Clear search';
   @override
   String get thisWeek => 'This week';
   @override
@@ -5694,29 +5124,17 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
     'other': '',
   };
   @override
+  String get pastCards => 'Past cards';
+  @override
   String get emptyTitle => 'Nothing yet';
   @override
   String get emptyText => 'A slip is one good thing, in one line.';
   @override
   String get emptyAction => 'Add a slip';
   @override
-  String get privateEmptyTitle => 'Nothing private here';
+  String get errorTitle => 'Could not load your slips';
   @override
-  String get privateEmptyText => 'Slips you keep off the card show up here.';
-  @override
-  String get privateMarker => 'Private slip';
-  @override
-  String get scopePrivate => 'Private';
-  @override
-  String get freeNote => 'Slips are always free.';
-  @override
-  String get filterThisMonth => 'This month';
-  @override
-  String get filterInCard => 'In a card';
-  @override
-  String get filterInvisible => 'Invisible work';
-  @override
-  String get searchFiltersEmptyText => 'Adjust the search or the filters.';
+  String get errorText => 'They are still saved. Try again.';
 }
 
 // Path: spice
@@ -5727,66 +5145,31 @@ class _Translations$spice$en extends Translations$spice$pt {
 
   // Translations
   @override
-  String get title => 'Tempero';
+  String get title => 'Moments for two';
   @override
-  String get introTitle => 'Tempero, just for the two of you';
-  @override
-  String get introHighlight => 'the two of you';
-  @override
-  String get introText =>
-      'An optional space for adults, with cards and desires for the couple. 18+ only.';
-  @override
-  String get partnerWantsText =>
-      'The other person wanted to turn it on. It only starts when you turn it on too.';
-  @override
-  List<String> get promises => [
-    'It only counts when you both turn it on.',
-    'Either of you can turn it off any time, and everything disappears for both.',
-    'Your answers are only yours. Only what you both want shows.',
-    'A "not today" is never explained or announced.',
-  ];
-  @override
-  String get adultLabel => 'I am 18 or older';
-  @override
-  String get adultError => 'Confirm to continue.';
+  String get offText =>
+      'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.';
   @override
   String get turnOn => 'Turn on';
   @override
   String get notNow => 'Not now';
   @override
+  String get waitingText =>
+      'You both need to accept. Nothing is sent to your partner; when they turn it on too, the cards show up here.';
+  @override
+  String get readyText => 'Light cards for the two of you. Do it or skip it, no pressure.';
+  @override
+  String get drawCard => 'Draw a card';
+  @override
   String get turnOff => 'Turn off';
   @override
-  String get waitingTitle => 'Waiting for the other person';
+  String get errorTitle => 'Couldn\'t load';
   @override
-  String get waitingText =>
-      'Nothing was announced. When they turn it on too, Tempero opens for both of you.';
-  @override
-  String get soloTitle => 'Tempero is for two';
-  @override
-  String get soloText =>
-      'It needs two connected people. When the other person joins, it becomes available.';
-  @override
-  String get soloAction => 'Back';
-  @override
-  late final _Translations$spice$home$en home = _Translations$spice$home$en._(_root);
-  @override
-  late final _Translations$spice$cards$en cards = _Translations$spice$cards$en._(_root);
-  @override
-  late final _Translations$spice$desires$en desires = _Translations$spice$desires$en._(_root);
-  @override
-  late final _Translations$spice$challenge$en challenge = _Translations$spice$challenge$en._(_root);
-  @override
-  late final _Translations$spice$settingsPage$en settingsPage =
-      _Translations$spice$settingsPage$en._(_root);
+  String get errorText => 'Try again in a moment.';
   @override
   Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
-    'PLUS_REQUIRED': 'This is part of Plus.',
-    'ADULT_REQUIRED': 'Confirm you are 18 or older.',
-    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
-    'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
-    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
-    'other': 'We could not finish that now. Try again.',
+    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
+    'other': 'Couldn\'t change that right now. Try again.',
   };
 }
 
@@ -5848,6 +5231,12 @@ class _Translations$sundayCard$en extends Translations$sundayCard$pt {
   @override
   String get noteHint => 'Thank you for this week.';
   @override
+  String get moveUp => 'Move up';
+  @override
+  String get moveDown => 'Move down';
+  @override
+  String get remove => 'Remove from card';
+  @override
   String get emptyTitle => 'A week without slips';
   @override
   String get emptyText => 'Note one good thing and it goes on the Sunday card.';
@@ -5871,25 +5260,6 @@ class _Translations$sundayCard$en extends Translations$sundayCard$pt {
   late final _Translations$sundayCard$held$en held = _Translations$sundayCard$held$en._(_root);
   @override
   late final _Translations$sundayCard$sent$en sent = _Translations$sundayCard$sent$en._(_root);
-  @override
-  late final _Translations$sundayCard$heldByRule$en heldByRule =
-      _Translations$sundayCard$heldByRule$en._(_root);
-  @override
-  String get dayTitle => 'Day';
-  @override
-  String get dayError => 'Could not change the day. The earlier one was kept.';
-  @override
-  String get dayNote => 'Applies to the next card.';
-  @override
-  String get editTitle => 'Edit this week';
-  @override
-  String get editSubtitle => 'Choose what goes in';
-  @override
-  String get included => 'Included';
-  @override
-  String get notIncluded => 'Not included';
-  @override
-  String get preview => 'Preview';
 }
 
 // Path: tabs
@@ -6064,6 +5434,10 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get fightStyleLabel => 'JUST FOR YOU';
   @override
+  String get fightStyleTitle => 'How I react in a fight';
+  @override
+  String get fightStyleText => 'A short, private reflection on your own way.';
+  @override
   String get guidesLabel => 'CONVERSATIONS';
   @override
   String get guidesTitle => 'Difficult conversations';
@@ -6085,6 +5459,8 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get sectionMore => 'More';
   @override
   String get sectionPrivate => 'Only yours';
+  @override
+  String get sectionPatterns => 'My patterns';
   @override
   String get logisticsMeta => '15 min · weekly';
   @override
@@ -6133,10 +5509,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get diaryMeta => 'Only yours';
   @override
-  String get moodCalendarTitle => 'My moods';
-  @override
-  String get moodCalendarMeta => 'Your month, only you';
-  @override
   String get hardTalkMeta => 'Notes before you talk';
   @override
   String get notesMeta => 'When you want';
@@ -6145,53 +5517,13 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get partnerMeta => 'Only for you';
   @override
+  String get fightStyleMeta => 'How you react';
+  @override
+  String get loveStyleMeta => 'How you feel loved';
+  @override
   String get chatMeta => 'A calm conversation';
   @override
   String get listsNone => 'None yet';
-  @override
-  String get needsBoth => 'Needs both of you · Invite';
-  @override
-  String durationYearsMonths({
-    required Object years,
-    required Object yearsUnit,
-    required Object months,
-    required Object monthsUnit,
-  }) => '${years} ${yearsUnit} and ${months} ${monthsUnit}';
-  @override
-  String durationYears({required Object years, required Object yearsUnit}) =>
-      '${years} ${yearsUnit}';
-  @override
-  String durationMonths({required Object months, required Object monthsUnit}) =>
-      '${months} ${monthsUnit}';
-  @override
-  String durationDays({required Object days, required Object daysUnit}) => '${days} ${daysUnit}';
-  @override
-  String unitYear({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: 'year',
-        other: 'years',
-      );
-  @override
-  String unitMonth({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: 'month',
-        other: 'months',
-      );
-  @override
-  String unitDay({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: 'day',
-        other: 'days',
-      );
-  @override
-  String get chat => 'Chat';
-  @override
-  String get couple => 'Us';
-  @override
-  String get storyChip => 'Our story';
 }
 
 // Path: temperature
@@ -6244,10 +5576,6 @@ class _Translations$temperature$en extends Translations$temperature$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t save right now. Your answers are still here.',
   };
-  @override
-  late final _Translations$temperature$history$en history = _Translations$temperature$history$en._(
-    _root,
-  );
 }
 
 // Path: timeInApp
@@ -6263,6 +5591,8 @@ class _Translations$timeInApp$en extends Translations$timeInApp$pt {
   String get titleHighlight => 'app';
   @override
   String get text => 'We hide cards and reminders until you come back.';
+  @override
+  String get pause => 'Pause the app';
   @override
   String get cancel => 'Cancel';
 }
@@ -6311,11 +5641,38 @@ class _Translations$today$en extends Translations$today$pt {
     'December',
   ];
   @override
+  String togetherYears({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 year',
+        other: '${count} years',
+      );
+  @override
+  String togetherMonths({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 month',
+        other: '${count} months',
+      );
+  @override
+  String togetherDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 day',
+        other: '${count} days',
+      );
+  @override
+  String get togetherChipAction => 'Open our story';
+  @override
+  String togetherJoin({required Object first, required Object second}) => '${first} and ${second}';
+  @override
   String get invitePerson => 'Invite your person';
   @override
   String get pendingInviteTitle => 'Invite sent';
   @override
   String get pendingInviteText => 'They have not joined yet. Send again or revoke.';
+  @override
+  String get pendingInviteAction => 'See invite';
   @override
   String get answer => 'Answer';
   @override
@@ -6329,11 +5686,19 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String get weekHintEmpty => 'no rush';
   @override
-  String get weekHint => 'card for the week';
+  String get weekHint => 'card on Sunday';
   @override
   String get forToday => 'For today';
   @override
   String get ideaLabel => 'Idea of the day';
+  @override
+  String slipsThisWeekPrivate({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        zero: 'Your private slips: none this week',
+        one: 'Your private slips: 1 this week',
+        other: 'Your private slips: ${count} this week',
+      );
   @override
   String get sundayCardLabel => 'Sunday card';
   @override
@@ -6367,6 +5732,10 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String get cardReceived => 'You received a card';
   @override
+  String get cardReceivedAction => 'See card';
+  @override
+  String get firstDayLabel => 'Getting started';
+  @override
   String firstDayGreeting({required Object name}) => 'Hi, ${name}';
   @override
   String get firstDaySubtitle => 'so glad you are here';
@@ -6397,52 +5766,26 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String cardReceivedNamed({required Object name}) => '${name} sent you a card';
   @override
-  String get inviteCardSupport =>
-      'Your space already works. The other person joins whenever they want.';
+  String get pauseOwnTitle => 'You asked for some space';
   @override
-  String get inviteCardAction => 'Invite';
+  String pauseOwnText({required Object time}) =>
+      'You\'re back around ${time}. Nothing to do right now.';
   @override
-  String get carouselCardTag => 'Card';
+  String get pausePartnerTitle => 'Your partner asked for some space';
   @override
-  String get carouselCardSupport => 'Open to see the good things from this week.';
+  String get pausePartnerText => 'No rush. There\'s nothing to do right now.';
   @override
-  String get carouselCardAction => 'Open';
+  String get signalReceived => 'Your partner sent you a message';
   @override
-  String get weekTag => 'Your week';
+  String get signalReceivedAction => 'View';
   @override
-  String get weekReadyTitle => 'Your week is ready';
+  String get pauseBack => 'Come back now';
   @override
-  String get weekReadySupport => 'A summary of what you two did.';
+  String get pauseBackRepair => 'Come back and repair';
   @override
-  String get weekReadySupportPrivate => 'A summary just for you.';
+  String get pauseWriteSlip => 'Write a slip';
   @override
-  String get weekReadyAction => 'See';
-  @override
-  String get haveCode => 'I already have a code';
-  @override
-  String get partnerProfile => 'Partner profile';
-  @override
-  String get privateWeekTitle => 'Your private slips';
-  @override
-  String privateWeekCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        zero: 'no rush',
-        one: '1 this week',
-        other: '${count} this week',
-      );
-  @override
-  late final _Translations$today$conflict$en conflict = _Translations$today$conflict$en._(_root);
-  @override
-  String get questionTag => 'Today';
-  @override
-  String get partnerMomentTag => 'For this moment';
-  @override
-  String get partnerMomentSupport => 'A small idea can help.';
-  @override
-  String get partnerMomentAction => 'See ideas';
-  @override
-  String get offlineBand => 'No connection. Showing what was already on your phone.';
+  String get weekHintToday => 'card goes out today, 18:00';
 }
 
 // Path: unpair
@@ -6482,85 +5825,6 @@ class _Translations$unpair$en extends Translations$unpair$pt {
   };
 }
 
-// Path: weeklyReview
-class _Translations$weeklyReview$en extends Translations$weeklyReview$pt {
-  _Translations$weeklyReview$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Your week';
-  @override
-  String get titleHighlight => 'week';
-  @override
-  String range({required Object month, required Object start, required Object end}) =>
-      '${month} ${start} to ${end}';
-  @override
-  List<String> get months => [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  @override
-  String slips({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: 'slip',
-        other: 'slips',
-      );
-  @override
-  String moodDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        zero: 'mood days',
-        one: 'mood day',
-        other: 'mood days',
-      );
-  @override
-  String rituals({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        zero: 'rituals done',
-        one: 'ritual done',
-        other: 'rituals done',
-      );
-  @override
-  String get note => 'Counted by the app, no AI. Only you see it.';
-  @override
-  String get talk => 'Talk about it';
-  @override
-  String get close => 'Close';
-  @override
-  String get quietTitle => 'A quiet week';
-  @override
-  String get quietHighlight => 'quiet';
-  @override
-  String get quietCardTitle => 'No rush';
-  @override
-  String get quietCardText => 'Writing a good thing takes 30 seconds. Start whenever you like.';
-  @override
-  String get quietNote => 'Never compared with other weeks.';
-  @override
-  String get writeSlip => 'Write a slip';
-  @override
-  String get errorTitle => 'We could not open your week';
-  @override
-  Map<String, String> get errors => {
-    'NETWORK': 'No connection. Try again.',
-    'other': 'Something went wrong. Try again.',
-  };
-}
-
 // Path: welcome
 class _Translations$welcome$en extends Translations$welcome$pt {
   _Translations$welcome$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -6594,17 +5858,21 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get settingsSubtitle => 'Home screen';
   @override
-  String get togetherCategory => 'HOME SCREEN';
+  String get juntosCategory => 'HOME SCREEN';
   @override
-  String get togetherTitle => 'Mingo widgets';
+  String get juntosTitle => 'Mingo widgets';
   @override
-  String get togetherSubtitle => 'Calm reminders for you or for the two of you.';
+  String get juntosSubtitle => 'Calm reminders for you or for the two of you.';
   @override
   String get galleryTitle => 'Widgets';
   @override
   String get segmentOwn => 'Just mine';
   @override
   String get segmentCouple => 'Couple';
+  @override
+  String get howToAddAction => 'How to add to screen';
+  @override
+  String get configureAction => 'Configure';
   @override
   String get ownSlipLabel => 'LOG SLIP';
   @override
@@ -6616,7 +5884,7 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get ownIdeaDefault => 'Leave a small note today';
   @override
-  String get ownIdeaHint => 'One idea for today.';
+  String get ownIdeaHint => 'Tap to open';
   @override
   String get ownJarLabel => 'BAD DAY JAR';
   @override
@@ -6645,17 +5913,85 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get couplePhotosPlusHint => 'Available with Plus';
   @override
+  String get partnerNoteLabel => 'PARTNER NOTE';
+  @override
+  String get partnerNoteEmpty => 'No new note right now';
+  @override
+  String partnerNoteFrom({required Object name}) => 'From ${name}';
+  @override
+  String get partnerNoteFromDefault => 'From your partner';
+  @override
   String get cardEncounterLabel => 'CARD & DATE';
   @override
   String get cardStateReady => 'A card arrived · Tap to open';
   @override
   String get cardStateSent => 'Card sent · Waiting for Sunday';
   @override
+  String get cardStatePause => 'Pause in progress';
+  @override
   String get cardStateNone => 'Sunday card in preparation';
+  @override
+  String get discreetBanner =>
+      'Discreet mode is on: names, photos and notes are hidden in widgets.';
   @override
   String get unpairedBanner => 'No partner connected: couple widgets show a neutral state.';
   @override
   String get offlineBanner => 'Showing the last saved data. Updates when back online.';
+  @override
+  String get howToAddTitle => 'How to add';
+  @override
+  String get howToAddStep1Title => 'Hold the home screen';
+  @override
+  String get howToAddStep1Body => 'Touch and hold an empty space until the icons jiggle.';
+  @override
+  String get howToAddStep2Title => 'Tap the + button';
+  @override
+  String get howToAddStep2Body => 'In the top corner, search for Mingo.';
+  @override
+  String get howToAddStep3Title => 'Pick a size';
+  @override
+  String get howToAddStep3Body => 'Small or medium.';
+  @override
+  String get howToAddAndroidLockNote =>
+      'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.';
+  @override
+  String get howToAddIosLockNote => 'On iOS 16 or newer, you can also add the lock-screen widget.';
+  @override
+  String get howToAddDone => 'Got it';
+  @override
+  String get configureTitle => 'Configure widget';
+  @override
+  String get configurePreviewLabel => 'PREVIEW';
+  @override
+  String get configureContentSection => 'Content';
+  @override
+  String get configureContentFavorites => 'Favorites';
+  @override
+  String get configureContentRecent => 'Recent';
+  @override
+  String get configureContentDailyIdea => 'Daily idea';
+  @override
+  String get configureRotationSection => 'Photo rotation';
+  @override
+  String get configureRotationDaily => 'Every day';
+  @override
+  String get configureRotationSixHours => 'Every 6h';
+  @override
+  String get configureRotationManual => 'Manual';
+  @override
+  String get configurePrivacySection => 'Privacy';
+  @override
+  String get configureShowNames => 'Show names';
+  @override
+  String get configureHideInDiscreet => 'Hide in discreet mode';
+  @override
+  String get configureAllowPartnerNotes => 'Allow partner notes';
+  @override
+  String get configureOnLockScreen => 'Allow on lock screen';
+  @override
+  String get configureSave => 'Save';
+  @override
+  String get configureSavedToast => 'Widget preferences saved.';
   @override
   String get loadErrorTitle => 'Could not load widgets';
   @override
@@ -6666,6 +6002,10 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get themeLight => 'Light';
   @override
   String get themeDark => 'Dark';
+  @override
+  String get discreetReminderLabel => 'Reminder';
+  @override
+  String get discreetNeutralBody => 'Neutral text';
   @override
   String get signedOutLabel => 'Mingo';
   @override
@@ -6710,9 +6050,17 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get lockScreenClockDate => 'Friday, April 10';
   @override
+  String get lockScreenPauseTitle => 'Pause in progress';
+  @override
+  String lockScreenPauseUntil({required Object time}) => 'until ${time}';
+  @override
+  String get lockScreenPauseUntilDefault => 'until 20:00';
+  @override
   String get lockScreenReadyAction => 'I am ready';
   @override
   String get lockScreenGenericPhrase => 'Calm moment';
+  @override
+  String get lockScreenDiscreetPhrase => 'Reminder';
   @override
   String get lockScreenPrivacyRule => 'Never shows names or messages on the lock screen.';
   @override
@@ -6745,7 +6093,7 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get photosPlusBadge => 'PLUS';
   @override
   String get photosNeutralFallbackNote =>
-      'When no photo is saved on this device, the widget shows only the neutral card with the time together.';
+      'When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.';
   @override
   String get photosUnlockPlusAction => 'Explore Plus';
   @override
@@ -6756,6 +6104,19 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get photosSavedToast => 'Photo saved to the widget.';
   @override
   String get photosRemovedToast => 'Photo removed from the widget.';
+  @override
+  String get partnerNotePageTitle => 'Partner note';
+  @override
+  String get partnerNoteMediumSection => 'Medium';
+  @override
+  String get partnerNoteReplyHint => 'Reply with a heart';
+  @override
+  String get partnerNoteDrawingPlaceholder => 'drawing';
+  @override
+  String get partnerNoteSafeNote => 'Only notes your partner marked as widget-safe appear here.';
+  @override
+  String get partnerNoteDisabledNote =>
+      'You turned off partner notes on widgets. Enable below if you want to show them.';
   @override
   String get cardEncounterPageTitle => 'Card & next date';
   @override
@@ -6773,6 +6134,10 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get cardNoneSubtitle => 'In preparation';
   @override
+  String get cardPauseTitle => 'Pause in progress';
+  @override
+  String get cardPauseSubtitle => 'Tap when ready';
+  @override
   String get nextEncounterLabel => 'Next date';
   @override
   String get nextEncounterEmptyTitle => 'No upcoming date';
@@ -6782,9 +6147,28 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get cardEncounterPrivacyNote =>
       'This widget only shows card status and the next date — never names or card text.';
   @override
+  String get statesPageTitle => 'Widget states';
+  @override
+  String get statesAction => 'View states (discreet & unpaired)';
+  @override
+  String get statesDiscreetSection => 'Discreet mode';
+  @override
+  String get statesDiscreetToggle => 'Enable discreet mode now';
+  @override
+  String get statesUnpairedSection => 'No partner';
+  @override
   String get statesUnpairedTitle => 'Invite to see here';
   @override
   String get statesUnpairedAction => 'Invite';
+  @override
+  String get statesOfflineSection => 'Offline';
+  @override
+  String get statesOfflineTitle => 'Showing the last saved data';
+  @override
+  String get statesOfflineSubtitle => 'Updates when back online';
+  @override
+  String get statesPrecedenceNote =>
+      'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).';
   @override
   Map<String, String> get errors => {
     'WIDGET_PREFERENCES_SAVE_FAILED': 'Could not save widget preferences right now.',
@@ -6798,261 +6182,6 @@ class _Translations$widgets$en extends Translations$widgets$pt {
     'COUPLE_PHOTO_NOT_PAIRED': 'Connect with your partner to choose a couple photo.',
     'other': 'Could not save widget preferences right now.',
   };
-  @override
-  String get howToAddAndroidLockNote =>
-      'On modern Android the widgets live on the home screen. The lock screen only uses neutral notification icons.';
-  @override
-  String get howToAddIosLockNote =>
-      'On iOS 16 or newer, you can also add the widget to the lock screen.';
-  @override
-  String get coupleLabel => 'COUPLE';
-  @override
-  String get gallerySubtitle => 'Small pieces of the app on your home screen.';
-  @override
-  String get favoritesGroup => 'Most loved';
-  @override
-  String get mediumGroup => 'Medium';
-  @override
-  String get ownSmallGroup => 'Log and remember';
-  @override
-  String get ownGroupHint => 'Work without a partner and only show what is yours.';
-  @override
-  String get ownSmallEntryTitle => 'Small';
-  @override
-  String get ownSmallEntryHint => 'Log, remember and the Sunday card.';
-  @override
-  String get ownMediumEntryTitle => 'Medium';
-  @override
-  String get ownMediumEntryHint => 'Your week, an idea and the next date.';
-  @override
-  String get ownSmallTitle => 'Just mine: small';
-  @override
-  String get ownMediumTitle => 'Just mine: medium';
-  @override
-  String get counterEyebrow => 'TOGETHER';
-  @override
-  String get counterNeedDate => 'Set your relationship date';
-  @override
-  String counterDaysUnit({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '${count} day',
-        other: '${count} days',
-      );
-  @override
-  String counterBreakdown({required Object years, required Object months, required Object days}) =>
-      '${years} years, ${months} months and ${days} days';
-  @override
-  String get counterToday => 'Today';
-  @override
-  String counterSince({required Object date}) => 'Since ${date}';
-  @override
-  String get partnerMoodLabel => 'PARTNER MOOD';
-  @override
-  String partnerMoodNow({required Object name}) => '${name} now';
-  @override
-  String get partnerMoodNowAnonymous => 'Now';
-  @override
-  String get partnerMoodHidden => 'Mood appears when your partner shares it.';
-  @override
-  String get longingLabel => 'MISSING US';
-  @override
-  String get longingAction => 'Send some missing';
-  @override
-  String get longingReceived => 'Your partner misses you';
-  @override
-  String get longingHint => 'One tap and they feel it.';
-  @override
-  String get ritualLabel => 'RITUAL';
-  @override
-  String get ritualEmptyTitle => 'Create a ritual';
-  @override
-  String get ritualEmptyHint => 'A moment that is yours.';
-  @override
-  String noteFromPartner({required Object time}) => 'from your partner · ${time}';
-  @override
-  String noteFromName({required Object name, required Object time}) => 'from ${name} · ${time}';
-  @override
-  String get noteEmpty => 'No note here yet';
-  @override
-  String get noteEmptyHint => 'A note appears when your partner chooses to send one.';
-  @override
-  String get noteDisabled => 'Notes are off';
-  @override
-  String get noteDisabledHint => 'Turn on “Notes on the widget” to see them.';
-  @override
-  String nextEncounterInDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: 'in ${count} day',
-        other: 'in ${count} days',
-      );
-  @override
-  String get cardSundayTitle => 'Sunday card';
-  @override
-  String cardSendAt({required Object day, required Object time}) => 'out ${day}, ${time}';
-  @override
-  String get cardReadyShort => 'A card arrived';
-  @override
-  String get cardSentShort => 'Card sent';
-  @override
-  String get cardNoneShort => 'Sunday card';
-  @override
-  String get distanceLabel => 'LONG DISTANCE';
-  @override
-  String get distanceHidden => 'Your partner\'s timezone is not set';
-  @override
-  String get distanceHint => 'Each in their own timezone.';
-  @override
-  String distanceUntil({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '${count} day until you meet',
-        other: '${count} days until you meet',
-      );
-  @override
-  String get distanceNoReunion => 'Next meeting without a date';
-  @override
-  String distanceYou({required Object city}) => '${city} · you';
-  @override
-  String get ownNextDateLabel => 'NEXT DATE';
-  @override
-  String get ownNextDateHint => 'Tap to see the dates';
-  @override
-  String ownDateCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '${count} day',
-        other: '${count} days',
-      );
-  @override
-  String get ownWeekTitle => 'My week';
-  @override
-  String ownWeekCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '${count} slip',
-        other: '${count} slips',
-      );
-  @override
-  List<String> get weekdays => ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-  @override
-  Map<String, String> get familyLabels => {
-    'counter': 'Counter',
-    'counterMedium': 'Counter',
-    'partnerMood': 'Partner mood',
-    'longing': 'Missing us',
-    'ritual': 'Ritual',
-    'partnerNote': 'Partner note',
-    'cardEncounter': 'Card & date',
-    'distance': 'Long distance',
-    'ownSlip': 'Log slip',
-    'ownNextDate': 'Next date',
-    'ownRitual': 'Ritual',
-    'ownSundayCard': 'Sunday card',
-    'ownWeek': 'My week',
-    'ownIdea': 'Idea of the day',
-    'ownMediumDate': 'Next date',
-    'other': 'Widget',
-  };
-  @override
-  String get moodJustNow => 'just now';
-  @override
-  String moodMinutesAgo({required Object minutes}) => '${minutes} min ago';
-  @override
-  String moodHoursAgo({required Object hours}) => '${hours} h ago';
-  @override
-  String moodDaysAgo({required Object days}) => '${days} d ago';
-  @override
-  String get ownSlipQuestion => 'How was your day?';
-  @override
-  String get ownSlipAction => 'Log a slip';
-  @override
-  String get howToAddAction => 'How to add';
-  @override
-  String get howToAddTitle => 'How to add';
-  @override
-  String get howToAddSubtitle => 'Straight from the home screen, with no extra Mingo permission.';
-  @override
-  String get howToAddIosStep1 => 'Touch and hold an empty spot on the home screen.';
-  @override
-  String get howToAddIosStep2 => 'Tap + in the top corner.';
-  @override
-  String get howToAddIosStep3 => 'Choose Mingo and the widget size.';
-  @override
-  String get howToAddAndroidStep1 => 'Touch and hold an empty spot on the home screen.';
-  @override
-  String get howToAddAndroidStep2 => 'Tap Widgets.';
-  @override
-  String get howToAddAndroidStep3 => 'Choose Mingo and drag it to the screen.';
-  @override
-  String get howToAddLockIosStep1 => 'Touch and hold the lock screen.';
-  @override
-  String get howToAddLockIosStep2 => 'Tap Customize.';
-  @override
-  String get howToAddLockIosStep3 => 'Add the Mingo widget below the clock.';
-  @override
-  String get howToAddNote => 'You can remove the widget whenever you want; nothing is deleted.';
-  @override
-  String get widgetPrivacyTitle => 'What appears on widgets';
-  @override
-  String get showNamesTitle => 'Names and initials';
-  @override
-  String get showNamesHint => 'When off, widgets show only the content.';
-  @override
-  String get allowNotesTitle => 'Notes on the widget';
-  @override
-  String get allowNotesHint => 'Only notes your partner marked for the widget.';
-  @override
-  String get privacySectionHint =>
-      'Follows your privacy choices. What is hidden in the app stays hidden here.';
-  @override
-  String get settingsSaved => 'Preferences updated.';
-  @override
-  String get lockScreenCircular => 'Circular';
-  @override
-  String get lockScreenRectangular => 'Rectangular';
-  @override
-  String get lockScreenInline => 'Inline';
-  @override
-  String get lockScreenNeutralLabel => 'NEUTRAL TEXT';
-  @override
-  String get lockScreenNeutralPhrase => 'No names on the lock screen';
-  @override
-  String get lockScreenAndroidUnavailable =>
-      'The Android lock screen does not accept widgets. Use the home-screen widgets.';
-  @override
-  String get ownNextDateDefault => 'Next date';
-  @override
-  String get ownSundayCardLabel => 'SUNDAY CARD';
-  @override
-  String get ownGroupTitle => 'Just mine';
-  @override
-  String get soloBanner => 'Couple widgets appear once you connect.';
-  @override
-  String get previewSmall => 'Small';
-  @override
-  String get previewMedium => 'Medium';
-  @override
-  String get counterSmallLabel => 'Small';
-  @override
-  String get counterMediumLabel => 'Medium, with timeline';
-  @override
-  String get partnerNotePageTitle => 'Partner note';
-  @override
-  String get partnerNotePrivacy => 'Only what your partner chose to send to the widget appears.';
-  @override
-  String get moodLongingPageTitle => 'Mood and missing';
-  @override
-  String get partnerMoodPrivacy => 'Mood only appears if your partner shared it.';
-  @override
-  String get longingPrivacy => 'Missing appears when your partner sends it.';
-  @override
-  String get moodUpdateAction => 'Update my mood';
-  @override
-  String get openDatesAction => 'See dates';
-  @override
-  String get lockReminderShortLabel => 'Reminder';
 }
 
 // Path: acceptInvite.connected
@@ -7093,98 +6222,6 @@ class _Translations$acceptInvite$unusable$en extends Translations$acceptInvite$u
   String get tryAgain => 'Type again';
   @override
   String get close => 'Close';
-}
-
-// Path: account.export
-class _Translations$account$export$en extends Translations$account$export$pt {
-  _Translations$account$export$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get appBarTitle => 'Export my data';
-  @override
-  String get title => 'Take your data with you';
-  @override
-  String get titleHighlight => 'your data';
-  @override
-  String get text =>
-      'We build a file with only what is yours: slips, notes and answers. Nothing from the other person goes in it.';
-  @override
-  String get note => 'The link lasts a few minutes. You can build one file a day.';
-  @override
-  String get action => 'Build the file';
-  @override
-  String get again => 'Build again';
-  @override
-  String get beforeDelete => 'Export before deleting';
-  @override
-  String get openFailed => 'We could not open the file. Try building it again.';
-  @override
-  Map<String, String> get errors => {
-    'EXPORT_LIMIT': 'You already built a file today. Try again tomorrow.',
-    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
-    'other': 'We could not build the file now. Try again.',
-  };
-}
-
-// Path: chat.action
-class _Translations$chat$action$en extends Translations$chat$action$pt {
-  _Translations$chat$action$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get privateHint => 'Stays only with you.';
-  @override
-  String get partnerHint => 'Nothing goes until you tap.';
-  @override
-  String moodText({required Object mood}) => 'Today: ${mood}';
-  @override
-  Map<String, String> get moods => {
-    'happy': 'happy',
-    'tired': 'tired',
-    'sad': 'sad',
-    'stressed': 'stressed',
-    'loving': 'loving',
-    'playful': 'playful',
-  };
-  @override
-  String get dismiss => 'Not now';
-  @override
-  String get running => 'One moment…';
-  @override
-  String get done => 'Done';
-  @override
-  String get dismissed => 'Set aside';
-  @override
-  String get failed => 'It did not work';
-  @override
-  String get retry => 'Try again';
-  @override
-  Map<String, String> get runLabels => {
-    'create_private_slip': 'Save',
-    'send_slip_to_partner': 'Send',
-    'log_mood': 'Log',
-    'share_mood': 'Share',
-    'save_learning': 'Keep',
-    'open_purchase': 'See Plus',
-    'other': 'Do it',
-  };
-  @override
-  Map<String, String> get tags => {
-    'create_private_slip': 'Suggestion · Write a slip',
-    'send_slip_to_partner': 'Suggestion · Send a slip',
-    'log_mood': 'Suggestion · Log mood',
-    'share_mood': 'Suggestion · Share mood',
-    'save_learning': 'Suggestion · Remember this',
-    'suggest_couple_question': 'A question to talk about',
-    'draft_note': 'Draft note',
-    'open_purchase': 'Plus',
-    'other': 'Suggestion',
-  };
 }
 
 // Path: games.hub
@@ -7342,7 +6379,7 @@ class _Translations$games$waiting$en extends Translations$games$waiting$pt {
   @override
   String get stillWaiting => 'Not in yet. The invite is still here.';
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Cancel the invitation';
 }
 
 // Path: games.active
@@ -7352,6 +6389,10 @@ class _Translations$games$active$en extends Translations$games$active$pt {
   final TranslationsEn _root; // ignore: unused_field
 
   // Translations
+  @override
+  String get title => 'The game has started';
+  @override
+  String get text => 'Both of you are in. This game\'s screens appear here.';
   @override
   String get cancel => 'End the game';
 }
@@ -7367,16 +6408,11 @@ class _Translations$games$playing$en extends Translations$games$playing$pt {
   String progress({required Object current, required Object total}) =>
       'Question ${current} of ${total}';
   @override
-  String guessProgress({required Object current, required Object total}) =>
-      'Guess ${current} of ${total}';
-  @override
-  String get me => 'Me';
-  @override
-  String get both => 'Both';
+  String get you => 'You';
   @override
   String get partnerFallback => 'Your partner';
   @override
-  String get skip => 'Skip';
+  String get skip => 'Skip this one';
   @override
   String get guessAboutYou => 'About you';
   @override
@@ -7388,31 +6424,21 @@ class _Translations$games$playing$en extends Translations$games$playing$pt {
   @override
   String get guessPromptFallback => 'What did your partner answer?';
   @override
+  String get guessYourGuess => 'Your guess';
+  @override
   String get answerHint => 'Answer as you would.';
   @override
   String get guessHint => 'Guess what they answered.';
   @override
   String get talkHint => 'Write your answer. Only you can read it until you both finish.';
   @override
-  String get talkSubtitle => 'Answer in private, reveal together.';
-  @override
   String get talkNote => 'Your partner only sees this after both of you answer.';
   @override
-  String get privacyNote => 'Each of you answers in private. Skipping is always allowed.';
+  String get introCta => 'Start answering';
   @override
-  String changeNote({required Object name}) =>
-      'You can change your answer until ${name} answers this question.';
+  String get next => 'Continue';
   @override
-  String get changeNoteFallback =>
-      'You can change your answer until your partner answers this question.';
-  @override
-  String get lockedNote => 'This game is closed. This answer can no longer be edited.';
-  @override
-  String get introCta => 'Start';
-  @override
-  String get next => 'Next';
-  @override
-  String get nextGuess => 'Next';
+  String get reviewAction => 'Review answers';
 }
 
 // Path: games.date
@@ -7423,9 +6449,7 @@ class _Translations$games$date$en extends Translations$games$date$pt {
 
   // Translations
   @override
-  String get missionTag => 'Mission';
-  @override
-  String get start => 'Accept';
+  String get start => 'Start the date';
   @override
   String get startNote => 'Do the mission together, then come back and tell how it was.';
   @override
@@ -7433,8 +6457,6 @@ class _Translations$games$date$en extends Translations$games$date$pt {
   @override
   String get reflectionText =>
       'Pick what happened. Your partner sees it only after you both answer.';
-  @override
-  String get save => 'Save';
 }
 
 // Path: games.waitingPartner
@@ -7447,23 +6469,19 @@ class _Translations$games$waitingPartner$en extends Translations$games$waitingPa
 
   // Translations
   @override
-  String get title => 'I\'m done';
+  String get title => 'You answered everything';
   @override
   String text({required Object name}) =>
-      'Now it is ${name}\'s turn. You see the result when both of you finish.';
+      'Now it is just waiting for ${name}. Nothing you wrote appears before both of you finish.';
   @override
   String get textFallback =>
-      'Now it is your partner\'s turn. You see the result when both of you finish.';
+      'Now it is just waiting for your partner. Nothing you wrote appears before both of you finish.';
   @override
-  String get checkAgain => 'Check if they finished';
+  String get answersTitle => 'What you saved';
   @override
-  String get close => 'Close';
+  String get checkAgain => 'Check again';
   @override
   String get cancel => 'End the game';
-  @override
-  String get note => 'Nothing you answered appears before both of you finish.';
-  @override
-  String get stillWaiting => 'Not done yet. The result appears when both of you finish.';
 }
 
 // Path: games.finished
@@ -7474,83 +6492,29 @@ class _Translations$games$finished$en extends Translations$games$finished$pt {
 
   // Translations
   @override
-  String pickTitle({required Object agreed, required Object total}) =>
-      'You agreed on ${agreed} of ${total}';
+  String get title => 'That was a good conversation';
   @override
-  String pickHighlight({required Object agreed, required Object total}) => '${agreed} of ${total}';
-  @override
-  String get pickNote => 'The differences become conversation, not a score.';
-  @override
-  String get discoveriesTitle => 'Discoveries';
-  @override
-  String get discoveriesText => 'Things you still did not know about each other.';
-  @override
-  String get youDidNotKnow => 'You did not know';
-  @override
-  String partnerDidNotKnow({required Object name}) => '${name} did not know';
-  @override
-  String partnerAnswered({required Object name, required Object value}) =>
-      '${name} answered: ${value}';
-  @override
-  String youAnswered({required Object value}) => 'You answered: ${value}';
-  @override
-  String get noDiscoveries =>
-      'No discoveries this time: you already knew what the other would answer.';
-  @override
-  String get doneTitle => 'Done';
-  @override
-  String doneText({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: 'You answered 1 question. No winner, no score.',
-        other: 'You answered ${count} questions. No winner, no score.',
-      );
-  @override
-  String get dateText => 'No winner, no score. Just your date.';
+  String get text => 'No score, no winner. Just the two of you.';
   @override
   String get you => 'You';
+  @override
+  String youChose({required Object value}) => 'You chose: ${value}';
+  @override
+  String partnerChose({required Object name, required Object value}) => '${name} chose: ${value}';
+  @override
+  String get yourGuess => 'Your guess';
+  @override
+  String get partnerGuess => 'Their guess';
+  @override
+  String get matched => 'Matched';
   @override
   String get noAnswer => 'No answer';
   @override
   String get both => 'Both of you';
   @override
-  String bothSaid({required Object value}) => 'You both said: ${value}';
+  String get agreed => 'You both agreed';
   @override
-  String eachSaid({required Object you, required Object name, required Object partner}) =>
-      'You said ${you} · ${name} said ${partner}';
-  @override
-  String get matchedLabel => 'Same';
-  @override
-  String get differentLabel => 'Different';
-  @override
-  String get replayTag => 'New round';
-  @override
-  String replayQuestions({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 question you have not seen yet',
-        other: '${count} questions you have not seen yet',
-      );
-  @override
-  String replayGuesses({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 guess you have not seen yet',
-        other: '${count} guesses you have not seen yet',
-      );
-  @override
-  String get replayMission => 'A new mission for you';
-  @override
-  String get replayText =>
-      'Each round brings new content. When it runs out, the app tells you and mixes in what you already saw.';
-  @override
-  String get playAgain => 'Play again';
-  @override
-  String get chooseAnother => 'Choose another game';
-  @override
-  String get missingTitle => 'This round is no longer available';
-  @override
-  String get missingText => 'The content changed since you played. You can start another one.';
+  String get back => 'Back';
 }
 
 // Path: games.notFound
@@ -7606,7 +6570,29 @@ class _Translations$games$common$en extends Translations$games$common$pt {
 
   // Translations
   @override
-  String get back => 'Back';
+  String get close => 'Close';
+}
+
+// Path: games.review
+class _Translations$games$review$en extends Translations$games$review$pt {
+  _Translations$games$review$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Review answers';
+  @override
+  String get text =>
+      'Check what you answered. Tap an answer to edit it. Nothing is sent until you confirm.';
+  @override
+  String get confirm => 'Send answers';
+  @override
+  String get back => 'Back to the review';
+  @override
+  String get locked => 'Closed';
+  @override
+  String get lockedNote => 'This game is closed. This answer can no longer be edited.';
 }
 
 // Path: guides.hub
@@ -7727,6 +6713,7 @@ class _Translations$intro$phase$en extends Translations$intro$phase$pt {
     'livingTogether': 'Living together',
     'engaged': 'Engaged',
     'married': 'Married',
+    'withKids': 'With kids',
     'longDistance': 'Long distance',
     'restarting': 'Starting over',
     'other': '',
@@ -7787,57 +6774,6 @@ class _Translations$intro$theme$en extends Translations$intro$theme$pt {
   String get footnote => 'You can change it later in Settings, Appearance.';
 }
 
-// Path: memories.menu
-class _Translations$memories$menu$en extends Translations$memories$menu$pt {
-  _Translations$memories$menu$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get timeline => 'Timeline';
-  @override
-  String get timelineText => 'Memories you kept';
-  @override
-  String get jar => 'Jar';
-  @override
-  String get jarText => 'A good slip for a bad day';
-  @override
-  String get storyText => 'Milestones, places and numbers';
-  @override
-  String get dates => 'Dates and numbers';
-  @override
-  String get datesText => 'Anniversaries, holidays and counts';
-  @override
-  String get diary => 'Diary';
-  @override
-  String get diaryText => 'Only yours, never goes to the other person';
-  @override
-  String get gifts => 'Gift ideas';
-  @override
-  String get giftsText => 'Each one\'s wishes and ideas for the other';
-}
-
-// Path: memories.onThisDay
-class _Translations$memories$onThisDay$en extends Translations$memories$onThisDay$pt {
-  _Translations$memories$onThisDay$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get label => 'ON THIS DAY';
-  @override
-  String yearsAgo({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 year ago',
-        other: '${count} years ago',
-      );
-}
-
 // Path: need.sent
 class _Translations$need$sent$en extends Translations$need$sent$pt {
   _Translations$need$sent$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -7851,57 +6787,6 @@ class _Translations$need$sent$en extends Translations$need$sent$pt {
   String get text => 'Your partner will see it when they open the app.';
   @override
   String get done => 'Done';
-}
-
-// Path: notificationPreferences.types
-class _Translations$notificationPreferences$types$en
-    extends Translations$notificationPreferences$types$pt {
-  _Translations$notificationPreferences$types$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get dailyIdea => 'Idea of the day';
-  @override
-  String get dateComing => 'Dates and holidays';
-  @override
-  String get cardReady => 'Weekly card';
-  @override
-  String get other => '';
-}
-
-// Path: notificationPreferences.errors
-class _Translations$notificationPreferences$errors$en
-    extends Translations$notificationPreferences$errors$pt {
-  _Translations$notificationPreferences$errors$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get rateLimited => 'Too many tries in a row. Wait a moment.';
-  @override
-  String get other => 'Could not save now. Your previous choice was kept.';
-}
-
-// Path: partnerStep.why
-class _Translations$partnerStep$why$en extends Translations$partnerStep$why$pt {
-  _Translations$partnerStep$why$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Why invite?';
-  @override
-  String get shared => 'Shared cards and tools need both of you.';
-  @override
-  String get privacy => 'Your slips and private notes stay yours until you share them.';
 }
 
 // Path: quickSlip.saved
@@ -7923,10 +6808,6 @@ class _Translations$quickSlip$saved$en extends Translations$quickSlip$saved$pt {
   String get undo => 'Undo';
   @override
   String get done => 'Done';
-  @override
-  String get annoyanceTitle => 'Kept';
-  @override
-  String get annoyanceAdded => 'It stays with you and goes away on its own in 14 days.';
 }
 
 // Path: repair.calm
@@ -7949,6 +6830,8 @@ class _Translations$repair$calm$en extends Translations$repair$calm$pt {
   String get ready => 'I feel calmer';
   @override
   String get leave => 'Leave';
+  @override
+  String get askPause => 'Ask my partner for some space';
 }
 
 // Path: repair.softStart
@@ -8097,10 +6980,6 @@ class _Translations$repair$guided$en extends Translations$repair$guided$pt {
   String get loadErrorTitle => 'Couldn\'t open this';
   @override
   String get loadErrorText => 'Nothing was lost. Try again.';
-  @override
-  late final _Translations$repair$guided$done$en done = _Translations$repair$guided$done$en._(
-    _root,
-  );
 }
 
 // Path: repair.learning
@@ -8168,69 +7047,6 @@ class _Translations$repair$next$en extends Translations$repair$next$pt {
   String get quick => 'Send a repair';
 }
 
-// Path: repair.sos
-class _Translations$repair$sos$en extends Translations$repair$sos$pt {
-  _Translations$repair$sos$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'We are fighting';
-  @override
-  String get titleHighlight => 'fighting';
-  @override
-  String get subtitle => 'Pick where to start. Nothing is sent until you confirm.';
-  @override
-  String get softStartTitle => 'Soft start';
-  @override
-  String get softStartText => 'A model to open the talk without blame';
-  @override
-  String get repairTitle => 'Repair';
-  @override
-  String get repairText => 'See how it is and choose a step';
-  @override
-  String get talkTitle => 'Prepare what to say';
-  @override
-  String get talkText => 'Sort your thoughts before you talk';
-  @override
-  String get note => 'Works offline and stays only with you.';
-  @override
-  String get action => 'We are fighting';
-}
-
-// Path: slipDetail.visibility
-class _Translations$slipDetail$visibility$en extends Translations$slipDetail$visibility$pt {
-  _Translations$slipDetail$visibility$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Who sees this slip?';
-  @override
-  String get subtitle => 'Private is the default.';
-  @override
-  String get onlyMe => 'Only me';
-  @override
-  String get onlyMeText => 'Stays in your week';
-  @override
-  String get weeklyCard => 'Put it in my weekly card';
-  @override
-  String get sendNow => 'Send now';
-  @override
-  String get done => 'Done';
-  @override
-  String get sentToast => 'Slip sent';
-  @override
-  String get heldToast =>
-      'The wording sounds harsh, so the card was held. Rewrite it and try again.';
-  @override
-  String get notSentToast => 'It was not sent. Check that you two are connected.';
-}
-
 // Path: slipKind.specific
 class _Translations$slipKind$specific$en extends Translations$slipKind$specific$pt {
   _Translations$slipKind$specific$en._(TranslationsEn root)
@@ -8291,7 +7107,7 @@ class _Translations$slipKind$invisible$en extends Translations$slipKind$invisibl
   @override
   String get titleHighlight => 'nobody notices';
   @override
-  String get subtitle => 'Name the work nobody sees.';
+  String get subtitle => 'Only for you. This never goes into a card.';
   @override
   String get hint => 'E.g. remembered the kids\' appointment';
   @override
@@ -8315,199 +7131,6 @@ class _Translations$slipKind$saved$en extends Translations$slipKind$saved$pt {
   String get queued => 'Saved on this phone. We\'ll send it when the connection is back.';
   @override
   String get done => 'Done';
-}
-
-// Path: spice.home
-class _Translations$spice$home$en extends Translations$spice$home$pt {
-  _Translations$spice$home$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get subtitle => 'Everything here is optional and stays between you.';
-  @override
-  String get cards => 'Evening cards';
-  @override
-  String get cardsText => 'One card at a time';
-  @override
-  String get desires => 'Desires';
-  @override
-  String get desiresText => 'Answer in secret and see what you both want';
-  @override
-  String get challenge => 'Challenge of the week';
-  @override
-  String get challengeText => 'An invitation, with no points or deadline';
-  @override
-  String get settings => 'Settings';
-  @override
-  String get settingsText => 'Your limit and the alerts';
-}
-
-// Path: spice.cards
-class _Translations$spice$cards$en extends Translations$spice$cards$pt {
-  _Translations$spice$cards$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Evening cards';
-  @override
-  Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
-    'PLUS_REQUIRED': 'This is part of Plus.',
-    'ADULT_REQUIRED': 'Confirm you are 18 or older.',
-    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
-    'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
-    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
-    'other': 'We could not finish that now. Try again.',
-  };
-  @override
-  String get answeredTitle => 'Agreed';
-  @override
-  String get answeredText => 'Whenever you like, there is another card.';
-  @override
-  String get next => 'Another card';
-  @override
-  String get emptyTitle => 'No more cards';
-  @override
-  String get emptyText => 'There are no more cards at this level for now.';
-  @override
-  String get mineHint => 'You proposed this card. The other person answers when they like.';
-  @override
-  String get theirsHint => 'The other person proposed this card. You choose.';
-  @override
-  String get refresh => 'Check if they answered';
-  @override
-  String get accept => 'I want to';
-  @override
-  String get notToday => 'Not today';
-}
-
-// Path: spice.desires
-class _Translations$spice$desires$en extends Translations$spice$desires$pt {
-  _Translations$spice$desires$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Desires';
-  @override
-  Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
-    'PLUS_REQUIRED': 'This is part of Plus.',
-    'ADULT_REQUIRED': 'Confirm you are 18 or older.',
-    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
-    'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
-    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
-    'other': 'We could not finish that now. Try again.',
-  };
-  @override
-  String get subtitle =>
-      'Only you see what you answer. If you both want it, it shows in "You both want".';
-  @override
-  String get emptyTitle => 'Nothing here yet';
-  @override
-  String get emptyText => 'When there are desires at this level, they show up here.';
-  @override
-  String get matchesTitle => 'You both want';
-  @override
-  String get matchesEmpty => 'Nothing in common yet. No rush.';
-  @override
-  Map<String, String> get answers => {
-    'want': 'I want',
-    'maybe': 'Maybe',
-    'notToday': 'Not today',
-    'other': '',
-  };
-}
-
-// Path: spice.challenge
-class _Translations$spice$challenge$en extends Translations$spice$challenge$pt {
-  _Translations$spice$challenge$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Challenge of the week';
-  @override
-  Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
-    'PLUS_REQUIRED': 'This is part of Plus.',
-    'ADULT_REQUIRED': 'Confirm you are 18 or older.',
-    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
-    'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
-    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
-    'other': 'We could not finish that now. Try again.',
-  };
-  @override
-  String get emptyTitle => 'No challenge now';
-  @override
-  String get emptyText => 'Come back next week.';
-  @override
-  String get subtitle => 'An invitation for you two. No points and no deadline.';
-  @override
-  String get statusDone => 'You did it. Thank you for caring for this.';
-  @override
-  String get statusBothAccepted => 'You both said yes.';
-  @override
-  String get statusWaitingPartner => 'You said yes. Waiting for the other person.';
-  @override
-  String get statusPartnerAccepted => 'The other person said yes.';
-  @override
-  String get statusNew => 'Nobody answered yet.';
-  @override
-  String get accept => 'I am in';
-  @override
-  String get done => 'We did it';
-  @override
-  String get swap => 'Swap the challenge';
-}
-
-// Path: spice.settingsPage
-class _Translations$spice$settingsPage$en extends Translations$spice$settingsPage$pt {
-  _Translations$spice$settingsPage$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Tempero settings';
-  @override
-  Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
-    'PLUS_REQUIRED': 'This is part of Plus.',
-    'ADULT_REQUIRED': 'Confirm you are 18 or older.',
-    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
-    'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
-    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
-    'other': 'We could not finish that now. Try again.',
-  };
-  @override
-  String get levelTitle => 'How far to go';
-  @override
-  Map<String, String> get levels => {'soft': 'Soft', 'warm': 'Warm', 'hot': 'Spicy', 'other': ''};
-  @override
-  String get levelNote =>
-      'The gentler of the two limits applies. The other person does not see yours.';
-  @override
-  String get notifications => 'Tempero alerts';
-  @override
-  String get notificationsText => 'A short alert that says nothing about the content.';
-  @override
-  String get turnOff => 'Turn off Tempero';
-  @override
-  String get turnOffTitle => 'Turn off Tempero?';
-  @override
-  String get turnOffText =>
-      'It turns off for both of you and erases answers, cards and challenges. This cannot be undone.';
-  @override
-  String get turnOffConfirm => 'Turn off';
 }
 
 // Path: sundayCard.send
@@ -8587,35 +7210,6 @@ class _Translations$sundayCard$sent$en extends Translations$sundayCard$sent$pt {
   String get done => 'Done';
 }
 
-// Path: sundayCard.heldByRule
-class _Translations$sundayCard$heldByRule$en extends Translations$sundayCard$heldByRule$pt {
-  _Translations$sundayCard$heldByRule$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Worth rereading before you send';
-  @override
-  String get titleHighlight => 'rereading';
-  @override
-  Map<String, String> get reasons => {
-    'absolute': 'Words like “always” and “never” can sound like an accusation.',
-    'insult': 'A word on the card may hurt.',
-    'blame': 'The text sounds like blame instead of thanks.',
-    'contempt': 'The text may sound like contempt.',
-    'other': 'The text may sound harsher than you mean.',
-  };
-  @override
-  String get reassurance => 'Nothing was sent and nothing is lost.';
-  @override
-  String get rewrite => 'Rewrite';
-  @override
-  String get sendAnyway => 'Send anyway';
-}
-
 // Path: temperature.result
 class _Translations$temperature$result$en extends Translations$temperature$result$pt {
   _Translations$temperature$result$en._(TranslationsEn root)
@@ -8639,55 +7233,6 @@ class _Translations$temperature$result$en extends Translations$temperature$resul
       _Translations$temperature$result$quick$en._(_root);
   @override
   String get done => 'Done';
-}
-
-// Path: temperature.history
-class _Translations$temperature$history$en extends Translations$temperature$history$pt {
-  _Translations$temperature$history$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get action => 'See the last weeks';
-  @override
-  String get title => 'Last 8 weeks';
-  @override
-  String get titleHighlight => '8 weeks';
-  @override
-  String get subtitle => 'One point per week, with the last answer given in it.';
-  @override
-  String get chartLabel => 'Temperature of each week, from calmest to a fight';
-  @override
-  String get emptyTitle => 'Nothing here yet';
-  @override
-  String get emptyText => 'When you answer how things are between you, the weeks show up here.';
-  @override
-  String get note =>
-      'Only you see this. It never becomes a note and never goes to the other person.';
-}
-
-// Path: today.conflict
-class _Translations$today$conflict$en extends Translations$today$conflict$pt {
-  _Translations$today$conflict$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get tag => 'Now';
-  @override
-  String get title => 'First, take care of you two';
-  @override
-  String get highlight => 'care';
-  @override
-  String get text => 'No common cards for now. Start with a repair or sort out what to say.';
-  @override
-  String get repair => 'Start the repair';
-  @override
-  String get chat => 'Talk to get organized';
 }
 
 // Path: unpair.done
@@ -8784,7 +7329,8 @@ class _Translations$games$kinds$meOrYou$en extends Translations$games$kinds$meOr
   @override
   String get title => 'Me or you';
   @override
-  String get intro => 'Answer separately who fits each phrase better. Then see where you agreed.';
+  String get intro =>
+      'Answer separately who fits each phrase better. Then see where you thought alike.';
 }
 
 // Path: games.kinds.howWell
@@ -8848,28 +7394,6 @@ class _Translations$games$kinds$mission$en extends Translations$games$kinds$miss
   String get title => 'Date mission';
   @override
   String get intro => 'A date idea to do together and a short reflection afterwards.';
-}
-
-// Path: repair.guided.done
-class _Translations$repair$guided$done$en extends Translations$repair$guided$done$pt {
-  _Translations$repair$guided$done$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Repair done';
-  @override
-  String get highlight => 'done';
-  @override
-  String get text =>
-      'Taking care of this is already a step. If you want, keep what you learned, just for you.';
-  @override
-  String get learn => 'Keep what I learned';
-  @override
-  String get close => 'Not now';
 }
 
 // Path: temperature.result.good
@@ -8943,7 +7467,6 @@ extension on TranslationsEn {
     return switch (path) {
           'acceptInvite.title' => 'Got an invite?',
           'acceptInvite.titleHighlight' => 'invite',
-          'acceptInvite.connectTitle' => 'Connect with a code',
           'acceptInvite.subtitle' => 'Type the code the other person sent so you can connect.',
           'acceptInvite.codeLabel' => 'Invite code',
           'acceptInvite.codeHint' => 'E.g. ABCD2345',
@@ -8965,30 +7488,15 @@ extension on TranslationsEn {
             'Check the code or ask for a new invite from whoever invited you.',
           'acceptInvite.unusable.tryAgain' => 'Type again',
           'acceptInvite.unusable.close' => 'Close',
-          'acceptInvite.ownCodeTitle' => 'That code is yours',
-          'acceptInvite.ownCodeHighlight' => 'yours',
-          'acceptInvite.ownCodeText' =>
-            'That is your own code. To connect, use your partner\'s code.',
           'acceptInvite.errors.ALREADY_PAIRED' => 'You are already connected with someone.',
           'acceptInvite.errors.COUPLE_FULL' => 'That space already has two people.',
           'acceptInvite.errors.RATE_LIMITED' =>
             'Too many tries in a row. Wait a bit and try again.',
           'acceptInvite.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'acceptInvite.errors.other' => 'Could not connect right now. Try again.',
-          'acceptInvite.headline' => ({required Object name}) => 'Connect with ${name}',
-          'acceptInvite.headlineNoName' => 'Connect with your person',
-          'acceptInvite.headlineNoNameHighlight' => 'your person',
-          'acceptInvite.pageSubtitle' =>
-            'Both already use the app? One invites and the other types the code.',
-          'acceptInvite.segmentHaveCode' => 'I have a code',
-          'acceptInvite.segmentInvite' => 'I want to invite',
-          'acceptInvite.connectAction' => 'Connect',
-          'acceptInvite.ownCodeLabel' => 'Your invite code',
-          'acceptInvite.ownCodeNote' =>
-            'Send this code to your person. What each of you has written so far stays private.',
           'account.deleteTitle' => 'Delete account',
           'account.deleteHighlight' => 'account',
-          'account.deleteText' => 'Your data is erased after 30 days. This needs a fresh sign-in.',
+          'account.deleteText' => 'Your data is erased after 14 days. This needs a fresh sign-in.',
           'account.deleteWarningTitle' => 'This also ends the link',
           'account.deleteWarning' => ({
             required Object name,
@@ -8997,7 +7505,7 @@ extension on TranslationsEn {
           'account.deleteAction' => 'Delete account',
           'account.deleteConfirmTitle' => 'Delete your account?',
           'account.deleteConfirmText' =>
-            'You have 30 days to change your mind. After that, nothing can be recovered.',
+            'You have 14 days to change your mind. After that, nothing can be recovered.',
           'account.reauthReason' => 'Confirm to delete your account.',
           'account.pendingTitle' => ({
             required Object month,
@@ -9030,78 +7538,13 @@ extension on TranslationsEn {
           'account.months.11' => 'Dec',
           'account.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'account.errors.other' => 'Could not finish now. Try again.',
-          'account.export.appBarTitle' => 'Export my data',
-          'account.export.title' => 'Take your data with you',
-          'account.export.titleHighlight' => 'your data',
-          'account.export.text' => 'We build a file with only what is yours: slips, notes and answers. Nothing from the other person goes in it.',
-          'account.export.note' => 'The link lasts a few minutes. You can build one file a day.',
-          'account.export.action' => 'Build the file',
-          'account.export.again' => 'Build again',
-          'account.export.beforeDelete' => 'Export before deleting',
-          'account.export.openFailed' => 'We could not open the file. Try building it again.',
-          'account.export.errors.EXPORT_LIMIT' =>
-            'You already built a file today. Try again tomorrow.',
-          'account.export.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
-          'account.export.errors.other' => 'We could not build the file now. Try again.',
-          'agreements.title' => 'Agreements',
-          'agreements.add' => 'New agreement',
-          'agreements.addTitle' => 'New agreement',
-          'agreements.bodyLabel' => 'What you agree on',
-          'agreements.bodyHint' => 'E.g. Talk about money once a month',
-          'agreements.bodyErrors.empty' => 'Write the agreement.',
-          'agreements.bodyErrors.tooLong' => 'Use 200 characters at most.',
-          'agreements.propose' => 'Propose',
-          'agreements.confirm' => 'Confirm',
-          'agreements.options' => 'Agreement options',
-          'agreements.subtitleShared' =>
-            'Short sentences you agree on. They only count once the other person confirms.',
-          'agreements.subtitlePrivate' =>
-            'Notes for yourself. When someone joins you they become agreements.',
-          'agreements.emptyTitle' => 'No agreements yet',
-          'agreements.emptyTextShared' =>
-            'Agree on something small and ask the other person to confirm.',
-          'agreements.emptyTextPrivate' => 'Note something you would like to agree on.',
-          'agreements.statusPrivate' => 'Only you see it',
-          'agreements.statusConfirmed' => 'Confirmed by both',
-          'agreements.statusWaitingPartner' => 'Waiting for the other person',
-          'agreements.statusWaitingYou' => 'Waiting for you',
-          'agreements.archiveTitle' => 'Put this agreement away?',
-          'agreements.archiveTextShared' => 'It leaves the list for both of you.',
-          'agreements.archiveTextPrivate' => 'It leaves your list.',
-          'agreements.archiveConfirm' => 'Put away',
-          'agreements.metaShared' => 'What you agreed on',
-          'agreements.metaPrivate' => 'Notes for yourself',
-          'agreements.errors.FREE_LIMIT_REACHED' =>
-            'You reached the free plan limit of agreements. Put one away or see Plus.',
-          'agreements.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
-          'agreements.errors.other' => 'We could not finish that now. Try again.',
-          'annoyanceCheck.title' => 'Does this still bother you?',
-          'annoyanceCheck.titleHighlight' => 'bother',
-          'annoyanceCheck.age' => ({
-            required Object days,
-            required Object left,
-          }) => 'You wrote it ${days} days ago · gone in ${left} days',
-          'annoyanceCheck.talkTitle' => 'Talk about it',
-          'annoyanceCheck.talkText' => 'Write a gentle request',
-          'annoyanceCheck.chatTitle' => 'Talk to the chat',
-          'annoyanceCheck.chatText' => 'Only you and the chat',
-          'annoyanceCheck.letGoTitle' => 'Let it go',
-          'annoyanceCheck.letGoText' => 'Delete now, without telling anyone',
-          'annoyanceCheck.note' =>
-            'Good things stay forever. What bothered you goes away on its own if you do nothing.',
-          'annoyanceCheck.letGoConfirmTitle' => 'Let it go?',
-          'annoyanceCheck.letGoConfirmText' => 'The note is deleted now and nobody is told.',
-          'annoyanceCheck.letGoConfirm' => 'Delete now',
-          'annoyanceCheck.letGoDone' => 'Note deleted',
-          'annoyanceCheck.goneTitle' => 'That note is gone',
-          'annoyanceCheck.goneText' => 'It expired, was deleted or became a request.',
-          'annoyanceCheck.close' => 'Close',
-          'annoyanceCheck.errorTitle' => 'We could not open the note',
-          'annoyanceCheck.errors.NETWORK' => 'No connection. Try again.',
-          'annoyanceCheck.errors.other' => 'Something went wrong. Try again.',
           'authentication.signInTitle' => 'Sign in',
           'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
+          'authentication.signInDebugSubtitle' =>
+            'In this test build, sign in with email and password.',
           'authentication.signInNote' => 'Signing in takes you straight to your Today.',
+          'authentication.providersUnavailable' =>
+            'Apple and Google are off in this test build. Sign in with email and password.',
           'authentication.emailSignInFallback' => 'Sign in with email and password',
           'authentication.existingAccountTitle' => 'You already have an account',
           'authentication.existingAccountSubtitle' => 'Sign in to pick up where you left off.',
@@ -9218,14 +7661,6 @@ extension on TranslationsEn {
           'authentication.errors.validation_failed' => 'Check the information and try again.',
           'authentication.errors.weak_password' => 'Choose a stronger password.',
           'authentication.errors.other' => 'Could not sign you in right now. Try again.',
-          'authentication.legal' => ({
-            required Object terms,
-            required Object privacy,
-          }) => 'By continuing, you confirm you are 18 or older and agree to the ${terms} and the ${privacy}.',
-          'authentication.legalTerms' => 'Terms',
-          'authentication.legalPrivacy' => 'Privacy Policy',
-          'authentication.legalPlain' => 'By continuing, you confirm you are 18 or older and agree to the Terms and the Privacy Policy.',
-          'authentication.tryAgain' => 'Try again',
           'capsules.title' => 'Time capsule',
           'capsules.text' => 'Write something to be opened on a future date. Until then nobody reads it, not even you.',
           'capsules.bodyHint' => 'What do you want to say to the future?',
@@ -9274,17 +7709,6 @@ extension on TranslationsEn {
           'capsules.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'capsules.errors.other' => 'Couldn\'t save right now. Your text is still here.',
           'capsules.deleteErrors.other' => 'Couldn\'t delete this capsule. It\'s still here.',
-          'cardSettings.title' => 'Weekly card',
-          'cardSettings.day' => 'Day',
-          'cardSettings.hour' => 'Time',
-          'cardSettings.defaultTitle' => 'New slips go on the card',
-          'cardSettings.defaultSubtitle' => 'Each slip can change this later.',
-          'cardSettings.note' => 'Changes apply to the next card.',
-          'cardSettings.saveError' => 'Could not save. Your earlier choice was kept.',
-          'cardSettings.errorTitle' => 'We could not open the settings',
-          'cardSettings.errors.NETWORK' => 'No connection. Try again.',
-          'cardSettings.errors.other' => 'Your choices are still saved. Try again.',
-          'cardSettings.open' => 'Card settings',
           'cardView.forPartner' => ({required Object name}) => 'For ${name}',
           'cardView.forPartnerNoName' => 'For your person',
           'cardView.goodThings' =>
@@ -9358,6 +7782,10 @@ extension on TranslationsEn {
           'cardsList.notFound' => 'That card is no longer available.',
           'cardsList.reactionQuoteMadeMyDay' => 'That made my week.',
           'chat.title' => 'Mascot',
+          'chat.consentText' => 'A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.',
+          'chat.consentPrivacy' => 'What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.',
+          'chat.consentTurnOn' => 'Turn on the chat',
+          'chat.emptyHint' => 'Say how you are, or start with something small.',
           'chat.inputHint' => 'Write here',
           'chat.draftErrors.empty' => 'Write something to send',
           'chat.draftErrors.tooLong' => 'This message is too long',
@@ -9382,6 +7810,8 @@ extension on TranslationsEn {
           'chat.learningSaved' => 'Learning saved',
           'chat.learnedLink' => 'What I learned',
           'chat.settingsTitle' => 'Conversation settings',
+          'chat.toggleLabel' => 'Talk with the mascot',
+          'chat.toggleSubtitle' => 'Only you decide when the conversation is on.',
           'chat.planPlus' => 'Plus plan',
           'chat.planFree' => 'Free plan',
           'chat.usagePlus' => ({
@@ -9391,6 +7821,9 @@ extension on TranslationsEn {
           'chat.usageFree' => 'The chat is part of Plus. The free plan has no messages.',
           'chat.sendingTitle' => 'What is sent',
           'chat.sendingText' => 'Only the text you type and the last turns of the conversation go to the model, to produce the reply. Nothing is stored unless you save it as a slip or a learning.',
+          'chat.disableNote' => 'Turning it off brings back the consent step. The next message is only sent after you turn it on again.',
+          'chat.settingsOn' => 'Chat turned on',
+          'chat.settingsOff' => 'Chat turned off',
           'chat.offline' => 'You\'re offline. The chat resumes when you reconnect.',
           'chat.interrupted' => 'The reply was interrupted.',
           'chat.retry' => 'Try again',
@@ -9399,60 +7832,19 @@ extension on TranslationsEn {
           'chat.plusTitle' => 'The chat is part of Plus',
           'chat.plusText' => 'The mascot is available on Plus, with 20 messages a day.',
           'chat.plusCta' => 'See plans',
+          'chat.crisisTitle' => 'You are not alone',
+          'chat.crisisText' => 'It sounds like you are going through something very heavy. If you are in danger right now, call your local emergency service or reach someone you trust. I am not the right help for this.',
+          'chat.crisisSafeMode' => 'Hide the app (safe mode)',
           'chat.unavailableTitle' => 'The chat is not available right now',
           'chat.unavailableText' => 'Try again later.',
           'chat.errorTitle' => 'Couldn\'t load',
           'chat.errorText' => 'Try again in a moment.',
           'chat.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'chat.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'chat.starterHard' => 'A hard moment',
+          'chat.starterIdea' => 'An idea',
+          'chat.starterPlan' => 'A date plan',
           'chat.menuLabel' => 'More options',
-          'chat.action.privateHint' => 'Stays only with you.',
-          'chat.action.partnerHint' => 'Nothing goes until you tap.',
-          'chat.action.moodText' => ({required Object mood}) => 'Today: ${mood}',
-          'chat.action.moods.happy' => 'happy',
-          'chat.action.moods.tired' => 'tired',
-          'chat.action.moods.sad' => 'sad',
-          'chat.action.moods.stressed' => 'stressed',
-          'chat.action.moods.loving' => 'loving',
-          'chat.action.moods.playful' => 'playful',
-          'chat.action.dismiss' => 'Not now',
-          'chat.action.running' => 'One moment…',
-          'chat.action.done' => 'Done',
-          'chat.action.dismissed' => 'Set aside',
-          'chat.action.failed' => 'It did not work',
-          'chat.action.retry' => 'Try again',
-          'chat.action.runLabels.create_private_slip' => 'Save',
-          'chat.action.runLabels.send_slip_to_partner' => 'Send',
-          'chat.action.runLabels.log_mood' => 'Log',
-          'chat.action.runLabels.share_mood' => 'Share',
-          'chat.action.runLabels.save_learning' => 'Keep',
-          'chat.action.runLabels.open_purchase' => 'See Plus',
-          'chat.action.runLabels.other' => 'Do it',
-          'chat.action.tags.create_private_slip' => 'Suggestion · Write a slip',
-          'chat.action.tags.send_slip_to_partner' => 'Suggestion · Send a slip',
-          'chat.action.tags.log_mood' => 'Suggestion · Log mood',
-          'chat.action.tags.share_mood' => 'Suggestion · Share mood',
-          'chat.action.tags.save_learning' => 'Suggestion · Remember this',
-          'chat.action.tags.suggest_couple_question' => 'A question to talk about',
-          'chat.action.tags.draft_note' => 'Draft note',
-          'chat.action.tags.open_purchase' => 'Plus',
-          'chat.action.tags.other' => 'Suggestion',
-          'chat.greeting.morning' => 'Good morning',
-          'chat.greeting.afternoon' => 'Good afternoon',
-          'chat.greeting.evening' => 'Good evening',
-          'chat.entryTitle' => 'What do you want to talk about?',
-          'chat.entryHighlight' => 'talk',
-          'chat.starterBothered' => 'Something bothered me',
-          'chat.starterThanks' => 'I want to say thanks',
-          'chat.starterDate' => 'A date idea',
-          'chat.starterTalk' => 'Prepare a conversation',
-          'chat.startHere' => 'Start here',
-          'chat.offlineSlip' => 'Make a slip',
-          'chat.offlineDiary' => 'Write in the diary',
-          'chat.remembersTitle' => 'What it sees and remembers',
-          'chat.remembersAction' => 'What I learned',
-          'chat.remembersText' =>
-            'It only keeps what you confirm, item by item. You can review and delete it any time.',
           'checkin.title' => 'Weekly check-in',
           'checkin.titleHighlight' => 'Weekly',
           'checkin.introSubtitle' => 'Ten minutes. Each of you answers privately first.',
@@ -9528,7 +7920,7 @@ extension on TranslationsEn {
           'connectTouch.errorText' => 'Try again in a moment.',
           'connectTouch.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'connectTouch.errors.other' => 'Couldn\'t change that right now. Try again.',
-          'connectUs.title' => 'I miss us',
+          'connectUs.title' => 'Us',
           'connectUs.text' =>
             'Send “I miss us” with one tap. Light, no guilt. Your partner doesn\'t have to answer.',
           'connectUs.send' => 'Send with care',
@@ -9536,14 +7928,6 @@ extension on TranslationsEn {
           'connectUs.sentNote' => 'Sent. No rush to reply.',
           'connectUs.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'connectUs.errors.other' => 'Couldn\'t send right now. Try again.',
-          'connectUs.titleHighlight' => 'us',
-          'createAccount.title' => 'Create account',
-          'createAccount.headline' => 'Keep it safe',
-          'createAccount.headlineHighlight' => 'safe',
-          'createAccount.subtitleWithSlip' =>
-            'Your first slip is saved on this phone. Create the account so you do not lose it.',
-          'createAccount.subtitleWithoutSlip' =>
-            'Create the account to keep your slips and not lose them.',
           'dateNight.title' => 'Date night',
           'dateNight.subtitle' => 'Ideas for the two of you, picked together.',
           'dateNight.hint' => 'E.g. picnic in the park',
@@ -9560,9 +7944,6 @@ extension on TranslationsEn {
           'dateNight.monthsShort.1' => 'Feb',
           'dateNight.monthsShort.2' => 'Mar',
           'dateNight.monthsShort.3' => 'Apr',
-          _ => null,
-        } ??
-        switch (path) {
           'dateNight.monthsShort.4' => 'May',
           'dateNight.monthsShort.5' => 'Jun',
           'dateNight.monthsShort.6' => 'Jul',
@@ -9698,6 +8079,9 @@ extension on TranslationsEn {
           'devices.registeredOn' => ({required Object date}) => 'Registered on ${date}',
           'devices.platformIos' => 'iPhone',
           'devices.platformAndroid' => 'Android',
+          _ => null,
+        } ??
+        switch (path) {
           'devices.revokeTitle' => 'Stop notifications on this device?',
           'devices.revokeText' => ({
             required Object name,
@@ -9711,6 +8095,13 @@ extension on TranslationsEn {
           'devices.errors.DEVICE_REVOKE_FAILED' =>
             'Couldn\'t stop notifications on that device. Try again.',
           'devices.errors.other' => 'Couldn\'t stop notifications on that device. Try again.',
+          'discreet.title' => 'Discreet mode',
+          'discreet.neutralIcon' => 'Neutral icon',
+          'discreet.neutralNotifications' => 'Neutral notifications',
+          'discreet.hideWidgetText' => 'Hide widget text',
+          'discreet.note' =>
+            'Hides names and content in notifications and widgets. No couple photo on the icon.',
+          'discreet.saveError' => 'Could not save now. Try again.',
           'distance.title' => 'Distance',
           'distance.text' => 'Two clocks, each in its own time zone, never mixed up.',
           'distance.you' => 'You',
@@ -9726,6 +8117,9 @@ extension on TranslationsEn {
           'distance.addReunion' => 'Save a date',
           'distance.errorTitle' => 'Couldn\'t load',
           'distance.errorText' => 'Try again in a moment.',
+          'fightStyle.exerciseTitle' => 'How I react in a fight',
+          'fightStyle.exerciseHighlight' => 'react',
+          'fightStyle.exerciseSubtitle' => 'Six quick questions, just for you.',
           'fightStyle.questionOf' => ({
             required Object current,
             required Object total,
@@ -9736,12 +8130,6 @@ extension on TranslationsEn {
           'fightStyle.questions.3' => 'What bothers you most in a fight?',
           'fightStyle.questions.4' => 'When you notice you went too far, you...',
           'fightStyle.questions.5' => 'What helps you feel normal again?',
-          'fightStyle.questionHighlights.0' => 'first',
-          'fightStyle.questionHighlights.1' => 'goes quiet',
-          'fightStyle.questionHighlights.2' => 'happens',
-          'fightStyle.questionHighlights.3' => 'bothers',
-          'fightStyle.questionHighlights.4' => 'went too far',
-          'fightStyle.questionHighlights.5' => 'back to normal',
           'fightStyle.options1.pursue' => 'I keep talking until it\'s settled.',
           'fightStyle.options1.withdraw' => 'I need some time before going on.',
           'fightStyle.options1.repair' => 'I try to lighten the mood.',
@@ -9809,7 +8197,6 @@ extension on TranslationsEn {
           'fightStyle.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
           'fightStyle.addErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'fightStyle.addErrors.other' => 'Couldn\'t add it right now. Try again.',
-          'fightStyle.resultBarTitle' => 'Result',
           'firstSlip.title' => 'Start with one good thing',
           'firstSlip.titleHighlight' => 'one good thing',
           'firstSlip.subtitle' => 'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.',
@@ -9858,7 +8245,7 @@ extension on TranslationsEn {
                 ),
           'games.kinds.meOrYou.title' => 'Me or you',
           'games.kinds.meOrYou.intro' =>
-            'Answer separately who fits each phrase better. Then see where you agreed.',
+            'Answer separately who fits each phrase better. Then see where you thought alike.',
           'games.kinds.howWell.title' => 'How well you know me',
           'games.kinds.howWell.intro' => 'Each of you answers about yourself and guesses the other\'s answer. Then comes the conversation.',
           'games.kinds.twentyQuestions.title' => '20 questions',
@@ -9890,127 +8277,63 @@ extension on TranslationsEn {
           'games.waiting.window' => 'The invitation waits for up to 48 hours.',
           'games.waiting.checkAgain' => 'Check if they joined',
           'games.waiting.stillWaiting' => 'Not in yet. The invite is still here.',
-          'games.waiting.cancel' => 'Cancel',
+          'games.waiting.cancel' => 'Cancel the invitation',
+          'games.active.title' => 'The game has started',
+          'games.active.text' => 'Both of you are in. This game\'s screens appear here.',
           'games.active.cancel' => 'End the game',
           'games.playing.progress' => ({
             required Object current,
             required Object total,
           }) => 'Question ${current} of ${total}',
-          'games.playing.guessProgress' => ({
-            required Object current,
-            required Object total,
-          }) => 'Guess ${current} of ${total}',
-          'games.playing.me' => 'Me',
-          'games.playing.both' => 'Both',
+          'games.playing.you' => 'You',
           'games.playing.partnerFallback' => 'Your partner',
-          'games.playing.skip' => 'Skip',
+          'games.playing.skip' => 'Skip this one',
           'games.playing.guessAboutYou' => 'About you',
           'games.playing.guessAboutPartner' => ({required Object name}) => 'About ${name}',
           'games.playing.guessAboutPartnerFallback' => 'About your partner',
           'games.playing.guessPrompt' => ({required Object name}) => 'What did ${name} answer?',
           'games.playing.guessPromptFallback' => 'What did your partner answer?',
+          'games.playing.guessYourGuess' => 'Your guess',
           'games.playing.answerHint' => 'Answer as you would.',
           'games.playing.guessHint' => 'Guess what they answered.',
           'games.playing.talkHint' =>
             'Write your answer. Only you can read it until you both finish.',
-          'games.playing.talkSubtitle' => 'Answer in private, reveal together.',
           'games.playing.talkNote' => 'Your partner only sees this after both of you answer.',
-          'games.playing.privacyNote' =>
-            'Each of you answers in private. Skipping is always allowed.',
-          'games.playing.changeNote' => ({
-            required Object name,
-          }) => 'You can change your answer until ${name} answers this question.',
-          'games.playing.changeNoteFallback' =>
-            'You can change your answer until your partner answers this question.',
-          'games.playing.lockedNote' => 'This game is closed. This answer can no longer be edited.',
-          'games.playing.introCta' => 'Start',
-          'games.playing.next' => 'Next',
-          'games.playing.nextGuess' => 'Next',
-          'games.date.missionTag' => 'Mission',
-          'games.date.start' => 'Accept',
+          'games.playing.introCta' => 'Start answering',
+          'games.playing.next' => 'Continue',
+          'games.playing.reviewAction' => 'Review answers',
+          'games.date.start' => 'Start the date',
           'games.date.startNote' => 'Do the mission together, then come back and tell how it was.',
           'games.date.reflectionTitle' => 'How was it?',
           'games.date.reflectionText' =>
             'Pick what happened. Your partner sees it only after you both answer.',
-          'games.date.save' => 'Save',
           'games.reflections.great' => 'It was great',
-          'games.reflections.ok' => 'It was ok',
+          'games.reflections.ok' => 'It was nice',
           'games.reflections.did_not_happen' => 'It did not happen',
           'games.reflections.other' => 'No answer',
-          'games.waitingPartner.title' => 'I\'m done',
+          'games.waitingPartner.title' => 'You answered everything',
           'games.waitingPartner.text' => ({
             required Object name,
-          }) => 'Now it is ${name}\'s turn. You see the result when both of you finish.',
-          'games.waitingPartner.textFallback' =>
-            'Now it is your partner\'s turn. You see the result when both of you finish.',
-          'games.waitingPartner.checkAgain' => 'Check if they finished',
-          'games.waitingPartner.close' => 'Close',
+          }) => 'Now it is just waiting for ${name}. Nothing you wrote appears before both of you finish.',
+          'games.waitingPartner.textFallback' => 'Now it is just waiting for your partner. Nothing you wrote appears before both of you finish.',
+          'games.waitingPartner.answersTitle' => 'What you saved',
+          'games.waitingPartner.checkAgain' => 'Check again',
           'games.waitingPartner.cancel' => 'End the game',
-          'games.waitingPartner.note' => 'Nothing you answered appears before both of you finish.',
-          'games.waitingPartner.stillWaiting' =>
-            'Not done yet. The result appears when both of you finish.',
-          'games.finished.pickTitle' => ({
-            required Object agreed,
-            required Object total,
-          }) => 'You agreed on ${agreed} of ${total}',
-          'games.finished.pickHighlight' => ({
-            required Object agreed,
-            required Object total,
-          }) => '${agreed} of ${total}',
-          'games.finished.pickNote' => 'The differences become conversation, not a score.',
-          'games.finished.discoveriesTitle' => 'Discoveries',
-          'games.finished.discoveriesText' => 'Things you still did not know about each other.',
-          'games.finished.youDidNotKnow' => 'You did not know',
-          'games.finished.partnerDidNotKnow' => ({required Object name}) => '${name} did not know',
-          'games.finished.partnerAnswered' => ({
+          'games.finished.title' => 'That was a good conversation',
+          'games.finished.text' => 'No score, no winner. Just the two of you.',
+          'games.finished.you' => 'You',
+          'games.finished.youChose' => ({required Object value}) => 'You chose: ${value}',
+          'games.finished.partnerChose' => ({
             required Object name,
             required Object value,
-          }) => '${name} answered: ${value}',
-          'games.finished.youAnswered' => ({required Object value}) => 'You answered: ${value}',
-          'games.finished.noDiscoveries' =>
-            'No discoveries this time: you already knew what the other would answer.',
-          'games.finished.doneTitle' => 'Done',
-          'games.finished.doneText' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: 'You answered 1 question. No winner, no score.',
-                  other: 'You answered ${count} questions. No winner, no score.',
-                ),
-          'games.finished.dateText' => 'No winner, no score. Just your date.',
-          'games.finished.you' => 'You',
+          }) => '${name} chose: ${value}',
+          'games.finished.yourGuess' => 'Your guess',
+          'games.finished.partnerGuess' => 'Their guess',
+          'games.finished.matched' => 'Matched',
           'games.finished.noAnswer' => 'No answer',
           'games.finished.both' => 'Both of you',
-          'games.finished.bothSaid' => ({required Object value}) => 'You both said: ${value}',
-          'games.finished.eachSaid' => ({
-            required Object you,
-            required Object name,
-            required Object partner,
-          }) => 'You said ${you} · ${name} said ${partner}',
-          'games.finished.matchedLabel' => 'Same',
-          'games.finished.differentLabel' => 'Different',
-          'games.finished.replayTag' => 'New round',
-          'games.finished.replayQuestions' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 question you have not seen yet',
-                  other: '${count} questions you have not seen yet',
-                ),
-          'games.finished.replayGuesses' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 guess you have not seen yet',
-                  other: '${count} guesses you have not seen yet',
-                ),
-          'games.finished.replayMission' => 'A new mission for you',
-          'games.finished.replayText' => 'Each round brings new content. When it runs out, the app tells you and mixes in what you already saw.',
-          'games.finished.playAgain' => 'Play again',
-          'games.finished.chooseAnother' => 'Choose another game',
-          'games.finished.missingTitle' => 'This round is no longer available',
-          'games.finished.missingText' =>
-            'The content changed since you played. You can start another one.',
+          'games.finished.agreed' => 'You both agreed',
+          'games.finished.back' => 'Back',
           'games.notFound.title' => 'This game does not exist',
           'games.notFound.text' =>
             'It may have changed or never existed. Go back and pick another one.',
@@ -10021,6 +8344,7 @@ extension on TranslationsEn {
           'games.cancel.keep' => 'Keep playing',
           'games.noPartner.title' => 'Games are for two',
           'games.noPartner.text' => 'When your partner joins, you can play together.',
+          'games.common.close' => 'Close',
           'games.loadErrorTitle' => 'Could not open the game',
           'games.loadErrorText' => 'Nothing was lost. Try again.',
           'games.errors.NOT_PAIRED' => 'Games need both of you connected.',
@@ -10034,66 +8358,13 @@ extension on TranslationsEn {
           'games.errors.ANSWER_LOCKED' =>
             'This game\'s answers are closed. You can\'t edit them now.',
           'games.errors.other' => 'Could not do that right now. Try again.',
-          'games.common.back' => 'Back',
-          'gentleRequest.title' => 'Gentle request',
-          'gentleRequest.titleHighlight' => 'Gentle',
-          'gentleRequest.whenLabel' => 'When…',
-          'gentleRequest.feelLabel' => 'I feel…',
-          'gentleRequest.wishLabel' => 'I would like to…',
-          'gentleRequest.whenHint' => 'I get home and the house is a mess',
-          'gentleRequest.feelHint' => 'alone with the chores',
-          'gentleRequest.wishHint' => 'share Saturday afternoon with you',
-          'gentleRequest.previewTitle' => ({required Object name}) => 'What ${name} will read',
-          'gentleRequest.previewTitleNoName' => 'What your person will read',
-          'gentleRequest.previewEmpty' => 'Fill in the three sentences to see the request.',
-          'gentleRequest.sentence' => ({
-            required Object when,
-            required Object feel,
-            required Object wish,
-          }) => 'When ${when}, I feel ${feel}. I would like to ${wish}.',
-          'gentleRequest.note' =>
-            'It does not go on the Sunday card. The request goes away 7 days after it is answered.',
-          'gentleRequest.keep' => 'Keep',
-          'gentleRequest.sendNow' => 'Send now',
-          'gentleRequest.confirmTitle' => 'Send this request?',
-          'gentleRequest.confirmText' =>
-            'Your person will read the three sentences. The note it came from stops existing.',
-          'gentleRequest.sent' => 'Request sent',
-          'gentleRequest.fieldErrors.empty' => 'Fill in this sentence.',
-          'gentleRequest.fieldErrors.tooLong' => 'Use at most 140 characters.',
-          'gentleRequest.errors.NOT_PAIRED' => 'A gentle request needs a connected person.',
-          'gentleRequest.errors.NETWORK' => 'No connection. Try again.',
-          'gentleRequest.errors.other' => 'We could not send it now. Try again.',
-          'gentleRequestDetail.partnerFallback' => 'your person',
-          'gentleRequestDetail.fromYou' => ({required Object name}) => 'You wrote to ${name}.',
-          'gentleRequestDetail.toYou' => ({required Object name}) => '${name} wrote to you.',
-          'gentleRequestDetail.answerTitle' => 'How do you want to answer?',
-          'gentleRequestDetail.responses.willDo' => 'I will take care of it',
-          'gentleRequestDetail.responses.later' => 'Later',
-          'gentleRequestDetail.responses.notNow' => 'Not now',
-          'gentleRequestDetail.responses.talk' => 'I want to talk',
-          'gentleRequestDetail.responses.moreTime' => 'I need more time',
-          'gentleRequestDetail.responses.other' => '',
-          'gentleRequestDetail.answeredBy' => ({
-            required Object name,
-            required Object answer,
-          }) => '${name} answered: ${answer}',
-          'gentleRequestDetail.youAnswered' => ({
-            required Object answer,
-          }) => 'You answered: ${answer}',
-          'gentleRequestDetail.waiting' => 'No answer yet.',
-          'gentleRequestDetail.thankAction' => 'Say thanks',
-          'gentleRequestDetail.thanked' => 'You said thanks. It became a slip of yours.',
-          'gentleRequestDetail.thankBody' => ({
-            required Object name,
-            required Object wish,
-          }) => '${name} took care of it: ${wish}',
-          'gentleRequestDetail.goneTitle' => 'That request is gone',
-          'gentleRequestDetail.goneText' =>
-            'It was answered more than 7 days ago or no longer exists.',
-          'gentleRequestDetail.errorTitle' => 'We could not open the request',
-          'gentleRequestDetail.errors.NETWORK' => 'No connection. Try again.',
-          'gentleRequestDetail.errors.other' => 'Something went wrong. Try again.',
+          'games.review.title' => 'Review answers',
+          'games.review.text' =>
+            'Check what you answered. Tap an answer to edit it. Nothing is sent until you confirm.',
+          'games.review.confirm' => 'Send answers',
+          'games.review.back' => 'Back to the review',
+          'games.review.locked' => 'Closed',
+          'games.review.lockedNote' => 'This game is closed. This answer can no longer be edited.',
           'gifts.title' => 'Gift page',
           'gifts.subtitle' => 'A page your partner can see in the app. You choose what to share.',
           'gifts.myTitle' => 'My wishes',
@@ -10203,9 +8474,6 @@ extension on TranslationsEn {
           }) => 'Step ${current} of ${total}',
           'hardConversation.whatTitle' => 'What happened?',
           'hardConversation.whatHint' => 'If you want, tell me in your own words',
-          _ => null,
-        } ??
-        switch (path) {
           'hardConversation.whatIgnored' => 'She felt ignored',
           'hardConversation.whatMoney' => 'We fought about money',
           'hardConversation.whatMisunderstanding' => 'It was a misunderstanding',
@@ -10230,6 +8498,7 @@ extension on TranslationsEn {
           'hardConversation.exit' => 'Leave',
           'hardConversation.next' => 'Next',
           'hardConversation.back' => 'Back',
+          'hardConversation.needPause' => 'I need a pause',
           'hardConversation.retry' => 'Try again',
           'hardConversation.generationFailed' => 'Couldn\'t write a sentence right now.',
           'hardConversation.privateNote' =>
@@ -10251,6 +8520,26 @@ extension on TranslationsEn {
           'hardConversation.errors.NOT_PAIRED' =>
             'To send this, you need to be connected with your partner in the app.',
           'hardConversation.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'heavyDay.title' => 'Heavy-day notice',
+          'heavyDay.gateTitle' => 'Heavy-day notice',
+          'heavyDay.gateText' => 'Some days weigh more. You can tell your partner with one short sentence, without details. Your partner does not see your programs or what you write.',
+          'heavyDay.activate' => 'Turn on',
+          'heavyDay.notNow' => 'Not now',
+          'heavyDay.noticeBody' => 'A delicate day. A little extra care helps.',
+          'heavyDay.previewPartner' => ({
+            required Object name,
+          }) => '${name} would see: “A delicate day. A little extra care helps.”',
+          'heavyDay.previewGeneric' =>
+            'Your partner would see: “A delicate day. A little extra care helps.”',
+          'heavyDay.frequencyAsk' => 'Each time',
+          'heavyDay.frequencyAlways' => 'Always',
+          'heavyDay.share' => 'Share',
+          'heavyDay.cancel' => 'Don\'t share',
+          'heavyDay.confirmationTitle' => ({required Object name}) => 'Notice sent to ${name}',
+          'heavyDay.confirmationGeneric' => 'Notice sent',
+          'heavyDay.confirmationHint' => 'Your partner sees it on the notes widget, if it is on.',
+          'heavyDay.errorTitle' => 'Couldn\'t load',
+          'heavyDay.errorText' => 'Couldn\'t do that right now. Try again.',
           'help.badDayTitle' => 'A hard day',
           'help.badDayText' => 'Three small things that may help right now. Nothing required.',
           'help.starterTitle' => 'Start a conversation',
@@ -10447,6 +8736,9 @@ extension on TranslationsEn {
           'history.milestonePlaceHint' => 'E.g. Paraty',
           'history.milestonePlaceErrors.tooLong' => 'The place is too long',
           'history.milestoneBodyHint' => 'A note about this moment (optional)',
+          _ => null,
+        } ??
+        switch (path) {
           'history.milestoneBodyErrors.tooLong' => 'The note is too long',
           'history.milestoneKindLabel' => 'Milestone kind',
           'history.kindFirst' => 'First time',
@@ -10613,67 +8905,6 @@ extension on TranslationsEn {
           'ideaDetail.emptyText' => 'Come back later. In the meantime, note a slip.',
           'ideaDetail.errorTitle' => 'Could not load the idea',
           'ideaDetail.errorText' => 'Try again in a moment.',
-          'inbox.title' => 'Notifications',
-          'inbox.bellUnread' => 'Notifications, something new',
-          'inbox.todayTitle' => 'Today',
-          'inbox.earlierTitle' => 'This week',
-          'inbox.markAllRead' => 'Mark all as read',
-          'inbox.settingsAction' => 'Notification settings',
-          'inbox.footnote' =>
-            'At most 2 alerts a day arrive as a notification. The rest stay only here.',
-          'inbox.emptyTitle' => 'Nothing new here',
-          'inbox.emptyText' => 'When someone sends a card or replies, it shows up here.',
-          'inbox.errorTitle' => 'We could not load your notifications',
-          'inbox.partnerFallback' => 'Your partner',
-          'inbox.tapToSee' => 'Tap to see',
-          'inbox.cardReadyTitle' => 'Your weekly card is ready',
-          'inbox.cardReadyText' => 'Open to see the draft',
-          'inbox.cardReceivedTitle' => ({required Object name}) => '${name} sent you a card',
-          'inbox.cardReactionTitle' => ({required Object name}) => '${name} reacted to your card',
-          'inbox.partnerJoinedTitle' => ({required Object name}) => '${name} joined',
-          'inbox.partnerJoinedText' => 'You are connected now',
-          'inbox.unpairedTitle' => 'The connection ended',
-          'inbox.unpairedText' => 'Your data is still yours',
-          'inbox.partnerMessageTitle' => ({required Object name}) => '${name} sent a message',
-          'inbox.gameInviteTitle' => ({required Object name}) => '${name} invited you to play',
-          'inbox.gameInviteText' => 'Pick a time when you like',
-          'inbox.signalTitle' => ({required Object name}) => '${name} sent a note',
-          'inbox.dateComingTitle' => 'A date is coming up',
-          'inbox.dateComingText' => 'See ideas for the two of you',
-          'inbox.ritualTitle' => 'Time for one of your rituals',
-          'inbox.dailyIdeaTitle' => 'Idea of the day',
-          'inbox.dailyIdeaText' => 'A small idea for today',
-          'inbox.gentleReturnTitle' => 'We miss you',
-          'inbox.gentleReturnText' => 'Come back whenever you like',
-          'inbox.capsuleOpenedTitle' => 'A time capsule opened',
-          'inbox.capsuleOpenedText' => 'See what you kept',
-          'inbox.errors.NETWORK' => 'No connection. Check the internet and try again.',
-          'inbox.errors.other' => 'Something went wrong. Try again.',
-          'inbox.gentleRequestTitle' => ({
-            required Object name,
-          }) => '${name} wrote a gentle request',
-          'inbox.gentleRequestAnsweredTitle' => ({
-            required Object name,
-          }) => '${name} answered your request',
-          'inbox.annoyanceCheckTitle' => 'Does this still bother you?',
-          'inbox.annoyanceCheckText' => 'One of your notes goes away soon',
-          'inbox.quizSharedTitle' => ({required Object name}) => '${name} showed a quiz',
-          'inbox.spiceInviteTitle' => 'An invite from Tempero',
-          'inbox.spiceInviteText' => 'It only shows up if you both turn it on',
-          'inbox.spiceOffTitle' => 'Tempero was turned off',
-          'inbox.spiceOffText' => 'Nothing from the mode was kept',
-          'inbox.memoryProposedTitle' => ({
-            required Object name,
-          }) => '${name} wants to keep a memory with you',
-          'inbox.memoryAcceptedTitle' => ({required Object name}) => '${name} accepted the memory',
-          'inbox.memoryDeclinedTitle' => ({
-            required Object name,
-          }) => '${name} preferred not to keep the memory',
-          'inbox.memoryDeclinedText' => 'It is no longer shared',
-          'inbox.plusBillingIssueTitle' => 'There is a problem with the Plus payment',
-          'inbox.plusBillingIssueText' => 'See what to do to keep it',
-          'inbox.plusCoverageEndedTitle' => 'Plus coverage ended',
-          'inbox.plusCoverageEndedText' => 'You keep everything you created',
           'intro.skip' => 'Skip',
           'intro.continueButton' => 'Continue',
           'intro.phase.title' => 'Where are you two right now?',
@@ -10683,6 +8914,7 @@ extension on TranslationsEn {
           'intro.phase.options.livingTogether' => 'Living together',
           'intro.phase.options.engaged' => 'Engaged',
           'intro.phase.options.married' => 'Married',
+          'intro.phase.options.withKids' => 'With kids',
           'intro.phase.options.longDistance' => 'Long distance',
           'intro.phase.options.restarting' => 'Starting over',
           'intro.phase.options.other' => '',
@@ -10732,8 +8964,6 @@ extension on TranslationsEn {
           'invite.errors.RATE_LIMITED' => 'You created too many invites today. Try again tomorrow.',
           'invite.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'invite.errors.other' => 'Something went wrong. Try again.',
-          'invite.shareTitle' => 'Share invite',
-          'invite.waitingTitle' => 'Waiting for your partner',
           'language.language' => 'Language',
           'language.languagePortuguese' => 'Portuguese (Brazil)',
           'language.languageEnglish' => 'English',
@@ -10844,9 +9074,12 @@ extension on TranslationsEn {
           'logistics.errorText' => 'The list is still saved. Try again.',
           'logistics.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'logistics.errors.other' => 'Couldn\'t do that right now. Try again.',
-          'logistics.confirm' => 'Confirm',
-          'logistics.waitingYou' => 'Waiting for you',
-          'logistics.waitingPartner' => 'Waiting for the other person',
+          'loveStyle.entryLabel' => 'ONLY FOR YOU',
+          'loveStyle.entryTitle' => 'What makes me feel loved',
+          'loveStyle.entryText' => 'Six quick questions to notice what makes you feel loved.',
+          'loveStyle.exerciseTitle' => 'How I feel loved',
+          'loveStyle.exerciseHighlight' => 'loved',
+          'loveStyle.exerciseSubtitle' => 'Six quick questions, just for you.',
           'loveStyle.questionOf' => ({
             required Object current,
             required Object total,
@@ -10857,12 +9090,6 @@ extension on TranslationsEn {
           'loveStyle.questions.3' => 'Which of these gestures warms your heart?',
           'loveStyle.questions.4' => 'What makes you feel important to someone?',
           'loveStyle.questions.5' => 'If you could choose one gesture for today, what would it be?',
-          'loveStyle.questionHighlights.0' => 'loved',
-          'loveStyle.questionHighlights.1' => 'comforts',
-          'loveStyle.questionHighlights.2' => 'care',
-          'loveStyle.questionHighlights.3' => 'heart',
-          'loveStyle.questionHighlights.4' => 'important',
-          'loveStyle.questionHighlights.5' => 'gesture',
           'loveStyle.options1.time' => 'Spending unhurried time together.',
           'loveStyle.options1.words' => 'Hearing that I matter.',
           'loveStyle.options1.acts' => 'Seeing the person help me with something.',
@@ -10880,9 +9107,6 @@ extension on TranslationsEn {
           'loveStyle.options3.acts' => 'When the person notices what I need and does it.',
           'loveStyle.options3.gifts' => 'When the person remembers something I like.',
           'loveStyle.options3.touch' => 'When the person touches me lightly as they pass.',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.options3.other' => '',
           'loveStyle.options4.time' => 'A quiet date, just the two of us.',
           'loveStyle.options4.words' => 'A conversation where I feel heard.',
@@ -10909,19 +9133,9 @@ extension on TranslationsEn {
             'Only you see your answers. You choose whether to show the result.',
           'loveStyle.resultTitle' => 'What makes you feel loved',
           'loveStyle.resultHighlight' => 'loved',
-          'loveStyle.resultSubtitle' => 'A reading of what fits you best.',
-          'loveStyle.labels.time' => 'Time just for us',
-          'loveStyle.labels.words' => 'Words of care',
-          'loveStyle.labels.acts' => 'Help with tasks',
-          'loveStyle.labels.gifts' => 'Small gifts',
-          'loveStyle.labels.touch' => 'Touch and hugs',
-          'loveStyle.labels.other' => '',
-          'loveStyle.commonLabels.time' => 'time just for us',
-          'loveStyle.commonLabels.words' => 'words of care',
-          'loveStyle.commonLabels.acts' => 'help with tasks',
-          'loveStyle.commonLabels.gifts' => 'small gifts',
-          'loveStyle.commonLabels.touch' => 'touch and hugs',
-          'loveStyle.commonLabels.other' => '',
+          'loveStyle.resultSubtitle' =>
+            'A description of what makes you feel loved, in your own way.',
+          'loveStyle.topTag' => 'What fits you best',
           'loveStyle.descriptions.time' => 'You feel loved when you have real time with someone you care about: unhurried, no screens, just presence.',
           'loveStyle.descriptions.words' =>
             'You feel loved when you hear, honestly, what the other person feels for you.',
@@ -10932,42 +9146,31 @@ extension on TranslationsEn {
           'loveStyle.descriptions.touch' =>
             'You feel loved when a hug, a held hand or a caress says what words cannot.',
           'loveStyle.descriptions.other' => '',
-          'loveStyle.resultPrivacyNote' =>
-            'Saved only for you until you show it. You can undo it whenever you want.',
+          'loveStyle.shareDescriptions.time' =>
+            'I feel loved when we spend unhurried time together, with no screens.',
+          'loveStyle.shareDescriptions.words' =>
+            'I feel loved when I hear, honestly, what you feel for me.',
+          'loveStyle.shareDescriptions.acts' =>
+            'I feel loved when you notice what I need and help without me asking.',
+          'loveStyle.shareDescriptions.gifts' =>
+            'I feel loved when you remember me in a small detail, chosen with care.',
+          'loveStyle.shareDescriptions.touch' =>
+            'I feel loved when a hug, a held hand or a caress says what words cannot.',
+          'loveStyle.shareDescriptions.other' => '',
+          'loveStyle.resultPrivacyNote' => 'Saved only for you. Showing it on your partner\'s widget is your choice, and you can undo it.',
           'loveStyle.saveManualAction' => 'Save to My manual',
           'loveStyle.savedManualAction' => 'Saved to My manual',
           'loveStyle.manualToast' => 'Saved to My manual.',
           'loveStyle.shareAction' => ({required Object name}) => 'Show ${name}',
-          'loveStyle.revokeAction' => ({required Object name}) => 'Stop showing ${name}',
-          'loveStyle.shareConfirmTitle' => ({required Object name}) => 'Show ${name}?',
-          'loveStyle.shareConfirmText' => ({
-            required Object name,
-          }) => 'Only the result appears, never your answers. ${name} gets a notice and may choose not to respond.',
-          'loveStyle.shareConfirm' => 'Show',
-          'loveStyle.shareCancel' => 'Not now',
-          'loveStyle.shareToast' => ({
-            required Object name,
-          }) => 'Done. ${name} can see the result now.',
-          'loveStyle.revokeToast' => ({required Object name}) => '${name} can no longer see it.',
+          'loveStyle.revokeAction' => 'Remove from their widget',
+          'loveStyle.shareToast' => 'It appears on their widget if they allow notes.',
+          'loveStyle.revokeToast' => 'It\'s no longer on their widget.',
           'loveStyle.shareSoloNote' =>
-            'It stays with you. When someone joins, you decide whether to show it.',
-          'loveStyle.inviteAction' => 'Invite my person',
-          'loveStyle.compareAction' => 'Compare the two',
-          'loveStyle.compareTitle' => 'The two of you',
-          'loveStyle.compareHeadline' => 'What makes you both feel loved',
-          'loveStyle.compareHighlight' => 'both',
-          'loveStyle.compareYou' => 'You',
-          'loveStyle.compareMost' => 'Most important',
-          'loveStyle.compareNext' => 'Then',
-          'loveStyle.compareCommon' => 'In common',
-          'loveStyle.compareCommonText' => ({required Object label}) => 'You both value ${label}.',
-          'loveStyle.comparePlan' => 'Plan time just for us',
-          'loveStyle.compareMissingTitle' => 'The comparison is not ready yet',
-          'loveStyle.compareMissingText' => 'It appears when both of you have shown your result.',
+            'When you\'re connected with a partner, you can show this on their widget.',
           'loveStyle.partnerFallback' => 'your partner',
           'loveStyle.pairingErrorNote' => 'Couldn\'t check your partner right now.',
           'loveStyle.retryPairing' => 'Try again',
-          'loveStyle.retake' => 'Take the quiz again',
+          'loveStyle.retake' => 'Take it again',
           'loveStyle.loadErrorTitle' => 'Couldn\'t load',
           'loveStyle.loadErrorText' => 'Couldn\'t open your result right now. Try again.',
           'loveStyle.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
@@ -10978,12 +9181,17 @@ extension on TranslationsEn {
           'loveStyle.shareErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'loveStyle.shareErrors.other' => 'Couldn\'t show it right now. Try again.',
           'loveStyle.revokeErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          'loveStyle.revokeErrors.other' => 'Couldn\'t stop showing it right now. Try again.',
+          'loveStyle.revokeErrors.other' =>
+            'Couldn\'t remove it from their widget right now. Try again.',
           'memories.title' => 'Memories',
           'memories.historyLabel' => 'OUR HISTORY',
           'memories.historyTitle' => 'Our history',
           'memories.historyText' => 'Milestones, dates, places and our story in numbers.',
+          'memories.storyLabel' => 'SHARE',
+          'memories.storyTitle' => 'Image to share',
+          'memories.storyText' => 'Your numbers in an image, with only what you choose.',
           'memories.placesLabel' => 'PLACES',
+          'memories.placesTitle' => 'Places you have been',
           'memories.placesText' => 'Only the name of the place, never the location.',
           'memories.placeLabel' => 'Place (optional)',
           'memories.placeHint' => 'E.g. Lisbon',
@@ -11034,31 +9242,11 @@ extension on TranslationsEn {
           'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
           'memories.jarEmptyTitle' => 'The jar is empty',
           'memories.jarEmptyAction' => 'See my slips',
-          'memories.menu.timeline' => 'Timeline',
-          'memories.menu.timelineText' => 'Memories you kept',
-          'memories.menu.jar' => 'Jar',
-          'memories.menu.jarText' => 'A good slip for a bad day',
-          'memories.menu.storyText' => 'Milestones, places and numbers',
-          'memories.menu.dates' => 'Dates and numbers',
-          'memories.menu.datesText' => 'Anniversaries, holidays and counts',
-          'memories.menu.diary' => 'Diary',
-          'memories.menu.diaryText' => 'Only yours, never goes to the other person',
-          'memories.menu.gifts' => 'Gift ideas',
-          'memories.menu.giftsText' => 'Each one\'s wishes and ideas for the other',
-          'memories.onThisDay.label' => 'ON THIS DAY',
-          'memories.onThisDay.yearsAgo' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 year ago',
-                  other: '${count} years ago',
-                ),
+          'memories.moreTitle' => 'More',
           'mood.title' => 'How are you today?',
           'mood.titleHighlight' => 'today',
           'mood.subtitle' => 'One tap. The “I need…” tag is optional.',
           'mood.privateCue' => 'Only you see this',
-          'mood.sharedCue' => ({required Object name}) => 'shared with ${name}',
-          'mood.sharedCueNoName' => 'shared with your partner',
           'mood.moods.happy' => 'Happy',
           'mood.moods.tired' => 'Tired',
           'mood.moods.sad' => 'Sad',
@@ -11070,20 +9258,11 @@ extension on TranslationsEn {
           'mood.needs.opinion' => 'An opinion',
           'mood.needs.hug' => 'A hug',
           'mood.needs.space' => 'Some space',
-          'mood.needs.chocolate' => 'Chocolate',
-          'mood.needs.cuteMessage' => 'A cute message',
-          'mood.needs.foreheadKiss' => 'A kiss on the forehead',
-          'mood.needs.company' => 'Some company',
-          'mood.needs.rest' => 'To rest',
-          'mood.needMenuAction' => 'I need…',
-          'mood.needMenuActionSelected' => ({required Object need}) => 'I need: ${need}',
-          'mood.needSheetSubtitle' =>
-            'One thing a day. Your partner sees it only if you share your mood.',
-          'mood.needSaved' => 'Saved',
+          'mood.shareTitle' => 'What your partner sees',
+          'mood.shareTitleNamed' => ({required Object name}) => 'What ${name} sees',
           'mood.shareSubtitle' => 'You decide. Nothing is shared by default.',
-          'mood.shareNeedFirst' => 'Pick an “I need…” first.',
           'mood.share.none' => 'Keep private',
-          'mood.share.mood' => 'Only my mood',
+          'mood.share.mood' => 'Just my mood',
           'mood.share.moodNeed' => 'Mood and what I need',
           'mood.shareSupport.none' => 'Nothing is shared.',
           'mood.shareSupport.mood' => 'Your partner sees the mood only.',
@@ -11112,52 +9291,13 @@ extension on TranslationsEn {
           'mood.partnerNeedOpinion' => 'What helps: an opinion.',
           'mood.partnerNeedHug' => 'What helps: a hug.',
           'mood.partnerNeedSpace' => 'What helps: some space.',
-          'mood.partnerNeedChocolate' => 'What helps: some chocolate.',
-          'mood.partnerNeedCuteMessage' => 'What helps: a cute message.',
-          'mood.partnerNeedForeheadKiss' => 'What helps: a kiss on the forehead.',
-          'mood.partnerNeedCompany' => 'What helps: some company.',
-          'mood.partnerNeedRest' => 'What helps: rest.',
-          'mood.partnerSharedChoice' => ({
-            required Object name,
-          }) => '${name} chose to share this with you.',
           'mood.homeTitle' => 'How are you?',
           'mood.homePrivacy' => 'Only you see it',
-          'mood.homePrivacyShared' => ({required Object name}) => '${name} sees it',
-          'mood.homePrivacySharedNoName' => 'Your partner sees it',
-          'mood.homeLoadFailed' => 'Couldn\'t load it. Tap to open.',
-          'mood.homeDetailsLink' => 'What your partner sees',
           'mood.homeMoods.happy' => 'Good',
           'mood.homeMoods.loving' => 'Loving',
           'mood.homeMoods.tired' => 'Tired',
           'mood.homeMoods.stressed' => 'Tense',
           'mood.homeMoods.sad' => 'Sad',
-          'mood.next' => 'Next',
-          'mood.shareAction' => 'Share',
-          'mood.shareHeadline' => ({required Object name}) => 'Share with ${name}?',
-          'mood.shareHeadlineNoName' => 'Share with your person?',
-          'mood.shareHeadlineNoNameHighlight' => 'your person',
-          'mood.calendarTitle' => 'My moods',
-          'mood.calendarMonth' => ({
-            required Object month,
-            required Object year,
-          }) => '${month} ${year}',
-          'mood.calendarEmpty' => 'No mood recorded this month yet.',
-          'mood.calendarPrivacyNote' => 'Only you see this. It never shows up for your partner unless it was shared for the day.',
-          'mood.calendarAction' => 'Record my mood',
-          'mood.calendarErrorTitle' => 'Couldn\'t open your moods',
-          'mood.calendarErrorText' => 'Nothing was lost. Try again.',
-          'mood.monthNames.0' => 'January',
-          'mood.monthNames.1' => 'February',
-          'mood.monthNames.2' => 'March',
-          'mood.monthNames.3' => 'April',
-          'mood.monthNames.4' => 'May',
-          'mood.monthNames.5' => 'June',
-          'mood.monthNames.6' => 'July',
-          'mood.monthNames.7' => 'August',
-          'mood.monthNames.8' => 'September',
-          'mood.monthNames.9' => 'October',
-          'mood.monthNames.10' => 'November',
-          'mood.monthNames.11' => 'December',
           'moodHelp.listenTitle' => 'Listen first',
           'moodHelp.listenSubtitle' => 'No rush, no pressure to answer.',
           'moodHelp.talkLabel' => 'Talk',
@@ -11171,45 +9311,18 @@ extension on TranslationsEn {
           'moodHelp.seeHowToHelpSupport' => 'Small things for today.',
           'moodHelp.helpTitle' => 'How to help today',
           'moodHelp.helpSubtitle' => 'Small things, at today\'s pace.',
-          'moodHelp.suggestionLabel' => 'Suggestion',
+          'moodHelp.choreLabel' => 'Chore',
           'moodHelp.takeChore' => 'Take on a chore',
           'moodHelp.takeChoreSupport' => 'Pick one thing at home and handle it without asking.',
           'moodHelp.askListenOrSpace' => 'Ask: do you want to talk or have space?',
           'moodHelp.askListenOrSpaceSupport' => 'Let the answer choose the next step.',
           'moodHelp.sendSweetMessage' => 'Send a short, sweet message',
-          'moodHelp.sweetMessagePreview' => ({required Object body}) => 'It reads: “${body}”',
-          'moodHelp.sweetMessageBody' => 'No rush. I\'m here.',
+          'moodHelp.sendSweetMessageSupport' => 'One line is enough. No explanation needed.',
+          'moodHelp.homeLabel' => 'Home',
           'moodHelp.makeCoffeeOrDinner' => 'Make coffee or dinner',
           'moodHelp.makeCoffeeOrDinnerSupport' => 'Without turning it into a shared task.',
-          'moodHelp.noDiagnosisNote' => 'App suggestions, not a diagnosis. No rush.',
           'moodHelp.reactionLabel' => 'Send a heart',
           'moodHelp.sent' => 'Heart sent',
-          'moodHelp.askSent' => 'Question sent',
-          'moodHelp.messageSent' => 'Message sent',
-          'moodHelp.partnerNeedTitle' => ({required Object name}) => 'What ${name} needs',
-          'moodHelp.partnerNeedTitleGeneric' => 'What your partner needs',
-          'moodHelp.partnerNeedSubtitle' => 'Today\'s ask. No pressure.',
-          'moodHelp.partnerNeedNote' => 'This comes from the mood your partner shared today.',
-          'moodHelp.partnerNeedActions.listen' => 'Just listen',
-          'moodHelp.partnerNeedActions.opinion' => 'Give an opinion',
-          'moodHelp.partnerNeedActions.hug' => 'Send a hug',
-          'moodHelp.partnerNeedActions.space' => 'Give some space',
-          'moodHelp.partnerNeedActions.chocolate' => 'Bring some chocolate',
-          'moodHelp.partnerNeedActions.cuteMessage' => 'Open the chat',
-          'moodHelp.partnerNeedActions.foreheadKiss' => 'A kiss on the forehead',
-          'moodHelp.partnerNeedActions.company' => 'Stay close',
-          'moodHelp.partnerNeedActions.rest' => 'Let them rest',
-          'moodHelp.partnerNeedActions.other' => '',
-          'moodHelp.partnerNeedSupports.listen' => 'No advice, no fixing.',
-          'moodHelp.partnerNeedSupports.opinion' => 'An honest opinion, without judging.',
-          'moodHelp.partnerNeedSupports.hug' => 'It arrives as a signal in the app.',
-          'moodHelp.partnerNeedSupports.space' => 'Some time without asking for an answer.',
-          'moodHelp.partnerNeedSupports.chocolate' => 'A small chocolate, no reason needed.',
-          'moodHelp.partnerNeedSupports.cuteMessage' => 'One kind line is enough.',
-          'moodHelp.partnerNeedSupports.foreheadKiss' => 'Small and unhurried.',
-          'moodHelp.partnerNeedSupports.company' => 'Sit nearby, no words needed.',
-          'moodHelp.partnerNeedSupports.rest' => 'Take what you can off their plate.',
-          'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'You are not connected yet.',
           'moodHelp.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'moodHelp.errors.NETWORK' =>
@@ -11241,6 +9354,9 @@ extension on TranslationsEn {
           'notes.title' => 'A note or a drawing',
           'notes.intro' =>
             'A short note for your partner, or a drawing that stays in your sent list.',
+          _ => null,
+        } ??
+        switch (path) {
           'notes.kinds.0' => 'Note',
           'notes.kinds.1' => 'Drawing',
           'notes.noteHint' => 'E.g. good luck at today\'s meeting',
@@ -11325,19 +9441,23 @@ extension on TranslationsEn {
           'notificationPermission.errors.registerDevice' =>
             'Could not turn notifications on for this phone. Try again later.',
           'notificationPermission.errors.other' => 'Could not turn notifications on. Try again.',
-          'notificationPreferences.title' => 'Reminders',
+          'notificationPreferences.title' => 'Notifications',
+          'notificationPreferences.subtitle' => 'Choose what arrives and when. No pressure.',
           'notificationPreferences.systemOff' =>
-            'Notifications are off on this phone. Your choices apply when you turn them on.',
+            'Notifications are off on this phone. Your choices apply once you turn them on.',
           'notificationPreferences.openSystem' => 'Open settings',
-          'notificationPreferences.perDayTitle' => 'Per day',
-          'notificationPreferences.perDaySupport' => 'At most',
-          'notificationPreferences.perDayValue' => ({required Object count}) => 'Up to ${count}',
-          'notificationPreferences.perDaySheetTitle' => 'How many reminders a day?',
-          'notificationPreferences.typesTitle' => 'Types',
-          'notificationPreferences.types.dailyIdea' => 'Idea of the day',
-          'notificationPreferences.types.dateComing' => 'Dates and holidays',
-          'notificationPreferences.types.cardReady' => 'Weekly card',
+          'notificationPreferences.all' => 'Receive notifications',
+          'notificationPreferences.allText' => 'Turn off to pause everything.',
+          'notificationPreferences.typesTitle' => 'What you want to receive',
+          'notificationPreferences.types.card_ready' => 'Card ready',
+          'notificationPreferences.types.card_received' => 'Card received',
+          'notificationPreferences.types.card_reaction' => 'Reply to your card',
+          'notificationPreferences.types.daily_idea' => 'Idea of the day',
+          'notificationPreferences.types.date_coming' => 'Dates coming up',
           'notificationPreferences.types.other' => '',
+          'notificationPreferences.cardTitle' => 'Sunday card',
+          'notificationPreferences.cardDay' => 'Day',
+          'notificationPreferences.cardHour' => 'Time',
           'notificationPreferences.days.0' => 'Sunday',
           'notificationPreferences.days.1' => 'Monday',
           'notificationPreferences.days.2' => 'Tuesday',
@@ -11346,13 +9466,14 @@ extension on TranslationsEn {
           'notificationPreferences.days.5' => 'Friday',
           'notificationPreferences.days.6' => 'Saturday',
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
-          'notificationPreferences.note' =>
-            'A hard limit of 1 to 2 messages a day. Each type can be switched off.',
-          'notificationPreferences.loadErrorTitle' => 'Could not open your reminders',
+          'notificationPreferences.previewTitle' => 'How a notification looks',
+          'notificationPreferences.previewText' => 'Always short, with no personal details.',
+          'notificationPreferences.loadErrorTitle' => 'Couldn\'t open your preferences',
           'notificationPreferences.loadErrorText' => 'They are still saved. Try again.',
-          'notificationPreferences.errors.rateLimited' => 'Too many tries in a row. Wait a moment.',
+          'notificationPreferences.errors.RATE_LIMITED' =>
+            'Too many attempts in a row. Wait a moment.',
           'notificationPreferences.errors.other' =>
-            'Could not save now. Your previous choice was kept.',
+            'Couldn\'t save right now. Your previous choice was kept.',
           'partnerProfile.title' => 'About your partner',
           'partnerProfile.privateNote' => 'Only you see these notes. They never show in notifications, widgets or to your partner.',
           'partnerProfile.categories.likes' => 'Likes',
@@ -11386,50 +9507,90 @@ extension on TranslationsEn {
           'partnerStep.aloneSupport' => 'Your slips stay with you only',
           'partnerStep.haveCode' => 'I have an invite code',
           'partnerStep.continueButton' => 'Continue',
-          'partnerStep.soloOnlyTitle' => 'Just for me',
-          'partnerStep.soloOnlySupport' => 'Without inviting anyone',
-          'partnerStep.whyInvite' => 'Why invite?',
-          'partnerStep.why.title' => 'Why invite?',
-          'partnerStep.why.shared' => 'Shared cards and tools need both of you.',
-          'partnerStep.why.privacy' =>
-            'Your slips and private notes stay yours until you share them.',
+          'pause.title' => 'Ask for some space',
+          'pause.titleHighlight' => 'space',
+          'pause.subtitle' => 'A short, kind message. Your partner sees only what you write.',
+          'pause.presets.space' => 'I need some time to breathe. I\'ll be back soon.',
+          'pause.presets.later' => 'Can we talk later, calmly?',
+          'pause.presets.calm' => 'I want to listen well. I need to calm down first.',
+          'pause.presets.other' => '',
+          'pause.hint' => 'Write my own',
+          'pause.messageErrors.empty' => 'Write a short message',
+          'pause.messageErrors.tooLong' => 'The message is too long',
+          'pause.returnTitle' => 'I\'ll be back in',
+          'pause.returns.oneHour' => '1 hour',
+          'pause.returns.threeHours' => '3 hours',
+          'pause.returns.eightHours' => '8 hours',
+          'pause.returns.tomorrow' => 'Tomorrow',
+          'pause.returns.other' => '',
+          'pause.note' => 'You both see Today on pause. You can come back whenever you like.',
+          'pause.send' => 'Send and pause',
+          'pause.sentTitle' => 'Pause sent',
+          'pause.sentText' =>
+            'Today is on pause for both of you. When you\'re ready, come back there.',
+          'pause.done' => 'Done',
+          'pause.errors.INVALID_RETURN_TIME' => 'That return time doesn\'t work. Pick another.',
+          'pause.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'pause.errors.other' => 'Couldn\'t send right now. Your message is still here.',
+          'places.title' => 'Places',
+          'places.privacyNote' =>
+            'Only the name of the place. The app never reads or stores your location.',
+          'places.memoryOne' => '1 memory',
+          'places.memoryMany' => ({required Object count}) => '${count} memories',
+          'places.monthsShort.0' => 'Jan',
+          'places.monthsShort.1' => 'Feb',
+          'places.monthsShort.2' => 'Mar',
+          'places.monthsShort.3' => 'Apr',
+          'places.monthsShort.4' => 'May',
+          'places.monthsShort.5' => 'Jun',
+          'places.monthsShort.6' => 'Jul',
+          'places.monthsShort.7' => 'Aug',
+          'places.monthsShort.8' => 'Sep',
+          'places.monthsShort.9' => 'Oct',
+          'places.monthsShort.10' => 'Nov',
+          'places.monthsShort.11' => 'Dec',
+          'places.dateLine' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'places.emptyTitle' => 'No places yet',
+          'places.emptyText' =>
+            'When you save a memory, write the name of the place and it shows up here.',
+          'places.detailEmptyTitle' => 'Nothing at this place',
+          'places.detailEmptyText' => 'The memories of this place are not here anymore.',
+          'places.errorTitle' => 'Couldn\'t load',
+          'places.errorText' => 'Your memories are still saved. Try again.',
           'plus.title' => 'Mingo Plus',
           'plus.subtitle' => 'Compare calmly. The free plan stays whole for the essentials.',
           'plus.activeTitle' => 'You have Plus',
           'plus.activeText' => 'Thank you. Everything is unlocked for you and your partner.',
           'plus.paidByPartner' => 'Your partner has Plus and it covers you both.',
           'plus.freeLeft' => ({
-            required Object games,
-            required Object rituals,
-            required Object lists,
-          }) => 'On the free plan you have ${games}, ${rituals} and ${lists} left.',
-          'plus.gameCount' =>
+            required Object slips,
+            required Object cards,
+          }) => 'Free plan, this month: ${slips} and ${cards}.',
+          'plus.slipCount' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
                   count,
-                  one: '1 game this week',
-                  other: '${count} games this week',
+                  one: '1 slip',
+                  other: '${count} slips',
                 ),
-          'plus.ritualCount' =>
+          'plus.cardCount' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
                   count,
-                  one: '1 ritual',
-                  other: '${count} rituals',
-                ),
-          'plus.listCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 list',
-                  other: '${count} lists',
+                  one: '1 sent card',
+                  other: '${count} sent cards',
                 ),
           'plus.freeName' => 'Free',
-          'plus.freeFeatures' => 'Unlimited slips and cards, repair, 3 games a week, 3 rituals, 3 lists and everything you already saved.',
+          'plus.freeFeatures' => 'Slips every month, one sent card a month, repair, pause, safety and everything you already saved.',
           'plus.plusName' => 'Plus',
-          'plus.plusFeatures' => 'Unlimited games, rituals and lists, more chats with the mascot and more for both of you, covering you and your partner.',
+          'plus.plusFeatures' => 'More slips and cards each month and more for both of you, covering you and your partner.',
           'plus.monthly' => 'Monthly',
           'plus.yearly' => 'Yearly',
+          'plus.giftPlan' => 'Gift',
           'plus.storeTitle' => 'Couldn\'t load the prices',
           'plus.storeText' => 'The store didn\'t answer. Nothing was charged. Try again.',
           'plus.subscribe' => 'Subscribe',
@@ -11438,7 +9599,7 @@ extension on TranslationsEn {
           'plus.purchaseError' => 'Couldn\'t complete the purchase. Nothing was charged.',
           'plus.billingTitle' => 'Payment problem',
           'plus.billingText' => 'The last payment didn\'t go through. Plus stays on for now. Open your subscriptions in the store and update the payment method.',
-          'plus.alwaysFree' => 'Unpairing is never locked.',
+          'plus.alwaysFree' => 'Safety, pause and unpair are never locked.',
           'plus.lockLabel' => 'PLUS',
           'plus.lockText' => 'Available with Plus. Tap to see the plans.',
           'plus.errorTitle' => 'Couldn\'t load',
@@ -11481,16 +9642,16 @@ extension on TranslationsEn {
           'plus.errors.storeUnavailable' => 'The store isn\'t available on this device right now.',
           'plus.errors.manageUnavailable' => 'There\'s no store page for this subscription here.',
           'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
-          _ => null,
-        } ??
-        switch (path) {
           'privacy.title' => 'Privacy and security',
+          'privacy.discreetMode' => 'Discreet mode',
           'privacy.partnerTitle' => 'What your partner sees',
           'privacy.partnerSlips' => 'Sent slips',
           'privacy.partnerSlipsText' => 'Only what you send',
           'privacy.partnerPrivateSlips' => 'Private slips',
           'privacy.partnerTemperature' => 'Temperature',
           'privacy.partnerJournal' => 'Journal',
+          'privacy.partnerPause' => 'Pause',
+          'privacy.partnerPauseText' => 'The message you wrote',
           'privacy.never' => 'Never',
           'privacy.partnerNote' => 'Whoever makes the data decides who sees it.',
           'privacy.ourTitle' => 'What we can see',
@@ -11499,22 +9660,27 @@ extension on TranslationsEn {
           'privacy.ourAnalytics' => 'Analytics: counts only.',
           'privacy.ourPlain' => 'This page in plain language.',
           'privacy.consents' => 'Consents',
+          'privacy.sensitiveData' => 'Sensitive data',
           'privacy.analytics' => 'Analytics',
           'privacy.marketing' => 'Marketing',
           'privacy.ai' => 'AI (when available)',
           'privacy.terms' => 'Terms',
           'privacy.required' => 'Required',
-          'privacy.requiredNote' => 'Accepting the Terms is required to use the app.',
+          'privacy.requiredNote' => 'Sensitive data and Terms are required to use the app.',
           'privacy.consentsNote' => 'Changes apply now.',
           'privacy.saveError' => 'Could not save now. Try again.',
           'privacy.errorTitle' => 'Could not load the consents',
           'privacy.errorText' => 'Try again in a moment.',
+          'privacy.sensitiveTracks' => 'Sensitive tracks and notices',
+          'privacy.heavyDayNotice' => 'Heavy-day notice',
           'profileDetails.title' => 'Profile',
           'profileDetails.nameLabel' => 'Your name',
-          'profileDetails.nameHint' => 'Your first name',
+          'profileDetails.nameHint' => 'Marina',
           'profileDetails.nameErrors.empty' => 'Your name cannot be empty.',
           'profileDetails.nameErrors.tooLong' => 'Use at most 30 characters.',
           'profileDetails.pronounsLabel' => 'Pronouns',
+          'profileDetails.pronounsHint' => 'Optional',
+          'profileDetails.pronounsErrors.tooLong' => 'Use at most 30 characters.',
           'profileDetails.timeZoneLabel' => 'Time zone',
           'profileDetails.timeZonePlaceholder' => 'Pick a time zone',
           'profileDetails.loginLabel' => 'Login',
@@ -11548,12 +9714,17 @@ extension on TranslationsEn {
           'profileSetup.subtitle' =>
             'Used for the words in the app and for the first date of your story.',
           'profileSetup.nameLabel' => 'Your name',
-          'profileSetup.nameHint' => 'Your first name',
+          'profileSetup.nameHint' => 'Marina',
           'profileSetup.nameErrors.empty' => 'Your name cannot be empty.',
           'profileSetup.nameErrors.tooLong' => 'Use at most 30 characters.',
           'profileSetup.partnerNameLabel' => 'Partner\'s name',
-          'profileSetup.partnerNameHint' => 'Their first name',
+          'profileSetup.partnerNameHint' => 'Ricardo',
           'profileSetup.partnerNameErrors.tooLong' => 'Use at most 30 characters.',
+          'profileSetup.partnerNameNote' => 'Your partner\'s name stays on your account only.',
+          'profileSetup.themeLabel' => 'Your app colour',
+          'profileSetup.themeRose' => 'Rose',
+          'profileSetup.themeBlue' => 'Blue',
+          'profileSetup.themeNeutral' => 'Neutral',
           'profileSetup.dateLabel' => 'When did you start?',
           'profileSetup.dateHint' => 'Pick a date',
           'profileSetup.dateErrors.empty' => 'Pick the date you started.',
@@ -11579,10 +9750,6 @@ extension on TranslationsEn {
             'That date does not look right. Pick one between 1950 and today.',
           'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
           'profileSetup.errors.other' => 'Could not save right now. Try again.',
-          'profileSetup.themeLabel' => 'Your app colour',
-          'profileSetup.themeRose' => 'Rose',
-          'profileSetup.themeBlue' => 'Blue',
-          'profileSetup.themeNeutral' => 'Neutral',
           'programs.label' => 'PROGRAMS',
           'programs.title' => 'Programs',
           'programs.entryText' => 'Short guided programs, at your own pace.',
@@ -11673,50 +9840,53 @@ extension on TranslationsEn {
           'programs.moods.other' => 'How I am',
           'programs.lessonErrors.other' => 'Couldn\'t do that right now. Try again.',
           'programs.diaryErrors.other' => 'Couldn\'t save right now. Your text is still here.',
+          'programs.sensitive' => 'SENSITIVE',
+          'programs.sensitiveGateTitle' => 'A track just for you',
+          'programs.sensitiveGateText' => 'These lessons talk about grief, illness and trust. Your partner does not see that you joined or what you read. You can leave whenever you want.',
+          'programs.sensitiveGateAction' => 'Join this track',
+          'programs.sensitiveConsentTitle' => 'Join this track?',
+          'programs.sensitiveConsentText' => 'These lessons talk about grief, illness and trust. They stay just for you: your partner does not see your participation. You can withdraw this consent in Privacy and security.',
+          'programs.sensitiveConsentConfirm' => 'Join',
+          'programs.sensitiveConsentCancel' => 'Not now',
+          'programs.sensitiveLessonLockedTitle' => 'Sensitive track',
+          'programs.sensitiveLessonLockedText' =>
+            'To open this lesson, turn on the sensitive tracks consent.',
           'programs.freeNote' => 'Free shows only the first lesson.',
-          'pronouns.options.she' => 'She',
-          'pronouns.options.he' => 'He',
-          'pronouns.options.nameOnly' => 'Name only',
-          'pronouns.options.other' => 'Name only',
-          'questions.tag' => 'Couple question',
+          'questions.tag' => 'Question for you two',
+          'questions.eyebrow' => 'Question of the day',
           'questions.answerCta' => 'Answer',
-          'questions.introNote' => 'One question a day or a week.',
-          'questions.answerHint' => 'Write as much as you like.',
+          'questions.editCta' => 'Edit my answer',
+          'questions.answerHint' => 'Write as much or as little as you want.',
           'questions.answerErrors.empty' => 'Write an answer',
           'questions.answerErrors.tooLong' => 'The answer is too long',
+          'questions.privateNote' => 'Only you can see this until your partner answers too.',
           'questions.partnerAnsweredNote' =>
             'Your partner already answered. Send yours to see both.',
-          'questions.partnerSeesAfter' => ({
-            required Object name,
-          }) => 'Only after you send yours and ${name} answers too.',
-          'questions.partnerSeesAfterFallback' =>
-            'Only after you send yours and your partner answers too.',
           'questions.soloNote' =>
-            'Your answer stays private. Your partner sees it after you connect.',
+            'Your answer stays private. Your partner will see it after you connect.',
           'questions.save' => 'Send',
           'questions.cancel' => 'Cancel',
-          'questions.skip' => 'Skip',
           'questions.waitingTitle' => 'Your answer is saved',
           'questions.waitingText' => 'It appears here when your partner answers too.',
           'questions.waitingSoloText' =>
-            'When your partner joins, they see your answer and you see theirs.',
+            'When your partner joins, they will see your answer and you can see theirs.',
           'questions.checkAgain' => 'Check again',
-          'questions.revealTitle' => 'The two memories',
-          'questions.revealHighlight' => 'memories',
-          'questions.keepPrompt' => 'Do you want to keep this in your story?',
-          'questions.saveMilestone' => 'Save as milestone',
-          'questions.notNow' => 'Not now',
+          'questions.voiceSoon' => 'Voice note',
+          'questions.voiceSoonNote' => 'For now answers are written. Voice will come later.',
+          'questions.revealTitle' => 'Your answers together',
+          'questions.revealHighlight' => 'together',
+          'questions.revealSubtitle' => 'Now that you both answered, you can see each one.',
+          'questions.revealNote' => 'No scores. Just what each of you wrote.',
           'questions.you' => 'You',
           'questions.partnerFallback' => 'Your partner',
           'questions.discardTitle' => 'Discard this answer?',
           'questions.discardText' => 'The text you wrote was not saved.',
           'questions.discard' => 'Discard',
           'questions.keepWriting' => 'Keep writing',
-          'questions.loadErrorTitle' => 'Could not open the question',
+          'questions.loadErrorTitle' => 'Couldn\'t open the question',
           'questions.loadErrorText' => 'Nothing was lost. Try again.',
           'questions.close' => 'Close',
-          'questions.errors.other' => 'Could not save right now. Try again.',
-          'questions.editCta' => 'Edit my answer',
+          'questions.errors.other' => 'Couldn\'t save that now. Try again.',
           'questionsEntry.label' => 'QUESTION OF THE DAY',
           'questionsEntry.title' => 'Question of the day',
           'questionsEntry.text' => 'One question for both of you to answer.',
@@ -11747,9 +9917,6 @@ extension on TranslationsEn {
           'quickSlip.title' => 'What made you happy?',
           'quickSlip.titleHighlight' => 'happy',
           'quickSlip.subtitle' => 'One line is enough. 30 seconds.',
-          'quickSlip.polarityLabel' => 'Liked or bothered me',
-          'quickSlip.polarityLiked' => 'Liked',
-          'quickSlip.polarityBothered' => 'Bothered me',
           'quickSlip.hint' => 'E.g. made coffee before I woke up',
           'quickSlip.textErrors.empty' => 'Write the slip first',
           'quickSlip.textErrors.tooLong' => 'This slip is too long',
@@ -11760,7 +9927,6 @@ extension on TranslationsEn {
           'quickSlip.categories.other' => '',
           'quickSlip.privacyNote' =>
             'It stays private. On Sunday you choose what goes on the card.',
-          'quickSlip.cardNote' => 'It goes on your weekly card. You can take it out anytime.',
           'quickSlip.save' => 'Save',
           'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
@@ -11770,84 +9936,35 @@ extension on TranslationsEn {
           'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
           'quickSlip.saved.undo' => 'Undo',
           'quickSlip.saved.done' => 'Done',
-          'quickSlip.saved.annoyanceTitle' => 'Kept',
-          'quickSlip.saved.annoyanceAdded' =>
-            'It stays with you and goes away on its own in 14 days.',
+          'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'quickSlip.errors.other' =>
             'Could not save right now. Your text is still here, try again.',
-          'quickSlip.annoyanceTitle' => 'What bothered you?',
-          'quickSlip.annoyanceTitleHighlight' => 'bothered',
-          'quickSlip.annoyanceSubtitle' => 'One line is enough. Only you see it.',
-          'quickSlip.annoyanceHint' => 'E.g. I was left with the dishes again',
-          'quickSlip.annoyanceNote' => 'It stays with you and goes away on its own in 14 days. It never goes on the card. It only continues if you turn it into a gentle request.',
-          'quickSlip.gentleRequest' => 'Gentle request',
-          'quickSlip.keep' => 'Keep',
-          'quickSlip.addDetails' => 'Add details',
-          'quizzes.title' => 'Quizzes',
-          'quizzes.headline' => 'Getting to know',
-          'quizzes.headlineHighlight' => 'each other',
-          'quizzes.intro' => 'Two short quizzes, six questions each. You see the result first and decide whether to show it.',
-          'quizzes.entryTitle' => 'Quizzes',
-          'quizzes.entryText' => 'Get to know each other',
-          'quizzes.lovedTitle' => 'How I feel loved',
-          'quizzes.fightTitle' => 'How I react in a fight',
-          'quizzes.questionCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 question',
-                  other: '${count} questions',
-                ),
-          'quizzes.minutes' => ({required Object minutes}) => '${minutes} min',
-          'quizzes.meta' => ({
-            required Object questions,
-            required Object minutes,
-          }) => '${questions} · ${minutes}',
-          'quizzes.start' => 'Start',
-          'quizzes.lastDone' => ({required Object date}) => 'Done on ${date}',
-          'quizzes.monthsShort.0' => 'Jan',
-          'quizzes.monthsShort.1' => 'Feb',
-          'quizzes.monthsShort.2' => 'Mar',
-          'quizzes.monthsShort.3' => 'Apr',
-          'quizzes.monthsShort.4' => 'May',
-          'quizzes.monthsShort.5' => 'Jun',
-          'quizzes.monthsShort.6' => 'Jul',
-          'quizzes.monthsShort.7' => 'Aug',
-          'quizzes.monthsShort.8' => 'Sep',
-          'quizzes.monthsShort.9' => 'Oct',
-          'quizzes.monthsShort.10' => 'Nov',
-          'quizzes.monthsShort.11' => 'Dec',
-          'quizzes.note' =>
-            'Only you see the result, until you tap Show. It is not a psychological test.',
-          'quizzes.loadErrorTitle' => 'Could not open the quizzes',
-          'quizzes.loadErrorText' => 'Nothing was lost. Try again.',
           'received.kinds.repair' => 'Repair card',
           'received.kinds.need' => 'I need…',
           'received.kinds.missUs' => 'Missing you',
           'received.kinds.hug' => 'A hug',
           'received.kinds.distance' => 'A little distance',
+          'received.kinds.heavyDay' => 'A heavy day',
           'received.kinds.goodNews' => 'Good news',
           'received.kinds.other' => '',
           'received.bodies.missUs' => 'Your partner is missing you both.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.bodies.hug' => 'Your partner would like a hug.',
           'received.bodies.distance' => 'Your partner needs a little distance.',
+          'received.bodies.heavyDay' => 'Your partner is having a heavy day.',
           'received.bodies.goodNews' => 'Your partner has good news.',
           'received.bodies.other' => '',
           'received.fromPartner' => 'From your partner',
           'received.privateFirst' => 'Your answer is private first. There is no right or wrong.',
-          'received.responses.here' => 'I\'m here',
-          'received.responses.talk' => 'Let\'s talk',
+          'received.responses.talk' => 'Yes, let\'s talk',
           'received.responses.moreTime' => 'I need a bit more time',
-          'received.responses.willDo' => 'I\'ll do it',
-          'received.responses.notNow' => 'Not now',
-          'received.responses.plan' => 'Plan something',
           'received.responses.later' => 'I\'ll answer later',
-          'received.responses.heart' => 'Send a heart',
           'received.responses.other' => '',
           'received.seen' => 'Got it',
-          'received.answered' => ({required Object response}) => 'You answered: ${response}',
-          'received.next' => 'Next message',
+          'received.suggestPlan' => 'Suggest a small plan',
           'received.doneTitle' => 'All good',
           'received.doneText' => 'Thanks for reading it calmly.',
           'received.emptyTitle' => 'Nothing new',
@@ -11863,6 +9980,7 @@ extension on TranslationsEn {
           'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
           'relationshipChanged.optionEnded' => 'We broke up',
           'relationshipChanged.optionBereaved' => 'I lost them',
+          'relationshipChanged.optionOnBreak' => 'A break',
           'relationshipChanged.optionTogether' => 'Everything is fine',
           'relationshipChanged.continueLabel' => 'Continue',
           'relationshipChanged.saved' => 'Saved',
@@ -11876,6 +9994,7 @@ extension on TranslationsEn {
           'relationshipSettings.phases.livingTogether' => 'Living together',
           'relationshipSettings.phases.engaged' => 'Engaged',
           'relationshipSettings.phases.married' => 'Married',
+          'relationshipSettings.phases.withKids' => 'With kids',
           'relationshipSettings.phases.longDistance' => 'Long distance',
           'relationshipSettings.phases.restarting' => 'Starting over',
           'relationshipSettings.dateLabel' => 'Together since',
@@ -11915,7 +10034,7 @@ extension on TranslationsEn {
           'reminders.dailyIdea' => 'A small idea for today.',
           'reminders.dates' => 'A date is coming up.',
           'reminders.weeklyCard' => 'Your card is ready.',
-          'reminders.generic' => 'Open the app to see.',
+          'reminders.discreet' => 'Open the app to see.',
           'repair.calm.title' => 'A moment to breathe',
           'repair.calm.titleHighlight' => 'breathe',
           'repair.calm.cadence' =>
@@ -11923,6 +10042,7 @@ extension on TranslationsEn {
           'repair.calm.text' => 'There\'s no rush and no timer. Leave whenever you like.',
           'repair.calm.ready' => 'I feel calmer',
           'repair.calm.leave' => 'Leave',
+          'repair.calm.askPause' => 'Ask my partner for some space',
           'repair.softStart.title' => 'Start softly',
           'repair.softStart.titleHighlight' => 'softly',
           'repair.softStart.subtitle' => 'A blame-free template to open the conversation.',
@@ -11996,11 +10116,6 @@ extension on TranslationsEn {
           'repair.guided.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
           'repair.guided.loadErrorTitle' => 'Couldn\'t open this',
           'repair.guided.loadErrorText' => 'Nothing was lost. Try again.',
-          'repair.guided.done.title' => 'Repair done',
-          'repair.guided.done.highlight' => 'done',
-          'repair.guided.done.text' => 'Taking care of this is already a step. If you want, keep what you learned, just for you.',
-          'repair.guided.done.learn' => 'Keep what I learned',
-          'repair.guided.done.close' => 'Not now',
           'repair.learning.title' => 'What did you learn?',
           'repair.learning.titleHighlight' => 'learn',
           'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
@@ -12024,17 +10139,6 @@ extension on TranslationsEn {
           'repair.next.pause' => 'Breathe a little',
           'repair.next.guided' => 'Start the guided repair',
           'repair.next.quick' => 'Send a repair',
-          'repair.sos.title' => 'We are fighting',
-          'repair.sos.titleHighlight' => 'fighting',
-          'repair.sos.subtitle' => 'Pick where to start. Nothing is sent until you confirm.',
-          'repair.sos.softStartTitle' => 'Soft start',
-          'repair.sos.softStartText' => 'A model to open the talk without blame',
-          'repair.sos.repairTitle' => 'Repair',
-          'repair.sos.repairText' => 'See how it is and choose a step',
-          'repair.sos.talkTitle' => 'Prepare what to say',
-          'repair.sos.talkText' => 'Sort your thoughts before you talk',
-          'repair.sos.note' => 'Works offline and stays only with you.',
-          'repair.sos.action' => 'We are fighting',
           'rituals.title' => 'Rituals',
           'rituals.subtitle' => 'Small habits you want to protect. No streaks, no pressure.',
           'rituals.emptyTitle' => 'No rituals yet',
@@ -12056,9 +10160,6 @@ extension on TranslationsEn {
           'rituals.weekdays.2' => 'Tuesday',
           'rituals.weekdays.3' => 'Wednesday',
           'rituals.weekdays.4' => 'Thursday',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.weekdays.5' => 'Friday',
           'rituals.weekdays.6' => 'Saturday',
           'rituals.createTitle' => 'New ritual',
@@ -12080,16 +10181,20 @@ extension on TranslationsEn {
           'rituals.errors.NOT_FOUND' => 'That ritual isn\'t here anymore.',
           'rituals.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'rituals.errors.other' => 'Couldn\'t do that right now. Try again.',
-          'rituals.errors.INVALID_PLANNER' => 'The planner has to be one of the two people.',
-          'rituals.plannerLabel' => 'Who plans it',
-          'rituals.plannerNobody' => 'Nobody in particular',
-          'rituals.plannerMe' => 'Me',
-          'rituals.plannerPartner' => 'The other person',
+          'safeMode.title' => 'Safe mode',
+          'safeMode.text' => 'For when the app needs to stay discreet on this phone.',
+          'safeMode.toggle' => 'Hide the app',
+          'safeMode.toggleText' => 'When you switch apps, the screen goes blank.',
+          'safeMode.localOnly' => 'This stays only on this phone. Nothing is sent or recorded.',
+          'safeMode.quickExit' => 'Leave now',
+          'safety.entry' => 'Safety and support',
           'sessionExpired.title' => 'Your session ended',
           'sessionExpired.highlight' => 'ended',
           'sessionExpired.text' => 'Sign in again to continue. Your data is safe.',
           'sessionExpired.action' => 'Sign in',
           'settingsHome.title' => 'Settings',
+          'settingsHome.safety' => 'Safety and support',
+          'settingsHome.safetyStatus' => 'Safe mode',
           'settingsHome.profile' => 'Profile',
           'settingsHome.relationship' => 'Relationship',
           'settingsHome.connected' => 'You are connected',
@@ -12101,7 +10206,10 @@ extension on TranslationsEn {
           'settingsHome.plan' => 'Plan',
           'settingsHome.planFree' => 'Free',
           'settingsHome.planPlus' => 'Plus',
-          'settingsHome.spice' => 'Tempero',
+          'settingsHome.spice' => 'Moments for two',
+          'settingsHome.discreet' => 'Discreet mode',
+          'settingsHome.discreetOn' => 'On',
+          'settingsHome.discreetOff' => 'Off',
           'settingsHome.privacy' => 'Privacy and security',
           'settingsHome.privacyStatus' => 'Who sees what',
           'settingsHome.signOut' => 'Sign out',
@@ -12115,76 +10223,13 @@ extension on TranslationsEn {
           'settingsHome.helpStatus' => 'FAQ and contact',
           'settingsHome.appPreferences' => 'App preferences',
           'settingsHome.appPreferencesStatus' => 'Appearance, text and language',
-          'settingsHome.theme' => 'App colour',
-          'settingsHome.themeTitle' => 'Which colour suits you?',
-          'settingsHome.themeHighlight' => 'colour',
-          'settingsHome.themeSubtitle' =>
-            'Applies to the app and to the widgets. The features are the same.',
+          'settingsHome.theme' => 'Theme',
           'settingsHome.weeklyCard' => 'Weekly card',
           'settingsHome.language' => 'Language',
           'settingsHome.accountSection' => 'Account',
           'settingsHome.preferencesSection' => 'Preferences',
           'settingsHome.privacySection' => 'Privacy and help',
           'settingsHome.connectedWith' => ({required Object name}) => 'Connected with ${name}',
-          'share.entryTitle' => 'Share image',
-          'share.entrySubtitleToday' => 'Your time together and the moon from the day it began.',
-          'share.entrySubtitleMemories' => 'A timeline of the moments you kept.',
-          'share.entrySubtitleCard' => 'A line from the card that reached you.',
-          'share.sheetTitle' => 'Share image',
-          'share.sheetSubtitle' =>
-            'The image is made on your device and only leaves when you share it.',
-          'share.shareAction' => 'Share',
-          'share.cardLabels.counter' => 'Our time',
-          'share.cardLabels.moon' => 'The moon of our day',
-          'share.cardLabels.timeline' => 'Our timeline',
-          'share.cardLabels.quote' => 'From a card',
-          'share.cardLabels.other' => '',
-          'share.counterEyebrow' => 'OUR TIME',
-          'share.counterDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: 'day together',
-                  other: 'days together',
-                ),
-          'share.counterSince' => ({required Object date}) => 'Since ${date}',
-          'share.moonEyebrow' => 'THE MOON OF OUR DAY',
-          'share.moonSupport' => 'This is how the sky looked when it all began.',
-          'share.timelineEyebrow' => 'OUR TIMELINE',
-          'share.timelineTitle' => 'Moments we kept',
-          'share.quoteEyebrow' => 'FROM A CARD',
-          'share.quoteText' => ({required Object quote}) => '“${quote}”',
-          'share.quoteFromName' => ({required Object name}) => '— ${name}',
-          'share.quoteDate' => ({required Object date}) => 'Card from ${date}',
-          'share.dateLine' => ({
-            required Object month,
-            required Object day,
-            required Object year,
-          }) => '${month} ${day}, ${year}',
-          'share.dateShort' => ({required Object month, required Object day}) => '${month} ${day}',
-          'share.monthsLong.0' => 'January',
-          'share.monthsLong.1' => 'February',
-          'share.monthsLong.2' => 'March',
-          'share.monthsLong.3' => 'April',
-          'share.monthsLong.4' => 'May',
-          'share.monthsLong.5' => 'June',
-          'share.monthsLong.6' => 'July',
-          'share.monthsLong.7' => 'August',
-          'share.monthsLong.8' => 'September',
-          'share.monthsLong.9' => 'October',
-          'share.monthsLong.10' => 'November',
-          'share.monthsLong.11' => 'December',
-          'share.phases.newMoon' => 'New moon',
-          'share.phases.waxingCrescent' => 'Waxing crescent',
-          'share.phases.firstQuarter' => 'First quarter',
-          'share.phases.waxingGibbous' => 'Waxing gibbous',
-          'share.phases.fullMoon' => 'Full moon',
-          'share.phases.waningGibbous' => 'Waning gibbous',
-          'share.phases.lastQuarter' => 'Last quarter',
-          'share.phases.waningCrescent' => 'Waning crescent',
-          'share.phases.other' => '',
-          'share.productMark' => 'Mingo',
-          'share.errors.other' => 'Couldn\'t share right now. Try again.',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -12214,66 +10259,43 @@ extension on TranslationsEn {
           'slipDetail.kinds.ifThen' => 'If… then',
           'slipDetail.kinds.invisible' => 'Invisible',
           'slipDetail.kinds.other' => '',
+          'slipDetail.private' => 'Only you see this slip.',
+          'slipDetail.archived' => 'Archived',
           'slipDetail.feeling' => 'How you felt',
           'slipDetail.plan' => 'Then I…',
           'slipDetail.jarTitle' => 'Keep in the jar',
           'slipDetail.jarText' => 'To open on a bad day. Only you see it.',
+          'slipDetail.cardTitle' => 'Who sees this',
+          'slipDetail.cardOff' => 'Only me',
+          'slipDetail.cardOffText' => 'Stays in your week and does not go in the card.',
+          'slipDetail.cardOn' => 'Can go in the card',
+          'slipDetail.cardOnText' => 'On Sunday you choose whether it goes.',
+          'slipDetail.cardInvisible' => 'Invisible slips never go in a card.',
+          'slipDetail.previewTitle' => 'What your partner would read',
+          'slipDetail.previewText' => 'If this slip goes in the card, this is the text that shows.',
           'slipDetail.sentNote' => 'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.',
           'slipDetail.draftBodyErrors.empty' => 'Write the slip first',
           'slipDetail.draftBodyErrors.tooLong' => 'This slip is too long',
           'slipDetail.edit' => 'Edit',
           'slipDetail.editSave' => 'Save',
           'slipDetail.editCancel' => 'Cancel',
+          'slipDetail.archive' => 'Archive',
+          'slipDetail.restore' => 'Restore',
           'slipDetail.delete' => 'Delete',
           'slipDetail.deleteTitle' => 'Delete this slip?',
           'slipDetail.deleteText' => 'It will be removed from your week and your timeline.',
           'slipDetail.deleteConfirm' => 'Delete',
           'slipDetail.saved' => 'Saved',
+          'slipDetail.archivedToast' => 'Archived',
           'slipDetail.deleted' => 'Slip deleted',
           'slipDetail.notFoundTitle' => 'This slip no longer exists',
           'slipDetail.notFoundText' => 'It may have been deleted.',
+          'slipDetail.errorTitle' => 'Couldn\'t open this slip',
+          'slipDetail.errorText' => 'It is still saved. Try again.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
           'slipDetail.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'slipDetail.errors.other' => 'Couldn\'t do that right now. Try again.',
           'slipDetail.discardTitle' => 'Discard this slip?',
-          'slipDetail.weekdaysShort.0' => 'Mon',
-          'slipDetail.weekdaysShort.1' => 'Tue',
-          'slipDetail.weekdaysShort.2' => 'Wed',
-          'slipDetail.weekdaysShort.3' => 'Thu',
-          'slipDetail.weekdaysShort.4' => 'Fri',
-          'slipDetail.weekdaysShort.5' => 'Sat',
-          'slipDetail.weekdaysShort.6' => 'Sun',
-          'slipDetail.factDate' => ({
-            required Object weekday,
-            required Object month,
-            required Object day,
-          }) => '${weekday} ${month} ${day}',
-          'slipDetail.factDateLabel' => 'Date',
-          'slipDetail.factType' => 'Type',
-          'slipDetail.factVisibility' => 'Visibility',
-          'slipDetail.factInCard' => 'Included in a card',
-          'slipDetail.visibilityPrivate' => 'Private',
-          'slipDetail.visibilityCard' => 'In the weekly card',
-          'slipDetail.visibilitySent' => 'Sent',
-          'slipDetail.yes' => 'Yes',
-          'slipDetail.no' => 'No',
-          'slipDetail.categories.said' => 'Said something',
-          'slipDetail.categories.did' => 'Did something',
-          'slipDetail.categories.noticed' => 'Noticed me',
-          'slipDetail.categories.helped' => 'Helped me',
-          'slipDetail.categories.other' => '',
-          'slipDetail.visibility.title' => 'Who sees this slip?',
-          'slipDetail.visibility.subtitle' => 'Private is the default.',
-          'slipDetail.visibility.onlyMe' => 'Only me',
-          'slipDetail.visibility.onlyMeText' => 'Stays in your week',
-          'slipDetail.visibility.weeklyCard' => 'Put it in my weekly card',
-          'slipDetail.visibility.sendNow' => 'Send now',
-          'slipDetail.visibility.done' => 'Done',
-          'slipDetail.visibility.sentToast' => 'Slip sent',
-          'slipDetail.visibility.heldToast' =>
-            'The wording sounds harsh, so the card was held. Rewrite it and try again.',
-          'slipDetail.visibility.notSentToast' =>
-            'It was not sent. Check that you two are connected.',
           'slipKind.switcherTitle' => 'Other ways to write it down',
           'slipKind.quickEntry' => 'Quick',
           'slipKind.needEntry' => 'I need…',
@@ -12296,17 +10318,17 @@ extension on TranslationsEn {
           'slipKind.ifThen.thenHint' => 'E.g. I ask for 10 minutes alone',
           'slipKind.invisible.title' => 'Things nobody notices',
           'slipKind.invisible.titleHighlight' => 'nobody notices',
-          'slipKind.invisible.subtitle' => 'Name the work nobody sees.',
+          'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
           'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
           'slipKind.invisible.areaLabel' => 'What kind of work?',
           'slipKind.invisible.private' => 'Stays with you and never enters a card.',
           'slipKind.workAreas.planning' => 'Planning',
-          'slipKind.workAreas.dates' => 'Remembering dates',
+          'slipKind.workAreas.dates' => 'Dates',
           'slipKind.workAreas.kitchen' => 'Kitchen',
           'slipKind.workAreas.cleaning' => 'Cleaning',
-          'slipKind.workAreas.kids' => 'Kids\' logistics',
-          'slipKind.workAreas.emotional' => 'Emotional support',
-          'slipKind.workAreas.finances' => 'Household finances',
+          'slipKind.workAreas.kids' => 'Kids',
+          'slipKind.workAreas.emotional' => 'Emotional',
+          'slipKind.workAreas.finances' => 'Finances',
           'slipKind.workAreas.other' => 'Other',
           'slipKind.textErrors.empty' => 'Write the slip first',
           'slipKind.textErrors.tooLong' => 'This slip is too long',
@@ -12320,16 +10342,20 @@ extension on TranslationsEn {
           'slipKind.saved.queued' =>
             'Saved on this phone. We\'ll send it when the connection is back.',
           'slipKind.saved.done' => 'Done',
+          'slipKind.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'slipKind.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'slipKind.errors.other' =>
             'Couldn\'t save right now. Your text is still here, try again.',
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'This week',
           'slipsList.scopeAll' => 'All',
+          'slipsList.scopeArchived' => 'Archived',
           'slipsList.search' => 'Search',
+          'slipsList.searchClose' => 'Close search',
           'slipsList.searchHint' => 'Search your slips',
           'slipsList.searchEmptyTitle' => 'Nothing found',
           'slipsList.searchEmptyText' => 'Try another word.',
+          'slipsList.clearSearch' => 'Clear search',
           'slipsList.thisWeek' => 'This week',
           'slipsList.lastWeek' => 'Last week',
           'slipsList.weekRange' => ({
@@ -12373,145 +10399,24 @@ extension on TranslationsEn {
           'slipsList.kinds.ifThen' => 'If… then',
           'slipsList.kinds.invisible' => 'Invisible',
           'slipsList.kinds.other' => '',
+          'slipsList.pastCards' => 'Past cards',
           'slipsList.emptyTitle' => 'Nothing yet',
           'slipsList.emptyText' => 'A slip is one good thing, in one line.',
           'slipsList.emptyAction' => 'Add a slip',
-          'slipsList.privateEmptyTitle' => 'Nothing private here',
-          'slipsList.privateEmptyText' => 'Slips you keep off the card show up here.',
-          'slipsList.privateMarker' => 'Private slip',
-          'slipsList.scopePrivate' => 'Private',
-          'slipsList.freeNote' => 'Slips are always free.',
-          'slipsList.filterThisMonth' => 'This month',
-          'slipsList.filterInCard' => 'In a card',
-          'slipsList.filterInvisible' => 'Invisible work',
-          'slipsList.searchFiltersEmptyText' => 'Adjust the search or the filters.',
-          'spice.title' => 'Tempero',
-          'spice.introTitle' => 'Tempero, just for the two of you',
-          'spice.introHighlight' => 'the two of you',
-          'spice.introText' =>
-            'An optional space for adults, with cards and desires for the couple. 18+ only.',
-          'spice.partnerWantsText' =>
-            'The other person wanted to turn it on. It only starts when you turn it on too.',
-          'spice.promises.0' => 'It only counts when you both turn it on.',
-          'spice.promises.1' =>
-            'Either of you can turn it off any time, and everything disappears for both.',
-          'spice.promises.2' => 'Your answers are only yours. Only what you both want shows.',
-          'spice.promises.3' => 'A "not today" is never explained or announced.',
-          'spice.adultLabel' => 'I am 18 or older',
-          'spice.adultError' => 'Confirm to continue.',
+          'slipsList.errorTitle' => 'Could not load your slips',
+          'slipsList.errorText' => 'They are still saved. Try again.',
+          'spice.title' => 'Moments for two',
+          'spice.offText' => 'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.',
           'spice.turnOn' => 'Turn on',
           'spice.notNow' => 'Not now',
+          'spice.waitingText' => 'You both need to accept. Nothing is sent to your partner; when they turn it on too, the cards show up here.',
+          'spice.readyText' => 'Light cards for the two of you. Do it or skip it, no pressure.',
+          'spice.drawCard' => 'Draw a card',
           'spice.turnOff' => 'Turn off',
-          'spice.waitingTitle' => 'Waiting for the other person',
-          'spice.waitingText' =>
-            'Nothing was announced. When they turn it on too, Tempero opens for both of you.',
-          'spice.soloTitle' => 'Tempero is for two',
-          'spice.soloText' =>
-            'It needs two connected people. When the other person joins, it becomes available.',
-          'spice.soloAction' => 'Back',
-          'spice.home.subtitle' => 'Everything here is optional and stays between you.',
-          'spice.home.cards' => 'Evening cards',
-          'spice.home.cardsText' => 'One card at a time',
-          'spice.home.desires' => 'Desires',
-          'spice.home.desiresText' => 'Answer in secret and see what you both want',
-          'spice.home.challenge' => 'Challenge of the week',
-          'spice.home.challengeText' => 'An invitation, with no points or deadline',
-          'spice.home.settings' => 'Settings',
-          'spice.home.settingsText' => 'Your limit and the alerts',
-          'spice.cards.title' => 'Evening cards',
-          'spice.cards.errors.FREE_LIMIT_REACHED' =>
-            'You used this week\'s free cards. Plus unlocks more.',
-          'spice.cards.errors.PLUS_REQUIRED' => 'This is part of Plus.',
-          'spice.cards.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
-          'spice.cards.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
-          'spice.cards.errors.SWAP_LIMIT' =>
-            'You already swapped the challenge three times this week.',
-          'spice.cards.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
-          'spice.cards.errors.other' => 'We could not finish that now. Try again.',
-          'spice.cards.answeredTitle' => 'Agreed',
-          'spice.cards.answeredText' => 'Whenever you like, there is another card.',
-          'spice.cards.next' => 'Another card',
-          'spice.cards.emptyTitle' => 'No more cards',
-          'spice.cards.emptyText' => 'There are no more cards at this level for now.',
-          'spice.cards.mineHint' =>
-            'You proposed this card. The other person answers when they like.',
-          'spice.cards.theirsHint' => 'The other person proposed this card. You choose.',
-          'spice.cards.refresh' => 'Check if they answered',
-          'spice.cards.accept' => 'I want to',
-          'spice.cards.notToday' => 'Not today',
-          'spice.desires.title' => 'Desires',
-          'spice.desires.errors.FREE_LIMIT_REACHED' =>
-            'You used this week\'s free cards. Plus unlocks more.',
-          'spice.desires.errors.PLUS_REQUIRED' => 'This is part of Plus.',
-          'spice.desires.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
-          'spice.desires.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
-          'spice.desires.errors.SWAP_LIMIT' =>
-            'You already swapped the challenge three times this week.',
-          'spice.desires.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
-          'spice.desires.errors.other' => 'We could not finish that now. Try again.',
-          'spice.desires.subtitle' =>
-            'Only you see what you answer. If you both want it, it shows in "You both want".',
-          'spice.desires.emptyTitle' => 'Nothing here yet',
-          'spice.desires.emptyText' => 'When there are desires at this level, they show up here.',
-          'spice.desires.matchesTitle' => 'You both want',
-          'spice.desires.matchesEmpty' => 'Nothing in common yet. No rush.',
-          'spice.desires.answers.want' => 'I want',
-          'spice.desires.answers.maybe' => 'Maybe',
-          'spice.desires.answers.notToday' => 'Not today',
-          'spice.desires.answers.other' => '',
-          'spice.challenge.title' => 'Challenge of the week',
-          'spice.challenge.errors.FREE_LIMIT_REACHED' =>
-            'You used this week\'s free cards. Plus unlocks more.',
-          'spice.challenge.errors.PLUS_REQUIRED' => 'This is part of Plus.',
-          'spice.challenge.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
-          'spice.challenge.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
-          'spice.challenge.errors.SWAP_LIMIT' =>
-            'You already swapped the challenge three times this week.',
-          'spice.challenge.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
-          'spice.challenge.errors.other' => 'We could not finish that now. Try again.',
-          'spice.challenge.emptyTitle' => 'No challenge now',
-          'spice.challenge.emptyText' => 'Come back next week.',
-          'spice.challenge.subtitle' => 'An invitation for you two. No points and no deadline.',
-          'spice.challenge.statusDone' => 'You did it. Thank you for caring for this.',
-          'spice.challenge.statusBothAccepted' => 'You both said yes.',
-          'spice.challenge.statusWaitingPartner' => 'You said yes. Waiting for the other person.',
-          'spice.challenge.statusPartnerAccepted' => 'The other person said yes.',
-          'spice.challenge.statusNew' => 'Nobody answered yet.',
-          'spice.challenge.accept' => 'I am in',
-          'spice.challenge.done' => 'We did it',
-          'spice.challenge.swap' => 'Swap the challenge',
-          'spice.settingsPage.title' => 'Tempero settings',
-          'spice.settingsPage.errors.FREE_LIMIT_REACHED' =>
-            'You used this week\'s free cards. Plus unlocks more.',
-          'spice.settingsPage.errors.PLUS_REQUIRED' => 'This is part of Plus.',
-          'spice.settingsPage.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
-          'spice.settingsPage.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
-          'spice.settingsPage.errors.SWAP_LIMIT' =>
-            'You already swapped the challenge three times this week.',
-          'spice.settingsPage.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
-          'spice.settingsPage.errors.other' => 'We could not finish that now. Try again.',
-          'spice.settingsPage.levelTitle' => 'How far to go',
-          'spice.settingsPage.levels.soft' => 'Soft',
-          'spice.settingsPage.levels.warm' => 'Warm',
-          'spice.settingsPage.levels.hot' => 'Spicy',
-          'spice.settingsPage.levels.other' => '',
-          'spice.settingsPage.levelNote' =>
-            'The gentler of the two limits applies. The other person does not see yours.',
-          'spice.settingsPage.notifications' => 'Tempero alerts',
-          'spice.settingsPage.notificationsText' =>
-            'A short alert that says nothing about the content.',
-          'spice.settingsPage.turnOff' => 'Turn off Tempero',
-          'spice.settingsPage.turnOffTitle' => 'Turn off Tempero?',
-          'spice.settingsPage.turnOffText' => 'It turns off for both of you and erases answers, cards and challenges. This cannot be undone.',
-          'spice.settingsPage.turnOffConfirm' => 'Turn off',
-          'spice.errors.FREE_LIMIT_REACHED' =>
-            'You used this week\'s free cards. Plus unlocks more.',
-          'spice.errors.PLUS_REQUIRED' => 'This is part of Plus.',
-          'spice.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
-          'spice.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
-          'spice.errors.SWAP_LIMIT' => 'You already swapped the challenge three times this week.',
-          'spice.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
-          'spice.errors.other' => 'We could not finish that now. Try again.',
+          'spice.errorTitle' => 'Couldn\'t load',
+          'spice.errorText' => 'Try again in a moment.',
+          'spice.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'spice.errors.other' => 'Couldn\'t change that right now. Try again.',
           'story.title' => 'Image to share',
           'story.privacyNote' =>
             'The image is made on your device and carries no names or text unless you choose.',
@@ -12534,6 +10439,9 @@ extension on TranslationsEn {
           'sundayCard.cancel' => 'Cancel',
           'sundayCard.noteLabel' => 'Closing note',
           'sundayCard.noteHint' => 'Thank you for this week.',
+          'sundayCard.moveUp' => 'Move up',
+          'sundayCard.moveDown' => 'Move down',
+          'sundayCard.remove' => 'Remove from card',
           'sundayCard.emptyTitle' => 'A week without slips',
           'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
           'sundayCard.emptyAction' => 'Note a slip',
@@ -12568,25 +10476,6 @@ extension on TranslationsEn {
           'sundayCard.sent.text' => ({required Object name}) => 'The card went to ${name}.',
           'sundayCard.sent.textNoName' => 'The card went to your person.',
           'sundayCard.sent.done' => 'Done',
-          'sundayCard.heldByRule.title' => 'Worth rereading before you send',
-          'sundayCard.heldByRule.titleHighlight' => 'rereading',
-          'sundayCard.heldByRule.reasons.absolute' =>
-            'Words like “always” and “never” can sound like an accusation.',
-          'sundayCard.heldByRule.reasons.insult' => 'A word on the card may hurt.',
-          'sundayCard.heldByRule.reasons.blame' => 'The text sounds like blame instead of thanks.',
-          'sundayCard.heldByRule.reasons.contempt' => 'The text may sound like contempt.',
-          'sundayCard.heldByRule.reasons.other' => 'The text may sound harsher than you mean.',
-          'sundayCard.heldByRule.reassurance' => 'Nothing was sent and nothing is lost.',
-          'sundayCard.heldByRule.rewrite' => 'Rewrite',
-          'sundayCard.heldByRule.sendAnyway' => 'Send anyway',
-          'sundayCard.dayTitle' => 'Day',
-          'sundayCard.dayError' => 'Could not change the day. The earlier one was kept.',
-          'sundayCard.dayNote' => 'Applies to the next card.',
-          'sundayCard.editTitle' => 'Edit this week',
-          'sundayCard.editSubtitle' => 'Choose what goes in',
-          'sundayCard.included' => 'Included',
-          'sundayCard.notIncluded' => 'Not included',
-          'sundayCard.preview' => 'Preview',
           'tabs.today' => 'Today',
           'tabs.slips' => 'Slips',
           'tabs.together' => 'Together',
@@ -12630,6 +10519,9 @@ extension on TranslationsEn {
           'tabs.dateNightText' => 'Ideas for the two of you, picked together.',
           'tabs.partnerLabel' => 'JUST FOR YOU',
           'tabs.partnerTitle' => 'About your partner',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.partnerText' => 'Private notes to remember what they like.',
           'tabs.chatLabel' => 'TALK',
           'tabs.chatTitle' => 'Mascot',
@@ -12645,9 +10537,6 @@ extension on TranslationsEn {
           'tabs.usText' => 'A light tap for your partner, no pressure.',
           'tabs.touchLabel' => 'TOUCH',
           'tabs.touchTitle' => 'Touch cards',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.touchText' => 'Neutral, to do or skip.',
           'tabs.distanceLabel' => 'DISTANCE',
           'tabs.distanceTitle' => 'Our two clocks',
@@ -12679,6 +10568,8 @@ extension on TranslationsEn {
           'tabs.learningTitle' => 'What you learned',
           'tabs.learningText' => 'Private notes you can delete.',
           'tabs.fightStyleLabel' => 'JUST FOR YOU',
+          'tabs.fightStyleTitle' => 'How I react in a fight',
+          'tabs.fightStyleText' => 'A short, private reflection on your own way.',
           'tabs.guidesLabel' => 'CONVERSATIONS',
           'tabs.guidesTitle' => 'Difficult conversations',
           'tabs.guidesText' => 'One step at a time, just for you.',
@@ -12690,6 +10581,7 @@ extension on TranslationsEn {
           'tabs.sectionTools' => 'Tools',
           'tabs.sectionMore' => 'More',
           'tabs.sectionPrivate' => 'Only yours',
+          'tabs.sectionPatterns' => 'My patterns',
           'tabs.logisticsMeta' => '15 min · weekly',
           'tabs.ritualsMeta' => 'Small habits',
           'tabs.dateNightMeta' => 'For you two',
@@ -12717,57 +10609,14 @@ extension on TranslationsEn {
           'tabs.badDayMeta' => 'Three small things',
           'tabs.distanceMeta' => 'Time zones and reunion',
           'tabs.diaryMeta' => 'Only yours',
-          'tabs.moodCalendarTitle' => 'My moods',
-          'tabs.moodCalendarMeta' => 'Your month, only you',
           'tabs.hardTalkMeta' => 'Notes before you talk',
           'tabs.notesMeta' => 'When you want',
           'tabs.learningMeta' => 'Private notes',
           'tabs.partnerMeta' => 'Only for you',
+          'tabs.fightStyleMeta' => 'How you react',
+          'tabs.loveStyleMeta' => 'How you feel loved',
           'tabs.chatMeta' => 'A calm conversation',
           'tabs.listsNone' => 'None yet',
-          'tabs.needsBoth' => 'Needs both of you · Invite',
-          'tabs.durationYearsMonths' => ({
-            required Object years,
-            required Object yearsUnit,
-            required Object months,
-            required Object monthsUnit,
-          }) => '${years} ${yearsUnit} and ${months} ${monthsUnit}',
-          'tabs.durationYears' => ({
-            required Object years,
-            required Object yearsUnit,
-          }) => '${years} ${yearsUnit}',
-          'tabs.durationMonths' => ({
-            required Object months,
-            required Object monthsUnit,
-          }) => '${months} ${monthsUnit}',
-          'tabs.durationDays' => ({
-            required Object days,
-            required Object daysUnit,
-          }) => '${days} ${daysUnit}',
-          'tabs.unitYear' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: 'year',
-                  other: 'years',
-                ),
-          'tabs.unitMonth' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: 'month',
-                  other: 'months',
-                ),
-          'tabs.unitDay' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: 'day',
-                  other: 'days',
-                ),
-          'tabs.chat' => 'Chat',
-          'tabs.couple' => 'Us',
-          'tabs.storyChip' => 'Our story',
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',
@@ -12797,19 +10646,10 @@ extension on TranslationsEn {
           'temperature.result.done' => 'Done',
           'temperature.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'temperature.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
-          'temperature.history.action' => 'See the last weeks',
-          'temperature.history.title' => 'Last 8 weeks',
-          'temperature.history.titleHighlight' => '8 weeks',
-          'temperature.history.subtitle' => 'One point per week, with the last answer given in it.',
-          'temperature.history.chartLabel' => 'Temperature of each week, from calmest to a fight',
-          'temperature.history.emptyTitle' => 'Nothing here yet',
-          'temperature.history.emptyText' =>
-            'When you answer how things are between you, the weeks show up here.',
-          'temperature.history.note' =>
-            'Only you see this. It never becomes a note and never goes to the other person.',
           'timeInApp.title' => 'Time in the app',
           'timeInApp.titleHighlight' => 'app',
           'timeInApp.text' => 'We hide cards and reminders until you come back.',
+          'timeInApp.pause' => 'Pause the app',
           'timeInApp.cancel' => 'Cancel',
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
@@ -12839,9 +10679,36 @@ extension on TranslationsEn {
           'today.months.9' => 'October',
           'today.months.10' => 'November',
           'today.months.11' => 'December',
+          'today.togetherYears' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 year',
+                  other: '${count} years',
+                ),
+          'today.togetherMonths' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 month',
+                  other: '${count} months',
+                ),
+          'today.togetherDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 day',
+                  other: '${count} days',
+                ),
+          'today.togetherChipAction' => 'Open our story',
+          'today.togetherJoin' => ({
+            required Object first,
+            required Object second,
+          }) => '${first} and ${second}',
           'today.invitePerson' => 'Invite your person',
           'today.pendingInviteTitle' => 'Invite sent',
           'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
+          'today.pendingInviteAction' => 'See invite',
           'today.answer' => 'Answer',
           'today.slipsThisWeek' =>
             ({required num count}) =>
@@ -12852,9 +10719,17 @@ extension on TranslationsEn {
                   other: '${count} slips this week',
                 ),
           'today.weekHintEmpty' => 'no rush',
-          'today.weekHint' => 'card for the week',
+          'today.weekHint' => 'card on Sunday',
           'today.forToday' => 'For today',
           'today.ideaLabel' => 'Idea of the day',
+          'today.slipsThisWeekPrivate' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  zero: 'Your private slips: none this week',
+                  one: 'Your private slips: 1 this week',
+                  other: 'Your private slips: ${count} this week',
+                ),
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',
@@ -12871,6 +10746,8 @@ extension on TranslationsEn {
           'today.emptyWeekAction' => 'Note a slip',
           'today.nothingReceived' => 'No new cards. No rush.',
           'today.cardReceived' => 'You received a card',
+          'today.cardReceivedAction' => 'See card',
+          'today.firstDayLabel' => 'Getting started',
           'today.firstDayGreeting' => ({required Object name}) => 'Hi, ${name}',
           'today.firstDaySubtitle' => 'so glad you are here',
           'today.firstDayTag' => 'Good start',
@@ -12894,40 +10771,18 @@ extension on TranslationsEn {
           'today.errorTitle' => 'Could not load Today',
           'today.errorText' => 'Your slips are safe. Try again.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} sent you a card',
-          'today.inviteCardSupport' =>
-            'Your space already works. The other person joins whenever they want.',
-          'today.inviteCardAction' => 'Invite',
-          'today.carouselCardTag' => 'Card',
-          'today.carouselCardSupport' => 'Open to see the good things from this week.',
-          'today.carouselCardAction' => 'Open',
-          'today.weekTag' => 'Your week',
-          'today.weekReadyTitle' => 'Your week is ready',
-          'today.weekReadySupport' => 'A summary of what you two did.',
-          'today.weekReadySupportPrivate' => 'A summary just for you.',
-          'today.weekReadyAction' => 'See',
-          'today.haveCode' => 'I already have a code',
-          'today.partnerProfile' => 'Partner profile',
-          'today.privateWeekTitle' => 'Your private slips',
-          'today.privateWeekCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  zero: 'no rush',
-                  one: '1 this week',
-                  other: '${count} this week',
-                ),
-          'today.conflict.tag' => 'Now',
-          'today.conflict.title' => 'First, take care of you two',
-          'today.conflict.highlight' => 'care',
-          'today.conflict.text' =>
-            'No common cards for now. Start with a repair or sort out what to say.',
-          'today.conflict.repair' => 'Start the repair',
-          'today.conflict.chat' => 'Talk to get organized',
-          'today.questionTag' => 'Today',
-          'today.partnerMomentTag' => 'For this moment',
-          'today.partnerMomentSupport' => 'A small idea can help.',
-          'today.partnerMomentAction' => 'See ideas',
-          'today.offlineBand' => 'No connection. Showing what was already on your phone.',
+          'today.pauseOwnTitle' => 'You asked for some space',
+          'today.pauseOwnText' => ({
+            required Object time,
+          }) => 'You\'re back around ${time}. Nothing to do right now.',
+          'today.pausePartnerTitle' => 'Your partner asked for some space',
+          'today.pausePartnerText' => 'No rush. There\'s nothing to do right now.',
+          'today.signalReceived' => 'Your partner sent you a message',
+          'today.signalReceivedAction' => 'View',
+          'today.pauseBack' => 'Come back now',
+          'today.pauseBackRepair' => 'Come back and repair',
+          'today.pauseWriteSlip' => 'Write a slip',
+          'today.weekHintToday' => 'card goes out today, 18:00',
           'unpair.appBarTitle' => 'Unpair',
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
           'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
@@ -12959,61 +10814,6 @@ extension on TranslationsEn {
           'unpair.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'unpair.errors.STILL_PAIRED' => 'The relationship is still active. Try again.',
           'unpair.errors.other' => 'Could not unpair right now. Try again.',
-          'weeklyReview.title' => 'Your week',
-          'weeklyReview.titleHighlight' => 'week',
-          'weeklyReview.range' => ({
-            required Object month,
-            required Object start,
-            required Object end,
-          }) => '${month} ${start} to ${end}',
-          'weeklyReview.months.0' => 'January',
-          'weeklyReview.months.1' => 'February',
-          'weeklyReview.months.2' => 'March',
-          'weeklyReview.months.3' => 'April',
-          'weeklyReview.months.4' => 'May',
-          'weeklyReview.months.5' => 'June',
-          'weeklyReview.months.6' => 'July',
-          'weeklyReview.months.7' => 'August',
-          'weeklyReview.months.8' => 'September',
-          'weeklyReview.months.9' => 'October',
-          'weeklyReview.months.10' => 'November',
-          'weeklyReview.months.11' => 'December',
-          'weeklyReview.slips' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: 'slip',
-                  other: 'slips',
-                ),
-          'weeklyReview.moodDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  zero: 'mood days',
-                  one: 'mood day',
-                  other: 'mood days',
-                ),
-          'weeklyReview.rituals' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  zero: 'rituals done',
-                  one: 'ritual done',
-                  other: 'rituals done',
-                ),
-          'weeklyReview.note' => 'Counted by the app, no AI. Only you see it.',
-          'weeklyReview.talk' => 'Talk about it',
-          'weeklyReview.close' => 'Close',
-          'weeklyReview.quietTitle' => 'A quiet week',
-          'weeklyReview.quietHighlight' => 'quiet',
-          'weeklyReview.quietCardTitle' => 'No rush',
-          'weeklyReview.quietCardText' =>
-            'Writing a good thing takes 30 seconds. Start whenever you like.',
-          'weeklyReview.quietNote' => 'Never compared with other weeks.',
-          'weeklyReview.writeSlip' => 'Write a slip',
-          'weeklyReview.errorTitle' => 'We could not open your week',
-          'weeklyReview.errors.NETWORK' => 'No connection. Try again.',
-          'weeklyReview.errors.other' => 'Something went wrong. Try again.',
           'welcome.headline' => 'Small good things, said out loud.',
           'welcome.headlineHighlight' => 'said out loud',
           'welcome.subtitle' => 'A light way to notice what the other does well, every week.',
@@ -13022,18 +10822,20 @@ extension on TranslationsEn {
           'welcome.debugSignIn' => 'Sign in (debug)',
           'widgets.settingsTitle' => 'Widgets',
           'widgets.settingsSubtitle' => 'Home screen',
-          'widgets.togetherCategory' => 'HOME SCREEN',
-          'widgets.togetherTitle' => 'Mingo widgets',
-          'widgets.togetherSubtitle' => 'Calm reminders for you or for the two of you.',
+          'widgets.juntosCategory' => 'HOME SCREEN',
+          'widgets.juntosTitle' => 'Mingo widgets',
+          'widgets.juntosSubtitle' => 'Calm reminders for you or for the two of you.',
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Just mine',
           'widgets.segmentCouple' => 'Couple',
+          'widgets.howToAddAction' => 'How to add to screen',
+          'widgets.configureAction' => 'Configure',
           'widgets.ownSlipLabel' => 'LOG SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Tap to log',
           'widgets.ownIdeaLabel' => 'DAILY IDEA',
           'widgets.ownIdeaDefault' => 'Leave a small note today',
-          'widgets.ownIdeaHint' => 'One idea for today.',
+          'widgets.ownIdeaHint' => 'Tap to open',
           'widgets.ownJarLabel' => 'BAD DAY JAR',
           'widgets.ownJarTitle' => 'Open a saved slip',
           'widgets.ownJarPrivacy' => 'Private: only on your device',
@@ -13051,17 +10853,54 @@ extension on TranslationsEn {
           'widgets.couplePhotosLabel' => 'COUPLE PHOTOS · PLUS',
           'widgets.couplePhotosPrompt' => 'Choose a photo of you two',
           'widgets.couplePhotosPlusHint' => 'Available with Plus',
+          'widgets.partnerNoteLabel' => 'PARTNER NOTE',
+          'widgets.partnerNoteEmpty' => 'No new note right now',
+          'widgets.partnerNoteFrom' => ({required Object name}) => 'From ${name}',
+          'widgets.partnerNoteFromDefault' => 'From your partner',
           'widgets.cardEncounterLabel' => 'CARD & DATE',
           'widgets.cardStateReady' => 'A card arrived · Tap to open',
           'widgets.cardStateSent' => 'Card sent · Waiting for Sunday',
+          'widgets.cardStatePause' => 'Pause in progress',
           'widgets.cardStateNone' => 'Sunday card in preparation',
+          'widgets.discreetBanner' =>
+            'Discreet mode is on: names, photos and notes are hidden in widgets.',
           'widgets.unpairedBanner' => 'No partner connected: couple widgets show a neutral state.',
           'widgets.offlineBanner' => 'Showing the last saved data. Updates when back online.',
+          'widgets.howToAddTitle' => 'How to add',
+          'widgets.howToAddStep1Title' => 'Hold the home screen',
+          'widgets.howToAddStep1Body' => 'Touch and hold an empty space until the icons jiggle.',
+          'widgets.howToAddStep2Title' => 'Tap the + button',
+          'widgets.howToAddStep2Body' => 'In the top corner, search for Mingo.',
+          'widgets.howToAddStep3Title' => 'Pick a size',
+          'widgets.howToAddStep3Body' => 'Small or medium.',
+          'widgets.howToAddAndroidLockNote' => 'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.',
+          'widgets.howToAddIosLockNote' =>
+            'On iOS 16 or newer, you can also add the lock-screen widget.',
+          'widgets.howToAddDone' => 'Got it',
+          'widgets.configureTitle' => 'Configure widget',
+          'widgets.configurePreviewLabel' => 'PREVIEW',
+          'widgets.configureContentSection' => 'Content',
+          'widgets.configureContentFavorites' => 'Favorites',
+          'widgets.configureContentRecent' => 'Recent',
+          'widgets.configureContentDailyIdea' => 'Daily idea',
+          'widgets.configureRotationSection' => 'Photo rotation',
+          'widgets.configureRotationDaily' => 'Every day',
+          'widgets.configureRotationSixHours' => 'Every 6h',
+          'widgets.configureRotationManual' => 'Manual',
+          'widgets.configurePrivacySection' => 'Privacy',
+          'widgets.configureShowNames' => 'Show names',
+          'widgets.configureHideInDiscreet' => 'Hide in discreet mode',
+          'widgets.configureAllowPartnerNotes' => 'Allow partner notes',
+          'widgets.configureOnLockScreen' => 'Allow on lock screen',
+          'widgets.configureSave' => 'Save',
+          'widgets.configureSavedToast' => 'Widget preferences saved.',
           'widgets.loadErrorTitle' => 'Could not load widgets',
           'widgets.loadErrorBody' => 'Check your connection and try again.',
           'widgets.retryAction' => 'Try again',
           'widgets.themeLight' => 'Light',
           'widgets.themeDark' => 'Dark',
+          'widgets.discreetReminderLabel' => 'Reminder',
+          'widgets.discreetNeutralBody' => 'Neutral text',
           'widgets.signedOutLabel' => 'Mingo',
           'widgets.signedOutBody' => 'Tap to sign in',
           'widgets.ownSmallPageTitle' => 'Widget · Mine (small)',
@@ -13087,8 +10926,12 @@ extension on TranslationsEn {
           'widgets.lockScreenPageTitle' => 'Lock screen',
           'widgets.lockScreenClockTime' => '19:38',
           'widgets.lockScreenClockDate' => 'Friday, April 10',
+          'widgets.lockScreenPauseTitle' => 'Pause in progress',
+          'widgets.lockScreenPauseUntil' => ({required Object time}) => 'until ${time}',
+          'widgets.lockScreenPauseUntilDefault' => 'until 20:00',
           'widgets.lockScreenReadyAction' => 'I am ready',
           'widgets.lockScreenGenericPhrase' => 'Calm moment',
+          'widgets.lockScreenDiscreetPhrase' => 'Reminder',
           'widgets.lockScreenPrivacyRule' => 'Never shows names or messages on the lock screen.',
           'widgets.lockScreenDisabledNote' =>
             'The lock-screen widget is turned off in widget settings.',
@@ -13110,12 +10953,20 @@ extension on TranslationsEn {
           'widgets.counterSetDateAction' => 'Set relationship date',
           'widgets.photosPageTitle' => 'Widget · Couple photos',
           'widgets.photosPlusBadge' => 'PLUS',
-          'widgets.photosNeutralFallbackNote' => 'When no photo is saved on this device, the widget shows only the neutral card with the time together.',
+          'widgets.photosNeutralFallbackNote' => 'When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.',
           'widgets.photosUnlockPlusAction' => 'Explore Plus',
           'widgets.photosChooseAction' => 'Choose photo',
           'widgets.photosRemoveAction' => 'Remove photo',
           'widgets.photosSavedToast' => 'Photo saved to the widget.',
           'widgets.photosRemovedToast' => 'Photo removed from the widget.',
+          'widgets.partnerNotePageTitle' => 'Partner note',
+          'widgets.partnerNoteMediumSection' => 'Medium',
+          'widgets.partnerNoteReplyHint' => 'Reply with a heart',
+          'widgets.partnerNoteDrawingPlaceholder' => 'drawing',
+          'widgets.partnerNoteSafeNote' =>
+            'Only notes your partner marked as widget-safe appear here.',
+          'widgets.partnerNoteDisabledNote' =>
+            'You turned off partner notes on widgets. Enable below if you want to show them.',
           'widgets.cardEncounterPageTitle' => 'Card & next date',
           'widgets.cardWeeklyLabel' => 'Weekly card',
           'widgets.cardReadyTitle' => 'A card arrived',
@@ -13124,13 +10975,24 @@ extension on TranslationsEn {
           'widgets.cardSentSubtitle' => 'Waiting for Sunday',
           'widgets.cardNoneTitle' => 'Sunday card',
           'widgets.cardNoneSubtitle' => 'In preparation',
+          'widgets.cardPauseTitle' => 'Pause in progress',
+          'widgets.cardPauseSubtitle' => 'Tap when ready',
           'widgets.nextEncounterLabel' => 'Next date',
           'widgets.nextEncounterEmptyTitle' => 'No upcoming date',
           'widgets.nextEncounterEmptySubtitle' => 'Tap to schedule',
           'widgets.cardEncounterPrivacyNote' =>
             'This widget only shows card status and the next date — never names or card text.',
+          'widgets.statesPageTitle' => 'Widget states',
+          'widgets.statesAction' => 'View states (discreet & unpaired)',
+          'widgets.statesDiscreetSection' => 'Discreet mode',
+          'widgets.statesDiscreetToggle' => 'Enable discreet mode now',
+          'widgets.statesUnpairedSection' => 'No partner',
           'widgets.statesUnpairedTitle' => 'Invite to see here',
           'widgets.statesUnpairedAction' => 'Invite',
+          'widgets.statesOfflineSection' => 'Offline',
+          'widgets.statesOfflineTitle' => 'Showing the last saved data',
+          'widgets.statesOfflineSubtitle' => 'Updates when back online',
+          'widgets.statesPrecedenceNote' => 'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Could not save widget preferences right now.',
           'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' => 'Could not load the couple photo right now.',
@@ -13146,177 +11008,6 @@ extension on TranslationsEn {
           'widgets.errors.COUPLE_PHOTO_NOT_PAIRED' =>
             'Connect with your partner to choose a couple photo.',
           'widgets.errors.other' => 'Could not save widget preferences right now.',
-          'widgets.howToAddAndroidLockNote' => 'On modern Android the widgets live on the home screen. The lock screen only uses neutral notification icons.',
-          'widgets.howToAddIosLockNote' =>
-            'On iOS 16 or newer, you can also add the widget to the lock screen.',
-          'widgets.coupleLabel' => 'COUPLE',
-          'widgets.gallerySubtitle' => 'Small pieces of the app on your home screen.',
-          'widgets.favoritesGroup' => 'Most loved',
-          'widgets.mediumGroup' => 'Medium',
-          'widgets.ownSmallGroup' => 'Log and remember',
-          'widgets.ownGroupHint' => 'Work without a partner and only show what is yours.',
-          'widgets.ownSmallEntryTitle' => 'Small',
-          'widgets.ownSmallEntryHint' => 'Log, remember and the Sunday card.',
-          'widgets.ownMediumEntryTitle' => 'Medium',
-          'widgets.ownMediumEntryHint' => 'Your week, an idea and the next date.',
-          'widgets.ownSmallTitle' => 'Just mine: small',
-          'widgets.ownMediumTitle' => 'Just mine: medium',
-          'widgets.counterEyebrow' => 'TOGETHER',
-          'widgets.counterNeedDate' => 'Set your relationship date',
-          'widgets.counterDaysUnit' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '${count} day',
-                  other: '${count} days',
-                ),
-          'widgets.counterBreakdown' => ({
-            required Object years,
-            required Object months,
-            required Object days,
-          }) => '${years} years, ${months} months and ${days} days',
-          'widgets.counterToday' => 'Today',
-          'widgets.counterSince' => ({required Object date}) => 'Since ${date}',
-          'widgets.partnerMoodLabel' => 'PARTNER MOOD',
-          'widgets.partnerMoodNow' => ({required Object name}) => '${name} now',
-          'widgets.partnerMoodNowAnonymous' => 'Now',
-          'widgets.partnerMoodHidden' => 'Mood appears when your partner shares it.',
-          'widgets.longingLabel' => 'MISSING US',
-          'widgets.longingAction' => 'Send some missing',
-          'widgets.longingReceived' => 'Your partner misses you',
-          'widgets.longingHint' => 'One tap and they feel it.',
-          'widgets.ritualLabel' => 'RITUAL',
-          'widgets.ritualEmptyTitle' => 'Create a ritual',
-          'widgets.ritualEmptyHint' => 'A moment that is yours.',
-          'widgets.noteFromPartner' => ({required Object time}) => 'from your partner · ${time}',
-          'widgets.noteFromName' => ({
-            required Object name,
-            required Object time,
-          }) => 'from ${name} · ${time}',
-          'widgets.noteEmpty' => 'No note here yet',
-          'widgets.noteEmptyHint' => 'A note appears when your partner chooses to send one.',
-          'widgets.noteDisabled' => 'Notes are off',
-          'widgets.noteDisabledHint' => 'Turn on “Notes on the widget” to see them.',
-          'widgets.nextEncounterInDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: 'in ${count} day',
-                  other: 'in ${count} days',
-                ),
-          'widgets.cardSundayTitle' => 'Sunday card',
-          'widgets.cardSendAt' => ({
-            required Object day,
-            required Object time,
-          }) => 'out ${day}, ${time}',
-          'widgets.cardReadyShort' => 'A card arrived',
-          'widgets.cardSentShort' => 'Card sent',
-          'widgets.cardNoneShort' => 'Sunday card',
-          'widgets.distanceLabel' => 'LONG DISTANCE',
-          'widgets.distanceHidden' => 'Your partner\'s timezone is not set',
-          'widgets.distanceHint' => 'Each in their own timezone.',
-          'widgets.distanceUntil' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '${count} day until you meet',
-                  other: '${count} days until you meet',
-                ),
-          'widgets.distanceNoReunion' => 'Next meeting without a date',
-          'widgets.distanceYou' => ({required Object city}) => '${city} · you',
-          'widgets.ownNextDateLabel' => 'NEXT DATE',
-          'widgets.ownNextDateHint' => 'Tap to see the dates',
-          'widgets.ownDateCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '${count} day',
-                  other: '${count} days',
-                ),
-          'widgets.ownWeekTitle' => 'My week',
-          'widgets.ownWeekCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '${count} slip',
-                  other: '${count} slips',
-                ),
-          'widgets.weekdays.0' => 'mon',
-          'widgets.weekdays.1' => 'tue',
-          'widgets.weekdays.2' => 'wed',
-          'widgets.weekdays.3' => 'thu',
-          'widgets.weekdays.4' => 'fri',
-          'widgets.weekdays.5' => 'sat',
-          'widgets.weekdays.6' => 'sun',
-          'widgets.familyLabels.counter' => 'Counter',
-          'widgets.familyLabels.counterMedium' => 'Counter',
-          'widgets.familyLabels.partnerMood' => 'Partner mood',
-          'widgets.familyLabels.longing' => 'Missing us',
-          'widgets.familyLabels.ritual' => 'Ritual',
-          'widgets.familyLabels.partnerNote' => 'Partner note',
-          'widgets.familyLabels.cardEncounter' => 'Card & date',
-          'widgets.familyLabels.distance' => 'Long distance',
-          'widgets.familyLabels.ownSlip' => 'Log slip',
-          'widgets.familyLabels.ownNextDate' => 'Next date',
-          'widgets.familyLabels.ownRitual' => 'Ritual',
-          'widgets.familyLabels.ownSundayCard' => 'Sunday card',
-          'widgets.familyLabels.ownWeek' => 'My week',
-          'widgets.familyLabels.ownIdea' => 'Idea of the day',
-          'widgets.familyLabels.ownMediumDate' => 'Next date',
-          'widgets.familyLabels.other' => 'Widget',
-          'widgets.moodJustNow' => 'just now',
-          'widgets.moodMinutesAgo' => ({required Object minutes}) => '${minutes} min ago',
-          'widgets.moodHoursAgo' => ({required Object hours}) => '${hours} h ago',
-          'widgets.moodDaysAgo' => ({required Object days}) => '${days} d ago',
-          'widgets.ownSlipQuestion' => 'How was your day?',
-          'widgets.ownSlipAction' => 'Log a slip',
-          'widgets.howToAddAction' => 'How to add',
-          'widgets.howToAddTitle' => 'How to add',
-          'widgets.howToAddSubtitle' =>
-            'Straight from the home screen, with no extra Mingo permission.',
-          'widgets.howToAddIosStep1' => 'Touch and hold an empty spot on the home screen.',
-          'widgets.howToAddIosStep2' => 'Tap + in the top corner.',
-          'widgets.howToAddIosStep3' => 'Choose Mingo and the widget size.',
-          'widgets.howToAddAndroidStep1' => 'Touch and hold an empty spot on the home screen.',
-          'widgets.howToAddAndroidStep2' => 'Tap Widgets.',
-          'widgets.howToAddAndroidStep3' => 'Choose Mingo and drag it to the screen.',
-          'widgets.howToAddLockIosStep1' => 'Touch and hold the lock screen.',
-          'widgets.howToAddLockIosStep2' => 'Tap Customize.',
-          'widgets.howToAddLockIosStep3' => 'Add the Mingo widget below the clock.',
-          'widgets.howToAddNote' =>
-            'You can remove the widget whenever you want; nothing is deleted.',
-          'widgets.widgetPrivacyTitle' => 'What appears on widgets',
-          'widgets.showNamesTitle' => 'Names and initials',
-          'widgets.showNamesHint' => 'When off, widgets show only the content.',
-          'widgets.allowNotesTitle' => 'Notes on the widget',
-          'widgets.allowNotesHint' => 'Only notes your partner marked for the widget.',
-          'widgets.privacySectionHint' =>
-            'Follows your privacy choices. What is hidden in the app stays hidden here.',
-          'widgets.settingsSaved' => 'Preferences updated.',
-          'widgets.lockScreenCircular' => 'Circular',
-          'widgets.lockScreenRectangular' => 'Rectangular',
-          'widgets.lockScreenInline' => 'Inline',
-          'widgets.lockScreenNeutralLabel' => 'NEUTRAL TEXT',
-          'widgets.lockScreenNeutralPhrase' => 'No names on the lock screen',
-          'widgets.lockScreenAndroidUnavailable' =>
-            'The Android lock screen does not accept widgets. Use the home-screen widgets.',
-          'widgets.ownNextDateDefault' => 'Next date',
-          'widgets.ownSundayCardLabel' => 'SUNDAY CARD',
-          'widgets.ownGroupTitle' => 'Just mine',
-          'widgets.soloBanner' => 'Couple widgets appear once you connect.',
-          'widgets.previewSmall' => 'Small',
-          'widgets.previewMedium' => 'Medium',
-          'widgets.counterSmallLabel' => 'Small',
-          'widgets.counterMediumLabel' => 'Medium, with timeline',
-          'widgets.partnerNotePageTitle' => 'Partner note',
-          'widgets.partnerNotePrivacy' =>
-            'Only what your partner chose to send to the widget appears.',
-          'widgets.moodLongingPageTitle' => 'Mood and missing',
-          'widgets.partnerMoodPrivacy' => 'Mood only appears if your partner shared it.',
-          'widgets.longingPrivacy' => 'Missing appears when your partner sends it.',
-          'widgets.moodUpdateAction' => 'Update my mood',
-          'widgets.openDatesAction' => 'See dates',
-          'widgets.lockReminderShortLabel' => 'Reminder',
           _ => null,
         };
   }

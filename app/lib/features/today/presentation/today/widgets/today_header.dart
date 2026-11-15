@@ -1,13 +1,16 @@
-import 'package:app/features/notifications/presentation/bell/widgets/inbox_bell_button.dart';
+import 'package:app/features/dev_menu/dev_menu_page.dart';
 import 'package:app/features/today/data/models/today_home.dart';
-import 'package:app/features/today/presentation/today/widgets/open_invite.dart';
+import 'package:app/infrastructure/config/env_variables.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 
-/// Avatars or the invite chip beside the settings button, then the greeting and the date.
+const double _chipHeight = 40;
+const double _chipDot = 30;
+
+/// Avatars or the invite chip, the time-together chip, then the greeting and the date.
 class const TodayHeader({
   required final TodayHome home,
   final String? selfName,
@@ -47,42 +50,49 @@ class const TodayHeader({
               BaseAvatarPair(
                 selfInitials: _initial(name),
                 partnerInitials: _initial(home.partnerName),
-                onTap: () => context.pushRoute(const PartnerProfileRoute()),
-                semanticLabel: l10n.partnerProfile,
+                onTap: () => context.pushRoute(const SettingsHomeRoute()),
+                semanticLabel: context.l10n.settingsHome.title,
               )
             else
               BaseAvatarPair(
                 selfInitials: _initial(name),
-                onTap: () => openInvite(context),
+                onTap: () => context.pushRoute(const InviteRoute()),
                 semanticLabel: l10n.invitePerson,
               ),
             Row(
               mainAxisSize: MainAxisSize.min,
-              spacing: AppSpace.s8,
               children: [
-                const InboxBellButton(),
-                BaseRoundButton(
-                  icon: AppIcons.settings,
-                  semanticLabel: context.l10n.settingsHome.title,
-                  onPressed: () => context.pushRoute(const SettingsHomeRoute()),
-                ),
+                if (home.togetherSince != null) _TogetherChip(since: home.togetherSince!),
+                if (!home.isPaired) ...[
+                  if (home.togetherSince != null) const SizedBox(width: AppSpace.s8),
+                  BaseRoundButton(
+                    icon: AppIcons.settings,
+                    semanticLabel: context.l10n.settingsHome.title,
+                    onPressed: () => context.pushRoute(const SettingsHomeRoute()),
+                  ),
+                ],
               ],
             ),
           ],
         ),
         const SizedBox(height: AppSpace.s24),
-        Semantics(
-          header: true,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flexible(child: Text(greeting, style: context.text.titleLg)),
-              const SizedBox(width: AppSpace.s8),
-              Padding(
-                padding: const EdgeInsets.only(top: AppSpace.s2),
-                child: AppIcon(icon: timeIcon, color: context.colors.accentLabel),
-              ),
-            ],
+        GestureDetector(
+          onLongPress: EnvVariables.debugSignIn
+              ? () => context.router.pushWidget(const DevMenuPage())
+              : null,
+          child: Semantics(
+            header: true,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(child: Text(greeting, style: context.text.titleLg)),
+                const SizedBox(width: AppSpace.s8),
+                Padding(
+                  padding: const EdgeInsets.only(top: AppSpace.s2),
+                  child: AppIcon(icon: timeIcon, color: context.colors.accentLabel),
+                ),
+              ],
+            ),
           ),
         ),
         const SizedBox(height: AppSpace.s4),
@@ -93,4 +103,68 @@ class const TodayHeader({
 
   String _initial(String? name) =>
       name == null || name.isEmpty ? '' : name.substring(0, 1).toUpperCase();
+}
+
+class const _TogetherChip({required final DateTime since}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final l10n = context.l10n.today;
+
+    return AppPressable(
+      onTap: () => context.pushRoute(const HistoryRoute()),
+      semanticLabel: l10n.togetherChipAction,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      enforceMinTapTarget: true,
+      child: Container(
+        height: _chipHeight,
+        padding: const EdgeInsets.only(left: AppSpace.s4, right: AppSpace.s14),
+        decoration: BoxDecoration(
+          color: colors.bgSurface,
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+          border: Border.all(color: colors.borderDefault),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: _chipDot,
+              height: _chipDot,
+              decoration: BoxDecoration(color: colors.accentSoft, shape: BoxShape.circle),
+              child: Icon(
+                AppIcons.heart_filled,
+                size: AppIconSize.xs,
+                color: colors.accentHighlight,
+              ),
+            ),
+            const SizedBox(width: AppSpace.s8),
+            Text(
+              _label(l10n, since),
+              style: context.text.bodySm.copyWith(
+                color: colors.textPrimary,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _label(Translations$today$pt l10n, DateTime since) {
+    final now = clock.now();
+    final months =
+        (now.year - since.year) * 12 + now.month - since.month - (now.day < since.day ? 1 : 0);
+    if (months < 1) return l10n.togetherDays(count: now.difference(since).inDays.clamp(0, 31));
+
+    final years = months ~/ 12;
+    final rest = months % 12;
+    if (years == 0) return l10n.togetherMonths(count: rest);
+    if (rest == 0) return l10n.togetherYears(count: years);
+
+    return l10n.togetherJoin(
+      first: l10n.togetherYears(count: years),
+      second: l10n.togetherMonths(count: rest),
+    );
+  }
 }
