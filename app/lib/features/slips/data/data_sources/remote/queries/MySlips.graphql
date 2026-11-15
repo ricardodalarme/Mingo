@@ -11,6 +11,7 @@ query MySlips($first: Int, $after: Cursor, $filter: SlipsFilter) {
         body
         kind
         category
+        polarity
         createdAt
       }
     }

@@ -271,6 +271,13 @@ const documentNodeQueryMySlips = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
+                              name: NameNode(value: 'polarity'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
                               name: NameNode(value: 'createdAt'),
                               alias: null,
                               arguments: [],
@@ -599,6 +606,7 @@ class QueryMySlipsslipsCollectionedgesnode {
     required this.body,
     required this.kind,
     this.category,
+    required this.polarity,
     required this.createdAt,
     this.$__typename = 'Slips',
   });
@@ -608,6 +616,7 @@ class QueryMySlipsslipsCollectionedgesnode {
     final l$body = json['body'];
     final l$kind = json['kind'];
     final l$category = json['category'];
+    final l$polarity = json['polarity'];
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
     return QueryMySlipsslipsCollectionedgesnode(
@@ -615,6 +624,7 @@ class QueryMySlipsslipsCollectionedgesnode {
       body: (l$body as String),
       kind: fromJsonEnumSlipKind((l$kind as String)),
       category: l$category == null ? null : fromJsonEnumSlipCategory((l$category as String)),
+      polarity: fromJsonEnumSlipPolarity((l$polarity as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
     );
@@ -627,6 +637,8 @@ class QueryMySlipsslipsCollectionedgesnode {
   final EnumSlipKind kind;
 
   final EnumSlipCategory? category;
+
+  final EnumSlipPolarity polarity;
 
   final DateTime createdAt;
 
@@ -642,6 +654,8 @@ class QueryMySlipsslipsCollectionedgesnode {
     _resultData['kind'] = toJsonEnumSlipKind(l$kind);
     final l$category = category;
     _resultData['category'] = l$category == null ? null : toJsonEnumSlipCategory(l$category);
+    final l$polarity = polarity;
+    _resultData['polarity'] = toJsonEnumSlipPolarity(l$polarity);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;
@@ -655,9 +669,18 @@ class QueryMySlipsslipsCollectionedgesnode {
     final l$body = body;
     final l$kind = kind;
     final l$category = category;
+    final l$polarity = polarity;
     final l$createdAt = createdAt;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$body, l$kind, l$category, l$createdAt, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$body,
+      l$kind,
+      l$category,
+      l$polarity,
+      l$createdAt,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -686,6 +709,11 @@ class QueryMySlipsslipsCollectionedgesnode {
     final l$category = category;
     final lOther$category = other.category;
     if (l$category != lOther$category) {
+      return false;
+    }
+    final l$polarity = polarity;
+    final lOther$polarity = other.polarity;
+    if (l$polarity != lOther$polarity) {
       return false;
     }
     final l$createdAt = createdAt;

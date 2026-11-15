@@ -13,6 +13,7 @@ class VariablesMutationSaveSlip {
     String? planNote,
     bool? forCard,
     DateTime? createdAt,
+    String? polarity,
   }) => VariablesMutationSaveSlip._({
     r'id': id,
     r'body': body,
@@ -21,6 +22,7 @@ class VariablesMutationSaveSlip {
     if (planNote != null) r'planNote': planNote,
     if (forCard != null) r'forCard': forCard,
     if (createdAt != null) r'createdAt': createdAt,
+    if (polarity != null) r'polarity': polarity,
   });
 
   VariablesMutationSaveSlip._(this._$data);
@@ -53,6 +55,10 @@ class VariablesMutationSaveSlip {
           ? null
           : DateTime.parse((l$createdAt as String));
     }
+    if (data.containsKey('polarity')) {
+      final l$polarity = data['polarity'];
+      result$data['polarity'] = (l$polarity as String?);
+    }
     return VariablesMutationSaveSlip._(result$data);
   }
 
@@ -71,6 +77,8 @@ class VariablesMutationSaveSlip {
   bool? get forCard => (_$data['forCard'] as bool?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
+
+  String? get polarity => (_$data['polarity'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -99,6 +107,10 @@ class VariablesMutationSaveSlip {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('polarity')) {
+      final l$polarity = polarity;
+      result$data['polarity'] = l$polarity;
     }
     return result$data;
   }
@@ -161,6 +173,14 @@ class VariablesMutationSaveSlip {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
+    final l$polarity = polarity;
+    final lOther$polarity = other.polarity;
+    if (_$data.containsKey('polarity') != other._$data.containsKey('polarity')) {
+      return false;
+    }
+    if (l$polarity != lOther$polarity) {
+      return false;
+    }
     return true;
   }
 
@@ -173,6 +193,7 @@ class VariablesMutationSaveSlip {
     final l$planNote = planNote;
     final l$forCard = forCard;
     final l$createdAt = createdAt;
+    final l$polarity = polarity;
     return Object.hashAll([
       l$id,
       l$body,
@@ -181,6 +202,7 @@ class VariablesMutationSaveSlip {
       _$data.containsKey('planNote') ? l$planNote : const {},
       _$data.containsKey('forCard') ? l$forCard : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('polarity') ? l$polarity : const {},
     ]);
   }
 }
@@ -289,6 +311,12 @@ const documentNodeMutationSaveSlip = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'polarity')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
@@ -324,6 +352,10 @@ const documentNodeMutationSaveSlip = DocumentNode(
               ArgumentNode(
                 name: NameNode(value: 'createdAt'),
                 value: VariableNode(name: NameNode(value: 'createdAt')),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'polarity'),
+                value: VariableNode(name: NameNode(value: 'polarity')),
               ),
             ],
             directives: [],

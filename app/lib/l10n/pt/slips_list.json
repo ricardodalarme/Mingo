@@ -14,6 +14,7 @@
   "weekRange": "{start} – {end}",
   "dateShort": "{day} {month}",
   "dayLine": "{weekday} · {category}",
+  "privateMark": "Só eu",
   "weekdaysShort": ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
   "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
   "categories(map)": {

@@ -1,3 +1,4 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network/network.dart';
@@ -11,12 +12,13 @@ class const _StubGQLClient(final Map<String, dynamic> _data) implements GQLClien
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
-Map<String, dynamic> _slip({String? deletedAt}) => {
+Map<String, dynamic> _slip({String? deletedAt, String polarity = 'liked'}) => {
   'slipsByPk': {
     'id': 's1',
     'body': 'Obrigado pelo café',
     'kind': 'quick',
     'forCard': false,
+    'polarity': polarity,
     'createdAt': '2026-11-10T10:00:00Z',
     'deletedAt': deletedAt,
     'inJar': false,
@@ -33,6 +35,13 @@ void main() {
 
     expect(slip?.id, 's1');
     expect(slip?.body, 'Obrigado pelo café');
+    expect(slip?.polarity, EnumSlipPolarity.liked);
+  });
+
+  test('reads a bothered slip with its polarity', () async {
+    final dataSource = SlipDataSource(client: _StubGQLClient(_slip(polarity: 'bothered')));
+
+    expect((await dataSource.getSlip('s1'))?.polarity, EnumSlipPolarity.bothered);
   });
 
   test('a deleted slip reads as not found', () async {

@@ -1,5 +1,6 @@
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:app/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
@@ -35,11 +36,13 @@ class const QuickSlipForm({super.key}) extends StatelessWidget {
             style: context.text.body.copyWith(color: context.colors.textSecondary),
           ),
           const SizedBox(height: AppSpace.s20),
+          const _PolarityToggle(),
+          const SizedBox(height: AppSpace.s16),
           const _TextField(),
           const SizedBox(height: AppSpace.s16),
           const _CategoryChips(),
           const SizedBox(height: AppSpace.s20),
-          BaseNote(text: l10n.privacyNote),
+          const _PrivacyNote(),
           const SizedBox(height: AppSpace.s20),
           const _OtherKinds(),
         ],
@@ -61,6 +64,35 @@ class const _DateLine() extends StatelessWidget {
     );
 
     return Text(text, style: context.text.label.copyWith(color: context.colors.textSecondary));
+  }
+}
+
+class const _PolarityToggle() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.quickSlip;
+    final polarity = context.select((QuickSlipCubit cubit) => cubit.state.polarity);
+
+    return BaseSegmented(
+      segments: [l10n.polarityLiked, l10n.polarityBothered],
+      selectedIndex: polarity == SlipPolarity.bothered ? 1 : 0,
+      semanticLabel: l10n.polarityLabel,
+      onSelectionChanged: (index) => context.read<QuickSlipCubit>().onPolarityChanged(
+        index == 1 ? SlipPolarity.bothered : SlipPolarity.liked,
+      ),
+    );
+  }
+}
+
+class const _PrivacyNote() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.quickSlip;
+    final isBothered = context.select(
+      (QuickSlipCubit cubit) => cubit.state.polarity == SlipPolarity.bothered,
+    );
+
+    return BaseNote(text: isBothered ? l10n.botheredNote : l10n.privacyNote);
   }
 }
 

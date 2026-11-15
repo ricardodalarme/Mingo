@@ -31,6 +31,11 @@
     "other": ""
   },
   "private": "Only you see this slip.",
+  "polarities(map)": {
+    "liked": "Liked",
+    "bothered": "Bothered me",
+    "other": ""
+  },
   "archived": "Archived",
   "feeling": "How you felt",
   "plan": "Then I…",
@@ -42,6 +47,7 @@
   "cardOn": "Can go in the card",
   "cardOnText": "On Sunday you choose whether it goes.",
   "cardInvisible": "Invisible slips never go in a card.",
+  "cardBothered": "A slip that bothered you stays with you and never goes on the card.",
   "previewTitle": "What your partner would read",
   "previewText": "If this slip goes in the card, this is the text that shows.",
   "sentNote": "This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.",

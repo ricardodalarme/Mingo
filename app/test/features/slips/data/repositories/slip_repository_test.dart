@@ -3,6 +3,7 @@ import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dar
 import 'package:app/features/slips/data/models/pending_slip.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_draft.dart';
+import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -63,6 +64,35 @@ void main() {
       expect(outcome, SlipSaveOutcome.synced);
       verify(() => remote.saveSlip(id: 's1', body: 'Fez café', createdAt: createdAt)).called(1);
       verify(() => remote.setCategory(id: 's1', category: 'did')).called(1);
+    });
+
+    test('sends a bothered slip with its polarity', () async {
+      when(
+        () => remote.saveSlip(
+          id: any(named: 'id'),
+          body: any(named: 'body'),
+          createdAt: any(named: 'createdAt'),
+          polarity: any(named: 'polarity'),
+        ),
+      ).thenAnswer((_) async {
+        return;
+      });
+
+      await repository.saveQuick(
+        id: 's1',
+        body: 'Chegou tarde sem avisar',
+        createdAt: createdAt,
+        polarity: SlipPolarity.bothered,
+      );
+
+      verify(
+        () => remote.saveSlip(
+          id: 's1',
+          body: 'Chegou tarde sem avisar',
+          createdAt: createdAt,
+          polarity: 'bothered',
+        ),
+      ).called(1);
     });
 
     test('keeps the slip on the device when offline', () async {

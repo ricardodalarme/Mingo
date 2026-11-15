@@ -5,6 +5,9 @@
   "title": "What made you happy?",
   "titleHighlight": "happy",
   "subtitle": "One line is enough. 30 seconds.",
+  "polarityLabel": "Liked or bothered me",
+  "polarityLiked": "Liked",
+  "polarityBothered": "Bothered me",
   "hint": "E.g. made coffee before I woke up",
   "textErrors(map)": {
     "empty": "Write the slip first",
@@ -18,6 +21,7 @@
     "other": ""
   },
   "privacyNote": "It stays private. On Sunday you choose what goes on the card.",
+  "botheredNote": "Only you see it. A slip like this never goes on the card.",
   "save": "Save",
   "discardTitle": "Discard this slip?",
   "saved": {

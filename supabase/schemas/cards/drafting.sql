@@ -22,7 +22,7 @@ begin
   select time_zone into v_tz from public.profile_settings where profile_id = p_profile_id;
   if not exists (
     select 1 from public.slips s
-    where s.author_id = p_profile_id and s.for_card and s.kind <> 'invisible'
+    where s.author_id = p_profile_id and s.for_card and s.kind <> 'invisible' and s.polarity = 'liked'
       and s.deleted_at is null and s.archived_at is null
       and (s.created_at at time zone v_tz)::date >= v_week) then
     return null;
@@ -36,7 +36,7 @@ begin
   insert into public.card_items (card_id, slip_id, body, feeling, position)
   select v_card, s.id, s.body, s.feeling, row_number() over (order by s.created_at)
   from public.slips s
-  where s.author_id = p_profile_id and s.for_card and s.kind <> 'invisible'
+  where s.author_id = p_profile_id and s.for_card and s.kind <> 'invisible' and s.polarity = 'liked'
     and s.deleted_at is null and s.archived_at is null
     and (s.created_at at time zone v_tz)::date >= v_week;
   return v_card;
@@ -86,7 +86,7 @@ begin
     select 1 from unnest(slip_ids) as wanted (id)
     where not exists (select 1 from public.slips s
                       where s.id = wanted.id and s.author_id = v_card.author_id and s.kind <> 'invisible'
-                        and s.for_card and s.deleted_at is null)) then
+                        and s.for_card and s.polarity = 'liked' and s.deleted_at is null)) then
     raise exception 'SLIP_NOT_ELIGIBLE' using errcode = 'P0001';
   end if;
   delete from public.card_items i where i.card_id = v_card.id;
@@ -138,7 +138,8 @@ language plpgsql security definer set search_path = '' as $$
 declare v_uid uuid := private.require_user(); v_slip public.slips; v_card public.cards;
 begin
   select * into v_slip from public.slips s
-  where s.id = slip_id and s.author_id = v_uid and s.deleted_at is null and s.kind <> 'invisible';
+  where s.id = slip_id and s.author_id = v_uid and s.deleted_at is null and s.kind <> 'invisible'
+    and s.polarity = 'liked';
   if not found then raise exception 'SLIP_NOT_ELIGIBLE' using errcode = 'P0001'; end if;
   insert into public.cards (author_id, week_start, kind, note)
   values (v_uid, private.local_week_start(v_uid), 'single', nullif(btrim(send_slip_now.note), '')) returning * into v_card;

@@ -193,6 +193,13 @@ const documentNodeQuerySlipDetail = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'polarity'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'createdAt'),
                   alias: null,
                   arguments: [],
@@ -443,6 +450,7 @@ class QuerySlipDetailslipsByPk {
     required this.forCard,
     this.category,
     this.workArea,
+    required this.polarity,
     required this.createdAt,
     this.archivedAt,
     this.deletedAt,
@@ -460,6 +468,7 @@ class QuerySlipDetailslipsByPk {
     final l$forCard = json['forCard'];
     final l$category = json['category'];
     final l$workArea = json['workArea'];
+    final l$polarity = json['polarity'];
     final l$createdAt = json['createdAt'];
     final l$archivedAt = json['archivedAt'];
     final l$deletedAt = json['deletedAt'];
@@ -475,6 +484,7 @@ class QuerySlipDetailslipsByPk {
       forCard: (l$forCard as bool),
       category: l$category == null ? null : fromJsonEnumSlipCategory((l$category as String)),
       workArea: l$workArea == null ? null : fromJsonEnumWorkArea((l$workArea as String)),
+      polarity: fromJsonEnumSlipPolarity((l$polarity as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       archivedAt: l$archivedAt == null ? null : DateTime.parse((l$archivedAt as String)),
       deletedAt: l$deletedAt == null ? null : DateTime.parse((l$deletedAt as String)),
@@ -503,6 +513,8 @@ class QuerySlipDetailslipsByPk {
   final EnumSlipCategory? category;
 
   final EnumWorkArea? workArea;
+
+  final EnumSlipPolarity polarity;
 
   final DateTime createdAt;
 
@@ -534,6 +546,8 @@ class QuerySlipDetailslipsByPk {
     _resultData['category'] = l$category == null ? null : toJsonEnumSlipCategory(l$category);
     final l$workArea = workArea;
     _resultData['workArea'] = l$workArea == null ? null : toJsonEnumWorkArea(l$workArea);
+    final l$polarity = polarity;
+    _resultData['polarity'] = toJsonEnumSlipPolarity(l$polarity);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$archivedAt = archivedAt;
@@ -563,6 +577,7 @@ class QuerySlipDetailslipsByPk {
     final l$forCard = forCard;
     final l$category = category;
     final l$workArea = workArea;
+    final l$polarity = polarity;
     final l$createdAt = createdAt;
     final l$archivedAt = archivedAt;
     final l$deletedAt = deletedAt;
@@ -578,6 +593,7 @@ class QuerySlipDetailslipsByPk {
       l$forCard,
       l$category,
       l$workArea,
+      l$polarity,
       l$createdAt,
       l$archivedAt,
       l$deletedAt,
@@ -633,6 +649,11 @@ class QuerySlipDetailslipsByPk {
     final l$workArea = workArea;
     final lOther$workArea = other.workArea;
     if (l$workArea != lOther$workArea) {
+      return false;
+    }
+    final l$polarity = polarity;
+    final lOther$polarity = other.polarity;
+    if (l$polarity != lOther$polarity) {
       return false;
     }
     final l$createdAt = createdAt;

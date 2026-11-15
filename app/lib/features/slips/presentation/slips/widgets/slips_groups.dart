@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class const SlipsGroups({required final List<SlipEntry> slips, super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n.slipsList;
     final isLoadingMore = context.select((SlipsListCubit cubit) => cubit.state.isLoadingMore);
     final groups = groupByWeek(slips);
     final thisMonday = _monday(clock.now());
@@ -29,6 +30,7 @@ class const SlipsGroups({required final List<SlipEntry> slips, super.key}) exten
                 BaseListTile(
                   title: slip.body,
                   subtitle: _dayLine(context, slip),
+                  trailing: slip.isPrivate ? BaseTag(text: l10n.privateMark) : null,
                   onTap: () => context.pushRoute(SlipDetailRoute(id: slip.id)),
                 ),
             ],

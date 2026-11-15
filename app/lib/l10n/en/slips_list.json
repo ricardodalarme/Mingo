@@ -14,6 +14,7 @@
   "weekRange": "{start} – {end}",
   "dateShort": "{month} {day}",
   "dayLine": "{weekday} · {category}",
+  "privateMark": "Only me",
   "weekdaysShort": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
   "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   "categories(map)": {

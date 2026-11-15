@@ -4417,6 +4417,12 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   @override
   String get subtitle => 'One line is enough. 30 seconds.';
   @override
+  String get polarityLabel => 'Liked or bothered me';
+  @override
+  String get polarityLiked => 'Liked';
+  @override
+  String get polarityBothered => 'Bothered me';
+  @override
   String get hint => 'E.g. made coffee before I woke up';
   @override
   Map<String, String> get textErrors => {
@@ -4433,6 +4439,8 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   };
   @override
   String get privacyNote => 'It stays private. On Sunday you choose what goes on the card.';
+  @override
+  String get botheredNote => 'Only you see it. A slip like this never goes on the card.';
   @override
   String get save => 'Save';
   @override
@@ -5015,6 +5023,8 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   @override
   String get private => 'Only you see this slip.';
   @override
+  Map<String, String> get polarities => {'liked': 'Liked', 'bothered': 'Bothered me', 'other': ''};
+  @override
   String get archived => 'Archived';
   @override
   String get feeling => 'How you felt';
@@ -5036,6 +5046,8 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   String get cardOnText => 'On Sunday you choose whether it goes.';
   @override
   String get cardInvisible => 'Invisible slips never go in a card.';
+  @override
+  String get cardBothered => 'A slip that bothered you stays with you and never goes on the card.';
   @override
   String get previewTitle => 'What your partner would read';
   @override
@@ -5194,6 +5206,8 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   String dateShort({required Object month, required Object day}) => '${month} ${day}';
   @override
   String dayLine({required Object weekday, required Object category}) => '${weekday} · ${category}';
+  @override
+  String get privateMark => 'Only me';
   @override
   List<String> get weekdaysShort => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   @override
@@ -10026,6 +10040,9 @@ extension on TranslationsEn {
           'quickSlip.title' => 'What made you happy?',
           'quickSlip.titleHighlight' => 'happy',
           'quickSlip.subtitle' => 'One line is enough. 30 seconds.',
+          'quickSlip.polarityLabel' => 'Liked or bothered me',
+          'quickSlip.polarityLiked' => 'Liked',
+          'quickSlip.polarityBothered' => 'Bothered me',
           'quickSlip.hint' => 'E.g. made coffee before I woke up',
           'quickSlip.textErrors.empty' => 'Write the slip first',
           'quickSlip.textErrors.tooLong' => 'This slip is too long',
@@ -10036,6 +10053,7 @@ extension on TranslationsEn {
           'quickSlip.categories.other' => '',
           'quickSlip.privacyNote' =>
             'It stays private. On Sunday you choose what goes on the card.',
+          'quickSlip.botheredNote' => 'Only you see it. A slip like this never goes on the card.',
           'quickSlip.save' => 'Save',
           'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
@@ -10087,6 +10105,9 @@ extension on TranslationsEn {
           'relationshipChanged.title' => 'Something changed?',
           'relationshipChanged.highlight' => 'changed',
           'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.optionEnded' => 'We broke up',
           'relationshipChanged.optionBereaved' => 'I lost them',
           'relationshipChanged.optionOnBreak' => 'A break',
@@ -10428,6 +10449,9 @@ extension on TranslationsEn {
           'slipDetail.kinds.invisible' => 'Invisible',
           'slipDetail.kinds.other' => '',
           'slipDetail.private' => 'Only you see this slip.',
+          'slipDetail.polarities.liked' => 'Liked',
+          'slipDetail.polarities.bothered' => 'Bothered me',
+          'slipDetail.polarities.other' => '',
           'slipDetail.archived' => 'Archived',
           'slipDetail.feeling' => 'How you felt',
           'slipDetail.plan' => 'Then I…',
@@ -10439,6 +10463,8 @@ extension on TranslationsEn {
           'slipDetail.cardOn' => 'Can go in the card',
           'slipDetail.cardOnText' => 'On Sunday you choose whether it goes.',
           'slipDetail.cardInvisible' => 'Invisible slips never go in a card.',
+          'slipDetail.cardBothered' =>
+            'A slip that bothered you stays with you and never goes on the card.',
           'slipDetail.previewTitle' => 'What your partner would read',
           'slipDetail.previewText' => 'If this slip goes in the card, this is the text that shows.',
           'slipDetail.sentNote' => 'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.',
@@ -10538,6 +10564,7 @@ extension on TranslationsEn {
             required Object weekday,
             required Object category,
           }) => '${weekday} · ${category}',
+          'slipsList.privateMark' => 'Only me',
           'slipsList.weekdaysShort.0' => 'Mon',
           'slipsList.weekdaysShort.1' => 'Tue',
           'slipsList.weekdaysShort.2' => 'Wed',
@@ -10712,6 +10739,9 @@ extension on TranslationsEn {
           'tabs.parentsLabel' => 'WITH PARENTS',
           'tabs.parentsText' => 'A short moment just for the two of you, even in a full house.',
           'tabs.capsulesLabel' => 'TIME CAPSULE',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.capsulesTitle' => 'A message to the future',
           'tabs.capsulesText' => 'Stays closed until the day you choose.',
           'tabs.datesLabel' => 'DATES',

@@ -31,6 +31,11 @@
     "other": ""
   },
   "private": "Só você vê este slip.",
+  "polarities(map)": {
+    "liked": "Gostei",
+    "bothered": "Me incomodou",
+    "other": ""
+  },
   "archived": "Arquivado",
   "feeling": "Como você se sentiu",
   "plan": "Então eu…",
@@ -42,6 +47,7 @@
   "cardOn": "Pode entrar no cartão",
   "cardOnText": "No domingo você escolhe se ele vai.",
   "cardInvisible": "Slips invisíveis nunca entram em um cartão.",
+  "cardBothered": "Um slip que te incomodou fica só com você e nunca entra no cartão.",
   "previewTitle": "O que seu par leria",
   "previewText": "Se este slip entrar no cartão, é este texto que aparece.",
   "sentNote": "Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.",

@@ -5,6 +5,9 @@
   "title": "O que te deixou feliz?",
   "titleHighlight": "feliz",
   "subtitle": "Uma linha basta. 30 segundos.",
+  "polarityLabel": "Gostei ou me incomodou",
+  "polarityLiked": "Gostei",
+  "polarityBothered": "Me incomodou",
   "hint": "Ex.: fez café antes de eu acordar",
   "textErrors(map)": {
     "empty": "Escreva o slip primeiro",
@@ -18,6 +21,7 @@
     "other": ""
   },
   "privacyNote": "Fica privado. No domingo você escolhe o que vai para o cartão.",
+  "botheredNote": "Fica só com você. Um slip assim nunca entra no cartão.",
   "save": "Salvar",
   "discardTitle": "Descartar este slip?",
   "saved": {
