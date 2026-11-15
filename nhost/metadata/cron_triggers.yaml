@@ -1,0 +1,90 @@
+- name: open_capsules
+  webhook: '{{NHOST_FUNCTIONS_URL}}/events/jobs'
+  schedule: 10 * * * *
+  include_in_metadata: true
+  payload:
+    job: open_capsules
+  retry_conf:
+    num_retries: 2
+    retry_interval_seconds: 60
+    timeout_seconds: 120
+    tolerance_seconds: 3000
+  headers:
+    - name: nhost-webhook-secret
+      value_from_env: NHOST_WEBHOOK_SECRET
+  comment: Opens the capsules whose date arrived. A missed hour is caught by the next run.
+- name: prune
+  webhook: '{{NHOST_FUNCTIONS_URL}}/events/jobs'
+  schedule: 27 3 * * *
+  include_in_metadata: true
+  payload:
+    job: prune
+  retry_conf:
+    num_retries: 3
+    retry_interval_seconds: 300
+    timeout_seconds: 120
+    tolerance_seconds: 21600
+  headers:
+    - name: nhost-webhook-secret
+      value_from_env: NHOST_WEBHOOK_SECRET
+  comment: Drops settled notifications, job history, invite attempts and chat turns that have no further use.
+- name: purge_accounts
+  webhook: '{{NHOST_FUNCTIONS_URL}}/events/jobs'
+  schedule: 17 3 * * *
+  include_in_metadata: true
+  payload:
+    job: purge_accounts
+  retry_conf:
+    num_retries: 3
+    retry_interval_seconds: 300
+    timeout_seconds: 120
+    tolerance_seconds: 21600
+  headers:
+    - name: nhost-webhook-secret
+      value_from_env: NHOST_WEBHOOK_SECRET
+  comment: Erases the accounts whose 14 days are over. A failed day is caught by the next one.
+- name: reminders
+  webhook: '{{NHOST_FUNCTIONS_URL}}/events/jobs'
+  schedule: 0 * * * *
+  include_in_metadata: true
+  payload:
+    job: reminders
+  retry_conf:
+    num_retries: 2
+    retry_interval_seconds: 60
+    timeout_seconds: 120
+    tolerance_seconds: 1800
+  headers:
+    - name: nhost-webhook-secret
+      value_from_env: NHOST_WEBHOOK_SECRET
+  comment: Queues date, ritual and daily reminders in each person's local hour. A run later than 30 minutes is skipped, since the hour it stood for is over.
+- name: sweep_files
+  webhook: '{{NHOST_FUNCTIONS_URL}}/events/jobs'
+  schedule: 37 3 * * *
+  include_in_metadata: true
+  payload:
+    job: sweep_files
+  retry_conf:
+    num_retries: 3
+    retry_interval_seconds: 300
+    timeout_seconds: 300
+    tolerance_seconds: 21600
+  headers:
+    - name: nhost-webhook-secret
+      value_from_env: NHOST_WEBHOOK_SECRET
+  comment: Retries the files the delete_file trigger could not remove from Storage.
+- name: weekly_cards
+  webhook: '{{NHOST_FUNCTIONS_URL}}/events/jobs'
+  schedule: 5 * * * *
+  include_in_metadata: true
+  payload:
+    job: weekly_cards
+  retry_conf:
+    num_retries: 2
+    retry_interval_seconds: 60
+    timeout_seconds: 120
+    tolerance_seconds: 3000
+  headers:
+    - name: nhost-webhook-secret
+      value_from_env: NHOST_WEBHOOK_SECRET
+  comment: Creates the weekly card draft for everyone whose chosen day and hour arrived. A missed hour is caught by the next run.

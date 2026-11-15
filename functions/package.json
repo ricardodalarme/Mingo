@@ -1,0 +1,8 @@
+{
+  "name": "mingo-functions",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node --test \"_tests/**/*.test.ts\""
+  }
+}
