@@ -27,34 +27,19 @@ final class const ChatMessage({
   required final String text,
   final bool isStreaming = false,
   final bool isInterrupted = false,
-  final bool excludeFromHistory = false,
   final String? retryText,
 }) with Equatable {
-  ChatMessage copyWith({
-    String? text,
-    bool? isStreaming,
-    bool? isInterrupted,
-    bool? excludeFromHistory,
-  }) => ChatMessage(
+  ChatMessage copyWith({String? text, bool? isStreaming, bool? isInterrupted}) => ChatMessage(
     id: id,
     role: role,
     text: text ?? this.text,
     isStreaming: isStreaming ?? this.isStreaming,
     isInterrupted: isInterrupted ?? this.isInterrupted,
-    excludeFromHistory: excludeFromHistory ?? this.excludeFromHistory,
     retryText: retryText,
   );
 
   @override
-  List<Object?> get props => [
-    id,
-    role,
-    text,
-    isStreaming,
-    isInterrupted,
-    excludeFromHistory,
-    retryText,
-  ];
+  List<Object?> get props => [id, role, text, isStreaming, isInterrupted, retryText];
 }
 
 /// What the server streams back.

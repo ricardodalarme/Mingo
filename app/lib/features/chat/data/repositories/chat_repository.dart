@@ -75,8 +75,7 @@ class ChatRepository({
   }) async* {
     final turns = [
       for (final item in history)
-        if (!item.excludeFromHistory && item.text.trim().isNotEmpty)
-          (role: item.role, text: item.text),
+        if (item.text.trim().isNotEmpty) (role: item.role, text: item.text),
     ];
     yield* _dataSource.send(
       message: message,

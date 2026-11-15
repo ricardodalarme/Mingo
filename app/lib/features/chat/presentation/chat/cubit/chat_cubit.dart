@@ -107,10 +107,7 @@ class ChatCubit({
       retryText: message,
     );
     final messages = state.messages;
-    final history = [
-      for (final item in messages)
-        if (!item.excludeFromHistory) item,
-    ];
+    final history = [...messages];
     emit(
       state.copyWith(
         messages: [...messages, userMessage, reply],

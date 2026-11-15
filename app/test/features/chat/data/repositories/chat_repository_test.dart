@@ -60,44 +60,4 @@ void main() {
     expect(status.isEnabled, isTrue);
     expect(status.hasPlus, isTrue);
   });
-
-  test('crisis and excluded turns never reach the model', () async {
-    List<({ChatRole role, String text})>? sentHistory;
-    when(
-      () => dataSource.send(
-        message: any(named: 'message'),
-        history: any(named: 'history'),
-        locale: any(named: 'locale'),
-        mode: any(named: 'mode'),
-        session: any(named: 'session'),
-        accessToken: any(named: 'accessToken'),
-      ),
-    ).thenAnswer((invocation) {
-      sentHistory = invocation.namedArguments[#history] as List<({ChatRole role, String text})>;
-
-      return const Stream.empty();
-    });
-
-    await repository
-        .send(
-          message: 'Oi',
-          history: const [
-            ChatMessage(id: 'u1', role: ChatRole.user, text: 'Uma mensagem normal'),
-            ChatMessage(id: 'm1', role: ChatRole.mascot, text: 'Uma resposta'),
-            ChatMessage(
-              id: 'u2',
-              role: ChatRole.user,
-              text: 'quero morrer',
-              excludeFromHistory: true,
-            ),
-            ChatMessage(id: 'm2', role: ChatRole.mascot, text: ''),
-          ],
-          locale: 'pt-BR',
-          mode: ChatMode.free,
-          session: 'session-1',
-        )
-        .drain<void>();
-
-    expect(sentHistory!.map((turn) => turn.text), ['Uma mensagem normal', 'Uma resposta']);
-  });
 }
