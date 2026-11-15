@@ -81,6 +81,8 @@
 		<false />
 		<key>FirebaseMessagingInstallationIdEnabled</key>
 		<true />
+		<key>ITSAppUsesNonExemptEncryption</key>
+		<false />
 		<key>UIBackgroundModes</key>
 		<array>
 			<string>remote-notification</string>
