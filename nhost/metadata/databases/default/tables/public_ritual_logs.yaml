@@ -36,12 +36,12 @@ configuration:
     update_by_pk: updateRitualLogsByPk
     update_many: updateRitualLogsMany
 object_relationships:
-  - name: ritual
-    using:
-      foreign_key_constraint_on: ritual_id
   - name: author
     using:
       foreign_key_constraint_on: author_id
+  - name: ritual
+    using:
+      foreign_key_constraint_on: ritual_id
 insert_permissions:
   - role: user
     permission:

@@ -51,15 +51,15 @@ configuration:
     update_by_pk: updateLogisticItemsByPk
     update_many: updateLogisticItemsMany
 object_relationships:
+  - name: assignee
+    using:
+      foreign_key_constraint_on: assignee_id
   - name: author
     using:
       foreign_key_constraint_on: author_id
   - name: couple
     using:
       foreign_key_constraint_on: couple_id
-  - name: assignee
-    using:
-      foreign_key_constraint_on: assignee_id
 array_relationships:
   - name: coupleMembers
     using:

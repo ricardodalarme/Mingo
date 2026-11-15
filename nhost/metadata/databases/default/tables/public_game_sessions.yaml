@@ -52,6 +52,13 @@ object_relationships:
     using:
       foreign_key_constraint_on: invited_by
 array_relationships:
+  - name: answers
+    using:
+      foreign_key_constraint_on:
+        column: session_id
+        table:
+          name: game_answers
+          schema: public
   - name: coupleMembers
     using:
       manual_configuration:
@@ -60,13 +67,6 @@ array_relationships:
         insertion_order: null
         remote_table:
           name: couple_members
-          schema: public
-  - name: answers
-    using:
-      foreign_key_constraint_on:
-        column: session_id
-        table:
-          name: game_answers
           schema: public
 insert_permissions:
   - role: user

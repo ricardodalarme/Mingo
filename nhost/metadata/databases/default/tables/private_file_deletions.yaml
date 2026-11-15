@@ -28,12 +28,12 @@ event_triggers:
     definition:
       enable_manual: true
       insert:
-        columns: "*"
+        columns: '*'
     retry_conf:
       interval_sec: 300
       num_retries: 5
       timeout_sec: 30
-    webhook: "{{NHOST_FUNCTIONS_URL}}/events/delete-file"
+    webhook: '{{NHOST_FUNCTIONS_URL}}/events/delete-file'
     headers:
       - name: nhost-webhook-secret
         value_from_env: NHOST_WEBHOOK_SECRET

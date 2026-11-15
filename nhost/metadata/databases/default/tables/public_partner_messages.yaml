@@ -48,15 +48,15 @@ configuration:
     update_by_pk: updatePartnerMessagesByPk
     update_many: updatePartnerMessagesMany
 object_relationships:
-  - name: sender
-    using:
-      foreign_key_constraint_on: sender_id
-  - name: recipient
-    using:
-      foreign_key_constraint_on: recipient_id
   - name: mediaFile
     using:
       foreign_key_constraint_on: media_file_id
+  - name: recipient
+    using:
+      foreign_key_constraint_on: recipient_id
+  - name: sender
+    using:
+      foreign_key_constraint_on: sender_id
 insert_permissions:
   - role: user
     permission:

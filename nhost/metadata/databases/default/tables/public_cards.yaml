@@ -54,16 +54,6 @@ object_relationships:
   - name: author
     using:
       foreign_key_constraint_on: author_id
-  - name: recipient
-    using:
-      foreign_key_constraint_on: recipient_id
-  - name: reaction
-    using:
-      foreign_key_constraint_on:
-        column: card_id
-        table:
-          name: card_reactions
-          schema: public
   - name: open
     using:
       foreign_key_constraint_on:
@@ -71,20 +61,30 @@ object_relationships:
         table:
           name: card_opens
           schema: public
-array_relationships:
-  - name: items
+  - name: reaction
     using:
       foreign_key_constraint_on:
         column: card_id
         table:
-          name: card_items
+          name: card_reactions
           schema: public
+  - name: recipient
+    using:
+      foreign_key_constraint_on: recipient_id
+array_relationships:
   - name: guestLinks
     using:
       foreign_key_constraint_on:
         column: card_id
         table:
           name: guest_links
+          schema: public
+  - name: items
+    using:
+      foreign_key_constraint_on:
+        column: card_id
+        table:
+          name: card_items
           schema: public
 select_permissions:
   - role: user

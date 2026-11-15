@@ -36,12 +36,12 @@ configuration:
     update_by_pk: updateGameAnswersByPk
     update_many: updateGameAnswersMany
 object_relationships:
-  - name: session
-    using:
-      foreign_key_constraint_on: session_id
   - name: author
     using:
       foreign_key_constraint_on: author_id
+  - name: session
+    using:
+      foreign_key_constraint_on: session_id
 insert_permissions:
   - role: user
     permission:

@@ -45,19 +45,22 @@ configuration:
     update_by_pk: updateProfilesByPk
     update_many: updateProfilesMany
 object_relationships:
-  - name: settings
+  - name: avatarFile
     using:
-      foreign_key_constraint_on:
-        column: user_id
-        table:
-          name: user_settings
-          schema: public
+      foreign_key_constraint_on: avatar_file_id
   - name: membership
     using:
       foreign_key_constraint_on:
         column: user_id
         table:
           name: couple_members
+          schema: public
+  - name: settings
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: user_settings
           schema: public
   - name: sharedMood
     using:
@@ -66,9 +69,6 @@ object_relationships:
         table:
           name: shared_moods
           schema: public
-  - name: avatarFile
-    using:
-      foreign_key_constraint_on: avatar_file_id
 select_permissions:
   - role: user
     permission:

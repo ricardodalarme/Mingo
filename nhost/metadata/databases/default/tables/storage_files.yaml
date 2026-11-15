@@ -60,6 +60,13 @@ array_relationships:
         table:
           name: profiles
           schema: public
+  - name: couplePhotos
+    using:
+      foreign_key_constraint_on:
+        column: file_id
+        table:
+          name: couple_photos
+          schema: public
   - name: memories
     using:
       foreign_key_constraint_on:
@@ -73,13 +80,6 @@ array_relationships:
         column: media_file_id
         table:
           name: partner_messages
-          schema: public
-  - name: couplePhotos
-    using:
-      foreign_key_constraint_on:
-        column: file_id
-        table:
-          name: couple_photos
           schema: public
 insert_permissions:
   - role: user
@@ -104,7 +104,7 @@ insert_permissions:
 select_permissions:
   - role: user
     permission:
-      columns: "*"
+      columns: '*'
       filter:
         _or:
           - uploaded_by_user_id:

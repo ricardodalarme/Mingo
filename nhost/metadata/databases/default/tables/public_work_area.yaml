@@ -3,4 +3,7 @@ table:
   schema: public
 is_enum: true
 configuration:
+  column_config: {}
+  custom_column_names: {}
   custom_name: WorkArea
+  custom_root_fields: {}
