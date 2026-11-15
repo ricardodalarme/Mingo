@@ -1,5 +1,3 @@
-import 'package:app/features/mood/data/mappers/mood_enum_mapper.dart';
-import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 
@@ -8,9 +6,6 @@ extension TodayHomeMapper on QueryTodayHome {
   TodayHome? toModel() {
     final state = today;
     if (state == null) return null;
-    final sharedMood = partnerMoodToday;
-    final ownMood = myMood.edges.firstOrNull?.node;
-    final localDate = state.localDate;
 
     return TodayHome(
       isPaired: state.isPaired ?? false,
@@ -21,14 +16,11 @@ extension TodayHomeMapper on QueryTodayHome {
       hasPlus: state.hasPlus ?? false,
       unseenSignals: state.unseenSignals ?? 0,
       partnerName: state.partnerName,
-      localDate: localDate,
+      localDate: state.localDate,
       cardStatus: state.cardStatus,
       togetherSince: state.togetherSince,
       pauseIsMine: state.pauseIsMine ?? false,
       pauseReturnAt: state.pauseReturnAt,
-      myMood: ownMood != null && localDate != null && ownMood.day == localDate
-          ? ownMood.mood.toModel()
-          : null,
       slipDays: [for (final day in state.slipDays ?? const <DateTime?>[]) ?day],
       question: question == null
           ? null
@@ -40,14 +32,6 @@ extension TodayHomeMapper on QueryTodayHome {
       idea: idea == null
           ? null
           : Suggestion(slug: idea!.slug, title: idea!.title, body: idea!.body),
-      partnerMood: localDate != null && sharedMood?.day == localDate
-          ? sharedMood!.toPartnerMood()
-          : null,
     );
   }
-}
-
-extension PartnerMoodMapper on QueryTodayHomepartnerMoodToday {
-  PartnerMood toPartnerMood() =>
-      PartnerMood(day: day, mood: mood?.toModel(), need: need?.toModel());
 }

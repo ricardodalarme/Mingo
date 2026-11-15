@@ -2,6 +2,7 @@ part of 'mood_cubit.dart';
 
 final class const MoodState({
   final Resource<MoodEntry?> entry = const Loading(),
+  final PartnerMood? partnerMood,
   final MoodKind? mood,
   final NeedKind? need,
   final MoodShare share = MoodShare.none,
@@ -14,6 +15,7 @@ final class const MoodState({
 
   MoodState copyWith({
     Resource<MoodEntry?>? entry,
+    PartnerMood? partnerMood,
     MoodKind? mood,
     NeedKind? need,
     MoodShare? share,
@@ -21,10 +23,12 @@ final class const MoodState({
     Resource<void>? saveAction,
     bool clearMood = false,
     bool clearNeed = false,
+    bool clearPartnerMood = false,
     bool clearPartnerName = false,
   }) {
     return MoodState(
       entry: entry ?? this.entry,
+      partnerMood: clearPartnerMood ? null : partnerMood ?? this.partnerMood,
       mood: clearMood ? null : mood ?? this.mood,
       need: clearNeed ? null : need ?? this.need,
       share: share ?? this.share,
@@ -34,5 +38,5 @@ final class const MoodState({
   }
 
   @override
-  List<Object?> get props => [entry, mood, need, share, partnerName, saveAction];
+  List<Object?> get props => [entry, partnerMood, mood, need, share, partnerName, saveAction];
 }

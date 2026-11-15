@@ -2,6 +2,7 @@ import 'package:app/features/mood/data/models/mood_entry.dart';
 import 'package:app/features/mood/data/models/mood_kind.dart';
 import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/data/models/need_kind.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
@@ -13,23 +14,27 @@ class MoodCubit({required final MoodRepository _moodRepository}) extends Cubit<M
   this : super(const MoodState());
 
   /// Reads today's row and starts the form from it; a missing row starts private.
+  ///
+  /// Today's mood cached on the device paints first and stays until the fresh read returns.
   Future<void> load() async {
     if (isClosed) return;
-    if (state.entry is! Success) emit(state.copyWith(entry: const Loading()));
+    if (state.entry is! Success) {
+      final cached = _moodRepository.readCachedTodayMood();
+      if (cached == null) {
+        emit(state.copyWith(entry: const Loading()));
+      } else {
+        emit(_fromEntry(cached));
+      }
+    }
     try {
       final today = await _moodRepository.getTodayMood();
       if (isClosed) return;
-      final entry = today.entry;
       emit(
-        state.copyWith(
-          entry: Success(entry),
+        _fromEntry(today.entry).copyWith(
+          partnerMood: today.partnerMood,
+          clearPartnerMood: today.partnerMood == null,
           partnerName: today.partnerName,
           clearPartnerName: true,
-          mood: entry?.mood,
-          need: entry?.need,
-          share: entry?.share ?? MoodShare.none,
-          clearMood: entry?.mood == null,
-          clearNeed: entry?.need == null,
         ),
       );
     } catch (exception) {
@@ -75,21 +80,20 @@ class MoodCubit({required final MoodRepository _moodRepository}) extends Cubit<M
         share: state.share,
       );
       if (isClosed) return;
-      emit(
-        state.copyWith(
-          entry: Success(entry),
-          mood: entry.mood,
-          need: entry.need,
-          share: entry.share,
-          clearMood: entry.mood == null,
-          clearNeed: entry.need == null,
-          saveAction: const Success(null),
-        ),
-      );
+      emit(_fromEntry(entry).copyWith(saveAction: const Success(null)));
     } catch (exception) {
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }
   }
+
+  MoodState _fromEntry(MoodEntry? entry) => state.copyWith(
+    entry: Success(entry),
+    mood: entry?.mood,
+    need: entry?.need,
+    share: entry?.share ?? MoodShare.none,
+    clearMood: entry?.mood == null,
+    clearNeed: entry?.need == null,
+  );
 }

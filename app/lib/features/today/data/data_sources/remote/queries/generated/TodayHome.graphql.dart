@@ -1,27 +1,16 @@
 // dart format width=100
-import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
-
 import 'dart:async';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryTodayHome {
-  QueryTodayHome({
-    this.today,
-    this.question,
-    this.idea,
-    this.partnerMoodToday,
-    required this.myMood,
-    this.$__typename = 'Query',
-  });
+  QueryTodayHome({this.today, this.question, this.idea, this.$__typename = 'Query'});
 
   factory QueryTodayHome.fromJson(Map<String, dynamic> json) {
     final l$today = json['today'];
     final l$question = json['question'];
     final l$idea = json['idea'];
-    final l$partnerMoodToday = json['partnerMoodToday'];
-    final l$myMood = json['myMood'];
     final l$$__typename = json['__typename'];
     return QueryTodayHome(
       today: l$today == null
@@ -31,10 +20,6 @@ class QueryTodayHome {
           ? null
           : QueryTodayHomequestion.fromJson((l$question as Map<String, dynamic>)),
       idea: l$idea == null ? null : QueryTodayHomeidea.fromJson((l$idea as Map<String, dynamic>)),
-      partnerMoodToday: l$partnerMoodToday == null
-          ? null
-          : QueryTodayHomepartnerMoodToday.fromJson((l$partnerMoodToday as Map<String, dynamic>)),
-      myMood: QueryTodayHomemyMood.fromJson((l$myMood as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -44,10 +29,6 @@ class QueryTodayHome {
   final QueryTodayHomequestion? question;
 
   final QueryTodayHomeidea? idea;
-
-  final QueryTodayHomepartnerMoodToday? partnerMoodToday;
-
-  final QueryTodayHomemyMood myMood;
 
   final String $__typename;
 
@@ -59,10 +40,6 @@ class QueryTodayHome {
     _resultData['question'] = l$question?.toJson();
     final l$idea = idea;
     _resultData['idea'] = l$idea?.toJson();
-    final l$partnerMoodToday = partnerMoodToday;
-    _resultData['partnerMoodToday'] = l$partnerMoodToday?.toJson();
-    final l$myMood = myMood;
-    _resultData['myMood'] = l$myMood.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -73,17 +50,8 @@ class QueryTodayHome {
     final l$today = today;
     final l$question = question;
     final l$idea = idea;
-    final l$partnerMoodToday = partnerMoodToday;
-    final l$myMood = myMood;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$today,
-      l$question,
-      l$idea,
-      l$partnerMoodToday,
-      l$myMood,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$today, l$question, l$idea, l$$__typename]);
   }
 
   @override
@@ -107,16 +75,6 @@ class QueryTodayHome {
     final l$idea = idea;
     final lOther$idea = other.idea;
     if (l$idea != lOther$idea) {
-      return false;
-    }
-    final l$partnerMoodToday = partnerMoodToday;
-    final lOther$partnerMoodToday = other.partnerMoodToday;
-    if (l$partnerMoodToday != lOther$partnerMoodToday) {
-      return false;
-    }
-    final l$myMood = myMood;
-    final lOther$myMood = other.myMood;
-    if (l$myMood != lOther$myMood) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -327,136 +285,6 @@ const documentNodeQueryTodayHome = DocumentNode(
                   arguments: [],
                   directives: [],
                   selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
-            name: NameNode(value: 'partnerMoodToday'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'day'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'mood'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'need'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
-            name: NameNode(value: 'moodsCollection'),
-            alias: NameNode(value: 'myMood'),
-            arguments: [
-              ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '1'),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'orderBy'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'day'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'edges'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'day'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'mood'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -1010,291 +838,6 @@ class QueryTodayHomeidea {
     final l$body = body;
     final lOther$body = other.body;
     if (l$body != lOther$body) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryTodayHomepartnerMoodToday {
-  QueryTodayHomepartnerMoodToday({
-    this.id,
-    this.day,
-    this.mood,
-    this.need,
-    this.$__typename = 'PartnerMood',
-  });
-
-  factory QueryTodayHomepartnerMoodToday.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$day = json['day'];
-    final l$mood = json['mood'];
-    final l$need = json['need'];
-    final l$$__typename = json['__typename'];
-    return QueryTodayHomepartnerMoodToday(
-      id: (l$id as String?),
-      day: l$day == null ? null : DateTime.parse((l$day as String)),
-      mood: l$mood == null ? null : fromJsonEnumMood((l$mood as String)),
-      need: l$need == null ? null : fromJsonEnumMoodNeed((l$need as String)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String? id;
-
-  final DateTime? day;
-
-  final EnumMood? mood;
-
-  final EnumMoodNeed? need;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$day = day;
-    _resultData['day'] = l$day == null
-        ? null
-        : ((v) => v.toIso8601String().substring(0, 10))(l$day);
-    final l$mood = mood;
-    _resultData['mood'] = l$mood == null ? null : toJsonEnumMood(l$mood);
-    final l$need = need;
-    _resultData['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$day = day;
-    final l$mood = mood;
-    final l$need = need;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$day, l$mood, l$need, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryTodayHomepartnerMoodToday || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$day = day;
-    final lOther$day = other.day;
-    if (l$day != lOther$day) {
-      return false;
-    }
-    final l$mood = mood;
-    final lOther$mood = other.mood;
-    if (l$mood != lOther$mood) {
-      return false;
-    }
-    final l$need = need;
-    final lOther$need = other.need;
-    if (l$need != lOther$need) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryTodayHomemyMood {
-  QueryTodayHomemyMood({required this.edges, this.$__typename = 'MoodsConnection'});
-
-  factory QueryTodayHomemyMood.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryTodayHomemyMood(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryTodayHomemyMoodedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryTodayHomemyMoodedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryTodayHomemyMood || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryTodayHomemyMoodedges {
-  QueryTodayHomemyMoodedges({required this.node, this.$__typename = 'MoodsEdge'});
-
-  factory QueryTodayHomemyMoodedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryTodayHomemyMoodedges(
-      node: QueryTodayHomemyMoodedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryTodayHomemyMoodedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryTodayHomemyMoodedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryTodayHomemyMoodedgesnode {
-  QueryTodayHomemyMoodedgesnode({
-    required this.day,
-    required this.mood,
-    this.$__typename = 'Moods',
-  });
-
-  factory QueryTodayHomemyMoodedgesnode.fromJson(Map<String, dynamic> json) {
-    final l$day = json['day'];
-    final l$mood = json['mood'];
-    final l$$__typename = json['__typename'];
-    return QueryTodayHomemyMoodedgesnode(
-      day: DateTime.parse((l$day as String)),
-      mood: fromJsonEnumMood((l$mood as String)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final DateTime day;
-
-  final EnumMood mood;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$day = day;
-    _resultData['day'] = ((v) => v.toIso8601String().substring(0, 10))(l$day);
-    final l$mood = mood;
-    _resultData['mood'] = toJsonEnumMood(l$mood);
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$day = day;
-    final l$mood = mood;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$day, l$mood, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryTodayHomemyMoodedgesnode || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$day = day;
-    final lOther$day = other.day;
-    if (l$day != lOther$day) {
-      return false;
-    }
-    final l$mood = mood;
-    final lOther$mood = other.mood;
-    if (l$mood != lOther$mood) {
       return false;
     }
     final l$$__typename = $__typename;

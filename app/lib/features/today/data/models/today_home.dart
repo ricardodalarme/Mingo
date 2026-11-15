@@ -1,5 +1,3 @@
-import 'package:app/features/mood/data/models/mood_kind.dart';
-import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:equatable/equatable.dart';
 
 /// A piece of editorial content shown on Hoje.
@@ -44,8 +42,6 @@ final class const TodayHome({
   final int unseenSignals = 0,
   final Suggestion? question,
   final Suggestion? idea,
-  final PartnerMood? partnerMood,
-  final MoodKind? myMood,
   final List<DateTime> slipDays = const [],
 }) with Equatable {
   factory fromMap(Map<String, dynamic> map) => TodayHome(
@@ -64,7 +60,6 @@ final class const TodayHome({
     unseenSignals: map['unseenSignals'] as int? ?? 0,
     question: _suggestion(map['question']),
     idea: _suggestion(map['idea']),
-    myMood: MoodKind.values.asNameMap()[map['myMood'] as String?],
     slipDays:
         (map['slipDays'] as List<dynamic>?)
             ?.map((value) => DateTime.parse(value as String))
@@ -112,7 +107,6 @@ final class const TodayHome({
     'unseenSignals': unseenSignals,
     'question': question?.toMap(),
     'idea': idea?.toMap(),
-    'myMood': myMood?.name,
     'slipDays': [for (final day in slipDays) day.toIso8601String()],
   };
 
@@ -138,8 +132,6 @@ final class const TodayHome({
     unseenSignals,
     question,
     idea,
-    partnerMood,
-    myMood,
     slipDays,
   ];
 }

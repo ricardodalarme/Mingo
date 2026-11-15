@@ -1,5 +1,6 @@
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/today/data/repositories/today_repository.dart';
@@ -20,6 +21,7 @@ class SignOutCubit({
   required final PreferencesService _preferencesService,
   required final SecureStorageService _secureStorageService,
   required final TodayRepository _todayRepository,
+  required final MoodRepository _moodRepository,
 }) extends Cubit<SignOutState> {
   this : super(const SignOutState());
 
@@ -30,8 +32,9 @@ class SignOutCubit({
     _appCubit.markExplicitSignOut();
     try {
       await _authenticationRepository.logOut();
-      // The pairing notice belongs to the account that just left; never show it to the next one.
+      // The pairing notice and the cached mood belong to the account that just left.
       await _todayRepository.clearCache();
+      await _moodRepository.clearCache();
       if (removeLocalData) {
         await _remindersRepository.cancelAll();
         await _preferencesService.clear();

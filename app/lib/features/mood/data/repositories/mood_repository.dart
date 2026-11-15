@@ -1,3 +1,4 @@
+import 'package:app/features/mood/data/data_sources/local/mood_local_data_source.dart';
 import 'package:app/features/mood/data/data_sources/remote/mood_data_source.dart';
 import 'package:app/features/mood/data/mappers/mood_enum_mapper.dart';
 import 'package:app/features/mood/data/mappers/mood_record_mapper.dart';
@@ -5,48 +6,75 @@ import 'package:app/features/mood/data/models/mood_entry.dart';
 import 'package:app/features/mood/data/models/mood_kind.dart';
 import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/data/models/need_kind.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
-/// Today's own mood and the partner's name for the share title.
-typedef MoodToday = ({MoodEntry? entry, String? partnerName});
+/// Today's own mood, the partner's shared mood and the partner's name for the share title.
+typedef MoodToday = ({MoodEntry? entry, PartnerMood? partnerMood, String? partnerName});
 
-class MoodRepository({required final MoodDataSource _dataSource}) {
+class MoodRepository({
+  required final MoodDataSource _dataSource,
+  required final MoodLocalDataSource _localDataSource,
+}) {
   final Logger _logger = Logger('MoodRepository');
 
   Future<MoodToday> getTodayMood() => _run("read today's mood", () async {
     final today = await _dataSource.getTodayMood();
+    final entry = today.mood?.toEntry();
+    await _localDataSource.write(entry);
 
-    return (entry: today.mood?.toEntry(), partnerName: today.partnerName);
+    return (
+      entry: entry,
+      partnerMood: today.partnerMood?.toPartnerMood(),
+      partnerName: today.partnerName,
+    );
   });
+
+  /// Today's own mood kept on the device, so a cold start paints before the read returns.
+  MoodEntry? readCachedTodayMood() => _localDataSource.readToday();
 
   /// Updates today's row when it exists and inserts it otherwise, so the latest save wins.
   Future<MoodEntry> saveMood({required MoodKind mood, required MoodShare share, NeedKind? need}) =>
       _run("save today's mood", () async {
-        final today = await _dataSource.getTodayMood();
-        final existing = today.mood;
-        if (existing != null) {
-          return _update(id: existing.id, day: today.day, mood: mood, need: need, share: share);
-        }
+        final saved = await _save(mood: mood, share: share, need: need);
+        await _localDataSource.write(saved);
 
-        try {
-          final record = await _dataSource.insertMood(
-            mood: mood.toRemote(),
-            need: need?.toRemote(),
-            share: share.toRemote(),
-            day: today.day,
-          );
-
-          return record.toEntry();
-        } on LocalizedException catch (exception) {
-          if (!_isUniqueViolation(exception)) rethrow;
-          final raced = await _dataSource.getTodayMood();
-          final row = raced.mood;
-          if (row == null) rethrow;
-
-          return _update(id: row.id, day: raced.day, mood: mood, need: need, share: share);
-        }
+        return saved;
       });
+
+  /// Forgets the cached mood, for sign-out and unpair.
+  Future<void> clearCache() => _localDataSource.clear();
+
+  Future<MoodEntry> _save({
+    required MoodKind mood,
+    required MoodShare share,
+    required NeedKind? need,
+  }) async {
+    final today = await _dataSource.getTodayMood();
+    final existing = today.mood;
+    if (existing != null) {
+      return _update(id: existing.id, day: today.day, mood: mood, need: need, share: share);
+    }
+
+    try {
+      final record = await _dataSource.insertMood(
+        mood: mood.toRemote(),
+        need: need?.toRemote(),
+        share: share.toRemote(),
+        day: today.day,
+      );
+
+      return record.toEntry();
+    } on LocalizedException catch (exception) {
+      if (!_isUniqueViolation(exception)) rethrow;
+      final raced = await _dataSource.getTodayMood();
+      final row = raced.mood;
+      if (row == null) rethrow;
+
+      return _update(id: row.id, day: raced.day, mood: mood, need: need, share: share);
+    }
+  }
 
   Future<MoodEntry> _update({
     required String id,

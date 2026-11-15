@@ -1,3 +1,4 @@
+import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/today/data/repositories/today_repository.dart';
 import 'package:core/core.dart';
@@ -9,6 +10,7 @@ part 'unpair_state.dart';
 class UnpairCubit({
   required final PairingRepository _pairingRepository,
   required final TodayRepository _todayRepository,
+  required final MoodRepository _moodRepository,
 }) extends Cubit<UnpairState> {
   this : super(const UnpairState());
 
@@ -27,11 +29,12 @@ class UnpairCubit({
     emit(state.copyWith(unpairAction: const Loading()));
     try {
       await _pairingRepository.unpair();
-      // The server already ended the couple; forgetting the cache is best effort.
+      // The server already ended the couple; forgetting the caches is best effort.
       try {
         await _todayRepository.clearCache();
+        await _moodRepository.clearCache();
       } on Object {
-        // The cache is replaced by the next read.
+        // The caches are replaced by the next read.
       }
       emit(state.copyWith(unpairAction: const Success(null)));
     } catch (exception) {

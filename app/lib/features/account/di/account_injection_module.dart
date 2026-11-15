@@ -4,6 +4,7 @@ import 'package:app/features/account/presentation/delete/cubit/delete_account_cu
 import 'package:app/features/account/presentation/sign_out/cubit/sign_out_cubit.dart';
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
@@ -39,6 +40,7 @@ class AccountInjectionModule() implements InjectionModule {
         preferencesService: injector.get<PreferencesService>(),
         secureStorageService: injector.get<SecureStorageService>(),
         todayRepository: injector.get<TodayRepository>(),
+        moodRepository: injector.get<MoodRepository>(),
       ),
     );
 }

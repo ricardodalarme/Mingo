@@ -14,4 +14,10 @@ query TodayMood {
       }
     }
   }
+  partnerMoodToday {
+    id
+    day
+    mood
+    need
+  }
 }

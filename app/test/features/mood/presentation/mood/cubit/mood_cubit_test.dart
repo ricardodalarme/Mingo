@@ -4,6 +4,7 @@ import 'package:app/features/mood/data/models/mood_entry.dart';
 import 'package:app/features/mood/data/models/mood_kind.dart';
 import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/data/models/need_kind.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:core/core.dart';
@@ -24,8 +25,9 @@ void main() {
     need: NeedKind.hug,
     share: MoodShare.moodNeed,
   );
-  MoodToday today({MoodEntry? value, String? partnerName = 'Marina'}) =>
-      (entry: value, partnerName: partnerName);
+  final partnerMood = PartnerMood(day: day, mood: MoodKind.stressed, need: NeedKind.space);
+  MoodToday today({MoodEntry? value, PartnerMood? partner, String? partnerName = 'Marina'}) =>
+      (entry: value, partnerMood: partner, partnerName: partnerName);
 
   setUpAll(() {
     registerFallbackValue(MoodKind.happy);
@@ -35,6 +37,7 @@ void main() {
 
   setUp(() {
     repository = _MockMoodRepository();
+    when(() => repository.readCachedTodayMood()).thenReturn(null);
     when(() => repository.getTodayMood()).thenAnswer((_) async => today(value: entry));
     when(
       () => repository.saveMood(
@@ -63,6 +66,61 @@ void main() {
     expect(cubit.state.need, NeedKind.hug);
     expect(cubit.state.share, MoodShare.moodNeed);
     expect(cubit.state.partnerName, 'Marina');
+  });
+
+  test('the partner shared mood reaches the state and clears on the next read', () async {
+    when(() => repository.getTodayMood()).thenAnswer((_) async => today(partner: partnerMood));
+    final cubit = build();
+
+    await cubit.load();
+    expect(cubit.state.partnerMood, partnerMood);
+
+    when(() => repository.getTodayMood()).thenAnswer((_) async => today());
+    await cubit.load();
+
+    expect(cubit.state.partnerMood, isNull);
+  });
+
+  test("today's cached mood paints before the fresh read returns", () async {
+    final pending = Completer<MoodToday>();
+    when(() => repository.readCachedTodayMood()).thenReturn(entry);
+    when(() => repository.getTodayMood()).thenAnswer((_) => pending.future);
+    final cubit = build();
+
+    final load = cubit.load();
+
+    expect(cubit.state.entry, Success<MoodEntry?>(entry));
+    expect(cubit.state.mood, MoodKind.tired);
+    expect(cubit.state.need, NeedKind.hug);
+
+    pending.complete(today(value: null));
+    await load;
+
+    expect(cubit.state.entry, const Success<MoodEntry?>(null));
+    expect(cubit.state.mood, isNull);
+  });
+
+  test('without a cache the read starts as loading', () async {
+    final pending = Completer<MoodToday>();
+    when(() => repository.getTodayMood()).thenAnswer((_) => pending.future);
+    final cubit = build();
+
+    final load = cubit.load();
+
+    expect(cubit.state.entry, isA<Loading>());
+    pending.complete(today());
+    await load;
+  });
+
+  test('a failed read keeps the cached mood instead of showing a failure', () async {
+    when(() => repository.readCachedTodayMood()).thenReturn(entry);
+    when(() => repository.getTodayMood())
+        .thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+    final cubit = build();
+
+    await cubit.load();
+
+    expect(cubit.state.entry, Success<MoodEntry?>(entry));
   });
 
   test('a missing row starts private and shares nothing by default', () async {

@@ -1,15 +1,10 @@
 import 'package:app/features/cards/presentation/shared/widgets/received_card.dart';
 import 'package:app/features/cards/presentation/shared/widgets/week_card.dart';
-import 'package:app/features/mood/data/models/mood_kind.dart';
-import 'package:app/features/mood/presentation/mood/mood_faces.dart';
-import 'package:app/features/mood/presentation/mood/widgets/mood_row.dart';
-import 'package:app/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
 import 'package:app/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:app/features/today/presentation/today/widgets/today_header.dart';
 import 'package:app/features/today/presentation/today/widgets/today_pause.dart';
-import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
@@ -17,7 +12,7 @@ import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// The body of Hoje: banners, the main card, the mood, the week so far and today's idea.
+/// The home-driven body of Hoje: banners, the main card, the week so far and today's idea.
 ///
 /// The main card follows the person's state: the partner's question when connected, a private
 /// prompt when on their own, and a welcome on the first day.
@@ -26,7 +21,6 @@ class const TodayContent({
   final String? selfName,
   final String? partnerHint,
   final bool isFirstDay = false,
-  final bool isDiscreet = false,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -48,12 +42,7 @@ class const TodayContent({
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _HeroSection(home: home, selfName: selfName, isFirstDay: isFirstDay),
-        _PartnerSection(
-          home: home,
-          isFirstDay: isFirstDay,
-          isDiscreet: isDiscreet,
-          partnerHint: partnerHint,
-        ),
+        _MoreCardsSection(home: home, partnerHint: partnerHint),
         if (idea != null) _IdeaSection(idea: idea),
       ],
     );
@@ -153,58 +142,16 @@ class const _HeroSection({
   }
 }
 
-class const _PartnerSection({
-  required final TodayHome home,
-  required final bool isFirstDay,
-  required final bool isDiscreet,
-  required final String? partnerHint,
-}) extends StatelessWidget {
+class const _MoreCardsSection({required final TodayHome home, required final String? partnerHint})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.today;
-    final moodL10n = context.l10n.mood;
     final isAlone = !home.isPaired;
-    const homeMoods = [
-      // Hoje shows the board's five-mood subset; the Mood screen keeps all six.
-      MoodKind.happy,
-      MoodKind.loving,
-      MoodKind.tired,
-      MoodKind.stressed,
-      MoodKind.sad,
-    ];
-    final selectedMood = home.myMood == null ? null : homeMoods.indexOf(home.myMood!);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        if (!isDiscreet && home.isPaired && home.partnerMood?.isVisible == true) ...[
-          const SizedBox(height: AppSpace.s12),
-          PartnerMoodHint(
-            partnerMood: home.partnerMood!,
-            partnerName: home.partnerName,
-            isDiscreet: isDiscreet,
-            onTap: () => context.pushRoute(const BadDayRoute()),
-          ),
-        ],
-        if (!isFirstDay && !home.hasPendingInvite) ...[
-          const SizedBox(height: AppSpace.s24),
-          MoodRow(
-            title: moodL10n.homeTitle,
-            actionLabel: moodL10n.homePrivacy,
-            options: [
-              for (final mood in homeMoods)
-                MoodRowOption(
-                  face: mood.face,
-                  label: moodL10n.homeMoods.selectOrFallback(mood.name),
-                ),
-            ],
-            selectedIndex: selectedMood == null || selectedMood < 0 ? null : selectedMood,
-            onSelected: (index) async {
-              await context.pushRoute(MoodRoute(initialMood: homeMoods[index].name));
-              if (context.mounted) await context.read<TodayCubit>().load();
-            },
-          ),
-        ],
         if (home.slipsThisWeek > 0) ...[
           const SizedBox(height: AppSpace.s12),
           BaseListCard(

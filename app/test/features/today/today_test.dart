@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:app/features/mood/data/models/mood_kind.dart';
-import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
@@ -33,14 +31,7 @@ class _MockRepairRepository() extends Mock implements RepairRepository;
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
 
-QueryTodayHome _query({
-  QueryTodayHometoday? today,
-  QueryTodayHomepartnerMoodToday? partnerMoodToday,
-}) => QueryTodayHome(
-  today: today,
-  partnerMoodToday: partnerMoodToday,
-  myMood: QueryTodayHomemyMood(edges: const []),
-);
+QueryTodayHome _query({QueryTodayHometoday? today}) => QueryTodayHome(today: today);
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -142,28 +133,6 @@ void main() {
       when(() => local.read()).thenReturn(null);
 
       expect(repository.getToday, throwsA(isA<LocalizedException>()));
-    });
-
-    test('offline after a revoked share shows no mood hint', () async {
-      final shared = TodayHome(
-        isPaired: true,
-        unopenedCards: 0,
-        slipsThisWeek: 0,
-        slipsTotal: 0,
-        hasPendingInvite: false,
-        hasPlus: false,
-        partnerName: 'Rui',
-        localDate: DateTime(2026, 11, 10),
-        partnerMood: PartnerMood(day: DateTime(2026, 11, 10), mood: MoodKind.tired),
-      );
-      when(() => remote.getHome())
-          .thenAnswer((_) async => throw const LocalizedException(l10nKey: networkErrorCode));
-      when(() => local.read()).thenReturn(TodayHome.fromMap(shared.toMap()));
-
-      final result = await repository.getToday();
-
-      expect(result.isFromCache, isTrue);
-      expect(result.home.partnerMood, isNull);
     });
 
     test('a server error is not hidden by the cache', () {
@@ -503,36 +472,6 @@ void main() {
       await cubit.load();
 
       expect(cubit.state.home, const Success<TodayHome>(home));
-    });
-
-    test('a share turned off clears the hint on the next load', () async {
-      final shared = TodayHome(
-        isPaired: true,
-        unopenedCards: 0,
-        slipsThisWeek: 0,
-        slipsTotal: 0,
-        hasPendingInvite: false,
-        hasPlus: false,
-        partnerName: 'Rui',
-        localDate: DateTime(2026, 11, 10),
-        partnerMood: PartnerMood(day: DateTime(2026, 11, 10), mood: MoodKind.tired),
-      );
-      when(() => today.getToday()).thenAnswer((_) async => result(value: shared));
-      final cubit = TodayCubit(
-        todayRepository: today,
-        profileRepository: profile,
-        pairingRepository: pairing,
-        repairRepository: repair,
-        slipRepository: slip,
-      );
-
-      await cubit.load();
-      expect((cubit.state.home as Success<TodayHome>).value.partnerMood, isNotNull);
-
-      when(() => today.getToday()).thenAnswer((_) async => result(value: home));
-      await cubit.load();
-
-      expect((cubit.state.home as Success<TodayHome>).value.partnerMood, isNull);
     });
 
     test('an unpair notice shows once with the last partner name', () async {

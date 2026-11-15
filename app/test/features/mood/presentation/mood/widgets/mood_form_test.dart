@@ -27,7 +27,7 @@ void main() {
     final repository = _MockMoodRepository();
     final pending = Completer<MoodEntry>();
     when(repository.getTodayMood).thenAnswer((_) async {
-      return (entry: null, partnerName: 'Marina');
+      return (entry: null, partnerMood: null, partnerName: 'Marina');
     });
     when(
       () => repository.saveMood(
@@ -67,7 +67,8 @@ void main() {
 
   testWidgets('every mood card takes the same width', (tester) async {
     final repository = _MockMoodRepository();
-    when(repository.getTodayMood).thenAnswer((_) async => (entry: null, partnerName: 'Marina'));
+    when(repository.getTodayMood)
+        .thenAnswer((_) async => (entry: null, partnerMood: null, partnerName: 'Marina'));
     final cubit = MoodCubit(moodRepository: repository);
     await cubit.load();
     addTearDown(cubit.close);
