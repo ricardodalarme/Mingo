@@ -25,6 +25,19 @@ test('a file a profile points to is readable by the partner and lost by an ex-pa
   assert.equal(await download(partner.token, file.id), 404, 'the ex-partner loses the file at once');
 });
 
+test('a partner reads the media in a message and a stranger does not', async () => {
+  const session = await signUp('Ana');
+  const partner = await signUp('Bruno');
+  const stranger = await signUp('Carla');
+  const { insertInvitesOne } = await ok(session, `mutation { insertInvitesOne(object: {}) { code } }`);
+  await ok(partner, `mutation ($c: String!) { acceptInvite(args: {code: $c}) { id } }`, { c: insertInvitesOne.code });
+  const file = await upload(session.token, 'messages', [8, 8, 8]);
+  await ok(session, `mutation ($id: uuid!) { insertPartnerMessagesOne(object: {kind: voice, mediaFileId: $id}) { id } }`, { id: file.id });
+  assert.equal(await download(session.token, file.id), 200);
+  assert.equal(await download(partner.token, file.id), 200);
+  assert.equal(await download(stranger.token, file.id), 404);
+});
+
 test('a file column cannot point to a file someone else uploaded', async () => {
   const { a } = await couple();
   const ownerFile = await upload((await signUp()).token, 'avatars');

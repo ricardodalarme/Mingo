@@ -25,6 +25,21 @@ test('nobody else reads or removes a deletion request', async () => {
   assert.deepEqual((await sql(`select user_id from public.deletion_requests where user_id in ('${a.id}', '${b.id}') order by user_id`)).map((r) => r[0]), [a.id, b.id].sort());
 });
 
+test('the person reads the support requests they sent, and nobody else does', async () => {
+  const { a, b } = await couple();
+  const stranger = await person();
+  const message = `ajuda ${randomUUID()}`;
+  await ok(a, `mutation ($m: String!) { insertSupportRequests(objects: [{topic: bug, message: $m}]) { affected_rows } }`, { m: message });
+  const mine = await ok(a, `{ supportRequests { topic message } }`);
+  assert.deepEqual(mine.supportRequests, [{ topic: 'bug', message }]);
+  assert.deepEqual((await ok(b, `{ supportRequests { id } }`)).supportRequests, []);
+  assert.deepEqual((await ok(stranger, `{ supportRequests { id } }`)).supportRequests, []);
+  const own = `ajuda ${randomUUID()}`;
+  await ok(b, `mutation ($m: String!) { insertSupportRequests(objects: [{topic: other, message: $m}]) { affected_rows } }`, { m: own });
+  assert.deepEqual((await ok(b, `{ supportRequests { topic message } }`)).supportRequests, [{ topic: 'other', message: own }]);
+  assert.deepEqual((await ok(a, `{ supportRequests { message } }`)).supportRequests, [{ message }]);
+});
+
 test('cancelling keeps the account and can be undone by asking again', async () => {
   const p = await person();
   await ok(p, `mutation { insertDeletionRequestsOne(object: {}) { userId } }`);
