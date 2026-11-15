@@ -1,0 +1,97 @@
+table:
+  name: signals
+  schema: public
+configuration:
+  column_config:
+    body:
+      custom_name: body
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    kind:
+      custom_name: kind
+    recipient_id:
+      custom_name: recipientId
+    responded_at:
+      custom_name: respondedAt
+    response:
+      custom_name: response
+    seen_at:
+      custom_name: seenAt
+    sender_id:
+      custom_name: senderId
+    value:
+      custom_name: value
+  custom_column_names:
+    body: body
+    created_at: createdAt
+    id: id
+    kind: kind
+    recipient_id: recipientId
+    responded_at: respondedAt
+    response: response
+    seen_at: seenAt
+    sender_id: senderId
+    value: value
+  custom_name: signals
+  custom_root_fields:
+    delete: deleteSignals
+    delete_by_pk: deleteSignalsByPk
+    insert: insertSignals
+    insert_one: insertSignalsOne
+    select: signals
+    select_aggregate: signalsAggregate
+    select_by_pk: signalsByPk
+    select_stream: signalsStream
+    update: updateSignals
+    update_by_pk: updateSignalsByPk
+    update_many: updateSignalsMany
+object_relationships:
+  - name: sender
+    using:
+      foreign_key_constraint_on: sender_id
+  - name: recipient
+    using:
+      foreign_key_constraint_on: recipient_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        sender_id: X-Hasura-User-Id
+      columns:
+        - id
+        - kind
+        - value
+        - body
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - body
+        - created_at
+        - id
+        - kind
+        - recipient_id
+        - responded_at
+        - response
+        - seen_at
+        - sender_id
+        - value
+      filter:
+        _or:
+          - sender_id:
+              _eq: X-Hasura-User-Id
+          - recipient_id:
+              _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - response
+        - seen_at
+      filter:
+        recipient_id:
+          _eq: X-Hasura-User-Id
+      check: null

@@ -1,0 +1,38 @@
+table:
+  name: app_config
+  schema: public
+configuration:
+  column_config:
+    key:
+      custom_name: key
+    value:
+      custom_name: value
+  custom_column_names:
+    key: key
+    value: value
+  custom_name: appConfig
+  custom_root_fields:
+    delete: deleteAppConfig
+    delete_by_pk: deleteAppConfigByPk
+    insert: insertAppConfig
+    insert_one: insertAppConfigOne
+    select: appConfig
+    select_aggregate: appConfigAggregate
+    select_by_pk: appConfigByPk
+    select_stream: appConfigStream
+    update: updateAppConfig
+    update_by_pk: updateAppConfigByPk
+    update_many: updateAppConfigMany
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - key
+        - value
+      filter: {}
+  - role: user
+    permission:
+      columns:
+        - key
+        - value
+      filter: {}

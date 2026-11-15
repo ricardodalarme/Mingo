@@ -1,0 +1,54 @@
+table:
+  name: shared_moods
+  schema: public
+configuration:
+  column_config:
+    day:
+      custom_name: day
+    mood:
+      custom_name: mood
+    need:
+      custom_name: need
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    day: day
+    mood: mood
+    need: need
+    updated_at: updatedAt
+    user_id: userId
+  custom_name: sharedMoods
+  custom_root_fields:
+    delete: deleteSharedMoods
+    delete_by_pk: deleteSharedMoodsByPk
+    insert: insertSharedMoods
+    insert_one: insertSharedMoodsOne
+    select: sharedMoods
+    select_aggregate: sharedMoodsAggregate
+    select_by_pk: sharedMoodsByPk
+    select_stream: sharedMoodsStream
+    update: updateSharedMoods
+    update_by_pk: updateSharedMoodsByPk
+    update_many: updateSharedMoodsMany
+object_relationships:
+  - name: profile
+    using:
+      foreign_key_constraint_on: user_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - day
+        - mood
+        - need
+        - updated_at
+        - user_id
+      filter:
+        profile:
+          membership:
+            couple:
+              members:
+                user_id:
+                  _eq: X-Hasura-User-Id

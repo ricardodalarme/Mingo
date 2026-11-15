@@ -1,0 +1,131 @@
+table:
+  name: today
+  schema: public
+configuration:
+  column_config:
+    card_id:
+      custom_name: cardId
+    couple_id:
+      custom_name: coupleId
+    deletion_pending:
+      custom_name: deletionPending
+    has_pending_invite:
+      custom_name: hasPendingInvite
+    local_date:
+      custom_name: localDate
+    next_date_id:
+      custom_name: nextDateId
+    next_date_on:
+      custom_name: nextDateOn
+    partner_id:
+      custom_name: partnerId
+    partner_name:
+      custom_name: partnerName
+    slip_days:
+      custom_name: slipDays
+    slips_this_week:
+      custom_name: slipsThisWeek
+    slips_total:
+      custom_name: slipsTotal
+    together_since:
+      custom_name: togetherSince
+    unopened_cards:
+      custom_name: unopenedCards
+    unseen_signals:
+      custom_name: unseenSignals
+    user_id:
+      custom_name: userId
+    week_start:
+      custom_name: weekStart
+  custom_column_names:
+    card_id: cardId
+    couple_id: coupleId
+    deletion_pending: deletionPending
+    has_pending_invite: hasPendingInvite
+    local_date: localDate
+    next_date_id: nextDateId
+    next_date_on: nextDateOn
+    partner_id: partnerId
+    partner_name: partnerName
+    slip_days: slipDays
+    slips_this_week: slipsThisWeek
+    slips_total: slipsTotal
+    together_since: togetherSince
+    unopened_cards: unopenedCards
+    unseen_signals: unseenSignals
+    user_id: userId
+    week_start: weekStart
+  custom_name: today
+  custom_root_fields:
+    delete: deleteToday
+    delete_by_pk: deleteTodayByPk
+    insert: insertToday
+    insert_one: insertTodayOne
+    select: today
+    select_aggregate: todayAggregate
+    select_by_pk: todayByPk
+    select_stream: todayStream
+    update: updateToday
+    update_by_pk: updateTodayByPk
+    update_many: updateTodayMany
+object_relationships:
+  - name: card
+    using:
+      manual_configuration:
+        column_mapping:
+          card_id: id
+        insertion_order: null
+        remote_table:
+          name: cards
+          schema: public
+  - name: nextDate
+    using:
+      manual_configuration:
+        column_mapping:
+          next_date_id: id
+        insertion_order: null
+        remote_table:
+          name: important_dates
+          schema: public
+  - name: partner
+    using:
+      manual_configuration:
+        column_mapping:
+          partner_id: id
+        insertion_order: null
+        remote_table:
+          name: profiles
+          schema: public
+  - name: plus
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: user_id
+        insertion_order: null
+        remote_table:
+          name: plus_states
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - card_id
+        - couple_id
+        - deletion_pending
+        - has_pending_invite
+        - local_date
+        - next_date_id
+        - next_date_on
+        - partner_id
+        - partner_name
+        - slip_days
+        - slips_this_week
+        - slips_total
+        - together_since
+        - unopened_cards
+        - unseen_signals
+        - user_id
+        - week_start
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

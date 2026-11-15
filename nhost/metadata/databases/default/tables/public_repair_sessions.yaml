@@ -1,0 +1,105 @@
+table:
+  name: repair_sessions
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    completed_at:
+      custom_name: completedAt
+    created_at:
+      custom_name: createdAt
+    draft:
+      custom_name: draft
+    feeling_after:
+      custom_name: feelingAfter
+    id:
+      custom_name: id
+    intensity:
+      custom_name: intensity
+    path:
+      custom_name: path
+    step:
+      custom_name: step
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    completed_at: completedAt
+    created_at: createdAt
+    draft: draft
+    feeling_after: feelingAfter
+    id: id
+    intensity: intensity
+    path: path
+    step: step
+    updated_at: updatedAt
+  custom_name: repairSessions
+  custom_root_fields:
+    delete: deleteRepairSessions
+    delete_by_pk: deleteRepairSessionsByPk
+    insert: insertRepairSessions
+    insert_one: insertRepairSessionsOne
+    select: repairSessions
+    select_aggregate: repairSessionsAggregate
+    select_by_pk: repairSessionsByPk
+    select_stream: repairSessionsStream
+    update: updateRepairSessions
+    update_by_pk: updateRepairSessionsByPk
+    update_many: updateRepairSessionsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - intensity
+        - path
+        - step
+        - feeling_after
+        - draft
+        - completed_at
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - completed_at
+        - created_at
+        - draft
+        - feeling_after
+        - id
+        - intensity
+        - path
+        - step
+        - updated_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - intensity
+        - path
+        - step
+        - feeling_after
+        - draft
+        - completed_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

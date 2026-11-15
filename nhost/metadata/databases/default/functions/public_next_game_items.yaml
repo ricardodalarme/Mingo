@@ -1,0 +1,11 @@
+function:
+  name: next_game_items
+  schema: public
+configuration:
+  custom_name: nextGameItems
+  custom_root_fields:
+    function: nextGameItems
+    function_aggregate: nextGameItemsAggregate
+  session_argument: session
+permissions:
+  - role: user

@@ -1,0 +1,60 @@
+table:
+  name: consents
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    granted:
+      custom_name: granted
+    id:
+      custom_name: id
+    kind:
+      custom_name: kind
+    user_id:
+      custom_name: userId
+    version:
+      custom_name: version
+  custom_column_names:
+    created_at: createdAt
+    granted: granted
+    id: id
+    kind: kind
+    user_id: userId
+    version: version
+  custom_name: consents
+  custom_root_fields:
+    delete: deleteConsents
+    delete_by_pk: deleteConsentsByPk
+    insert: insertConsents
+    insert_one: insertConsentsOne
+    select: consents
+    select_aggregate: consentsAggregate
+    select_by_pk: consentsByPk
+    select_stream: consentsStream
+    update: updateConsents
+    update_by_pk: updateConsentsByPk
+    update_many: updateConsentsMany
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        user_id: X-Hasura-User-Id
+      columns:
+        - kind
+        - granted
+        - version
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - granted
+        - id
+        - kind
+        - user_id
+        - version
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

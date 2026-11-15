@@ -1,0 +1,31 @@
+table:
+  name: game_seen_items
+  schema: public
+configuration:
+  column_config:
+    couple_id:
+      custom_name: coupleId
+    game:
+      custom_name: game
+    item_slug:
+      custom_name: itemSlug
+    seen_at:
+      custom_name: seenAt
+  custom_column_names:
+    couple_id: coupleId
+    game: game
+    item_slug: itemSlug
+    seen_at: seenAt
+  custom_name: gameSeenItems
+  custom_root_fields:
+    delete: deleteGameSeenItems
+    delete_by_pk: deleteGameSeenItemsByPk
+    insert: insertGameSeenItems
+    insert_one: insertGameSeenItemsOne
+    select: gameSeenItems
+    select_aggregate: gameSeenItemsAggregate
+    select_by_pk: gameSeenItemsByPk
+    select_stream: gameSeenItemsStream
+    update: updateGameSeenItems
+    update_by_pk: updateGameSeenItemsByPk
+    update_many: updateGameSeenItemsMany

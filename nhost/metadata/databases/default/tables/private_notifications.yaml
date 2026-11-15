@@ -1,0 +1,57 @@
+table:
+  name: notifications
+  schema: private
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    dedupe_key:
+      custom_name: dedupeKey
+    id:
+      custom_name: id
+    outcome:
+      custom_name: outcome
+    ref_id:
+      custom_name: refId
+    settled_at:
+      custom_name: settledAt
+    type:
+      custom_name: type
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    created_at: createdAt
+    dedupe_key: dedupeKey
+    id: id
+    outcome: outcome
+    ref_id: refId
+    settled_at: settledAt
+    type: type
+    user_id: userId
+  custom_name: pushNotifications
+  custom_root_fields:
+    delete: deletePushNotifications
+    delete_by_pk: deletePushNotificationsByPk
+    insert: insertPushNotifications
+    insert_one: insertPushNotificationsOne
+    select: pushNotifications
+    select_aggregate: pushNotificationsAggregate
+    select_by_pk: pushNotificationsByPk
+    select_stream: pushNotificationsStream
+    update: updatePushNotifications
+    update_by_pk: updatePushNotificationsByPk
+    update_many: updatePushNotificationsMany
+event_triggers:
+  - name: push_notification
+    definition:
+      enable_manual: true
+      insert:
+        columns: "*"
+    retry_conf:
+      interval_sec: 300
+      num_retries: 5
+      timeout_sec: 30
+    webhook: "{{NHOST_FUNCTIONS_URL}}/events/push"
+    headers:
+      - name: nhost-webhook-secret
+        value_from_env: NHOST_WEBHOOK_SECRET

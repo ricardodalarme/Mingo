@@ -1,0 +1,6 @@
+table:
+  name: app_theme
+  schema: public
+is_enum: true
+configuration:
+  custom_name: AppTheme

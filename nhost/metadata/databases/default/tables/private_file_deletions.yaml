@@ -1,0 +1,39 @@
+table:
+  name: file_deletions
+  schema: private
+configuration:
+  column_config:
+    file_id:
+      custom_name: fileId
+    queued_at:
+      custom_name: queuedAt
+  custom_column_names:
+    file_id: fileId
+    queued_at: queuedAt
+  custom_name: fileDeletions
+  custom_root_fields:
+    delete: deleteFileDeletions
+    delete_by_pk: deleteFileDeletionsByPk
+    insert: insertFileDeletions
+    insert_one: insertFileDeletionsOne
+    select: fileDeletions
+    select_aggregate: fileDeletionsAggregate
+    select_by_pk: fileDeletionsByPk
+    select_stream: fileDeletionsStream
+    update: updateFileDeletions
+    update_by_pk: updateFileDeletionsByPk
+    update_many: updateFileDeletionsMany
+event_triggers:
+  - name: delete_file
+    definition:
+      enable_manual: true
+      insert:
+        columns: "*"
+    retry_conf:
+      interval_sec: 300
+      num_retries: 5
+      timeout_sec: 30
+    webhook: "{{NHOST_FUNCTIONS_URL}}/events/delete-file"
+    headers:
+      - name: nhost-webhook-secret
+        value_from_env: NHOST_WEBHOOK_SECRET

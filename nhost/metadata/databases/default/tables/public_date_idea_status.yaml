@@ -1,0 +1,6 @@
+table:
+  name: date_idea_status
+  schema: public
+is_enum: true
+configuration:
+  custom_name: DateIdeaStatus

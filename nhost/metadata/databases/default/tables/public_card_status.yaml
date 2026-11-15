@@ -1,0 +1,6 @@
+table:
+  name: card_status
+  schema: public
+is_enum: true
+configuration:
+  custom_name: CardStatus

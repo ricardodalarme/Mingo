@@ -1,0 +1,58 @@
+table:
+  name: year_recaps
+  schema: public
+configuration:
+  column_config:
+    cards_received:
+      custom_name: cardsReceived
+    cards_sent:
+      custom_name: cardsSent
+    firsts:
+      custom_name: firsts
+    memories:
+      custom_name: memories
+    rituals_done:
+      custom_name: ritualsDone
+    slips:
+      custom_name: slips
+    user_id:
+      custom_name: userId
+    year:
+      custom_name: year
+  custom_column_names:
+    cards_received: cardsReceived
+    cards_sent: cardsSent
+    firsts: firsts
+    memories: memories
+    rituals_done: ritualsDone
+    slips: slips
+    user_id: userId
+    year: year
+  custom_name: yearRecaps
+  custom_root_fields:
+    delete: deleteYearRecaps
+    delete_by_pk: deleteYearRecapsByPk
+    insert: insertYearRecaps
+    insert_one: insertYearRecapsOne
+    select: yearRecaps
+    select_aggregate: yearRecapsAggregate
+    select_by_pk: yearRecapsByPk
+    select_stream: yearRecapsStream
+    update: updateYearRecaps
+    update_by_pk: updateYearRecapsByPk
+    update_many: updateYearRecapsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - cards_received
+        - cards_sent
+        - firsts
+        - memories
+        - rituals_done
+        - slips
+        - user_id
+        - year
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

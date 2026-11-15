@@ -1,0 +1,96 @@
+table:
+  name: manual_entries
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    key:
+      custom_name: key
+    shared:
+      custom_name: shared
+    updated_at:
+      custom_name: updatedAt
+    value:
+      custom_name: value
+  custom_column_names:
+    author_id: authorId
+    created_at: createdAt
+    id: id
+    key: key
+    shared: shared
+    updated_at: updatedAt
+    value: value
+  custom_name: manualEntries
+  custom_root_fields:
+    delete: deleteManualEntries
+    delete_by_pk: deleteManualEntriesByPk
+    insert: insertManualEntries
+    insert_one: insertManualEntriesOne
+    select: manualEntries
+    select_aggregate: manualEntriesAggregate
+    select_by_pk: manualEntriesByPk
+    select_stream: manualEntriesStream
+    update: updateManualEntries
+    update_by_pk: updateManualEntriesByPk
+    update_many: updateManualEntriesMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - key
+        - value
+        - shared
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - created_at
+        - id
+        - key
+        - shared
+        - updated_at
+        - value
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - _and:
+              - shared:
+                  _eq: true
+              - author:
+                  membership:
+                    couple:
+                      members:
+                        user_id:
+                          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - key
+        - value
+        - shared
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

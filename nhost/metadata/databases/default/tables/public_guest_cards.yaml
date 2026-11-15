@@ -1,0 +1,60 @@
+table:
+  name: guest_cards
+  schema: public
+configuration:
+  column_config:
+    items:
+      custom_name: items
+    link_id:
+      custom_name: linkId
+    note:
+      custom_name: note
+    opened:
+      custom_name: opened
+    reaction:
+      custom_name: reaction
+    reply:
+      custom_name: reply
+    sender_name:
+      custom_name: senderName
+    sent_at:
+      custom_name: sentAt
+    theme:
+      custom_name: theme
+  custom_column_names:
+    items: items
+    link_id: linkId
+    note: note
+    opened: opened
+    reaction: reaction
+    reply: reply
+    sender_name: senderName
+    sent_at: sentAt
+    theme: theme
+  custom_name: guestCards
+  custom_root_fields:
+    delete: deleteGuestCards
+    delete_by_pk: deleteGuestCardsByPk
+    insert: insertGuestCards
+    insert_one: insertGuestCardsOne
+    select: guestCards
+    select_aggregate: guestCardsAggregate
+    select_by_pk: guestCardsByPk
+    select_stream: guestCardsStream
+    update: updateGuestCards
+    update_by_pk: updateGuestCardsByPk
+    update_many: updateGuestCardsMany
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - items
+        - link_id
+        - note
+        - opened
+        - reaction
+        - reply
+        - sender_name
+        - sent_at
+        - theme
+      filter: {}

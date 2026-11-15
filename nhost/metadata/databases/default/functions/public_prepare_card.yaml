@@ -1,0 +1,11 @@
+function:
+  name: prepare_card
+  schema: public
+configuration:
+  custom_name: prepareCard
+  custom_root_fields:
+    function: prepareCard
+    function_aggregate: prepareCardAggregate
+  session_argument: session
+permissions:
+  - role: user

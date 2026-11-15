@@ -1,0 +1,11 @@
+function:
+  name: unpair
+  schema: public
+configuration:
+  custom_name: unpair
+  custom_root_fields:
+    function: unpair
+    function_aggregate: unpairAggregate
+  session_argument: session
+permissions:
+  - role: user

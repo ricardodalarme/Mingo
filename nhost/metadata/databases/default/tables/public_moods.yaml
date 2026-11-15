@@ -1,0 +1,92 @@
+table:
+  name: moods
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    created_at:
+      custom_name: createdAt
+    day:
+      custom_name: day
+    id:
+      custom_name: id
+    mood:
+      custom_name: mood
+    need:
+      custom_name: need
+    share:
+      custom_name: share
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    created_at: createdAt
+    day: day
+    id: id
+    mood: mood
+    need: need
+    share: share
+    updated_at: updatedAt
+  custom_name: moods
+  custom_root_fields:
+    delete: deleteMoods
+    delete_by_pk: deleteMoodsByPk
+    insert: insertMoods
+    insert_one: insertMoodsOne
+    select: moods
+    select_aggregate: moodsAggregate
+    select_by_pk: moodsByPk
+    select_stream: moodsStream
+    update: updateMoods
+    update_by_pk: updateMoodsByPk
+    update_many: updateMoodsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - day
+        - mood
+        - need
+        - share
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - created_at
+        - day
+        - id
+        - mood
+        - need
+        - share
+        - updated_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - mood
+        - need
+        - share
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

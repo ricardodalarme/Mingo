@@ -1,0 +1,11 @@
+function:
+  name: update_game
+  schema: public
+configuration:
+  custom_name: updateGame
+  custom_root_fields:
+    function: updateGame
+    function_aggregate: updateGameAggregate
+  session_argument: session
+permissions:
+  - role: user

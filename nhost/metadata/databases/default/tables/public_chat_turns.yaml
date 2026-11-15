@@ -1,0 +1,37 @@
+table:
+  name: chat_turns
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    created_at: createdAt
+    id: id
+    user_id: userId
+  custom_name: chatTurns
+  custom_root_fields:
+    delete: deleteChatTurns
+    delete_by_pk: deleteChatTurnsByPk
+    insert: insertChatTurns
+    insert_one: insertChatTurnsOne
+    select: chatTurns
+    select_aggregate: chatTurnsAggregate
+    select_by_pk: chatTurnsByPk
+    select_stream: chatTurnsStream
+    update: updateChatTurns
+    update_by_pk: updateChatTurnsByPk
+    update_many: updateChatTurnsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - created_at
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

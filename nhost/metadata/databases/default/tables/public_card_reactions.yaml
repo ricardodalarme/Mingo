@@ -1,0 +1,89 @@
+table:
+  name: card_reactions
+  schema: public
+configuration:
+  column_config:
+    card_id:
+      custom_name: cardId
+    from_guest:
+      custom_name: fromGuest
+    reacted_at:
+      custom_name: reactedAt
+    reaction:
+      custom_name: reaction
+    reply:
+      custom_name: reply
+  custom_column_names:
+    card_id: cardId
+    from_guest: fromGuest
+    reacted_at: reactedAt
+    reaction: reaction
+    reply: reply
+  custom_name: cardReactions
+  custom_root_fields:
+    delete: deleteCardReactions
+    delete_by_pk: deleteCardReactionsByPk
+    insert: insertCardReactions
+    insert_one: insertCardReactionsOne
+    select: cardReactions
+    select_aggregate: cardReactionsAggregate
+    select_by_pk: cardReactionsByPk
+    select_stream: cardReactionsStream
+    update: updateCardReactions
+    update_by_pk: updateCardReactionsByPk
+    update_many: updateCardReactionsMany
+object_relationships:
+  - name: card
+    using:
+      foreign_key_constraint_on: card_id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        card:
+          _and:
+            - recipient_id:
+                _eq: X-Hasura-User-Id
+            - status:
+                _eq: sent
+      set:
+        from_guest: "false"
+      columns:
+        - card_id
+        - reaction
+        - reply
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - card_id
+        - from_guest
+        - reacted_at
+        - reaction
+        - reply
+      filter:
+        card:
+          _or:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - _and:
+                - recipient_id:
+                    _eq: X-Hasura-User-Id
+                - status:
+                    _eq: sent
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - reaction
+        - reply
+      filter:
+        card:
+          _and:
+            - recipient_id:
+                _eq: X-Hasura-User-Id
+            - status:
+                _eq: sent
+      check: null
+      set:
+        from_guest: "false"

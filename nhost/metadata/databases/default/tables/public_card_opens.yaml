@@ -1,0 +1,62 @@
+table:
+  name: card_opens
+  schema: public
+configuration:
+  column_config:
+    card_id:
+      custom_name: cardId
+    opened_at:
+      custom_name: openedAt
+  custom_column_names:
+    card_id: cardId
+    opened_at: openedAt
+  custom_name: cardOpens
+  custom_root_fields:
+    delete: deleteCardOpens
+    delete_by_pk: deleteCardOpensByPk
+    insert: insertCardOpens
+    insert_one: insertCardOpensOne
+    select: cardOpens
+    select_aggregate: cardOpensAggregate
+    select_by_pk: cardOpensByPk
+    select_stream: cardOpensStream
+    update: updateCardOpens
+    update_by_pk: updateCardOpensByPk
+    update_many: updateCardOpensMany
+object_relationships:
+  - name: card
+    using:
+      foreign_key_constraint_on: card_id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        card:
+          _and:
+            - recipient_id:
+                _eq: X-Hasura-User-Id
+            - status:
+                _eq: sent
+      columns:
+        - card_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - card_id
+        - opened_at
+      filter:
+        card:
+          _or:
+            - _and:
+                - recipient_id:
+                    _eq: X-Hasura-User-Id
+                - status:
+                    _eq: sent
+            - _and:
+                - author_id:
+                    _eq: X-Hasura-User-Id
+                - recipient:
+                    settings:
+                      share_read_receipts:
+                        _eq: true

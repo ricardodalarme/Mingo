@@ -1,0 +1,11 @@
+function:
+  name: resolve_shared_items
+  schema: public
+configuration:
+  custom_name: resolveSharedItems
+  custom_root_fields:
+    function: resolveSharedItems
+    function_aggregate: resolveSharedItemsAggregate
+  session_argument: session
+permissions:
+  - role: user

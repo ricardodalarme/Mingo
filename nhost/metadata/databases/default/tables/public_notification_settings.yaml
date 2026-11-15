@@ -1,0 +1,62 @@
+table:
+  name: notification_settings
+  schema: public
+configuration:
+  column_config:
+    card_day:
+      custom_name: cardDay
+    card_hour:
+      custom_name: cardHour
+    daily_max:
+      custom_name: dailyMax
+    enabled:
+      custom_name: enabled
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    card_day: cardDay
+    card_hour: cardHour
+    daily_max: dailyMax
+    enabled: enabled
+    updated_at: updatedAt
+    user_id: userId
+  custom_name: notificationSettings
+  custom_root_fields:
+    delete: deleteNotificationSettings
+    delete_by_pk: deleteNotificationSettingsByPk
+    insert: insertNotificationSettings
+    insert_one: insertNotificationSettingsOne
+    select: notificationSettings
+    select_aggregate: notificationSettingsAggregate
+    select_by_pk: notificationSettingsByPk
+    select_stream: notificationSettingsStream
+    update: updateNotificationSettings
+    update_by_pk: updateNotificationSettingsByPk
+    update_many: updateNotificationSettingsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - card_day
+        - card_hour
+        - daily_max
+        - enabled
+        - updated_at
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - enabled
+        - card_day
+        - card_hour
+        - daily_max
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null

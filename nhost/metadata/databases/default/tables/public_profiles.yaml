@@ -1,0 +1,113 @@
+table:
+  name: profiles
+  schema: public
+configuration:
+  column_config:
+    avatar_file_id:
+      custom_name: avatarFileId
+    avatar_kind:
+      custom_name: avatarKind
+    city:
+      custom_name: city
+    created_at:
+      custom_name: createdAt
+    display_name:
+      custom_name: displayName
+    id:
+      custom_name: id
+    pronouns:
+      custom_name: pronouns
+    time_zone:
+      custom_name: timeZone
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    avatar_file_id: avatarFileId
+    avatar_kind: avatarKind
+    city: city
+    created_at: createdAt
+    display_name: displayName
+    id: id
+    pronouns: pronouns
+    time_zone: timeZone
+    updated_at: updatedAt
+  custom_name: profiles
+  custom_root_fields:
+    delete: deleteProfiles
+    delete_by_pk: deleteProfilesByPk
+    insert: insertProfiles
+    insert_one: insertProfilesOne
+    select: profiles
+    select_aggregate: profilesAggregate
+    select_by_pk: profilesByPk
+    select_stream: profilesStream
+    update: updateProfiles
+    update_by_pk: updateProfilesByPk
+    update_many: updateProfilesMany
+object_relationships:
+  - name: settings
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: user_settings
+          schema: public
+  - name: membership
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: couple_members
+          schema: public
+  - name: sharedMood
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: shared_moods
+          schema: public
+  - name: avatarFile
+    using:
+      foreign_key_constraint_on: avatar_file_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - avatar_file_id
+        - avatar_kind
+        - city
+        - created_at
+        - display_name
+        - id
+        - pronouns
+        - time_zone
+        - updated_at
+      filter:
+        _or:
+          - id:
+              _eq: X-Hasura-User-Id
+          - membership:
+              couple:
+                members:
+                  user_id:
+                    _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - display_name
+        - pronouns
+        - city
+        - avatar_kind
+        - avatar_file_id
+        - time_zone
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check:
+        _or:
+          - avatar_file_id:
+              _is_null: true
+          - avatarFile:
+              uploaded_by_user_id:
+                _eq: X-Hasura-User-Id

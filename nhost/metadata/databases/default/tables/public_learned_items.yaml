@@ -1,0 +1,90 @@
+table:
+  name: learned_items
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    created_at:
+      custom_name: createdAt
+    excerpt:
+      custom_name: excerpt
+    id:
+      custom_name: id
+    status:
+      custom_name: status
+    target:
+      custom_name: target
+    text:
+      custom_name: text
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    created_at: createdAt
+    excerpt: excerpt
+    id: id
+    status: status
+    target: target
+    text: text
+    updated_at: updatedAt
+  custom_name: learnedItems
+  custom_root_fields:
+    delete: deleteLearnedItems
+    delete_by_pk: deleteLearnedItemsByPk
+    insert: insertLearnedItems
+    insert_one: insertLearnedItemsOne
+    select: learnedItems
+    select_aggregate: learnedItemsAggregate
+    select_by_pk: learnedItemsByPk
+    select_stream: learnedItemsStream
+    update: updateLearnedItems
+    update_by_pk: updateLearnedItemsByPk
+    update_many: updateLearnedItemsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - target
+        - text
+        - excerpt
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - created_at
+        - excerpt
+        - id
+        - status
+        - target
+        - text
+        - updated_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - text
+        - status
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

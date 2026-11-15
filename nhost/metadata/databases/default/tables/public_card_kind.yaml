@@ -1,0 +1,6 @@
+table:
+  name: card_kind
+  schema: public
+is_enum: true
+configuration:
+  custom_name: CardKind

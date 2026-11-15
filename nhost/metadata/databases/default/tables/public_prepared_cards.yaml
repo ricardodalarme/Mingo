@@ -1,0 +1,48 @@
+table:
+  name: prepared_cards
+  schema: public
+configuration:
+  column_config:
+    card_id:
+      custom_name: cardId
+    items:
+      custom_name: items
+    kind:
+      custom_name: kind
+    note:
+      custom_name: note
+    status:
+      custom_name: status
+    week_start:
+      custom_name: weekStart
+  custom_column_names:
+    card_id: cardId
+    items: items
+    kind: kind
+    note: note
+    status: status
+    week_start: weekStart
+  custom_name: preparedCards
+  custom_root_fields:
+    delete: deletePreparedCards
+    delete_by_pk: deletePreparedCardsByPk
+    insert: insertPreparedCards
+    insert_one: insertPreparedCardsOne
+    select: preparedCards
+    select_aggregate: preparedCardsAggregate
+    select_by_pk: preparedCardsByPk
+    select_stream: preparedCardsStream
+    update: updatePreparedCards
+    update_by_pk: updatePreparedCardsByPk
+    update_many: updatePreparedCardsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - card_id
+        - items
+        - kind
+        - note
+        - status
+        - week_start
+      filter: {}

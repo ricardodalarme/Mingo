@@ -1,0 +1,38 @@
+table:
+  name: invite_previews
+  schema: public
+configuration:
+  column_config:
+    expires_at:
+      custom_name: expiresAt
+    inviter_name:
+      custom_name: inviterName
+  custom_column_names:
+    expires_at: expiresAt
+    inviter_name: inviterName
+  custom_name: invitePreviews
+  custom_root_fields:
+    delete: deleteInvitePreviews
+    delete_by_pk: deleteInvitePreviewsByPk
+    insert: insertInvitePreviews
+    insert_one: insertInvitePreviewsOne
+    select: invitePreviews
+    select_aggregate: invitePreviewsAggregate
+    select_by_pk: invitePreviewsByPk
+    select_stream: invitePreviewsStream
+    update: updateInvitePreviews
+    update_by_pk: updateInvitePreviewsByPk
+    update_many: updateInvitePreviewsMany
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - expires_at
+        - inviter_name
+      filter: {}
+  - role: user
+    permission:
+      columns:
+        - expires_at
+        - inviter_name
+      filter: {}

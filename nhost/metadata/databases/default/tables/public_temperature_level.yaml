@@ -1,0 +1,6 @@
+table:
+  name: temperature_level
+  schema: public
+is_enum: true
+configuration:
+  custom_name: TemperatureLevel

@@ -1,0 +1,155 @@
+table:
+  name: user_settings
+  schema: public
+configuration:
+  column_config:
+    card_channel:
+      custom_name: cardChannel
+    card_theme:
+      custom_name: cardTheme
+    chat_enabled:
+      custom_name: chatEnabled
+    chat_store_facts:
+      custom_name: chatStoreFacts
+    created_at:
+      custom_name: createdAt
+    goal:
+      custom_name: goal
+    goals:
+      custom_name: goals
+    holiday_countries:
+      custom_name: holidayCountries
+    locale:
+      custom_name: locale
+    low_stimulation:
+      custom_name: lowStimulation
+    onboarded_at:
+      custom_name: onboardedAt
+    partner_name:
+      custom_name: partnerName
+    phase:
+      custom_name: phase
+    relationship_status:
+      custom_name: relationshipStatus
+    share_read_receipts:
+      custom_name: shareReadReceipts
+    slips_default_for_card:
+      custom_name: slipsDefaultForCard
+    spice_enabled:
+      custom_name: spiceEnabled
+    theme:
+      custom_name: theme
+    together_since:
+      custom_name: togetherSince
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
+    widget_allow_partner_notes:
+      custom_name: widgetAllowPartnerNotes
+    widget_on_lock_screen:
+      custom_name: widgetOnLockScreen
+    widget_show_names:
+      custom_name: widgetShowNames
+  custom_column_names:
+    card_channel: cardChannel
+    card_theme: cardTheme
+    chat_enabled: chatEnabled
+    chat_store_facts: chatStoreFacts
+    created_at: createdAt
+    goal: goal
+    goals: goals
+    holiday_countries: holidayCountries
+    locale: locale
+    low_stimulation: lowStimulation
+    onboarded_at: onboardedAt
+    partner_name: partnerName
+    phase: phase
+    relationship_status: relationshipStatus
+    share_read_receipts: shareReadReceipts
+    slips_default_for_card: slipsDefaultForCard
+    spice_enabled: spiceEnabled
+    theme: theme
+    together_since: togetherSince
+    updated_at: updatedAt
+    user_id: userId
+    widget_allow_partner_notes: widgetAllowPartnerNotes
+    widget_on_lock_screen: widgetOnLockScreen
+    widget_show_names: widgetShowNames
+  custom_name: userSettings
+  custom_root_fields:
+    delete: deleteUserSettings
+    delete_by_pk: deleteUserSettingsByPk
+    insert: insertUserSettings
+    insert_one: insertUserSettingsOne
+    select: userSettings
+    select_aggregate: userSettingsAggregate
+    select_by_pk: userSettingsByPk
+    select_stream: userSettingsStream
+    update: updateUserSettings
+    update_by_pk: updateUserSettingsByPk
+    update_many: updateUserSettingsMany
+object_relationships:
+  - name: profile
+    using:
+      foreign_key_constraint_on: user_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - card_channel
+        - card_theme
+        - chat_enabled
+        - chat_store_facts
+        - created_at
+        - goal
+        - goals
+        - holiday_countries
+        - locale
+        - low_stimulation
+        - onboarded_at
+        - partner_name
+        - phase
+        - relationship_status
+        - share_read_receipts
+        - slips_default_for_card
+        - spice_enabled
+        - theme
+        - together_since
+        - updated_at
+        - user_id
+        - widget_allow_partner_notes
+        - widget_on_lock_screen
+        - widget_show_names
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - theme
+        - locale
+        - goal
+        - goals
+        - phase
+        - relationship_status
+        - partner_name
+        - together_since
+        - onboarded_at
+        - share_read_receipts
+        - holiday_countries
+        - card_channel
+        - card_theme
+        - slips_default_for_card
+        - widget_allow_partner_notes
+        - widget_on_lock_screen
+        - widget_show_names
+        - spice_enabled
+        - low_stimulation
+        - chat_enabled
+        - chat_store_facts
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null

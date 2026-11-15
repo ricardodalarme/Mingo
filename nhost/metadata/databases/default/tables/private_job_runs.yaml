@@ -1,0 +1,31 @@
+table:
+  name: job_runs
+  schema: private
+configuration:
+  column_config:
+    affected:
+      custom_name: affected
+    id:
+      custom_name: id
+    job:
+      custom_name: job
+    ran_at:
+      custom_name: ranAt
+  custom_column_names:
+    affected: affected
+    id: id
+    job: job
+    ran_at: ranAt
+  custom_name: jobRuns
+  custom_root_fields:
+    delete: deleteJobRuns
+    delete_by_pk: deleteJobRunsByPk
+    insert: insertJobRuns
+    insert_one: insertJobRunsOne
+    select: jobRuns
+    select_aggregate: jobRunsAggregate
+    select_by_pk: jobRunsByPk
+    select_stream: jobRunsStream
+    update: updateJobRuns
+    update_by_pk: updateJobRunsByPk
+    update_many: updateJobRunsMany

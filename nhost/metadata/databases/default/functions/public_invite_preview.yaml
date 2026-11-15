@@ -1,0 +1,11 @@
+function:
+  name: invite_preview
+  schema: public
+configuration:
+  custom_name: invitePreview
+  custom_root_fields:
+    function: invitePreview
+    function_aggregate: invitePreviewAggregate
+permissions:
+  - role: public
+  - role: user

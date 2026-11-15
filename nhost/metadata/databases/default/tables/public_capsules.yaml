@@ -1,0 +1,105 @@
+table:
+  name: capsules
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    body:
+      custom_name: body
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    opened_at:
+      custom_name: openedAt
+    opens_on:
+      custom_name: opensOn
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    body: body
+    couple_id: coupleId
+    created_at: createdAt
+    id: id
+    opened_at: openedAt
+    opens_on: opensOn
+    updated_at: updatedAt
+  custom_name: capsules
+  custom_root_fields:
+    delete: deleteCapsules
+    delete_by_pk: deleteCapsulesByPk
+    insert: insertCapsules
+    insert_one: insertCapsulesOne
+    select: capsules
+    select_aggregate: capsulesAggregate
+    select_by_pk: capsulesByPk
+    select_stream: capsulesStream
+    update: updateCapsules
+    update_by_pk: updateCapsulesByPk
+    update_many: updateCapsulesMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: couple
+    using:
+      foreign_key_constraint_on: couple_id
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _or:
+          - couple_id:
+              _is_null: true
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - couple_id
+        - body
+        - opens_on
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - body
+        - couple_id
+        - created_at
+        - id
+        - opened_at
+        - opens_on
+        - updated_at
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - _and:
+              - coupleMembers:
+                  user_id:
+                    _eq: X-Hasura-User-Id
+              - opened_at:
+                  _is_null: false
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

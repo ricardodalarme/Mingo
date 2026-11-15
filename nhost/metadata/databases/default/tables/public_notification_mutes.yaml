@@ -1,0 +1,48 @@
+table:
+  name: notification_mutes
+  schema: public
+configuration:
+  column_config:
+    type:
+      custom_name: type
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    type: type
+    user_id: userId
+  custom_name: notificationMutes
+  custom_root_fields:
+    delete: deleteNotificationMutes
+    delete_by_pk: deleteNotificationMutesByPk
+    insert: insertNotificationMutes
+    insert_one: insertNotificationMutesOne
+    select: notificationMutes
+    select_aggregate: notificationMutesAggregate
+    select_by_pk: notificationMutesByPk
+    select_stream: notificationMutesStream
+    update: updateNotificationMutes
+    update_by_pk: updateNotificationMutesByPk
+    update_many: updateNotificationMutesMany
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        user_id: X-Hasura-User-Id
+      columns:
+        - type
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - type
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

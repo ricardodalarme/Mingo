@@ -1,0 +1,143 @@
+table:
+  name: gift_ideas
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    budget:
+      custom_name: budget
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    kind:
+      custom_name: kind
+    note:
+      custom_name: note
+    occasion_date_id:
+      custom_name: occasionDateId
+    status:
+      custom_name: status
+    title:
+      custom_name: title
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    budget: budget
+    couple_id: coupleId
+    created_at: createdAt
+    id: id
+    kind: kind
+    note: note
+    occasion_date_id: occasionDateId
+    status: status
+    title: title
+    updated_at: updatedAt
+  custom_name: giftIdeas
+  custom_root_fields:
+    delete: deleteGiftIdeas
+    delete_by_pk: deleteGiftIdeasByPk
+    insert: insertGiftIdeas
+    insert_one: insertGiftIdeasOne
+    select: giftIdeas
+    select_aggregate: giftIdeasAggregate
+    select_by_pk: giftIdeasByPk
+    select_stream: giftIdeasStream
+    update: updateGiftIdeas
+    update_by_pk: updateGiftIdeasByPk
+    update_many: updateGiftIdeasMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: couple
+    using:
+      foreign_key_constraint_on: couple_id
+  - name: occasion
+    using:
+      foreign_key_constraint_on: occasion_date_id
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _or:
+          - couple_id:
+              _is_null: true
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - couple_id
+        - kind
+        - title
+        - note
+        - occasion_date_id
+        - status
+        - budget
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - budget
+        - couple_id
+        - created_at
+        - id
+        - kind
+        - note
+        - occasion_date_id
+        - status
+        - title
+        - updated_at
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple_id
+        - kind
+        - title
+        - note
+        - occasion_date_id
+        - status
+        - budget
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check:
+        _or:
+          - couple_id:
+              _is_null: true
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

@@ -1,0 +1,6 @@
+table:
+  name: gift_budget
+  schema: public
+is_enum: true
+configuration:
+  custom_name: GiftBudget

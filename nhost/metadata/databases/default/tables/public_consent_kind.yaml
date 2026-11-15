@@ -1,0 +1,6 @@
+table:
+  name: consent_kind
+  schema: public
+is_enum: true
+configuration:
+  custom_name: ConsentKind

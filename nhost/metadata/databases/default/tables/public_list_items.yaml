@@ -1,0 +1,116 @@
+table:
+  name: list_items
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    list_id:
+      custom_name: listId
+    position:
+      custom_name: position
+    status:
+      custom_name: status
+    title:
+      custom_name: title
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    created_at: createdAt
+    id: id
+    list_id: listId
+    position: position
+    status: status
+    title: title
+    updated_at: updatedAt
+  custom_name: listItems
+  custom_root_fields:
+    delete: deleteListItems
+    delete_by_pk: deleteListItemsByPk
+    insert: insertListItems
+    insert_one: insertListItemsOne
+    select: listItems
+    select_aggregate: listItemsAggregate
+    select_by_pk: listItemsByPk
+    select_stream: listItemsStream
+    update: updateListItems
+    update_by_pk: updateListItemsByPk
+    update_many: updateListItemsMany
+object_relationships:
+  - name: list
+    using:
+      foreign_key_constraint_on: list_id
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        list:
+          _or:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - coupleMembers:
+                user_id:
+                  _eq: X-Hasura-User-Id
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - list_id
+        - title
+        - status
+        - position
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - created_at
+        - id
+        - list_id
+        - position
+        - status
+        - title
+        - updated_at
+      filter:
+        list:
+          _or:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - coupleMembers:
+                user_id:
+                  _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - title
+        - status
+        - position
+      filter:
+        list:
+          _or:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - coupleMembers:
+                user_id:
+                  _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        list:
+          _or:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - coupleMembers:
+                user_id:
+                  _eq: X-Hasura-User-Id

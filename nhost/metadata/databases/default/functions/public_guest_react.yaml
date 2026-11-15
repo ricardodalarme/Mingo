@@ -1,0 +1,10 @@
+function:
+  name: guest_react
+  schema: public
+configuration:
+  custom_name: guestReact
+  custom_root_fields:
+    function: guestReact
+    function_aggregate: guestReactAggregate
+permissions:
+  - role: public

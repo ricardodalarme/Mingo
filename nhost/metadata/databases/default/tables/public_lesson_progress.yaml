@@ -1,0 +1,85 @@
+table:
+  name: lesson_progress
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    lesson_day:
+      custom_name: lessonDay
+    program_slug:
+      custom_name: programSlug
+    status:
+      custom_name: status
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    created_at: createdAt
+    id: id
+    lesson_day: lessonDay
+    program_slug: programSlug
+    status: status
+    updated_at: updatedAt
+  custom_name: lessonProgress
+  custom_root_fields:
+    delete: deleteLessonProgress
+    delete_by_pk: deleteLessonProgressByPk
+    insert: insertLessonProgress
+    insert_one: insertLessonProgressOne
+    select: lessonProgress
+    select_aggregate: lessonProgressAggregate
+    select_by_pk: lessonProgressByPk
+    select_stream: lessonProgressStream
+    update: updateLessonProgress
+    update_by_pk: updateLessonProgressByPk
+    update_many: updateLessonProgressMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - program_slug
+        - lesson_day
+        - status
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - created_at
+        - id
+        - lesson_day
+        - program_slug
+        - status
+        - updated_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - status
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

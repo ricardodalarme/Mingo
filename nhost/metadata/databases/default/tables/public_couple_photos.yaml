@@ -1,0 +1,105 @@
+table:
+  name: couple_photos
+  schema: public
+configuration:
+  column_config:
+    couple_id:
+      custom_name: coupleId
+    file_id:
+      custom_name: fileId
+    updated_at:
+      custom_name: updatedAt
+    uploaded_by:
+      custom_name: uploadedBy
+  custom_column_names:
+    couple_id: coupleId
+    file_id: fileId
+    updated_at: updatedAt
+    uploaded_by: uploadedBy
+  custom_name: couplePhotos
+  custom_root_fields:
+    delete: deleteCouplePhotos
+    delete_by_pk: deleteCouplePhotosByPk
+    insert: insertCouplePhotos
+    insert_one: insertCouplePhotosOne
+    select: couplePhotos
+    select_aggregate: couplePhotosAggregate
+    select_by_pk: couplePhotosByPk
+    select_stream: couplePhotosStream
+    update: updateCouplePhotos
+    update_by_pk: updateCouplePhotosByPk
+    update_many: updateCouplePhotosMany
+object_relationships:
+  - name: couple
+    using:
+      foreign_key_constraint_on: couple_id
+  - name: file
+    using:
+      foreign_key_constraint_on: file_id
+  - name: uploader
+    using:
+      foreign_key_constraint_on: uploaded_by
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _and:
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+          - file:
+              uploaded_by_user_id:
+                _eq: X-Hasura-User-Id
+      set:
+        uploaded_by: X-Hasura-User-Id
+      columns:
+        - couple_id
+        - file_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple_id
+        - file_id
+        - updated_at
+        - uploaded_by
+      filter:
+        coupleMembers:
+          user_id:
+            _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - file_id
+      filter:
+        coupleMembers:
+          user_id:
+            _eq: X-Hasura-User-Id
+      check:
+        _and:
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+          - file:
+              uploaded_by_user_id:
+                _eq: X-Hasura-User-Id
+      set:
+        uploaded_by: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        coupleMembers:
+          user_id:
+            _eq: X-Hasura-User-Id

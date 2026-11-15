@@ -1,0 +1,11 @@
+function:
+  name: send_slip
+  schema: public
+configuration:
+  custom_name: sendSlip
+  custom_root_fields:
+    function: sendSlip
+    function_aggregate: sendSlipAggregate
+  session_argument: session
+permissions:
+  - role: user

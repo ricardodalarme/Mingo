@@ -1,0 +1,8 @@
+function:
+  name: complete_notification
+  schema: private
+configuration:
+  custom_name: completeNotification
+  custom_root_fields:
+    function: completeNotification
+    function_aggregate: completeNotificationAggregate

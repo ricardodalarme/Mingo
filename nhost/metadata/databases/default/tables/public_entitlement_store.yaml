@@ -1,0 +1,6 @@
+table:
+  name: entitlement_store
+  schema: public
+is_enum: true
+configuration:
+  custom_name: EntitlementStore

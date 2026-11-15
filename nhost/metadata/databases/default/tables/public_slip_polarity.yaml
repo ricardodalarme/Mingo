@@ -1,0 +1,6 @@
+table:
+  name: slip_polarity
+  schema: public
+is_enum: true
+configuration:
+  custom_name: SlipPolarity

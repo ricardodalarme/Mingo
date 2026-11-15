@@ -1,0 +1,6 @@
+table:
+  name: relationship_goal
+  schema: public
+is_enum: true
+configuration:
+  custom_name: RelationshipGoal

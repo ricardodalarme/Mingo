@@ -1,0 +1,6 @@
+table:
+  name: signal_response
+  schema: public
+is_enum: true
+configuration:
+  custom_name: SignalResponse

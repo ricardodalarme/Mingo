@@ -1,0 +1,51 @@
+table:
+  name: deletion_requests
+  schema: public
+configuration:
+  column_config:
+    purge_after:
+      custom_name: purgeAfter
+    requested_at:
+      custom_name: requestedAt
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    purge_after: purgeAfter
+    requested_at: requestedAt
+    user_id: userId
+  custom_name: deletionRequests
+  custom_root_fields:
+    delete: deleteDeletionRequests
+    delete_by_pk: deleteDeletionRequestsByPk
+    insert: insertDeletionRequests
+    insert_one: insertDeletionRequestsOne
+    select: deletionRequests
+    select_aggregate: deletionRequestsAggregate
+    select_by_pk: deletionRequestsByPk
+    select_stream: deletionRequestsStream
+    update: updateDeletionRequests
+    update_by_pk: updateDeletionRequestsByPk
+    update_many: updateDeletionRequestsMany
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        user_id: X-Hasura-User-Id
+      columns: []
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - purge_after
+        - requested_at
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

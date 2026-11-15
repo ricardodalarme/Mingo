@@ -1,0 +1,28 @@
+table:
+  name: guest_results
+  schema: public
+configuration:
+  column_config:
+    done:
+      custom_name: done
+  custom_column_names:
+    done: done
+  custom_name: guestResults
+  custom_root_fields:
+    delete: deleteGuestResults
+    delete_by_pk: deleteGuestResultsByPk
+    insert: insertGuestResults
+    insert_one: insertGuestResultsOne
+    select: guestResults
+    select_aggregate: guestResultsAggregate
+    select_by_pk: guestResultsByPk
+    select_stream: guestResultsStream
+    update: updateGuestResults
+    update_by_pk: updateGuestResultsByPk
+    update_many: updateGuestResultsMany
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - done
+      filter: {}

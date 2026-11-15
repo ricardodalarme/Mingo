@@ -1,0 +1,84 @@
+table:
+  name: plus_states
+  schema: public
+configuration:
+  column_config:
+    cards_left_this_month:
+      custom_name: cardsLeftThisMonth
+    chat_messages_left_today:
+      custom_name: chatMessagesLeftToday
+    entitlement_user_id:
+      custom_name: entitlementUserId
+    guest_links_left_today:
+      custom_name: guestLinksLeftToday
+    has_plus:
+      custom_name: hasPlus
+    invites_left_today:
+      custom_name: invitesLeftToday
+    paid_by_partner:
+      custom_name: paidByPartner
+    partner_messages_left_today:
+      custom_name: partnerMessagesLeftToday
+    signals_left_today:
+      custom_name: signalsLeftToday
+    slips_left_this_month:
+      custom_name: slipsLeftThisMonth
+    support_requests_left_today:
+      custom_name: supportRequestsLeftToday
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    cards_left_this_month: cardsLeftThisMonth
+    chat_messages_left_today: chatMessagesLeftToday
+    entitlement_user_id: entitlementUserId
+    guest_links_left_today: guestLinksLeftToday
+    has_plus: hasPlus
+    invites_left_today: invitesLeftToday
+    paid_by_partner: paidByPartner
+    partner_messages_left_today: partnerMessagesLeftToday
+    signals_left_today: signalsLeftToday
+    slips_left_this_month: slipsLeftThisMonth
+    support_requests_left_today: supportRequestsLeftToday
+    user_id: userId
+  custom_name: plusStates
+  custom_root_fields:
+    delete: deletePlusStates
+    delete_by_pk: deletePlusStatesByPk
+    insert: insertPlusStates
+    insert_one: insertPlusStatesOne
+    select: plusStates
+    select_aggregate: plusStatesAggregate
+    select_by_pk: plusStatesByPk
+    select_stream: plusStatesStream
+    update: updatePlusStates
+    update_by_pk: updatePlusStatesByPk
+    update_many: updatePlusStatesMany
+object_relationships:
+  - name: entitlement
+    using:
+      manual_configuration:
+        column_mapping:
+          entitlement_user_id: user_id
+        insertion_order: null
+        remote_table:
+          name: entitlements
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - cards_left_this_month
+        - chat_messages_left_today
+        - entitlement_user_id
+        - guest_links_left_today
+        - has_plus
+        - invites_left_today
+        - paid_by_partner
+        - partner_messages_left_today
+        - signals_left_today
+        - slips_left_this_month
+        - support_requests_left_today
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

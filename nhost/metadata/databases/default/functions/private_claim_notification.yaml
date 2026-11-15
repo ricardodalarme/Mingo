@@ -1,0 +1,8 @@
+function:
+  name: claim_notification
+  schema: private
+configuration:
+  custom_name: claimNotification
+  custom_root_fields:
+    function: claimNotification
+    function_aggregate: claimNotificationAggregate

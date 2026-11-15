@@ -1,0 +1,6 @@
+table:
+  name: card_channel
+  schema: public
+is_enum: true
+configuration:
+  custom_name: CardChannel

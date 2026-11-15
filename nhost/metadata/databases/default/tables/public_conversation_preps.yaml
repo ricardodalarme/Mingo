@@ -1,0 +1,93 @@
+table:
+  name: conversation_preps
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    created_at:
+      custom_name: createdAt
+    draft:
+      custom_name: draft
+    guide:
+      custom_name: guide
+    id:
+      custom_name: id
+    notes:
+      custom_name: notes
+    topic:
+      custom_name: topic
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    created_at: createdAt
+    draft: draft
+    guide: guide
+    id: id
+    notes: notes
+    topic: topic
+    updated_at: updatedAt
+  custom_name: conversationPreps
+  custom_root_fields:
+    delete: deleteConversationPreps
+    delete_by_pk: deleteConversationPrepsByPk
+    insert: insertConversationPreps
+    insert_one: insertConversationPrepsOne
+    select: conversationPreps
+    select_aggregate: conversationPrepsAggregate
+    select_by_pk: conversationPrepsByPk
+    select_stream: conversationPrepsStream
+    update: updateConversationPreps
+    update_by_pk: updateConversationPrepsByPk
+    update_many: updateConversationPrepsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - guide
+        - topic
+        - notes
+        - draft
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - created_at
+        - draft
+        - guide
+        - id
+        - notes
+        - topic
+        - updated_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - guide
+        - topic
+        - notes
+        - draft
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

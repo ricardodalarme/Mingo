@@ -1,0 +1,136 @@
+table:
+  name: cards
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    kind:
+      custom_name: kind
+    note:
+      custom_name: note
+    recipient_id:
+      custom_name: recipientId
+    sent_at:
+      custom_name: sentAt
+    status:
+      custom_name: status
+    updated_at:
+      custom_name: updatedAt
+    week_start:
+      custom_name: weekStart
+  custom_column_names:
+    author_id: authorId
+    couple_id: coupleId
+    created_at: createdAt
+    id: id
+    kind: kind
+    note: note
+    recipient_id: recipientId
+    sent_at: sentAt
+    status: status
+    updated_at: updatedAt
+    week_start: weekStart
+  custom_name: cards
+  custom_root_fields:
+    delete: deleteCards
+    delete_by_pk: deleteCardsByPk
+    insert: insertCards
+    insert_one: insertCardsOne
+    select: cards
+    select_aggregate: cardsAggregate
+    select_by_pk: cardsByPk
+    select_stream: cardsStream
+    update: updateCards
+    update_by_pk: updateCardsByPk
+    update_many: updateCardsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: recipient
+    using:
+      foreign_key_constraint_on: recipient_id
+  - name: reaction
+    using:
+      foreign_key_constraint_on:
+        column: card_id
+        table:
+          name: card_reactions
+          schema: public
+  - name: open
+    using:
+      foreign_key_constraint_on:
+        column: card_id
+        table:
+          name: card_opens
+          schema: public
+array_relationships:
+  - name: items
+    using:
+      foreign_key_constraint_on:
+        column: card_id
+        table:
+          name: card_items
+          schema: public
+  - name: guestLinks
+    using:
+      foreign_key_constraint_on:
+        column: card_id
+        table:
+          name: guest_links
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - couple_id
+        - created_at
+        - id
+        - kind
+        - note
+        - recipient_id
+        - sent_at
+        - status
+        - updated_at
+        - week_start
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - _and:
+              - recipient_id:
+                  _eq: X-Hasura-User-Id
+              - status:
+                  _eq: sent
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - note
+        - status
+      filter:
+        _and:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - status:
+              _neq: sent
+      check:
+        status:
+          _in:
+            - draft
+            - held
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

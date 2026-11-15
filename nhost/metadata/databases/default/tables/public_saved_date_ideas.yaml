@@ -1,0 +1,157 @@
+table:
+  name: saved_date_ideas
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    content_slug:
+      custom_name: contentSlug
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    notes:
+      custom_name: notes
+    place_address:
+      custom_name: placeAddress
+    place_name:
+      custom_name: placeName
+    planned_for:
+      custom_name: plannedFor
+    status:
+      custom_name: status
+    title:
+      custom_name: title
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    content_slug: contentSlug
+    couple_id: coupleId
+    created_at: createdAt
+    id: id
+    notes: notes
+    place_address: placeAddress
+    place_name: placeName
+    planned_for: plannedFor
+    status: status
+    title: title
+    updated_at: updatedAt
+  custom_name: savedDateIdeas
+  custom_root_fields:
+    delete: deleteSavedDateIdeas
+    delete_by_pk: deleteSavedDateIdeasByPk
+    insert: insertSavedDateIdeas
+    insert_one: insertSavedDateIdeasOne
+    select: savedDateIdeas
+    select_aggregate: savedDateIdeasAggregate
+    select_by_pk: savedDateIdeasByPk
+    select_stream: savedDateIdeasStream
+    update: updateSavedDateIdeas
+    update_by_pk: updateSavedDateIdeasByPk
+    update_many: updateSavedDateIdeasMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: couple
+    using:
+      foreign_key_constraint_on: couple_id
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _or:
+          - couple_id:
+              _is_null: true
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - couple_id
+        - content_slug
+        - title
+        - notes
+        - status
+        - planned_for
+        - place_name
+        - place_address
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - content_slug
+        - couple_id
+        - created_at
+        - id
+        - notes
+        - place_address
+        - place_name
+        - planned_for
+        - status
+        - title
+        - updated_at
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple_id
+        - content_slug
+        - title
+        - notes
+        - status
+        - planned_for
+        - place_name
+        - place_address
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      check:
+        _or:
+          - _and:
+              - couple_id:
+                  _is_null: true
+              - author_id:
+                  _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id

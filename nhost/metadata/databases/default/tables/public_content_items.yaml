@@ -1,0 +1,113 @@
+table:
+  name: content_items
+  schema: public
+configuration:
+  column_config:
+    body:
+      custom_name: body
+    country:
+      custom_name: country
+    day:
+      custom_name: day
+    id:
+      custom_name: id
+    kind:
+      custom_name: kind
+    locale:
+      custom_name: locale
+    month:
+      custom_name: month
+    parent_slug:
+      custom_name: parentSlug
+    plus_only:
+      custom_name: plusOnly
+    position:
+      custom_name: position
+    published:
+      custom_name: published
+    sensitive:
+      custom_name: sensitive
+    slug:
+      custom_name: slug
+    tags:
+      custom_name: tags
+    title:
+      custom_name: title
+  custom_column_names:
+    body: body
+    country: country
+    day: day
+    id: id
+    kind: kind
+    locale: locale
+    month: month
+    parent_slug: parentSlug
+    plus_only: plusOnly
+    position: position
+    published: published
+    sensitive: sensitive
+    slug: slug
+    tags: tags
+    title: title
+  custom_name: contentItems
+  custom_root_fields:
+    delete: deleteContentItems
+    delete_by_pk: deleteContentItemsByPk
+    insert: insertContentItems
+    insert_one: insertContentItemsOne
+    select: contentItems
+    select_aggregate: contentItemsAggregate
+    select_by_pk: contentItemsByPk
+    select_stream: contentItemsStream
+    update: updateContentItems
+    update_by_pk: updateContentItemsByPk
+    update_many: updateContentItemsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - body
+        - country
+        - day
+        - id
+        - kind
+        - locale
+        - month
+        - parent_slug
+        - plus_only
+        - position
+        - published
+        - sensitive
+        - slug
+        - tags
+        - title
+      filter:
+        _and:
+          - published:
+              _eq: true
+          - _or:
+              - kind:
+                  _neq: spice_card
+              - _and:
+                  - _exists:
+                      _table:
+                        schema: public
+                        name: couple_members
+                      _where:
+                        user_id:
+                          _eq: X-Hasura-User-Id
+                  - _not:
+                      _exists:
+                        _table:
+                          schema: public
+                          name: couple_members
+                        _where:
+                          _and:
+                            - couple:
+                                members:
+                                  user_id:
+                                    _eq: X-Hasura-User-Id
+                            - profile:
+                                settings:
+                                  spice_enabled:
+                                    _eq: false

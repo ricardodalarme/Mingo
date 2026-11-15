@@ -1,0 +1,1183 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+scalar jsonb
+scalar timestamptz
+scalar uuid
+"""
+select columns of table "app_config"
+"""
+enum appConfig_select_column {
+  """
+  column name
+  """
+  key
+  """
+  column name
+  """
+  value
+}
+"""
+ordering argument of a cursor
+"""
+enum cursor_ordering {
+  """
+  ascending ordering of the cursor
+  """
+  ASC
+  """
+  descending ordering of the cursor
+  """
+  DESC
+}
+"""
+select columns of table "guest_cards"
+"""
+enum guestCards_select_column {
+  """
+  column name
+  """
+  items
+  """
+  column name
+  """
+  linkId
+  """
+  column name
+  """
+  note
+  """
+  column name
+  """
+  opened
+  """
+  column name
+  """
+  reaction
+  """
+  column name
+  """
+  reply
+  """
+  column name
+  """
+  senderName
+  """
+  column name
+  """
+  sentAt
+  """
+  column name
+  """
+  theme
+}
+"""
+select columns of table "guest_results"
+"""
+enum guestResults_select_column {
+  """
+  column name
+  """
+  done
+}
+"""
+select columns of table "invite_previews"
+"""
+enum invitePreviews_select_column {
+  """
+  column name
+  """
+  expiresAt
+  """
+  column name
+  """
+  inviterName
+}
+"""
+column ordering options
+"""
+enum order_by {
+  """
+  in ascending order, nulls last
+  """
+  asc
+  """
+  in ascending order, nulls first
+  """
+  asc_nulls_first
+  """
+  in ascending order, nulls last
+  """
+  asc_nulls_last
+  """
+  in descending order, nulls first
+  """
+  desc
+  """
+  in descending order, nulls first
+  """
+  desc_nulls_first
+  """
+  in descending order, nulls last
+  """
+  desc_nulls_last
+}
+"""
+columns and relationships of "app_config"
+"""
+type appConfig {
+  key: String!
+  value: String!
+}
+"""
+columns and relationships of "guest_cards"
+"""
+type guestCards {
+  items(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb!
+  linkId: uuid!
+  note: String
+  opened: Boolean!
+  reaction: String
+  reply: String
+  senderName: String
+  sentAt: timestamptz
+  theme: String
+}
+"""
+columns and relationships of "guest_results"
+"""
+type guestResults {
+  done: Boolean!
+}
+"""
+columns and relationships of "invite_previews"
+"""
+type invitePreviews {
+  expiresAt: timestamptz!
+  inviterName: String
+}
+"""
+mutation root
+"""
+type mutation_root {
+  """
+  execute VOLATILE function "guest_forget" which returns "guest_results"
+  """
+  guestForget(
+    """
+    input parameters for function "guestForget"
+    """
+    args: guestForget_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestResults_bool_exp
+  ): [guestResults!]!
+  """
+  execute VOLATILE function "guest_open" which returns "guest_results"
+  """
+  guestOpen(
+    """
+    input parameters for function "guestOpen"
+    """
+    args: guestOpen_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestResults_bool_exp
+  ): [guestResults!]!
+  """
+  execute VOLATILE function "guest_react" which returns "guest_results"
+  """
+  guestReact(
+    """
+    input parameters for function "guestReact"
+    """
+    args: guestReact_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestResults_bool_exp
+  ): [guestResults!]!
+  """
+  execute VOLATILE function "guest_report" which returns "guest_results"
+  """
+  guestReport(
+    """
+    input parameters for function "guestReport"
+    """
+    args: guestReport_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestResults_bool_exp
+  ): [guestResults!]!
+  """
+  execute VOLATILE function "guest_resume" which returns "guest_results"
+  """
+  guestResume(
+    """
+    input parameters for function "guestResume"
+    """
+    args: guestResume_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestResults_bool_exp
+  ): [guestResults!]!
+  """
+  execute VOLATILE function "guest_stop" which returns "guest_results"
+  """
+  guestStop(
+    """
+    input parameters for function "guestStop"
+    """
+    args: guestStop_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestResults_bool_exp
+  ): [guestResults!]!
+}
+type query_root {
+  """
+  fetch data from the table: "app_config"
+  """
+  appConfig(
+    """
+    distinct select on columns
+    """
+    distinct_on: [appConfig_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [appConfig_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: appConfig_bool_exp
+  ): [appConfig!]!
+  """
+  fetch data from the table: "app_config" using primary key columns
+  """
+  appConfigByPk(key: String!): appConfig
+  """
+  execute function "guest_card" which returns "guest_cards"
+  """
+  guestCard(
+    """
+    input parameters for function "guestCard"
+    """
+    args: guestCard_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestCards_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestCards_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestCards_bool_exp
+  ): [guestCards!]!
+  """
+  fetch data from the table: "guest_cards"
+  """
+  guestCards(
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestCards_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestCards_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestCards_bool_exp
+  ): [guestCards!]!
+  """
+  fetch data from the table: "guest_cards" using primary key columns
+  """
+  guestCardsByPk(linkId: uuid!): guestCards
+  """
+  fetch data from the table: "guest_results"
+  """
+  guestResults(
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestResults_bool_exp
+  ): [guestResults!]!
+  """
+  fetch data from the table: "guest_results" using primary key columns
+  """
+  guestResultsByPk(done: Boolean!): guestResults
+  """
+  execute function "invite_preview" which returns "invite_previews"
+  """
+  invitePreview(
+    """
+    input parameters for function "invitePreview"
+    """
+    args: invitePreview_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [invitePreviews_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invitePreviews_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invitePreviews_bool_exp
+  ): [invitePreviews!]!
+  """
+  fetch data from the table: "invite_previews"
+  """
+  invitePreviews(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invitePreviews_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invitePreviews_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invitePreviews_bool_exp
+  ): [invitePreviews!]!
+  """
+  fetch data from the table: "invite_previews" using primary key columns
+  """
+  invitePreviewsByPk(expiresAt: timestamptz!): invitePreviews
+}
+type subscription_root {
+  """
+  fetch data from the table: "app_config"
+  """
+  appConfig(
+    """
+    distinct select on columns
+    """
+    distinct_on: [appConfig_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [appConfig_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: appConfig_bool_exp
+  ): [appConfig!]!
+  """
+  fetch data from the table: "app_config" using primary key columns
+  """
+  appConfigByPk(key: String!): appConfig
+  """
+  fetch data from the table in a streaming manner: "app_config"
+  """
+  appConfigStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [appConfig_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: appConfig_bool_exp
+  ): [appConfig!]!
+  """
+  execute function "guest_card" which returns "guest_cards"
+  """
+  guestCard(
+    """
+    input parameters for function "guestCard"
+    """
+    args: guestCard_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestCards_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestCards_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestCards_bool_exp
+  ): [guestCards!]!
+  """
+  fetch data from the table: "guest_cards"
+  """
+  guestCards(
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestCards_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestCards_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestCards_bool_exp
+  ): [guestCards!]!
+  """
+  fetch data from the table: "guest_cards" using primary key columns
+  """
+  guestCardsByPk(linkId: uuid!): guestCards
+  """
+  fetch data from the table in a streaming manner: "guest_cards"
+  """
+  guestCardsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [guestCards_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: guestCards_bool_exp
+  ): [guestCards!]!
+  """
+  fetch data from the table: "guest_results"
+  """
+  guestResults(
+    """
+    distinct select on columns
+    """
+    distinct_on: [guestResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [guestResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: guestResults_bool_exp
+  ): [guestResults!]!
+  """
+  fetch data from the table: "guest_results" using primary key columns
+  """
+  guestResultsByPk(done: Boolean!): guestResults
+  """
+  fetch data from the table in a streaming manner: "guest_results"
+  """
+  guestResultsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [guestResults_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: guestResults_bool_exp
+  ): [guestResults!]!
+  """
+  execute function "invite_preview" which returns "invite_previews"
+  """
+  invitePreview(
+    """
+    input parameters for function "invitePreview"
+    """
+    args: invitePreview_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [invitePreviews_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invitePreviews_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invitePreviews_bool_exp
+  ): [invitePreviews!]!
+  """
+  fetch data from the table: "invite_previews"
+  """
+  invitePreviews(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invitePreviews_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invitePreviews_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invitePreviews_bool_exp
+  ): [invitePreviews!]!
+  """
+  fetch data from the table: "invite_previews" using primary key columns
+  """
+  invitePreviewsByPk(expiresAt: timestamptz!): invitePreviews
+  """
+  fetch data from the table in a streaming manner: "invite_previews"
+  """
+  invitePreviewsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [invitePreviews_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: invitePreviews_bool_exp
+  ): [invitePreviews!]!
+}
+"""
+Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
+"""
+input Boolean_comparison_exp {
+  _eq: Boolean
+  _gt: Boolean
+  _gte: Boolean
+  _in: [Boolean!]
+  _is_null: Boolean
+  _lt: Boolean
+  _lte: Boolean
+  _neq: Boolean
+  _nin: [Boolean!]
+}
+"""
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  """
+  does the column match the given case-insensitive pattern
+  """
+  _ilike: String
+  _in: [String!]
+  """
+  does the column match the given POSIX regular expression, case insensitive
+  """
+  _iregex: String
+  _is_null: Boolean
+  """
+  does the column match the given pattern
+  """
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  """
+  does the column NOT match the given case-insensitive pattern
+  """
+  _nilike: String
+  _nin: [String!]
+  """
+  does the column NOT match the given POSIX regular expression, case insensitive
+  """
+  _niregex: String
+  """
+  does the column NOT match the given pattern
+  """
+  _nlike: String
+  """
+  does the column NOT match the given POSIX regular expression, case sensitive
+  """
+  _nregex: String
+  """
+  does the column NOT match the given SQL regular expression
+  """
+  _nsimilar: String
+  """
+  does the column match the given POSIX regular expression, case sensitive
+  """
+  _regex: String
+  """
+  does the column match the given SQL regular expression
+  """
+  _similar: String
+}
+"""
+Boolean expression to filter rows from the table "app_config". All fields are combined with a logical 'AND'.
+"""
+input appConfig_bool_exp {
+  _and: [appConfig_bool_exp!]
+  _not: appConfig_bool_exp
+  _or: [appConfig_bool_exp!]
+  key: String_comparison_exp
+  value: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "app_config".
+"""
+input appConfig_order_by {
+  key: order_by
+  value: order_by
+}
+"""
+Streaming cursor of the table "appConfig"
+"""
+input appConfig_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: appConfig_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input appConfig_stream_cursor_value_input {
+  key: String
+  value: String
+}
+input guestCard_args {
+  token: String
+}
+"""
+Boolean expression to filter rows from the table "guest_cards". All fields are combined with a logical 'AND'.
+"""
+input guestCards_bool_exp {
+  _and: [guestCards_bool_exp!]
+  _not: guestCards_bool_exp
+  _or: [guestCards_bool_exp!]
+  items: jsonb_comparison_exp
+  linkId: uuid_comparison_exp
+  note: String_comparison_exp
+  opened: Boolean_comparison_exp
+  reaction: String_comparison_exp
+  reply: String_comparison_exp
+  senderName: String_comparison_exp
+  sentAt: timestamptz_comparison_exp
+  theme: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "guest_cards".
+"""
+input guestCards_order_by {
+  items: order_by
+  linkId: order_by
+  note: order_by
+  opened: order_by
+  reaction: order_by
+  reply: order_by
+  senderName: order_by
+  sentAt: order_by
+  theme: order_by
+}
+"""
+Streaming cursor of the table "guestCards"
+"""
+input guestCards_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: guestCards_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input guestCards_stream_cursor_value_input {
+  items: jsonb
+  linkId: uuid
+  note: String
+  opened: Boolean
+  reaction: String
+  reply: String
+  senderName: String
+  sentAt: timestamptz
+  theme: String
+}
+input guestForget_args {
+  token: String
+}
+input guestOpen_args {
+  token: String
+}
+input guestReact_args {
+  reaction: String
+  reply: String
+  token: String
+}
+input guestReport_args {
+  details: String
+  includeCard: Boolean
+  reason: String
+  token: String
+}
+"""
+Boolean expression to filter rows from the table "guest_results". All fields are combined with a logical 'AND'.
+"""
+input guestResults_bool_exp {
+  _and: [guestResults_bool_exp!]
+  _not: guestResults_bool_exp
+  _or: [guestResults_bool_exp!]
+  done: Boolean_comparison_exp
+}
+"""
+Ordering options when selecting data from "guest_results".
+"""
+input guestResults_order_by {
+  done: order_by
+}
+"""
+Streaming cursor of the table "guestResults"
+"""
+input guestResults_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: guestResults_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input guestResults_stream_cursor_value_input {
+  done: Boolean
+}
+input guestResume_args {
+  token: String
+}
+input guestStop_args {
+  token: String
+}
+input invitePreview_args {
+  code: String
+}
+"""
+Boolean expression to filter rows from the table "invite_previews". All fields are combined with a logical 'AND'.
+"""
+input invitePreviews_bool_exp {
+  _and: [invitePreviews_bool_exp!]
+  _not: invitePreviews_bool_exp
+  _or: [invitePreviews_bool_exp!]
+  expiresAt: timestamptz_comparison_exp
+  inviterName: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "invite_previews".
+"""
+input invitePreviews_order_by {
+  expiresAt: order_by
+  inviterName: order_by
+}
+"""
+Streaming cursor of the table "invitePreviews"
+"""
+input invitePreviews_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: invitePreviews_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input invitePreviews_stream_cursor_value_input {
+  expiresAt: timestamptz
+  inviterName: String
+}
+input jsonb_cast_exp {
+  String: String_comparison_exp
+}
+"""
+Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'.
+"""
+input jsonb_comparison_exp {
+  _cast: jsonb_cast_exp
+  """
+  is the column contained in the given json value
+  """
+  _contained_in: jsonb
+  """
+  does the column contain the given json value at the top level
+  """
+  _contains: jsonb
+  _eq: jsonb
+  _gt: jsonb
+  _gte: jsonb
+  """
+  does the string exist as a top-level key in the column
+  """
+  _has_key: String
+  """
+  do all of these strings exist as top-level keys in the column
+  """
+  _has_keys_all: [String!]
+  """
+  do any of these strings exist as top-level keys in the column
+  """
+  _has_keys_any: [String!]
+  _in: [jsonb!]
+  _is_null: Boolean
+  _lt: jsonb
+  _lte: jsonb
+  _neq: jsonb
+  _nin: [jsonb!]
+}
+"""
+Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'.
+"""
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+"""
+Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.
+"""
+input uuid_comparison_exp {
+  _eq: uuid
+  _gt: uuid
+  _gte: uuid
+  _in: [uuid!]
+  _is_null: Boolean
+  _lt: uuid
+  _lte: uuid
+  _neq: uuid
+  _nin: [uuid!]
+}

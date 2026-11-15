@@ -1,0 +1,8 @@
+function:
+  name: run_job
+  schema: private
+configuration:
+  custom_name: runJob
+  custom_root_fields:
+    function: runJob
+    function_aggregate: runJobAggregate

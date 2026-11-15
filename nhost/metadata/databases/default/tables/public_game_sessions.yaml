@@ -1,0 +1,98 @@
+table:
+  name: game_sessions
+  schema: public
+configuration:
+  column_config:
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    finished_at:
+      custom_name: finishedAt
+    game:
+      custom_name: game
+    id:
+      custom_name: id
+    invited_by:
+      custom_name: invitedBy
+    item_slugs:
+      custom_name: itemSlugs
+    open_key:
+      custom_name: openKey
+    outcome:
+      custom_name: outcome
+    status:
+      custom_name: status
+  custom_column_names:
+    couple_id: coupleId
+    created_at: createdAt
+    finished_at: finishedAt
+    game: game
+    id: id
+    invited_by: invitedBy
+    item_slugs: itemSlugs
+    open_key: openKey
+    outcome: outcome
+    status: status
+  custom_name: gameSessions
+  custom_root_fields:
+    delete: deleteGameSessions
+    delete_by_pk: deleteGameSessionsByPk
+    insert: insertGameSessions
+    insert_one: insertGameSessionsOne
+    select: gameSessions
+    select_aggregate: gameSessionsAggregate
+    select_by_pk: gameSessionsByPk
+    select_stream: gameSessionsStream
+    update: updateGameSessions
+    update_by_pk: updateGameSessionsByPk
+    update_many: updateGameSessionsMany
+object_relationships:
+  - name: inviter
+    using:
+      foreign_key_constraint_on: invited_by
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+  - name: answers
+    using:
+      foreign_key_constraint_on:
+        column: session_id
+        table:
+          name: game_answers
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        invited_by: X-Hasura-User-Id
+      columns:
+        - id
+        - game
+        - item_slugs
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple_id
+        - created_at
+        - finished_at
+        - game
+        - id
+        - invited_by
+        - item_slugs
+        - open_key
+        - outcome
+        - status
+      filter:
+        coupleMembers:
+          user_id:
+            _eq: X-Hasura-User-Id

@@ -1,0 +1,10 @@
+function:
+  name: guest_open
+  schema: public
+configuration:
+  custom_name: guestOpen
+  custom_root_fields:
+    function: guestOpen
+    function_aggregate: guestOpenAggregate
+permissions:
+  - role: public

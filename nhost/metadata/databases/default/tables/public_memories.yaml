@@ -1,0 +1,167 @@
+table:
+  name: memories
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    body:
+      custom_name: body
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    date_precision:
+      custom_name: datePrecision
+    happened_on:
+      custom_name: happenedOn
+    id:
+      custom_name: id
+    origin:
+      custom_name: origin
+    photo_file_id:
+      custom_name: photoFileId
+    place:
+      custom_name: place
+    source_id:
+      custom_name: sourceId
+    title:
+      custom_name: title
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    body: body
+    couple_id: coupleId
+    created_at: createdAt
+    date_precision: datePrecision
+    happened_on: happenedOn
+    id: id
+    origin: origin
+    photo_file_id: photoFileId
+    place: place
+    source_id: sourceId
+    title: title
+    updated_at: updatedAt
+  custom_name: memories
+  custom_root_fields:
+    delete: deleteMemories
+    delete_by_pk: deleteMemoriesByPk
+    insert: insertMemories
+    insert_one: insertMemoriesOne
+    select: memories
+    select_aggregate: memoriesAggregate
+    select_by_pk: memoriesByPk
+    select_stream: memoriesStream
+    update: updateMemories
+    update_by_pk: updateMemoriesByPk
+    update_many: updateMemoriesMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: couple
+    using:
+      foreign_key_constraint_on: couple_id
+  - name: photoFile
+    using:
+      foreign_key_constraint_on: photo_file_id
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _and:
+          - _or:
+              - couple_id:
+                  _is_null: true
+              - coupleMembers:
+                  user_id:
+                    _eq: X-Hasura-User-Id
+          - _or:
+              - photo_file_id:
+                  _is_null: true
+              - photoFile:
+                  uploaded_by_user_id:
+                    _eq: X-Hasura-User-Id
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - couple_id
+        - title
+        - body
+        - happened_on
+        - date_precision
+        - place
+        - photo_file_id
+        - origin
+        - source_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - body
+        - couple_id
+        - created_at
+        - date_precision
+        - happened_on
+        - id
+        - origin
+        - photo_file_id
+        - place
+        - source_id
+        - title
+        - updated_at
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple_id
+        - title
+        - body
+        - happened_on
+        - date_precision
+        - place
+        - photo_file_id
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check:
+        _and:
+          - _or:
+              - couple_id:
+                  _is_null: true
+              - coupleMembers:
+                  user_id:
+                    _eq: X-Hasura-User-Id
+          - _or:
+              - photo_file_id:
+                  _is_null: true
+              - photoFile:
+                  uploaded_by_user_id:
+                    _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

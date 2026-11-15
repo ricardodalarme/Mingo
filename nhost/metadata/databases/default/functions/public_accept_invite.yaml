@@ -1,0 +1,11 @@
+function:
+  name: accept_invite
+  schema: public
+configuration:
+  custom_name: acceptInvite
+  custom_root_fields:
+    function: acceptInvite
+    function_aggregate: acceptInviteAggregate
+  session_argument: session
+permissions:
+  - role: user

@@ -1,0 +1,11 @@
+function:
+  name: send_card
+  schema: public
+configuration:
+  custom_name: sendCard
+  custom_root_fields:
+    function: sendCard
+    function_aggregate: sendCardAggregate
+  session_argument: session
+permissions:
+  - role: user

@@ -1,0 +1,6 @@
+table:
+  name: mood_need
+  schema: public
+is_enum: true
+configuration:
+  custom_name: MoodNeed

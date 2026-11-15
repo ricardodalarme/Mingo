@@ -1,0 +1,6 @@
+table:
+  name: memory_origin
+  schema: public
+is_enum: true
+configuration:
+  custom_name: MemoryOrigin

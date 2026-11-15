@@ -1,0 +1,51 @@
+table:
+  name: couple_members
+  schema: public
+configuration:
+  column_config:
+    couple_id:
+      custom_name: coupleId
+    joined_at:
+      custom_name: joinedAt
+    role:
+      custom_name: role
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    couple_id: coupleId
+    joined_at: joinedAt
+    role: role
+    user_id: userId
+  custom_name: coupleMembers
+  custom_root_fields:
+    delete: deleteCoupleMembers
+    delete_by_pk: deleteCoupleMembersByPk
+    insert: insertCoupleMembers
+    insert_one: insertCoupleMembersOne
+    select: coupleMembers
+    select_aggregate: coupleMembersAggregate
+    select_by_pk: coupleMembersByPk
+    select_stream: coupleMembersStream
+    update: updateCoupleMembers
+    update_by_pk: updateCoupleMembersByPk
+    update_many: updateCoupleMembersMany
+object_relationships:
+  - name: couple
+    using:
+      foreign_key_constraint_on: couple_id
+  - name: profile
+    using:
+      foreign_key_constraint_on: user_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple_id
+        - joined_at
+        - role
+        - user_id
+      filter:
+        couple:
+          members:
+            user_id:
+              _eq: X-Hasura-User-Id

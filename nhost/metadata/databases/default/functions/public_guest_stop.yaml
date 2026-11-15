@@ -1,0 +1,10 @@
+function:
+  name: guest_stop
+  schema: public
+configuration:
+  custom_name: guestStop
+  custom_root_fields:
+    function: guestStop
+    function_aggregate: guestStopAggregate
+permissions:
+  - role: public

@@ -1,0 +1,10 @@
+function:
+  name: guest_resume
+  schema: public
+configuration:
+  custom_name: guestResume
+  custom_root_fields:
+    function: guestResume
+    function_aggregate: guestResumeAggregate
+permissions:
+  - role: public

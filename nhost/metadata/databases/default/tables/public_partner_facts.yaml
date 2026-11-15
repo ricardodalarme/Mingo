@@ -1,0 +1,93 @@
+table:
+  name: partner_facts
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    category:
+      custom_name: category
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    label:
+      custom_name: label
+    source:
+      custom_name: source
+    updated_at:
+      custom_name: updatedAt
+    value:
+      custom_name: value
+  custom_column_names:
+    author_id: authorId
+    category: category
+    created_at: createdAt
+    id: id
+    label: label
+    source: source
+    updated_at: updatedAt
+    value: value
+  custom_name: partnerFacts
+  custom_root_fields:
+    delete: deletePartnerFacts
+    delete_by_pk: deletePartnerFactsByPk
+    insert: insertPartnerFacts
+    insert_one: insertPartnerFactsOne
+    select: partnerFacts
+    select_aggregate: partnerFactsAggregate
+    select_by_pk: partnerFactsByPk
+    select_stream: partnerFactsStream
+    update: updatePartnerFacts
+    update_by_pk: updatePartnerFactsByPk
+    update_many: updatePartnerFactsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - label
+        - value
+        - category
+        - source
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - category
+        - created_at
+        - id
+        - label
+        - source
+        - updated_at
+        - value
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - label
+        - value
+        - category
+        - source
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

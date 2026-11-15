@@ -1,0 +1,11 @@
+function:
+  name: take_chat_turn
+  schema: public
+configuration:
+  custom_name: takeChatTurn
+  custom_root_fields:
+    function: takeChatTurn
+    function_aggregate: takeChatTurnAggregate
+  session_argument: session
+permissions:
+  - role: user

@@ -1,0 +1,175 @@
+table:
+  name: important_dates
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    day:
+      custom_name: day
+    hidden:
+      custom_name: hidden
+    holiday_key:
+      custom_name: holidayKey
+    id:
+      custom_name: id
+    kind:
+      custom_name: kind
+    month:
+      custom_name: month
+    origin:
+      custom_name: origin
+    remind_days:
+      custom_name: remindDays
+    title:
+      custom_name: title
+    updated_at:
+      custom_name: updatedAt
+    year:
+      custom_name: year
+    yearly:
+      custom_name: yearly
+  custom_column_names:
+    author_id: authorId
+    couple_id: coupleId
+    created_at: createdAt
+    day: day
+    hidden: hidden
+    holiday_key: holidayKey
+    id: id
+    kind: kind
+    month: month
+    origin: origin
+    remind_days: remindDays
+    title: title
+    updated_at: updatedAt
+    year: year
+    yearly: yearly
+  custom_name: importantDates
+  custom_root_fields:
+    delete: deleteImportantDates
+    delete_by_pk: deleteImportantDatesByPk
+    insert: insertImportantDates
+    insert_one: insertImportantDatesOne
+    select: importantDates
+    select_aggregate: importantDatesAggregate
+    select_by_pk: importantDatesByPk
+    select_stream: importantDatesStream
+    update: updateImportantDates
+    update_by_pk: updateImportantDatesByPk
+    update_many: updateImportantDatesMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: couple
+    using:
+      foreign_key_constraint_on: couple_id
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _or:
+          - couple_id:
+              _is_null: true
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - couple_id
+        - title
+        - kind
+        - month
+        - day
+        - year
+        - yearly
+        - remind_days
+        - hidden
+        - origin
+        - holiday_key
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - couple_id
+        - created_at
+        - day
+        - hidden
+        - holiday_key
+        - id
+        - kind
+        - month
+        - origin
+        - remind_days
+        - title
+        - updated_at
+        - year
+        - yearly
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple_id
+        - title
+        - kind
+        - month
+        - day
+        - year
+        - yearly
+        - remind_days
+        - hidden
+        - origin
+        - holiday_key
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      check:
+        _or:
+          - _and:
+              - couple_id:
+                  _is_null: true
+              - author_id:
+                  _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id

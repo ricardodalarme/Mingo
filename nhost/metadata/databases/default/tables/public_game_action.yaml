@@ -1,0 +1,6 @@
+table:
+  name: game_action
+  schema: public
+is_enum: true
+configuration:
+  custom_name: GameAction

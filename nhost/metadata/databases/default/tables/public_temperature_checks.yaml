@@ -1,0 +1,81 @@
+table:
+  name: temperature_checks
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    level:
+      custom_name: level
+    note:
+      custom_name: note
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    created_at: createdAt
+    id: id
+    level: level
+    note: note
+    updated_at: updatedAt
+  custom_name: temperatureChecks
+  custom_root_fields:
+    delete: deleteTemperatureChecks
+    delete_by_pk: deleteTemperatureChecksByPk
+    insert: insertTemperatureChecks
+    insert_one: insertTemperatureChecksOne
+    select: temperatureChecks
+    select_aggregate: temperatureChecksAggregate
+    select_by_pk: temperatureChecksByPk
+    select_stream: temperatureChecksStream
+    update: updateTemperatureChecks
+    update_by_pk: updateTemperatureChecksByPk
+    update_many: updateTemperatureChecksMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - level
+        - note
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - created_at
+        - id
+        - level
+        - note
+        - updated_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - level
+        - note
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

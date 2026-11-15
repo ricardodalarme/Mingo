@@ -1,0 +1,6 @@
+table:
+  name: date_precision
+  schema: public
+is_enum: true
+configuration:
+  custom_name: DatePrecision

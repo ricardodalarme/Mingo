@@ -1,0 +1,137 @@
+table:
+  name: checkins
+  schema: public
+configuration:
+  column_config:
+    answer_1:
+      custom_name: answer1
+    answer_2:
+      custom_name: answer2
+    answer_3:
+      custom_name: answer3
+    answer_4:
+      custom_name: answer4
+    author_id:
+      custom_name: authorId
+    completed:
+      custom_name: completed
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    updated_at:
+      custom_name: updatedAt
+    week_start:
+      custom_name: weekStart
+  custom_column_names:
+    answer_1: answer1
+    answer_2: answer2
+    answer_3: answer3
+    answer_4: answer4
+    author_id: authorId
+    completed: completed
+    couple_id: coupleId
+    created_at: createdAt
+    id: id
+    updated_at: updatedAt
+    week_start: weekStart
+  custom_name: checkins
+  custom_root_fields:
+    delete: deleteCheckins
+    delete_by_pk: deleteCheckinsByPk
+    insert: insertCheckins
+    insert_one: insertCheckinsOne
+    select: checkins
+    select_aggregate: checkinsAggregate
+    select_by_pk: checkinsByPk
+    select_stream: checkinsStream
+    update: updateCheckins
+    update_by_pk: updateCheckinsByPk
+    update_many: updateCheckinsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+  - name: siblings
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+          week_start: week_start
+        insertion_order: null
+        remote_table:
+          name: checkins
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - answer_1
+        - answer_2
+        - answer_3
+        - answer_4
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - answer_1
+        - answer_2
+        - answer_3
+        - answer_4
+        - author_id
+        - completed
+        - couple_id
+        - created_at
+        - id
+        - updated_at
+        - week_start
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - _and:
+              - completed:
+                  _eq: true
+              - coupleMembers:
+                  user_id:
+                    _eq: X-Hasura-User-Id
+              - siblings:
+                  _and:
+                    - author_id:
+                        _eq: X-Hasura-User-Id
+                    - completed:
+                        _eq: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - answer_1
+        - answer_2
+        - answer_3
+        - answer_4
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

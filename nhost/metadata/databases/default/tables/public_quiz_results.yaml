@@ -1,0 +1,80 @@
+table:
+  name: quiz_results
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    quiz_key:
+      custom_name: quizKey
+    ranked:
+      custom_name: ranked
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    created_at: createdAt
+    id: id
+    quiz_key: quizKey
+    ranked: ranked
+    updated_at: updatedAt
+  custom_name: quizResults
+  custom_root_fields:
+    delete: deleteQuizResults
+    delete_by_pk: deleteQuizResultsByPk
+    insert: insertQuizResults
+    insert_one: insertQuizResultsOne
+    select: quizResults
+    select_aggregate: quizResultsAggregate
+    select_by_pk: quizResultsByPk
+    select_stream: quizResultsStream
+    update: updateQuizResults
+    update_by_pk: updateQuizResultsByPk
+    update_many: updateQuizResultsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - quiz_key
+        - ranked
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - created_at
+        - id
+        - quiz_key
+        - ranked
+        - updated_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - ranked
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

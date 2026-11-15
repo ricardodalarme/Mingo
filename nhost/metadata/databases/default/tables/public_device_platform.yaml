@@ -1,0 +1,6 @@
+table:
+  name: device_platform
+  schema: public
+is_enum: true
+configuration:
+  custom_name: DevicePlatform

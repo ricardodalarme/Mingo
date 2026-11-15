@@ -1,0 +1,8 @@
+function:
+  name: apply_purchase_event
+  schema: private
+configuration:
+  custom_name: applyPurchaseEvent
+  custom_root_fields:
+    function: applyPurchaseEvent
+    function_aggregate: applyPurchaseEventAggregate

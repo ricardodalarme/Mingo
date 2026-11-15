@@ -1,0 +1,10 @@
+function:
+  name: guest_forget
+  schema: public
+configuration:
+  custom_name: guestForget
+  custom_root_fields:
+    function: guestForget
+    function_aggregate: guestForgetAggregate
+permissions:
+  - role: public

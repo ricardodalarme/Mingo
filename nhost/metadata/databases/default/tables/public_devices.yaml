@@ -1,0 +1,83 @@
+table:
+  name: devices
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    failure_count:
+      custom_name: failureCount
+    id:
+      custom_name: id
+    label:
+      custom_name: label
+    last_seen_at:
+      custom_name: lastSeenAt
+    platform:
+      custom_name: platform
+    token:
+      custom_name: token
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    created_at: createdAt
+    failure_count: failureCount
+    id: id
+    label: label
+    last_seen_at: lastSeenAt
+    platform: platform
+    token: token
+    user_id: userId
+  custom_name: devices
+  custom_root_fields:
+    delete: deleteDevices
+    delete_by_pk: deleteDevicesByPk
+    insert: insertDevices
+    insert_one: insertDevicesOne
+    select: devices
+    select_aggregate: devicesAggregate
+    select_by_pk: devicesByPk
+    select_stream: devicesStream
+    update: updateDevices
+    update_by_pk: updateDevicesByPk
+    update_many: updateDevicesMany
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        user_id: X-Hasura-User-Id
+      columns:
+        - token
+        - platform
+        - label
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - user_id
+        - token
+        - platform
+        - label
+        - created_at
+        - last_seen_at
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - platform
+        - label
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

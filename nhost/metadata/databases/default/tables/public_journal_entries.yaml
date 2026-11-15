@@ -1,0 +1,87 @@
+table:
+  name: journal_entries
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    body:
+      custom_name: body
+    created_at:
+      custom_name: createdAt
+    entry_date:
+      custom_name: entryDate
+    id:
+      custom_name: id
+    mood:
+      custom_name: mood
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    body: body
+    created_at: createdAt
+    entry_date: entryDate
+    id: id
+    mood: mood
+    updated_at: updatedAt
+  custom_name: journalEntries
+  custom_root_fields:
+    delete: deleteJournalEntries
+    delete_by_pk: deleteJournalEntriesByPk
+    insert: insertJournalEntries
+    insert_one: insertJournalEntriesOne
+    select: journalEntries
+    select_aggregate: journalEntriesAggregate
+    select_by_pk: journalEntriesByPk
+    select_stream: journalEntriesStream
+    update: updateJournalEntries
+    update_by_pk: updateJournalEntriesByPk
+    update_many: updateJournalEntriesMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - entry_date
+        - body
+        - mood
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - body
+        - created_at
+        - entry_date
+        - id
+        - mood
+        - updated_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - entry_date
+        - body
+        - mood
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

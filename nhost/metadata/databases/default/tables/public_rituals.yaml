@@ -1,0 +1,157 @@
+table:
+  name: rituals
+  schema: public
+configuration:
+  column_config:
+    archived_at:
+      custom_name: archivedAt
+    at_time:
+      custom_name: atTime
+    author_id:
+      custom_name: authorId
+    cadence:
+      custom_name: cadence
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    reminder:
+      custom_name: reminder
+    title:
+      custom_name: title
+    updated_at:
+      custom_name: updatedAt
+    weekday:
+      custom_name: weekday
+  custom_column_names:
+    archived_at: archivedAt
+    at_time: atTime
+    author_id: authorId
+    cadence: cadence
+    couple_id: coupleId
+    created_at: createdAt
+    id: id
+    reminder: reminder
+    title: title
+    updated_at: updatedAt
+    weekday: weekday
+  custom_name: rituals
+  custom_root_fields:
+    delete: deleteRituals
+    delete_by_pk: deleteRitualsByPk
+    insert: insertRituals
+    insert_one: insertRitualsOne
+    select: rituals
+    select_aggregate: ritualsAggregate
+    select_by_pk: ritualsByPk
+    select_stream: ritualsStream
+    update: updateRituals
+    update_by_pk: updateRitualsByPk
+    update_many: updateRitualsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: couple
+    using:
+      foreign_key_constraint_on: couple_id
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+  - name: logs
+    using:
+      foreign_key_constraint_on:
+        column: ritual_id
+        table:
+          name: ritual_logs
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _or:
+          - couple_id:
+              _is_null: true
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - couple_id
+        - title
+        - cadence
+        - weekday
+        - at_time
+        - reminder
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - archived_at
+        - at_time
+        - author_id
+        - cadence
+        - couple_id
+        - created_at
+        - id
+        - reminder
+        - title
+        - updated_at
+        - weekday
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple_id
+        - title
+        - cadence
+        - weekday
+        - at_time
+        - reminder
+        - archived_at
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      check:
+        _or:
+          - _and:
+              - couple_id:
+                  _is_null: true
+              - author_id:
+                  _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id

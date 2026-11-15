@@ -1,0 +1,64 @@
+table:
+  name: support_requests
+  schema: public
+configuration:
+  column_config:
+    app_version:
+      custom_name: appVersion
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    message:
+      custom_name: message
+    reply_email:
+      custom_name: replyEmail
+    topic:
+      custom_name: topic
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    app_version: appVersion
+    created_at: createdAt
+    id: id
+    message: message
+    reply_email: replyEmail
+    topic: topic
+    user_id: userId
+  custom_name: supportRequests
+  custom_root_fields:
+    delete: deleteSupportRequests
+    delete_by_pk: deleteSupportRequestsByPk
+    insert: insertSupportRequests
+    insert_one: insertSupportRequestsOne
+    select: supportRequests
+    select_aggregate: supportRequestsAggregate
+    select_by_pk: supportRequestsByPk
+    select_stream: supportRequestsStream
+    update: updateSupportRequests
+    update_by_pk: updateSupportRequestsByPk
+    update_many: updateSupportRequestsMany
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        user_id: X-Hasura-User-Id
+      columns:
+        - topic
+        - message
+        - reply_email
+        - app_version
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - topic
+        - message
+        - reply_email
+        - app_version
+        - created_at
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

@@ -1,0 +1,10 @@
+function:
+  name: guest_report
+  schema: public
+configuration:
+  custom_name: guestReport
+  custom_root_fields:
+    function: guestReport
+    function_aggregate: guestReportAggregate
+permissions:
+  - role: public

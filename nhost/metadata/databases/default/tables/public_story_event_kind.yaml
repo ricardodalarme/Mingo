@@ -1,0 +1,6 @@
+table:
+  name: story_event_kind
+  schema: public
+is_enum: true
+configuration:
+  custom_name: StoryEventKind

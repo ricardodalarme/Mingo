@@ -1,0 +1,156 @@
+table:
+  name: slips
+  schema: public
+configuration:
+  column_config:
+    archived_at:
+      custom_name: archivedAt
+    author_id:
+      custom_name: authorId
+    body:
+      custom_name: body
+    category:
+      custom_name: category
+    created_at:
+      custom_name: createdAt
+    feeling:
+      custom_name: feeling
+    for_card:
+      custom_name: forCard
+    id:
+      custom_name: id
+    in_jar:
+      custom_name: inJar
+    kind:
+      custom_name: kind
+    occurred_on:
+      custom_name: occurredOn
+    photo_file_id:
+      custom_name: photoFileId
+    plan_note:
+      custom_name: planNote
+    polarity:
+      custom_name: polarity
+    request:
+      custom_name: request
+    tags:
+      custom_name: tags
+    updated_at:
+      custom_name: updatedAt
+    work_area:
+      custom_name: workArea
+  custom_column_names:
+    archived_at: archivedAt
+    author_id: authorId
+    body: body
+    category: category
+    created_at: createdAt
+    feeling: feeling
+    for_card: forCard
+    id: id
+    in_jar: inJar
+    kind: kind
+    occurred_on: occurredOn
+    photo_file_id: photoFileId
+    plan_note: planNote
+    polarity: polarity
+    request: request
+    tags: tags
+    updated_at: updatedAt
+    work_area: workArea
+  custom_name: slips
+  custom_root_fields:
+    delete: deleteSlips
+    delete_by_pk: deleteSlipsByPk
+    insert: insertSlips
+    insert_one: insertSlipsOne
+    select: slips
+    select_aggregate: slipsAggregate
+    select_by_pk: slipsByPk
+    select_stream: slipsStream
+    update: updateSlips
+    update_by_pk: updateSlipsByPk
+    update_many: updateSlipsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: photoFile
+    using:
+      foreign_key_constraint_on: photo_file_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - kind
+        - polarity
+        - body
+        - feeling
+        - plan_note
+        - request
+        - tags
+        - category
+        - work_area
+        - for_card
+        - in_jar
+        - photo_file_id
+        - occurred_on
+        - created_at
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - archived_at
+        - author_id
+        - body
+        - category
+        - created_at
+        - feeling
+        - for_card
+        - id
+        - in_jar
+        - kind
+        - occurred_on
+        - photo_file_id
+        - plan_note
+        - polarity
+        - request
+        - tags
+        - updated_at
+        - work_area
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - kind
+        - polarity
+        - body
+        - feeling
+        - plan_note
+        - request
+        - tags
+        - category
+        - work_area
+        - for_card
+        - in_jar
+        - photo_file_id
+        - occurred_on
+        - archived_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

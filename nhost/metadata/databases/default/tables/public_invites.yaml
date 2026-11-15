@@ -1,0 +1,84 @@
+table:
+  name: invites
+  schema: public
+configuration:
+  column_config:
+    cancelled_at:
+      custom_name: cancelledAt
+    code:
+      custom_name: code
+    created_at:
+      custom_name: createdAt
+    created_by:
+      custom_name: createdBy
+    expires_at:
+      custom_name: expiresAt
+    id:
+      custom_name: id
+    used_at:
+      custom_name: usedAt
+    used_by:
+      custom_name: usedBy
+  custom_column_names:
+    cancelled_at: cancelledAt
+    code: code
+    created_at: createdAt
+    created_by: createdBy
+    expires_at: expiresAt
+    id: id
+    used_at: usedAt
+    used_by: usedBy
+  custom_name: invites
+  custom_root_fields:
+    delete: deleteInvites
+    delete_by_pk: deleteInvitesByPk
+    insert: insertInvites
+    insert_one: insertInvitesOne
+    select: invites
+    select_aggregate: invitesAggregate
+    select_by_pk: invitesByPk
+    select_stream: invitesStream
+    update: updateInvites
+    update_by_pk: updateInvitesByPk
+    update_many: updateInvitesMany
+object_relationships:
+  - name: creator
+    using:
+      foreign_key_constraint_on: created_by
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _not:
+          creator:
+            membership: {}
+      set:
+        created_by: X-Hasura-User-Id
+      columns: []
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - cancelled_at
+        - code
+        - created_at
+        - created_by
+        - expires_at
+        - id
+        - used_at
+        - used_by
+      filter:
+        created_by:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - cancelled_at
+      filter:
+        _and:
+          - created_by:
+              _eq: X-Hasura-User-Id
+          - used_at:
+              _is_null: true
+      check: null

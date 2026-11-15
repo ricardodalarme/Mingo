@@ -1,0 +1,115 @@
+table:
+  name: card_items
+  schema: public
+configuration:
+  column_config:
+    body:
+      custom_name: body
+    card_id:
+      custom_name: cardId
+    feeling:
+      custom_name: feeling
+    id:
+      custom_name: id
+    position:
+      custom_name: position
+    slip_id:
+      custom_name: slipId
+  custom_column_names:
+    body: body
+    card_id: cardId
+    feeling: feeling
+    id: id
+    position: position
+    slip_id: slipId
+  custom_name: cardItems
+  custom_root_fields:
+    delete: deleteCardItems
+    delete_by_pk: deleteCardItemsByPk
+    insert: insertCardItems
+    insert_one: insertCardItemsOne
+    select: cardItems
+    select_aggregate: cardItemsAggregate
+    select_by_pk: cardItemsByPk
+    select_stream: cardItemsStream
+    update: updateCardItems
+    update_by_pk: updateCardItemsByPk
+    update_many: updateCardItemsMany
+object_relationships:
+  - name: card
+    using:
+      foreign_key_constraint_on: card_id
+  - name: slip
+    using:
+      foreign_key_constraint_on: slip_id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _and:
+          - card:
+              _and:
+                - author_id:
+                    _eq: X-Hasura-User-Id
+                - status:
+                    _neq: sent
+          - slip:
+              _and:
+                - author_id:
+                    _eq: X-Hasura-User-Id
+                - for_card:
+                    _eq: true
+                - kind:
+                    _neq: invisible
+                - polarity:
+                    _eq: liked
+                - archived_at:
+                    _is_null: true
+      columns:
+        - id
+        - card_id
+        - slip_id
+        - position
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - body
+        - card_id
+        - feeling
+        - id
+        - position
+        - slip_id
+      filter:
+        card:
+          _or:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - _and:
+                - recipient_id:
+                    _eq: X-Hasura-User-Id
+                - status:
+                    _eq: sent
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - position
+      filter:
+        card:
+          _and:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - status:
+                _neq: sent
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        card:
+          _and:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - status:
+                _neq: sent

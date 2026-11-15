@@ -1,0 +1,180 @@
+table:
+  name: logistic_items
+  schema: public
+configuration:
+  column_config:
+    assignee_id:
+      custom_name: assigneeId
+    author_id:
+      custom_name: authorId
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    done_at:
+      custom_name: doneAt
+    due_on:
+      custom_name: dueOn
+    id:
+      custom_name: id
+    invisible_work:
+      custom_name: invisibleWork
+    title:
+      custom_name: title
+    updated_at:
+      custom_name: updatedAt
+    week_start:
+      custom_name: weekStart
+  custom_column_names:
+    assignee_id: assigneeId
+    author_id: authorId
+    couple_id: coupleId
+    created_at: createdAt
+    done_at: doneAt
+    due_on: dueOn
+    id: id
+    invisible_work: invisibleWork
+    title: title
+    updated_at: updatedAt
+    week_start: weekStart
+  custom_name: logisticItems
+  custom_root_fields:
+    delete: deleteLogisticItems
+    delete_by_pk: deleteLogisticItemsByPk
+    insert: insertLogisticItems
+    insert_one: insertLogisticItemsOne
+    select: logisticItems
+    select_aggregate: logisticItemsAggregate
+    select_by_pk: logisticItemsByPk
+    select_stream: logisticItemsStream
+    update: updateLogisticItems
+    update_by_pk: updateLogisticItemsByPk
+    update_many: updateLogisticItemsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: couple
+    using:
+      foreign_key_constraint_on: couple_id
+  - name: assignee
+    using:
+      foreign_key_constraint_on: assignee_id
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _and:
+          - _or:
+              - couple_id:
+                  _is_null: true
+              - coupleMembers:
+                  user_id:
+                    _eq: X-Hasura-User-Id
+          - _or:
+              - assignee_id:
+                  _is_null: true
+              - assignee:
+                  _or:
+                    - id:
+                        _eq: X-Hasura-User-Id
+                    - membership:
+                        couple:
+                          members:
+                            user_id:
+                              _eq: X-Hasura-User-Id
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - couple_id
+        - title
+        - assignee_id
+        - due_on
+        - week_start
+        - invisible_work
+        - done_at
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - assignee_id
+        - author_id
+        - couple_id
+        - created_at
+        - done_at
+        - due_on
+        - id
+        - invisible_work
+        - title
+        - updated_at
+        - week_start
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple_id
+        - title
+        - assignee_id
+        - due_on
+        - week_start
+        - invisible_work
+        - done_at
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+      check:
+        _and:
+          - _or:
+              - _and:
+                  - couple_id:
+                      _is_null: true
+                  - author_id:
+                      _eq: X-Hasura-User-Id
+              - coupleMembers:
+                  user_id:
+                    _eq: X-Hasura-User-Id
+          - _or:
+              - assignee_id:
+                  _is_null: true
+              - assignee:
+                  _or:
+                    - id:
+                        _eq: X-Hasura-User-Id
+                    - membership:
+                        couple:
+                          members:
+                            user_id:
+                              _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id

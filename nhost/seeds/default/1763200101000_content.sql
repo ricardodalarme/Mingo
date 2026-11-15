@@ -1,0 +1,144 @@
+-- Editorial content for local development, one row per language. Production copy ships as migrations once approved.
+-- Reference content for local/dev. Editorial content for production ships as migrations once copy is approved.
+insert into public.content_items (kind, slug, locale, title, body, tags, position) values
+  ('question', 'quirk-you-love', 'pt-BR', 'Qual é uma mania dele que você adora?', null, '{manias}', 1),
+  ('question', 'quirk-you-love', 'en', 'What is one quirk of theirs that you love?', null, '{quirks}', 1),
+  ('question', 'first-meeting', 'pt-BR', 'O que você se lembra da primeira vez que vocês se conheceram?', null, '{historia}', 2),
+  ('question', 'first-meeting', 'en', 'What do you remember about the first time you met?', null, '{story}', 2),
+  ('question', 'best-moment-week', 'pt-BR', 'Qual foi o melhor momento da semana?', null, '{semana}', 3),
+  ('question', 'best-moment-week', 'en', 'What was the best moment of the week?', null, '{week}', 3),
+  ('daily_idea', 'note-in-lunchbox', 'pt-BR', 'Deixe um bilhete na marmita dele', 'Pequeno, específico, grátis. Leva 2 minutos.', '{living_together,keep_romance,free}', 1),
+  ('daily_idea', 'note-in-lunchbox', 'en', 'Leave a note in their lunch box', 'Small, specific, free. Takes 2 minutes.', '{living_together,keep_romance,free}', 1),
+  ('date_idea', 'first-date-dish', 'pt-BR', 'Cozinhar um prato do primeiro encontro', '2 h · em casa', '{home,cheap}', 1),
+  ('date_idea', 'park-picnic', 'pt-BR', 'Piquenique no parque', 'Leve: toalha, frutas, caixa de som.', '{outdoors,cheap}', 2),
+  ('date_idea', 'museum-night', 'pt-BR', 'Noite no museu', 'Confira os horários.', '{new}', 3),
+  ('touch_card', 'hold-hands', 'pt-BR', 'Deem as mãos por um minuto.', null, '{}', 1),
+  ('touch_card', 'hug-20', 'pt-BR', 'Abracem por 20 segundos.', null, '{}', 2),
+  ('repair_card', 'sorry-tone', 'pt-BR', 'Desculpa pelo meu tom.', null, '{}', 1),
+  ('repair_card', 'start-over', 'pt-BR', 'Podemos recomeçar?', null, '{}', 2),
+  ('repair_card', 'five-minutes', 'pt-BR', 'Preciso de cinco minutos.', null, '{}', 3),
+  ('repair_card', 'love-you-now', 'pt-BR', 'Eu te amo, mesmo agora.', null, '{}', 4),
+  ('mood_tip', 'tired-dinner', 'pt-BR', 'Ofereça-se para cuidar do jantar.', 'Tira uma pequena decisão do dia dela.', '{tired}', 1),
+  ('program', 'gratitude-7', 'pt-BR', '7 dias de gratidão', null, '{}', 1),
+  ('program', 'fight-less', 'pt-BR', 'Brigar menos, reparar mais rápido', null, '{}', 2),
+  ('notification', 'card_ready', 'pt-BR', 'Seu cartão está pronto', 'Abra para ler.', '{}', 0),
+  ('notification', 'card_received', 'pt-BR', 'Você tem um cartão', 'Alguém te enviou algo.', '{}', 0),
+  ('notification', 'daily_idea', 'pt-BR', 'Pequeno momento', 'Uma ideia para hoje.', '{}', 0),
+  ('notification', 'date_coming', 'pt-BR', 'Data chegando', 'Em alguns dias.', '{}', 0)
+on conflict do nothing;
+insert into public.content_items (kind, slug, locale, title, body, parent_slug, position, plus_only) values
+  ('lesson', 'gratitude-7-d1', 'pt-BR', 'Perceba as pequenas coisas', 'Tente isto hoje: diga um obrigado em voz alta.', 'gratitude-7', 1, false),
+  ('lesson', 'gratitude-7-d2', 'pt-BR', 'Seja específico', 'Troque "você é legal" por um ato concreto.', 'gratitude-7', 2, true)
+on conflict do nothing;
+insert into public.content_items (kind, slug, locale, title, month, day, country) values
+  ('holiday', 'dia-dos-namorados', 'pt-BR', 'Dia dos Namorados', 6, 12, 'BR'),
+  ('holiday', 'natal', 'pt-BR', 'Natal', 12, 25, 'BR'),
+  ('holiday', 'valentines', 'en', 'Valentine''s Day', 2, 14, 'US')
+on conflict do nothing;
+
+-- Second batch: a few rows for every content kind, so each screen has something to show.
+insert into public.content_items (kind, slug, locale, title, body, tags, position, plus_only, sensitive) values
+  ('question', 'felt-cared', 'pt-BR', 'Quando você se sentiu cuidado por ele nesta semana?', null, '{semana}', 4, false, false),
+  ('question', 'small-dream', 'pt-BR', 'Qual é um sonho pequeno que você quer realizar a dois?', null, '{futuro}', 5, false, false),
+  ('question', 'felt-cared', 'en', 'When did you feel cared for this week?', null, '{week}', 4, false, false),
+  ('daily_idea', 'thank-out-loud', 'pt-BR', 'Diga um obrigado em voz alta', 'Escolha uma coisa de hoje e agradeça olhando nos olhos.', '{free,keep_romance}', 2, false, false),
+  ('daily_idea', 'six-second-kiss', 'pt-BR', 'Um beijo de seis segundos', 'Na saída ou na chegada. Seis segundos, sem pressa.', '{free,reconnect}', 3, false, false),
+  ('daily_idea', 'ask-about-day', 'pt-BR', 'Pergunte como foi o dia, de verdade', 'Guarde o celular por cinco minutos e só escute.', '{free,fight_less}', 4, false, false),
+  ('daily_idea', 'thank-out-loud', 'en', 'Say thank you out loud', 'Pick one thing from today and say it while looking at them.', '{free}', 2, false, false),
+  ('date_idea', 'sunset-walk', 'pt-BR', 'Caminhada no pôr do sol', '1 h · grátis', '{outdoors,free}', 4, false, false),
+  ('date_idea', 'movie-at-home', 'pt-BR', 'Cinema em casa com pipoca', '2 h · em casa', '{home,cheap}', 5, false, false),
+  ('date_idea', 'new-restaurant', 'pt-BR', 'Um restaurante que nenhum dos dois conhece', '2 h', '{new}', 6, true, false),
+  ('touch_card', 'forehead-kiss', 'pt-BR', 'Um beijo na testa, sem dizer nada.', null, '{}', 3, false, false),
+  ('touch_card', 'back-rub', 'pt-BR', 'Dois minutos de carinho nas costas.', null, '{}', 4, false, false),
+  ('spice_card', 'whisper-like', 'pt-BR', 'Sussurre uma coisa de que você gosta.', null, '{}', 1, true, true),
+  ('spice_card', 'slow-new', 'pt-BR', 'Experimentem algo novo, devagar.', null, '{}', 2, true, true),
+  ('mood_tip', 'sad-listen', 'pt-BR', 'Pergunte se ela quer conversar ou só companhia.', 'Às vezes ficar junto já ajuda.', '{sad}', 2, false, false),
+  ('mood_tip', 'stressed-task', 'pt-BR', 'Tire uma tarefa da lista dela hoje.', 'Escolha a menor e avise que está feito.', '{stressed}', 3, false, false),
+  ('mood_tip', 'loving-hug', 'pt-BR', 'Um abraço demorado quando ela chegar.', null, '{loving}', 4, false, false),
+  ('ritual_idea', 'sunday-walk', 'pt-BR', 'Caminhada de domingo', 'Semanal', '{weekly}', 1, false, false),
+  ('ritual_idea', 'goodnight-text', 'pt-BR', 'Mensagem de boa noite', 'Diário', '{daily}', 2, false, false),
+  ('ritual_idea', 'date-night', 'pt-BR', 'Noite de encontro', 'A cada 2 semanas', '{biweekly}', 3, false, false),
+  ('ritual_idea', 'ten-min-no-phone', 'pt-BR', '10 minutos sem celular', 'Diário', '{daily}', 4, false, false),
+  ('program', 'reconnect-5', 'pt-BR', 'Reencontro', '5 dias', '{}', 3, true, false),
+  ('notification', 'card_reaction', 'pt-BR', 'Uma resposta chegou', 'Abra para ver.', '{}', 0, false, false),
+  ('notification', 'partner_joined', 'pt-BR', 'Vocês estão conectados', 'Abra para começar.', '{}', 0, false, false),
+  ('notification', 'unpaired', 'pt-BR', 'Uma mudança no seu espaço', 'Abra para ver.', '{}', 0, false, false),
+  ('notification', 'partner_message', 'pt-BR', 'Um recado para você', 'Abra para ver.', '{}', 0, false, false),
+  ('notification', 'signal', 'pt-BR', 'Um toque para você', 'Abra para ver.', '{}', 0, false, false),
+  ('notification', 'game_invite', 'pt-BR', 'Um convite para jogar', 'Leva poucos minutos.', '{}', 0, false, false),
+  ('notification', 'ritual', 'pt-BR', 'Um ritual de vocês', 'Fazer ou pular, os dois são normais.', '{}', 0, false, false),
+  ('notification', 'gentle_return', 'pt-BR', 'Quer anotar algo bom?', 'Sem pressa.', '{}', 0, false, false),
+  ('notification', 'card_ready', 'en', 'Your card is ready', 'Open to read.', '{}', 0, false, false),
+  ('notification', 'card_received', 'en', 'You have a card', 'Someone sent you something.', '{}', 0, false, false)
+on conflict do nothing;
+insert into public.content_items (kind, slug, locale, title, body, parent_slug, position, plus_only) values
+  ('lesson', 'gratitude-7-d3', 'pt-BR', 'Diga em voz alta', 'Escolha um slip desta semana e leia para ele.', 'gratitude-7', 3, true),
+  ('lesson', 'fight-less-d1', 'pt-BR', 'Comece com suavidade', 'Troque "você nunca" por "eu sinto... quando... eu preciso de...".', 'fight-less', 1, false),
+  ('lesson', 'fight-less-d2', 'pt-BR', 'A pausa que volta', 'Combine um sinal de pausa e sempre diga quando volta.', 'fight-less', 2, true),
+  ('lesson', 'reconnect-5-d1', 'pt-BR', 'Dez minutos só de vocês', 'Sem telas, sem logística. Só contar como foi o dia.', 'reconnect-5', 1, true)
+on conflict do nothing;
+insert into public.content_items (kind, slug, locale, title, month, day, country) values
+  ('holiday', 'dia-das-maes', 'pt-BR', 'Dia das Mães', 5, 10, 'BR'),
+  ('holiday', 'dia-dos-pais', 'pt-BR', 'Dia dos Pais', 8, 9, 'BR'),
+  ('holiday', 'ano-novo', 'pt-BR', 'Ano Novo', 1, 1, 'BR'),
+  ('holiday', 'christmas', 'en', 'Christmas', 12, 25, 'US')
+on conflict do nothing;
+
+-- English batch: an English row for every row above that only had Portuguese, in gender-neutral wording.
+insert into public.content_items (kind, slug, locale, title, body, tags, position, plus_only, sensitive) values
+  ('question', 'small-dream', 'en', 'What is one small dream you want to make happen together?', null, '{future}', 5, false, false),
+  ('daily_idea', 'six-second-kiss', 'en', 'A six-second kiss', 'When one of you leaves or comes home. Six seconds, no rush.', '{free,reconnect}', 3, false, false),
+  ('daily_idea', 'ask-about-day', 'en', 'Ask how the day really went', 'Put the phone away for five minutes and just listen.', '{free,fight_less}', 4, false, false),
+  ('date_idea', 'first-date-dish', 'en', 'Cook a dish from your first date', '2 h · at home', '{home,cheap}', 1, false, false),
+  ('date_idea', 'park-picnic', 'en', 'Picnic in the park', 'Keep it light: a blanket, fruit, a small speaker.', '{outdoors,cheap}', 2, false, false),
+  ('date_idea', 'museum-night', 'en', 'A night at the museum', 'Check the opening hours.', '{new}', 3, false, false),
+  ('date_idea', 'sunset-walk', 'en', 'A walk at sunset', '1 h · free', '{outdoors,free}', 4, false, false),
+  ('date_idea', 'movie-at-home', 'en', 'Movie night at home with popcorn', '2 h · at home', '{home,cheap}', 5, false, false),
+  ('date_idea', 'new-restaurant', 'en', 'A restaurant neither of you knows', '2 h', '{new}', 6, true, false),
+  ('touch_card', 'hold-hands', 'en', 'Hold hands for one minute.', null, '{}', 1, false, false),
+  ('touch_card', 'hug-20', 'en', 'Hug for 20 seconds.', null, '{}', 2, false, false),
+  ('touch_card', 'forehead-kiss', 'en', 'A kiss on the forehead, without saying anything.', null, '{}', 3, false, false),
+  ('touch_card', 'back-rub', 'en', 'Two minutes of a gentle back rub.', null, '{}', 4, false, false),
+  ('repair_card', 'sorry-tone', 'en', 'I''m sorry about my tone.', null, '{}', 1, false, false),
+  ('repair_card', 'start-over', 'en', 'Can we start over?', null, '{}', 2, false, false),
+  ('repair_card', 'five-minutes', 'en', 'I need five minutes.', null, '{}', 3, false, false),
+  ('repair_card', 'love-you-now', 'en', 'I love you, even now.', null, '{}', 4, false, false),
+  ('spice_card', 'whisper-like', 'en', 'Whisper something you like.', null, '{}', 1, true, true),
+  ('spice_card', 'slow-new', 'en', 'Try something new, slowly.', null, '{}', 2, true, true),
+  ('mood_tip', 'tired-dinner', 'en', 'Offer to take care of dinner.', 'It takes one small decision off their day.', '{tired}', 1, false, false),
+  ('mood_tip', 'sad-listen', 'en', 'Ask if they want to talk or just have company.', 'Sometimes being together is enough.', '{sad}', 2, false, false),
+  ('mood_tip', 'stressed-task', 'en', 'Take one task off their list today.', 'Pick the smallest one and tell them it is done.', '{stressed}', 3, false, false),
+  ('mood_tip', 'loving-hug', 'en', 'A long hug when they arrive.', null, '{loving}', 4, false, false),
+  ('ritual_idea', 'sunday-walk', 'en', 'Sunday walk', 'Weekly', '{weekly}', 1, false, false),
+  ('ritual_idea', 'goodnight-text', 'en', 'Goodnight message', 'Daily', '{daily}', 2, false, false),
+  ('ritual_idea', 'date-night', 'en', 'Date night', 'Every 2 weeks', '{biweekly}', 3, false, false),
+  ('ritual_idea', 'ten-min-no-phone', 'en', '10 minutes without phones', 'Daily', '{daily}', 4, false, false),
+  ('program', 'gratitude-7', 'en', '7 days of gratitude', null, '{}', 1, false, false),
+  ('program', 'fight-less', 'en', 'Fight less, repair faster', null, '{}', 2, false, false),
+  ('program', 'reconnect-5', 'en', 'Reconnect', '5 days', '{}', 3, true, false),
+  ('notification', 'daily_idea', 'en', 'A small moment', 'An idea for today.', '{}', 0, false, false),
+  ('notification', 'date_coming', 'en', 'A date is coming', 'In a few days.', '{}', 0, false, false),
+  ('notification', 'card_reaction', 'en', 'A reply arrived', 'Open to see.', '{}', 0, false, false),
+  ('notification', 'partner_joined', 'en', 'You are connected', 'Open to get started.', '{}', 0, false, false),
+  ('notification', 'unpaired', 'en', 'A change in your space', 'Open to see.', '{}', 0, false, false),
+  ('notification', 'partner_message', 'en', 'A note for you', 'Open to see.', '{}', 0, false, false),
+  ('notification', 'signal', 'en', 'A little touch for you', 'Open to see.', '{}', 0, false, false),
+  ('notification', 'game_invite', 'en', 'An invitation to play', 'It takes a few minutes.', '{}', 0, false, false),
+  ('notification', 'ritual', 'en', 'One of your rituals', 'Doing it or skipping it are both normal.', '{}', 0, false, false),
+  ('notification', 'gentle_return', 'en', 'Want to note something good?', 'No rush.', '{}', 0, false, false)
+on conflict do nothing;
+insert into public.content_items (kind, slug, locale, title, body, parent_slug, position, plus_only) values
+  ('lesson', 'gratitude-7-d1', 'en', 'Notice the small things', 'Try this today: say one thank you out loud.', 'gratitude-7', 1, false),
+  ('lesson', 'gratitude-7-d2', 'en', 'Be specific', 'Swap "you are nice" for a concrete act.', 'gratitude-7', 2, true),
+  ('lesson', 'gratitude-7-d3', 'en', 'Say it out loud', 'Pick one slip from this week and read it to them.', 'gratitude-7', 3, true),
+  ('lesson', 'fight-less-d1', 'en', 'Start softly', 'Swap "you never" for "I feel... when... I need...".', 'fight-less', 1, false),
+  ('lesson', 'fight-less-d2', 'en', 'The pause that comes back', 'Agree on a pause signal and always say when you will return.', 'fight-less', 2, true),
+  ('lesson', 'reconnect-5-d1', 'en', 'Ten minutes just for you two', 'No screens, no logistics. Just tell each other about your day.', 'reconnect-5', 1, true)
+on conflict do nothing;
+insert into public.content_items (kind, slug, locale, title, month, day, country) values
+  ('holiday', 'dia-dos-namorados', 'en', 'Lovers'' Day (Brazil)', 6, 12, 'BR'),
+  ('holiday', 'natal', 'en', 'Christmas', 12, 25, 'BR'),
+  ('holiday', 'dia-das-maes', 'en', 'Mother''s Day (Brazil)', 5, 10, 'BR'),
+  ('holiday', 'dia-dos-pais', 'en', 'Father''s Day (Brazil)', 8, 9, 'BR'),
+  ('holiday', 'ano-novo', 'en', 'New Year', 1, 1, 'BR')
+on conflict do nothing;

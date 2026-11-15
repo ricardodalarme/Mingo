@@ -1,0 +1,89 @@
+table:
+  name: repair_learnings
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    kind:
+      custom_name: kind
+    note:
+      custom_name: note
+    repair_session_id:
+      custom_name: repairSessionId
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    author_id: authorId
+    created_at: createdAt
+    id: id
+    kind: kind
+    note: note
+    repair_session_id: repairSessionId
+    updated_at: updatedAt
+  custom_name: repairLearnings
+  custom_root_fields:
+    delete: deleteRepairLearnings
+    delete_by_pk: deleteRepairLearningsByPk
+    insert: insertRepairLearnings
+    insert_one: insertRepairLearningsOne
+    select: repairLearnings
+    select_aggregate: repairLearningsAggregate
+    select_by_pk: repairLearningsByPk
+    select_stream: repairLearningsStream
+    update: updateRepairLearnings
+    update_by_pk: updateRepairLearningsByPk
+    update_many: updateRepairLearningsMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: repairSession
+    using:
+      foreign_key_constraint_on: repair_session_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - repair_session_id
+        - kind
+        - note
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - created_at
+        - id
+        - kind
+        - note
+        - repair_session_id
+        - updated_at
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - kind
+        - note
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

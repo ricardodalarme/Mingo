@@ -1,0 +1,102 @@
+table:
+  name: question_answers
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    body:
+      custom_name: body
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    question_slug:
+      custom_name: questionSlug
+    solo_key:
+      custom_name: soloKey
+  custom_column_names:
+    author_id: authorId
+    body: body
+    couple_id: coupleId
+    created_at: createdAt
+    id: id
+    question_slug: questionSlug
+    solo_key: soloKey
+  custom_name: questionAnswers
+  custom_root_fields:
+    delete: deleteQuestionAnswers
+    delete_by_pk: deleteQuestionAnswersByPk
+    insert: insertQuestionAnswers
+    insert_one: insertQuestionAnswersOne
+    select: questionAnswers
+    select_aggregate: questionAnswersAggregate
+    select_by_pk: questionAnswersByPk
+    select_stream: questionAnswersStream
+    update: updateQuestionAnswers
+    update_by_pk: updateQuestionAnswersByPk
+    update_many: updateQuestionAnswersMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+  - name: siblings
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+          question_slug: question_slug
+        insertion_order: null
+        remote_table:
+          name: question_answers
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - question_slug
+        - body
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - body
+        - couple_id
+        - created_at
+        - id
+        - question_slug
+        - solo_key
+      filter:
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - _and:
+              - coupleMembers:
+                  user_id:
+                    _eq: X-Hasura-User-Id
+              - siblings:
+                  author_id:
+                    _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

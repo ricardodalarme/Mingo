@@ -1,0 +1,79 @@
+table:
+  name: guest_links
+  schema: public
+configuration:
+  column_config:
+    card_id:
+      custom_name: cardId
+    created_at:
+      custom_name: createdAt
+    expires_at:
+      custom_name: expiresAt
+    id:
+      custom_name: id
+    opened_at:
+      custom_name: openedAt
+    revoked_at:
+      custom_name: revokedAt
+    token_hash:
+      custom_name: tokenHash
+  custom_column_names:
+    card_id: cardId
+    created_at: createdAt
+    expires_at: expiresAt
+    id: id
+    opened_at: openedAt
+    revoked_at: revokedAt
+    token_hash: tokenHash
+  custom_name: guestLinks
+  custom_root_fields:
+    delete: deleteGuestLinks
+    delete_by_pk: deleteGuestLinksByPk
+    insert: insertGuestLinks
+    insert_one: insertGuestLinksOne
+    select: guestLinks
+    select_aggregate: guestLinksAggregate
+    select_by_pk: guestLinksByPk
+    select_stream: guestLinksStream
+    update: updateGuestLinks
+    update_by_pk: updateGuestLinksByPk
+    update_many: updateGuestLinksMany
+object_relationships:
+  - name: card
+    using:
+      foreign_key_constraint_on: card_id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        card:
+          _and:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - status:
+                _eq: sent
+      columns:
+        - id
+        - card_id
+        - token_hash
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - card_id
+        - expires_at
+        - revoked_at
+        - opened_at
+        - created_at
+      filter:
+        card:
+          author_id:
+            _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        card:
+          author_id:
+            _eq: X-Hasura-User-Id

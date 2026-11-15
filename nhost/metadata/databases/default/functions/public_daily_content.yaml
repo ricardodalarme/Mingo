@@ -1,0 +1,11 @@
+function:
+  name: daily_content
+  schema: public
+configuration:
+  custom_name: dailyContent
+  custom_root_fields:
+    function: dailyContent
+    function_aggregate: dailyContentAggregate
+  session_argument: session
+permissions:
+  - role: user

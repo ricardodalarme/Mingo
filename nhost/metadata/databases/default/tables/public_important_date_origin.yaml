@@ -1,0 +1,6 @@
+table:
+  name: important_date_origin
+  schema: public
+is_enum: true
+configuration:
+  custom_name: ImportantDateOrigin

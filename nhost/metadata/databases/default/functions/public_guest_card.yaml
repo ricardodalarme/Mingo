@@ -1,0 +1,10 @@
+function:
+  name: guest_card
+  schema: public
+configuration:
+  custom_name: guestCard
+  custom_root_fields:
+    function: guestCard
+    function_aggregate: guestCardAggregate
+permissions:
+  - role: public

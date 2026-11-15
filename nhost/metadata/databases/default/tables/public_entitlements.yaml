@@ -1,0 +1,65 @@
+table:
+  name: entitlements
+  schema: public
+configuration:
+  column_config:
+    expires_at:
+      custom_name: expiresAt
+    plan:
+      custom_name: plan
+    status:
+      custom_name: status
+    store:
+      custom_name: store
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
+    will_renew:
+      custom_name: willRenew
+  custom_column_names:
+    expires_at: expiresAt
+    plan: plan
+    status: status
+    store: store
+    updated_at: updatedAt
+    user_id: userId
+    will_renew: willRenew
+  custom_name: entitlements
+  custom_root_fields:
+    delete: deleteEntitlements
+    delete_by_pk: deleteEntitlementsByPk
+    insert: insertEntitlements
+    insert_one: insertEntitlementsOne
+    select: entitlements
+    select_aggregate: entitlementsAggregate
+    select_by_pk: entitlementsByPk
+    select_stream: entitlementsStream
+    update: updateEntitlements
+    update_by_pk: updateEntitlementsByPk
+    update_many: updateEntitlementsMany
+object_relationships:
+  - name: profile
+    using:
+      foreign_key_constraint_on: user_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - expires_at
+        - plan
+        - status
+        - store
+        - updated_at
+        - user_id
+        - will_renew
+      filter:
+        _or:
+          - user_id:
+              _eq: X-Hasura-User-Id
+          - profile:
+              membership:
+                couple:
+                  members:
+                    user_id:
+                      _eq: X-Hasura-User-Id

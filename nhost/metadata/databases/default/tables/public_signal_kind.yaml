@@ -1,0 +1,6 @@
+table:
+  name: signal_kind
+  schema: public
+is_enum: true
+configuration:
+  custom_name: SignalKind

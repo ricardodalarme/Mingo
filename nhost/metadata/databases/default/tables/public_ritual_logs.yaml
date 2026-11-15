@@ -1,0 +1,105 @@
+table:
+  name: ritual_logs
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    created_at:
+      custom_name: createdAt
+    done_on:
+      custom_name: doneOn
+    id:
+      custom_name: id
+    ritual_id:
+      custom_name: ritualId
+    skipped:
+      custom_name: skipped
+  custom_column_names:
+    author_id: authorId
+    created_at: createdAt
+    done_on: doneOn
+    id: id
+    ritual_id: ritualId
+    skipped: skipped
+  custom_name: ritualLogs
+  custom_root_fields:
+    delete: deleteRitualLogs
+    delete_by_pk: deleteRitualLogsByPk
+    insert: insertRitualLogs
+    insert_one: insertRitualLogsOne
+    select: ritualLogs
+    select_aggregate: ritualLogsAggregate
+    select_by_pk: ritualLogsByPk
+    select_stream: ritualLogsStream
+    update: updateRitualLogs
+    update_by_pk: updateRitualLogsByPk
+    update_many: updateRitualLogsMany
+object_relationships:
+  - name: ritual
+    using:
+      foreign_key_constraint_on: ritual_id
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        ritual:
+          _or:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - coupleMembers:
+                user_id:
+                  _eq: X-Hasura-User-Id
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - ritual_id
+        - done_on
+        - skipped
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - created_at
+        - done_on
+        - id
+        - ritual_id
+        - skipped
+      filter:
+        ritual:
+          _or:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - coupleMembers:
+                user_id:
+                  _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - skipped
+      filter:
+        ritual:
+          _or:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - coupleMembers:
+                user_id:
+                  _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        ritual:
+          _or:
+            - author_id:
+                _eq: X-Hasura-User-Id
+            - coupleMembers:
+                user_id:
+                  _eq: X-Hasura-User-Id
