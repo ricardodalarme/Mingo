@@ -61,8 +61,7 @@ $$;
 create function private.is_quiet_moment(p_profile_id uuid) returns boolean
 language sql stable security definer set search_path = '' as $$
   select exists (select 1 from public.temperature_checks t where t.author_id = p_profile_id and t.level = 'fight' and t.created_at > now() - interval '24 hours')
-      or exists (select 1 from public.profile_settings s where s.profile_id = p_profile_id
-                 and (s.relationship_status <> 'together' or s.app_paused_until > now()));
+      or exists (select 1 from public.profile_settings s where s.profile_id = p_profile_id and s.app_paused_until > now());
 $$;
 
 -- Decision for one notification at a moment: 'send' or 'drop'. Applies the person's settings, the daily cap,

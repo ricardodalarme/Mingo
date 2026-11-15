@@ -9,4 +9,4 @@ create type public.relationship_goal as enum ('keep', 'reconnect', 'after_fight'
 create type public.relationship_phase as enum ('beginning', 'dating', 'living_together', 'married', 'with_kids', 'long_distance',
   'engaged', 'restarting');
 create type public.member_role as enum ('inviter', 'invitee');
-create type public.relationship_status as enum ('together', 'on_break', 'ended', 'bereaved');
+create type public.relationship_status as enum ('together', 'ended', 'bereaved');
