@@ -137,6 +137,38 @@ class MoodCubit({
     emit(state.copyWith(reactAction: const Initial()));
   }
 
+  /// Asks the partner if they want to talk, as a need they can answer.
+  Future<void> askToTalk() async {
+    if (isClosed || state.talkAction.isLoading) return;
+
+    emit(state.copyWith(talkAction: const Loading()));
+    try {
+      await _slipRepository.askToTalk();
+      if (isClosed) return;
+      emit(state.copyWith(talkAction: const Success(null)));
+    } catch (exception) {
+      if (isClosed) return;
+      emit(state.copyWith(talkAction: Failure.fromObject(exception)));
+    }
+    emit(state.copyWith(talkAction: const Initial()));
+  }
+
+  /// Sends the partner a hug with [body], a short message of a line or two.
+  Future<void> sendSweetMessage(String body) async {
+    if (isClosed || state.messageAction.isLoading) return;
+
+    emit(state.copyWith(messageAction: const Loading()));
+    try {
+      await _slipRepository.sendSweetMessage(body);
+      if (isClosed) return;
+      emit(state.copyWith(messageAction: const Success(null)));
+    } catch (exception) {
+      if (isClosed) return;
+      emit(state.copyWith(messageAction: Failure.fromObject(exception)));
+    }
+    emit(state.copyWith(messageAction: const Initial()));
+  }
+
   MoodState _fromEntry(MoodEntry? entry) => state.copyWith(
     entry: Success(entry),
     mood: entry?.mood,

@@ -16,6 +16,8 @@ class const PartnerMoodHint({
   required final bool isDiscreet,
   final String? partnerName,
   final VoidCallback? onReact,
+  final VoidCallback? onAskToTalk,
+  final VoidCallback? onSendMessage,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -70,12 +72,23 @@ class const PartnerMoodHint({
     );
   }
 
-  Future<void> _openHelp(BuildContext context, MoodKind mood) => BaseSheet.show<void>(
-    context: context,
-    title: context.l10n.moodHelp.helpTitle,
-    subtitle: context.l10n.moodHelp.helpSubtitle,
-    child: PartnerMoodHelpSheet(mood: mood),
-  );
+  Future<void> _openHelp(BuildContext context, MoodKind mood) async {
+    final l10n = context.l10n.moodHelp;
+    final action = await BaseSheet.show<PartnerMoodHelpAction>(
+      context: context,
+      title: l10n.helpTitle,
+      subtitle: l10n.helpSubtitle,
+      child: PartnerMoodHelpSheet(mood: mood),
+    );
+    if (!context.mounted) return;
+
+    switch (action) {
+      case PartnerMoodHelpAction.sendMessage:
+        onSendMessage?.call();
+      case null:
+        return;
+    }
+  }
 
   Future<void> _openListen(BuildContext context) async {
     final l10n = context.l10n.moodHelp;
@@ -90,9 +103,10 @@ class const PartnerMoodHint({
     switch (action) {
       case PartnerMoodListenAction.sendLove:
         onReact?.call();
+      case PartnerMoodListenAction.askToTalk:
+        onAskToTalk?.call();
       case PartnerMoodListenAction.seeHowToHelp:
         await _openHelp(context, MoodKind.sad);
-      case PartnerMoodListenAction.askToTalk:
       case null:
         return;
     }

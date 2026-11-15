@@ -9,6 +9,8 @@ final class const MoodState({
   final String? partnerName,
   final Resource<void> saveAction = const Initial(),
   final Resource<void> reactAction = const Initial(),
+  final Resource<void> talkAction = const Initial(),
+  final Resource<void> messageAction = const Initial(),
 }) with Equatable {
   /// Whether a mood is chosen and a need is present when the need is shared.
   bool get canSave =>
@@ -23,6 +25,8 @@ final class const MoodState({
     String? partnerName,
     Resource<void>? saveAction,
     Resource<void>? reactAction,
+    Resource<void>? talkAction,
+    Resource<void>? messageAction,
     bool clearMood = false,
     bool clearNeed = false,
     bool clearPartnerMood = false,
@@ -37,6 +41,8 @@ final class const MoodState({
       partnerName: clearPartnerName ? partnerName : partnerName ?? this.partnerName,
       saveAction: saveAction ?? this.saveAction,
       reactAction: reactAction ?? this.reactAction,
+      talkAction: talkAction ?? this.talkAction,
+      messageAction: messageAction ?? this.messageAction,
     );
   }
 
@@ -50,5 +56,7 @@ final class const MoodState({
     partnerName,
     saveAction,
     reactAction,
+    talkAction,
+    messageAction,
   ];
 }

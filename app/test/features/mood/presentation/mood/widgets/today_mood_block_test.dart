@@ -291,4 +291,66 @@ void main() {
     ).captured.single;
     expect(route, isA<MoodRoute>());
   });
+
+  testWidgets('asking to talk sends one ask and confirms it', (tester) async {
+    when(() => repository.getTodayMood()).thenAnswer(
+      (_) async => today(
+        partner: PartnerMood(day: day, mood: MoodKind.sad),
+      ),
+    );
+    when(() => slips.askToTalk()).thenAnswer((_) async {});
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+    await tester.tap(find.textContaining('para baixo'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Perguntar se quer conversar'));
+    await tester.pumpAndSettle();
+
+    verify(() => slips.askToTalk()).called(1);
+    expect(find.text('Pergunta enviada'), findsOneWidget);
+  });
+
+  testWidgets('a failed ask reports it and stays honest', (tester) async {
+    when(() => repository.getTodayMood()).thenAnswer(
+      (_) async => today(
+        partner: PartnerMood(day: day, mood: MoodKind.sad),
+      ),
+    );
+    when(() => slips.askToTalk()).thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+    await tester.tap(find.textContaining('para baixo'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Perguntar se quer conversar'));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text('Não deu para enviar agora. Verifique a conexão e tente de novo.'),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('the help sheet sends the short message with its copy', (tester) async {
+    when(() => repository.getTodayMood()).thenAnswer(
+      (_) async => today(
+        partner: PartnerMood(day: day, mood: MoodKind.tired),
+      ),
+    );
+    when(() => slips.sendSweetMessage(any())).thenAnswer((_) async {});
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+    await tester.tap(find.textContaining('sem energia'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Mandar uma mensagem curta e carinhosa'));
+    await tester.pumpAndSettle();
+
+    verify(() => slips.sendSweetMessage('Sem pressa. Estou por aqui.')).called(1);
+    expect(find.text('Mensagem enviada'), findsOneWidget);
+  });
 }

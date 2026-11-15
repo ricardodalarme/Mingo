@@ -346,6 +346,39 @@ void main() {
     expect(actions, [isA<Loading>(), isA<Failure>(), isA<Initial>()]);
   });
 
+  test('asking to talk sends one ask and returns to idle', () async {
+    when(() => slips.askToTalk()).thenAnswer((_) async {});
+    final cubit = build();
+
+    await cubit.askToTalk();
+
+    verify(() => slips.askToTalk()).called(1);
+    expect(cubit.state.talkAction, isA<Initial>());
+  });
+
+  test('a failed ask reports a failure and returns to idle', () async {
+    when(() => slips.askToTalk()).thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+    final cubit = build();
+    final actions = <Resource<void>>[];
+    final subscription = cubit.stream.listen((state) => actions.add(state.talkAction));
+
+    await cubit.askToTalk();
+    await pumpEventQueue();
+    await subscription.cancel();
+
+    expect(actions, [isA<Loading>(), isA<Failure>(), isA<Initial>()]);
+  });
+
+  test('the short message is sent with its body', () async {
+    when(() => slips.sendSweetMessage(any())).thenAnswer((_) async {});
+    final cubit = build();
+
+    await cubit.sendSweetMessage('Sem pressa. Estou por aqui.');
+
+    verify(() => slips.sendSweetMessage('Sem pressa. Estou por aqui.')).called(1);
+    expect(cubit.state.messageAction, isA<Initial>());
+  });
+
   test('a closed cubit ignores a load that finishes later', () async {
     final pending = Completer<MoodToday>();
     when(() => repository.getTodayMood()).thenAnswer((_) => pending.future);

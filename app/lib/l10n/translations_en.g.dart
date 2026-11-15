@@ -3237,7 +3237,7 @@ class _Translations$moodHelp$en extends Translations$moodHelp$pt {
   @override
   String get helpSubtitle => 'Small things, at today\'s pace.';
   @override
-  String get choreLabel => 'Chore';
+  String get suggestionLabel => 'Suggestion';
   @override
   String get takeChore => 'Take on a chore';
   @override
@@ -3249,9 +3249,9 @@ class _Translations$moodHelp$en extends Translations$moodHelp$pt {
   @override
   String get sendSweetMessage => 'Send a short, sweet message';
   @override
-  String get sendSweetMessageSupport => 'One line is enough. No explanation needed.';
+  String sweetMessagePreview({required Object body}) => 'It reads: “${body}”';
   @override
-  String get homeLabel => 'Home';
+  String get sweetMessageBody => 'No rush. I\'m here.';
   @override
   String get makeCoffeeOrDinner => 'Make coffee or dinner';
   @override
@@ -3260,6 +3260,10 @@ class _Translations$moodHelp$en extends Translations$moodHelp$pt {
   String get reactionLabel => 'Send a heart';
   @override
   String get sent => 'Heart sent';
+  @override
+  String get askSent => 'Question sent';
+  @override
+  String get messageSent => 'Message sent';
   @override
   Map<String, String> get errors => {
     'NOT_PAIRED': 'You are not connected yet.',
@@ -3354,6 +3358,12 @@ class _Translations$notes$en extends Translations$notes$pt {
   String get clear => 'Clear';
   @override
   String get emptyDrawing => 'Draw something to be able to send it.';
+  @override
+  String get startDrawing => 'Draw';
+  @override
+  String get continueDrawing => 'Keep drawing';
+  @override
+  String get done => 'Done';
   @override
   String get widgetLabel => 'Send to the widget';
   @override
@@ -9444,18 +9454,20 @@ extension on TranslationsEn {
           'moodHelp.seeHowToHelpSupport' => 'Small things for today.',
           'moodHelp.helpTitle' => 'How to help today',
           'moodHelp.helpSubtitle' => 'Small things, at today\'s pace.',
-          'moodHelp.choreLabel' => 'Chore',
+          'moodHelp.suggestionLabel' => 'Suggestion',
           'moodHelp.takeChore' => 'Take on a chore',
           'moodHelp.takeChoreSupport' => 'Pick one thing at home and handle it without asking.',
           'moodHelp.askListenOrSpace' => 'Ask: do you want to talk or have space?',
           'moodHelp.askListenOrSpaceSupport' => 'Let the answer choose the next step.',
           'moodHelp.sendSweetMessage' => 'Send a short, sweet message',
-          'moodHelp.sendSweetMessageSupport' => 'One line is enough. No explanation needed.',
-          'moodHelp.homeLabel' => 'Home',
+          'moodHelp.sweetMessagePreview' => ({required Object body}) => 'It reads: “${body}”',
+          'moodHelp.sweetMessageBody' => 'No rush. I\'m here.',
           'moodHelp.makeCoffeeOrDinner' => 'Make coffee or dinner',
           'moodHelp.makeCoffeeOrDinnerSupport' => 'Without turning it into a shared task.',
           'moodHelp.reactionLabel' => 'Send a heart',
           'moodHelp.sent' => 'Heart sent',
+          'moodHelp.askSent' => 'Question sent',
+          'moodHelp.messageSent' => 'Message sent',
           'moodHelp.errors.NOT_PAIRED' => 'You are not connected yet.',
           'moodHelp.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'moodHelp.errors.NETWORK' =>
@@ -9479,11 +9491,11 @@ extension on TranslationsEn {
           'need.sent.done' => 'Done',
           'need.errors.NOT_PAIRED' =>
             'To send this, you need to be connected with your partner in the app.',
-          'need.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          'need.errors.other' => 'Couldn\'t send right now. Try again.',
           _ => null,
         } ??
         switch (path) {
+          'need.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'need.errors.other' => 'Couldn\'t send right now. Try again.',
           'notFound.title' => '404',
           'notFound.description' => 'Page not found',
           'notFound.buttonBack' => 'Go back home',
@@ -9504,6 +9516,9 @@ extension on TranslationsEn {
           'notes.undo' => 'Undo',
           'notes.clear' => 'Clear',
           'notes.emptyDrawing' => 'Draw something to be able to send it.',
+          'notes.startDrawing' => 'Draw',
+          'notes.continueDrawing' => 'Keep drawing',
+          'notes.done' => 'Done',
           'notes.widgetLabel' => 'Send to the widget',
           'notes.widgetText' => 'It appears on their widget if they allow notes.',
           'notes.drawingHint' =>
@@ -10070,13 +10085,13 @@ extension on TranslationsEn {
           'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
           'quickSlip.saved.added' => 'Slip added to this week.',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.saved.queued' =>
             'Saved on this phone. We send it when the connection is back.',
           'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
           'quickSlip.saved.undo' => 'Undo',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.saved.done' => 'Done',
           'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
@@ -10086,12 +10101,6 @@ extension on TranslationsEn {
           'received.kinds.need' => 'I need…',
           'received.kinds.missUs' => 'Missing you',
           'received.kinds.hug' => 'A hug',
-<<<<<<<
-=======
-          _ => null,
-        } ??
-        switch (path) {
->>>>>>>
           'received.kinds.distance' => 'A little distance',
           'received.kinds.heavyDay' => 'A heavy day',
           'received.kinds.goodNews' => 'Good news',
@@ -10642,12 +10651,12 @@ extension on TranslationsEn {
           'story.emptyText' =>
             'Set since when you are together in Our history to create the image.',
           'story.errorTitle' => 'Couldn\'t load',
-          'story.errorText' => 'Try again in a moment.',
-          'story.errors.other' => 'Couldn\'t share right now. Try again.',
-          'sundayCard.title' => 'Your card',
           _ => null,
         } ??
         switch (path) {
+          'story.errorText' => 'Try again in a moment.',
+          'story.errors.other' => 'Couldn\'t share right now. Try again.',
+          'sundayCard.title' => 'Your card',
           'sundayCard.edit' => 'Edit',
           'sundayCard.save' => 'Save',
           'sundayCard.cancel' => 'Cancel',
@@ -10662,12 +10671,6 @@ extension on TranslationsEn {
           'sundayCard.errorTitle' => 'Could not load the card',
           'sundayCard.errorText' => 'Your slips are still saved. Try again.',
           'sundayCard.saveError' => 'Could not save the card. Try again.',
-<<<<<<<
-=======
-          _ => null,
-        } ??
-        switch (path) {
->>>>>>>
           'sundayCard.openFromToday' => 'See the draft',
           'sundayCard.deliverError' =>
             'Could not send right now. The card is still here, try again.',

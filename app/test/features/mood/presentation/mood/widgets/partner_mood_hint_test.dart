@@ -17,6 +17,8 @@ void main() {
     WidgetTester tester, {
     required MoodKind value,
     VoidCallback? onReact,
+    VoidCallback? onAskToTalk,
+    VoidCallback? onSendMessage,
     bool isDiscreet = false,
   }) async {
     await tester.pumpApp(
@@ -25,6 +27,8 @@ void main() {
         partnerName: 'Marina',
         isDiscreet: isDiscreet,
         onReact: onReact,
+        onAskToTalk: onAskToTalk,
+        onSendMessage: onSendMessage,
       ),
     );
     await tester.pump();
@@ -123,5 +127,42 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(reactions, 1);
+  });
+
+  testWidgets('asking to talk from the listening sheet reports the ask', (tester) async {
+    var asks = 0;
+    await pumpHint(tester, value: MoodKind.sad, onAskToTalk: () => asks++);
+
+    await tester.tap(find.textContaining('para baixo'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Perguntar se quer conversar'));
+    await tester.pumpAndSettle();
+
+    expect(asks, 1);
+  });
+
+  testWidgets('the help sheet sends the short message', (tester) async {
+    var messages = 0;
+    await pumpHint(tester, value: MoodKind.tired, onSendMessage: () => messages++);
+
+    await tester.tap(find.textContaining('sem energia'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Mandar uma mensagem curta e carinhosa'));
+    await tester.pumpAndSettle();
+
+    expect(messages, 1);
+  });
+
+  testWidgets('tapping a suggestion sends nothing and keeps the sheet open', (tester) async {
+    var messages = 0;
+    await pumpHint(tester, value: MoodKind.tired, onSendMessage: () => messages++);
+
+    await tester.tap(find.textContaining('sem energia'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Assumir uma tarefa'));
+    await tester.pumpAndSettle();
+
+    expect(messages, 0);
+    expect(find.text('Como ajudar hoje'), findsOneWidget);
   });
 }

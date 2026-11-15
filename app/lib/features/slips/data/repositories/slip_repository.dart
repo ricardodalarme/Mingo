@@ -181,6 +181,26 @@ class SlipRepository({
     }
   }
 
+  /// Asks the partner if they want to talk, arriving as the need they can answer.
+  Future<void> askToTalk() async {
+    try {
+      await _slipDataSource.sendSignal(kind: 'need', value: 'talk');
+    } catch (e, stack) {
+      _logger.error('Failed to ask the partner to talk', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Sends the partner a hug carrying [body], a short message of a line or two.
+  Future<void> sendSweetMessage(String body) async {
+    try {
+      await _slipDataSource.sendSignal(kind: 'hug', body: body);
+    } catch (e, stack) {
+      _logger.error('Failed to send a sweet message', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
   /// Reads a page of the person's slips, newest first; [since] limits it to recent ones.
   ///
   /// [archived] reads the slips taken out of the timeline instead.

@@ -238,6 +238,36 @@ void main() {
     });
   });
 
+  group('askToTalk', () {
+    test('sends the talk need to the partner', () async {
+      when(
+        () => remote.sendSignal(
+          kind: any(named: 'kind'),
+          value: any(named: 'value'),
+        ),
+      ).thenAnswer((_) async {});
+
+      await repository.askToTalk();
+
+      verify(() => remote.sendSignal(kind: 'need', value: 'talk')).called(1);
+    });
+  });
+
+  group('sendSweetMessage', () {
+    test('sends the message as the body of a hug', () async {
+      when(
+        () => remote.sendSignal(
+          kind: any(named: 'kind'),
+          body: any(named: 'body'),
+        ),
+      ).thenAnswer((_) async {});
+
+      await repository.sendSweetMessage('Sem pressa. Estou por aqui.');
+
+      verify(() => remote.sendSignal(kind: 'hug', body: 'Sem pressa. Estou por aqui.')).called(1);
+    });
+  });
+
   group('draft', () {
     test('ignores a draft older than an hour', () {
       final now = DateTime.utc(2026, 11, 9, 22);

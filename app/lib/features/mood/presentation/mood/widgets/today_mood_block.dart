@@ -39,6 +39,7 @@ class const TodayMoodBlock({
     if (isPaused) return const SizedBox.shrink();
 
     final l10n = context.l10n.mood;
+    final helpL10n = context.l10n.moodHelp;
     final entry = context.select((MoodCubit cubit) => cubit.state.entry);
     final mood = context.select((MoodCubit cubit) => cubit.state.mood);
     final partnerMood = context.select((MoodCubit cubit) => cubit.state.partnerMood);
@@ -47,7 +48,10 @@ class const TodayMoodBlock({
 
     return BlocListener<MoodCubit, MoodState>(
       listenWhen: (previous, current) =>
-          previous.saveAction != current.saveAction || previous.reactAction != current.reactAction,
+          previous.saveAction != current.saveAction ||
+          previous.reactAction != current.reactAction ||
+          previous.talkAction != current.talkAction ||
+          previous.messageAction != current.messageAction,
       listener: _onActionChanged,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -58,6 +62,9 @@ class const TodayMoodBlock({
               partnerName: partnerName,
               isDiscreet: isDiscreet,
               onReact: context.read<MoodCubit>().reactToPartner,
+              onAskToTalk: context.read<MoodCubit>().askToTalk,
+              onSendMessage: () =>
+                  context.read<MoodCubit>().sendSweetMessage(helpL10n.sweetMessageBody),
             ),
             const SizedBox(height: AppSpace.s24),
           ],
@@ -118,15 +125,19 @@ class const TodayMoodBlock({
 
       return;
     }
-    if (state.reactAction case Failure(:final exception)) {
-      BaseToast.show(
-        context,
-        l10n.moodHelp.errors.selectOrFallback(exception.l10nKey),
-        variant: BaseToastVariant.error,
-      );
+    for (final action in [state.reactAction, state.talkAction, state.messageAction]) {
+      if (action case Failure(:final exception)) {
+        BaseToast.show(
+          context,
+          l10n.moodHelp.errors.selectOrFallback(exception.l10nKey),
+          variant: BaseToastVariant.error,
+        );
 
-      return;
+        return;
+      }
     }
     if (state.reactAction is Success) BaseToast.show(context, l10n.moodHelp.sent);
+    if (state.talkAction is Success) BaseToast.show(context, l10n.moodHelp.askSent);
+    if (state.messageAction is Success) BaseToast.show(context, l10n.moodHelp.messageSent);
   }
 }
