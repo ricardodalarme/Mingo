@@ -143,6 +143,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$settingsHome$pt settingsHome = Translations$settingsHome$pt.internal(
     _root,
   );
+  late final Translations$share$pt share = Translations$share$pt.internal(_root);
   late final Translations$slipDetail$pt slipDetail = Translations$slipDetail$pt.internal(_root);
   late final Translations$slipKind$pt slipKind = Translations$slipKind$pt.internal(_root);
   late final Translations$slipsList$pt slipsList = Translations$slipsList$pt.internal(_root);
@@ -5999,6 +6000,121 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Conectado com {name}'
   String connectedWith({required Object name}) => 'Conectado com ${name}';
+}
+
+// Path: share
+class Translations$share$pt {
+  Translations$share$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Compartilhar imagem'
+  String get entryTitle => 'Compartilhar imagem';
+
+  /// pt: 'O tempo de vocês e a lua do dia em que tudo começou.'
+  String get entrySubtitleToday => 'O tempo de vocês e a lua do dia em que tudo começou.';
+
+  /// pt: 'Uma linha do tempo com os momentos que vocês guardaram.'
+  String get entrySubtitleMemories => 'Uma linha do tempo com os momentos que vocês guardaram.';
+
+  /// pt: 'Uma frase do cartão que chegou para você.'
+  String get entrySubtitleCard => 'Uma frase do cartão que chegou para você.';
+
+  /// pt: 'Compartilhar imagem'
+  String get sheetTitle => 'Compartilhar imagem';
+
+  /// pt: 'A imagem é feita no seu aparelho e só sai daqui quando você compartilhar.'
+  String get sheetSubtitle =>
+      'A imagem é feita no seu aparelho e só sai daqui quando você compartilhar.';
+
+  /// pt: 'Compartilhar'
+  String get shareAction => 'Compartilhar';
+
+  Map<String, String> get cardLabels => {
+    'counter': 'Nosso tempo',
+    'moon': 'A lua do nosso dia',
+    'timeline': 'Nossa linha do tempo',
+    'quote': 'De um cartão',
+    'other': '',
+  };
+
+  /// pt: 'NOSSO TEMPO'
+  String get counterEyebrow => 'NOSSO TEMPO';
+
+  /// pt: '(one) {dia juntos} (other) {dias juntos}'
+  String counterDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'dia juntos',
+        other: 'dias juntos',
+      );
+
+  /// pt: 'Desde {date}'
+  String counterSince({required Object date}) => 'Desde ${date}';
+
+  /// pt: 'A LUA DO NOSSO DIA'
+  String get moonEyebrow => 'A LUA DO NOSSO DIA';
+
+  /// pt: 'Foi assim que o céu estava quando tudo começou.'
+  String get moonSupport => 'Foi assim que o céu estava quando tudo começou.';
+
+  /// pt: 'NOSSA LINHA DO TEMPO'
+  String get timelineEyebrow => 'NOSSA LINHA DO TEMPO';
+
+  /// pt: 'Momentos que a gente guardou'
+  String get timelineTitle => 'Momentos que a gente guardou';
+
+  /// pt: 'DE UM CARTÃO'
+  String get quoteEyebrow => 'DE UM CARTÃO';
+
+  /// pt: '“{quote}”'
+  String quoteText({required Object quote}) => '“${quote}”';
+
+  /// pt: '— {name}'
+  String quoteFromName({required Object name}) => '— ${name}';
+
+  /// pt: 'Cartão de {date}'
+  String quoteDate({required Object date}) => 'Cartão de ${date}';
+
+  /// pt: '{day} de {month} de {year}'
+  String dateLine({required Object day, required Object month, required Object year}) =>
+      '${day} de ${month} de ${year}';
+
+  /// pt: '{day} de {month}'
+  String dateShort({required Object day, required Object month}) => '${day} de ${month}';
+
+  List<String> get monthsLong => [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
+  ];
+  Map<String, String> get phases => {
+    'newMoon': 'Lua nova',
+    'waxingCrescent': 'Lua crescente',
+    'firstQuarter': 'Quarto crescente',
+    'waxingGibbous': 'Crescente gibosa',
+    'fullMoon': 'Lua cheia',
+    'waningGibbous': 'Minguante gibosa',
+    'lastQuarter': 'Quarto minguante',
+    'waningCrescent': 'Lua minguante',
+    'other': '',
+  };
+
+  /// pt: 'Mingo'
+  String get productMark => 'Mingo';
+
+  Map<String, String> get errors => {'other': 'Não deu para compartilhar agora. Tente de novo.'};
 }
 
 // Path: slipDetail
@@ -12075,6 +12191,69 @@ extension on Translations {
           'settingsHome.preferencesSection' => 'Preferências',
           'settingsHome.privacySection' => 'Privacidade e ajuda',
           'settingsHome.connectedWith' => ({required Object name}) => 'Conectado com ${name}',
+          'share.entryTitle' => 'Compartilhar imagem',
+          'share.entrySubtitleToday' => 'O tempo de vocês e a lua do dia em que tudo começou.',
+          'share.entrySubtitleMemories' =>
+            'Uma linha do tempo com os momentos que vocês guardaram.',
+          'share.entrySubtitleCard' => 'Uma frase do cartão que chegou para você.',
+          'share.sheetTitle' => 'Compartilhar imagem',
+          'share.sheetSubtitle' =>
+            'A imagem é feita no seu aparelho e só sai daqui quando você compartilhar.',
+          'share.shareAction' => 'Compartilhar',
+          'share.cardLabels.counter' => 'Nosso tempo',
+          'share.cardLabels.moon' => 'A lua do nosso dia',
+          'share.cardLabels.timeline' => 'Nossa linha do tempo',
+          'share.cardLabels.quote' => 'De um cartão',
+          'share.cardLabels.other' => '',
+          'share.counterEyebrow' => 'NOSSO TEMPO',
+          'share.counterDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'dia juntos',
+                  other: 'dias juntos',
+                ),
+          'share.counterSince' => ({required Object date}) => 'Desde ${date}',
+          'share.moonEyebrow' => 'A LUA DO NOSSO DIA',
+          'share.moonSupport' => 'Foi assim que o céu estava quando tudo começou.',
+          'share.timelineEyebrow' => 'NOSSA LINHA DO TEMPO',
+          'share.timelineTitle' => 'Momentos que a gente guardou',
+          'share.quoteEyebrow' => 'DE UM CARTÃO',
+          'share.quoteText' => ({required Object quote}) => '“${quote}”',
+          'share.quoteFromName' => ({required Object name}) => '— ${name}',
+          'share.quoteDate' => ({required Object date}) => 'Cartão de ${date}',
+          'share.dateLine' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} de ${month} de ${year}',
+          'share.dateShort' => ({
+            required Object day,
+            required Object month,
+          }) => '${day} de ${month}',
+          'share.monthsLong.0' => 'janeiro',
+          'share.monthsLong.1' => 'fevereiro',
+          'share.monthsLong.2' => 'março',
+          'share.monthsLong.3' => 'abril',
+          'share.monthsLong.4' => 'maio',
+          'share.monthsLong.5' => 'junho',
+          'share.monthsLong.6' => 'julho',
+          'share.monthsLong.7' => 'agosto',
+          'share.monthsLong.8' => 'setembro',
+          'share.monthsLong.9' => 'outubro',
+          'share.monthsLong.10' => 'novembro',
+          'share.monthsLong.11' => 'dezembro',
+          'share.phases.newMoon' => 'Lua nova',
+          'share.phases.waxingCrescent' => 'Lua crescente',
+          'share.phases.firstQuarter' => 'Quarto crescente',
+          'share.phases.waxingGibbous' => 'Crescente gibosa',
+          'share.phases.fullMoon' => 'Lua cheia',
+          'share.phases.waningGibbous' => 'Minguante gibosa',
+          'share.phases.lastQuarter' => 'Quarto minguante',
+          'share.phases.waningCrescent' => 'Lua minguante',
+          'share.phases.other' => '',
+          'share.productMark' => 'Mingo',
+          'share.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -12299,6 +12478,9 @@ extension on Translations {
           'sundayCard.send.needsPartner' =>
             'Para enviar o cartão no app, sua pessoa precisa estar conectada.',
           'sundayCard.send.title' => 'Enviar o cartão?',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.send.text' => ({
             required Object name,
           }) => '${name} recebe agora. Depois de enviado, o cartão não muda.',
@@ -12364,9 +12546,6 @@ extension on Translations {
           'tabs.partnerLabel' => 'SÓ PARA VOCÊ',
           'tabs.partnerTitle' => 'Sobre seu par',
           'tabs.partnerText' => 'Notas privadas para lembrar do que ele ou ela gosta.',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.chatLabel' => 'CONVERSAR',
           'tabs.chatTitle' => 'Mascote',
           'tabs.chatText' => 'Uma conversa calma, que não fica guardada.',

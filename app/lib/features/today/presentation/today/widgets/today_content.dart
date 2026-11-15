@@ -5,6 +5,7 @@ import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:app/features/today/presentation/today/widgets/today_header.dart';
 import 'package:app/features/today/presentation/today/widgets/today_pause.dart';
+import 'package:app/features/today/presentation/today/widgets/today_share_entry.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
@@ -44,6 +45,7 @@ class const TodayContent({
         _HeroSection(home: home, selfName: selfName, isFirstDay: isFirstDay),
         _MoreCardsSection(home: home, partnerHint: partnerHint),
         if (idea != null) _IdeaSection(idea: idea),
+        TodayShareEntry(home: home),
       ],
     );
   }

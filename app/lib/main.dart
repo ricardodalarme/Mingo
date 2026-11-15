@@ -38,6 +38,7 @@ import 'package:app/features/reminders/di/reminders_injection_module.dart';
 import 'package:app/features/repair/di/repair_injection_module.dart';
 import 'package:app/features/safety/di/safety_injection_module.dart';
 import 'package:app/features/settings/di/settings_injection_module.dart';
+import 'package:app/features/share/di/share_injection_module.dart';
 import 'package:app/features/slips/di/slips_injection_module.dart';
 import 'package:app/features/spice/di/spice_injection_module.dart';
 import 'package:app/features/story/di/story_injection_module.dart';
@@ -75,6 +76,7 @@ void _registerModules() {
     AccountInjectionModule(),
     SafetyInjectionModule(),
     SettingsInjectionModule(),
+    ShareInjectionModule(),
     DevicesInjectionModule(),
     FightStyleInjectionModule(),
     GamesInjectionModule(),

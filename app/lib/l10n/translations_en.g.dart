@@ -203,6 +203,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$settingsHome$en settingsHome = _Translations$settingsHome$en._(_root);
   @override
+  late final _Translations$share$en share = _Translations$share$en._(_root);
+  @override
   late final _Translations$slipDetail$en slipDetail = _Translations$slipDetail$en._(_root);
   @override
   late final _Translations$slipKind$en slipKind = _Translations$slipKind$en._(_root);
@@ -4861,6 +4863,100 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get privacySection => 'Privacy and help';
   @override
   String connectedWith({required Object name}) => 'Connected with ${name}';
+}
+
+// Path: share
+class _Translations$share$en extends Translations$share$pt {
+  _Translations$share$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get entryTitle => 'Share image';
+  @override
+  String get entrySubtitleToday => 'Your time together and the moon from the day it began.';
+  @override
+  String get entrySubtitleMemories => 'A timeline of the moments you kept.';
+  @override
+  String get entrySubtitleCard => 'A line from the card that reached you.';
+  @override
+  String get sheetTitle => 'Share image';
+  @override
+  String get sheetSubtitle => 'The image is made on your device and only leaves when you share it.';
+  @override
+  String get shareAction => 'Share';
+  @override
+  Map<String, String> get cardLabels => {
+    'counter': 'Our time',
+    'moon': 'The moon of our day',
+    'timeline': 'Our timeline',
+    'quote': 'From a card',
+    'other': '',
+  };
+  @override
+  String get counterEyebrow => 'OUR TIME';
+  @override
+  String counterDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'day together',
+        other: 'days together',
+      );
+  @override
+  String counterSince({required Object date}) => 'Since ${date}';
+  @override
+  String get moonEyebrow => 'THE MOON OF OUR DAY';
+  @override
+  String get moonSupport => 'This is how the sky looked when it all began.';
+  @override
+  String get timelineEyebrow => 'OUR TIMELINE';
+  @override
+  String get timelineTitle => 'Moments we kept';
+  @override
+  String get quoteEyebrow => 'FROM A CARD';
+  @override
+  String quoteText({required Object quote}) => '“${quote}”';
+  @override
+  String quoteFromName({required Object name}) => '— ${name}';
+  @override
+  String quoteDate({required Object date}) => 'Card from ${date}';
+  @override
+  String dateLine({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  String dateShort({required Object month, required Object day}) => '${month} ${day}';
+  @override
+  List<String> get monthsLong => [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  @override
+  Map<String, String> get phases => {
+    'newMoon': 'New moon',
+    'waxingCrescent': 'Waxing crescent',
+    'firstQuarter': 'First quarter',
+    'waxingGibbous': 'Waxing gibbous',
+    'fullMoon': 'Full moon',
+    'waningGibbous': 'Waning gibbous',
+    'lastQuarter': 'Last quarter',
+    'waningCrescent': 'Waning crescent',
+    'other': '',
+  };
+  @override
+  String get productMark => 'Mingo';
+  @override
+  Map<String, String> get errors => {'other': 'Couldn\'t share right now. Try again.'};
 }
 
 // Path: slipDetail
@@ -10227,6 +10323,65 @@ extension on TranslationsEn {
           'settingsHome.preferencesSection' => 'Preferences',
           'settingsHome.privacySection' => 'Privacy and help',
           'settingsHome.connectedWith' => ({required Object name}) => 'Connected with ${name}',
+          'share.entryTitle' => 'Share image',
+          'share.entrySubtitleToday' => 'Your time together and the moon from the day it began.',
+          'share.entrySubtitleMemories' => 'A timeline of the moments you kept.',
+          'share.entrySubtitleCard' => 'A line from the card that reached you.',
+          'share.sheetTitle' => 'Share image',
+          'share.sheetSubtitle' =>
+            'The image is made on your device and only leaves when you share it.',
+          'share.shareAction' => 'Share',
+          'share.cardLabels.counter' => 'Our time',
+          'share.cardLabels.moon' => 'The moon of our day',
+          'share.cardLabels.timeline' => 'Our timeline',
+          'share.cardLabels.quote' => 'From a card',
+          'share.cardLabels.other' => '',
+          'share.counterEyebrow' => 'OUR TIME',
+          'share.counterDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'day together',
+                  other: 'days together',
+                ),
+          'share.counterSince' => ({required Object date}) => 'Since ${date}',
+          'share.moonEyebrow' => 'THE MOON OF OUR DAY',
+          'share.moonSupport' => 'This is how the sky looked when it all began.',
+          'share.timelineEyebrow' => 'OUR TIMELINE',
+          'share.timelineTitle' => 'Moments we kept',
+          'share.quoteEyebrow' => 'FROM A CARD',
+          'share.quoteText' => ({required Object quote}) => '“${quote}”',
+          'share.quoteFromName' => ({required Object name}) => '— ${name}',
+          'share.quoteDate' => ({required Object date}) => 'Card from ${date}',
+          'share.dateLine' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'share.dateShort' => ({required Object month, required Object day}) => '${month} ${day}',
+          'share.monthsLong.0' => 'January',
+          'share.monthsLong.1' => 'February',
+          'share.monthsLong.2' => 'March',
+          'share.monthsLong.3' => 'April',
+          'share.monthsLong.4' => 'May',
+          'share.monthsLong.5' => 'June',
+          'share.monthsLong.6' => 'July',
+          'share.monthsLong.7' => 'August',
+          'share.monthsLong.8' => 'September',
+          'share.monthsLong.9' => 'October',
+          'share.monthsLong.10' => 'November',
+          'share.monthsLong.11' => 'December',
+          'share.phases.newMoon' => 'New moon',
+          'share.phases.waxingCrescent' => 'Waxing crescent',
+          'share.phases.firstQuarter' => 'First quarter',
+          'share.phases.waxingGibbous' => 'Waxing gibbous',
+          'share.phases.fullMoon' => 'Full moon',
+          'share.phases.waningGibbous' => 'Waning gibbous',
+          'share.phases.lastQuarter' => 'Last quarter',
+          'share.phases.waningCrescent' => 'Waning crescent',
+          'share.phases.other' => '',
+          'share.productMark' => 'Mingo',
+          'share.errors.other' => 'Couldn\'t share right now. Try again.',
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -10453,6 +10608,9 @@ extension on TranslationsEn {
           'sundayCard.send.needsPartner' =>
             'To send the card in the app, your person has to be connected.',
           'sundayCard.send.title' => 'Send the card?',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.send.text' => ({
             required Object name,
           }) => '${name} receives it now. Once sent, the card does not change.',
@@ -10517,9 +10675,6 @@ extension on TranslationsEn {
           'tabs.partnerLabel' => 'JUST FOR YOU',
           'tabs.partnerTitle' => 'About your partner',
           'tabs.partnerText' => 'Private notes to remember what they like.',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.chatLabel' => 'TALK',
           'tabs.chatTitle' => 'Mascot',
           'tabs.chatText' => 'A calm conversation that is not kept.',

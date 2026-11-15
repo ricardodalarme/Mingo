@@ -5,6 +5,8 @@ import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/memories/data/repositories/memories_repository.dart';
 import 'package:app/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:app/features/memories/presentation/memories/memories_page.dart';
+import 'package:app/features/share/data/models/share_card.dart';
+import 'package:app/features/share/presentation/widgets/share_image_entry.dart';
 import 'package:app/features/slips/data/models/slip_detail.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
@@ -149,6 +151,40 @@ void main() {
     expect(find.text('Paraty'), findsOneWidget);
     expect(find.text('Como foi'), findsOneWidget);
     expect(find.text('Foi lindo'), findsOneWidget);
+  });
+
+  testWidgets('an empty timeline offers no image to share', (tester) async {
+    final cubit = await build();
+
+    await pumpPage(tester, cubit);
+
+    expect(find.text('Compartilhar imagem'), findsNothing);
+    expect(find.byType(ShareImageEntry), findsNothing);
+  });
+
+  testWidgets('the timeline offers an image with the latest moments', (tester) async {
+    when(() => repository.getMemories()).thenAnswer(
+      (_) async => [
+        Memory(
+          id: 'm1',
+          title: 'Primeiro jantar',
+          happenedOn: DateTime(2026, 5, 12),
+          place: 'Paraty',
+        ),
+        Memory(id: 'm2', title: 'Nosso show', happenedOn: DateTime(2026, 2, 3)),
+      ],
+    );
+    final cubit = await build();
+
+    await pumpPage(tester, cubit);
+
+    expect(find.text('Compartilhar imagem'), findsOneWidget);
+    expect(find.text('Uma linha do tempo com os momentos que vocês guardaram.'), findsOneWidget);
+
+    final entry = tester.widget<ShareImageEntry>(find.byType(ShareImageEntry));
+    final card = entry.cards.single as ShareTimelineCard;
+    expect(card.entries.map((entry) => entry.title), ['Primeiro jantar', 'Nosso show']);
+    expect(card.entries.first.place, 'Paraty');
   });
 
   testWidgets('deleting a memory asks before removing it', (tester) async {

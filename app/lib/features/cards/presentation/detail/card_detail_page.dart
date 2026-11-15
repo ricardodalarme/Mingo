@@ -2,6 +2,7 @@ import 'package:app/features/cards/data/models/card_detail.dart';
 import 'package:app/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
 import 'package:app/features/cards/presentation/detail/widgets/card_reaction_section.dart';
 import 'package:app/features/cards/presentation/detail/widgets/card_response_received.dart';
+import 'package:app/features/cards/presentation/detail/widgets/card_share_entry.dart';
 import 'package:app/features/cards/presentation/shared/widgets/card_view.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
@@ -76,6 +77,7 @@ class const _DetailBody({required final CardDetail detail}) extends StatelessWid
             const SizedBox(height: AppSpace.s24),
             const CardReactionSection(),
           ],
+          CardShareEntry(detail: detail),
         ],
       ),
     );
