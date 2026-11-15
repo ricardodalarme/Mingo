@@ -25423,6 +25423,652 @@ class InputGameOutcomeFilter {
   }
 }
 
+class InputGameSeenItemsFilter {
+  factory InputGameSeenItemsFilter({
+    InputUUIDFilter? coupleId,
+    InputGameKindFilter? game,
+    InputStringFilter? itemSlug,
+    InputDatetimeFilter? seenAt,
+    InputIDFilter? nodeId,
+    List<InputGameSeenItemsFilter>? and,
+    List<InputGameSeenItemsFilter>? or,
+    InputGameSeenItemsFilter? not,
+  }) => InputGameSeenItemsFilter._({
+    if (coupleId != null) r'coupleId': coupleId,
+    if (game != null) r'game': game,
+    if (itemSlug != null) r'itemSlug': itemSlug,
+    if (seenAt != null) r'seenAt': seenAt,
+    if (nodeId != null) r'nodeId': nodeId,
+    if (and != null) r'and': and,
+    if (or != null) r'or': or,
+    if (not != null) r'not': not,
+  });
+
+  InputGameSeenItemsFilter._(this._$data);
+
+  factory InputGameSeenItemsFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : InputUUIDFilter.fromJson((l$coupleId as Map<String, dynamic>));
+    }
+    if (data.containsKey('game')) {
+      final l$game = data['game'];
+      result$data['game'] = l$game == null
+          ? null
+          : InputGameKindFilter.fromJson((l$game as Map<String, dynamic>));
+    }
+    if (data.containsKey('itemSlug')) {
+      final l$itemSlug = data['itemSlug'];
+      result$data['itemSlug'] = l$itemSlug == null
+          ? null
+          : InputStringFilter.fromJson((l$itemSlug as Map<String, dynamic>));
+    }
+    if (data.containsKey('seenAt')) {
+      final l$seenAt = data['seenAt'];
+      result$data['seenAt'] = l$seenAt == null
+          ? null
+          : InputDatetimeFilter.fromJson((l$seenAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('nodeId')) {
+      final l$nodeId = data['nodeId'];
+      result$data['nodeId'] = l$nodeId == null
+          ? null
+          : InputIDFilter.fromJson((l$nodeId as Map<String, dynamic>));
+    }
+    if (data.containsKey('and')) {
+      final l$and = data['and'];
+      result$data['and'] = (l$and as List<dynamic>?)
+          ?.map((e) => InputGameSeenItemsFilter.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('or')) {
+      final l$or = data['or'];
+      result$data['or'] = (l$or as List<dynamic>?)
+          ?.map((e) => InputGameSeenItemsFilter.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('not')) {
+      final l$not = data['not'];
+      result$data['not'] = l$not == null
+          ? null
+          : InputGameSeenItemsFilter.fromJson((l$not as Map<String, dynamic>));
+    }
+    return InputGameSeenItemsFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputUUIDFilter? get coupleId => (_$data['coupleId'] as InputUUIDFilter?);
+
+  InputGameKindFilter? get game => (_$data['game'] as InputGameKindFilter?);
+
+  InputStringFilter? get itemSlug => (_$data['itemSlug'] as InputStringFilter?);
+
+  InputDatetimeFilter? get seenAt => (_$data['seenAt'] as InputDatetimeFilter?);
+
+  InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
+
+  List<InputGameSeenItemsFilter>? get and => (_$data['and'] as List<InputGameSeenItemsFilter>?);
+
+  List<InputGameSeenItemsFilter>? get or => (_$data['or'] as List<InputGameSeenItemsFilter>?);
+
+  InputGameSeenItemsFilter? get not => (_$data['not'] as InputGameSeenItemsFilter?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId?.toJson();
+    }
+    if (_$data.containsKey('game')) {
+      final l$game = game;
+      result$data['game'] = l$game?.toJson();
+    }
+    if (_$data.containsKey('itemSlug')) {
+      final l$itemSlug = itemSlug;
+      result$data['itemSlug'] = l$itemSlug?.toJson();
+    }
+    if (_$data.containsKey('seenAt')) {
+      final l$seenAt = seenAt;
+      result$data['seenAt'] = l$seenAt?.toJson();
+    }
+    if (_$data.containsKey('nodeId')) {
+      final l$nodeId = nodeId;
+      result$data['nodeId'] = l$nodeId?.toJson();
+    }
+    if (_$data.containsKey('and')) {
+      final l$and = and;
+      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('or')) {
+      final l$or = or;
+      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('not')) {
+      final l$not = not;
+      result$data['not'] = l$not?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGameSeenItemsFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$game = game;
+    final lOther$game = other.game;
+    if (_$data.containsKey('game') != other._$data.containsKey('game')) {
+      return false;
+    }
+    if (l$game != lOther$game) {
+      return false;
+    }
+    final l$itemSlug = itemSlug;
+    final lOther$itemSlug = other.itemSlug;
+    if (_$data.containsKey('itemSlug') != other._$data.containsKey('itemSlug')) {
+      return false;
+    }
+    if (l$itemSlug != lOther$itemSlug) {
+      return false;
+    }
+    final l$seenAt = seenAt;
+    final lOther$seenAt = other.seenAt;
+    if (_$data.containsKey('seenAt') != other._$data.containsKey('seenAt')) {
+      return false;
+    }
+    if (l$seenAt != lOther$seenAt) {
+      return false;
+    }
+    final l$nodeId = nodeId;
+    final lOther$nodeId = other.nodeId;
+    if (_$data.containsKey('nodeId') != other._$data.containsKey('nodeId')) {
+      return false;
+    }
+    if (l$nodeId != lOther$nodeId) {
+      return false;
+    }
+    final l$and = and;
+    final lOther$and = other.and;
+    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
+      return false;
+    }
+    if (l$and != null && lOther$and != null) {
+      if (l$and.length != lOther$and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$and.length; i++) {
+        final l$and$entry = l$and[i];
+        final lOther$and$entry = lOther$and[i];
+        if (l$and$entry != lOther$and$entry) {
+          return false;
+        }
+      }
+    } else if (l$and != lOther$and) {
+      return false;
+    }
+    final l$or = or;
+    final lOther$or = other.or;
+    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
+      return false;
+    }
+    if (l$or != null && lOther$or != null) {
+      if (l$or.length != lOther$or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$or.length; i++) {
+        final l$or$entry = l$or[i];
+        final lOther$or$entry = lOther$or[i];
+        if (l$or$entry != lOther$or$entry) {
+          return false;
+        }
+      }
+    } else if (l$or != lOther$or) {
+      return false;
+    }
+    final l$not = not;
+    final lOther$not = other.not;
+    if (_$data.containsKey('not') != other._$data.containsKey('not')) {
+      return false;
+    }
+    if (l$not != lOther$not) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$coupleId = coupleId;
+    final l$game = game;
+    final l$itemSlug = itemSlug;
+    final l$seenAt = seenAt;
+    final l$nodeId = nodeId;
+    final l$and = and;
+    final l$or = or;
+    final l$not = not;
+    return Object.hashAll([
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('game') ? l$game : const {},
+      _$data.containsKey('itemSlug') ? l$itemSlug : const {},
+      _$data.containsKey('seenAt') ? l$seenAt : const {},
+      _$data.containsKey('nodeId') ? l$nodeId : const {},
+      _$data.containsKey('and')
+          ? l$and == null
+                ? null
+                : Object.hashAll(l$and.map((v) => v))
+          : const {},
+      _$data.containsKey('or')
+          ? l$or == null
+                ? null
+                : Object.hashAll(l$or.map((v) => v))
+          : const {},
+      _$data.containsKey('not') ? l$not : const {},
+    ]);
+  }
+}
+
+class InputGameSeenItemsInsertInput {
+  factory InputGameSeenItemsInsertInput({
+    String? coupleId,
+    EnumGameKind? game,
+    String? itemSlug,
+    DateTime? seenAt,
+  }) => InputGameSeenItemsInsertInput._({
+    if (coupleId != null) r'coupleId': coupleId,
+    if (game != null) r'game': game,
+    if (itemSlug != null) r'itemSlug': itemSlug,
+    if (seenAt != null) r'seenAt': seenAt,
+  });
+
+  InputGameSeenItemsInsertInput._(this._$data);
+
+  factory InputGameSeenItemsInsertInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('game')) {
+      final l$game = data['game'];
+      result$data['game'] = l$game == null ? null : fromJsonEnumGameKind((l$game as String));
+    }
+    if (data.containsKey('itemSlug')) {
+      final l$itemSlug = data['itemSlug'];
+      result$data['itemSlug'] = (l$itemSlug as String?);
+    }
+    if (data.containsKey('seenAt')) {
+      final l$seenAt = data['seenAt'];
+      result$data['seenAt'] = l$seenAt == null ? null : DateTime.parse((l$seenAt as String));
+    }
+    return InputGameSeenItemsInsertInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  EnumGameKind? get game => (_$data['game'] as EnumGameKind?);
+
+  String? get itemSlug => (_$data['itemSlug'] as String?);
+
+  DateTime? get seenAt => (_$data['seenAt'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('game')) {
+      final l$game = game;
+      result$data['game'] = l$game == null ? null : toJsonEnumGameKind(l$game);
+    }
+    if (_$data.containsKey('itemSlug')) {
+      final l$itemSlug = itemSlug;
+      result$data['itemSlug'] = l$itemSlug;
+    }
+    if (_$data.containsKey('seenAt')) {
+      final l$seenAt = seenAt;
+      result$data['seenAt'] = l$seenAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$seenAt);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGameSeenItemsInsertInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$game = game;
+    final lOther$game = other.game;
+    if (_$data.containsKey('game') != other._$data.containsKey('game')) {
+      return false;
+    }
+    if (l$game != lOther$game) {
+      return false;
+    }
+    final l$itemSlug = itemSlug;
+    final lOther$itemSlug = other.itemSlug;
+    if (_$data.containsKey('itemSlug') != other._$data.containsKey('itemSlug')) {
+      return false;
+    }
+    if (l$itemSlug != lOther$itemSlug) {
+      return false;
+    }
+    final l$seenAt = seenAt;
+    final lOther$seenAt = other.seenAt;
+    if (_$data.containsKey('seenAt') != other._$data.containsKey('seenAt')) {
+      return false;
+    }
+    if (l$seenAt != lOther$seenAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$coupleId = coupleId;
+    final l$game = game;
+    final l$itemSlug = itemSlug;
+    final l$seenAt = seenAt;
+    return Object.hashAll([
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('game') ? l$game : const {},
+      _$data.containsKey('itemSlug') ? l$itemSlug : const {},
+      _$data.containsKey('seenAt') ? l$seenAt : const {},
+    ]);
+  }
+}
+
+class InputGameSeenItemsOrderBy {
+  factory InputGameSeenItemsOrderBy({
+    EnumOrderByDirection? coupleId,
+    EnumOrderByDirection? game,
+    EnumOrderByDirection? itemSlug,
+    EnumOrderByDirection? seenAt,
+  }) => InputGameSeenItemsOrderBy._({
+    if (coupleId != null) r'coupleId': coupleId,
+    if (game != null) r'game': game,
+    if (itemSlug != null) r'itemSlug': itemSlug,
+    if (seenAt != null) r'seenAt': seenAt,
+  });
+
+  InputGameSeenItemsOrderBy._(this._$data);
+
+  factory InputGameSeenItemsOrderBy.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$coupleId as String));
+    }
+    if (data.containsKey('game')) {
+      final l$game = data['game'];
+      result$data['game'] = l$game == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$game as String));
+    }
+    if (data.containsKey('itemSlug')) {
+      final l$itemSlug = data['itemSlug'];
+      result$data['itemSlug'] = l$itemSlug == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$itemSlug as String));
+    }
+    if (data.containsKey('seenAt')) {
+      final l$seenAt = data['seenAt'];
+      result$data['seenAt'] = l$seenAt == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$seenAt as String));
+    }
+    return InputGameSeenItemsOrderBy._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumOrderByDirection? get coupleId => (_$data['coupleId'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get game => (_$data['game'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get itemSlug => (_$data['itemSlug'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get seenAt => (_$data['seenAt'] as EnumOrderByDirection?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId == null ? null : toJsonEnumOrderByDirection(l$coupleId);
+    }
+    if (_$data.containsKey('game')) {
+      final l$game = game;
+      result$data['game'] = l$game == null ? null : toJsonEnumOrderByDirection(l$game);
+    }
+    if (_$data.containsKey('itemSlug')) {
+      final l$itemSlug = itemSlug;
+      result$data['itemSlug'] = l$itemSlug == null ? null : toJsonEnumOrderByDirection(l$itemSlug);
+    }
+    if (_$data.containsKey('seenAt')) {
+      final l$seenAt = seenAt;
+      result$data['seenAt'] = l$seenAt == null ? null : toJsonEnumOrderByDirection(l$seenAt);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGameSeenItemsOrderBy || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$game = game;
+    final lOther$game = other.game;
+    if (_$data.containsKey('game') != other._$data.containsKey('game')) {
+      return false;
+    }
+    if (l$game != lOther$game) {
+      return false;
+    }
+    final l$itemSlug = itemSlug;
+    final lOther$itemSlug = other.itemSlug;
+    if (_$data.containsKey('itemSlug') != other._$data.containsKey('itemSlug')) {
+      return false;
+    }
+    if (l$itemSlug != lOther$itemSlug) {
+      return false;
+    }
+    final l$seenAt = seenAt;
+    final lOther$seenAt = other.seenAt;
+    if (_$data.containsKey('seenAt') != other._$data.containsKey('seenAt')) {
+      return false;
+    }
+    if (l$seenAt != lOther$seenAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$coupleId = coupleId;
+    final l$game = game;
+    final l$itemSlug = itemSlug;
+    final l$seenAt = seenAt;
+    return Object.hashAll([
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('game') ? l$game : const {},
+      _$data.containsKey('itemSlug') ? l$itemSlug : const {},
+      _$data.containsKey('seenAt') ? l$seenAt : const {},
+    ]);
+  }
+}
+
+class InputGameSeenItemsUpdateInput {
+  factory InputGameSeenItemsUpdateInput({
+    String? coupleId,
+    EnumGameKind? game,
+    String? itemSlug,
+    DateTime? seenAt,
+  }) => InputGameSeenItemsUpdateInput._({
+    if (coupleId != null) r'coupleId': coupleId,
+    if (game != null) r'game': game,
+    if (itemSlug != null) r'itemSlug': itemSlug,
+    if (seenAt != null) r'seenAt': seenAt,
+  });
+
+  InputGameSeenItemsUpdateInput._(this._$data);
+
+  factory InputGameSeenItemsUpdateInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('game')) {
+      final l$game = data['game'];
+      result$data['game'] = l$game == null ? null : fromJsonEnumGameKind((l$game as String));
+    }
+    if (data.containsKey('itemSlug')) {
+      final l$itemSlug = data['itemSlug'];
+      result$data['itemSlug'] = (l$itemSlug as String?);
+    }
+    if (data.containsKey('seenAt')) {
+      final l$seenAt = data['seenAt'];
+      result$data['seenAt'] = l$seenAt == null ? null : DateTime.parse((l$seenAt as String));
+    }
+    return InputGameSeenItemsUpdateInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  EnumGameKind? get game => (_$data['game'] as EnumGameKind?);
+
+  String? get itemSlug => (_$data['itemSlug'] as String?);
+
+  DateTime? get seenAt => (_$data['seenAt'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('game')) {
+      final l$game = game;
+      result$data['game'] = l$game == null ? null : toJsonEnumGameKind(l$game);
+    }
+    if (_$data.containsKey('itemSlug')) {
+      final l$itemSlug = itemSlug;
+      result$data['itemSlug'] = l$itemSlug;
+    }
+    if (_$data.containsKey('seenAt')) {
+      final l$seenAt = seenAt;
+      result$data['seenAt'] = l$seenAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$seenAt);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGameSeenItemsUpdateInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$game = game;
+    final lOther$game = other.game;
+    if (_$data.containsKey('game') != other._$data.containsKey('game')) {
+      return false;
+    }
+    if (l$game != lOther$game) {
+      return false;
+    }
+    final l$itemSlug = itemSlug;
+    final lOther$itemSlug = other.itemSlug;
+    if (_$data.containsKey('itemSlug') != other._$data.containsKey('itemSlug')) {
+      return false;
+    }
+    if (l$itemSlug != lOther$itemSlug) {
+      return false;
+    }
+    final l$seenAt = seenAt;
+    final lOther$seenAt = other.seenAt;
+    if (_$data.containsKey('seenAt') != other._$data.containsKey('seenAt')) {
+      return false;
+    }
+    if (l$seenAt != lOther$seenAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$coupleId = coupleId;
+    final l$game = game;
+    final l$itemSlug = itemSlug;
+    final l$seenAt = seenAt;
+    return Object.hashAll([
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('game') ? l$game : const {},
+      _$data.containsKey('itemSlug') ? l$itemSlug : const {},
+      _$data.containsKey('seenAt') ? l$seenAt : const {},
+    ]);
+  }
+}
+
 class InputGameSessionsFilter {
   factory InputGameSessionsFilter({
     InputUUIDFilter? id,
@@ -84676,6 +85322,7 @@ const possibleTypesMap = <String, Set<String>>{
     'Devices',
     'Entitlements',
     'GameAnswers',
+    'GameSeenItems',
     'GameSessions',
     'GiftIdeas',
     'GuestLinkCreated',

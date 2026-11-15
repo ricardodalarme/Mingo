@@ -2207,6 +2207,30 @@ type Couples implements Node {
     orderBy: [GiftIdeasOrderBy!]
   ): GiftIdeasConnection
   couplePhotos: CouplePhotos
+  gameSeenItemsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: GameSeenItemsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [GameSeenItemsOrderBy!]
+  ): GameSeenItemsConnection
 }
 
 type CouplesConnection {
@@ -3380,6 +3404,95 @@ input GameOutcomeFilter {
   in: [GameOutcome!]
   is: FilterIs
   neq: GameOutcome
+}
+
+"""
+Which game items a couple has already been served, so a replay starts with new ones.
+"""
+type GameSeenItems implements Node {
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
+  coupleId: UUID!
+  game: GameKind!
+  itemSlug: String!
+  seenAt: Datetime!
+  couple: Couples
+}
+
+type GameSeenItemsConnection {
+  edges: [GameSeenItemsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type GameSeenItemsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GameSeenItems!]!
+}
+
+type GameSeenItemsEdge {
+  cursor: String!
+  node: GameSeenItems!
+}
+
+input GameSeenItemsFilter {
+  coupleId: UUIDFilter
+  game: GameKindFilter
+  itemSlug: StringFilter
+  seenAt: DatetimeFilter
+  nodeId: IDFilter
+
+  """
+  Returns true only if all its inner filters are true, otherwise returns false
+  """
+  and: [GameSeenItemsFilter!]
+
+  """
+  Returns true if at least one of its inner filters is true, otherwise returns false
+  """
+  or: [GameSeenItemsFilter!]
+
+  """Negates a filter"""
+  not: GameSeenItemsFilter
+}
+
+input GameSeenItemsInsertInput {
+  coupleId: UUID
+  game: GameKind
+  itemSlug: String
+  seenAt: Datetime
+}
+
+type GameSeenItemsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GameSeenItems!]!
+}
+
+input GameSeenItemsOrderBy {
+  coupleId: OrderByDirection
+  game: OrderByDirection
+  itemSlug: OrderByDirection
+  seenAt: OrderByDirection
+}
+
+input GameSeenItemsUpdateInput {
+  coupleId: UUID
+  game: GameKind
+  itemSlug: String
+  seenAt: Datetime
+}
+
+type GameSeenItemsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [GameSeenItems!]!
 }
 
 """A game one partner invited the other to. No score, no winner."""
@@ -5820,7 +5933,10 @@ type Mutation {
   """
   agree(agreementId: UUID!, agreed: Boolean = true): Agreements
 
-  """Saves the caller's answer to one item of an active game."""
+  """
+  Saves the caller's answer to one item of an active game. Once both partners
+  answered an item, it is locked and the call fails with ANSWER_LOCKED.
+  """
   answerGame(sessionId: UUID!, idx: Int!, answer: String!): Boolean
 
   """Archives a slip, or restores it when archived is false."""
@@ -6098,6 +6214,17 @@ type Mutation {
     """
     atMost: Int! = 1
   ): GameAnswersDeleteResponse!
+
+  """Deletes zero or more records from the `GameSeenItems` collection"""
+  deleteFromGameSeenItemsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: GameSeenItemsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): GameSeenItemsDeleteResponse!
 
   """Deletes zero or more records from the `GameSessions` collection"""
   deleteFromGameSessionsCollection(
@@ -6665,6 +6792,9 @@ type Mutation {
   """Adds one or more `GameAnswers` records to the collection"""
   insertIntoGameAnswersCollection(objects: [GameAnswersInsertInput!]!): GameAnswersInsertResponse
 
+  """Adds one or more `GameSeenItems` records to the collection"""
+  insertIntoGameSeenItemsCollection(objects: [GameSeenItemsInsertInput!]!): GameSeenItemsInsertResponse
+
   """Adds one or more `GameSessions` records to the collection"""
   insertIntoGameSessionsCollection(objects: [GameSessionsInsertInput!]!): GameSessionsInsertResponse
 
@@ -6804,6 +6934,40 @@ type Mutation {
 
   """Marks a received message as seen, and optionally hearted."""
   markPartnerMessage(messageId: UUID!, hearted: Boolean = false): PartnerMessages
+
+  """
+  The next items of a game for the couple: ones it has not seen yet, then the
+  least recently seen, so a replay starts over instead of running out. The
+  returned items are recorded as seen.
+  """
+  nextGameItems(
+    game: String!
+    locale: String
+    count: Int = 5
+
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: ContentItemsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [ContentItemsOrderBy!]
+  ): ContentItemsConnection
 
   """
   Builds this week's draft card on demand. Null when the week has no eligible slips.
@@ -7290,6 +7454,22 @@ type Mutation {
     """
     atMost: Int! = 1
   ): GameAnswersUpdateResponse!
+
+  """Updates zero or more records in the `GameSeenItems` collection"""
+  updateGameSeenItemsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: GameSeenItemsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: GameSeenItemsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): GameSeenItemsUpdateResponse!
 
   """Updates zero or more records in the `GameSessions` collection"""
   updateGameSessionsCollection(
@@ -11155,6 +11335,32 @@ type Query {
     """Sort order to apply to the collection"""
     orderBy: [GameAnswersOrderBy!]
   ): GameAnswersConnection!
+
+  """A pagable collection of type `GameSeenItems`"""
+  gameSeenItemsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: GameSeenItemsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [GameSeenItemsOrderBy!]
+  ): GameSeenItemsConnection!
 
   """Retrieve a record of type `GameSessions` by its primary key"""
   gameSessionsByPk(
