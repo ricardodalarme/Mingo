@@ -11,7 +11,7 @@ const int platformPendingLimit = 64;
 /// from the fixed lists passed in, never from user content.
 class const ReminderPlanner({
   required final Map<ReminderKind, String> texts,
-  required final String discreetText,
+  required final String fallbackText,
 }) {
   List<PlannedReminder> plan({
     required ReminderPreferences preferences,
@@ -49,7 +49,7 @@ class const ReminderPlanner({
           id: idFor(candidate),
           kind: candidate.kind,
           at: candidate.at,
-          text: preferences.isDiscreet ? discreetText : texts[candidate.kind] ?? discreetText,
+          text: texts[candidate.kind] ?? fallbackText,
         ),
     ];
   }

@@ -53,16 +53,6 @@ class ProfileRepository({required final ProfileDataSource _profileDataSource}) {
     }
   }
 
-  /// Hides the text of the partner widgets while discreet mode is on.
-  Future<void> setWidgetInDiscreet({required String profileId, required bool hide}) async {
-    try {
-      await _profileDataSource.setWidgetInDiscreet(profileId: profileId, hide: hide);
-    } catch (e, stack) {
-      _logger.error('Failed to save the discreet widget setting', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
-
   Future<ProfileDetails> getProfileDetails() async {
     try {
       final profile = await _profileDataSource.getMyProfile();

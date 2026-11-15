@@ -86,33 +86,6 @@ void main() {
   });
 
   test(
-    'discreet mode strips personal fields, clears cached photo path, and cancels midnight alarms',
-    () async {
-      final discreetPayload = WidgetPayload.fake().copyWith(
-        discreet: true,
-        cachedPhotoPath: '/shared/home_widget/mingo_widget_photo_path.jpg',
-        cardState: 'ready',
-      );
-
-      final sanitized = await service.writePayload(discreetPayload);
-
-      expect(sanitized.discreet, isTrue);
-      expect(sanitized.partnerName, isNull);
-      expect(sanitized.nextDateTitle, isNull);
-      expect(sanitized.nextDateOn, isNull);
-      expect(sanitized.partnerNote, isNull);
-      expect(sanitized.cachedPhotoPath, isNull);
-      expect(sanitized.togetherSince, isNull);
-      expect(sanitized.cardState, 'none');
-      expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], isNull);
-      expect(
-        cancelledMidnightProviders,
-        contains('dev.dalarme.mingo.widgets.MingoCoupleCounterWidgetProvider'),
-      );
-    },
-  );
-
-  test(
     'clearForSignOut overwrites payload with neutral signed-out state and cancels midnight alarms',
     () async {
       await service.writePayload(WidgetPayload.fake());
@@ -173,20 +146,20 @@ void main() {
     expect(memoryStore[WidgetDataService.cachedPhotoUpdatedAtKey], isNull);
   });
 
-  test('readCachedPhotoPath deletes the file in discreet mode', () async {
+  test('readCachedPhotoPath deletes the file without Plus', () async {
     final path = await service.cacheCouplePhoto(Uint8List.fromList([1]), 'jpg');
 
-    final resolved = await service.readCachedPhotoPath(discreet: true, hasPlus: true);
+    final resolved = await service.readCachedPhotoPath(hasPlus: false);
 
     expect(resolved, isNull);
     expect(File(path!).existsSync(), isFalse);
     expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], isNull);
   });
 
-  test('writePayload deletes the cached photo in discreet mode', () async {
+  test('writePayload deletes the cached photo without Plus', () async {
     final path = await service.cacheCouplePhoto(Uint8List.fromList([1]), 'jpg');
 
-    await service.writePayload(WidgetPayload.fake().copyWith(discreet: true));
+    await service.writePayload(WidgetPayload.fake().copyWith(hasPlus: false));
 
     expect(File(path!).existsSync(), isFalse);
     expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], isNull);

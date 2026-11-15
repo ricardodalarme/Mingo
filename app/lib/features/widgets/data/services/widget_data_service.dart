@@ -253,7 +253,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
     await initialize();
     final sanitized = payload.sanitized(referenceNow: referenceNow);
 
-    if (sanitized.discreet || !sanitized.isSignedIn || !sanitized.isPaired || !sanitized.hasPlus) {
+    if (!sanitized.isSignedIn || !sanitized.isPaired || !sanitized.hasPlus) {
       await clearCouplePhoto();
     }
 
@@ -266,7 +266,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
     }
 
     await updateAllFamilies();
-    if (sanitized.isSignedIn && !sanitized.discreet) {
+    if (sanitized.isSignedIn) {
       await scheduleMidnightRollover(referenceNow: referenceNow);
     } else {
       await cancelMidnightRollover();
@@ -303,10 +303,10 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
     return neutral;
   }
 
-  /// Reads the local cached couple photo path, returning `null` in discreet mode or without Plus.
-  Future<String?> readCachedPhotoPath({required bool discreet, required bool hasPlus}) async {
+  /// Reads the local cached couple photo path, or `null` without Plus.
+  Future<String?> readCachedPhotoPath({required bool hasPlus}) async {
     await initialize();
-    if (discreet || !hasPlus) {
+    if (!hasPlus) {
       await clearCouplePhoto();
       return null;
     }

@@ -14,7 +14,7 @@ const ReminderTexts _texts = (
   dailyIdea: 'Ideia',
   dates: 'Data',
   weeklyCard: 'Cartão',
-  discreet: 'Abra o app',
+  generic: 'Abra o app',
 );
 
 void main() {
@@ -83,14 +83,6 @@ void main() {
         perDay.update(request.at.day, (count) => count + 1, ifAbsent: () => 1);
       }
       expect(perDay.values.every((count) => count <= 2), isTrue);
-    });
-
-    test('discreet mode hides what the reminder is about', () async {
-      when(() => local.read()).thenReturn(const ReminderPreferences(isDiscreet: true));
-
-      await repository.reschedule(texts: _texts, now: DateTime(2026, 11, 9, 9));
-
-      expect(scheduled!.map((request) => request.body).toSet(), {'Abra o app'});
     });
 
     test('a paused person schedules nothing and clears what was pending', () async {

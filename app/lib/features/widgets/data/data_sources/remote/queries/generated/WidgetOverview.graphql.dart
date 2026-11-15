@@ -179,13 +179,6 @@ const documentNodeQueryWidgetOverview = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'discreet'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
                   name: NameNode(value: 'isPaired'),
                   alias: null,
                   arguments: [],
@@ -403,13 +396,6 @@ const documentNodeQueryWidgetOverview = DocumentNode(
                 ),
                 FieldNode(
                   name: NameNode(value: 'widgetOnLockScreen'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'widgetInDiscreet'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -813,7 +799,6 @@ class QueryWidgetOverviewwidget {
   QueryWidgetOverviewwidget({
     required this.nodeId,
     this.profileId,
-    this.discreet,
     this.isPaired,
     this.togetherSince,
     this.partnerName,
@@ -830,7 +815,6 @@ class QueryWidgetOverviewwidget {
   factory QueryWidgetOverviewwidget.fromJson(Map<String, dynamic> json) {
     final l$nodeId = json['nodeId'];
     final l$profileId = json['profileId'];
-    final l$discreet = json['discreet'];
     final l$isPaired = json['isPaired'];
     final l$togetherSince = json['togetherSince'];
     final l$partnerName = json['partnerName'];
@@ -845,7 +829,6 @@ class QueryWidgetOverviewwidget {
     return QueryWidgetOverviewwidget(
       nodeId: (l$nodeId as String),
       profileId: (l$profileId as String?),
-      discreet: (l$discreet as bool?),
       isPaired: (l$isPaired as bool?),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       partnerName: (l$partnerName as String?),
@@ -863,8 +846,6 @@ class QueryWidgetOverviewwidget {
   final String nodeId;
 
   final String? profileId;
-
-  final bool? discreet;
 
   final bool? isPaired;
 
@@ -894,8 +875,6 @@ class QueryWidgetOverviewwidget {
     _resultData['nodeId'] = l$nodeId;
     final l$profileId = profileId;
     _resultData['profileId'] = l$profileId;
-    final l$discreet = discreet;
-    _resultData['discreet'] = l$discreet;
     final l$isPaired = isPaired;
     _resultData['isPaired'] = l$isPaired;
     final l$togetherSince = togetherSince;
@@ -931,7 +910,6 @@ class QueryWidgetOverviewwidget {
   int get hashCode {
     final l$nodeId = nodeId;
     final l$profileId = profileId;
-    final l$discreet = discreet;
     final l$isPaired = isPaired;
     final l$togetherSince = togetherSince;
     final l$partnerName = partnerName;
@@ -946,7 +924,6 @@ class QueryWidgetOverviewwidget {
     return Object.hashAll([
       l$nodeId,
       l$profileId,
-      l$discreet,
       l$isPaired,
       l$togetherSince,
       l$partnerName,
@@ -977,11 +954,6 @@ class QueryWidgetOverviewwidget {
     final l$profileId = profileId;
     final lOther$profileId = other.profileId;
     if (l$profileId != lOther$profileId) {
-      return false;
-    }
-    final l$discreet = discreet;
-    final lOther$discreet = other.discreet;
-    if (l$discreet != lOther$discreet) {
       return false;
     }
     final l$isPaired = isPaired;
@@ -1255,7 +1227,6 @@ class QueryWidgetOverviewmySettings {
     this.togetherSince,
     required this.widgetAllowPartnerNotes,
     required this.widgetOnLockScreen,
-    required this.widgetInDiscreet,
     required this.widgetShowNames,
     this.$__typename = 'ProfileSettings',
   });
@@ -1267,7 +1238,6 @@ class QueryWidgetOverviewmySettings {
     final l$togetherSince = json['togetherSince'];
     final l$widgetAllowPartnerNotes = json['widgetAllowPartnerNotes'];
     final l$widgetOnLockScreen = json['widgetOnLockScreen'];
-    final l$widgetInDiscreet = json['widgetInDiscreet'];
     final l$widgetShowNames = json['widgetShowNames'];
     final l$$__typename = json['__typename'];
     return QueryWidgetOverviewmySettings(
@@ -1277,7 +1247,6 @@ class QueryWidgetOverviewmySettings {
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       widgetAllowPartnerNotes: (l$widgetAllowPartnerNotes as bool),
       widgetOnLockScreen: (l$widgetOnLockScreen as bool),
-      widgetInDiscreet: (l$widgetInDiscreet as bool),
       widgetShowNames: (l$widgetShowNames as bool),
       $__typename: (l$$__typename as String),
     );
@@ -1294,8 +1263,6 @@ class QueryWidgetOverviewmySettings {
   final bool widgetAllowPartnerNotes;
 
   final bool widgetOnLockScreen;
-
-  final bool widgetInDiscreet;
 
   final bool widgetShowNames;
 
@@ -1317,8 +1284,6 @@ class QueryWidgetOverviewmySettings {
     _resultData['widgetAllowPartnerNotes'] = l$widgetAllowPartnerNotes;
     final l$widgetOnLockScreen = widgetOnLockScreen;
     _resultData['widgetOnLockScreen'] = l$widgetOnLockScreen;
-    final l$widgetInDiscreet = widgetInDiscreet;
-    _resultData['widgetInDiscreet'] = l$widgetInDiscreet;
     final l$widgetShowNames = widgetShowNames;
     _resultData['widgetShowNames'] = l$widgetShowNames;
     final l$$__typename = $__typename;
@@ -1334,7 +1299,6 @@ class QueryWidgetOverviewmySettings {
     final l$togetherSince = togetherSince;
     final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
     final l$widgetOnLockScreen = widgetOnLockScreen;
-    final l$widgetInDiscreet = widgetInDiscreet;
     final l$widgetShowNames = widgetShowNames;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -1344,7 +1308,6 @@ class QueryWidgetOverviewmySettings {
       l$togetherSince,
       l$widgetAllowPartnerNotes,
       l$widgetOnLockScreen,
-      l$widgetInDiscreet,
       l$widgetShowNames,
       l$$__typename,
     ]);
@@ -1386,11 +1349,6 @@ class QueryWidgetOverviewmySettings {
     final l$widgetOnLockScreen = widgetOnLockScreen;
     final lOther$widgetOnLockScreen = other.widgetOnLockScreen;
     if (l$widgetOnLockScreen != lOther$widgetOnLockScreen) {
-      return false;
-    }
-    final l$widgetInDiscreet = widgetInDiscreet;
-    final lOther$widgetInDiscreet = other.widgetInDiscreet;
-    if (l$widgetInDiscreet != lOther$widgetInDiscreet) {
       return false;
     }
     final l$widgetShowNames = widgetShowNames;

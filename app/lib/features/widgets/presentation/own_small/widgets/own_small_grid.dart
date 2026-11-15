@@ -27,24 +27,17 @@ class const OwnSmallWidgetsGrid({
     }
 
     final daysUntilDate = payload.daysUntilNextDateOn(now);
-    final dateTitle = switch ((payload.discreet, daysUntilDate)) {
-      (true, _) => l10n.discreetReminderLabel,
-      (false, final days?) => l10n.ownSmallDateDays(count: days),
-      (false, null) => l10n.ownSmallDateDefaultTitle,
+    final dateTitle = switch (daysUntilDate) {
+      final days? => l10n.ownSmallDateDays(count: days),
+      null => l10n.ownSmallDateDefaultTitle,
     };
-    final dateSubtitle = payload.discreet
-        ? l10n.discreetNeutralBody
-        : (payload.nextDateTitle ?? l10n.ownIdeaHint);
+    final dateSubtitle = payload.nextDateTitle ?? l10n.ownIdeaHint;
 
-    final ritualTitle = payload.discreet
-        ? l10n.discreetReminderLabel
-        : (payload.ritualTitle ?? l10n.ownSmallRitualDefaultTitle);
-    final ritualSubtitle = payload.discreet
-        ? l10n.discreetNeutralBody
-        : (payload.ritualSchedule ?? l10n.ownSmallRitualDefaultTime);
+    final ritualTitle = payload.ritualTitle ?? l10n.ownSmallRitualDefaultTitle;
+    final ritualSubtitle = payload.ritualSchedule ?? l10n.ownSmallRitualDefaultTime;
 
-    final moodTitle = payload.discreet ? l10n.discreetReminderLabel : l10n.ownSmallMoodPrompt;
-    final moodSubtitle = payload.discreet ? l10n.discreetNeutralBody : l10n.ownSmallMoodOptions;
+    final moodTitle = l10n.ownSmallMoodPrompt;
+    final moodSubtitle = l10n.ownSmallMoodOptions;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,9 +48,9 @@ class const OwnSmallWidgetsGrid({
             Expanded(
               child: WidgetSurfacePreview(
                 categoryLabel: l10n.ownSlipLabel,
-                title: payload.discreet ? l10n.discreetReminderLabel : l10n.ownSlipTitle,
-                subtitle: payload.discreet ? l10n.discreetNeutralBody : l10n.ownSlipSubtitle,
-                badgeText: payload.discreet ? null : l10n.ownSmallSlipAction,
+                title: l10n.ownSlipTitle,
+                subtitle: l10n.ownSlipSubtitle,
+                badgeText: l10n.ownSmallSlipAction,
                 isDark: isDarkPreview,
                 deepLinkUri: Uri.parse('mingo://capture'),
               ),

@@ -1,4 +1,3 @@
-import 'package:app/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
 import 'package:app/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
 import 'package:network/network.dart';
 
@@ -9,16 +8,5 @@ class WidgetsDataSource({required final GQLClient _client}) {
     );
 
     return validateResponseData(response);
-  }
-
-  Future<int> updatePreferences(VariablesMutationUpdateWidgetPreferences variables) async {
-    final response = await _client.mutate(
-      OptionsMutationUpdateWidgetPreferences(variables: variables),
-    );
-
-    return validateResponseData(
-      response,
-      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
-    );
   }
 }

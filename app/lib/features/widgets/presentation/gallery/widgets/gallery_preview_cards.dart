@@ -19,9 +19,7 @@ class const GalleryPreviewSection({
     final now = clock.now();
 
     if (segment == WidgetGallerySegment.own) {
-      final ideaTitle = payload.discreet
-          ? l10n.lockScreenDefault
-          : (payload.dailyIdeaTitle ?? l10n.ownIdeaDefault);
+      final ideaTitle = payload.dailyIdeaTitle ?? l10n.ownIdeaDefault;
 
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -60,24 +58,21 @@ class const GalleryPreviewSection({
     }
 
     final daysTogether = payload.daysTogetherOn(now);
-    final counterTitle = switch ((payload.discreet, payload.isPaired, daysTogether)) {
-      (true, _, _) => l10n.lockScreenDefault,
-      (false, false, _) => l10n.statesUnpairedTitle,
-      (false, true, final count?) => l10n.coupleCounterDays(count: count),
-      (false, true, null) => l10n.coupleCounterUnset,
+    final counterTitle = switch ((payload.isPaired, daysTogether)) {
+      (false, _) => l10n.statesUnpairedTitle,
+      (true, final count?) => l10n.coupleCounterDays(count: count),
+      (true, null) => l10n.coupleCounterUnset,
     };
-    final photosTitle = switch ((payload.discreet, payload.isPaired, daysTogether)) {
-      (true, _, _) => l10n.lockScreenDefault,
-      (false, false, _) => l10n.statesUnpairedTitle,
-      (false, true, final count?) => l10n.coupleCounterDays(count: count),
-      (false, true, null) => l10n.couplePhotosPrompt,
+    final photosTitle = switch ((payload.isPaired, daysTogether)) {
+      (false, _) => l10n.statesUnpairedTitle,
+      (true, final count?) => l10n.coupleCounterDays(count: count),
+      (true, null) => l10n.couplePhotosPrompt,
     };
 
-    final cardText = switch ((payload.discreet, payload.isPaired, payload.cardState)) {
-      (true, _, _) => l10n.lockScreenDefault,
-      (false, false, _) => l10n.statesUnpairedTitle,
-      (false, true, 'ready') => l10n.cardStateReady,
-      (false, true, 'sent') => l10n.cardStateSent,
+    final cardText = switch ((payload.isPaired, payload.cardState)) {
+      (false, _) => l10n.statesUnpairedTitle,
+      (true, 'ready') => l10n.cardStateReady,
+      (true, 'sent') => l10n.cardStateSent,
       _ => l10n.cardStateNone,
     };
 
@@ -101,7 +96,7 @@ class const GalleryPreviewSection({
         BaseListCard(
           categoryLabel: l10n.cardEncounterLabel,
           title: cardText,
-          supportText: (!payload.discreet && payload.isPaired && payload.nextDateTitle != null)
+          supportText: (payload.isPaired && payload.nextDateTitle != null)
               ? payload.nextDateTitle!
               : l10n.ownIdeaHint,
           onTap: () => onSelectFamily(WidgetFamilyKind.cardEncounter),

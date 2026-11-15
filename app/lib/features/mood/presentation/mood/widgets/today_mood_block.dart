@@ -20,7 +20,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// Hoje's home query. A face saves the mood on the tap; the need and the share choice have their
 /// own entries under the strip.
 class const TodayMoodBlock({
-  required final bool isDiscreet,
   final bool isFirstDay = false,
   final bool hasPendingInvite = false,
   super.key,
@@ -55,11 +54,10 @@ class const TodayMoodBlock({
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (!isDiscreet && partnerMood != null && partnerMood.isVisible) ...[
+          if (partnerMood != null && partnerMood.isVisible) ...[
             PartnerMoodHint(
               partnerMood: partnerMood,
               partnerName: partnerName,
-              isDiscreet: isDiscreet,
               onReact: context.read<MoodCubit>().reactToPartner,
               onAskToTalk: context.read<MoodCubit>().askToTalk,
               onSendMessage: () =>

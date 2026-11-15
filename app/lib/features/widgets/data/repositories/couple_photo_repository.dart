@@ -72,10 +72,7 @@ class CouplePhotoRepository({
         return false;
       }
 
-      final cachedPath = await _widgetDataService.readCachedPhotoPath(
-        discreet: false,
-        hasPlus: true,
-      );
+      final cachedPath = await _widgetDataService.readCachedPhotoPath(hasPlus: true);
       final marker = await _widgetDataService.readCachedPhotoUpdatedAt();
       final updatedAt = photo.updatedAt.toUtc().toIso8601String();
       if (cachedPath != null && marker == updatedAt) return true;
@@ -104,10 +101,7 @@ class CouplePhotoRepository({
         await _widgetDataService.clearCouplePhoto();
         return false;
       }
-      final cachedPath = await _widgetDataService.readCachedPhotoPath(
-        discreet: false,
-        hasPlus: true,
-      );
+      final cachedPath = await _widgetDataService.readCachedPhotoPath(hasPlus: true);
       return cachedPath != null;
     }
   }

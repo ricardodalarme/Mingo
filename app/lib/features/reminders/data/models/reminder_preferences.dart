@@ -34,7 +34,6 @@ final class const ReminderPreferences({
   },
   final int maxPerDay = 2,
   final bool isPaused = false,
-  final bool isDiscreet = false,
 }) with Equatable {
   factory fromMap(Map<String, dynamic> map) => ReminderPreferences(
     enabled: {
@@ -43,28 +42,21 @@ final class const ReminderPreferences({
     },
     maxPerDay: (map['maxPerDay'] as int? ?? 2).clamp(1, 2),
     isPaused: map['isPaused'] as bool? ?? false,
-    isDiscreet: map['isDiscreet'] as bool? ?? false,
   );
 
-  ReminderPreferences copyWith({
-    Set<ReminderKind>? enabled,
-    int? maxPerDay,
-    bool? isPaused,
-    bool? isDiscreet,
-  }) => ReminderPreferences(
-    enabled: enabled ?? this.enabled,
-    maxPerDay: (maxPerDay ?? this.maxPerDay).clamp(1, 2),
-    isPaused: isPaused ?? this.isPaused,
-    isDiscreet: isDiscreet ?? this.isDiscreet,
-  );
+  ReminderPreferences copyWith({Set<ReminderKind>? enabled, int? maxPerDay, bool? isPaused}) =>
+      ReminderPreferences(
+        enabled: enabled ?? this.enabled,
+        maxPerDay: (maxPerDay ?? this.maxPerDay).clamp(1, 2),
+        isPaused: isPaused ?? this.isPaused,
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     'enabled': [for (final kind in enabled) kind.name],
     'maxPerDay': maxPerDay,
     'isPaused': isPaused,
-    'isDiscreet': isDiscreet,
   };
 
   @override
-  List<Object?> get props => [enabled, maxPerDay, isPaused, isDiscreet];
+  List<Object?> get props => [enabled, maxPerDay, isPaused];
 }

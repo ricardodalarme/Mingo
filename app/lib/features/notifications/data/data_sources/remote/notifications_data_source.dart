@@ -16,7 +16,6 @@ class NotificationsDataSource({required final GQLClient _client}) {
 
   Future<void> updateSettings({
     required bool enabled,
-    required bool discreet,
     required List<String> mutedTypes,
     required int cardDay,
     required int cardHour,
@@ -26,7 +25,6 @@ class NotificationsDataSource({required final GQLClient _client}) {
         variables: VariablesMutationUpdateNotificationSettings(
           $set: InputNotificationSettingsUpdateInput(
             enabled: enabled,
-            discreet: discreet,
             mutedTypes: mutedTypes,
             cardDay: cardDay,
             cardHour: cardHour,

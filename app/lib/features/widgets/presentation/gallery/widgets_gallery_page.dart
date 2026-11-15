@@ -56,10 +56,7 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
                   BaseNote(text: l10n.offlineBanner, icon: AppIcons.wifi_off),
                   const SizedBox(height: AppSpace.s12),
                 ],
-                if (payload.discreet) ...[
-                  BaseNote(text: l10n.discreetBanner, icon: AppIcons.eye_off),
-                  const SizedBox(height: AppSpace.s12),
-                ] else if (segment == WidgetGallerySegment.couple && !payload.isPaired) ...[
+                if (segment == WidgetGallerySegment.couple && !payload.isPaired) ...[
                   BaseNote(text: l10n.unpairedBanner, icon: AppIcons.heart),
                   const SizedBox(height: AppSpace.s12),
                 ],

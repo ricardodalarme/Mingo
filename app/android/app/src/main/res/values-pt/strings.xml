@@ -16,8 +16,6 @@
 
     <string name="mingo_widget_signed_out_label">MINGO</string>
     <string name="mingo_widget_signed_out_title">Toque para entrar</string>
-    <string name="mingo_widget_discreet_label">LEMBRETE</string>
-    <string name="mingo_widget_discreet_title">Texto neutro</string>
     <string name="mingo_widget_unpaired_label">JUNTOS</string>
     <string name="mingo_widget_unpaired_title">Convide para ver aqui</string>
     <string name="mingo_widget_unpaired_action">Convidar</string>

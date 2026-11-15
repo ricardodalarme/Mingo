@@ -27,16 +27,6 @@ class const CoupleCounterPreviewCards({
       );
     }
 
-    if (payload.discreet) {
-      return WidgetSurfacePreview(
-        categoryLabel: l10n.coupleCounterLabel,
-        title: l10n.discreetReminderLabel,
-        subtitle: l10n.discreetNeutralBody,
-        isDark: isDarkPreview,
-        deepLinkUri: Uri.parse('mingo://settings/discreet'),
-      );
-    }
-
     if (!payload.isPaired) {
       return WidgetSurfacePreview(
         categoryLabel: l10n.coupleCounterLabel,

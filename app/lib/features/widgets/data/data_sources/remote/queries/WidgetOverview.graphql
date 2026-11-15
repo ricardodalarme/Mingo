@@ -2,7 +2,6 @@ query WidgetOverview {
   widget {
     nodeId
     profileId
-    discreet
     isPaired
     togetherSince
     partnerName
@@ -34,7 +33,6 @@ query WidgetOverview {
     togetherSince
     widgetAllowPartnerNotes
     widgetOnLockScreen
-    widgetInDiscreet
     widgetShowNames
   }
   idea: dailyContent(kind: "daily_idea") {

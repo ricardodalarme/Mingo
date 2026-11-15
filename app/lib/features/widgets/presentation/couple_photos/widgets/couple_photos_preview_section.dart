@@ -28,23 +28,6 @@ class const CouplePhotosPreviewSection({
       );
     }
 
-    if (payload.discreet) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          WidgetSurfacePreview(
-            categoryLabel: l10n.couplePhotosLabel,
-            title: l10n.discreetReminderLabel,
-            subtitle: l10n.discreetNeutralBody,
-            isDark: isDarkPreview,
-            deepLinkUri: Uri.parse('mingo://settings/discreet'),
-          ),
-          const SizedBox(height: AppSpace.s12),
-          BaseNote(text: l10n.photosNeutralFallbackNote, icon: AppIcons.info),
-        ],
-      );
-    }
-
     if (!payload.isPaired) {
       return WidgetSurfacePreview(
         categoryLabel: l10n.couplePhotosLabel,
@@ -59,18 +42,13 @@ class const CouplePhotosPreviewSection({
     final now = clock.now();
     final breakdown = payload.durationBreakdownOn(now);
 
-    final durationTitle = switch ((payload.discreet, breakdown)) {
-      (true, _) => l10n.discreetReminderLabel,
-      (false, final b?) when b.years > 0 => l10n.counterYearsMonthsTitle(
-        years: b.years,
-        months: b.months,
-      ),
-      (false, final b?) => l10n.coupleCounterDays(count: b.totalDays),
-      (false, null) => l10n.couplePhotosPrompt,
+    final durationTitle = switch (breakdown) {
+      final b? when b.years > 0 => l10n.counterYearsMonthsTitle(years: b.years, months: b.months),
+      final b? => l10n.coupleCounterDays(count: b.totalDays),
+      null => l10n.couplePhotosPrompt,
     };
 
     final hasValidCachedPhoto =
-        !payload.discreet &&
         payload.hasPlus &&
         payload.cachedPhotoPath != null &&
         File(payload.cachedPhotoPath!).existsSync();
@@ -93,7 +71,7 @@ class const CouplePhotosPreviewSection({
         WidgetSurfacePreview(
           categoryLabel: l10n.couplePhotosLabel,
           title: durationTitle,
-          subtitle: payload.discreet ? l10n.discreetNeutralBody : l10n.ownIdeaHint,
+          subtitle: l10n.ownIdeaHint,
           badgeText: payload.hasPlus ? null : l10n.photosPlusBadge,
           isDark: isDarkPreview,
           deepLinkUri: Uri.parse('mingo://today'),

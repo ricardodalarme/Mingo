@@ -18,7 +18,7 @@ typedef ReminderTexts = ({
   String dailyIdea,
   String dates,
   String weeklyCard,
-  String discreet,
+  String generic,
 });
 
 class RemindersRepository({
@@ -68,7 +68,7 @@ class RemindersRepository({
         ReminderKind.dates: texts.dates,
         ReminderKind.weeklyCard: texts.weeklyCard,
       },
-      discreetText: texts.discreet,
+      fallbackText: texts.generic,
     );
     final plan = planner.plan(
       preferences: getPreferences(),

@@ -78,16 +78,11 @@ void main() {
     return cubit;
   }
 
-  Future<void> pumpBlock(
-    WidgetTester tester,
-    MoodCubit cubit, {
-    bool isDiscreet = false,
-    bool isFirstDay = false,
-  }) async {
+  Future<void> pumpBlock(WidgetTester tester, MoodCubit cubit, {bool isFirstDay = false}) async {
     await tester.pumpApp(
       BlocProvider.value(
         value: cubit,
-        child: TodayMoodBlock(isDiscreet: isDiscreet, isFirstDay: isFirstDay),
+        child: TodayMoodBlock(isFirstDay: isFirstDay),
       ),
     );
     await tester.pump();
@@ -188,20 +183,6 @@ void main() {
     expect(find.text('Coração enviado'), findsOneWidget);
   });
 
-  testWidgets('discreet mode hides the partner mood', (tester) async {
-    when(() => repository.getTodayMood()).thenAnswer(
-      (_) async => today(
-        partner: PartnerMood(day: day, mood: MoodKind.stressed),
-      ),
-    );
-    final cubit = build();
-    await cubit.load();
-
-    await pumpBlock(tester, cubit, isDiscreet: true);
-
-    expect(find.textContaining('Marina'), findsNothing);
-  });
-
   testWidgets('the first day keeps the strip off the screen', (tester) async {
     final cubit = build();
     await cubit.load();
@@ -288,7 +269,7 @@ void main() {
       StackRouterScope(
         controller: router,
         stateHash: 0,
-        child: BlocProvider.value(value: cubit, child: const TodayMoodBlock(isDiscreet: false)),
+        child: BlocProvider.value(value: cubit, child: const TodayMoodBlock()),
       ),
     );
 

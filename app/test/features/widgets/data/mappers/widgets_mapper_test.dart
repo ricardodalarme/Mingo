@@ -6,11 +6,10 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   final now = DateTime.utc(2026, 11, 11, 12);
 
-  QueryWidgetOverview response({Map<String, dynamic>? mySettings, bool widgetInDiscreet = true}) =>
+  QueryWidgetOverview response({Map<String, dynamic>? mySettings}) =>
       QueryWidgetOverview.fromJson(<String, dynamic>{
         'widget': <String, dynamic>{
           'nodeId': 'widget-1',
-          'discreet': false,
           'isPaired': true,
           'partnerName': 'Marina',
           'nextDateTitle': 'Aniversário',
@@ -35,7 +34,6 @@ void main() {
               'partnerName': 'Redacted',
               'widgetAllowPartnerNotes': true,
               'widgetOnLockScreen': false,
-              'widgetInDiscreet': widgetInDiscreet,
               'widgetShowNames': true,
               '__typename': 'ProfileSettings',
             },
@@ -47,35 +45,24 @@ void main() {
         '__typename': 'Query',
       });
 
-  WidgetOverview map(QueryWidgetOverview value, {bool localHideWidgetText = false}) =>
-      value.toModel(
-        localHideWidgetText: localHideWidgetText,
-        contentSource: WidgetContentSource.favorites,
-        rotationCadence: WidgetRotationCadence.daily,
-        now: now,
-      );
+  WidgetOverview map(QueryWidgetOverview value) => value.toModel(
+    contentSource: WidgetContentSource.favorites,
+    rotationCadence: WidgetRotationCadence.daily,
+    now: now,
+  );
 
   test('partner name and date come only from the widget state', () {
     final overview = map(response());
 
     expect(overview.payload.partnerName, 'Marina');
     expect(overview.payload.nextDateTitle, 'Aniversário');
-    expect(overview.preferences.hideInDiscreet, isFalse);
   });
 
-  test('the server widgetInDiscreet boolean is inverted into hideInDiscreet', () {
-    final overview = map(response(widgetInDiscreet: false));
-
-    expect(overview.preferences.hideInDiscreet, isTrue);
-    expect(overview.payload.discreet, isTrue);
-  });
-
-  test('missing settings fail closed for names, notes, and discreet text', () {
+  test('missing settings fail closed for names and notes', () {
     final overview =
         QueryWidgetOverview.fromJson(<String, dynamic>{
           'widget': <String, dynamic>{
             'nodeId': 'widget-1',
-            'discreet': false,
             'isPaired': true,
             'partnerName': 'Marina',
             '__typename': 'WidgetState',
@@ -96,7 +83,6 @@ void main() {
           },
           '__typename': 'Query',
         }).toModel(
-          localHideWidgetText: false,
           contentSource: WidgetContentSource.favorites,
           rotationCadence: WidgetRotationCadence.daily,
           now: now,
@@ -104,8 +90,6 @@ void main() {
 
     expect(overview.preferences.showNames, isFalse);
     expect(overview.preferences.allowPartnerNotes, isFalse);
-    expect(overview.preferences.hideInDiscreet, isTrue);
-    expect(overview.payload.discreet, isTrue);
     expect(overview.payload.partnerName, isNull);
   });
 }

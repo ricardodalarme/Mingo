@@ -14,9 +14,6 @@ enum MingoL10n {
 
   static var signedOutLabel: String { "MINGO" }
   static var signedOutTitle: String { tr(pt: "Toque para entrar", en: "Tap to sign in") }
-  static var discreetLabel: String { tr(pt: "LEMBRETE", en: "REMINDER") }
-  static var discreetShortLabel: String { tr(pt: "Lembrete", en: "Reminder") }
-  static var discreetTitle: String { tr(pt: "Texto neutro", en: "Neutral text") }
   static var unpairedLabel: String { tr(pt: "JUNTOS", en: "TOGETHER") }
   static var unpairedTitle: String { tr(pt: "Convide para ver aqui", en: "Invite to see here") }
   static var unpairedAction: String { tr(pt: "Convidar", en: "Invite") }
@@ -45,6 +42,8 @@ enum MingoL10n {
   }
 
   static var lockCalmMoment: String { tr(pt: "Momento calmo", en: "Calm moment") }
+  static var lockReminderShortLabel: String { tr(pt: "Lembrete", en: "Reminder") }
+  static var lockNeutralText: String { tr(pt: "Texto neutro", en: "Neutral text") }
   static var lockNoNamesHint: String {
     tr(pt: "Sem nomes na tela bloqueada", en: "No names on the lock screen")
   }
@@ -134,7 +133,6 @@ enum MingoL10n {
 
 struct MingoWidgetPayload: Codable {
   let isSignedIn: Bool
-  let discreet: Bool
   let isPaired: Bool
   let hasPlus: Bool
   let showNames: Bool
@@ -168,7 +166,6 @@ struct MingoWidgetPayload: Codable {
   static func signedOut() -> MingoWidgetPayload {
     MingoWidgetPayload(
       isSignedIn: false,
-      discreet: false,
       isPaired: false,
       hasPlus: false,
       showNames: false,
@@ -206,13 +203,12 @@ struct MingoWidgetPayload: Codable {
     else {
       return signedOut()
     }
-    if decoded.isSignedIn, !decoded.discreet, decoded.isPaired, decoded.hasPlus,
+    if decoded.isSignedIn, decoded.isPaired, decoded.hasPlus,
       decoded.cachedPhotoPath == nil || decoded.cachedPhotoPath?.isEmpty == true,
       let directPhotoPath = defaults.string(forKey: cachedPhotoKey), !directPhotoPath.isEmpty
     {
       return MingoWidgetPayload(
         isSignedIn: decoded.isSignedIn,
-        discreet: decoded.discreet,
         isPaired: decoded.isPaired,
         hasPlus: decoded.hasPlus,
         showNames: decoded.showNames,
@@ -244,7 +240,7 @@ struct MingoWidgetPayload: Codable {
   }
 
   func daysTogether(on now: Date = Date()) -> Int? {
-    guard isSignedIn, !discreet, let raw = togetherSince, !raw.isEmpty else { return nil }
+    guard isSignedIn, let raw = togetherSince, !raw.isEmpty else { return nil }
     guard let start = Self.parseLocalDate(raw) else { return nil }
     let calendar = Calendar.current
     let startOfStart = calendar.startOfDay(for: start)
@@ -254,7 +250,7 @@ struct MingoWidgetPayload: Codable {
   }
 
   func daysUntilNextDate(on now: Date = Date()) -> Int? {
-    guard isSignedIn, !discreet, let raw = nextDateOn, !raw.isEmpty else { return nil }
+    guard isSignedIn, let raw = nextDateOn, !raw.isEmpty else { return nil }
     guard let target = Self.parseLocalDate(raw) else { return nil }
     let calendar = Calendar.current
     let startOfToday = calendar.startOfDay(for: now)
@@ -356,21 +352,6 @@ struct MingoSignedOutWidgetCard: View {
   }
 }
 
-struct MingoDiscreetWidgetCard: View {
-  var body: some View {
-    MingoSurfaceCard(deepLink: "mingo://settings/discreet?homeWidget=1") {
-      Text(MingoL10n.discreetLabel)
-        .font(.caption2.weight(.semibold))
-        .foregroundColor(.secondary)
-        .lineLimit(1)
-      Spacer(minLength: 4)
-      Text(MingoL10n.discreetTitle)
-        .font(.subheadline.weight(.semibold))
-        .lineLimit(2)
-    }
-  }
-}
-
 struct MingoUnpairedWidgetCard: View {
   var body: some View {
     MingoSurfaceCard(deepLink: "mingo://invite?homeWidget=1") {
@@ -398,9 +379,7 @@ struct MingoOwnSmallWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    } else if p.discreet {
-      MingoDiscreetWidgetCard()
-    } else if let days = p.daysUntilNextDate(on: entry.date), let title = p.nextDateTitle {
+    }    } else if let days = p.daysUntilNextDate(on: entry.date), let title = p.nextDateTitle {
       MingoSurfaceCard(deepLink: "mingo://dates?homeWidget=1") {
         Text(MingoL10n.nextDateLabel)
           .font(.caption2.weight(.semibold))
@@ -472,9 +451,7 @@ struct MingoOwnMediumWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    } else if p.discreet {
-      MingoDiscreetWidgetCard()
-    } else if p.dailyIdeaTitle == nil && p.slipsCount > 0 {
+    }    } else if p.dailyIdeaTitle == nil && p.slipsCount > 0 {
       MingoSurfaceCard(deepLink: "mingo://jar?homeWidget=1") {
         Text(MingoL10n.jarLabel)
           .font(.caption2.weight(.semibold))
@@ -542,15 +519,13 @@ struct MingoLockScreenWidgetView: View {
 
   var body: some View {
     let p = entry.payload
-    let neutral = p.discreet || !p.isSignedIn || !p.onLockScreen
+    let neutral = !p.isSignedIn || !p.onLockScreen
     let symbol = neutral ? "circle.dotted" : "heart"
-    let label = neutral ? MingoL10n.discreetShortLabel : MingoL10n.lockCalmMoment
-    let phrase = neutral ? MingoL10n.discreetTitle : MingoL10n.lockNoNamesHint
+    let label = neutral ? MingoL10n.lockReminderShortLabel : MingoL10n.lockCalmMoment
+    let phrase = neutral ? MingoL10n.lockNeutralText : MingoL10n.lockNoNamesHint
     let deepLink = !p.isSignedIn
       ? "mingo://sign-in?homeWidget=1"
-      : (p.discreet
-        ? "mingo://settings/discreet?homeWidget=1"
-        : (p.onLockScreen ? "mingo://today?homeWidget=1" : "mingo://settings/widgets?homeWidget=1"))
+      : (p.onLockScreen ? "mingo://today?homeWidget=1" : "mingo://settings/widgets?homeWidget=1")
 
     switch family {
     case .accessoryCircular:
@@ -623,9 +598,7 @@ struct MingoCoupleCounterWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    } else if p.discreet {
-      MingoDiscreetWidgetCard()
-    } else if !p.isPaired {
+    }    } else if !p.isPaired {
       MingoUnpairedWidgetCard()
     } else {
       let daysText = p.daysTogether(on: entry.date).map { MingoL10n.daysCount($0) } ?? MingoL10n.counterUnset
@@ -669,9 +642,7 @@ struct MingoCouplePhotosWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    } else if p.discreet {
-      MingoDiscreetWidgetCard()
-    } else if !p.isPaired {
+    }    } else if !p.isPaired {
       MingoUnpairedWidgetCard()
     } else if !p.hasPlus {
       MingoSurfaceCard(deepLink: "mingo://memories?homeWidget=1") {
@@ -738,9 +709,7 @@ struct MingoPartnerNoteWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    } else if p.discreet {
-      MingoDiscreetWidgetCard()
-    } else if !p.isPaired {
+    }    } else if !p.isPaired {
       MingoUnpairedWidgetCard()
     } else {
       let fromLabel = (p.showNames ? p.partnerName.map { MingoL10n.noteFromNamed($0) } : nil) ?? MingoL10n.noteFromDefault
@@ -796,9 +765,7 @@ struct MingoCardEncounterWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    } else if p.discreet {
-      MingoDiscreetWidgetCard()
-    } else if !p.isPaired {
+    }    } else if !p.isPaired {
       MingoUnpairedWidgetCard()
     } else {
       let cardTitle: String = switch p.cardState {

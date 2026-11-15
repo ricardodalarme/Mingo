@@ -86,8 +86,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$devices$en devices = _Translations$devices$en._(_root);
   @override
-  late final _Translations$discreet$en discreet = _Translations$discreet$en._(_root);
-  @override
   late final _Translations$distance$en distance = _Translations$distance$en._(_root);
   @override
   late final _Translations$fightStyle$en fightStyle = _Translations$fightStyle$en._(_root);
@@ -1286,28 +1284,6 @@ class _Translations$devices$en extends Translations$devices$pt {
     'DEVICE_REVOKE_FAILED': 'Couldn\'t stop notifications on that device. Try again.',
     'other': 'Couldn\'t stop notifications on that device. Try again.',
   };
-}
-
-// Path: discreet
-class _Translations$discreet$en extends Translations$discreet$pt {
-  _Translations$discreet$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Discreet mode';
-  @override
-  String get neutralIcon => 'Neutral icon';
-  @override
-  String get neutralNotifications => 'Neutral notifications';
-  @override
-  String get hideWidgetText => 'Hide widget text';
-  @override
-  String get note =>
-      'Hides names and content in notifications and widgets. No couple photo on the icon.';
-  @override
-  String get saveError => 'Could not save now. Try again.';
 }
 
 // Path: distance
@@ -3788,8 +3764,6 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   @override
   String get title => 'Privacy and security';
   @override
-  String get discreetMode => 'Discreet mode';
-  @override
   String get partnerTitle => 'What your partner sees';
   @override
   String get partnerSlips => 'Sent slips';
@@ -4524,7 +4498,7 @@ class _Translations$reminders$en extends Translations$reminders$pt {
   @override
   String get weeklyCard => 'Your card is ready.';
   @override
-  String get discreet => 'Open the app to see.';
+  String get generic => 'Open the app to see.';
 }
 
 // Path: repair
@@ -4681,12 +4655,6 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   String get planPlus => 'Plus';
   @override
   String get spice => 'Moments for two';
-  @override
-  String get discreet => 'Discreet mode';
-  @override
-  String get discreetOn => 'On';
-  @override
-  String get discreetOff => 'Off';
   @override
   String get privacy => 'Privacy and security';
   @override
@@ -5862,17 +5830,9 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get cardStateNone => 'Sunday card in preparation';
   @override
-  String get discreetBanner =>
-      'Discreet mode is on: names, photos and notes are hidden in widgets.';
-  @override
   String get unpairedBanner => 'No partner connected: couple widgets show a neutral state.';
   @override
   String get offlineBanner => 'Showing the last saved data. Updates when back online.';
-  @override
-  String get howToAddAndroidLockNote =>
-      'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.';
-  @override
-  String get howToAddIosLockNote => 'On iOS 16 or newer, you can also add the lock-screen widget.';
   @override
   String get loadErrorTitle => 'Could not load widgets';
   @override
@@ -5883,10 +5843,6 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get themeLight => 'Light';
   @override
   String get themeDark => 'Dark';
-  @override
-  String get discreetReminderLabel => 'Reminder';
-  @override
-  String get discreetNeutralBody => 'Neutral text';
   @override
   String get signedOutLabel => 'Mingo';
   @override
@@ -5935,8 +5891,6 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get lockScreenGenericPhrase => 'Calm moment';
   @override
-  String get lockScreenDiscreetPhrase => 'Reminder';
-  @override
   String get lockScreenPrivacyRule => 'Never shows names or messages on the lock screen.';
   @override
   String get lockScreenDisabledNote => 'The lock-screen widget is turned off in widget settings.';
@@ -5968,7 +5922,7 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get photosPlusBadge => 'PLUS';
   @override
   String get photosNeutralFallbackNote =>
-      'When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.';
+      'When no photo is saved on this device, the widget shows only the neutral card with the time together.';
   @override
   String get photosUnlockPlusAction => 'Explore Plus';
   @override
@@ -6021,6 +5975,12 @@ class _Translations$widgets$en extends Translations$widgets$pt {
     'COUPLE_PHOTO_NOT_PAIRED': 'Connect with your partner to choose a couple photo.',
     'other': 'Could not save widget preferences right now.',
   };
+  @override
+  String get howToAddAndroidLockNote =>
+      'On modern Android the widgets live on the home screen. The lock screen only uses neutral notification icons.';
+  @override
+  String get howToAddIosLockNote =>
+      'On iOS 16 or newer, you can also add the widget to the lock screen.';
 }
 
 // Path: acceptInvite.connected
@@ -7934,13 +7894,6 @@ extension on TranslationsEn {
           'devices.errors.DEVICE_REVOKE_FAILED' =>
             'Couldn\'t stop notifications on that device. Try again.',
           'devices.errors.other' => 'Couldn\'t stop notifications on that device. Try again.',
-          'discreet.title' => 'Discreet mode',
-          'discreet.neutralIcon' => 'Neutral icon',
-          'discreet.neutralNotifications' => 'Neutral notifications',
-          'discreet.hideWidgetText' => 'Hide widget text',
-          'discreet.note' =>
-            'Hides names and content in notifications and widgets. No couple photo on the icon.',
-          'discreet.saveError' => 'Could not save now. Try again.',
           'distance.title' => 'Distance',
           'distance.text' => 'Two clocks, each in its own time zone, never mixed up.',
           'distance.you' => 'You',
@@ -8571,15 +8524,15 @@ extension on TranslationsEn {
           'history.visibilityBoth' => 'Both',
           'history.visibilityOnlyYou' => 'Only you',
           'history.deleteMilestone' => 'Delete',
-          _ => null,
-        } ??
-        switch (path) {
           'history.deleteMilestoneTitle' => 'Delete this milestone?',
           'history.deleteMilestoneTextShared' => 'It will be removed from both of your stories.',
           'history.deleteMilestoneTextPrivate' => 'It will be removed from your story.',
           'history.deleteMilestoneConfirm' => 'Delete',
           'history.saveMilestone' => 'Save',
           'history.storyDatesTitle' => 'Dates of our story',
+          _ => null,
+        } ??
+        switch (path) {
           'history.storyMet' => 'We met',
           'history.storyDating' => 'Started dating',
           'history.storyEngaged' => 'Got engaged',
@@ -9188,15 +9141,15 @@ extension on TranslationsEn {
           'moodHelp.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'moodHelp.errors.NETWORK' =>
             'Couldn\'t send it now. Check your connection and try again.',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.errors.TIMEOUT' => 'Couldn\'t send it in time. Try again.',
           'moodHelp.errors.other' => 'Couldn\'t send it now. Try again.',
           'need.title' => 'I need…',
           'need.titleHighlight' => 'need',
           'need.subtitle' => 'Pick one thing. Your partner gets a gentle note, no pressure.',
           'need.options.hug' => 'A hug',
+          _ => null,
+        } ??
+        switch (path) {
           'need.options.talk' => 'To talk',
           'need.options.help_home' => 'Help at home',
           'need.options.quiet' => 'Some quiet time',
@@ -9450,7 +9403,6 @@ extension on TranslationsEn {
           'plus.errors.manageUnavailable' => 'There\'s no store page for this subscription here.',
           'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
           'privacy.title' => 'Privacy and security',
-          'privacy.discreetMode' => 'Discreet mode',
           'privacy.partnerTitle' => 'What your partner sees',
           'privacy.partnerSlips' => 'Sent slips',
           'privacy.partnerSlipsText' => 'Only what you send',
@@ -9778,9 +9730,6 @@ extension on TranslationsEn {
           'received.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'received.errors.other' => 'Couldn\'t answer right now. Try again.',
           'relationshipChanged.title' => 'Something changed?',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.highlight' => 'changed',
           'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
           'relationshipChanged.optionEnded' => 'We broke up',
@@ -9788,6 +9737,9 @@ extension on TranslationsEn {
           'relationshipChanged.optionTogether' => 'Everything is fine',
           'relationshipChanged.continueLabel' => 'Continue',
           'relationshipChanged.saved' => 'Saved',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.errors.NETWORK' => 'No connection. Try again.',
           'relationshipChanged.errors.other' => 'Could not save right now. Try again.',
           'relationshipSettings.title' => 'Relationship',
@@ -9838,7 +9790,7 @@ extension on TranslationsEn {
           'reminders.dailyIdea' => 'A small idea for today.',
           'reminders.dates' => 'A date is coming up.',
           'reminders.weeklyCard' => 'Your card is ready.',
-          'reminders.discreet' => 'Open the app to see.',
+          'reminders.generic' => 'Open the app to see.',
           'repair.calm.title' => 'A moment to breathe',
           'repair.calm.titleHighlight' => 'breathe',
           'repair.calm.cadence' =>
@@ -10001,9 +9953,6 @@ extension on TranslationsEn {
           'settingsHome.planFree' => 'Free',
           'settingsHome.planPlus' => 'Plus',
           'settingsHome.spice' => 'Moments for two',
-          'settingsHome.discreet' => 'Discreet mode',
-          'settingsHome.discreetOn' => 'On',
-          'settingsHome.discreetOff' => 'Off',
           'settingsHome.privacy' => 'Privacy and security',
           'settingsHome.privacyStatus' => 'Who sees what',
           'settingsHome.signOut' => 'Sign out',
@@ -10348,9 +10297,6 @@ extension on TranslationsEn {
           'tabs.segmentForMe' => 'For me',
           'tabs.checkinLabel' => 'CHECK-IN',
           'tabs.checkinTitle' => 'Weekly check-in',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.checkinText' => 'A short conversation, private first.',
           'tabs.logisticsLabel' => 'PRACTICAL',
           'tabs.logisticsTitle' => 'Logistics meeting',
@@ -10373,6 +10319,9 @@ extension on TranslationsEn {
                   one: '1 list, private',
                   other: '${count} lists, private',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.soloNote' => 'When your partner joins, shared things show up here.',
           'tabs.ritualsLabel' => 'ROUTINE',
           'tabs.ritualsTitle' => 'Rituals',
@@ -10705,20 +10654,13 @@ extension on TranslationsEn {
           'widgets.cardStateReady' => 'A card arrived · Tap to open',
           'widgets.cardStateSent' => 'Card sent · Waiting for Sunday',
           'widgets.cardStateNone' => 'Sunday card in preparation',
-          'widgets.discreetBanner' =>
-            'Discreet mode is on: names, photos and notes are hidden in widgets.',
           'widgets.unpairedBanner' => 'No partner connected: couple widgets show a neutral state.',
           'widgets.offlineBanner' => 'Showing the last saved data. Updates when back online.',
-          'widgets.howToAddAndroidLockNote' => 'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.',
-          'widgets.howToAddIosLockNote' =>
-            'On iOS 16 or newer, you can also add the lock-screen widget.',
           'widgets.loadErrorTitle' => 'Could not load widgets',
           'widgets.loadErrorBody' => 'Check your connection and try again.',
           'widgets.retryAction' => 'Try again',
           'widgets.themeLight' => 'Light',
           'widgets.themeDark' => 'Dark',
-          'widgets.discreetReminderLabel' => 'Reminder',
-          'widgets.discreetNeutralBody' => 'Neutral text',
           'widgets.signedOutLabel' => 'Mingo',
           'widgets.signedOutBody' => 'Tap to sign in',
           'widgets.ownSmallPageTitle' => 'Widget · Mine (small)',
@@ -10746,7 +10688,6 @@ extension on TranslationsEn {
           'widgets.lockScreenClockDate' => 'Friday, April 10',
           'widgets.lockScreenReadyAction' => 'I am ready',
           'widgets.lockScreenGenericPhrase' => 'Calm moment',
-          'widgets.lockScreenDiscreetPhrase' => 'Reminder',
           'widgets.lockScreenPrivacyRule' => 'Never shows names or messages on the lock screen.',
           'widgets.lockScreenDisabledNote' =>
             'The lock-screen widget is turned off in widget settings.',
@@ -10768,7 +10709,7 @@ extension on TranslationsEn {
           'widgets.counterSetDateAction' => 'Set relationship date',
           'widgets.photosPageTitle' => 'Widget · Couple photos',
           'widgets.photosPlusBadge' => 'PLUS',
-          'widgets.photosNeutralFallbackNote' => 'When no local photo is cached (or in discreet mode), the widget shows only a neutral card with your time together.',
+          'widgets.photosNeutralFallbackNote' => 'When no photo is saved on this device, the widget shows only the neutral card with the time together.',
           'widgets.photosUnlockPlusAction' => 'Explore Plus',
           'widgets.photosChooseAction' => 'Choose photo',
           'widgets.photosRemoveAction' => 'Remove photo',
@@ -10804,6 +10745,9 @@ extension on TranslationsEn {
           'widgets.errors.COUPLE_PHOTO_NOT_PAIRED' =>
             'Connect with your partner to choose a couple photo.',
           'widgets.errors.other' => 'Could not save widget preferences right now.',
+          'widgets.howToAddAndroidLockNote' => 'On modern Android the widgets live on the home screen. The lock screen only uses neutral notification icons.',
+          'widgets.howToAddIosLockNote' =>
+            'On iOS 16 or newer, you can also add the widget to the lock screen.',
           _ => null,
         };
   }

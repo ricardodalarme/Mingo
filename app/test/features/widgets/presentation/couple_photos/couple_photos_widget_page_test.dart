@@ -52,14 +52,12 @@ void main() {
   WidgetOverview buildOverview({
     bool isPaired = true,
     bool hasPlus = true,
-    bool isDiscreet = false,
     bool hasPhoto = false,
     String? photoPath,
   }) => WidgetOverview.fake().copyWith(
     payload: WidgetPayload.fake().copyWith(
       isPaired: isPaired,
       hasPlus: hasPlus,
-      discreet: isDiscreet,
       cachedPhotoPath: photoPath,
     ),
     hasPhoto: hasPhoto,
@@ -133,16 +131,6 @@ void main() {
   testWidgets('a row photo without a local cache still offers remove', (tester) async {
     when(() => widgetsRepository.loadAndSync())
         .thenAnswer((_) async => buildOverview(hasPhoto: true));
-
-    await pumpPage(tester);
-
-    expect(find.text('Escolher foto'), findsOneWidget);
-    expect(find.text('Remover foto'), findsOneWidget);
-  });
-
-  testWidgets('discreet mode disables choose but keeps remove', (tester) async {
-    when(() => widgetsRepository.loadAndSync())
-        .thenAnswer((_) async => buildOverview(hasPhoto: true, isDiscreet: true));
 
     await pumpPage(tester);
 

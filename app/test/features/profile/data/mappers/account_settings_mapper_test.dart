@@ -16,7 +16,6 @@ void main() {
       'relationshipStatus': 'together',
       'onboardedAt': null,
       'shareReadReceipts': true,
-      'widgetInDiscreet': false,
       'phase': 'married',
       'goals': ['keep_romance'],
       'locale': 'pt-BR',

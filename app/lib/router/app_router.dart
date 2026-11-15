@@ -84,7 +84,6 @@ import 'package:app/features/repair/presentation/quick_repair/quick_repair_page.
 import 'package:app/features/repair/presentation/received/received_signals_page.dart';
 import 'package:app/features/repair/presentation/soft_start/soft_start_page.dart';
 import 'package:app/features/repair/presentation/temperature/temperature_page.dart';
-import 'package:app/features/settings/presentation/discreet/discreet_page.dart';
 import 'package:app/features/settings/presentation/home/settings_home_page.dart';
 import 'package:app/features/settings/presentation/language/language_page.dart';
 import 'package:app/features/settings/presentation/theme/theme_page.dart';
@@ -177,7 +176,6 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: LanguageRoute.page),
     AutoRoute(page: HelpRoute.page),
     AutoRoute(page: SupportRoute.page),
-    AutoRoute(page: DiscreetModeRoute.page),
     AutoRoute(page: PrivacyHubRoute.page),
     AutoRoute(page: PartnerViewRoute.page),
     AutoRoute(page: OurViewRoute.page),

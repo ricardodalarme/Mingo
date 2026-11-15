@@ -15,15 +15,6 @@ void main() {
       expect(sanitized.cardState, 'none');
     });
 
-    test('discreet mode clears the card state', () {
-      final payload = WidgetPayload.fake().copyWith(discreet: true, cardState: 'ready');
-
-      final sanitized = payload.sanitized(referenceNow: now);
-
-      expect(sanitized.discreet, isTrue);
-      expect(sanitized.cardState, 'none');
-    });
-
     test('stored payloads without privacy flags fail closed', () {
       final payload = WidgetPayload.fromJson(const <String, dynamic>{
         'isSignedIn': true,
@@ -44,7 +35,6 @@ void main() {
         isNull,
       );
       expect(payload.copyWith(hasPlus: false).sanitized(referenceNow: now).cachedPhotoPath, isNull);
-      expect(payload.copyWith(discreet: true).sanitized(referenceNow: now).cachedPhotoPath, isNull);
       expect(
         payload.copyWith(isSignedIn: false).sanitized(referenceNow: now).cachedPhotoPath,
         isNull,

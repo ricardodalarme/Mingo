@@ -56,10 +56,6 @@ List<PageRouteInfo<void>>? resolveWidgetDeepLinkUri(Uri? uri, {required AppState
       const HomeRoute(children: [TogetherRoute()]),
       const DatesRoute(),
     ],
-    'settings/discreet' || 'discreet' => [
-      const HomeRoute(children: [TodayRoute()]),
-      const DiscreetModeRoute(),
-    ],
     'capture' || 'slip' => [
       const HomeRoute(children: [TodayRoute()]),
       const QuickSlipRoute(),

@@ -23,13 +23,11 @@ class const OwnMediumWidgetsCards({
       );
     }
 
-    final ideaTitle = payload.discreet
-        ? l10n.discreetReminderLabel
-        : (payload.dailyIdeaTitle ?? l10n.ownIdeaDefault);
-    final ideaSubtitle = payload.discreet ? l10n.discreetNeutralBody : l10n.ownMediumIdeaAction;
+    final ideaTitle = payload.dailyIdeaTitle ?? l10n.ownIdeaDefault;
+    final ideaSubtitle = l10n.ownMediumIdeaAction;
 
-    final jarTitle = payload.discreet ? l10n.discreetReminderLabel : l10n.ownMediumJarTitle;
-    final jarSubtitle = payload.discreet ? l10n.discreetNeutralBody : l10n.ownMediumJarPrivacy;
+    final jarTitle = l10n.ownMediumJarTitle;
+    final jarSubtitle = l10n.ownMediumJarPrivacy;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

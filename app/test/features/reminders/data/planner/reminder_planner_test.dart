@@ -10,7 +10,7 @@ void main() {
       ReminderKind.dates: 'Uma data chegando.',
       ReminderKind.weeklyCard: 'Seu cartão está pronto.',
     },
-    discreetText: 'Abra o app para ver.',
+    fallbackText: 'Abra o app para ver.',
   );
   final now = DateTime(2026, 11, 9, 9);
   const preferences = ReminderPreferences();
@@ -93,12 +93,6 @@ void main() {
     test('come from the fixed list for the kind', () {
       expect(run([at(10, 12)]).single.text, 'Uma ideia para hoje.');
     });
-
-    test('are neutral in discreet mode', () {
-      final plan = run([at(10, 12)], prefs: preferences.copyWith(isDiscreet: true));
-
-      expect(plan.single.text, 'Abra o app para ver.');
-    });
   });
 
   group('ids', () {
@@ -125,7 +119,6 @@ void main() {
         enabled: {ReminderKind.dates},
         maxPerDay: 1,
         isPaused: true,
-        isDiscreet: true,
       );
 
       expect(ReminderPreferences.fromMap(prefs.toMap()), prefs);

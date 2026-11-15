@@ -10,7 +10,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// An optional, discreet mode that needs both people to switch it on and either to switch it off.
+/// An optional mode that needs both people to switch it on and either to switch it off.
 @RoutePage()
 class const SpicePage({super.key}) extends StatefulWidget implements AutoRouteWrapper {
   @override

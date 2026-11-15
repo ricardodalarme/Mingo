@@ -11,7 +11,6 @@ typedef TogetherDurationBreakdown = ({int years, int months, int days, int total
 /// Compact JSON payload stored in the shared native store for iOS WidgetKit and Android AppWidgets.
 final class const WidgetPayload({
   required final bool isSignedIn,
-  required final bool discreet,
   required final bool isPaired,
   required final bool hasPlus,
   required final bool showNames,
@@ -41,7 +40,6 @@ final class const WidgetPayload({
   /// Neutral payload written when the user is signed out so no previous account data remains.
   factory signedOut({DateTime? now}) => WidgetPayload(
     isSignedIn: false,
-    discreet: false,
     isPaired: false,
     hasPlus: false,
     showNames: false,
@@ -57,7 +55,6 @@ final class const WidgetPayload({
   /// Placeholder payload used only by [Skeletonizer] while loading.
   factory fake() => const WidgetPayload(
     isSignedIn: true,
-    discreet: false,
     isPaired: true,
     hasPlus: true,
     showNames: true,
@@ -83,7 +80,6 @@ final class const WidgetPayload({
 
   factory fromJson(Map<String, dynamic> json) => WidgetPayload(
     isSignedIn: json['isSignedIn'] as bool? ?? false,
-    discreet: json['discreet'] as bool? ?? false,
     isPaired: json['isPaired'] as bool? ?? false,
     hasPlus: json['hasPlus'] as bool? ?? false,
     showNames: json['showNames'] as bool? ?? false,
@@ -119,7 +115,7 @@ final class const WidgetPayload({
     return WidgetPayload.signedOut();
   }
 
-  /// Applies privacy, discreet, pairing, Plus, and date-expiration rules before persisting.
+  /// Applies privacy, pairing, Plus, and date-expiration rules before persisting.
   WidgetPayload sanitized({DateTime? referenceNow}) {
     final now = referenceNow ?? clock.now();
     if (!isSignedIn) {
@@ -129,23 +125,6 @@ final class const WidgetPayload({
     final rawDaysUntilDate = _daysUntilDateString(nextDateOn, now);
     final validDateOn = rawDaysUntilDate != null && rawDaysUntilDate >= 0 ? nextDateOn : null;
     final validDateTitle = validDateOn != null ? _nonEmpty(nextDateTitle) : null;
-
-    if (discreet) {
-      return WidgetPayload(
-        isSignedIn: true,
-        discreet: true,
-        isPaired: isPaired,
-        hasPlus: hasPlus,
-        showNames: false,
-        allowPartnerNotes: allowPartnerNotes,
-        onLockScreen: onLockScreen,
-        isOffline: isOffline,
-        unopenedCards: 0,
-        cardState: 'none',
-        slipsCount: 0,
-        updatedAt: now.toUtc().toIso8601String(),
-      );
-    }
 
     final resolvedPartnerName = isPaired && showNames ? _nonEmpty(partnerName) : null;
     final resolvedNote = isPaired && allowPartnerNotes ? _nonEmpty(partnerNote) : null;
@@ -164,7 +143,6 @@ final class const WidgetPayload({
 
     return WidgetPayload(
       isSignedIn: true,
-      discreet: false,
       isPaired: isPaired,
       hasPlus: hasPlus,
       showNames: showNames,
@@ -193,9 +171,9 @@ final class const WidgetPayload({
     );
   }
 
-  /// Exact days together at local midnight for [localNow], or `null` when unset or discreet.
+  /// Exact days together at local midnight for [localNow], or `null` when unset.
   int? daysTogetherOn(DateTime localNow) {
-    if (discreet || !isSignedIn) return null;
+    if (!isSignedIn) return null;
     final start = _parseLocalDate(togetherSince);
     if (start == null) return null;
     final today = DateTime.utc(localNow.year, localNow.month, localNow.day);
@@ -232,14 +210,13 @@ final class const WidgetPayload({
 
   /// Calendar days until [nextDateOn] at local midnight for [localNow].
   int? daysUntilNextDateOn(DateTime localNow) {
-    if (discreet || !isSignedIn) return null;
+    if (!isSignedIn) return null;
     final days = _daysUntilDateString(nextDateOn, localNow);
     return days != null && days >= 0 ? days : null;
   }
 
   WidgetPayload copyWith({
     bool? isSignedIn,
-    bool? discreet,
     bool? isPaired,
     bool? hasPlus,
     bool? showNames,
@@ -267,7 +244,6 @@ final class const WidgetPayload({
     String? updatedAt,
   }) => WidgetPayload(
     isSignedIn: isSignedIn ?? this.isSignedIn,
-    discreet: discreet ?? this.discreet,
     isPaired: isPaired ?? this.isPaired,
     hasPlus: hasPlus ?? this.hasPlus,
     showNames: showNames ?? this.showNames,
@@ -297,7 +273,6 @@ final class const WidgetPayload({
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     'isSignedIn': isSignedIn,
-    'discreet': discreet,
     'isPaired': isPaired,
     'hasPlus': hasPlus,
     'showNames': showNames,
@@ -355,7 +330,6 @@ final class const WidgetPayload({
   @override
   List<Object?> get props => [
     isSignedIn,
-    discreet,
     isPaired,
     hasPlus,
     showNames,

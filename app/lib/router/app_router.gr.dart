@@ -502,22 +502,6 @@ class DifferentDatesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [DiscreetModePage]
-class DiscreetModeRoute extends PageRouteInfo<void> {
-  const DiscreetModeRoute({List<PageRouteInfo>? children})
-    : super(DiscreetModeRoute.name, initialChildren: children);
-
-  static const String name = 'DiscreetModeRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const DiscreetModePage());
-    },
-  );
-}
-
-/// generated route for
 /// [DistancePage]
 class DistanceRoute extends PageRouteInfo<void> {
   const DistanceRoute({List<PageRouteInfo>? children})

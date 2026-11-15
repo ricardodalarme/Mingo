@@ -11,13 +11,11 @@ import dev.dalarme.mingo.R
 import es.antonborri.home_widget.HomeWidgetLaunchIntent
 import org.json.JSONObject
 import java.io.File
-import java.time.Instant
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
 data class MingoWidgetPayload(
     val isSignedIn: Boolean,
-    val discreet: Boolean,
     val isPaired: Boolean,
     val hasPlus: Boolean,
     val showNames: Boolean,
@@ -37,7 +35,7 @@ data class MingoWidgetPayload(
     val cachedPhotoPath: String?,
 ) {
     fun daysTogether(today: LocalDate = LocalDate.now()): Long? {
-        if (!isSignedIn || discreet || togetherSince.isNullOrBlank()) return null
+        if (!isSignedIn || togetherSince.isNullOrBlank()) return null
         return try {
             val start = LocalDate.parse(togetherSince.take(10))
             val days = ChronoUnit.DAYS.between(start, today)
@@ -48,7 +46,7 @@ data class MingoWidgetPayload(
     }
 
     fun daysUntilNextDate(today: LocalDate = LocalDate.now()): Long? {
-        if (!isSignedIn || discreet || nextDateOn.isNullOrBlank()) return null
+        if (!isSignedIn || nextDateOn.isNullOrBlank()) return null
         return try {
             val target = LocalDate.parse(nextDateOn.take(10))
             val days = ChronoUnit.DAYS.between(today, target)
@@ -73,19 +71,6 @@ data class MingoWidgetPayload(
                 title = context.getString(R.string.mingo_widget_signed_out_title),
                 subtitle = "",
                 deepLink = "mingo://sign-in?homeWidget=1",
-            )
-            return true
-        }
-        if (discreet) {
-            renderCard(
-                context = context,
-                appWidgetManager = appWidgetManager,
-                appWidgetId = appWidgetId,
-                label = context.getString(R.string.mingo_widget_discreet_label),
-                title = context.getString(R.string.mingo_widget_discreet_title),
-                subtitle = "",
-                deepLink = "mingo://settings/discreet?homeWidget=1",
-                imagePath = null,
             )
             return true
         }
@@ -115,18 +100,16 @@ data class MingoWidgetPayload(
             return try {
                 val json = JSONObject(raw)
                 val isSignedIn = json.optBoolean("isSignedIn", false)
-                val discreet = json.optBoolean("discreet", false)
                 val isPaired = json.optBoolean("isPaired", false)
                 val hasPlus = json.optBoolean("hasPlus", false)
                 val directPhotoPath = prefs.getString(CACHED_PHOTO_KEY, null)?.trim()?.ifEmpty { null }
-                val resolvedPhotoPath = if (isSignedIn && !discreet && isPaired && hasPlus) {
+                val resolvedPhotoPath = if (isSignedIn && isPaired && hasPlus) {
                     json.optNullableString("cachedPhotoPath") ?: directPhotoPath
                 } else {
                     null
                 }
                 MingoWidgetPayload(
                     isSignedIn = isSignedIn,
-                    discreet = discreet,
                     isPaired = isPaired,
                     hasPlus = hasPlus,
                     showNames = json.optBoolean("showNames", false),
@@ -152,7 +135,6 @@ data class MingoWidgetPayload(
 
         fun signedOut() = MingoWidgetPayload(
             isSignedIn = false,
-            discreet = false,
             isPaired = false,
             hasPlus = false,
             showNames = false,

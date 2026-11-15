@@ -25,23 +25,6 @@ class const CardEncounterPreviewSection({
       );
     }
 
-    if (payload.discreet) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          WidgetSurfacePreview(
-            isDark: isDarkPreview,
-            categoryLabel: l10n.discreetReminderLabel,
-            title: l10n.discreetNeutralBody,
-            subtitle: l10n.lockScreenPrivacyRule,
-            onTapOverride: () => context.pushRoute(const DiscreetModeRoute()),
-          ),
-          const SizedBox(height: AppSpace.s12),
-          BaseNote(text: l10n.discreetBanner, icon: AppIcons.eye_off),
-        ],
-      );
-    }
-
     if (!payload.isPaired) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

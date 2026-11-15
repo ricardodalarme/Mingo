@@ -10,7 +10,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Couple photos widget screen (`X-150`): Plus-gated photo container with local cache
-/// and honest neutral fallback when no photo is cached or discreet mode is active.
+/// and honest neutral fallback when no photo is cached.
 @RoutePage()
 class const CouplePhotosWidgetPage({super.key})
     extends StatelessWidget
@@ -57,7 +57,7 @@ class const CouplePhotosWidgetPage({super.key})
           ),
           successBuilder: (overview) {
             final payload = overview.payload;
-            final canChoose = payload.isPaired && payload.hasPlus && !payload.discreet;
+            final canChoose = payload.isPaired && payload.hasPlus;
             final showChoose = payload.isPaired && payload.hasPlus;
             final hasPhoto =
                 overview.hasPhoto || payload.cachedPhotoPath != null || localPreview != null;

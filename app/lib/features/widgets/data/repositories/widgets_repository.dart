@@ -1,18 +1,12 @@
 import 'dart:async';
 
-import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:app/features/profile/data/repositories/profile_repository.dart';
-import 'package:app/features/settings/data/data_sources/local/discreet_local_data_source.dart';
 import 'package:app/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
-import 'package:app/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
 import 'package:app/features/widgets/data/data_sources/remote/widgets_data_source.dart';
 import 'package:app/features/widgets/data/mappers/widgets_mapper.dart';
 import 'package:app/features/widgets/data/models/widget_models.dart';
 import 'package:app/features/widgets/data/models/widget_payload.dart';
 import 'package:app/features/widgets/data/repositories/couple_photo_repository.dart';
 import 'package:app/features/widgets/data/services/widget_data_service.dart';
-import 'package:clock/clock.dart';
-import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
 /// Coordinates server widget reads, local privacy/rotation settings, and the shared native store.
@@ -21,11 +15,8 @@ import 'package:logger/logger.dart';
 class WidgetsRepository({
   required final WidgetsDataSource _dataSource,
   required final WidgetsLocalDataSource _localDataSource,
-  required final DiscreetLocalDataSource _discreetLocalDataSource,
   required final WidgetDataService _widgetDataService,
   required final CouplePhotoRepository _couplePhotoRepository,
-  required final AuthenticationRepository _authenticationRepository,
-  required final ProfileRepository _profileRepository,
 }) {
   final Logger _logger = Logger('WidgetsRepository');
   Future<void> _writeQueue = Future<void>.value();
@@ -41,17 +32,13 @@ class WidgetsRepository({
 
     try {
       final response = await _dataSource.getOverview();
-      final localDiscreet = _discreetLocalDataSource.hideWidgetText;
-      final isDiscreet = (response.widget?.discreet ?? false) || localDiscreet;
       final isPaired = response.widget?.isPaired ?? response.today?.isPaired ?? false;
       final hasPlus = response.today?.hasPlus ?? false;
 
       var hasPhoto = false;
       if (generation == _generation && isPaired) {
         try {
-          hasPhoto = await _couplePhotoRepository.syncWidgetCache(
-            cacheAllowed: hasPlus && !isDiscreet,
-          );
+          hasPhoto = await _couplePhotoRepository.syncWidgetCache(cacheAllowed: hasPlus);
         } on Object {
           hasPhoto = false;
         }
@@ -59,13 +46,9 @@ class WidgetsRepository({
         await _widgetDataService.clearCouplePhoto();
       }
 
-      final cachedPhotoPath = await _widgetDataService.readCachedPhotoPath(
-        discreet: isDiscreet,
-        hasPlus: hasPlus,
-      );
+      final cachedPhotoPath = await _widgetDataService.readCachedPhotoPath(hasPlus: hasPlus);
 
       final overview = response.toModel(
-        localHideWidgetText: localDiscreet,
         contentSource: contentSource,
         rotationCadence: rotationCadence,
         cachedPhotoPath: cachedPhotoPath,
@@ -83,10 +66,7 @@ class WidgetsRepository({
     } catch (e, stack) {
       final cached = _localDataSource.readCachedPayload();
       if (cached != null) {
-        final localDiscreet = _discreetLocalDataSource.hideWidgetText;
-        final offlinePayload = cached
-            .copyWith(discreet: cached.discreet || localDiscreet, isOffline: true)
-            .sanitized(referenceNow: now);
+        final offlinePayload = cached.copyWith(isOffline: true).sanitized(referenceNow: now);
         await _enqueueWrite(() async {
           if (generation != _generation) return;
           await _widgetDataService.writePayload(offlinePayload, referenceNow: now);
@@ -96,7 +76,6 @@ class WidgetsRepository({
           preferences: WidgetPreferences(
             profileId: '',
             showNames: offlinePayload.showNames,
-            hideInDiscreet: offlinePayload.discreet,
             allowPartnerNotes: offlinePayload.allowPartnerNotes,
             onLockScreen: offlinePayload.onLockScreen,
             contentSource: contentSource,
@@ -119,107 +98,11 @@ class WidgetsRepository({
     }
   }
 
-  /// Updates the shared native store immediately when discreet mode changes.
-  Future<WidgetPayload> applyDiscreetModeImmediately({
-    required bool discreet,
-    DateTime? now,
-  }) async {
-    final generation = _generation + 1;
-    _generation = generation;
-    await _discreetLocalDataSource.setHideWidgetText(value: discreet);
-    return _enqueueWrite(() async {
-      final existing =
-          _localDataSource.readCachedPayload() ?? await _widgetDataService.readStoredPayload();
-      if (existing == null || !existing.isSignedIn) {
-        return _writeDiscreetFallback(discreet: discreet, generation: generation, now: now);
-      }
-      if (generation != _generation) {
-        return _localDataSource.readCachedPayload() ?? WidgetPayload.signedOut(now: now);
-      }
-      final updated = existing.copyWith(discreet: discreet).sanitized(referenceNow: now);
-      await _localDataSource.writeCachedPayload(updated);
-      await _widgetDataService.writePayload(updated, referenceNow: now);
-      if (!discreet) {
-        unawaited(syncQuietly(now: now));
-      }
-      return updated;
-    });
-  }
-
   /// Writes a neutral signed-out payload and removes any cached personal state or photo.
   Future<WidgetPayload> clearOnSignOut({DateTime? now}) async {
     _generation++;
     await _localDataSource.clear();
     return _enqueueWrite(() => _widgetDataService.clearForSignOut(referenceNow: now));
-  }
-
-  /// Saves the user's widget privacy and rotation settings and refreshes the native store.
-  Future<WidgetOverview> savePreferences(WidgetPreferences preferences, {DateTime? now}) async {
-    try {
-      await _localDataSource.setContentSource(preferences.contentSource);
-      await _localDataSource.setRotationCadence(preferences.rotationCadence);
-      await _discreetLocalDataSource.setHideWidgetText(value: preferences.hideInDiscreet);
-
-      var profileId = preferences.profileId.isEmpty
-          ? _authenticationRepository.currentUserId ?? ''
-          : preferences.profileId;
-      if (profileId.isEmpty) {
-        throw const LocalizedException(l10nKey: 'WIDGET_PREFERENCES_SAVE_FAILED');
-      }
-
-      var affected = await _updatePreferences(preferences, profileId: profileId);
-      if (affected == 0) {
-        // A cached overview can carry a missing id or a row that never reached the server.
-        final profile = await _profileRepository.ensureProfile();
-        profileId = profile.id;
-        affected = await _updatePreferences(preferences, profileId: profileId);
-      }
-      if (affected == 0) {
-        throw const LocalizedException(l10nKey: 'WIDGET_PREFERENCES_SAVE_FAILED');
-      }
-
-      return await loadAndSync(now: now);
-    } catch (e, stack) {
-      _logger.error('Failed to save widget preferences', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
-
-  Future<int> _updatePreferences(WidgetPreferences preferences, {required String profileId}) =>
-      _dataSource.updatePreferences(
-        VariablesMutationUpdateWidgetPreferences(
-          profileId: profileId,
-          widgetShowNames: preferences.showNames,
-          widgetInDiscreet: !preferences.hideInDiscreet,
-          widgetAllowPartnerNotes: preferences.allowPartnerNotes,
-          widgetOnLockScreen: preferences.onLockScreen,
-        ),
-      );
-
-  Future<WidgetPayload> _writeDiscreetFallback({
-    required bool discreet,
-    required int generation,
-    DateTime? now,
-  }) async {
-    if (generation != _generation) {
-      return _localDataSource.readCachedPayload() ?? WidgetPayload.signedOut(now: now);
-    }
-    final fallback = WidgetPayload(
-      isSignedIn: true,
-      discreet: discreet,
-      isPaired: false,
-      hasPlus: false,
-      showNames: false,
-      allowPartnerNotes: false,
-      onLockScreen: false,
-      isOffline: false,
-      unopenedCards: 0,
-      cardState: 'none',
-      slipsCount: 0,
-      updatedAt: (now ?? clock.now()).toUtc().toIso8601String(),
-    ).sanitized(referenceNow: now);
-    await _widgetDataService.writePayload(fallback, referenceNow: now);
-    return fallback;
   }
 
   Future<T> _enqueueWrite<T>(Future<T> Function() task) {

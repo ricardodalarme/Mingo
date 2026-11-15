@@ -3,15 +3,10 @@ import 'package:app/features/authentication/data/repositories/authentication_rep
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
-import 'package:app/features/profile/data/repositories/profile_repository.dart';
-import 'package:app/features/settings/data/data_sources/local/discreet_local_data_source.dart';
 import 'package:app/features/settings/data/data_sources/local/settings_local_data_source.dart';
-import 'package:app/features/settings/data/repositories/discreet_repository.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
-import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:app/features/settings/presentation/home/cubit/settings_home_cubit.dart';
 import 'package:app/features/settings/presentation/language/cubit/language_cubit.dart';
-import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:core/core.dart';
 import 'package:preferences_service/preferences_service.dart';
 
@@ -20,22 +15,6 @@ class SettingsInjectionModule() implements InjectionModule {
   void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<SettingsLocalDataSource>(
       () => SettingsLocalDataSource(preferencesService: injector.get<PreferencesService>()),
-    )
-    ..registerLazySingleton<DiscreetLocalDataSource>(
-      () => DiscreetLocalDataSource(preferencesService: injector.get<PreferencesService>()),
-    )
-    ..registerLazySingleton<DiscreetRepository>(
-      () => DiscreetRepository(
-        notificationsRepository: injector.get<NotificationsRepository>(),
-        profileRepository: injector.get<ProfileRepository>(),
-        localDataSource: injector.get<DiscreetLocalDataSource>(),
-      ),
-    )
-    ..registerLazySingleton<DiscreetModeCubit>(
-      () => DiscreetModeCubit(
-        repository: injector.get<DiscreetRepository>(),
-        widgetsRepository: injector.get<WidgetsRepository>(),
-      ),
     )
     ..registerFactory<LanguageCubit>(
       () => LanguageCubit(repository: injector.get<SettingsRepository>()),

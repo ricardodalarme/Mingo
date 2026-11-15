@@ -20,13 +20,11 @@ void main() {
     VoidCallback? onReact,
     VoidCallback? onAskToTalk,
     VoidCallback? onSendMessage,
-    bool isDiscreet = false,
   }) async {
     await tester.pumpApp(
       PartnerMoodHint(
         partnerMood: mood(value),
         partnerName: 'Marina',
-        isDiscreet: isDiscreet,
         onReact: onReact,
         onAskToTalk: onAskToTalk,
         onSendMessage: onSendMessage,
@@ -45,7 +43,6 @@ void main() {
       PartnerMoodHint(
         partnerMood: PartnerMood(day: day, mood: value, need: need),
         partnerName: 'Marina',
-        isDiscreet: false,
         onReact: onReact,
       ),
     );
@@ -61,14 +58,6 @@ void main() {
       findsNothing,
     );
   }
-
-  testWidgets('discreet mode shows no partner, mood or note wording', (tester) async {
-    await pumpHint(tester, value: MoodKind.tired, isDiscreet: true);
-
-    expect(find.textContaining('Marina'), findsNothing);
-    expect(find.textContaining('energia'), findsNothing);
-    expect(find.textContaining('Humor'), findsNothing);
-  });
 
   for (final value in [MoodKind.happy, MoodKind.loving, MoodKind.playful]) {
     testWidgets('a ${value.name} mood opens no screen and offers a heart', (tester) async {

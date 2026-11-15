@@ -29,7 +29,7 @@ void main() {
     expect(routes!.last.routeName, SignInRoute.name);
   });
 
-  test('authenticated deep links resolve to today, card, dates, and discreet settings', () {
+  test('authenticated deep links resolve to today, card and dates', () {
     final todayRoutes = resolveWidgetDeepLinkUri(
       Uri.parse('mingo://today'),
       appState: AppState.authenticated,
@@ -48,12 +48,6 @@ void main() {
       appState: AppState.authenticated,
     );
     expect(datesRoutes!.last.routeName, DatesRoute.name);
-
-    final discreetRoutes = resolveWidgetDeepLinkUri(
-      Uri.parse('mingo://settings/discreet'),
-      appState: AppState.authenticated,
-    );
-    expect(discreetRoutes!.last.routeName, DiscreetModeRoute.name);
 
     final togetherRoutes = resolveWidgetDeepLinkUri(
       Uri.parse('mingo://together?homeWidget=1'),

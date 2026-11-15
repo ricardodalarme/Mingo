@@ -16,12 +16,6 @@ class const PrivacyHubPage({super.key}) extends StatelessWidget {
         body: BaseListGroup(
           children: [
             BaseListTile(
-              title: l10n.discreetMode,
-              icon: AppIcons.eye_off,
-              showsChevron: true,
-              onTap: () => context.pushRoute(const DiscreetModeRoute()),
-            ),
-            BaseListTile(
               title: l10n.partnerTitle,
               icon: AppIcons.users,
               showsChevron: true,

@@ -2,7 +2,6 @@ import 'package:app/features/profile/data/data_sources/remote/fragments/generate
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/EnsureProfile.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveIntroAnswers.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveProfileSetup.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SetWidgetInDiscreet.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdatePronouns.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipPhase.graphql.dart';
@@ -45,16 +44,6 @@ class ProfileDataSource({required final GQLClient _client}) {
 
   Future<void> saveProfileSetup(VariablesMutationSaveProfileSetup variables) async {
     final response = await _client.mutate(OptionsMutationSaveProfileSetup(variables: variables));
-
-    validateResponse(response);
-  }
-
-  Future<void> setWidgetInDiscreet({required String profileId, required bool hide}) async {
-    final response = await _client.mutate(
-      OptionsMutationSetWidgetInDiscreet(
-        variables: VariablesMutationSetWidgetInDiscreet(profileId: profileId, $hide: hide),
-      ),
-    );
 
     validateResponse(response);
   }

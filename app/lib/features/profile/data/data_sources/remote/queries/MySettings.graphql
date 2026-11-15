@@ -8,7 +8,6 @@ query MySettings {
     relationshipStatus
     onboardedAt
     shareReadReceipts
-    widgetInDiscreet
     phase
     goals
     locale

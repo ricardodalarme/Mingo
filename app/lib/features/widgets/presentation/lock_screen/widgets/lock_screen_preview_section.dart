@@ -14,13 +14,11 @@ class const LockScreenPreviewSection({required final WidgetPayload payload, supe
     final l10n = context.l10n.widgets;
     final colors = context.colors;
 
-    final title = payload.discreet ? l10n.lockScreenDiscreetPhrase : l10n.lockScreenGenericPhrase;
-    final subtitle = payload.discreet ? l10n.discreetNeutralBody : l10n.lockScreenDefault;
+    final title = l10n.lockScreenGenericPhrase;
+    final subtitle = l10n.lockScreenDefault;
     final deepLink = !payload.isSignedIn
         ? 'mingo://sign-in'
-        : (payload.discreet
-              ? 'mingo://settings/discreet'
-              : (!payload.onLockScreen ? 'mingo://settings/widgets' : 'mingo://today'));
+        : (!payload.onLockScreen ? 'mingo://settings/widgets' : 'mingo://today');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -59,13 +57,7 @@ class const LockScreenPreviewSection({required final WidgetPayload payload, supe
         Text(l10n.lockScreenFamiliesTitle, style: context.text.titleSm),
         const SizedBox(height: AppSpace.s8),
         BaseListGroup(
-          children: [
-            BaseListTile(
-              title: title,
-              subtitle: subtitle,
-              icon: payload.discreet ? AppIcons.eye_off : AppIcons.moon,
-            ),
-          ],
+          children: [BaseListTile(title: title, subtitle: subtitle, icon: AppIcons.moon)],
         ),
         const SizedBox(height: AppSpace.s12),
         BaseNote(text: l10n.lockScreenPrivacyRule),

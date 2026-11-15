@@ -30,7 +30,7 @@ class ReminderSyncService({
           dailyIdea: texts.dailyIdea,
           dates: texts.dates,
           weeklyCard: texts.weeklyCard,
-          discreet: texts.discreet,
+          generic: texts.generic,
         ),
       );
     } on Object catch (error, stackTrace) {

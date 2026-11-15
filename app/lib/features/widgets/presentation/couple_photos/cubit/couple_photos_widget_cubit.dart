@@ -153,7 +153,7 @@ class CouplePhotosWidgetCubit({
 
   bool get _canChoosePhoto {
     final payload = _payload;
-    return payload != null && payload.isPaired && payload.hasPlus && !payload.discreet;
+    return payload != null && payload.isPaired && payload.hasPlus;
   }
 
   bool get _canRemovePhoto {

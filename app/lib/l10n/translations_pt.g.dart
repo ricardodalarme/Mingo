@@ -74,7 +74,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$day$pt day = Translations$day$pt.internal(_root);
   late final Translations$debugSignIn$pt debugSignIn = Translations$debugSignIn$pt.internal(_root);
   late final Translations$devices$pt devices = Translations$devices$pt.internal(_root);
-  late final Translations$discreet$pt discreet = Translations$discreet$pt.internal(_root);
   late final Translations$distance$pt distance = Translations$distance$pt.internal(_root);
   late final Translations$fightStyle$pt fightStyle = Translations$fightStyle$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
@@ -1487,34 +1486,6 @@ class Translations$devices$pt {
     'DEVICE_REVOKE_FAILED': 'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
     'other': 'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
   };
-}
-
-// Path: discreet
-class Translations$discreet$pt {
-  Translations$discreet$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Modo discreto'
-  String get title => 'Modo discreto';
-
-  /// pt: 'Ícone neutro'
-  String get neutralIcon => 'Ícone neutro';
-
-  /// pt: 'Notificações neutras'
-  String get neutralNotifications => 'Notificações neutras';
-
-  /// pt: 'Ocultar texto do widget'
-  String get hideWidgetText => 'Ocultar texto do widget';
-
-  /// pt: 'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.'
-  String get note =>
-      'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.';
-
-  /// pt: 'Não deu para salvar agora. Tente de novo.'
-  String get saveError => 'Não deu para salvar agora. Tente de novo.';
 }
 
 // Path: distance
@@ -4638,9 +4609,6 @@ class Translations$privacy$pt {
   /// pt: 'Privacidade e segurança'
   String get title => 'Privacidade e segurança';
 
-  /// pt: 'Modo discreto'
-  String get discreetMode => 'Modo discreto';
-
   /// pt: 'O que o parceiro vê'
   String get partnerTitle => 'O que o parceiro vê';
 
@@ -5571,7 +5539,7 @@ class Translations$reminders$pt {
   String get weeklyCard => 'Seu cartão está pronto.';
 
   /// pt: 'Abra o app para ver.'
-  String get discreet => 'Abra o app para ver.';
+  String get generic => 'Abra o app para ver.';
 }
 
 // Path: repair
@@ -5767,15 +5735,6 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Momentos a dois'
   String get spice => 'Momentos a dois';
-
-  /// pt: 'Modo discreto'
-  String get discreet => 'Modo discreto';
-
-  /// pt: 'Ligado'
-  String get discreetOn => 'Ligado';
-
-  /// pt: 'Desligado'
-  String get discreetOff => 'Desligado';
 
   /// pt: 'Privacidade e segurança'
   String get privacy => 'Privacidade e segurança';
@@ -7307,23 +7266,11 @@ class Translations$widgets$pt {
   /// pt: 'Cartão de domingo em preparação'
   String get cardStateNone => 'Cartão de domingo em preparação';
 
-  /// pt: 'Modo discreto ativo: nomes, fotos e recados estão ocultos nos widgets.'
-  String get discreetBanner =>
-      'Modo discreto ativo: nomes, fotos e recados estão ocultos nos widgets.';
-
   /// pt: 'Sem par conectado: os widgets do casal mostram o estado neutro.'
   String get unpairedBanner => 'Sem par conectado: os widgets do casal mostram o estado neutro.';
 
   /// pt: 'Mostrando o último dado salvo. Atualiza quando voltar a internet.'
   String get offlineBanner => 'Mostrando o último dado salvo. Atualiza quando voltar a internet.';
-
-  /// pt: 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.'
-  String get howToAddAndroidLockNote =>
-      'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.';
-
-  /// pt: 'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.'
-  String get howToAddIosLockNote =>
-      'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.';
 
   /// pt: 'Não foi possível carregar os widgets'
   String get loadErrorTitle => 'Não foi possível carregar os widgets';
@@ -7339,12 +7286,6 @@ class Translations$widgets$pt {
 
   /// pt: 'Escuro'
   String get themeDark => 'Escuro';
-
-  /// pt: 'Lembrete'
-  String get discreetReminderLabel => 'Lembrete';
-
-  /// pt: 'Texto neutro'
-  String get discreetNeutralBody => 'Texto neutro';
 
   /// pt: 'Mingo'
   String get signedOutLabel => 'Mingo';
@@ -7414,9 +7355,6 @@ class Translations$widgets$pt {
   /// pt: 'Momento calmo'
   String get lockScreenGenericPhrase => 'Momento calmo';
 
-  /// pt: 'Lembrete'
-  String get lockScreenDiscreetPhrase => 'Lembrete';
-
   /// pt: 'Sem nomes nem mensagens na tela bloqueada.'
   String get lockScreenPrivacyRule => 'Sem nomes nem mensagens na tela bloqueada.';
 
@@ -7463,9 +7401,9 @@ class Translations$widgets$pt {
   /// pt: 'PLUS'
   String get photosPlusBadge => 'PLUS';
 
-  /// pt: 'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.'
+  /// pt: 'Quando nenhuma foto local está salva, o widget mostra apenas o cartão neutro com o tempo juntos.'
   String get photosNeutralFallbackNote =>
-      'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.';
+      'Quando nenhuma foto local está salva, o widget mostra apenas o cartão neutro com o tempo juntos.';
 
   /// pt: 'Conhecer o Plus'
   String get photosUnlockPlusAction => 'Conhecer o Plus';
@@ -7537,6 +7475,14 @@ class Translations$widgets$pt {
     'COUPLE_PHOTO_NOT_PAIRED': 'Conecte-se com seu par para escolher uma foto do casal.',
     'other': 'Não foi possível salvar as preferências agora.',
   };
+
+  /// pt: 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.'
+  String get howToAddAndroidLockNote =>
+      'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.';
+
+  /// pt: 'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.'
+  String get howToAddIosLockNote =>
+      'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.';
 }
 
 // Path: acceptInvite.connected
@@ -9710,13 +9656,6 @@ extension on Translations {
             'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
           'devices.errors.other' =>
             'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
-          'discreet.title' => 'Modo discreto',
-          'discreet.neutralIcon' => 'Ícone neutro',
-          'discreet.neutralNotifications' => 'Notificações neutras',
-          'discreet.hideWidgetText' => 'Ocultar texto do widget',
-          'discreet.note' =>
-            'Oculta nomes e conteúdo em notificações e widgets. Sem imagem do casal no ícone.',
-          'discreet.saveError' => 'Não deu para salvar agora. Tente de novo.',
           'distance.title' => 'Distância',
           'distance.text' => 'Dois relógios, cada um no seu fuso, sem confusão.',
           'distance.you' => 'Você',
@@ -10350,15 +10289,15 @@ extension on Translations {
           'history.visibilityBoth' => 'Os dois',
           'history.visibilityOnlyYou' => 'Só você',
           'history.deleteMilestone' => 'Apagar',
-          _ => null,
-        } ??
-        switch (path) {
           'history.deleteMilestoneTitle' => 'Excluir este marco?',
           'history.deleteMilestoneTextShared' => 'Ele será removido da história dos dois.',
           'history.deleteMilestoneTextPrivate' => 'Ele será removido da sua história.',
           'history.deleteMilestoneConfirm' => 'Excluir',
           'history.saveMilestone' => 'Salvar',
           'history.storyDatesTitle' => 'Datas da nossa história',
+          _ => null,
+        } ??
+        switch (path) {
           'history.storyMet' => 'Nos conhecemos',
           'history.storyDating' => 'Começamos a namorar',
           'history.storyEngaged' => 'Noivamos',
@@ -10968,15 +10907,15 @@ extension on Translations {
           'moodHelp.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'moodHelp.errors.NETWORK' =>
             'Não deu para enviar agora. Verifique a conexão e tente de novo.',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.errors.TIMEOUT' => 'Não deu para enviar agora a tempo. Tente de novo.',
           'moodHelp.errors.other' => 'Não deu para enviar agora. Tente de novo.',
           'need.title' => 'Preciso de…',
           'need.titleHighlight' => 'Preciso',
           'need.subtitle' => 'Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.',
           'need.options.hug' => 'Um abraço',
+          _ => null,
+        } ??
+        switch (path) {
           'need.options.talk' => 'Conversar',
           'need.options.help_home' => 'Ajuda em casa',
           'need.options.quiet' => 'Um tempo quieta',
@@ -11232,7 +11171,6 @@ extension on Translations {
           'plus.errors.manageUnavailable' => 'Não há uma página da loja para esta assinatura aqui.',
           'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'privacy.title' => 'Privacidade e segurança',
-          'privacy.discreetMode' => 'Modo discreto',
           'privacy.partnerTitle' => 'O que o parceiro vê',
           'privacy.partnerSlips' => 'Slips enviados',
           'privacy.partnerSlipsText' => 'Só o que você envia',
@@ -11559,9 +11497,6 @@ extension on Translations {
           'received.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'received.errors.other' => 'Não deu para responder agora. Tente de novo.',
           'relationshipChanged.title' => 'Algo mudou?',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.highlight' => 'mudou',
           'relationshipChanged.subtitle' => 'Conte com calma. Isso só muda o que o app mostra.',
           'relationshipChanged.optionEnded' => 'Terminamos',
@@ -11569,6 +11504,9 @@ extension on Translations {
           'relationshipChanged.optionTogether' => 'Está tudo bem',
           'relationshipChanged.continueLabel' => 'Continuar',
           'relationshipChanged.saved' => 'Salvo',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.errors.NETWORK' => 'Sem conexão. Tente de novo.',
           'relationshipChanged.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'relationshipSettings.title' => 'Relacionamento',
@@ -11619,7 +11557,7 @@ extension on Translations {
           'reminders.dailyIdea' => 'Uma ideia pequena para hoje.',
           'reminders.dates' => 'Uma data está chegando.',
           'reminders.weeklyCard' => 'Seu cartão está pronto.',
-          'reminders.discreet' => 'Abra o app para ver.',
+          'reminders.generic' => 'Abra o app para ver.',
           'repair.calm.title' => 'Um momento para respirar',
           'repair.calm.titleHighlight' => 'respirar',
           'repair.calm.cadence' =>
@@ -11785,9 +11723,6 @@ extension on Translations {
           'settingsHome.planFree' => 'Grátis',
           'settingsHome.planPlus' => 'Plus',
           'settingsHome.spice' => 'Momentos a dois',
-          'settingsHome.discreet' => 'Modo discreto',
-          'settingsHome.discreetOn' => 'Ligado',
-          'settingsHome.discreetOff' => 'Desligado',
           'settingsHome.privacy' => 'Privacidade e segurança',
           'settingsHome.privacyStatus' => 'Quem vê o quê',
           'settingsHome.signOut' => 'Sair',
@@ -12135,9 +12070,6 @@ extension on Translations {
           'tabs.segmentForMe' => 'Para mim',
           'tabs.checkinLabel' => 'CHECK-IN',
           'tabs.checkinTitle' => 'Check-in da semana',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.checkinText' => 'Uma conversa curta, em privado primeiro.',
           'tabs.logisticsLabel' => 'PRÁTICO',
           'tabs.logisticsTitle' => 'Reunião de logística',
@@ -12160,6 +12092,9 @@ extension on Translations {
                   one: '1 lista, privada',
                   other: '${count} listas, privadas',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.soloNote' => 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.',
           'tabs.ritualsLabel' => 'ROTINA',
           'tabs.ritualsTitle' => 'Rituais',
@@ -12493,22 +12428,15 @@ extension on Translations {
           'widgets.cardStateReady' => 'Chegou um cartão · Toque para abrir',
           'widgets.cardStateSent' => 'Cartão enviado · Aguardando domingo',
           'widgets.cardStateNone' => 'Cartão de domingo em preparação',
-          'widgets.discreetBanner' =>
-            'Modo discreto ativo: nomes, fotos e recados estão ocultos nos widgets.',
           'widgets.unpairedBanner' =>
             'Sem par conectado: os widgets do casal mostram o estado neutro.',
           'widgets.offlineBanner' =>
             'Mostrando o último dado salvo. Atualiza quando voltar a internet.',
-          'widgets.howToAddAndroidLockNote' => 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.',
-          'widgets.howToAddIosLockNote' =>
-            'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.',
           'widgets.loadErrorTitle' => 'Não foi possível carregar os widgets',
           'widgets.loadErrorBody' => 'Verifique sua conexão e tente novamente.',
           'widgets.retryAction' => 'Tentar novamente',
           'widgets.themeLight' => 'Claro',
           'widgets.themeDark' => 'Escuro',
-          'widgets.discreetReminderLabel' => 'Lembrete',
-          'widgets.discreetNeutralBody' => 'Texto neutro',
           'widgets.signedOutLabel' => 'Mingo',
           'widgets.signedOutBody' => 'Toque para entrar',
           'widgets.ownSmallPageTitle' => 'Widget · Meu (pequeno)',
@@ -12536,7 +12464,6 @@ extension on Translations {
           'widgets.lockScreenClockDate' => 'Sexta, 10 de abril',
           'widgets.lockScreenReadyAction' => 'Estou pronto',
           'widgets.lockScreenGenericPhrase' => 'Momento calmo',
-          'widgets.lockScreenDiscreetPhrase' => 'Lembrete',
           'widgets.lockScreenPrivacyRule' => 'Sem nomes nem mensagens na tela bloqueada.',
           'widgets.lockScreenDisabledNote' =>
             'O widget da tela de bloqueio está desativado nas configurações.',
@@ -12559,7 +12486,7 @@ extension on Translations {
           'widgets.counterSetDateAction' => 'Definir data do relacionamento',
           'widgets.photosPageTitle' => 'Widget · Fotos do casal',
           'widgets.photosPlusBadge' => 'PLUS',
-          'widgets.photosNeutralFallbackNote' => 'Quando nenhuma foto local está salva (ou no modo discreto), o widget mostra apenas o cartão neutro com o tempo juntos.',
+          'widgets.photosNeutralFallbackNote' => 'Quando nenhuma foto local está salva, o widget mostra apenas o cartão neutro com o tempo juntos.',
           'widgets.photosUnlockPlusAction' => 'Conhecer o Plus',
           'widgets.photosChooseAction' => 'Escolher foto',
           'widgets.photosRemoveAction' => 'Remover foto',
@@ -12596,6 +12523,9 @@ extension on Translations {
           'widgets.errors.COUPLE_PHOTO_NOT_PAIRED' =>
             'Conecte-se com seu par para escolher uma foto do casal.',
           'widgets.errors.other' => 'Não foi possível salvar as preferências agora.',
+          'widgets.howToAddAndroidLockNote' => 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.',
+          'widgets.howToAddIosLockNote' =>
+            'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.',
           _ => null,
         };
   }

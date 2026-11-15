@@ -1,9 +1,0 @@
-mutation SetWidgetInDiscreet($profileId: UUID!, $hide: Boolean!) {
-  updateProfileSettingsCollection(
-    set: { widgetInDiscreet: $hide }
-    filter: { profileId: { eq: $profileId } }
-    atMost: 1
-  ) {
-    affectedCount
-  }
-}

@@ -8,7 +8,6 @@ import 'package:clock/clock.dart';
 
 extension QueryWidgetOverviewMapper on QueryWidgetOverview {
   WidgetOverview toModel({
-    required bool localHideWidgetText,
     required WidgetContentSource contentSource,
     required WidgetRotationCadence rotationCadence,
     String? cachedPhotoPath,
@@ -23,10 +22,8 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
 
     final profileId = settings?.profileId ?? widgetState?.profileId ?? '';
     final showNames = settings?.widgetShowNames ?? false;
-    final hideInDiscreet = settings == null || !settings.widgetInDiscreet;
     final allowPartnerNotes = settings?.widgetAllowPartnerNotes ?? false;
     final onLockScreen = settings?.widgetOnLockScreen ?? false;
-    final isDiscreet = (widgetState?.discreet ?? false) || hideInDiscreet || localHideWidgetText;
     final isPaired = widgetState?.isPaired ?? todayState?.isPaired ?? false;
     final hasPlus = todayState?.hasPlus ?? false;
 
@@ -61,7 +58,6 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
 
     final rawPayload = WidgetPayload(
       isSignedIn: true,
-      discreet: isDiscreet,
       isPaired: isPaired,
       hasPlus: hasPlus,
       showNames: showNames,
@@ -92,7 +88,6 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
     final preferences = WidgetPreferences(
       profileId: profileId,
       showNames: showNames,
-      hideInDiscreet: hideInDiscreet,
       allowPartnerNotes: allowPartnerNotes,
       onLockScreen: onLockScreen,
       contentSource: contentSource,

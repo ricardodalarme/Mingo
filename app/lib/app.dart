@@ -9,7 +9,6 @@ import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.d
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
-import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:app/features/widgets/data/services/widget_data_service.dart';
 import 'package:app/features/widgets/presentation/navigation/widget_deep_link_resolver.dart';
@@ -50,21 +49,17 @@ class const App({super.key}) extends StatelessWidget {
                     BlocProvider.value(value: injector.get<VersionGateCubit>()..check()),
                     BlocProvider.value(value: injector.get<TimeInAppCubit>()..start()),
                   ],
-                  child: BlocProvider.value(
-                    value: injector.get<DiscreetModeCubit>()..load(),
-                    child: BaseApp.router(
-                      theme: theme,
-                      onGenerateTitle: (context) => context.l10n.common.appName,
-                      routerConfig: appRouter.config(
-                        navigatorObservers: () => navigatorObservers,
-                        deepLinkTransformer: transformWidgetDeepLinkUri,
-                        deepLinkBuilder: _deepLinkBuilder,
-                      ),
-                      locale: TranslationProvider.of(context).flutterLocale,
-                      supportedLocales: AppLocaleUtils.supportedLocales,
-                      builder: (context, child) =>
-                          AppShell(child: child ?? const SizedBox.shrink()),
+                  child: BaseApp.router(
+                    theme: theme,
+                    onGenerateTitle: (context) => context.l10n.common.appName,
+                    routerConfig: appRouter.config(
+                      navigatorObservers: () => navigatorObservers,
+                      deepLinkTransformer: transformWidgetDeepLinkUri,
+                      deepLinkBuilder: _deepLinkBuilder,
                     ),
+                    locale: TranslationProvider.of(context).flutterLocale,
+                    supportedLocales: AppLocaleUtils.supportedLocales,
+                    builder: (context, child) => AppShell(child: child ?? const SizedBox.shrink()),
                   ),
                 );
               },

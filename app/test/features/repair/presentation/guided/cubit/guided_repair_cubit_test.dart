@@ -178,7 +178,7 @@ void main() {
   });
 
   test('a follow-up is planned even when the idea reminders are switched off', () {
-    const planner = ReminderPlanner(texts: {}, discreetText: 'Abra o app para ver.');
+    const planner = ReminderPlanner(texts: {}, fallbackText: 'Abra o app para ver.');
     final now = DateTime(2026, 11, 10, 12);
 
     final plan = planner.plan(

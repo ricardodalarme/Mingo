@@ -1,6 +1,4 @@
-import 'package:app/features/widgets/data/models/widget_models.dart';
 import 'package:app/features/widgets/data/models/widget_payload.dart';
-import 'package:app/features/widgets/presentation/gallery/widgets/gallery_preview_cards.dart';
 import 'package:app/features/widgets/presentation/lock_screen/widgets/lock_screen_preview_section.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
@@ -41,23 +39,5 @@ void main() {
       find.text('O widget da tela de bloqueio está desativado nas configurações.'),
       findsOneWidget,
     );
-  });
-
-  testWidgets('gallery lock-screen card stays neutral in discreet mode', (tester) async {
-    final discreet = payload.copyWith(discreet: true).sanitized();
-
-    await tester.pumpApp(
-      BaseView(
-        body: SingleChildScrollView(
-          child: GalleryPreviewSection(
-            segment: WidgetGallerySegment.own,
-            payload: discreet,
-            onSelectFamily: (_) {},
-          ),
-        ),
-      ),
-    );
-
-    expect(find.text('Lembrete calmo · Sem nomes'), findsWidgets);
   });
 }

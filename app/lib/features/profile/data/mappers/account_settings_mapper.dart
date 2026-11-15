@@ -14,7 +14,6 @@ extension MySettingsMapper on QueryMySettingsmySettings {
     togetherSince: togetherSince,
     onboardedAt: onboardedAt,
     shareReadReceipts: shareReadReceipts,
-    widgetInDiscreet: widgetInDiscreet,
     phase: phase?.toModel(),
     goals: [for (final goal in goals) ?goal?.toRelationshipGoal()],
     locale: locale,

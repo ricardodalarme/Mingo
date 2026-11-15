@@ -98,7 +98,6 @@ class NotificationsRepository({
 
       return NotificationPreferences(
         isEnabled: settings.enabled,
-        discreet: settings.discreet,
         mutedTypes: {...settings.mutedTypes.whereType<String>()},
         cardDay: settings.cardDay,
         cardHour: settings.cardHour,
@@ -114,7 +113,6 @@ class NotificationsRepository({
     try {
       await _dataSource.updateSettings(
         enabled: preferences.isEnabled,
-        discreet: preferences.discreet,
         mutedTypes: preferences.mutedTypes.toList(),
         cardDay: preferences.cardDay,
         cardHour: preferences.cardHour,

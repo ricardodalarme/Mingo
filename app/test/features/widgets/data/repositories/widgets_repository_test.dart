@@ -1,12 +1,6 @@
 import 'dart:async';
 
-import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:app/features/profile/data/models/avatar_kind.dart';
-import 'package:app/features/profile/data/models/profile.dart';
-import 'package:app/features/profile/data/repositories/profile_repository.dart';
-import 'package:app/features/settings/data/data_sources/local/discreet_local_data_source.dart';
 import 'package:app/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
-import 'package:app/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
 import 'package:app/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
 import 'package:app/features/widgets/data/data_sources/remote/widgets_data_source.dart';
 import 'package:app/features/widgets/data/models/widget_models.dart';
@@ -21,34 +15,23 @@ class _MockWidgetsDataSource() extends Mock implements WidgetsDataSource;
 
 class _MockWidgetsLocalDataSource() extends Mock implements WidgetsLocalDataSource;
 
-class _MockDiscreetLocalDataSource() extends Mock implements DiscreetLocalDataSource;
-
 class _MockWidgetDataService() extends Mock implements WidgetDataService;
 
 class _MockCouplePhotoRepository() extends Mock implements CouplePhotoRepository;
 
-class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
-
-class _MockProfileRepository() extends Mock implements ProfileRepository;
-
 void main() {
   late WidgetsDataSource dataSource;
   late WidgetsLocalDataSource localDataSource;
-  late DiscreetLocalDataSource discreetLocalDataSource;
   late WidgetDataService widgetDataService;
   late CouplePhotoRepository couplePhotoRepository;
-  late AuthenticationRepository authenticationRepository;
-  late ProfileRepository profileRepository;
   late WidgetsRepository repository;
   late List<WidgetPayload> writes;
   WidgetPayload? cached;
-  var hideWidgetText = false;
 
   final now = DateTime.utc(2026, 11, 11, 12);
   QueryWidgetOverview response() => QueryWidgetOverview.fromJson(<String, dynamic>{
     'widget': <String, dynamic>{
       'nodeId': 'widget-1',
-      'discreet': false,
       'isPaired': true,
       'partnerName': 'Marina',
       'nextDateTitle': 'Aniversário',
@@ -67,7 +50,6 @@ void main() {
       'profileId': 'profile-1',
       'widgetAllowPartnerNotes': true,
       'widgetOnLockScreen': false,
-      'widgetInDiscreet': true,
       'widgetShowNames': true,
       '__typename': 'ProfileSettings',
     },
@@ -80,38 +62,21 @@ void main() {
     registerFallbackValue(WidgetPayload.signedOut());
     registerFallbackValue(WidgetContentSource.favorites);
     registerFallbackValue(WidgetRotationCadence.daily);
-    registerFallbackValue(
-      VariablesMutationUpdateWidgetPreferences(
-        profileId: 'profile-1',
-        widgetShowNames: false,
-        widgetInDiscreet: false,
-        widgetAllowPartnerNotes: false,
-        widgetOnLockScreen: false,
-      ),
-    );
   });
 
   setUp(() {
     dataSource = _MockWidgetsDataSource();
     localDataSource = _MockWidgetsLocalDataSource();
-    discreetLocalDataSource = _MockDiscreetLocalDataSource();
     widgetDataService = _MockWidgetDataService();
     couplePhotoRepository = _MockCouplePhotoRepository();
-    authenticationRepository = _MockAuthenticationRepository();
-    profileRepository = _MockProfileRepository();
-    when(() => authenticationRepository.currentUserId).thenReturn('profile-1');
     repository = WidgetsRepository(
       dataSource: dataSource,
       localDataSource: localDataSource,
-      discreetLocalDataSource: discreetLocalDataSource,
       widgetDataService: widgetDataService,
       couplePhotoRepository: couplePhotoRepository,
-      authenticationRepository: authenticationRepository,
-      profileRepository: profileRepository,
     );
     writes = <WidgetPayload>[];
     cached = WidgetPayload.fake();
-    hideWidgetText = false;
 
     when(() => localDataSource.contentSource).thenReturn(WidgetContentSource.favorites);
     when(() => localDataSource.rotationCadence).thenReturn(WidgetRotationCadence.daily);
@@ -130,18 +95,8 @@ void main() {
     when(() => localDataSource.setRotationCadence(any())).thenAnswer((_) async {
       return;
     });
-    when(() => discreetLocalDataSource.hideWidgetText).thenAnswer((_) => hideWidgetText);
-    when(() => discreetLocalDataSource.setHideWidgetText(value: any(named: 'value')))
-        .thenAnswer((invocation) async {
-          hideWidgetText = invocation.namedArguments[#value] as bool;
-          return;
-        });
-    when(
-      () => widgetDataService.readCachedPhotoPath(
-        discreet: any(named: 'discreet'),
-        hasPlus: any(named: 'hasPlus'),
-      ),
-    ).thenAnswer((_) async => null);
+    when(() => widgetDataService.readCachedPhotoPath(hasPlus: any(named: 'hasPlus')))
+        .thenAnswer((_) async => null);
     when(() => couplePhotoRepository.syncWidgetCache(cacheAllowed: any(named: 'cacheAllowed')))
         .thenAnswer((_) async => false);
     when(() => widgetDataService.clearCouplePhoto()).thenAnswer((_) async {
@@ -159,58 +114,6 @@ void main() {
         .thenAnswer((_) async => WidgetPayload.signedOut());
   });
 
-  test('saving preferences without a profile id uses the signed-in person', () async {
-    VariablesMutationUpdateWidgetPreferences? sent;
-    when(() => dataSource.updatePreferences(any())).thenAnswer((invocation) async {
-      sent = invocation.positionalArguments.first as VariablesMutationUpdateWidgetPreferences;
-
-      return 1;
-    });
-    when(() => dataSource.getOverview()).thenAnswer((_) async => response());
-
-    await repository.savePreferences(WidgetPreferences.fake().copyWith(profileId: ''), now: now);
-
-    expect(sent?.profileId, 'profile-1');
-  });
-
-  test('a save that matches no row ensures the settings row and retries once', () async {
-    var calls = 0;
-    when(() => dataSource.updatePreferences(any())).thenAnswer((_) async {
-      calls++;
-
-      return calls == 1 ? 0 : 1;
-    });
-    when(() => profileRepository.ensureProfile()).thenAnswer(
-      (_) async =>
-          const Profile(id: 'profile-9', avatarKind: AvatarKind.initials, displayName: 'Ana'),
-    );
-    when(() => dataSource.getOverview()).thenAnswer((_) async => response());
-
-    await repository.savePreferences(WidgetPreferences.fake(), now: now);
-
-    expect(calls, 2);
-    verify(() => profileRepository.ensureProfile()).called(1);
-  });
-
-  test('saving preferences inverts the hide flag before sending it to the server', () async {
-    VariablesMutationUpdateWidgetPreferences? sent;
-    when(() => dataSource.updatePreferences(any())).thenAnswer((invocation) async {
-      sent = invocation.positionalArguments.first as VariablesMutationUpdateWidgetPreferences;
-      return 1;
-    });
-    when(() => dataSource.getOverview()).thenAnswer((_) async => response());
-
-    final preferences = WidgetPreferences.fake().copyWith(
-      profileId: 'profile-1',
-      hideInDiscreet: true,
-    );
-    await repository.savePreferences(preferences, now: now);
-
-    expect(sent, isNotNull);
-    expect(sent!.widgetInDiscreet, isFalse);
-    expect(hideWidgetText, isTrue);
-  });
-
   test('a delayed sync cannot overwrite a newer sign-out payload', () async {
     final delayed = Completer<QueryWidgetOverview>();
     when(() => dataSource.getOverview()).thenAnswer((_) => delayed.future);
@@ -224,30 +127,12 @@ void main() {
     expect(cached?.isSignedIn ?? false, isFalse);
   });
 
-  test('a delayed sync cannot re-show names after discreet mode is enabled', () async {
-    final delayed = Completer<QueryWidgetOverview>();
-    when(() => dataSource.getOverview()).thenAnswer((_) => delayed.future);
-
-    final sync = repository.loadAndSync(now: now);
-    await repository.applyDiscreetModeImmediately(discreet: true, now: now);
-    delayed.complete(response());
-    await sync;
-
-    expect(writes, isNotEmpty);
-    expect(writes.last.discreet, isTrue);
-    expect(writes.any((payload) => payload.partnerName != null), isFalse);
-  });
-
   test('loadAndSync reads the couple photo row and exposes it on the overview', () async {
     when(() => dataSource.getOverview()).thenAnswer((_) async => response());
     when(() => couplePhotoRepository.syncWidgetCache(cacheAllowed: any(named: 'cacheAllowed')))
         .thenAnswer((_) async => true);
-    when(
-      () => widgetDataService.readCachedPhotoPath(
-        discreet: any(named: 'discreet'),
-        hasPlus: any(named: 'hasPlus'),
-      ),
-    ).thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
+    when(() => widgetDataService.readCachedPhotoPath(hasPlus: any(named: 'hasPlus')))
+        .thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
 
     final overview = await repository.loadAndSync(now: now);
 

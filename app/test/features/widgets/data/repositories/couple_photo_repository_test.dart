@@ -81,12 +81,8 @@ void main() {
     ).thenAnswer((_) async {});
     when(() => widgetDataService.cacheCouplePhoto(any(), any(), updatedAt: any(named: 'updatedAt')))
         .thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
-    when(
-      () => widgetDataService.readCachedPhotoPath(
-        discreet: any(named: 'discreet'),
-        hasPlus: any(named: 'hasPlus'),
-      ),
-    ).thenAnswer((_) async => null);
+    when(() => widgetDataService.readCachedPhotoPath(hasPlus: any(named: 'hasPlus')))
+        .thenAnswer((_) async => null);
     when(() => widgetDataService.readCachedPhotoUpdatedAt()).thenAnswer((_) async => null);
     when(() => widgetDataService.clearCouplePhoto()).thenAnswer((_) async {
       return;
@@ -305,12 +301,8 @@ void main() {
     });
 
     test('keeps the local copy when the updated_at marker still matches', () async {
-      when(
-        () => widgetDataService.readCachedPhotoPath(
-          discreet: any(named: 'discreet'),
-          hasPlus: any(named: 'hasPlus'),
-        ),
-      ).thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
+      when(() => widgetDataService.readCachedPhotoPath(hasPlus: any(named: 'hasPlus')))
+          .thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
       when(() => widgetDataService.readCachedPhotoUpdatedAt())
           .thenAnswer((_) async => existing.updatedAt.toIso8601String());
 
@@ -330,12 +322,8 @@ void main() {
     });
 
     test('downloads again when the row updated_at changes', () async {
-      when(
-        () => widgetDataService.readCachedPhotoPath(
-          discreet: any(named: 'discreet'),
-          hasPlus: any(named: 'hasPlus'),
-        ),
-      ).thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
+      when(() => widgetDataService.readCachedPhotoPath(hasPlus: any(named: 'hasPlus')))
+          .thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
       when(() => widgetDataService.readCachedPhotoUpdatedAt())
           .thenAnswer((_) async => DateTime.utc(2026, 11, 10).toIso8601String());
 
@@ -349,12 +337,8 @@ void main() {
     });
 
     test('falls back to the local copy when the signed URL fails', () async {
-      when(
-        () => widgetDataService.readCachedPhotoPath(
-          discreet: any(named: 'discreet'),
-          hasPlus: any(named: 'hasPlus'),
-        ),
-      ).thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
+      when(() => widgetDataService.readCachedPhotoPath(hasPlus: any(named: 'hasPlus')))
+          .thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
       when(() => widgetDataService.readCachedPhotoUpdatedAt())
           .thenAnswer((_) async => DateTime.utc(2026, 11, 10).toIso8601String());
       when(

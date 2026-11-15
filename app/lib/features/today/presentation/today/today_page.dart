@@ -1,7 +1,6 @@
 import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:app/features/mood/presentation/mood/widgets/today_mood_block.dart';
-import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:app/features/today/presentation/today/widgets/partner_unpaired_notice.dart';
@@ -31,7 +30,6 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
     final selfName = context.select((TodayCubit cubit) => cubit.state.selfName);
     final partnerHint = context.select((TodayCubit cubit) => cubit.state.partnerHint);
     final isFirstDay = context.select((TodayCubit cubit) => cubit.state.isFirstDay);
-    final isDiscreet = context.select((DiscreetModeCubit cubit) => cubit.state.isOn);
     final showUnpairNotice = context.select((TodayCubit cubit) => cubit.state.showUnpairNotice);
     final unpairedPartnerName = context.select(
       (TodayCubit cubit) => cubit.state.unpairedPartnerName,
@@ -57,7 +55,6 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     TodayMoodBlock(
-                      isDiscreet: isDiscreet,
                       isFirstDay: isFirstDay,
                       hasPendingInvite: loadedHome?.hasPendingInvite ?? false,
                     ),

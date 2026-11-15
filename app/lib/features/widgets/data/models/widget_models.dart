@@ -36,7 +36,6 @@ enum WidgetRotationCadence() {
 final class const WidgetPreferences({
   required final String profileId,
   required final bool showNames,
-  required final bool hideInDiscreet,
   required final bool allowPartnerNotes,
   required final bool onLockScreen,
   required final WidgetContentSource contentSource,
@@ -45,7 +44,6 @@ final class const WidgetPreferences({
   factory fake() => const WidgetPreferences(
     profileId: '00000000-0000-0000-0000-000000000000',
     showNames: true,
-    hideInDiscreet: true,
     allowPartnerNotes: true,
     onLockScreen: false,
     contentSource: WidgetContentSource.favorites,
@@ -55,7 +53,6 @@ final class const WidgetPreferences({
   WidgetPreferences copyWith({
     String? profileId,
     bool? showNames,
-    bool? hideInDiscreet,
     bool? allowPartnerNotes,
     bool? onLockScreen,
     WidgetContentSource? contentSource,
@@ -63,7 +60,6 @@ final class const WidgetPreferences({
   }) => WidgetPreferences(
     profileId: profileId ?? this.profileId,
     showNames: showNames ?? this.showNames,
-    hideInDiscreet: hideInDiscreet ?? this.hideInDiscreet,
     allowPartnerNotes: allowPartnerNotes ?? this.allowPartnerNotes,
     onLockScreen: onLockScreen ?? this.onLockScreen,
     contentSource: contentSource ?? this.contentSource,
@@ -74,7 +70,6 @@ final class const WidgetPreferences({
   List<Object?> get props => [
     profileId,
     showNames,
-    hideInDiscreet,
     allowPartnerNotes,
     onLockScreen,
     contentSource,

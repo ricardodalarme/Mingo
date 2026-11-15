@@ -16,7 +16,7 @@ void main() {
 
   setUpAll(() {
     registerFallbackValue(DateTime(2026));
-    registerFallbackValue((title: '', dailyIdea: '', dates: '', weeklyCard: '', discreet: ''));
+    registerFallbackValue((title: '', dailyIdea: '', dates: '', weeklyCard: '', generic: ''));
   });
 
   setUp(() {

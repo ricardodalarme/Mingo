@@ -304,15 +304,12 @@ void main() {
     });
   });
 
-  test('discreet mode strips cachedPhotoPath so the photo widget never renders a photo', () {
+  test('a paid pair keeps the cached photo path for the photo widget', () {
     final payload = WidgetPayload.fake().copyWith(
       hasPlus: true,
       cachedPhotoPath: '/var/mobile/Containers/Shared/AppGroup/photo.jpg',
     );
-    final sanitized = payload.sanitized();
-    expect(sanitized.cachedPhotoPath, '/var/mobile/Containers/Shared/AppGroup/photo.jpg');
 
-    final discreetSanitized = payload.copyWith(discreet: true).sanitized();
-    expect(discreetSanitized.cachedPhotoPath, isNull);
+    expect(payload.sanitized().cachedPhotoPath, '/var/mobile/Containers/Shared/AppGroup/photo.jpg');
   });
 }

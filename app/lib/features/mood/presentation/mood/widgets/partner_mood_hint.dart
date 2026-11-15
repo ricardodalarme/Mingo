@@ -10,14 +10,13 @@ import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 
-/// The partner's shared mood for today, hidden entirely in discreet mode.
+/// The partner's shared mood for today.
 ///
 /// A shared need opens the sheet that answers it, before any mood routing. Otherwise a good mood
 /// offers a one-tap reaction and a low one opens the help that fits it. The bad-day screen belongs
 /// to the person's own jar and never opens from here.
 class const PartnerMoodHint({
   required final PartnerMood partnerMood,
-  required final bool isDiscreet,
   final String? partnerName,
   final VoidCallback? onReact,
   final VoidCallback? onAskToTalk,
@@ -27,7 +26,7 @@ class const PartnerMoodHint({
   @override
   Widget build(BuildContext context) {
     final mood = partnerMood.mood;
-    if (isDiscreet || mood == null) return const SizedBox.shrink();
+    if (mood == null) return const SizedBox.shrink();
 
     final l10n = context.l10n.mood;
     final helpL10n = context.l10n.moodHelp;

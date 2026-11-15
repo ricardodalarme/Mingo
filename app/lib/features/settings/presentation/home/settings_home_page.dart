@@ -1,6 +1,5 @@
 import 'package:app/features/account/presentation/sign_out/sign_out_dialog.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
-import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:app/features/settings/presentation/home/cubit/settings_home_cubit.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
@@ -214,13 +213,9 @@ class const _PrivacySection() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.settingsHome;
-    final isAuthenticated = context.select(
-      (SettingsHomeCubit cubit) => cubit.state.isAuthenticated,
-    );
     final hasRelationship = context.select(
       (SettingsHomeCubit cubit) => cubit.state.hasRelationship,
     );
-    final discreetOn = context.select((DiscreetModeCubit cubit) => cubit.state.isOn);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -236,14 +231,6 @@ class const _PrivacySection() extends StatelessWidget {
                 icon: AppIcons.lock,
                 showsChevron: true,
                 onTap: () => context.pushRoute(const PrivacyHubRoute()),
-              ),
-            if (isAuthenticated)
-              BaseListTile(
-                title: l10n.discreet,
-                subtitle: discreetOn ? l10n.discreetOn : l10n.discreetOff,
-                icon: AppIcons.eye_off,
-                showsChevron: true,
-                onTap: () => context.pushRoute(const DiscreetModeRoute()),
               ),
             BaseListTile(
               title: l10n.help,
