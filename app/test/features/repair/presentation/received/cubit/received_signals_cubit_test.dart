@@ -4,6 +4,7 @@ import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:app/features/repair/data/models/received_signal.dart';
+import 'package:app/features/repair/data/models/signal_answer.dart';
 import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:app/features/repair/presentation/received/cubit/received_signals_cubit.dart';
 import 'package:core/core.dart';
@@ -48,8 +49,14 @@ void main() {
         signalId: any(named: 'signalId'),
         response: any(named: 'response'),
       ),
-    ).thenAnswer((_) async {
-      return;
+    ).thenAnswer((invocation) async {
+      final response = invocation.namedArguments[#response] as RepairResponse?;
+
+      return SignalAnswer(
+        response: response,
+        respondedAt: response == null ? null : DateTime(2026, 11, 10, 20),
+        seenAt: DateTime(2026, 11, 10, 20),
+      );
     });
     when(() => reminders.addFollowUp(any(), now: any(named: 'now'))).thenAnswer((_) async {
       return;
@@ -77,16 +84,43 @@ void main() {
     expect(items(cubit), [first, second]);
   });
 
-  test('answering removes the message and the next one comes up', () async {
+  test('answering stores the answer on the message without dropping it', () async {
     final cubit = build();
     await cubit.load();
 
     await cubit.respond(first, response: RepairResponse.talk);
 
     verify(() => repair.respondToSignal(signalId: 's1', response: RepairResponse.talk)).called(1);
-    expect(items(cubit), [second]);
+    expect(items(cubit), hasLength(2));
+    expect(items(cubit).first.response, RepairResponse.talk);
+    expect(items(cubit).first.respondedAt, DateTime(2026, 11, 10, 20));
+    expect(items(cubit).first.isAnswered, isTrue);
     expect(cubit.state.answeredCount, 1);
+    expect(cubit.state.hasNext, isTrue);
     verifyNever(() => reminders.addFollowUp(any(), now: any(named: 'now')));
+  });
+
+  test('an answered message cannot be answered again', () async {
+    final cubit = build();
+    await cubit.load();
+    await cubit.respond(first, response: RepairResponse.talk);
+
+    await cubit.respond(items(cubit).first, response: RepairResponse.heart);
+
+    verifyNever(() => repair.respondToSignal(signalId: 's1', response: RepairResponse.heart));
+    expect(items(cubit).first.response, RepairResponse.talk);
+    expect(cubit.state.answeredCount, 1);
+  });
+
+  test('moving on leaves the answered message behind', () async {
+    final cubit = build();
+    await cubit.load();
+    await cubit.respond(first, response: RepairResponse.talk);
+
+    cubit.next();
+
+    expect(items(cubit), [second]);
+    expect(cubit.state.hasNext, isFalse);
   });
 
   test('later schedules a generic reminder', () async {
@@ -106,9 +140,12 @@ void main() {
     await cubit.respond(second);
 
     verify(() => repair.respondToSignal(signalId: 's2', response: null)).called(1);
+    expect(items(cubit).last.isAnswered, isTrue);
+    expect(items(cubit).last.response, isNull);
+    verifyNever(() => reminders.addFollowUp(any(), now: any(named: 'now')));
   });
 
-  test('a failed answer keeps the message', () async {
+  test('a failed answer keeps the message unanswered', () async {
     when(
       () => repair.respondToSignal(
         signalId: any(named: 'signalId'),
@@ -121,6 +158,7 @@ void main() {
     await cubit.respond(first, response: RepairResponse.talk);
 
     expect(items(cubit), [first, second]);
+    expect(items(cubit).first.isAnswered, isFalse);
     expect(cubit.state.respondAction, isA<Initial>());
   });
 }

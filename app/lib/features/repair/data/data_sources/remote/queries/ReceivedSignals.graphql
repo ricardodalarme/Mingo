@@ -10,6 +10,9 @@ query ReceivedSignals($recipientId: UUID!) {
         kind
         value
         body
+        response
+        respondedAt
+        seenAt
         createdAt
       }
     }

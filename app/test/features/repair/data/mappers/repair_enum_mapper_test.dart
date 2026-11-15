@@ -43,8 +43,26 @@ void main() {
   });
 
   test('a response sent to the function is its stored text', () {
+    expect(RepairResponse.here.toRpc(), 'here');
     expect(RepairResponse.talk.toRpc(), 'talk');
     expect(RepairResponse.moreTime.toRpc(), 'more_time');
+    expect(RepairResponse.willDo.toRpc(), 'will_do');
+    expect(RepairResponse.notNow.toRpc(), 'not_now');
+    expect(RepairResponse.plan.toRpc(), 'plan');
     expect(RepairResponse.later.toRpc(), 'later');
+    expect(RepairResponse.heart.toRpc(), 'heart');
+  });
+
+  test('every answer the app offers is a response the server stores', () {
+    for (final response in RepairResponse.values) {
+      final stored = EnumSignalResponse.fromJson(response.toRpc());
+
+      expect(stored, isNot(EnumSignalResponse.$unknown), reason: response.name);
+      expect(stored.toModel(), response);
+    }
+  });
+
+  test('a response this version does not know is left unnamed', () {
+    expect(EnumSignalResponse.$unknown.toModel(), isNull);
   });
 }

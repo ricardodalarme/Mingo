@@ -5554,17 +5554,25 @@ class Translations$received$pt {
   String get privateFirst => 'Sua resposta é privada primeiro. Não tem certo nem errado.';
 
   Map<String, String> get responses => {
-    'talk': 'Sim, vamos conversar',
+    'here': 'Estou aqui',
+    'talk': 'Vamos conversar',
     'moreTime': 'Preciso de mais um tempo',
+    'willDo': 'Vou fazer',
+    'notNow': 'Agora não',
+    'plan': 'Planejar algo',
     'later': 'Respondo depois',
+    'heart': 'Mandar um coração',
     'other': '',
   };
 
   /// pt: 'Entendi'
   String get seen => 'Entendi';
 
-  /// pt: 'Sugerir um plano pequeno'
-  String get suggestPlan => 'Sugerir um plano pequeno';
+  /// pt: 'Você respondeu: {response}'
+  String answered({required Object response}) => 'Você respondeu: ${response}';
+
+  /// pt: 'Próxima mensagem'
+  String get next => 'Próxima mensagem';
 
   /// pt: 'Tudo certo'
   String get doneTitle => 'Tudo certo';
@@ -12002,12 +12010,18 @@ extension on Translations {
           'received.bodies.other' => '',
           'received.fromPartner' => 'Do seu par',
           'received.privateFirst' => 'Sua resposta é privada primeiro. Não tem certo nem errado.',
-          'received.responses.talk' => 'Sim, vamos conversar',
+          'received.responses.here' => 'Estou aqui',
+          'received.responses.talk' => 'Vamos conversar',
           'received.responses.moreTime' => 'Preciso de mais um tempo',
+          'received.responses.willDo' => 'Vou fazer',
+          'received.responses.notNow' => 'Agora não',
+          'received.responses.plan' => 'Planejar algo',
           'received.responses.later' => 'Respondo depois',
+          'received.responses.heart' => 'Mandar um coração',
           'received.responses.other' => '',
           'received.seen' => 'Entendi',
-          'received.suggestPlan' => 'Sugerir um plano pequeno',
+          'received.answered' => ({required Object response}) => 'Você respondeu: ${response}',
+          'received.next' => 'Próxima mensagem',
           'received.doneTitle' => 'Tudo certo',
           'received.doneText' => 'Que bom que você leu com calma.',
           'received.emptyTitle' => 'Nada novo',
@@ -12538,6 +12552,9 @@ extension on Translations {
           'story.together' => 'juntos',
           'story.namesLabel' => 'Incluir os nomes',
           'story.namesText' => 'Desligado por padrão.',
+          _ => null,
+        } ??
+        switch (path) {
           'story.phraseLabel' => 'Uma frase (opcional)',
           'story.phraseHint' => 'Ex.: ainda tem muito pela frente',
           'story.share' => 'Compartilhar imagem',
@@ -12545,9 +12562,6 @@ extension on Translations {
           'story.emptyText' =>
             'Defina desde quando vocês estão juntos em Nossa história para gerar a imagem.',
           'story.errorTitle' => 'Não deu para carregar',
-          _ => null,
-        } ??
-        switch (path) {
           'story.errorText' => 'Tente de novo em instantes.',
           'story.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
           'sundayCard.title' => 'Seu cartão',

@@ -32,11 +32,14 @@ class ReceivedSignalsCubit({
   ///
   /// Answering "later" schedules a generic reminder so the person is not left to remember.
   Future<void> respond(ReceivedSignal signal, {RepairResponse? response}) async {
-    if (state.respondAction.isLoading) return;
+    if (state.respondAction.isLoading || signal.isAnswered) return;
 
     emit(state.copyWith(respondAction: const Loading()));
     try {
-      await _repairRepository.respondToSignal(signalId: signal.id, response: response);
+      final answer = await _repairRepository.respondToSignal(
+        signalId: signal.id,
+        response: response,
+      );
       if (response == RepairResponse.later) await _scheduleReminder();
       final current = state.signals;
       if (current is Success<List<ReceivedSignal>>) {
@@ -44,7 +47,14 @@ class ReceivedSignalsCubit({
           state.copyWith(
             signals: Success([
               for (final item in current.value)
-                if (item.id != signal.id) item,
+                if (item.id == signal.id)
+                  item.copyWith(
+                    response: answer.response,
+                    respondedAt: answer.respondedAt,
+                    seenAt: answer.seenAt,
+                  )
+                else
+                  item,
             ]),
             answeredCount: state.answeredCount + 1,
           ),
@@ -54,6 +64,14 @@ class ReceivedSignalsCubit({
       emit(state.copyWith(respondAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(respondAction: const Initial()));
+  }
+
+  /// Moves past the answered signal on top so the next one can be answered.
+  void next() {
+    final current = state.signals;
+    if (current is! Success<List<ReceivedSignal>>) return;
+    if (current.value.isEmpty || !current.value.first.isAnswered) return;
+    emit(state.copyWith(signals: Success(current.value.skip(1).toList())));
   }
 
   Future<void> _scheduleReminder() async {

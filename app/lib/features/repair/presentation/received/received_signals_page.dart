@@ -2,7 +2,6 @@ import 'package:app/features/repair/data/models/received_signal.dart';
 import 'package:app/features/repair/presentation/received/cubit/received_signals_cubit.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
-import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
@@ -33,7 +32,11 @@ class const ReceivedSignalsPage({super.key}) extends StatelessWidget implements 
         listener: (context, state) {
           final action = state.respondAction;
           if (action is Failure) {
-            BaseToast.show(context, l10n.errors.selectOrFallback(action.exception.l10nKey));
+            BaseToast.show(
+              context,
+              l10n.errors.selectOrFallback(action.exception.l10nKey),
+              variant: BaseToastVariant.error,
+            );
           }
         },
         child: SkeletonizerResourceWidget<List<ReceivedSignal>>(
@@ -57,11 +60,6 @@ class const _SignalView({required final ReceivedSignal signal}) extends Stateles
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.received;
-    final isLoading = context.select(
-      (ReceivedSignalsCubit cubit) => cubit.state.respondAction.isLoading,
-    );
-    final cubit = context.read<ReceivedSignalsCubit>();
-    final isRepair = signal.kind == SignalKind.repair;
     final value = signal.value;
     final needLabel = value == null ? '' : context.l10n.need.options.selectOrFallback(value);
     final kindBody = l10n.bodies.selectOrFallback(signal.kind.name);
@@ -87,41 +85,73 @@ class const _SignalView({required final ReceivedSignal signal}) extends Stateles
               child: Text(text, style: context.text.titleLg),
             ),
           ],
-          const SizedBox(height: AppSpace.s12),
-          BaseNote(text: l10n.privateFirst),
-        ],
-      ),
-      footer: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (isRepair)
-            for (final response in RepairResponse.values) ...[
-              BaseButton(
-                text: l10n.responses.selectOrFallback(response.name),
-                variant: response == RepairResponse.values.first ? .primary : .secondary,
-                isEnabled: !isLoading,
-                onPressed: () => cubit.respond(signal, response: response),
-              ),
-              const SizedBox(height: AppSpace.s10),
-            ]
-          else ...[
-            BaseButton(
-              text: l10n.seen,
-              isEnabled: !isLoading,
-              onPressed: () => cubit.respond(signal),
-            ),
-            if (signal.kind == SignalKind.missUs) ...[
-              const SizedBox(height: AppSpace.s10),
-              BaseButton(
-                text: l10n.suggestPlan,
-                variant: .secondary,
-                onPressed: () => context.pushRoute(const DateNightRoute()),
-              ),
-            ],
+          if (signal.isAnswered) ...[
+            const SizedBox(height: AppSpace.s16),
+            BaseNote(text: _answerLabel(context, signal), icon: AppIcons.check),
+          ] else ...[
+            const SizedBox(height: AppSpace.s12),
+            BaseNote(text: l10n.privateFirst),
           ],
         ],
       ),
+      footer: signal.isAnswered ? const _AnsweredFooter() : _Answers(signal: signal),
+    );
+  }
+
+  String _answerLabel(BuildContext context, ReceivedSignal signal) {
+    final l10n = context.l10n.received;
+    final response = signal.response;
+
+    return l10n.answered(
+      response: response == null ? l10n.seen : l10n.responses.selectOrFallback(response.name),
+    );
+  }
+}
+
+class const _Answers({required final ReceivedSignal signal}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.received;
+    final isLoading = context.select(
+      (ReceivedSignalsCubit cubit) => cubit.state.respondAction.isLoading,
+    );
+    final cubit = context.read<ReceivedSignalsCubit>();
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        for (final (index, response) in signal.kind.answers.indexed) ...[
+          BaseButton(
+            text: l10n.responses.selectOrFallback(response.name),
+            icon: response == RepairResponse.heart ? AppIcons.heart : null,
+            variant: index == 0 ? .primary : .secondary,
+            isEnabled: !isLoading,
+            onPressed: () => cubit.respond(signal, response: response),
+          ),
+          const SizedBox(height: AppSpace.s10),
+        ],
+        if (signal.kind.acceptsAcknowledgement)
+          BaseButton.text(
+            text: l10n.seen,
+            isEnabled: !isLoading,
+            onPressed: () => cubit.respond(signal),
+          ),
+      ],
+    );
+  }
+}
+
+class const _AnsweredFooter() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.received;
+    final hasNext = context.select((ReceivedSignalsCubit cubit) => cubit.state.hasNext);
+    final cubit = context.read<ReceivedSignalsCubit>();
+
+    return BaseButton(
+      text: hasNext ? l10n.next : l10n.close,
+      onPressed: hasNext ? cubit.next : () => context.router.maybePop(),
     );
   }
 }

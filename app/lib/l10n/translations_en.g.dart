@@ -4505,15 +4505,22 @@ class _Translations$received$en extends Translations$received$pt {
   String get privateFirst => 'Your answer is private first. There is no right or wrong.';
   @override
   Map<String, String> get responses => {
-    'talk': 'Yes, let\'s talk',
+    'here': 'I\'m here',
+    'talk': 'Let\'s talk',
     'moreTime': 'I need a bit more time',
+    'willDo': 'I\'ll do it',
+    'notNow': 'Not now',
+    'plan': 'Plan something',
     'later': 'I\'ll answer later',
+    'heart': 'Send a heart',
     'other': '',
   };
   @override
   String get seen => 'Got it';
   @override
-  String get suggestPlan => 'Suggest a small plan';
+  String answered({required Object response}) => 'You answered: ${response}';
+  @override
+  String get next => 'Next message';
   @override
   String get doneTitle => 'All good';
   @override
@@ -10113,12 +10120,18 @@ extension on TranslationsEn {
           'received.bodies.other' => '',
           'received.fromPartner' => 'From your partner',
           'received.privateFirst' => 'Your answer is private first. There is no right or wrong.',
-          'received.responses.talk' => 'Yes, let\'s talk',
+          'received.responses.here' => 'I\'m here',
+          'received.responses.talk' => 'Let\'s talk',
           'received.responses.moreTime' => 'I need a bit more time',
+          'received.responses.willDo' => 'I\'ll do it',
+          'received.responses.notNow' => 'Not now',
+          'received.responses.plan' => 'Plan something',
           'received.responses.later' => 'I\'ll answer later',
+          'received.responses.heart' => 'Send a heart',
           'received.responses.other' => '',
           'received.seen' => 'Got it',
-          'received.suggestPlan' => 'Suggest a small plan',
+          'received.answered' => ({required Object response}) => 'You answered: ${response}',
+          'received.next' => 'Next message',
           'received.doneTitle' => 'All good',
           'received.doneText' => 'Thanks for reading it calmly.',
           'received.emptyTitle' => 'Nothing new',
@@ -10644,6 +10657,9 @@ extension on TranslationsEn {
           'story.together' => 'together',
           'story.namesLabel' => 'Include the names',
           'story.namesText' => 'Off by default.',
+          _ => null,
+        } ??
+        switch (path) {
           'story.phraseLabel' => 'A line (optional)',
           'story.phraseHint' => 'E.g. so much still ahead',
           'story.share' => 'Share image',
@@ -10651,9 +10667,6 @@ extension on TranslationsEn {
           'story.emptyText' =>
             'Set since when you are together in Our history to create the image.',
           'story.errorTitle' => 'Couldn\'t load',
-          _ => null,
-        } ??
-        switch (path) {
           'story.errorText' => 'Try again in a moment.',
           'story.errors.other' => 'Couldn\'t share right now. Try again.',
           'sundayCard.title' => 'Your card',
