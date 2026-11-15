@@ -97,29 +97,12 @@ class const _ProgramTile({required final Program program, required final bool is
     final onTap = isLocked
         ? () => context.pushRoute(const PlansRoute())
         : () => context.pushRoute(ProgramDetailRoute(slug: program.slug));
-    final trailing = program.sensitive || isLocked
-        ? Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (program.sensitive)
-                Text(
-                  l10n.sensitive,
-                  style: context.text.caption.copyWith(color: context.colors.textSecondary),
-                ),
-              if (program.sensitive && isLocked) const SizedBox(width: AppSpace.s8),
-              if (isLocked) BaseTag(text: l10n.plus),
-            ],
-          )
-        : null;
+    final trailing = isLocked ? BaseTag(text: l10n.plus) : null;
 
     return BaseListTile(
       title: program.title,
       subtitle: lessonMeta,
-      icon: program.sensitive
-          ? AppIcons.shield
-          : isLocked
-          ? AppIcons.lock
-          : AppIcons.plant,
+      icon: isLocked ? AppIcons.lock : AppIcons.plant,
       showsChevron: !isLocked,
       trailing: trailing,
       onTap: onTap,

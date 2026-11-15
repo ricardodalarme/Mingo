@@ -1,7 +1,6 @@
 import 'package:app/features/plus/presentation/lock/plus_lock.dart';
 import 'package:app/features/programs/data/models/program.dart';
 import 'package:app/features/programs/presentation/program_detail/cubit/program_detail_cubit.dart';
-import 'package:app/features/programs/presentation/sensitive_tracks/widgets/sensitive_tracks_gate.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
@@ -32,16 +31,12 @@ class const ProgramDetailPage({@PathParam('slug') required final String slug, su
     final doneDays = context.select((ProgramDetailCubit cubit) => cubit.state.doneDays);
     final savedDays = context.select((ProgramDetailCubit cubit) => cubit.state.savedDays);
     final hasPlus = context.select((ProgramDetailCubit cubit) => cubit.state.hasPlus);
-    final hasSensitiveConsent = context.select(
-      (ProgramDetailCubit cubit) => cubit.state.hasSensitiveConsent,
-    );
     final action = context.select((ProgramDetailCubit cubit) => cubit.state.action);
     final cubit = context.read<ProgramDetailCubit>();
     final program = switch (programResource) {
       Success(:final value) => value,
       _ => null,
     };
-    final needsSensitiveConsent = program?.sensitive == true && !hasSensitiveConsent;
 
     return BaseView(
       appBar: BaseAppBar(title: program?.title ?? l10n.title),
@@ -61,24 +56,14 @@ class const ProgramDetailPage({@PathParam('slug') required final String slug, su
           body: SkeletonizerResourceWidget<Program>(
             programResource,
             fakeValue: Program.fake(),
-            successBuilder: (program) => program.sensitive && !hasSensitiveConsent
-                ? SensitiveTracksGate(
-                    heading: program.title,
-                    title: l10n.sensitiveGateTitle,
-                    text: l10n.sensitiveGateText,
-                    actionText: l10n.sensitiveGateAction,
-                    cancelText: l10n.sensitiveConsentCancel,
-                    onAction: () => _acceptSensitive(context, cubit),
-                    onCancel: () => context.router.maybePop(),
-                  )
-                : _ProgramBody(
-                    program: program,
-                    doneDays: doneDays,
-                    savedDays: savedDays,
-                    hasPlus: hasPlus,
-                    isCompleted: enrollment?.isCompleted ?? false,
-                    onOpen: (lesson) => _openLesson(context, cubit, program, lesson),
-                  ),
+            successBuilder: (program) => _ProgramBody(
+              program: program,
+              doneDays: doneDays,
+              savedDays: savedDays,
+              hasPlus: hasPlus,
+              isCompleted: enrollment?.isCompleted ?? false,
+              onOpen: (lesson) => _openLesson(context, cubit, program, lesson),
+            ),
             failureBuilder: (_) => BaseEmptyState(
               title: l10n.errorTitle,
               text: l10n.errorText,
@@ -86,11 +71,7 @@ class const ProgramDetailPage({@PathParam('slug') required final String slug, su
               onAction: () => cubit.load(slug),
             ),
           ),
-          footer:
-              program == null ||
-                  needsSensitiveConsent ||
-                  program.lessons.isEmpty ||
-                  (program.plusOnly && !hasPlus)
+          footer: program == null || program.lessons.isEmpty || (program.plusOnly && !hasPlus)
               ? null
               : _StartAction(
                   enrollment: enrollment,
@@ -122,20 +103,6 @@ class const ProgramDetailPage({@PathParam('slug') required final String slug, su
 
     await context.pushRoute(LessonRoute(slug: slug, day: day));
     if (context.mounted) await cubit.load(slug);
-  }
-
-  Future<void> _acceptSensitive(BuildContext context, ProgramDetailCubit cubit) async {
-    final l10n = context.l10n.programs;
-    final confirmed = await BaseConfirmSheet.show(
-      context: context,
-      title: l10n.sensitiveConsentTitle,
-      text: l10n.sensitiveConsentText,
-      confirmText: l10n.sensitiveConsentConfirm,
-      cancelText: l10n.sensitiveConsentCancel,
-    );
-    if (!context.mounted || !confirmed) return;
-
-    await cubit.acceptSensitiveTracksConsent();
   }
 
   Future<void> _openLesson(

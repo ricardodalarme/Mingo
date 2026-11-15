@@ -22,7 +22,6 @@ typedef ContentItemRecord = ({
   String? parentSlug,
   int position,
   bool plusOnly,
-  bool sensitive,
 });
 
 /// Programs and lessons for one locale, already ordered by position.
@@ -57,7 +56,6 @@ class ProgramsDataSource({required final GQLClient _client}) {
             parentSlug: null,
             position: edge.node.position,
             plusOnly: edge.node.plusOnly,
-            sensitive: edge.node.sensitive,
           ),
       ],
       lessons: [
@@ -69,7 +67,6 @@ class ProgramsDataSource({required final GQLClient _client}) {
             parentSlug: edge.node.parentSlug,
             position: edge.node.position,
             plusOnly: edge.node.plusOnly,
-            sensitive: edge.node.sensitive,
           ),
       ],
     );
@@ -94,7 +91,6 @@ class ProgramsDataSource({required final GQLClient _client}) {
               parentSlug: null,
               position: data.program.edges.first.node.position,
               plusOnly: data.program.edges.first.node.plusOnly,
-              sensitive: data.program.edges.first.node.sensitive,
             ),
       lessons: [
         for (final edge in data.lessons.edges)
@@ -105,7 +101,6 @@ class ProgramsDataSource({required final GQLClient _client}) {
             parentSlug: edge.node.parentSlug,
             position: edge.node.position,
             plusOnly: edge.node.plusOnly,
-            sensitive: edge.node.sensitive,
           ),
       ],
     );
@@ -340,7 +335,6 @@ class ProgramsDataSource({required final GQLClient _client}) {
     required String? parentSlug,
     required int position,
     required bool plusOnly,
-    required bool sensitive,
   }) => (
     slug: slug,
     title: title,
@@ -348,6 +342,5 @@ class ProgramsDataSource({required final GQLClient _client}) {
     parentSlug: parentSlug,
     position: position,
     plusOnly: plusOnly,
-    sensitive: sensitive,
   );
 }

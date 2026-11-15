@@ -1,6 +1,4 @@
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
-import 'package:app/features/privacy/data/models/consent.dart';
-import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
 import 'package:app/features/programs/data/models/program.dart';
 import 'package:app/features/programs/data/repositories/programs_repository.dart';
 import 'package:core/core.dart';
@@ -12,16 +10,14 @@ part 'program_detail_state.dart';
 class ProgramDetailCubit({
   required final ProgramsRepository _programsRepository,
   required final PlusRepository _plusRepository,
-  required final PrivacyRepository _privacyRepository,
 }) extends Cubit<ProgramDetailState> {
   this : super(const ProgramDetailState());
 
   Future<void> load(String slug) async {
     if (state.program is! Success) emit(state.copyWith(program: const Loading()));
     try {
-      final (hasPlus, hasSensitiveConsent, program, enrollment, progress) = await (
+      final (hasPlus, program, enrollment, progress) = await (
         _hasPlus(),
-        _hasSensitiveConsent(),
         _programsRepository.getProgram(slug),
         _programsRepository.getEnrollment(slug),
         _programsRepository.getLessonProgress(slug),
@@ -40,7 +36,6 @@ class ProgramDetailCubit({
               if (row.status == LessonStatus.saved) row.lessonDay,
           },
           hasPlus: hasPlus,
-          hasSensitiveConsent: hasSensitiveConsent,
         ),
       );
     } catch (exception) {
@@ -58,35 +53,6 @@ class ProgramDetailCubit({
     }
   }
 
-  /// Whether the sensitive tracks consent is on; a failed read keeps the track closed.
-  Future<bool> _hasSensitiveConsent() async {
-    try {
-      return (await _privacyRepository.getConsents())[ConsentKind.sensitiveTracks] ?? false;
-    } catch (_) {
-      return false;
-    }
-  }
-
-  /// Records the sensitive tracks consent and opens the track in place.
-  Future<bool> acceptSensitiveTracksConsent() async {
-    if (state.action.isLoading) return false;
-
-    emit(state.copyWith(action: const Loading()));
-    try {
-      await _privacyRepository.setConsent(ConsentKind.sensitiveTracks, granted: true);
-      if (isClosed) return false;
-      emit(state.copyWith(hasSensitiveConsent: true, action: const Success(null)));
-
-      return true;
-    } catch (exception) {
-      if (isClosed) return false;
-      emit(state.copyWith(action: Failure.fromObject(exception)));
-      emit(state.copyWith(action: const Initial()));
-
-      return false;
-    }
-  }
-
   /// Starts or restarts the program and returns the lesson day to open.
   ///
   /// Returns null when the program is locked, has no lessons, or the write fails.
@@ -94,7 +60,6 @@ class ProgramDetailCubit({
     final program = state.currentProgram;
     if (program == null || state.action.isLoading) return null;
     if (program.plusOnly && !state.hasPlus) return null;
-    if (program.sensitive && !state.hasSensitiveConsent) return null;
     if (program.lessons.isEmpty) return null;
 
     emit(state.copyWith(action: const Loading()));

@@ -1,5 +1,4 @@
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
-import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/programs/data/data_sources/remote/programs_data_source.dart';
 import 'package:app/features/programs/data/repositories/programs_repository.dart';
@@ -32,14 +31,12 @@ class ProgramsInjectionModule() implements InjectionModule {
       () => ProgramDetailCubit(
         programsRepository: injector.get<ProgramsRepository>(),
         plusRepository: injector.get<PlusRepository>(),
-        privacyRepository: injector.get<PrivacyRepository>(),
       ),
     )
     ..registerFactory<LessonCubit>(
       () => LessonCubit(
         programsRepository: injector.get<ProgramsRepository>(),
         plusRepository: injector.get<PlusRepository>(),
-        privacyRepository: injector.get<PrivacyRepository>(),
       ),
     )
     ..registerFactory<DiaryCubit>(

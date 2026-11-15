@@ -4,11 +4,10 @@ import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  Program program({bool sensitive = false}) => Program(
+  const program = Program(
     slug: 'program',
     title: 'Program',
-    sensitive: sensitive,
-    lessons: const [
+    lessons: [
       Lesson(slug: 'day-1', title: 'One', day: 1),
       Lesson(slug: 'day-2', title: 'Two', day: 2),
     ],
@@ -30,17 +29,10 @@ void main() {
   });
 
   test('isMissing reports a day the program does not have', () {
-    final state = LessonState(program: Success(program()));
+    const state = LessonState(program: Success(program));
 
     expect(state.isMissing, isFalse);
     expect(state.copyWith(day: 3).isMissing, isTrue);
     expect(state.copyWith(program: const Loading()).isMissing, isFalse);
-  });
-
-  test('isOpen needs consent for a sensitive program', () {
-    final state = LessonState(program: Success(program(sensitive: true)));
-
-    expect(state.isOpen, isFalse);
-    expect(state.copyWith(hasSensitiveConsent: true).isOpen, isTrue);
   });
 }

@@ -15,7 +15,6 @@ query ProgramDetail($slug: String!, $locale: String!) {
         body
         position
         plusOnly
-        sensitive
       }
     }
   }
@@ -37,7 +36,6 @@ query ProgramDetail($slug: String!, $locale: String!) {
         parentSlug
         position
         plusOnly
-        sensitive
       }
     }
   }

@@ -1,6 +1,5 @@
 import 'package:app/features/programs/data/models/program.dart';
 import 'package:app/features/programs/presentation/lesson/cubit/lesson_cubit.dart';
-import 'package:app/features/programs/presentation/sensitive_tracks/widgets/sensitive_tracks_gate.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
@@ -33,9 +32,6 @@ class const LessonPage({
     final lesson = context.select((LessonCubit cubit) => cubit.state.lesson);
     final status = context.select((LessonCubit cubit) => cubit.state.status);
     final isOpen = context.select((LessonCubit cubit) => cubit.state.isOpen);
-    final hasSensitiveConsent = context.select(
-      (LessonCubit cubit) => cubit.state.hasSensitiveConsent,
-    );
     final action = context.select((LessonCubit cubit) => cubit.state.action);
     final cubit = context.read<LessonCubit>();
 
@@ -56,19 +52,7 @@ class const LessonPage({
         child: SkeletonizerResourceWidget<Program>(
           programResource,
           fakeValue: Program.fake(),
-          successBuilder: (program) => program.sensitive && !hasSensitiveConsent
-              ? BaseStackedContent(
-                  body: SensitiveTracksGate(
-                    heading: program.title,
-                    title: l10n.sensitiveLessonLockedTitle,
-                    text: l10n.sensitiveLessonLockedText,
-                    actionText: l10n.sensitiveGateAction,
-                    cancelText: l10n.sensitiveConsentCancel,
-                    onAction: () => _acceptSensitive(context, cubit),
-                    onCancel: () => context.router.maybePop(),
-                  ),
-                )
-              : lesson == null
+          successBuilder: (program) => lesson == null
               ? program.lessons.isEmpty
                     ? BaseEmptyState(title: l10n.lessonsComingTitle, text: l10n.lessonsComingText)
                     : BaseEmptyState(title: l10n.lessonGoneTitle, text: l10n.lessonGoneText)
@@ -134,20 +118,6 @@ class const LessonPage({
         ),
       ),
     );
-  }
-
-  Future<void> _acceptSensitive(BuildContext context, LessonCubit cubit) async {
-    final l10n = context.l10n.programs;
-    final confirmed = await BaseConfirmSheet.show(
-      context: context,
-      title: l10n.sensitiveConsentTitle,
-      text: l10n.sensitiveConsentText,
-      confirmText: l10n.sensitiveConsentConfirm,
-      cancelText: l10n.sensitiveConsentCancel,
-    );
-    if (!context.mounted || !confirmed) return;
-
-    await cubit.acceptSensitiveTracksConsent();
   }
 
   Future<void> _complete(BuildContext context, LessonCubit cubit) async {

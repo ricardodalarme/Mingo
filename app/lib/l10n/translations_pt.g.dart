@@ -5335,39 +5335,6 @@ class Translations$programs$pt {
     'other': 'Não deu para salvar agora. Seu texto continua aqui.',
   };
 
-  /// pt: 'SENSÍVEL'
-  String get sensitive => 'SENSÍVEL';
-
-  /// pt: 'Uma trilha só sua'
-  String get sensitiveGateTitle => 'Uma trilha só sua';
-
-  /// pt: 'Estas lições falam de luto, doença e confiança. Seu par não vê que você entrou nem o que você lê. Você pode sair quando quiser.'
-  String get sensitiveGateText =>
-      'Estas lições falam de luto, doença e confiança. Seu par não vê que você entrou nem o que você lê. Você pode sair quando quiser.';
-
-  /// pt: 'Entrar nesta trilha'
-  String get sensitiveGateAction => 'Entrar nesta trilha';
-
-  /// pt: 'Entrar nesta trilha?'
-  String get sensitiveConsentTitle => 'Entrar nesta trilha?';
-
-  /// pt: 'Estas lições falam de luto, doença e confiança. Elas ficam só para você: seu par não vê sua participação. Você pode retirar este consentimento em Privacidade e segurança.'
-  String get sensitiveConsentText =>
-      'Estas lições falam de luto, doença e confiança. Elas ficam só para você: seu par não vê sua participação. Você pode retirar este consentimento em Privacidade e segurança.';
-
-  /// pt: 'Entrar'
-  String get sensitiveConsentConfirm => 'Entrar';
-
-  /// pt: 'Agora não'
-  String get sensitiveConsentCancel => 'Agora não';
-
-  /// pt: 'Trilha sensível'
-  String get sensitiveLessonLockedTitle => 'Trilha sensível';
-
-  /// pt: 'Para abrir esta lição, ative o consentimento das trilhas sensíveis.'
-  String get sensitiveLessonLockedText =>
-      'Para abrir esta lição, ative o consentimento das trilhas sensíveis.';
-
   /// pt: 'No grátis aparece só a primeira lição.'
   String get freeNote => 'No grátis aparece só a primeira lição.';
 }
@@ -12055,17 +12022,6 @@ extension on Translations {
           'programs.moods.other' => 'Como estou',
           'programs.lessonErrors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'programs.diaryErrors.other' => 'Não deu para salvar agora. Seu texto continua aqui.',
-          'programs.sensitive' => 'SENSÍVEL',
-          'programs.sensitiveGateTitle' => 'Uma trilha só sua',
-          'programs.sensitiveGateText' => 'Estas lições falam de luto, doença e confiança. Seu par não vê que você entrou nem o que você lê. Você pode sair quando quiser.',
-          'programs.sensitiveGateAction' => 'Entrar nesta trilha',
-          'programs.sensitiveConsentTitle' => 'Entrar nesta trilha?',
-          'programs.sensitiveConsentText' => 'Estas lições falam de luto, doença e confiança. Elas ficam só para você: seu par não vê sua participação. Você pode retirar este consentimento em Privacidade e segurança.',
-          'programs.sensitiveConsentConfirm' => 'Entrar',
-          'programs.sensitiveConsentCancel' => 'Agora não',
-          'programs.sensitiveLessonLockedTitle' => 'Trilha sensível',
-          'programs.sensitiveLessonLockedText' =>
-            'Para abrir esta lição, ative o consentimento das trilhas sensíveis.',
           'programs.freeNote' => 'No grátis aparece só a primeira lição.',
           'questions.tag' => 'Pergunta para vocês dois',
           'questions.eyebrow' => 'Pergunta do dia',
@@ -12113,9 +12069,6 @@ extension on Translations {
           'quickSlip.weekdays.1' => 'terça',
           'quickSlip.weekdays.2' => 'quarta',
           'quickSlip.weekdays.3' => 'quinta',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.weekdays.4' => 'sexta',
           'quickSlip.weekdays.5' => 'sábado',
           'quickSlip.weekdays.6' => 'domingo',
@@ -12126,6 +12079,9 @@ extension on Translations {
           'quickSlip.monthsShort.4' => 'mai',
           'quickSlip.monthsShort.5' => 'jun',
           'quickSlip.monthsShort.6' => 'jul',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.monthsShort.7' => 'ago',
           'quickSlip.monthsShort.8' => 'set',
           'quickSlip.monthsShort.9' => 'out',
@@ -12684,9 +12640,6 @@ extension on Translations {
             required Object day,
             required Object month,
           }) => '${day} ${month}',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.dayLine' => ({
             required Object weekday,
             required Object category,
@@ -12700,6 +12653,9 @@ extension on Translations {
           'slipsList.weekdaysShort.5' => 'Sáb',
           'slipsList.weekdaysShort.6' => 'Dom',
           'slipsList.monthsShort.0' => 'jan',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.monthsShort.1' => 'fev',
           'slipsList.monthsShort.2' => 'mar',
           'slipsList.monthsShort.3' => 'abr',
@@ -13310,9 +13266,6 @@ extension on Translations {
           'widgets.statesDiscreetToggle' => 'Ativar modo discreto agora',
           'widgets.statesUnpairedSection' => 'Sem parceiro',
           'widgets.statesUnpairedTitle' => 'Convide para ver aqui',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.statesUnpairedAction' => 'Convidar',
           'widgets.statesOfflineSection' => 'Sem conexão',
           'widgets.statesOfflineTitle' => 'Mostrando o último dado',
@@ -13328,6 +13281,9 @@ extension on Translations {
             'Não foi possível remover a foto do casal agora.',
           'widgets.errors.COUPLE_PHOTO_INVALID' =>
             'Escolha uma imagem JPG, PNG, WebP ou HEIC de até 8 MB.',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Não foi possível ler o arquivo escolhido.',
           'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Não foi possível abrir o seletor de fotos.',
           'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' =>

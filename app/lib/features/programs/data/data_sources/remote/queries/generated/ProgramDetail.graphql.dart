@@ -264,13 +264,6 @@ const documentNodeQueryProgramDetail = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
-                              name: NameNode(value: 'sensitive'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
                               name: NameNode(value: '__typename'),
                               alias: null,
                               arguments: [],
@@ -429,13 +422,6 @@ const documentNodeQueryProgramDetail = DocumentNode(
                             ),
                             FieldNode(
                               name: NameNode(value: 'plusOnly'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'sensitive'),
                               alias: null,
                               arguments: [],
                               directives: [],
@@ -735,7 +721,6 @@ class QueryProgramDetailprogramedgesnode {
     this.body,
     required this.position,
     required this.plusOnly,
-    required this.sensitive,
     this.$__typename = 'ContentItems',
   });
 
@@ -745,7 +730,6 @@ class QueryProgramDetailprogramedgesnode {
     final l$body = json['body'];
     final l$position = json['position'];
     final l$plusOnly = json['plusOnly'];
-    final l$sensitive = json['sensitive'];
     final l$$__typename = json['__typename'];
     return QueryProgramDetailprogramedgesnode(
       slug: (l$slug as String),
@@ -753,7 +737,6 @@ class QueryProgramDetailprogramedgesnode {
       body: (l$body as String?),
       position: (l$position as int),
       plusOnly: (l$plusOnly as bool),
-      sensitive: (l$sensitive as bool),
       $__typename: (l$$__typename as String),
     );
   }
@@ -767,8 +750,6 @@ class QueryProgramDetailprogramedgesnode {
   final int position;
 
   final bool plusOnly;
-
-  final bool sensitive;
 
   final String $__typename;
 
@@ -784,8 +765,6 @@ class QueryProgramDetailprogramedgesnode {
     _resultData['position'] = l$position;
     final l$plusOnly = plusOnly;
     _resultData['plusOnly'] = l$plusOnly;
-    final l$sensitive = sensitive;
-    _resultData['sensitive'] = l$sensitive;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -798,17 +777,8 @@ class QueryProgramDetailprogramedgesnode {
     final l$body = body;
     final l$position = position;
     final l$plusOnly = plusOnly;
-    final l$sensitive = sensitive;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$slug,
-      l$title,
-      l$body,
-      l$position,
-      l$plusOnly,
-      l$sensitive,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$slug, l$title, l$body, l$position, l$plusOnly, l$$__typename]);
   }
 
   @override
@@ -842,11 +812,6 @@ class QueryProgramDetailprogramedgesnode {
     final l$plusOnly = plusOnly;
     final lOther$plusOnly = other.plusOnly;
     if (l$plusOnly != lOther$plusOnly) {
-      return false;
-    }
-    final l$sensitive = sensitive;
-    final lOther$sensitive = other.sensitive;
-    if (l$sensitive != lOther$sensitive) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -983,7 +948,6 @@ class QueryProgramDetaillessonsedgesnode {
     this.parentSlug,
     required this.position,
     required this.plusOnly,
-    required this.sensitive,
     this.$__typename = 'ContentItems',
   });
 
@@ -994,7 +958,6 @@ class QueryProgramDetaillessonsedgesnode {
     final l$parentSlug = json['parentSlug'];
     final l$position = json['position'];
     final l$plusOnly = json['plusOnly'];
-    final l$sensitive = json['sensitive'];
     final l$$__typename = json['__typename'];
     return QueryProgramDetaillessonsedgesnode(
       slug: (l$slug as String),
@@ -1003,7 +966,6 @@ class QueryProgramDetaillessonsedgesnode {
       parentSlug: (l$parentSlug as String?),
       position: (l$position as int),
       plusOnly: (l$plusOnly as bool),
-      sensitive: (l$sensitive as bool),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1019,8 +981,6 @@ class QueryProgramDetaillessonsedgesnode {
   final int position;
 
   final bool plusOnly;
-
-  final bool sensitive;
 
   final String $__typename;
 
@@ -1038,8 +998,6 @@ class QueryProgramDetaillessonsedgesnode {
     _resultData['position'] = l$position;
     final l$plusOnly = plusOnly;
     _resultData['plusOnly'] = l$plusOnly;
-    final l$sensitive = sensitive;
-    _resultData['sensitive'] = l$sensitive;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1053,7 +1011,6 @@ class QueryProgramDetaillessonsedgesnode {
     final l$parentSlug = parentSlug;
     final l$position = position;
     final l$plusOnly = plusOnly;
-    final l$sensitive = sensitive;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$slug,
@@ -1062,7 +1019,6 @@ class QueryProgramDetaillessonsedgesnode {
       l$parentSlug,
       l$position,
       l$plusOnly,
-      l$sensitive,
       l$$__typename,
     ]);
   }
@@ -1103,11 +1059,6 @@ class QueryProgramDetaillessonsedgesnode {
     final l$plusOnly = plusOnly;
     final lOther$plusOnly = other.plusOnly;
     if (l$plusOnly != lOther$plusOnly) {
-      return false;
-    }
-    final l$sensitive = sensitive;
-    final lOther$sensitive = other.sensitive;
-    if (l$sensitive != lOther$sensitive) {
       return false;
     }
     final l$$__typename = $__typename;

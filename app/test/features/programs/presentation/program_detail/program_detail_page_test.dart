@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:app/features/plus/data/models/plus_state.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
-import 'package:app/features/privacy/data/models/consent.dart';
-import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
 import 'package:app/features/programs/data/models/program.dart';
 import 'package:app/features/programs/data/repositories/programs_repository.dart';
 import 'package:app/features/programs/presentation/lesson/cubit/lesson_cubit.dart';
@@ -35,12 +33,9 @@ class _MockProgramsRepository() extends Mock implements ProgramsRepository;
 
 class _MockPlusRepository() extends Mock implements PlusRepository;
 
-class _MockPrivacyRepository() extends Mock implements PrivacyRepository;
-
 void main() {
   late ProgramsRepository repository;
   late PlusRepository plus;
-  late PrivacyRepository privacy;
 
   const lessonOne = Lesson(slug: 'd1', title: 'Perceba as pequenas coisas', day: 1);
   const lessonTwo = Lesson(slug: 'd2', title: 'Seja específico', day: 2);
@@ -56,25 +51,12 @@ void main() {
     plusOnly: true,
     lessons: [lessonOne],
   );
-  const sensitive = Program(
-    slug: 'grief-together',
-    title: 'Luto, juntos',
-    body: 'Um caminho gentil para a perda.',
-    sensitive: true,
-    lessons: [lessonOne],
-  );
-
-  setUpAll(() {
-    LocaleSettings.setLocaleSync(AppLocale.pt);
-    registerFallbackValue(ConsentKind.sensitiveTracks);
-  });
+  setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
   setUp(() {
     repository = _MockProgramsRepository();
     plus = _MockPlusRepository();
-    privacy = _MockPrivacyRepository();
     when(() => plus.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: false));
-    when(() => privacy.getConsents()).thenAnswer((_) async => {});
     when(() => repository.getProgram(any())).thenAnswer((_) async => free);
     when(() => repository.getEnrollment(any())).thenAnswer((_) async => null);
     when(() => repository.getLessonProgress(any())).thenAnswer((_) async => []);
@@ -109,11 +91,7 @@ void main() {
   });
 
   Future<ProgramDetailCubit> loaded(String slug) async {
-    final cubit = ProgramDetailCubit(
-      programsRepository: repository,
-      plusRepository: plus,
-      privacyRepository: privacy,
-    );
+    final cubit = ProgramDetailCubit(programsRepository: repository, plusRepository: plus);
     addTearDown(cubit.close);
     await cubit.load(slug);
 
@@ -137,50 +115,6 @@ void main() {
     expect(find.text('Seja específico'), findsOneWidget);
     expect(find.text('Começar'), findsOneWidget);
     expect(find.textContaining('primeira lição'), findsOneWidget);
-  });
-
-  testWidgets('a sensitive program asks for its consent before any lesson', (tester) async {
-    when(() => repository.getProgram(any())).thenAnswer((_) async => sensitive);
-    final cubit = await loaded('grief-together');
-
-    await tester.pumpApp(
-      BlocProvider.value(
-        value: cubit,
-        child: const ProgramDetailPage(slug: 'grief-together'),
-      ),
-    );
-    await tester.pump();
-
-    expect(find.text('Uma trilha só sua'), findsOneWidget);
-    expect(find.text('Entrar nesta trilha'), findsOneWidget);
-    expect(find.text('O que ajuda hoje?'), findsNothing);
-    expect(find.text('Começar'), findsNothing);
-  });
-
-  testWidgets('accepting the gate records the consent and reveals the lessons', (tester) async {
-    when(() => repository.getProgram(any())).thenAnswer((_) async => sensitive);
-    when(() => privacy.setConsent(any(), granted: any(named: 'granted'))).thenAnswer((_) async {
-      return;
-    });
-    final cubit = await loaded('grief-together');
-
-    await tester.pumpApp(
-      BlocProvider.value(
-        value: cubit,
-        child: const ProgramDetailPage(slug: 'grief-together'),
-      ),
-    );
-    await tester.pump();
-    await tester.tap(find.text('Entrar nesta trilha'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Entrar'));
-    await tester.pumpAndSettle();
-    await tester.pump();
-
-    expect(cubit.state.hasSensitiveConsent, isTrue);
-    await tester.pump();
-    expect(find.text('Perceba as pequenas coisas'), findsOneWidget);
-    verify(() => privacy.setConsent(ConsentKind.sensitiveTracks, granted: true)).called(1);
   });
 
   testWidgets('a plus-only program explains the lock before starting', (tester) async {
@@ -265,17 +199,9 @@ void main() {
   testWidgets('opening a lesson from the list and completing it advances the program', (
     tester,
   ) async {
-    final detailCubit = ProgramDetailCubit(
-      programsRepository: repository,
-      plusRepository: plus,
-      privacyRepository: privacy,
-    );
+    final detailCubit = ProgramDetailCubit(programsRepository: repository, plusRepository: plus);
     await detailCubit.load('gratitude-7');
-    final lessonCubit = LessonCubit(
-      programsRepository: repository,
-      plusRepository: plus,
-      privacyRepository: privacy,
-    );
+    final lessonCubit = LessonCubit(programsRepository: repository, plusRepository: plus);
     await lessonCubit.load(slug: 'gratitude-7', day: 1);
     AppInjector.instance.registerFactory<ProgramDetailCubit>(() => detailCubit);
     AppInjector.instance.registerFactory<LessonCubit>(() => lessonCubit);

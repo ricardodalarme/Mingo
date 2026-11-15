@@ -4329,29 +4329,6 @@ class _Translations$programs$en extends Translations$programs$pt {
     'other': 'Couldn\'t save right now. Your text is still here.',
   };
   @override
-  String get sensitive => 'SENSITIVE';
-  @override
-  String get sensitiveGateTitle => 'A track just for you';
-  @override
-  String get sensitiveGateText =>
-      'These lessons talk about grief, illness and trust. Your partner does not see that you joined or what you read. You can leave whenever you want.';
-  @override
-  String get sensitiveGateAction => 'Join this track';
-  @override
-  String get sensitiveConsentTitle => 'Join this track?';
-  @override
-  String get sensitiveConsentText =>
-      'These lessons talk about grief, illness and trust. They stay just for you: your partner does not see your participation. You can withdraw this consent in Privacy and security.';
-  @override
-  String get sensitiveConsentConfirm => 'Join';
-  @override
-  String get sensitiveConsentCancel => 'Not now';
-  @override
-  String get sensitiveLessonLockedTitle => 'Sensitive track';
-  @override
-  String get sensitiveLessonLockedText =>
-      'To open this lesson, turn on the sensitive tracks consent.';
-  @override
   String get freeNote => 'Free shows only the first lesson.';
 }
 
@@ -10137,17 +10114,6 @@ extension on TranslationsEn {
           'programs.moods.other' => 'How I am',
           'programs.lessonErrors.other' => 'Couldn\'t do that right now. Try again.',
           'programs.diaryErrors.other' => 'Couldn\'t save right now. Your text is still here.',
-          'programs.sensitive' => 'SENSITIVE',
-          'programs.sensitiveGateTitle' => 'A track just for you',
-          'programs.sensitiveGateText' => 'These lessons talk about grief, illness and trust. Your partner does not see that you joined or what you read. You can leave whenever you want.',
-          'programs.sensitiveGateAction' => 'Join this track',
-          'programs.sensitiveConsentTitle' => 'Join this track?',
-          'programs.sensitiveConsentText' => 'These lessons talk about grief, illness and trust. They stay just for you: your partner does not see your participation. You can withdraw this consent in Privacy and security.',
-          'programs.sensitiveConsentConfirm' => 'Join',
-          'programs.sensitiveConsentCancel' => 'Not now',
-          'programs.sensitiveLessonLockedTitle' => 'Sensitive track',
-          'programs.sensitiveLessonLockedText' =>
-            'To open this lesson, turn on the sensitive tracks consent.',
           'programs.freeNote' => 'Free shows only the first lesson.',
           'questions.tag' => 'Question for you two',
           'questions.eyebrow' => 'Question of the day',
@@ -10196,9 +10162,6 @@ extension on TranslationsEn {
           'quickSlip.weekdays.1' => 'Tuesday',
           'quickSlip.weekdays.2' => 'Wednesday',
           'quickSlip.weekdays.3' => 'Thursday',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.weekdays.4' => 'Friday',
           'quickSlip.weekdays.5' => 'Saturday',
           'quickSlip.weekdays.6' => 'Sunday',
@@ -10209,6 +10172,9 @@ extension on TranslationsEn {
           'quickSlip.monthsShort.4' => 'May',
           'quickSlip.monthsShort.5' => 'Jun',
           'quickSlip.monthsShort.6' => 'Jul',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.monthsShort.7' => 'Aug',
           'quickSlip.monthsShort.8' => 'Sep',
           'quickSlip.monthsShort.9' => 'Oct',
@@ -10761,9 +10727,6 @@ extension on TranslationsEn {
             required Object month,
             required Object day,
           }) => '${month} ${day}',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.dayLine' => ({
             required Object weekday,
             required Object category,
@@ -10777,6 +10740,9 @@ extension on TranslationsEn {
           'slipsList.weekdaysShort.5' => 'Sat',
           'slipsList.weekdaysShort.6' => 'Sun',
           'slipsList.monthsShort.0' => 'Jan',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.monthsShort.1' => 'Feb',
           'slipsList.monthsShort.2' => 'Mar',
           'slipsList.monthsShort.3' => 'Apr',
@@ -11384,9 +11350,6 @@ extension on TranslationsEn {
           'widgets.statesDiscreetToggle' => 'Enable discreet mode now',
           'widgets.statesUnpairedSection' => 'No partner',
           'widgets.statesUnpairedTitle' => 'Invite to see here',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.statesUnpairedAction' => 'Invite',
           'widgets.statesOfflineSection' => 'Offline',
           'widgets.statesOfflineTitle' => 'Showing the last saved data',
@@ -11401,6 +11364,9 @@ extension on TranslationsEn {
             'Could not remove the couple photo right now.',
           'widgets.errors.COUPLE_PHOTO_INVALID' =>
             'Choose a JPG, PNG, WebP or HEIC image up to 8 MB.',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Could not read the selected file.',
           'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Could not open the photo picker.',
           'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' => 'Sign in to choose a couple photo.',

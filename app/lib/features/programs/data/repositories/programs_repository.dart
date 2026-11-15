@@ -29,7 +29,6 @@ class ProgramsRepository({
       title: program.title,
       body: program.body,
       plusOnly: program.plusOnly,
-      sensitive: program.sensitive,
       lessons: _lessons(record),
     );
   });
@@ -169,7 +168,6 @@ class ProgramsRepository({
           title: entry.program.title,
           body: entry.program.body,
           plusOnly: entry.program.plusOnly,
-          sensitive: entry.program.sensitive,
           lessons: [for (final lesson in entry.lessons) _lesson(lesson)],
         ),
     ];

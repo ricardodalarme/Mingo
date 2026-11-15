@@ -1,7 +1,5 @@
 import 'package:app/features/plus/data/models/plus_state.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
-import 'package:app/features/privacy/data/models/consent.dart';
-import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
 import 'package:app/features/programs/data/models/program.dart';
 import 'package:app/features/programs/data/repositories/programs_repository.dart';
 import 'package:app/features/programs/presentation/lesson/cubit/lesson_cubit.dart';
@@ -19,12 +17,9 @@ class _MockProgramsRepository() extends Mock implements ProgramsRepository;
 
 class _MockPlusRepository() extends Mock implements PlusRepository;
 
-class _MockPrivacyRepository() extends Mock implements PrivacyRepository;
-
 void main() {
   late ProgramsRepository repository;
   late PlusRepository plus;
-  late PrivacyRepository privacy;
 
   const lessonOne = Lesson(
     slug: 'd1',
@@ -39,24 +34,12 @@ void main() {
     lessons: [lessonOne, lessonTwo],
   );
   const noLessons = Program(slug: 'grief-together', title: 'Luto, juntos', plusOnly: true);
-  const sensitive = Program(
-    slug: 'grief-together',
-    title: 'Luto, juntos',
-    sensitive: true,
-    lessons: [lessonOne],
-  );
-
-  setUpAll(() {
-    LocaleSettings.setLocaleSync(AppLocale.pt);
-    registerFallbackValue(ConsentKind.sensitiveTracks);
-  });
+  setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
   setUp(() {
     repository = _MockProgramsRepository();
     plus = _MockPlusRepository();
-    privacy = _MockPrivacyRepository();
     when(() => plus.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: false));
-    when(() => privacy.getConsents()).thenAnswer((_) async => {});
     when(() => repository.getProgram(any())).thenAnswer((_) async => free);
     when(
       () => repository.getEnrollment(any()),
@@ -65,11 +48,7 @@ void main() {
   });
 
   Future<LessonCubit> loaded(String slug, int day) async {
-    final cubit = LessonCubit(
-      programsRepository: repository,
-      plusRepository: plus,
-      privacyRepository: privacy,
-    );
+    final cubit = LessonCubit(programsRepository: repository, plusRepository: plus);
     addTearDown(cubit.close);
     await cubit.load(slug: slug, day: day);
 
@@ -116,53 +95,6 @@ void main() {
       ),
       isEmpty,
     );
-  });
-
-  testWidgets('a deep link to a sensitive lesson stops at the consent gate', (tester) async {
-    when(() => repository.getProgram(any())).thenAnswer((_) async => sensitive);
-    when(() => repository.getEnrollment(any())).thenAnswer((_) async => null);
-    final cubit = await loaded('grief-together', 1);
-
-    await tester.pumpApp(
-      BlocProvider.value(
-        value: cubit,
-        child: const LessonPage(slug: 'grief-together', day: 1),
-      ),
-    );
-    await tester.pump();
-
-    expect(find.text('Trilha sensível'), findsOneWidget);
-    expect(
-      find.text('Para abrir esta lição, ative o consentimento das trilhas sensíveis.'),
-      findsOneWidget,
-    );
-    expect(find.text('Perceba as pequenas coisas'), findsNothing);
-    expect(find.text('Pronto'), findsNothing);
-  });
-
-  testWidgets('accepting the gate opens the sensitive lesson', (tester) async {
-    when(() => repository.getProgram(any())).thenAnswer((_) async => sensitive);
-    when(() => repository.getEnrollment(any())).thenAnswer((_) async => null);
-    when(() => privacy.setConsent(any(), granted: any(named: 'granted'))).thenAnswer((_) async {
-      return;
-    });
-    final cubit = await loaded('grief-together', 1);
-
-    await tester.pumpApp(
-      BlocProvider.value(
-        value: cubit,
-        child: const LessonPage(slug: 'grief-together', day: 1),
-      ),
-    );
-    await tester.pump();
-    await tester.tap(find.text('Entrar nesta trilha'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Entrar'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Perceba as pequenas coisas'), findsOneWidget);
-    expect(find.text('Pronto'), findsOneWidget);
-    verify(() => privacy.setConsent(ConsentKind.sensitiveTracks, granted: true)).called(1);
   });
 
   testWidgets('a locked later lesson points to the plans', (tester) async {
