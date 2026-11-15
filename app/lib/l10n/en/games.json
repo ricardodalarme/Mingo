@@ -85,7 +85,6 @@
     "progress": "Question {current} of {total}",
     "you": "You",
     "partnerFallback": "Your partner",
-    "submit": "Send answer",
     "skip": "Skip this one",
     "guessAboutYou": "About you",
     "guessAboutPartner": "About {name}",
@@ -96,7 +95,10 @@
     "answerHint": "Answer as you would.",
     "guessHint": "Guess what they answered.",
     "talkHint": "Write your answer. Only you can read it until you both finish.",
-    "talkNote": "Your partner only sees this after both of you answer."
+    "talkNote": "Your partner only sees this after both of you answer.",
+    "introCta": "Start answering",
+    "next": "Continue",
+    "reviewAction": "Review answers"
   },
   "date": {
     "start": "Start the date",
@@ -159,6 +161,15 @@
     "GAME_ALREADY_OPEN": "A game is already open. Finish or cancel it before inviting again.",
     "GAME_NOT_COMPLETE": "Your partner is still answering. Try again when they finish.",
     "INVALID_GAME_INDEX": "That question changed. We'll refresh.",
+    "ANSWER_LOCKED": "This game's answers are closed. You can't edit them now.",
     "other": "Could not do that right now. Try again."
+  },
+  "review": {
+    "title": "Review answers",
+    "text": "Check what you answered. Tap an answer to edit it. Nothing is sent until you confirm.",
+    "confirm": "Send answers",
+    "back": "Back to the review",
+    "locked": "Closed",
+    "lockedNote": "This game is closed. This answer can no longer be edited."
   }
 }

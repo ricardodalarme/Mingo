@@ -6,6 +6,7 @@ import 'package:app/features/games/presentation/game/widgets/game_play_view.dart
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -59,9 +60,22 @@ class _GamePageState() extends State<GamePage> with WidgetsBindingObserver {
     }
     final l10n = context.l10n.games;
     final play = context.select((GameCubit cubit) => cubit.state.play);
+    final step = context.select((GameCubit cubit) => cubit.state.step);
+    final isReviewing = context.select((GameCubit cubit) => cubit.state.isReviewing);
     final cubit = context.read<GameCubit>();
+    final current = switch (play) {
+      Success(:final value) => value,
+      _ => null,
+    };
+    final stage = current?.stage(clock.now());
+    final canGoBack = switch (stage) {
+      GameStage.playing => isReviewing || step >= 0,
+      GameStage.waitingForPartner => isReviewing || step < (current?.totalSteps ?? 0),
+      _ => false,
+    };
 
     return BaseView(
+      appBar: BaseAppBar(onBack: canGoBack ? cubit.previous : null),
       body: BlocListener<GameCubit, GameState>(
         listenWhen: (previous, current) => previous.action != current.action,
         listener: (context, state) {

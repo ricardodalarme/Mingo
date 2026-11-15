@@ -127,10 +127,16 @@ final class const GamePlay({
   bool get hasAllItems => totalSteps > 0 && items.length == totalSteps;
 
   /// The item of the step being answered.
-  GameItem? get stepItem => currentStep < items.length ? items[currentStep] : null;
+  GameItem? get stepItem => itemAt(currentStep);
 
-  GamePhase get stepPhase => switch (kind.flow) {
-    GameFlow.guess when currentStep >= totalSteps ~/ 2 => GamePhase.guess,
+  GamePhase get stepPhase => phaseAt(currentStep);
+
+  /// The item of [step], or null outside the session.
+  GameItem? itemAt(int step) => step >= 0 && step < items.length ? items[step] : null;
+
+  /// Whether [step] asks about the person or asks for a guess about the partner.
+  GamePhase phaseAt(int step) => switch (kind.flow) {
+    GameFlow.guess when step >= totalSteps ~/ 2 => GamePhase.guess,
     _ => GamePhase.answer,
   };
 
@@ -170,6 +176,18 @@ final class const GamePlay({
     items: items,
     available: available,
     own: {...own, step: answer},
+    partner: partner,
+  );
+
+  GamePlay withOwnAnswers(Map<int, String> answers) => GamePlay(
+    kind: kind,
+    selfId: selfId,
+    hasPartner: hasPartner,
+    partnerName: partnerName,
+    session: session,
+    items: items,
+    available: available,
+    own: {...own, ...answers},
     partner: partner,
   );
 

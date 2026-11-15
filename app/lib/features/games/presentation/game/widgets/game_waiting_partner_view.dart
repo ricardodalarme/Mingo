@@ -46,6 +46,8 @@ class const GameWaitingPartnerView({required final GamePlay play, super.key})
         children: [
           BaseButton.primary(text: l10n.waitingPartner.checkAgain, onPressed: cubit.refresh),
           const SizedBox(height: AppSpace.s6),
+          BaseButton.secondary(text: l10n.review.title, onPressed: cubit.review, isFullWidth: true),
+          const SizedBox(height: AppSpace.s6),
           BaseButton.text(
             text: l10n.waitingPartner.cancel,
             onPressed: () => confirmCancelGame(context),
