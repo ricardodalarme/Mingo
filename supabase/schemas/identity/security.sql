@@ -10,7 +10,7 @@ grant update (display_name, avatar_path, avatar_kind, pronouns, city) on public.
 grant update (theme, locale, time_zone, goal, phase, partner_name, onboarded_at, share_read_receipts, goals, together_since,
   relationship_status, app_paused_until, holiday_countries, card_channel, card_theme, slips_default_for_card,
   widget_allow_partner_notes, widget_on_lock_screen, widget_in_discreet, widget_show_names, spice_enabled,
-  low_stimulation, chat_enabled, chat_store_facts, heavy_day_sharing) on public.profile_settings to authenticated;
+  low_stimulation, chat_enabled, chat_store_facts) on public.profile_settings to authenticated;
 
 create policy profiles_select_self_or_partner on public.profiles for select to authenticated
   using (id = (select auth.uid()) or id = (select private.partner_id()));
