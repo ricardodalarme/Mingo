@@ -173,6 +173,9 @@ class Translations$acceptInvite$pt {
   /// pt: 'convite'
   String get titleHighlight => 'convite';
 
+  /// pt: 'Conectar com código'
+  String get connectTitle => 'Conectar com código';
+
   /// pt: 'Digite o código que a outra pessoa enviou para vocês se conectarem.'
   String get subtitle => 'Digite o código que a outra pessoa enviou para vocês se conectarem.';
 
@@ -200,6 +203,17 @@ class Translations$acceptInvite$pt {
       Translations$acceptInvite$connected$pt.internal(_root);
   late final Translations$acceptInvite$unusable$pt unusable =
       Translations$acceptInvite$unusable$pt.internal(_root);
+
+  /// pt: 'Esse código é seu'
+  String get ownCodeTitle => 'Esse código é seu';
+
+  /// pt: 'seu'
+  String get ownCodeHighlight => 'seu';
+
+  /// pt: 'Esse é o seu próprio código. Para conectar, use o código da sua pessoa.'
+  String get ownCodeText =>
+      'Esse é o seu próprio código. Para conectar, use o código da sua pessoa.';
+
   Map<String, String> get errors => {
     'ALREADY_PAIRED': 'Você já está conectado com alguém.',
     'COUPLE_FULL': 'Esse espaço já tem duas pessoas.',
@@ -9413,6 +9427,7 @@ extension on Translations {
     return switch (path) {
           'acceptInvite.title' => 'Tem um convite?',
           'acceptInvite.titleHighlight' => 'convite',
+          'acceptInvite.connectTitle' => 'Conectar com código',
           'acceptInvite.subtitle' =>
             'Digite o código que a outra pessoa enviou para vocês se conectarem.',
           'acceptInvite.codeLabel' => 'Código do convite',
@@ -9435,6 +9450,10 @@ extension on Translations {
             'Confira o código ou peça um novo convite para quem convidou.',
           'acceptInvite.unusable.tryAgain' => 'Digitar de novo',
           'acceptInvite.unusable.close' => 'Fechar',
+          'acceptInvite.ownCodeTitle' => 'Esse código é seu',
+          'acceptInvite.ownCodeHighlight' => 'seu',
+          'acceptInvite.ownCodeText' =>
+            'Esse é o seu próprio código. Para conectar, use o código da sua pessoa.',
           'acceptInvite.errors.ALREADY_PAIRED' => 'Você já está conectado com alguém.',
           'acceptInvite.errors.COUPLE_FULL' => 'Esse espaço já tem duas pessoas.',
           'acceptInvite.errors.RATE_LIMITED' =>
@@ -10029,15 +10048,15 @@ extension on Translations {
             'Celulares que recebem notificações desta conta. Remover um para as notificações dele.',
           'devices.current' => 'Este dispositivo',
           'devices.registeredToday' => ({required Object time}) => 'Registrado hoje às ${time}',
+          _ => null,
+        } ??
+        switch (path) {
           'devices.registeredYesterday' => ({
             required Object time,
           }) => 'Registrado ontem às ${time}',
           'devices.registeredOn' => ({required Object date}) => 'Registrado em ${date}',
           'devices.platformIos' => 'iPhone',
           'devices.platformAndroid' => 'Android',
-          _ => null,
-        } ??
-        switch (path) {
           'devices.revokeTitle' => 'Parar notificações deste dispositivo?',
           'devices.revokeText' => ({
             required Object name,
@@ -10693,13 +10712,13 @@ extension on Translations {
           'history.milestoneTitleHint' => 'Ex.: Primeira viagem juntos',
           'history.milestoneTitleErrors.empty' => 'Conte o que aconteceu',
           'history.milestoneTitleErrors.tooLong' => 'O título está muito longo',
+          _ => null,
+        } ??
+        switch (path) {
           'history.milestonePlaceLabel' => 'Lugar (opcional)',
           'history.milestonePlaceHint' => 'Ex.: Paraty',
           'history.milestonePlaceErrors.tooLong' => 'O lugar está muito longo',
           'history.milestoneBodyHint' => 'Uma nota sobre esse momento (opcional)',
-          _ => null,
-        } ??
-        switch (path) {
           'history.milestoneBodyErrors.tooLong' => 'A nota está muito longa',
           'history.milestoneKindLabel' => 'Tipo de marco',
           'history.kindFirst' => 'Primeira vez',
@@ -11310,14 +11329,14 @@ extension on Translations {
           'need.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'need.errors.other' => 'Não deu para enviar agora. Tente de novo.',
           'notFound.title' => '404',
+          _ => null,
+        } ??
+        switch (path) {
           'notFound.description' => 'Página não encontrada',
           'notFound.buttonBack' => 'Voltar para página inicial',
           'notes.title' => 'Bilhete ou desenho',
           'notes.intro' =>
             'Um recado curto para seu par, ou um desenho que fica na sua lista de enviados.',
-          _ => null,
-        } ??
-        switch (path) {
           'notes.kinds.0' => 'Bilhete',
           'notes.kinds.1' => 'Desenho',
           'notes.noteHint' => 'Ex.: boa sorte na reunião de hoje',
@@ -11907,13 +11926,13 @@ extension on Translations {
           'received.kinds.missUs' => 'Saudade',
           'received.kinds.hug' => 'Um abraço',
           'received.kinds.distance' => 'Um pouco de distância',
+          _ => null,
+        } ??
+        switch (path) {
           'received.kinds.heavyDay' => 'Um dia pesado',
           'received.kinds.goodNews' => 'Boa notícia',
           'received.kinds.other' => '',
           'received.bodies.missUs' => 'Seu par está com saudade de vocês.',
-          _ => null,
-        } ??
-        switch (path) {
           'received.bodies.hug' => 'Seu par quer um abraço.',
           'received.bodies.distance' => 'Seu par precisa de um pouco de distância.',
           'received.bodies.heavyDay' => 'Seu par está tendo um dia pesado.',
@@ -12475,15 +12494,15 @@ extension on Translations {
           'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',
           'sundayCard.saveError' => 'Não deu para salvar o cartão. Tente de novo.',
           'sundayCard.openFromToday' => 'Ver o rascunho',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.deliverError' =>
             'Não deu para enviar agora. O cartão continua aqui, tente de novo.',
           'sundayCard.send.action' => 'Enviar',
           'sundayCard.send.invite' => 'Convidar para enviar',
           'sundayCard.send.needsPartner' =>
             'Para enviar o cartão no app, sua pessoa precisa estar conectada.',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.send.title' => 'Enviar o cartão?',
           'sundayCard.send.text' => ({
             required Object name,

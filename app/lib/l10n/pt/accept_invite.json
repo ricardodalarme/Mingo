@@ -1,6 +1,7 @@
 {
   "title": "Tem um convite?",
   "titleHighlight": "convite",
+  "connectTitle": "Conectar com código",
   "subtitle": "Digite o código que a outra pessoa enviou para vocês se conectarem.",
   "codeLabel": "Código do convite",
   "codeHint": "Ex.: ABCD2345",
@@ -25,6 +26,9 @@
     "tryAgain": "Digitar de novo",
     "close": "Fechar"
   },
+  "ownCodeTitle": "Esse código é seu",
+  "ownCodeHighlight": "seu",
+  "ownCodeText": "Esse é o seu próprio código. Para conectar, use o código da sua pessoa.",
   "errors(map)": {
     "ALREADY_PAIRED": "Você já está conectado com alguém.",
     "COUPLE_FULL": "Esse espaço já tem duas pessoas.",

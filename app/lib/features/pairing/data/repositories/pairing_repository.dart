@@ -25,6 +25,16 @@ class PairingRepository({
     return createInvite();
   }
 
+  /// The invite this person created and kept on the device, or `null`.
+  Future<ActiveInvite?> getActiveInvite() async {
+    try {
+      return await _localDataSource.read();
+    } catch (e, stack) {
+      _logger.error('Failed to read the invite', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
   /// Creates an invite; the server cancels the previous one, so only the latest is valid.
   Future<ActiveInvite> createInvite() async {
     try {

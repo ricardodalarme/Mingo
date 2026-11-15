@@ -244,6 +244,8 @@ class _Translations$acceptInvite$en extends Translations$acceptInvite$pt {
   @override
   String get titleHighlight => 'invite';
   @override
+  String get connectTitle => 'Connect with a code';
+  @override
   String get subtitle => 'Type the code the other person sent so you can connect.';
   @override
   String get codeLabel => 'Invite code';
@@ -266,6 +268,12 @@ class _Translations$acceptInvite$en extends Translations$acceptInvite$pt {
   @override
   late final _Translations$acceptInvite$unusable$en unusable =
       _Translations$acceptInvite$unusable$en._(_root);
+  @override
+  String get ownCodeTitle => 'That code is yours';
+  @override
+  String get ownCodeHighlight => 'yours';
+  @override
+  String get ownCodeText => 'That is your own code. To connect, use your partner\'s code.';
   @override
   Map<String, String> get errors => {
     'ALREADY_PAIRED': 'You are already connected with someone.',
@@ -7563,6 +7571,7 @@ extension on TranslationsEn {
     return switch (path) {
           'acceptInvite.title' => 'Got an invite?',
           'acceptInvite.titleHighlight' => 'invite',
+          'acceptInvite.connectTitle' => 'Connect with a code',
           'acceptInvite.subtitle' => 'Type the code the other person sent so you can connect.',
           'acceptInvite.codeLabel' => 'Invite code',
           'acceptInvite.codeHint' => 'E.g. ABCD2345',
@@ -7584,6 +7593,10 @@ extension on TranslationsEn {
             'Check the code or ask for a new invite from whoever invited you.',
           'acceptInvite.unusable.tryAgain' => 'Type again',
           'acceptInvite.unusable.close' => 'Close',
+          'acceptInvite.ownCodeTitle' => 'That code is yours',
+          'acceptInvite.ownCodeHighlight' => 'yours',
+          'acceptInvite.ownCodeText' =>
+            'That is your own code. To connect, use your partner\'s code.',
           'acceptInvite.errors.ALREADY_PAIRED' => 'You are already connected with someone.',
           'acceptInvite.errors.COUPLE_FULL' => 'That space already has two people.',
           'acceptInvite.errors.RATE_LIMITED' =>
@@ -8169,15 +8182,15 @@ extension on TranslationsEn {
           'devices.subtitle' => 'Phones that receive notifications for this account. Removing one stops its notifications.',
           'devices.current' => 'This device',
           'devices.registeredToday' => ({required Object time}) => 'Registered today at ${time}',
+          _ => null,
+        } ??
+        switch (path) {
           'devices.registeredYesterday' => ({
             required Object time,
           }) => 'Registered yesterday at ${time}',
           'devices.registeredOn' => ({required Object date}) => 'Registered on ${date}',
           'devices.platformIos' => 'iPhone',
           'devices.platformAndroid' => 'Android',
-          _ => null,
-        } ??
-        switch (path) {
           'devices.revokeTitle' => 'Stop notifications on this device?',
           'devices.revokeText' => ({
             required Object name,
@@ -8828,13 +8841,13 @@ extension on TranslationsEn {
           'history.milestoneTitleHint' => 'E.g. First trip together',
           'history.milestoneTitleErrors.empty' => 'Say what happened',
           'history.milestoneTitleErrors.tooLong' => 'The title is too long',
+          _ => null,
+        } ??
+        switch (path) {
           'history.milestonePlaceLabel' => 'Place (optional)',
           'history.milestonePlaceHint' => 'E.g. Paraty',
           'history.milestonePlaceErrors.tooLong' => 'The place is too long',
           'history.milestoneBodyHint' => 'A note about this moment (optional)',
-          _ => null,
-        } ??
-        switch (path) {
           'history.milestoneBodyErrors.tooLong' => 'The note is too long',
           'history.milestoneKindLabel' => 'Milestone kind',
           'history.kindFirst' => 'First time',
@@ -9445,14 +9458,14 @@ extension on TranslationsEn {
           'need.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'need.errors.other' => 'Couldn\'t send right now. Try again.',
           'notFound.title' => '404',
+          _ => null,
+        } ??
+        switch (path) {
           'notFound.description' => 'Page not found',
           'notFound.buttonBack' => 'Go back home',
           'notes.title' => 'A note or a drawing',
           'notes.intro' =>
             'A short note for your partner, or a drawing that stays in your sent list.',
-          _ => null,
-        } ??
-        switch (path) {
           'notes.kinds.0' => 'Note',
           'notes.kinds.1' => 'Drawing',
           'notes.noteHint' => 'E.g. good luck at today\'s meeting',
@@ -10041,13 +10054,13 @@ extension on TranslationsEn {
           'received.kinds.missUs' => 'Missing you',
           'received.kinds.hug' => 'A hug',
           'received.kinds.distance' => 'A little distance',
+          _ => null,
+        } ??
+        switch (path) {
           'received.kinds.heavyDay' => 'A heavy day',
           'received.kinds.goodNews' => 'Good news',
           'received.kinds.other' => '',
           'received.bodies.missUs' => 'Your partner is missing you both.',
-          _ => null,
-        } ??
-        switch (path) {
           'received.bodies.hug' => 'Your partner would like a hug.',
           'received.bodies.distance' => 'Your partner needs a little distance.',
           'received.bodies.heavyDay' => 'Your partner is having a heavy day.',
@@ -10604,15 +10617,15 @@ extension on TranslationsEn {
           'sundayCard.errorText' => 'Your slips are still saved. Try again.',
           'sundayCard.saveError' => 'Could not save the card. Try again.',
           'sundayCard.openFromToday' => 'See the draft',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.deliverError' =>
             'Could not send right now. The card is still here, try again.',
           'sundayCard.send.action' => 'Send',
           'sundayCard.send.invite' => 'Invite to send',
           'sundayCard.send.needsPartner' =>
             'To send the card in the app, your person has to be connected.',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.send.title' => 'Send the card?',
           'sundayCard.send.text' => ({
             required Object name,

@@ -5,8 +5,11 @@ enum AcceptOutcome() {
   /// The two people are connected.
   connected,
 
-  /// The code is unknown, expired, used or the person's own.
+  /// The code is unknown, expired or already used.
   unusable,
+
+  /// The code is the one this person created.
+  ownCode,
 }
 
 final class const AcceptInviteState({

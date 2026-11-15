@@ -1,6 +1,7 @@
 {
   "title": "Got an invite?",
   "titleHighlight": "invite",
+  "connectTitle": "Connect with a code",
   "subtitle": "Type the code the other person sent so you can connect.",
   "codeLabel": "Invite code",
   "codeHint": "E.g. ABCD2345",
@@ -25,6 +26,9 @@
     "tryAgain": "Type again",
     "close": "Close"
   },
+  "ownCodeTitle": "That code is yours",
+  "ownCodeHighlight": "yours",
+  "ownCodeText": "That is your own code. To connect, use your partner's code.",
   "errors(map)": {
     "ALREADY_PAIRED": "You are already connected with someone.",
     "COUPLE_FULL": "That space already has two people.",

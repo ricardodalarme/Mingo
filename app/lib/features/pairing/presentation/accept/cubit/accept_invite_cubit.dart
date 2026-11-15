@@ -1,4 +1,5 @@
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
+import 'package:app/features/pairing/data/mappers/invite_code_mapper.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
@@ -28,13 +29,12 @@ class AcceptInviteCubit({
     onCodeChanged(pending);
   }
 
+  /// Normalizes [value] and forgets the outcome of the previous attempt.
   void onCodeChanged(String value) {
-    final code = value.replaceAll(RegExp(r'\s'), '').toUpperCase();
     emit(
       state.copyWith(
-        code: FormInput(
-          code.length > inviteCodeLength ? code.substring(0, inviteCodeLength) : code,
-        ),
+        code: FormInput(_code(value)),
+        acceptAction: state.acceptAction.isLoading ? state.acceptAction : const Initial(),
       ),
     );
   }
@@ -44,6 +44,11 @@ class AcceptInviteCubit({
 
     emit(state.copyWith(acceptAction: const Loading()));
     try {
+      if (await _isOwnCode(state.code.value)) {
+        await _inviteCodes.clear();
+        emit(state.copyWith(acceptAction: const Success(AcceptOutcome.ownCode)));
+        return;
+      }
       final connected = await _pairingRepository.acceptInvite(state.code.value);
       await _inviteCodes.clear();
       if (!connected) {
@@ -67,6 +72,24 @@ class AcceptInviteCubit({
 
   /// Lets the person type another code after an unusable one.
   void tryAgain() => emit(AcceptInviteState(code: state.code));
+
+  /// The code in [value], which may be a pasted invite link.
+  String _code(String value) {
+    final trimmed = value.trim();
+    final uri = Uri.tryParse(trimmed);
+    final linked = uri == null ? null : inviteCodeFromUri(uri);
+    final code = (linked ?? trimmed).replaceAll(RegExp(r'\s'), '').toUpperCase();
+
+    return code.length > inviteCodeLength ? code.substring(0, inviteCodeLength) : code;
+  }
+
+  Future<bool> _isOwnCode(String code) async {
+    try {
+      return (await _pairingRepository.getActiveInvite())?.code == code;
+    } on Object {
+      return false;
+    }
+  }
 
   bool _validate() {
     final validatedCode = state.code.validate(

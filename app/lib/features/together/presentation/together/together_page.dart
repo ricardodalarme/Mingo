@@ -1,3 +1,4 @@
+import 'package:app/features/pairing/presentation/connect/connect_code_sheet.dart';
 import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:app/features/together/presentation/together/cubit/together_cubit.dart';
 import 'package:app/l10n/translations.g.dart';
@@ -46,6 +47,13 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
             if (view == TogetherView.together) ...[
               if (!hasPartner) ...[
                 BaseNote(text: l10n.soloNote),
+                const SizedBox(height: AppSpace.s12),
+                BaseButton.secondary(
+                  text: context.l10n.acceptInvite.connectTitle,
+                  icon: AppIcons.link,
+                  isFullWidth: true,
+                  onPressed: () => _connectWithCode(context, cubit.load),
+                ),
                 const SizedBox(height: AppSpace.s12),
               ],
               const _ForYouSection(),
@@ -353,6 +361,11 @@ class const _PrivateMoreSection() extends StatelessWidget {
       ],
     );
   }
+}
+
+Future<void> _connectWithCode(BuildContext context, Future<void> Function() reload) async {
+  final connected = await showConnectCodeSheet(context);
+  if (connected && context.mounted) await reload();
 }
 
 Widget _section({required String title, required List<Widget> children, String? footer}) {

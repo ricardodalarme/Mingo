@@ -1,4 +1,5 @@
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
+import 'package:app/features/pairing/data/models/active_invite.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/pairing/presentation/accept/cubit/accept_invite_cubit.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
@@ -41,6 +42,7 @@ void main() {
     when(() => pairing.getPartner()).thenAnswer(
       (_) async => const Profile(id: 'p', avatarKind: AvatarKind.initials, displayName: 'Rui'),
     );
+    when(pairing.getActiveInvite).thenAnswer((_) async => null);
   });
 
   AcceptInviteCubit build() => AcceptInviteCubit(
@@ -76,6 +78,15 @@ void main() {
     expect(cubit.state.code.isValid, isTrue);
   });
 
+  test('a pasted invite link is reduced to its code', () {
+    final cubit = build()..onCodeChanged('https://mingo.app/invite/abcd2345');
+
+    expect(cubit.state.code.value, 'ABCD2345');
+
+    cubit.onCodeChanged('mingo://invite?code=wxyz6789');
+    expect(cubit.state.code.value, 'WXYZ6789');
+  });
+
   test('a short code cannot be sent', () async {
     final cubit = build()..onCodeChanged('abc');
     await cubit.accept();
@@ -108,6 +119,31 @@ void main() {
     cubit.tryAgain();
     expect(cubit.state.acceptAction, const Initial());
     expect(cubit.state.code.value, 'ABCD2345');
+  });
+
+  test("the person's own code is not sent to the server", () async {
+    inviteCodes.code = 'ABCD2345';
+    when(pairing.getActiveInvite).thenAnswer(
+      (_) async => ActiveInvite(id: 'i1', code: 'ABCD2345', expiresAt: DateTime.utc(2026, 12, 1)),
+    );
+    final cubit = build()..onCodeChanged('abcd2345');
+    await cubit.accept();
+
+    expect(cubit.state.acceptAction, const Success<AcceptOutcome>(AcceptOutcome.ownCode));
+    expect(inviteCodes.code, isNull);
+    verifyNever(() => pairing.acceptInvite(any()));
+  });
+
+  test('typing another code clears the outcome of the last attempt', () async {
+    when(() => pairing.acceptInvite(any())).thenAnswer((_) async => false);
+    final cubit = build()..onCodeChanged('abcd2345');
+    await cubit.accept();
+    expect(cubit.state.acceptAction, const Success<AcceptOutcome>(AcceptOutcome.unusable));
+
+    cubit.onCodeChanged('wxyz6789');
+
+    expect(cubit.state.acceptAction, const Initial());
+    expect(cubit.state.code.value, 'WXYZ6789');
   });
 
   test('a server error keeps the kept code for a retry', () async {
