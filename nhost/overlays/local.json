@@ -1,0 +1,77 @@
+[
+  {
+    "op": "replace",
+    "path": "/hasura/settings/devMode",
+    "value": true
+  },
+  {
+    "op": "replace",
+    "path": "/hasura/settings/enableConsole",
+    "value": true
+  },
+  {
+    "op": "replace",
+    "path": "/auth/method/emailPassword/emailVerificationRequired",
+    "value": false
+  },
+  {
+    "op": "replace",
+    "path": "/auth/method/emailPassword/hibpEnabled",
+    "value": false
+  },
+  {
+    "op": "replace",
+    "path": "/auth/method/oauth/apple",
+    "value": {
+      "enabled": false
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/auth/method/oauth/google",
+    "value": {
+      "enabled": false
+    }
+  },
+  {
+    "op": "remove",
+    "path": "/hasura/rateLimit"
+  },
+  {
+    "op": "remove",
+    "path": "/functions/rateLimit"
+  },
+  {
+    "op": "remove",
+    "path": "/storage/rateLimit"
+  },
+  {
+    "op": "replace",
+    "path": "/auth/rateLimit/bruteForce/limit",
+    "value": 10000
+  },
+  {
+    "op": "replace",
+    "path": "/auth/rateLimit/signups/limit",
+    "value": 10000
+  },
+  {
+    "op": "replace",
+    "path": "/auth/rateLimit/global/limit",
+    "value": 100000
+  },
+  {
+    "op": "replace",
+    "path": "/auth/misc/concealErrors",
+    "value": false
+  },
+  {
+    "op": "add",
+    "path": "/experimental",
+    "value": {
+      "constellation": {
+        "version": "0.8.0"
+      }
+    }
+  }
+]

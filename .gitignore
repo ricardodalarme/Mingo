@@ -43,3 +43,7 @@ CLAUDE.md
 .slim/worktrees.json
 # END oh-my-opencode-slim worktrees
 .opencode/
+
+# Nhost local
+.secrets
+.nhost/

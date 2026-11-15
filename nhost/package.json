@@ -1,0 +1,10 @@
+{
+  "name": "mingo-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "metadata": "node tools/build-metadata.mjs",
+    "test": "node --test --test-concurrency=1 \"tests/**/*.test.ts\"",
+    "schema": "bash tools/dump-schemas.sh"
+  }
+}
