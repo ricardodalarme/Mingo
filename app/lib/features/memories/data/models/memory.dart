@@ -34,29 +34,3 @@ final class const Memory({
   @override
   List<Object?> get props => [id, title, happenedOn, body, place];
 }
-
-/// A place the couple has been, as a name and the memories kept there.
-final class const Place({required final String name, required final List<Memory> memories})
-    with Equatable {
-  /// A skeleton placeholder, never shown as a real record.
-  factory fake() => Place(name: 'Paraty', memories: [Memory.fake()]);
-
-  @override
-  List<Object?> get props => [name, memories];
-}
-
-/// Groups memories by place name, ignoring case and spacing; memories without a place are left out.
-List<Place> groupByPlace(List<Memory> memories) {
-  final byKey = <String, List<Memory>>{};
-  final names = <String, String>{};
-  for (final memory in memories) {
-    final name = memory.place?.trim();
-    if (name == null || name.isEmpty) continue;
-    final key = name.toLowerCase();
-    names.putIfAbsent(key, () => name);
-    byKey.putIfAbsent(key, () => []).add(memory);
-  }
-
-  return [for (final entry in byKey.entries) Place(name: names[entry.key]!, memories: entry.value)]
-    ..sort((a, b) => b.memories.length.compareTo(a.memories.length));
-}

@@ -113,7 +113,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$partnerProfile$pt partnerProfile =
       Translations$partnerProfile$pt.internal(_root);
   late final Translations$partnerStep$pt partnerStep = Translations$partnerStep$pt.internal(_root);
-  late final Translations$places$pt places = Translations$places$pt.internal(_root);
   late final Translations$plus$pt plus = Translations$plus$pt.internal(_root);
   late final Translations$privacy$pt privacy = Translations$privacy$pt.internal(_root);
   late final Translations$profileDetails$pt profileDetails =
@@ -3554,9 +3553,6 @@ class Translations$memories$pt {
   /// pt: 'LUGARES'
   String get placesLabel => 'LUGARES';
 
-  /// pt: 'Lugares onde vocês estiveram'
-  String get placesTitle => 'Lugares onde vocês estiveram';
-
   /// pt: 'Só o nome do lugar, nunca a localização.'
   String get placesText => 'Só o nome do lugar, nunca a localização.';
 
@@ -4418,64 +4414,6 @@ class Translations$partnerStep$pt {
 
   /// pt: 'Continuar'
   String get continueButton => 'Continuar';
-}
-
-// Path: places
-class Translations$places$pt {
-  Translations$places$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Lugares'
-  String get title => 'Lugares';
-
-  /// pt: 'Só o nome do lugar. O app nunca lê nem guarda sua localização.'
-  String get privacyNote => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.';
-
-  /// pt: '1 memória'
-  String get memoryOne => '1 memória';
-
-  /// pt: '{count} memórias'
-  String memoryMany({required Object count}) => '${count} memórias';
-
-  List<String> get monthsShort => [
-    'jan',
-    'fev',
-    'mar',
-    'abr',
-    'mai',
-    'jun',
-    'jul',
-    'ago',
-    'set',
-    'out',
-    'nov',
-    'dez',
-  ];
-
-  /// pt: '{day} {month} {year}'
-  String dateLine({required Object day, required Object month, required Object year}) =>
-      '${day} ${month} ${year}';
-
-  /// pt: 'Nenhum lugar ainda'
-  String get emptyTitle => 'Nenhum lugar ainda';
-
-  /// pt: 'Ao guardar uma memória, escreva o nome do lugar e ele aparece aqui.'
-  String get emptyText => 'Ao guardar uma memória, escreva o nome do lugar e ele aparece aqui.';
-
-  /// pt: 'Nada neste lugar'
-  String get detailEmptyTitle => 'Nada neste lugar';
-
-  /// pt: 'As memórias deste lugar não estão mais aqui.'
-  String get detailEmptyText => 'As memórias deste lugar não estão mais aqui.';
-
-  /// pt: 'Não deu para carregar'
-  String get errorTitle => 'Não deu para carregar';
-
-  /// pt: 'Suas memórias continuam salvas. Tente de novo.'
-  String get errorText => 'Suas memórias continuam salvas. Tente de novo.';
 }
 
 // Path: plus
@@ -10990,7 +10928,6 @@ extension on Translations {
           'memories.storyTitle' => 'Imagem para compartilhar',
           'memories.storyText' => 'Seus números em uma imagem, só com o que você escolher.',
           'memories.placesLabel' => 'LUGARES',
-          'memories.placesTitle' => 'Lugares onde vocês estiveram',
           'memories.placesText' => 'Só o nome do lugar, nunca a localização.',
           'memories.placeLabel' => 'Lugar (opcional)',
           'memories.placeHint' => 'Ex.: Paraty',
@@ -11173,11 +11110,11 @@ extension on Translations {
           'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'Vocês ainda não estão conectados.',
           'moodHelp.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'moodHelp.errors.NETWORK' =>
+            'Não deu para enviar agora. Verifique a conexão e tente de novo.',
           _ => null,
         } ??
         switch (path) {
-          'moodHelp.errors.NETWORK' =>
-            'Não deu para enviar agora. Verifique a conexão e tente de novo.',
           'moodHelp.errors.TIMEOUT' => 'Não deu para enviar agora a tempo. Tente de novo.',
           'moodHelp.errors.other' => 'Não deu para enviar agora. Tente de novo.',
           'need.title' => 'Preciso de…',
@@ -11357,34 +11294,6 @@ extension on Translations {
           'partnerStep.aloneSupport' => 'Seus slips ficam só com você',
           'partnerStep.haveCode' => 'Tenho um código de convite',
           'partnerStep.continueButton' => 'Continuar',
-          'places.title' => 'Lugares',
-          'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
-          'places.memoryOne' => '1 memória',
-          'places.memoryMany' => ({required Object count}) => '${count} memórias',
-          'places.monthsShort.0' => 'jan',
-          'places.monthsShort.1' => 'fev',
-          'places.monthsShort.2' => 'mar',
-          'places.monthsShort.3' => 'abr',
-          'places.monthsShort.4' => 'mai',
-          'places.monthsShort.5' => 'jun',
-          'places.monthsShort.6' => 'jul',
-          'places.monthsShort.7' => 'ago',
-          'places.monthsShort.8' => 'set',
-          'places.monthsShort.9' => 'out',
-          'places.monthsShort.10' => 'nov',
-          'places.monthsShort.11' => 'dez',
-          'places.dateLine' => ({
-            required Object day,
-            required Object month,
-            required Object year,
-          }) => '${day} ${month} ${year}',
-          'places.emptyTitle' => 'Nenhum lugar ainda',
-          'places.emptyText' =>
-            'Ao guardar uma memória, escreva o nome do lugar e ele aparece aqui.',
-          'places.detailEmptyTitle' => 'Nada neste lugar',
-          'places.detailEmptyText' => 'As memórias deste lugar não estão mais aqui.',
-          'places.errorTitle' => 'Não deu para carregar',
-          'places.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
           'plus.title' => 'Mingo Plus',
           'plus.subtitle' => 'Compare com calma. O plano grátis continua inteiro para o essencial.',
           'plus.activeTitle' => 'Você tem o Plus',
@@ -11770,9 +11679,6 @@ extension on Translations {
           'received.bodies.distance' => 'Seu par precisa de um pouco de distância.',
           'received.bodies.goodNews' => 'Seu par tem uma boa notícia.',
           'received.bodies.other' => '',
-          _ => null,
-        } ??
-        switch (path) {
           'received.fromPartner' => 'Do seu par',
           'received.privateFirst' => 'Sua resposta é privada primeiro. Não tem certo nem errado.',
           'received.responses.here' => 'Estou aqui',
@@ -11797,6 +11703,9 @@ extension on Translations {
           'received.errors.NOT_FOUND' => 'Essa mensagem não está mais aqui.',
           'received.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'received.errors.other' => 'Não deu para responder agora. Tente de novo.',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.title' => 'Algo mudou?',
           'relationshipChanged.highlight' => 'mudou',
           'relationshipChanged.subtitle' => 'Conte com calma. Isso só muda o que o app mostra.',
@@ -12344,9 +12253,6 @@ extension on Translations {
           'sundayCard.send.textNoName' =>
             'Sua pessoa recebe agora. Depois de enviado, o cartão não muda.',
           'sundayCard.send.confirm' => 'Enviar',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.hold.action' => 'Segurar esta semana',
           'sundayCard.hold.title' => 'Segurar esta semana?',
           'sundayCard.hold.text' =>
@@ -12373,6 +12279,9 @@ extension on Translations {
           'tabs.forMeFooter' => 'Ferramentas privadas. Nunca compartilhadas.',
           'tabs.segmentForMe' => 'Para mim',
           'tabs.checkinLabel' => 'CHECK-IN',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.checkinTitle' => 'Check-in da semana',
           'tabs.checkinText' => 'Uma conversa curta, em privado primeiro.',
           'tabs.logisticsLabel' => 'PRÁTICO',

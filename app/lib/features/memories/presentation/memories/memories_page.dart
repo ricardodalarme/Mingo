@@ -156,13 +156,6 @@ class const _MemoriesTimeline() extends StatelessWidget {
                 onTap: () => context.pushRoute(const HistoryRoute()),
               ),
               BaseListTile(
-                icon: AppIcons.map_pin,
-                title: l10n.placesTitle,
-                showsChevron: true,
-                titleMaxLines: 1,
-                onTap: () => context.pushRoute(const PlacesRoute()),
-              ),
-              BaseListTile(
                 icon: AppIcons.share,
                 title: l10n.storyTitle,
                 showsChevron: true,

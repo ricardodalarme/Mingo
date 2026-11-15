@@ -153,8 +153,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$partnerStep$en partnerStep = _Translations$partnerStep$en._(_root);
   @override
-  late final _Translations$places$en places = _Translations$places$en._(_root);
-  @override
   late final _Translations$plus$en plus = _Translations$plus$en._(_root);
   @override
   late final _Translations$privacy$en privacy = _Translations$privacy$en._(_root);
@@ -2941,8 +2939,6 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get placesLabel => 'PLACES';
   @override
-  String get placesTitle => 'Places you have been';
-  @override
   String get placesText => 'Only the name of the place, never the location.';
   @override
   String get placeLabel => 'Place (optional)';
@@ -3629,55 +3625,6 @@ class _Translations$partnerStep$en extends Translations$partnerStep$pt {
   String get haveCode => 'I have an invite code';
   @override
   String get continueButton => 'Continue';
-}
-
-// Path: places
-class _Translations$places$en extends Translations$places$pt {
-  _Translations$places$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Places';
-  @override
-  String get privacyNote =>
-      'Only the name of the place. The app never reads or stores your location.';
-  @override
-  String get memoryOne => '1 memory';
-  @override
-  String memoryMany({required Object count}) => '${count} memories';
-  @override
-  List<String> get monthsShort => [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  @override
-  String dateLine({required Object month, required Object day, required Object year}) =>
-      '${month} ${day}, ${year}';
-  @override
-  String get emptyTitle => 'No places yet';
-  @override
-  String get emptyText =>
-      'When you save a memory, write the name of the place and it shows up here.';
-  @override
-  String get detailEmptyTitle => 'Nothing at this place';
-  @override
-  String get detailEmptyText => 'The memories of this place are not here anymore.';
-  @override
-  String get errorTitle => 'Couldn\'t load';
-  @override
-  String get errorText => 'Your memories are still saved. Try again.';
 }
 
 // Path: plus
@@ -9158,7 +9105,6 @@ extension on TranslationsEn {
           'memories.storyTitle' => 'Image to share',
           'memories.storyText' => 'Your numbers in an image, with only what you choose.',
           'memories.placesLabel' => 'PLACES',
-          'memories.placesTitle' => 'Places you have been',
           'memories.placesText' => 'Only the name of the place, never the location.',
           'memories.placeLabel' => 'Place (optional)',
           'memories.placeHint' => 'E.g. Lisbon',
@@ -9336,11 +9282,11 @@ extension on TranslationsEn {
           'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'You are not connected yet.',
           'moodHelp.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'moodHelp.errors.NETWORK' =>
+            'Couldn\'t send it now. Check your connection and try again.',
           _ => null,
         } ??
         switch (path) {
-          'moodHelp.errors.NETWORK' =>
-            'Couldn\'t send it now. Check your connection and try again.',
           'moodHelp.errors.TIMEOUT' => 'Couldn\'t send it in time. Try again.',
           'moodHelp.errors.other' => 'Couldn\'t send it now. Try again.',
           'need.title' => 'I need…',
@@ -9518,35 +9464,6 @@ extension on TranslationsEn {
           'partnerStep.aloneSupport' => 'Your slips stay with you only',
           'partnerStep.haveCode' => 'I have an invite code',
           'partnerStep.continueButton' => 'Continue',
-          'places.title' => 'Places',
-          'places.privacyNote' =>
-            'Only the name of the place. The app never reads or stores your location.',
-          'places.memoryOne' => '1 memory',
-          'places.memoryMany' => ({required Object count}) => '${count} memories',
-          'places.monthsShort.0' => 'Jan',
-          'places.monthsShort.1' => 'Feb',
-          'places.monthsShort.2' => 'Mar',
-          'places.monthsShort.3' => 'Apr',
-          'places.monthsShort.4' => 'May',
-          'places.monthsShort.5' => 'Jun',
-          'places.monthsShort.6' => 'Jul',
-          'places.monthsShort.7' => 'Aug',
-          'places.monthsShort.8' => 'Sep',
-          'places.monthsShort.9' => 'Oct',
-          'places.monthsShort.10' => 'Nov',
-          'places.monthsShort.11' => 'Dec',
-          'places.dateLine' => ({
-            required Object month,
-            required Object day,
-            required Object year,
-          }) => '${month} ${day}, ${year}',
-          'places.emptyTitle' => 'No places yet',
-          'places.emptyText' =>
-            'When you save a memory, write the name of the place and it shows up here.',
-          'places.detailEmptyTitle' => 'Nothing at this place',
-          'places.detailEmptyText' => 'The memories of this place are not here anymore.',
-          'places.errorTitle' => 'Couldn\'t load',
-          'places.errorText' => 'Your memories are still saved. Try again.',
           'plus.title' => 'Mingo Plus',
           'plus.subtitle' => 'Compare calmly. The free plan stays whole for the essentials.',
           'plus.activeTitle' => 'You have Plus',
@@ -9933,9 +9850,6 @@ extension on TranslationsEn {
           'received.bodies.distance' => 'Your partner needs a little distance.',
           'received.bodies.goodNews' => 'Your partner has good news.',
           'received.bodies.other' => '',
-          _ => null,
-        } ??
-        switch (path) {
           'received.fromPartner' => 'From your partner',
           'received.privateFirst' => 'Your answer is private first. There is no right or wrong.',
           'received.responses.here' => 'I\'m here',
@@ -9960,6 +9874,9 @@ extension on TranslationsEn {
           'received.errors.NOT_FOUND' => 'That message isn\'t here anymore.',
           'received.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'received.errors.other' => 'Couldn\'t answer right now. Try again.',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.title' => 'Something changed?',
           'relationshipChanged.highlight' => 'changed',
           'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
@@ -10502,9 +10419,6 @@ extension on TranslationsEn {
           'sundayCard.send.textNoName' =>
             'Your person receives it now. Once sent, the card does not change.',
           'sundayCard.send.confirm' => 'Send',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.hold.action' => 'Hold this week',
           'sundayCard.hold.title' => 'Hold this week?',
           'sundayCard.hold.text' =>
@@ -10530,6 +10444,9 @@ extension on TranslationsEn {
           'tabs.forMeFooter' => 'Private tools. Never shared.',
           'tabs.segmentForMe' => 'For me',
           'tabs.checkinLabel' => 'CHECK-IN',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.checkinTitle' => 'Weekly check-in',
           'tabs.checkinText' => 'A short conversation, private first.',
           'tabs.logisticsLabel' => 'PRACTICAL',

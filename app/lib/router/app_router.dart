@@ -43,8 +43,6 @@ import 'package:app/features/lists/presentation/detail/list_detail_page.dart';
 import 'package:app/features/lists/presentation/lists/lists_page.dart';
 import 'package:app/features/love_style/presentation/exercise/love_style_page.dart';
 import 'package:app/features/memories/presentation/memories/memories_page.dart';
-import 'package:app/features/memories/presentation/places/place_detail_page.dart';
-import 'package:app/features/memories/presentation/places/places_page.dart';
 import 'package:app/features/mood/presentation/mood/mood_page.dart';
 import 'package:app/features/not_found/presentation/not_found/not_found_page.dart';
 import 'package:app/features/notes/presentation/compose/compose_page.dart';
@@ -224,9 +222,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: CardDetailRoute.page, path: '/card/:id'),
     AutoRoute(page: MoodRoute.page),
     AutoRoute(page: HistoryRoute.page),
-    AutoRoute(page: PlacesRoute.page),
     AutoRoute(page: StoryRoute.page),
-    AutoRoute(page: PlaceDetailRoute.page),
     AutoRoute(page: MilestoneRoute.page),
     AutoRoute(page: StoryDatesRoute.page),
     AutoRoute(page: CounterVariationsRoute.page),

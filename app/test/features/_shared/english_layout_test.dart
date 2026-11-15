@@ -16,9 +16,6 @@ import 'package:app/features/guides/data/data_sources/remote/guides_data_source.
 import 'package:app/features/guides/data/repositories/guides_repository.dart';
 import 'package:app/features/guides/presentation/hub/cubit/guides_cubit.dart';
 import 'package:app/features/guides/presentation/hub/guides_page.dart';
-import 'package:app/features/memories/data/repositories/memories_repository.dart';
-import 'package:app/features/memories/presentation/places/cubit/places_cubit.dart';
-import 'package:app/features/memories/presentation/places/places_page.dart';
 import 'package:app/features/notes/data/repositories/notes_repository.dart';
 import 'package:app/features/notes/presentation/compose/compose_page.dart';
 import 'package:app/features/notes/presentation/compose/cubit/compose_cubit.dart';
@@ -51,8 +48,6 @@ class _MockDistance() extends Mock implements DistanceRepository;
 class _MockGuidesDataSource() extends Mock implements GuidesDataSource;
 
 class _MockGuidesLocalDataSource() extends Mock implements GuidesLocalDataSource;
-
-class _MockMemories() extends Mock implements MemoriesRepository;
 
 class _MockNotes() extends Mock implements NotesRepository;
 
@@ -148,19 +143,6 @@ void main() {
 
     expect(find.text('Distance'), findsOneWidget);
     expect(find.text('Your partner'), findsOneWidget);
-    expect(tester.takeException(), isNull);
-  });
-
-  testWidgets('the places page fits in English at a small width and large text', (tester) async {
-    final repository = _MockMemories();
-    when(repository.getMemories).thenAnswer((_) async => const []);
-    final cubit = PlacesCubit(memoriesRepository: repository);
-    addTearDown(cubit.close);
-    await cubit.load();
-
-    await pumpNarrow(tester, BlocProvider.value(value: cubit, child: const PlacesPage()));
-
-    expect(find.text('Places'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
