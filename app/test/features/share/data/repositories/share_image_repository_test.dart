@@ -64,9 +64,6 @@ void main() {
   test('rethrows a storage failure so the sheet can say it did not work', () {
     shareService.failsToWrite = true;
 
-    expect(
-      repository.share(Uint8List.fromList([1])),
-      throwsA(isA<ShareException>()),
-    );
+    expect(repository.share(Uint8List.fromList([1])), throwsA(isA<ShareException>()));
   });
 }

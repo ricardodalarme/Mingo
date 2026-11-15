@@ -33,20 +33,16 @@ void main() {
   testWidgets('offers the counter and the moon of the start date', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 11, 15, 12)), () async {
       await tester.pumpApp(
-        Center(child: TodayShareEntry(home: homeWith(togetherSince: DateTime(2024, 3, 14)))),
+        Center(
+          child: TodayShareEntry(home: homeWith(togetherSince: DateTime(2024, 3, 14))),
+        ),
       );
 
       expect(find.text('Compartilhar imagem'), findsOneWidget);
-      expect(
-        find.text('O tempo de vocês e a lua do dia em que tudo começou.'),
-        findsOneWidget,
-      );
+      expect(find.text('O tempo de vocês e a lua do dia em que tudo começou.'), findsOneWidget);
 
       final entry = tester.widget<ShareImageEntry>(find.byType(ShareImageEntry));
-      expect(entry.cards.map((card) => card.kind), [
-        ShareCardKind.counter,
-        ShareCardKind.moon,
-      ]);
+      expect(entry.cards.map((card) => card.kind), [ShareCardKind.counter, ShareCardKind.moon]);
       expect(find.byType(BaseListGroup), findsOneWidget);
     });
   });
@@ -54,7 +50,9 @@ void main() {
   testWidgets('a start date in the future is not counted', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 11, 15, 12)), () async {
       await tester.pumpApp(
-        Center(child: TodayShareEntry(home: homeWith(togetherSince: DateTime(2027, 1, 1)))),
+        Center(
+          child: TodayShareEntry(home: homeWith(togetherSince: DateTime(2027, 1, 1))),
+        ),
       );
 
       expect(find.byType(ShareImageEntry), findsNothing);

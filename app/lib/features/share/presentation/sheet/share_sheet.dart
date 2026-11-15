@@ -27,9 +27,7 @@ class const ShareSheet({required final List<ShareCard> cards, super.key}) extend
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ShareSheetCubit(
-        repository: AppInjector.instance.get<ShareImageRepository>(),
-      ),
+      create: (_) => ShareSheetCubit(repository: AppInjector.instance.get<ShareImageRepository>()),
       child: _ShareSheetBody(cards: cards),
     );
   }

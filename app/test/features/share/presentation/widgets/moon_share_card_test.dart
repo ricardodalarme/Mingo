@@ -11,9 +11,7 @@ void main() {
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
   testWidgets('shows the moon of the day, its phase and the date', (tester) async {
-    await tester.pumpApp(
-      Center(child: MoonShareCard(date: DateTime.utc(2024, 4, 23, 23, 49))),
-    );
+    await tester.pumpApp(Center(child: MoonShareCard(date: DateTime.utc(2024, 4, 23, 23, 49))));
 
     expect(find.text('A LUA DO NOSSO DIA'), findsOneWidget);
     expect(find.text('Lua cheia'), findsOneWidget);

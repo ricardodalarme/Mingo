@@ -63,12 +63,7 @@ void main() {
     );
     expect(
       painter.shouldRepaint(
-        const MoonPhasePainter(
-          phase: MoonPhase.fullMoon,
-          lit: _lit,
-          unlit: _unlit,
-          glow: _glow,
-        ),
+        const MoonPhasePainter(phase: MoonPhase.fullMoon, lit: _lit, unlit: _unlit, glow: _glow),
       ),
       isTrue,
     );

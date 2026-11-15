@@ -7,9 +7,7 @@ void main() {
 
     MoonPhase afterFraction(double fraction) => MoonPhase.forDate(
       reference.add(
-        Duration(
-          seconds: (MoonPhase.synodicDays * fraction * Duration.secondsPerDay).round(),
-        ),
+        Duration(seconds: (MoonPhase.synodicDays * fraction * Duration.secondsPerDay).round()),
       ),
     );
 

@@ -17,7 +17,10 @@ class const TodayShareEntry({required final TodayHome home, super.key}) extends 
     return Padding(
       padding: const EdgeInsets.only(top: AppSpace.s24),
       child: ShareImageEntry(
-        cards: [ShareCounterCard(since: since), ShareMoonCard(date: since)],
+        cards: [
+          ShareCounterCard(since: since),
+          ShareMoonCard(date: since),
+        ],
         subtitle: context.l10n.share.entrySubtitleToday,
       ),
     );

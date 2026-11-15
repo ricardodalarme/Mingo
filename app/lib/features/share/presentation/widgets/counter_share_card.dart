@@ -12,7 +12,11 @@ class const CounterShareCard({required final DateTime since, super.key}) extends
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final colors = context.colors;
-    final numbers = HistoryNumbers.compute(togetherSince: since, now: clock.now(), places: const []);
+    final numbers = HistoryNumbers.compute(
+      togetherSince: since,
+      now: clock.now(),
+      places: const [],
+    );
     final duration = HistoryDateFormatter.formatDurationHeadline(
       l10n.history,
       numbers,

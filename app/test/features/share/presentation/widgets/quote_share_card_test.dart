@@ -20,10 +20,7 @@ void main() {
     );
 
     expect(find.text('DE UM CARTÃO'), findsOneWidget);
-    expect(
-      find.text('“Você percebeu que eu estava cansada antes de eu falar.”'),
-      findsOneWidget,
-    );
+    expect(find.text('“Você percebeu que eu estava cansada antes de eu falar.”'), findsOneWidget);
     expect(find.text('— Marina'), findsOneWidget);
     expect(find.text('Cartão de 8 de novembro'), findsOneWidget);
     expect(find.text('Mingo'), findsOneWidget);
@@ -31,7 +28,9 @@ void main() {
 
   testWidgets('a card without a name still shows the quote and its date', (tester) async {
     await tester.pumpApp(
-      Center(child: QuoteShareCard(quote: 'Fez café sem eu pedir.', date: DateTime(2026, 11, 8))),
+      Center(
+        child: QuoteShareCard(quote: 'Fez café sem eu pedir.', date: DateTime(2026, 11, 8)),
+      ),
     );
 
     expect(find.text('“Fez café sem eu pedir.”'), findsOneWidget);
@@ -40,10 +39,15 @@ void main() {
   });
 
   testWidgets('a long note shrinks to fit instead of being cut', (tester) async {
-    final note = List.filled(6, 'Você ficou comigo o dia inteiro sem eu precisar pedir nada.').join(' ');
+    final note = List.filled(
+      6,
+      'Você ficou comigo o dia inteiro sem eu precisar pedir nada.',
+    ).join(' ');
 
     await tester.pumpApp(
-      Center(child: QuoteShareCard(quote: note, authorName: 'Marina', date: DateTime(2026, 11, 8))),
+      Center(
+        child: QuoteShareCard(quote: note, authorName: 'Marina', date: DateTime(2026, 11, 8)),
+      ),
     );
 
     expect(tester.takeException(), isNull);

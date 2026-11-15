@@ -20,9 +20,7 @@ class const ShareCardFrame({
   Widget build(BuildContext context) {
     final colors = context.colors;
     final l10n = context.l10n.share;
-    final secondary = isDark
-        ? colors.textOnAction.withValues(alpha: .72)
-        : colors.textSecondary;
+    final secondary = isDark ? colors.textOnAction.withValues(alpha: .72) : colors.textSecondary;
 
     final content = Padding(
       padding: const EdgeInsets.all(shareCardPadding),
@@ -55,7 +53,10 @@ class const ShareCardFrame({
       width: shareCardWidth,
       height: shareCardHeight,
       child: isDark
-          ? DecoratedBox(decoration: const BoxDecoration(gradient: _nightSky), child: content)
+          ? DecoratedBox(
+              decoration: const BoxDecoration(gradient: _nightSky),
+              child: content,
+            )
           : AppWashSurface(wash: AppWash.hero, child: content),
     );
   }
