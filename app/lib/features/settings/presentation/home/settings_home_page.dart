@@ -245,14 +245,6 @@ class const _PrivacySection() extends StatelessWidget {
                 showsChevron: true,
                 onTap: () => context.pushRoute(const DiscreetModeRoute()),
               ),
-            if (isAuthenticated)
-              BaseListTile(
-                title: context.l10n.sensitiveDays.entryTitle,
-                subtitle: context.l10n.sensitiveDays.entrySupport,
-                icon: AppIcons.calendar,
-                showsChevron: true,
-                onTap: () => context.pushRoute(const SensitiveDaysRoute()),
-              ),
             BaseListTile(
               title: l10n.help,
               subtitle: l10n.helpStatus,

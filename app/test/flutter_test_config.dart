@@ -49,7 +49,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(EnumCardKind.weekly);
   registerFallbackValue(EnumCardStatus.draft);
   registerFallbackValue(EnumConversationGuide.free);
-  registerFallbackValue(EnumCycleDayKind.heavy);
   registerFallbackValue(EnumDateIdeaStatus.saved);
   registerFallbackValue(EnumDatePrecision.day);
   registerFallbackValue(EnumDevicePlatform.ios);

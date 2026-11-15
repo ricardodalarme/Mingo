@@ -4,8 +4,6 @@ import 'package:app/features/mood/presentation/mood/widgets/mood_grid.dart';
 import 'package:app/features/mood/presentation/need_sheet/need_sheet.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
-import 'package:app/router/app_router.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -80,15 +78,6 @@ class const MoodForm({super.key}) extends StatelessWidget {
           ),
           const SizedBox(height: AppSpace.s20),
           BaseNote(text: l10n.privacyNote),
-          const SizedBox(height: AppSpace.s16),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: BaseButton.text(
-              text: context.l10n.sensitiveDays.entryTitle,
-              icon: AppIcons.calendar,
-              onPressed: () => context.pushRoute(const SensitiveDaysRoute()),
-            ),
-          ),
         ],
       ),
       footer: BaseButton(

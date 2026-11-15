@@ -189,8 +189,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$rituals$en rituals = _Translations$rituals$en._(_root);
   @override
-  late final _Translations$sensitiveDays$en sensitiveDays = _Translations$sensitiveDays$en._(_root);
-  @override
   late final _Translations$sessionExpired$en sessionExpired = _Translations$sessionExpired$en._(
     _root,
   );
@@ -4686,42 +4684,6 @@ class _Translations$rituals$en extends Translations$rituals$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Try again.',
   };
-}
-
-// Path: sensitiveDays
-class _Translations$sensitiveDays$en extends Translations$sensitiveDays$pt {
-  _Translations$sensitiveDays$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Sensitive days';
-  @override
-  String get subtitle =>
-      'Somewhere only yours. Your partner sees neither this screen nor what you mark here.';
-  @override
-  String get todayTitle => 'Today is a sensitive day';
-  @override
-  String get todayOn => 'Marked';
-  @override
-  String get todayOff => 'Not marked';
-  @override
-  String get calendarTitle => 'Your marked days';
-  @override
-  String get calendarNote => 'The marks stay in your calendar and only you see them.';
-  @override
-  String markedDay({required Object day}) => '${day} marked as a sensitive day';
-  @override
-  String get entryTitle => 'Sensitive days';
-  @override
-  String get entrySupport => 'Only you see it';
-  @override
-  String get errorTitle => 'Couldn\'t open it';
-  @override
-  String get errorText => 'Nothing was lost. Try again.';
-  @override
-  Map<String, String> get errors => {'other': 'Couldn\'t save it now. Try again.'};
 }
 
 // Path: sessionExpired
@@ -10202,22 +10164,6 @@ extension on TranslationsEn {
           'rituals.errors.NOT_FOUND' => 'That ritual isn\'t here anymore.',
           'rituals.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'rituals.errors.other' => 'Couldn\'t do that right now. Try again.',
-          'sensitiveDays.title' => 'Sensitive days',
-          'sensitiveDays.subtitle' =>
-            'Somewhere only yours. Your partner sees neither this screen nor what you mark here.',
-          'sensitiveDays.todayTitle' => 'Today is a sensitive day',
-          'sensitiveDays.todayOn' => 'Marked',
-          'sensitiveDays.todayOff' => 'Not marked',
-          'sensitiveDays.calendarTitle' => 'Your marked days',
-          'sensitiveDays.calendarNote' => 'The marks stay in your calendar and only you see them.',
-          'sensitiveDays.markedDay' => ({
-            required Object day,
-          }) => '${day} marked as a sensitive day',
-          'sensitiveDays.entryTitle' => 'Sensitive days',
-          'sensitiveDays.entrySupport' => 'Only you see it',
-          'sensitiveDays.errorTitle' => 'Couldn\'t open it',
-          'sensitiveDays.errorText' => 'Nothing was lost. Try again.',
-          'sensitiveDays.errors.other' => 'Couldn\'t save it now. Try again.',
           'sessionExpired.title' => 'Your session ended',
           'sessionExpired.highlight' => 'ended',
           'sessionExpired.text' => 'Sign in again to continue. Your data is safe.',
@@ -10538,9 +10484,6 @@ extension on TranslationsEn {
           'sundayCard.remove' => 'Remove from card',
           'sundayCard.emptyTitle' => 'A week without slips',
           'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.emptyAction' => 'Note a slip',
           'sundayCard.errorTitle' => 'Could not load the card',
           'sundayCard.errorText' => 'Your slips are still saved. Try again.',
@@ -10559,6 +10502,9 @@ extension on TranslationsEn {
           'sundayCard.send.textNoName' =>
             'Your person receives it now. Once sent, the card does not change.',
           'sundayCard.send.confirm' => 'Send',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.hold.action' => 'Hold this week',
           'sundayCard.hold.title' => 'Hold this week?',
           'sundayCard.hold.text' =>

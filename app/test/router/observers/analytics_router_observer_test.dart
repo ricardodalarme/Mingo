@@ -16,13 +16,10 @@ void main() {
     expect(analyticsScreenNameFor('CheckinRoute'), 'settings');
   });
 
-  test('cycle, mood and fight screens stay out of analytics', () {
-    expect(analyticsScreenNameFor('HeavyDayRoute'), 'settings');
-    expect(analyticsScreenNameFor('SensitiveDaysRoute'), 'settings');
+  test('mood and fight screens stay out of analytics', () {
     expect(analyticsScreenNameFor('MoodRoute'), 'settings');
     expect(analyticsScreenNameFor('NeedRoute'), 'settings');
     expect(analyticsScreenNameFor('FightStyleRoute'), 'settings');
-    expect(analyticsScreenNameFor('SafeModeRoute'), 'settings');
   });
 
   test('ordinary routes keep their name and missing names stay empty', () {

@@ -134,9 +134,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
   late final Translations$repair$pt repair = Translations$repair$pt.internal(_root);
   late final Translations$rituals$pt rituals = Translations$rituals$pt.internal(_root);
-  late final Translations$sensitiveDays$pt sensitiveDays = Translations$sensitiveDays$pt.internal(
-    _root,
-  );
   late final Translations$sessionExpired$pt sessionExpired =
       Translations$sessionExpired$pt.internal(_root);
   late final Translations$settingsHome$pt settingsHome = Translations$settingsHome$pt.internal(
@@ -5766,53 +5763,6 @@ class Translations$rituals$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
-}
-
-// Path: sensitiveDays
-class Translations$sensitiveDays$pt {
-  Translations$sensitiveDays$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Dias sensíveis'
-  String get title => 'Dias sensíveis';
-
-  /// pt: 'Um lugar só seu. Seu par não vê esta tela nem o que você marca aqui.'
-  String get subtitle => 'Um lugar só seu. Seu par não vê esta tela nem o que você marca aqui.';
-
-  /// pt: 'Hoje é um dia sensível'
-  String get todayTitle => 'Hoje é um dia sensível';
-
-  /// pt: 'Marcado'
-  String get todayOn => 'Marcado';
-
-  /// pt: 'Não marcado'
-  String get todayOff => 'Não marcado';
-
-  /// pt: 'Seus dias marcados'
-  String get calendarTitle => 'Seus dias marcados';
-
-  /// pt: 'As marcas ficam no seu calendário e só você vê.'
-  String get calendarNote => 'As marcas ficam no seu calendário e só você vê.';
-
-  /// pt: '{day} marcado como dia sensível'
-  String markedDay({required Object day}) => '${day} marcado como dia sensível';
-
-  /// pt: 'Dias sensíveis'
-  String get entryTitle => 'Dias sensíveis';
-
-  /// pt: 'Só você vê'
-  String get entrySupport => 'Só você vê';
-
-  /// pt: 'Não deu para abrir'
-  String get errorTitle => 'Não deu para abrir';
-
-  /// pt: 'Nada se perdeu. Tente de novo.'
-  String get errorText => 'Nada se perdeu. Tente de novo.';
-
-  Map<String, String> get errors => {'other': 'Não deu para salvar agora. Tente de novo.'};
 }
 
 // Path: sessionExpired
@@ -12054,22 +12004,6 @@ extension on Translations {
           'rituals.errors.NOT_FOUND' => 'Esse ritual não está mais aqui.',
           'rituals.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'rituals.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          'sensitiveDays.title' => 'Dias sensíveis',
-          'sensitiveDays.subtitle' =>
-            'Um lugar só seu. Seu par não vê esta tela nem o que você marca aqui.',
-          'sensitiveDays.todayTitle' => 'Hoje é um dia sensível',
-          'sensitiveDays.todayOn' => 'Marcado',
-          'sensitiveDays.todayOff' => 'Não marcado',
-          'sensitiveDays.calendarTitle' => 'Seus dias marcados',
-          'sensitiveDays.calendarNote' => 'As marcas ficam no seu calendário e só você vê.',
-          'sensitiveDays.markedDay' => ({
-            required Object day,
-          }) => '${day} marcado como dia sensível',
-          'sensitiveDays.entryTitle' => 'Dias sensíveis',
-          'sensitiveDays.entrySupport' => 'Só você vê',
-          'sensitiveDays.errorTitle' => 'Não deu para abrir',
-          'sensitiveDays.errorText' => 'Nada se perdeu. Tente de novo.',
-          'sensitiveDays.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'sessionExpired.title' => 'Sua sessão terminou',
           'sessionExpired.highlight' => 'terminou',
           'sessionExpired.text' => 'Entre de novo para continuar. Seus dados estão seguros.',
@@ -12392,9 +12326,6 @@ extension on Translations {
           'sundayCard.remove' => 'Tirar do cartão',
           'sundayCard.emptyTitle' => 'Semana sem slips',
           'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.emptyAction' => 'Anotar um slip',
           'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
           'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',
@@ -12413,6 +12344,9 @@ extension on Translations {
           'sundayCard.send.textNoName' =>
             'Sua pessoa recebe agora. Depois de enviado, o cartão não muda.',
           'sundayCard.send.confirm' => 'Enviar',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.hold.action' => 'Segurar esta semana',
           'sundayCard.hold.title' => 'Segurar esta semana?',
           'sundayCard.hold.text' =>
