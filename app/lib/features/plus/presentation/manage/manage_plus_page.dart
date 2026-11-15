@@ -165,7 +165,6 @@ String _planLabel(BuildContext context, PlusPlan? plan) {
   return switch (plan) {
     PlusPlan.monthly => l10n.monthly,
     PlusPlan.annual => l10n.yearly,
-    PlusPlan.gift => l10n.giftPlan,
     _ => l10n.plusActive,
   };
 }

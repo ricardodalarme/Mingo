@@ -4479,9 +4479,6 @@ class Translations$plus$pt {
   /// pt: 'Anual'
   String get yearly => 'Anual';
 
-  /// pt: 'Presente'
-  String get giftPlan => 'Presente';
-
   /// pt: 'Não deu para ver os preços'
   String get storeTitle => 'Não deu para ver os preços';
 
@@ -11325,7 +11322,6 @@ extension on Translations {
             'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.',
           'plus.monthly' => 'Mensal',
           'plus.yearly' => 'Anual',
-          'plus.giftPlan' => 'Presente',
           'plus.storeTitle' => 'Não deu para ver os preços',
           'plus.storeText' => 'A loja não respondeu. Nada foi cobrado. Tente de novo.',
           'plus.subscribe' => 'Assinar',
@@ -11703,10 +11699,10 @@ extension on Translations {
           'received.errors.NOT_FOUND' => 'Essa mensagem não está mais aqui.',
           'received.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'received.errors.other' => 'Não deu para responder agora. Tente de novo.',
+          'relationshipChanged.title' => 'Algo mudou?',
           _ => null,
         } ??
         switch (path) {
-          'relationshipChanged.title' => 'Algo mudou?',
           'relationshipChanged.highlight' => 'mudou',
           'relationshipChanged.subtitle' => 'Conte com calma. Isso só muda o que o app mostra.',
           'relationshipChanged.optionEnded' => 'Terminamos',
@@ -12279,10 +12275,10 @@ extension on Translations {
           'tabs.forMeFooter' => 'Ferramentas privadas. Nunca compartilhadas.',
           'tabs.segmentForMe' => 'Para mim',
           'tabs.checkinLabel' => 'CHECK-IN',
+          'tabs.checkinTitle' => 'Check-in da semana',
           _ => null,
         } ??
         switch (path) {
-          'tabs.checkinTitle' => 'Check-in da semana',
           'tabs.checkinText' => 'Uma conversa curta, em privado primeiro.',
           'tabs.logisticsLabel' => 'PRÁTICO',
           'tabs.logisticsTitle' => 'Reunião de logística',

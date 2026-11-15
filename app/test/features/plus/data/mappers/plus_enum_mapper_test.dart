@@ -8,7 +8,6 @@ void main() {
   test('every plan maps to its own domain value', () {
     expect(EnumEntitlementPlan.plus_monthly.toModel(), PlusPlan.monthly);
     expect(EnumEntitlementPlan.plus_annual.toModel(), PlusPlan.annual);
-    expect(EnumEntitlementPlan.plus_gift.toModel(), PlusPlan.gift);
   });
 
   test('every status maps to its own domain value', () {

@@ -7,8 +7,7 @@ extension EnumEntitlementPlanMapper on EnumEntitlementPlan {
   PlusPlan? toModel() => switch (this) {
     EnumEntitlementPlan.plus_monthly => PlusPlan.monthly,
     EnumEntitlementPlan.plus_annual => PlusPlan.annual,
-    EnumEntitlementPlan.plus_gift => PlusPlan.gift,
-    EnumEntitlementPlan.$unknown => null,
+    _ => null,
   };
 }
 

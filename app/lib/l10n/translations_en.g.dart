@@ -3676,8 +3676,6 @@ class _Translations$plus$en extends Translations$plus$pt {
   @override
   String get yearly => 'Yearly';
   @override
-  String get giftPlan => 'Gift';
-  @override
   String get storeTitle => 'Couldn\'t load the prices';
   @override
   String get storeText => 'The store didn\'t answer. Nothing was charged. Try again.';
@@ -9494,7 +9492,6 @@ extension on TranslationsEn {
           'plus.plusFeatures' => 'More slips and cards each month and more for both of you, covering you and your partner.',
           'plus.monthly' => 'Monthly',
           'plus.yearly' => 'Yearly',
-          'plus.giftPlan' => 'Gift',
           'plus.storeTitle' => 'Couldn\'t load the prices',
           'plus.storeText' => 'The store didn\'t answer. Nothing was charged. Try again.',
           'plus.subscribe' => 'Subscribe',
@@ -9874,10 +9871,10 @@ extension on TranslationsEn {
           'received.errors.NOT_FOUND' => 'That message isn\'t here anymore.',
           'received.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'received.errors.other' => 'Couldn\'t answer right now. Try again.',
+          'relationshipChanged.title' => 'Something changed?',
           _ => null,
         } ??
         switch (path) {
-          'relationshipChanged.title' => 'Something changed?',
           'relationshipChanged.highlight' => 'changed',
           'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
           'relationshipChanged.optionEnded' => 'We broke up',
@@ -10444,10 +10441,10 @@ extension on TranslationsEn {
           'tabs.forMeFooter' => 'Private tools. Never shared.',
           'tabs.segmentForMe' => 'For me',
           'tabs.checkinLabel' => 'CHECK-IN',
+          'tabs.checkinTitle' => 'Weekly check-in',
           _ => null,
         } ??
         switch (path) {
-          'tabs.checkinTitle' => 'Weekly check-in',
           'tabs.checkinText' => 'A short conversation, private first.',
           'tabs.logisticsLabel' => 'PRACTICAL',
           'tabs.logisticsTitle' => 'Logistics meeting',
