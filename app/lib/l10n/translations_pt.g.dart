@@ -5632,17 +5632,25 @@ class Translations$received$pt {
   String get privateFirst => 'Sua resposta é privada primeiro. Não tem certo nem errado.';
 
   Map<String, String> get responses => {
-    'talk': 'Sim, vamos conversar',
+    'here': 'Estou aqui',
+    'talk': 'Vamos conversar',
     'moreTime': 'Preciso de mais um tempo',
+    'willDo': 'Vou fazer',
+    'notNow': 'Agora não',
+    'plan': 'Planejar algo',
     'later': 'Respondo depois',
+    'heart': 'Mandar um coração',
     'other': '',
   };
 
   /// pt: 'Entendi'
   String get seen => 'Entendi';
 
-  /// pt: 'Sugerir um plano pequeno'
-  String get suggestPlan => 'Sugerir um plano pequeno';
+  /// pt: 'Você respondeu: {response}'
+  String answered({required Object response}) => 'Você respondeu: ${response}';
+
+  /// pt: 'Próxima mensagem'
+  String get next => 'Próxima mensagem';
 
   /// pt: 'Tudo certo'
   String get doneTitle => 'Tudo certo';
@@ -12174,12 +12182,18 @@ extension on Translations {
           'received.bodies.other' => '',
           'received.fromPartner' => 'Do seu par',
           'received.privateFirst' => 'Sua resposta é privada primeiro. Não tem certo nem errado.',
-          'received.responses.talk' => 'Sim, vamos conversar',
+          'received.responses.here' => 'Estou aqui',
+          'received.responses.talk' => 'Vamos conversar',
           'received.responses.moreTime' => 'Preciso de mais um tempo',
+          'received.responses.willDo' => 'Vou fazer',
+          'received.responses.notNow' => 'Agora não',
+          'received.responses.plan' => 'Planejar algo',
           'received.responses.later' => 'Respondo depois',
+          'received.responses.heart' => 'Mandar um coração',
           'received.responses.other' => '',
           'received.seen' => 'Entendi',
-          'received.suggestPlan' => 'Sugerir um plano pequeno',
+          'received.answered' => ({required Object response}) => 'Você respondeu: ${response}',
+          'received.next' => 'Próxima mensagem',
           'received.doneTitle' => 'Tudo certo',
           'received.doneText' => 'Que bom que você leu com calma.',
           'received.emptyTitle' => 'Nada novo',
@@ -12670,6 +12684,9 @@ extension on Translations {
             required Object day,
             required Object month,
           }) => '${day} ${month}',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.dayLine' => ({
             required Object weekday,
             required Object category,
@@ -12679,9 +12696,6 @@ extension on Translations {
           'slipsList.weekdaysShort.1' => 'Ter',
           'slipsList.weekdaysShort.2' => 'Qua',
           'slipsList.weekdaysShort.3' => 'Qui',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.weekdaysShort.4' => 'Sex',
           'slipsList.weekdaysShort.5' => 'Sáb',
           'slipsList.weekdaysShort.6' => 'Dom',
@@ -13296,6 +13310,9 @@ extension on Translations {
           'widgets.statesDiscreetToggle' => 'Ativar modo discreto agora',
           'widgets.statesUnpairedSection' => 'Sem parceiro',
           'widgets.statesUnpairedTitle' => 'Convide para ver aqui',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.statesUnpairedAction' => 'Convidar',
           'widgets.statesOfflineSection' => 'Sem conexão',
           'widgets.statesOfflineTitle' => 'Mostrando o último dado',
@@ -13303,9 +13320,6 @@ extension on Translations {
           'widgets.statesPrecedenceNote' => 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Não foi possível salvar as preferências agora.',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' =>
             'Não foi possível carregar a foto do casal agora.',
           'widgets.errors.COUPLE_PHOTO_UPLOAD_FAILED' =>

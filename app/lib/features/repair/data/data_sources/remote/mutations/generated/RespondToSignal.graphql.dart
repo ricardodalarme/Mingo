@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -177,6 +179,27 @@ const documentNodeMutationRespondToSignal = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'response'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'respondedAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'seenAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: '__typename'),
                   alias: null,
                   arguments: [],
@@ -291,18 +314,36 @@ extension ClientExtensionMutationRespondToSignal on graphql.GraphQLClient {
 }
 
 class MutationRespondToSignalrespondToSignal {
-  MutationRespondToSignalrespondToSignal({required this.id, this.$__typename = 'Signals'});
+  MutationRespondToSignalrespondToSignal({
+    required this.id,
+    this.response,
+    this.respondedAt,
+    this.seenAt,
+    this.$__typename = 'Signals',
+  });
 
   factory MutationRespondToSignalrespondToSignal.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
+    final l$response = json['response'];
+    final l$respondedAt = json['respondedAt'];
+    final l$seenAt = json['seenAt'];
     final l$$__typename = json['__typename'];
     return MutationRespondToSignalrespondToSignal(
       id: (l$id as String),
+      response: l$response == null ? null : fromJsonEnumSignalResponse((l$response as String)),
+      respondedAt: l$respondedAt == null ? null : DateTime.parse((l$respondedAt as String)),
+      seenAt: l$seenAt == null ? null : DateTime.parse((l$seenAt as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
+
+  final EnumSignalResponse? response;
+
+  final DateTime? respondedAt;
+
+  final DateTime? seenAt;
 
   final String $__typename;
 
@@ -310,6 +351,16 @@ class MutationRespondToSignalrespondToSignal {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
+    final l$response = response;
+    _resultData['response'] = l$response == null ? null : toJsonEnumSignalResponse(l$response);
+    final l$respondedAt = respondedAt;
+    _resultData['respondedAt'] = l$respondedAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$respondedAt);
+    final l$seenAt = seenAt;
+    _resultData['seenAt'] = l$seenAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$seenAt);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -318,8 +369,11 @@ class MutationRespondToSignalrespondToSignal {
   @override
   int get hashCode {
     final l$id = id;
+    final l$response = response;
+    final l$respondedAt = respondedAt;
+    final l$seenAt = seenAt;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$$__typename]);
+    return Object.hashAll([l$id, l$response, l$respondedAt, l$seenAt, l$$__typename]);
   }
 
   @override
@@ -333,6 +387,21 @@ class MutationRespondToSignalrespondToSignal {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
+      return false;
+    }
+    final l$response = response;
+    final lOther$response = other.response;
+    if (l$response != lOther$response) {
+      return false;
+    }
+    final l$respondedAt = respondedAt;
+    final lOther$respondedAt = other.respondedAt;
+    if (l$respondedAt != lOther$respondedAt) {
+      return false;
+    }
+    final l$seenAt = seenAt;
+    final lOther$seenAt = other.seenAt;
+    if (l$seenAt != lOther$seenAt) {
       return false;
     }
     final l$$__typename = $__typename;

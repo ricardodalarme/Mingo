@@ -224,6 +224,27 @@ const documentNodeQueryReceivedSignals = DocumentNode(
                               selectionSet: null,
                             ),
                             FieldNode(
+                              name: NameNode(value: 'response'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'respondedAt'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'seenAt'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
                               name: NameNode(value: 'createdAt'),
                               alias: null,
                               arguments: [],
@@ -534,6 +555,9 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     required this.kind,
     this.value,
     this.body,
+    this.response,
+    this.respondedAt,
+    this.seenAt,
     required this.createdAt,
     this.$__typename = 'Signals',
   });
@@ -543,6 +567,9 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     final l$kind = json['kind'];
     final l$value = json['value'];
     final l$body = json['body'];
+    final l$response = json['response'];
+    final l$respondedAt = json['respondedAt'];
+    final l$seenAt = json['seenAt'];
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
     return QueryReceivedSignalssignalsCollectionedgesnode(
@@ -550,6 +577,9 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
       kind: fromJsonEnumSignalKind((l$kind as String)),
       value: (l$value as String?),
       body: (l$body as String?),
+      response: l$response == null ? null : fromJsonEnumSignalResponse((l$response as String)),
+      respondedAt: l$respondedAt == null ? null : DateTime.parse((l$respondedAt as String)),
+      seenAt: l$seenAt == null ? null : DateTime.parse((l$seenAt as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
     );
@@ -562,6 +592,12 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
   final String? value;
 
   final String? body;
+
+  final EnumSignalResponse? response;
+
+  final DateTime? respondedAt;
+
+  final DateTime? seenAt;
 
   final DateTime createdAt;
 
@@ -577,6 +613,16 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     _resultData['value'] = l$value;
     final l$body = body;
     _resultData['body'] = l$body;
+    final l$response = response;
+    _resultData['response'] = l$response == null ? null : toJsonEnumSignalResponse(l$response);
+    final l$respondedAt = respondedAt;
+    _resultData['respondedAt'] = l$respondedAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$respondedAt);
+    final l$seenAt = seenAt;
+    _resultData['seenAt'] = l$seenAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$seenAt);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;
@@ -590,9 +636,22 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     final l$kind = kind;
     final l$value = value;
     final l$body = body;
+    final l$response = response;
+    final l$respondedAt = respondedAt;
+    final l$seenAt = seenAt;
     final l$createdAt = createdAt;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$kind, l$value, l$body, l$createdAt, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$kind,
+      l$value,
+      l$body,
+      l$response,
+      l$respondedAt,
+      l$seenAt,
+      l$createdAt,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -622,6 +681,21 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     final l$body = body;
     final lOther$body = other.body;
     if (l$body != lOther$body) {
+      return false;
+    }
+    final l$response = response;
+    final lOther$response = other.response;
+    if (l$response != lOther$response) {
+      return false;
+    }
+    final l$respondedAt = respondedAt;
+    final lOther$respondedAt = other.respondedAt;
+    if (l$respondedAt != lOther$respondedAt) {
+      return false;
+    }
+    final l$seenAt = seenAt;
+    final lOther$seenAt = other.seenAt;
+    if (l$seenAt != lOther$seenAt) {
       return false;
     }
     final l$createdAt = createdAt;

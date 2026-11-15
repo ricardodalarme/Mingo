@@ -4569,15 +4569,22 @@ class _Translations$received$en extends Translations$received$pt {
   String get privateFirst => 'Your answer is private first. There is no right or wrong.';
   @override
   Map<String, String> get responses => {
-    'talk': 'Yes, let\'s talk',
+    'here': 'I\'m here',
+    'talk': 'Let\'s talk',
     'moreTime': 'I need a bit more time',
+    'willDo': 'I\'ll do it',
+    'notNow': 'Not now',
+    'plan': 'Plan something',
     'later': 'I\'ll answer later',
+    'heart': 'Send a heart',
     'other': '',
   };
   @override
   String get seen => 'Got it';
   @override
-  String get suggestPlan => 'Suggest a small plan';
+  String answered({required Object response}) => 'You answered: ${response}';
+  @override
+  String get next => 'Next message';
   @override
   String get doneTitle => 'All good';
   @override
@@ -10258,12 +10265,18 @@ extension on TranslationsEn {
           'received.bodies.other' => '',
           'received.fromPartner' => 'From your partner',
           'received.privateFirst' => 'Your answer is private first. There is no right or wrong.',
-          'received.responses.talk' => 'Yes, let\'s talk',
+          'received.responses.here' => 'I\'m here',
+          'received.responses.talk' => 'Let\'s talk',
           'received.responses.moreTime' => 'I need a bit more time',
+          'received.responses.willDo' => 'I\'ll do it',
+          'received.responses.notNow' => 'Not now',
+          'received.responses.plan' => 'Plan something',
           'received.responses.later' => 'I\'ll answer later',
+          'received.responses.heart' => 'Send a heart',
           'received.responses.other' => '',
           'received.seen' => 'Got it',
-          'received.suggestPlan' => 'Suggest a small plan',
+          'received.answered' => ({required Object response}) => 'You answered: ${response}',
+          'received.next' => 'Next message',
           'received.doneTitle' => 'All good',
           'received.doneText' => 'Thanks for reading it calmly.',
           'received.emptyTitle' => 'Nothing new',
@@ -10748,6 +10761,9 @@ extension on TranslationsEn {
             required Object month,
             required Object day,
           }) => '${month} ${day}',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.dayLine' => ({
             required Object weekday,
             required Object category,
@@ -10757,9 +10773,6 @@ extension on TranslationsEn {
           'slipsList.weekdaysShort.1' => 'Tue',
           'slipsList.weekdaysShort.2' => 'Wed',
           'slipsList.weekdaysShort.3' => 'Thu',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.weekdaysShort.4' => 'Fri',
           'slipsList.weekdaysShort.5' => 'Sat',
           'slipsList.weekdaysShort.6' => 'Sun',
@@ -11371,6 +11384,9 @@ extension on TranslationsEn {
           'widgets.statesDiscreetToggle' => 'Enable discreet mode now',
           'widgets.statesUnpairedSection' => 'No partner',
           'widgets.statesUnpairedTitle' => 'Invite to see here',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.statesUnpairedAction' => 'Invite',
           'widgets.statesOfflineSection' => 'Offline',
           'widgets.statesOfflineTitle' => 'Showing the last saved data',
@@ -11378,9 +11394,6 @@ extension on TranslationsEn {
           'widgets.statesPrecedenceNote' => 'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Could not save widget preferences right now.',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' => 'Could not load the couple photo right now.',
           'widgets.errors.COUPLE_PHOTO_UPLOAD_FAILED' =>
             'Could not save the couple photo right now.',

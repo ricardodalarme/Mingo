@@ -5,6 +5,7 @@ import 'package:app/features/repair/data/mappers/repair_enum_mapper.dart';
 import 'package:app/features/repair/data/models/guided_session.dart';
 import 'package:app/features/repair/data/models/received_signal.dart';
 import 'package:app/features/repair/data/models/repair_path.dart';
+import 'package:app/features/repair/data/models/signal_answer.dart';
 import 'package:logger/logger.dart';
 
 class RepairRepository({required final RepairDataSource _dataSource}) {
@@ -128,6 +129,9 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
             createdAt: node.createdAt,
             value: node.value,
             body: node.body,
+            response: node.response?.toModel(),
+            respondedAt: node.respondedAt,
+            seenAt: node.seenAt,
           ),
       ];
     } catch (e, stack) {
@@ -137,9 +141,18 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
   }
 
   /// Answers a message from the partner; a null [response] only marks it seen.
-  Future<void> respondToSignal({required String signalId, RepairResponse? response}) async {
+  Future<SignalAnswer> respondToSignal({required String signalId, RepairResponse? response}) async {
     try {
-      await _dataSource.respondToSignal(signalId: signalId, response: response?.toRpc());
+      final node = await _dataSource.respondToSignal(
+        signalId: signalId,
+        response: response?.toRpc(),
+      );
+
+      return SignalAnswer(
+        response: node.response?.toModel(),
+        respondedAt: node.respondedAt,
+        seenAt: node.seenAt,
+      );
     } catch (e, stack) {
       _logger.error('Failed to answer a message', error: e, stackTrace: stack);
       rethrow;

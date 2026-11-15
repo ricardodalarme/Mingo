@@ -17,6 +17,12 @@ final class const ReceivedSignalsState({
     );
   }
 
+  /// Whether another message waits behind the one on top.
+  bool get hasNext => switch (signals) {
+    Success(:final value) => value.length > 1,
+    _ => false,
+  };
+
   @override
   List<Object?> get props => [signals, respondAction, answeredCount];
 }

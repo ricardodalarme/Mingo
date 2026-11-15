@@ -128,14 +128,17 @@ class RepairDataSource({required final GQLClient _client}) {
   }
 
   /// Marks the signal seen and stores the answer, when there is one.
-  Future<void> respondToSignal({required String signalId, String? response}) async {
+  Future<MutationRespondToSignalrespondToSignal> respondToSignal({
+    required String signalId,
+    String? response,
+  }) async {
     final result = await _client.mutate(
       OptionsMutationRespondToSignal(
         variables: VariablesMutationRespondToSignal(signalId: signalId, response: response),
       ),
     );
 
-    validateResponse(result);
+    return validateResponseData(result, getData: (data) => data.respondToSignal);
   }
 
   /// Starts a pause that ends by itself at [returnAt], which the server limits to 24 hours.

@@ -62,8 +62,28 @@ extension EnumSignalKindMapper on EnumSignalKind {
 extension RepairResponseMapper on RepairResponse {
   /// The text the respond function takes.
   String toRpc() => switch (this) {
+    RepairResponse.here => EnumSignalResponse.here.toJson(),
     RepairResponse.talk => EnumSignalResponse.talk.toJson(),
     RepairResponse.moreTime => EnumSignalResponse.more_time.toJson(),
+    RepairResponse.willDo => EnumSignalResponse.will_do.toJson(),
+    RepairResponse.notNow => EnumSignalResponse.not_now.toJson(),
+    RepairResponse.plan => EnumSignalResponse.plan.toJson(),
     RepairResponse.later => EnumSignalResponse.later.toJson(),
+    RepairResponse.heart => EnumSignalResponse.heart.toJson(),
+  };
+}
+
+extension EnumSignalResponseMapper on EnumSignalResponse {
+  /// A response this version does not know is left unnamed.
+  RepairResponse? toModel() => switch (this) {
+    EnumSignalResponse.here => RepairResponse.here,
+    EnumSignalResponse.talk => RepairResponse.talk,
+    EnumSignalResponse.more_time => RepairResponse.moreTime,
+    EnumSignalResponse.will_do => RepairResponse.willDo,
+    EnumSignalResponse.not_now => RepairResponse.notNow,
+    EnumSignalResponse.plan => RepairResponse.plan,
+    EnumSignalResponse.later => RepairResponse.later,
+    EnumSignalResponse.heart => RepairResponse.heart,
+    EnumSignalResponse.$unknown => null,
   };
 }
