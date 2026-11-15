@@ -1,16 +1,20 @@
-query ReceivedSignals($recipientId: uuid!) {
-  signals(
-    where: { recipientId: { _eq: $recipientId }, seenAt: { _is_null: true } }
-    order_by: { createdAt: desc }
-    limit: 20
+query ReceivedSignals($recipientId: UUID!) {
+  signalsCollection(
+    filter: { recipientId: { eq: $recipientId }, seenAt: { is: NULL } }
+    orderBy: [{ createdAt: DescNullsLast }]
+    first: 20
   ) {
-    id
-    kind
-    value
-    body
-    response
-    respondedAt
-    seenAt
-    createdAt
+    edges {
+      node {
+        id
+        kind
+        value
+        body
+        response
+        respondedAt
+        seenAt
+        createdAt
+      }
+    }
   }
 }

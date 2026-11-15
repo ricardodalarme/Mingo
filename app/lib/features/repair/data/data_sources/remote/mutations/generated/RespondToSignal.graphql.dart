@@ -7,15 +7,11 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationRespondToSignal {
-  factory VariablesMutationRespondToSignal({
-    required String signalId,
-    EnumSignalResponse_enum? response,
-    required DateTime seenAt,
-  }) => VariablesMutationRespondToSignal._({
-    r'signalId': signalId,
-    if (response != null) r'response': response,
-    r'seenAt': seenAt,
-  });
+  factory VariablesMutationRespondToSignal({required String signalId, String? response}) =>
+      VariablesMutationRespondToSignal._({
+        r'signalId': signalId,
+        if (response != null) r'response': response,
+      });
 
   VariablesMutationRespondToSignal._(this._$data);
 
@@ -25,12 +21,8 @@ class VariablesMutationRespondToSignal {
     result$data['signalId'] = (l$signalId as String);
     if (data.containsKey('response')) {
       final l$response = data['response'];
-      result$data['response'] = l$response == null
-          ? null
-          : fromJsonEnumSignalResponse_enum((l$response as String));
+      result$data['response'] = (l$response as String?);
     }
-    final l$seenAt = data['seenAt'];
-    result$data['seenAt'] = DateTime.parse((l$seenAt as String));
     return VariablesMutationRespondToSignal._(result$data);
   }
 
@@ -38,9 +30,7 @@ class VariablesMutationRespondToSignal {
 
   String get signalId => (_$data['signalId'] as String);
 
-  EnumSignalResponse_enum? get response => (_$data['response'] as EnumSignalResponse_enum?);
-
-  DateTime get seenAt => (_$data['seenAt'] as DateTime);
+  String? get response => (_$data['response'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -48,12 +38,8 @@ class VariablesMutationRespondToSignal {
     result$data['signalId'] = l$signalId;
     if (_$data.containsKey('response')) {
       final l$response = response;
-      result$data['response'] = l$response == null
-          ? null
-          : toJsonEnumSignalResponse_enum(l$response);
+      result$data['response'] = l$response;
     }
-    final l$seenAt = seenAt;
-    result$data['seenAt'] = ((v) => v.toUtc().toIso8601String())(l$seenAt);
     return result$data;
   }
 
@@ -78,11 +64,6 @@ class VariablesMutationRespondToSignal {
     if (l$response != lOther$response) {
       return false;
     }
-    final l$seenAt = seenAt;
-    final lOther$seenAt = other.seenAt;
-    if (l$seenAt != lOther$seenAt) {
-      return false;
-    }
     return true;
   }
 
@@ -90,39 +71,34 @@ class VariablesMutationRespondToSignal {
   int get hashCode {
     final l$signalId = signalId;
     final l$response = response;
-    final l$seenAt = seenAt;
-    return Object.hashAll([
-      l$signalId,
-      _$data.containsKey('response') ? l$response : const {},
-      l$seenAt,
-    ]);
+    return Object.hashAll([l$signalId, _$data.containsKey('response') ? l$response : const {}]);
   }
 }
 
 class MutationRespondToSignal {
-  MutationRespondToSignal({this.updateSignalsByPk, this.$__typename = 'mutation_root'});
+  MutationRespondToSignal({this.respondToSignal, this.$__typename = 'Mutation'});
 
   factory MutationRespondToSignal.fromJson(Map<String, dynamic> json) {
-    final l$updateSignalsByPk = json['updateSignalsByPk'];
+    final l$respondToSignal = json['respondToSignal'];
     final l$$__typename = json['__typename'];
     return MutationRespondToSignal(
-      updateSignalsByPk: l$updateSignalsByPk == null
+      respondToSignal: l$respondToSignal == null
           ? null
-          : MutationRespondToSignalupdateSignalsByPk.fromJson(
-              (l$updateSignalsByPk as Map<String, dynamic>),
+          : MutationRespondToSignalrespondToSignal.fromJson(
+              (l$respondToSignal as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationRespondToSignalupdateSignalsByPk? updateSignalsByPk;
+  final MutationRespondToSignalrespondToSignal? respondToSignal;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateSignalsByPk = updateSignalsByPk;
-    _resultData['updateSignalsByPk'] = l$updateSignalsByPk?.toJson();
+    final l$respondToSignal = respondToSignal;
+    _resultData['respondToSignal'] = l$respondToSignal?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -130,9 +106,9 @@ class MutationRespondToSignal {
 
   @override
   int get hashCode {
-    final l$updateSignalsByPk = updateSignalsByPk;
+    final l$respondToSignal = respondToSignal;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateSignalsByPk, l$$__typename]);
+    return Object.hashAll([l$respondToSignal, l$$__typename]);
   }
 
   @override
@@ -143,9 +119,9 @@ class MutationRespondToSignal {
     if (other is! MutationRespondToSignal || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateSignalsByPk = updateSignalsByPk;
-    final lOther$updateSignalsByPk = other.updateSignalsByPk;
-    if (l$updateSignalsByPk != lOther$updateSignalsByPk) {
+    final l$respondToSignal = respondToSignal;
+    final lOther$respondToSignal = other.respondToSignal;
+    if (l$respondToSignal != lOther$respondToSignal) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -165,19 +141,13 @@ const documentNodeMutationRespondToSignal = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'signalId')),
-          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'response')),
-          type: NamedTypeNode(name: NameNode(value: 'SignalResponse_enum'), isNonNull: false),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'seenAt')),
-          type: NamedTypeNode(name: NameNode(value: 'timestamptz'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -186,34 +156,16 @@ const documentNodeMutationRespondToSignal = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateSignalsByPk'),
+            name: NameNode(value: 'respondToSignal'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'pk_columns'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: VariableNode(name: NameNode(value: 'signalId')),
-                    ),
-                  ],
-                ),
+                name: NameNode(value: 'signalId'),
+                value: VariableNode(name: NameNode(value: 'signalId')),
               ),
               ArgumentNode(
-                name: NameNode(value: '_set'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'response'),
-                      value: VariableNode(name: NameNode(value: 'response')),
-                    ),
-                    ObjectFieldNode(
-                      name: NameNode(value: 'seenAt'),
-                      value: VariableNode(name: NameNode(value: 'seenAt')),
-                    ),
-                  ],
-                ),
+                name: NameNode(value: 'response'),
+                value: VariableNode(name: NameNode(value: 'response')),
               ),
             ],
             directives: [],
@@ -361,24 +313,24 @@ extension ClientExtensionMutationRespondToSignal on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationRespondToSignalupdateSignalsByPk {
-  MutationRespondToSignalupdateSignalsByPk({
+class MutationRespondToSignalrespondToSignal {
+  MutationRespondToSignalrespondToSignal({
     required this.id,
     this.response,
     this.respondedAt,
     this.seenAt,
-    this.$__typename = 'signals',
+    this.$__typename = 'Signals',
   });
 
-  factory MutationRespondToSignalupdateSignalsByPk.fromJson(Map<String, dynamic> json) {
+  factory MutationRespondToSignalrespondToSignal.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$response = json['response'];
     final l$respondedAt = json['respondedAt'];
     final l$seenAt = json['seenAt'];
     final l$$__typename = json['__typename'];
-    return MutationRespondToSignalupdateSignalsByPk(
+    return MutationRespondToSignalrespondToSignal(
       id: (l$id as String),
-      response: l$response == null ? null : fromJsonEnumSignalResponse_enum((l$response as String)),
+      response: l$response == null ? null : fromJsonEnumSignalResponse((l$response as String)),
       respondedAt: l$respondedAt == null ? null : DateTime.parse((l$respondedAt as String)),
       seenAt: l$seenAt == null ? null : DateTime.parse((l$seenAt as String)),
       $__typename: (l$$__typename as String),
@@ -387,7 +339,7 @@ class MutationRespondToSignalupdateSignalsByPk {
 
   final String id;
 
-  final EnumSignalResponse_enum? response;
+  final EnumSignalResponse? response;
 
   final DateTime? respondedAt;
 
@@ -400,7 +352,7 @@ class MutationRespondToSignalupdateSignalsByPk {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$response = response;
-    _resultData['response'] = l$response == null ? null : toJsonEnumSignalResponse_enum(l$response);
+    _resultData['response'] = l$response == null ? null : toJsonEnumSignalResponse(l$response);
     final l$respondedAt = respondedAt;
     _resultData['respondedAt'] = l$respondedAt == null
         ? null
@@ -429,7 +381,7 @@ class MutationRespondToSignalupdateSignalsByPk {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationRespondToSignalupdateSignalsByPk || runtimeType != other.runtimeType) {
+    if (other is! MutationRespondToSignalrespondToSignal || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

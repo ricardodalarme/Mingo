@@ -12271,6 +12271,9 @@ extension on Translations {
           'story.together' => 'juntos',
           'story.namesLabel' => 'Incluir os nomes',
           'story.namesText' => 'Desligado por padrão.',
+          _ => null,
+        } ??
+        switch (path) {
           'story.phraseLabel' => 'Uma frase (opcional)',
           'story.phraseHint' => 'Ex.: ainda tem muito pela frente',
           'story.share' => 'Compartilhar imagem',

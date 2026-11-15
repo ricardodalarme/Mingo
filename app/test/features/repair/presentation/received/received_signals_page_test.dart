@@ -102,6 +102,14 @@ void main() {
     expect(find.text('Entendi'), findsNothing);
   });
 
+  testWidgets('a heavy day offers presence and taking something over', (tester) async {
+    await pumpPage(tester, [signalOf(SignalKind.heavyDay)]);
+
+    expect(find.text('Estou aqui'), findsOneWidget);
+    expect(find.text('Vou fazer'), findsOneWidget);
+    expect(find.text('Mandar um coração'), findsNothing);
+  });
+
   testWidgets('missing us offers a plan, a conversation and a heart', (tester) async {
     await pumpPage(tester, [signalOf(SignalKind.missUs)]);
 
