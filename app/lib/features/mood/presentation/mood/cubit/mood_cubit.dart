@@ -92,6 +92,35 @@ class MoodCubit({
     }
   }
 
+  /// Saves [mood] as today's mood from a single tap, painting it before the write returns.
+  ///
+  /// A tap on the mood already saved writes nothing; a failed write puts back what was on
+  /// screen so the strip never shows a mood the server does not have.
+  Future<void> saveTodayMood(MoodKind mood) async {
+    if (isClosed || state.saveAction.isLoading) return;
+    final savedMood = switch (state.entry) {
+      Success(:final value) => value?.mood,
+      _ => null,
+    };
+    if (savedMood == mood) return;
+
+    final previous = state;
+    emit(state.copyWith(mood: mood, saveAction: const Loading()));
+    try {
+      final entry = await _moodRepository.saveMood(
+        mood: mood,
+        need: state.need,
+        share: state.share,
+      );
+      if (isClosed) return;
+      emit(_fromEntry(entry).copyWith(saveAction: const Success(null)));
+    } catch (exception) {
+      if (isClosed) return;
+      emit(previous.copyWith(saveAction: Failure.fromObject(exception)));
+      emit(previous.copyWith(saveAction: const Initial()));
+    }
+  }
+
   /// Sends the partner a one-tap hug when their shared mood is a good one.
   Future<void> reactToPartner() async {
     if (isClosed || state.reactAction.isLoading) return;

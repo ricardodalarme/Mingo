@@ -238,6 +238,78 @@ void main() {
     expect(cubit.state.saveAction, isA<Initial>());
   });
 
+  test('a face tap saves the mood and paints it before the write returns', () async {
+    final pending = Completer<MoodEntry>();
+    when(
+      () => repository.saveMood(
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+      ),
+    ).thenAnswer((_) => pending.future);
+    final cubit = build();
+    await cubit.load();
+
+    final save = cubit.saveTodayMood(MoodKind.happy);
+
+    expect(cubit.state.mood, MoodKind.happy);
+    expect(cubit.state.saveAction, isA<Loading>());
+
+    pending.complete(
+      MoodEntry(
+        id: 'm1',
+        day: day,
+        mood: MoodKind.happy,
+        need: NeedKind.hug,
+        share: MoodShare.mood,
+      ),
+    );
+    await save;
+
+    verify(
+      () =>
+          repository.saveMood(mood: MoodKind.happy, need: NeedKind.hug, share: MoodShare.moodNeed),
+    ).called(1);
+    expect(cubit.state.mood, MoodKind.happy);
+    expect(cubit.state.saveAction, isA<Success<void>>());
+  });
+
+  test('a tap on the mood already saved writes nothing', () async {
+    final cubit = build();
+    await cubit.load();
+
+    await cubit.saveTodayMood(MoodKind.tired);
+
+    verifyNever(
+      () => repository.saveMood(
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+      ),
+    );
+  });
+
+  test('a failed face tap puts back the mood on screen', () async {
+    when(
+      () => repository.saveMood(
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+      ),
+    ).thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+    final cubit = build();
+    await cubit.load();
+    final actions = <Resource<void>>[];
+    final subscription = cubit.stream.listen((state) => actions.add(state.saveAction));
+
+    await cubit.saveTodayMood(MoodKind.happy);
+    await pumpEventQueue();
+    await subscription.cancel();
+
+    expect(cubit.state.mood, MoodKind.tired);
+    expect(actions, [isA<Loading>(), isA<Failure>(), isA<Initial>()]);
+  });
+
   test('reacting sends one hug and returns to idle', () async {
     final cubit = build();
 

@@ -48,4 +48,34 @@ void main() {
     expect(widths.toSet(), hasLength(1));
     expect(find.byType(BaseFace), findsNWidgets(3));
   });
+
+  testWidgets('the chosen face reads as selected and every face is a 44pt target', (tester) async {
+    await tester.pumpApp(
+      MoodRow(
+        title: 'Como você está?',
+        options: const [
+          MoodRowOption(face: FaceKind.good, label: 'Bem'),
+          MoodRowOption(face: FaceKind.sad, label: 'Triste'),
+        ],
+        selectedIndex: 0,
+        onSelected: (_) {},
+      ),
+    );
+
+    final pressables = tester.widgetList<AppPressable>(find.byType(AppPressable)).toList();
+
+    expect(pressables.map((widget) => widget.isSelected), [true, false]);
+    for (final pressable in pressables) {
+      final size = tester.getSize(find.byWidget(pressable));
+
+      expect(size.width, greaterThanOrEqualTo(AppIconSize.touch));
+      expect(size.height, greaterThanOrEqualTo(AppIconSize.touch));
+    }
+    expect(
+      find.byWidgetPredicate(
+        (widget) => widget is BaseFace && widget.selected && widget.kind == FaceKind.good,
+      ),
+      findsOneWidget,
+    );
+  });
 }

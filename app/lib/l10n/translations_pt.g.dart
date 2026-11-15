@@ -3874,6 +3874,9 @@ class Translations$mood$pt {
   /// pt: 'Só você vê'
   String get homePrivacy => 'Só você vê';
 
+  /// pt: 'Preciso de… e o que seu par vê'
+  String get homeDetailsLink => 'Preciso de… e o que seu par vê';
+
   Map<String, String> get homeMoods => {
     'happy': 'Bem',
     'loving': 'Carinhoso',
@@ -5452,15 +5455,6 @@ class Translations$quickSlip$pt {
   /// pt: 'Uma linha basta. 30 segundos.'
   String get subtitle => 'Uma linha basta. 30 segundos.';
 
-  /// pt: 'Gostei ou me incomodou'
-  String get polarityLabel => 'Gostei ou me incomodou';
-
-  /// pt: 'Gostei'
-  String get polarityLiked => 'Gostei';
-
-  /// pt: 'Me incomodou'
-  String get polarityBothered => 'Me incomodou';
-
   /// pt: 'Ex.: fez café antes de eu acordar'
   String get hint => 'Ex.: fez café antes de eu acordar';
 
@@ -5478,23 +5472,6 @@ class Translations$quickSlip$pt {
 
   /// pt: 'Fica privado. No domingo você escolhe o que vai para o cartão.'
   String get privacyNote => 'Fica privado. No domingo você escolhe o que vai para o cartão.';
-
-  /// pt: 'Fica só com você. Um slip assim nunca entra no cartão.'
-  String get botheredNote => 'Fica só com você. Um slip assim nunca entra no cartão.';
-
-  /// pt: 'Um pedido, se quiser'
-  String get requestLabel => 'Um pedido, se quiser';
-
-  /// pt: 'Ex.: poderia me avisar antes?'
-  String get requestHint => 'Ex.: poderia me avisar antes?';
-
-  /// pt: 'Opcional. Fica só com você, não é enviado para ninguém.'
-  String get requestHelper => 'Opcional. Fica só com você, não é enviado para ninguém.';
-
-  Map<String, String> get requestErrors => {
-    'tooLong': 'Use no máximo 140 caracteres',
-    'other': 'Revise este campo',
-  };
 
   /// pt: 'Salvar'
   String get save => 'Salvar';
@@ -6206,12 +6183,6 @@ class Translations$slipDetail$pt {
   /// pt: 'Só você vê este slip.'
   String get private => 'Só você vê este slip.';
 
-  Map<String, String> get polarities => {
-    'liked': 'Gostei',
-    'bothered': 'Me incomodou',
-    'other': '',
-  };
-
   /// pt: 'Arquivado'
   String get archived => 'Arquivado';
 
@@ -6220,9 +6191,6 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Então eu…'
   String get plan => 'Então eu…';
-
-  /// pt: 'O que eu pediria'
-  String get request => 'O que eu pediria';
 
   /// pt: 'Guardar no potinho'
   String get jarTitle => 'Guardar no potinho';
@@ -6247,9 +6215,6 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Slips invisíveis nunca entram em um cartão.'
   String get cardInvisible => 'Slips invisíveis nunca entram em um cartão.';
-
-  /// pt: 'Um slip que te incomodou fica só com você e nunca entra no cartão.'
-  String get cardBothered => 'Um slip que te incomodou fica só com você e nunca entra no cartão.';
 
   /// pt: 'O que seu par leria'
   String get previewTitle => 'O que seu par leria';
@@ -6440,9 +6405,6 @@ class Translations$slipsList$pt {
 
   /// pt: '{weekday} · {category}'
   String dayLine({required Object weekday, required Object category}) => '${weekday} · ${category}';
-
-  /// pt: 'Só eu'
-  String get privateMark => 'Só eu';
 
   List<String> get weekdaysShort => ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
   List<String> get monthsShort => [
@@ -11315,6 +11277,7 @@ extension on Translations {
           'mood.partnerNeedSpace' => 'O que ajuda: um pouco de espaço.',
           'mood.homeTitle' => 'Como você está?',
           'mood.homePrivacy' => 'Só você vê',
+          'mood.homeDetailsLink' => 'Preciso de… e o que seu par vê',
           'mood.homeMoods.happy' => 'Bem',
           'mood.homeMoods.loving' => 'Carinhoso',
           'mood.homeMoods.tired' => 'Cansado',
@@ -11369,10 +11332,10 @@ extension on Translations {
           'need.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
           'need.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'need.errors.other' => 'Não deu para enviar agora. Tente de novo.',
-          'notFound.title' => '404',
           _ => null,
         } ??
         switch (path) {
+          'notFound.title' => '404',
           'notFound.description' => 'Página não encontrada',
           'notFound.buttonBack' => 'Voltar para página inicial',
           'notes.title' => 'Bilhete ou desenho',
@@ -11939,9 +11902,6 @@ extension on Translations {
           'quickSlip.title' => 'O que te deixou feliz?',
           'quickSlip.titleHighlight' => 'feliz',
           'quickSlip.subtitle' => 'Uma linha basta. 30 segundos.',
-          'quickSlip.polarityLabel' => 'Gostei ou me incomodou',
-          'quickSlip.polarityLiked' => 'Gostei',
-          'quickSlip.polarityBothered' => 'Me incomodou',
           'quickSlip.hint' => 'Ex.: fez café antes de eu acordar',
           'quickSlip.textErrors.empty' => 'Escreva o slip primeiro',
           'quickSlip.textErrors.tooLong' => 'Este slip está muito longo',
@@ -11952,12 +11912,6 @@ extension on Translations {
           'quickSlip.categories.other' => '',
           'quickSlip.privacyNote' =>
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
-          'quickSlip.botheredNote' => 'Fica só com você. Um slip assim nunca entra no cartão.',
-          'quickSlip.requestLabel' => 'Um pedido, se quiser',
-          'quickSlip.requestHint' => 'Ex.: poderia me avisar antes?',
-          'quickSlip.requestHelper' => 'Opcional. Fica só com você, não é enviado para ninguém.',
-          'quickSlip.requestErrors.tooLong' => 'Use no máximo 140 caracteres',
-          'quickSlip.requestErrors.other' => 'Revise este campo',
           'quickSlip.save' => 'Salvar',
           'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
@@ -11965,9 +11919,6 @@ extension on Translations {
           'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
           'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
           'quickSlip.saved.undo' => 'Desfazer',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.saved.done' => 'Pronto',
           'quickSlip.errors.FREE_LIMIT_REACHED' =>
             'Você chegou ao limite de slips do plano grátis.',
@@ -11978,6 +11929,9 @@ extension on Translations {
           'received.kinds.need' => 'Preciso de…',
           'received.kinds.missUs' => 'Saudade',
           'received.kinds.hug' => 'Um abraço',
+          _ => null,
+        } ??
+        switch (path) {
           'received.kinds.distance' => 'Um pouco de distância',
           'received.kinds.heavyDay' => 'Um dia pesado',
           'received.kinds.goodNews' => 'Boa notícia',
@@ -12357,13 +12311,9 @@ extension on Translations {
           'slipDetail.kinds.invisible' => 'Invisível',
           'slipDetail.kinds.other' => '',
           'slipDetail.private' => 'Só você vê este slip.',
-          'slipDetail.polarities.liked' => 'Gostei',
-          'slipDetail.polarities.bothered' => 'Me incomodou',
-          'slipDetail.polarities.other' => '',
           'slipDetail.archived' => 'Arquivado',
           'slipDetail.feeling' => 'Como você se sentiu',
           'slipDetail.plan' => 'Então eu…',
-          'slipDetail.request' => 'O que eu pediria',
           'slipDetail.jarTitle' => 'Guardar no potinho',
           'slipDetail.jarText' => 'Para abrir em um dia ruim. Só você vê.',
           'slipDetail.cardTitle' => 'Quem vê isto',
@@ -12372,8 +12322,6 @@ extension on Translations {
           'slipDetail.cardOn' => 'Pode entrar no cartão',
           'slipDetail.cardOnText' => 'No domingo você escolhe se ele vai.',
           'slipDetail.cardInvisible' => 'Slips invisíveis nunca entram em um cartão.',
-          'slipDetail.cardBothered' =>
-            'Um slip que te incomodou fica só com você e nunca entra no cartão.',
           'slipDetail.previewTitle' => 'O que seu par leria',
           'slipDetail.previewText' => 'Se este slip entrar no cartão, é este texto que aparece.',
           'slipDetail.sentNote' => 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.',
@@ -12472,7 +12420,6 @@ extension on Translations {
             required Object weekday,
             required Object category,
           }) => '${weekday} · ${category}',
-          'slipsList.privateMark' => 'Só eu',
           'slipsList.weekdaysShort.0' => 'Seg',
           'slipsList.weekdaysShort.1' => 'Ter',
           'slipsList.weekdaysShort.2' => 'Qua',
@@ -12536,9 +12483,6 @@ extension on Translations {
           'story.errorText' => 'Tente de novo em instantes.',
           'story.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
           'sundayCard.title' => 'Seu cartão',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.edit' => 'Editar',
           'sundayCard.save' => 'Salvar',
           'sundayCard.cancel' => 'Cancelar',
@@ -12553,6 +12497,9 @@ extension on Translations {
           'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
           'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',
           'sundayCard.saveError' => 'Não deu para salvar o cartão. Tente de novo.',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.openFromToday' => 'Ver o rascunho',
           'sundayCard.deliverError' =>
             'Não deu para enviar agora. O cartão continua aqui, tente de novo.',

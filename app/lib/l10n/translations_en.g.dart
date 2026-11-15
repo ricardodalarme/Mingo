@@ -3192,6 +3192,8 @@ class _Translations$mood$en extends Translations$mood$pt {
   @override
   String get homePrivacy => 'Only you see it';
   @override
+  String get homeDetailsLink => 'I need… and what my partner sees';
+  @override
   Map<String, String> get homeMoods => {
     'happy': 'Good',
     'loving': 'Loving',
@@ -3352,12 +3354,6 @@ class _Translations$notes$en extends Translations$notes$pt {
   String get clear => 'Clear';
   @override
   String get emptyDrawing => 'Draw something to be able to send it.';
-  @override
-  String get startDrawing => 'Draw';
-  @override
-  String get continueDrawing => 'Keep drawing';
-  @override
-  String get done => 'Done';
   @override
   String get widgetLabel => 'Send to the widget';
   @override
@@ -9429,6 +9425,7 @@ extension on TranslationsEn {
           'mood.partnerNeedSpace' => 'What helps: some space.',
           'mood.homeTitle' => 'How are you?',
           'mood.homePrivacy' => 'Only you see it',
+          'mood.homeDetailsLink' => 'I need… and what my partner sees',
           'mood.homeMoods.happy' => 'Good',
           'mood.homeMoods.loving' => 'Loving',
           'mood.homeMoods.tired' => 'Tired',
@@ -9484,10 +9481,10 @@ extension on TranslationsEn {
             'To send this, you need to be connected with your partner in the app.',
           'need.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'need.errors.other' => 'Couldn\'t send right now. Try again.',
-          'notFound.title' => '404',
           _ => null,
         } ??
         switch (path) {
+          'notFound.title' => '404',
           'notFound.description' => 'Page not found',
           'notFound.buttonBack' => 'Go back home',
           'notes.title' => 'A note or a drawing',
@@ -9507,9 +9504,6 @@ extension on TranslationsEn {
           'notes.undo' => 'Undo',
           'notes.clear' => 'Clear',
           'notes.emptyDrawing' => 'Draw something to be able to send it.',
-          'notes.startDrawing' => 'Draw',
-          'notes.continueDrawing' => 'Keep drawing',
-          'notes.done' => 'Done',
           'notes.widgetLabel' => 'Send to the widget',
           'notes.widgetText' => 'It appears on their widget if they allow notes.',
           'notes.drawingHint' =>
@@ -10092,6 +10086,12 @@ extension on TranslationsEn {
           'received.kinds.need' => 'I need…',
           'received.kinds.missUs' => 'Missing you',
           'received.kinds.hug' => 'A hug',
+<<<<<<<
+=======
+          _ => null,
+        } ??
+        switch (path) {
+>>>>>>>
           'received.kinds.distance' => 'A little distance',
           'received.kinds.heavyDay' => 'A heavy day',
           'received.kinds.goodNews' => 'Good news',
@@ -10662,6 +10662,12 @@ extension on TranslationsEn {
           'sundayCard.errorTitle' => 'Could not load the card',
           'sundayCard.errorText' => 'Your slips are still saved. Try again.',
           'sundayCard.saveError' => 'Could not save the card. Try again.',
+<<<<<<<
+=======
+          _ => null,
+        } ??
+        switch (path) {
+>>>>>>>
           'sundayCard.openFromToday' => 'See the draft',
           'sundayCard.deliverError' =>
             'Could not send right now. The card is still here, try again.',

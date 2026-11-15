@@ -10,16 +10,22 @@ import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:app/features/mood/presentation/mood/widgets/today_mood_block.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:network/network.dart';
 
 import '../../../../../test_helpers/pump_app.dart';
 
 class _MockMoodRepository() extends Mock implements MoodRepository;
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
+
+class _MockStackRouter() extends Mock implements StackRouter;
 
 void main() {
   late MoodRepository repository;
@@ -36,13 +42,32 @@ void main() {
   MoodToday today({MoodEntry? value, PartnerMood? partner, String? partnerName = 'Marina'}) =>
       (entry: value, partnerMood: partner, partnerName: partnerName);
 
-  setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
+  setUpAll(() {
+    LocaleSettings.setLocaleSync(AppLocale.pt);
+    registerFallbackValue(MoodKind.happy);
+    registerFallbackValue(MoodShare.none);
+    registerFallbackValue(NeedKind.hug);
+    registerFallbackValue(MoodRoute());
+  });
 
   setUp(() {
     repository = _MockMoodRepository();
     slips = _MockSlipRepository();
     when(() => repository.readCachedTodayMood()).thenReturn(null);
     when(() => repository.getTodayMood()).thenAnswer((_) async => today(value: entry));
+    when(
+      () => repository.saveMood(
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+      ),
+    ).thenAnswer((invocation) async {
+      final mood = invocation.namedArguments[#mood] as MoodKind;
+      final need = invocation.namedArguments[#need] as NeedKind?;
+      final share = invocation.namedArguments[#share] as MoodShare;
+
+      return MoodEntry(id: 'm1', day: day, mood: mood, need: need, share: share);
+    });
     when(() => slips.sendHug()).thenAnswer((_) async {});
   });
 
@@ -175,5 +200,95 @@ void main() {
     await pumpBlock(tester, cubit, isFirstDay: true);
 
     expect(find.text('Como você está?'), findsNothing);
+  });
+
+  testWidgets('one tap on a face saves the mood and marks it', (tester) async {
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+    await tester.tap(find.text('Bem'));
+    await tester.pump();
+    await tester.pump();
+
+    verify(
+      () => repository.saveMood(mood: MoodKind.happy, need: NeedKind.hug, share: MoodShare.mood),
+    ).called(1);
+    expect(
+      find.byWidgetPredicate(
+        (widget) => widget is BaseFace && widget.selected && widget.kind == FaceKind.good,
+      ),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('tapping the face already saved writes nothing', (tester) async {
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+    await tester.tap(find.text('Cansado'));
+    await tester.pump();
+
+    verifyNever(
+      () => repository.saveMood(
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+      ),
+    );
+  });
+
+  testWidgets('a failed save puts the face back and says it failed', (tester) async {
+    when(
+      () => repository.saveMood(
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+      ),
+    ).thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+    await tester.tap(find.text('Bem'));
+    await tester.pump();
+    await tester.pump();
+
+    expect(cubit.state.mood, MoodKind.tired);
+    expect(
+      find.byWidgetPredicate(
+        (widget) => widget is BaseFace && widget.selected && widget.kind == FaceKind.tired,
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Não deu para salvar seu humor. Verifique a conexão e tente de novo.'),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('the block link opens the need and share flow', (tester) async {
+    final router = _MockStackRouter();
+    when(() => router.push<Object?>(any(), onFailure: any(named: 'onFailure')))
+        .thenAnswer((_) async => null);
+    final cubit = build();
+    await cubit.load();
+
+    await tester.pumpApp(
+      StackRouterScope(
+        controller: router,
+        stateHash: 0,
+        child: BlocProvider.value(value: cubit, child: const TodayMoodBlock(isDiscreet: false)),
+      ),
+    );
+
+    await tester.tap(find.text('Preciso de… e o que seu par vê'));
+    await tester.pump();
+
+    final route = verify(
+      () => router.push<Object?>(captureAny(), onFailure: any(named: 'onFailure')),
+    ).captured.single;
+    expect(route, isA<MoodRoute>());
   });
 }

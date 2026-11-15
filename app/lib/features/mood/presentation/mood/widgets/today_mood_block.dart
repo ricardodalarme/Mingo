@@ -16,7 +16,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// Hoje's first block: the person's own mood and the partner's shared mood.
 ///
 /// It reads [MoodCubit], so it paints as soon as the mood read returns instead of waiting for
-/// Hoje's home query.
+/// Hoje's home query. A face saves the mood on the tap; the need and the share choice stay on
+/// the mood page behind the block's link.
 class const TodayMoodBlock({
   required final bool isDiscreet,
   final bool isFirstDay = false,
@@ -45,8 +46,9 @@ class const TodayMoodBlock({
     final selectedIndex = mood == null ? null : _homeMoods.indexOf(mood);
 
     return BlocListener<MoodCubit, MoodState>(
-      listenWhen: (previous, current) => previous.reactAction != current.reactAction,
-      listener: _onReactionChanged,
+      listenWhen: (previous, current) =>
+          previous.saveAction != current.saveAction || previous.reactAction != current.reactAction,
+      listener: _onActionChanged,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -63,21 +65,35 @@ class const TodayMoodBlock({
             SkeletonizerResourceWidget<MoodEntry?>(
               entry,
               fakeValue: null,
-              successBuilder: (_) => MoodRow(
-                title: l10n.homeTitle,
-                actionLabel: l10n.homePrivacy,
-                options: [
-                  for (final option in _homeMoods)
-                    MoodRowOption(
-                      face: option.face,
-                      label: l10n.homeMoods.selectOrFallback(option.name),
+              successBuilder: (_) => Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  MoodRow(
+                    title: l10n.homeTitle,
+                    actionLabel: l10n.homePrivacy,
+                    options: [
+                      for (final option in _homeMoods)
+                        MoodRowOption(
+                          face: option.face,
+                          label: l10n.homeMoods.selectOrFallback(option.name),
+                        ),
+                    ],
+                    selectedIndex: selectedIndex == null || selectedIndex < 0
+                        ? null
+                        : selectedIndex,
+                    onSelected: (index) =>
+                        context.read<MoodCubit>().saveTodayMood(_homeMoods[index]),
+                  ),
+                  const SizedBox(height: AppSpace.s12),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: BaseButton.secondary(
+                      text: l10n.homeDetailsLink,
+                      onPressed: () => _openDetails(context),
                     ),
+                  ),
+                  const SizedBox(height: AppSpace.s16),
                 ],
-                selectedIndex: selectedIndex == null || selectedIndex < 0 ? null : selectedIndex,
-                onSelected: (index) async {
-                  await context.pushRoute(MoodRoute(initialMood: _homeMoods[index].name));
-                  if (context.mounted) await context.read<MoodCubit>().load();
-                },
               ),
               failureBuilder: (_) => const SizedBox.shrink(),
             ),
@@ -86,18 +102,31 @@ class const TodayMoodBlock({
     );
   }
 
-  void _onReactionChanged(BuildContext context, MoodState state) {
-    final action = state.reactAction;
-    final l10n = context.l10n.moodHelp;
-    if (action is Failure) {
+  Future<void> _openDetails(BuildContext context) async {
+    await context.pushRoute(MoodRoute());
+    if (context.mounted) await context.read<MoodCubit>().load();
+  }
+
+  void _onActionChanged(BuildContext context, MoodState state) {
+    final l10n = context.l10n;
+    if (state.saveAction case Failure(:final exception)) {
       BaseToast.show(
         context,
-        l10n.errors.selectOrFallback(action.exception.l10nKey),
+        l10n.mood.errors.selectOrFallback(exception.l10nKey),
         variant: BaseToastVariant.error,
       );
 
       return;
     }
-    if (action is Success) BaseToast.show(context, l10n.sent);
+    if (state.reactAction case Failure(:final exception)) {
+      BaseToast.show(
+        context,
+        l10n.moodHelp.errors.selectOrFallback(exception.l10nKey),
+        variant: BaseToastVariant.error,
+      );
+
+      return;
+    }
+    if (state.reactAction is Success) BaseToast.show(context, l10n.moodHelp.sent);
   }
 }
