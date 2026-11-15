@@ -3786,7 +3786,31 @@ class Translations$mood$pt {
     'opinion': 'Uma opinião',
     'hug': 'Um abraço',
     'space': 'Um tempo',
+    'chocolate': 'Um chocolate',
+    'cuteMessage': 'Uma mensagem fofa',
+    'foreheadKiss': 'Um beijinho na testa',
+    'company': 'Companhia',
+    'rest': 'Descansar',
   };
+
+  /// pt: 'Preciso de…'
+  String get needMenuAction => 'Preciso de…';
+
+  /// pt: 'Preciso de: {need}'
+  String needMenuActionSelected({required Object need}) => 'Preciso de: ${need}';
+
+  /// pt: 'Escolher'
+  String get needMenuEmpty => 'Escolher';
+
+  /// pt: 'Uma coisa por dia.'
+  String get needMenuSupport => 'Uma coisa por dia.';
+
+  /// pt: 'Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.'
+  String get needSheetSubtitle =>
+      'Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.';
+
+  /// pt: 'Salvo'
+  String get needSaved => 'Salvo';
 
   /// pt: 'O que seu par vê'
   String get shareTitle => 'O que seu par vê';
@@ -3867,6 +3891,21 @@ class Translations$mood$pt {
 
   /// pt: 'O que ajuda: um pouco de espaço.'
   String get partnerNeedSpace => 'O que ajuda: um pouco de espaço.';
+
+  /// pt: 'O que ajuda: um chocolate.'
+  String get partnerNeedChocolate => 'O que ajuda: um chocolate.';
+
+  /// pt: 'O que ajuda: uma mensagem fofa.'
+  String get partnerNeedCuteMessage => 'O que ajuda: uma mensagem fofa.';
+
+  /// pt: 'O que ajuda: um beijinho na testa.'
+  String get partnerNeedForeheadKiss => 'O que ajuda: um beijinho na testa.';
+
+  /// pt: 'O que ajuda: companhia.'
+  String get partnerNeedCompany => 'O que ajuda: companhia.';
+
+  /// pt: 'O que ajuda: descanso.'
+  String get partnerNeedRest => 'O que ajuda: descanso.';
 
   /// pt: 'Como você está?'
   String get homeTitle => 'Como você está?';
@@ -3966,6 +4005,42 @@ class Translations$moodHelp$pt {
   /// pt: 'Coração enviado'
   String get sent => 'Coração enviado';
 
+  /// pt: 'O que {name} precisa'
+  String partnerNeedTitle({required Object name}) => 'O que ${name} precisa';
+
+  /// pt: 'O que seu par precisa'
+  String get partnerNeedTitleGeneric => 'O que seu par precisa';
+
+  /// pt: 'O pedido de hoje. Sem cobrança.'
+  String get partnerNeedSubtitle => 'O pedido de hoje. Sem cobrança.';
+
+  /// pt: 'Isso vem do humor que seu par compartilhou hoje.'
+  String get partnerNeedNote => 'Isso vem do humor que seu par compartilhou hoje.';
+
+  Map<String, String> get partnerNeedActions => {
+    'listen': 'Só ouvir',
+    'opinion': 'Dar uma opinião',
+    'hug': 'Mandar um abraço',
+    'space': 'Dar espaço',
+    'chocolate': 'Levar um chocolate',
+    'cuteMessage': 'Abrir a conversa',
+    'foreheadKiss': 'Um beijinho na testa',
+    'company': 'Ficar por perto',
+    'rest': 'Deixar descansar',
+    'other': '',
+  };
+  Map<String, String> get partnerNeedSupports => {
+    'listen': 'Sem dar opinião nem tentar resolver.',
+    'opinion': 'Uma opinião honesta, sem julgar.',
+    'hug': 'Chega como um sinal no app.',
+    'space': 'Um tempo sem cobrar resposta.',
+    'chocolate': 'Um chocolate pequeno, sem motivo.',
+    'cuteMessage': 'Uma linha carinhosa já basta.',
+    'foreheadKiss': 'Pequeno e sem pressa.',
+    'company': 'Sentar perto, sem precisar falar.',
+    'rest': 'Assumir o que der e deixar quieto.',
+    'other': '',
+  };
   Map<String, String> get errors => {
     'NOT_PAIRED': 'Vocês ainda não estão conectados.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
@@ -11275,6 +11350,18 @@ extension on Translations {
           'mood.needs.opinion' => 'Uma opinião',
           'mood.needs.hug' => 'Um abraço',
           'mood.needs.space' => 'Um tempo',
+          'mood.needs.chocolate' => 'Um chocolate',
+          'mood.needs.cuteMessage' => 'Uma mensagem fofa',
+          'mood.needs.foreheadKiss' => 'Um beijinho na testa',
+          'mood.needs.company' => 'Companhia',
+          'mood.needs.rest' => 'Descansar',
+          'mood.needMenuAction' => 'Preciso de…',
+          'mood.needMenuActionSelected' => ({required Object need}) => 'Preciso de: ${need}',
+          'mood.needMenuEmpty' => 'Escolher',
+          'mood.needMenuSupport' => 'Uma coisa por dia.',
+          'mood.needSheetSubtitle' =>
+            'Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.',
+          'mood.needSaved' => 'Salvo',
           'mood.shareTitle' => 'O que seu par vê',
           'mood.shareTitleNamed' => ({required Object name}) => 'O que ${name} vê',
           'mood.shareSubtitle' => 'Quem cria o dado decide. O padrão é privado.',
@@ -11313,6 +11400,11 @@ extension on Translations {
           'mood.partnerNeedOpinion' => 'O que ajuda: uma opinião.',
           'mood.partnerNeedHug' => 'O que ajuda: um abraço.',
           'mood.partnerNeedSpace' => 'O que ajuda: um pouco de espaço.',
+          'mood.partnerNeedChocolate' => 'O que ajuda: um chocolate.',
+          'mood.partnerNeedCuteMessage' => 'O que ajuda: uma mensagem fofa.',
+          'mood.partnerNeedForeheadKiss' => 'O que ajuda: um beijinho na testa.',
+          'mood.partnerNeedCompany' => 'O que ajuda: companhia.',
+          'mood.partnerNeedRest' => 'O que ajuda: descanso.',
           'mood.homeTitle' => 'Como você está?',
           'mood.homePrivacy' => 'Só você vê',
           'mood.homeMoods.happy' => 'Bem',
@@ -11345,6 +11437,33 @@ extension on Translations {
           'moodHelp.makeCoffeeOrDinnerSupport' => 'Sem transformar em tarefa combinada.',
           'moodHelp.reactionLabel' => 'Mandar um coração',
           'moodHelp.sent' => 'Coração enviado',
+          'moodHelp.partnerNeedTitle' => ({required Object name}) => 'O que ${name} precisa',
+          'moodHelp.partnerNeedTitleGeneric' => 'O que seu par precisa',
+          'moodHelp.partnerNeedSubtitle' => 'O pedido de hoje. Sem cobrança.',
+          'moodHelp.partnerNeedNote' => 'Isso vem do humor que seu par compartilhou hoje.',
+          'moodHelp.partnerNeedActions.listen' => 'Só ouvir',
+          'moodHelp.partnerNeedActions.opinion' => 'Dar uma opinião',
+          'moodHelp.partnerNeedActions.hug' => 'Mandar um abraço',
+          'moodHelp.partnerNeedActions.space' => 'Dar espaço',
+          _ => null,
+        } ??
+        switch (path) {
+          'moodHelp.partnerNeedActions.chocolate' => 'Levar um chocolate',
+          'moodHelp.partnerNeedActions.cuteMessage' => 'Abrir a conversa',
+          'moodHelp.partnerNeedActions.foreheadKiss' => 'Um beijinho na testa',
+          'moodHelp.partnerNeedActions.company' => 'Ficar por perto',
+          'moodHelp.partnerNeedActions.rest' => 'Deixar descansar',
+          'moodHelp.partnerNeedActions.other' => '',
+          'moodHelp.partnerNeedSupports.listen' => 'Sem dar opinião nem tentar resolver.',
+          'moodHelp.partnerNeedSupports.opinion' => 'Uma opinião honesta, sem julgar.',
+          'moodHelp.partnerNeedSupports.hug' => 'Chega como um sinal no app.',
+          'moodHelp.partnerNeedSupports.space' => 'Um tempo sem cobrar resposta.',
+          'moodHelp.partnerNeedSupports.chocolate' => 'Um chocolate pequeno, sem motivo.',
+          'moodHelp.partnerNeedSupports.cuteMessage' => 'Uma linha carinhosa já basta.',
+          'moodHelp.partnerNeedSupports.foreheadKiss' => 'Pequeno e sem pressa.',
+          'moodHelp.partnerNeedSupports.company' => 'Sentar perto, sem precisar falar.',
+          'moodHelp.partnerNeedSupports.rest' => 'Assumir o que der e deixar quieto.',
+          'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'Vocês ainda não estão conectados.',
           'moodHelp.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'moodHelp.errors.NETWORK' =>
@@ -11370,9 +11489,6 @@ extension on Translations {
           'need.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'need.errors.other' => 'Não deu para enviar agora. Tente de novo.',
           'notFound.title' => '404',
-          _ => null,
-        } ??
-        switch (path) {
           'notFound.description' => 'Página não encontrada',
           'notFound.buttonBack' => 'Voltar para página inicial',
           'notes.title' => 'Bilhete ou desenho',
@@ -11924,6 +12040,9 @@ extension on Translations {
           'quickSlip.weekdays.4' => 'sexta',
           'quickSlip.weekdays.5' => 'sábado',
           'quickSlip.weekdays.6' => 'domingo',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.monthsShort.0' => 'jan',
           'quickSlip.monthsShort.1' => 'fev',
           'quickSlip.monthsShort.2' => 'mar',
@@ -11965,9 +12084,6 @@ extension on Translations {
           'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
           'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
           'quickSlip.saved.undo' => 'Desfazer',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.saved.done' => 'Pronto',
           'quickSlip.errors.FREE_LIMIT_REACHED' =>
             'Você chegou ao limite de slips do plano grátis.',
@@ -12495,6 +12611,9 @@ extension on Translations {
           'slipsList.categories.said' => 'Disse algo',
           'slipsList.categories.did' => 'Fez algo',
           'slipsList.categories.noticed' => 'Me notou',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.categories.helped' => 'Ajudou',
           'slipsList.categories.other' => '',
           'slipsList.kinds.quick' => 'Rápido',
@@ -12536,9 +12655,6 @@ extension on Translations {
           'story.errorText' => 'Tente de novo em instantes.',
           'story.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
           'sundayCard.title' => 'Seu cartão',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.edit' => 'Editar',
           'sundayCard.save' => 'Salvar',
           'sundayCard.cancel' => 'Cancelar',

@@ -238,6 +238,51 @@ void main() {
     expect(cubit.state.saveAction, isA<Initial>());
   });
 
+  test('saving a need keeps the mood and audience already on screen', () async {
+    final cubit = build();
+    await cubit.load();
+
+    await cubit.saveNeed(mood: MoodKind.happy, need: NeedKind.chocolate);
+
+    verify(
+      () => repository.saveMood(
+        mood: MoodKind.happy,
+        need: NeedKind.chocolate,
+        share: MoodShare.moodNeed,
+      ),
+    ).called(1);
+    expect(cubit.state.need, NeedKind.chocolate);
+    expect(cubit.state.needAction, isA<Success<void>>());
+  });
+
+  test('clearing the need while sharing it falls back to sharing only the mood', () async {
+    final cubit = build();
+    await cubit.load();
+
+    await cubit.saveNeed(mood: MoodKind.tired, need: null);
+
+    verify(() => repository.saveMood(mood: MoodKind.tired, need: null, share: MoodShare.mood))
+        .called(1);
+    expect(cubit.state.share, MoodShare.mood);
+  });
+
+  test('a failed need save reports a failure and returns to idle', () async {
+    when(
+      () => repository.saveMood(
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+      ),
+    ).thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+    final cubit = build();
+    await cubit.load();
+
+    await cubit.saveNeed(mood: MoodKind.tired, need: NeedKind.rest);
+
+    expect(cubit.state.needAction, isA<Initial>());
+    expect(cubit.state.need, NeedKind.hug);
+  });
+
   test('reacting sends one hug and returns to idle', () async {
     final cubit = build();
 

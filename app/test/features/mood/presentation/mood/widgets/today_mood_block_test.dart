@@ -79,6 +79,25 @@ void main() {
     expect(find.text('Tenso'), findsOneWidget);
   });
 
+  testWidgets('the need entry shows the need already asked for', (tester) async {
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+
+    expect(find.text('Preciso de: Um abraço'), findsOneWidget);
+  });
+
+  testWidgets('the need entry invites a need when the day has none', (tester) async {
+    when(() => repository.getTodayMood()).thenAnswer((_) async => today());
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+
+    expect(find.text('Preciso de…'), findsOneWidget);
+  });
+
   testWidgets('shows the mood cached on the device while the read is in flight', (tester) async {
     final pending = Completer<MoodToday>();
     when(() => repository.readCachedTodayMood()).thenReturn(entry);
