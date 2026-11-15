@@ -3,7 +3,6 @@
 //   -> text/event-stream, one JSON object per `data:` line:
 //        { type: "delta", text }       a piece of the reply
 //        { type: "done", options }     the end, with up to three short answer chips
-//        { type: "crisis" }            crisis wording: the app shows its safety message, the model is never called
 //        { type: "error", code }       CHAT_UNAVAILABLE | CHAT_DISABLED | CHAT_LIMIT | UPSTREAM
 // Nothing the person writes and nothing the model answers is stored: a row without text counts against the
 // daily limit, and that is all. Message texts and the model reply are never logged.
@@ -13,7 +12,6 @@
 import { callerId } from "../_shared/auth.ts";
 import { cors, json, log, sql } from "../_shared/db.ts";
 import { serve } from "../_shared/serve.ts";
-import { looksLikeCrisis } from "./crisis.ts";
 import { type ChatEvent, relay } from "./relay.ts";
 
 const MAX_MESSAGE = 1000;
@@ -84,12 +82,6 @@ serve("chat", async (req) => {
     .filter((t: Turn) => (t?.role === "user" || t?.role === "mascot") && typeof t?.text === "string")
     .slice(-MAX_HISTORY)
     .map((t: Turn) => ({ role: t.role, text: t.text.slice(0, MAX_MESSAGE) }));
-
-  // Crisis wording is answered by the app itself, before any limit, setting or model call.
-  if (looksLikeCrisis(message)) {
-    log("chat_crisis");
-    return oneEvent({ type: "crisis" });
-  }
 
   const apiUrl = Deno.env.get("CHAT_API_URL");
   const apiKey = Deno.env.get("CHAT_API_KEY");
