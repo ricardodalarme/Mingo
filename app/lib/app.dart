@@ -6,6 +6,7 @@ import 'package:app/features/app/presentation/navigation/app_state_navigator.dar
 import 'package:app/features/app/presentation/shell/app_shell.dart';
 import 'package:app/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
 import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.dart';
+import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:app/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
@@ -18,6 +19,7 @@ import 'package:app/features/widgets/presentation/navigation/widget_deep_link_re
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/observers/analytics_router_observer.dart';
 import 'package:app/router/observers/log_router_observer.dart';
+import 'package:app/router/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -94,7 +96,17 @@ class const App({super.key}) extends StatelessWidget {
   PageRouteInfo<void> _resolveRouteForState(AppState state) => routeForAppState(state);
 
   DeepLink _deepLinkBuilder(PlatformDeepLink deepLink) {
-    final appCubit = AppInjector.instance.get<AppCubit>();
+    final injector = AppInjector.instance;
+    final appCubit = injector.get<AppCubit>();
+    final inviteRoutes = resolveInviteDeepLinkUri(
+      deepLink.uri,
+      appState: appCubit.state,
+      inviteCodes: injector.get<InviteCodeStore>(),
+      pending: injector.get<PendingRoute>(),
+    );
+    if (inviteRoutes != null) {
+      return DeepLink(inviteRoutes);
+    }
     final widgetRoutes = resolveWidgetDeepLinkUri(deepLink.uri, appState: appCubit.state);
     if (widgetRoutes != null) {
       return DeepLink(widgetRoutes);

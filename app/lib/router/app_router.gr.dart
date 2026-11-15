@@ -12,18 +12,53 @@ part of 'app_router.dart';
 
 /// generated route for
 /// [AcceptInvitePage]
-class AcceptInviteRoute extends PageRouteInfo<void> {
-  const AcceptInviteRoute({List<PageRouteInfo>? children})
-    : super(AcceptInviteRoute.name, initialChildren: children);
+class AcceptInviteRoute extends PageRouteInfo<AcceptInviteRouteArgs> {
+  AcceptInviteRoute({String? code, Key? key, List<PageRouteInfo>? children})
+    : super(
+        AcceptInviteRoute.name,
+        args: AcceptInviteRouteArgs(code: code, key: key),
+        rawQueryParams: {'code': code},
+        initialChildren: children,
+      );
 
   static const String name = 'AcceptInviteRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const AcceptInvitePage());
+      final queryParams = data.queryParams;
+      final args = data.argsAs<AcceptInviteRouteArgs>(
+        orElse: () =>
+            AcceptInviteRouteArgs(code: queryParams.optString('code')),
+      );
+      return WrappedRoute(
+        child: AcceptInvitePage(code: args.code, key: args.key),
+      );
     },
   );
+}
+
+class AcceptInviteRouteArgs {
+  const AcceptInviteRouteArgs({this.code, this.key});
+
+  final String? code;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AcceptInviteRouteArgs{code: $code, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! AcceptInviteRouteArgs) return false;
+    return code == other.code && key == other.key;
+  }
+
+  @override
+  int get hashCode => code.hashCode ^ key.hashCode;
 }
 
 /// generated route for

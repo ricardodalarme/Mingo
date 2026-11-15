@@ -1,5 +1,7 @@
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/app/presentation/navigation/app_state_navigator.dart';
+import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
+import 'package:app/router/app_router.dart';
 import 'package:app/router/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,6 +11,19 @@ class _MockRouter() extends Mock implements RootStackRouter;
 
 class _FakeRoute() extends Fake implements PageRouteInfo<Object?>;
 
+class _FakeInviteCodeStore() implements InviteCodeStore {
+  String? code;
+
+  @override
+  String? read() => code;
+
+  @override
+  Future<void> save(String value) async => code = value;
+
+  @override
+  Future<void> clear() async => code = null;
+}
+
 void main() {
   setUpAll(() {
     registerFallbackValue(<PageRouteInfo>[]);
@@ -17,12 +32,14 @@ void main() {
 
   late _MockRouter router;
   late PendingRoute pending;
+  late _FakeInviteCodeStore inviteCodes;
   late AppStateNavigator navigator;
 
   setUp(() {
     router = _MockRouter();
     pending = PendingRoute();
-    navigator = AppStateNavigator(router: router, pending: pending);
+    inviteCodes = _FakeInviteCodeStore();
+    navigator = AppStateNavigator(router: router, pending: pending, inviteCodes: inviteCodes);
 
     when(() => router.replaceAll(any())).thenAnswer((_) async {});
     when(() => router.pushPath<Object?>(any())).thenAnswer((_) async => null);
@@ -45,6 +62,28 @@ void main() {
 
     verify(() => router.replaceAll(any())).called(1);
     verifyNever(() => router.pushPath<Object?>(any()));
+    verifyNever(() => router.push<Object?>(any()));
+  });
+
+  test('reopens the invite kept from a signed-out link', () async {
+    inviteCodes.code = 'ABCD2345';
+
+    navigator.onStateChanged(AppState.unauthenticated, AppState.authenticated);
+    await pumpEventQueue();
+
+    final reopened = verify(() => router.push<Object?>(captureAny())).captured.single;
+    expect(reopened, isA<AcceptInviteRoute>());
+    expect((reopened as AcceptInviteRoute).args?.code, 'ABCD2345');
+  });
+
+  test('reopens a stashed accept path without waiting for the kept code', () async {
+    pending.stash(acceptInvitePath);
+
+    navigator.onStateChanged(AppState.unauthenticated, AppState.authenticated);
+    await pumpEventQueue();
+
+    verify(() => router.pushPath<Object?>(acceptInvitePath)).called(1);
+    verifyNever(() => router.push<Object?>(any()));
   });
 
   test('leaves the interrupted page out of reach after onboarding', () async {

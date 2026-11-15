@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/router/app_router.dart';
 import 'package:app/router/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
@@ -17,6 +18,7 @@ PageRouteInfo<void> routeForAppState(AppState state) => switch (state) {
 class AppStateNavigator({
   required final RootStackRouter _router,
   required final PendingRoute _pending,
+  required final InviteCodeStore _inviteCodes,
 }) {
   bool _expiryPresented = false;
 
@@ -48,8 +50,14 @@ class AppStateNavigator({
   /// Replaces the stack with [route], reopening the page sign-in interrupted.
   Future<void> _show(PageRouteInfo<void> route) async {
     final interrupted = route is HomeRoute ? _pending.take() : null;
+    final pendingInvite = route is HomeRoute ? _inviteCodes.read() : null;
     await _router.replaceAll([route]);
-    if (interrupted != null) await _router.pushPath(interrupted);
+    if (interrupted != null) {
+      await _router.pushPath(interrupted);
+
+      return;
+    }
+    if (pendingInvite != null) await _router.push(AcceptInviteRoute(code: pendingInvite));
   }
 
   Future<void> _returnToTheInterruptedPage() async {

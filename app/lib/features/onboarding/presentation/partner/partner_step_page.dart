@@ -63,7 +63,7 @@ class const PartnerStepPage({super.key}) extends StatelessWidget implements Auto
               alignment: Alignment.centerLeft,
               child: BaseTextLink(
                 text: l10n.haveCode,
-                onPressed: () => context.pushRoute(const AcceptInviteRoute()),
+                onPressed: () => context.pushRoute(AcceptInviteRoute()),
               ),
             ),
           ],
