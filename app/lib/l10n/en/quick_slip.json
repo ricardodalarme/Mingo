@@ -22,6 +22,13 @@
   },
   "privacyNote": "It stays private. On Sunday you choose what goes on the card.",
   "botheredNote": "Only you see it. A slip like this never goes on the card.",
+  "requestLabel": "A request, if you want",
+  "requestHint": "E.g. could you let me know beforehand?",
+  "requestHelper": "Optional. It stays with you and is not sent to anyone.",
+  "requestErrors(map)": {
+    "tooLong": "Use at most 140 characters",
+    "other": "Check this field"
+  },
   "save": "Save",
   "discardTitle": "Discard this slip?",
   "saved": {

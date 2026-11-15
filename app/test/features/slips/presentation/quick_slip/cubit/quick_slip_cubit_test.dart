@@ -28,6 +28,7 @@ void main() {
         now: any(named: 'now'),
         category: any(named: 'category'),
         polarity: any(named: 'polarity'),
+        request: any(named: 'request'),
       ),
     ).thenAnswer((_) async {
       return;
@@ -41,6 +42,7 @@ void main() {
         body: any(named: 'body'),
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
+        request: any(named: 'request'),
       ),
     ).thenAnswer((_) async => SlipSaveOutcome.synced);
     when(() => repository.undo(any())).thenAnswer((_) async {
@@ -76,6 +78,7 @@ void main() {
         body: any(named: 'body'),
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
+        request: any(named: 'request'),
       ),
     ),
   );
@@ -93,6 +96,7 @@ void main() {
         body: 'Fez café',
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
+        request: any(named: 'request'),
       ),
     ).called(1),
   );
@@ -113,8 +117,53 @@ void main() {
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
         polarity: SlipPolarity.bothered,
+        request: any(named: 'request'),
       ),
     ).called(1),
+  );
+
+  blocTest<QuickSlipCubit, QuickSlipState>(
+    'a bothered slip is saved with its gentle request',
+    build: build,
+    act: (cubit) async {
+      cubit
+        ..onPolarityChanged(SlipPolarity.bothered)
+        ..onTextChanged('Chegou tarde sem avisar')
+        ..onRequestChanged('  Poderia me avisar antes?  ');
+      await cubit.save();
+    },
+    verify: (_) => verify(
+      () => repository.saveQuick(
+        id: any(named: 'id'),
+        body: 'Chegou tarde sem avisar',
+        createdAt: any(named: 'createdAt'),
+        category: any(named: 'category'),
+        polarity: SlipPolarity.bothered,
+        request: 'Poderia me avisar antes?',
+      ),
+    ).called(1),
+  );
+
+  blocTest<QuickSlipCubit, QuickSlipState>(
+    'a request over the limit is refused',
+    build: build,
+    act: (cubit) async {
+      cubit
+        ..onPolarityChanged(SlipPolarity.bothered)
+        ..onTextChanged('Chegou tarde')
+        ..onRequestChanged('a' * (slipRequestMaxLength + 1));
+      await cubit.save();
+    },
+    verify: (_) => verifyNever(
+      () => repository.saveQuick(
+        id: any(named: 'id'),
+        body: any(named: 'body'),
+        createdAt: any(named: 'createdAt'),
+        category: any(named: 'category'),
+        polarity: any(named: 'polarity'),
+        request: any(named: 'request'),
+      ),
+    ),
   );
 
   blocTest<QuickSlipCubit, QuickSlipState>(
@@ -127,8 +176,21 @@ void main() {
         now: any(named: 'now'),
         category: any(named: 'category'),
         polarity: SlipPolarity.bothered,
+        request: any(named: 'request'),
       ),
     ).called(1),
+  );
+
+  blocTest<QuickSlipCubit, QuickSlipState>(
+    'going back to liked drops the request',
+    build: build,
+    act: (cubit) {
+      cubit
+        ..onPolarityChanged(SlipPolarity.bothered)
+        ..onRequestChanged('Poderia me avisar antes?')
+        ..onPolarityChanged(SlipPolarity.liked);
+    },
+    verify: (cubit) => expect(cubit.state.request.value, isEmpty),
   );
 
   blocTest<QuickSlipCubit, QuickSlipState>(
@@ -154,6 +216,7 @@ void main() {
           body: any(named: 'body'),
           createdAt: any(named: 'createdAt'),
           category: any(named: 'category'),
+          request: any(named: 'request'),
         ),
       ).thenAnswer((_) async => throw const LocalizedException(l10nKey: 'FREE_LIMIT_REACHED'));
       return build();

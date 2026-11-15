@@ -20,8 +20,10 @@ create table public.slips (
   work_area public.work_area,
   in_jar boolean not null default false,
   polarity public.slip_polarity not null default 'liked',
+  request text check (char_length(btrim(request)) <= 140),
   constraint slips_invisible_never_for_card check (kind <> 'invisible' or not for_card),
-  constraint slips_bothered_never_for_card check (polarity = 'liked' or not for_card)
+  constraint slips_bothered_never_for_card check (polarity = 'liked' or not for_card),
+  constraint slips_request_only_bothered check (request is null or polarity = 'bothered')
 );
 create index slips_author_created_idx on public.slips (author_id, created_at desc);
 comment on constraint slips_author_id_fkey on public.slips is e'@graphql({"foreign_name": "author", "local_name": "slips"})';

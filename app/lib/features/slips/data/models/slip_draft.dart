@@ -8,12 +8,14 @@ final class const SlipDraft({
   required final DateTime savedAt,
   final SlipCategory? category,
   final SlipPolarity polarity = SlipPolarity.liked,
+  final String? request,
 }) with Equatable {
   factory fromMap(Map<String, dynamic> map) => SlipDraft(
     text: map['text'] as String,
     savedAt: DateTime.parse(map['savedAt'] as String),
     category: SlipCategory.values.asNameMap()[map['category'] as String?],
     polarity: SlipPolarity.values.asNameMap()[map['polarity'] as String?] ?? SlipPolarity.liked,
+    request: map['request'] as String?,
   );
 
   /// How long a draft stays worth restoring.
@@ -26,8 +28,9 @@ final class const SlipDraft({
     'savedAt': savedAt.toUtc().toIso8601String(),
     'category': category?.name,
     'polarity': polarity.name,
+    'request': request,
   };
 
   @override
-  List<Object?> get props => [text, savedAt, category, polarity];
+  List<Object?> get props => [text, savedAt, category, polarity, request];
 }

@@ -15,6 +15,9 @@ part 'quick_slip_state.dart';
 /// The longest slip the capture screen accepts.
 const int quickSlipMaxLength = 140;
 
+/// The longest gentle request a bothered slip accepts.
+const int slipRequestMaxLength = 140;
+
 /// How long the undo stays available after a slip is saved.
 const Duration undoWindow = Duration(seconds: 30);
 
@@ -36,6 +39,7 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
         text: FormInput(draft.text),
         category: draft.category,
         polarity: draft.polarity,
+        request: FormInput(draft.request ?? ''),
       ),
     );
   }
@@ -48,7 +52,17 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
   void onPolarityChanged(SlipPolarity polarity) {
     if (state.polarity == polarity) return;
 
-    emit(state.copyWith(polarity: polarity));
+    emit(
+      state.copyWith(
+        polarity: polarity,
+        request: polarity == SlipPolarity.bothered ? state.request : const FormInput(''),
+      ),
+    );
+    unawaited(_persistDraft());
+  }
+
+  void onRequestChanged(String request) {
+    emit(state.copyWith(request: FormInput(request)));
     unawaited(_persistDraft());
   }
 
@@ -73,6 +87,7 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
         createdAt: clock.now(),
         category: state.category,
         polarity: state.polarity,
+        request: state.polarity == SlipPolarity.bothered ? state.request.value.trim() : null,
       );
       await _slipRepository.clearDraft();
       emit(state.copyWith(saveAction: Success(outcome), canUndo: true));
@@ -102,16 +117,20 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
     final validatedText = state.text.validate(
       CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(quickSlipMaxLength)]),
     );
+    final validatedRequest = state.polarity == SlipPolarity.bothered
+        ? state.request.validate(MaxLengthValidator(slipRequestMaxLength))
+        : state.request.toPure();
 
-    emit(state.copyWith(text: validatedText));
+    emit(state.copyWith(text: validatedText, request: validatedRequest));
 
-    return validatedText.isValid;
+    return validatedText.isValid && validatedRequest.isValid;
   }
 
   Future<void> _persistDraft() => _slipRepository.saveDraft(
     text: state.text.value,
     category: state.category,
     polarity: state.polarity,
+    request: state.request.value,
     now: clock.now(),
   );
 

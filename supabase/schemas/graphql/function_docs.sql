@@ -26,7 +26,7 @@ comment on function public.my_year(integer) is e'@graphql({"description": "A yea
 comment on function public.chat_messages_left() is e'@graphql({"description": "How many mascot messages the caller can still send this period."})';
 
 -- Slips and cards
-comment on function public.save_slip(uuid, text, text, text, text, text[], boolean, date, text, timestamptz, text) is e'@graphql({"description": "Creates or edits a slip. Editing an existing slip keeps working at the free-plan limit."})';
+comment on function public.save_slip(uuid, text, text, text, text, text[], boolean, date, text, timestamptz, text, text) is e'@graphql({"description": "Creates or edits a slip. Editing an existing slip keeps working at the free-plan limit."})';
 comment on function public.set_slip_details(uuid, text, text, boolean) is e'@graphql({"description": "Sets the category, work area or jar flag of a slip. Arguments left out keep their value."})';
 comment on function public.archive_slip(uuid, boolean) is e'@graphql({"description": "Archives a slip, or restores it when archived is false."})';
 comment on function public.delete_slip(uuid) is e'@graphql({"description": "Deletes a slip. Unsent cards drop it; sent cards keep their frozen copy."})';

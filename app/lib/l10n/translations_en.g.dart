@@ -4363,6 +4363,17 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   @override
   String get botheredNote => 'Only you see it. A slip like this never goes on the card.';
   @override
+  String get requestLabel => 'A request, if you want';
+  @override
+  String get requestHint => 'E.g. could you let me know beforehand?';
+  @override
+  String get requestHelper => 'Optional. It stays with you and is not sent to anyone.';
+  @override
+  Map<String, String> get requestErrors => {
+    'tooLong': 'Use at most 140 characters',
+    'other': 'Check this field',
+  };
+  @override
   String get save => 'Save';
   @override
   String get discardTitle => 'Discard this slip?';
@@ -4855,6 +4866,8 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   String get feeling => 'How you felt';
   @override
   String get plan => 'Then I…';
+  @override
+  String get request => 'What I would ask for';
   @override
   String get jarTitle => 'Keep in the jar';
   @override
@@ -9843,6 +9856,11 @@ extension on TranslationsEn {
           'quickSlip.privacyNote' =>
             'It stays private. On Sunday you choose what goes on the card.',
           'quickSlip.botheredNote' => 'Only you see it. A slip like this never goes on the card.',
+          'quickSlip.requestLabel' => 'A request, if you want',
+          'quickSlip.requestHint' => 'E.g. could you let me know beforehand?',
+          'quickSlip.requestHelper' => 'Optional. It stays with you and is not sent to anyone.',
+          'quickSlip.requestErrors.tooLong' => 'Use at most 140 characters',
+          'quickSlip.requestErrors.other' => 'Check this field',
           'quickSlip.save' => 'Save',
           'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
@@ -9886,14 +9904,14 @@ extension on TranslationsEn {
           'received.errorTitle' => 'Couldn\'t open this',
           'received.errorText' => 'Nothing was lost. Try again.',
           'received.errors.NOT_FOUND' => 'That message isn\'t here anymore.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'received.errors.other' => 'Couldn\'t answer right now. Try again.',
           'relationshipChanged.title' => 'Something changed?',
           'relationshipChanged.highlight' => 'changed',
           'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.optionEnded' => 'We broke up',
           'relationshipChanged.optionBereaved' => 'I lost them',
           'relationshipChanged.optionOnBreak' => 'A break',
@@ -10181,6 +10199,7 @@ extension on TranslationsEn {
           'slipDetail.archived' => 'Archived',
           'slipDetail.feeling' => 'How you felt',
           'slipDetail.plan' => 'Then I…',
+          'slipDetail.request' => 'What I would ask for',
           'slipDetail.jarTitle' => 'Keep in the jar',
           'slipDetail.jarText' => 'To open on a bad day. Only you see it.',
           'slipDetail.cardTitle' => 'Who sees this',
@@ -10456,15 +10475,15 @@ extension on TranslationsEn {
           'tabs.touchLabel' => 'TOUCH',
           'tabs.touchTitle' => 'Touch cards',
           'tabs.touchText' => 'Neutral, to do or skip.',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.distanceLabel' => 'DISTANCE',
           'tabs.distanceTitle' => 'Our two clocks',
           'tabs.distanceText' => 'Time zones and the countdown to seeing each other.',
           'tabs.parentsLabel' => 'WITH PARENTS',
           'tabs.parentsText' => 'A short moment just for the two of you, even in a full house.',
           'tabs.capsulesLabel' => 'TIME CAPSULE',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.capsulesTitle' => 'A message to the future',
           'tabs.capsulesText' => 'Stays closed until the day you choose.',
           'tabs.datesLabel' => 'DATES',

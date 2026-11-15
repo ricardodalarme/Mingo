@@ -7,6 +7,7 @@ mutation SaveSlip(
   $forCard: Boolean
   $createdAt: Datetime
   $polarity: String
+  $request: String
 ) {
   saveSlip(
     id: $id
@@ -17,6 +18,7 @@ mutation SaveSlip(
     forCard: $forCard
     createdAt: $createdAt
     polarity: $polarity
+    request: $request
   ) {
     id
   }

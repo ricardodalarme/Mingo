@@ -5374,6 +5374,20 @@ class Translations$quickSlip$pt {
   /// pt: 'Fica só com você. Um slip assim nunca entra no cartão.'
   String get botheredNote => 'Fica só com você. Um slip assim nunca entra no cartão.';
 
+  /// pt: 'Um pedido, se quiser'
+  String get requestLabel => 'Um pedido, se quiser';
+
+  /// pt: 'Ex.: poderia me avisar antes?'
+  String get requestHint => 'Ex.: poderia me avisar antes?';
+
+  /// pt: 'Opcional. Fica só com você, não é enviado para ninguém.'
+  String get requestHelper => 'Opcional. Fica só com você, não é enviado para ninguém.';
+
+  Map<String, String> get requestErrors => {
+    'tooLong': 'Use no máximo 140 caracteres',
+    'other': 'Revise este campo',
+  };
+
   /// pt: 'Salvar'
   String get save => 'Salvar';
 
@@ -5980,6 +5994,9 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Então eu…'
   String get plan => 'Então eu…';
+
+  /// pt: 'O que eu pediria'
+  String get request => 'O que eu pediria';
 
   /// pt: 'Guardar no potinho'
   String get jarTitle => 'Guardar no potinho';
@@ -11674,6 +11691,11 @@ extension on Translations {
           'quickSlip.privacyNote' =>
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
           'quickSlip.botheredNote' => 'Fica só com você. Um slip assim nunca entra no cartão.',
+          'quickSlip.requestLabel' => 'Um pedido, se quiser',
+          'quickSlip.requestHint' => 'Ex.: poderia me avisar antes?',
+          'quickSlip.requestHelper' => 'Opcional. Fica só com você, não é enviado para ninguém.',
+          'quickSlip.requestErrors.tooLong' => 'Use no máximo 140 caracteres',
+          'quickSlip.requestErrors.other' => 'Revise este campo',
           'quickSlip.save' => 'Salvar',
           'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
@@ -11717,14 +11739,14 @@ extension on Translations {
           'received.errorTitle' => 'Não deu para abrir',
           'received.errorText' => 'Nada se perdeu. Tente de novo.',
           'received.errors.NOT_FOUND' => 'Essa mensagem não está mais aqui.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'received.errors.other' => 'Não deu para responder agora. Tente de novo.',
           'relationshipChanged.title' => 'Algo mudou?',
           'relationshipChanged.highlight' => 'mudou',
           'relationshipChanged.subtitle' => 'Conte com calma. Isso só muda o que o app mostra.',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.optionEnded' => 'Terminamos',
           'relationshipChanged.optionBereaved' => 'Perdi a pessoa',
           'relationshipChanged.optionOnBreak' => 'Um tempo',
@@ -12015,6 +12037,7 @@ extension on Translations {
           'slipDetail.archived' => 'Arquivado',
           'slipDetail.feeling' => 'Como você se sentiu',
           'slipDetail.plan' => 'Então eu…',
+          'slipDetail.request' => 'O que eu pediria',
           'slipDetail.jarTitle' => 'Guardar no potinho',
           'slipDetail.jarText' => 'Para abrir em um dia ruim. Só você vê.',
           'slipDetail.cardTitle' => 'Quem vê isto',
@@ -12289,15 +12312,15 @@ extension on Translations {
           'tabs.touchLabel' => 'TOQUE',
           'tabs.touchTitle' => 'Cartas de toque',
           'tabs.touchText' => 'Neutras, para fazer ou pular.',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.distanceLabel' => 'DISTÂNCIA',
           'tabs.distanceTitle' => 'Nossos dois relógios',
           'tabs.distanceText' => 'Fusos e a contagem até o reencontro.',
           'tabs.parentsLabel' => 'COM OS PAIS',
           'tabs.parentsText' => 'Um momento curto e só de vocês dois, mesmo com a casa cheia.',
           'tabs.capsulesLabel' => 'CÁPSULA DO TEMPO',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.capsulesTitle' => 'Uma mensagem para o futuro',
           'tabs.capsulesText' => 'Fica fechada até a data que você escolher.',
           'tabs.datesLabel' => 'DATAS',

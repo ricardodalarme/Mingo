@@ -19,6 +19,7 @@ final class const SlipDetail({
   final bool wasInCard = false,
   final bool isInJar = false,
   final SlipPolarity polarity = SlipPolarity.liked,
+  final String? request,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() => SlipDetail(
@@ -53,6 +54,7 @@ final class const SlipDetail({
     wasInCard: wasInCard,
     isInJar: isInJar ?? this.isInJar,
     polarity: polarity,
+    request: request,
   );
 
   @override
@@ -70,5 +72,6 @@ final class const SlipDetail({
     wasInCard,
     isInJar,
     polarity,
+    request,
   ];
 }

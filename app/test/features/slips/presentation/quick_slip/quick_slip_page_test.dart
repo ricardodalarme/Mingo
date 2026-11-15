@@ -27,6 +27,7 @@ void main() {
         now: any(named: 'now'),
         category: any(named: 'category'),
         polarity: any(named: 'polarity'),
+        request: any(named: 'request'),
       ),
     ).thenAnswer((_) async {
       return;
@@ -42,7 +43,9 @@ void main() {
     expect(tester.widget<DirtyFormGuard>(find.byType(DirtyFormGuard)).isDirty, isTrue);
   });
 
-  testWidgets('choosing me incomodou switches the privacy note', (tester) async {
+  testWidgets('choosing me incomodou switches the privacy note and shows the request', (
+    tester,
+  ) async {
     final repository = _MockSlipRepository();
     when(() => repository.readDraft(any())).thenReturn(null);
     when(
@@ -51,6 +54,7 @@ void main() {
         now: any(named: 'now'),
         category: any(named: 'category'),
         polarity: any(named: 'polarity'),
+        request: any(named: 'request'),
       ),
     ).thenAnswer((_) async {
       return;
@@ -61,11 +65,13 @@ void main() {
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuickSlipPage()));
     await tester.pump();
     expect(find.text('Fica só com você. Um slip assim nunca entra no cartão.'), findsNothing);
+    expect(find.text('Um pedido, se quiser'), findsNothing);
 
     await tester.tap(find.text('Me incomodou'));
     await tester.pump();
 
     expect(cubit.state.polarity, SlipPolarity.bothered);
     expect(find.text('Fica só com você. Um slip assim nunca entra no cartão.'), findsOneWidget);
+    expect(find.text('Um pedido, se quiser'), findsOneWidget);
   });
 }
