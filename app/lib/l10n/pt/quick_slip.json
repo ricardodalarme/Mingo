@@ -22,6 +22,13 @@
   },
   "privacyNote": "Fica privado. No domingo você escolhe o que vai para o cartão.",
   "botheredNote": "Fica só com você. Um slip assim nunca entra no cartão.",
+  "requestLabel": "Um pedido, se quiser",
+  "requestHint": "Ex.: poderia me avisar antes?",
+  "requestHelper": "Opcional. Fica só com você, não é enviado para ninguém.",
+  "requestErrors(map)": {
+    "tooLong": "Use no máximo 140 caracteres",
+    "other": "Revise este campo"
+  },
   "save": "Salvar",
   "discardTitle": "Descartar este slip?",
   "saved": {

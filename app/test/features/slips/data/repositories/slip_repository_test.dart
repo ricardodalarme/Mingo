@@ -95,6 +95,70 @@ void main() {
       ).called(1);
     });
 
+    test('trims the gentle request and sends it with the slip', () async {
+      when(
+        () => remote.saveSlip(
+          id: any(named: 'id'),
+          body: any(named: 'body'),
+          createdAt: any(named: 'createdAt'),
+          polarity: any(named: 'polarity'),
+          request: any(named: 'request'),
+        ),
+      ).thenAnswer((_) async {
+        return;
+      });
+
+      await repository.saveQuick(
+        id: 's1',
+        body: 'Chegou tarde sem avisar',
+        createdAt: createdAt,
+        polarity: SlipPolarity.bothered,
+        request: '  Poderia me avisar antes?  ',
+      );
+
+      verify(
+        () => remote.saveSlip(
+          id: 's1',
+          body: 'Chegou tarde sem avisar',
+          createdAt: createdAt,
+          polarity: 'bothered',
+          request: 'Poderia me avisar antes?',
+        ),
+      ).called(1);
+    });
+
+    test('a blank request is sent as null', () async {
+      when(
+        () => remote.saveSlip(
+          id: any(named: 'id'),
+          body: any(named: 'body'),
+          createdAt: any(named: 'createdAt'),
+          polarity: any(named: 'polarity'),
+          request: any(named: 'request'),
+        ),
+      ).thenAnswer((_) async {
+        return;
+      });
+
+      await repository.saveQuick(
+        id: 's1',
+        body: 'Chegou tarde sem avisar',
+        createdAt: createdAt,
+        polarity: SlipPolarity.bothered,
+        request: '   ',
+      );
+
+      verify(
+        () => remote.saveSlip(
+          id: 's1',
+          body: 'Chegou tarde sem avisar',
+          createdAt: createdAt,
+          polarity: 'bothered',
+          request: null,
+        ),
+      ).called(1);
+    });
+
     test('keeps the slip on the device when offline', () async {
       when(
         () => remote.saveSlip(

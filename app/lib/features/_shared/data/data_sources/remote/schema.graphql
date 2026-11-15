@@ -7038,7 +7038,7 @@ type Mutation {
   """
   Creates or edits a slip. Editing an existing slip keeps working at the free-plan limit.
   """
-  saveSlip(id: UUID!, body: String!, kind: String = "quick", feeling: String, planNote: String, tags: [String], forCard: Boolean = true, occurredOn: Date, photoPath: String, createdAt: Datetime, polarity: String = "liked"): Slips
+  saveSlip(id: UUID!, body: String!, kind: String = "quick", feeling: String, planNote: String, tags: [String], forCard: Boolean = true, occurredOn: Date, photoPath: String, createdAt: Datetime, polarity: String = "liked", request: String): Slips
 
   """
   Sends a card to the current partner. With no partner the card travels only by guest link.
@@ -14033,6 +14033,7 @@ type Slips implements Node {
   workArea: WorkArea
   inJar: Boolean!
   polarity: SlipPolarity!
+  request: String
   author: Profiles
   cardItemsCollection(
     """Query the first `n` records in the collection"""
@@ -14097,6 +14098,7 @@ input SlipsFilter {
   workArea: WorkAreaFilter
   inJar: BooleanFilter
   polarity: SlipPolarityFilter
+  request: StringFilter
   nodeId: IDFilter
 
   """
@@ -14132,6 +14134,7 @@ input SlipsInsertInput {
   workArea: WorkArea
   inJar: Boolean
   polarity: SlipPolarity
+  request: String
 }
 
 type SlipsInsertResponse {
@@ -14160,6 +14163,7 @@ input SlipsOrderBy {
   workArea: OrderByDirection
   inJar: OrderByDirection
   polarity: OrderByDirection
+  request: OrderByDirection
 }
 
 input SlipsUpdateInput {
@@ -14181,6 +14185,7 @@ input SlipsUpdateInput {
   workArea: WorkArea
   inJar: Boolean
   polarity: SlipPolarity
+  request: String
 }
 
 type SlipsUpdateResponse {

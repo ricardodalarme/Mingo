@@ -41,6 +41,7 @@ class const QuickSlipForm({super.key}) extends StatelessWidget {
           const _TextField(),
           const SizedBox(height: AppSpace.s16),
           const _CategoryChips(),
+          const _RequestField(),
           const SizedBox(height: AppSpace.s20),
           const _PrivacyNote(),
           const SizedBox(height: AppSpace.s20),
@@ -127,6 +128,38 @@ class const _CategoryChips() extends StatelessWidget {
             isSelected: selected == category,
             onTap: () => context.read<QuickSlipCubit>().onCategoryToggled(category),
           ),
+      ],
+    );
+  }
+}
+
+class const _RequestField() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.quickSlip;
+    final isBothered = context.select(
+      (QuickSlipCubit cubit) => cubit.state.polarity == SlipPolarity.bothered,
+    );
+    if (!isBothered) return const SizedBox.shrink();
+    final request = context.select((QuickSlipCubit cubit) => cubit.state.request);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: AppSpace.s16),
+        Text(l10n.requestLabel, style: context.text.label),
+        const SizedBox(height: AppSpace.s8),
+        BaseTextArea(
+          text: request.value,
+          hint: l10n.requestHint,
+          errorText: l10n.requestErrors.selectOrNull(request.errorName),
+          onChanged: context.read<QuickSlipCubit>().onRequestChanged,
+        ),
+        const SizedBox(height: AppSpace.s8),
+        Text(
+          l10n.requestHelper,
+          style: context.text.caption.copyWith(color: context.colors.textSecondary),
+        ),
       ],
     );
   }

@@ -9,6 +9,7 @@ query SlipDetail($id: UUID!) {
     category
     workArea
     polarity
+    request
     createdAt
     archivedAt
     deletedAt

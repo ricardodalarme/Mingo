@@ -4442,6 +4442,17 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   @override
   String get botheredNote => 'Only you see it. A slip like this never goes on the card.';
   @override
+  String get requestLabel => 'A request, if you want';
+  @override
+  String get requestHint => 'E.g. could you let me know beforehand?';
+  @override
+  String get requestHelper => 'Optional. It stays with you and is not sent to anyone.';
+  @override
+  Map<String, String> get requestErrors => {
+    'tooLong': 'Use at most 140 characters',
+    'other': 'Check this field',
+  };
+  @override
   String get save => 'Save';
   @override
   String get discardTitle => 'Discard this slip?';
@@ -5030,6 +5041,8 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   String get feeling => 'How you felt';
   @override
   String get plan => 'Then I…';
+  @override
+  String get request => 'What I would ask for';
   @override
   String get jarTitle => 'Keep in the jar';
   @override
@@ -10054,6 +10067,11 @@ extension on TranslationsEn {
           'quickSlip.privacyNote' =>
             'It stays private. On Sunday you choose what goes on the card.',
           'quickSlip.botheredNote' => 'Only you see it. A slip like this never goes on the card.',
+          'quickSlip.requestLabel' => 'A request, if you want',
+          'quickSlip.requestHint' => 'E.g. could you let me know beforehand?',
+          'quickSlip.requestHelper' => 'Optional. It stays with you and is not sent to anyone.',
+          'quickSlip.requestErrors.tooLong' => 'Use at most 140 characters',
+          'quickSlip.requestErrors.other' => 'Check this field',
           'quickSlip.save' => 'Save',
           'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
@@ -10062,6 +10080,9 @@ extension on TranslationsEn {
             'Saved on this phone. We send it when the connection is back.',
           'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
           'quickSlip.saved.undo' => 'Undo',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.saved.done' => 'Done',
           'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
@@ -10072,9 +10093,6 @@ extension on TranslationsEn {
           'received.kinds.missUs' => 'Missing you',
           'received.kinds.hug' => 'A hug',
           'received.kinds.distance' => 'A little distance',
-          _ => null,
-        } ??
-        switch (path) {
           'received.kinds.heavyDay' => 'A heavy day',
           'received.kinds.goodNews' => 'Good news',
           'received.kinds.other' => '',
@@ -10105,9 +10123,6 @@ extension on TranslationsEn {
           'relationshipChanged.title' => 'Something changed?',
           'relationshipChanged.highlight' => 'changed',
           'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.optionEnded' => 'We broke up',
           'relationshipChanged.optionBereaved' => 'I lost them',
           'relationshipChanged.optionOnBreak' => 'A break',
@@ -10455,6 +10470,7 @@ extension on TranslationsEn {
           'slipDetail.archived' => 'Archived',
           'slipDetail.feeling' => 'How you felt',
           'slipDetail.plan' => 'Then I…',
+          'slipDetail.request' => 'What I would ask for',
           'slipDetail.jarTitle' => 'Keep in the jar',
           'slipDetail.jarText' => 'To open on a bad day. Only you see it.',
           'slipDetail.cardTitle' => 'Who sees this',
@@ -10629,6 +10645,9 @@ extension on TranslationsEn {
           'story.errorText' => 'Try again in a moment.',
           'story.errors.other' => 'Couldn\'t share right now. Try again.',
           'sundayCard.title' => 'Your card',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.edit' => 'Edit',
           'sundayCard.save' => 'Save',
           'sundayCard.cancel' => 'Cancel',
@@ -10644,9 +10663,6 @@ extension on TranslationsEn {
           'sundayCard.errorText' => 'Your slips are still saved. Try again.',
           'sundayCard.saveError' => 'Could not save the card. Try again.',
           'sundayCard.openFromToday' => 'See the draft',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.deliverError' =>
             'Could not send right now. The card is still here, try again.',
           'sundayCard.send.action' => 'Send',
@@ -10739,9 +10755,6 @@ extension on TranslationsEn {
           'tabs.parentsLabel' => 'WITH PARENTS',
           'tabs.parentsText' => 'A short moment just for the two of you, even in a full house.',
           'tabs.capsulesLabel' => 'TIME CAPSULE',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.capsulesTitle' => 'A message to the future',
           'tabs.capsulesText' => 'Stays closed until the day you choose.',
           'tabs.datesLabel' => 'DATES',

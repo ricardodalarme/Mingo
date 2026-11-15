@@ -4,6 +4,7 @@ final class const QuickSlipState({
   final FormInput<String> text = const FormInput(''),
   final SlipCategory? category,
   final SlipPolarity polarity = SlipPolarity.liked,
+  final FormInput<String> request = const FormInput(''),
   final Resource<SlipSaveOutcome> saveAction = const Initial(),
   final Resource<void> undoAction = const Initial(),
   final bool canUndo = false,
@@ -13,13 +14,17 @@ final class const QuickSlipState({
 
   /// Whether there is text, a category or a bothered slip to lose.
   bool get hasDraft =>
-      text.value.trim().isNotEmpty || category != null || polarity == SlipPolarity.bothered;
+      text.value.trim().isNotEmpty ||
+      request.value.trim().isNotEmpty ||
+      category != null ||
+      polarity == SlipPolarity.bothered;
 
   QuickSlipState copyWith({
     FormInput<String>? text,
     SlipCategory? category,
     bool clearCategory = false,
     SlipPolarity? polarity,
+    FormInput<String>? request,
     Resource<SlipSaveOutcome>? saveAction,
     Resource<void>? undoAction,
     bool? canUndo,
@@ -28,6 +33,7 @@ final class const QuickSlipState({
       text: text ?? this.text,
       category: clearCategory ? null : category ?? this.category,
       polarity: polarity ?? this.polarity,
+      request: request ?? this.request,
       saveAction: saveAction ?? this.saveAction,
       undoAction: undoAction ?? this.undoAction,
       canUndo: canUndo ?? this.canUndo,
@@ -35,5 +41,5 @@ final class const QuickSlipState({
   }
 
   @override
-  List<Object?> get props => [text, category, polarity, saveAction, undoAction, canUndo];
+  List<Object?> get props => [text, category, polarity, request, saveAction, undoAction, canUndo];
 }

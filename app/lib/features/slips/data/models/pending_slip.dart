@@ -15,6 +15,7 @@ final class const PendingSlip({
   final String? planNote,
   final SlipWorkArea? workArea,
   final SlipPolarity polarity = SlipPolarity.liked,
+  final String? request,
 }) with Equatable {
   factory fromMap(Map<String, dynamic> map) => PendingSlip(
     id: map['id'] as String,
@@ -26,6 +27,7 @@ final class const PendingSlip({
     planNote: map['planNote'] as String?,
     workArea: SlipWorkArea.values.asNameMap()[map['workArea'] as String?],
     polarity: SlipPolarity.values.asNameMap()[map['polarity'] as String?] ?? SlipPolarity.liked,
+    request: map['request'] as String?,
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -38,6 +40,7 @@ final class const PendingSlip({
     'planNote': planNote,
     'workArea': workArea?.name,
     'polarity': polarity.name,
+    'request': request,
   };
 
   @override
@@ -51,5 +54,6 @@ final class const PendingSlip({
     planNote,
     workArea,
     polarity,
+    request,
   ];
 }

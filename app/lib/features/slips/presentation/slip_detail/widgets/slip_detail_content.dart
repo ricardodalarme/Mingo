@@ -29,6 +29,10 @@ class const SlipDetailContent({super.key}) extends StatelessWidget {
             const SizedBox(height: AppSpace.s16),
             _Labelled(label: context.l10n.slipDetail.plan, text: slip.planNote!),
           ],
+          if (slip.request != null && !isEditing) ...[
+            const SizedBox(height: AppSpace.s16),
+            _Labelled(label: context.l10n.slipDetail.request, text: slip.request!),
+          ],
           const SizedBox(height: AppSpace.s24),
           if (!isEditing) ...[
             _CardSection(slip: slip),

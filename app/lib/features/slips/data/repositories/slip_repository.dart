@@ -53,6 +53,7 @@ class SlipRepository({
     String? planNote,
     SlipWorkArea? workArea,
     SlipPolarity polarity = SlipPolarity.liked,
+    String? request,
   }) async {
     final slip = PendingSlip(
       id: id,
@@ -64,6 +65,7 @@ class SlipRepository({
       planNote: planNote,
       workArea: workArea,
       polarity: polarity,
+      request: _trimmedOrNull(request),
     );
     try {
       await _send(slip);
@@ -97,6 +99,7 @@ class SlipRepository({
         category: node.category?.toModel(),
         workArea: node.workArea?.toModel(),
         polarity: node.polarity.toModel() ?? SlipPolarity.liked,
+        request: node.request,
         isArchived: node.archivedAt != null,
         isInJar: node.inJar,
         wasInCard: node.cardItemsCollection?.edges.isNotEmpty ?? false,
@@ -119,6 +122,7 @@ class SlipRepository({
         planNote: slip.planNote,
         forCard: slip.forCard && slip.canGoInCard,
         polarity: slip.polarity.toRpc(),
+        request: slip.request,
       );
       _changes.add(null);
     } catch (e, stack) {
@@ -266,13 +270,24 @@ class SlipRepository({
     required DateTime now,
     SlipCategory? category,
     SlipPolarity polarity = SlipPolarity.liked,
+    String? request,
   }) {
-    if (text.trim().isEmpty && category == null && polarity == SlipPolarity.liked) {
+    final trimmedRequest = _trimmedOrNull(request);
+    if (text.trim().isEmpty &&
+        category == null &&
+        polarity == SlipPolarity.liked &&
+        trimmedRequest == null) {
       return _localDataSource.clearDraft();
     }
 
     return _localDataSource.writeDraft(
-      SlipDraft(text: text, savedAt: now, category: category, polarity: polarity),
+      SlipDraft(
+        text: text,
+        savedAt: now,
+        category: category,
+        polarity: polarity,
+        request: trimmedRequest,
+      ),
     );
   }
 
@@ -287,6 +302,7 @@ class SlipRepository({
       feeling: slip.feeling,
       planNote: slip.planNote,
       polarity: slip.polarity.toRpc(),
+      request: slip.request,
     );
     if (slip.category != null) {
       await _slipDataSource.setCategory(id: slip.id, category: slip.category?.toRpc());
@@ -302,4 +318,10 @@ class SlipRepository({
   }
 
   bool _isOffline(Object error) => error is LocalizedException && error.l10nKey == networkErrorCode;
+
+  String? _trimmedOrNull(String? value) {
+    final trimmed = value?.trim();
+
+    return trimmed == null || trimmed.isEmpty ? null : trimmed;
+  }
 }
