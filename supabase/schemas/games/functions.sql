@@ -78,3 +78,45 @@ begin
   on conflict on constraint game_answers_once do update set answer = excluded.answer;
   return true;
 end $$;
+
+-- The next items of a game for the couple: unseen ones first, then the least recently seen, so a replay starts over
+-- instead of running out. Every item it returns is recorded as seen. A person without a couple gets the first items
+-- and nothing is recorded, since there is no shared pool yet.
+create function public.next_game_items(game text, locale text default null, count integer default 5)
+returns setof public.content_items
+language plpgsql security definer set search_path = '' as $$
+declare
+  v_uid uuid := private.require_user();
+  v_couple uuid := private.current_couple_id();
+  v_kind public.game_kind;
+  v_locale text := coalesce(nullif(next_game_items.locale, ''),
+                            (select s.locale from public.profile_settings s where s.profile_id = v_uid));
+  v_count integer := least(greatest(coalesce(next_game_items.count, 5), 1), 50);
+  v_slugs text[];
+begin
+  begin
+    v_kind := next_game_items.game::public.game_kind;
+  exception when invalid_text_representation then
+    raise exception 'INVALID_GAME_KIND' using errcode = 'P0001';
+  end;
+  select array_agg(p.slug) into v_slugs
+  from (select c.slug
+        from public.content_items c
+        left join public.game_seen_items s
+          on s.couple_id = v_couple and s.game = v_kind and s.item_slug = c.slug
+        where c.kind::text = v_kind::text and c.locale = v_locale and c.published and not c.plus_only
+        order by s.seen_at nulls first, c.position, c.slug
+        limit v_count) p;
+  if v_slugs is null then return; end if;
+  if v_couple is not null then
+    insert into public.game_seen_items as g (couple_id, game, item_slug)
+    select v_couple, v_kind, u.slug from unnest(v_slugs) as u (slug)
+    on conflict on constraint game_seen_items_pkey do update set seen_at = now();
+  end if;
+  return query
+  select c.* from public.content_items c
+  join unnest(v_slugs) with ordinality as u (slug, ord) on u.slug = c.slug
+  where c.kind::text = v_kind::text and c.locale = v_locale
+  order by u.ord;
+end $$;
+grant execute on function public.next_game_items(text, text, integer) to authenticated;

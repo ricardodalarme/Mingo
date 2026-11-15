@@ -52,6 +52,7 @@ comment on table public.question_answers is e'@graphql({"description": "An answe
 comment on table public.checkin_answers is e'@graphql({"description": "One of four weekly check-in answers. Revealed only when both partners have finished the week."})';
 comment on table public.game_sessions is e'@graphql({"description": "A game one partner invited the other to. No score, no winner."})';
 comment on table public.game_answers is e'@graphql({"max_rows": 200, "description": "An answer inside a game. Private to the author until the session is finished."})';
+comment on table public.game_seen_items is e'@graphql({"description": "Which game items a couple has already been served, so a replay starts with new ones."})';
 
 -- Identity, notifications, account ---------------------------------------------------------------------
 comment on table public.couples is e'@graphql({"description": "A couple of two people."})';

@@ -26,3 +26,11 @@ create table public.game_answers (
   constraint game_answers_once unique (session_id, author_id, idx)
 );
 create index game_answers_author_idx on public.game_answers (author_id);
+-- Which items a couple has already been served, so a replay starts with new ones.
+create table public.game_seen_items (
+  couple_id uuid not null references public.couples (id) on delete cascade,
+  game public.game_kind not null,
+  item_slug text not null check (char_length(item_slug) between 1 and 80),
+  seen_at timestamptz not null default now(),
+  primary key (couple_id, game, item_slug)
+);
