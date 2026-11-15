@@ -1,0 +1,230 @@
+# Codemagic CI/CD. One workflow per platform, so Android (linux_x2) and iOS (mac_mini_m2) run in parallel:
+#   internal-android / internal-ios -> Firebase App Distribution, development flavor (groups internal / internal-ios)
+#   store-android / store-ios       -> Play internal track as a draft and TestFlight, production flavor, on v* tags
+# UI setup: env groups firebase_credentials, app_env, google_credentials; keystore app_upload_keystore;
+# iOS ad hoc and App Store profiles; Developer Portal integration app_asc.
+
+workflows:
+  internal-android:
+    name: Internal — Android
+    max_build_duration: 45
+    instance_type: linux_x2
+
+    environment:
+      flutter: 3.50.0
+      java: 17
+      groups:
+        - firebase_credentials
+        - app_env
+      android_signing:
+        - app_upload_keystore
+      vars:
+        FLAVOR: development
+    cache:
+      cache_paths:
+        - $HOME/.pub-cache
+        - $HOME/.gradle/caches
+
+    scripts:
+      - &bootstrap-dev
+        name: Bootstrap the workspace
+        script: |
+          set -e
+          if [ -z "$ENV_DEVELOPMENT" ]; then
+            echo "ENV_DEVELOPMENT is missing from the app_env group" >&2
+            exit 1
+          fi
+          export PATH="$PATH:$HOME/.pub-cache/bin"
+          dart pub global activate melos
+          melos bootstrap
+          printf '%s\n' "$ENV_DEVELOPMENT" > ".env.$FLAVOR"
+
+      - &android-key-properties
+        name: Configure Android signing
+        script: |
+          set -e
+          cat > app/android/key.properties <<EOF
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyPassword=$CM_KEY_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          storeFile=$CM_KEYSTORE_PATH
+          EOF
+
+      - name: Build Android APK
+        script: melos run build:apk-dev
+
+      - &release-notes
+        name: Write release notes
+        script: |
+          printf 'app %s (%s) from %s\n' \
+            "$(grep '^version:' app/pubspec.yaml | cut -d' ' -f2 | cut -d+ -f1)" \
+            "$BUILD_NUMBER" \
+            "${CM_TAG:-$(git rev-parse --short HEAD)}" > release_notes.txt
+
+    artifacts:
+      - app/build/app/outputs/flutter-apk/*.apk
+
+    publishing:
+      firebase:
+        firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
+        android:
+          app_id: 1:882913851188:android:f039f17a1980b0fd881761
+          groups:
+            - internal
+          artifact_type: apk
+
+  internal-ios:
+    name: Internal — iOS
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+
+    environment:
+      flutter: 3.50.0
+      xcode: latest
+      groups:
+        - firebase_credentials
+        - app_env
+      ios_signing:
+        distribution_type: ad_hoc
+        bundle_identifier: dev.dalarme.mingo.dev
+      vars:
+        FLAVOR: development
+    cache:
+      cache_paths:
+        - $HOME/.pub-cache
+        - $HOME/Library/Caches/org.swift.swiftpm
+
+    scripts:
+      - *bootstrap-dev
+
+      - &use-profiles
+        name: Apply iOS provisioning profiles
+        script: xcode-project use-profiles
+
+      - name: Build iOS ad hoc IPA
+        script: melos run build:ios-dev
+
+      - *release-notes
+
+    artifacts:
+      - app/build/ios/ipa/*.ipa
+
+    publishing:
+      firebase:
+        firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
+        ios:
+          app_id: 1:882913851188:ios:19994882523a5e0a881761
+          groups:
+            - internal-ios
+
+  store-android:
+    name: Store — Android
+    max_build_duration: 60
+    instance_type: linux_x2
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: "v*"
+          include: true
+
+    environment:
+      flutter: 3.50.0
+      java: 17
+      groups:
+        - app_env
+        - google_credentials
+      android_signing:
+        - app_upload_keystore
+      vars:
+        FLAVOR: production
+    cache:
+      cache_paths:
+        - $HOME/.pub-cache
+        - $HOME/.gradle/caches
+
+    scripts:
+      - &bootstrap-prod
+        name: Bootstrap the workspace
+        script: |
+          set -e
+          if [ -z "$ENV_PRODUCTION" ]; then
+            echo "ENV_PRODUCTION is missing from the app_env group" >&2
+            exit 1
+          fi
+          export PATH="$PATH:$HOME/.pub-cache/bin"
+          dart pub global activate melos
+          melos bootstrap
+          printf '%s\n' "$ENV_PRODUCTION" > ".env.$FLAVOR"
+
+      - *android-key-properties
+
+      - name: Build Android App Bundle
+        script: melos run build:android-prd
+
+    artifacts:
+      - app/build/app/outputs/bundle/**/*.aab
+
+    publishing:
+      google_play:
+        credentials: $GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
+        submit_as_draft: true
+        release_name: app $BUILD_NUMBER
+
+  store-ios:
+    name: Store — iOS
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: app_asc
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: "v*"
+          include: true
+
+    environment:
+      flutter: 3.50.0
+      xcode: latest
+      groups:
+        - app_env
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: dev.dalarme.mingo
+      vars:
+        FLAVOR: production
+    cache:
+      cache_paths:
+        - $HOME/.pub-cache
+        - $HOME/Library/Caches/org.swift.swiftpm
+
+    scripts:
+      - *bootstrap-prod
+      - *use-profiles
+
+      - name: Build iOS App Store IPA
+        script: melos run build:ios-prd
+
+      - name: Write TestFlight release notes
+        script: |
+          python3 - <<'PY'
+          import json, os
+          build = os.environ["BUILD_NUMBER"]
+          notes = [
+              {"language": "pt-BR", "text": f"Build {build} do app."},
+              {"language": "en-US", "text": f"app build {build}."},
+          ]
+          with open("release_notes.json", "w") as f:
+              json.dump(notes, f)
+          PY
+
+    artifacts:
+      - app/build/ios/ipa/*.ipa
+
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false

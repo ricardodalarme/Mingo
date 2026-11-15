@@ -51,7 +51,7 @@ Supabase commands, the schema layout and the migration workflow are in `supabase
 
 ## Repository layout
 
-`app/` (package `mingo`, flavors `development` and `production`), `packages/` (`core`, `network`, `design_system`,
+`app/` (package `app`, flavors `development` and `production`), `packages/` (`core`, `network`, `design_system`,
 `common_ui`, `form_inputs`, `formatters`, `logger`, `services/*`), `supabase/`, `.agents/skills/`.
 
 Firebase client configuration is committed per flavor: `app/android/app/src/{development,production}/google-services.json` and
@@ -173,6 +173,11 @@ installs `MaterialApp.router`, so app code never touches `Scaffold`, `AppBar` or
   history unless the owner asks. The owner may squash or rebase your commits; check `git reflog` before amending.
 - **Remote systems.** Do not change the linked Supabase project, Firebase, RevenueCat or the stores unless the owner asks for that
   action, and say exactly what you changed. Run `supabase test db` only against the local stack.
+- **Builds and distribution.** `codemagic.yaml` owns CI/CD, one workflow per platform so Android and iOS run in parallel.
+  `internal-android` and `internal-ios` ship the `development` flavor to Firebase App Distribution (`internal` and
+  `internal-ios` groups); `store-android` and `store-ios` upload the `production` flavor to the Play internal track as a draft
+  and to TestFlight on `v*` tags. They read the Codemagic UI setup listed at the top of the file. Nothing publishes to
+  production users automatically; do not change that without the owner asking.
 - **Secrets and local files.** Keys live only in `.env*`. Never commit `.work/`, `.env*`, screenshots or build output.
 - **Done means verified.** `melos gen`, `melos l10n`, `melos l10n:analyze`, `melos lint` and `melos test` pass; for backend
   changes the drift check and `supabase test db` pass too. Run the app for UI changes.

@@ -116,15 +116,36 @@ melos:
           - icons_launcher
 
     build:android-dev:
-      exec: flutter build appbundle --flavor development --dart-define-from-file ../.env.development
-      description: (DEV) Build the Android app.
+      exec: 'flutter build appbundle --release --flavor development ${BUILD_NUMBER:+--build-number "$BUILD_NUMBER"} --dart-define-from-file ../.env.development'
+      description: (DEV) Build the Android app bundle.
       packageFilters:
         scope:
           - app
 
     build:android-prd:
-      exec: flutter build appbundle --flavor production --dart-define-from-file ../.env.production
-      description: (PRD) Build the Android app.
+      exec: 'flutter build appbundle --release --flavor production ${BUILD_NUMBER:+--build-number "$BUILD_NUMBER"} --dart-define-from-file ../.env.production'
+      description: (PRD) Build the Android app bundle.
+      packageFilters:
+        scope:
+          - app
+
+    build:apk-dev:
+      exec: 'flutter build apk --release --flavor development ${BUILD_NUMBER:+--build-number "$BUILD_NUMBER"} --dart-define-from-file ../.env.development'
+      description: (DEV) Build the Android APK for Firebase App Distribution.
+      packageFilters:
+        scope:
+          - app
+
+    build:ios-dev:
+      exec: 'flutter build ipa --release --flavor development ${BUILD_NUMBER:+--build-number "$BUILD_NUMBER"} --dart-define-from-file ../.env.development --export-method ad-hoc'
+      description: (DEV) Build the ad hoc iOS IPA for Firebase App Distribution.
+      packageFilters:
+        scope:
+          - app
+
+    build:ios-prd:
+      exec: 'flutter build ipa --release --flavor production ${BUILD_NUMBER:+--build-number "$BUILD_NUMBER"} --dart-define-from-file ../.env.production --export-method app-store'
+      description: (PRD) Build the App Store iOS IPA.
       packageFilters:
         scope:
           - app
