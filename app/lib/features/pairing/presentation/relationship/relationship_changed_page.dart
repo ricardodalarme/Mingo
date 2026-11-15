@@ -15,7 +15,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 const List<RelationshipStatus> _optionOrder = [
   RelationshipStatus.ended,
   RelationshipStatus.bereaved,
-  RelationshipStatus.onBreak,
   RelationshipStatus.together,
 ];
 
@@ -118,7 +117,6 @@ class const _Options() extends StatelessWidget {
       switch (status) {
         RelationshipStatus.ended => l10n.optionEnded,
         RelationshipStatus.bereaved => l10n.optionBereaved,
-        RelationshipStatus.onBreak => l10n.optionOnBreak,
         RelationshipStatus.together => l10n.optionTogether,
       };
 
@@ -129,8 +127,6 @@ class const _Options() extends StatelessWidget {
     switch (cubit.state.selected) {
       case RelationshipStatus.bereaved:
         unawaited(context.pushRoute(const GriefSupportRoute()));
-      case RelationshipStatus.onBreak:
-        unawaited(context.router.maybePop());
       case RelationshipStatus.ended || RelationshipStatus.together || null:
         unawaited(context.router.maybePop());
     }

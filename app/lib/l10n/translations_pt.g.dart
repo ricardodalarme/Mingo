@@ -5582,9 +5582,6 @@ class Translations$relationshipChanged$pt {
   /// pt: 'Perdi a pessoa'
   String get optionBereaved => 'Perdi a pessoa';
 
-  /// pt: 'Um tempo'
-  String get optionOnBreak => 'Um tempo';
-
   /// pt: 'Está tudo bem'
   String get optionTogether => 'Está tudo bem';
 
@@ -11956,7 +11953,6 @@ extension on Translations {
           'relationshipChanged.subtitle' => 'Conte com calma. Isso só muda o que o app mostra.',
           'relationshipChanged.optionEnded' => 'Terminamos',
           'relationshipChanged.optionBereaved' => 'Perdi a pessoa',
-          'relationshipChanged.optionOnBreak' => 'Um tempo',
           'relationshipChanged.optionTogether' => 'Está tudo bem',
           'relationshipChanged.continueLabel' => 'Continuar',
           'relationshipChanged.saved' => 'Salvo',
@@ -12474,10 +12470,10 @@ extension on Translations {
           'spice.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'spice.errors.other' => 'Não deu para mudar agora. Tente de novo.',
           'story.title' => 'Imagem para compartilhar',
+          'story.privacyNote' => 'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.',
           _ => null,
         } ??
         switch (path) {
-          'story.privacyNote' => 'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.',
           'story.days' => 'dias',
           'story.together' => 'juntos',
           'story.namesLabel' => 'Incluir os nomes',

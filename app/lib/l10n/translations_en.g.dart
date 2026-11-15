@@ -4530,8 +4530,6 @@ class _Translations$relationshipChanged$en extends Translations$relationshipChan
   @override
   String get optionBereaved => 'I lost them';
   @override
-  String get optionOnBreak => 'A break';
-  @override
   String get optionTogether => 'Everything is fine';
   @override
   String get continueLabel => 'Continue';
@@ -10087,7 +10085,6 @@ extension on TranslationsEn {
           'relationshipChanged.subtitle' => 'Take your time. This only changes what the app shows.',
           'relationshipChanged.optionEnded' => 'We broke up',
           'relationshipChanged.optionBereaved' => 'I lost them',
-          'relationshipChanged.optionOnBreak' => 'A break',
           'relationshipChanged.optionTogether' => 'Everything is fine',
           'relationshipChanged.continueLabel' => 'Continue',
           'relationshipChanged.saved' => 'Saved',
@@ -10599,11 +10596,11 @@ extension on TranslationsEn {
           'spice.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'spice.errors.other' => 'Couldn\'t change that right now. Try again.',
           'story.title' => 'Image to share',
+          'story.privacyNote' =>
+            'The image is made on your device and carries no names or text unless you choose.',
           _ => null,
         } ??
         switch (path) {
-          'story.privacyNote' =>
-            'The image is made on your device and carries no names or text unless you choose.',
           'story.days' => 'days',
           'story.together' => 'together',
           'story.namesLabel' => 'Include the names',
