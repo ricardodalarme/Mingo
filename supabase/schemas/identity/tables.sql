@@ -40,8 +40,7 @@ create table public.profile_settings (
   spice_enabled boolean not null default false,
   low_stimulation boolean not null default false,
   chat_enabled boolean not null default false,
-  chat_store_facts boolean not null default false,
-  heavy_day_sharing public.heavy_day_sharing not null default 'off'
+  chat_store_facts boolean not null default false
 );
 
 create table public.couples (
