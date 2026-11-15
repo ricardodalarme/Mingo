@@ -114,7 +114,7 @@ class _SlipsPageState() extends State<SlipsPage> {
                               actionText: l10n.emptyAction,
                               onAction: () => context.router.root.push(const QuickSlipRoute()),
                             )
-                    : _Results(items: items),
+                    : _Results(items: items, isLoaded: slips is Success<List<SlipEntry>>),
                 failureBuilder: (_) => BaseEmptyState(
                   title: l10n.errorTitle,
                   text: l10n.errorText,
@@ -130,7 +130,8 @@ class _SlipsPageState() extends State<SlipsPage> {
   }
 }
 
-class const _Results({required final List<SlipEntry> items}) extends StatelessWidget {
+class const _Results({required final List<SlipEntry> items, required final bool isLoaded})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.slipsList;
@@ -147,7 +148,7 @@ class const _Results({required final List<SlipEntry> items}) extends StatelessWi
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SlipsGroups(slips: matches),
+        SlipsGroups(slips: matches, isLoaded: isLoaded),
         const SizedBox(height: AppSpace.s16),
         BaseListGroup(
           children: [

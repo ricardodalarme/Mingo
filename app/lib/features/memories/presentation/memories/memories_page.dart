@@ -96,26 +96,32 @@ class const _MemoriesTimeline() extends StatelessWidget {
           if (list.isEmpty)
             BaseEmptyState(title: l10n.emptyTitle, text: l10n.emptyText)
           else
-            BaseListGroup(
-              children: [
-                for (final memory in list)
-                  BaseListTile(
-                    title: memory.title,
-                    subtitle: [
-                      l10n.dateLine(
-                        day: memory.happenedOn.day,
-                        month: l10n.monthsShort[memory.happenedOn.month - 1],
-                        year: memory.happenedOn.year,
+            RevealScope(
+              play: memories is Success<List<Memory>>,
+              child: BaseListGroup(
+                children: [
+                  for (final (index, memory) in list.indexed)
+                    Reveal(
+                      index: index,
+                      child: BaseListTile(
+                        title: memory.title,
+                        subtitle: [
+                          l10n.dateLine(
+                            day: memory.happenedOn.day,
+                            month: l10n.monthsShort[memory.happenedOn.month - 1],
+                            year: memory.happenedOn.year,
+                          ),
+                          if (memory.place != null) memory.place!,
+                        ].join(' · '),
+                        onTap: () => _openMemoryDetail(context, memory),
+                        trailing: BaseTextLink(
+                          text: l10n.delete,
+                          onPressed: () => confirmDelete(memory),
+                        ),
                       ),
-                      if (memory.place != null) memory.place!,
-                    ].join(' · '),
-                    onTap: () => _openMemoryDetail(context, memory),
-                    trailing: BaseTextLink(
-                      text: l10n.delete,
-                      onPressed: () => confirmDelete(memory),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           if (list.isNotEmpty) ...[
             const SizedBox(height: AppSpace.s12),
@@ -246,15 +252,18 @@ class const _JarResult() extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: AppSpace.s12),
-          AppPressable(
-            onTap: () => context.pushRoute(SlipDetailRoute(id: slip.id)),
-            borderRadius: BorderRadius.circular(AppRadius.card),
-            child: BaseSurfaceCard(
-              style: .ring,
-              padding: const EdgeInsets.all(AppSpace.s20),
-              child: Semantics(
-                liveRegion: true,
-                child: Text(slip.body, style: context.text.titleLg),
+          Reveal(
+            key: ValueKey(slip.id),
+            child: AppPressable(
+              onTap: () => context.pushRoute(SlipDetailRoute(id: slip.id)),
+              borderRadius: BorderRadius.circular(AppRadius.card),
+              child: BaseSurfaceCard(
+                style: .ring,
+                padding: const EdgeInsets.all(AppSpace.s20),
+                child: Semantics(
+                  liveRegion: true,
+                  child: Text(slip.body, style: context.text.titleLg),
+                ),
               ),
             ),
           ),

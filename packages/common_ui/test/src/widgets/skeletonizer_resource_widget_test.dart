@@ -4,8 +4,29 @@ import 'package:design_system/design_system.dart';
 import 'package:design_system/design_system_l10n.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Widget _host(Widget child) {
-  return BaseApp(theme: AppTheme.light(AppThemeVariant.rose), home: child);
+Widget _host(Widget child, {bool reduceMotion = false}) {
+  return BaseApp(
+    theme: AppTheme.light(AppThemeVariant.rose),
+    home: reduceMotion
+        ? Builder(
+            builder: (context) => MediaQuery(
+              data: MediaQuery.of(context).copyWith(disableAnimations: true),
+              child: child,
+            ),
+          )
+        : child,
+  );
+}
+
+double _fadeOpacity(WidgetTester tester) {
+  final fade = tester.widget<FadeTransition>(
+    find.descendant(
+      of: find.byType(SkeletonizerResourceWidget<String>),
+      matching: find.byType(FadeTransition),
+    ),
+  );
+
+  return fade.opacity.value;
 }
 
 void main() {
@@ -73,6 +94,32 @@ void main() {
       expect(find.bySemanticsLabel(fakeValue), findsNothing);
 
       semantics.dispose();
+    });
+
+    testWidgets('fades the real content in when the data arrives', (tester) async {
+      await tester.pumpWidget(_host(buildWidget(const Loading())));
+      expect(_fadeOpacity(tester), 1);
+
+      await tester.pumpWidget(_host(buildWidget(const Success(successValue))));
+
+      expect(find.text(successValue), findsOneWidget);
+      expect(_fadeOpacity(tester), 0);
+
+      await tester.pump(AppMotion.fast);
+
+      expect(_fadeOpacity(tester), 1);
+    });
+
+    testWidgets('shows the content at rest when the platform asks for reduced motion', (
+      tester,
+    ) async {
+      await tester.pumpWidget(_host(buildWidget(const Loading()), reduceMotion: true));
+      await tester.pumpWidget(_host(buildWidget(const Success(successValue)), reduceMotion: true));
+
+      await tester.pump(AppMotion.reduced);
+
+      expect(find.text(successValue), findsOneWidget);
+      expect(_fadeOpacity(tester), 1);
     });
   });
 }

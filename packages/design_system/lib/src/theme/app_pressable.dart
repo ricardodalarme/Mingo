@@ -15,6 +15,7 @@ class const AppPressable({
   final bool isSemanticButton = true,
   final bool enforceMinTapTarget = false,
   final bool scaleOnPress = true,
+  final double? pressedScale,
   final bool? isSelected,
   final bool isHaptic = false,
   super.key,
@@ -45,7 +46,7 @@ class _AppPressableState() extends State<AppPressable> {
     final colors = context.colors;
 
     Widget content = AnimatedScale(
-      scale: _isPressed && widget.scaleOnPress ? context.pressScale : 1,
+      scale: _isPressed && widget.scaleOnPress ? context.pressScale(widget.pressedScale) : 1,
       duration: context.motionDuration(AppMotion.fast),
       curve: AppMotion.fastCurve,
       child: widget.child,

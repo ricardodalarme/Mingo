@@ -153,7 +153,8 @@ class const BaseSheet({
         barrierColorValue: colors.scrim,
         barrierLabelValue: localizations?.modalBarrierDismissLabel ?? '',
         isDismissible: isDismissible,
-        transition: context.motionDuration(AppMotion.base),
+        transition: context.motionDuration(AppMotion.slow),
+        reverseTransition: context.motionDuration(AppMotion.base),
         isReducedMotion: isReducedMotion,
         builder: (sheetContext) {
           return Align(
@@ -185,6 +186,7 @@ class _BaseSheetRoute<T>({
   required final String barrierLabelValue,
   required final bool isDismissible,
   required final Duration transition,
+  required final Duration reverseTransition,
   required final bool isReducedMotion,
 }) extends PopupRoute<T> {
   @override
@@ -198,6 +200,9 @@ class _BaseSheetRoute<T>({
 
   @override
   Duration get transitionDuration => transition;
+
+  @override
+  Duration get reverseTransitionDuration => reverseTransition;
 
   @override
   Widget buildPage(
@@ -226,7 +231,7 @@ class _BaseSheetRoute<T>({
       position: Tween<Offset>(
         begin: const Offset(0, 1),
         end: Offset.zero,
-      ).chain(CurveTween(curve: AppMotion.baseCurve)).animate(animation),
+      ).chain(CurveTween(curve: AppMotion.sheetCurve)).animate(animation),
       child: child,
     );
   }

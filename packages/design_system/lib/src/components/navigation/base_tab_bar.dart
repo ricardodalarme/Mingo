@@ -73,6 +73,7 @@ class const _TabBarSlot({
       isSelected: isSelected,
       semanticLabel: item.semanticLabel ?? item.label,
       borderRadius: BorderRadius.circular(AppRadius.pill),
+      pressedScale: item.isPrimaryAction ? AppMotion.pressedActionScale : null,
       child: ConstrainedBox(
         constraints: const BoxConstraints(minHeight: _itemHeight),
         child: Center(

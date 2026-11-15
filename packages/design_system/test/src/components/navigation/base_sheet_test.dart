@@ -105,6 +105,40 @@ void main() {
     });
   }
 
+  testWidgets('sheet rises from the bottom edge and settles', (tester) async {
+    setSurface(tester);
+    await tester.pumpWidget(appFor(variant: AppThemeVariant.rose, home: const _SheetLauncher()));
+
+    await tester.tap(find.text('Open sheet'));
+    await tester.pump();
+
+    final arriving = tester.getTopLeft(find.byType(BaseSheet)).dy;
+
+    await tester.pump(AppMotion.slow);
+
+    final settled = tester.getTopLeft(find.byType(BaseSheet)).dy;
+    expect(arriving, greaterThan(settled));
+
+    await tester.pumpAndSettle();
+    expect(tester.getTopLeft(find.byType(BaseSheet)).dy, settled);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('sheet can be dismissed while it is still arriving', (tester) async {
+    setSurface(tester);
+    await tester.pumpWidget(appFor(variant: AppThemeVariant.rose, home: const _SheetLauncher()));
+
+    await tester.tap(find.text('Open sheet'));
+    await tester.pump();
+    await tester.pump(AppMotion.fast);
+
+    await tester.tap(find.byType(BaseRoundButton));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(BaseSheet), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('sheet rises above the keyboard and keeps its action reachable', (tester) async {
     setSurface(tester);
     addTearDown(tester.view.resetViewInsets);
