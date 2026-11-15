@@ -33,6 +33,7 @@ end $$;
 
 -- Returns the couple on success and NULL for any invalid code (expired, used, cancelled, own, unknown,
 -- or either side already paired): one generic answer, no enumeration. Failed attempts are counted.
+-- The caller's own pending invites are cancelled in the same transaction, so the other side never keeps a dead code.
 create function public.accept_invite(code text) returns public.couples
 language plpgsql security definer set search_path = '' as $$
 declare
@@ -69,6 +70,8 @@ begin
   update public.question_answers set couple_id = v_couple.id
   where author_id in (v_invite.created_by, v_uid) and couple_id is null;
   update public.invites set used_at = now(), used_by = v_uid where id = v_invite.id;
+  update public.invites set cancelled_at = now()
+  where created_by = v_uid and used_at is null and cancelled_at is null;
   return v_couple;
 end $$;
 
