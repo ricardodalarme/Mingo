@@ -104,8 +104,8 @@ sends nothing until both Vault secrets exist, so the jobs are safe before setup.
 These show up in advisors or reviews and are intentional. Revisit them only with the reason in mind.
 
 - **Plus-only content is readable by every signed-in user** (decision D-029): the app must list locked items by title, and the
-  content is not secret. Server-enforced Plus limits are slips, cards and mascot messages. The `sensitive` flag and the
-  `sensitive_tracks` consent are a UX gate the user controls, not a security boundary.
+  content is not secret. Server-enforced Plus limits are slips, cards and mascot messages. The `sensitive` flag is a UX
+  gate the user controls, not a security boundary.
 - **`app_config` is readable by `anon`** (advisor 0024): the limits and the minimum app version are read before sign-in.
 - **GraphQL introspection is on** (`graphql/schema_settings.sql`): the Supabase docs recommend turning it off in production,
   but the schema snapshot is generated from the project in `.env.development`. Turning it off in production means switching
