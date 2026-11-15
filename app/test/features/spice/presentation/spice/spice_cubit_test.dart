@@ -11,21 +11,10 @@ void main() {
 
   setUp(() {
     repository = _MockSpiceRepository();
-    when(() => repository.isHidden).thenReturn(false);
     when(repository.getView).thenAnswer((_) async => const SpiceView(stage: SpiceStage.off));
     when(() => repository.setEnabled(enabled: any(named: 'enabled'))).thenAnswer((_) async {
       return;
     });
-  });
-
-  test('safe mode hides the section and reads nothing', () async {
-    when(() => repository.isHidden).thenReturn(true);
-    final cubit = SpiceCubit(spiceRepository: repository);
-
-    await cubit.load();
-
-    expect(cubit.state.isHidden, isTrue);
-    verifyNever(repository.getView);
   });
 
   test('a person who has not opted in sees the off stage', () async {
@@ -92,15 +81,5 @@ void main() {
     await cubit.refresh();
 
     expect(cubit.state.shouldExit, isFalse);
-  });
-
-  test('safe mode on refresh hides without reading the mode', () async {
-    when(() => repository.isHidden).thenReturn(true);
-    final cubit = SpiceCubit(spiceRepository: repository);
-
-    await cubit.refresh();
-
-    expect(cubit.state.isHidden, isTrue);
-    verifyNever(repository.getView);
   });
 }

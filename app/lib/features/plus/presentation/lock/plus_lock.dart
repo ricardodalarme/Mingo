@@ -5,7 +5,7 @@ import 'package:design_system/design_system.dart';
 
 /// The one lock shown in place of a Plus feature; tapping it opens the plans.
 ///
-/// Never place it over safety, pause or unpair, which are always free.
+/// Never place it over unpair, which is always free.
 class const PlusLock({required final String title, final String? text, super.key})
     extends StatelessWidget {
   @override

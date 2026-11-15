@@ -2,7 +2,6 @@ import 'package:app/features/plus/data/models/plus_state.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
-import 'package:app/features/safety/data/repositories/safe_mode_repository.dart';
 import 'package:app/features/spice/data/data_sources/remote/spice_data_source.dart';
 import 'package:app/features/spice/data/repositories/spice_repository.dart';
 import 'package:core/core.dart';
@@ -13,14 +12,11 @@ class _MockSpiceDataSource() extends Mock implements SpiceDataSource;
 
 class _MockProfileRepository() extends Mock implements ProfileRepository;
 
-class _MockSafeModeRepository() extends Mock implements SafeModeRepository;
-
 class _MockPlusRepository() extends Mock implements PlusRepository;
 
 void main() {
   late SpiceDataSource dataSource;
   late ProfileRepository profile;
-  late SafeModeRepository safeMode;
   late PlusRepository plus;
   late SpiceRepository repository;
 
@@ -29,26 +25,17 @@ void main() {
   setUp(() {
     dataSource = _MockSpiceDataSource();
     profile = _MockProfileRepository();
-    safeMode = _MockSafeModeRepository();
     plus = _MockPlusRepository();
     repository = SpiceRepository(
       dataSource: dataSource,
       profileRepository: profile,
-      safeModeRepository: safeMode,
       plusRepository: plus,
     );
 
-    when(() => safeMode.isOn).thenReturn(false);
     when(() => plus.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: true));
     when(profile.getMySettings).thenAnswer(
       (_) async => const AccountSettings(theme: .rose, profileId: 'p1', locale: 'pt-BR'),
     );
-  });
-
-  test('safe mode keeps the section hidden', () {
-    when(() => safeMode.isOn).thenReturn(true);
-
-    expect(repository.isHidden, isTrue);
   });
 
   test('a free person gets the Plus entry without reading cards', () async {

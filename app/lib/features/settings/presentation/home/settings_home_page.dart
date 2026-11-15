@@ -1,5 +1,4 @@
 import 'package:app/features/account/presentation/sign_out/sign_out_dialog.dart';
-import 'package:app/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:app/features/settings/presentation/home/cubit/settings_home_cubit.dart';
@@ -10,16 +9,13 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// The settings root: sections with one line of status each; Safety is always first-level.
+/// The settings root: sections with one line of status each.
 @RoutePage()
 class const SettingsHomePage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => AppInjector.instance.get<SettingsHomeCubit>()..load()),
-        BlocProvider.value(value: AppInjector.instance.get<SafeModeCubit>()),
-      ],
+    return BlocProvider(
+      create: (_) => AppInjector.instance.get<SettingsHomeCubit>()..load(),
       child: this,
     );
   }
@@ -130,7 +126,6 @@ class const _PreferencesSection() extends StatelessWidget {
       (SettingsHomeCubit cubit) => cubit.state.notificationsOn,
     );
     final locale = AppInjector.instance.get<SettingsRepository>().get().locale;
-    final safeModeOn = context.select((SafeModeCubit cubit) => cubit.state.isOn);
 
     final notifications = switch (notificationsOn) {
       null => null,
@@ -183,7 +178,7 @@ class const _PreferencesSection() extends StatelessWidget {
                 showsChevron: true,
                 onTap: () => context.pushRoute(const SundayCardRoute()),
               ),
-              if (hasRelationship && !safeModeOn)
+              if (hasRelationship)
                 BaseListTile(
                   title: l10n.spice,
                   icon: AppIcons.heart,
@@ -258,13 +253,6 @@ class const _PrivacySection() extends StatelessWidget {
                 showsChevron: true,
                 onTap: () => context.pushRoute(const SensitiveDaysRoute()),
               ),
-            BaseListTile(
-              title: l10n.safety,
-              subtitle: l10n.safetyStatus,
-              icon: AppIcons.shield,
-              showsChevron: true,
-              onTap: () => context.pushRoute(const SafeModeRoute()),
-            ),
             BaseListTile(
               title: l10n.help,
               subtitle: l10n.helpStatus,

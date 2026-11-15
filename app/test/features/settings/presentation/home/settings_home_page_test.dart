@@ -7,8 +7,6 @@ import 'package:app/features/plus/data/models/plus_state.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
-import 'package:app/features/safety/data/repositories/safe_mode_repository.dart';
-import 'package:app/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
 import 'package:app/features/settings/data/models/discreet_mode_values.dart';
 import 'package:app/features/settings/data/models/settings.dart';
 import 'package:app/features/settings/data/repositories/discreet_repository.dart';
@@ -36,8 +34,6 @@ class _MockAuthenticationRepository() extends Mock implements AuthenticationRepo
 
 class _MockDiscreetRepository() extends Mock implements DiscreetRepository;
 
-class _MockSafeModeRepository() extends Mock implements SafeModeRepository;
-
 class _MockSettingsRepository() extends Mock implements SettingsRepository;
 
 void main() {
@@ -54,7 +50,6 @@ void main() {
   late AuthenticationRepository authentication;
   late SettingsRepository settingsRepository;
   late DiscreetModeCubit discreet;
-  late SafeModeCubit safeMode;
 
   setUp(() {
     pairing = _MockPairingRepository();
@@ -71,15 +66,11 @@ void main() {
     AppInjector.instance.registerFactory<SettingsRepository>(() => settingsRepository);
     addTearDown(() => AppInjector.instance.unregister<SettingsRepository>());
 
-    final safeModeRepository = _MockSafeModeRepository();
-    when(() => safeModeRepository.isOn).thenReturn(false);
-    safeMode = SafeModeCubit(repository: safeModeRepository);
     final discreetRepository = _MockDiscreetRepository();
     when(() => discreetRepository.local).thenReturn(const DiscreetModeValues());
     when(() => discreetRepository.setNeutralIcon(value: any(named: 'value')))
         .thenAnswer((_) async {});
     discreet = DiscreetModeCubit(repository: discreetRepository);
-    addTearDown(safeMode.close);
     addTearDown(discreet.close);
   });
 
@@ -97,7 +88,6 @@ void main() {
       MultiBlocProvider(
         providers: [
           BlocProvider.value(value: home),
-          BlocProvider.value(value: safeMode),
           BlocProvider.value(value: discreet),
         ],
         child: const SettingsHomePage(),
@@ -131,7 +121,6 @@ void main() {
 
     expect(find.text(l10n.settingsHome.theme), findsOneWidget);
     expect(find.text(l10n.settingsHome.language), findsOneWidget);
-    expect(find.text(l10n.settingsHome.safety), findsOneWidget);
     expect(find.text(l10n.settingsHome.help), findsOneWidget);
 
     expect(find.text(l10n.settingsHome.accountSection), findsNothing);

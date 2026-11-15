@@ -62,11 +62,10 @@ class _SpicePageState() extends State<SpicePage> with WidgetsBindingObserver {
     final view = context.select((SpiceCubit cubit) => cubit.state.view);
     final index = context.select((SpiceCubit cubit) => cubit.state.index);
     final isToggling = context.select((SpiceCubit cubit) => cubit.state.toggleAction.isLoading);
-    final isHidden = context.select((SpiceCubit cubit) => cubit.state.isHidden);
     final shouldExit = context.select((SpiceCubit cubit) => cubit.state.shouldExit);
     final cubit = context.read<SpiceCubit>();
 
-    if (isHidden || shouldExit) {
+    if (shouldExit) {
       _exitToToday();
       return const BaseView(body: SizedBox.shrink());
     }

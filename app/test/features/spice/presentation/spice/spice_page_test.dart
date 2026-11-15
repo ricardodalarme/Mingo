@@ -32,7 +32,6 @@ void main() {
 
   setUp(() {
     repository = _MockSpiceRepository();
-    when(() => repository.isHidden).thenReturn(false);
     when(repository.getView).thenAnswer((_) async => const SpiceView(stage: SpiceStage.off));
     when(() => repository.setEnabled(enabled: any(named: 'enabled'))).thenAnswer((_) async {
       return;
@@ -68,20 +67,6 @@ void main() {
     AppInjector.instance.registerFactory<SpiceCubit>(() => SpiceCubit(spiceRepository: repository));
     addTearDown(() => AppInjector.instance.unregister<SpiceCubit>());
   }
-
-  testWidgets('safe mode sends the page back instead of leaving the skeleton', (tester) async {
-    when(() => repository.isHidden).thenReturn(true);
-    registerCubit();
-    final router = _TestRouter();
-    await pumpRouter(tester, router);
-
-    unawaited(router.push(const SpiceRoute()));
-    await tester.pump();
-    await tester.pump();
-
-    expect(router.stack.map((route) => route.name), isNot(contains(SpiceRoute.name)));
-    expect(find.byType(Skeletonizer), findsNothing);
-  });
 
   testWidgets('a free person sees the Plus entry and no card', (tester) async {
     when(repository.getView).thenAnswer((_) async => const SpiceView(stage: SpiceStage.plusLocked));

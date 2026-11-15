@@ -191,10 +191,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$rituals$en rituals = _Translations$rituals$en._(_root);
   @override
-  late final _Translations$safeMode$en safeMode = _Translations$safeMode$en._(_root);
-  @override
-  late final _Translations$safety$en safety = _Translations$safety$en._(_root);
-  @override
   late final _Translations$sensitiveDays$en sensitiveDays = _Translations$sensitiveDays$en._(_root);
   @override
   late final _Translations$sessionExpired$en sessionExpired = _Translations$sessionExpired$en._(
@@ -779,13 +775,6 @@ class _Translations$chat$en extends Translations$chat$pt {
   String get plusText => 'The mascot is available on Plus, with 20 messages a day.';
   @override
   String get plusCta => 'See plans';
-  @override
-  String get crisisTitle => 'You are not alone';
-  @override
-  String get crisisText =>
-      'It sounds like you are going through something very heavy. If you are in danger right now, call your local emergency service or reach someone you trust. I am not the right help for this.';
-  @override
-  String get crisisSafeMode => 'Hide the app (safe mode)';
   @override
   String get unavailableTitle => 'The chat is not available right now';
   @override
@@ -3779,7 +3768,7 @@ class _Translations$plus$en extends Translations$plus$pt {
   String get freeName => 'Free';
   @override
   String get freeFeatures =>
-      'Slips every month, one sent card a month, repair, pause, safety and everything you already saved.';
+      'Slips every month, one sent card a month, repair and everything you already saved.';
   @override
   String get plusName => 'Plus';
   @override
@@ -3809,7 +3798,7 @@ class _Translations$plus$en extends Translations$plus$pt {
   String get billingText =>
       'The last payment didn\'t go through. Plus stays on for now. Open your subscriptions in the store and update the payment method.';
   @override
-  String get alwaysFree => 'Safety, pause and unpair are never locked.';
+  String get alwaysFree => 'Unpairing is never locked.';
   @override
   String get lockLabel => 'PLUS';
   @override
@@ -4755,38 +4744,6 @@ class _Translations$rituals$en extends Translations$rituals$pt {
   };
 }
 
-// Path: safeMode
-class _Translations$safeMode$en extends Translations$safeMode$pt {
-  _Translations$safeMode$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Safe mode';
-  @override
-  String get text => 'For when the app needs to stay discreet on this phone.';
-  @override
-  String get toggle => 'Hide the app';
-  @override
-  String get toggleText => 'When you switch apps, the screen goes blank.';
-  @override
-  String get localOnly => 'This stays only on this phone. Nothing is sent or recorded.';
-  @override
-  String get quickExit => 'Leave now';
-}
-
-// Path: safety
-class _Translations$safety$en extends Translations$safety$pt {
-  _Translations$safety$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get entry => 'Safety and support';
-}
-
 // Path: sensitiveDays
 class _Translations$sensitiveDays$en extends Translations$sensitiveDays$pt {
   _Translations$sensitiveDays$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -4853,10 +4810,6 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   // Translations
   @override
   String get title => 'Settings';
-  @override
-  String get safety => 'Safety and support';
-  @override
-  String get safetyStatus => 'Safe mode';
   @override
   String get profile => 'Profile';
   @override
@@ -7968,9 +7921,6 @@ extension on TranslationsEn {
           'chat.plusTitle' => 'The chat is part of Plus',
           'chat.plusText' => 'The mascot is available on Plus, with 20 messages a day.',
           'chat.plusCta' => 'See plans',
-          'chat.crisisTitle' => 'You are not alone',
-          'chat.crisisText' => 'It sounds like you are going through something very heavy. If you are in danger right now, call your local emergency service or reach someone you trust. I am not the right help for this.',
-          'chat.crisisSafeMode' => 'Hide the app (safe mode)',
           'chat.unavailableTitle' => 'The chat is not available right now',
           'chat.unavailableText' => 'Try again later.',
           'chat.errorTitle' => 'Couldn\'t load',
@@ -8209,14 +8159,14 @@ extension on TranslationsEn {
           'devices.subtitle' => 'Phones that receive notifications for this account. Removing one stops its notifications.',
           'devices.current' => 'This device',
           'devices.registeredToday' => ({required Object time}) => 'Registered today at ${time}',
-          _ => null,
-        } ??
-        switch (path) {
           'devices.registeredYesterday' => ({
             required Object time,
           }) => 'Registered yesterday at ${time}',
           'devices.registeredOn' => ({required Object date}) => 'Registered on ${date}',
           'devices.platformIos' => 'iPhone',
+          _ => null,
+        } ??
+        switch (path) {
           'devices.platformAndroid' => 'Android',
           'devices.revokeTitle' => 'Stop notifications on this device?',
           'devices.revokeText' => ({
@@ -8868,12 +8818,12 @@ extension on TranslationsEn {
           'history.milestoneTitleErrors.empty' => 'Say what happened',
           'history.milestoneTitleErrors.tooLong' => 'The title is too long',
           'history.milestonePlaceLabel' => 'Place (optional)',
-          _ => null,
-        } ??
-        switch (path) {
           'history.milestonePlaceHint' => 'E.g. Paraty',
           'history.milestonePlaceErrors.tooLong' => 'The place is too long',
           'history.milestoneBodyHint' => 'A note about this moment (optional)',
+          _ => null,
+        } ??
+        switch (path) {
           'history.milestoneBodyErrors.tooLong' => 'The note is too long',
           'history.milestoneKindLabel' => 'Milestone kind',
           'history.kindFirst' => 'First time',
@@ -9484,12 +9434,12 @@ extension on TranslationsEn {
           'moodHelp.partnerNeedNote' => 'This comes from the mood your partner shared today.',
           'moodHelp.partnerNeedActions.listen' => 'Just listen',
           'moodHelp.partnerNeedActions.opinion' => 'Give an opinion',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.partnerNeedActions.hug' => 'Send a hug',
           'moodHelp.partnerNeedActions.space' => 'Give some space',
           'moodHelp.partnerNeedActions.chocolate' => 'Bring some chocolate',
+          _ => null,
+        } ??
+        switch (path) {
           'moodHelp.partnerNeedActions.cuteMessage' => 'Open the chat',
           'moodHelp.partnerNeedActions.foreheadKiss' => 'A kiss on the forehead',
           'moodHelp.partnerNeedActions.company' => 'Stay close',
@@ -9739,7 +9689,8 @@ extension on TranslationsEn {
                   other: '${count} sent cards',
                 ),
           'plus.freeName' => 'Free',
-          'plus.freeFeatures' => 'Slips every month, one sent card a month, repair, pause, safety and everything you already saved.',
+          'plus.freeFeatures' =>
+            'Slips every month, one sent card a month, repair and everything you already saved.',
           'plus.plusName' => 'Plus',
           'plus.plusFeatures' => 'More slips and cards each month and more for both of you, covering you and your partner.',
           'plus.monthly' => 'Monthly',
@@ -9753,7 +9704,7 @@ extension on TranslationsEn {
           'plus.purchaseError' => 'Couldn\'t complete the purchase. Nothing was charged.',
           'plus.billingTitle' => 'Payment problem',
           'plus.billingText' => 'The last payment didn\'t go through. Plus stays on for now. Open your subscriptions in the store and update the payment method.',
-          'plus.alwaysFree' => 'Safety, pause and unpair are never locked.',
+          'plus.alwaysFree' => 'Unpairing is never locked.',
           'plus.lockLabel' => 'PLUS',
           'plus.lockText' => 'Available with Plus. Tap to see the plans.',
           'plus.errorTitle' => 'Couldn\'t load',
@@ -10078,12 +10029,12 @@ extension on TranslationsEn {
           'quickSlip.requestErrors.tooLong' => 'Use at most 140 characters',
           'quickSlip.requestErrors.other' => 'Check this field',
           'quickSlip.save' => 'Save',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
           'quickSlip.saved.added' => 'Slip added to this week.',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.saved.queued' =>
             'Saved on this phone. We send it when the connection is back.',
           'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
@@ -10336,13 +10287,6 @@ extension on TranslationsEn {
           'rituals.errors.NOT_FOUND' => 'That ritual isn\'t here anymore.',
           'rituals.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'rituals.errors.other' => 'Couldn\'t do that right now. Try again.',
-          'safeMode.title' => 'Safe mode',
-          'safeMode.text' => 'For when the app needs to stay discreet on this phone.',
-          'safeMode.toggle' => 'Hide the app',
-          'safeMode.toggleText' => 'When you switch apps, the screen goes blank.',
-          'safeMode.localOnly' => 'This stays only on this phone. Nothing is sent or recorded.',
-          'safeMode.quickExit' => 'Leave now',
-          'safety.entry' => 'Safety and support',
           'sensitiveDays.title' => 'Sensitive days',
           'sensitiveDays.subtitle' =>
             'Somewhere only yours. Your partner sees neither this screen nor what you mark here.',
@@ -10366,8 +10310,6 @@ extension on TranslationsEn {
           'sessionExpired.text' => 'Sign in again to continue. Your data is safe.',
           'sessionExpired.action' => 'Sign in',
           'settingsHome.title' => 'Settings',
-          'settingsHome.safety' => 'Safety and support',
-          'settingsHome.safetyStatus' => 'Safe mode',
           'settingsHome.profile' => 'Profile',
           'settingsHome.relationship' => 'Relationship',
           'settingsHome.connected' => 'You are connected',
@@ -10645,9 +10587,6 @@ extension on TranslationsEn {
           'slipsList.errorTitle' => 'Could not load your slips',
           'slipsList.errorText' => 'They are still saved. Try again.',
           'spice.title' => 'Moments for two',
-          _ => null,
-        } ??
-        switch (path) {
           'spice.offText' => 'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.',
           'spice.turnOn' => 'Turn on',
           'spice.notNow' => 'Not now',
@@ -10660,6 +10599,9 @@ extension on TranslationsEn {
           'spice.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'spice.errors.other' => 'Couldn\'t change that right now. Try again.',
           'story.title' => 'Image to share',
+          _ => null,
+        } ??
+        switch (path) {
           'story.privacyNote' =>
             'The image is made on your device and carries no names or text unless you choose.',
           'story.days' => 'days',

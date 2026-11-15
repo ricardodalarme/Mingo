@@ -14,7 +14,7 @@
     "other": "{count} sent cards"
   },
   "freeName": "Free",
-  "freeFeatures": "Slips every month, one sent card a month, repair, pause, safety and everything you already saved.",
+  "freeFeatures": "Slips every month, one sent card a month, repair and everything you already saved.",
   "plusName": "Plus",
   "plusFeatures": "More slips and cards each month and more for both of you, covering you and your partner.",
   "monthly": "Monthly",
@@ -28,7 +28,7 @@
   "purchaseError": "Couldn't complete the purchase. Nothing was charged.",
   "billingTitle": "Payment problem",
   "billingText": "The last payment didn't go through. Plus stays on for now. Open your subscriptions in the store and update the payment method.",
-  "alwaysFree": "Safety, pause and unpair are never locked.",
+  "alwaysFree": "Unpairing is never locked.",
   "lockLabel": "PLUS",
   "lockText": "Available with Plus. Tap to see the plans.",
   "errorTitle": "Couldn't load",

@@ -14,7 +14,7 @@
     "other": "{count} cartões enviados"
   },
   "freeName": "Grátis",
-  "freeFeatures": "Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.",
+  "freeFeatures": "Slips todo mês, um cartão enviado por mês, repair e tudo o que você já guardou.",
   "plusName": "Plus",
   "plusFeatures": "Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.",
   "monthly": "Mensal",
@@ -28,7 +28,7 @@
   "purchaseError": "Não deu para concluir a compra. Nada foi cobrado.",
   "billingTitle": "Problema no pagamento",
   "billingText": "O último pagamento não passou. O Plus continua por enquanto. Abra suas assinaturas na loja e atualize a forma de pagamento.",
-  "alwaysFree": "Segurança, pausa e desparear nunca ficam trancados.",
+  "alwaysFree": "Desparear nunca fica trancado.",
   "lockLabel": "PLUS",
   "lockText": "Disponível no Plus. Toque para ver os planos.",
   "errorTitle": "Não deu para carregar",

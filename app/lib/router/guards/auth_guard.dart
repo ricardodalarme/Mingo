@@ -21,8 +21,6 @@ const Set<String> publicRouteNames = {
   SettingsHomeRoute.name,
   SettingsThemeRoute.name,
   LanguageRoute.name,
-  SafeModeRoute.name,
-  NeutralRoute.name,
   HelpRoute.name,
   SupportRoute.name,
 };

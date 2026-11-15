@@ -22,7 +22,6 @@ const Set<String> _sensitiveRouteNames = {
   'MoodRoute',
   'NeedRoute',
   'FightStyleRoute',
-  'SafeModeRoute',
 };
 
 /// The screen name safe to send, or null when the route has no name.

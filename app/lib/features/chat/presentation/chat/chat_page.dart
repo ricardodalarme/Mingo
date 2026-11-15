@@ -350,8 +350,6 @@ class const _Message({required final ChatMessage message}) extends StatelessWidg
     final l10n = context.l10n.chat;
     final cubit = context.read<ChatCubit>();
 
-    if (message.isCrisis) return const _CrisisCard();
-
     if (message.role == ChatRole.user) {
       return Align(
         alignment: Alignment.centerRight,
@@ -405,26 +403,6 @@ class const _Message({required final ChatMessage message}) extends StatelessWidg
         onSave: (target, text) {
           cubit.saveLearning(target: target, text: text, excerpt: message.text);
         },
-      ),
-    );
-  }
-}
-
-class const _CrisisCard() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.chat;
-
-    return BaseSurfaceCard(
-      title: l10n.crisisTitle,
-      supportText: l10n.crisisText,
-      child: Padding(
-        padding: const EdgeInsets.only(top: AppSpace.s12),
-        child: BaseButton(
-          text: l10n.crisisSafeMode,
-          variant: .secondary,
-          onPressed: () => context.pushRoute(const SafeModeRoute()),
-        ),
       ),
     );
   }

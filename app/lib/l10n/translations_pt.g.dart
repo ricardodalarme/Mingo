@@ -135,8 +135,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$reminders$pt reminders = Translations$reminders$pt.internal(_root);
   late final Translations$repair$pt repair = Translations$repair$pt.internal(_root);
   late final Translations$rituals$pt rituals = Translations$rituals$pt.internal(_root);
-  late final Translations$safeMode$pt safeMode = Translations$safeMode$pt.internal(_root);
-  late final Translations$safety$pt safety = Translations$safety$pt.internal(_root);
   late final Translations$sensitiveDays$pt sensitiveDays = Translations$sensitiveDays$pt.internal(
     _root,
   );
@@ -835,16 +833,6 @@ class Translations$chat$pt {
 
   /// pt: 'Ver planos'
   String get plusCta => 'Ver planos';
-
-  /// pt: 'Você não está sozinho'
-  String get crisisTitle => 'Você não está sozinho';
-
-  /// pt: 'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.'
-  String get crisisText =>
-      'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.';
-
-  /// pt: 'Esconder o app (modo seguro)'
-  String get crisisSafeMode => 'Esconder o app (modo seguro)';
 
   /// pt: 'A conversa não está disponível agora'
   String get unavailableTitle => 'A conversa não está disponível agora';
@@ -4602,9 +4590,9 @@ class Translations$plus$pt {
   /// pt: 'Grátis'
   String get freeName => 'Grátis';
 
-  /// pt: 'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.'
+  /// pt: 'Slips todo mês, um cartão enviado por mês, repair e tudo o que você já guardou.'
   String get freeFeatures =>
-      'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.';
+      'Slips todo mês, um cartão enviado por mês, repair e tudo o que você já guardou.';
 
   /// pt: 'Plus'
   String get plusName => 'Plus';
@@ -4647,8 +4635,8 @@ class Translations$plus$pt {
   String get billingText =>
       'O último pagamento não passou. O Plus continua por enquanto. Abra suas assinaturas na loja e atualize a forma de pagamento.';
 
-  /// pt: 'Segurança, pausa e desparear nunca ficam trancados.'
-  String get alwaysFree => 'Segurança, pausa e desparear nunca ficam trancados.';
+  /// pt: 'Desparear nunca fica trancado.'
+  String get alwaysFree => 'Desparear nunca fica trancado.';
 
   /// pt: 'PLUS'
   String get lockLabel => 'PLUS';
@@ -5854,45 +5842,6 @@ class Translations$rituals$pt {
   };
 }
 
-// Path: safeMode
-class Translations$safeMode$pt {
-  Translations$safeMode$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Modo seguro'
-  String get title => 'Modo seguro';
-
-  /// pt: 'Para quando o app precisa ficar discreto neste celular.'
-  String get text => 'Para quando o app precisa ficar discreto neste celular.';
-
-  /// pt: 'Esconder o app'
-  String get toggle => 'Esconder o app';
-
-  /// pt: 'Quando você troca de app, a tela fica em branco.'
-  String get toggleText => 'Quando você troca de app, a tela fica em branco.';
-
-  /// pt: 'Isto fica só neste celular. Nada é enviado nem registrado.'
-  String get localOnly => 'Isto fica só neste celular. Nada é enviado nem registrado.';
-
-  /// pt: 'Sair agora'
-  String get quickExit => 'Sair agora';
-}
-
-// Path: safety
-class Translations$safety$pt {
-  Translations$safety$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Segurança e apoio'
-  String get entry => 'Segurança e apoio';
-}
-
 // Path: sensitiveDays
 class Translations$sensitiveDays$pt {
   Translations$sensitiveDays$pt.internal(this._root);
@@ -5977,12 +5926,6 @@ class Translations$settingsHome$pt {
 
   /// pt: 'Configurações'
   String get title => 'Configurações';
-
-  /// pt: 'Segurança e apoio'
-  String get safety => 'Segurança e apoio';
-
-  /// pt: 'Modo seguro'
-  String get safetyStatus => 'Modo seguro';
 
   /// pt: 'Perfil'
   String get profile => 'Perfil';
@@ -9843,9 +9786,6 @@ extension on Translations {
           'chat.plusTitle' => 'A conversa faz parte do Plus',
           'chat.plusText' => 'A mascote está disponível no Plus, com 20 mensagens por dia.',
           'chat.plusCta' => 'Ver planos',
-          'chat.crisisTitle' => 'Você não está sozinho',
-          'chat.crisisText' => 'Parece que você está passando por algo muito pesado. Se estiver em perigo agora, ligue para o serviço de emergência da sua região ou procure alguém de confiança. Eu não sou a ajuda certa para isso.',
-          'chat.crisisSafeMode' => 'Esconder o app (modo seguro)',
           'chat.unavailableTitle' => 'A conversa não está disponível agora',
           'chat.unavailableText' => 'Tente de novo mais tarde.',
           'chat.errorTitle' => 'Não deu para carregar',
@@ -10082,14 +10022,14 @@ extension on Translations {
             'Celulares que recebem notificações desta conta. Remover um para as notificações dele.',
           'devices.current' => 'Este dispositivo',
           'devices.registeredToday' => ({required Object time}) => 'Registrado hoje às ${time}',
-          _ => null,
-        } ??
-        switch (path) {
           'devices.registeredYesterday' => ({
             required Object time,
           }) => 'Registrado ontem às ${time}',
           'devices.registeredOn' => ({required Object date}) => 'Registrado em ${date}',
           'devices.platformIos' => 'iPhone',
+          _ => null,
+        } ??
+        switch (path) {
           'devices.platformAndroid' => 'Android',
           'devices.revokeTitle' => 'Parar notificações deste dispositivo?',
           'devices.revokeText' => ({
@@ -10746,12 +10686,12 @@ extension on Translations {
           'history.milestoneTitleErrors.empty' => 'Conte o que aconteceu',
           'history.milestoneTitleErrors.tooLong' => 'O título está muito longo',
           'history.milestonePlaceLabel' => 'Lugar (opcional)',
-          _ => null,
-        } ??
-        switch (path) {
           'history.milestonePlaceHint' => 'Ex.: Paraty',
           'history.milestonePlaceErrors.tooLong' => 'O lugar está muito longo',
           'history.milestoneBodyHint' => 'Uma nota sobre esse momento (opcional)',
+          _ => null,
+        } ??
+        switch (path) {
           'history.milestoneBodyErrors.tooLong' => 'A nota está muito longa',
           'history.milestoneKindLabel' => 'Tipo de marco',
           'history.kindFirst' => 'Primeira vez',
@@ -11363,12 +11303,12 @@ extension on Translations {
           'moodHelp.partnerNeedNote' => 'Isso vem do humor que seu par compartilhou hoje.',
           'moodHelp.partnerNeedActions.listen' => 'Só ouvir',
           'moodHelp.partnerNeedActions.opinion' => 'Dar uma opinião',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.partnerNeedActions.hug' => 'Mandar um abraço',
           'moodHelp.partnerNeedActions.space' => 'Dar espaço',
           'moodHelp.partnerNeedActions.chocolate' => 'Levar um chocolate',
+          _ => null,
+        } ??
+        switch (path) {
           'moodHelp.partnerNeedActions.cuteMessage' => 'Abrir a conversa',
           'moodHelp.partnerNeedActions.foreheadKiss' => 'Um beijinho na testa',
           'moodHelp.partnerNeedActions.company' => 'Ficar por perto',
@@ -11619,7 +11559,8 @@ extension on Translations {
                   other: '${count} cartões enviados',
                 ),
           'plus.freeName' => 'Grátis',
-          'plus.freeFeatures' => 'Slips todo mês, um cartão enviado por mês, repair, pausa, segurança e tudo o que você já guardou.',
+          'plus.freeFeatures' =>
+            'Slips todo mês, um cartão enviado por mês, repair e tudo o que você já guardou.',
           'plus.plusName' => 'Plus',
           'plus.plusFeatures' =>
             'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.',
@@ -11634,7 +11575,7 @@ extension on Translations {
           'plus.purchaseError' => 'Não deu para concluir a compra. Nada foi cobrado.',
           'plus.billingTitle' => 'Problema no pagamento',
           'plus.billingText' => 'O último pagamento não passou. O Plus continua por enquanto. Abra suas assinaturas na loja e atualize a forma de pagamento.',
-          'plus.alwaysFree' => 'Segurança, pausa e desparear nunca ficam trancados.',
+          'plus.alwaysFree' => 'Desparear nunca fica trancado.',
           'plus.lockLabel' => 'PLUS',
           'plus.lockText' => 'Disponível no Plus. Toque para ver os planos.',
           'plus.errorTitle' => 'Não deu para carregar',
@@ -11957,12 +11898,12 @@ extension on Translations {
           'quickSlip.requestErrors.tooLong' => 'Use no máximo 140 caracteres',
           'quickSlip.requestErrors.other' => 'Revise este campo',
           'quickSlip.save' => 'Salvar',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
           'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
           'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
           'quickSlip.saved.undo' => 'Desfazer',
@@ -12218,13 +12159,6 @@ extension on Translations {
           'rituals.errors.NOT_FOUND' => 'Esse ritual não está mais aqui.',
           'rituals.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'rituals.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          'safeMode.title' => 'Modo seguro',
-          'safeMode.text' => 'Para quando o app precisa ficar discreto neste celular.',
-          'safeMode.toggle' => 'Esconder o app',
-          'safeMode.toggleText' => 'Quando você troca de app, a tela fica em branco.',
-          'safeMode.localOnly' => 'Isto fica só neste celular. Nada é enviado nem registrado.',
-          'safeMode.quickExit' => 'Sair agora',
-          'safety.entry' => 'Segurança e apoio',
           'sensitiveDays.title' => 'Dias sensíveis',
           'sensitiveDays.subtitle' =>
             'Um lugar só seu. Seu par não vê esta tela nem o que você marca aqui.',
@@ -12248,8 +12182,6 @@ extension on Translations {
           'sessionExpired.text' => 'Entre de novo para continuar. Seus dados estão seguros.',
           'sessionExpired.action' => 'Entrar',
           'settingsHome.title' => 'Configurações',
-          'settingsHome.safety' => 'Segurança e apoio',
-          'settingsHome.safetyStatus' => 'Modo seguro',
           'settingsHome.profile' => 'Perfil',
           'settingsHome.relationship' => 'Relacionamento',
           'settingsHome.connected' => 'Vocês estão conectados',
@@ -12530,9 +12462,6 @@ extension on Translations {
           'slipsList.errorTitle' => 'Não deu para carregar seus slips',
           'slipsList.errorText' => 'Eles continuam salvos. Tente de novo.',
           'spice.title' => 'Momentos a dois',
-          _ => null,
-        } ??
-        switch (path) {
           'spice.offText' => 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.',
           'spice.turnOn' => 'Ligar',
           'spice.notNow' => 'Agora não',
@@ -12545,6 +12474,9 @@ extension on Translations {
           'spice.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'spice.errors.other' => 'Não deu para mudar agora. Tente de novo.',
           'story.title' => 'Imagem para compartilhar',
+          _ => null,
+        } ??
+        switch (path) {
           'story.privacyNote' => 'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.',
           'story.days' => 'dias',
           'story.together' => 'juntos',

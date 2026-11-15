@@ -37,7 +37,6 @@ import 'package:app/features/programs/di/programs_injection_module.dart';
 import 'package:app/features/questions/di/questions_injection_module.dart';
 import 'package:app/features/reminders/di/reminders_injection_module.dart';
 import 'package:app/features/repair/di/repair_injection_module.dart';
-import 'package:app/features/safety/di/safety_injection_module.dart';
 import 'package:app/features/settings/di/settings_injection_module.dart';
 import 'package:app/features/share/di/share_injection_module.dart';
 import 'package:app/features/slips/di/slips_injection_module.dart';
@@ -75,7 +74,6 @@ void _registerModules() {
     DevMenuInjectionModule(),
     PrivacyInjectionModule(),
     AccountInjectionModule(),
-    SafetyInjectionModule(),
     SettingsInjectionModule(),
     ShareInjectionModule(),
     DevicesInjectionModule(),

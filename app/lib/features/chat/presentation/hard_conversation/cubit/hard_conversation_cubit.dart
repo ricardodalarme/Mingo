@@ -216,17 +216,6 @@ class HardConversationCubit({
             emit(state.copyWith(message: FormInput(buffer.toString())));
           case ChatDone():
             break;
-          case ChatCrisis():
-            emit(
-              state.copyWith(
-                gate: HardConversationGate.unavailable,
-                message: const FormInput(''),
-                isGenerating: false,
-                generateAction: const Initial(),
-              ),
-            );
-
-            return;
           case ChatError(:final code):
             _onError(code);
 

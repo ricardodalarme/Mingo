@@ -1,6 +1,5 @@
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
-import 'package:app/features/safety/data/repositories/safe_mode_repository.dart';
 import 'package:app/features/spice/data/data_sources/remote/spice_data_source.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
@@ -31,13 +30,9 @@ final class const SpiceView({required final SpiceStage stage, final List<String>
 class SpiceRepository({
   required final SpiceDataSource _dataSource,
   required final ProfileRepository _profileRepository,
-  required final SafeModeRepository _safeModeRepository,
   required final PlusRepository _plusRepository,
 }) {
   final Logger _logger = Logger('SpiceRepository');
-
-  /// Whether safe mode is on, in which case the section stays hidden.
-  bool get isHidden => _safeModeRepository.isOn;
 
   Future<SpiceView> getView() async {
     try {

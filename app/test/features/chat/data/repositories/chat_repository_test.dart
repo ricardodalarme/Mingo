@@ -90,7 +90,7 @@ void main() {
               text: 'quero morrer',
               excludeFromHistory: true,
             ),
-            ChatMessage(id: 'm2', role: ChatRole.mascot, text: '', isCrisis: true),
+            ChatMessage(id: 'm2', role: ChatRole.mascot, text: ''),
           ],
           locale: 'pt-BR',
           mode: ChatMode.free,

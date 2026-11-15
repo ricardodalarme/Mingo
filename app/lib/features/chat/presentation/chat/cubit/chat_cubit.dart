@@ -88,7 +88,7 @@ class ChatCubit({
     return validatedDraft.isValid;
   }
 
-  /// Sends [text] and streams the reply; crisis wording is answered locally and never leaves the device.
+  /// Sends [text] and streams the reply.
   Future<void> send(String text) async {
     final message = text.trim();
     if (state.stage != const Success(ChatStage.ready) ||
@@ -98,27 +98,7 @@ class ChatCubit({
       return;
     }
 
-    final isCrisis = looksLikeCrisis(message);
-    final userMessage = ChatMessage(
-      id: _uuid.v4(),
-      role: ChatRole.user,
-      text: message,
-      excludeFromHistory: isCrisis,
-    );
-    if (isCrisis) {
-      emit(
-        state.copyWith(
-          messages: [
-            ...state.messages,
-            userMessage,
-            ChatMessage(id: _uuid.v4(), role: ChatRole.mascot, text: '', isCrisis: true),
-          ],
-          options: const [],
-        ),
-      );
-      return;
-    }
-
+    final userMessage = ChatMessage(id: _uuid.v4(), role: ChatRole.user, text: message);
     final reply = ChatMessage(
       id: _uuid.v4(),
       role: ChatRole.mascot,
@@ -129,7 +109,7 @@ class ChatCubit({
     final messages = state.messages;
     final history = [
       for (final item in messages)
-        if (!item.isCrisis && !item.excludeFromHistory) item,
+        if (!item.excludeFromHistory) item,
     ];
     emit(
       state.copyWith(
@@ -215,28 +195,6 @@ class ChatCubit({
             options: options,
             isReplying: false,
             messagesLeft: state.messagesLeft > 0 ? state.messagesLeft - 1 : 0,
-          ),
-        );
-      case ChatCrisis():
-        emit(
-          state.copyWith(
-            messages: [
-              for (var index = 0; index < state.messages.length; index++)
-                if (state.messages[index].id == replyId)
-                  ChatMessage(
-                    id: state.messages[index].id,
-                    role: state.messages[index].role,
-                    text: '',
-                    isCrisis: true,
-                  )
-                else if (index + 1 < state.messages.length &&
-                    state.messages[index + 1].id == replyId &&
-                    state.messages[index].role == ChatRole.user)
-                  state.messages[index].copyWith(excludeFromHistory: true)
-                else
-                  state.messages[index],
-            ],
-            isReplying: false,
           ),
         );
       case ChatError(:final code):

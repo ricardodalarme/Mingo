@@ -107,24 +107,6 @@ void main() {
     expect(cubit.state.isReplying, isFalse);
   });
 
-  test('crisis wording is answered on the device and never sent', () async {
-    final cubit = build();
-    await cubit.load();
-
-    await cubit.send('às vezes penso em me matar');
-
-    expect(cubit.state.messages.last.isCrisis, isTrue);
-    verifyNever(
-      () => repository.send(
-        message: any(named: 'message'),
-        history: any(named: 'history'),
-        locale: any(named: 'locale'),
-        mode: any(named: 'mode'),
-        session: any(named: 'session'),
-      ),
-    );
-  });
-
   test('a stream that breaks keeps what arrived and offers a retry', () async {
     stubReply(() async* {
       yield const ChatDelta('Parte da resposta');
@@ -213,31 +195,6 @@ void main() {
     expect(cubit.state.hasPlus, isFalse);
   });
 
-  test('crisis text is never replayed as history', () async {
-    final histories = <List<ChatMessage>>[];
-    when(
-      () => repository.send(
-        message: any(named: 'message'),
-        history: any(named: 'history'),
-        locale: any(named: 'locale'),
-        mode: any(named: 'mode'),
-        session: any(named: 'session'),
-      ),
-    ).thenAnswer((invocation) {
-      histories.add(invocation.namedArguments[#history] as List<ChatMessage>);
-
-      return Stream.fromIterable([const ChatDelta('Estou aqui.'), const ChatDone([])]);
-    });
-    final cubit = build();
-    await cubit.load();
-
-    await cubit.send('quero morrer');
-    await cubit.send('Oi, tudo bem?');
-
-    expect(histories, hasLength(1));
-    expect(histories.single.map((turn) => turn.text), isNot(contains('quero morrer')));
-  });
-
   test('retry resends the interrupted turn, not the latest message', () async {
     final sent = <String>[];
     when(
@@ -324,13 +281,12 @@ void main() {
   });
 
   group('parseChatLine', () {
-    test('reads delta, done, crisis and error events', () {
+    test('reads delta, done and error events', () {
       expect(parseChatLine('data: {"type":"delta","text":"oi"}'), isA<ChatDelta>());
       expect((parseChatLine('data: {"type":"done","options":["a","b"]}')! as ChatDone).options, [
         'a',
         'b',
       ]);
-      expect(parseChatLine('data: {"type":"crisis"}'), isA<ChatCrisis>());
       expect(
         (parseChatLine('data: {"type":"error","code":"CHAT_LIMIT"}')! as ChatError).code,
         'CHAT_LIMIT',
@@ -345,29 +301,5 @@ void main() {
       expect(parseChatLine(''), isNull);
       expect(parseChatLine('data: not json'), isNull);
     });
-  });
-
-  test('crisis detection covers both languages and ignores ordinary talk', () {
-    const crisisPhrases = [
-      'não quero mais viver',
-      'não quero viver',
-      'queria desaparecer',
-      'não aguento mais',
-      'me cortei',
-      'tomei os remédios',
-      'autolesão',
-      "I don't want to live",
-      'I dont want to live',
-      'end my life',
-      'better off dead',
-      'quero morrer',
-      'ele me bate',
-    ];
-    for (final phrase in crisisPhrases) {
-      expect(looksLikeCrisis(phrase), isTrue, reason: phrase);
-    }
-    for (final phrase in ['vou me matar de rir', 'Brigamos por causa da louça']) {
-      expect(looksLikeCrisis(phrase), isFalse, reason: phrase);
-    }
   });
 }

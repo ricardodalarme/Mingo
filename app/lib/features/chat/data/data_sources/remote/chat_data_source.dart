@@ -86,7 +86,6 @@ ChatEvent? parseChatLine(String line) {
       'done' => ChatDone([
         for (final option in (json['options'] as List<dynamic>? ?? const [])) '$option',
       ]),
-      'crisis' => const ChatCrisis(),
       'error' => ChatError(json['code'] as String? ?? 'UPSTREAM'),
       _ => json['error'] is String ? ChatError(json['error'] as String) : null,
     };

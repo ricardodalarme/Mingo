@@ -1422,22 +1422,6 @@ class NeedRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [NeutralPage]
-class NeutralRoute extends PageRouteInfo<void> {
-  const NeutralRoute({List<PageRouteInfo>? children})
-    : super(NeutralRoute.name, initialChildren: children);
-
-  static const String name = 'NeutralRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const NeutralPage();
-    },
-  );
-}
-
-/// generated route for
 /// [NotFoundPage]
 class NotFoundRoute extends PageRouteInfo<void> {
   const NotFoundRoute({List<PageRouteInfo>? children})
@@ -2052,22 +2036,6 @@ class RitualsRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const RitualsPage());
-    },
-  );
-}
-
-/// generated route for
-/// [SafeModePage]
-class SafeModeRoute extends PageRouteInfo<void> {
-  const SafeModeRoute({List<PageRouteInfo>? children})
-    : super(SafeModeRoute.name, initialChildren: children);
-
-  static const String name = 'SafeModeRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const SafeModePage());
     },
   );
 }

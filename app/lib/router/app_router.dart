@@ -88,8 +88,6 @@ import 'package:app/features/repair/presentation/quick_repair/quick_repair_page.
 import 'package:app/features/repair/presentation/received/received_signals_page.dart';
 import 'package:app/features/repair/presentation/soft_start/soft_start_page.dart';
 import 'package:app/features/repair/presentation/temperature/temperature_page.dart';
-import 'package:app/features/safety/presentation/neutral/neutral_page.dart';
-import 'package:app/features/safety/presentation/safe_mode/safe_mode_page.dart';
 import 'package:app/features/settings/presentation/discreet/discreet_page.dart';
 import 'package:app/features/settings/presentation/home/settings_home_page.dart';
 import 'package:app/features/settings/presentation/language/language_page.dart';
@@ -196,8 +194,6 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: HeavyDayRoute.page),
     AutoRoute(page: SensitiveDaysRoute.page),
     AutoRoute(page: DeleteAccountRoute.page),
-    AutoRoute(page: SafeModeRoute.page),
-    AutoRoute(page: NeutralRoute.page),
     AutoRoute(page: BadDayRoute.page),
     AutoRoute(page: StarterRoute.page),
     AutoRoute(page: DayRoute.page),

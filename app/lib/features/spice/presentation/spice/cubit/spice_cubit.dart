@@ -11,10 +11,6 @@ class SpiceCubit({required final SpiceRepository _spiceRepository}) extends Cubi
   bool _hadCards = false;
 
   Future<void> load() async {
-    if (_spiceRepository.isHidden) {
-      emit(state.copyWith(isHidden: true));
-      return;
-    }
     emit(state.copyWith(view: const Loading()));
     await _read();
   }
@@ -23,10 +19,6 @@ class SpiceCubit({required final SpiceRepository _spiceRepository}) extends Cubi
   ///
   /// A partner change is observed here on resume or pull-to-refresh, not in realtime.
   Future<void> refresh() async {
-    if (_spiceRepository.isHidden) {
-      emit(state.copyWith(isHidden: true));
-      return;
-    }
     await _read();
   }
 
