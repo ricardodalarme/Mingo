@@ -33,7 +33,6 @@ void main() {
     expect(EnumSignalKind.hug.toModel(), SignalKind.hug);
     expect(EnumSignalKind.distance.toModel(), SignalKind.distance);
     expect(EnumSignalKind.repair.toModel(), SignalKind.repair);
-    expect(EnumSignalKind.heavy_day.toModel(), SignalKind.heavyDay);
     expect(EnumSignalKind.good_news.toModel(), SignalKind.goodNews);
     expect(EnumSignalKind.$unknown.toModel(), SignalKind.need);
   });

@@ -5425,7 +5425,6 @@ class Translations$received$pt {
     'missUs': 'Saudade',
     'hug': 'Um abraço',
     'distance': 'Um pouco de distância',
-    'heavyDay': 'Um dia pesado',
     'goodNews': 'Boa notícia',
     'other': '',
   };
@@ -5433,7 +5432,6 @@ class Translations$received$pt {
     'missUs': 'Seu par está com saudade de vocês.',
     'hug': 'Seu par quer um abraço.',
     'distance': 'Seu par precisa de um pouco de distância.',
-    'heavyDay': 'Seu par está tendo um dia pesado.',
     'goodNews': 'Seu par tem uma boa notícia.',
     'other': '',
   };
@@ -11819,17 +11817,15 @@ extension on Translations {
           'received.kinds.missUs' => 'Saudade',
           'received.kinds.hug' => 'Um abraço',
           'received.kinds.distance' => 'Um pouco de distância',
-          'received.kinds.heavyDay' => 'Um dia pesado',
           'received.kinds.goodNews' => 'Boa notícia',
           'received.kinds.other' => '',
           'received.bodies.missUs' => 'Seu par está com saudade de vocês.',
           'received.bodies.hug' => 'Seu par quer um abraço.',
           'received.bodies.distance' => 'Seu par precisa de um pouco de distância.',
+          'received.bodies.goodNews' => 'Seu par tem uma boa notícia.',
           _ => null,
         } ??
         switch (path) {
-          'received.bodies.heavyDay' => 'Seu par está tendo um dia pesado.',
-          'received.bodies.goodNews' => 'Seu par tem uma boa notícia.',
           'received.bodies.other' => '',
           'received.fromPartner' => 'Do seu par',
           'received.privateFirst' => 'Sua resposta é privada primeiro. Não tem certo nem errado.',
@@ -12397,11 +12393,11 @@ extension on Translations {
           'sundayCard.noteHint' => 'Obrigada por essa semana.',
           'sundayCard.moveUp' => 'Subir',
           'sundayCard.moveDown' => 'Descer',
+          'sundayCard.remove' => 'Tirar do cartão',
+          'sundayCard.emptyTitle' => 'Semana sem slips',
           _ => null,
         } ??
         switch (path) {
-          'sundayCard.remove' => 'Tirar do cartão',
-          'sundayCard.emptyTitle' => 'Semana sem slips',
           'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
           'sundayCard.emptyAction' => 'Anotar um slip',
           'sundayCard.errorTitle' => 'Não deu para carregar o cartão',

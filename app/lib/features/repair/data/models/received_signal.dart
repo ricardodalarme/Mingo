@@ -57,7 +57,6 @@ enum SignalKind() {
   hug,
   distance,
   repair,
-  heavyDay,
   goodNews,
 }
 
@@ -69,7 +68,6 @@ extension SignalKindAnswers on SignalKind {
     SignalKind.hug => const [RepairResponse.heart],
     SignalKind.distance => const [RepairResponse.here, RepairResponse.later],
     SignalKind.repair => const [RepairResponse.talk, RepairResponse.moreTime, RepairResponse.later],
-    SignalKind.heavyDay => const [RepairResponse.here, RepairResponse.willDo],
     SignalKind.goodNews => const [RepairResponse.heart],
   };
 

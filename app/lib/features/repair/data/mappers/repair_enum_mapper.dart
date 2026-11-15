@@ -46,16 +46,14 @@ extension RepairLearningKindMapper on RepairLearningKind {
 }
 
 extension EnumSignalKindMapper on EnumSignalKind {
-  /// An unknown kind is shown as a plain need.
+  /// A kind this version does not know is shown as a plain need.
   SignalKind toModel() => switch (this) {
-    EnumSignalKind.need => SignalKind.need,
     EnumSignalKind.miss_us => SignalKind.missUs,
     EnumSignalKind.hug => SignalKind.hug,
     EnumSignalKind.distance => SignalKind.distance,
     EnumSignalKind.repair => SignalKind.repair,
-    EnumSignalKind.heavy_day => SignalKind.heavyDay,
     EnumSignalKind.good_news => SignalKind.goodNews,
-    EnumSignalKind.$unknown => SignalKind.need,
+    _ => SignalKind.need,
   };
 }
 

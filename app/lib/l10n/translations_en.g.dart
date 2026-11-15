@@ -4403,7 +4403,6 @@ class _Translations$received$en extends Translations$received$pt {
     'missUs': 'Missing you',
     'hug': 'A hug',
     'distance': 'A little distance',
-    'heavyDay': 'A heavy day',
     'goodNews': 'Good news',
     'other': '',
   };
@@ -4412,7 +4411,6 @@ class _Translations$received$en extends Translations$received$pt {
     'missUs': 'Your partner is missing you both.',
     'hug': 'Your partner would like a hug.',
     'distance': 'Your partner needs a little distance.',
-    'heavyDay': 'Your partner is having a heavy day.',
     'goodNews': 'Your partner has good news.',
     'other': '',
   };
@@ -9969,17 +9967,15 @@ extension on TranslationsEn {
           'received.kinds.missUs' => 'Missing you',
           'received.kinds.hug' => 'A hug',
           'received.kinds.distance' => 'A little distance',
-          'received.kinds.heavyDay' => 'A heavy day',
           'received.kinds.goodNews' => 'Good news',
           'received.kinds.other' => '',
           'received.bodies.missUs' => 'Your partner is missing you both.',
           'received.bodies.hug' => 'Your partner would like a hug.',
           'received.bodies.distance' => 'Your partner needs a little distance.',
+          'received.bodies.goodNews' => 'Your partner has good news.',
           _ => null,
         } ??
         switch (path) {
-          'received.bodies.heavyDay' => 'Your partner is having a heavy day.',
-          'received.bodies.goodNews' => 'Your partner has good news.',
           'received.bodies.other' => '',
           'received.fromPartner' => 'From your partner',
           'received.privateFirst' => 'Your answer is private first. There is no right or wrong.',
@@ -10542,11 +10538,11 @@ extension on TranslationsEn {
           'sundayCard.noteHint' => 'Thank you for this week.',
           'sundayCard.moveUp' => 'Move up',
           'sundayCard.moveDown' => 'Move down',
+          'sundayCard.remove' => 'Remove from card',
+          'sundayCard.emptyTitle' => 'A week without slips',
           _ => null,
         } ??
         switch (path) {
-          'sundayCard.remove' => 'Remove from card',
-          'sundayCard.emptyTitle' => 'A week without slips',
           'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
           'sundayCard.emptyAction' => 'Note a slip',
           'sundayCard.errorTitle' => 'Could not load the card',
