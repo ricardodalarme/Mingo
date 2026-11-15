@@ -14,7 +14,6 @@ void main() {
     expect(RelationshipPhase.livingTogether.toRemote(), EnumRelationshipPhase.living_together);
     expect(RelationshipPhase.withKids.toRemote(), EnumRelationshipPhase.with_kids);
     expect(RelationshipPhase.longDistance.toRemote(), EnumRelationshipPhase.long_distance);
-    expect(RelationshipPhase.withParents.toRemote(), EnumRelationshipPhase.with_parents);
   });
 
   test('a phase this version does not know is left out', () {

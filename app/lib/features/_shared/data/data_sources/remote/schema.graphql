@@ -738,9 +738,9 @@ type Cards implements Node {
   updatedAt: Datetime!
   deletedAt: Datetime
   kind: CardKind!
-  author: Profiles
   recipient: Profiles
   couple: Couples
+  author: Profiles
   items(
     """Query the first `n` records in the collection"""
     first: Int
@@ -1570,8 +1570,8 @@ type CoupleMembers implements Node {
   role: MemberRole!
   joinedAt: Datetime!
   leftAt: Datetime
-  couple: Couples
   profile: Profiles
+  couple: Couples
 }
 
 type CoupleMembersConnection {
@@ -1750,30 +1750,6 @@ type Couples implements Node {
   createdAt: Datetime!
   archivedAt: Datetime
   touchTopicsEnabled: Boolean!
-  members(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CoupleMembersFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CoupleMembersOrderBy!]
-  ): CoupleMembersConnection
   cardsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -1798,6 +1774,30 @@ type Couples implements Node {
     """Sort order to apply to the collection"""
     orderBy: [CardsOrderBy!]
   ): CardsConnection
+  members(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: CoupleMembersFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [CoupleMembersOrderBy!]
+  ): CoupleMembersConnection
   ritualsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -5135,13 +5135,13 @@ type LogisticItems implements Node {
   couple: Couples
   assignee: Profiles
 
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+
   """
   Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
   """
   isShared: Boolean
-
-  """Whether the caller wrote the row."""
-  isMine: Boolean
 }
 
 type LogisticItemsConnection {
@@ -8834,31 +8834,6 @@ type Profiles implements Node {
   city: String
   avatarKind: AvatarKind!
   pronouns: String
-  profileSettings: ProfileSettings
-  memberships(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CoupleMembersFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CoupleMembersOrderBy!]
-  ): CoupleMembersConnection
   invitesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -8883,54 +8858,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [InvitesOrderBy!]
   ): InvitesConnection
-  slips(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: SlipsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [SlipsOrderBy!]
-  ): SlipsConnection
-  authoredCards(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CardsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CardsOrderBy!]
-  ): CardsConnection
   receivedCards(
     """Query the first `n` records in the collection"""
     first: Int
@@ -8979,8 +8906,7 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [DevicesOrderBy!]
   ): DevicesConnection
-  notificationSettings: NotificationSettings
-  cycleDaysCollection(
+  memberships(
     """Query the first `n` records in the collection"""
     first: Int
 
@@ -8999,11 +8925,133 @@ type Profiles implements Node {
     offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
-    filter: CycleDaysFilter
+    filter: CoupleMembersFilter
 
     """Sort order to apply to the collection"""
-    orderBy: [CycleDaysOrderBy!]
-  ): CycleDaysConnection
+    orderBy: [CoupleMembersOrderBy!]
+  ): CoupleMembersConnection
+  profileSettings: ProfileSettings
+  slips(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: SlipsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [SlipsOrderBy!]
+  ): SlipsConnection
+  authoredCards(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: CardsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [CardsOrderBy!]
+  ): CardsConnection
+  conversationPrepsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: ConversationPrepsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [ConversationPrepsOrderBy!]
+  ): ConversationPrepsConnection
+  notificationSettings: NotificationSettings
+  giftIdeasCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: GiftIdeasFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [GiftIdeasOrderBy!]
+  ): GiftIdeasConnection
+  signalsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: SignalsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [SignalsOrderBy!]
+  ): SignalsConnection
   temperatureChecksCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -9100,30 +9148,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [JournalEntriesOrderBy!]
   ): JournalEntriesConnection
-  conversationPrepsCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: ConversationPrepsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [ConversationPrepsOrderBy!]
-  ): ConversationPrepsConnection
   partnerFactsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -9148,30 +9172,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [PartnerFactsOrderBy!]
   ): PartnerFactsConnection
-  giftIdeasCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: GiftIdeasFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [GiftIdeasOrderBy!]
-  ): GiftIdeasConnection
   manualEntriesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -9220,6 +9220,30 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [MoodsOrderBy!]
   ): MoodsConnection
+  cycleDaysCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: CycleDaysFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [CycleDaysOrderBy!]
+  ): CycleDaysConnection
   ideaResponsesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -9748,30 +9772,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [PartnerMessagesOrderBy!]
   ): PartnerMessagesConnection
-  signalsCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: SignalsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [SignalsOrderBy!]
-  ): SignalsConnection
   questionAnswersCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -9796,6 +9796,30 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [QuestionAnswersOrderBy!]
   ): QuestionAnswersConnection
+  chatMessagesCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: ChatMessagesFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [ChatMessagesOrderBy!]
+  ): ChatMessagesConnection
   checkinAnswersCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -9894,30 +9918,6 @@ type Profiles implements Node {
     orderBy: [ConsentsOrderBy!]
   ): ConsentsConnection
   deletionRequests: DeletionRequests
-  chatMessagesCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: ChatMessagesFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [ChatMessagesOrderBy!]
-  ): ChatMessagesConnection
   learnedItemsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -12856,7 +12856,6 @@ enum RelationshipPhase {
   long_distance
   engaged
   restarting
-  with_parents
 }
 
 """
@@ -13344,13 +13343,13 @@ type Rituals implements Node {
     orderBy: [RitualLogsOrderBy!]
   ): RitualLogsConnection
 
+  """Whether the caller wrote the row."""
+  isMine: Boolean
+
   """
   Whether the row is shared with the caller's current partner. A row from a past couple is not shared.
   """
   isShared: Boolean
-
-  """Whether the caller wrote the row."""
-  isMine: Boolean
 }
 
 type RitualsConnection {
@@ -14397,7 +14396,8 @@ input TimeListFilter {
 }
 
 """
-Everything Hoje needs in one call. suggestion_key: first_slip, open_card, review_card, invite_partner, write_slip.
+Everything Hoje needs in one call. suggestion_key: pause, first_slip, open_card,
+repair, review_card, invite_partner, write_slip.
 """
 type TodayState implements Node {
   """Globally Unique Record Identifier"""

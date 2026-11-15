@@ -4481,7 +4481,6 @@ class _Translations$relationshipSettings$en extends Translations$relationshipSet
     'married': 'Married',
     'withKids': 'With kids',
     'longDistance': 'Long distance',
-    'withParents': 'Living with parents',
     'restarting': 'Starting over',
   };
   @override
@@ -5303,8 +5302,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get parentsLabel => 'WITH PARENTS';
   @override
-  String get parentsTitle => 'Five minutes for us';
-  @override
   String get parentsText => 'A short moment just for the two of you, even in a full house.';
   @override
   String get capsulesLabel => 'TIME CAPSULE';
@@ -5429,8 +5426,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get badDayMeta => 'Three small things';
   @override
   String get distanceMeta => 'Time zones and reunion';
-  @override
-  String get parentsMeta => 'Five minutes';
   @override
   String get diaryMeta => 'Only yours';
   @override
@@ -6614,7 +6609,6 @@ class _Translations$intro$phase$en extends Translations$intro$phase$pt {
     'married': 'Married',
     'withKids': 'With kids',
     'longDistance': 'Long distance',
-    'withParents': 'Living with parents',
     'restarting': 'Starting over',
     'other': '',
   };
@@ -8805,7 +8799,6 @@ extension on TranslationsEn {
           'intro.phase.options.married' => 'Married',
           'intro.phase.options.withKids' => 'With kids',
           'intro.phase.options.longDistance' => 'Long distance',
-          'intro.phase.options.withParents' => 'Living with parents',
           'intro.phase.options.restarting' => 'Starting over',
           'intro.phase.options.other' => '',
           'intro.goals.title' => 'What do you want from the app?',
@@ -9272,11 +9265,11 @@ extension on TranslationsEn {
           'notes.errorTitle' => 'Couldn\'t load',
           'notes.errorText' => 'Try again in a moment.',
           'notes.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          'notes.errors.NOT_PAIRED' =>
+            'To send this, you need to be connected with your partner in the app.',
           _ => null,
         } ??
         switch (path) {
-          'notes.errors.NOT_PAIRED' =>
-            'To send this, you need to be connected with your partner in the app.',
           'notes.errors.other' => 'Couldn\'t send right now. What you wrote is still here.',
           'notificationPermission.label' => 'Reminders',
           'notificationPermission.title' => 'Gentle reminders?',
@@ -9846,13 +9839,12 @@ extension on TranslationsEn {
           'relationshipSettings.phases.dating' => 'Dating',
           'relationshipSettings.phases.livingTogether' => 'Living together',
           'relationshipSettings.phases.engaged' => 'Engaged',
+          'relationshipSettings.phases.married' => 'Married',
           _ => null,
         } ??
         switch (path) {
-          'relationshipSettings.phases.married' => 'Married',
           'relationshipSettings.phases.withKids' => 'With kids',
           'relationshipSettings.phases.longDistance' => 'Long distance',
-          'relationshipSettings.phases.withParents' => 'Living with parents',
           'relationshipSettings.phases.restarting' => 'Starting over',
           'relationshipSettings.dateLabel' => 'Together since',
           'relationshipSettings.dateHint' => 'Pick a date',
@@ -10395,7 +10387,6 @@ extension on TranslationsEn {
           'tabs.distanceTitle' => 'Our two clocks',
           'tabs.distanceText' => 'Time zones and the countdown to seeing each other.',
           'tabs.parentsLabel' => 'WITH PARENTS',
-          'tabs.parentsTitle' => 'Five minutes for us',
           'tabs.parentsText' => 'A short moment just for the two of you, even in a full house.',
           'tabs.capsulesLabel' => 'TIME CAPSULE',
           'tabs.capsulesTitle' => 'A message to the future',
@@ -10416,12 +10407,12 @@ extension on TranslationsEn {
           'tabs.plusTitle' => 'Free and Plus',
           'tabs.plusText' => 'What each plan includes, no pressure.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',
           'tabs.learningLabel' => 'JUST FOR YOU',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.learningTitle' => 'What you learned',
           'tabs.learningText' => 'Private notes you can delete.',
           'tabs.fightStyleLabel' => 'JUST FOR YOU',
@@ -10465,7 +10456,6 @@ extension on TranslationsEn {
           'tabs.touchMeta' => 'Neutral cards',
           'tabs.badDayMeta' => 'Three small things',
           'tabs.distanceMeta' => 'Time zones and reunion',
-          'tabs.parentsMeta' => 'Five minutes',
           'tabs.diaryMeta' => 'Only yours',
           'tabs.hardTalkMeta' => 'Notes before you talk',
           'tabs.notesMeta' => 'When you want',

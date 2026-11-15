@@ -235,13 +235,6 @@ class const _TogetherMoreSection({
             title: l10n.distanceTitle,
             subtitle: l10n.distanceMeta,
             onTap: () => context.pushRoute(const DistanceRoute()),
-          )
-        else if (phase == RelationshipPhase.withParents)
-          _row(
-            icon: AppIcons.home,
-            title: l10n.parentsTitle,
-            subtitle: l10n.parentsMeta,
-            onTap: () => context.pushRoute(const RitualsRoute()),
           ),
         _row(
           icon: AppIcons.cloud,

@@ -11,7 +11,6 @@ extension EnumRelationshipPhaseMapper on EnumRelationshipPhase {
     EnumRelationshipPhase.married => RelationshipPhase.married,
     EnumRelationshipPhase.with_kids => RelationshipPhase.withKids,
     EnumRelationshipPhase.long_distance => RelationshipPhase.longDistance,
-    EnumRelationshipPhase.with_parents => RelationshipPhase.withParents,
     EnumRelationshipPhase.restarting => RelationshipPhase.restarting,
     EnumRelationshipPhase.$unknown => null,
   };
@@ -26,7 +25,6 @@ extension RelationshipPhaseMapper on RelationshipPhase {
     RelationshipPhase.married => EnumRelationshipPhase.married,
     RelationshipPhase.withKids => EnumRelationshipPhase.with_kids,
     RelationshipPhase.longDistance => EnumRelationshipPhase.long_distance,
-    RelationshipPhase.withParents => EnumRelationshipPhase.with_parents,
     RelationshipPhase.restarting => EnumRelationshipPhase.restarting,
   };
 }

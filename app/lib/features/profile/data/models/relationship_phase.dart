@@ -7,6 +7,5 @@ enum RelationshipPhase() {
   married,
   withKids,
   longDistance,
-  withParents,
   restarting,
 }

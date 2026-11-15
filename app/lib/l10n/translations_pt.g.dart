@@ -5506,7 +5506,6 @@ class Translations$relationshipSettings$pt {
     'married': 'Casados',
     'withKids': 'Com filhos',
     'longDistance': 'Namoro à distância',
-    'withParents': 'Moramos com os pais',
     'restarting': 'Recomeçando',
   };
 
@@ -6550,9 +6549,6 @@ class Translations$tabs$pt {
   /// pt: 'COM OS PAIS'
   String get parentsLabel => 'COM OS PAIS';
 
-  /// pt: 'Cinco minutos para nós'
-  String get parentsTitle => 'Cinco minutos para nós';
-
   /// pt: 'Um momento curto e só de vocês dois, mesmo com a casa cheia.'
   String get parentsText => 'Um momento curto e só de vocês dois, mesmo com a casa cheia.';
 
@@ -6737,9 +6733,6 @@ class Translations$tabs$pt {
 
   /// pt: 'Fusos e reencontro'
   String get distanceMeta => 'Fusos e reencontro';
-
-  /// pt: 'Cinco minutos'
-  String get parentsMeta => 'Cinco minutos';
 
   /// pt: 'Só seu'
   String get diaryMeta => 'Só seu';
@@ -8286,7 +8279,6 @@ class Translations$intro$phase$pt {
     'married': 'Casados',
     'withKids': 'Com filhos',
     'longDistance': 'Namoro à distância',
-    'withParents': 'Moramos com os pais',
     'restarting': 'Recomeçando',
     'other': '',
   };
@@ -10617,7 +10609,6 @@ extension on Translations {
           'intro.phase.options.married' => 'Casados',
           'intro.phase.options.withKids' => 'Com filhos',
           'intro.phase.options.longDistance' => 'Namoro à distância',
-          'intro.phase.options.withParents' => 'Moramos com os pais',
           'intro.phase.options.restarting' => 'Recomeçando',
           'intro.phase.options.other' => '',
           'intro.goals.title' => 'O que você quer do app?',
@@ -11084,10 +11075,10 @@ extension on Translations {
           'notes.errorTitle' => 'Não deu para carregar',
           'notes.errorText' => 'Tente de novo em instantes.',
           'notes.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'notes.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
           _ => null,
         } ??
         switch (path) {
-          'notes.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
           'notes.errors.other' => 'Não deu para enviar agora. O que você escreveu continua aqui.',
           'notificationPermission.label' => 'Lembretes',
           'notificationPermission.title' => 'Lembretes gentis?',
@@ -11659,13 +11650,12 @@ extension on Translations {
           'relationshipSettings.phases.dating' => 'Namorando',
           'relationshipSettings.phases.livingTogether' => 'Moramos juntos',
           'relationshipSettings.phases.engaged' => 'Noivos',
+          'relationshipSettings.phases.married' => 'Casados',
           _ => null,
         } ??
         switch (path) {
-          'relationshipSettings.phases.married' => 'Casados',
           'relationshipSettings.phases.withKids' => 'Com filhos',
           'relationshipSettings.phases.longDistance' => 'Namoro à distância',
-          'relationshipSettings.phases.withParents' => 'Moramos com os pais',
           'relationshipSettings.phases.restarting' => 'Recomeçando',
           'relationshipSettings.dateLabel' => 'Juntos desde',
           'relationshipSettings.dateHint' => 'Escolha uma data',
@@ -12210,7 +12200,6 @@ extension on Translations {
           'tabs.distanceTitle' => 'Nossos dois relógios',
           'tabs.distanceText' => 'Fusos e a contagem até o reencontro.',
           'tabs.parentsLabel' => 'COM OS PAIS',
-          'tabs.parentsTitle' => 'Cinco minutos para nós',
           'tabs.parentsText' => 'Um momento curto e só de vocês dois, mesmo com a casa cheia.',
           'tabs.capsulesLabel' => 'CÁPSULA DO TEMPO',
           'tabs.capsulesTitle' => 'Uma mensagem para o futuro',
@@ -12231,12 +12220,12 @@ extension on Translations {
           'tabs.plusTitle' => 'Grátis e Plus',
           'tabs.plusText' => 'O que cada plano inclui, sem pressão.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',
           'tabs.learningLabel' => 'SÓ PARA VOCÊ',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.learningTitle' => 'O que você aprendeu',
           'tabs.learningText' => 'Anotações privadas que você pode apagar.',
           'tabs.fightStyleLabel' => 'SÓ PARA VOCÊ',
@@ -12280,7 +12269,6 @@ extension on Translations {
           'tabs.touchMeta' => 'Cartas neutras',
           'tabs.badDayMeta' => 'Três coisas pequenas',
           'tabs.distanceMeta' => 'Fusos e reencontro',
-          'tabs.parentsMeta' => 'Cinco minutos',
           'tabs.diaryMeta' => 'Só seu',
           'tabs.hardTalkMeta' => 'Notas antes de falar',
           'tabs.notesMeta' => 'Quando quiser',

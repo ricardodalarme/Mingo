@@ -150,12 +150,12 @@ void main() {
     expect(cubit.state.phase, RelationshipPhase.longDistance);
 
     when(profileRepository.getMySettings).thenAnswer(
-      (_) async => const AccountSettings(theme: .rose, phase: RelationshipPhase.withParents),
+      (_) async => const AccountSettings(theme: .rose, phase: RelationshipPhase.longDistance),
     );
     profileChanges.add(null);
     await pumpEventQueue();
 
-    expect(cubit.state.phase, RelationshipPhase.withParents);
+    expect(cubit.state.phase, RelationshipPhase.longDistance);
   });
 
   test('closing stops listening for profile changes', () async {

@@ -17,7 +17,6 @@ const List<RelationshipPhase> introPhases = [
   RelationshipPhase.married,
   RelationshipPhase.withKids,
   RelationshipPhase.longDistance,
-  RelationshipPhase.withParents,
   RelationshipPhase.restarting,
 ];
 
