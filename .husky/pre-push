@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Git exports GIT_DIR inside a linked worktree, which makes tools that run git in another repository
+# (Flutter's SDK version check) resolve this repo instead; hooks must run without it.
+unset GIT_DIR GIT_WORK_TREE
+
+
 # shellcheck source=scripts/git/scripts
 source "$(dirname "$0")"/scripts
 
