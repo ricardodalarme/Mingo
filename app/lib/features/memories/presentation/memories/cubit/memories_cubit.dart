@@ -1,3 +1,4 @@
+import 'package:app/features/memories/data/models/drawn_slip.dart';
 import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/memories/data/repositories/memories_repository.dart';
 import 'package:clock/clock.dart';

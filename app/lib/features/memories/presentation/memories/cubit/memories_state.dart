@@ -9,13 +9,13 @@ enum MemoriesView() {
 final class const MemoriesState({
   final Resource<List<Memory>> memories = const Loading(),
   final Resource<void> saveAction = const Initial(),
-  final Resource<String?> jarAction = const Initial(),
+  final Resource<DrawnSlip?> jarAction = const Initial(),
   final MemoriesView view = MemoriesView.timeline,
 }) with Equatable {
   MemoriesState copyWith({
     Resource<List<Memory>>? memories,
     Resource<void>? saveAction,
-    Resource<String?>? jarAction,
+    Resource<DrawnSlip?>? jarAction,
     MemoriesView? view,
   }) {
     return MemoriesState(

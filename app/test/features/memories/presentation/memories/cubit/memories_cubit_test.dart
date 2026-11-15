@@ -1,3 +1,4 @@
+import 'package:app/features/memories/data/models/drawn_slip.dart';
 import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/memories/data/repositories/memories_repository.dart';
 import 'package:app/features/memories/presentation/memories/cubit/memories_cubit.dart';
@@ -76,15 +77,17 @@ void main() {
   });
 
   test('the jar returns a slip, or null when it is empty, and can be closed', () async {
-    when(() => repository.drawFromJar()).thenAnswer((_) async => 'Fez café');
+    when(() => repository.drawFromJar())
+        .thenAnswer((_) async => const DrawnSlip(id: 's1', body: 'Fez café'));
     final cubit = build();
 
     await cubit.drawFromJar();
-    expect((cubit.state.jarAction as Success<String?>).value, 'Fez café');
+    expect((cubit.state.jarAction as Success<DrawnSlip?>).value?.id, 's1');
+    expect((cubit.state.jarAction as Success<DrawnSlip?>).value?.body, 'Fez café');
 
     when(() => repository.drawFromJar()).thenAnswer((_) async => null);
     await cubit.drawFromJar();
-    expect((cubit.state.jarAction as Success<String?>).value, isNull);
+    expect((cubit.state.jarAction as Success<DrawnSlip?>).value, isNull);
 
     cubit.closeJar();
     expect(cubit.state.jarAction, isA<Initial>());

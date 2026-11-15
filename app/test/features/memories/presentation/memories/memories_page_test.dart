@@ -1,10 +1,18 @@
+import 'dart:async';
+
+import 'package:app/features/memories/data/models/drawn_slip.dart';
 import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/memories/data/repositories/memories_repository.dart';
 import 'package:app/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:app/features/memories/presentation/memories/memories_page.dart';
+import 'package:app/features/slips/data/models/slip_detail.dart';
+import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,7 +22,18 @@ import '../../../../test_helpers/pump_app.dart';
 
 class _MockMemoriesRepository() extends Mock implements MemoriesRepository;
 
+class _MockSlipRepository() extends Mock implements SlipRepository;
+
 class _MockTabsRouter() extends Mock implements TabsRouter;
+
+class _TestRouter() extends RootStackRouter {
+  @override
+  List<AutoRoute> get routes => [
+    AutoRoute(page: NotFoundRoute.page, initial: true),
+    AutoRoute(page: MemoriesRoute.page, path: '/memories'),
+    AutoRoute(page: SlipDetailRoute.page, path: '/slip/:id'),
+  ];
+}
 
 void main() {
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
@@ -181,5 +200,63 @@ void main() {
 
     verify(() => tabs.setActiveIndex(1)).called(1);
     expect(cubit.state.view, MemoriesView.timeline);
+  });
+
+  testWidgets('tapping the slip drawn from the jar opens its detail', (tester) async {
+    when(() => repository.drawFromJar())
+        .thenAnswer((_) async => const DrawnSlip(id: 's1', body: 'Fez café'));
+
+    final slipRepository = _MockSlipRepository();
+    when(() => slipRepository.getSlip('s1')).thenAnswer(
+      (_) async => SlipDetail(
+        id: 's1',
+        body: 'Fez café',
+        kind: SlipKind.quick,
+        createdAt: DateTime(2026),
+        forCard: true,
+      ),
+    );
+
+    AppInjector.instance.registerFactory<MemoriesCubit>(
+      () => MemoriesCubit(memoriesRepository: repository),
+    );
+    AppInjector.instance.registerFactory<SlipDetailCubit>(
+      () => SlipDetailCubit(slipRepository: slipRepository),
+    );
+    addTearDown(() {
+      AppInjector.instance.unregister<MemoriesCubit>();
+      AppInjector.instance.unregister<SlipDetailCubit>();
+    });
+
+    final router = _TestRouter();
+    await tester.pumpWidget(
+      TranslationProvider(
+        child: AppThemeHost(
+          initialVariant: AppThemeVariant.rose,
+          child: Builder(
+            builder: (context) => BaseApp.router(
+              routerConfig: router.config(),
+              theme: AppTheme.light(AppThemeScope.of(context)),
+              supportedLocales: AppLocaleUtils.supportedLocales,
+            ),
+          ),
+        ),
+      ),
+    );
+    unawaited(router.push(const MemoriesRoute()));
+    await tester.pump();
+    await tester.pump();
+
+    final cubit = tester.element(find.byType(MemoriesPage)).read<MemoriesCubit>();
+    await cubit.onViewChanged(MemoriesView.jar);
+    await tester.pump();
+    await tester.pump();
+
+    await tester.tap(find.text('Fez café'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(router.stack.last.name, SlipDetailRoute.name);
+    expect(router.stack.last.routeData.argsAs<SlipDetailRouteArgs>().id, 's1');
   });
 }

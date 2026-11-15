@@ -1,3 +1,4 @@
+import 'package:app/features/memories/data/models/drawn_slip.dart';
 import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/memories/presentation/add_memory/add_memory_sheet.dart';
 import 'package:app/features/memories/presentation/memories/cubit/memories_cubit.dart';
@@ -208,10 +209,10 @@ class const _JarResult() extends StatelessWidget {
     final jar = context.select((MemoriesCubit cubit) => cubit.state.jarAction);
     final cubit = context.read<MemoriesCubit>();
 
-    if (jar is Success<String?>) {
-      final text = jar.value;
+    if (jar is Success<DrawnSlip?>) {
+      final slip = jar.value;
 
-      if (text == null) {
+      if (slip == null) {
         return BaseEmptyState(
           title: l10n.jarEmptyTitle,
           text: l10n.jarEmpty,
@@ -225,10 +226,17 @@ class const _JarResult() extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: AppSpace.s12),
-          BaseSurfaceCard(
-            style: .ring,
-            padding: const EdgeInsets.all(AppSpace.s20),
-            child: Semantics(liveRegion: true, child: Text(text, style: context.text.titleLg)),
+          AppPressable(
+            onTap: () => context.pushRoute(SlipDetailRoute(id: slip.id)),
+            borderRadius: BorderRadius.circular(AppRadius.card),
+            child: BaseSurfaceCard(
+              style: .ring,
+              padding: const EdgeInsets.all(AppSpace.s20),
+              child: Semantics(
+                liveRegion: true,
+                child: Text(slip.body, style: context.text.titleLg),
+              ),
+            ),
           ),
           const SizedBox(height: AppSpace.s8),
           Row(
