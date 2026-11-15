@@ -1,6 +1,7 @@
 import 'package:design_system/src/components/surfaces/base_category_label.dart';
 import 'package:design_system/src/components/surfaces/base_face.dart';
 import 'package:design_system/src/drawings/app_wash.dart';
+import 'package:design_system/src/icons/app_icon.dart';
 import 'package:design_system/src/theme/app_pressable.dart';
 import 'package:design_system/src/theme/app_theme.dart';
 import 'package:design_system/src/tokens/tokens.dart';
@@ -9,6 +10,8 @@ import 'package:flutter/widgets.dart';
 /// A tappable list card with a category label, text and a trailing visual.
 ///
 /// The default [AppCategory.card] shows no label glyph unless [icon] is set.
+/// A card with [onTap] also shows a disclosure chevron after the trailing
+/// visual; a card without it keeps the full width for its text.
 class const BaseListCard({
   required final String categoryLabel,
   required final String title,
@@ -26,10 +29,11 @@ class const BaseListCard({
     final text = context.text;
     final trailingChild =
         trailing ?? (face == null ? null : BaseFace(kind: face!, size: FaceSize.small));
+    final showsChevron = onTap != null;
 
     return AppPressable(
       onTap: onTap,
-      isSemanticButton: onTap != null,
+      isSemanticButton: showsChevron,
       borderRadius: BorderRadius.circular(AppRadius.card),
       enforceMinTapTarget: true,
       child: ClipRRect(
@@ -73,6 +77,10 @@ class const BaseListCard({
                   ),
                 ),
                 if (trailingChild != null) ...[const SizedBox(width: AppSpace.s14), trailingChild],
+                if (showsChevron) ...[
+                  const SizedBox(width: AppSpace.s8),
+                  AppIcon(icon: AppIcons.chevron_right, color: colors.iconMuted),
+                ],
               ],
             ),
           ),
