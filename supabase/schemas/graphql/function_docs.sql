@@ -55,7 +55,7 @@ comment on function public.delete_partner_message(uuid) is e'@graphql({"descript
 comment on function public.partner_answered(text) is e'@graphql({"description": "Whether the partner answered the couple question. A yes or no only, never the answer."})';
 comment on function public.invite_to_game(text, text[]) is e'@graphql({"description": "Invites the partner to a game. Only one session per game can be open at a time."})';
 comment on function public.update_game(uuid, text, text) is e'@graphql({"description": "Moves a game session along: action is join, cancel or finish. Finishing needs both people to have answered every item."})';
-comment on function public.answer_game(uuid, integer, text) is e'@graphql({"description": "Saves the caller''s answer to one item of an active game."})';
+comment on function public.answer_game(uuid, integer, text) is e'@graphql({"description": "Saves the caller''s answer to one item of an active game. Once both partners answered an item, it is locked and the call fails with ANSWER_LOCKED."})';
 comment on function public.set_touch_topics(boolean) is e'@graphql({"description": "Switches touch topics on or off for both partners."})';
 comment on function public.current_temperature() is e'@graphql({"description": "How the relationship feels right now, per the caller''s latest check. A fight level counts for 24 hours."})';
 comment on function public.partner_mood_today() is e'@graphql({"description": "The mood the partner shared today, or null."})';
