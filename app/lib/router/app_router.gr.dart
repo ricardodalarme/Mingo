@@ -2154,6 +2154,22 @@ class SettingsHomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SettingsThemePage]
+class SettingsThemeRoute extends PageRouteInfo<void> {
+  const SettingsThemeRoute({List<PageRouteInfo>? children})
+    : super(SettingsThemeRoute.name, initialChildren: children);
+
+  static const String name = 'SettingsThemeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SettingsThemePage();
+    },
+  );
+}
+
+/// generated route for
 /// [SignInPage]
 class SignInRoute extends PageRouteInfo<void> {
   const SignInRoute({List<PageRouteInfo>? children})

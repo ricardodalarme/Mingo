@@ -59,7 +59,20 @@ class const TodayHeader({
                 onTap: () => context.pushRoute(const InviteRoute()),
                 semanticLabel: l10n.invitePerson,
               ),
-            if (home.togetherSince != null) _TogetherChip(since: home.togetherSince!),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (home.togetherSince != null) _TogetherChip(since: home.togetherSince!),
+                if (!home.isPaired) ...[
+                  if (home.togetherSince != null) const SizedBox(width: AppSpace.s8),
+                  BaseRoundButton(
+                    icon: AppIcons.settings,
+                    semanticLabel: context.l10n.settingsHome.title,
+                    onPressed: () => context.pushRoute(const SettingsHomeRoute()),
+                  ),
+                ],
+              ],
+            ),
           ],
         ),
         const SizedBox(height: AppSpace.s24),

@@ -4852,6 +4852,8 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get appPreferencesStatus => 'Appearance, text and language';
   @override
+  String get theme => 'Theme';
+  @override
   String get weeklyCard => 'Weekly card';
   @override
   String get language => 'Language';
@@ -10317,6 +10319,7 @@ extension on TranslationsEn {
           'settingsHome.helpStatus' => 'FAQ and contact',
           'settingsHome.appPreferences' => 'App preferences',
           'settingsHome.appPreferencesStatus' => 'Appearance, text and language',
+          'settingsHome.theme' => 'Theme',
           'settingsHome.weeklyCard' => 'Weekly card',
           'settingsHome.language' => 'Language',
           'settingsHome.accountSection' => 'Account',
@@ -10607,10 +10610,10 @@ extension on TranslationsEn {
           'sundayCard.send.invite' => 'Invite to send',
           'sundayCard.send.needsPartner' =>
             'To send the card in the app, your person has to be connected.',
-          'sundayCard.send.title' => 'Send the card?',
           _ => null,
         } ??
         switch (path) {
+          'sundayCard.send.title' => 'Send the card?',
           'sundayCard.send.text' => ({
             required Object name,
           }) => '${name} receives it now. Once sent, the card does not change.',

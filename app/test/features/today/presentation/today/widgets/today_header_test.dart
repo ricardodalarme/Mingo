@@ -106,4 +106,37 @@ void main() {
       expect(pressable.semanticLabel, l10n.today.togetherChipAction);
     });
   });
+
+  testWidgets('on your own the header offers settings', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      await tester.pumpApp(
+        const TodayHeader(
+          home: TodayHome(
+            isPaired: false,
+            unopenedCards: 0,
+            slipsThisWeek: 2,
+            slipsTotal: 2,
+            hasPendingInvite: false,
+            hasPlus: false,
+          ),
+          selfName: 'Ana',
+        ),
+      );
+
+      final gear = tester.widget<BaseRoundButton>(
+        find.widgetWithIcon(BaseRoundButton, AppIcons.settings),
+      );
+
+      expect(gear.onPressed, isNotNull);
+      expect(gear.semanticLabel, Translations().settingsHome.title);
+    });
+  });
+
+  testWidgets('with a partner the settings gear is not repeated', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      await tester.pumpApp(const TodayHeader(home: home, selfName: 'Ana'));
+
+      expect(find.byIcon(AppIcons.settings), findsNothing);
+    });
+  });
 }

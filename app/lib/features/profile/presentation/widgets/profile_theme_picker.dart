@@ -1,7 +1,7 @@
 import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 
-/// The three live theme choices shown during setup and in profile settings.
+/// The three live theme choices.
 class const ProfileThemePicker({
   required final AppThemeVariant selected,
   required final ValueChanged<AppThemeVariant> onChanged,

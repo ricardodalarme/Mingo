@@ -27,20 +27,21 @@ class const SettingsHomePage({super.key}) extends StatelessWidget implements Aut
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.settingsHome;
+    final isAuthenticated = context.select(
+      (SettingsHomeCubit cubit) => cubit.state.isAuthenticated,
+    );
 
     return BaseView(
       appBar: BaseAppBar(title: l10n.title),
-      body: const BaseStackedContent(
+      body: BaseStackedContent(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _AccountSection(),
-            SizedBox(height: AppSpace.s20),
-            _PreferencesSection(),
-            SizedBox(height: AppSpace.s20),
-            _PrivacySection(),
-            SizedBox(height: AppSpace.s20),
-            _AccountActions(),
+            if (isAuthenticated) ...[const _AccountSection(), const SizedBox(height: AppSpace.s20)],
+            const _PreferencesSection(),
+            const SizedBox(height: AppSpace.s20),
+            const _PrivacySection(),
+            if (isAuthenticated) ...[const SizedBox(height: AppSpace.s20), const _AccountActions()],
           ],
         ),
       ),
@@ -55,15 +56,15 @@ class const _AccountSection() extends StatelessWidget {
     final deletionPending = context.select(
       (SettingsHomeCubit cubit) => cubit.state.deletionPending,
     );
-    final hasPartner = context.select((SettingsHomeCubit cubit) => cubit.state.hasPartner);
+    final hasRelationship = context.select(
+      (SettingsHomeCubit cubit) => cubit.state.hasRelationship,
+    );
     final partnerName = context.select((SettingsHomeCubit cubit) => cubit.state.partnerName);
     final hasPlus = context.select((SettingsHomeCubit cubit) => cubit.state.hasPlus);
 
-    final relationship = switch (hasPartner) {
-      null => null,
-      true => partnerName == null ? l10n.connected : l10n.connectedWith(name: partnerName),
-      false => l10n.invitePartner,
-    };
+    final relationship = partnerName == null
+        ? l10n.connected
+        : l10n.connectedWith(name: partnerName);
     final plan = switch (hasPlus) {
       null => null,
       true => l10n.planPlus,
@@ -93,13 +94,14 @@ class const _AccountSection() extends StatelessWidget {
               showsChevron: true,
               onTap: () => context.pushRoute(const ProfileSettingsRoute()),
             ),
-            BaseListTile(
-              title: l10n.relationship,
-              subtitle: relationship,
-              icon: AppIcons.heart,
-              showsChevron: true,
-              onTap: () => context.pushRoute(const RelationshipRoute()),
-            ),
+            if (hasRelationship)
+              BaseListTile(
+                title: l10n.relationship,
+                subtitle: relationship,
+                icon: AppIcons.heart,
+                showsChevron: true,
+                onTap: () => context.pushRoute(const RelationshipRoute()),
+              ),
             BaseListTile(
               title: l10n.plan,
               subtitle: plan,
@@ -118,6 +120,12 @@ class const _PreferencesSection() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.settingsHome;
+    final isAuthenticated = context.select(
+      (SettingsHomeCubit cubit) => cubit.state.isAuthenticated,
+    );
+    final hasRelationship = context.select(
+      (SettingsHomeCubit cubit) => cubit.state.hasRelationship,
+    );
     final notificationsOn = context.select(
       (SettingsHomeCubit cubit) => cubit.state.notificationsOn,
     );
@@ -137,18 +145,27 @@ class const _PreferencesSection() extends StatelessWidget {
         const SizedBox(height: AppSpace.s8),
         BaseListGroup(
           children: [
+            if (isAuthenticated) ...[
+              BaseListTile(
+                title: l10n.notifications,
+                subtitle: notifications,
+                icon: AppIcons.bell,
+                showsChevron: true,
+                onTap: () => context.pushRoute(const NotificationPreferencesRoute()),
+              ),
+              BaseListTile(
+                title: l10n.devices,
+                icon: AppIcons.smartphone,
+                showsChevron: true,
+                onTap: () => context.pushRoute(const DevicesRoute()),
+              ),
+            ],
             BaseListTile(
-              title: l10n.notifications,
-              subtitle: notifications,
-              icon: AppIcons.bell,
+              title: l10n.theme,
+              value: _themeLabel(context),
+              icon: AppIcons.sparkle,
               showsChevron: true,
-              onTap: () => context.pushRoute(const NotificationPreferencesRoute()),
-            ),
-            BaseListTile(
-              title: l10n.devices,
-              icon: AppIcons.smartphone,
-              showsChevron: true,
-              onTap: () => context.pushRoute(const DevicesRoute()),
+              onTap: () => context.pushRoute(const SettingsThemeRoute()),
             ),
             BaseListTile(
               title: l10n.language,
@@ -159,30 +176,42 @@ class const _PreferencesSection() extends StatelessWidget {
               showsChevron: true,
               onTap: () => context.pushRoute(const LanguageRoute()),
             ),
-            BaseListTile(
-              title: l10n.weeklyCard,
-              icon: AppIcons.mail,
-              showsChevron: true,
-              onTap: () => context.pushRoute(const SundayCardRoute()),
-            ),
-            if (!safeModeOn)
+            if (isAuthenticated) ...[
               BaseListTile(
-                title: l10n.spice,
-                icon: AppIcons.heart,
+                title: l10n.weeklyCard,
+                icon: AppIcons.mail,
                 showsChevron: true,
-                onTap: () => context.pushRoute(const SpiceRoute()),
+                onTap: () => context.pushRoute(const SundayCardRoute()),
               ),
-            BaseListTile(
-              title: context.l10n.widgets.settingsTitle,
-              subtitle: context.l10n.widgets.settingsSubtitle,
-              icon: AppIcons.smartphone,
-              showsChevron: true,
-              onTap: () => context.pushRoute(const WidgetsGalleryRoute()),
-            ),
+              if (hasRelationship && !safeModeOn)
+                BaseListTile(
+                  title: l10n.spice,
+                  icon: AppIcons.heart,
+                  showsChevron: true,
+                  onTap: () => context.pushRoute(const SpiceRoute()),
+                ),
+              BaseListTile(
+                title: context.l10n.widgets.settingsTitle,
+                subtitle: context.l10n.widgets.settingsSubtitle,
+                icon: AppIcons.smartphone,
+                showsChevron: true,
+                onTap: () => context.pushRoute(const WidgetsGalleryRoute()),
+              ),
+            ],
           ],
         ),
       ],
     );
+  }
+
+  String _themeLabel(BuildContext context) {
+    final l10n = context.l10n.profileSetup;
+
+    return switch (AppThemeScope.of(context)) {
+      AppThemeVariant.rose => l10n.themeRose,
+      AppThemeVariant.blue => l10n.themeBlue,
+      AppThemeVariant.neutral => l10n.themeNeutral,
+    };
   }
 }
 
@@ -190,6 +219,12 @@ class const _PrivacySection() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.settingsHome;
+    final isAuthenticated = context.select(
+      (SettingsHomeCubit cubit) => cubit.state.isAuthenticated,
+    );
+    final hasRelationship = context.select(
+      (SettingsHomeCubit cubit) => cubit.state.hasRelationship,
+    );
     final discreetOn = context.select((DiscreetModeCubit cubit) => cubit.state.isOn);
 
     return Column(
@@ -199,20 +234,22 @@ class const _PrivacySection() extends StatelessWidget {
         const SizedBox(height: AppSpace.s8),
         BaseListGroup(
           children: [
-            BaseListTile(
-              title: l10n.privacy,
-              subtitle: l10n.privacyStatus,
-              icon: AppIcons.lock,
-              showsChevron: true,
-              onTap: () => context.pushRoute(const PrivacyHubRoute()),
-            ),
-            BaseListTile(
-              title: l10n.discreet,
-              subtitle: discreetOn ? l10n.discreetOn : l10n.discreetOff,
-              icon: AppIcons.eye_off,
-              showsChevron: true,
-              onTap: () => context.pushRoute(const DiscreetModeRoute()),
-            ),
+            if (hasRelationship)
+              BaseListTile(
+                title: l10n.privacy,
+                subtitle: l10n.privacyStatus,
+                icon: AppIcons.lock,
+                showsChevron: true,
+                onTap: () => context.pushRoute(const PrivacyHubRoute()),
+              ),
+            if (isAuthenticated)
+              BaseListTile(
+                title: l10n.discreet,
+                subtitle: discreetOn ? l10n.discreetOn : l10n.discreetOff,
+                icon: AppIcons.eye_off,
+                showsChevron: true,
+                onTap: () => context.pushRoute(const DiscreetModeRoute()),
+              ),
             BaseListTile(
               title: l10n.safety,
               subtitle: l10n.safetyStatus,

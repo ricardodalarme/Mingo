@@ -5983,6 +5983,9 @@ class Translations$settingsHome$pt {
   /// pt: 'Aparência, texto e idioma'
   String get appPreferencesStatus => 'Aparência, texto e idioma';
 
+  /// pt: 'Tema'
+  String get theme => 'Tema';
+
   /// pt: 'Cartão semanal'
   String get weeklyCard => 'Cartão semanal';
 
@@ -12185,6 +12188,7 @@ extension on Translations {
           'settingsHome.helpStatus' => 'Perguntas e contato',
           'settingsHome.appPreferences' => 'Preferências do app',
           'settingsHome.appPreferencesStatus' => 'Aparência, texto e idioma',
+          'settingsHome.theme' => 'Tema',
           'settingsHome.weeklyCard' => 'Cartão semanal',
           'settingsHome.language' => 'Idioma',
           'settingsHome.accountSection' => 'Conta',
@@ -12477,10 +12481,10 @@ extension on Translations {
           'sundayCard.send.invite' => 'Convidar para enviar',
           'sundayCard.send.needsPartner' =>
             'Para enviar o cartão no app, sua pessoa precisa estar conectada.',
-          'sundayCard.send.title' => 'Enviar o cartão?',
           _ => null,
         } ??
         switch (path) {
+          'sundayCard.send.title' => 'Enviar o cartão?',
           'sundayCard.send.text' => ({
             required Object name,
           }) => '${name} recebe agora. Depois de enviado, o cartão não muda.',

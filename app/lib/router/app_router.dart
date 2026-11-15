@@ -93,6 +93,7 @@ import 'package:app/features/safety/presentation/safe_mode/safe_mode_page.dart';
 import 'package:app/features/settings/presentation/discreet/discreet_page.dart';
 import 'package:app/features/settings/presentation/home/settings_home_page.dart';
 import 'package:app/features/settings/presentation/language/language_page.dart';
+import 'package:app/features/settings/presentation/theme/theme_page.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
 import 'package:app/features/slips/presentation/need/need_page.dart';
 import 'package:app/features/slips/presentation/quick_slip/quick_slip_page.dart';
@@ -184,6 +185,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: ManagePlusRoute.page),
     AutoRoute(page: RestorePurchasesRoute.page),
     AutoRoute(page: SettingsHomeRoute.page),
+    AutoRoute(page: SettingsThemeRoute.page),
     AutoRoute(page: LanguageRoute.page),
     AutoRoute(page: HelpRoute.page),
     AutoRoute(page: SupportRoute.page),

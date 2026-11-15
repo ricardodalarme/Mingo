@@ -1,4 +1,5 @@
 import 'package:app/features/account/data/repositories/account_repository.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
@@ -12,11 +13,18 @@ class SettingsHomeCubit({
   required final PlusRepository _plusRepository,
   required final NotificationsRepository _notificationsRepository,
   required final AccountRepository _accountRepository,
+  required final AuthenticationRepository _authenticationRepository,
 }) extends Cubit<SettingsHomeState> {
   this : super(const SettingsHomeState());
 
   /// Reads the one-line status of each section; a section that cannot be read shows no status.
   Future<void> load() async {
+    if (!_authenticationRepository.isAuthenticated) {
+      emit(const SettingsHomeState(isLoaded: true));
+
+      return;
+    }
+
     final partner = await _try(_pairingRepository.getPartner);
     final plus = await _try(_plusRepository.getPlus);
     final notifications = await _try(_notificationsRepository.getPreferences);
@@ -24,6 +32,7 @@ class SettingsHomeCubit({
     emit(
       SettingsHomeState(
         isLoaded: true,
+        isAuthenticated: true,
         partnerName: partner.value?.displayName,
         hasPartner: partner.isOk ? partner.value != null : null,
         hasPlus: plus.value?.hasPlus,

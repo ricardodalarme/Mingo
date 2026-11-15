@@ -18,6 +18,13 @@ const Set<String> publicRouteNames = {
   DebugSignInRoute.name,
   SessionExpiredRoute.name,
   NotFoundRoute.name,
+  SettingsHomeRoute.name,
+  SettingsThemeRoute.name,
+  LanguageRoute.name,
+  SafeModeRoute.name,
+  NeutralRoute.name,
+  HelpRoute.name,
+  SupportRoute.name,
 };
 
 /// Keeps signed-out people out of pages that need a session and remembers
