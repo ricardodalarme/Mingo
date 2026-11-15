@@ -4,13 +4,17 @@ import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/data/models/need_kind.dart';
 import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/mood/data/repositories/mood_repository.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'mood_state.dart';
 
-class MoodCubit({required final MoodRepository _moodRepository}) extends Cubit<MoodState> {
+class MoodCubit({
+  required final MoodRepository _moodRepository,
+  required final SlipRepository _slipRepository,
+}) extends Cubit<MoodState> {
   this : super(const MoodState());
 
   /// Reads today's row and starts the form from it; a missing row starts private.
@@ -86,6 +90,22 @@ class MoodCubit({required final MoodRepository _moodRepository}) extends Cubit<M
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }
+  }
+
+  /// Sends the partner a one-tap hug when their shared mood is a good one.
+  Future<void> reactToPartner() async {
+    if (isClosed || state.reactAction.isLoading) return;
+
+    emit(state.copyWith(reactAction: const Loading()));
+    try {
+      await _slipRepository.sendHug();
+      if (isClosed) return;
+      emit(state.copyWith(reactAction: const Success(null)));
+    } catch (exception) {
+      if (isClosed) return;
+      emit(state.copyWith(reactAction: Failure.fromObject(exception)));
+    }
+    emit(state.copyWith(reactAction: const Initial()));
   }
 
   MoodState _fromEntry(MoodEntry? entry) => state.copyWith(

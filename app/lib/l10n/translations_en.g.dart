@@ -135,6 +135,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$mood$en mood = _Translations$mood$en._(_root);
   @override
+  late final _Translations$moodHelp$en moodHelp = _Translations$moodHelp$en._(_root);
+  @override
   late final _Translations$need$en need = _Translations$need$en._(_root);
   @override
   late final _Translations$notFound$en notFound = _Translations$notFound$en._(_root);
@@ -3186,6 +3188,73 @@ class _Translations$mood$en extends Translations$mood$pt {
     'tired': 'Tired',
     'stressed': 'Tense',
     'sad': 'Sad',
+  };
+}
+
+// Path: moodHelp
+class _Translations$moodHelp$en extends Translations$moodHelp$pt {
+  _Translations$moodHelp$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get listenTitle => 'Listen first';
+  @override
+  String get listenSubtitle => 'No rush, no pressure to answer.';
+  @override
+  String get talkLabel => 'Talk';
+  @override
+  String get askToTalk => 'Ask if they want to talk';
+  @override
+  String get askToTalkSupport => 'An open question, with no rush for an answer.';
+  @override
+  String get careLabel => 'Care';
+  @override
+  String get sendLove => 'Send a little love';
+  @override
+  String get sendLoveSupport => 'A hug arrives as a signal in the app.';
+  @override
+  String get helpLabel => 'Help';
+  @override
+  String get seeHowToHelp => 'See how to help';
+  @override
+  String get seeHowToHelpSupport => 'Small things for today.';
+  @override
+  String get helpTitle => 'How to help today';
+  @override
+  String get helpSubtitle => 'Small things, at today\'s pace.';
+  @override
+  String get choreLabel => 'Chore';
+  @override
+  String get takeChore => 'Take on a chore';
+  @override
+  String get takeChoreSupport => 'Pick one thing at home and handle it without asking.';
+  @override
+  String get askListenOrSpace => 'Ask: do you want to talk or have space?';
+  @override
+  String get askListenOrSpaceSupport => 'Let the answer choose the next step.';
+  @override
+  String get sendSweetMessage => 'Send a short, sweet message';
+  @override
+  String get sendSweetMessageSupport => 'One line is enough. No explanation needed.';
+  @override
+  String get homeLabel => 'Home';
+  @override
+  String get makeCoffeeOrDinner => 'Make coffee or dinner';
+  @override
+  String get makeCoffeeOrDinnerSupport => 'Without turning it into a shared task.';
+  @override
+  String get reactionLabel => 'Send a heart';
+  @override
+  String get sent => 'Heart sent';
+  @override
+  Map<String, String> get errors => {
+    'NOT_PAIRED': 'You are not connected yet.',
+    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
+    'NETWORK': 'Couldn\'t send it now. Check your connection and try again.',
+    'TIMEOUT': 'Couldn\'t send it in time. Try again.',
+    'other': 'Couldn\'t send it now. Try again.',
   };
 }
 
@@ -9227,6 +9296,37 @@ extension on TranslationsEn {
           'mood.homeMoods.tired' => 'Tired',
           'mood.homeMoods.stressed' => 'Tense',
           'mood.homeMoods.sad' => 'Sad',
+          'moodHelp.listenTitle' => 'Listen first',
+          'moodHelp.listenSubtitle' => 'No rush, no pressure to answer.',
+          'moodHelp.talkLabel' => 'Talk',
+          'moodHelp.askToTalk' => 'Ask if they want to talk',
+          'moodHelp.askToTalkSupport' => 'An open question, with no rush for an answer.',
+          'moodHelp.careLabel' => 'Care',
+          'moodHelp.sendLove' => 'Send a little love',
+          'moodHelp.sendLoveSupport' => 'A hug arrives as a signal in the app.',
+          'moodHelp.helpLabel' => 'Help',
+          'moodHelp.seeHowToHelp' => 'See how to help',
+          'moodHelp.seeHowToHelpSupport' => 'Small things for today.',
+          'moodHelp.helpTitle' => 'How to help today',
+          'moodHelp.helpSubtitle' => 'Small things, at today\'s pace.',
+          'moodHelp.choreLabel' => 'Chore',
+          'moodHelp.takeChore' => 'Take on a chore',
+          'moodHelp.takeChoreSupport' => 'Pick one thing at home and handle it without asking.',
+          'moodHelp.askListenOrSpace' => 'Ask: do you want to talk or have space?',
+          'moodHelp.askListenOrSpaceSupport' => 'Let the answer choose the next step.',
+          'moodHelp.sendSweetMessage' => 'Send a short, sweet message',
+          'moodHelp.sendSweetMessageSupport' => 'One line is enough. No explanation needed.',
+          'moodHelp.homeLabel' => 'Home',
+          'moodHelp.makeCoffeeOrDinner' => 'Make coffee or dinner',
+          'moodHelp.makeCoffeeOrDinnerSupport' => 'Without turning it into a shared task.',
+          'moodHelp.reactionLabel' => 'Send a heart',
+          'moodHelp.sent' => 'Heart sent',
+          'moodHelp.errors.NOT_PAIRED' => 'You are not connected yet.',
+          'moodHelp.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'moodHelp.errors.NETWORK' =>
+            'Couldn\'t send it now. Check your connection and try again.',
+          'moodHelp.errors.TIMEOUT' => 'Couldn\'t send it in time. Try again.',
+          'moodHelp.errors.other' => 'Couldn\'t send it now. Try again.',
           'need.title' => 'I need…',
           'need.titleHighlight' => 'need',
           'need.subtitle' => 'Pick one thing. Your partner gets a gentle note, no pressure.',
@@ -9252,6 +9352,9 @@ extension on TranslationsEn {
           'notes.title' => 'A note or a drawing',
           'notes.intro' =>
             'A short note for your partner, or a drawing that stays in your sent list.',
+          _ => null,
+        } ??
+        switch (path) {
           'notes.kinds.0' => 'Note',
           'notes.kinds.1' => 'Drawing',
           'notes.noteHint' => 'E.g. good luck at today\'s meeting',
@@ -9302,9 +9405,6 @@ extension on TranslationsEn {
                   other: '${count} days ago',
                 ),
           'notes.drawingAlt' => 'Drawing',
-          _ => null,
-        } ??
-        switch (path) {
           'notes.delete' => 'Delete',
           'notes.deleteConfirmTitle' => 'Delete this?',
           'notes.deleteConfirmText' =>
@@ -9847,6 +9947,9 @@ extension on TranslationsEn {
           'received.kinds.goodNews' => 'Good news',
           'received.kinds.other' => '',
           'received.bodies.missUs' => 'Your partner is missing you both.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.bodies.hug' => 'Your partner would like a hug.',
           'received.bodies.distance' => 'Your partner needs a little distance.',
           'received.bodies.heavyDay' => 'Your partner is having a heavy day.',
@@ -9877,9 +9980,6 @@ extension on TranslationsEn {
           'relationshipChanged.optionBereaved' => 'I lost them',
           'relationshipChanged.optionOnBreak' => 'A break',
           'relationshipChanged.optionTogether' => 'Everything is fine',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.continueLabel' => 'Continue',
           'relationshipChanged.saved' => 'Saved',
           'relationshipChanged.errors.NETWORK' => 'No connection. Try again.',
@@ -10417,6 +10517,9 @@ extension on TranslationsEn {
           'tabs.partnerLabel' => 'JUST FOR YOU',
           'tabs.partnerTitle' => 'About your partner',
           'tabs.partnerText' => 'Private notes to remember what they like.',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.chatLabel' => 'TALK',
           'tabs.chatTitle' => 'Mascot',
           'tabs.chatText' => 'A calm conversation that is not kept.',
@@ -10447,9 +10550,6 @@ extension on TranslationsEn {
           'tabs.badDayTitle' => 'A hard day',
           'tabs.badDayText' => 'Three small things to do right now.',
           'tabs.starterLabel' => 'TALK',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.starterTitle' => 'Start a conversation',
           'tabs.starterText' => 'A question to open with, no rush.',
           'tabs.dayLabel' => 'DAY',

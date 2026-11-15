@@ -134,6 +134,16 @@ void main() {
     });
   });
 
+  group('sendHug', () {
+    test('sends the one-tap hug signal to the partner', () async {
+      when(() => remote.sendSignal(kind: any(named: 'kind'))).thenAnswer((_) async {});
+
+      await repository.sendHug();
+
+      verify(() => remote.sendSignal(kind: 'hug')).called(1);
+    });
+  });
+
   group('draft', () {
     test('ignores a draft older than an hour', () {
       final now = DateTime.utc(2026, 11, 9, 22);

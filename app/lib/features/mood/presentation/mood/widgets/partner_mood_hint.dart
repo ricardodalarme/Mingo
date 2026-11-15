@@ -2,15 +2,20 @@ import 'package:app/features/mood/data/models/mood_kind.dart';
 import 'package:app/features/mood/data/models/need_kind.dart';
 import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/mood/presentation/mood/mood_faces.dart';
+import 'package:app/features/mood/presentation/mood/widgets/partner_mood_help_sheet.dart';
+import 'package:app/features/mood/presentation/mood/widgets/partner_mood_listen_sheet.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 
 /// The partner's shared mood for today, hidden entirely in discreet mode.
+///
+/// A good mood offers a one-tap reaction; a low one opens the help that fits it. The bad-day
+/// screen belongs to the person's own jar and never opens from here.
 class const PartnerMoodHint({
   required final PartnerMood partnerMood,
   required final bool isDiscreet,
   final String? partnerName,
-  final VoidCallback? onTap,
+  final VoidCallback? onReact,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -19,6 +24,7 @@ class const PartnerMoodHint({
     if (isDiscreet || mood == null) return const SizedBox.shrink();
 
     final l10n = context.l10n.mood;
+    final helpL10n = context.l10n.moodHelp;
     final name = partnerName ?? l10n.partnerFallback;
     final line = switch (mood) {
       MoodKind.happy => l10n.partnerHappy(name: name),
@@ -35,13 +41,60 @@ class const PartnerMoodHint({
       NeedKind.space => l10n.partnerNeedSpace,
       null => null,
     };
+    final isGoodMood =
+        mood == MoodKind.happy || mood == MoodKind.loving || mood == MoodKind.playful;
 
     return BaseListCard(
       categoryLabel: l10n.partnerLabel,
       title: line,
       supportText: needLine,
-      face: mood.face,
-      onTap: onTap,
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          BaseFace(kind: mood.face, size: FaceSize.small),
+          if (isGoodMood && onReact != null) ...[
+            const SizedBox(width: AppSpace.s8),
+            BaseRoundButton(
+              icon: AppIcons.heart_filled,
+              semanticLabel: helpL10n.reactionLabel,
+              onPressed: onReact,
+            ),
+          ],
+        ],
+      ),
+      onTap: switch (mood) {
+        MoodKind.happy || MoodKind.loving || MoodKind.playful => null,
+        MoodKind.tired || MoodKind.stressed => () => _openHelp(context, mood),
+        MoodKind.sad => () => _openListen(context),
+      },
     );
+  }
+
+  Future<void> _openHelp(BuildContext context, MoodKind mood) => BaseSheet.show<void>(
+    context: context,
+    title: context.l10n.moodHelp.helpTitle,
+    subtitle: context.l10n.moodHelp.helpSubtitle,
+    child: PartnerMoodHelpSheet(mood: mood),
+  );
+
+  Future<void> _openListen(BuildContext context) async {
+    final l10n = context.l10n.moodHelp;
+    final action = await BaseSheet.show<PartnerMoodListenAction>(
+      context: context,
+      title: l10n.listenTitle,
+      subtitle: l10n.listenSubtitle,
+      child: const PartnerMoodListenSheet(),
+    );
+    if (!context.mounted) return;
+
+    switch (action) {
+      case PartnerMoodListenAction.sendLove:
+        onReact?.call();
+      case PartnerMoodListenAction.seeHowToHelp:
+        await _openHelp(context, MoodKind.sad);
+      case PartnerMoodListenAction.askToTalk:
+      case null:
+        return;
+    }
   }
 }

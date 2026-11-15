@@ -103,6 +103,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$loveStyle$pt loveStyle = Translations$loveStyle$pt.internal(_root);
   late final Translations$memories$pt memories = Translations$memories$pt.internal(_root);
   late final Translations$mood$pt mood = Translations$mood$pt.internal(_root);
+  late final Translations$moodHelp$pt moodHelp = Translations$moodHelp$pt.internal(_root);
   late final Translations$need$pt need = Translations$need$pt.internal(_root);
   late final Translations$notFound$pt notFound = Translations$notFound$pt.internal(_root);
   late final Translations$notes$pt notes = Translations$notes$pt.internal(_root);
@@ -3864,6 +3865,98 @@ class Translations$mood$pt {
     'tired': 'Cansado',
     'stressed': 'Tenso',
     'sad': 'Triste',
+  };
+}
+
+// Path: moodHelp
+class Translations$moodHelp$pt {
+  Translations$moodHelp$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Escuta primeiro'
+  String get listenTitle => 'Escuta primeiro';
+
+  /// pt: 'Sem pressa e sem cobrar resposta.'
+  String get listenSubtitle => 'Sem pressa e sem cobrar resposta.';
+
+  /// pt: 'Conversa'
+  String get talkLabel => 'Conversa';
+
+  /// pt: 'Perguntar se quer conversar'
+  String get askToTalk => 'Perguntar se quer conversar';
+
+  /// pt: 'Uma pergunta aberta, sem pressa de resposta.'
+  String get askToTalkSupport => 'Uma pergunta aberta, sem pressa de resposta.';
+
+  /// pt: 'Carinho'
+  String get careLabel => 'Carinho';
+
+  /// pt: 'Mandar um carinho'
+  String get sendLove => 'Mandar um carinho';
+
+  /// pt: 'Um abraço chega como sinal no app.'
+  String get sendLoveSupport => 'Um abraço chega como sinal no app.';
+
+  /// pt: 'Ajuda'
+  String get helpLabel => 'Ajuda';
+
+  /// pt: 'Ver como ajudar'
+  String get seeHowToHelp => 'Ver como ajudar';
+
+  /// pt: 'Coisas pequenas para hoje.'
+  String get seeHowToHelpSupport => 'Coisas pequenas para hoje.';
+
+  /// pt: 'Como ajudar hoje'
+  String get helpTitle => 'Como ajudar hoje';
+
+  /// pt: 'Pequenas coisas, no ritmo de hoje.'
+  String get helpSubtitle => 'Pequenas coisas, no ritmo de hoje.';
+
+  /// pt: 'Tarefa'
+  String get choreLabel => 'Tarefa';
+
+  /// pt: 'Assumir uma tarefa'
+  String get takeChore => 'Assumir uma tarefa';
+
+  /// pt: 'Escolha uma coisa da casa e resolva sem avisar.'
+  String get takeChoreSupport => 'Escolha uma coisa da casa e resolva sem avisar.';
+
+  /// pt: 'Perguntar: quer ouvir ou espaço?'
+  String get askListenOrSpace => 'Perguntar: quer ouvir ou espaço?';
+
+  /// pt: 'Deixe a resposta decidir o próximo passo.'
+  String get askListenOrSpaceSupport => 'Deixe a resposta decidir o próximo passo.';
+
+  /// pt: 'Mandar uma mensagem curta e carinhosa'
+  String get sendSweetMessage => 'Mandar uma mensagem curta e carinhosa';
+
+  /// pt: 'Uma linha basta. Sem pedir explicação.'
+  String get sendSweetMessageSupport => 'Uma linha basta. Sem pedir explicação.';
+
+  /// pt: 'Casa'
+  String get homeLabel => 'Casa';
+
+  /// pt: 'Fazer café ou o jantar'
+  String get makeCoffeeOrDinner => 'Fazer café ou o jantar';
+
+  /// pt: 'Sem transformar em tarefa combinada.'
+  String get makeCoffeeOrDinnerSupport => 'Sem transformar em tarefa combinada.';
+
+  /// pt: 'Mandar um coração'
+  String get reactionLabel => 'Mandar um coração';
+
+  /// pt: 'Coração enviado'
+  String get sent => 'Coração enviado';
+
+  Map<String, String> get errors => {
+    'NOT_PAIRED': 'Vocês ainda não estão conectados.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'NETWORK': 'Não deu para enviar agora. Verifique a conexão e tente de novo.',
+    'TIMEOUT': 'Não deu para enviar agora a tempo. Tente de novo.',
+    'other': 'Não deu para enviar agora. Tente de novo.',
   };
 }
 
@@ -11048,6 +11141,37 @@ extension on Translations {
           'mood.homeMoods.tired' => 'Cansado',
           'mood.homeMoods.stressed' => 'Tenso',
           'mood.homeMoods.sad' => 'Triste',
+          'moodHelp.listenTitle' => 'Escuta primeiro',
+          'moodHelp.listenSubtitle' => 'Sem pressa e sem cobrar resposta.',
+          'moodHelp.talkLabel' => 'Conversa',
+          'moodHelp.askToTalk' => 'Perguntar se quer conversar',
+          'moodHelp.askToTalkSupport' => 'Uma pergunta aberta, sem pressa de resposta.',
+          'moodHelp.careLabel' => 'Carinho',
+          'moodHelp.sendLove' => 'Mandar um carinho',
+          'moodHelp.sendLoveSupport' => 'Um abraço chega como sinal no app.',
+          'moodHelp.helpLabel' => 'Ajuda',
+          'moodHelp.seeHowToHelp' => 'Ver como ajudar',
+          'moodHelp.seeHowToHelpSupport' => 'Coisas pequenas para hoje.',
+          'moodHelp.helpTitle' => 'Como ajudar hoje',
+          'moodHelp.helpSubtitle' => 'Pequenas coisas, no ritmo de hoje.',
+          'moodHelp.choreLabel' => 'Tarefa',
+          'moodHelp.takeChore' => 'Assumir uma tarefa',
+          'moodHelp.takeChoreSupport' => 'Escolha uma coisa da casa e resolva sem avisar.',
+          'moodHelp.askListenOrSpace' => 'Perguntar: quer ouvir ou espaço?',
+          'moodHelp.askListenOrSpaceSupport' => 'Deixe a resposta decidir o próximo passo.',
+          'moodHelp.sendSweetMessage' => 'Mandar uma mensagem curta e carinhosa',
+          'moodHelp.sendSweetMessageSupport' => 'Uma linha basta. Sem pedir explicação.',
+          'moodHelp.homeLabel' => 'Casa',
+          'moodHelp.makeCoffeeOrDinner' => 'Fazer café ou o jantar',
+          'moodHelp.makeCoffeeOrDinnerSupport' => 'Sem transformar em tarefa combinada.',
+          'moodHelp.reactionLabel' => 'Mandar um coração',
+          'moodHelp.sent' => 'Coração enviado',
+          'moodHelp.errors.NOT_PAIRED' => 'Vocês ainda não estão conectados.',
+          'moodHelp.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'moodHelp.errors.NETWORK' =>
+            'Não deu para enviar agora. Verifique a conexão e tente de novo.',
+          'moodHelp.errors.TIMEOUT' => 'Não deu para enviar agora a tempo. Tente de novo.',
+          'moodHelp.errors.other' => 'Não deu para enviar agora. Tente de novo.',
           'need.title' => 'Preciso de…',
           'need.titleHighlight' => 'Preciso',
           'need.subtitle' => 'Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.',
@@ -11072,6 +11196,9 @@ extension on Translations {
           'notes.title' => 'Bilhete ou desenho',
           'notes.intro' =>
             'Um recado curto para seu par, ou um desenho que fica na sua lista de enviados.',
+          _ => null,
+        } ??
+        switch (path) {
           'notes.kinds.0' => 'Bilhete',
           'notes.kinds.1' => 'Desenho',
           'notes.noteHint' => 'Ex.: boa sorte na reunião de hoje',
@@ -11122,9 +11249,6 @@ extension on Translations {
                   other: '${count} dias atrás',
                 ),
           'notes.drawingAlt' => 'Desenho',
-          _ => null,
-        } ??
-        switch (path) {
           'notes.delete' => 'Apagar',
           'notes.deleteConfirmTitle' => 'Apagar este envio?',
           'notes.deleteConfirmText' =>
@@ -11668,6 +11792,9 @@ extension on Translations {
           'received.kinds.goodNews' => 'Boa notícia',
           'received.kinds.other' => '',
           'received.bodies.missUs' => 'Seu par está com saudade de vocês.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.bodies.hug' => 'Seu par quer um abraço.',
           'received.bodies.distance' => 'Seu par precisa de um pouco de distância.',
           'received.bodies.heavyDay' => 'Seu par está tendo um dia pesado.',
@@ -11698,9 +11825,6 @@ extension on Translations {
           'relationshipChanged.optionBereaved' => 'Perdi a pessoa',
           'relationshipChanged.optionOnBreak' => 'Um tempo',
           'relationshipChanged.optionTogether' => 'Está tudo bem',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.continueLabel' => 'Continuar',
           'relationshipChanged.saved' => 'Salvo',
           'relationshipChanged.errors.NETWORK' => 'Sem conexão. Tente de novo.',
@@ -12240,6 +12364,9 @@ extension on Translations {
           'tabs.partnerLabel' => 'SÓ PARA VOCÊ',
           'tabs.partnerTitle' => 'Sobre seu par',
           'tabs.partnerText' => 'Notas privadas para lembrar do que ele ou ela gosta.',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.chatLabel' => 'CONVERSAR',
           'tabs.chatTitle' => 'Mascote',
           'tabs.chatText' => 'Uma conversa calma, que não fica guardada.',
@@ -12270,9 +12397,6 @@ extension on Translations {
           'tabs.badDayTitle' => 'Um dia difícil',
           'tabs.badDayText' => 'Três coisas pequenas para fazer agora.',
           'tabs.starterLabel' => 'CONVERSA',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.starterTitle' => 'Começar uma conversa',
           'tabs.starterText' => 'Uma pergunta para abrir, sem pressa.',
           'tabs.dayLabel' => 'DIA',

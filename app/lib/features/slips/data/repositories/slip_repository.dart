@@ -162,6 +162,16 @@ class SlipRepository({
     }
   }
 
+  /// Sends the partner a one-tap hug, the reaction to a good shared mood.
+  Future<void> sendHug() async {
+    try {
+      await _slipDataSource.sendSignal(kind: 'hug');
+    } catch (e, stack) {
+      _logger.error('Failed to send a hug', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
   /// Reads a page of the person's slips, newest first; [since] limits it to recent ones.
   ///
   /// [archived] reads the slips taken out of the timeline instead.
