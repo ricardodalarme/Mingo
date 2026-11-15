@@ -3896,8 +3896,6 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   String get errorTitle => 'Could not load the consents';
   @override
   String get errorText => 'Try again in a moment.';
-  @override
-  String get sensitiveTracks => 'Sensitive tracks and notices';
 }
 
 // Path: profileDetails
@@ -9696,7 +9694,6 @@ extension on TranslationsEn {
           'privacy.saveError' => 'Could not save now. Try again.',
           'privacy.errorTitle' => 'Could not load the consents',
           'privacy.errorText' => 'Try again in a moment.',
-          'privacy.sensitiveTracks' => 'Sensitive tracks and notices',
           'profileDetails.title' => 'Profile',
           'profileDetails.nameLabel' => 'Your name',
           'profileDetails.nameHint' => 'Marina',
@@ -9973,10 +9970,10 @@ extension on TranslationsEn {
           'received.bodies.hug' => 'Your partner would like a hug.',
           'received.bodies.distance' => 'Your partner needs a little distance.',
           'received.bodies.goodNews' => 'Your partner has good news.',
+          'received.bodies.other' => '',
           _ => null,
         } ??
         switch (path) {
-          'received.bodies.other' => '',
           'received.fromPartner' => 'From your partner',
           'received.privateFirst' => 'Your answer is private first. There is no right or wrong.',
           'received.responses.here' => 'I\'m here',
@@ -10540,10 +10537,10 @@ extension on TranslationsEn {
           'sundayCard.moveDown' => 'Move down',
           'sundayCard.remove' => 'Remove from card',
           'sundayCard.emptyTitle' => 'A week without slips',
+          'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
           _ => null,
         } ??
         switch (path) {
-          'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
           'sundayCard.emptyAction' => 'Note a slip',
           'sundayCard.errorTitle' => 'Could not load the card',
           'sundayCard.errorText' => 'Your slips are still saved. Try again.',

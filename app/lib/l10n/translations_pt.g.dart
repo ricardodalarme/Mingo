@@ -4783,9 +4783,6 @@ class Translations$privacy$pt {
 
   /// pt: 'Tente de novo em instantes.'
   String get errorText => 'Tente de novo em instantes.';
-
-  /// pt: 'Trilhas e avisos sensíveis'
-  String get sensitiveTracks => 'Trilhas e avisos sensíveis';
 }
 
 // Path: profileDetails
@@ -11547,7 +11544,6 @@ extension on Translations {
           'privacy.saveError' => 'Não deu para salvar agora. Tente de novo.',
           'privacy.errorTitle' => 'Não deu para carregar os consentimentos',
           'privacy.errorText' => 'Tente de novo em instantes.',
-          'privacy.sensitiveTracks' => 'Trilhas e avisos sensíveis',
           'profileDetails.title' => 'Perfil',
           'profileDetails.nameLabel' => 'Seu nome',
           'profileDetails.nameHint' => 'Marina',
@@ -11823,10 +11819,10 @@ extension on Translations {
           'received.bodies.hug' => 'Seu par quer um abraço.',
           'received.bodies.distance' => 'Seu par precisa de um pouco de distância.',
           'received.bodies.goodNews' => 'Seu par tem uma boa notícia.',
+          'received.bodies.other' => '',
           _ => null,
         } ??
         switch (path) {
-          'received.bodies.other' => '',
           'received.fromPartner' => 'Do seu par',
           'received.privateFirst' => 'Sua resposta é privada primeiro. Não tem certo nem errado.',
           'received.responses.here' => 'Estou aqui',
@@ -12395,10 +12391,10 @@ extension on Translations {
           'sundayCard.moveDown' => 'Descer',
           'sundayCard.remove' => 'Tirar do cartão',
           'sundayCard.emptyTitle' => 'Semana sem slips',
+          'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
           _ => null,
         } ??
         switch (path) {
-          'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
           'sundayCard.emptyAction' => 'Anotar um slip',
           'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
           'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',

@@ -9,8 +9,7 @@ extension RemoteConsentKindMapper on EnumConsentKind {
     EnumConsentKind.marketing => ConsentKind.marketing,
     EnumConsentKind.ai => ConsentKind.ai,
     EnumConsentKind.terms => ConsentKind.terms,
-    EnumConsentKind.sensitive_tracks => ConsentKind.sensitiveTracks,
-    EnumConsentKind.$unknown => throw ArgumentError('Unknown consent kind: $this'),
+    _ => throw ArgumentError('Unknown consent kind: $this'),
   };
 }
 
@@ -21,6 +20,5 @@ extension ConsentKindMapper on ConsentKind {
     ConsentKind.marketing => EnumConsentKind.marketing,
     ConsentKind.ai => EnumConsentKind.ai,
     ConsentKind.terms => EnumConsentKind.terms,
-    ConsentKind.sensitiveTracks => EnumConsentKind.sensitive_tracks,
   };
 }

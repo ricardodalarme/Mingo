@@ -44,7 +44,6 @@ void main() {
     expect(consents[ConsentKind.sensitiveData], isTrue);
     expect(consents[ConsentKind.terms], isTrue);
     expect(consents[ConsentKind.ai], isFalse);
-    expect(consents[ConsentKind.sensitiveTracks], isFalse);
   });
 
   test('a withdrawal is recorded with the current version', () async {

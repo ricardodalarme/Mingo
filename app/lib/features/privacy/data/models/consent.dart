@@ -6,8 +6,7 @@ enum ConsentKind() {
   analytics,
   marketing,
   ai,
-  terms,
-  sensitiveTracks;
+  terms;
 
   /// Whether the consent is required to use the app.
   bool get isRequired => this == sensitiveData || this == terms;

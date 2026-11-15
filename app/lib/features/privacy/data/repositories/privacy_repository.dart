@@ -19,7 +19,6 @@ class PrivacyRepository({required final PrivacyDataSource _dataSource}) {
     ConsentKind.analytics: false,
     ConsentKind.marketing: false,
     ConsentKind.ai: false,
-    ConsentKind.sensitiveTracks: false,
   };
 
   Future<Map<ConsentKind, bool>> getConsents() async {
