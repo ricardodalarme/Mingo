@@ -8,6 +8,7 @@ import 'package:app/features/slips/presentation/slips/slips_page.dart';
 import 'package:app/features/slips/presentation/slips/widgets/slips_groups.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:clock/clock.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,6 +17,24 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../test_helpers/pump_app.dart';
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
+
+double _rowOpacity(WidgetTester tester, int index) => tester
+    .widget<Opacity>(
+      find.descendant(of: find.byType(Reveal).at(index), matching: find.byType(Opacity)).first,
+    )
+    .opacity;
+
+Future<void> _pumpReducedMotionPage(WidgetTester tester, SlipsListCubit cubit) async {
+  await tester.pumpApp(
+    Builder(
+      builder: (context) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(disableAnimations: true),
+        child: BlocProvider.value(value: cubit, child: const SlipsPage()),
+      ),
+    ),
+  );
+  await tester.pump();
+}
 
 void main() {
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
@@ -144,6 +163,47 @@ void main() {
       await pumpPage(tester, cubit);
 
       expect(find.text('Ter · Específico'), findsOneWidget);
+    });
+  });
+
+  testWidgets('the week rows fade in one after another and settle at rest', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      stubPage([
+        SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now()),
+        SlipEntry(id: 'b', body: 'Deixou um bilhete no espelho', createdAt: clock.now()),
+      ]);
+      final cubit = await build();
+
+      await pumpPage(tester, cubit);
+
+      expect(find.byType(Reveal), findsNWidgets(2));
+      expect(_rowOpacity(tester, 0), 0);
+      expect(_rowOpacity(tester, 1), 0);
+
+      await tester.pump(AppMotion.stagger);
+
+      expect(_rowOpacity(tester, 0), greaterThan(.5));
+      expect(_rowOpacity(tester, 1), lessThan(.01));
+
+      await tester.pump(AppMotion.stagger);
+      await tester.pump(AppMotion.fast);
+
+      expect(_rowOpacity(tester, 0), 1);
+      expect(_rowOpacity(tester, 1), 1);
+      expect(tester.takeException(), isNull);
+    });
+  });
+
+  testWidgets('reduced motion shows the week rows at rest', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now())]);
+      final cubit = await build();
+
+      await _pumpReducedMotionPage(tester, cubit);
+
+      expect(_rowOpacity(tester, 0), 1);
+      expect(find.text('Fez café sem eu pedir'), findsOneWidget);
+      expect(tester.takeException(), isNull);
     });
   });
 }

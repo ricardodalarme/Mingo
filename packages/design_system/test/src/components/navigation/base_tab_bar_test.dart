@@ -6,6 +6,13 @@ import '../../../helpers/widget_host.dart';
 
 void _ignore(int index) {}
 
+double _captureScale(WidgetTester tester, Finder slot) {
+  return tester
+      .widget<ScaleTransition>(find.descendant(of: slot, matching: find.byType(ScaleTransition)))
+      .scale
+      .value;
+}
+
 class const _TabGallery({final ValueChanged<int>? onSelected}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,6 +39,45 @@ class const _TabGallery({final ValueChanged<int>? onSelected}) extends Stateless
 }
 
 void main() {
+  testWidgets('the capture button compresses under the finger', (tester) async {
+    setSurface(tester);
+    await tester.pumpWidget(appFor(variant: AppThemeVariant.rose, home: const _TabGallery()));
+
+    final capture = find.byType(AppPressable).at(2);
+
+    expect(_captureScale(tester, capture), 1);
+
+    final gesture = await tester.startGesture(tester.getCenter(find.byIcon(AppIcons.plus)));
+    await tester.pump();
+    await tester.pump(AppMotion.fast);
+
+    expect(_captureScale(tester, capture), closeTo(AppMotion.pressedActionScale, .001));
+
+    await gesture.up();
+    await tester.pump();
+    await tester.pump(AppMotion.fast);
+
+    expect(_captureScale(tester, capture), 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('reduced motion leaves the capture button still', (tester) async {
+    setSurface(tester);
+    await tester.pumpWidget(
+      appFor(variant: AppThemeVariant.rose, home: const _TabGallery(), disableAnimations: true),
+    );
+
+    final capture = find.byType(AppPressable).at(2);
+    final gesture = await tester.startGesture(tester.getCenter(find.byIcon(AppIcons.plus)));
+    await tester.pump();
+    await tester.pump(AppMotion.fast);
+
+    expect(_captureScale(tester, capture), 1);
+
+    await gesture.up();
+    expect(tester.takeException(), isNull);
+  });
+
   for (final variant in AppThemeVariant.values) {
     final colors = colorsOf(variant);
 

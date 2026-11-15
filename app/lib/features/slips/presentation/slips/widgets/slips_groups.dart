@@ -6,11 +6,16 @@ import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Slips grouped by week, newest week first.
-class const SlipsGroups({required final List<SlipEntry> slips, super.key}) extends StatelessWidget {
+class const SlipsGroups({
+  required final List<SlipEntry> slips,
+  final bool isLoaded = true,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.slipsList;
@@ -24,16 +29,22 @@ class const SlipsGroups({required final List<SlipEntry> slips, super.key}) exten
         for (final group in groups.entries) ...[
           BaseSectionHeader(title: _weekTitle(context, group.key, thisMonday)),
           const SizedBox(height: AppSpace.s8),
-          BaseListGroup(
-            children: [
-              for (final slip in group.value)
-                BaseListTile(
-                  title: slip.body,
-                  subtitle: _dayLine(context, slip),
-                  trailing: slip.isPrivate ? BaseTag(text: l10n.privateMark) : null,
-                  onTap: () => context.pushRoute(SlipDetailRoute(id: slip.id)),
-                ),
-            ],
+          RevealScope(
+            play: isLoaded,
+            child: BaseListGroup(
+              children: [
+                for (final (index, slip) in group.value.indexed)
+                  Reveal(
+                    index: index,
+                    child: BaseListTile(
+                      title: slip.body,
+                      subtitle: _dayLine(context, slip),
+                      trailing: slip.isPrivate ? BaseTag(text: l10n.privateMark) : null,
+                      onTap: () => context.pushRoute(SlipDetailRoute(id: slip.id)),
+                    ),
+                  ),
+              ],
+            ),
           ),
           const SizedBox(height: AppSpace.s20),
         ],

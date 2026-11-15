@@ -12,12 +12,21 @@ abstract final class AppMotion() {
   static const Curve baseCurve = Cubic(.2, 0, 0, 1);
   static const Curve fastCurve = Cubic(.16, 1, .3, 1);
 
+  /// A sheet rising from the bottom edge: unhurried at the start, settled late.
+  static const Curve sheetCurve = Cubic(.32, .72, 0, 1);
+
   /// Spring for landing and arrival motion.
   static const double springStiffness = 300;
   static const double springDamping = 24;
 
   /// The press scale used by every tappable surface.
   static const double pressedScale = .97;
+
+  /// The press scale of the primary capture action.
+  static const double pressedActionScale = .9;
+
+  /// Rows past this count arrive together with the last staggered row.
+  static const int staggerRows = 3;
 }
 
 extension AppMotionContext on BuildContext {
@@ -28,5 +37,5 @@ extension AppMotionContext on BuildContext {
   Duration motionDuration(Duration duration) => reduceMotion ? AppMotion.reduced : duration;
 
   /// Scale for a pressed surface, or 1 when animation should be skipped.
-  double get pressScale => reduceMotion ? 1 : AppMotion.pressedScale;
+  double pressScale([double? scale]) => reduceMotion ? 1 : (scale ?? AppMotion.pressedScale);
 }

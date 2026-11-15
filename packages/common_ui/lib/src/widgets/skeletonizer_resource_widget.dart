@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
+import 'package:design_system/design_system.dart';
 import 'package:design_system/design_system_l10n.dart';
-import 'package:flutter/widgets.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 typedef SuccessBuilder<T> = Widget Function(T value);
 typedef FailureBuilder = Widget Function(LocalizedException exception);
@@ -17,13 +16,23 @@ class const SkeletonizerResourceWidget<T>(
   State<SkeletonizerResourceWidget<T>> createState() => _SkeletonizerResourceWidgetState<T>();
 }
 
-class _SkeletonizerResourceWidgetState<T>() extends State<SkeletonizerResourceWidget<T>> {
+class _SkeletonizerResourceWidgetState<T>()
+    extends State<SkeletonizerResourceWidget<T>>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _reveal = AnimationController(vsync: this, value: 1);
+  late final CurvedAnimation _fade = CurvedAnimation(parent: _reveal, curve: AppMotion.fastCurve);
   late T _fakeData;
 
   @override
   void initState() {
     super.initState();
     _fakeData = widget.fakeValue;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _reveal.duration = context.motionDuration(AppMotion.fast);
   }
 
   @override
@@ -34,7 +43,16 @@ class _SkeletonizerResourceWidgetState<T>() extends State<SkeletonizerResourceWi
       _fakeData = (oldWidget.resource as Success<T>).value;
     }
 
+    if (oldWidget.resource.isLoading && widget.resource is Success<T>) _reveal.forward(from: 0);
+
     super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _fade.dispose();
+    _reveal.dispose();
+    super.dispose();
   }
 
   @override
@@ -49,9 +67,12 @@ class _SkeletonizerResourceWidgetState<T>() extends State<SkeletonizerResourceWi
     return switch (widget.resource) {
       Initial() => const SizedBox.shrink(),
       Failure(:final exception) => widget.failureBuilder(exception),
-      Loading() || Success() => Skeletonizer(
-        enabled: widget.resource.isLoading,
-        child: _buildContent(context, value),
+      Loading() || Success() => FadeTransition(
+        opacity: _fade,
+        child: Skeletonizer(
+          enabled: widget.resource.isLoading,
+          child: _buildContent(context, value),
+        ),
       ),
     };
   }

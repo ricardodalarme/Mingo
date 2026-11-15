@@ -5,6 +5,27 @@ import 'package:design_system/design_system.dart';
 
 const int _captureIndex = 2;
 
+/// How far the incoming tab lifts into place, as a fraction of its height.
+const double _tabRiseFraction = .012;
+
+/// Fades the incoming tab in from the page background and lifts it into place.
+///
+/// Reduced motion swaps the tab with no movement.
+Widget homeTabTransition(BuildContext context, Widget child, Animation<double> animation) {
+  if (context.reduceMotion) return child;
+
+  return FadeTransition(
+    opacity: animation,
+    child: SlideTransition(
+      position: Tween<Offset>(
+        begin: const Offset(0, _tabRiseFraction),
+        end: Offset.zero,
+      ).animate(animation),
+      child: child,
+    ),
+  );
+}
+
 /// Tab icons in display order, with the capture action in the middle.
 const List<IconData> homeTabIcons = [
   AppIcons.home,
@@ -25,7 +46,8 @@ class const HomePage({super.key}) extends StatelessWidget {
       hasSafeArea: false,
       body: AutoTabsRouter(
         duration: AppMotion.base,
-        curve: AppMotion.baseCurve,
+        curve: AppMotion.fastCurve,
+        transitionBuilder: homeTabTransition,
         routes: const [TodayRoute(), SlipsRoute(), TogetherRoute(), MemoriesRoute()],
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);

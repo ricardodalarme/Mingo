@@ -14,6 +14,7 @@ import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cu
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,6 +28,24 @@ class _MockMemoriesRepository() extends Mock implements MemoriesRepository;
 class _MockSlipRepository() extends Mock implements SlipRepository;
 
 class _MockTabsRouter() extends Mock implements TabsRouter;
+
+double _revealOpacity(WidgetTester tester, int index) => tester
+    .widget<Opacity>(
+      find.descendant(of: find.byType(Reveal).at(index), matching: find.byType(Opacity)).first,
+    )
+    .opacity;
+
+Future<void> _pumpReducedMotionPage(WidgetTester tester, MemoriesCubit cubit) async {
+  await tester.pumpApp(
+    Builder(
+      builder: (context) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(disableAnimations: true),
+        child: BlocProvider.value(value: cubit, child: const MemoriesPage()),
+      ),
+    ),
+  );
+  await tester.pump();
+}
 
 class _TestRouter() extends RootStackRouter {
   @override
@@ -294,5 +313,62 @@ void main() {
 
     expect(router.stack.last.name, SlipDetailRoute.name);
     expect(router.stack.last.routeData.argsAs<SlipDetailRouteArgs>().id, 's1');
+  });
+
+  testWidgets('the memory rows fade in one after another and settle at rest', (tester) async {
+    when(() => repository.getMemories()).thenAnswer(
+      (_) async => [
+        Memory(id: 'm1', title: 'Primeiro jantar', happenedOn: DateTime(2026, 5, 12)),
+        Memory(id: 'm2', title: 'Nosso show', happenedOn: DateTime(2026, 2, 3)),
+      ],
+    );
+    final cubit = await build();
+
+    await pumpPage(tester, cubit);
+
+    expect(find.byType(Reveal), findsNWidgets(2));
+    expect(_revealOpacity(tester, 0), 0);
+
+    await tester.pump(AppMotion.stagger);
+
+    expect(_revealOpacity(tester, 0), greaterThan(.5));
+    expect(_revealOpacity(tester, 1), lessThan(.01));
+
+    await tester.pump(AppMotion.stagger);
+    await tester.pump(AppMotion.fast);
+
+    expect(_revealOpacity(tester, 0), 1);
+    expect(_revealOpacity(tester, 1), 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('the drawn slip rises into place instead of popping in', (tester) async {
+    when(() => repository.drawFromJar())
+        .thenAnswer((_) async => const DrawnSlip(id: 's1', body: 'Fez café'));
+    final cubit = await build();
+    await cubit.onViewChanged(MemoriesView.jar);
+
+    await pumpPage(tester, cubit);
+
+    expect(find.text('Fez café'), findsOneWidget);
+    expect(_revealOpacity(tester, 0), 0);
+
+    await tester.pump(AppMotion.base);
+
+    expect(_revealOpacity(tester, 0), 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('reduced motion shows the drawn slip at rest', (tester) async {
+    when(() => repository.drawFromJar())
+        .thenAnswer((_) async => const DrawnSlip(id: 's1', body: 'Fez café'));
+    final cubit = await build();
+    await cubit.onViewChanged(MemoriesView.jar);
+
+    await _pumpReducedMotionPage(tester, cubit);
+
+    expect(find.text('Fez café'), findsOneWidget);
+    expect(_revealOpacity(tester, 0), 1);
+    expect(tester.takeException(), isNull);
   });
 }
