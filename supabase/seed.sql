@@ -27,7 +27,6 @@ insert into public.content_items (kind, slug, locale, title, body, tags, positio
   ('notification', 'card_received', 'pt-BR', 'Você tem um cartão', 'Alguém te enviou algo.', '{}', 0),
   ('notification', 'daily_idea', 'pt-BR', 'Pequeno momento', 'Uma ideia para hoje.', '{}', 0),
   ('notification', 'date_coming', 'pt-BR', 'Data chegando', 'Em alguns dias.', '{}', 0),
-  ('notification', 'pause_over', 'pt-BR', 'Pausa terminou', 'Chegou a hora combinada.', '{}', 0),
   ('notification', 'discreet', 'pt-BR', 'Lembrete', 'Você tem uma novidade.', '{}', 0)
 on conflict do nothing;
 insert into public.content_items (kind, slug, locale, title, body, parent_slug, position, plus_only) values
@@ -76,7 +75,6 @@ insert into public.content_items (kind, slug, locale, title, body, tags, positio
   ('notification', 'card_reaction', 'pt-BR', 'Uma resposta chegou', 'Abra para ver.', '{}', 0, false, false),
   ('notification', 'partner_joined', 'pt-BR', 'Vocês estão conectados', 'Abra para começar.', '{}', 0, false, false),
   ('notification', 'unpaired', 'pt-BR', 'Uma mudança no seu espaço', 'Abra para ver.', '{}', 0, false, false),
-  ('notification', 'pause_started', 'pt-BR', 'Uma mensagem para você', 'Abra para ler.', '{}', 0, false, false),
   ('notification', 'partner_message', 'pt-BR', 'Um recado para você', 'Abra para ver.', '{}', 0, false, false),
   ('notification', 'signal', 'pt-BR', 'Um toque para você', 'Abra para ver.', '{}', 0, false, false),
   ('notification', 'game_invite', 'pt-BR', 'Um convite para jogar', 'Leva poucos minutos.', '{}', 0, false, false),
@@ -145,11 +143,9 @@ insert into public.content_items (kind, slug, locale, title, body, tags, positio
   ('program', 'reconnect-5', 'en', 'Reconnect', '5 days', '{}', 3, true, false),
   ('notification', 'daily_idea', 'en', 'A small moment', 'An idea for today.', '{}', 0, false, false),
   ('notification', 'date_coming', 'en', 'A date is coming', 'In a few days.', '{}', 0, false, false),
-  ('notification', 'pause_over', 'en', 'The pause is over', 'The time you agreed on has come.', '{}', 0, false, false),
   ('notification', 'card_reaction', 'en', 'A reply arrived', 'Open to see.', '{}', 0, false, false),
   ('notification', 'partner_joined', 'en', 'You are connected', 'Open to get started.', '{}', 0, false, false),
   ('notification', 'unpaired', 'en', 'A change in your space', 'Open to see.', '{}', 0, false, false),
-  ('notification', 'pause_started', 'en', 'A message for you', 'Open to read.', '{}', 0, false, false),
   ('notification', 'partner_message', 'en', 'A note for you', 'Open to see.', '{}', 0, false, false),
   ('notification', 'signal', 'en', 'A little touch for you', 'Open to see.', '{}', 0, false, false),
   ('notification', 'game_invite', 'en', 'An invitation to play', 'It takes a few minutes.', '{}', 0, false, false),

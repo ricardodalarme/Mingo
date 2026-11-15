@@ -45,7 +45,6 @@ comment on table public.content_items is e'@graphql({"max_rows": 500, "descripti
 comment on table public.app_config is e'@graphql({"description": "Small key/value configuration readable by anyone, such as limits and the minimum app version."})';
 
 -- Couple flows -------------------------------------------------------------------------------------------
-comment on table public.pauses is e'@graphql({"description": "A pause with a promise to return. The partner sees only the message and the return time."})';
 comment on table public.signals is e'@graphql({"description": "A one-tap message between partners. Visible to the sender and the recipient."})';
 comment on table public.partner_messages is e'@graphql({"description": "A note, drawing, voice message or pack sent to the partner. Visible to the sender and the recipient."})';
 comment on table public.question_answers is e'@graphql({"description": "An answer to a couple question. The partner''s answer stays hidden until the reader has answered too."})';

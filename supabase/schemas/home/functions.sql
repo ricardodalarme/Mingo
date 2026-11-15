@@ -4,7 +4,7 @@ create function public.today() returns public.today_state
 language plpgsql stable security definer set search_path = '' as $$
 declare
   v_uid uuid := private.require_user();
-  v_s public.profile_settings; v_week date; v_partner uuid; v_pause public.pauses; r public.today_state;
+  v_s public.profile_settings; v_week date; v_partner uuid; r public.today_state;
 begin
   select * into v_s from public.profile_settings where profile_id = v_uid;
   v_s.time_zone := coalesce(v_s.time_zone, 'America/Sao_Paulo');
@@ -30,9 +30,6 @@ begin
                     and (s.created_at at time zone v_s.time_zone)::date >= v_week);
   r.has_pending_invite := exists (select 1 from public.invites i
     where i.created_by = v_uid and i.used_at is null and i.cancelled_at is null and i.expires_at > now());
-  select * into v_pause from public.active_pause();
-  r.pause_id := v_pause.id; r.pause_is_mine := coalesce(v_pause.started_by = v_uid, false);
-  r.pause_return_at := v_pause.return_at; r.pause_message := v_pause.message;
   r.temperature := (select level from public.current_temperature());
   select d.id, d.title, private.next_occurrence(d.month, d.day, r.local_date)
   into r.next_date_id, r.next_date_title, r.next_date_on
@@ -43,7 +40,6 @@ begin
   r.has_plus := private.has_plus(v_uid);
   r.deletion_pending := exists (select 1 from public.deletion_requests where profile_id = v_uid);
   r.suggestion_key := case
-    when r.pause_id is not null then 'pause'
     when r.slips_total = 0 then 'first_slip'
     when r.unopened_cards > 0 then 'open_card'
     when r.temperature = 'fight' then 'repair'
@@ -64,7 +60,6 @@ begin
   r.is_paired := t.is_paired;
   r.together_since := t.together_since;
   r.unopened_cards := t.unopened_cards;
-  r.pause_return_at := case when t.pause_is_mine then t.pause_return_at end;
   r.next_date_on := t.next_date_on;
   if not r.discreet then
     r.next_date_title := t.next_date_title;

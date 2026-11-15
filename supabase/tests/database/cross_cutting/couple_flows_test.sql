@@ -1,35 +1,13 @@
 begin;
 set local search_path = tap, public, extensions;
-select plan(42);
+select plan(28);
 select tests.create_user('ana', 'Ana'); select tests.create_user('bia', 'Bia'); select tests.create_user('caio');
 create temp table ids (k text primary key, id uuid) on commit drop; grant all on ids to authenticated;
 
--- alone: pause works, partner features say NOT_PAIRED
+-- alone: partner features say NOT_PAIRED
 select tests.as('ana');
 select throws_ok($$select public.send_signal('miss_us')$$, 'P0001', 'NOT_PAIRED', 'signals need a partner');
-select throws_ok($$select public.start_pause(now() + interval '2 days')$$, 'P0001', 'INVALID_RETURN_TIME', 'the promise to return is at most 24 hours away');
-select isnt((select id from public.start_pause(now() + interval '1 hour')), null, 'pause works alone (never locked, no partner needed)');
-select is(public.end_pause(), true, 'I end my pause');
 select tests.pair('ana', 'bia');
-
--- pause seen by the partner: message and return time only
-select tests.as('ana');
-select is((select message from public.start_pause(now() + interval '2 hours', 'Preciso de um tempo. Volto às 20:00.')), 'Preciso de um tempo. Volto às 20:00.', 'pause starts with my message');
-select is((select pause_is_mine from public.today()), true, 'Hoje shows my pause');
-select is((select suggestion_key from public.today()), 'pause', 'Hoje switches to the pause state');
-select tests.as('bia');
-select is((select message from public.active_pause()), 'Preciso de um tempo. Volto às 20:00.', 'partner sees the message I wrote');
-select is((select pause_is_mine from public.today()), false, 'partner Hoje knows the pause is not theirs');
-select tests.as('caio');
-select is((select id from public.active_pause()), null, 'stranger sees no pause');
-select tests.as_admin();
-select is((select count(*)::int from private.notification_outbox where profile_id = tests.uid('bia') and type = 'pause_started'), 1, 'partner is notified of the pause');
-select is(private.should_send(tests.uid('ana'), 'daily_idea', now()), 'drop', 'no reminders during a pause');
-select isnt(private.should_send(tests.uid('ana'), 'pause_over', now()), 'drop', 'the end-of-pause notice is never dropped');
-update public.pauses set return_at = now() - interval '1 minute', started_at = now() - interval '3 hours';
-select is(private.expire_pauses(), 1, 'job closes pauses at the promised time');
-select tests.as('bia');
-select is((select id from public.active_pause()), null, 'expired pause is gone for the partner');
 
 -- signals and messages
 select tests.as('ana');

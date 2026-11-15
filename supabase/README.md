@@ -32,7 +32,7 @@ Notes: `.work/backend/` (local only, not committed) holds the API contract and d
 
 Domains: `_cluster` (extensions, cron jobs), `_platform` (schemas, default privileges, shared helpers, rate limiter),
 `identity`, `slips`, `cards`, `guest_links`, `notifications`, `realtime`, `home`, `content`, `plus`, `account`, `chat`,
-`storage`, `couple_photos`, `pauses`, `signals`, `messages`, `questions`, `games`, `wellbeing`, `manual`, `programs`,
+`storage`, `couple_photos`, `signals`, `messages`, `questions`, `games`, `wellbeing`, `manual`, `programs`,
 `rituals`, `logistics`, `dates`, `memories`, `lists`, `decisions`, `agreements`, `gifts`, `cross_cutting`, `graphql`.
 
 ### Where a new object goes

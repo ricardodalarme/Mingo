@@ -1,6 +1,6 @@
 begin;
 set local search_path = tap, public, extensions;
-select plan(31);
+select plan(30);
 select tests.create_user('ana', 'Ana'); select tests.create_user('bia', 'Bia'); select tests.create_user('caio');
 select tests.pair('ana', 'bia');
 
@@ -12,8 +12,6 @@ select public.save_slip('00000000-0000-4000-8000-0000000000f1', 'um'); select pu
 select is((select slips_left_this_month from public.my_plus()), 0, 'free allowance is counted');
 select throws_ok($$select public.save_slip('00000000-0000-4000-8000-0000000000f3', 'três')$$, 'P0001', 'FREE_LIMIT_REACHED', 'new slips stop at the free limit');
 select is((select body from public.save_slip('00000000-0000-4000-8000-0000000000f1', 'um, editado')), 'um, editado', 'existing slips stay editable at the limit');
-select isnt((select id from public.start_pause(now() + interval '1 hour')), null, 'pause is never blocked by the limit');
-select public.end_pause();
 select throws_ok($$insert into public.entitlements (profile_id, plan, status) values (tests.uid('ana'), 'plus_annual', 'active')$$, '42501', null, 'clients can never write entitlements');
 select tests.as_admin();
 select is(private.apply_purchase_event('evt-1', tests.uid('bia'), 'INITIAL_PURCHASE', now(), 'plus_annual', 'trialing', now() + interval '7 days', true, 'app_store'), true, 'webhook applies the purchase');

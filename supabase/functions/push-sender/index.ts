@@ -1,5 +1,5 @@
 // Drains the notification outbox. Invoked every minute by pg_cron through private.invoke_edge_function, with the project secret key in the apikey header.
-// Preferences (muted types, daily cap, pause/fight silence) are decided in SQL by
+// Preferences (muted types, daily cap, fight and time-away silence) are decided in SQL by
 // private.claim_notifications; this function only delivers. Payloads are generic: type + ref id, never content.
 // Requires secret FCM_SERVICE_ACCOUNT (Firebase service account JSON). Without it, nothing is claimed.
 // Delivery outcomes: 2xx = sent; 400/404 = dead token (counted against the device); anything else (401, 403, 429, 5xx,
