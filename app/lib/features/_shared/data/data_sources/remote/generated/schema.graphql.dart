@@ -15933,1086 +15933,6 @@ class InputCouplesUpdateInput {
   }
 }
 
-class InputCycleDayKindFilter {
-  factory InputCycleDayKindFilter({
-    EnumCycleDayKind? eq,
-    List<EnumCycleDayKind>? $in,
-    EnumFilterIs? $is,
-    EnumCycleDayKind? neq,
-  }) => InputCycleDayKindFilter._({
-    if (eq != null) r'eq': eq,
-    if ($in != null) r'in': $in,
-    if ($is != null) r'is': $is,
-    if (neq != null) r'neq': neq,
-  });
-
-  InputCycleDayKindFilter._(this._$data);
-
-  factory InputCycleDayKindFilter.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('eq')) {
-      final l$eq = data['eq'];
-      result$data['eq'] = l$eq == null ? null : fromJsonEnumCycleDayKind((l$eq as String));
-    }
-    if (data.containsKey('in')) {
-      final l$$in = data['in'];
-      result$data['in'] = (l$$in as List<dynamic>?)
-          ?.map((e) => fromJsonEnumCycleDayKind((e as String)))
-          .toList();
-    }
-    if (data.containsKey('is')) {
-      final l$$is = data['is'];
-      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
-    }
-    if (data.containsKey('neq')) {
-      final l$neq = data['neq'];
-      result$data['neq'] = l$neq == null ? null : fromJsonEnumCycleDayKind((l$neq as String));
-    }
-    return InputCycleDayKindFilter._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  EnumCycleDayKind? get eq => (_$data['eq'] as EnumCycleDayKind?);
-
-  List<EnumCycleDayKind>? get $in => (_$data['in'] as List<EnumCycleDayKind>?);
-
-  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
-
-  EnumCycleDayKind? get neq => (_$data['neq'] as EnumCycleDayKind?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('eq')) {
-      final l$eq = eq;
-      result$data['eq'] = l$eq == null ? null : toJsonEnumCycleDayKind(l$eq);
-    }
-    if (_$data.containsKey('in')) {
-      final l$$in = $in;
-      result$data['in'] = l$$in?.map((e) => toJsonEnumCycleDayKind(e)).toList();
-    }
-    if (_$data.containsKey('is')) {
-      final l$$is = $is;
-      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
-    }
-    if (_$data.containsKey('neq')) {
-      final l$neq = neq;
-      result$data['neq'] = l$neq == null ? null : toJsonEnumCycleDayKind(l$neq);
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputCycleDayKindFilter || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$eq = eq;
-    final lOther$eq = other.eq;
-    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
-      return false;
-    }
-    if (l$eq != lOther$eq) {
-      return false;
-    }
-    final l$$in = $in;
-    final lOther$$in = other.$in;
-    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
-      return false;
-    }
-    if (l$$in != null && lOther$$in != null) {
-      if (l$$in.length != lOther$$in.length) {
-        return false;
-      }
-      for (int i = 0; i < l$$in.length; i++) {
-        final l$$in$entry = l$$in[i];
-        final lOther$$in$entry = lOther$$in[i];
-        if (l$$in$entry != lOther$$in$entry) {
-          return false;
-        }
-      }
-    } else if (l$$in != lOther$$in) {
-      return false;
-    }
-    final l$$is = $is;
-    final lOther$$is = other.$is;
-    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
-      return false;
-    }
-    if (l$$is != lOther$$is) {
-      return false;
-    }
-    final l$neq = neq;
-    final lOther$neq = other.neq;
-    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
-      return false;
-    }
-    if (l$neq != lOther$neq) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$eq = eq;
-    final l$$in = $in;
-    final l$$is = $is;
-    final l$neq = neq;
-    return Object.hashAll([
-      _$data.containsKey('eq') ? l$eq : const {},
-      _$data.containsKey('in')
-          ? l$$in == null
-                ? null
-                : Object.hashAll(l$$in.map((v) => v))
-          : const {},
-      _$data.containsKey('is') ? l$$is : const {},
-      _$data.containsKey('neq') ? l$neq : const {},
-    ]);
-  }
-}
-
-class InputCycleDaysFilter {
-  factory InputCycleDaysFilter({
-    InputUUIDFilter? id,
-    InputUUIDFilter? authorId,
-    InputDateFilter? day,
-    InputCycleDayKindFilter? kind,
-    InputStringFilter? note,
-    InputDatetimeFilter? createdAt,
-    InputDatetimeFilter? updatedAt,
-    InputIDFilter? nodeId,
-    List<InputCycleDaysFilter>? and,
-    List<InputCycleDaysFilter>? or,
-    InputCycleDaysFilter? not,
-  }) => InputCycleDaysFilter._({
-    if (id != null) r'id': id,
-    if (authorId != null) r'authorId': authorId,
-    if (day != null) r'day': day,
-    if (kind != null) r'kind': kind,
-    if (note != null) r'note': note,
-    if (createdAt != null) r'createdAt': createdAt,
-    if (updatedAt != null) r'updatedAt': updatedAt,
-    if (nodeId != null) r'nodeId': nodeId,
-    if (and != null) r'and': and,
-    if (or != null) r'or': or,
-    if (not != null) r'not': not,
-  });
-
-  InputCycleDaysFilter._(this._$data);
-
-  factory InputCycleDaysFilter.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = l$id == null
-          ? null
-          : InputUUIDFilter.fromJson((l$id as Map<String, dynamic>));
-    }
-    if (data.containsKey('authorId')) {
-      final l$authorId = data['authorId'];
-      result$data['authorId'] = l$authorId == null
-          ? null
-          : InputUUIDFilter.fromJson((l$authorId as Map<String, dynamic>));
-    }
-    if (data.containsKey('day')) {
-      final l$day = data['day'];
-      result$data['day'] = l$day == null
-          ? null
-          : InputDateFilter.fromJson((l$day as Map<String, dynamic>));
-    }
-    if (data.containsKey('kind')) {
-      final l$kind = data['kind'];
-      result$data['kind'] = l$kind == null
-          ? null
-          : InputCycleDayKindFilter.fromJson((l$kind as Map<String, dynamic>));
-    }
-    if (data.containsKey('note')) {
-      final l$note = data['note'];
-      result$data['note'] = l$note == null
-          ? null
-          : InputStringFilter.fromJson((l$note as Map<String, dynamic>));
-    }
-    if (data.containsKey('createdAt')) {
-      final l$createdAt = data['createdAt'];
-      result$data['createdAt'] = l$createdAt == null
-          ? null
-          : InputDatetimeFilter.fromJson((l$createdAt as Map<String, dynamic>));
-    }
-    if (data.containsKey('updatedAt')) {
-      final l$updatedAt = data['updatedAt'];
-      result$data['updatedAt'] = l$updatedAt == null
-          ? null
-          : InputDatetimeFilter.fromJson((l$updatedAt as Map<String, dynamic>));
-    }
-    if (data.containsKey('nodeId')) {
-      final l$nodeId = data['nodeId'];
-      result$data['nodeId'] = l$nodeId == null
-          ? null
-          : InputIDFilter.fromJson((l$nodeId as Map<String, dynamic>));
-    }
-    if (data.containsKey('and')) {
-      final l$and = data['and'];
-      result$data['and'] = (l$and as List<dynamic>?)
-          ?.map((e) => InputCycleDaysFilter.fromJson((e as Map<String, dynamic>)))
-          .toList();
-    }
-    if (data.containsKey('or')) {
-      final l$or = data['or'];
-      result$data['or'] = (l$or as List<dynamic>?)
-          ?.map((e) => InputCycleDaysFilter.fromJson((e as Map<String, dynamic>)))
-          .toList();
-    }
-    if (data.containsKey('not')) {
-      final l$not = data['not'];
-      result$data['not'] = l$not == null
-          ? null
-          : InputCycleDaysFilter.fromJson((l$not as Map<String, dynamic>));
-    }
-    return InputCycleDaysFilter._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  InputUUIDFilter? get id => (_$data['id'] as InputUUIDFilter?);
-
-  InputUUIDFilter? get authorId => (_$data['authorId'] as InputUUIDFilter?);
-
-  InputDateFilter? get day => (_$data['day'] as InputDateFilter?);
-
-  InputCycleDayKindFilter? get kind => (_$data['kind'] as InputCycleDayKindFilter?);
-
-  InputStringFilter? get note => (_$data['note'] as InputStringFilter?);
-
-  InputDatetimeFilter? get createdAt => (_$data['createdAt'] as InputDatetimeFilter?);
-
-  InputDatetimeFilter? get updatedAt => (_$data['updatedAt'] as InputDatetimeFilter?);
-
-  InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
-
-  List<InputCycleDaysFilter>? get and => (_$data['and'] as List<InputCycleDaysFilter>?);
-
-  List<InputCycleDaysFilter>? get or => (_$data['or'] as List<InputCycleDaysFilter>?);
-
-  InputCycleDaysFilter? get not => (_$data['not'] as InputCycleDaysFilter?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id?.toJson();
-    }
-    if (_$data.containsKey('authorId')) {
-      final l$authorId = authorId;
-      result$data['authorId'] = l$authorId?.toJson();
-    }
-    if (_$data.containsKey('day')) {
-      final l$day = day;
-      result$data['day'] = l$day?.toJson();
-    }
-    if (_$data.containsKey('kind')) {
-      final l$kind = kind;
-      result$data['kind'] = l$kind?.toJson();
-    }
-    if (_$data.containsKey('note')) {
-      final l$note = note;
-      result$data['note'] = l$note?.toJson();
-    }
-    if (_$data.containsKey('createdAt')) {
-      final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt?.toJson();
-    }
-    if (_$data.containsKey('updatedAt')) {
-      final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt?.toJson();
-    }
-    if (_$data.containsKey('nodeId')) {
-      final l$nodeId = nodeId;
-      result$data['nodeId'] = l$nodeId?.toJson();
-    }
-    if (_$data.containsKey('and')) {
-      final l$and = and;
-      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
-    }
-    if (_$data.containsKey('or')) {
-      final l$or = or;
-      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
-    }
-    if (_$data.containsKey('not')) {
-      final l$not = not;
-      result$data['not'] = l$not?.toJson();
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputCycleDaysFilter || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
-      return false;
-    }
-    if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    final l$day = day;
-    final lOther$day = other.day;
-    if (_$data.containsKey('day') != other._$data.containsKey('day')) {
-      return false;
-    }
-    if (l$day != lOther$day) {
-      return false;
-    }
-    final l$kind = kind;
-    final lOther$kind = other.kind;
-    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
-      return false;
-    }
-    if (l$kind != lOther$kind) {
-      return false;
-    }
-    final l$note = note;
-    final lOther$note = other.note;
-    if (_$data.containsKey('note') != other._$data.containsKey('note')) {
-      return false;
-    }
-    if (l$note != lOther$note) {
-      return false;
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
-      return false;
-    }
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$updatedAt = updatedAt;
-    final lOther$updatedAt = other.updatedAt;
-    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
-      return false;
-    }
-    if (l$updatedAt != lOther$updatedAt) {
-      return false;
-    }
-    final l$nodeId = nodeId;
-    final lOther$nodeId = other.nodeId;
-    if (_$data.containsKey('nodeId') != other._$data.containsKey('nodeId')) {
-      return false;
-    }
-    if (l$nodeId != lOther$nodeId) {
-      return false;
-    }
-    final l$and = and;
-    final lOther$and = other.and;
-    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
-      return false;
-    }
-    if (l$and != null && lOther$and != null) {
-      if (l$and.length != lOther$and.length) {
-        return false;
-      }
-      for (int i = 0; i < l$and.length; i++) {
-        final l$and$entry = l$and[i];
-        final lOther$and$entry = lOther$and[i];
-        if (l$and$entry != lOther$and$entry) {
-          return false;
-        }
-      }
-    } else if (l$and != lOther$and) {
-      return false;
-    }
-    final l$or = or;
-    final lOther$or = other.or;
-    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
-      return false;
-    }
-    if (l$or != null && lOther$or != null) {
-      if (l$or.length != lOther$or.length) {
-        return false;
-      }
-      for (int i = 0; i < l$or.length; i++) {
-        final l$or$entry = l$or[i];
-        final lOther$or$entry = lOther$or[i];
-        if (l$or$entry != lOther$or$entry) {
-          return false;
-        }
-      }
-    } else if (l$or != lOther$or) {
-      return false;
-    }
-    final l$not = not;
-    final lOther$not = other.not;
-    if (_$data.containsKey('not') != other._$data.containsKey('not')) {
-      return false;
-    }
-    if (l$not != lOther$not) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$authorId = authorId;
-    final l$day = day;
-    final l$kind = kind;
-    final l$note = note;
-    final l$createdAt = createdAt;
-    final l$updatedAt = updatedAt;
-    final l$nodeId = nodeId;
-    final l$and = and;
-    final l$or = or;
-    final l$not = not;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('day') ? l$day : const {},
-      _$data.containsKey('kind') ? l$kind : const {},
-      _$data.containsKey('note') ? l$note : const {},
-      _$data.containsKey('createdAt') ? l$createdAt : const {},
-      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
-      _$data.containsKey('nodeId') ? l$nodeId : const {},
-      _$data.containsKey('and')
-          ? l$and == null
-                ? null
-                : Object.hashAll(l$and.map((v) => v))
-          : const {},
-      _$data.containsKey('or')
-          ? l$or == null
-                ? null
-                : Object.hashAll(l$or.map((v) => v))
-          : const {},
-      _$data.containsKey('not') ? l$not : const {},
-    ]);
-  }
-}
-
-class InputCycleDaysInsertInput {
-  factory InputCycleDaysInsertInput({
-    String? id,
-    String? authorId,
-    DateTime? day,
-    EnumCycleDayKind? kind,
-    String? note,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  }) => InputCycleDaysInsertInput._({
-    if (id != null) r'id': id,
-    if (authorId != null) r'authorId': authorId,
-    if (day != null) r'day': day,
-    if (kind != null) r'kind': kind,
-    if (note != null) r'note': note,
-    if (createdAt != null) r'createdAt': createdAt,
-    if (updatedAt != null) r'updatedAt': updatedAt,
-  });
-
-  InputCycleDaysInsertInput._(this._$data);
-
-  factory InputCycleDaysInsertInput.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
-    if (data.containsKey('authorId')) {
-      final l$authorId = data['authorId'];
-      result$data['authorId'] = (l$authorId as String?);
-    }
-    if (data.containsKey('day')) {
-      final l$day = data['day'];
-      result$data['day'] = l$day == null ? null : DateTime.parse((l$day as String));
-    }
-    if (data.containsKey('kind')) {
-      final l$kind = data['kind'];
-      result$data['kind'] = l$kind == null ? null : fromJsonEnumCycleDayKind((l$kind as String));
-    }
-    if (data.containsKey('note')) {
-      final l$note = data['note'];
-      result$data['note'] = (l$note as String?);
-    }
-    if (data.containsKey('createdAt')) {
-      final l$createdAt = data['createdAt'];
-      result$data['createdAt'] = l$createdAt == null
-          ? null
-          : DateTime.parse((l$createdAt as String));
-    }
-    if (data.containsKey('updatedAt')) {
-      final l$updatedAt = data['updatedAt'];
-      result$data['updatedAt'] = l$updatedAt == null
-          ? null
-          : DateTime.parse((l$updatedAt as String));
-    }
-    return InputCycleDaysInsertInput._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String? get id => (_$data['id'] as String?);
-
-  String? get authorId => (_$data['authorId'] as String?);
-
-  DateTime? get day => (_$data['day'] as DateTime?);
-
-  EnumCycleDayKind? get kind => (_$data['kind'] as EnumCycleDayKind?);
-
-  String? get note => (_$data['note'] as String?);
-
-  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
-
-  DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
-    if (_$data.containsKey('authorId')) {
-      final l$authorId = authorId;
-      result$data['authorId'] = l$authorId;
-    }
-    if (_$data.containsKey('day')) {
-      final l$day = day;
-      result$data['day'] = l$day == null
-          ? null
-          : ((v) => v.toIso8601String().substring(0, 10))(l$day);
-    }
-    if (_$data.containsKey('kind')) {
-      final l$kind = kind;
-      result$data['kind'] = l$kind == null ? null : toJsonEnumCycleDayKind(l$kind);
-    }
-    if (_$data.containsKey('note')) {
-      final l$note = note;
-      result$data['note'] = l$note;
-    }
-    if (_$data.containsKey('createdAt')) {
-      final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
-    }
-    if (_$data.containsKey('updatedAt')) {
-      final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputCycleDaysInsertInput || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
-      return false;
-    }
-    if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    final l$day = day;
-    final lOther$day = other.day;
-    if (_$data.containsKey('day') != other._$data.containsKey('day')) {
-      return false;
-    }
-    if (l$day != lOther$day) {
-      return false;
-    }
-    final l$kind = kind;
-    final lOther$kind = other.kind;
-    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
-      return false;
-    }
-    if (l$kind != lOther$kind) {
-      return false;
-    }
-    final l$note = note;
-    final lOther$note = other.note;
-    if (_$data.containsKey('note') != other._$data.containsKey('note')) {
-      return false;
-    }
-    if (l$note != lOther$note) {
-      return false;
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
-      return false;
-    }
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$updatedAt = updatedAt;
-    final lOther$updatedAt = other.updatedAt;
-    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
-      return false;
-    }
-    if (l$updatedAt != lOther$updatedAt) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$authorId = authorId;
-    final l$day = day;
-    final l$kind = kind;
-    final l$note = note;
-    final l$createdAt = createdAt;
-    final l$updatedAt = updatedAt;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('day') ? l$day : const {},
-      _$data.containsKey('kind') ? l$kind : const {},
-      _$data.containsKey('note') ? l$note : const {},
-      _$data.containsKey('createdAt') ? l$createdAt : const {},
-      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
-    ]);
-  }
-}
-
-class InputCycleDaysOrderBy {
-  factory InputCycleDaysOrderBy({
-    EnumOrderByDirection? id,
-    EnumOrderByDirection? authorId,
-    EnumOrderByDirection? day,
-    EnumOrderByDirection? kind,
-    EnumOrderByDirection? note,
-    EnumOrderByDirection? createdAt,
-    EnumOrderByDirection? updatedAt,
-  }) => InputCycleDaysOrderBy._({
-    if (id != null) r'id': id,
-    if (authorId != null) r'authorId': authorId,
-    if (day != null) r'day': day,
-    if (kind != null) r'kind': kind,
-    if (note != null) r'note': note,
-    if (createdAt != null) r'createdAt': createdAt,
-    if (updatedAt != null) r'updatedAt': updatedAt,
-  });
-
-  InputCycleDaysOrderBy._(this._$data);
-
-  factory InputCycleDaysOrderBy.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = l$id == null ? null : fromJsonEnumOrderByDirection((l$id as String));
-    }
-    if (data.containsKey('authorId')) {
-      final l$authorId = data['authorId'];
-      result$data['authorId'] = l$authorId == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$authorId as String));
-    }
-    if (data.containsKey('day')) {
-      final l$day = data['day'];
-      result$data['day'] = l$day == null ? null : fromJsonEnumOrderByDirection((l$day as String));
-    }
-    if (data.containsKey('kind')) {
-      final l$kind = data['kind'];
-      result$data['kind'] = l$kind == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$kind as String));
-    }
-    if (data.containsKey('note')) {
-      final l$note = data['note'];
-      result$data['note'] = l$note == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$note as String));
-    }
-    if (data.containsKey('createdAt')) {
-      final l$createdAt = data['createdAt'];
-      result$data['createdAt'] = l$createdAt == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$createdAt as String));
-    }
-    if (data.containsKey('updatedAt')) {
-      final l$updatedAt = data['updatedAt'];
-      result$data['updatedAt'] = l$updatedAt == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$updatedAt as String));
-    }
-    return InputCycleDaysOrderBy._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  EnumOrderByDirection? get id => (_$data['id'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get authorId => (_$data['authorId'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get day => (_$data['day'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get kind => (_$data['kind'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get note => (_$data['note'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get createdAt => (_$data['createdAt'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get updatedAt => (_$data['updatedAt'] as EnumOrderByDirection?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id == null ? null : toJsonEnumOrderByDirection(l$id);
-    }
-    if (_$data.containsKey('authorId')) {
-      final l$authorId = authorId;
-      result$data['authorId'] = l$authorId == null ? null : toJsonEnumOrderByDirection(l$authorId);
-    }
-    if (_$data.containsKey('day')) {
-      final l$day = day;
-      result$data['day'] = l$day == null ? null : toJsonEnumOrderByDirection(l$day);
-    }
-    if (_$data.containsKey('kind')) {
-      final l$kind = kind;
-      result$data['kind'] = l$kind == null ? null : toJsonEnumOrderByDirection(l$kind);
-    }
-    if (_$data.containsKey('note')) {
-      final l$note = note;
-      result$data['note'] = l$note == null ? null : toJsonEnumOrderByDirection(l$note);
-    }
-    if (_$data.containsKey('createdAt')) {
-      final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt == null
-          ? null
-          : toJsonEnumOrderByDirection(l$createdAt);
-    }
-    if (_$data.containsKey('updatedAt')) {
-      final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt == null
-          ? null
-          : toJsonEnumOrderByDirection(l$updatedAt);
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputCycleDaysOrderBy || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
-      return false;
-    }
-    if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    final l$day = day;
-    final lOther$day = other.day;
-    if (_$data.containsKey('day') != other._$data.containsKey('day')) {
-      return false;
-    }
-    if (l$day != lOther$day) {
-      return false;
-    }
-    final l$kind = kind;
-    final lOther$kind = other.kind;
-    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
-      return false;
-    }
-    if (l$kind != lOther$kind) {
-      return false;
-    }
-    final l$note = note;
-    final lOther$note = other.note;
-    if (_$data.containsKey('note') != other._$data.containsKey('note')) {
-      return false;
-    }
-    if (l$note != lOther$note) {
-      return false;
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
-      return false;
-    }
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$updatedAt = updatedAt;
-    final lOther$updatedAt = other.updatedAt;
-    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
-      return false;
-    }
-    if (l$updatedAt != lOther$updatedAt) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$authorId = authorId;
-    final l$day = day;
-    final l$kind = kind;
-    final l$note = note;
-    final l$createdAt = createdAt;
-    final l$updatedAt = updatedAt;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('day') ? l$day : const {},
-      _$data.containsKey('kind') ? l$kind : const {},
-      _$data.containsKey('note') ? l$note : const {},
-      _$data.containsKey('createdAt') ? l$createdAt : const {},
-      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
-    ]);
-  }
-}
-
-class InputCycleDaysUpdateInput {
-  factory InputCycleDaysUpdateInput({
-    String? id,
-    String? authorId,
-    DateTime? day,
-    EnumCycleDayKind? kind,
-    String? note,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  }) => InputCycleDaysUpdateInput._({
-    if (id != null) r'id': id,
-    if (authorId != null) r'authorId': authorId,
-    if (day != null) r'day': day,
-    if (kind != null) r'kind': kind,
-    if (note != null) r'note': note,
-    if (createdAt != null) r'createdAt': createdAt,
-    if (updatedAt != null) r'updatedAt': updatedAt,
-  });
-
-  InputCycleDaysUpdateInput._(this._$data);
-
-  factory InputCycleDaysUpdateInput.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
-    if (data.containsKey('authorId')) {
-      final l$authorId = data['authorId'];
-      result$data['authorId'] = (l$authorId as String?);
-    }
-    if (data.containsKey('day')) {
-      final l$day = data['day'];
-      result$data['day'] = l$day == null ? null : DateTime.parse((l$day as String));
-    }
-    if (data.containsKey('kind')) {
-      final l$kind = data['kind'];
-      result$data['kind'] = l$kind == null ? null : fromJsonEnumCycleDayKind((l$kind as String));
-    }
-    if (data.containsKey('note')) {
-      final l$note = data['note'];
-      result$data['note'] = (l$note as String?);
-    }
-    if (data.containsKey('createdAt')) {
-      final l$createdAt = data['createdAt'];
-      result$data['createdAt'] = l$createdAt == null
-          ? null
-          : DateTime.parse((l$createdAt as String));
-    }
-    if (data.containsKey('updatedAt')) {
-      final l$updatedAt = data['updatedAt'];
-      result$data['updatedAt'] = l$updatedAt == null
-          ? null
-          : DateTime.parse((l$updatedAt as String));
-    }
-    return InputCycleDaysUpdateInput._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String? get id => (_$data['id'] as String?);
-
-  String? get authorId => (_$data['authorId'] as String?);
-
-  DateTime? get day => (_$data['day'] as DateTime?);
-
-  EnumCycleDayKind? get kind => (_$data['kind'] as EnumCycleDayKind?);
-
-  String? get note => (_$data['note'] as String?);
-
-  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
-
-  DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
-    if (_$data.containsKey('authorId')) {
-      final l$authorId = authorId;
-      result$data['authorId'] = l$authorId;
-    }
-    if (_$data.containsKey('day')) {
-      final l$day = day;
-      result$data['day'] = l$day == null
-          ? null
-          : ((v) => v.toIso8601String().substring(0, 10))(l$day);
-    }
-    if (_$data.containsKey('kind')) {
-      final l$kind = kind;
-      result$data['kind'] = l$kind == null ? null : toJsonEnumCycleDayKind(l$kind);
-    }
-    if (_$data.containsKey('note')) {
-      final l$note = note;
-      result$data['note'] = l$note;
-    }
-    if (_$data.containsKey('createdAt')) {
-      final l$createdAt = createdAt;
-      result$data['createdAt'] = l$createdAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
-    }
-    if (_$data.containsKey('updatedAt')) {
-      final l$updatedAt = updatedAt;
-      result$data['updatedAt'] = l$updatedAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputCycleDaysUpdateInput || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$authorId = authorId;
-    final lOther$authorId = other.authorId;
-    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
-      return false;
-    }
-    if (l$authorId != lOther$authorId) {
-      return false;
-    }
-    final l$day = day;
-    final lOther$day = other.day;
-    if (_$data.containsKey('day') != other._$data.containsKey('day')) {
-      return false;
-    }
-    if (l$day != lOther$day) {
-      return false;
-    }
-    final l$kind = kind;
-    final lOther$kind = other.kind;
-    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
-      return false;
-    }
-    if (l$kind != lOther$kind) {
-      return false;
-    }
-    final l$note = note;
-    final lOther$note = other.note;
-    if (_$data.containsKey('note') != other._$data.containsKey('note')) {
-      return false;
-    }
-    if (l$note != lOther$note) {
-      return false;
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
-      return false;
-    }
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$updatedAt = updatedAt;
-    final lOther$updatedAt = other.updatedAt;
-    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
-      return false;
-    }
-    if (l$updatedAt != lOther$updatedAt) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$authorId = authorId;
-    final l$day = day;
-    final l$kind = kind;
-    final l$note = note;
-    final l$createdAt = createdAt;
-    final l$updatedAt = updatedAt;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('day') ? l$day : const {},
-      _$data.containsKey('kind') ? l$kind : const {},
-      _$data.containsKey('note') ? l$note : const {},
-      _$data.containsKey('createdAt') ? l$createdAt : const {},
-      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
-    ]);
-  }
-}
-
 class InputDateFilter {
   factory InputDateFilter({
     DateTime? eq,
@@ -30592,148 +29512,6 @@ class InputGuestLinksUpdateInput {
       _$data.containsKey('revokedAt') ? l$revokedAt : const {},
       _$data.containsKey('openedAt') ? l$openedAt : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
-    ]);
-  }
-}
-
-class InputHeavyDaySharingFilter {
-  factory InputHeavyDaySharingFilter({
-    EnumHeavyDaySharing? eq,
-    List<EnumHeavyDaySharing>? $in,
-    EnumFilterIs? $is,
-    EnumHeavyDaySharing? neq,
-  }) => InputHeavyDaySharingFilter._({
-    if (eq != null) r'eq': eq,
-    if ($in != null) r'in': $in,
-    if ($is != null) r'is': $is,
-    if (neq != null) r'neq': neq,
-  });
-
-  InputHeavyDaySharingFilter._(this._$data);
-
-  factory InputHeavyDaySharingFilter.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('eq')) {
-      final l$eq = data['eq'];
-      result$data['eq'] = l$eq == null ? null : fromJsonEnumHeavyDaySharing((l$eq as String));
-    }
-    if (data.containsKey('in')) {
-      final l$$in = data['in'];
-      result$data['in'] = (l$$in as List<dynamic>?)
-          ?.map((e) => fromJsonEnumHeavyDaySharing((e as String)))
-          .toList();
-    }
-    if (data.containsKey('is')) {
-      final l$$is = data['is'];
-      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
-    }
-    if (data.containsKey('neq')) {
-      final l$neq = data['neq'];
-      result$data['neq'] = l$neq == null ? null : fromJsonEnumHeavyDaySharing((l$neq as String));
-    }
-    return InputHeavyDaySharingFilter._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  EnumHeavyDaySharing? get eq => (_$data['eq'] as EnumHeavyDaySharing?);
-
-  List<EnumHeavyDaySharing>? get $in => (_$data['in'] as List<EnumHeavyDaySharing>?);
-
-  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
-
-  EnumHeavyDaySharing? get neq => (_$data['neq'] as EnumHeavyDaySharing?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('eq')) {
-      final l$eq = eq;
-      result$data['eq'] = l$eq == null ? null : toJsonEnumHeavyDaySharing(l$eq);
-    }
-    if (_$data.containsKey('in')) {
-      final l$$in = $in;
-      result$data['in'] = l$$in?.map((e) => toJsonEnumHeavyDaySharing(e)).toList();
-    }
-    if (_$data.containsKey('is')) {
-      final l$$is = $is;
-      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
-    }
-    if (_$data.containsKey('neq')) {
-      final l$neq = neq;
-      result$data['neq'] = l$neq == null ? null : toJsonEnumHeavyDaySharing(l$neq);
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputHeavyDaySharingFilter || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$eq = eq;
-    final lOther$eq = other.eq;
-    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
-      return false;
-    }
-    if (l$eq != lOther$eq) {
-      return false;
-    }
-    final l$$in = $in;
-    final lOther$$in = other.$in;
-    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
-      return false;
-    }
-    if (l$$in != null && lOther$$in != null) {
-      if (l$$in.length != lOther$$in.length) {
-        return false;
-      }
-      for (int i = 0; i < l$$in.length; i++) {
-        final l$$in$entry = l$$in[i];
-        final lOther$$in$entry = lOther$$in[i];
-        if (l$$in$entry != lOther$$in$entry) {
-          return false;
-        }
-      }
-    } else if (l$$in != lOther$$in) {
-      return false;
-    }
-    final l$$is = $is;
-    final lOther$$is = other.$is;
-    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
-      return false;
-    }
-    if (l$$is != lOther$$is) {
-      return false;
-    }
-    final l$neq = neq;
-    final lOther$neq = other.neq;
-    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
-      return false;
-    }
-    if (l$neq != lOther$neq) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$eq = eq;
-    final l$$in = $in;
-    final l$$is = $is;
-    final l$neq = neq;
-    return Object.hashAll([
-      _$data.containsKey('eq') ? l$eq : const {},
-      _$data.containsKey('in')
-          ? l$$in == null
-                ? null
-                : Object.hashAll(l$$in.map((v) => v))
-          : const {},
-      _$data.containsKey('is') ? l$$is : const {},
-      _$data.containsKey('neq') ? l$neq : const {},
     ]);
   }
 }
@@ -48050,7 +46828,6 @@ class InputNotificationSettingsFilter {
   factory InputNotificationSettingsFilter({
     InputUUIDFilter? profileId,
     InputBooleanFilter? enabled,
-    InputBooleanFilter? discreet,
     InputIntFilter? cardDay,
     InputIntFilter? cardHour,
     InputStringListFilter? mutedTypes,
@@ -48063,7 +46840,6 @@ class InputNotificationSettingsFilter {
   }) => InputNotificationSettingsFilter._({
     if (profileId != null) r'profileId': profileId,
     if (enabled != null) r'enabled': enabled,
-    if (discreet != null) r'discreet': discreet,
     if (cardDay != null) r'cardDay': cardDay,
     if (cardHour != null) r'cardHour': cardHour,
     if (mutedTypes != null) r'mutedTypes': mutedTypes,
@@ -48090,12 +46866,6 @@ class InputNotificationSettingsFilter {
       result$data['enabled'] = l$enabled == null
           ? null
           : InputBooleanFilter.fromJson((l$enabled as Map<String, dynamic>));
-    }
-    if (data.containsKey('discreet')) {
-      final l$discreet = data['discreet'];
-      result$data['discreet'] = l$discreet == null
-          ? null
-          : InputBooleanFilter.fromJson((l$discreet as Map<String, dynamic>));
     }
     if (data.containsKey('cardDay')) {
       final l$cardDay = data['cardDay'];
@@ -48160,8 +46930,6 @@ class InputNotificationSettingsFilter {
 
   InputBooleanFilter? get enabled => (_$data['enabled'] as InputBooleanFilter?);
 
-  InputBooleanFilter? get discreet => (_$data['discreet'] as InputBooleanFilter?);
-
   InputIntFilter? get cardDay => (_$data['cardDay'] as InputIntFilter?);
 
   InputIntFilter? get cardHour => (_$data['cardHour'] as InputIntFilter?);
@@ -48191,10 +46959,6 @@ class InputNotificationSettingsFilter {
     if (_$data.containsKey('enabled')) {
       final l$enabled = enabled;
       result$data['enabled'] = l$enabled?.toJson();
-    }
-    if (_$data.containsKey('discreet')) {
-      final l$discreet = discreet;
-      result$data['discreet'] = l$discreet?.toJson();
     }
     if (_$data.containsKey('cardDay')) {
       final l$cardDay = cardDay;
@@ -48257,14 +47021,6 @@ class InputNotificationSettingsFilter {
       return false;
     }
     if (l$enabled != lOther$enabled) {
-      return false;
-    }
-    final l$discreet = discreet;
-    final lOther$discreet = other.discreet;
-    if (_$data.containsKey('discreet') != other._$data.containsKey('discreet')) {
-      return false;
-    }
-    if (l$discreet != lOther$discreet) {
       return false;
     }
     final l$cardDay = cardDay;
@@ -48368,7 +47124,6 @@ class InputNotificationSettingsFilter {
   int get hashCode {
     final l$profileId = profileId;
     final l$enabled = enabled;
-    final l$discreet = discreet;
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
     final l$mutedTypes = mutedTypes;
@@ -48381,7 +47136,6 @@ class InputNotificationSettingsFilter {
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('enabled') ? l$enabled : const {},
-      _$data.containsKey('discreet') ? l$discreet : const {},
       _$data.containsKey('cardDay') ? l$cardDay : const {},
       _$data.containsKey('cardHour') ? l$cardHour : const {},
       _$data.containsKey('mutedTypes') ? l$mutedTypes : const {},
@@ -48407,7 +47161,6 @@ class InputNotificationSettingsInsertInput {
   factory InputNotificationSettingsInsertInput({
     String? profileId,
     bool? enabled,
-    bool? discreet,
     int? cardDay,
     int? cardHour,
     List<String?>? mutedTypes,
@@ -48416,7 +47169,6 @@ class InputNotificationSettingsInsertInput {
   }) => InputNotificationSettingsInsertInput._({
     if (profileId != null) r'profileId': profileId,
     if (enabled != null) r'enabled': enabled,
-    if (discreet != null) r'discreet': discreet,
     if (cardDay != null) r'cardDay': cardDay,
     if (cardHour != null) r'cardHour': cardHour,
     if (mutedTypes != null) r'mutedTypes': mutedTypes,
@@ -48435,10 +47187,6 @@ class InputNotificationSettingsInsertInput {
     if (data.containsKey('enabled')) {
       final l$enabled = data['enabled'];
       result$data['enabled'] = (l$enabled as bool?);
-    }
-    if (data.containsKey('discreet')) {
-      final l$discreet = data['discreet'];
-      result$data['discreet'] = (l$discreet as bool?);
     }
     if (data.containsKey('cardDay')) {
       final l$cardDay = data['cardDay'];
@@ -48473,8 +47221,6 @@ class InputNotificationSettingsInsertInput {
 
   bool? get enabled => (_$data['enabled'] as bool?);
 
-  bool? get discreet => (_$data['discreet'] as bool?);
-
   int? get cardDay => (_$data['cardDay'] as int?);
 
   int? get cardHour => (_$data['cardHour'] as int?);
@@ -48494,10 +47240,6 @@ class InputNotificationSettingsInsertInput {
     if (_$data.containsKey('enabled')) {
       final l$enabled = enabled;
       result$data['enabled'] = l$enabled;
-    }
-    if (_$data.containsKey('discreet')) {
-      final l$discreet = discreet;
-      result$data['discreet'] = l$discreet;
     }
     if (_$data.containsKey('cardDay')) {
       final l$cardDay = cardDay;
@@ -48548,14 +47290,6 @@ class InputNotificationSettingsInsertInput {
     if (l$enabled != lOther$enabled) {
       return false;
     }
-    final l$discreet = discreet;
-    final lOther$discreet = other.discreet;
-    if (_$data.containsKey('discreet') != other._$data.containsKey('discreet')) {
-      return false;
-    }
-    if (l$discreet != lOther$discreet) {
-      return false;
-    }
     final l$cardDay = cardDay;
     final lOther$cardDay = other.cardDay;
     if (_$data.containsKey('cardDay') != other._$data.containsKey('cardDay')) {
@@ -48614,7 +47348,6 @@ class InputNotificationSettingsInsertInput {
   int get hashCode {
     final l$profileId = profileId;
     final l$enabled = enabled;
-    final l$discreet = discreet;
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
     final l$mutedTypes = mutedTypes;
@@ -48623,7 +47356,6 @@ class InputNotificationSettingsInsertInput {
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('enabled') ? l$enabled : const {},
-      _$data.containsKey('discreet') ? l$discreet : const {},
       _$data.containsKey('cardDay') ? l$cardDay : const {},
       _$data.containsKey('cardHour') ? l$cardHour : const {},
       _$data.containsKey('mutedTypes')
@@ -48641,7 +47373,6 @@ class InputNotificationSettingsOrderBy {
   factory InputNotificationSettingsOrderBy({
     EnumOrderByDirection? profileId,
     EnumOrderByDirection? enabled,
-    EnumOrderByDirection? discreet,
     EnumOrderByDirection? cardDay,
     EnumOrderByDirection? cardHour,
     EnumOrderByDirection? updatedAt,
@@ -48649,7 +47380,6 @@ class InputNotificationSettingsOrderBy {
   }) => InputNotificationSettingsOrderBy._({
     if (profileId != null) r'profileId': profileId,
     if (enabled != null) r'enabled': enabled,
-    if (discreet != null) r'discreet': discreet,
     if (cardDay != null) r'cardDay': cardDay,
     if (cardHour != null) r'cardHour': cardHour,
     if (updatedAt != null) r'updatedAt': updatedAt,
@@ -48671,12 +47401,6 @@ class InputNotificationSettingsOrderBy {
       result$data['enabled'] = l$enabled == null
           ? null
           : fromJsonEnumOrderByDirection((l$enabled as String));
-    }
-    if (data.containsKey('discreet')) {
-      final l$discreet = data['discreet'];
-      result$data['discreet'] = l$discreet == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$discreet as String));
     }
     if (data.containsKey('cardDay')) {
       final l$cardDay = data['cardDay'];
@@ -48711,8 +47435,6 @@ class InputNotificationSettingsOrderBy {
 
   EnumOrderByDirection? get enabled => (_$data['enabled'] as EnumOrderByDirection?);
 
-  EnumOrderByDirection? get discreet => (_$data['discreet'] as EnumOrderByDirection?);
-
   EnumOrderByDirection? get cardDay => (_$data['cardDay'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get cardHour => (_$data['cardHour'] as EnumOrderByDirection?);
@@ -48732,10 +47454,6 @@ class InputNotificationSettingsOrderBy {
     if (_$data.containsKey('enabled')) {
       final l$enabled = enabled;
       result$data['enabled'] = l$enabled == null ? null : toJsonEnumOrderByDirection(l$enabled);
-    }
-    if (_$data.containsKey('discreet')) {
-      final l$discreet = discreet;
-      result$data['discreet'] = l$discreet == null ? null : toJsonEnumOrderByDirection(l$discreet);
     }
     if (_$data.containsKey('cardDay')) {
       final l$cardDay = cardDay;
@@ -48782,14 +47500,6 @@ class InputNotificationSettingsOrderBy {
     if (l$enabled != lOther$enabled) {
       return false;
     }
-    final l$discreet = discreet;
-    final lOther$discreet = other.discreet;
-    if (_$data.containsKey('discreet') != other._$data.containsKey('discreet')) {
-      return false;
-    }
-    if (l$discreet != lOther$discreet) {
-      return false;
-    }
     final l$cardDay = cardDay;
     final lOther$cardDay = other.cardDay;
     if (_$data.containsKey('cardDay') != other._$data.containsKey('cardDay')) {
@@ -48829,7 +47539,6 @@ class InputNotificationSettingsOrderBy {
   int get hashCode {
     final l$profileId = profileId;
     final l$enabled = enabled;
-    final l$discreet = discreet;
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
     final l$updatedAt = updatedAt;
@@ -48837,7 +47546,6 @@ class InputNotificationSettingsOrderBy {
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('enabled') ? l$enabled : const {},
-      _$data.containsKey('discreet') ? l$discreet : const {},
       _$data.containsKey('cardDay') ? l$cardDay : const {},
       _$data.containsKey('cardHour') ? l$cardHour : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
@@ -48850,7 +47558,6 @@ class InputNotificationSettingsUpdateInput {
   factory InputNotificationSettingsUpdateInput({
     String? profileId,
     bool? enabled,
-    bool? discreet,
     int? cardDay,
     int? cardHour,
     List<String?>? mutedTypes,
@@ -48859,7 +47566,6 @@ class InputNotificationSettingsUpdateInput {
   }) => InputNotificationSettingsUpdateInput._({
     if (profileId != null) r'profileId': profileId,
     if (enabled != null) r'enabled': enabled,
-    if (discreet != null) r'discreet': discreet,
     if (cardDay != null) r'cardDay': cardDay,
     if (cardHour != null) r'cardHour': cardHour,
     if (mutedTypes != null) r'mutedTypes': mutedTypes,
@@ -48878,10 +47584,6 @@ class InputNotificationSettingsUpdateInput {
     if (data.containsKey('enabled')) {
       final l$enabled = data['enabled'];
       result$data['enabled'] = (l$enabled as bool?);
-    }
-    if (data.containsKey('discreet')) {
-      final l$discreet = data['discreet'];
-      result$data['discreet'] = (l$discreet as bool?);
     }
     if (data.containsKey('cardDay')) {
       final l$cardDay = data['cardDay'];
@@ -48916,8 +47618,6 @@ class InputNotificationSettingsUpdateInput {
 
   bool? get enabled => (_$data['enabled'] as bool?);
 
-  bool? get discreet => (_$data['discreet'] as bool?);
-
   int? get cardDay => (_$data['cardDay'] as int?);
 
   int? get cardHour => (_$data['cardHour'] as int?);
@@ -48937,10 +47637,6 @@ class InputNotificationSettingsUpdateInput {
     if (_$data.containsKey('enabled')) {
       final l$enabled = enabled;
       result$data['enabled'] = l$enabled;
-    }
-    if (_$data.containsKey('discreet')) {
-      final l$discreet = discreet;
-      result$data['discreet'] = l$discreet;
     }
     if (_$data.containsKey('cardDay')) {
       final l$cardDay = cardDay;
@@ -48991,14 +47687,6 @@ class InputNotificationSettingsUpdateInput {
     if (l$enabled != lOther$enabled) {
       return false;
     }
-    final l$discreet = discreet;
-    final lOther$discreet = other.discreet;
-    if (_$data.containsKey('discreet') != other._$data.containsKey('discreet')) {
-      return false;
-    }
-    if (l$discreet != lOther$discreet) {
-      return false;
-    }
     final l$cardDay = cardDay;
     final lOther$cardDay = other.cardDay;
     if (_$data.containsKey('cardDay') != other._$data.containsKey('cardDay')) {
@@ -49057,7 +47745,6 @@ class InputNotificationSettingsUpdateInput {
   int get hashCode {
     final l$profileId = profileId;
     final l$enabled = enabled;
-    final l$discreet = discreet;
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
     final l$mutedTypes = mutedTypes;
@@ -49066,7 +47753,6 @@ class InputNotificationSettingsUpdateInput {
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('enabled') ? l$enabled : const {},
-      _$data.containsKey('discreet') ? l$discreet : const {},
       _$data.containsKey('cardDay') ? l$cardDay : const {},
       _$data.containsKey('cardHour') ? l$cardHour : const {},
       _$data.containsKey('mutedTypes')
@@ -52493,942 +51179,6 @@ class InputPartnerMoodUpdateInput {
   }
 }
 
-class InputPausesFilter {
-  factory InputPausesFilter({
-    InputUUIDFilter? id,
-    InputUUIDFilter? startedBy,
-    InputUUIDFilter? coupleId,
-    InputDatetimeFilter? returnAt,
-    InputStringFilter? message,
-    InputDatetimeFilter? startedAt,
-    InputDatetimeFilter? endedAt,
-    InputIDFilter? nodeId,
-    List<InputPausesFilter>? and,
-    List<InputPausesFilter>? or,
-    InputPausesFilter? not,
-  }) => InputPausesFilter._({
-    if (id != null) r'id': id,
-    if (startedBy != null) r'startedBy': startedBy,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (returnAt != null) r'returnAt': returnAt,
-    if (message != null) r'message': message,
-    if (startedAt != null) r'startedAt': startedAt,
-    if (endedAt != null) r'endedAt': endedAt,
-    if (nodeId != null) r'nodeId': nodeId,
-    if (and != null) r'and': and,
-    if (or != null) r'or': or,
-    if (not != null) r'not': not,
-  });
-
-  InputPausesFilter._(this._$data);
-
-  factory InputPausesFilter.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = l$id == null
-          ? null
-          : InputUUIDFilter.fromJson((l$id as Map<String, dynamic>));
-    }
-    if (data.containsKey('startedBy')) {
-      final l$startedBy = data['startedBy'];
-      result$data['startedBy'] = l$startedBy == null
-          ? null
-          : InputUUIDFilter.fromJson((l$startedBy as Map<String, dynamic>));
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = l$coupleId == null
-          ? null
-          : InputUUIDFilter.fromJson((l$coupleId as Map<String, dynamic>));
-    }
-    if (data.containsKey('returnAt')) {
-      final l$returnAt = data['returnAt'];
-      result$data['returnAt'] = l$returnAt == null
-          ? null
-          : InputDatetimeFilter.fromJson((l$returnAt as Map<String, dynamic>));
-    }
-    if (data.containsKey('message')) {
-      final l$message = data['message'];
-      result$data['message'] = l$message == null
-          ? null
-          : InputStringFilter.fromJson((l$message as Map<String, dynamic>));
-    }
-    if (data.containsKey('startedAt')) {
-      final l$startedAt = data['startedAt'];
-      result$data['startedAt'] = l$startedAt == null
-          ? null
-          : InputDatetimeFilter.fromJson((l$startedAt as Map<String, dynamic>));
-    }
-    if (data.containsKey('endedAt')) {
-      final l$endedAt = data['endedAt'];
-      result$data['endedAt'] = l$endedAt == null
-          ? null
-          : InputDatetimeFilter.fromJson((l$endedAt as Map<String, dynamic>));
-    }
-    if (data.containsKey('nodeId')) {
-      final l$nodeId = data['nodeId'];
-      result$data['nodeId'] = l$nodeId == null
-          ? null
-          : InputIDFilter.fromJson((l$nodeId as Map<String, dynamic>));
-    }
-    if (data.containsKey('and')) {
-      final l$and = data['and'];
-      result$data['and'] = (l$and as List<dynamic>?)
-          ?.map((e) => InputPausesFilter.fromJson((e as Map<String, dynamic>)))
-          .toList();
-    }
-    if (data.containsKey('or')) {
-      final l$or = data['or'];
-      result$data['or'] = (l$or as List<dynamic>?)
-          ?.map((e) => InputPausesFilter.fromJson((e as Map<String, dynamic>)))
-          .toList();
-    }
-    if (data.containsKey('not')) {
-      final l$not = data['not'];
-      result$data['not'] = l$not == null
-          ? null
-          : InputPausesFilter.fromJson((l$not as Map<String, dynamic>));
-    }
-    return InputPausesFilter._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  InputUUIDFilter? get id => (_$data['id'] as InputUUIDFilter?);
-
-  InputUUIDFilter? get startedBy => (_$data['startedBy'] as InputUUIDFilter?);
-
-  InputUUIDFilter? get coupleId => (_$data['coupleId'] as InputUUIDFilter?);
-
-  InputDatetimeFilter? get returnAt => (_$data['returnAt'] as InputDatetimeFilter?);
-
-  InputStringFilter? get message => (_$data['message'] as InputStringFilter?);
-
-  InputDatetimeFilter? get startedAt => (_$data['startedAt'] as InputDatetimeFilter?);
-
-  InputDatetimeFilter? get endedAt => (_$data['endedAt'] as InputDatetimeFilter?);
-
-  InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
-
-  List<InputPausesFilter>? get and => (_$data['and'] as List<InputPausesFilter>?);
-
-  List<InputPausesFilter>? get or => (_$data['or'] as List<InputPausesFilter>?);
-
-  InputPausesFilter? get not => (_$data['not'] as InputPausesFilter?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id?.toJson();
-    }
-    if (_$data.containsKey('startedBy')) {
-      final l$startedBy = startedBy;
-      result$data['startedBy'] = l$startedBy?.toJson();
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId?.toJson();
-    }
-    if (_$data.containsKey('returnAt')) {
-      final l$returnAt = returnAt;
-      result$data['returnAt'] = l$returnAt?.toJson();
-    }
-    if (_$data.containsKey('message')) {
-      final l$message = message;
-      result$data['message'] = l$message?.toJson();
-    }
-    if (_$data.containsKey('startedAt')) {
-      final l$startedAt = startedAt;
-      result$data['startedAt'] = l$startedAt?.toJson();
-    }
-    if (_$data.containsKey('endedAt')) {
-      final l$endedAt = endedAt;
-      result$data['endedAt'] = l$endedAt?.toJson();
-    }
-    if (_$data.containsKey('nodeId')) {
-      final l$nodeId = nodeId;
-      result$data['nodeId'] = l$nodeId?.toJson();
-    }
-    if (_$data.containsKey('and')) {
-      final l$and = and;
-      result$data['and'] = l$and?.map((e) => e.toJson()).toList();
-    }
-    if (_$data.containsKey('or')) {
-      final l$or = or;
-      result$data['or'] = l$or?.map((e) => e.toJson()).toList();
-    }
-    if (_$data.containsKey('not')) {
-      final l$not = not;
-      result$data['not'] = l$not?.toJson();
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputPausesFilter || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$startedBy = startedBy;
-    final lOther$startedBy = other.startedBy;
-    if (_$data.containsKey('startedBy') != other._$data.containsKey('startedBy')) {
-      return false;
-    }
-    if (l$startedBy != lOther$startedBy) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$returnAt = returnAt;
-    final lOther$returnAt = other.returnAt;
-    if (_$data.containsKey('returnAt') != other._$data.containsKey('returnAt')) {
-      return false;
-    }
-    if (l$returnAt != lOther$returnAt) {
-      return false;
-    }
-    final l$message = message;
-    final lOther$message = other.message;
-    if (_$data.containsKey('message') != other._$data.containsKey('message')) {
-      return false;
-    }
-    if (l$message != lOther$message) {
-      return false;
-    }
-    final l$startedAt = startedAt;
-    final lOther$startedAt = other.startedAt;
-    if (_$data.containsKey('startedAt') != other._$data.containsKey('startedAt')) {
-      return false;
-    }
-    if (l$startedAt != lOther$startedAt) {
-      return false;
-    }
-    final l$endedAt = endedAt;
-    final lOther$endedAt = other.endedAt;
-    if (_$data.containsKey('endedAt') != other._$data.containsKey('endedAt')) {
-      return false;
-    }
-    if (l$endedAt != lOther$endedAt) {
-      return false;
-    }
-    final l$nodeId = nodeId;
-    final lOther$nodeId = other.nodeId;
-    if (_$data.containsKey('nodeId') != other._$data.containsKey('nodeId')) {
-      return false;
-    }
-    if (l$nodeId != lOther$nodeId) {
-      return false;
-    }
-    final l$and = and;
-    final lOther$and = other.and;
-    if (_$data.containsKey('and') != other._$data.containsKey('and')) {
-      return false;
-    }
-    if (l$and != null && lOther$and != null) {
-      if (l$and.length != lOther$and.length) {
-        return false;
-      }
-      for (int i = 0; i < l$and.length; i++) {
-        final l$and$entry = l$and[i];
-        final lOther$and$entry = lOther$and[i];
-        if (l$and$entry != lOther$and$entry) {
-          return false;
-        }
-      }
-    } else if (l$and != lOther$and) {
-      return false;
-    }
-    final l$or = or;
-    final lOther$or = other.or;
-    if (_$data.containsKey('or') != other._$data.containsKey('or')) {
-      return false;
-    }
-    if (l$or != null && lOther$or != null) {
-      if (l$or.length != lOther$or.length) {
-        return false;
-      }
-      for (int i = 0; i < l$or.length; i++) {
-        final l$or$entry = l$or[i];
-        final lOther$or$entry = lOther$or[i];
-        if (l$or$entry != lOther$or$entry) {
-          return false;
-        }
-      }
-    } else if (l$or != lOther$or) {
-      return false;
-    }
-    final l$not = not;
-    final lOther$not = other.not;
-    if (_$data.containsKey('not') != other._$data.containsKey('not')) {
-      return false;
-    }
-    if (l$not != lOther$not) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$startedBy = startedBy;
-    final l$coupleId = coupleId;
-    final l$returnAt = returnAt;
-    final l$message = message;
-    final l$startedAt = startedAt;
-    final l$endedAt = endedAt;
-    final l$nodeId = nodeId;
-    final l$and = and;
-    final l$or = or;
-    final l$not = not;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('startedBy') ? l$startedBy : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('returnAt') ? l$returnAt : const {},
-      _$data.containsKey('message') ? l$message : const {},
-      _$data.containsKey('startedAt') ? l$startedAt : const {},
-      _$data.containsKey('endedAt') ? l$endedAt : const {},
-      _$data.containsKey('nodeId') ? l$nodeId : const {},
-      _$data.containsKey('and')
-          ? l$and == null
-                ? null
-                : Object.hashAll(l$and.map((v) => v))
-          : const {},
-      _$data.containsKey('or')
-          ? l$or == null
-                ? null
-                : Object.hashAll(l$or.map((v) => v))
-          : const {},
-      _$data.containsKey('not') ? l$not : const {},
-    ]);
-  }
-}
-
-class InputPausesInsertInput {
-  factory InputPausesInsertInput({
-    String? id,
-    String? startedBy,
-    String? coupleId,
-    DateTime? returnAt,
-    String? message,
-    DateTime? startedAt,
-    DateTime? endedAt,
-  }) => InputPausesInsertInput._({
-    if (id != null) r'id': id,
-    if (startedBy != null) r'startedBy': startedBy,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (returnAt != null) r'returnAt': returnAt,
-    if (message != null) r'message': message,
-    if (startedAt != null) r'startedAt': startedAt,
-    if (endedAt != null) r'endedAt': endedAt,
-  });
-
-  InputPausesInsertInput._(this._$data);
-
-  factory InputPausesInsertInput.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
-    if (data.containsKey('startedBy')) {
-      final l$startedBy = data['startedBy'];
-      result$data['startedBy'] = (l$startedBy as String?);
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = (l$coupleId as String?);
-    }
-    if (data.containsKey('returnAt')) {
-      final l$returnAt = data['returnAt'];
-      result$data['returnAt'] = l$returnAt == null ? null : DateTime.parse((l$returnAt as String));
-    }
-    if (data.containsKey('message')) {
-      final l$message = data['message'];
-      result$data['message'] = (l$message as String?);
-    }
-    if (data.containsKey('startedAt')) {
-      final l$startedAt = data['startedAt'];
-      result$data['startedAt'] = l$startedAt == null
-          ? null
-          : DateTime.parse((l$startedAt as String));
-    }
-    if (data.containsKey('endedAt')) {
-      final l$endedAt = data['endedAt'];
-      result$data['endedAt'] = l$endedAt == null ? null : DateTime.parse((l$endedAt as String));
-    }
-    return InputPausesInsertInput._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String? get id => (_$data['id'] as String?);
-
-  String? get startedBy => (_$data['startedBy'] as String?);
-
-  String? get coupleId => (_$data['coupleId'] as String?);
-
-  DateTime? get returnAt => (_$data['returnAt'] as DateTime?);
-
-  String? get message => (_$data['message'] as String?);
-
-  DateTime? get startedAt => (_$data['startedAt'] as DateTime?);
-
-  DateTime? get endedAt => (_$data['endedAt'] as DateTime?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
-    if (_$data.containsKey('startedBy')) {
-      final l$startedBy = startedBy;
-      result$data['startedBy'] = l$startedBy;
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId;
-    }
-    if (_$data.containsKey('returnAt')) {
-      final l$returnAt = returnAt;
-      result$data['returnAt'] = l$returnAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$returnAt);
-    }
-    if (_$data.containsKey('message')) {
-      final l$message = message;
-      result$data['message'] = l$message;
-    }
-    if (_$data.containsKey('startedAt')) {
-      final l$startedAt = startedAt;
-      result$data['startedAt'] = l$startedAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$startedAt);
-    }
-    if (_$data.containsKey('endedAt')) {
-      final l$endedAt = endedAt;
-      result$data['endedAt'] = l$endedAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$endedAt);
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputPausesInsertInput || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$startedBy = startedBy;
-    final lOther$startedBy = other.startedBy;
-    if (_$data.containsKey('startedBy') != other._$data.containsKey('startedBy')) {
-      return false;
-    }
-    if (l$startedBy != lOther$startedBy) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$returnAt = returnAt;
-    final lOther$returnAt = other.returnAt;
-    if (_$data.containsKey('returnAt') != other._$data.containsKey('returnAt')) {
-      return false;
-    }
-    if (l$returnAt != lOther$returnAt) {
-      return false;
-    }
-    final l$message = message;
-    final lOther$message = other.message;
-    if (_$data.containsKey('message') != other._$data.containsKey('message')) {
-      return false;
-    }
-    if (l$message != lOther$message) {
-      return false;
-    }
-    final l$startedAt = startedAt;
-    final lOther$startedAt = other.startedAt;
-    if (_$data.containsKey('startedAt') != other._$data.containsKey('startedAt')) {
-      return false;
-    }
-    if (l$startedAt != lOther$startedAt) {
-      return false;
-    }
-    final l$endedAt = endedAt;
-    final lOther$endedAt = other.endedAt;
-    if (_$data.containsKey('endedAt') != other._$data.containsKey('endedAt')) {
-      return false;
-    }
-    if (l$endedAt != lOther$endedAt) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$startedBy = startedBy;
-    final l$coupleId = coupleId;
-    final l$returnAt = returnAt;
-    final l$message = message;
-    final l$startedAt = startedAt;
-    final l$endedAt = endedAt;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('startedBy') ? l$startedBy : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('returnAt') ? l$returnAt : const {},
-      _$data.containsKey('message') ? l$message : const {},
-      _$data.containsKey('startedAt') ? l$startedAt : const {},
-      _$data.containsKey('endedAt') ? l$endedAt : const {},
-    ]);
-  }
-}
-
-class InputPausesOrderBy {
-  factory InputPausesOrderBy({
-    EnumOrderByDirection? id,
-    EnumOrderByDirection? startedBy,
-    EnumOrderByDirection? coupleId,
-    EnumOrderByDirection? returnAt,
-    EnumOrderByDirection? message,
-    EnumOrderByDirection? startedAt,
-    EnumOrderByDirection? endedAt,
-  }) => InputPausesOrderBy._({
-    if (id != null) r'id': id,
-    if (startedBy != null) r'startedBy': startedBy,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (returnAt != null) r'returnAt': returnAt,
-    if (message != null) r'message': message,
-    if (startedAt != null) r'startedAt': startedAt,
-    if (endedAt != null) r'endedAt': endedAt,
-  });
-
-  InputPausesOrderBy._(this._$data);
-
-  factory InputPausesOrderBy.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = l$id == null ? null : fromJsonEnumOrderByDirection((l$id as String));
-    }
-    if (data.containsKey('startedBy')) {
-      final l$startedBy = data['startedBy'];
-      result$data['startedBy'] = l$startedBy == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$startedBy as String));
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = l$coupleId == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$coupleId as String));
-    }
-    if (data.containsKey('returnAt')) {
-      final l$returnAt = data['returnAt'];
-      result$data['returnAt'] = l$returnAt == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$returnAt as String));
-    }
-    if (data.containsKey('message')) {
-      final l$message = data['message'];
-      result$data['message'] = l$message == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$message as String));
-    }
-    if (data.containsKey('startedAt')) {
-      final l$startedAt = data['startedAt'];
-      result$data['startedAt'] = l$startedAt == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$startedAt as String));
-    }
-    if (data.containsKey('endedAt')) {
-      final l$endedAt = data['endedAt'];
-      result$data['endedAt'] = l$endedAt == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$endedAt as String));
-    }
-    return InputPausesOrderBy._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  EnumOrderByDirection? get id => (_$data['id'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get startedBy => (_$data['startedBy'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get coupleId => (_$data['coupleId'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get returnAt => (_$data['returnAt'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get message => (_$data['message'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get startedAt => (_$data['startedAt'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get endedAt => (_$data['endedAt'] as EnumOrderByDirection?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id == null ? null : toJsonEnumOrderByDirection(l$id);
-    }
-    if (_$data.containsKey('startedBy')) {
-      final l$startedBy = startedBy;
-      result$data['startedBy'] = l$startedBy == null
-          ? null
-          : toJsonEnumOrderByDirection(l$startedBy);
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId == null ? null : toJsonEnumOrderByDirection(l$coupleId);
-    }
-    if (_$data.containsKey('returnAt')) {
-      final l$returnAt = returnAt;
-      result$data['returnAt'] = l$returnAt == null ? null : toJsonEnumOrderByDirection(l$returnAt);
-    }
-    if (_$data.containsKey('message')) {
-      final l$message = message;
-      result$data['message'] = l$message == null ? null : toJsonEnumOrderByDirection(l$message);
-    }
-    if (_$data.containsKey('startedAt')) {
-      final l$startedAt = startedAt;
-      result$data['startedAt'] = l$startedAt == null
-          ? null
-          : toJsonEnumOrderByDirection(l$startedAt);
-    }
-    if (_$data.containsKey('endedAt')) {
-      final l$endedAt = endedAt;
-      result$data['endedAt'] = l$endedAt == null ? null : toJsonEnumOrderByDirection(l$endedAt);
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputPausesOrderBy || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$startedBy = startedBy;
-    final lOther$startedBy = other.startedBy;
-    if (_$data.containsKey('startedBy') != other._$data.containsKey('startedBy')) {
-      return false;
-    }
-    if (l$startedBy != lOther$startedBy) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$returnAt = returnAt;
-    final lOther$returnAt = other.returnAt;
-    if (_$data.containsKey('returnAt') != other._$data.containsKey('returnAt')) {
-      return false;
-    }
-    if (l$returnAt != lOther$returnAt) {
-      return false;
-    }
-    final l$message = message;
-    final lOther$message = other.message;
-    if (_$data.containsKey('message') != other._$data.containsKey('message')) {
-      return false;
-    }
-    if (l$message != lOther$message) {
-      return false;
-    }
-    final l$startedAt = startedAt;
-    final lOther$startedAt = other.startedAt;
-    if (_$data.containsKey('startedAt') != other._$data.containsKey('startedAt')) {
-      return false;
-    }
-    if (l$startedAt != lOther$startedAt) {
-      return false;
-    }
-    final l$endedAt = endedAt;
-    final lOther$endedAt = other.endedAt;
-    if (_$data.containsKey('endedAt') != other._$data.containsKey('endedAt')) {
-      return false;
-    }
-    if (l$endedAt != lOther$endedAt) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$startedBy = startedBy;
-    final l$coupleId = coupleId;
-    final l$returnAt = returnAt;
-    final l$message = message;
-    final l$startedAt = startedAt;
-    final l$endedAt = endedAt;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('startedBy') ? l$startedBy : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('returnAt') ? l$returnAt : const {},
-      _$data.containsKey('message') ? l$message : const {},
-      _$data.containsKey('startedAt') ? l$startedAt : const {},
-      _$data.containsKey('endedAt') ? l$endedAt : const {},
-    ]);
-  }
-}
-
-class InputPausesUpdateInput {
-  factory InputPausesUpdateInput({
-    String? id,
-    String? startedBy,
-    String? coupleId,
-    DateTime? returnAt,
-    String? message,
-    DateTime? startedAt,
-    DateTime? endedAt,
-  }) => InputPausesUpdateInput._({
-    if (id != null) r'id': id,
-    if (startedBy != null) r'startedBy': startedBy,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (returnAt != null) r'returnAt': returnAt,
-    if (message != null) r'message': message,
-    if (startedAt != null) r'startedAt': startedAt,
-    if (endedAt != null) r'endedAt': endedAt,
-  });
-
-  InputPausesUpdateInput._(this._$data);
-
-  factory InputPausesUpdateInput.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
-    if (data.containsKey('startedBy')) {
-      final l$startedBy = data['startedBy'];
-      result$data['startedBy'] = (l$startedBy as String?);
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = (l$coupleId as String?);
-    }
-    if (data.containsKey('returnAt')) {
-      final l$returnAt = data['returnAt'];
-      result$data['returnAt'] = l$returnAt == null ? null : DateTime.parse((l$returnAt as String));
-    }
-    if (data.containsKey('message')) {
-      final l$message = data['message'];
-      result$data['message'] = (l$message as String?);
-    }
-    if (data.containsKey('startedAt')) {
-      final l$startedAt = data['startedAt'];
-      result$data['startedAt'] = l$startedAt == null
-          ? null
-          : DateTime.parse((l$startedAt as String));
-    }
-    if (data.containsKey('endedAt')) {
-      final l$endedAt = data['endedAt'];
-      result$data['endedAt'] = l$endedAt == null ? null : DateTime.parse((l$endedAt as String));
-    }
-    return InputPausesUpdateInput._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String? get id => (_$data['id'] as String?);
-
-  String? get startedBy => (_$data['startedBy'] as String?);
-
-  String? get coupleId => (_$data['coupleId'] as String?);
-
-  DateTime? get returnAt => (_$data['returnAt'] as DateTime?);
-
-  String? get message => (_$data['message'] as String?);
-
-  DateTime? get startedAt => (_$data['startedAt'] as DateTime?);
-
-  DateTime? get endedAt => (_$data['endedAt'] as DateTime?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
-    if (_$data.containsKey('startedBy')) {
-      final l$startedBy = startedBy;
-      result$data['startedBy'] = l$startedBy;
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId;
-    }
-    if (_$data.containsKey('returnAt')) {
-      final l$returnAt = returnAt;
-      result$data['returnAt'] = l$returnAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$returnAt);
-    }
-    if (_$data.containsKey('message')) {
-      final l$message = message;
-      result$data['message'] = l$message;
-    }
-    if (_$data.containsKey('startedAt')) {
-      final l$startedAt = startedAt;
-      result$data['startedAt'] = l$startedAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$startedAt);
-    }
-    if (_$data.containsKey('endedAt')) {
-      final l$endedAt = endedAt;
-      result$data['endedAt'] = l$endedAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$endedAt);
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputPausesUpdateInput || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$startedBy = startedBy;
-    final lOther$startedBy = other.startedBy;
-    if (_$data.containsKey('startedBy') != other._$data.containsKey('startedBy')) {
-      return false;
-    }
-    if (l$startedBy != lOther$startedBy) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$returnAt = returnAt;
-    final lOther$returnAt = other.returnAt;
-    if (_$data.containsKey('returnAt') != other._$data.containsKey('returnAt')) {
-      return false;
-    }
-    if (l$returnAt != lOther$returnAt) {
-      return false;
-    }
-    final l$message = message;
-    final lOther$message = other.message;
-    if (_$data.containsKey('message') != other._$data.containsKey('message')) {
-      return false;
-    }
-    if (l$message != lOther$message) {
-      return false;
-    }
-    final l$startedAt = startedAt;
-    final lOther$startedAt = other.startedAt;
-    if (_$data.containsKey('startedAt') != other._$data.containsKey('startedAt')) {
-      return false;
-    }
-    if (l$startedAt != lOther$startedAt) {
-      return false;
-    }
-    final l$endedAt = endedAt;
-    final lOther$endedAt = other.endedAt;
-    if (_$data.containsKey('endedAt') != other._$data.containsKey('endedAt')) {
-      return false;
-    }
-    if (l$endedAt != lOther$endedAt) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$startedBy = startedBy;
-    final l$coupleId = coupleId;
-    final l$returnAt = returnAt;
-    final l$message = message;
-    final l$startedAt = startedAt;
-    final l$endedAt = endedAt;
-    return Object.hashAll([
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('startedBy') ? l$startedBy : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('returnAt') ? l$returnAt : const {},
-      _$data.containsKey('message') ? l$message : const {},
-      _$data.containsKey('startedAt') ? l$startedAt : const {},
-      _$data.containsKey('endedAt') ? l$endedAt : const {},
-    ]);
-  }
-}
-
 class InputPlanningAreasFilter {
   factory InputPlanningAreasFilter({
     InputUUIDFilter? id,
@@ -55430,13 +53180,11 @@ class InputProfileSettingsFilter {
     InputBooleanFilter? slipsDefaultForCard,
     InputBooleanFilter? widgetAllowPartnerNotes,
     InputBooleanFilter? widgetOnLockScreen,
-    InputBooleanFilter? widgetInDiscreet,
     InputBooleanFilter? widgetShowNames,
     InputBooleanFilter? spiceEnabled,
     InputBooleanFilter? lowStimulation,
     InputBooleanFilter? chatEnabled,
     InputBooleanFilter? chatStoreFacts,
-    InputHeavyDaySharingFilter? heavyDaySharing,
     InputIDFilter? nodeId,
     List<InputProfileSettingsFilter>? and,
     List<InputProfileSettingsFilter>? or,
@@ -55463,13 +53211,11 @@ class InputProfileSettingsFilter {
     if (slipsDefaultForCard != null) r'slipsDefaultForCard': slipsDefaultForCard,
     if (widgetAllowPartnerNotes != null) r'widgetAllowPartnerNotes': widgetAllowPartnerNotes,
     if (widgetOnLockScreen != null) r'widgetOnLockScreen': widgetOnLockScreen,
-    if (widgetInDiscreet != null) r'widgetInDiscreet': widgetInDiscreet,
     if (widgetShowNames != null) r'widgetShowNames': widgetShowNames,
     if (spiceEnabled != null) r'spiceEnabled': spiceEnabled,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
     if (chatEnabled != null) r'chatEnabled': chatEnabled,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
-    if (heavyDaySharing != null) r'heavyDaySharing': heavyDaySharing,
     if (nodeId != null) r'nodeId': nodeId,
     if (and != null) r'and': and,
     if (or != null) r'or': or,
@@ -55606,12 +53352,6 @@ class InputProfileSettingsFilter {
           ? null
           : InputBooleanFilter.fromJson((l$widgetOnLockScreen as Map<String, dynamic>));
     }
-    if (data.containsKey('widgetInDiscreet')) {
-      final l$widgetInDiscreet = data['widgetInDiscreet'];
-      result$data['widgetInDiscreet'] = l$widgetInDiscreet == null
-          ? null
-          : InputBooleanFilter.fromJson((l$widgetInDiscreet as Map<String, dynamic>));
-    }
     if (data.containsKey('widgetShowNames')) {
       final l$widgetShowNames = data['widgetShowNames'];
       result$data['widgetShowNames'] = l$widgetShowNames == null
@@ -55641,12 +53381,6 @@ class InputProfileSettingsFilter {
       result$data['chatStoreFacts'] = l$chatStoreFacts == null
           ? null
           : InputBooleanFilter.fromJson((l$chatStoreFacts as Map<String, dynamic>));
-    }
-    if (data.containsKey('heavyDaySharing')) {
-      final l$heavyDaySharing = data['heavyDaySharing'];
-      result$data['heavyDaySharing'] = l$heavyDaySharing == null
-          ? null
-          : InputHeavyDaySharingFilter.fromJson((l$heavyDaySharing as Map<String, dynamic>));
     }
     if (data.containsKey('nodeId')) {
       final l$nodeId = data['nodeId'];
@@ -55724,8 +53458,6 @@ class InputProfileSettingsFilter {
   InputBooleanFilter? get widgetOnLockScreen =>
       (_$data['widgetOnLockScreen'] as InputBooleanFilter?);
 
-  InputBooleanFilter? get widgetInDiscreet => (_$data['widgetInDiscreet'] as InputBooleanFilter?);
-
   InputBooleanFilter? get widgetShowNames => (_$data['widgetShowNames'] as InputBooleanFilter?);
 
   InputBooleanFilter? get spiceEnabled => (_$data['spiceEnabled'] as InputBooleanFilter?);
@@ -55735,9 +53467,6 @@ class InputProfileSettingsFilter {
   InputBooleanFilter? get chatEnabled => (_$data['chatEnabled'] as InputBooleanFilter?);
 
   InputBooleanFilter? get chatStoreFacts => (_$data['chatStoreFacts'] as InputBooleanFilter?);
-
-  InputHeavyDaySharingFilter? get heavyDaySharing =>
-      (_$data['heavyDaySharing'] as InputHeavyDaySharingFilter?);
 
   InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
 
@@ -55833,10 +53562,6 @@ class InputProfileSettingsFilter {
       final l$widgetOnLockScreen = widgetOnLockScreen;
       result$data['widgetOnLockScreen'] = l$widgetOnLockScreen?.toJson();
     }
-    if (_$data.containsKey('widgetInDiscreet')) {
-      final l$widgetInDiscreet = widgetInDiscreet;
-      result$data['widgetInDiscreet'] = l$widgetInDiscreet?.toJson();
-    }
     if (_$data.containsKey('widgetShowNames')) {
       final l$widgetShowNames = widgetShowNames;
       result$data['widgetShowNames'] = l$widgetShowNames?.toJson();
@@ -55856,10 +53581,6 @@ class InputProfileSettingsFilter {
     if (_$data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = chatStoreFacts;
       result$data['chatStoreFacts'] = l$chatStoreFacts?.toJson();
-    }
-    if (_$data.containsKey('heavyDaySharing')) {
-      final l$heavyDaySharing = heavyDaySharing;
-      result$data['heavyDaySharing'] = l$heavyDaySharing?.toJson();
     }
     if (_$data.containsKey('nodeId')) {
       final l$nodeId = nodeId;
@@ -56060,14 +53781,6 @@ class InputProfileSettingsFilter {
     if (l$widgetOnLockScreen != lOther$widgetOnLockScreen) {
       return false;
     }
-    final l$widgetInDiscreet = widgetInDiscreet;
-    final lOther$widgetInDiscreet = other.widgetInDiscreet;
-    if (_$data.containsKey('widgetInDiscreet') != other._$data.containsKey('widgetInDiscreet')) {
-      return false;
-    }
-    if (l$widgetInDiscreet != lOther$widgetInDiscreet) {
-      return false;
-    }
     final l$widgetShowNames = widgetShowNames;
     final lOther$widgetShowNames = other.widgetShowNames;
     if (_$data.containsKey('widgetShowNames') != other._$data.containsKey('widgetShowNames')) {
@@ -56106,14 +53819,6 @@ class InputProfileSettingsFilter {
       return false;
     }
     if (l$chatStoreFacts != lOther$chatStoreFacts) {
-      return false;
-    }
-    final l$heavyDaySharing = heavyDaySharing;
-    final lOther$heavyDaySharing = other.heavyDaySharing;
-    if (_$data.containsKey('heavyDaySharing') != other._$data.containsKey('heavyDaySharing')) {
-      return false;
-    }
-    if (l$heavyDaySharing != lOther$heavyDaySharing) {
       return false;
     }
     final l$nodeId = nodeId;
@@ -56196,13 +53901,11 @@ class InputProfileSettingsFilter {
     final l$slipsDefaultForCard = slipsDefaultForCard;
     final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
     final l$widgetOnLockScreen = widgetOnLockScreen;
-    final l$widgetInDiscreet = widgetInDiscreet;
     final l$widgetShowNames = widgetShowNames;
     final l$spiceEnabled = spiceEnabled;
     final l$lowStimulation = lowStimulation;
     final l$chatEnabled = chatEnabled;
     final l$chatStoreFacts = chatStoreFacts;
-    final l$heavyDaySharing = heavyDaySharing;
     final l$nodeId = nodeId;
     final l$and = and;
     final l$or = or;
@@ -56229,13 +53932,11 @@ class InputProfileSettingsFilter {
       _$data.containsKey('slipsDefaultForCard') ? l$slipsDefaultForCard : const {},
       _$data.containsKey('widgetAllowPartnerNotes') ? l$widgetAllowPartnerNotes : const {},
       _$data.containsKey('widgetOnLockScreen') ? l$widgetOnLockScreen : const {},
-      _$data.containsKey('widgetInDiscreet') ? l$widgetInDiscreet : const {},
       _$data.containsKey('widgetShowNames') ? l$widgetShowNames : const {},
       _$data.containsKey('spiceEnabled') ? l$spiceEnabled : const {},
       _$data.containsKey('lowStimulation') ? l$lowStimulation : const {},
       _$data.containsKey('chatEnabled') ? l$chatEnabled : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
-      _$data.containsKey('heavyDaySharing') ? l$heavyDaySharing : const {},
       _$data.containsKey('nodeId') ? l$nodeId : const {},
       _$data.containsKey('and')
           ? l$and == null
@@ -56275,13 +53976,11 @@ class InputProfileSettingsInsertInput {
     bool? slipsDefaultForCard,
     bool? widgetAllowPartnerNotes,
     bool? widgetOnLockScreen,
-    bool? widgetInDiscreet,
     bool? widgetShowNames,
     bool? spiceEnabled,
     bool? lowStimulation,
     bool? chatEnabled,
     bool? chatStoreFacts,
-    EnumHeavyDaySharing? heavyDaySharing,
   }) => InputProfileSettingsInsertInput._({
     if (profileId != null) r'profileId': profileId,
     if (theme != null) r'theme': theme,
@@ -56304,13 +54003,11 @@ class InputProfileSettingsInsertInput {
     if (slipsDefaultForCard != null) r'slipsDefaultForCard': slipsDefaultForCard,
     if (widgetAllowPartnerNotes != null) r'widgetAllowPartnerNotes': widgetAllowPartnerNotes,
     if (widgetOnLockScreen != null) r'widgetOnLockScreen': widgetOnLockScreen,
-    if (widgetInDiscreet != null) r'widgetInDiscreet': widgetInDiscreet,
     if (widgetShowNames != null) r'widgetShowNames': widgetShowNames,
     if (spiceEnabled != null) r'spiceEnabled': spiceEnabled,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
     if (chatEnabled != null) r'chatEnabled': chatEnabled,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
-    if (heavyDaySharing != null) r'heavyDaySharing': heavyDaySharing,
   });
 
   InputProfileSettingsInsertInput._(this._$data);
@@ -56421,10 +54118,6 @@ class InputProfileSettingsInsertInput {
       final l$widgetOnLockScreen = data['widgetOnLockScreen'];
       result$data['widgetOnLockScreen'] = (l$widgetOnLockScreen as bool?);
     }
-    if (data.containsKey('widgetInDiscreet')) {
-      final l$widgetInDiscreet = data['widgetInDiscreet'];
-      result$data['widgetInDiscreet'] = (l$widgetInDiscreet as bool?);
-    }
     if (data.containsKey('widgetShowNames')) {
       final l$widgetShowNames = data['widgetShowNames'];
       result$data['widgetShowNames'] = (l$widgetShowNames as bool?);
@@ -56444,12 +54137,6 @@ class InputProfileSettingsInsertInput {
     if (data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = data['chatStoreFacts'];
       result$data['chatStoreFacts'] = (l$chatStoreFacts as bool?);
-    }
-    if (data.containsKey('heavyDaySharing')) {
-      final l$heavyDaySharing = data['heavyDaySharing'];
-      result$data['heavyDaySharing'] = l$heavyDaySharing == null
-          ? null
-          : fromJsonEnumHeavyDaySharing((l$heavyDaySharing as String));
     }
     return InputProfileSettingsInsertInput._(result$data);
   }
@@ -56499,8 +54186,6 @@ class InputProfileSettingsInsertInput {
 
   bool? get widgetOnLockScreen => (_$data['widgetOnLockScreen'] as bool?);
 
-  bool? get widgetInDiscreet => (_$data['widgetInDiscreet'] as bool?);
-
   bool? get widgetShowNames => (_$data['widgetShowNames'] as bool?);
 
   bool? get spiceEnabled => (_$data['spiceEnabled'] as bool?);
@@ -56510,8 +54195,6 @@ class InputProfileSettingsInsertInput {
   bool? get chatEnabled => (_$data['chatEnabled'] as bool?);
 
   bool? get chatStoreFacts => (_$data['chatStoreFacts'] as bool?);
-
-  EnumHeavyDaySharing? get heavyDaySharing => (_$data['heavyDaySharing'] as EnumHeavyDaySharing?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -56613,10 +54296,6 @@ class InputProfileSettingsInsertInput {
       final l$widgetOnLockScreen = widgetOnLockScreen;
       result$data['widgetOnLockScreen'] = l$widgetOnLockScreen;
     }
-    if (_$data.containsKey('widgetInDiscreet')) {
-      final l$widgetInDiscreet = widgetInDiscreet;
-      result$data['widgetInDiscreet'] = l$widgetInDiscreet;
-    }
     if (_$data.containsKey('widgetShowNames')) {
       final l$widgetShowNames = widgetShowNames;
       result$data['widgetShowNames'] = l$widgetShowNames;
@@ -56636,12 +54315,6 @@ class InputProfileSettingsInsertInput {
     if (_$data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = chatStoreFacts;
       result$data['chatStoreFacts'] = l$chatStoreFacts;
-    }
-    if (_$data.containsKey('heavyDaySharing')) {
-      final l$heavyDaySharing = heavyDaySharing;
-      result$data['heavyDaySharing'] = l$heavyDaySharing == null
-          ? null
-          : toJsonEnumHeavyDaySharing(l$heavyDaySharing);
     }
     return result$data;
   }
@@ -56848,14 +54521,6 @@ class InputProfileSettingsInsertInput {
     if (l$widgetOnLockScreen != lOther$widgetOnLockScreen) {
       return false;
     }
-    final l$widgetInDiscreet = widgetInDiscreet;
-    final lOther$widgetInDiscreet = other.widgetInDiscreet;
-    if (_$data.containsKey('widgetInDiscreet') != other._$data.containsKey('widgetInDiscreet')) {
-      return false;
-    }
-    if (l$widgetInDiscreet != lOther$widgetInDiscreet) {
-      return false;
-    }
     final l$widgetShowNames = widgetShowNames;
     final lOther$widgetShowNames = other.widgetShowNames;
     if (_$data.containsKey('widgetShowNames') != other._$data.containsKey('widgetShowNames')) {
@@ -56896,14 +54561,6 @@ class InputProfileSettingsInsertInput {
     if (l$chatStoreFacts != lOther$chatStoreFacts) {
       return false;
     }
-    final l$heavyDaySharing = heavyDaySharing;
-    final lOther$heavyDaySharing = other.heavyDaySharing;
-    if (_$data.containsKey('heavyDaySharing') != other._$data.containsKey('heavyDaySharing')) {
-      return false;
-    }
-    if (l$heavyDaySharing != lOther$heavyDaySharing) {
-      return false;
-    }
     return true;
   }
 
@@ -56930,13 +54587,11 @@ class InputProfileSettingsInsertInput {
     final l$slipsDefaultForCard = slipsDefaultForCard;
     final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
     final l$widgetOnLockScreen = widgetOnLockScreen;
-    final l$widgetInDiscreet = widgetInDiscreet;
     final l$widgetShowNames = widgetShowNames;
     final l$spiceEnabled = spiceEnabled;
     final l$lowStimulation = lowStimulation;
     final l$chatEnabled = chatEnabled;
     final l$chatStoreFacts = chatStoreFacts;
-    final l$heavyDaySharing = heavyDaySharing;
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('theme') ? l$theme : const {},
@@ -56967,13 +54622,11 @@ class InputProfileSettingsInsertInput {
       _$data.containsKey('slipsDefaultForCard') ? l$slipsDefaultForCard : const {},
       _$data.containsKey('widgetAllowPartnerNotes') ? l$widgetAllowPartnerNotes : const {},
       _$data.containsKey('widgetOnLockScreen') ? l$widgetOnLockScreen : const {},
-      _$data.containsKey('widgetInDiscreet') ? l$widgetInDiscreet : const {},
       _$data.containsKey('widgetShowNames') ? l$widgetShowNames : const {},
       _$data.containsKey('spiceEnabled') ? l$spiceEnabled : const {},
       _$data.containsKey('lowStimulation') ? l$lowStimulation : const {},
       _$data.containsKey('chatEnabled') ? l$chatEnabled : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
-      _$data.containsKey('heavyDaySharing') ? l$heavyDaySharing : const {},
     ]);
   }
 }
@@ -56999,13 +54652,11 @@ class InputProfileSettingsOrderBy {
     EnumOrderByDirection? slipsDefaultForCard,
     EnumOrderByDirection? widgetAllowPartnerNotes,
     EnumOrderByDirection? widgetOnLockScreen,
-    EnumOrderByDirection? widgetInDiscreet,
     EnumOrderByDirection? widgetShowNames,
     EnumOrderByDirection? spiceEnabled,
     EnumOrderByDirection? lowStimulation,
     EnumOrderByDirection? chatEnabled,
     EnumOrderByDirection? chatStoreFacts,
-    EnumOrderByDirection? heavyDaySharing,
   }) => InputProfileSettingsOrderBy._({
     if (profileId != null) r'profileId': profileId,
     if (theme != null) r'theme': theme,
@@ -57026,13 +54677,11 @@ class InputProfileSettingsOrderBy {
     if (slipsDefaultForCard != null) r'slipsDefaultForCard': slipsDefaultForCard,
     if (widgetAllowPartnerNotes != null) r'widgetAllowPartnerNotes': widgetAllowPartnerNotes,
     if (widgetOnLockScreen != null) r'widgetOnLockScreen': widgetOnLockScreen,
-    if (widgetInDiscreet != null) r'widgetInDiscreet': widgetInDiscreet,
     if (widgetShowNames != null) r'widgetShowNames': widgetShowNames,
     if (spiceEnabled != null) r'spiceEnabled': spiceEnabled,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
     if (chatEnabled != null) r'chatEnabled': chatEnabled,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
-    if (heavyDaySharing != null) r'heavyDaySharing': heavyDaySharing,
   });
 
   InputProfileSettingsOrderBy._(this._$data);
@@ -57153,12 +54802,6 @@ class InputProfileSettingsOrderBy {
           ? null
           : fromJsonEnumOrderByDirection((l$widgetOnLockScreen as String));
     }
-    if (data.containsKey('widgetInDiscreet')) {
-      final l$widgetInDiscreet = data['widgetInDiscreet'];
-      result$data['widgetInDiscreet'] = l$widgetInDiscreet == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$widgetInDiscreet as String));
-    }
     if (data.containsKey('widgetShowNames')) {
       final l$widgetShowNames = data['widgetShowNames'];
       result$data['widgetShowNames'] = l$widgetShowNames == null
@@ -57188,12 +54831,6 @@ class InputProfileSettingsOrderBy {
       result$data['chatStoreFacts'] = l$chatStoreFacts == null
           ? null
           : fromJsonEnumOrderByDirection((l$chatStoreFacts as String));
-    }
-    if (data.containsKey('heavyDaySharing')) {
-      final l$heavyDaySharing = data['heavyDaySharing'];
-      result$data['heavyDaySharing'] = l$heavyDaySharing == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$heavyDaySharing as String));
     }
     return InputProfileSettingsOrderBy._(result$data);
   }
@@ -57243,9 +54880,6 @@ class InputProfileSettingsOrderBy {
   EnumOrderByDirection? get widgetOnLockScreen =>
       (_$data['widgetOnLockScreen'] as EnumOrderByDirection?);
 
-  EnumOrderByDirection? get widgetInDiscreet =>
-      (_$data['widgetInDiscreet'] as EnumOrderByDirection?);
-
   EnumOrderByDirection? get widgetShowNames => (_$data['widgetShowNames'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get spiceEnabled => (_$data['spiceEnabled'] as EnumOrderByDirection?);
@@ -57255,8 +54889,6 @@ class InputProfileSettingsOrderBy {
   EnumOrderByDirection? get chatEnabled => (_$data['chatEnabled'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get chatStoreFacts => (_$data['chatStoreFacts'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get heavyDaySharing => (_$data['heavyDaySharing'] as EnumOrderByDirection?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -57364,12 +54996,6 @@ class InputProfileSettingsOrderBy {
           ? null
           : toJsonEnumOrderByDirection(l$widgetOnLockScreen);
     }
-    if (_$data.containsKey('widgetInDiscreet')) {
-      final l$widgetInDiscreet = widgetInDiscreet;
-      result$data['widgetInDiscreet'] = l$widgetInDiscreet == null
-          ? null
-          : toJsonEnumOrderByDirection(l$widgetInDiscreet);
-    }
     if (_$data.containsKey('widgetShowNames')) {
       final l$widgetShowNames = widgetShowNames;
       result$data['widgetShowNames'] = l$widgetShowNames == null
@@ -57399,12 +55025,6 @@ class InputProfileSettingsOrderBy {
       result$data['chatStoreFacts'] = l$chatStoreFacts == null
           ? null
           : toJsonEnumOrderByDirection(l$chatStoreFacts);
-    }
-    if (_$data.containsKey('heavyDaySharing')) {
-      final l$heavyDaySharing = heavyDaySharing;
-      result$data['heavyDaySharing'] = l$heavyDaySharing == null
-          ? null
-          : toJsonEnumOrderByDirection(l$heavyDaySharing);
     }
     return result$data;
   }
@@ -57573,14 +55193,6 @@ class InputProfileSettingsOrderBy {
     if (l$widgetOnLockScreen != lOther$widgetOnLockScreen) {
       return false;
     }
-    final l$widgetInDiscreet = widgetInDiscreet;
-    final lOther$widgetInDiscreet = other.widgetInDiscreet;
-    if (_$data.containsKey('widgetInDiscreet') != other._$data.containsKey('widgetInDiscreet')) {
-      return false;
-    }
-    if (l$widgetInDiscreet != lOther$widgetInDiscreet) {
-      return false;
-    }
     final l$widgetShowNames = widgetShowNames;
     final lOther$widgetShowNames = other.widgetShowNames;
     if (_$data.containsKey('widgetShowNames') != other._$data.containsKey('widgetShowNames')) {
@@ -57621,14 +55233,6 @@ class InputProfileSettingsOrderBy {
     if (l$chatStoreFacts != lOther$chatStoreFacts) {
       return false;
     }
-    final l$heavyDaySharing = heavyDaySharing;
-    final lOther$heavyDaySharing = other.heavyDaySharing;
-    if (_$data.containsKey('heavyDaySharing') != other._$data.containsKey('heavyDaySharing')) {
-      return false;
-    }
-    if (l$heavyDaySharing != lOther$heavyDaySharing) {
-      return false;
-    }
     return true;
   }
 
@@ -57653,13 +55257,11 @@ class InputProfileSettingsOrderBy {
     final l$slipsDefaultForCard = slipsDefaultForCard;
     final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
     final l$widgetOnLockScreen = widgetOnLockScreen;
-    final l$widgetInDiscreet = widgetInDiscreet;
     final l$widgetShowNames = widgetShowNames;
     final l$spiceEnabled = spiceEnabled;
     final l$lowStimulation = lowStimulation;
     final l$chatEnabled = chatEnabled;
     final l$chatStoreFacts = chatStoreFacts;
-    final l$heavyDaySharing = heavyDaySharing;
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('theme') ? l$theme : const {},
@@ -57680,13 +55282,11 @@ class InputProfileSettingsOrderBy {
       _$data.containsKey('slipsDefaultForCard') ? l$slipsDefaultForCard : const {},
       _$data.containsKey('widgetAllowPartnerNotes') ? l$widgetAllowPartnerNotes : const {},
       _$data.containsKey('widgetOnLockScreen') ? l$widgetOnLockScreen : const {},
-      _$data.containsKey('widgetInDiscreet') ? l$widgetInDiscreet : const {},
       _$data.containsKey('widgetShowNames') ? l$widgetShowNames : const {},
       _$data.containsKey('spiceEnabled') ? l$spiceEnabled : const {},
       _$data.containsKey('lowStimulation') ? l$lowStimulation : const {},
       _$data.containsKey('chatEnabled') ? l$chatEnabled : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
-      _$data.containsKey('heavyDaySharing') ? l$heavyDaySharing : const {},
     ]);
   }
 }
@@ -57714,13 +55314,11 @@ class InputProfileSettingsUpdateInput {
     bool? slipsDefaultForCard,
     bool? widgetAllowPartnerNotes,
     bool? widgetOnLockScreen,
-    bool? widgetInDiscreet,
     bool? widgetShowNames,
     bool? spiceEnabled,
     bool? lowStimulation,
     bool? chatEnabled,
     bool? chatStoreFacts,
-    EnumHeavyDaySharing? heavyDaySharing,
   }) => InputProfileSettingsUpdateInput._({
     if (profileId != null) r'profileId': profileId,
     if (theme != null) r'theme': theme,
@@ -57743,13 +55341,11 @@ class InputProfileSettingsUpdateInput {
     if (slipsDefaultForCard != null) r'slipsDefaultForCard': slipsDefaultForCard,
     if (widgetAllowPartnerNotes != null) r'widgetAllowPartnerNotes': widgetAllowPartnerNotes,
     if (widgetOnLockScreen != null) r'widgetOnLockScreen': widgetOnLockScreen,
-    if (widgetInDiscreet != null) r'widgetInDiscreet': widgetInDiscreet,
     if (widgetShowNames != null) r'widgetShowNames': widgetShowNames,
     if (spiceEnabled != null) r'spiceEnabled': spiceEnabled,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
     if (chatEnabled != null) r'chatEnabled': chatEnabled,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
-    if (heavyDaySharing != null) r'heavyDaySharing': heavyDaySharing,
   });
 
   InputProfileSettingsUpdateInput._(this._$data);
@@ -57860,10 +55456,6 @@ class InputProfileSettingsUpdateInput {
       final l$widgetOnLockScreen = data['widgetOnLockScreen'];
       result$data['widgetOnLockScreen'] = (l$widgetOnLockScreen as bool?);
     }
-    if (data.containsKey('widgetInDiscreet')) {
-      final l$widgetInDiscreet = data['widgetInDiscreet'];
-      result$data['widgetInDiscreet'] = (l$widgetInDiscreet as bool?);
-    }
     if (data.containsKey('widgetShowNames')) {
       final l$widgetShowNames = data['widgetShowNames'];
       result$data['widgetShowNames'] = (l$widgetShowNames as bool?);
@@ -57883,12 +55475,6 @@ class InputProfileSettingsUpdateInput {
     if (data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = data['chatStoreFacts'];
       result$data['chatStoreFacts'] = (l$chatStoreFacts as bool?);
-    }
-    if (data.containsKey('heavyDaySharing')) {
-      final l$heavyDaySharing = data['heavyDaySharing'];
-      result$data['heavyDaySharing'] = l$heavyDaySharing == null
-          ? null
-          : fromJsonEnumHeavyDaySharing((l$heavyDaySharing as String));
     }
     return InputProfileSettingsUpdateInput._(result$data);
   }
@@ -57938,8 +55524,6 @@ class InputProfileSettingsUpdateInput {
 
   bool? get widgetOnLockScreen => (_$data['widgetOnLockScreen'] as bool?);
 
-  bool? get widgetInDiscreet => (_$data['widgetInDiscreet'] as bool?);
-
   bool? get widgetShowNames => (_$data['widgetShowNames'] as bool?);
 
   bool? get spiceEnabled => (_$data['spiceEnabled'] as bool?);
@@ -57949,8 +55533,6 @@ class InputProfileSettingsUpdateInput {
   bool? get chatEnabled => (_$data['chatEnabled'] as bool?);
 
   bool? get chatStoreFacts => (_$data['chatStoreFacts'] as bool?);
-
-  EnumHeavyDaySharing? get heavyDaySharing => (_$data['heavyDaySharing'] as EnumHeavyDaySharing?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -58052,10 +55634,6 @@ class InputProfileSettingsUpdateInput {
       final l$widgetOnLockScreen = widgetOnLockScreen;
       result$data['widgetOnLockScreen'] = l$widgetOnLockScreen;
     }
-    if (_$data.containsKey('widgetInDiscreet')) {
-      final l$widgetInDiscreet = widgetInDiscreet;
-      result$data['widgetInDiscreet'] = l$widgetInDiscreet;
-    }
     if (_$data.containsKey('widgetShowNames')) {
       final l$widgetShowNames = widgetShowNames;
       result$data['widgetShowNames'] = l$widgetShowNames;
@@ -58075,12 +55653,6 @@ class InputProfileSettingsUpdateInput {
     if (_$data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = chatStoreFacts;
       result$data['chatStoreFacts'] = l$chatStoreFacts;
-    }
-    if (_$data.containsKey('heavyDaySharing')) {
-      final l$heavyDaySharing = heavyDaySharing;
-      result$data['heavyDaySharing'] = l$heavyDaySharing == null
-          ? null
-          : toJsonEnumHeavyDaySharing(l$heavyDaySharing);
     }
     return result$data;
   }
@@ -58287,14 +55859,6 @@ class InputProfileSettingsUpdateInput {
     if (l$widgetOnLockScreen != lOther$widgetOnLockScreen) {
       return false;
     }
-    final l$widgetInDiscreet = widgetInDiscreet;
-    final lOther$widgetInDiscreet = other.widgetInDiscreet;
-    if (_$data.containsKey('widgetInDiscreet') != other._$data.containsKey('widgetInDiscreet')) {
-      return false;
-    }
-    if (l$widgetInDiscreet != lOther$widgetInDiscreet) {
-      return false;
-    }
     final l$widgetShowNames = widgetShowNames;
     final lOther$widgetShowNames = other.widgetShowNames;
     if (_$data.containsKey('widgetShowNames') != other._$data.containsKey('widgetShowNames')) {
@@ -58335,14 +55899,6 @@ class InputProfileSettingsUpdateInput {
     if (l$chatStoreFacts != lOther$chatStoreFacts) {
       return false;
     }
-    final l$heavyDaySharing = heavyDaySharing;
-    final lOther$heavyDaySharing = other.heavyDaySharing;
-    if (_$data.containsKey('heavyDaySharing') != other._$data.containsKey('heavyDaySharing')) {
-      return false;
-    }
-    if (l$heavyDaySharing != lOther$heavyDaySharing) {
-      return false;
-    }
     return true;
   }
 
@@ -58369,13 +55925,11 @@ class InputProfileSettingsUpdateInput {
     final l$slipsDefaultForCard = slipsDefaultForCard;
     final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
     final l$widgetOnLockScreen = widgetOnLockScreen;
-    final l$widgetInDiscreet = widgetInDiscreet;
     final l$widgetShowNames = widgetShowNames;
     final l$spiceEnabled = spiceEnabled;
     final l$lowStimulation = lowStimulation;
     final l$chatEnabled = chatEnabled;
     final l$chatStoreFacts = chatStoreFacts;
-    final l$heavyDaySharing = heavyDaySharing;
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
       _$data.containsKey('theme') ? l$theme : const {},
@@ -58406,13 +55960,11 @@ class InputProfileSettingsUpdateInput {
       _$data.containsKey('slipsDefaultForCard') ? l$slipsDefaultForCard : const {},
       _$data.containsKey('widgetAllowPartnerNotes') ? l$widgetAllowPartnerNotes : const {},
       _$data.containsKey('widgetOnLockScreen') ? l$widgetOnLockScreen : const {},
-      _$data.containsKey('widgetInDiscreet') ? l$widgetInDiscreet : const {},
       _$data.containsKey('widgetShowNames') ? l$widgetShowNames : const {},
       _$data.containsKey('spiceEnabled') ? l$spiceEnabled : const {},
       _$data.containsKey('lowStimulation') ? l$lowStimulation : const {},
       _$data.containsKey('chatEnabled') ? l$chatEnabled : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
-      _$data.containsKey('heavyDaySharing') ? l$heavyDaySharing : const {},
     ]);
   }
 }
@@ -77339,10 +74891,6 @@ class InputTodayStateFilter {
     InputBooleanFilter? hasPendingInvite,
     InputStringFilter? suggestionKey,
     InputDateFilter? togetherSince,
-    InputUUIDFilter? pauseId,
-    InputBooleanFilter? pauseIsMine,
-    InputDatetimeFilter? pauseReturnAt,
-    InputStringFilter? pauseMessage,
     InputStringFilter? temperature,
     InputUUIDFilter? nextDateId,
     InputStringFilter? nextDateTitle,
@@ -77369,10 +74917,6 @@ class InputTodayStateFilter {
     if (hasPendingInvite != null) r'hasPendingInvite': hasPendingInvite,
     if (suggestionKey != null) r'suggestionKey': suggestionKey,
     if (togetherSince != null) r'togetherSince': togetherSince,
-    if (pauseId != null) r'pauseId': pauseId,
-    if (pauseIsMine != null) r'pauseIsMine': pauseIsMine,
-    if (pauseReturnAt != null) r'pauseReturnAt': pauseReturnAt,
-    if (pauseMessage != null) r'pauseMessage': pauseMessage,
     if (temperature != null) r'temperature': temperature,
     if (nextDateId != null) r'nextDateId': nextDateId,
     if (nextDateTitle != null) r'nextDateTitle': nextDateTitle,
@@ -77463,30 +75007,6 @@ class InputTodayStateFilter {
       result$data['togetherSince'] = l$togetherSince == null
           ? null
           : InputDateFilter.fromJson((l$togetherSince as Map<String, dynamic>));
-    }
-    if (data.containsKey('pauseId')) {
-      final l$pauseId = data['pauseId'];
-      result$data['pauseId'] = l$pauseId == null
-          ? null
-          : InputUUIDFilter.fromJson((l$pauseId as Map<String, dynamic>));
-    }
-    if (data.containsKey('pauseIsMine')) {
-      final l$pauseIsMine = data['pauseIsMine'];
-      result$data['pauseIsMine'] = l$pauseIsMine == null
-          ? null
-          : InputBooleanFilter.fromJson((l$pauseIsMine as Map<String, dynamic>));
-    }
-    if (data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = data['pauseReturnAt'];
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : InputDatetimeFilter.fromJson((l$pauseReturnAt as Map<String, dynamic>));
-    }
-    if (data.containsKey('pauseMessage')) {
-      final l$pauseMessage = data['pauseMessage'];
-      result$data['pauseMessage'] = l$pauseMessage == null
-          ? null
-          : InputStringFilter.fromJson((l$pauseMessage as Map<String, dynamic>));
     }
     if (data.containsKey('temperature')) {
       final l$temperature = data['temperature'];
@@ -77595,14 +75115,6 @@ class InputTodayStateFilter {
 
   InputDateFilter? get togetherSince => (_$data['togetherSince'] as InputDateFilter?);
 
-  InputUUIDFilter? get pauseId => (_$data['pauseId'] as InputUUIDFilter?);
-
-  InputBooleanFilter? get pauseIsMine => (_$data['pauseIsMine'] as InputBooleanFilter?);
-
-  InputDatetimeFilter? get pauseReturnAt => (_$data['pauseReturnAt'] as InputDatetimeFilter?);
-
-  InputStringFilter? get pauseMessage => (_$data['pauseMessage'] as InputStringFilter?);
-
   InputStringFilter? get temperature => (_$data['temperature'] as InputStringFilter?);
 
   InputUUIDFilter? get nextDateId => (_$data['nextDateId'] as InputUUIDFilter?);
@@ -77678,22 +75190,6 @@ class InputTodayStateFilter {
     if (_$data.containsKey('togetherSince')) {
       final l$togetherSince = togetherSince;
       result$data['togetherSince'] = l$togetherSince?.toJson();
-    }
-    if (_$data.containsKey('pauseId')) {
-      final l$pauseId = pauseId;
-      result$data['pauseId'] = l$pauseId?.toJson();
-    }
-    if (_$data.containsKey('pauseIsMine')) {
-      final l$pauseIsMine = pauseIsMine;
-      result$data['pauseIsMine'] = l$pauseIsMine?.toJson();
-    }
-    if (_$data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = pauseReturnAt;
-      result$data['pauseReturnAt'] = l$pauseReturnAt?.toJson();
-    }
-    if (_$data.containsKey('pauseMessage')) {
-      final l$pauseMessage = pauseMessage;
-      result$data['pauseMessage'] = l$pauseMessage?.toJson();
     }
     if (_$data.containsKey('temperature')) {
       final l$temperature = temperature;
@@ -77854,38 +75350,6 @@ class InputTodayStateFilter {
     if (l$togetherSince != lOther$togetherSince) {
       return false;
     }
-    final l$pauseId = pauseId;
-    final lOther$pauseId = other.pauseId;
-    if (_$data.containsKey('pauseId') != other._$data.containsKey('pauseId')) {
-      return false;
-    }
-    if (l$pauseId != lOther$pauseId) {
-      return false;
-    }
-    final l$pauseIsMine = pauseIsMine;
-    final lOther$pauseIsMine = other.pauseIsMine;
-    if (_$data.containsKey('pauseIsMine') != other._$data.containsKey('pauseIsMine')) {
-      return false;
-    }
-    if (l$pauseIsMine != lOther$pauseIsMine) {
-      return false;
-    }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (_$data.containsKey('pauseReturnAt') != other._$data.containsKey('pauseReturnAt')) {
-      return false;
-    }
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
-      return false;
-    }
-    final l$pauseMessage = pauseMessage;
-    final lOther$pauseMessage = other.pauseMessage;
-    if (_$data.containsKey('pauseMessage') != other._$data.containsKey('pauseMessage')) {
-      return false;
-    }
-    if (l$pauseMessage != lOther$pauseMessage) {
-      return false;
-    }
     final l$temperature = temperature;
     final lOther$temperature = other.temperature;
     if (_$data.containsKey('temperature') != other._$data.containsKey('temperature')) {
@@ -78030,10 +75494,6 @@ class InputTodayStateFilter {
     final l$hasPendingInvite = hasPendingInvite;
     final l$suggestionKey = suggestionKey;
     final l$togetherSince = togetherSince;
-    final l$pauseId = pauseId;
-    final l$pauseIsMine = pauseIsMine;
-    final l$pauseReturnAt = pauseReturnAt;
-    final l$pauseMessage = pauseMessage;
     final l$temperature = temperature;
     final l$nextDateId = nextDateId;
     final l$nextDateTitle = nextDateTitle;
@@ -78060,10 +75520,6 @@ class InputTodayStateFilter {
       _$data.containsKey('hasPendingInvite') ? l$hasPendingInvite : const {},
       _$data.containsKey('suggestionKey') ? l$suggestionKey : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
-      _$data.containsKey('pauseId') ? l$pauseId : const {},
-      _$data.containsKey('pauseIsMine') ? l$pauseIsMine : const {},
-      _$data.containsKey('pauseReturnAt') ? l$pauseReturnAt : const {},
-      _$data.containsKey('pauseMessage') ? l$pauseMessage : const {},
       _$data.containsKey('temperature') ? l$temperature : const {},
       _$data.containsKey('nextDateId') ? l$nextDateId : const {},
       _$data.containsKey('nextDateTitle') ? l$nextDateTitle : const {},
@@ -78103,10 +75559,6 @@ class InputTodayStateInsertInput {
     bool? hasPendingInvite,
     String? suggestionKey,
     DateTime? togetherSince,
-    String? pauseId,
-    bool? pauseIsMine,
-    DateTime? pauseReturnAt,
-    String? pauseMessage,
     String? temperature,
     String? nextDateId,
     String? nextDateTitle,
@@ -78129,10 +75581,6 @@ class InputTodayStateInsertInput {
     if (hasPendingInvite != null) r'hasPendingInvite': hasPendingInvite,
     if (suggestionKey != null) r'suggestionKey': suggestionKey,
     if (togetherSince != null) r'togetherSince': togetherSince,
-    if (pauseId != null) r'pauseId': pauseId,
-    if (pauseIsMine != null) r'pauseIsMine': pauseIsMine,
-    if (pauseReturnAt != null) r'pauseReturnAt': pauseReturnAt,
-    if (pauseMessage != null) r'pauseMessage': pauseMessage,
     if (temperature != null) r'temperature': temperature,
     if (nextDateId != null) r'nextDateId': nextDateId,
     if (nextDateTitle != null) r'nextDateTitle': nextDateTitle,
@@ -78199,24 +75647,6 @@ class InputTodayStateInsertInput {
       result$data['togetherSince'] = l$togetherSince == null
           ? null
           : DateTime.parse((l$togetherSince as String));
-    }
-    if (data.containsKey('pauseId')) {
-      final l$pauseId = data['pauseId'];
-      result$data['pauseId'] = (l$pauseId as String?);
-    }
-    if (data.containsKey('pauseIsMine')) {
-      final l$pauseIsMine = data['pauseIsMine'];
-      result$data['pauseIsMine'] = (l$pauseIsMine as bool?);
-    }
-    if (data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = data['pauseReturnAt'];
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : DateTime.parse((l$pauseReturnAt as String));
-    }
-    if (data.containsKey('pauseMessage')) {
-      final l$pauseMessage = data['pauseMessage'];
-      result$data['pauseMessage'] = (l$pauseMessage as String?);
     }
     if (data.containsKey('temperature')) {
       final l$temperature = data['temperature'];
@@ -78286,14 +75716,6 @@ class InputTodayStateInsertInput {
   String? get suggestionKey => (_$data['suggestionKey'] as String?);
 
   DateTime? get togetherSince => (_$data['togetherSince'] as DateTime?);
-
-  String? get pauseId => (_$data['pauseId'] as String?);
-
-  bool? get pauseIsMine => (_$data['pauseIsMine'] as bool?);
-
-  DateTime? get pauseReturnAt => (_$data['pauseReturnAt'] as DateTime?);
-
-  String? get pauseMessage => (_$data['pauseMessage'] as String?);
 
   String? get temperature => (_$data['temperature'] as String?);
 
@@ -78366,24 +75788,6 @@ class InputTodayStateInsertInput {
       result$data['togetherSince'] = l$togetherSince == null
           ? null
           : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
-    }
-    if (_$data.containsKey('pauseId')) {
-      final l$pauseId = pauseId;
-      result$data['pauseId'] = l$pauseId;
-    }
-    if (_$data.containsKey('pauseIsMine')) {
-      final l$pauseIsMine = pauseIsMine;
-      result$data['pauseIsMine'] = l$pauseIsMine;
-    }
-    if (_$data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = pauseReturnAt;
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$pauseReturnAt);
-    }
-    if (_$data.containsKey('pauseMessage')) {
-      final l$pauseMessage = pauseMessage;
-      result$data['pauseMessage'] = l$pauseMessage;
     }
     if (_$data.containsKey('temperature')) {
       final l$temperature = temperature;
@@ -78532,38 +75936,6 @@ class InputTodayStateInsertInput {
     if (l$togetherSince != lOther$togetherSince) {
       return false;
     }
-    final l$pauseId = pauseId;
-    final lOther$pauseId = other.pauseId;
-    if (_$data.containsKey('pauseId') != other._$data.containsKey('pauseId')) {
-      return false;
-    }
-    if (l$pauseId != lOther$pauseId) {
-      return false;
-    }
-    final l$pauseIsMine = pauseIsMine;
-    final lOther$pauseIsMine = other.pauseIsMine;
-    if (_$data.containsKey('pauseIsMine') != other._$data.containsKey('pauseIsMine')) {
-      return false;
-    }
-    if (l$pauseIsMine != lOther$pauseIsMine) {
-      return false;
-    }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (_$data.containsKey('pauseReturnAt') != other._$data.containsKey('pauseReturnAt')) {
-      return false;
-    }
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
-      return false;
-    }
-    final l$pauseMessage = pauseMessage;
-    final lOther$pauseMessage = other.pauseMessage;
-    if (_$data.containsKey('pauseMessage') != other._$data.containsKey('pauseMessage')) {
-      return false;
-    }
-    if (l$pauseMessage != lOther$pauseMessage) {
-      return false;
-    }
     final l$temperature = temperature;
     final lOther$temperature = other.temperature;
     if (_$data.containsKey('temperature') != other._$data.containsKey('temperature')) {
@@ -78665,10 +76037,6 @@ class InputTodayStateInsertInput {
     final l$hasPendingInvite = hasPendingInvite;
     final l$suggestionKey = suggestionKey;
     final l$togetherSince = togetherSince;
-    final l$pauseId = pauseId;
-    final l$pauseIsMine = pauseIsMine;
-    final l$pauseReturnAt = pauseReturnAt;
-    final l$pauseMessage = pauseMessage;
     final l$temperature = temperature;
     final l$nextDateId = nextDateId;
     final l$nextDateTitle = nextDateTitle;
@@ -78691,10 +76059,6 @@ class InputTodayStateInsertInput {
       _$data.containsKey('hasPendingInvite') ? l$hasPendingInvite : const {},
       _$data.containsKey('suggestionKey') ? l$suggestionKey : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
-      _$data.containsKey('pauseId') ? l$pauseId : const {},
-      _$data.containsKey('pauseIsMine') ? l$pauseIsMine : const {},
-      _$data.containsKey('pauseReturnAt') ? l$pauseReturnAt : const {},
-      _$data.containsKey('pauseMessage') ? l$pauseMessage : const {},
       _$data.containsKey('temperature') ? l$temperature : const {},
       _$data.containsKey('nextDateId') ? l$nextDateId : const {},
       _$data.containsKey('nextDateTitle') ? l$nextDateTitle : const {},
@@ -78726,10 +76090,6 @@ class InputTodayStateOrderBy {
     EnumOrderByDirection? hasPendingInvite,
     EnumOrderByDirection? suggestionKey,
     EnumOrderByDirection? togetherSince,
-    EnumOrderByDirection? pauseId,
-    EnumOrderByDirection? pauseIsMine,
-    EnumOrderByDirection? pauseReturnAt,
-    EnumOrderByDirection? pauseMessage,
     EnumOrderByDirection? temperature,
     EnumOrderByDirection? nextDateId,
     EnumOrderByDirection? nextDateTitle,
@@ -78751,10 +76111,6 @@ class InputTodayStateOrderBy {
     if (hasPendingInvite != null) r'hasPendingInvite': hasPendingInvite,
     if (suggestionKey != null) r'suggestionKey': suggestionKey,
     if (togetherSince != null) r'togetherSince': togetherSince,
-    if (pauseId != null) r'pauseId': pauseId,
-    if (pauseIsMine != null) r'pauseIsMine': pauseIsMine,
-    if (pauseReturnAt != null) r'pauseReturnAt': pauseReturnAt,
-    if (pauseMessage != null) r'pauseMessage': pauseMessage,
     if (temperature != null) r'temperature': temperature,
     if (nextDateId != null) r'nextDateId': nextDateId,
     if (nextDateTitle != null) r'nextDateTitle': nextDateTitle,
@@ -78841,30 +76197,6 @@ class InputTodayStateOrderBy {
           ? null
           : fromJsonEnumOrderByDirection((l$togetherSince as String));
     }
-    if (data.containsKey('pauseId')) {
-      final l$pauseId = data['pauseId'];
-      result$data['pauseId'] = l$pauseId == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$pauseId as String));
-    }
-    if (data.containsKey('pauseIsMine')) {
-      final l$pauseIsMine = data['pauseIsMine'];
-      result$data['pauseIsMine'] = l$pauseIsMine == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$pauseIsMine as String));
-    }
-    if (data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = data['pauseReturnAt'];
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$pauseReturnAt as String));
-    }
-    if (data.containsKey('pauseMessage')) {
-      final l$pauseMessage = data['pauseMessage'];
-      result$data['pauseMessage'] = l$pauseMessage == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$pauseMessage as String));
-    }
     if (data.containsKey('temperature')) {
       final l$temperature = data['temperature'];
       result$data['temperature'] = l$temperature == null
@@ -78942,14 +76274,6 @@ class InputTodayStateOrderBy {
   EnumOrderByDirection? get suggestionKey => (_$data['suggestionKey'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get togetherSince => (_$data['togetherSince'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get pauseId => (_$data['pauseId'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get pauseIsMine => (_$data['pauseIsMine'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get pauseReturnAt => (_$data['pauseReturnAt'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get pauseMessage => (_$data['pauseMessage'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get temperature => (_$data['temperature'] as EnumOrderByDirection?);
 
@@ -79037,28 +76361,6 @@ class InputTodayStateOrderBy {
       result$data['togetherSince'] = l$togetherSince == null
           ? null
           : toJsonEnumOrderByDirection(l$togetherSince);
-    }
-    if (_$data.containsKey('pauseId')) {
-      final l$pauseId = pauseId;
-      result$data['pauseId'] = l$pauseId == null ? null : toJsonEnumOrderByDirection(l$pauseId);
-    }
-    if (_$data.containsKey('pauseIsMine')) {
-      final l$pauseIsMine = pauseIsMine;
-      result$data['pauseIsMine'] = l$pauseIsMine == null
-          ? null
-          : toJsonEnumOrderByDirection(l$pauseIsMine);
-    }
-    if (_$data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = pauseReturnAt;
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : toJsonEnumOrderByDirection(l$pauseReturnAt);
-    }
-    if (_$data.containsKey('pauseMessage')) {
-      final l$pauseMessage = pauseMessage;
-      result$data['pauseMessage'] = l$pauseMessage == null
-          ? null
-          : toJsonEnumOrderByDirection(l$pauseMessage);
     }
     if (_$data.containsKey('temperature')) {
       final l$temperature = temperature;
@@ -79213,38 +76515,6 @@ class InputTodayStateOrderBy {
     if (l$togetherSince != lOther$togetherSince) {
       return false;
     }
-    final l$pauseId = pauseId;
-    final lOther$pauseId = other.pauseId;
-    if (_$data.containsKey('pauseId') != other._$data.containsKey('pauseId')) {
-      return false;
-    }
-    if (l$pauseId != lOther$pauseId) {
-      return false;
-    }
-    final l$pauseIsMine = pauseIsMine;
-    final lOther$pauseIsMine = other.pauseIsMine;
-    if (_$data.containsKey('pauseIsMine') != other._$data.containsKey('pauseIsMine')) {
-      return false;
-    }
-    if (l$pauseIsMine != lOther$pauseIsMine) {
-      return false;
-    }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (_$data.containsKey('pauseReturnAt') != other._$data.containsKey('pauseReturnAt')) {
-      return false;
-    }
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
-      return false;
-    }
-    final l$pauseMessage = pauseMessage;
-    final lOther$pauseMessage = other.pauseMessage;
-    if (_$data.containsKey('pauseMessage') != other._$data.containsKey('pauseMessage')) {
-      return false;
-    }
-    if (l$pauseMessage != lOther$pauseMessage) {
-      return false;
-    }
     final l$temperature = temperature;
     final lOther$temperature = other.temperature;
     if (_$data.containsKey('temperature') != other._$data.containsKey('temperature')) {
@@ -79327,10 +76597,6 @@ class InputTodayStateOrderBy {
     final l$hasPendingInvite = hasPendingInvite;
     final l$suggestionKey = suggestionKey;
     final l$togetherSince = togetherSince;
-    final l$pauseId = pauseId;
-    final l$pauseIsMine = pauseIsMine;
-    final l$pauseReturnAt = pauseReturnAt;
-    final l$pauseMessage = pauseMessage;
     final l$temperature = temperature;
     final l$nextDateId = nextDateId;
     final l$nextDateTitle = nextDateTitle;
@@ -79352,10 +76618,6 @@ class InputTodayStateOrderBy {
       _$data.containsKey('hasPendingInvite') ? l$hasPendingInvite : const {},
       _$data.containsKey('suggestionKey') ? l$suggestionKey : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
-      _$data.containsKey('pauseId') ? l$pauseId : const {},
-      _$data.containsKey('pauseIsMine') ? l$pauseIsMine : const {},
-      _$data.containsKey('pauseReturnAt') ? l$pauseReturnAt : const {},
-      _$data.containsKey('pauseMessage') ? l$pauseMessage : const {},
       _$data.containsKey('temperature') ? l$temperature : const {},
       _$data.containsKey('nextDateId') ? l$nextDateId : const {},
       _$data.containsKey('nextDateTitle') ? l$nextDateTitle : const {},
@@ -79382,10 +76644,6 @@ class InputTodayStateUpdateInput {
     bool? hasPendingInvite,
     String? suggestionKey,
     DateTime? togetherSince,
-    String? pauseId,
-    bool? pauseIsMine,
-    DateTime? pauseReturnAt,
-    String? pauseMessage,
     String? temperature,
     String? nextDateId,
     String? nextDateTitle,
@@ -79408,10 +76666,6 @@ class InputTodayStateUpdateInput {
     if (hasPendingInvite != null) r'hasPendingInvite': hasPendingInvite,
     if (suggestionKey != null) r'suggestionKey': suggestionKey,
     if (togetherSince != null) r'togetherSince': togetherSince,
-    if (pauseId != null) r'pauseId': pauseId,
-    if (pauseIsMine != null) r'pauseIsMine': pauseIsMine,
-    if (pauseReturnAt != null) r'pauseReturnAt': pauseReturnAt,
-    if (pauseMessage != null) r'pauseMessage': pauseMessage,
     if (temperature != null) r'temperature': temperature,
     if (nextDateId != null) r'nextDateId': nextDateId,
     if (nextDateTitle != null) r'nextDateTitle': nextDateTitle,
@@ -79478,24 +76732,6 @@ class InputTodayStateUpdateInput {
       result$data['togetherSince'] = l$togetherSince == null
           ? null
           : DateTime.parse((l$togetherSince as String));
-    }
-    if (data.containsKey('pauseId')) {
-      final l$pauseId = data['pauseId'];
-      result$data['pauseId'] = (l$pauseId as String?);
-    }
-    if (data.containsKey('pauseIsMine')) {
-      final l$pauseIsMine = data['pauseIsMine'];
-      result$data['pauseIsMine'] = (l$pauseIsMine as bool?);
-    }
-    if (data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = data['pauseReturnAt'];
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : DateTime.parse((l$pauseReturnAt as String));
-    }
-    if (data.containsKey('pauseMessage')) {
-      final l$pauseMessage = data['pauseMessage'];
-      result$data['pauseMessage'] = (l$pauseMessage as String?);
     }
     if (data.containsKey('temperature')) {
       final l$temperature = data['temperature'];
@@ -79565,14 +76801,6 @@ class InputTodayStateUpdateInput {
   String? get suggestionKey => (_$data['suggestionKey'] as String?);
 
   DateTime? get togetherSince => (_$data['togetherSince'] as DateTime?);
-
-  String? get pauseId => (_$data['pauseId'] as String?);
-
-  bool? get pauseIsMine => (_$data['pauseIsMine'] as bool?);
-
-  DateTime? get pauseReturnAt => (_$data['pauseReturnAt'] as DateTime?);
-
-  String? get pauseMessage => (_$data['pauseMessage'] as String?);
 
   String? get temperature => (_$data['temperature'] as String?);
 
@@ -79645,24 +76873,6 @@ class InputTodayStateUpdateInput {
       result$data['togetherSince'] = l$togetherSince == null
           ? null
           : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
-    }
-    if (_$data.containsKey('pauseId')) {
-      final l$pauseId = pauseId;
-      result$data['pauseId'] = l$pauseId;
-    }
-    if (_$data.containsKey('pauseIsMine')) {
-      final l$pauseIsMine = pauseIsMine;
-      result$data['pauseIsMine'] = l$pauseIsMine;
-    }
-    if (_$data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = pauseReturnAt;
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$pauseReturnAt);
-    }
-    if (_$data.containsKey('pauseMessage')) {
-      final l$pauseMessage = pauseMessage;
-      result$data['pauseMessage'] = l$pauseMessage;
     }
     if (_$data.containsKey('temperature')) {
       final l$temperature = temperature;
@@ -79811,38 +77021,6 @@ class InputTodayStateUpdateInput {
     if (l$togetherSince != lOther$togetherSince) {
       return false;
     }
-    final l$pauseId = pauseId;
-    final lOther$pauseId = other.pauseId;
-    if (_$data.containsKey('pauseId') != other._$data.containsKey('pauseId')) {
-      return false;
-    }
-    if (l$pauseId != lOther$pauseId) {
-      return false;
-    }
-    final l$pauseIsMine = pauseIsMine;
-    final lOther$pauseIsMine = other.pauseIsMine;
-    if (_$data.containsKey('pauseIsMine') != other._$data.containsKey('pauseIsMine')) {
-      return false;
-    }
-    if (l$pauseIsMine != lOther$pauseIsMine) {
-      return false;
-    }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (_$data.containsKey('pauseReturnAt') != other._$data.containsKey('pauseReturnAt')) {
-      return false;
-    }
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
-      return false;
-    }
-    final l$pauseMessage = pauseMessage;
-    final lOther$pauseMessage = other.pauseMessage;
-    if (_$data.containsKey('pauseMessage') != other._$data.containsKey('pauseMessage')) {
-      return false;
-    }
-    if (l$pauseMessage != lOther$pauseMessage) {
-      return false;
-    }
     final l$temperature = temperature;
     final lOther$temperature = other.temperature;
     if (_$data.containsKey('temperature') != other._$data.containsKey('temperature')) {
@@ -79944,10 +77122,6 @@ class InputTodayStateUpdateInput {
     final l$hasPendingInvite = hasPendingInvite;
     final l$suggestionKey = suggestionKey;
     final l$togetherSince = togetherSince;
-    final l$pauseId = pauseId;
-    final l$pauseIsMine = pauseIsMine;
-    final l$pauseReturnAt = pauseReturnAt;
-    final l$pauseMessage = pauseMessage;
     final l$temperature = temperature;
     final l$nextDateId = nextDateId;
     final l$nextDateTitle = nextDateTitle;
@@ -79970,10 +77144,6 @@ class InputTodayStateUpdateInput {
       _$data.containsKey('hasPendingInvite') ? l$hasPendingInvite : const {},
       _$data.containsKey('suggestionKey') ? l$suggestionKey : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
-      _$data.containsKey('pauseId') ? l$pauseId : const {},
-      _$data.containsKey('pauseIsMine') ? l$pauseIsMine : const {},
-      _$data.containsKey('pauseReturnAt') ? l$pauseReturnAt : const {},
-      _$data.containsKey('pauseMessage') ? l$pauseMessage : const {},
       _$data.containsKey('temperature') ? l$temperature : const {},
       _$data.containsKey('nextDateId') ? l$nextDateId : const {},
       _$data.containsKey('nextDateTitle') ? l$nextDateTitle : const {},
@@ -80339,14 +77509,12 @@ class InputUUIDListFilter {
 class InputWidgetStateFilter {
   factory InputWidgetStateFilter({
     InputUUIDFilter? profileId,
-    InputBooleanFilter? discreet,
     InputBooleanFilter? isPaired,
     InputDateFilter? togetherSince,
     InputStringFilter? partnerName,
     InputStringFilter? nextDateTitle,
     InputDateFilter? nextDateOn,
     InputIntFilter? unopenedCards,
-    InputDatetimeFilter? pauseReturnAt,
     InputStringFilter? partnerNote,
     InputStringFilter? partnerNoteMedia,
     InputDatetimeFilter? partnerNoteAt,
@@ -80357,14 +77525,12 @@ class InputWidgetStateFilter {
     InputWidgetStateFilter? not,
   }) => InputWidgetStateFilter._({
     if (profileId != null) r'profileId': profileId,
-    if (discreet != null) r'discreet': discreet,
     if (isPaired != null) r'isPaired': isPaired,
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (partnerName != null) r'partnerName': partnerName,
     if (nextDateTitle != null) r'nextDateTitle': nextDateTitle,
     if (nextDateOn != null) r'nextDateOn': nextDateOn,
     if (unopenedCards != null) r'unopenedCards': unopenedCards,
-    if (pauseReturnAt != null) r'pauseReturnAt': pauseReturnAt,
     if (partnerNote != null) r'partnerNote': partnerNote,
     if (partnerNoteMedia != null) r'partnerNoteMedia': partnerNoteMedia,
     if (partnerNoteAt != null) r'partnerNoteAt': partnerNoteAt,
@@ -80384,12 +77550,6 @@ class InputWidgetStateFilter {
       result$data['profileId'] = l$profileId == null
           ? null
           : InputUUIDFilter.fromJson((l$profileId as Map<String, dynamic>));
-    }
-    if (data.containsKey('discreet')) {
-      final l$discreet = data['discreet'];
-      result$data['discreet'] = l$discreet == null
-          ? null
-          : InputBooleanFilter.fromJson((l$discreet as Map<String, dynamic>));
     }
     if (data.containsKey('isPaired')) {
       final l$isPaired = data['isPaired'];
@@ -80426,12 +77586,6 @@ class InputWidgetStateFilter {
       result$data['unopenedCards'] = l$unopenedCards == null
           ? null
           : InputIntFilter.fromJson((l$unopenedCards as Map<String, dynamic>));
-    }
-    if (data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = data['pauseReturnAt'];
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : InputDatetimeFilter.fromJson((l$pauseReturnAt as Map<String, dynamic>));
     }
     if (data.containsKey('partnerNote')) {
       final l$partnerNote = data['partnerNote'];
@@ -80488,8 +77642,6 @@ class InputWidgetStateFilter {
 
   InputUUIDFilter? get profileId => (_$data['profileId'] as InputUUIDFilter?);
 
-  InputBooleanFilter? get discreet => (_$data['discreet'] as InputBooleanFilter?);
-
   InputBooleanFilter? get isPaired => (_$data['isPaired'] as InputBooleanFilter?);
 
   InputDateFilter? get togetherSince => (_$data['togetherSince'] as InputDateFilter?);
@@ -80501,8 +77653,6 @@ class InputWidgetStateFilter {
   InputDateFilter? get nextDateOn => (_$data['nextDateOn'] as InputDateFilter?);
 
   InputIntFilter? get unopenedCards => (_$data['unopenedCards'] as InputIntFilter?);
-
-  InputDatetimeFilter? get pauseReturnAt => (_$data['pauseReturnAt'] as InputDatetimeFilter?);
 
   InputStringFilter? get partnerNote => (_$data['partnerNote'] as InputStringFilter?);
 
@@ -80525,10 +77675,6 @@ class InputWidgetStateFilter {
     if (_$data.containsKey('profileId')) {
       final l$profileId = profileId;
       result$data['profileId'] = l$profileId?.toJson();
-    }
-    if (_$data.containsKey('discreet')) {
-      final l$discreet = discreet;
-      result$data['discreet'] = l$discreet?.toJson();
     }
     if (_$data.containsKey('isPaired')) {
       final l$isPaired = isPaired;
@@ -80553,10 +77699,6 @@ class InputWidgetStateFilter {
     if (_$data.containsKey('unopenedCards')) {
       final l$unopenedCards = unopenedCards;
       result$data['unopenedCards'] = l$unopenedCards?.toJson();
-    }
-    if (_$data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = pauseReturnAt;
-      result$data['pauseReturnAt'] = l$pauseReturnAt?.toJson();
     }
     if (_$data.containsKey('partnerNote')) {
       final l$partnerNote = partnerNote;
@@ -80609,14 +77751,6 @@ class InputWidgetStateFilter {
     if (l$profileId != lOther$profileId) {
       return false;
     }
-    final l$discreet = discreet;
-    final lOther$discreet = other.discreet;
-    if (_$data.containsKey('discreet') != other._$data.containsKey('discreet')) {
-      return false;
-    }
-    if (l$discreet != lOther$discreet) {
-      return false;
-    }
     final l$isPaired = isPaired;
     final lOther$isPaired = other.isPaired;
     if (_$data.containsKey('isPaired') != other._$data.containsKey('isPaired')) {
@@ -80663,14 +77797,6 @@ class InputWidgetStateFilter {
       return false;
     }
     if (l$unopenedCards != lOther$unopenedCards) {
-      return false;
-    }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (_$data.containsKey('pauseReturnAt') != other._$data.containsKey('pauseReturnAt')) {
-      return false;
-    }
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
       return false;
     }
     final l$partnerNote = partnerNote;
@@ -80765,14 +77891,12 @@ class InputWidgetStateFilter {
   @override
   int get hashCode {
     final l$profileId = profileId;
-    final l$discreet = discreet;
     final l$isPaired = isPaired;
     final l$togetherSince = togetherSince;
     final l$partnerName = partnerName;
     final l$nextDateTitle = nextDateTitle;
     final l$nextDateOn = nextDateOn;
     final l$unopenedCards = unopenedCards;
-    final l$pauseReturnAt = pauseReturnAt;
     final l$partnerNote = partnerNote;
     final l$partnerNoteMedia = partnerNoteMedia;
     final l$partnerNoteAt = partnerNoteAt;
@@ -80783,14 +77907,12 @@ class InputWidgetStateFilter {
     final l$not = not;
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
-      _$data.containsKey('discreet') ? l$discreet : const {},
       _$data.containsKey('isPaired') ? l$isPaired : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('partnerName') ? l$partnerName : const {},
       _$data.containsKey('nextDateTitle') ? l$nextDateTitle : const {},
       _$data.containsKey('nextDateOn') ? l$nextDateOn : const {},
       _$data.containsKey('unopenedCards') ? l$unopenedCards : const {},
-      _$data.containsKey('pauseReturnAt') ? l$pauseReturnAt : const {},
       _$data.containsKey('partnerNote') ? l$partnerNote : const {},
       _$data.containsKey('partnerNoteMedia') ? l$partnerNoteMedia : const {},
       _$data.containsKey('partnerNoteAt') ? l$partnerNoteAt : const {},
@@ -80814,28 +77936,24 @@ class InputWidgetStateFilter {
 class InputWidgetStateInsertInput {
   factory InputWidgetStateInsertInput({
     String? profileId,
-    bool? discreet,
     bool? isPaired,
     DateTime? togetherSince,
     String? partnerName,
     String? nextDateTitle,
     DateTime? nextDateOn,
     int? unopenedCards,
-    DateTime? pauseReturnAt,
     String? partnerNote,
     String? partnerNoteMedia,
     DateTime? partnerNoteAt,
     String? partnerMood,
   }) => InputWidgetStateInsertInput._({
     if (profileId != null) r'profileId': profileId,
-    if (discreet != null) r'discreet': discreet,
     if (isPaired != null) r'isPaired': isPaired,
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (partnerName != null) r'partnerName': partnerName,
     if (nextDateTitle != null) r'nextDateTitle': nextDateTitle,
     if (nextDateOn != null) r'nextDateOn': nextDateOn,
     if (unopenedCards != null) r'unopenedCards': unopenedCards,
-    if (pauseReturnAt != null) r'pauseReturnAt': pauseReturnAt,
     if (partnerNote != null) r'partnerNote': partnerNote,
     if (partnerNoteMedia != null) r'partnerNoteMedia': partnerNoteMedia,
     if (partnerNoteAt != null) r'partnerNoteAt': partnerNoteAt,
@@ -80849,10 +77967,6 @@ class InputWidgetStateInsertInput {
     if (data.containsKey('profileId')) {
       final l$profileId = data['profileId'];
       result$data['profileId'] = (l$profileId as String?);
-    }
-    if (data.containsKey('discreet')) {
-      final l$discreet = data['discreet'];
-      result$data['discreet'] = (l$discreet as bool?);
     }
     if (data.containsKey('isPaired')) {
       final l$isPaired = data['isPaired'];
@@ -80882,12 +77996,6 @@ class InputWidgetStateInsertInput {
       final l$unopenedCards = data['unopenedCards'];
       result$data['unopenedCards'] = (l$unopenedCards as int?);
     }
-    if (data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = data['pauseReturnAt'];
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : DateTime.parse((l$pauseReturnAt as String));
-    }
     if (data.containsKey('partnerNote')) {
       final l$partnerNote = data['partnerNote'];
       result$data['partnerNote'] = (l$partnerNote as String?);
@@ -80913,8 +78021,6 @@ class InputWidgetStateInsertInput {
 
   String? get profileId => (_$data['profileId'] as String?);
 
-  bool? get discreet => (_$data['discreet'] as bool?);
-
   bool? get isPaired => (_$data['isPaired'] as bool?);
 
   DateTime? get togetherSince => (_$data['togetherSince'] as DateTime?);
@@ -80926,8 +78032,6 @@ class InputWidgetStateInsertInput {
   DateTime? get nextDateOn => (_$data['nextDateOn'] as DateTime?);
 
   int? get unopenedCards => (_$data['unopenedCards'] as int?);
-
-  DateTime? get pauseReturnAt => (_$data['pauseReturnAt'] as DateTime?);
 
   String? get partnerNote => (_$data['partnerNote'] as String?);
 
@@ -80942,10 +78046,6 @@ class InputWidgetStateInsertInput {
     if (_$data.containsKey('profileId')) {
       final l$profileId = profileId;
       result$data['profileId'] = l$profileId;
-    }
-    if (_$data.containsKey('discreet')) {
-      final l$discreet = discreet;
-      result$data['discreet'] = l$discreet;
     }
     if (_$data.containsKey('isPaired')) {
       final l$isPaired = isPaired;
@@ -80974,12 +78074,6 @@ class InputWidgetStateInsertInput {
     if (_$data.containsKey('unopenedCards')) {
       final l$unopenedCards = unopenedCards;
       result$data['unopenedCards'] = l$unopenedCards;
-    }
-    if (_$data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = pauseReturnAt;
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$pauseReturnAt);
     }
     if (_$data.containsKey('partnerNote')) {
       final l$partnerNote = partnerNote;
@@ -81016,14 +78110,6 @@ class InputWidgetStateInsertInput {
       return false;
     }
     if (l$profileId != lOther$profileId) {
-      return false;
-    }
-    final l$discreet = discreet;
-    final lOther$discreet = other.discreet;
-    if (_$data.containsKey('discreet') != other._$data.containsKey('discreet')) {
-      return false;
-    }
-    if (l$discreet != lOther$discreet) {
       return false;
     }
     final l$isPaired = isPaired;
@@ -81074,14 +78160,6 @@ class InputWidgetStateInsertInput {
     if (l$unopenedCards != lOther$unopenedCards) {
       return false;
     }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (_$data.containsKey('pauseReturnAt') != other._$data.containsKey('pauseReturnAt')) {
-      return false;
-    }
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
-      return false;
-    }
     final l$partnerNote = partnerNote;
     final lOther$partnerNote = other.partnerNote;
     if (_$data.containsKey('partnerNote') != other._$data.containsKey('partnerNote')) {
@@ -81120,28 +78198,24 @@ class InputWidgetStateInsertInput {
   @override
   int get hashCode {
     final l$profileId = profileId;
-    final l$discreet = discreet;
     final l$isPaired = isPaired;
     final l$togetherSince = togetherSince;
     final l$partnerName = partnerName;
     final l$nextDateTitle = nextDateTitle;
     final l$nextDateOn = nextDateOn;
     final l$unopenedCards = unopenedCards;
-    final l$pauseReturnAt = pauseReturnAt;
     final l$partnerNote = partnerNote;
     final l$partnerNoteMedia = partnerNoteMedia;
     final l$partnerNoteAt = partnerNoteAt;
     final l$partnerMood = partnerMood;
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
-      _$data.containsKey('discreet') ? l$discreet : const {},
       _$data.containsKey('isPaired') ? l$isPaired : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('partnerName') ? l$partnerName : const {},
       _$data.containsKey('nextDateTitle') ? l$nextDateTitle : const {},
       _$data.containsKey('nextDateOn') ? l$nextDateOn : const {},
       _$data.containsKey('unopenedCards') ? l$unopenedCards : const {},
-      _$data.containsKey('pauseReturnAt') ? l$pauseReturnAt : const {},
       _$data.containsKey('partnerNote') ? l$partnerNote : const {},
       _$data.containsKey('partnerNoteMedia') ? l$partnerNoteMedia : const {},
       _$data.containsKey('partnerNoteAt') ? l$partnerNoteAt : const {},
@@ -81153,28 +78227,24 @@ class InputWidgetStateInsertInput {
 class InputWidgetStateOrderBy {
   factory InputWidgetStateOrderBy({
     EnumOrderByDirection? profileId,
-    EnumOrderByDirection? discreet,
     EnumOrderByDirection? isPaired,
     EnumOrderByDirection? togetherSince,
     EnumOrderByDirection? partnerName,
     EnumOrderByDirection? nextDateTitle,
     EnumOrderByDirection? nextDateOn,
     EnumOrderByDirection? unopenedCards,
-    EnumOrderByDirection? pauseReturnAt,
     EnumOrderByDirection? partnerNote,
     EnumOrderByDirection? partnerNoteMedia,
     EnumOrderByDirection? partnerNoteAt,
     EnumOrderByDirection? partnerMood,
   }) => InputWidgetStateOrderBy._({
     if (profileId != null) r'profileId': profileId,
-    if (discreet != null) r'discreet': discreet,
     if (isPaired != null) r'isPaired': isPaired,
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (partnerName != null) r'partnerName': partnerName,
     if (nextDateTitle != null) r'nextDateTitle': nextDateTitle,
     if (nextDateOn != null) r'nextDateOn': nextDateOn,
     if (unopenedCards != null) r'unopenedCards': unopenedCards,
-    if (pauseReturnAt != null) r'pauseReturnAt': pauseReturnAt,
     if (partnerNote != null) r'partnerNote': partnerNote,
     if (partnerNoteMedia != null) r'partnerNoteMedia': partnerNoteMedia,
     if (partnerNoteAt != null) r'partnerNoteAt': partnerNoteAt,
@@ -81190,12 +78260,6 @@ class InputWidgetStateOrderBy {
       result$data['profileId'] = l$profileId == null
           ? null
           : fromJsonEnumOrderByDirection((l$profileId as String));
-    }
-    if (data.containsKey('discreet')) {
-      final l$discreet = data['discreet'];
-      result$data['discreet'] = l$discreet == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$discreet as String));
     }
     if (data.containsKey('isPaired')) {
       final l$isPaired = data['isPaired'];
@@ -81233,12 +78297,6 @@ class InputWidgetStateOrderBy {
           ? null
           : fromJsonEnumOrderByDirection((l$unopenedCards as String));
     }
-    if (data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = data['pauseReturnAt'];
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : fromJsonEnumOrderByDirection((l$pauseReturnAt as String));
-    }
     if (data.containsKey('partnerNote')) {
       final l$partnerNote = data['partnerNote'];
       result$data['partnerNote'] = l$partnerNote == null
@@ -81270,8 +78328,6 @@ class InputWidgetStateOrderBy {
 
   EnumOrderByDirection? get profileId => (_$data['profileId'] as EnumOrderByDirection?);
 
-  EnumOrderByDirection? get discreet => (_$data['discreet'] as EnumOrderByDirection?);
-
   EnumOrderByDirection? get isPaired => (_$data['isPaired'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get togetherSince => (_$data['togetherSince'] as EnumOrderByDirection?);
@@ -81283,8 +78339,6 @@ class InputWidgetStateOrderBy {
   EnumOrderByDirection? get nextDateOn => (_$data['nextDateOn'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get unopenedCards => (_$data['unopenedCards'] as EnumOrderByDirection?);
-
-  EnumOrderByDirection? get pauseReturnAt => (_$data['pauseReturnAt'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get partnerNote => (_$data['partnerNote'] as EnumOrderByDirection?);
 
@@ -81302,10 +78356,6 @@ class InputWidgetStateOrderBy {
       result$data['profileId'] = l$profileId == null
           ? null
           : toJsonEnumOrderByDirection(l$profileId);
-    }
-    if (_$data.containsKey('discreet')) {
-      final l$discreet = discreet;
-      result$data['discreet'] = l$discreet == null ? null : toJsonEnumOrderByDirection(l$discreet);
     }
     if (_$data.containsKey('isPaired')) {
       final l$isPaired = isPaired;
@@ -81340,12 +78390,6 @@ class InputWidgetStateOrderBy {
       result$data['unopenedCards'] = l$unopenedCards == null
           ? null
           : toJsonEnumOrderByDirection(l$unopenedCards);
-    }
-    if (_$data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = pauseReturnAt;
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : toJsonEnumOrderByDirection(l$pauseReturnAt);
     }
     if (_$data.containsKey('partnerNote')) {
       final l$partnerNote = partnerNote;
@@ -81390,14 +78434,6 @@ class InputWidgetStateOrderBy {
     if (l$profileId != lOther$profileId) {
       return false;
     }
-    final l$discreet = discreet;
-    final lOther$discreet = other.discreet;
-    if (_$data.containsKey('discreet') != other._$data.containsKey('discreet')) {
-      return false;
-    }
-    if (l$discreet != lOther$discreet) {
-      return false;
-    }
     final l$isPaired = isPaired;
     final lOther$isPaired = other.isPaired;
     if (_$data.containsKey('isPaired') != other._$data.containsKey('isPaired')) {
@@ -81446,14 +78482,6 @@ class InputWidgetStateOrderBy {
     if (l$unopenedCards != lOther$unopenedCards) {
       return false;
     }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (_$data.containsKey('pauseReturnAt') != other._$data.containsKey('pauseReturnAt')) {
-      return false;
-    }
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
-      return false;
-    }
     final l$partnerNote = partnerNote;
     final lOther$partnerNote = other.partnerNote;
     if (_$data.containsKey('partnerNote') != other._$data.containsKey('partnerNote')) {
@@ -81492,28 +78520,24 @@ class InputWidgetStateOrderBy {
   @override
   int get hashCode {
     final l$profileId = profileId;
-    final l$discreet = discreet;
     final l$isPaired = isPaired;
     final l$togetherSince = togetherSince;
     final l$partnerName = partnerName;
     final l$nextDateTitle = nextDateTitle;
     final l$nextDateOn = nextDateOn;
     final l$unopenedCards = unopenedCards;
-    final l$pauseReturnAt = pauseReturnAt;
     final l$partnerNote = partnerNote;
     final l$partnerNoteMedia = partnerNoteMedia;
     final l$partnerNoteAt = partnerNoteAt;
     final l$partnerMood = partnerMood;
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
-      _$data.containsKey('discreet') ? l$discreet : const {},
       _$data.containsKey('isPaired') ? l$isPaired : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('partnerName') ? l$partnerName : const {},
       _$data.containsKey('nextDateTitle') ? l$nextDateTitle : const {},
       _$data.containsKey('nextDateOn') ? l$nextDateOn : const {},
       _$data.containsKey('unopenedCards') ? l$unopenedCards : const {},
-      _$data.containsKey('pauseReturnAt') ? l$pauseReturnAt : const {},
       _$data.containsKey('partnerNote') ? l$partnerNote : const {},
       _$data.containsKey('partnerNoteMedia') ? l$partnerNoteMedia : const {},
       _$data.containsKey('partnerNoteAt') ? l$partnerNoteAt : const {},
@@ -81525,28 +78549,24 @@ class InputWidgetStateOrderBy {
 class InputWidgetStateUpdateInput {
   factory InputWidgetStateUpdateInput({
     String? profileId,
-    bool? discreet,
     bool? isPaired,
     DateTime? togetherSince,
     String? partnerName,
     String? nextDateTitle,
     DateTime? nextDateOn,
     int? unopenedCards,
-    DateTime? pauseReturnAt,
     String? partnerNote,
     String? partnerNoteMedia,
     DateTime? partnerNoteAt,
     String? partnerMood,
   }) => InputWidgetStateUpdateInput._({
     if (profileId != null) r'profileId': profileId,
-    if (discreet != null) r'discreet': discreet,
     if (isPaired != null) r'isPaired': isPaired,
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (partnerName != null) r'partnerName': partnerName,
     if (nextDateTitle != null) r'nextDateTitle': nextDateTitle,
     if (nextDateOn != null) r'nextDateOn': nextDateOn,
     if (unopenedCards != null) r'unopenedCards': unopenedCards,
-    if (pauseReturnAt != null) r'pauseReturnAt': pauseReturnAt,
     if (partnerNote != null) r'partnerNote': partnerNote,
     if (partnerNoteMedia != null) r'partnerNoteMedia': partnerNoteMedia,
     if (partnerNoteAt != null) r'partnerNoteAt': partnerNoteAt,
@@ -81560,10 +78580,6 @@ class InputWidgetStateUpdateInput {
     if (data.containsKey('profileId')) {
       final l$profileId = data['profileId'];
       result$data['profileId'] = (l$profileId as String?);
-    }
-    if (data.containsKey('discreet')) {
-      final l$discreet = data['discreet'];
-      result$data['discreet'] = (l$discreet as bool?);
     }
     if (data.containsKey('isPaired')) {
       final l$isPaired = data['isPaired'];
@@ -81593,12 +78609,6 @@ class InputWidgetStateUpdateInput {
       final l$unopenedCards = data['unopenedCards'];
       result$data['unopenedCards'] = (l$unopenedCards as int?);
     }
-    if (data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = data['pauseReturnAt'];
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : DateTime.parse((l$pauseReturnAt as String));
-    }
     if (data.containsKey('partnerNote')) {
       final l$partnerNote = data['partnerNote'];
       result$data['partnerNote'] = (l$partnerNote as String?);
@@ -81624,8 +78634,6 @@ class InputWidgetStateUpdateInput {
 
   String? get profileId => (_$data['profileId'] as String?);
 
-  bool? get discreet => (_$data['discreet'] as bool?);
-
   bool? get isPaired => (_$data['isPaired'] as bool?);
 
   DateTime? get togetherSince => (_$data['togetherSince'] as DateTime?);
@@ -81637,8 +78645,6 @@ class InputWidgetStateUpdateInput {
   DateTime? get nextDateOn => (_$data['nextDateOn'] as DateTime?);
 
   int? get unopenedCards => (_$data['unopenedCards'] as int?);
-
-  DateTime? get pauseReturnAt => (_$data['pauseReturnAt'] as DateTime?);
 
   String? get partnerNote => (_$data['partnerNote'] as String?);
 
@@ -81653,10 +78659,6 @@ class InputWidgetStateUpdateInput {
     if (_$data.containsKey('profileId')) {
       final l$profileId = profileId;
       result$data['profileId'] = l$profileId;
-    }
-    if (_$data.containsKey('discreet')) {
-      final l$discreet = discreet;
-      result$data['discreet'] = l$discreet;
     }
     if (_$data.containsKey('isPaired')) {
       final l$isPaired = isPaired;
@@ -81685,12 +78687,6 @@ class InputWidgetStateUpdateInput {
     if (_$data.containsKey('unopenedCards')) {
       final l$unopenedCards = unopenedCards;
       result$data['unopenedCards'] = l$unopenedCards;
-    }
-    if (_$data.containsKey('pauseReturnAt')) {
-      final l$pauseReturnAt = pauseReturnAt;
-      result$data['pauseReturnAt'] = l$pauseReturnAt == null
-          ? null
-          : ((v) => v.toUtc().toIso8601String())(l$pauseReturnAt);
     }
     if (_$data.containsKey('partnerNote')) {
       final l$partnerNote = partnerNote;
@@ -81729,14 +78725,6 @@ class InputWidgetStateUpdateInput {
     if (l$profileId != lOther$profileId) {
       return false;
     }
-    final l$discreet = discreet;
-    final lOther$discreet = other.discreet;
-    if (_$data.containsKey('discreet') != other._$data.containsKey('discreet')) {
-      return false;
-    }
-    if (l$discreet != lOther$discreet) {
-      return false;
-    }
     final l$isPaired = isPaired;
     final lOther$isPaired = other.isPaired;
     if (_$data.containsKey('isPaired') != other._$data.containsKey('isPaired')) {
@@ -81785,14 +78773,6 @@ class InputWidgetStateUpdateInput {
     if (l$unopenedCards != lOther$unopenedCards) {
       return false;
     }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (_$data.containsKey('pauseReturnAt') != other._$data.containsKey('pauseReturnAt')) {
-      return false;
-    }
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
-      return false;
-    }
     final l$partnerNote = partnerNote;
     final lOther$partnerNote = other.partnerNote;
     if (_$data.containsKey('partnerNote') != other._$data.containsKey('partnerNote')) {
@@ -81831,28 +78811,24 @@ class InputWidgetStateUpdateInput {
   @override
   int get hashCode {
     final l$profileId = profileId;
-    final l$discreet = discreet;
     final l$isPaired = isPaired;
     final l$togetherSince = togetherSince;
     final l$partnerName = partnerName;
     final l$nextDateTitle = nextDateTitle;
     final l$nextDateOn = nextDateOn;
     final l$unopenedCards = unopenedCards;
-    final l$pauseReturnAt = pauseReturnAt;
     final l$partnerNote = partnerNote;
     final l$partnerNoteMedia = partnerNoteMedia;
     final l$partnerNoteAt = partnerNoteAt;
     final l$partnerMood = partnerMood;
     return Object.hashAll([
       _$data.containsKey('profileId') ? l$profileId : const {},
-      _$data.containsKey('discreet') ? l$discreet : const {},
       _$data.containsKey('isPaired') ? l$isPaired : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('partnerName') ? l$partnerName : const {},
       _$data.containsKey('nextDateTitle') ? l$nextDateTitle : const {},
       _$data.containsKey('nextDateOn') ? l$nextDateOn : const {},
       _$data.containsKey('unopenedCards') ? l$unopenedCards : const {},
-      _$data.containsKey('pauseReturnAt') ? l$pauseReturnAt : const {},
       _$data.containsKey('partnerNote') ? l$partnerNote : const {},
       _$data.containsKey('partnerNoteMedia') ? l$partnerNoteMedia : const {},
       _$data.containsKey('partnerNoteAt') ? l$partnerNoteAt : const {},
@@ -83202,7 +80178,6 @@ enum EnumConsentKind {
   marketing,
   ai,
   terms,
-  sensitive_tracks,
   $unknown;
 
   factory EnumConsentKind.fromJson(String value) => fromJsonEnumConsentKind(value);
@@ -83222,8 +80197,6 @@ String toJsonEnumConsentKind(EnumConsentKind e) {
       return r'ai';
     case EnumConsentKind.terms:
       return r'terms';
-    case EnumConsentKind.sensitive_tracks:
-      return r'sensitive_tracks';
     case EnumConsentKind.$unknown:
       return r'$unknown';
   }
@@ -83241,8 +80214,6 @@ EnumConsentKind fromJsonEnumConsentKind(String value) {
       return EnumConsentKind.ai;
     case r'terms':
       return EnumConsentKind.terms;
-    case r'sensitive_tracks':
-      return EnumConsentKind.sensitive_tracks;
     default:
       return EnumConsentKind.$unknown;
   }
@@ -83394,43 +80365,6 @@ EnumConversationGuide fromJsonEnumConversationGuide(String value) {
       return EnumConversationGuide.difficult;
     default:
       return EnumConversationGuide.$unknown;
-  }
-}
-
-enum EnumCycleDayKind {
-  heavy,
-  light,
-  note,
-  $unknown;
-
-  factory EnumCycleDayKind.fromJson(String value) => fromJsonEnumCycleDayKind(value);
-
-  String toJson() => toJsonEnumCycleDayKind(this);
-}
-
-String toJsonEnumCycleDayKind(EnumCycleDayKind e) {
-  switch (e) {
-    case EnumCycleDayKind.heavy:
-      return r'heavy';
-    case EnumCycleDayKind.light:
-      return r'light';
-    case EnumCycleDayKind.note:
-      return r'note';
-    case EnumCycleDayKind.$unknown:
-      return r'$unknown';
-  }
-}
-
-EnumCycleDayKind fromJsonEnumCycleDayKind(String value) {
-  switch (value) {
-    case r'heavy':
-      return EnumCycleDayKind.heavy;
-    case r'light':
-      return EnumCycleDayKind.light;
-    case r'note':
-      return EnumCycleDayKind.note;
-    default:
-      return EnumCycleDayKind.$unknown;
   }
 }
 
@@ -83937,43 +80871,6 @@ EnumGiftIdeaStatus fromJsonEnumGiftIdeaStatus(String value) {
       return EnumGiftIdeaStatus.given;
     default:
       return EnumGiftIdeaStatus.$unknown;
-  }
-}
-
-enum EnumHeavyDaySharing {
-  off,
-  ask,
-  always,
-  $unknown;
-
-  factory EnumHeavyDaySharing.fromJson(String value) => fromJsonEnumHeavyDaySharing(value);
-
-  String toJson() => toJsonEnumHeavyDaySharing(this);
-}
-
-String toJsonEnumHeavyDaySharing(EnumHeavyDaySharing e) {
-  switch (e) {
-    case EnumHeavyDaySharing.off:
-      return r'off';
-    case EnumHeavyDaySharing.ask:
-      return r'ask';
-    case EnumHeavyDaySharing.always:
-      return r'always';
-    case EnumHeavyDaySharing.$unknown:
-      return r'$unknown';
-  }
-}
-
-EnumHeavyDaySharing fromJsonEnumHeavyDaySharing(String value) {
-  switch (value) {
-    case r'off':
-      return EnumHeavyDaySharing.off;
-    case r'ask':
-      return EnumHeavyDaySharing.ask;
-    case r'always':
-      return EnumHeavyDaySharing.always;
-    default:
-      return EnumHeavyDaySharing.$unknown;
   }
 }
 
@@ -84874,7 +81771,6 @@ EnumRelationshipPhase fromJsonEnumRelationshipPhase(String value) {
 
 enum EnumRelationshipStatus {
   together,
-  on_break,
   ended,
   bereaved,
   $unknown;
@@ -84888,8 +81784,6 @@ String toJsonEnumRelationshipStatus(EnumRelationshipStatus e) {
   switch (e) {
     case EnumRelationshipStatus.together:
       return r'together';
-    case EnumRelationshipStatus.on_break:
-      return r'on_break';
     case EnumRelationshipStatus.ended:
       return r'ended';
     case EnumRelationshipStatus.bereaved:
@@ -84903,8 +81797,6 @@ EnumRelationshipStatus fromJsonEnumRelationshipStatus(String value) {
   switch (value) {
     case r'together':
       return EnumRelationshipStatus.together;
-    case r'on_break':
-      return EnumRelationshipStatus.on_break;
     case r'ended':
       return EnumRelationshipStatus.ended;
     case r'bereaved':
@@ -85083,7 +81975,6 @@ enum EnumSignalKind {
   hug,
   distance,
   repair,
-  heavy_day,
   good_news,
   $unknown;
 
@@ -85104,8 +81995,6 @@ String toJsonEnumSignalKind(EnumSignalKind e) {
       return r'distance';
     case EnumSignalKind.repair:
       return r'repair';
-    case EnumSignalKind.heavy_day:
-      return r'heavy_day';
     case EnumSignalKind.good_news:
       return r'good_news';
     case EnumSignalKind.$unknown:
@@ -85125,8 +82014,6 @@ EnumSignalKind fromJsonEnumSignalKind(String value) {
       return EnumSignalKind.distance;
     case r'repair':
       return EnumSignalKind.repair;
-    case r'heavy_day':
-      return EnumSignalKind.heavy_day;
     case r'good_news':
       return EnumSignalKind.good_news;
     default:
@@ -85701,7 +82588,6 @@ const possibleTypesMap = <String, Set<String>>{
     'CoupleMembers',
     'CouplePhotos',
     'Couples',
-    'CycleDays',
     'DecisionOptions',
     'DecisionRanks',
     'Decisions',
@@ -85732,7 +82618,6 @@ const possibleTypesMap = <String, Set<String>>{
     'PartnerFacts',
     'PartnerMessages',
     'PartnerMood',
-    'Pauses',
     'PlanningAreas',
     'PlusState',
     'Profiles',

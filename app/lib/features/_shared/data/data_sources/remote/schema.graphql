@@ -1153,7 +1153,6 @@ enum ConsentKind {
   marketing
   ai
   terms
-  sensitive_tracks
 }
 
 """
@@ -2086,30 +2085,6 @@ type Couples implements Node {
     """Sort order to apply to the collection"""
     orderBy: [DecisionsOrderBy!]
   ): DecisionsConnection
-  pausesCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: PausesFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [PausesOrderBy!]
-  ): PausesConnection
   questionAnswersCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -2313,124 +2288,6 @@ type CouplesUpdateResponse {
 An opaque string using for tracking a position in results during pagination
 """
 scalar Cursor
-
-enum CycleDayKind {
-  heavy
-  light
-  note
-}
-
-"""
-Boolean expression comparing fields on type "CycleDayKind"
-"""
-input CycleDayKindFilter {
-  eq: CycleDayKind
-  in: [CycleDayKind!]
-  is: FilterIs
-  neq: CycleDayKind
-}
-
-"""Heavy-day tracking. Private to the author."""
-type CycleDays implements Node {
-  """Globally Unique Record Identifier"""
-  nodeId: ID!
-  id: UUID!
-  authorId: UUID!
-  day: Date!
-  kind: CycleDayKind!
-  note: String
-  createdAt: Datetime!
-  updatedAt: Datetime!
-  author: Profiles
-}
-
-type CycleDaysConnection {
-  edges: [CycleDaysEdge!]!
-  pageInfo: PageInfo!
-}
-
-type CycleDaysDeleteResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [CycleDays!]!
-}
-
-type CycleDaysEdge {
-  cursor: String!
-  node: CycleDays!
-}
-
-input CycleDaysFilter {
-  id: UUIDFilter
-  authorId: UUIDFilter
-  day: DateFilter
-  kind: CycleDayKindFilter
-  note: StringFilter
-  createdAt: DatetimeFilter
-  updatedAt: DatetimeFilter
-  nodeId: IDFilter
-
-  """
-  Returns true only if all its inner filters are true, otherwise returns false
-  """
-  and: [CycleDaysFilter!]
-
-  """
-  Returns true if at least one of its inner filters is true, otherwise returns false
-  """
-  or: [CycleDaysFilter!]
-
-  """Negates a filter"""
-  not: CycleDaysFilter
-}
-
-input CycleDaysInsertInput {
-  id: UUID
-  authorId: UUID
-  day: Date
-  kind: CycleDayKind
-  note: String
-  createdAt: Datetime
-  updatedAt: Datetime
-}
-
-type CycleDaysInsertResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [CycleDays!]!
-}
-
-input CycleDaysOrderBy {
-  id: OrderByDirection
-  authorId: OrderByDirection
-  day: OrderByDirection
-  kind: OrderByDirection
-  note: OrderByDirection
-  createdAt: OrderByDirection
-  updatedAt: OrderByDirection
-}
-
-input CycleDaysUpdateInput {
-  id: UUID
-  authorId: UUID
-  day: Date
-  kind: CycleDayKind
-  note: String
-  createdAt: Datetime
-  updatedAt: Datetime
-}
-
-type CycleDaysUpdateResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [CycleDays!]!
-}
 
 """A date without time information"""
 scalar Date
@@ -4013,22 +3870,6 @@ type GuestLinksUpdateResponse {
 
   """Array of records impacted by the mutation"""
   records: [GuestLinks!]!
-}
-
-enum HeavyDaySharing {
-  off
-  ask
-  always
-}
-
-"""
-Boolean expression comparing fields on type "HeavyDaySharing"
-"""
-input HeavyDaySharingFilter {
-  eq: HeavyDaySharing
-  in: [HeavyDaySharing!]
-  is: FilterIs
-  neq: HeavyDaySharing
 }
 
 enum IdeaResponse {
@@ -6132,17 +5973,6 @@ type Mutation {
     atMost: Int! = 1
   ): CouplesDeleteResponse!
 
-  """Deletes zero or more records from the `CycleDays` collection"""
-  deleteFromCycleDaysCollection(
-    """Restricts the mutation's impact to records matching the criteria"""
-    filter: CycleDaysFilter
-
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-  ): CycleDaysDeleteResponse!
-
   """Deletes zero or more records from the `DecisionOptions` collection"""
   deleteFromDecisionOptionsCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -6475,17 +6305,6 @@ type Mutation {
     atMost: Int! = 1
   ): PartnerMoodDeleteResponse!
 
-  """Deletes zero or more records from the `Pauses` collection"""
-  deleteFromPausesCollection(
-    """Restricts the mutation's impact to records matching the criteria"""
-    filter: PausesFilter
-
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-  ): PausesDeleteResponse!
-
   """Deletes zero or more records from the `PlanningAreas` collection"""
   deleteFromPlanningAreasCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -6717,9 +6536,6 @@ type Mutation {
   """One random slip the caller put in the jar, or null when it is empty."""
   drawFromJar: Slips
 
-  """Ends the caller's own pause. Returns false when there was none."""
-  endPause: Boolean
-
   """
   Creates the caller's profile and settings if they are missing, and returns the profile.
   """
@@ -6772,9 +6588,6 @@ type Mutation {
 
   """Adds one or more `Couples` records to the collection"""
   insertIntoCouplesCollection(objects: [CouplesInsertInput!]!): CouplesInsertResponse
-
-  """Adds one or more `CycleDays` records to the collection"""
-  insertIntoCycleDaysCollection(objects: [CycleDaysInsertInput!]!): CycleDaysInsertResponse
 
   """Adds one or more `DecisionOptions` records to the collection"""
   insertIntoDecisionOptionsCollection(objects: [DecisionOptionsInsertInput!]!): DecisionOptionsInsertResponse
@@ -6865,9 +6678,6 @@ type Mutation {
 
   """Adds one or more `PartnerMood` records to the collection"""
   insertIntoPartnerMoodCollection(objects: [PartnerMoodInsertInput!]!): PartnerMoodInsertResponse
-
-  """Adds one or more `Pauses` records to the collection"""
-  insertIntoPausesCollection(objects: [PausesInsertInput!]!): PausesInsertResponse
 
   """Adds one or more `PlanningAreas` records to the collection"""
   insertIntoPlanningAreasCollection(objects: [PlanningAreasInsertInput!]!): PlanningAreasInsertResponse
@@ -7068,11 +6878,6 @@ type Mutation {
 
   """Switches touch topics on or off for both partners."""
   setTouchTopics(enabled: Boolean!): Boolean
-
-  """
-  Starts a pause with a promise to return within 24 hours. The partner sees only the message and the return time.
-  """
-  startPause(returnAt: Datetime!, message: String): Pauses
 
   """
   Ends the couple for both people. Each person keeps what is private to them; shared rows stop being reachable.
@@ -7326,22 +7131,6 @@ type Mutation {
     """
     atMost: Int! = 1
   ): CouplesUpdateResponse!
-
-  """Updates zero or more records in the `CycleDays` collection"""
-  updateCycleDaysCollection(
-    """
-    Fields that are set will be updated for all records matching the `filter`
-    """
-    set: CycleDaysUpdateInput!
-
-    """Restricts the mutation's impact to records matching the criteria"""
-    filter: CycleDaysFilter
-
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-  ): CycleDaysUpdateResponse!
 
   """Updates zero or more records in the `DecisionOptions` collection"""
   updateDecisionOptionsCollection(
@@ -7828,22 +7617,6 @@ type Mutation {
     atMost: Int! = 1
   ): PartnerMoodUpdateResponse!
 
-  """Updates zero or more records in the `Pauses` collection"""
-  updatePausesCollection(
-    """
-    Fields that are set will be updated for all records matching the `filter`
-    """
-    set: PausesUpdateInput!
-
-    """Restricts the mutation's impact to records matching the criteria"""
-    filter: PausesFilter
-
-    """
-    The maximum number of records in the collection permitted to be affected
-    """
-    atMost: Int! = 1
-  ): PausesUpdateResponse!
-
   """Updates zero or more records in the `PlanningAreas` collection"""
   updatePlanningAreasCollection(
     """
@@ -8178,7 +7951,6 @@ type NotificationSettings implements Node {
   nodeId: ID!
   profileId: UUID!
   enabled: Boolean!
-  discreet: Boolean!
   cardDay: Int!
   cardHour: Int!
   mutedTypes: [String]!
@@ -8208,7 +7980,6 @@ type NotificationSettingsEdge {
 input NotificationSettingsFilter {
   profileId: UUIDFilter
   enabled: BooleanFilter
-  discreet: BooleanFilter
   cardDay: IntFilter
   cardHour: IntFilter
   mutedTypes: StringListFilter
@@ -8233,7 +8004,6 @@ input NotificationSettingsFilter {
 input NotificationSettingsInsertInput {
   profileId: UUID
   enabled: Boolean
-  discreet: Boolean
   cardDay: Int
   cardHour: Int
   mutedTypes: [String]
@@ -8252,7 +8022,6 @@ type NotificationSettingsInsertResponse {
 input NotificationSettingsOrderBy {
   profileId: OrderByDirection
   enabled: OrderByDirection
-  discreet: OrderByDirection
   cardDay: OrderByDirection
   cardHour: OrderByDirection
   updatedAt: OrderByDirection
@@ -8262,7 +8031,6 @@ input NotificationSettingsOrderBy {
 input NotificationSettingsUpdateInput {
   profileId: UUID
   enabled: Boolean
-  discreet: Boolean
   cardDay: Int
   cardHour: Int
   mutedTypes: [String]
@@ -8678,111 +8446,6 @@ type PartnerMoodUpdateResponse {
 
   """Array of records impacted by the mutation"""
   records: [PartnerMood!]!
-}
-
-"""
-A pause with a promise to return. The partner sees only the message and the return time.
-"""
-type Pauses implements Node {
-  """Globally Unique Record Identifier"""
-  nodeId: ID!
-  id: UUID!
-  startedBy: UUID!
-  coupleId: UUID
-  returnAt: Datetime!
-  message: String!
-  startedAt: Datetime!
-  endedAt: Datetime
-  profiles: Profiles
-  couple: Couples
-}
-
-type PausesConnection {
-  edges: [PausesEdge!]!
-  pageInfo: PageInfo!
-}
-
-type PausesDeleteResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [Pauses!]!
-}
-
-type PausesEdge {
-  cursor: String!
-  node: Pauses!
-}
-
-input PausesFilter {
-  id: UUIDFilter
-  startedBy: UUIDFilter
-  coupleId: UUIDFilter
-  returnAt: DatetimeFilter
-  message: StringFilter
-  startedAt: DatetimeFilter
-  endedAt: DatetimeFilter
-  nodeId: IDFilter
-
-  """
-  Returns true only if all its inner filters are true, otherwise returns false
-  """
-  and: [PausesFilter!]
-
-  """
-  Returns true if at least one of its inner filters is true, otherwise returns false
-  """
-  or: [PausesFilter!]
-
-  """Negates a filter"""
-  not: PausesFilter
-}
-
-input PausesInsertInput {
-  id: UUID
-  startedBy: UUID
-  coupleId: UUID
-  returnAt: Datetime
-  message: String
-  startedAt: Datetime
-  endedAt: Datetime
-}
-
-type PausesInsertResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [Pauses!]!
-}
-
-input PausesOrderBy {
-  id: OrderByDirection
-  startedBy: OrderByDirection
-  coupleId: OrderByDirection
-  returnAt: OrderByDirection
-  message: OrderByDirection
-  startedAt: OrderByDirection
-  endedAt: OrderByDirection
-}
-
-input PausesUpdateInput {
-  id: UUID
-  startedBy: UUID
-  coupleId: UUID
-  returnAt: Datetime
-  message: String
-  startedAt: Datetime
-  endedAt: Datetime
-}
-
-type PausesUpdateResponse {
-  """Count of the records impacted by the mutation"""
-  affectedCount: Int!
-
-  """Array of records impacted by the mutation"""
-  records: [Pauses!]!
 }
 
 """
@@ -9405,30 +9068,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [MoodsOrderBy!]
   ): MoodsConnection
-  cycleDaysCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CycleDaysFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CycleDaysOrderBy!]
-  ): CycleDaysConnection
   ideaResponsesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -9909,30 +9548,6 @@ type Profiles implements Node {
     """Sort order to apply to the collection"""
     orderBy: [DecisionRanksOrderBy!]
   ): DecisionRanksConnection
-  pausesCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: PausesFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [PausesOrderBy!]
-  ): PausesConnection
   partnerMessagesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -10196,13 +9811,11 @@ type ProfileSettings implements Node {
   slipsDefaultForCard: Boolean!
   widgetAllowPartnerNotes: Boolean!
   widgetOnLockScreen: Boolean!
-  widgetInDiscreet: Boolean!
   widgetShowNames: Boolean!
   spiceEnabled: Boolean!
   lowStimulation: Boolean!
   chatEnabled: Boolean!
   chatStoreFacts: Boolean!
-  heavyDaySharing: HeavyDaySharing!
   profile: Profiles
 }
 
@@ -10246,13 +9859,11 @@ input ProfileSettingsFilter {
   slipsDefaultForCard: BooleanFilter
   widgetAllowPartnerNotes: BooleanFilter
   widgetOnLockScreen: BooleanFilter
-  widgetInDiscreet: BooleanFilter
   widgetShowNames: BooleanFilter
   spiceEnabled: BooleanFilter
   lowStimulation: BooleanFilter
   chatEnabled: BooleanFilter
   chatStoreFacts: BooleanFilter
-  heavyDaySharing: HeavyDaySharingFilter
   nodeId: IDFilter
 
   """
@@ -10291,13 +9902,11 @@ input ProfileSettingsInsertInput {
   slipsDefaultForCard: Boolean
   widgetAllowPartnerNotes: Boolean
   widgetOnLockScreen: Boolean
-  widgetInDiscreet: Boolean
   widgetShowNames: Boolean
   spiceEnabled: Boolean
   lowStimulation: Boolean
   chatEnabled: Boolean
   chatStoreFacts: Boolean
-  heavyDaySharing: HeavyDaySharing
 }
 
 type ProfileSettingsInsertResponse {
@@ -10328,13 +9937,11 @@ input ProfileSettingsOrderBy {
   slipsDefaultForCard: OrderByDirection
   widgetAllowPartnerNotes: OrderByDirection
   widgetOnLockScreen: OrderByDirection
-  widgetInDiscreet: OrderByDirection
   widgetShowNames: OrderByDirection
   spiceEnabled: OrderByDirection
   lowStimulation: OrderByDirection
   chatEnabled: OrderByDirection
   chatStoreFacts: OrderByDirection
-  heavyDaySharing: OrderByDirection
 }
 
 input ProfileSettingsUpdateInput {
@@ -10359,13 +9966,11 @@ input ProfileSettingsUpdateInput {
   slipsDefaultForCard: Boolean
   widgetAllowPartnerNotes: Boolean
   widgetOnLockScreen: Boolean
-  widgetInDiscreet: Boolean
   widgetShowNames: Boolean
   spiceEnabled: Boolean
   lowStimulation: Boolean
   chatEnabled: Boolean
   chatStoreFacts: Boolean
-  heavyDaySharing: HeavyDaySharing
 }
 
 type ProfileSettingsUpdateResponse {
@@ -10554,11 +10159,6 @@ type ProgramEnrollmentsUpdateResponse {
 
 """The root type for querying data"""
 type Query {
-  """
-  The pause that matters to the caller right now: their own, or their partner's.
-  """
-  activePause: Pauses
-
   """Retrieve a record of type `Agreements` by its primary key"""
   agreementsByPk(
     """The record's `id` value"""
@@ -11049,38 +10649,6 @@ type Query {
   How the relationship feels right now, per the caller's latest check. A fight level counts for 24 hours.
   """
   currentTemperature: TemperatureChecks
-
-  """Retrieve a record of type `CycleDays` by its primary key"""
-  cycleDaysByPk(
-    """The record's `id` value"""
-    id: UUID!
-  ): CycleDays
-
-  """A pagable collection of type `CycleDays`"""
-  cycleDaysCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: CycleDaysFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [CycleDaysOrderBy!]
-  ): CycleDaysConnection!
 
   """
   The editorial item of this kind picked for today. The same pick for both partners.
@@ -12139,38 +11707,6 @@ type Query {
   """The partner's time zone, or null when unpaired."""
   partnerTimeZone: String
 
-  """Retrieve a record of type `Pauses` by its primary key"""
-  pausesByPk(
-    """The record's `id` value"""
-    id: UUID!
-  ): Pauses
-
-  """A pagable collection of type `Pauses`"""
-  pausesCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """
-    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
-    """
-    offset: Int
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: PausesFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [PausesOrderBy!]
-  ): PausesConnection!
-
   """Retrieve a record of type `PlanningAreas` by its primary key"""
   planningAreasByPk(
     """The record's `id` value"""
@@ -13081,7 +12617,6 @@ input RelationshipPhaseFilter {
 
 enum RelationshipStatus {
   together
-  on_break
   ended
   bereaved
 }
@@ -13809,7 +13344,6 @@ enum SignalKind {
   hug
   distance
   repair
-  heavy_day
   good_news
 }
 
@@ -14633,8 +14167,7 @@ input TimeListFilter {
 }
 
 """
-Everything Hoje needs in one call. suggestion_key: pause, first_slip, open_card,
-repair, review_card, invite_partner, write_slip.
+Everything Hoje needs in one call. suggestion_key: first_slip, open_card, repair, review_card, invite_partner, write_slip.
 """
 type TodayState implements Node {
   """Globally Unique Record Identifier"""
@@ -14651,10 +14184,6 @@ type TodayState implements Node {
   hasPendingInvite: Boolean
   suggestionKey: String
   togetherSince: Date
-  pauseId: UUID
-  pauseIsMine: Boolean
-  pauseReturnAt: Datetime
-  pauseMessage: String
   temperature: String
   nextDateId: UUID
   nextDateTitle: String
@@ -14697,10 +14226,6 @@ input TodayStateFilter {
   hasPendingInvite: BooleanFilter
   suggestionKey: StringFilter
   togetherSince: DateFilter
-  pauseId: UUIDFilter
-  pauseIsMine: BooleanFilter
-  pauseReturnAt: DatetimeFilter
-  pauseMessage: StringFilter
   temperature: StringFilter
   nextDateId: UUIDFilter
   nextDateTitle: StringFilter
@@ -14739,10 +14264,6 @@ input TodayStateInsertInput {
   hasPendingInvite: Boolean
   suggestionKey: String
   togetherSince: Date
-  pauseId: UUID
-  pauseIsMine: Boolean
-  pauseReturnAt: Datetime
-  pauseMessage: String
   temperature: String
   nextDateId: UUID
   nextDateTitle: String
@@ -14775,10 +14296,6 @@ input TodayStateOrderBy {
   hasPendingInvite: OrderByDirection
   suggestionKey: OrderByDirection
   togetherSince: OrderByDirection
-  pauseId: OrderByDirection
-  pauseIsMine: OrderByDirection
-  pauseReturnAt: OrderByDirection
-  pauseMessage: OrderByDirection
   temperature: OrderByDirection
   nextDateId: OrderByDirection
   nextDateTitle: OrderByDirection
@@ -14802,10 +14319,6 @@ input TodayStateUpdateInput {
   hasPendingInvite: Boolean
   suggestionKey: String
   togetherSince: Date
-  pauseId: UUID
-  pauseIsMine: Boolean
-  pauseReturnAt: Datetime
-  pauseMessage: String
   temperature: String
   nextDateId: UUID
   nextDateTitle: String
@@ -14854,14 +14367,12 @@ type WidgetState implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   profileId: UUID
-  discreet: Boolean
   isPaired: Boolean
   togetherSince: Date
   partnerName: String
   nextDateTitle: String
   nextDateOn: Date
   unopenedCards: Int
-  pauseReturnAt: Datetime
   partnerNote: String
   partnerNoteMedia: String
   partnerNoteAt: Datetime
@@ -14888,14 +14399,12 @@ type WidgetStateEdge {
 
 input WidgetStateFilter {
   profileId: UUIDFilter
-  discreet: BooleanFilter
   isPaired: BooleanFilter
   togetherSince: DateFilter
   partnerName: StringFilter
   nextDateTitle: StringFilter
   nextDateOn: DateFilter
   unopenedCards: IntFilter
-  pauseReturnAt: DatetimeFilter
   partnerNote: StringFilter
   partnerNoteMedia: StringFilter
   partnerNoteAt: DatetimeFilter
@@ -14918,14 +14427,12 @@ input WidgetStateFilter {
 
 input WidgetStateInsertInput {
   profileId: UUID
-  discreet: Boolean
   isPaired: Boolean
   togetherSince: Date
   partnerName: String
   nextDateTitle: String
   nextDateOn: Date
   unopenedCards: Int
-  pauseReturnAt: Datetime
   partnerNote: String
   partnerNoteMedia: String
   partnerNoteAt: Datetime
@@ -14942,14 +14449,12 @@ type WidgetStateInsertResponse {
 
 input WidgetStateOrderBy {
   profileId: OrderByDirection
-  discreet: OrderByDirection
   isPaired: OrderByDirection
   togetherSince: OrderByDirection
   partnerName: OrderByDirection
   nextDateTitle: OrderByDirection
   nextDateOn: OrderByDirection
   unopenedCards: OrderByDirection
-  pauseReturnAt: OrderByDirection
   partnerNote: OrderByDirection
   partnerNoteMedia: OrderByDirection
   partnerNoteAt: OrderByDirection
@@ -14958,14 +14463,12 @@ input WidgetStateOrderBy {
 
 input WidgetStateUpdateInput {
   profileId: UUID
-  discreet: Boolean
   isPaired: Boolean
   togetherSince: Date
   partnerName: String
   nextDateTitle: String
   nextDateOn: Date
   unopenedCards: Int
-  pauseReturnAt: Datetime
   partnerNote: String
   partnerNoteMedia: String
   partnerNoteAt: Datetime
