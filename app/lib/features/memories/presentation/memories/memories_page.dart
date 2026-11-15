@@ -3,6 +3,8 @@ import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/memories/presentation/add_memory/add_memory_sheet.dart';
 import 'package:app/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:app/features/memories/presentation/memories/widgets/memory_detail_sheet.dart';
+import 'package:app/features/share/data/models/share_card.dart';
+import 'package:app/features/share/presentation/widgets/share_image_entry.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
@@ -115,6 +117,24 @@ class const _MemoriesTimeline() extends StatelessWidget {
                   ),
               ],
             ),
+          if (list.isNotEmpty) ...[
+            const SizedBox(height: AppSpace.s12),
+            ShareImageEntry(
+              cards: [
+                ShareTimelineCard(
+                  entries: [
+                    for (final memory in list.take(3))
+                      ShareTimelineEntry(
+                        title: memory.title,
+                        date: memory.happenedOn,
+                        place: memory.place,
+                      ),
+                  ],
+                ),
+              ],
+              subtitle: context.l10n.share.entrySubtitleMemories,
+            ),
+          ],
           const SizedBox(height: AppSpace.s16),
           const _AddMemoryTile(),
           const SizedBox(height: AppSpace.s24),

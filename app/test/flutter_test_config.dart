@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/chat/data/models/hard_conversation_draft.dart';
@@ -147,6 +148,8 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(WidgetFamilyKind.ownSmall);
   registerFallbackValue(WidgetContentSource.favorites);
   registerFallbackValue(WidgetRotationCadence.daily);
+
+  registerFallbackValue(Uint8List(0));
 
   await testMain();
 }
