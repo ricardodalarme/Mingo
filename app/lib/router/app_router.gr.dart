@@ -1502,22 +1502,6 @@ class OwnSmallWidgetsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [PartnerNoteWidgetPage]
-class PartnerNoteWidgetRoute extends PageRouteInfo<void> {
-  const PartnerNoteWidgetRoute({List<PageRouteInfo>? children})
-    : super(PartnerNoteWidgetRoute.name, initialChildren: children);
-
-  static const String name = 'PartnerNoteWidgetRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const PartnerNoteWidgetPage());
-    },
-  );
-}
-
-/// generated route for
 /// [PartnerProfilePage]
 class PartnerProfileRoute extends PageRouteInfo<void> {
   const PartnerProfileRoute({List<PageRouteInfo>? children})
@@ -2470,92 +2454,6 @@ class WelcomeRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const WelcomePage();
-    },
-  );
-}
-
-/// generated route for
-/// [WidgetConfigurePage]
-class WidgetConfigureRoute extends PageRouteInfo<WidgetConfigureRouteArgs> {
-  WidgetConfigureRoute({
-    WidgetFamilyKind? initialFamily,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-         WidgetConfigureRoute.name,
-         args: WidgetConfigureRouteArgs(initialFamily: initialFamily, key: key),
-         initialChildren: children,
-       );
-
-  static const String name = 'WidgetConfigureRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<WidgetConfigureRouteArgs>(
-        orElse: () => const WidgetConfigureRouteArgs(),
-      );
-      return WrappedRoute(
-        child: WidgetConfigurePage(
-          initialFamily: args.initialFamily,
-          key: args.key,
-        ),
-      );
-    },
-  );
-}
-
-class WidgetConfigureRouteArgs {
-  const WidgetConfigureRouteArgs({this.initialFamily, this.key});
-
-  final WidgetFamilyKind? initialFamily;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'WidgetConfigureRouteArgs{initialFamily: $initialFamily, key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! WidgetConfigureRouteArgs) return false;
-    return initialFamily == other.initialFamily && key == other.key;
-  }
-
-  @override
-  int get hashCode => initialFamily.hashCode ^ key.hashCode;
-}
-
-/// generated route for
-/// [WidgetHowToAddPage]
-class WidgetHowToAddRoute extends PageRouteInfo<void> {
-  const WidgetHowToAddRoute({List<PageRouteInfo>? children})
-    : super(WidgetHowToAddRoute.name, initialChildren: children);
-
-  static const String name = 'WidgetHowToAddRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const WidgetHowToAddPage();
-    },
-  );
-}
-
-/// generated route for
-/// [WidgetStatesPage]
-class WidgetStatesRoute extends PageRouteInfo<void> {
-  const WidgetStatesRoute({List<PageRouteInfo>? children})
-    : super(WidgetStatesRoute.name, initialChildren: children);
-
-  static const String name = 'WidgetStatesRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const WidgetStatesPage());
     },
   );
 }

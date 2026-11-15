@@ -7,7 +7,6 @@ import 'package:app/features/widgets/presentation/gallery/widgets/gallery_previe
 import 'package:app/features/widgets/presentation/lock_screen/widgets/lock_screen_preview_section.dart';
 import 'package:app/features/widgets/presentation/own_medium/widgets/own_medium_cards.dart';
 import 'package:app/features/widgets/presentation/own_small/widgets/own_small_grid.dart';
-import 'package:app/features/widgets/presentation/partner_note/widgets/partner_note_preview_section.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -58,11 +57,6 @@ void main() {
                   LockScreenPreviewSection(payload: discreetPayload),
                   CoupleCounterPreviewCards(payload: discreetPayload, isDarkPreview: false),
                   CouplePhotosPreviewSection(payload: discreetPayload, isDarkPreview: false),
-                  PartnerNotePreviewSection(
-                    payload: discreetPayload,
-                    isDarkPreview: false,
-                    onToggleAllowNotes: (_) {},
-                  ),
                   CardEncounterPreviewSection(payload: discreetPayload, isDarkPreview: false),
                   GalleryPreviewSection(
                     segment: WidgetGallerySegment.couple,
@@ -96,11 +90,6 @@ void main() {
               children: [
                 CoupleCounterPreviewCards(payload: unpairedPayload, isDarkPreview: false),
                 CouplePhotosPreviewSection(payload: unpairedPayload, isDarkPreview: false),
-                PartnerNotePreviewSection(
-                  payload: unpairedPayload,
-                  isDarkPreview: false,
-                  onToggleAllowNotes: (_) {},
-                ),
                 CardEncounterPreviewSection(payload: unpairedPayload, isDarkPreview: false),
                 GalleryPreviewSection(
                   segment: WidgetGallerySegment.couple,
@@ -130,11 +119,6 @@ void main() {
                 children: [
                   CoupleCounterPreviewCards(payload: bothPayload, isDarkPreview: false),
                   CouplePhotosPreviewSection(payload: bothPayload, isDarkPreview: false),
-                  PartnerNotePreviewSection(
-                    payload: bothPayload,
-                    isDarkPreview: false,
-                    onToggleAllowNotes: (_) {},
-                  ),
                   CardEncounterPreviewSection(payload: bothPayload, isDarkPreview: false),
                 ],
               ),
@@ -162,11 +146,6 @@ void main() {
                 OwnMediumWidgetsCards(payload: signedOutPayload, isDarkPreview: false),
                 CoupleCounterPreviewCards(payload: signedOutPayload, isDarkPreview: false),
                 CouplePhotosPreviewSection(payload: signedOutPayload, isDarkPreview: false),
-                PartnerNotePreviewSection(
-                  payload: signedOutPayload,
-                  isDarkPreview: false,
-                  onToggleAllowNotes: (_) {},
-                ),
                 CardEncounterPreviewSection(payload: signedOutPayload, isDarkPreview: false),
               ],
             ),

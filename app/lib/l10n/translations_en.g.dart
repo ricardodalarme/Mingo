@@ -5815,10 +5815,6 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get segmentCouple => 'Couple';
   @override
-  String get howToAddAction => 'How to add to screen';
-  @override
-  String get configureAction => 'Configure';
-  @override
   String get ownSlipLabel => 'LOG SLIP';
   @override
   String get ownSlipTitle => '+ Slip';
@@ -5858,14 +5854,6 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get couplePhotosPlusHint => 'Available with Plus';
   @override
-  String get partnerNoteLabel => 'PARTNER NOTE';
-  @override
-  String get partnerNoteEmpty => 'No new note right now';
-  @override
-  String partnerNoteFrom({required Object name}) => 'From ${name}';
-  @override
-  String get partnerNoteFromDefault => 'From your partner';
-  @override
   String get cardEncounterLabel => 'CARD & DATE';
   @override
   String get cardStateReady => 'A card arrived · Tap to open';
@@ -5881,60 +5869,10 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get offlineBanner => 'Showing the last saved data. Updates when back online.';
   @override
-  String get howToAddTitle => 'How to add';
-  @override
-  String get howToAddStep1Title => 'Hold the home screen';
-  @override
-  String get howToAddStep1Body => 'Touch and hold an empty space until the icons jiggle.';
-  @override
-  String get howToAddStep2Title => 'Tap the + button';
-  @override
-  String get howToAddStep2Body => 'In the top corner, search for Mingo.';
-  @override
-  String get howToAddStep3Title => 'Pick a size';
-  @override
-  String get howToAddStep3Body => 'Small or medium.';
-  @override
   String get howToAddAndroidLockNote =>
       'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.';
   @override
   String get howToAddIosLockNote => 'On iOS 16 or newer, you can also add the lock-screen widget.';
-  @override
-  String get howToAddDone => 'Got it';
-  @override
-  String get configureTitle => 'Configure widget';
-  @override
-  String get configurePreviewLabel => 'PREVIEW';
-  @override
-  String get configureContentSection => 'Content';
-  @override
-  String get configureContentFavorites => 'Favorites';
-  @override
-  String get configureContentRecent => 'Recent';
-  @override
-  String get configureContentDailyIdea => 'Daily idea';
-  @override
-  String get configureRotationSection => 'Photo rotation';
-  @override
-  String get configureRotationDaily => 'Every day';
-  @override
-  String get configureRotationSixHours => 'Every 6h';
-  @override
-  String get configureRotationManual => 'Manual';
-  @override
-  String get configurePrivacySection => 'Privacy';
-  @override
-  String get configureShowNames => 'Show names';
-  @override
-  String get configureHideInDiscreet => 'Hide in discreet mode';
-  @override
-  String get configureAllowPartnerNotes => 'Allow partner notes';
-  @override
-  String get configureOnLockScreen => 'Allow on lock screen';
-  @override
-  String get configureSave => 'Save';
-  @override
-  String get configureSavedToast => 'Widget preferences saved.';
   @override
   String get loadErrorTitle => 'Could not load widgets';
   @override
@@ -6042,19 +5980,6 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get photosRemovedToast => 'Photo removed from the widget.';
   @override
-  String get partnerNotePageTitle => 'Partner note';
-  @override
-  String get partnerNoteMediumSection => 'Medium';
-  @override
-  String get partnerNoteReplyHint => 'Reply with a heart';
-  @override
-  String get partnerNoteDrawingPlaceholder => 'drawing';
-  @override
-  String get partnerNoteSafeNote => 'Only notes your partner marked as widget-safe appear here.';
-  @override
-  String get partnerNoteDisabledNote =>
-      'You turned off partner notes on widgets. Enable below if you want to show them.';
-  @override
   String get cardEncounterPageTitle => 'Card & next date';
   @override
   String get cardWeeklyLabel => 'Weekly card';
@@ -6080,28 +6005,9 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get cardEncounterPrivacyNote =>
       'This widget only shows card status and the next date — never names or card text.';
   @override
-  String get statesPageTitle => 'Widget states';
-  @override
-  String get statesAction => 'View states (discreet & unpaired)';
-  @override
-  String get statesDiscreetSection => 'Discreet mode';
-  @override
-  String get statesDiscreetToggle => 'Enable discreet mode now';
-  @override
-  String get statesUnpairedSection => 'No partner';
-  @override
   String get statesUnpairedTitle => 'Invite to see here';
   @override
   String get statesUnpairedAction => 'Invite';
-  @override
-  String get statesOfflineSection => 'Offline';
-  @override
-  String get statesOfflineTitle => 'Showing the last saved data';
-  @override
-  String get statesOfflineSubtitle => 'Updates when back online';
-  @override
-  String get statesPrecedenceNote =>
-      'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).';
   @override
   Map<String, String> get errors => {
     'WIDGET_PREFERENCES_SAVE_FAILED': 'Could not save widget preferences right now.',
@@ -10772,8 +10678,6 @@ extension on TranslationsEn {
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Just mine',
           'widgets.segmentCouple' => 'Couple',
-          'widgets.howToAddAction' => 'How to add to screen',
-          'widgets.configureAction' => 'Configure',
           'widgets.ownSlipLabel' => 'LOG SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Tap to log',
@@ -10797,10 +10701,6 @@ extension on TranslationsEn {
           'widgets.couplePhotosLabel' => 'COUPLE PHOTOS · PLUS',
           'widgets.couplePhotosPrompt' => 'Choose a photo of you two',
           'widgets.couplePhotosPlusHint' => 'Available with Plus',
-          'widgets.partnerNoteLabel' => 'PARTNER NOTE',
-          'widgets.partnerNoteEmpty' => 'No new note right now',
-          'widgets.partnerNoteFrom' => ({required Object name}) => 'From ${name}',
-          'widgets.partnerNoteFromDefault' => 'From your partner',
           'widgets.cardEncounterLabel' => 'CARD & DATE',
           'widgets.cardStateReady' => 'A card arrived · Tap to open',
           'widgets.cardStateSent' => 'Card sent · Waiting for Sunday',
@@ -10809,34 +10709,9 @@ extension on TranslationsEn {
             'Discreet mode is on: names, photos and notes are hidden in widgets.',
           'widgets.unpairedBanner' => 'No partner connected: couple widgets show a neutral state.',
           'widgets.offlineBanner' => 'Showing the last saved data. Updates when back online.',
-          'widgets.howToAddTitle' => 'How to add',
-          'widgets.howToAddStep1Title' => 'Hold the home screen',
-          'widgets.howToAddStep1Body' => 'Touch and hold an empty space until the icons jiggle.',
-          'widgets.howToAddStep2Title' => 'Tap the + button',
-          'widgets.howToAddStep2Body' => 'In the top corner, search for Mingo.',
-          'widgets.howToAddStep3Title' => 'Pick a size',
-          'widgets.howToAddStep3Body' => 'Small or medium.',
           'widgets.howToAddAndroidLockNote' => 'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.',
           'widgets.howToAddIosLockNote' =>
             'On iOS 16 or newer, you can also add the lock-screen widget.',
-          'widgets.howToAddDone' => 'Got it',
-          'widgets.configureTitle' => 'Configure widget',
-          'widgets.configurePreviewLabel' => 'PREVIEW',
-          'widgets.configureContentSection' => 'Content',
-          'widgets.configureContentFavorites' => 'Favorites',
-          'widgets.configureContentRecent' => 'Recent',
-          'widgets.configureContentDailyIdea' => 'Daily idea',
-          'widgets.configureRotationSection' => 'Photo rotation',
-          'widgets.configureRotationDaily' => 'Every day',
-          'widgets.configureRotationSixHours' => 'Every 6h',
-          'widgets.configureRotationManual' => 'Manual',
-          'widgets.configurePrivacySection' => 'Privacy',
-          'widgets.configureShowNames' => 'Show names',
-          'widgets.configureHideInDiscreet' => 'Hide in discreet mode',
-          'widgets.configureAllowPartnerNotes' => 'Allow partner notes',
-          'widgets.configureOnLockScreen' => 'Allow on lock screen',
-          'widgets.configureSave' => 'Save',
-          'widgets.configureSavedToast' => 'Widget preferences saved.',
           'widgets.loadErrorTitle' => 'Could not load widgets',
           'widgets.loadErrorBody' => 'Check your connection and try again.',
           'widgets.retryAction' => 'Try again',
@@ -10899,14 +10774,6 @@ extension on TranslationsEn {
           'widgets.photosRemoveAction' => 'Remove photo',
           'widgets.photosSavedToast' => 'Photo saved to the widget.',
           'widgets.photosRemovedToast' => 'Photo removed from the widget.',
-          'widgets.partnerNotePageTitle' => 'Partner note',
-          'widgets.partnerNoteMediumSection' => 'Medium',
-          'widgets.partnerNoteReplyHint' => 'Reply with a heart',
-          'widgets.partnerNoteDrawingPlaceholder' => 'drawing',
-          'widgets.partnerNoteSafeNote' =>
-            'Only notes your partner marked as widget-safe appear here.',
-          'widgets.partnerNoteDisabledNote' =>
-            'You turned off partner notes on widgets. Enable below if you want to show them.',
           'widgets.cardEncounterPageTitle' => 'Card & next date',
           'widgets.cardWeeklyLabel' => 'Weekly card',
           'widgets.cardReadyTitle' => 'A card arrived',
@@ -10920,17 +10787,8 @@ extension on TranslationsEn {
           'widgets.nextEncounterEmptySubtitle' => 'Tap to schedule',
           'widgets.cardEncounterPrivacyNote' =>
             'This widget only shows card status and the next date — never names or card text.',
-          'widgets.statesPageTitle' => 'Widget states',
-          'widgets.statesAction' => 'View states (discreet & unpaired)',
-          'widgets.statesDiscreetSection' => 'Discreet mode',
-          'widgets.statesDiscreetToggle' => 'Enable discreet mode now',
-          'widgets.statesUnpairedSection' => 'No partner',
           'widgets.statesUnpairedTitle' => 'Invite to see here',
           'widgets.statesUnpairedAction' => 'Invite',
-          'widgets.statesOfflineSection' => 'Offline',
-          'widgets.statesOfflineTitle' => 'Showing the last saved data',
-          'widgets.statesOfflineSubtitle' => 'Updates when back online',
-          'widgets.statesPrecedenceNote' => 'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Could not save widget preferences right now.',
           'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' => 'Could not load the couple photo right now.',

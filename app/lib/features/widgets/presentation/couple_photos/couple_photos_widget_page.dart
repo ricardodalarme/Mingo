@@ -3,7 +3,6 @@ import 'package:app/features/widgets/presentation/couple_photos/cubit/couple_pho
 import 'package:app/features/widgets/presentation/couple_photos/widgets/couple_photos_preview_section.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
-import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
@@ -47,10 +46,6 @@ class const CouplePhotosWidgetPage({super.key})
     return BaseView(
       appBar: BaseAppBar(title: l10n.photosPageTitle),
       body: BaseStackedContent(
-        footer: BaseButton(
-          text: l10n.howToAddAction,
-          onPressed: () => context.pushRoute(const WidgetHowToAddRoute()),
-        ),
         body: SkeletonizerResourceWidget<WidgetOverview>(
           overviewResource,
           fakeValue: WidgetOverview.fake(),

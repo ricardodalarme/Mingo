@@ -7239,12 +7239,6 @@ class Translations$widgets$pt {
   /// pt: 'Do casal'
   String get segmentCouple => 'Do casal';
 
-  /// pt: 'Como colocar na tela'
-  String get howToAddAction => 'Como colocar na tela';
-
-  /// pt: 'Configurar'
-  String get configureAction => 'Configurar';
-
   /// pt: 'ANOTAR SLIP'
   String get ownSlipLabel => 'ANOTAR SLIP';
 
@@ -7301,18 +7295,6 @@ class Translations$widgets$pt {
   /// pt: 'Disponível no plano Plus'
   String get couplePhotosPlusHint => 'Disponível no plano Plus';
 
-  /// pt: 'RECADO DO PAR'
-  String get partnerNoteLabel => 'RECADO DO PAR';
-
-  /// pt: 'Sem recado novo no momento'
-  String get partnerNoteEmpty => 'Sem recado novo no momento';
-
-  /// pt: 'De {name}'
-  String partnerNoteFrom({required Object name}) => 'De ${name}';
-
-  /// pt: 'Do seu par'
-  String get partnerNoteFromDefault => 'Do seu par';
-
   /// pt: 'CARTÃO E ENCONTRO'
   String get cardEncounterLabel => 'CARTÃO E ENCONTRO';
 
@@ -7335,27 +7317,6 @@ class Translations$widgets$pt {
   /// pt: 'Mostrando o último dado salvo. Atualiza quando voltar a internet.'
   String get offlineBanner => 'Mostrando o último dado salvo. Atualiza quando voltar a internet.';
 
-  /// pt: 'Como adicionar'
-  String get howToAddTitle => 'Como adicionar';
-
-  /// pt: 'Segure a tela inicial'
-  String get howToAddStep1Title => 'Segure a tela inicial';
-
-  /// pt: 'Toque e segure um espaço vazio até os ícones tremerem.'
-  String get howToAddStep1Body => 'Toque e segure um espaço vazio até os ícones tremerem.';
-
-  /// pt: 'Toque no botão +'
-  String get howToAddStep2Title => 'Toque no botão +';
-
-  /// pt: 'No canto superior, busque por Mingo.'
-  String get howToAddStep2Body => 'No canto superior, busque por Mingo.';
-
-  /// pt: 'Escolha o tamanho'
-  String get howToAddStep3Title => 'Escolha o tamanho';
-
-  /// pt: 'Pequeno ou médio.'
-  String get howToAddStep3Body => 'Pequeno ou médio.';
-
   /// pt: 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.'
   String get howToAddAndroidLockNote =>
       'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.';
@@ -7363,60 +7324,6 @@ class Translations$widgets$pt {
   /// pt: 'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.'
   String get howToAddIosLockNote =>
       'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.';
-
-  /// pt: 'Entendi'
-  String get howToAddDone => 'Entendi';
-
-  /// pt: 'Configurar widget'
-  String get configureTitle => 'Configurar widget';
-
-  /// pt: 'PRÉVIA'
-  String get configurePreviewLabel => 'PRÉVIA';
-
-  /// pt: 'Conteúdo'
-  String get configureContentSection => 'Conteúdo';
-
-  /// pt: 'Favoritas'
-  String get configureContentFavorites => 'Favoritas';
-
-  /// pt: 'Recentes'
-  String get configureContentRecent => 'Recentes';
-
-  /// pt: 'Ideia do dia'
-  String get configureContentDailyIdea => 'Ideia do dia';
-
-  /// pt: 'Troca de foto'
-  String get configureRotationSection => 'Troca de foto';
-
-  /// pt: 'Todo dia'
-  String get configureRotationDaily => 'Todo dia';
-
-  /// pt: 'A cada 6h'
-  String get configureRotationSixHours => 'A cada 6h';
-
-  /// pt: 'Manual'
-  String get configureRotationManual => 'Manual';
-
-  /// pt: 'Privacidade'
-  String get configurePrivacySection => 'Privacidade';
-
-  /// pt: 'Mostrar nomes'
-  String get configureShowNames => 'Mostrar nomes';
-
-  /// pt: 'Ocultar em modo discreto'
-  String get configureHideInDiscreet => 'Ocultar em modo discreto';
-
-  /// pt: 'Permitir recado do parceiro'
-  String get configureAllowPartnerNotes => 'Permitir recado do parceiro';
-
-  /// pt: 'Permitir na tela de bloqueio'
-  String get configureOnLockScreen => 'Permitir na tela de bloqueio';
-
-  /// pt: 'Salvar'
-  String get configureSave => 'Salvar';
-
-  /// pt: 'Preferências do widget salvas.'
-  String get configureSavedToast => 'Preferências do widget salvas.';
 
   /// pt: 'Não foi possível carregar os widgets'
   String get loadErrorTitle => 'Não foi possível carregar os widgets';
@@ -7575,26 +7482,6 @@ class Translations$widgets$pt {
   /// pt: 'Foto removida do widget.'
   String get photosRemovedToast => 'Foto removida do widget.';
 
-  /// pt: 'Recado do parceiro'
-  String get partnerNotePageTitle => 'Recado do parceiro';
-
-  /// pt: 'Médio'
-  String get partnerNoteMediumSection => 'Médio';
-
-  /// pt: 'Responder com um coração'
-  String get partnerNoteReplyHint => 'Responder com um coração';
-
-  /// pt: 'desenho'
-  String get partnerNoteDrawingPlaceholder => 'desenho';
-
-  /// pt: 'Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.'
-  String get partnerNoteSafeNote =>
-      'Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.';
-
-  /// pt: 'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.'
-  String get partnerNoteDisabledNote =>
-      'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.';
-
   /// pt: 'Cartão e próximo encontro'
   String get cardEncounterPageTitle => 'Cartão e próximo encontro';
 
@@ -7632,39 +7519,11 @@ class Translations$widgets$pt {
   String get cardEncounterPrivacyNote =>
       'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.';
 
-  /// pt: 'Estados do widget'
-  String get statesPageTitle => 'Estados do widget';
-
-  /// pt: 'Ver estados (discreto e sem par)'
-  String get statesAction => 'Ver estados (discreto e sem par)';
-
-  /// pt: 'Modo discreto'
-  String get statesDiscreetSection => 'Modo discreto';
-
-  /// pt: 'Ativar modo discreto agora'
-  String get statesDiscreetToggle => 'Ativar modo discreto agora';
-
-  /// pt: 'Sem parceiro'
-  String get statesUnpairedSection => 'Sem parceiro';
-
   /// pt: 'Convide para ver aqui'
   String get statesUnpairedTitle => 'Convide para ver aqui';
 
   /// pt: 'Convidar'
   String get statesUnpairedAction => 'Convidar';
-
-  /// pt: 'Sem conexão'
-  String get statesOfflineSection => 'Sem conexão';
-
-  /// pt: 'Mostrando o último dado'
-  String get statesOfflineTitle => 'Mostrando o último dado';
-
-  /// pt: 'Atualiza quando voltar a internet'
-  String get statesOfflineSubtitle => 'Atualiza quando voltar a internet';
-
-  /// pt: 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).'
-  String get statesPrecedenceNote =>
-      'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).';
 
   Map<String, String> get errors => {
     'WIDGET_PREFERENCES_SAVE_FAILED': 'Não foi possível salvar as preferências agora.',
@@ -12607,8 +12466,6 @@ extension on Translations {
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Só meus',
           'widgets.segmentCouple' => 'Do casal',
-          'widgets.howToAddAction' => 'Como colocar na tela',
-          'widgets.configureAction' => 'Configurar',
           'widgets.ownSlipLabel' => 'ANOTAR SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Toque para anotar',
@@ -12632,10 +12489,6 @@ extension on Translations {
           'widgets.couplePhotosLabel' => 'FOTOS DO CASAL · PLUS',
           'widgets.couplePhotosPrompt' => 'Escolha uma foto de vocês dois',
           'widgets.couplePhotosPlusHint' => 'Disponível no plano Plus',
-          'widgets.partnerNoteLabel' => 'RECADO DO PAR',
-          'widgets.partnerNoteEmpty' => 'Sem recado novo no momento',
-          'widgets.partnerNoteFrom' => ({required Object name}) => 'De ${name}',
-          'widgets.partnerNoteFromDefault' => 'Do seu par',
           'widgets.cardEncounterLabel' => 'CARTÃO E ENCONTRO',
           'widgets.cardStateReady' => 'Chegou um cartão · Toque para abrir',
           'widgets.cardStateSent' => 'Cartão enviado · Aguardando domingo',
@@ -12646,34 +12499,9 @@ extension on Translations {
             'Sem par conectado: os widgets do casal mostram o estado neutro.',
           'widgets.offlineBanner' =>
             'Mostrando o último dado salvo. Atualiza quando voltar a internet.',
-          'widgets.howToAddTitle' => 'Como adicionar',
-          'widgets.howToAddStep1Title' => 'Segure a tela inicial',
-          'widgets.howToAddStep1Body' => 'Toque e segure um espaço vazio até os ícones tremerem.',
-          'widgets.howToAddStep2Title' => 'Toque no botão +',
-          'widgets.howToAddStep2Body' => 'No canto superior, busque por Mingo.',
-          'widgets.howToAddStep3Title' => 'Escolha o tamanho',
-          'widgets.howToAddStep3Body' => 'Pequeno ou médio.',
           'widgets.howToAddAndroidLockNote' => 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.',
           'widgets.howToAddIosLockNote' =>
             'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.',
-          'widgets.howToAddDone' => 'Entendi',
-          'widgets.configureTitle' => 'Configurar widget',
-          'widgets.configurePreviewLabel' => 'PRÉVIA',
-          'widgets.configureContentSection' => 'Conteúdo',
-          'widgets.configureContentFavorites' => 'Favoritas',
-          'widgets.configureContentRecent' => 'Recentes',
-          'widgets.configureContentDailyIdea' => 'Ideia do dia',
-          'widgets.configureRotationSection' => 'Troca de foto',
-          'widgets.configureRotationDaily' => 'Todo dia',
-          'widgets.configureRotationSixHours' => 'A cada 6h',
-          'widgets.configureRotationManual' => 'Manual',
-          'widgets.configurePrivacySection' => 'Privacidade',
-          'widgets.configureShowNames' => 'Mostrar nomes',
-          'widgets.configureHideInDiscreet' => 'Ocultar em modo discreto',
-          'widgets.configureAllowPartnerNotes' => 'Permitir recado do parceiro',
-          'widgets.configureOnLockScreen' => 'Permitir na tela de bloqueio',
-          'widgets.configureSave' => 'Salvar',
-          'widgets.configureSavedToast' => 'Preferências do widget salvas.',
           'widgets.loadErrorTitle' => 'Não foi possível carregar os widgets',
           'widgets.loadErrorBody' => 'Verifique sua conexão e tente novamente.',
           'widgets.retryAction' => 'Tentar novamente',
@@ -12737,14 +12565,6 @@ extension on Translations {
           'widgets.photosRemoveAction' => 'Remover foto',
           'widgets.photosSavedToast' => 'Foto salva no widget.',
           'widgets.photosRemovedToast' => 'Foto removida do widget.',
-          'widgets.partnerNotePageTitle' => 'Recado do parceiro',
-          'widgets.partnerNoteMediumSection' => 'Médio',
-          'widgets.partnerNoteReplyHint' => 'Responder com um coração',
-          'widgets.partnerNoteDrawingPlaceholder' => 'desenho',
-          'widgets.partnerNoteSafeNote' =>
-            'Apenas recados marcados pelo seu par como visíveis no widget aparecem aqui.',
-          'widgets.partnerNoteDisabledNote' =>
-            'Você desativou recados do parceiro no widget. Ative abaixo se quiser exibi-los.',
           'widgets.cardEncounterPageTitle' => 'Cartão e próximo encontro',
           'widgets.cardWeeklyLabel' => 'Cartão da semana',
           'widgets.cardReadyTitle' => 'Chegou um cartão',
@@ -12757,17 +12577,8 @@ extension on Translations {
           'widgets.nextEncounterEmptyTitle' => 'Sem data futura',
           'widgets.nextEncounterEmptySubtitle' => 'Toque para agendar',
           'widgets.cardEncounterPrivacyNote' => 'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.',
-          'widgets.statesPageTitle' => 'Estados do widget',
-          'widgets.statesAction' => 'Ver estados (discreto e sem par)',
-          'widgets.statesDiscreetSection' => 'Modo discreto',
-          'widgets.statesDiscreetToggle' => 'Ativar modo discreto agora',
-          'widgets.statesUnpairedSection' => 'Sem parceiro',
           'widgets.statesUnpairedTitle' => 'Convide para ver aqui',
           'widgets.statesUnpairedAction' => 'Convidar',
-          'widgets.statesOfflineSection' => 'Sem conexão',
-          'widgets.statesOfflineTitle' => 'Mostrando o último dado',
-          'widgets.statesOfflineSubtitle' => 'Atualiza quando voltar a internet',
-          'widgets.statesPrecedenceNote' => 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Não foi possível salvar as preferências agora.',
           'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' =>

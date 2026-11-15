@@ -2,7 +2,6 @@ import 'package:app/features/widgets/data/models/widget_models.dart';
 import 'package:app/features/widgets/presentation/own_medium/cubit/own_medium_widgets_cubit.dart';
 import 'package:app/features/widgets/presentation/own_medium/widgets/own_medium_cards.dart';
 import 'package:app/l10n/translations.g.dart';
-import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
@@ -32,10 +31,6 @@ class const OwnMediumWidgetsPage({super.key}) extends StatelessWidget implements
     return BaseView(
       appBar: BaseAppBar(title: l10n.ownMediumPageTitle),
       body: BaseStackedContent(
-        footer: BaseButton(
-          text: l10n.howToAddAction,
-          onPressed: () => context.pushRoute(const WidgetHowToAddRoute()),
-        ),
         body: SkeletonizerResourceWidget<WidgetOverview>(
           overviewResource,
           fakeValue: WidgetOverview.fake(),

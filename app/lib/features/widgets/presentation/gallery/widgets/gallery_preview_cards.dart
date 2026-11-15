@@ -73,17 +73,6 @@ class const GalleryPreviewSection({
       (false, true, null) => l10n.couplePhotosPrompt,
     };
 
-    final noteFrom = switch ((payload.showNames, payload.partnerName)) {
-      (true, final name?) when name.isNotEmpty => l10n.partnerNoteFrom(name: name),
-      _ => l10n.partnerNoteFromDefault,
-    };
-    final noteTitle = switch ((payload.discreet, payload.isPaired, payload.allowPartnerNotes)) {
-      (true, _, _) => l10n.lockScreenDefault,
-      (false, false, _) => l10n.statesUnpairedTitle,
-      (false, true, true) => payload.partnerNote ?? l10n.partnerNoteEmpty,
-      (false, true, false) => l10n.partnerNoteEmpty,
-    };
-
     final cardText = switch ((payload.discreet, payload.isPaired, payload.cardState)) {
       (true, _, _) => l10n.lockScreenDefault,
       (false, false, _) => l10n.statesUnpairedTitle,
@@ -107,15 +96,6 @@ class const GalleryPreviewSection({
           title: photosTitle,
           supportText: payload.hasPlus ? l10n.ownIdeaHint : l10n.couplePhotosPlusHint,
           onTap: () => onSelectFamily(WidgetFamilyKind.couplePhotos),
-        ),
-        const SizedBox(height: AppSpace.s12),
-        BaseListCard(
-          categoryLabel: l10n.partnerNoteLabel,
-          title: noteTitle,
-          supportText: (!payload.discreet && payload.isPaired && payload.partnerNote != null)
-              ? noteFrom
-              : l10n.ownIdeaHint,
-          onTap: () => onSelectFamily(WidgetFamilyKind.partnerNote),
         ),
         const SizedBox(height: AppSpace.s12),
         BaseListCard(

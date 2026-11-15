@@ -105,18 +105,13 @@ import 'package:app/features/together/presentation/logistics/logistics_page.dart
 import 'package:app/features/together/presentation/ritual_edit/ritual_edit_page.dart';
 import 'package:app/features/together/presentation/rituals/rituals_page.dart';
 import 'package:app/features/together/presentation/together/together_page.dart';
-import 'package:app/features/widgets/data/models/widget_models.dart';
 import 'package:app/features/widgets/presentation/card_encounter/card_encounter_widget_page.dart';
-import 'package:app/features/widgets/presentation/configure/widget_configure_page.dart';
 import 'package:app/features/widgets/presentation/couple_counter/couple_counter_widget_page.dart';
 import 'package:app/features/widgets/presentation/couple_photos/couple_photos_widget_page.dart';
 import 'package:app/features/widgets/presentation/gallery/widgets_gallery_page.dart';
-import 'package:app/features/widgets/presentation/how_to_add/widget_how_to_add_page.dart';
 import 'package:app/features/widgets/presentation/lock_screen/lock_screen_widget_page.dart';
 import 'package:app/features/widgets/presentation/own_medium/own_medium_widgets_page.dart';
 import 'package:app/features/widgets/presentation/own_small/own_small_widgets_page.dart';
-import 'package:app/features/widgets/presentation/partner_note/partner_note_widget_page.dart';
-import 'package:app/features/widgets/presentation/states/widget_states_page.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 
@@ -230,16 +225,12 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: HistoryNumbersRoute.page),
     AutoRoute(page: DifferentDatesRoute.page),
     AutoRoute(page: WidgetsGalleryRoute.page),
-    AutoRoute(page: WidgetHowToAddRoute.page),
-    AutoRoute(page: WidgetConfigureRoute.page),
     AutoRoute(page: OwnSmallWidgetsRoute.page),
     AutoRoute(page: OwnMediumWidgetsRoute.page),
     AutoRoute(page: LockRouteWidgetRoute.page),
     AutoRoute(page: CoupleCounterWidgetRoute.page),
     AutoRoute(page: CouplePhotosWidgetRoute.page),
-    AutoRoute(page: PartnerNoteWidgetRoute.page),
     AutoRoute(page: CardEncounterWidgetRoute.page),
-    AutoRoute(page: WidgetStatesRoute.page),
     AutoRoute(
       page: HomeRoute.page,
       children: [

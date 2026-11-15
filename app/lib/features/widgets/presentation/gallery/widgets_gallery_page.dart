@@ -9,8 +9,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// Widgets gallery (`X-145`): live previews for personal and couple widgets, configuration,
-/// and step-by-step home-screen instructions.
+/// Widgets gallery (`X-145`): live previews for personal and couple widgets.
 @RoutePage()
 class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
@@ -31,25 +30,6 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
     return BaseView(
       appBar: BaseAppBar(title: l10n.galleryTitle),
       body: BaseStackedContent(
-        footer: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            BaseButton(
-              text: l10n.howToAddAction,
-              onPressed: () => context.pushRoute(const WidgetHowToAddRoute()),
-            ),
-            const SizedBox(height: AppSpace.s8),
-            BaseButton(
-              text: l10n.configureAction,
-              variant: BaseButtonVariant.secondary,
-              onPressed: () async {
-                await context.pushRoute(WidgetConfigureRoute());
-                if (context.mounted) await cubit.load();
-              },
-            ),
-          ],
-        ),
         body: SkeletonizerResourceWidget<WidgetOverview>(
           overviewResource,
           fakeValue: WidgetOverview.fake(),
@@ -88,18 +68,6 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
                   payload: payload,
                   onSelectFamily: (family) => _onSelectFamily(context, cubit, family),
                 ),
-                const SizedBox(height: AppSpace.s16),
-                BaseListGroup(
-                  children: [
-                    BaseListTile(
-                      title: l10n.statesAction,
-                      onTap: () async {
-                        await context.pushRoute(const WidgetStatesRoute());
-                        if (context.mounted) await cubit.load();
-                      },
-                    ),
-                  ],
-                ),
               ],
             );
           },
@@ -119,9 +87,10 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
       WidgetFamilyKind.lockScreen => const LockRouteWidgetRoute(),
       WidgetFamilyKind.coupleCounter => const CoupleCounterWidgetRoute(),
       WidgetFamilyKind.couplePhotos => const CouplePhotosWidgetRoute(),
-      WidgetFamilyKind.partnerNote => const PartnerNoteWidgetRoute(),
       WidgetFamilyKind.cardEncounter => const CardEncounterWidgetRoute(),
+      WidgetFamilyKind.partnerNote => null,
     };
+    if (route == null) return;
     await context.pushRoute(route);
     if (context.mounted) await cubit.load();
   }
