@@ -3369,6 +3369,13 @@ class _Translations$notificationPermission$en extends Translations$notificationP
   @override
   String get allow => 'Allow';
   @override
+  String get registrationFailed =>
+      'The system allowed reminders, but we couldn\'t connect this phone.';
+  @override
+  String get retryRegistration => 'Try again';
+  @override
+  String get continueWithoutReminders => 'Continue without reminders';
+  @override
   String get offBanner => 'Reminders are off. Turn them on in settings.';
   @override
   String get openSettings => 'Open settings';
@@ -9280,6 +9287,10 @@ extension on TranslationsEn {
           'notificationPermission.changeLater' => 'You can change this whenever you like.',
           'notificationPermission.notNow' => 'Not now',
           'notificationPermission.allow' => 'Allow',
+          'notificationPermission.registrationFailed' =>
+            'The system allowed reminders, but we couldn\'t connect this phone.',
+          'notificationPermission.retryRegistration' => 'Try again',
+          'notificationPermission.continueWithoutReminders' => 'Continue without reminders',
           'notificationPermission.offBanner' => 'Reminders are off. Turn them on in settings.',
           'notificationPermission.openSettings' => 'Open settings',
           'notificationPermission.close' => 'Close',
@@ -9835,12 +9846,12 @@ extension on TranslationsEn {
           'relationshipSettings.phases.dating' => 'Dating',
           'relationshipSettings.phases.livingTogether' => 'Living together',
           'relationshipSettings.phases.engaged' => 'Engaged',
-          'relationshipSettings.phases.married' => 'Married',
-          'relationshipSettings.phases.withKids' => 'With kids',
-          'relationshipSettings.phases.longDistance' => 'Long distance',
           _ => null,
         } ??
         switch (path) {
+          'relationshipSettings.phases.married' => 'Married',
+          'relationshipSettings.phases.withKids' => 'With kids',
+          'relationshipSettings.phases.longDistance' => 'Long distance',
           'relationshipSettings.phases.withParents' => 'Living with parents',
           'relationshipSettings.phases.restarting' => 'Starting over',
           'relationshipSettings.dateLabel' => 'Together since',
@@ -10405,12 +10416,12 @@ extension on TranslationsEn {
           'tabs.plusTitle' => 'Free and Plus',
           'tabs.plusText' => 'What each plan includes, no pressure.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
-          'tabs.temperatureTitle' => 'How is it between you?',
-          'tabs.temperatureText' => 'A private check-in, never a score.',
-          'tabs.learningLabel' => 'JUST FOR YOU',
           _ => null,
         } ??
         switch (path) {
+          'tabs.temperatureTitle' => 'How is it between you?',
+          'tabs.temperatureText' => 'A private check-in, never a score.',
+          'tabs.learningLabel' => 'JUST FOR YOU',
           'tabs.learningTitle' => 'What you learned',
           'tabs.learningText' => 'Private notes you can delete.',
           'tabs.fightStyleLabel' => 'JUST FOR YOU',

@@ -28,6 +28,9 @@ class NotificationsRepository({
   final Logger _logger = Logger('NotificationsRepository');
   String? _sessionToken;
 
+  /// Upper bound for the push token wait, so a silent platform never stalls registration.
+  static const registrationTimeout = Duration(seconds: 8);
+
   /// Reads the current access without asking.
   Future<NotificationAccess> currentAccess() async {
     final status = await _permissionService.check(Permission.notification);
@@ -35,13 +38,11 @@ class NotificationsRepository({
     return _toAccess(status);
   }
 
-  /// Shows the system prompt and, when allowed, registers this device.
+  /// Shows the system prompt and reports the answer; registration runs afterwards.
   Future<NotificationAccess> requestAccess() async {
     final status = await _permissionService.request(Permission.notification);
-    final access = _toAccess(status);
-    if (access == NotificationAccess.granted) await registerDevice();
 
-    return access;
+    return _toAccess(status);
   }
 
   /// Registers the push token with the backend; a failure is retried at the next launch.
@@ -53,7 +54,7 @@ class NotificationsRepository({
         if (!installation.isCompleted) installation.complete(id);
       });
       await _notificationService.register();
-      final installationId = await installation.future.timeout(const Duration(seconds: 10));
+      final installationId = await installation.future.timeout(registrationTimeout);
       final marker = DeviceMarkerStore.markerFor(installationId);
       final label = '${await _deviceLabel()}#$marker';
       final accepted = await _dataSource.registerDevice(

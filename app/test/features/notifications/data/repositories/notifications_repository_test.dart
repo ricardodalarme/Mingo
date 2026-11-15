@@ -26,6 +26,7 @@ class _MockDeviceMarkerStore() extends Mock implements DeviceMarkerStore;
 void main() {
   late _MockNotificationsDataSource dataSource;
   late _MockNotificationService notificationService;
+  late _MockPermissionService permissionService;
   late _MockDeviceInfoService deviceInfoService;
   late _MockDeviceMarkerStore markerStore;
   late StreamController<String> registration;
@@ -34,15 +35,16 @@ void main() {
   setUp(() {
     dataSource = _MockNotificationsDataSource();
     notificationService = _MockNotificationService();
+    permissionService = _MockPermissionService();
     deviceInfoService = _MockDeviceInfoService();
     markerStore = _MockDeviceMarkerStore();
-    registration = StreamController<String>();
+    registration = StreamController<String>.broadcast();
 
     repository = NotificationsRepository(
       dataSource: dataSource,
       localDataSource: _MockNotificationsLocalDataSource(),
       notificationService: notificationService,
-      permissionService: _MockPermissionService(),
+      permissionService: permissionService,
       deviceInfoService: deviceInfoService,
       markerStore: markerStore,
     );
@@ -68,6 +70,16 @@ void main() {
   });
 
   tearDown(() => registration.close());
+
+  test('reports the permission answer without waiting for a token', () async {
+    when(() => permissionService.request(Permission.notification))
+        .thenAnswer((_) async => PermissionStatus.granted);
+
+    final access = await repository.requestAccess();
+
+    expect(access, NotificationAccess.granted);
+    verifyNever(() => notificationService.register());
+  });
 
   test('subscribes before registering so the installation id is not missed', () async {
     var listenedBeforeRegister = false;

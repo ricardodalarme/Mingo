@@ -4095,6 +4095,16 @@ class Translations$notificationPermission$pt {
   /// pt: 'Permitir'
   String get allow => 'Permitir';
 
+  /// pt: 'O sistema permitiu os lembretes, mas não conseguimos conectar este aparelho.'
+  String get registrationFailed =>
+      'O sistema permitiu os lembretes, mas não conseguimos conectar este aparelho.';
+
+  /// pt: 'Tentar de novo'
+  String get retryRegistration => 'Tentar de novo';
+
+  /// pt: 'Seguir sem lembretes'
+  String get continueWithoutReminders => 'Seguir sem lembretes';
+
   /// pt: 'Os lembretes estão desligados. Ligue nas configurações.'
   String get offBanner => 'Os lembretes estão desligados. Ligue nas configurações.';
 
@@ -11088,6 +11098,10 @@ extension on Translations {
           'notificationPermission.changeLater' => 'Você pode mudar isso quando quiser.',
           'notificationPermission.notNow' => 'Agora não',
           'notificationPermission.allow' => 'Permitir',
+          'notificationPermission.registrationFailed' =>
+            'O sistema permitiu os lembretes, mas não conseguimos conectar este aparelho.',
+          'notificationPermission.retryRegistration' => 'Tentar de novo',
+          'notificationPermission.continueWithoutReminders' => 'Seguir sem lembretes',
           'notificationPermission.offBanner' =>
             'Os lembretes estão desligados. Ligue nas configurações.',
           'notificationPermission.openSettings' => 'Abrir ajustes',
@@ -11645,12 +11659,12 @@ extension on Translations {
           'relationshipSettings.phases.dating' => 'Namorando',
           'relationshipSettings.phases.livingTogether' => 'Moramos juntos',
           'relationshipSettings.phases.engaged' => 'Noivos',
-          'relationshipSettings.phases.married' => 'Casados',
-          'relationshipSettings.phases.withKids' => 'Com filhos',
-          'relationshipSettings.phases.longDistance' => 'Namoro à distância',
           _ => null,
         } ??
         switch (path) {
+          'relationshipSettings.phases.married' => 'Casados',
+          'relationshipSettings.phases.withKids' => 'Com filhos',
+          'relationshipSettings.phases.longDistance' => 'Namoro à distância',
           'relationshipSettings.phases.withParents' => 'Moramos com os pais',
           'relationshipSettings.phases.restarting' => 'Recomeçando',
           'relationshipSettings.dateLabel' => 'Juntos desde',
@@ -12217,12 +12231,12 @@ extension on Translations {
           'tabs.plusTitle' => 'Grátis e Plus',
           'tabs.plusText' => 'O que cada plano inclui, sem pressão.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
-          'tabs.temperatureTitle' => 'Como está entre vocês?',
-          'tabs.temperatureText' => 'Um registro privado, sem nota.',
-          'tabs.learningLabel' => 'SÓ PARA VOCÊ',
           _ => null,
         } ??
         switch (path) {
+          'tabs.temperatureTitle' => 'Como está entre vocês?',
+          'tabs.temperatureText' => 'Um registro privado, sem nota.',
+          'tabs.learningLabel' => 'SÓ PARA VOCÊ',
           'tabs.learningTitle' => 'O que você aprendeu',
           'tabs.learningText' => 'Anotações privadas que você pode apagar.',
           'tabs.fightStyleLabel' => 'SÓ PARA VOCÊ',
