@@ -1,7 +1,7 @@
 -- Plus: trigger functions and triggers.
 
 -- Free limit: applies to NEW slips and to sending cards. Nothing existing is ever locked or deleted.
--- Never applied to pause, repair, safety or deletion (those have no limit check at all).
+-- Never applied to repair, safety or deletion (those have no limit check at all).
 create function private.enforce_free_slip_limit() returns trigger
 language plpgsql security definer set search_path = '' as $$
 begin

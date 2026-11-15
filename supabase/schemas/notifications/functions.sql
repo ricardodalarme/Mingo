@@ -50,15 +50,23 @@ returns void language sql security definer set search_path = '' as $$
   on conflict (dedupe_key) do nothing;
 $$;
 
--- Whether a notification type is started by the partner. Those are never silenced by a pause or counted in the daily cap.
+-- Whether a notification type is started by the partner. Those are never silenced or counted in the daily cap.
 create function private.is_partner_initiated(p_type text) returns boolean
 language sql immutable set search_path = '' as $$
-  select p_type in ('card_received', 'card_reaction', 'partner_joined', 'unpaired', 'pause_started', 'partner_message', 'game_invite')
+  select p_type in ('card_received', 'card_reaction', 'partner_joined', 'unpaired', 'partner_message', 'game_invite')
          or p_type like 'signal_%';
 $$;
 
+-- No reminders during a fresh "fight" or time away (product rule). Partner-initiated messages still arrive.
+create function private.is_quiet_moment(p_profile_id uuid) returns boolean
+language sql stable security definer set search_path = '' as $$
+  select exists (select 1 from public.temperature_checks t where t.author_id = p_profile_id and t.level = 'fight' and t.created_at > now() - interval '24 hours')
+      or exists (select 1 from public.profile_settings s where s.profile_id = p_profile_id
+                 and (s.relationship_status <> 'together' or s.app_paused_until > now()));
+$$;
+
 -- Decision for one notification at a moment: 'send' or 'drop'. Applies the person's settings, the daily cap,
--- and silence for reminders during a pause, a fight or time away.
+-- and silence for reminders during a fight or time away.
 create function private.should_send(p_profile_id uuid, p_type text, p_at timestamptz) returns text
 language plpgsql stable security definer set search_path = '' as $$
 declare
@@ -69,13 +77,13 @@ begin
   if not found or not v_s.enabled or p_type = any (v_s.muted_types) then
     return 'drop';
   end if;
-  if p_type <> 'pause_over' and not v_from_partner then
+  if not v_from_partner then
     if private.is_quiet_moment(p_profile_id) then
       return 'drop';
     end if;
     if (select count(*) from private.notification_outbox o
         where o.profile_id = p_profile_id and o.outcome = 'sent' and o.sent_at > p_at - interval '24 hours'
-          and not private.is_partner_initiated(o.type) and o.type <> 'pause_over') >= v_s.daily_max then
+          and not private.is_partner_initiated(o.type)) >= v_s.daily_max then
       return 'drop';
     end if;
   end if;

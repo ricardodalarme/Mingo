@@ -44,9 +44,6 @@ comment on function public.create_guest_link(uuid) is e'@graphql({"description":
 comment on function public.revoke_guest_link(uuid) is e'@graphql({"description": "Revokes a guest link the caller created."})';
 
 -- Couple flows
-comment on function public.start_pause(timestamptz, text) is e'@graphql({"description": "Starts a pause with a promise to return within 24 hours. The partner sees only the message and the return time."})';
-comment on function public.end_pause() is e'@graphql({"description": "Ends the caller''s own pause. Returns false when there was none."})';
-comment on function public.active_pause() is e'@graphql({"description": "The pause that matters to the caller right now: their own, or their partner''s."})';
 comment on function public.send_signal(text, text, text) is e'@graphql({"description": "Sends a one-tap signal to the partner. Limited per day."})';
 comment on function public.respond_to_signal(uuid, text) is e'@graphql({"description": "Marks a received signal as seen and optionally answers it. Answers are never counted or scored."})';
 comment on function public.send_partner_message(text, text, text, boolean) is e'@graphql({"description": "Sends a note, drawing, voice message or pack to the partner. Limited per day."})';
