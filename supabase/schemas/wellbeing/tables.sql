@@ -32,10 +32,6 @@ create table public.moods (
   day date not null, mood public.mood not null,
   need public.mood_need, share public.mood_share not null default 'none',
   created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, day));
-create table public.cycle_days (
-  id uuid primary key default gen_random_uuid(), author_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
-  day date not null, kind public.cycle_day_kind not null default 'heavy', note text check (char_length(note) <= 300),
-  created_at timestamptz not null default now(), updated_at timestamptz not null default now(), unique (author_id, day));
 
 create trigger moods_local_date before insert on public.moods
   for each row execute function private.set_local_date('day');

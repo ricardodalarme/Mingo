@@ -1,7 +1,6 @@
 -- Wellbeing: enum types.
 
 create type public.conversation_guide as enum ('free', 'transition', 'money', 'apology', 'difficult');
-create type public.cycle_day_kind as enum ('heavy', 'light', 'note');
 create type public.mood as enum ('happy', 'tired', 'sad', 'stressed', 'loving', 'playful');
 create type public.mood_need as enum ('listen', 'opinion', 'hug', 'space', 'chocolate', 'cute_message', 'forehead_kiss', 'company', 'rest');
 create type public.mood_share as enum ('none', 'mood', 'mood_need');
