@@ -48,4 +48,25 @@ void main() {
       });
     }
   }
+
+  testWidgets('the loading placeholder uses the theme skeleton colour', (tester) async {
+    await tester.pumpWidget(
+      galleryHost(
+        const SizedBox(
+          width: 96,
+          child: BaseImagePlaceholder(status: BaseImagePlaceholderStatus.loading),
+        ),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+    await tester.pump();
+
+    final box = tester.widget<ColoredBox>(
+      find
+          .descendant(of: find.byType(BaseImagePlaceholder), matching: find.byType(ColoredBox))
+          .first,
+    );
+
+    expect(box.color, AppColors.rose.accentSoft);
+  });
 }

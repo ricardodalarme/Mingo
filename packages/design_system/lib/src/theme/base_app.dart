@@ -1,4 +1,5 @@
 import 'package:design_system/design_system_l10n.dart' as design_system_l10n;
+import 'package:design_system/src/theme/app_skeleton_theme.dart';
 import 'package:design_system/src/theme/app_theme.dart';
 import 'package:flutter/widgets.dart';
 import 'package:material_ui/material_ui.dart'
@@ -70,11 +71,13 @@ class const BaseApp({
               >() !=
           null;
 
-      return DefaultTextStyle(
-        style: context.text.body,
-        child: hasAncestorProvider
-            ? content
-            : design_system_l10n.TranslationProvider(child: content),
+      return AppSkeletonTheme(
+        child: DefaultTextStyle(
+          style: context.text.body,
+          child: hasAncestorProvider
+              ? content
+              : design_system_l10n.TranslationProvider(child: content),
+        ),
       );
     }
 

@@ -22,6 +22,7 @@ export 'src/drawings/app_wash.dart';
 export 'src/icons/app_icon.dart';
 export 'src/templates/templates.dart';
 export 'src/theme/app_pressable.dart';
+export 'src/theme/app_skeleton_theme.dart';
 export 'src/theme/app_theme.dart';
 export 'src/theme/app_theme_host.dart';
 export 'src/theme/base_app.dart';

@@ -56,9 +56,8 @@ class const BaseImagePlaceholder({
           child: AppIcon(icon: icon, size: AppIconSize.lg, color: colors.accentHighlight),
         ),
       ),
-      .loading => const Skeletonizer(
-        containersColor: AppPalette.neutral100,
-        child: SizedBox.expand(child: ColoredBox(color: AppPalette.neutral100)),
+      .loading => Skeletonizer(
+        child: SizedBox.expand(child: ColoredBox(color: colors.accentSoft)),
       ),
       .failure => ColoredBox(
         color: AppStatus.safety.surfaceColor(colors),

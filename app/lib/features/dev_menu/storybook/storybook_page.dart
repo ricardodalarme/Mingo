@@ -16,12 +16,14 @@ class const StorybookPage({super.key}) extends StatelessWidget {
       appBuilder: (context, child) => Localizations(
         locale: Localizations.maybeLocaleOf(context) ?? const Locale('en', 'US'),
         delegates: GlobalMaterialLocalizations.delegates,
-        child: SizedBox.expand(
-          child: Stack(
-            children: [
-              Positioned.fill(child: ColoredBox(color: context.colors.bgScreen)),
-              child,
-            ],
+        child: AppSkeletonTheme(
+          child: SizedBox.expand(
+            child: Stack(
+              children: [
+                Positioned.fill(child: ColoredBox(color: context.colors.bgScreen)),
+                child,
+              ],
+            ),
           ),
         ),
       ),
