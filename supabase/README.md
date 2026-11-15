@@ -84,8 +84,8 @@ Edge Function helpers have Deno tests: `deno test --allow-env supabase/functions
 `pg_cron` calls `push-sender` every minute and `storage-cleanup` daily through `private.invoke_edge_function`. The helper
 sends nothing until both Vault secrets exist, so the jobs are safe before setup. One-time setup per project:
 
-1. Deploy: `supabase functions deploy push-sender storage-cleanup purchases-webhook guest places chat`.
-2. Secrets: `supabase secrets set FCM_SERVICE_ACCOUNT=... REVENUECAT_WEBHOOK_AUTH=... MAPBOX_TOKEN=...` (plus the chat provider keys).
+1. Deploy: `supabase functions deploy push-sender storage-cleanup purchases-webhook guest chat`.
+2. Secrets: `supabase secrets set FCM_SERVICE_ACCOUNT=... REVENUECAT_WEBHOOK_AUTH=...` (plus the chat provider keys).
 3. In the SQL editor, outside migrations, store the project URL and a dedicated secret key (`sb_secret_...`):
 
    ```sql
@@ -97,7 +97,7 @@ sends nothing until both Vault secrets exist, so the jobs are safe before setup.
    Use a key created for this purpose so it can be rotated alone.
 
 `push-sender` and `storage-cleanup` run with `verify_jwt = false` and check the secret key themselves
-(`supabase/functions/_shared/auth.ts`). `chat` and `places` rely on `verify_jwt = true` and read the claims from the verified token.
+(`supabase/functions/_shared/auth.ts`). `chat` relies on `verify_jwt = true` and reads the claims from the verified token.
 
 ## Decisions that look like findings
 
