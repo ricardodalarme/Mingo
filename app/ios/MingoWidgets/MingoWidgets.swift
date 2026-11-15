@@ -71,11 +71,6 @@ enum MingoL10n {
   static var noteReplyHint: String { tr(pt: "Responder com um coração", en: "Reply with a heart") }
   static var noteEmpty: String { tr(pt: "Sem recado novo no momento", en: "No new note right now") }
 
-  static var cardPauseLabel: String { tr(pt: "CARTÃO E ENCONTRO", en: "CARD & DATE") }
-  static var cardPauseTitle: String { tr(pt: "Pausa em andamento", en: "Pause in progress") }
-  static var cardPauseSubtitle: String {
-    tr(pt: "Toque quando estiver pronto", en: "Tap when you are ready")
-  }
   static var cardWeeklyLabel: String { tr(pt: "CARTÃO DA SEMANA", en: "WEEKLY CARD") }
   static var cardReadyTitle: String { tr(pt: "Chegou um cartão", en: "A card arrived") }
   static var cardSentTitle: String { tr(pt: "Cartão enviado", en: "Card sent") }
@@ -153,7 +148,6 @@ struct MingoWidgetPayload: Codable {
   let nextDateOn: String?
   let unopenedCards: Int
   let cardState: String
-  let pauseReturnAt: String?
   let partnerNote: String?
   let partnerNoteMedia: String?
   let partnerNoteAt: String?
@@ -188,7 +182,6 @@ struct MingoWidgetPayload: Codable {
       nextDateOn: nil,
       unopenedCards: 0,
       cardState: "none",
-      pauseReturnAt: nil,
       partnerNote: nil,
       partnerNoteMedia: nil,
       partnerNoteAt: nil,
@@ -233,7 +226,6 @@ struct MingoWidgetPayload: Codable {
         nextDateOn: decoded.nextDateOn,
         unopenedCards: decoded.unopenedCards,
         cardState: decoded.cardState,
-        pauseReturnAt: decoded.pauseReturnAt,
         partnerNote: decoded.partnerNote,
         partnerNoteMedia: decoded.partnerNoteMedia,
         partnerNoteAt: decoded.partnerNoteAt,
@@ -269,20 +261,6 @@ struct MingoWidgetPayload: Codable {
     let startOfTarget = calendar.startOfDay(for: target)
     let diff = calendar.dateComponents([.day], from: startOfToday, to: startOfTarget).day ?? -1
     return diff >= 0 ? diff : nil
-  }
-
-  func isPauseActive(on now: Date = Date()) -> Bool {
-    guard isSignedIn, isPaired, let raw = pauseReturnAt, !raw.isEmpty else { return false }
-    let formatter = ISO8601DateFormatter()
-    formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-    if let date = formatter.date(from: raw) {
-      return date > now
-    }
-    let fallback = ISO8601DateFormatter()
-    if let date = fallback.date(from: raw) {
-      return date > now
-    }
-    return false
   }
 
   private static func parseLocalDate(_ raw: String) -> Date? {
@@ -822,21 +800,6 @@ struct MingoCardEncounterWidgetView: View {
       MingoDiscreetWidgetCard()
     } else if !p.isPaired {
       MingoUnpairedWidgetCard()
-    } else if p.isPauseActive(on: entry.date) {
-      MingoSurfaceCard(deepLink: "mingo://pause?homeWidget=1") {
-        Text(MingoL10n.cardPauseLabel)
-          .font(.caption2.weight(.semibold))
-          .foregroundColor(.secondary)
-          .lineLimit(1)
-        Spacer(minLength: 4)
-        Text(MingoL10n.cardPauseTitle)
-          .font(.subheadline.weight(.semibold))
-          .lineLimit(2)
-        Text(MingoL10n.cardPauseSubtitle)
-          .font(.caption2)
-          .foregroundColor(.secondary)
-          .lineLimit(1)
-      }
     } else {
       let cardTitle: String = switch p.cardState {
       case "ready": MingoL10n.cardReadyTitle

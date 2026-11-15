@@ -5,8 +5,7 @@
     "cadence": "Inspire devagar por 4. Solte devagar por 6. Repita no seu ritmo.",
     "text": "Não tem pressa e não tem tempo contado. Saia quando quiser.",
     "ready": "Estou mais calmo(a)",
-    "leave": "Sair",
-    "askPause": "Pedir um tempo ao meu par"
+    "leave": "Sair"
   },
   "softStart": {
     "title": "Comece com suavidade",
@@ -58,9 +57,21 @@
   },
   "guided": {
     "stepOf": "Passo {current} de {total}",
-      "stepTitles": ["O que aconteceu?", "Do que você precisa?", "O que você pode oferecer?"],
-    "stepHighlights": ["aconteceu", "precisa", "oferecer"],
-    "stepHints": ["Do seu jeito, sem culpar ninguém.", "Uma coisa que ajudaria agora.", "Algo pequeno e sincero."],
+    "stepTitles": [
+      "O que aconteceu?",
+      "Do que você precisa?",
+      "O que você pode oferecer?"
+    ],
+    "stepHighlights": [
+      "aconteceu",
+      "precisa",
+      "oferecer"
+    ],
+    "stepHints": [
+      "Do seu jeito, sem culpar ninguém.",
+      "Uma coisa que ajudaria agora.",
+      "Algo pequeno e sincero."
+    ],
     "private": "Só você vê isto. Nada é enviado ao seu par.",
     "next": "Continuar",
     "back": "Voltar",

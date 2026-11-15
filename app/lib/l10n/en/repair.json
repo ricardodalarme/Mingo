@@ -5,8 +5,7 @@
     "cadence": "Breathe in slowly for 4. Breathe out slowly for 6. Repeat at your own pace.",
     "text": "There's no rush and no timer. Leave whenever you like.",
     "ready": "I feel calmer",
-    "leave": "Leave",
-    "askPause": "Ask my partner for some space"
+    "leave": "Leave"
   },
   "softStart": {
     "title": "Start softly",
@@ -58,9 +57,21 @@
   },
   "guided": {
     "stepOf": "Step {current} of {total}",
-      "stepTitles": ["What happened?", "What do you need?", "What can you offer?"],
-    "stepHighlights": ["happened", "need", "offer"],
-    "stepHints": ["In your own words, without blaming anyone.", "One thing that would help right now.", "Something small and sincere."],
+    "stepTitles": [
+      "What happened?",
+      "What do you need?",
+      "What can you offer?"
+    ],
+    "stepHighlights": [
+      "happened",
+      "need",
+      "offer"
+    ],
+    "stepHints": [
+      "In your own words, without blaming anyone.",
+      "One thing that would help right now.",
+      "Something small and sincere."
+    ],
     "private": "Only you see this. Nothing is sent to your partner.",
     "next": "Continue",
     "back": "Back",

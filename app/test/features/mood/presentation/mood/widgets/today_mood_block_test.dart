@@ -83,12 +83,11 @@ void main() {
     MoodCubit cubit, {
     bool isDiscreet = false,
     bool isFirstDay = false,
-    bool isPaused = false,
   }) async {
     await tester.pumpApp(
       BlocProvider.value(
         value: cubit,
-        child: TodayMoodBlock(isDiscreet: isDiscreet, isFirstDay: isFirstDay, isPaused: isPaused),
+        child: TodayMoodBlock(isDiscreet: isDiscreet, isFirstDay: isFirstDay),
       ),
     );
     await tester.pump();
@@ -201,15 +200,6 @@ void main() {
     await pumpBlock(tester, cubit, isDiscreet: true);
 
     expect(find.textContaining('Marina'), findsNothing);
-  });
-
-  testWidgets('a paused day keeps the strip off the screen', (tester) async {
-    final cubit = build();
-    await cubit.load();
-
-    await pumpBlock(tester, cubit, isPaused: true);
-
-    expect(find.text('Como você está?'), findsNothing);
   });
 
   testWidgets('the first day keeps the strip off the screen', (tester) async {

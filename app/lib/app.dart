@@ -8,7 +8,6 @@ import 'package:app/features/app/presentation/time_in_app/cubit/time_in_app_cubi
 import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.dart';
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
-import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:app/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
 import 'package:app/features/safety/presentation/safe_mode/widgets/safe_mode_shield.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
@@ -127,7 +126,6 @@ class const _AppStateListener({
 class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBindingObserver {
   StreamSubscription<AppState>? _subscription;
   StreamSubscription<void>? _profileSubscription;
-  StreamSubscription<void>? _pauseSubscription;
   StreamSubscription<Uri?>? _widgetClickSubscription;
   late AppState _previous;
 
@@ -139,11 +137,6 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
     _subscription = widget.cubit.stream.listen(_onStateChanged);
     final injector = AppInjector.instance;
     _profileSubscription = injector.get<ProfileRepository>().onChanged.listen((_) {
-      if (widget.cubit.state == AppState.authenticated) {
-        unawaited(injector.get<WidgetsRepository>().syncQuietly());
-      }
-    });
-    _pauseSubscription = injector.get<RepairRepository>().onPauseChanged.listen((_) {
       if (widget.cubit.state == AppState.authenticated) {
         unawaited(injector.get<WidgetsRepository>().syncQuietly());
       }
@@ -179,7 +172,6 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
     WidgetsBinding.instance.removeObserver(this);
     _subscription?.cancel();
     _profileSubscription?.cancel();
-    _pauseSubscription?.cancel();
     _widgetClickSubscription?.cancel();
     super.dispose();
   }

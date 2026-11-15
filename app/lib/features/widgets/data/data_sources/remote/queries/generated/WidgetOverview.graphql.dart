@@ -228,13 +228,6 @@ const documentNodeQueryWidgetOverview = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'pauseReturnAt'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
                   name: NameNode(value: 'partnerNote'),
                   alias: null,
                   arguments: [],
@@ -827,7 +820,6 @@ class QueryWidgetOverviewwidget {
     this.nextDateTitle,
     this.nextDateOn,
     this.unopenedCards,
-    this.pauseReturnAt,
     this.partnerNote,
     this.partnerNoteMedia,
     this.partnerNoteAt,
@@ -845,7 +837,6 @@ class QueryWidgetOverviewwidget {
     final l$nextDateTitle = json['nextDateTitle'];
     final l$nextDateOn = json['nextDateOn'];
     final l$unopenedCards = json['unopenedCards'];
-    final l$pauseReturnAt = json['pauseReturnAt'];
     final l$partnerNote = json['partnerNote'];
     final l$partnerNoteMedia = json['partnerNoteMedia'];
     final l$partnerNoteAt = json['partnerNoteAt'];
@@ -861,7 +852,6 @@ class QueryWidgetOverviewwidget {
       nextDateTitle: (l$nextDateTitle as String?),
       nextDateOn: l$nextDateOn == null ? null : DateTime.parse((l$nextDateOn as String)),
       unopenedCards: (l$unopenedCards as int?),
-      pauseReturnAt: l$pauseReturnAt == null ? null : DateTime.parse((l$pauseReturnAt as String)),
       partnerNote: (l$partnerNote as String?),
       partnerNoteMedia: (l$partnerNoteMedia as String?),
       partnerNoteAt: l$partnerNoteAt == null ? null : DateTime.parse((l$partnerNoteAt as String)),
@@ -887,8 +877,6 @@ class QueryWidgetOverviewwidget {
   final DateTime? nextDateOn;
 
   final int? unopenedCards;
-
-  final DateTime? pauseReturnAt;
 
   final String? partnerNote;
 
@@ -924,10 +912,6 @@ class QueryWidgetOverviewwidget {
         : ((v) => v.toIso8601String().substring(0, 10))(l$nextDateOn);
     final l$unopenedCards = unopenedCards;
     _resultData['unopenedCards'] = l$unopenedCards;
-    final l$pauseReturnAt = pauseReturnAt;
-    _resultData['pauseReturnAt'] = l$pauseReturnAt == null
-        ? null
-        : ((v) => v.toUtc().toIso8601String())(l$pauseReturnAt);
     final l$partnerNote = partnerNote;
     _resultData['partnerNote'] = l$partnerNote;
     final l$partnerNoteMedia = partnerNoteMedia;
@@ -954,7 +938,6 @@ class QueryWidgetOverviewwidget {
     final l$nextDateTitle = nextDateTitle;
     final l$nextDateOn = nextDateOn;
     final l$unopenedCards = unopenedCards;
-    final l$pauseReturnAt = pauseReturnAt;
     final l$partnerNote = partnerNote;
     final l$partnerNoteMedia = partnerNoteMedia;
     final l$partnerNoteAt = partnerNoteAt;
@@ -970,7 +953,6 @@ class QueryWidgetOverviewwidget {
       l$nextDateTitle,
       l$nextDateOn,
       l$unopenedCards,
-      l$pauseReturnAt,
       l$partnerNote,
       l$partnerNoteMedia,
       l$partnerNoteAt,
@@ -1030,11 +1012,6 @@ class QueryWidgetOverviewwidget {
     final l$unopenedCards = unopenedCards;
     final lOther$unopenedCards = other.unopenedCards;
     if (l$unopenedCards != lOther$unopenedCards) {
-      return false;
-    }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
       return false;
     }
     final l$partnerNote = partnerNote;

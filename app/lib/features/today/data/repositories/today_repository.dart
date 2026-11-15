@@ -4,7 +4,6 @@ import 'package:app/features/today/data/data_sources/local/today_local_data_sour
 import 'package:app/features/today/data/data_sources/remote/today_data_source.dart';
 import 'package:app/features/today/data/mappers/today_home_mapper.dart';
 import 'package:app/features/today/data/models/today_home.dart';
-import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 import 'package:network/network.dart';
@@ -20,7 +19,6 @@ typedef TodayResult = ({
 class TodayRepository({
   required final TodayDataSource _dataSource,
   required final TodayLocalDataSource _localDataSource,
-  final WidgetsRepository? _widgetsRepository,
 }) {
   final Logger _logger = Logger('TodayRepository');
 
@@ -47,17 +45,6 @@ class TodayRepository({
         return (home: cached, isFromCache: true, wasUnpaired: false, previousPartnerName: null);
       }
       _logger.error('Failed to load Hoje', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
-
-  /// Ends the person's own pause so Hoje returns to normal.
-  Future<void> endPause() async {
-    try {
-      await _dataSource.endPause();
-      unawaited(_widgetsRepository?.syncQuietly());
-    } catch (e, stack) {
-      _logger.error('Failed to end the pause', error: e, stackTrace: stack);
       rethrow;
     }
   }

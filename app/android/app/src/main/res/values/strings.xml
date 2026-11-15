@@ -55,9 +55,6 @@
     <string name="mingo_widget_note_reply_hint">Reply with a heart</string>
     <string name="mingo_widget_note_empty">No new note right now</string>
 
-    <string name="mingo_widget_card_pause_label">CARD &amp; DATE</string>
-    <string name="mingo_widget_card_pause_title">Pause in progress</string>
-    <string name="mingo_widget_card_pause_subtitle">Tap when you are ready</string>
     <string name="mingo_widget_card_weekly_label">WEEKLY CARD</string>
     <string name="mingo_widget_card_ready_title">A card arrived</string>
     <string name="mingo_widget_card_sent_title">Card sent</string>

@@ -13,22 +13,18 @@ void main() {
     LocaleSettings.setLocaleRawSync('pt');
   });
 
-  final pausePayload = WidgetPayload.fake().copyWith(
-    pauseReturnAt: DateTime.utc(2026, 3, 10, 13).toIso8601String(),
-    cardState: 'pause',
-  );
+  final payload = WidgetPayload.fake().copyWith(cardState: 'ready');
 
-  testWidgets('lock screen never shows pause status or time', (tester) async {
+  testWidgets('lock screen shows the neutral phrase, never the card status', (tester) async {
     await tester.pumpApp(
       BaseView(
         body: SingleChildScrollView(
-          child: LockScreenPreviewSection(payload: pausePayload.copyWith(onLockScreen: true)),
+          child: LockScreenPreviewSection(payload: payload.copyWith(onLockScreen: true)),
         ),
       ),
     );
 
-    expect(find.textContaining('Pausa em andamento'), findsNothing);
-    expect(find.textContaining('até '), findsNothing);
+    expect(find.textContaining('Chegou um cartão'), findsNothing);
     expect(find.text('Momento calmo'), findsWidgets);
   });
 
@@ -36,20 +32,19 @@ void main() {
     await tester.pumpApp(
       BaseView(
         body: SingleChildScrollView(
-          child: LockScreenPreviewSection(payload: pausePayload.copyWith(onLockScreen: false)),
+          child: LockScreenPreviewSection(payload: payload.copyWith(onLockScreen: false)),
         ),
       ),
     );
 
-    expect(find.textContaining('Pausa em andamento'), findsNothing);
     expect(
       find.text('O widget da tela de bloqueio está desativado nas configurações.'),
       findsOneWidget,
     );
   });
 
-  testWidgets('gallery lock-screen card never shows pause in discreet mode', (tester) async {
-    final discreet = pausePayload.copyWith(discreet: true).sanitized();
+  testWidgets('gallery lock-screen card stays neutral in discreet mode', (tester) async {
+    final discreet = payload.copyWith(discreet: true).sanitized();
 
     await tester.pumpApp(
       BaseView(
@@ -63,7 +58,6 @@ void main() {
       ),
     );
 
-    expect(find.textContaining('Pausa em andamento'), findsNothing);
     expect(find.text('Lembrete calmo · Sem nomes'), findsWidgets);
   });
 }

@@ -130,7 +130,7 @@ class const _Options() extends StatelessWidget {
       case RelationshipStatus.bereaved:
         unawaited(context.pushRoute(const GriefSupportRoute()));
       case RelationshipStatus.onBreak:
-        unawaited(context.pushRoute(const PauseRoute()));
+        unawaited(context.router.maybePop());
       case RelationshipStatus.ended || RelationshipStatus.together || null:
         unawaited(context.router.maybePop());
     }

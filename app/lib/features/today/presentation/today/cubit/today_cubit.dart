@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
-import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/data/repositories/today_repository.dart';
@@ -28,7 +27,6 @@ class TodayCubit({
   required final TodayRepository _todayRepository,
   required final ProfileRepository _profileRepository,
   required final PairingRepository _pairingRepository,
-  required final RepairRepository _repairRepository,
   required final SlipRepository _slipRepository,
   final Duration _refreshInterval = todayRefreshInterval,
   final TodayRefreshTimerFactory _timerFactory = _periodicTimer,
@@ -36,10 +34,8 @@ class TodayCubit({
   this : super(const TodayState());
 
   StreamSubscription<void>? _pairingChanges;
-  StreamSubscription<void>? _pauseChanges;
   StreamSubscription<void>? _profileChanges;
   StreamSubscription<void>? _slipChanges;
-  Timer? _pauseTimer;
   Timer? _refreshTimer;
   bool _isLoading = false;
   bool _reloadRequested = false;
@@ -48,7 +44,6 @@ class TodayCubit({
   void start() {
     WidgetsBinding.instance.addObserver(this);
     _pairingChanges ??= _pairingRepository.onChanged.listen((_) => load());
-    _pauseChanges ??= _repairRepository.onPauseChanged.listen((_) => load());
     _profileChanges ??= _profileRepository.onChanged.listen((_) => load());
     _slipChanges ??= _slipRepository.onChanged.listen((_) => load());
     _refreshTimer ??= _timerFactory(_refreshInterval, _onRefreshTick);
@@ -76,7 +71,6 @@ class TodayCubit({
       try {
         final result = await _todayRepository.getToday();
         if (isClosed) return;
-        _schedulePauseEnd(result.home);
         emit(
           state.copyWith(
             home: Success(result.home),
@@ -101,38 +95,6 @@ class TodayCubit({
         unawaited(load());
       }
     }
-  }
-
-  /// Ends the person's own pause and reads Hoje again.
-  ///
-  /// Returns whether the pause ended.
-  Future<bool> endPause() async {
-    if (state.endPauseAction.isLoading) return false;
-
-    var didEnd = false;
-    emit(state.copyWith(endPauseAction: const Loading()));
-    try {
-      await _todayRepository.endPause();
-      didEnd = true;
-      emit(state.copyWith(endPauseAction: const Success(null)));
-      await load();
-    } catch (exception) {
-      emit(state.copyWith(endPauseAction: Failure.fromObject(exception)));
-    }
-    emit(state.copyWith(endPauseAction: const Initial()));
-
-    return didEnd;
-  }
-
-  void _schedulePauseEnd(TodayHome home) {
-    _pauseTimer?.cancel();
-    final returnAt = home.pauseReturnAt;
-    if (returnAt == null) return;
-
-    final wait = returnAt.difference(clock.now());
-    if (wait.isNegative) return;
-
-    _pauseTimer = Timer(wait + const Duration(seconds: 1), load);
   }
 
   Future<void> acknowledgeUnpairNotice() async {
@@ -183,10 +145,8 @@ class TodayCubit({
 
   @override
   Future<void> close() async {
-    _pauseTimer?.cancel();
     _refreshTimer?.cancel();
     await _pairingChanges?.cancel();
-    await _pauseChanges?.cancel();
     await _profileChanges?.cancel();
     await _slipChanges?.cancel();
     WidgetsBinding.instance.removeObserver(this);

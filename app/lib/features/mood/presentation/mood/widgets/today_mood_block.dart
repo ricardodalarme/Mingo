@@ -23,7 +23,6 @@ class const TodayMoodBlock({
   required final bool isDiscreet,
   final bool isFirstDay = false,
   final bool hasPendingInvite = false,
-  final bool isPaused = false,
   super.key,
 }) extends StatelessWidget {
   static const _homeMoods = <MoodKind>[
@@ -37,8 +36,6 @@ class const TodayMoodBlock({
 
   @override
   Widget build(BuildContext context) {
-    if (isPaused) return const SizedBox.shrink();
-
     final l10n = context.l10n.mood;
     final helpL10n = context.l10n.moodHelp;
     final entry = context.select((MoodCubit cubit) => cubit.state.entry);

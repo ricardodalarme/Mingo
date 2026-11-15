@@ -9,8 +9,6 @@ query TodayHome {
     slipsTotal
     hasPendingInvite
     togetherSince
-    pauseIsMine
-    pauseReturnAt
     hasPlus
     unseenSignals
     slipDays

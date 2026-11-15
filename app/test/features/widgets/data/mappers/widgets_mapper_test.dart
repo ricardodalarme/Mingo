@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final now = DateTime.utc(2026, 11, 11, 12);
-  final pauseReturnAt = now.add(const Duration(hours: 2));
 
   QueryWidgetOverview response({Map<String, dynamic>? mySettings, bool widgetInDiscreet = true}) =>
       QueryWidgetOverview.fromJson(<String, dynamic>{
@@ -17,7 +16,6 @@ void main() {
           'nextDateTitle': 'Aniversário',
           'nextDateOn': '2026-12-01',
           'unopenedCards': 0,
-          'pauseReturnAt': pauseReturnAt.toIso8601String(),
           '__typename': 'WidgetState',
         },
         'today': <String, dynamic>{
@@ -27,8 +25,6 @@ void main() {
           'partnerName': 'Redacted',
           'nextDateTitle': 'Redacted',
           'nextDateOn': '2099-01-01',
-          'pauseReturnAt': '2099-01-01T00:00:00.000Z',
-          'pauseIsMine': true,
           '__typename': 'TodayState',
         },
         'mySettings':
@@ -59,12 +55,11 @@ void main() {
         now: now,
       );
 
-  test('partner name, date, and pause come only from the widget state', () {
+  test('partner name and date come only from the widget state', () {
     final overview = map(response());
 
     expect(overview.payload.partnerName, 'Marina');
     expect(overview.payload.nextDateTitle, 'Aniversário');
-    expect(overview.payload.pauseReturnAt, pauseReturnAt.toUtc().toIso8601String());
     expect(overview.preferences.hideInDiscreet, isFalse);
   });
 

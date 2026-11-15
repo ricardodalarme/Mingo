@@ -114,7 +114,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$partnerProfile$pt partnerProfile =
       Translations$partnerProfile$pt.internal(_root);
   late final Translations$partnerStep$pt partnerStep = Translations$partnerStep$pt.internal(_root);
-  late final Translations$pause$pt pause = Translations$pause$pt.internal(_root);
   late final Translations$places$pt places = Translations$places$pt.internal(_root);
   late final Translations$plus$pt plus = Translations$plus$pt.internal(_root);
   late final Translations$privacy$pt privacy = Translations$privacy$pt.internal(_root);
@@ -2135,9 +2134,6 @@ class Translations$hardConversation$pt {
 
   /// pt: 'Voltar'
   String get back => 'Voltar';
-
-  /// pt: 'Preciso de pausa'
-  String get needPause => 'Preciso de pausa';
 
   /// pt: 'Tentar de novo'
   String get retry => 'Tentar de novo';
@@ -4502,72 +4498,6 @@ class Translations$partnerStep$pt {
   String get continueButton => 'Continuar';
 }
 
-// Path: pause
-class Translations$pause$pt {
-  Translations$pause$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Pedir um tempo'
-  String get title => 'Pedir um tempo';
-
-  /// pt: 'tempo'
-  String get titleHighlight => 'tempo';
-
-  /// pt: 'Uma mensagem curta e gentil. Seu par vê só o que você escrever.'
-  String get subtitle => 'Uma mensagem curta e gentil. Seu par vê só o que você escrever.';
-
-  Map<String, String> get presets => {
-    'space': 'Preciso de um tempo para respirar. Volto logo.',
-    'later': 'Vamos conversar mais tarde, com calma?',
-    'calm': 'Quero te ouvir bem. Preciso me acalmar antes.',
-    'other': '',
-  };
-
-  /// pt: 'Escrever a minha'
-  String get hint => 'Escrever a minha';
-
-  Map<String, String> get messageErrors => {
-    'empty': 'Escreva uma mensagem curta',
-    'tooLong': 'A mensagem está muito longa',
-  };
-
-  /// pt: 'Volto em'
-  String get returnTitle => 'Volto em';
-
-  Map<String, String> get returns => {
-    'oneHour': '1 hora',
-    'threeHours': '3 horas',
-    'eightHours': '8 horas',
-    'tomorrow': 'Amanhã',
-    'other': '',
-  };
-
-  /// pt: 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.'
-  String get note => 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.';
-
-  /// pt: 'Enviar e pausar'
-  String get send => 'Enviar e pausar';
-
-  /// pt: 'Pausa enviada'
-  String get sentTitle => 'Pausa enviada';
-
-  /// pt: 'O Hoje fica em pausa para os dois. Quando estiver pronto(a), volte por lá.'
-  String get sentText =>
-      'O Hoje fica em pausa para os dois. Quando estiver pronto(a), volte por lá.';
-
-  /// pt: 'Pronto'
-  String get done => 'Pronto';
-
-  Map<String, String> get errors => {
-    'INVALID_RETURN_TIME': 'Esse horário de volta não vale. Escolha outro.',
-    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para enviar agora. Sua mensagem continua aqui.',
-  };
-}
-
 // Path: places
 class Translations$places$pt {
   Translations$places$pt.internal(this._root);
@@ -4871,12 +4801,6 @@ class Translations$privacy$pt {
 
   /// pt: 'Diário'
   String get partnerJournal => 'Diário';
-
-  /// pt: 'Pausa'
-  String get partnerPause => 'Pausa';
-
-  /// pt: 'A mensagem que você escreveu'
-  String get partnerPauseText => 'A mensagem que você escreveu';
 
   /// pt: 'Nunca'
   String get never => 'Nunca';
@@ -7235,9 +7159,6 @@ class Translations$timeInApp$pt {
   /// pt: 'Escondemos cartões e lembretes até você voltar.'
   String get text => 'Escondemos cartões e lembretes até você voltar.';
 
-  /// pt: 'Pausar o app'
-  String get pause => 'Pausar o app';
-
   /// pt: 'Cancelar'
   String get cancel => 'Cancelar';
 }
@@ -7460,33 +7381,11 @@ class Translations$today$pt {
   /// pt: '{name} te mandou um cartão'
   String cardReceivedNamed({required Object name}) => '${name} te mandou um cartão';
 
-  /// pt: 'Você pediu um tempo'
-  String get pauseOwnTitle => 'Você pediu um tempo';
-
-  /// pt: 'Você volta por volta das {time}. Nada para fazer agora.'
-  String pauseOwnText({required Object time}) =>
-      'Você volta por volta das ${time}. Nada para fazer agora.';
-
-  /// pt: 'Seu par pediu um tempo'
-  String get pausePartnerTitle => 'Seu par pediu um tempo';
-
-  /// pt: 'Sem pressa. Não tem nada para fazer agora.'
-  String get pausePartnerText => 'Sem pressa. Não tem nada para fazer agora.';
-
   /// pt: 'Seu par te mandou uma mensagem'
   String get signalReceived => 'Seu par te mandou uma mensagem';
 
   /// pt: 'Ver'
   String get signalReceivedAction => 'Ver';
-
-  /// pt: 'Voltar agora'
-  String get pauseBack => 'Voltar agora';
-
-  /// pt: 'Voltar e fazer um reparo'
-  String get pauseBackRepair => 'Voltar e fazer um reparo';
-
-  /// pt: 'Anotar um slip'
-  String get pauseWriteSlip => 'Anotar um slip';
 
   /// pt: 'cartão sai hoje, 18:00'
   String get weekHintToday => 'cartão sai hoje, 18:00';
@@ -7675,9 +7574,6 @@ class Translations$widgets$pt {
   /// pt: 'Cartão enviado · Aguardando domingo'
   String get cardStateSent => 'Cartão enviado · Aguardando domingo';
 
-  /// pt: 'Pausa em andamento'
-  String get cardStatePause => 'Pausa em andamento';
-
   /// pt: 'Cartão de domingo em preparação'
   String get cardStateNone => 'Cartão de domingo em preparação';
 
@@ -7857,15 +7753,6 @@ class Translations$widgets$pt {
   /// pt: 'Sexta, 10 de abril'
   String get lockScreenClockDate => 'Sexta, 10 de abril';
 
-  /// pt: 'Pausa em andamento'
-  String get lockScreenPauseTitle => 'Pausa em andamento';
-
-  /// pt: 'até {time}'
-  String lockScreenPauseUntil({required Object time}) => 'até ${time}';
-
-  /// pt: 'até 20:00'
-  String get lockScreenPauseUntilDefault => 'até 20:00';
-
   /// pt: 'Estou pronto'
   String get lockScreenReadyAction => 'Estou pronto';
 
@@ -7983,12 +7870,6 @@ class Translations$widgets$pt {
 
   /// pt: 'Em preparação'
   String get cardNoneSubtitle => 'Em preparação';
-
-  /// pt: 'Pausa em andamento'
-  String get cardPauseTitle => 'Pausa em andamento';
-
-  /// pt: 'Toque quando estiver pronto'
-  String get cardPauseSubtitle => 'Toque quando estiver pronto';
 
   /// pt: 'Próximo encontro'
   String get nextEncounterLabel => 'Próximo encontro';
@@ -8848,9 +8729,6 @@ class Translations$repair$calm$pt {
 
   /// pt: 'Sair'
   String get leave => 'Sair';
-
-  /// pt: 'Pedir um tempo ao meu par'
-  String get askPause => 'Pedir um tempo ao meu par';
 }
 
 // Path: repair.softStart
@@ -10630,7 +10508,6 @@ extension on Translations {
           'hardConversation.exit' => 'Sair',
           'hardConversation.next' => 'Próximo',
           'hardConversation.back' => 'Voltar',
-          'hardConversation.needPause' => 'Preciso de pausa',
           'hardConversation.retry' => 'Tentar de novo',
           'hardConversation.generationFailed' => 'Não deu para escrever uma frase agora.',
           'hardConversation.privateNote' =>
@@ -10868,10 +10745,10 @@ extension on Translations {
           'history.milestoneTitleHint' => 'Ex.: Primeira viagem juntos',
           'history.milestoneTitleErrors.empty' => 'Conte o que aconteceu',
           'history.milestoneTitleErrors.tooLong' => 'O título está muito longo',
+          'history.milestonePlaceLabel' => 'Lugar (opcional)',
           _ => null,
         } ??
         switch (path) {
-          'history.milestonePlaceLabel' => 'Lugar (opcional)',
           'history.milestonePlaceHint' => 'Ex.: Paraty',
           'history.milestonePlaceErrors.tooLong' => 'O lugar está muito longo',
           'history.milestoneBodyHint' => 'Uma nota sobre esse momento (opcional)',
@@ -11485,10 +11362,10 @@ extension on Translations {
           'moodHelp.partnerNeedSubtitle' => 'O pedido de hoje. Sem cobrança.',
           'moodHelp.partnerNeedNote' => 'Isso vem do humor que seu par compartilhou hoje.',
           'moodHelp.partnerNeedActions.listen' => 'Só ouvir',
+          'moodHelp.partnerNeedActions.opinion' => 'Dar uma opinião',
           _ => null,
         } ??
         switch (path) {
-          'moodHelp.partnerNeedActions.opinion' => 'Dar uma opinião',
           'moodHelp.partnerNeedActions.hug' => 'Mandar um abraço',
           'moodHelp.partnerNeedActions.space' => 'Dar espaço',
           'moodHelp.partnerNeedActions.chocolate' => 'Levar um chocolate',
@@ -11690,31 +11567,6 @@ extension on Translations {
           'partnerStep.aloneSupport' => 'Seus slips ficam só com você',
           'partnerStep.haveCode' => 'Tenho um código de convite',
           'partnerStep.continueButton' => 'Continuar',
-          'pause.title' => 'Pedir um tempo',
-          'pause.titleHighlight' => 'tempo',
-          'pause.subtitle' => 'Uma mensagem curta e gentil. Seu par vê só o que você escrever.',
-          'pause.presets.space' => 'Preciso de um tempo para respirar. Volto logo.',
-          'pause.presets.later' => 'Vamos conversar mais tarde, com calma?',
-          'pause.presets.calm' => 'Quero te ouvir bem. Preciso me acalmar antes.',
-          'pause.presets.other' => '',
-          'pause.hint' => 'Escrever a minha',
-          'pause.messageErrors.empty' => 'Escreva uma mensagem curta',
-          'pause.messageErrors.tooLong' => 'A mensagem está muito longa',
-          'pause.returnTitle' => 'Volto em',
-          'pause.returns.oneHour' => '1 hora',
-          'pause.returns.threeHours' => '3 horas',
-          'pause.returns.eightHours' => '8 horas',
-          'pause.returns.tomorrow' => 'Amanhã',
-          'pause.returns.other' => '',
-          'pause.note' => 'Os dois veem o Hoje em pausa. Você pode voltar quando quiser.',
-          'pause.send' => 'Enviar e pausar',
-          'pause.sentTitle' => 'Pausa enviada',
-          'pause.sentText' =>
-            'O Hoje fica em pausa para os dois. Quando estiver pronto(a), volte por lá.',
-          'pause.done' => 'Pronto',
-          'pause.errors.INVALID_RETURN_TIME' => 'Esse horário de volta não vale. Escolha outro.',
-          'pause.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'pause.errors.other' => 'Não deu para enviar agora. Sua mensagem continua aqui.',
           'places.title' => 'Lugares',
           'places.privacyNote' => 'Só o nome do lugar. O app nunca lê nem guarda sua localização.',
           'places.memoryOne' => '1 memória',
@@ -11832,8 +11684,6 @@ extension on Translations {
           'privacy.partnerPrivateSlips' => 'Slips privados',
           'privacy.partnerTemperature' => 'Temperatura',
           'privacy.partnerJournal' => 'Diário',
-          'privacy.partnerPause' => 'Pausa',
-          'privacy.partnerPauseText' => 'A mensagem que você escreveu',
           'privacy.never' => 'Nunca',
           'privacy.partnerNote' => 'Quem produz o dado decide quem vê.',
           'privacy.ourTitle' => 'O que podemos ver',
@@ -12079,9 +11929,6 @@ extension on Translations {
           'quickSlip.monthsShort.4' => 'mai',
           'quickSlip.monthsShort.5' => 'jun',
           'quickSlip.monthsShort.6' => 'jul',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.monthsShort.7' => 'ago',
           'quickSlip.monthsShort.8' => 'set',
           'quickSlip.monthsShort.9' => 'out',
@@ -12110,6 +11957,9 @@ extension on Translations {
           'quickSlip.requestErrors.tooLong' => 'Use no máximo 140 caracteres',
           'quickSlip.requestErrors.other' => 'Revise este campo',
           'quickSlip.save' => 'Salvar',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
           'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
@@ -12227,7 +12077,6 @@ extension on Translations {
           'repair.calm.text' => 'Não tem pressa e não tem tempo contado. Saia quando quiser.',
           'repair.calm.ready' => 'Estou mais calmo(a)',
           'repair.calm.leave' => 'Sair',
-          'repair.calm.askPause' => 'Pedir um tempo ao meu par',
           'repair.softStart.title' => 'Comece com suavidade',
           'repair.softStart.titleHighlight' => 'suavidade',
           'repair.softStart.subtitle' => 'Um modelo sem culpa para abrir a conversa.',
@@ -12653,9 +12502,6 @@ extension on Translations {
           'slipsList.weekdaysShort.5' => 'Sáb',
           'slipsList.weekdaysShort.6' => 'Dom',
           'slipsList.monthsShort.0' => 'jan',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.monthsShort.1' => 'fev',
           'slipsList.monthsShort.2' => 'mar',
           'slipsList.monthsShort.3' => 'abr',
@@ -12684,6 +12530,9 @@ extension on Translations {
           'slipsList.errorTitle' => 'Não deu para carregar seus slips',
           'slipsList.errorText' => 'Eles continuam salvos. Tente de novo.',
           'spice.title' => 'Momentos a dois',
+          _ => null,
+        } ??
+        switch (path) {
           'spice.offText' => 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.',
           'spice.turnOn' => 'Ligar',
           'spice.notNow' => 'Agora não',
@@ -12925,7 +12774,6 @@ extension on Translations {
           'timeInApp.title' => 'Um tempo no app',
           'timeInApp.titleHighlight' => 'app',
           'timeInApp.text' => 'Escondemos cartões e lembretes até você voltar.',
-          'timeInApp.pause' => 'Pausar o app',
           'timeInApp.cancel' => 'Cancelar',
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
@@ -13047,17 +12895,8 @@ extension on Translations {
           'today.errorTitle' => 'Não deu para carregar o Hoje',
           'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} te mandou um cartão',
-          'today.pauseOwnTitle' => 'Você pediu um tempo',
-          'today.pauseOwnText' => ({
-            required Object time,
-          }) => 'Você volta por volta das ${time}. Nada para fazer agora.',
-          'today.pausePartnerTitle' => 'Seu par pediu um tempo',
-          'today.pausePartnerText' => 'Sem pressa. Não tem nada para fazer agora.',
           'today.signalReceived' => 'Seu par te mandou uma mensagem',
           'today.signalReceivedAction' => 'Ver',
-          'today.pauseBack' => 'Voltar agora',
-          'today.pauseBackRepair' => 'Voltar e fazer um reparo',
-          'today.pauseWriteSlip' => 'Anotar um slip',
           'today.weekHintToday' => 'cartão sai hoje, 18:00',
           'unpair.appBarTitle' => 'Desvincular',
           'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
@@ -13136,7 +12975,6 @@ extension on Translations {
           'widgets.cardEncounterLabel' => 'CARTÃO E ENCONTRO',
           'widgets.cardStateReady' => 'Chegou um cartão · Toque para abrir',
           'widgets.cardStateSent' => 'Cartão enviado · Aguardando domingo',
-          'widgets.cardStatePause' => 'Pausa em andamento',
           'widgets.cardStateNone' => 'Cartão de domingo em preparação',
           'widgets.discreetBanner' =>
             'Modo discreto ativo: nomes, fotos e recados estão ocultos nos widgets.',
@@ -13204,9 +13042,6 @@ extension on Translations {
           'widgets.lockScreenPageTitle' => 'Tela de bloqueio',
           'widgets.lockScreenClockTime' => '19:38',
           'widgets.lockScreenClockDate' => 'Sexta, 10 de abril',
-          'widgets.lockScreenPauseTitle' => 'Pausa em andamento',
-          'widgets.lockScreenPauseUntil' => ({required Object time}) => 'até ${time}',
-          'widgets.lockScreenPauseUntilDefault' => 'até 20:00',
           'widgets.lockScreenReadyAction' => 'Estou pronto',
           'widgets.lockScreenGenericPhrase' => 'Momento calmo',
           'widgets.lockScreenDiscreetPhrase' => 'Lembrete',
@@ -13254,8 +13089,6 @@ extension on Translations {
           'widgets.cardSentSubtitle' => 'Aguardando domingo',
           'widgets.cardNoneTitle' => 'Cartão de domingo',
           'widgets.cardNoneSubtitle' => 'Em preparação',
-          'widgets.cardPauseTitle' => 'Pausa em andamento',
-          'widgets.cardPauseSubtitle' => 'Toque quando estiver pronto',
           'widgets.nextEncounterLabel' => 'Próximo encontro',
           'widgets.nextEncounterEmptyTitle' => 'Sem data futura',
           'widgets.nextEncounterEmptySubtitle' => 'Toque para agendar',
@@ -13281,9 +13114,6 @@ extension on Translations {
             'Não foi possível remover a foto do casal agora.',
           'widgets.errors.COUPLE_PHOTO_INVALID' =>
             'Escolha uma imagem JPG, PNG, WebP ou HEIC de até 8 MB.',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Não foi possível ler o arquivo escolhido.',
           'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Não foi possível abrir o seletor de fotos.',
           'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' =>

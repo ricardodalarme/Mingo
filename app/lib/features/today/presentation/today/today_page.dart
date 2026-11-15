@@ -7,7 +7,6 @@ import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:app/features/today/presentation/today/widgets/partner_unpaired_notice.dart';
 import 'package:app/features/today/presentation/today/widgets/today_content.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -61,7 +60,6 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
                       isDiscreet: isDiscreet,
                       isFirstDay: isFirstDay,
                       hasPendingInvite: loadedHome?.hasPendingInvite ?? false,
-                      isPaused: loadedHome?.isPausedAt(clock.now()) ?? false,
                     ),
                     SkeletonizerResourceWidget<TodayHome>(
                       home,

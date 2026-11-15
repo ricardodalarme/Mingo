@@ -84,7 +84,6 @@ import 'package:app/features/questions/presentation/questions/questions_page.dar
 import 'package:app/features/repair/presentation/calm/calm_page.dart';
 import 'package:app/features/repair/presentation/guided/guided_repair_page.dart';
 import 'package:app/features/repair/presentation/learning/learning_page.dart';
-import 'package:app/features/repair/presentation/pause/pause_page.dart';
 import 'package:app/features/repair/presentation/quick_repair/quick_repair_page.dart';
 import 'package:app/features/repair/presentation/received/received_signals_page.dart';
 import 'package:app/features/repair/presentation/soft_start/soft_start_page.dart';
@@ -165,7 +164,6 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: NeedRoute.page, fullscreenDialog: true),
     AutoRoute(page: TemperatureRoute.page, fullscreenDialog: true),
     AutoRoute(page: CalmRoute.page, fullscreenDialog: true),
-    AutoRoute(page: PauseRoute.page, fullscreenDialog: true),
     AutoRoute(page: TimeInAppRoute.page, fullscreenDialog: true),
     AutoRoute(page: ReceivedSignalsRoute.page),
     AutoRoute(page: LogisticsRoute.page),

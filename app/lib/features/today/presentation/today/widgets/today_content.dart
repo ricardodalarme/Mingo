@@ -4,7 +4,6 @@ import 'package:app/features/notifications/presentation/off_banner/widgets/notif
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:app/features/today/presentation/today/widgets/today_header.dart';
-import 'package:app/features/today/presentation/today/widgets/today_pause.dart';
 import 'package:app/features/today/presentation/today/widgets/today_share_entry.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
@@ -27,17 +26,6 @@ class const TodayContent({
   @override
   Widget build(BuildContext context) {
     final idea = home.idea;
-
-    if (home.isPausedAt(clock.now())) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TodayHeader(home: home, selfName: selfName, isFirstDay: isFirstDay),
-          const SizedBox(height: AppSpace.s20),
-          TodayPause(home: home),
-        ],
-      );
-    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

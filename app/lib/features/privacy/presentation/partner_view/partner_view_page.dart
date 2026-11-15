@@ -21,7 +21,6 @@ class const PartnerViewPage({super.key}) extends StatelessWidget {
                 BaseListTile(title: l10n.partnerPrivateSlips, value: l10n.never),
                 BaseListTile(title: l10n.partnerTemperature, value: l10n.never),
                 BaseListTile(title: l10n.partnerJournal, value: l10n.never),
-                BaseListTile(title: l10n.partnerPause, subtitle: l10n.partnerPauseText),
               ],
             ),
             const SizedBox(height: AppSpace.s12),

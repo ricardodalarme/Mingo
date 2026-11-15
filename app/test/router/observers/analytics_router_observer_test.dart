@@ -22,7 +22,6 @@ void main() {
     expect(analyticsScreenNameFor('MoodRoute'), 'settings');
     expect(analyticsScreenNameFor('NeedRoute'), 'settings');
     expect(analyticsScreenNameFor('FightStyleRoute'), 'settings');
-    expect(analyticsScreenNameFor('PauseRoute'), 'settings');
     expect(analyticsScreenNameFor('SafeModeRoute'), 'settings');
   });
 

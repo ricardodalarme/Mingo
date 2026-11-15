@@ -91,8 +91,7 @@ void main() {
       final discreetPayload = WidgetPayload.fake().copyWith(
         discreet: true,
         cachedPhotoPath: '/shared/home_widget/mingo_widget_photo_path.jpg',
-        pauseReturnAt: DateTime.utc(2026, 11, 11, 13).toIso8601String(),
-        cardState: 'pause',
+        cardState: 'ready',
       );
 
       final sanitized = await service.writePayload(discreetPayload);
@@ -104,7 +103,6 @@ void main() {
       expect(sanitized.partnerNote, isNull);
       expect(sanitized.cachedPhotoPath, isNull);
       expect(sanitized.togetherSince, isNull);
-      expect(sanitized.pauseReturnAt, isNull);
       expect(sanitized.cardState, 'none');
       expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], isNull);
       expect(

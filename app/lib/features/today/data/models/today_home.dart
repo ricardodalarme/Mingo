@@ -37,8 +37,6 @@ final class const TodayHome({
   final DateTime? localDate,
   final String? cardStatus,
   final DateTime? togetherSince,
-  final bool pauseIsMine = false,
-  final DateTime? pauseReturnAt,
   final int unseenSignals = 0,
   final Suggestion? question,
   final Suggestion? idea,
@@ -55,8 +53,6 @@ final class const TodayHome({
     localDate: _date(map['localDate']),
     cardStatus: map['cardStatus'] as String?,
     togetherSince: _date(map['togetherSince']),
-    pauseIsMine: map['pauseIsMine'] as bool? ?? false,
-    pauseReturnAt: _date(map['pauseReturnAt']),
     unseenSignals: map['unseenSignals'] as int? ?? 0,
     question: _suggestion(map['question']),
     idea: _suggestion(map['idea']),
@@ -85,12 +81,6 @@ final class const TodayHome({
         ),
       );
 
-  /// Whether the person is paused and a paused banner applies.
-  bool get isPaused => pauseReturnAt != null;
-
-  /// Whether a pause is still running at [now].
-  bool isPausedAt(DateTime now) => pauseReturnAt != null && pauseReturnAt!.isAfter(now);
-
   Map<String, dynamic> toMap() => <String, dynamic>{
     'isPaired': isPaired,
     'unopenedCards': unopenedCards,
@@ -102,8 +92,6 @@ final class const TodayHome({
     'localDate': localDate?.toIso8601String(),
     'cardStatus': cardStatus,
     'togetherSince': togetherSince?.toIso8601String(),
-    'pauseIsMine': pauseIsMine,
-    'pauseReturnAt': pauseReturnAt?.toIso8601String(),
     'unseenSignals': unseenSignals,
     'question': question?.toMap(),
     'idea': idea?.toMap(),
@@ -127,8 +115,6 @@ final class const TodayHome({
     localDate,
     cardStatus,
     togetherSince,
-    pauseIsMine,
-    pauseReturnAt,
     unseenSignals,
     question,
     idea,

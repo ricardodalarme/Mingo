@@ -8,10 +8,8 @@ final class const TodayState({
   final bool isFirstDay = false,
   final bool showUnpairNotice = false,
   final String? unpairedPartnerName,
-  final Resource<void> endPauseAction = const Initial(),
 }) with Equatable {
   TodayState copyWith({
-    Resource<void>? endPauseAction,
     Resource<TodayHome>? home,
     bool? isOffline,
     String? selfName,
@@ -28,7 +26,6 @@ final class const TodayState({
       isFirstDay: isFirstDay ?? this.isFirstDay,
       showUnpairNotice: showUnpairNotice ?? this.showUnpairNotice,
       unpairedPartnerName: unpairedPartnerName ?? this.unpairedPartnerName,
-      endPauseAction: endPauseAction ?? this.endPauseAction,
     );
   }
 
@@ -41,6 +38,5 @@ final class const TodayState({
     isFirstDay,
     showUnpairNotice,
     unpairedPartnerName,
-    endPauseAction,
   ];
 }

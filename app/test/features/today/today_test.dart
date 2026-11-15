@@ -4,7 +4,6 @@ import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
-import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/today/data/data_sources/local/today_local_data_source.dart';
 import 'package:app/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
@@ -26,8 +25,6 @@ class _MockTodayRepository() extends Mock implements TodayRepository;
 class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 class _MockPairingRepository() extends Mock implements PairingRepository;
-
-class _MockRepairRepository() extends Mock implements RepairRepository;
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
 
@@ -72,23 +69,6 @@ void main() {
   group('TodayHome', () {
     test('survives the cache round trip', () {
       expect(TodayHome.fromMap(home.toMap()), home);
-    });
-
-    test('a pause ends at its return time', () {
-      final returnAt = DateTime(2026, 11, 10, 18);
-      final paused = TodayHome(
-        isPaired: true,
-        unopenedCards: 0,
-        slipsThisWeek: 0,
-        slipsTotal: 0,
-        hasPendingInvite: false,
-        hasPlus: false,
-        pauseReturnAt: returnAt,
-      );
-
-      expect(paused.isPausedAt(DateTime(2026, 11, 10, 17, 59)), isTrue);
-      expect(paused.isPausedAt(returnAt), isFalse);
-      expect(home.isPausedAt(DateTime(2026, 11, 10)), isFalse);
     });
   });
 
@@ -199,16 +179,13 @@ void main() {
     late TodayRepository today;
     late ProfileRepository profile;
     late PairingRepository pairing;
-    late RepairRepository repair;
     late SlipRepository slip;
 
     setUp(() {
       today = _MockTodayRepository();
       profile = _MockProfileRepository();
       pairing = _MockPairingRepository();
-      repair = _MockRepairRepository();
       slip = _MockSlipRepository();
-      when(() => repair.onPauseChanged).thenAnswer((_) => const Stream.empty());
       when(() => pairing.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => profile.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => slip.onChanged).thenAnswer((_) => const Stream.empty());
@@ -226,7 +203,6 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
-        repairRepository: repair,
         slipRepository: slip,
       );
 
@@ -237,65 +213,6 @@ void main() {
       expect(cubit.state.isOffline, isFalse);
     });
 
-    test('endPause ends the pause and reads Hoje again', () async {
-      var calls = 0;
-      when(() => today.getToday()).thenAnswer((_) async {
-        calls++;
-        return result(
-          value: calls == 1
-              ? TodayHome(
-                  isPaired: true,
-                  unopenedCards: 0,
-                  slipsThisWeek: 2,
-                  slipsTotal: 2,
-                  hasPendingInvite: false,
-                  hasPlus: false,
-                  pauseIsMine: true,
-                  pauseReturnAt: DateTime(2026, 3, 10, 14),
-                )
-              : home,
-        );
-      });
-      when(() => today.endPause()).thenAnswer((_) async {
-        return;
-      });
-      final cubit = TodayCubit(
-        todayRepository: today,
-        profileRepository: profile,
-        pairingRepository: pairing,
-        repairRepository: repair,
-        slipRepository: slip,
-      );
-      await cubit.load();
-      expect(cubit.state.home, isA<Success<TodayHome>>());
-
-      await cubit.endPause();
-
-      verify(() => today.endPause()).called(1);
-      expect(calls, 2);
-      expect(cubit.state.endPauseAction, isA<Initial>());
-      await cubit.close();
-    });
-
-    test('a failed endPause keeps Hoje and re-enables the action', () async {
-      when(() => today.getToday()).thenAnswer((_) async => result());
-      when(() => today.endPause()).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
-      final cubit = TodayCubit(
-        todayRepository: today,
-        profileRepository: profile,
-        pairingRepository: pairing,
-        repairRepository: repair,
-        slipRepository: slip,
-      );
-      await cubit.load();
-
-      await cubit.endPause();
-
-      expect(cubit.state.home, const Success<TodayHome>(home));
-      expect(cubit.state.endPauseAction, isA<Initial>());
-      await cubit.close();
-    });
-
     test('a saved profile name reaches Hoje', () async {
       final changes = StreamController<void>.broadcast();
       when(() => profile.onChanged).thenAnswer((_) => changes.stream);
@@ -304,7 +221,6 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
-        repairRepository: repair,
         slipRepository: slip,
       );
 
@@ -336,7 +252,6 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
-        repairRepository: repair,
         slipRepository: slip,
       );
 
@@ -364,7 +279,6 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
-        repairRepository: repair,
         slipRepository: slip,
         refreshInterval: const Duration(seconds: 1),
         timerFactory: (_, onTick) {
@@ -405,7 +319,6 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
-        repairRepository: repair,
         slipRepository: slip,
         refreshInterval: const Duration(seconds: 1),
         timerFactory: (_, onTick) {
@@ -433,7 +346,6 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
-        repairRepository: repair,
         slipRepository: slip,
       );
 
@@ -448,7 +360,6 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
-        repairRepository: repair,
         slipRepository: slip,
       );
 
@@ -463,7 +374,6 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
-        repairRepository: repair,
         slipRepository: slip,
       );
       await cubit.load();
@@ -482,7 +392,6 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
-        repairRepository: repair,
         slipRepository: slip,
       );
 
@@ -509,7 +418,6 @@ void main() {
         todayRepository: today,
         profileRepository: profile,
         pairingRepository: pairing,
-        repairRepository: repair,
         slipRepository: slip,
       );
 

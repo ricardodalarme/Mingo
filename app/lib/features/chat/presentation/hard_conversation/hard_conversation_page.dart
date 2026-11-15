@@ -211,18 +211,7 @@ class const _WhatStep() extends StatelessWidget {
           BaseNote(text: l10n.privateNote),
         ],
       ),
-      footer: Row(
-        children: [
-          BaseButton.secondary(
-            text: l10n.needPause,
-            onPressed: () => context.pushRoute(const PauseRoute()),
-          ),
-          const SizedBox(width: AppSpace.s10),
-          Expanded(
-            child: BaseButton(text: l10n.next, isEnabled: canContinue, onPressed: cubit.next),
-          ),
-        ],
-      ),
+      footer: BaseButton(text: l10n.next, isEnabled: canContinue, onPressed: cubit.next),
     );
   }
 }

@@ -27,7 +27,6 @@ final class const WidgetPayload({
   final String? partnerName,
   final String? nextDateTitle,
   final String? nextDateOn,
-  final String? pauseReturnAt,
   final String? partnerNote,
   final String? partnerNoteMedia,
   final String? partnerNoteAt,
@@ -98,7 +97,6 @@ final class const WidgetPayload({
     nextDateOn: json['nextDateOn'] as String?,
     unopenedCards: json['unopenedCards'] as int? ?? 0,
     cardState: json['cardState'] as String? ?? 'none',
-    pauseReturnAt: json['pauseReturnAt'] as String?,
     partnerNote: json['partnerNote'] as String?,
     partnerNoteMedia: json['partnerNoteMedia'] as String?,
     partnerNoteAt: json['partnerNoteAt'] as String?,
@@ -128,7 +126,6 @@ final class const WidgetPayload({
       return WidgetPayload.signedOut(now: now);
     }
 
-    final activePause = isPaired && isPauseActiveOn(now) ? pauseReturnAt : null;
     final rawDaysUntilDate = _daysUntilDateString(nextDateOn, now);
     final validDateOn = rawDaysUntilDate != null && rawDaysUntilDate >= 0 ? nextDateOn : null;
     final validDateTitle = validDateOn != null ? _nonEmpty(nextDateTitle) : null;
@@ -159,10 +156,9 @@ final class const WidgetPayload({
     final resolvedPhotoPath = isPaired && hasPlus ? _nonEmpty(cachedPhotoPath) : null;
     final resolvedUnopenedCards = isPaired ? unopenedCards : 0;
 
-    final resolvedCardState = switch ((activePause != null, isPaired, cardState)) {
-      (true, _, _) => 'pause',
-      (false, false, _) => 'none',
-      (false, true, 'ready' || 'sent' || 'none') => resolvedUnopenedCards > 0 ? 'ready' : cardState,
+    final resolvedCardState = switch ((isPaired, cardState)) {
+      (false, _) => 'none',
+      (true, 'ready' || 'sent' || 'none') => resolvedUnopenedCards > 0 ? 'ready' : cardState,
       _ => resolvedUnopenedCards > 0 ? 'ready' : 'none',
     };
 
@@ -182,7 +178,6 @@ final class const WidgetPayload({
       nextDateOn: validDateOn,
       unopenedCards: resolvedUnopenedCards,
       cardState: resolvedCardState,
-      pauseReturnAt: activePause,
       partnerNote: resolvedNote,
       partnerNoteMedia: resolvedNoteMedia,
       partnerNoteAt: resolvedNoteAt,
@@ -196,15 +191,6 @@ final class const WidgetPayload({
       cachedPhotoPath: resolvedPhotoPath,
       updatedAt: now.toUtc().toIso8601String(),
     );
-  }
-
-  /// Whether a pause is currently active at [now].
-  bool isPauseActiveOn(DateTime now) {
-    final raw = pauseReturnAt;
-    if (raw == null || raw.isEmpty) return false;
-    final parsed = DateTime.tryParse(raw);
-    if (parsed == null) return false;
-    return parsed.toUtc().isAfter(now.toUtc());
   }
 
   /// Exact days together at local midnight for [localNow], or `null` when unset or discreet.
@@ -267,7 +253,6 @@ final class const WidgetPayload({
     String? nextDateOn,
     int? unopenedCards,
     String? cardState,
-    String? pauseReturnAt,
     String? partnerNote,
     String? partnerNoteMedia,
     String? partnerNoteAt,
@@ -296,7 +281,6 @@ final class const WidgetPayload({
     nextDateOn: nextDateOn ?? this.nextDateOn,
     unopenedCards: unopenedCards ?? this.unopenedCards,
     cardState: cardState ?? this.cardState,
-    pauseReturnAt: pauseReturnAt ?? this.pauseReturnAt,
     partnerNote: partnerNote ?? this.partnerNote,
     partnerNoteMedia: partnerNoteMedia ?? this.partnerNoteMedia,
     partnerNoteAt: partnerNoteAt ?? this.partnerNoteAt,
@@ -327,7 +311,6 @@ final class const WidgetPayload({
     'nextDateOn': nextDateOn,
     'unopenedCards': unopenedCards,
     'cardState': cardState,
-    'pauseReturnAt': pauseReturnAt,
     'partnerNote': partnerNote,
     'partnerNoteMedia': partnerNoteMedia,
     'partnerNoteAt': partnerNoteAt,
@@ -386,7 +369,6 @@ final class const WidgetPayload({
     nextDateOn,
     unopenedCards,
     cardState,
-    pauseReturnAt,
     partnerNote,
     partnerNoteMedia,
     partnerNoteAt,

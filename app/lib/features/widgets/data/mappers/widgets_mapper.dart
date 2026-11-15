@@ -38,7 +38,6 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
     final nextDateOn = nextDate != null ? _formatDateOnly(nextDate) : null;
     final nextDateTitle = widgetState?.nextDateTitle;
 
-    final pauseReturnAt = widgetState?.pauseReturnAt?.toUtc().toIso8601String();
     final unopenedCards = widgetState?.unopenedCards ?? todayState?.unopenedCards ?? 0;
     final rawCardStatus = todayState?.cardStatus;
     final cardState = switch ((unopenedCards > 0, rawCardStatus)) {
@@ -76,7 +75,6 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
       nextDateOn: nextDateOn,
       unopenedCards: unopenedCards,
       cardState: cardState,
-      pauseReturnAt: pauseReturnAt,
       partnerNote: widgetState?.partnerNote,
       partnerNoteMedia: widgetState?.partnerNoteMedia,
       partnerNoteAt: widgetState?.partnerNoteAt?.toUtc().toIso8601String(),

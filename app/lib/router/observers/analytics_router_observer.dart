@@ -22,7 +22,6 @@ const Set<String> _sensitiveRouteNames = {
   'MoodRoute',
   'NeedRoute',
   'FightStyleRoute',
-  'PauseRoute',
   'SafeModeRoute',
 };
 

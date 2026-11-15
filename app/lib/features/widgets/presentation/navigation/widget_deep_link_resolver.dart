@@ -75,10 +75,6 @@ List<PageRouteInfo<void>>? resolveWidgetDeepLinkUri(Uri? uri, {required AppState
     'jar' || 'slips' => [
       const HomeRoute(children: [SlipsRoute()]),
     ],
-    'pause' => [
-      const HomeRoute(children: [TodayRoute()]),
-      const PauseRoute(),
-    ],
     'invite' => [
       const HomeRoute(children: [TodayRoute()]),
       const InviteRoute(),

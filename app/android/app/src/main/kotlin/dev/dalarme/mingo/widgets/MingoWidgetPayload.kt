@@ -28,7 +28,6 @@ data class MingoWidgetPayload(
     val nextDateOn: String?,
     val unopenedCards: Int,
     val cardState: String,
-    val pauseReturnAt: String?,
     val partnerNote: String?,
     val myMood: String?,
     val dailyIdeaTitle: String?,
@@ -56,15 +55,6 @@ data class MingoWidgetPayload(
             if (days >= 0L) days else null
         } catch (_: Exception) {
             null
-        }
-    }
-
-    fun isPauseActive(now: Instant = Instant.now()): Boolean {
-        if (!isSignedIn || !isPaired || pauseReturnAt.isNullOrBlank()) return false
-        return try {
-            Instant.parse(pauseReturnAt).isAfter(now)
-        } catch (_: Exception) {
-            false
         }
     }
 
@@ -147,7 +137,6 @@ data class MingoWidgetPayload(
                     nextDateOn = json.optNullableString("nextDateOn"),
                     unopenedCards = json.optInt("unopenedCards", 0),
                     cardState = json.optString("cardState", "none"),
-                    pauseReturnAt = json.optNullableString("pauseReturnAt"),
                     partnerNote = json.optNullableString("partnerNote"),
                     myMood = json.optNullableString("myMood"),
                     dailyIdeaTitle = json.optNullableString("dailyIdeaTitle"),
@@ -174,7 +163,6 @@ data class MingoWidgetPayload(
             nextDateOn = null,
             unopenedCards = 0,
             cardState = "none",
-            pauseReturnAt = null,
             partnerNote = null,
             myMood = null,
             dailyIdeaTitle = null,

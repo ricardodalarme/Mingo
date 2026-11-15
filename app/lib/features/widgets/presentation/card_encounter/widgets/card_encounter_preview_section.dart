@@ -59,11 +59,9 @@ class const CardEncounterPreviewSection({
     }
 
     final now = clock.now();
-    final isPaused = payload.isPauseActiveOn(now);
-    final (cardTitle, cardSubtitle) = switch ((isPaused, payload.cardState)) {
-      (true, _) => (l10n.cardPauseTitle, l10n.cardPauseSubtitle),
-      (false, 'ready') => (l10n.cardReadyTitle, l10n.cardReadySubtitle),
-      (false, 'sent') => (l10n.cardSentTitle, l10n.cardSentSubtitle),
+    final (cardTitle, cardSubtitle) = switch (payload.cardState) {
+      'ready' => (l10n.cardReadyTitle, l10n.cardReadySubtitle),
+      'sent' => (l10n.cardSentTitle, l10n.cardSentSubtitle),
       _ => (l10n.cardNoneTitle, l10n.cardNoneSubtitle),
     };
 
@@ -87,8 +85,7 @@ class const CardEncounterPreviewSection({
                 categoryLabel: l10n.cardWeeklyLabel,
                 title: cardTitle,
                 subtitle: cardSubtitle,
-                onTapOverride: () =>
-                    context.pushRoute(isPaused ? const PauseRoute() : const SundayCardRoute()),
+                onTapOverride: () => context.pushRoute(const SundayCardRoute()),
               ),
             ),
             const SizedBox(width: AppSpace.s12),

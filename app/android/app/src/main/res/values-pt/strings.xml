@@ -55,9 +55,6 @@
     <string name="mingo_widget_note_reply_hint">Responder com um coração</string>
     <string name="mingo_widget_note_empty">Sem recado novo no momento</string>
 
-    <string name="mingo_widget_card_pause_label">CARTÃO E ENCONTRO</string>
-    <string name="mingo_widget_card_pause_title">Pausa em andamento</string>
-    <string name="mingo_widget_card_pause_subtitle">Toque quando estiver pronto</string>
     <string name="mingo_widget_card_weekly_label">CARTÃO DA SEMANA</string>
     <string name="mingo_widget_card_ready_title">Chegou um cartão</string>
     <string name="mingo_widget_card_sent_title">Cartão enviado</string>

@@ -1,5 +1,4 @@
 import 'package:app/l10n/translations.g.dart';
-import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 
@@ -34,22 +33,7 @@ class const TimeInAppPage({super.key}) extends StatelessWidget {
             ),
           ],
         ),
-        footer: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            BaseButton(
-              text: l10n.pause,
-              onPressed: () => context.router.replace(const PauseRoute()),
-            ),
-            const SizedBox(height: AppSpace.s10),
-            BaseButton(
-              text: l10n.cancel,
-              variant: .secondary,
-              onPressed: () => context.router.maybePop(),
-            ),
-          ],
-        ),
+        footer: BaseButton(text: l10n.cancel, onPressed: () => context.router.maybePop()),
       ),
     );
   }

@@ -87,7 +87,6 @@ class const GalleryPreviewSection({
     final cardText = switch ((payload.discreet, payload.isPaired, payload.cardState)) {
       (true, _, _) => l10n.lockScreenDefault,
       (false, false, _) => l10n.statesUnpairedTitle,
-      (false, true, 'pause') => l10n.cardStatePause,
       (false, true, 'ready') => l10n.cardStateReady,
       (false, true, 'sent') => l10n.cardStateSent,
       _ => l10n.cardStateNone,

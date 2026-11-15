@@ -1,23 +1,16 @@
 import 'dart:async';
 
-import 'package:app/features/repair/data/repositories/repair_repository.dart';
-import 'package:app/features/repair/presentation/pause/cubit/pause_cubit.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-
-class _MockRepairRepository() extends Mock implements RepairRepository;
 
 class _TestRouter() extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
     AutoRoute(page: NotFoundRoute.page, initial: true),
     AutoRoute(page: TimeInAppRoute.page, fullscreenDialog: true),
-    AutoRoute(page: PauseRoute.page, fullscreenDialog: true),
   ];
 }
 
@@ -56,21 +49,6 @@ void main() {
     await tester.tap(find.text('Cancelar'));
     await tester.pumpAndSettle();
 
-    expect(router.stack.map((route) => route.name), isNot(contains(TimeInAppRoute.name)));
-  });
-
-  testWidgets('pause opens the pause flow', (tester) async {
-    AppInjector.instance.registerFactory<PauseCubit>(
-      () => PauseCubit(repairRepository: _MockRepairRepository()),
-    );
-    addTearDown(() => AppInjector.instance.unregister<PauseCubit>());
-    final router = _TestRouter();
-    await openPage(tester, router);
-
-    await tester.tap(find.text('Pausar o app'));
-    await tester.pumpAndSettle();
-
-    expect(router.stack.map((route) => route.name), contains(PauseRoute.name));
     expect(router.stack.map((route) => route.name), isNot(contains(TimeInAppRoute.name)));
   });
 }

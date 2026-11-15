@@ -36,7 +36,7 @@ void main() {
       ],
     );
 
-    test('daysUntilNextDateOn removes past dates and pause active overrides card state', () {
+    test('daysUntilNextDateOn removes past dates', () {
       final now = DateTime(2026, 6, 15, 10);
       final pastDatePayload = WidgetPayload.fake().copyWith(nextDateOn: '2026-06-14');
       final todayDatePayload = WidgetPayload.fake().copyWith(nextDateOn: '2026-06-15');
@@ -45,13 +45,6 @@ void main() {
       expect(pastDatePayload.daysUntilNextDateOn(now), isNull);
       expect(todayDatePayload.daysUntilNextDateOn(now), 0);
       expect(futureDatePayload.daysUntilNextDateOn(now), 42);
-
-      final pausedPayload = WidgetPayload.fake().copyWith(
-        pauseReturnAt: '2026-06-15T12:00:00Z',
-        cardState: 'ready',
-      );
-      expect(pausedPayload.isPauseActiveOn(DateTime.utc(2026, 6, 15, 11)), isTrue);
-      expect(pausedPayload.isPauseActiveOn(DateTime.utc(2026, 6, 15, 13)), isFalse);
     });
   });
 }

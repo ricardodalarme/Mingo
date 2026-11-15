@@ -6,7 +6,6 @@ import 'package:app/features/repair/data/data_sources/remote/mutations/generated
 import 'package:app/features/repair/data/data_sources/remote/mutations/generated/SaveLearning.graphql.dart';
 import 'package:app/features/repair/data/data_sources/remote/mutations/generated/SaveRepairProgress.graphql.dart';
 import 'package:app/features/repair/data/data_sources/remote/mutations/generated/SendRepairSignal.graphql.dart';
-import 'package:app/features/repair/data/data_sources/remote/mutations/generated/StartPause.graphql.dart';
 import 'package:app/features/repair/data/data_sources/remote/mutations/generated/StartRepairSession.graphql.dart';
 import 'package:app/features/repair/data/data_sources/remote/queries/generated/MyLearnings.graphql.dart';
 import 'package:app/features/repair/data/data_sources/remote/queries/generated/OpenGuidedSession.graphql.dart';
@@ -139,17 +138,6 @@ class RepairDataSource({required final GQLClient _client}) {
     );
 
     return validateResponseData(result, getData: (data) => data.respondToSignal);
-  }
-
-  /// Starts a pause that ends by itself at [returnAt], which the server limits to 24 hours.
-  Future<void> startPause({required DateTime returnAt, String? message}) async {
-    final response = await _client.mutate(
-      OptionsMutationStartPause(
-        variables: VariablesMutationStartPause(returnAt: returnAt, message: message),
-      ),
-    );
-
-    validateResponse(response);
   }
 
   Future<void> startSession({

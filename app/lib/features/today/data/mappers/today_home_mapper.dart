@@ -19,8 +19,6 @@ extension TodayHomeMapper on QueryTodayHome {
       localDate: state.localDate,
       cardStatus: state.cardStatus,
       togetherSince: state.togetherSince,
-      pauseIsMine: state.pauseIsMine ?? false,
-      pauseReturnAt: state.pauseReturnAt,
       slipDays: [for (final day in state.slipDays ?? const <DateTime?>[]) ?day],
       question: question == null
           ? null

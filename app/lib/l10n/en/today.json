@@ -94,14 +94,7 @@
   "errorTitle": "Could not load Today",
   "errorText": "Your slips are safe. Try again.",
   "cardReceivedNamed": "{name} sent you a card",
-  "pauseOwnTitle": "You asked for some space",
-  "pauseOwnText": "You're back around {time}. Nothing to do right now.",
-  "pausePartnerTitle": "Your partner asked for some space",
-  "pausePartnerText": "No rush. There's nothing to do right now.",
   "signalReceived": "Your partner sent you a message",
   "signalReceivedAction": "View",
-  "pauseBack": "Come back now",
-  "pauseBackRepair": "Come back and repair",
-  "pauseWriteSlip": "Write a slip",
   "weekHintToday": "card goes out today, 18:00"
 }

@@ -1598,22 +1598,6 @@ class PartnerViewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [PausePage]
-class PauseRoute extends PageRouteInfo<void> {
-  const PauseRoute({List<PageRouteInfo>? children})
-    : super(PauseRoute.name, initialChildren: children);
-
-  static const String name = 'PauseRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const PausePage());
-    },
-  );
-}
-
-/// generated route for
 /// [PlaceDetailPage]
 class PlaceDetailRoute extends PageRouteInfo<PlaceDetailRouteArgs> {
   PlaceDetailRoute({

@@ -9,7 +9,6 @@ query WidgetOverview {
     nextDateTitle
     nextDateOn
     unopenedCards
-    pauseReturnAt
     partnerNote
     partnerNoteMedia
     partnerNoteAt

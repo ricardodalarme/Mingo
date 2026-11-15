@@ -155,8 +155,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$partnerStep$en partnerStep = _Translations$partnerStep$en._(_root);
   @override
-  late final _Translations$pause$en pause = _Translations$pause$en._(_root);
-  @override
   late final _Translations$places$en places = _Translations$places$en._(_root);
   @override
   late final _Translations$plus$en plus = _Translations$plus$en._(_root);
@@ -1831,8 +1829,6 @@ class _Translations$hardConversation$en extends Translations$hardConversation$pt
   String get next => 'Next';
   @override
   String get back => 'Back';
-  @override
-  String get needPause => 'I need a pause';
   @override
   String get retry => 'Try again';
   @override
@@ -3696,61 +3692,6 @@ class _Translations$partnerStep$en extends Translations$partnerStep$pt {
   String get continueButton => 'Continue';
 }
 
-// Path: pause
-class _Translations$pause$en extends Translations$pause$pt {
-  _Translations$pause$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Ask for some space';
-  @override
-  String get titleHighlight => 'space';
-  @override
-  String get subtitle => 'A short, kind message. Your partner sees only what you write.';
-  @override
-  Map<String, String> get presets => {
-    'space': 'I need some time to breathe. I\'ll be back soon.',
-    'later': 'Can we talk later, calmly?',
-    'calm': 'I want to listen well. I need to calm down first.',
-    'other': '',
-  };
-  @override
-  String get hint => 'Write my own';
-  @override
-  Map<String, String> get messageErrors => {
-    'empty': 'Write a short message',
-    'tooLong': 'The message is too long',
-  };
-  @override
-  String get returnTitle => 'I\'ll be back in';
-  @override
-  Map<String, String> get returns => {
-    'oneHour': '1 hour',
-    'threeHours': '3 hours',
-    'eightHours': '8 hours',
-    'tomorrow': 'Tomorrow',
-    'other': '',
-  };
-  @override
-  String get note => 'You both see Today on pause. You can come back whenever you like.';
-  @override
-  String get send => 'Send and pause';
-  @override
-  String get sentTitle => 'Pause sent';
-  @override
-  String get sentText => 'Today is on pause for both of you. When you\'re ready, come back there.';
-  @override
-  String get done => 'Done';
-  @override
-  Map<String, String> get errors => {
-    'INVALID_RETURN_TIME': 'That return time doesn\'t work. Pick another.',
-    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
-    'other': 'Couldn\'t send right now. Your message is still here.',
-  };
-}
-
 // Path: places
 class _Translations$places$en extends Translations$places$pt {
   _Translations$places$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -3976,10 +3917,6 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   String get partnerTemperature => 'Temperature';
   @override
   String get partnerJournal => 'Journal';
-  @override
-  String get partnerPause => 'Pause';
-  @override
-  String get partnerPauseText => 'The message you wrote';
   @override
   String get never => 'Never';
   @override
@@ -5817,8 +5754,6 @@ class _Translations$timeInApp$en extends Translations$timeInApp$pt {
   @override
   String get text => 'We hide cards and reminders until you come back.';
   @override
-  String get pause => 'Pause the app';
-  @override
   String get cancel => 'Cancel';
 }
 
@@ -5991,24 +5926,9 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String cardReceivedNamed({required Object name}) => '${name} sent you a card';
   @override
-  String get pauseOwnTitle => 'You asked for some space';
-  @override
-  String pauseOwnText({required Object time}) =>
-      'You\'re back around ${time}. Nothing to do right now.';
-  @override
-  String get pausePartnerTitle => 'Your partner asked for some space';
-  @override
-  String get pausePartnerText => 'No rush. There\'s nothing to do right now.';
-  @override
   String get signalReceived => 'Your partner sent you a message';
   @override
   String get signalReceivedAction => 'View';
-  @override
-  String get pauseBack => 'Come back now';
-  @override
-  String get pauseBackRepair => 'Come back and repair';
-  @override
-  String get pauseWriteSlip => 'Write a slip';
   @override
   String get weekHintToday => 'card goes out today, 18:00';
 }
@@ -6152,8 +6072,6 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get cardStateSent => 'Card sent · Waiting for Sunday';
   @override
-  String get cardStatePause => 'Pause in progress';
-  @override
   String get cardStateNone => 'Sunday card in preparation';
   @override
   String get discreetBanner =>
@@ -6275,12 +6193,6 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get lockScreenClockDate => 'Friday, April 10';
   @override
-  String get lockScreenPauseTitle => 'Pause in progress';
-  @override
-  String lockScreenPauseUntil({required Object time}) => 'until ${time}';
-  @override
-  String get lockScreenPauseUntilDefault => 'until 20:00';
-  @override
   String get lockScreenReadyAction => 'I am ready';
   @override
   String get lockScreenGenericPhrase => 'Calm moment';
@@ -6358,10 +6270,6 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   String get cardNoneTitle => 'Sunday card';
   @override
   String get cardNoneSubtitle => 'In preparation';
-  @override
-  String get cardPauseTitle => 'Pause in progress';
-  @override
-  String get cardPauseSubtitle => 'Tap when ready';
   @override
   String get nextEncounterLabel => 'Next date';
   @override
@@ -7055,8 +6963,6 @@ class _Translations$repair$calm$en extends Translations$repair$calm$pt {
   String get ready => 'I feel calmer';
   @override
   String get leave => 'Leave';
-  @override
-  String get askPause => 'Ask my partner for some space';
 }
 
 // Path: repair.softStart
@@ -8728,7 +8634,6 @@ extension on TranslationsEn {
           'hardConversation.exit' => 'Leave',
           'hardConversation.next' => 'Next',
           'hardConversation.back' => 'Back',
-          'hardConversation.needPause' => 'I need a pause',
           'hardConversation.retry' => 'Try again',
           'hardConversation.generationFailed' => 'Couldn\'t write a sentence right now.',
           'hardConversation.privateNote' =>
@@ -8962,10 +8867,10 @@ extension on TranslationsEn {
           'history.milestoneTitleHint' => 'E.g. First trip together',
           'history.milestoneTitleErrors.empty' => 'Say what happened',
           'history.milestoneTitleErrors.tooLong' => 'The title is too long',
+          'history.milestonePlaceLabel' => 'Place (optional)',
           _ => null,
         } ??
         switch (path) {
-          'history.milestonePlaceLabel' => 'Place (optional)',
           'history.milestonePlaceHint' => 'E.g. Paraty',
           'history.milestonePlaceErrors.tooLong' => 'The place is too long',
           'history.milestoneBodyHint' => 'A note about this moment (optional)',
@@ -9578,10 +9483,10 @@ extension on TranslationsEn {
           'moodHelp.partnerNeedSubtitle' => 'Today\'s ask. No pressure.',
           'moodHelp.partnerNeedNote' => 'This comes from the mood your partner shared today.',
           'moodHelp.partnerNeedActions.listen' => 'Just listen',
+          'moodHelp.partnerNeedActions.opinion' => 'Give an opinion',
           _ => null,
         } ??
         switch (path) {
-          'moodHelp.partnerNeedActions.opinion' => 'Give an opinion',
           'moodHelp.partnerNeedActions.hug' => 'Send a hug',
           'moodHelp.partnerNeedActions.space' => 'Give some space',
           'moodHelp.partnerNeedActions.chocolate' => 'Bring some chocolate',
@@ -9781,31 +9686,6 @@ extension on TranslationsEn {
           'partnerStep.aloneSupport' => 'Your slips stay with you only',
           'partnerStep.haveCode' => 'I have an invite code',
           'partnerStep.continueButton' => 'Continue',
-          'pause.title' => 'Ask for some space',
-          'pause.titleHighlight' => 'space',
-          'pause.subtitle' => 'A short, kind message. Your partner sees only what you write.',
-          'pause.presets.space' => 'I need some time to breathe. I\'ll be back soon.',
-          'pause.presets.later' => 'Can we talk later, calmly?',
-          'pause.presets.calm' => 'I want to listen well. I need to calm down first.',
-          'pause.presets.other' => '',
-          'pause.hint' => 'Write my own',
-          'pause.messageErrors.empty' => 'Write a short message',
-          'pause.messageErrors.tooLong' => 'The message is too long',
-          'pause.returnTitle' => 'I\'ll be back in',
-          'pause.returns.oneHour' => '1 hour',
-          'pause.returns.threeHours' => '3 hours',
-          'pause.returns.eightHours' => '8 hours',
-          'pause.returns.tomorrow' => 'Tomorrow',
-          'pause.returns.other' => '',
-          'pause.note' => 'You both see Today on pause. You can come back whenever you like.',
-          'pause.send' => 'Send and pause',
-          'pause.sentTitle' => 'Pause sent',
-          'pause.sentText' =>
-            'Today is on pause for both of you. When you\'re ready, come back there.',
-          'pause.done' => 'Done',
-          'pause.errors.INVALID_RETURN_TIME' => 'That return time doesn\'t work. Pick another.',
-          'pause.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          'pause.errors.other' => 'Couldn\'t send right now. Your message is still here.',
           'places.title' => 'Places',
           'places.privacyNote' =>
             'Only the name of the place. The app never reads or stores your location.',
@@ -9924,8 +9804,6 @@ extension on TranslationsEn {
           'privacy.partnerPrivateSlips' => 'Private slips',
           'privacy.partnerTemperature' => 'Temperature',
           'privacy.partnerJournal' => 'Journal',
-          'privacy.partnerPause' => 'Pause',
-          'privacy.partnerPauseText' => 'The message you wrote',
           'privacy.never' => 'Never',
           'privacy.partnerNote' => 'Whoever makes the data decides who sees it.',
           'privacy.ourTitle' => 'What we can see',
@@ -10172,9 +10050,6 @@ extension on TranslationsEn {
           'quickSlip.monthsShort.4' => 'May',
           'quickSlip.monthsShort.5' => 'Jun',
           'quickSlip.monthsShort.6' => 'Jul',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.monthsShort.7' => 'Aug',
           'quickSlip.monthsShort.8' => 'Sep',
           'quickSlip.monthsShort.9' => 'Oct',
@@ -10203,6 +10078,9 @@ extension on TranslationsEn {
           'quickSlip.requestErrors.tooLong' => 'Use at most 140 characters',
           'quickSlip.requestErrors.other' => 'Check this field',
           'quickSlip.save' => 'Save',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
           'quickSlip.saved.added' => 'Slip added to this week.',
@@ -10320,7 +10198,6 @@ extension on TranslationsEn {
           'repair.calm.text' => 'There\'s no rush and no timer. Leave whenever you like.',
           'repair.calm.ready' => 'I feel calmer',
           'repair.calm.leave' => 'Leave',
-          'repair.calm.askPause' => 'Ask my partner for some space',
           'repair.softStart.title' => 'Start softly',
           'repair.softStart.titleHighlight' => 'softly',
           'repair.softStart.subtitle' => 'A blame-free template to open the conversation.',
@@ -10740,9 +10617,6 @@ extension on TranslationsEn {
           'slipsList.weekdaysShort.5' => 'Sat',
           'slipsList.weekdaysShort.6' => 'Sun',
           'slipsList.monthsShort.0' => 'Jan',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.monthsShort.1' => 'Feb',
           'slipsList.monthsShort.2' => 'Mar',
           'slipsList.monthsShort.3' => 'Apr',
@@ -10771,6 +10645,9 @@ extension on TranslationsEn {
           'slipsList.errorTitle' => 'Could not load your slips',
           'slipsList.errorText' => 'They are still saved. Try again.',
           'spice.title' => 'Moments for two',
+          _ => null,
+        } ??
+        switch (path) {
           'spice.offText' => 'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.',
           'spice.turnOn' => 'Turn on',
           'spice.notNow' => 'Not now',
@@ -11011,7 +10888,6 @@ extension on TranslationsEn {
           'timeInApp.title' => 'Time in the app',
           'timeInApp.titleHighlight' => 'app',
           'timeInApp.text' => 'We hide cards and reminders until you come back.',
-          'timeInApp.pause' => 'Pause the app',
           'timeInApp.cancel' => 'Cancel',
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
@@ -11133,17 +11009,8 @@ extension on TranslationsEn {
           'today.errorTitle' => 'Could not load Today',
           'today.errorText' => 'Your slips are safe. Try again.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} sent you a card',
-          'today.pauseOwnTitle' => 'You asked for some space',
-          'today.pauseOwnText' => ({
-            required Object time,
-          }) => 'You\'re back around ${time}. Nothing to do right now.',
-          'today.pausePartnerTitle' => 'Your partner asked for some space',
-          'today.pausePartnerText' => 'No rush. There\'s nothing to do right now.',
           'today.signalReceived' => 'Your partner sent you a message',
           'today.signalReceivedAction' => 'View',
-          'today.pauseBack' => 'Come back now',
-          'today.pauseBackRepair' => 'Come back and repair',
-          'today.pauseWriteSlip' => 'Write a slip',
           'today.weekHintToday' => 'card goes out today, 18:00',
           'unpair.appBarTitle' => 'Unpair',
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
@@ -11222,7 +11089,6 @@ extension on TranslationsEn {
           'widgets.cardEncounterLabel' => 'CARD & DATE',
           'widgets.cardStateReady' => 'A card arrived · Tap to open',
           'widgets.cardStateSent' => 'Card sent · Waiting for Sunday',
-          'widgets.cardStatePause' => 'Pause in progress',
           'widgets.cardStateNone' => 'Sunday card in preparation',
           'widgets.discreetBanner' =>
             'Discreet mode is on: names, photos and notes are hidden in widgets.',
@@ -11288,9 +11154,6 @@ extension on TranslationsEn {
           'widgets.lockScreenPageTitle' => 'Lock screen',
           'widgets.lockScreenClockTime' => '19:38',
           'widgets.lockScreenClockDate' => 'Friday, April 10',
-          'widgets.lockScreenPauseTitle' => 'Pause in progress',
-          'widgets.lockScreenPauseUntil' => ({required Object time}) => 'until ${time}',
-          'widgets.lockScreenPauseUntilDefault' => 'until 20:00',
           'widgets.lockScreenReadyAction' => 'I am ready',
           'widgets.lockScreenGenericPhrase' => 'Calm moment',
           'widgets.lockScreenDiscreetPhrase' => 'Reminder',
@@ -11337,8 +11200,6 @@ extension on TranslationsEn {
           'widgets.cardSentSubtitle' => 'Waiting for Sunday',
           'widgets.cardNoneTitle' => 'Sunday card',
           'widgets.cardNoneSubtitle' => 'In preparation',
-          'widgets.cardPauseTitle' => 'Pause in progress',
-          'widgets.cardPauseSubtitle' => 'Tap when ready',
           'widgets.nextEncounterLabel' => 'Next date',
           'widgets.nextEncounterEmptyTitle' => 'No upcoming date',
           'widgets.nextEncounterEmptySubtitle' => 'Tap to schedule',
@@ -11364,9 +11225,6 @@ extension on TranslationsEn {
             'Could not remove the couple photo right now.',
           'widgets.errors.COUPLE_PHOTO_INVALID' =>
             'Choose a JPG, PNG, WebP or HEIC image up to 8 MB.',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Could not read the selected file.',
           'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Could not open the photo picker.',
           'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' => 'Sign in to choose a couple photo.',

@@ -166,20 +166,6 @@ const documentNodeQueryTodayHome = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'pauseIsMine'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'pauseReturnAt'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
                   name: NameNode(value: 'hasPlus'),
                   alias: null,
                   arguments: [],
@@ -424,8 +410,6 @@ class QueryTodayHometoday {
     this.slipsTotal,
     this.hasPendingInvite,
     this.togetherSince,
-    this.pauseIsMine,
-    this.pauseReturnAt,
     this.hasPlus,
     this.unseenSignals,
     this.slipDays,
@@ -442,8 +426,6 @@ class QueryTodayHometoday {
     final l$slipsTotal = json['slipsTotal'];
     final l$hasPendingInvite = json['hasPendingInvite'];
     final l$togetherSince = json['togetherSince'];
-    final l$pauseIsMine = json['pauseIsMine'];
-    final l$pauseReturnAt = json['pauseReturnAt'];
     final l$hasPlus = json['hasPlus'];
     final l$unseenSignals = json['unseenSignals'];
     final l$slipDays = json['slipDays'];
@@ -458,8 +440,6 @@ class QueryTodayHometoday {
       slipsTotal: (l$slipsTotal as int?),
       hasPendingInvite: (l$hasPendingInvite as bool?),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
-      pauseIsMine: (l$pauseIsMine as bool?),
-      pauseReturnAt: l$pauseReturnAt == null ? null : DateTime.parse((l$pauseReturnAt as String)),
       hasPlus: (l$hasPlus as bool?),
       unseenSignals: (l$unseenSignals as int?),
       slipDays: (l$slipDays as List<dynamic>?)
@@ -486,10 +466,6 @@ class QueryTodayHometoday {
   final bool? hasPendingInvite;
 
   final DateTime? togetherSince;
-
-  final bool? pauseIsMine;
-
-  final DateTime? pauseReturnAt;
 
   final bool? hasPlus;
 
@@ -523,12 +499,6 @@ class QueryTodayHometoday {
     _resultData['togetherSince'] = l$togetherSince == null
         ? null
         : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
-    final l$pauseIsMine = pauseIsMine;
-    _resultData['pauseIsMine'] = l$pauseIsMine;
-    final l$pauseReturnAt = pauseReturnAt;
-    _resultData['pauseReturnAt'] = l$pauseReturnAt == null
-        ? null
-        : ((v) => v.toUtc().toIso8601String())(l$pauseReturnAt);
     final l$hasPlus = hasPlus;
     _resultData['hasPlus'] = l$hasPlus;
     final l$unseenSignals = unseenSignals;
@@ -553,8 +523,6 @@ class QueryTodayHometoday {
     final l$slipsTotal = slipsTotal;
     final l$hasPendingInvite = hasPendingInvite;
     final l$togetherSince = togetherSince;
-    final l$pauseIsMine = pauseIsMine;
-    final l$pauseReturnAt = pauseReturnAt;
     final l$hasPlus = hasPlus;
     final l$unseenSignals = unseenSignals;
     final l$slipDays = slipDays;
@@ -569,8 +537,6 @@ class QueryTodayHometoday {
       l$slipsTotal,
       l$hasPendingInvite,
       l$togetherSince,
-      l$pauseIsMine,
-      l$pauseReturnAt,
       l$hasPlus,
       l$unseenSignals,
       l$slipDays == null ? null : Object.hashAll(l$slipDays.map((v) => v)),
@@ -629,16 +595,6 @@ class QueryTodayHometoday {
     final l$togetherSince = togetherSince;
     final lOther$togetherSince = other.togetherSince;
     if (l$togetherSince != lOther$togetherSince) {
-      return false;
-    }
-    final l$pauseIsMine = pauseIsMine;
-    final lOther$pauseIsMine = other.pauseIsMine;
-    if (l$pauseIsMine != lOther$pauseIsMine) {
-      return false;
-    }
-    final l$pauseReturnAt = pauseReturnAt;
-    final lOther$pauseReturnAt = other.pauseReturnAt;
-    if (l$pauseReturnAt != lOther$pauseReturnAt) {
       return false;
     }
     final l$hasPlus = hasPlus;

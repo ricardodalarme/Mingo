@@ -10,7 +10,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Card & next encounter widget screen (`X-153`): displays only card state (`ready`, `sent`,
-/// `none`, `pause`) and the next shared date label — never personal names or card text.
+/// `none`, `ready`, `sent`) and the next shared date label — never personal names or card text.
 @RoutePage()
 class const CardEncounterWidgetPage({super.key})
     extends StatelessWidget
