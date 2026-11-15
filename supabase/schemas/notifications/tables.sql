@@ -17,7 +17,6 @@ create index devices_profile_id_idx on public.devices (profile_id);
 create table public.notification_settings (
   profile_id uuid primary key references public.profiles (id) on delete cascade,
   enabled boolean not null default true,
-  discreet boolean not null default false,
   card_day smallint not null default 0 check (card_day between 0 and 6),
   card_hour smallint not null default 18 check (card_hour between 0 and 23),
   muted_types text[] not null default '{}',

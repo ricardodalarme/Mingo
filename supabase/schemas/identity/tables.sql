@@ -35,7 +35,6 @@ create table public.profile_settings (
   slips_default_for_card boolean not null default false,
   widget_allow_partner_notes boolean not null default false,
   widget_on_lock_screen boolean not null default false,
-  widget_in_discreet boolean not null default false,
   widget_show_names boolean not null default false,
   spice_enabled boolean not null default false,
   low_stimulation boolean not null default false,

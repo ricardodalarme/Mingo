@@ -104,9 +104,9 @@ begin
       update private.notification_outbox set sent_at = now(), outcome = 'dropped' where id = r.id;
     else
       update private.notification_outbox set attempts = attempts + 1, send_after = now() + interval '5 minutes' where id = r.id;
-      select r.id, r.profile_id, r.type, r.ref_id, ns.discreet,
+      select r.id, r.profile_id, r.type, r.ref_id,
              (select array_agg(d.token) from public.devices d where d.profile_id = r.profile_id)
-      into v_job from public.notification_settings ns where ns.profile_id = r.profile_id;
+      into v_job;
       if v_job.tokens is null then
         update private.notification_outbox set sent_at = now(), outcome = 'no_device' where id = r.id;
       else
