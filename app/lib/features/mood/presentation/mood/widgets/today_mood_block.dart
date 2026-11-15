@@ -9,6 +9,7 @@ import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,41 +44,60 @@ class const TodayMoodBlock({
     final partnerName = context.select((MoodCubit cubit) => cubit.state.partnerName);
     final selectedIndex = mood == null ? null : _homeMoods.indexOf(mood);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (!isDiscreet && partnerMood != null && partnerMood.isVisible) ...[
-          PartnerMoodHint(
-            partnerMood: partnerMood,
-            partnerName: partnerName,
-            isDiscreet: isDiscreet,
-            onTap: () => context.pushRoute(const BadDayRoute()),
-          ),
-          const SizedBox(height: AppSpace.s24),
-        ],
-        if (!isFirstDay && !hasPendingInvite)
-          SkeletonizerResourceWidget<MoodEntry?>(
-            entry,
-            fakeValue: null,
-            successBuilder: (_) => MoodRow(
-              title: l10n.homeTitle,
-              actionLabel: l10n.homePrivacy,
-              options: [
-                for (final option in _homeMoods)
-                  MoodRowOption(
-                    face: option.face,
-                    label: l10n.homeMoods.selectOrFallback(option.name),
-                  ),
-              ],
-              selectedIndex: selectedIndex == null || selectedIndex < 0 ? null : selectedIndex,
-              onSelected: (index) async {
-                await context.pushRoute(MoodRoute(initialMood: _homeMoods[index].name));
-                if (context.mounted) await context.read<MoodCubit>().load();
-              },
+    return BlocListener<MoodCubit, MoodState>(
+      listenWhen: (previous, current) => previous.reactAction != current.reactAction,
+      listener: _onReactionChanged,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (!isDiscreet && partnerMood != null && partnerMood.isVisible) ...[
+            PartnerMoodHint(
+              partnerMood: partnerMood,
+              partnerName: partnerName,
+              isDiscreet: isDiscreet,
+              onReact: context.read<MoodCubit>().reactToPartner,
             ),
-            failureBuilder: (_) => const SizedBox.shrink(),
-          ),
-      ],
+            const SizedBox(height: AppSpace.s24),
+          ],
+          if (!isFirstDay && !hasPendingInvite)
+            SkeletonizerResourceWidget<MoodEntry?>(
+              entry,
+              fakeValue: null,
+              successBuilder: (_) => MoodRow(
+                title: l10n.homeTitle,
+                actionLabel: l10n.homePrivacy,
+                options: [
+                  for (final option in _homeMoods)
+                    MoodRowOption(
+                      face: option.face,
+                      label: l10n.homeMoods.selectOrFallback(option.name),
+                    ),
+                ],
+                selectedIndex: selectedIndex == null || selectedIndex < 0 ? null : selectedIndex,
+                onSelected: (index) async {
+                  await context.pushRoute(MoodRoute(initialMood: _homeMoods[index].name));
+                  if (context.mounted) await context.read<MoodCubit>().load();
+                },
+              ),
+              failureBuilder: (_) => const SizedBox.shrink(),
+            ),
+        ],
+      ),
     );
+  }
+
+  void _onReactionChanged(BuildContext context, MoodState state) {
+    final action = state.reactAction;
+    final l10n = context.l10n.moodHelp;
+    if (action is Failure) {
+      BaseToast.show(
+        context,
+        l10n.errors.selectOrFallback(action.exception.l10nKey),
+        variant: BaseToastVariant.error,
+      );
+
+      return;
+    }
+    if (action is Success) BaseToast.show(context, l10n.sent);
   }
 }

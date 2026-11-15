@@ -7,6 +7,7 @@ import 'package:app/features/mood/data/models/need_kind.dart';
 import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:app/features/mood/presentation/mood/widgets/mood_form.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,6 +16,8 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../../test_helpers/pump_app.dart';
 
 class _MockMoodRepository() extends Mock implements MoodRepository;
+
+class _MockSlipRepository() extends Mock implements SlipRepository;
 
 void main() {
   setUpAll(() {
@@ -36,7 +39,7 @@ void main() {
         share: any(named: 'share'),
       ),
     ).thenAnswer((_) => pending.future);
-    final cubit = MoodCubit(moodRepository: repository);
+    final cubit = MoodCubit(moodRepository: repository, slipRepository: _MockSlipRepository());
     await cubit.load();
     cubit.selectMood(MoodKind.happy);
 
@@ -69,7 +72,7 @@ void main() {
     final repository = _MockMoodRepository();
     when(repository.getTodayMood)
         .thenAnswer((_) async => (entry: null, partnerMood: null, partnerName: 'Marina'));
-    final cubit = MoodCubit(moodRepository: repository);
+    final cubit = MoodCubit(moodRepository: repository, slipRepository: _MockSlipRepository());
     await cubit.load();
     addTearDown(cubit.close);
 

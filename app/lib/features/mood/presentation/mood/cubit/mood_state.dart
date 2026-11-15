@@ -8,6 +8,7 @@ final class const MoodState({
   final MoodShare share = MoodShare.none,
   final String? partnerName,
   final Resource<void> saveAction = const Initial(),
+  final Resource<void> reactAction = const Initial(),
 }) with Equatable {
   /// Whether a mood is chosen and a need is present when the need is shared.
   bool get canSave =>
@@ -21,6 +22,7 @@ final class const MoodState({
     MoodShare? share,
     String? partnerName,
     Resource<void>? saveAction,
+    Resource<void>? reactAction,
     bool clearMood = false,
     bool clearNeed = false,
     bool clearPartnerMood = false,
@@ -34,9 +36,19 @@ final class const MoodState({
       share: share ?? this.share,
       partnerName: clearPartnerName ? partnerName : partnerName ?? this.partnerName,
       saveAction: saveAction ?? this.saveAction,
+      reactAction: reactAction ?? this.reactAction,
     );
   }
 
   @override
-  List<Object?> get props => [entry, partnerMood, mood, need, share, partnerName, saveAction];
+  List<Object?> get props => [
+    entry,
+    partnerMood,
+    mood,
+    need,
+    share,
+    partnerName,
+    saveAction,
+    reactAction,
+  ];
 }

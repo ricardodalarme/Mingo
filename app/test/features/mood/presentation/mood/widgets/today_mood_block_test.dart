@@ -8,6 +8,7 @@ import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:app/features/mood/presentation/mood/widgets/today_mood_block.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,8 +19,11 @@ import '../../../../../test_helpers/pump_app.dart';
 
 class _MockMoodRepository() extends Mock implements MoodRepository;
 
+class _MockSlipRepository() extends Mock implements SlipRepository;
+
 void main() {
   late MoodRepository repository;
+  late SlipRepository slips;
 
   final day = DateTime(2026, 11, 10);
   final entry = MoodEntry(
@@ -36,12 +40,14 @@ void main() {
 
   setUp(() {
     repository = _MockMoodRepository();
+    slips = _MockSlipRepository();
     when(() => repository.readCachedTodayMood()).thenReturn(null);
     when(() => repository.getTodayMood()).thenAnswer((_) async => today(value: entry));
+    when(() => slips.sendHug()).thenAnswer((_) async {});
   });
 
   MoodCubit build() {
-    final cubit = MoodCubit(moodRepository: repository);
+    final cubit = MoodCubit(moodRepository: repository, slipRepository: slips);
     addTearDown(cubit.close);
 
     return cubit;
@@ -119,6 +125,24 @@ void main() {
     await pumpBlock(tester, cubit);
 
     expect(find.textContaining('Marina está com a cabeça cheia'), findsOneWidget);
+  });
+
+  testWidgets('the heart sends a hug back for a good mood', (tester) async {
+    when(() => repository.getTodayMood()).thenAnswer(
+      (_) async => today(
+        partner: PartnerMood(day: day, mood: MoodKind.happy),
+      ),
+    );
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+    await tester.tap(find.byIcon(AppIcons.heart_filled));
+    await tester.pump();
+    await tester.pump();
+
+    verify(() => slips.sendHug()).called(1);
+    expect(find.text('Coração enviado'), findsOneWidget);
   });
 
   testWidgets('discreet mode hides the partner mood', (tester) async {

@@ -7,6 +7,7 @@ import 'package:app/features/mood/data/models/need_kind.dart';
 import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -14,8 +15,11 @@ import 'package:network/network.dart';
 
 class _MockMoodRepository() extends Mock implements MoodRepository;
 
+class _MockSlipRepository() extends Mock implements SlipRepository;
+
 void main() {
   late MoodRepository repository;
+  late SlipRepository slips;
 
   final day = DateTime(2026, 11, 11);
   final entry = MoodEntry(
@@ -37,6 +41,7 @@ void main() {
 
   setUp(() {
     repository = _MockMoodRepository();
+    slips = _MockSlipRepository();
     when(() => repository.readCachedTodayMood()).thenReturn(null);
     when(() => repository.getTodayMood()).thenAnswer((_) async => today(value: entry));
     when(
@@ -52,9 +57,10 @@ void main() {
 
       return MoodEntry(id: 'm1', day: day, mood: mood, need: need, share: share);
     });
+    when(() => slips.sendHug()).thenAnswer((_) async {});
   });
 
-  MoodCubit build() => MoodCubit(moodRepository: repository);
+  MoodCubit build() => MoodCubit(moodRepository: repository, slipRepository: slips);
 
   test('loading starts the form from the saved row and partner name', () async {
     final cubit = build();
@@ -230,6 +236,42 @@ void main() {
 
     expect(cubit.state.mood, MoodKind.sad);
     expect(cubit.state.saveAction, isA<Initial>());
+  });
+
+  test('reacting sends one hug and returns to idle', () async {
+    final cubit = build();
+
+    await cubit.reactToPartner();
+
+    verify(() => slips.sendHug()).called(1);
+    expect(cubit.state.reactAction, isA<Initial>());
+  });
+
+  test('a second tap while the hug is in flight sends one', () async {
+    final pending = Completer<void>();
+    when(() => slips.sendHug()).thenAnswer((_) => pending.future);
+    final cubit = build();
+
+    final first = cubit.reactToPartner();
+    final second = cubit.reactToPartner();
+
+    pending.complete();
+    await Future.wait([first, second]);
+
+    verify(() => slips.sendHug()).called(1);
+  });
+
+  test('a failed hug reports a failure and returns to idle', () async {
+    when(() => slips.sendHug()).thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+    final cubit = build();
+    final actions = <Resource<void>>[];
+    final subscription = cubit.stream.listen((state) => actions.add(state.reactAction));
+
+    await cubit.reactToPartner();
+    await pumpEventQueue();
+    await subscription.cancel();
+
+    expect(actions, [isA<Loading>(), isA<Failure>(), isA<Initial>()]);
   });
 
   test('a closed cubit ignores a load that finishes later', () async {
