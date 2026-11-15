@@ -1,12 +1,12 @@
 import 'dart:convert';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/chat/data/data_sources/local/hard_conversation_local_data_source.dart';
+import 'package:app/features/chat/data/models/chat_models.dart';
+import 'package:app/features/chat/data/models/hard_conversation_draft.dart';
+import 'package:app/features/chat/data/repositories/chat_repository.dart';
+import 'package:app/features/notes/data/repositories/notes_repository.dart';
 import 'package:clock/clock.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/local/hard_conversation_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/hard_conversation_draft.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
-import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
 import 'package:logger/logger.dart';
 
 /// The unfinished hard conversation is forgotten after a day.

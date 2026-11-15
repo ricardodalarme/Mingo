@@ -1,7 +1,7 @@
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 
 part 'unpair_done_state.dart';
 

@@ -1,13 +1,13 @@
+import 'package:app/features/widgets/data/models/widget_models.dart';
+import 'package:app/features/widgets/presentation/lock_screen/cubit/lock_screen_widget_cubit.dart';
+import 'package:app/features/widgets/presentation/lock_screen/widgets/lock_screen_preview_section.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/lock_screen/cubit/lock_screen_widget_cubit.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/lock_screen/widgets/lock_screen_preview_section.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Lock-screen widget screen (`X-148`): iOS accessory families preview, pause status,
 /// zero personal names/messages rule, and honest Android explanation.

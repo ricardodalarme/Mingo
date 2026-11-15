@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_share.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/need_kind.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/mood_share.dart';
+import 'package:app/features/mood/data/models/need_kind.dart';
 
 extension EnumMoodMapper on EnumMood {
   /// Null for a mood this version does not know, so it stays hidden.

@@ -1,10 +1,10 @@
+import 'package:app/features/cards/data/models/card_detail.dart';
+import 'package:app/features/cards/data/models/card_reaction.dart';
+import 'package:app/features/cards/data/models/card_status.dart';
+import 'package:app/features/cards/data/models/sunday_card.dart';
+import 'package:app/features/cards/data/repositories/cards_repository.dart';
+import 'package:app/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_detail.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_reaction.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
-import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -24,7 +24,9 @@ void main() {
 
   setUp(() {
     cards = _MockCardsRepository();
-    when(() => cards.markRead(any())).thenAnswer((_) async {});
+    when(() => cards.markRead(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   void stubDetail(CardDetail detail) =>

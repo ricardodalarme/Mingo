@@ -1,5 +1,5 @@
+import 'package:app/features/devices/data/models/device_platform.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/devices/data/models/device_platform.dart';
 
 /// A device registered to receive notifications; the registration marker stays out of the model.
 final class const Device({

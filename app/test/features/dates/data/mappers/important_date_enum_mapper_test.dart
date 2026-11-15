@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/mappers/important_date_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/dates/data/mappers/important_date_enum_mapper.dart';
+import 'package:app/features/dates/data/models/important_date_kind.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

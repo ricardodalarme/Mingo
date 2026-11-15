@@ -1,19 +1,19 @@
+import 'package:app/features/account/data/repositories/account_repository.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/safety/data/repositories/safe_mode_repository.dart';
+import 'package:app/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
+import 'package:app/features/settings/data/models/discreet_mode_values.dart';
+import 'package:app/features/settings/data/models/settings.dart';
+import 'package:app/features/settings/data/repositories/discreet_repository.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
+import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
+import 'package:app/features/settings/presentation/home/cubit/settings_home_cubit.dart';
+import 'package:app/features/settings/presentation/home/settings_home_page.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/features/safety/data/repositories/safe_mode_repository.dart';
-import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/discreet_mode_values.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/discreet_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/home/settings_home_page.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -55,8 +55,9 @@ void main() {
     final safeMode = SafeModeCubit(repository: safeModeRepository);
     final discreetRepository = _MockDiscreetRepository();
     when(() => discreetRepository.local).thenReturn(const DiscreetModeValues());
-    when(() => discreetRepository.setNeutralIcon(value: any(named: 'value')))
-        .thenAnswer((_) async {});
+    when(() => discreetRepository.setNeutralIcon(value: any(named: 'value'))).thenAnswer((_) async {
+      return;
+    });
     final discreet = DiscreetModeCubit(repository: discreetRepository);
     addTearDown(home.close);
     addTearDown(safeMode.close);

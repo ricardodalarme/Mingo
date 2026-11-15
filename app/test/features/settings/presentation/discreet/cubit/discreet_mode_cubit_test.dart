@@ -1,9 +1,9 @@
+import 'package:app/features/settings/data/models/discreet_mode_values.dart';
+import 'package:app/features/settings/data/repositories/discreet_repository.dart';
+import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
+import 'package:app/features/widgets/data/models/widget_payload.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/discreet_mode_values.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/discreet_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -20,9 +20,15 @@ void main() {
     widgetsRepository = _MockWidgetsRepository();
     when(() => repository.local).thenReturn(const DiscreetModeValues());
     when(() => repository.setNeutralNotifications(value: any(named: 'value')))
-        .thenAnswer((_) async {});
-    when(() => repository.setHideWidgetText(value: any(named: 'value'))).thenAnswer((_) async {});
-    when(() => repository.setNeutralIcon(value: any(named: 'value'))).thenAnswer((_) async {});
+        .thenAnswer((_) async {
+          return;
+        });
+    when(() => repository.setHideWidgetText(value: any(named: 'value'))).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.setNeutralIcon(value: any(named: 'value'))).thenAnswer((_) async {
+      return;
+    });
   });
 
   DiscreetModeCubit build() => DiscreetModeCubit(repository: repository);

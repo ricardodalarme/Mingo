@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/distance/data/data_sources/remote/queries/generated/PartnerTimeZone.graphql.dart';
+import 'package:app/features/distance/data/data_sources/remote/queries/generated/PartnerTimeZone.graphql.dart';
 import 'package:network/network.dart';
 
 class DistanceDataSource({required final GQLClient _client}) {

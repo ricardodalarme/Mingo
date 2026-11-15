@@ -1,8 +1,8 @@
+import 'package:app/features/history/data/models/story_event_kind.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/profile/data/models/relationship_status.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_status.dart';
 
 /// Where a timeline milestone is stored in the backend.
 enum MilestoneSource() {

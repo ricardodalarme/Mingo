@@ -1,13 +1,13 @@
+import 'package:app/features/games/data/models/game_play.dart';
+import 'package:app/features/games/presentation/game/widgets/game_active_view.dart';
+import 'package:app/features/games/presentation/game/widgets/game_content_view.dart';
+import 'package:app/features/games/presentation/game/widgets/game_finished_view.dart';
+import 'package:app/features/games/presentation/game/widgets/game_invitation_view.dart';
+import 'package:app/features/games/presentation/game/widgets/game_start_view.dart';
+import 'package:app/features/games/presentation/game/widgets/game_waiting_partner_view.dart';
+import 'package:app/features/games/presentation/game/widgets/game_waiting_view.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_active_view.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_content_view.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_finished_view.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_invitation_view.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_start_view.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_waiting_partner_view.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_waiting_view.dart';
 
 /// Picks the screen for where the game stands.
 class const GamePlayView({required final GamePlay play, super.key}) extends StatelessWidget {

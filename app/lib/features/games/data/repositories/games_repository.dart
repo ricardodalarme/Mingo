@@ -1,13 +1,13 @@
+import 'package:app/features/_shared/data/mappers/content_kind_mapper.dart';
+import 'package:app/features/games/data/data_sources/remote/games_data_source.dart';
+import 'package:app/features/games/data/mappers/game_enum_mapper.dart';
+import 'package:app/features/games/data/models/game_item.dart';
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/game_play.dart';
+import 'package:app/features/games/data/models/game_session.dart';
+import 'package:app/features/games/data/models/games_overview.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/mappers/content_kind_mapper.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/games_data_source.dart';
-import 'package:flutter_bloc_starter/features/games/data/mappers/game_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_session.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/games_overview.dart';
 import 'package:logger/logger.dart';
 import 'package:network/network.dart';
 

@@ -1,8 +1,8 @@
+import 'package:app/features/partner/data/models/partner_fact.dart';
+import 'package:app/features/partner/data/models/partner_fact_category.dart';
+import 'package:app/features/partner/data/repositories/partner_repository.dart';
+import 'package:app/features/partner/presentation/profile/cubit/partner_profile_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact.dart';
-import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact_category.dart';
-import 'package:flutter_bloc_starter/features/partner/data/repositories/partner_repository.dart';
-import 'package:flutter_bloc_starter/features/partner/presentation/profile/cubit/partner_profile_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -29,8 +29,12 @@ void main() {
         value: any(named: 'value'),
         category: any(named: 'category'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => repository.deleteFact(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.deleteFact(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   PartnerProfileCubit build() => PartnerProfileCubit(partnerRepository: repository);
@@ -87,6 +91,7 @@ void main() {
     ).thenAnswer((invocation) async {
       ids.add(invocation.namedArguments[#id] as String);
       if (ids.length == 1) throw const LocalizedException(l10nKey: 'NETWORK');
+      return;
     });
     final cubit = build()
       ..onLabelChanged('Café')

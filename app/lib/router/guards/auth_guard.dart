@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/router/app_router.dart';
+import 'package:app/router/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
-import 'package:flutter_bloc_starter/router/pending_route.dart';
 
 /// Pages a signed-out person may open, and the routes the app lands on itself.
 const Set<String> publicRouteNames = {

@@ -1,7 +1,7 @@
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 
 part 'notifications_off_state.dart';
 

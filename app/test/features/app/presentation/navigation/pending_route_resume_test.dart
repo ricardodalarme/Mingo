@@ -1,7 +1,7 @@
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/app/presentation/navigation/app_state_navigator.dart';
+import 'package:app/router/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/navigation/app_state_navigator.dart';
-import 'package:flutter_bloc_starter/router/pending_route.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

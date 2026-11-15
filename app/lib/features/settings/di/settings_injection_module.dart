@@ -1,17 +1,17 @@
+import 'package:app/features/account/data/repositories/account_repository.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/settings/data/data_sources/local/discreet_local_data_source.dart';
+import 'package:app/features/settings/data/data_sources/local/settings_local_data_source.dart';
+import 'package:app/features/settings/data/repositories/discreet_repository.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
+import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
+import 'package:app/features/settings/presentation/home/cubit/settings_home_cubit.dart';
+import 'package:app/features/settings/presentation/language/cubit/language_cubit.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/discreet_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/settings_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/discreet_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/language/cubit/language_cubit.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 class SettingsInjectionModule() implements InjectionModule {

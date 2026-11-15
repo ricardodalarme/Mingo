@@ -1,9 +1,9 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/learned_items_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/AddLearnedItem.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/queries/generated/LearnedItems.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/chat/data/data_sources/remote/learned_items_data_source.dart';
+import 'package:app/features/chat/data/data_sources/remote/mutations/generated/AddLearnedItem.graphql.dart';
+import 'package:app/features/chat/data/data_sources/remote/queries/generated/LearnedItems.graphql.dart';
+import 'package:app/features/chat/data/models/learned_item.dart';
+import 'package:app/features/chat/data/repositories/learned_items_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -100,14 +100,20 @@ void main() {
         id: any(named: 'id'),
         text: any(named: 'text'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     when(
       () => dataSource.setStatus(
         id: any(named: 'id'),
         status: any(named: 'status'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => dataSource.delete(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => dataSource.delete(any())).thenAnswer((_) async {
+      return;
+    });
 
     await repository.updateText('l1', '  Gosta de chá  ');
     await repository.setStatus('l1', LearnedStatus.confirmed);

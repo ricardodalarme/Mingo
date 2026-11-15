@@ -1,8 +1,8 @@
+import 'package:app/features/checkin/data/models/checkin_week.dart';
+import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_week.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
 
 part 'checkin_state.dart';
 

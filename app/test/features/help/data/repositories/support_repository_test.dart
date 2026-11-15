@@ -1,9 +1,9 @@
+import 'package:app/features/help/data/data_sources/local/support_local_data_source.dart';
+import 'package:app/features/help/data/data_sources/remote/support_data_source.dart';
+import 'package:app/features/help/data/models/pending_support_request.dart';
+import 'package:app/features/help/data/models/support_topic.dart';
+import 'package:app/features/help/data/repositories/support_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/help/data/data_sources/local/support_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/help/data/data_sources/remote/support_data_source.dart';
-import 'package:flutter_bloc_starter/features/help/data/models/pending_support_request.dart';
-import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
-import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';
@@ -36,9 +36,13 @@ void main() {
     local = _MockSupportLocalDataSource();
     repository = SupportRepository(dataSource: remote, localDataSource: local);
     when(() => local.readPending()).thenReturn(const []);
-    when(() => local.writePending(any())).thenAnswer((_) async {});
+    when(() => local.writePending(any())).thenAnswer((_) async {
+      return;
+    });
     when(() => local.readDiscarded()).thenReturn(false);
-    when(() => local.writeDiscarded(value: any(named: 'value'))).thenAnswer((_) async {});
+    when(() => local.writeDiscarded(value: any(named: 'value'))).thenAnswer((_) async {
+      return;
+    });
     when(
       () => remote.createSupportRequest(
         topic: any(named: 'topic'),
@@ -46,7 +50,9 @@ void main() {
         replyEmail: any(named: 'replyEmail'),
         appVersion: any(named: 'appVersion'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   group('send', () {
@@ -152,6 +158,7 @@ void main() {
       when(() => local.readPending()).thenAnswer((_) => List.of(queue));
       when(() => local.writePending(any())).thenAnswer((invocation) async {
         queue = List.of(invocation.positionalArguments.single as List<PendingSupportRequest>);
+        return;
       });
 
       final dropped = await repository.flushPending(authorId: 'a');
@@ -184,6 +191,7 @@ void main() {
       when(() => local.readPending()).thenAnswer((_) => List.of(queue));
       when(() => local.writePending(any())).thenAnswer((invocation) async {
         queue = List.of(invocation.positionalArguments.single as List<PendingSupportRequest>);
+        return;
       });
       when(
         () => remote.createSupportRequest(

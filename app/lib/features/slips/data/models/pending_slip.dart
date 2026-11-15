@@ -1,7 +1,7 @@
+import 'package:app/features/slips/data/models/slip_category.dart';
+import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/models/slip_work_area.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
 
 /// A slip saved on the device that has not reached the server yet.
 final class const PendingSlip({

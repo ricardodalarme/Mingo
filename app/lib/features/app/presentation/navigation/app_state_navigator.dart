@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/router/app_router.dart';
+import 'package:app/router/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
-import 'package:flutter_bloc_starter/router/pending_route.dart';
 
 /// The root route a resolved app state should show.
 PageRouteInfo<void> routeForAppState(AppState state) => switch (state) {

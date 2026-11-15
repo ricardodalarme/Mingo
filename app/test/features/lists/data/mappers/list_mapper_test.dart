@@ -1,9 +1,9 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/fragments/generated/ListFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/fragments/generated/ListItemFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/mappers/list_mapper.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/fragments/generated/ListFragment.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/fragments/generated/ListItemFragment.graphql.dart';
+import 'package:app/features/lists/data/mappers/list_mapper.dart';
+import 'package:app/features/lists/data/models/list_item_status.dart';
+import 'package:app/features/lists/data/models/list_kind.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

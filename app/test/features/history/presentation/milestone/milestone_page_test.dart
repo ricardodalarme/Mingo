@@ -1,8 +1,8 @@
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
+import 'package:app/features/history/presentation/milestone/cubit/milestone_cubit.dart';
+import 'package:app/features/history/presentation/milestone/milestone_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/milestone/cubit/milestone_cubit.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/milestone/milestone_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

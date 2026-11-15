@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
-import 'package:flutter_bloc_starter/features/story/data/models/story_card.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
+import 'package:app/features/story/data/models/story_card.dart';
 import 'package:logger/logger.dart';
 import 'package:share_service/share_service.dart';
 

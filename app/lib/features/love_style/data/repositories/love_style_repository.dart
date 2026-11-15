@@ -1,7 +1,7 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/love_style/data/data_sources/local/love_style_local_data_source.dart';
+import 'package:app/features/love_style/data/data_sources/remote/love_style_data_source.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/local/love_style_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/love_style_data_source.dart';
 import 'package:logger/logger.dart';
 
 class LoveStyleRepository({

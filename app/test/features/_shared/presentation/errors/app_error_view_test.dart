@@ -1,6 +1,6 @@
+import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network/network.dart';
 

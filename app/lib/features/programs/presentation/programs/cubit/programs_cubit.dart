@@ -1,9 +1,9 @@
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/programs/data/models/program.dart';
+import 'package:app/features/programs/data/repositories/programs_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
-import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
 
 part 'programs_state.dart';
 

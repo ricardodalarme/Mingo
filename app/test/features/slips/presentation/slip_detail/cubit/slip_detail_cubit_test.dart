@@ -1,9 +1,9 @@
+import 'package:app/features/slips/data/models/slip_detail.dart';
+import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -24,14 +24,20 @@ void main() {
   setUp(() {
     repository = _MockSlipRepository();
     when(() => repository.getSlip('s1')).thenAnswer((_) async => slip);
-    when(() => repository.updateSlip(any())).thenAnswer((_) async {});
+    when(() => repository.updateSlip(any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => repository.setArchived(
         id: any(named: 'id'),
         archived: any(named: 'archived'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => repository.deleteSlip(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.deleteSlip(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   SlipDetailCubit build() => SlipDetailCubit(slipRepository: repository);

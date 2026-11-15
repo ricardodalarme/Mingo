@@ -1,14 +1,14 @@
 import 'dart:typed_data';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/widgets/data/data_sources/remote/couple_photo_data_source.dart';
+import 'package:app/features/widgets/data/models/couple_photo.dart';
+import 'package:app/features/widgets/data/repositories/couple_photo_repository.dart';
+import 'package:app/features/widgets/data/services/widget_data_service.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/couple_photo_data_source.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/couple_photo.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/couple_photo_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:storage_service/storage_service.dart';
@@ -88,7 +88,9 @@ void main() {
       ),
     ).thenAnswer((_) async => null);
     when(() => widgetDataService.readCachedPhotoUpdatedAt()).thenAnswer((_) async => null);
-    when(() => widgetDataService.clearCouplePhoto()).thenAnswer((_) async {});
+    when(() => widgetDataService.clearCouplePhoto()).thenAnswer((_) async {
+      return;
+    });
     when(() => dataSource.getPhoto())
         .thenAnswer((_) async => (coupleId: 'couple-1', photo: existing));
     when(

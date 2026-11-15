@@ -1,17 +1,17 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/DeleteHistoryDate.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/DeleteHistoryMemory.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/DeleteStoryEvent.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/InsertHistoryDate.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/InsertHistoryMemory.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/InsertStoryEvent.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/UpdateAvatarKind.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/UpdateHistoryDate.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/UpdateHistoryMemory.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/UpdateHistoryPhase.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/UpdateHistoryTogetherSince.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/mutations/generated/UpdateStoryEvent.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/DeleteHistoryDate.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/DeleteHistoryMemory.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/DeleteStoryEvent.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/InsertHistoryDate.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/InsertHistoryMemory.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/InsertStoryEvent.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/UpdateAvatarKind.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/UpdateHistoryDate.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/UpdateHistoryMemory.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/UpdateHistoryPhase.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/UpdateHistoryTogetherSince.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/mutations/generated/UpdateStoryEvent.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
 import 'package:network/network.dart';
 
 class HistoryDataSource({required final GQLClient _client}) {

@@ -1,13 +1,13 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/mutations/generated/ArchiveSlip.graphql.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/mutations/generated/DeleteSlip.graphql.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/mutations/generated/SaveSlip.graphql.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/mutations/generated/SendSignal.graphql.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/mutations/generated/SetSlipCategory.graphql.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/mutations/generated/SetSlipInJar.graphql.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/mutations/generated/SetSlipWorkArea.graphql.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/queries/generated/SlipDetail.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/mutations/generated/ArchiveSlip.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/mutations/generated/DeleteSlip.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SaveSlip.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SendSignal.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SetSlipCategory.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SetSlipInJar.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SetSlipWorkArea.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/queries/generated/SlipDetail.graphql.dart';
 import 'package:network/network.dart';
 
 class SlipDataSource({required final GQLClient _client}) {

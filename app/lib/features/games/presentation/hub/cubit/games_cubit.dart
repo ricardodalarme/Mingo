@@ -1,8 +1,8 @@
+import 'package:app/features/games/data/models/games_overview.dart';
+import 'package:app/features/games/data/repositories/games_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/games_overview.dart';
-import 'package:flutter_bloc_starter/features/games/data/repositories/games_repository.dart';
 
 part 'games_state.dart';
 

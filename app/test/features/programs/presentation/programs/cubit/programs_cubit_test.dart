@@ -1,9 +1,9 @@
+import 'package:app/features/plus/data/models/plus_state.dart';
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/programs/data/models/program.dart';
+import 'package:app/features/programs/data/repositories/programs_repository.dart';
+import 'package:app/features/programs/presentation/programs/cubit/programs_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
-import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/presentation/programs/cubit/programs_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

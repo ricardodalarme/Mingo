@@ -1,7 +1,7 @@
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Intercepts `repara://<host>/<path>` deep links before AutoRoute matches them and
 /// normalizes the custom-scheme host + path into a canonical `/target` path.

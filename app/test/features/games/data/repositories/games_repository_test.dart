@@ -1,10 +1,10 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/games_data_source.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_session.dart';
-import 'package:flutter_bloc_starter/features/games/data/repositories/games_repository.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/games_data_source.dart';
+import 'package:app/features/games/data/models/game_item.dart';
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/game_play.dart';
+import 'package:app/features/games/data/models/game_session.dart';
+import 'package:app/features/games/data/repositories/games_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';
@@ -322,7 +322,9 @@ void main() {
         idx: any(named: 'idx'),
         answer: any(named: 'answer'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     final session = GameSession(
       id: 's1',
       game: GameKind.meOrYou,

@@ -1,10 +1,10 @@
+import 'package:app/features/fight_style/data/models/fight_style_result.dart';
+import 'package:app/features/fight_style/data/models/reaction_pattern.dart';
+import 'package:app/features/fight_style/data/repositories/fight_style_repository.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/models/fight_style_result.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/models/reaction_pattern.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/repositories/fight_style_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 
 part 'fight_style_state.dart';
 

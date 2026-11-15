@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_week.dart';
+import 'package:app/features/checkin/data/models/checkin_week.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

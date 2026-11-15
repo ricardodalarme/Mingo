@@ -1,8 +1,8 @@
 import 'dart:ui';
 
+import 'package:app/infrastructure/initializers/crash_report_initializer.dart';
 import 'package:crash_report_service/crash_report_service.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc_starter/infrastructure/initializers/crash_report_initializer.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

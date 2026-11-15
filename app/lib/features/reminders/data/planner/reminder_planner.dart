@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/reminders/data/models/planned_reminder.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
+import 'package:app/features/reminders/data/models/planned_reminder.dart';
+import 'package:app/features/reminders/data/models/reminder_preferences.dart';
 
 /// The most pending notifications iOS keeps for an app.
 const int platformPendingLimit = 64;

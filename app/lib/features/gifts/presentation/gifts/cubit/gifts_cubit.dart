@@ -1,9 +1,9 @@
+import 'package:app/features/gifts/data/models/gift_budget.dart';
+import 'package:app/features/gifts/data/models/gift_idea.dart';
+import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:uuid/uuid.dart';
 
 part 'gifts_state.dart';

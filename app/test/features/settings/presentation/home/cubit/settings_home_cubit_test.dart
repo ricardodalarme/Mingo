@@ -1,12 +1,12 @@
-import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/models/notification_preferences.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
+import 'package:app/features/account/data/repositories/account_repository.dart';
+import 'package:app/features/notifications/data/models/notification_preferences.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/plus/data/models/plus_state.dart';
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
+import 'package:app/features/settings/presentation/home/cubit/settings_home_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

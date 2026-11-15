@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/_shared/data/mappers/content_kind_mapper.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
+import 'package:app/features/_shared/data/mappers/content_kind_mapper.dart';
+import 'package:app/features/_shared/data/models/content_kind.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

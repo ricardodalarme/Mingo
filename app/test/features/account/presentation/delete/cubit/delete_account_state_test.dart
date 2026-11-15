@@ -1,6 +1,6 @@
+import 'package:app/features/account/data/models/deletion_request.dart';
+import 'package:app/features/account/presentation/delete/cubit/delete_account_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/account/data/models/deletion_request.dart';
-import 'package:flutter_bloc_starter/features/account/presentation/delete/cubit/delete_account_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

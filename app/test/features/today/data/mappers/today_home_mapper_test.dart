@@ -1,10 +1,10 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/need_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
-import 'package:flutter_bloc_starter/features/today/data/mappers/today_home_mapper.dart';
-import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/need_kind.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
+import 'package:app/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
+import 'package:app/features/today/data/mappers/today_home_mapper.dart';
+import 'package:app/features/today/data/models/today_home.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 QueryTodayHome _query({

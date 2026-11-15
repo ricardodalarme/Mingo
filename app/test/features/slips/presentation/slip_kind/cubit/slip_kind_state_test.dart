@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
+import 'package:app/features/slips/data/models/slip_work_area.dart';
+import 'package:app/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 

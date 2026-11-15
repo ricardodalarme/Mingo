@@ -1,12 +1,12 @@
+import 'package:app/features/ideas/data/models/idea.dart';
+import 'package:app/features/ideas/presentation/detail/cubit/idea_detail_cubit.dart';
+import 'package:app/features/ideas/presentation/detail/widgets/idea_content.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/ideas/data/models/idea.dart';
-import 'package:flutter_bloc_starter/features/ideas/presentation/detail/cubit/idea_detail_cubit.dart';
-import 'package:flutter_bloc_starter/features/ideas/presentation/detail/widgets/idea_content.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
 class const IdeaDetailPage({@QueryParam('slug') final String? slug, super.key})

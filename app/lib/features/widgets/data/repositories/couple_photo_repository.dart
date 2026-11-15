@@ -1,12 +1,12 @@
 import 'dart:typed_data';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/widgets/data/data_sources/remote/couple_photo_data_source.dart';
+import 'package:app/features/widgets/data/models/couple_photo.dart';
+import 'package:app/features/widgets/data/services/couple_photo_image.dart';
+import 'package:app/features/widgets/data/services/widget_data_service.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/couple_photo_data_source.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/couple_photo.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/services/couple_photo_image.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
 import 'package:logger/logger.dart';
 import 'package:storage_service/storage_service.dart';
 import 'package:uuid/uuid.dart';

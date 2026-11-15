@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/partner/data/data_sources/remote/partner_data_source.dart';
-import 'package:flutter_bloc_starter/features/partner/data/mappers/partner_fact_category_mapper.dart';
-import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact.dart';
-import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact_category.dart';
+import 'package:app/features/partner/data/data_sources/remote/partner_data_source.dart';
+import 'package:app/features/partner/data/mappers/partner_fact_category_mapper.dart';
+import 'package:app/features/partner/data/models/partner_fact.dart';
+import 'package:app/features/partner/data/models/partner_fact_category.dart';
 import 'package:logger/logger.dart';
 
 class PartnerRepository({required final PartnerDataSource _dataSource}) {

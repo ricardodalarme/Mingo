@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
+import 'package:app/features/today/data/models/today_home.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 /// Keeps the last Hoje state so a cold start without a connection still shows something.

@@ -1,11 +1,11 @@
+import 'package:app/features/account/data/models/deletion_request.dart';
+import 'package:app/features/account/data/repositories/account_repository.dart';
+import 'package:app/features/account/presentation/delete/cubit/delete_account_cubit.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
 import 'package:biometric_service/biometric_service.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/account/data/models/deletion_request.dart';
-import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
-import 'package:flutter_bloc_starter/features/account/presentation/delete/cubit/delete_account_cubit.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -33,7 +33,9 @@ void main() {
     when(() => account.getDeletion()).thenAnswer((_) async => null);
     when(() => biometrics.isDeviceSupported()).thenAnswer((_) async => false);
     when(() => account.requestDeletion()).thenAnswer((_) async => deletion);
-    when(() => account.cancelDeletion()).thenAnswer((_) async {});
+    when(() => account.cancelDeletion()).thenAnswer((_) async {
+      return;
+    });
   });
 
   DeleteAccountCubit build() => DeleteAccountCubit(

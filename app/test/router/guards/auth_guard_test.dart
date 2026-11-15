@@ -1,17 +1,17 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/authentication/presentation/sign_in/cubit/sign_in_cubit.dart';
+import 'package:app/features/slips/data/models/slip_detail.dart';
+import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
+import 'package:app/router/guards/auth_guard.dart';
+import 'package:app/router/pending_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/cubit/sign_in_cubit.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
-import 'package:flutter_bloc_starter/router/guards/auth_guard.dart';
-import 'package:flutter_bloc_starter/router/pending_route.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

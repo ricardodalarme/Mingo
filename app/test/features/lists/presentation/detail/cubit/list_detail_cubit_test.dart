@@ -1,9 +1,9 @@
+import 'package:app/features/lists/data/models/list_item_status.dart';
+import 'package:app/features/lists/data/models/list_kind.dart';
+import 'package:app/features/lists/data/models/list_models.dart';
+import 'package:app/features/lists/data/repositories/lists_repository.dart';
+import 'package:app/features/lists/presentation/detail/cubit/list_detail_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
-import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/detail/cubit/list_detail_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -98,7 +98,9 @@ void main() {
           detail.items.firstWhere((item) => item.id == ids[index]).copyWith(position: index),
       ];
     });
-    when(() => repository.deleteItem(any())).thenAnswer((_) async {});
+    when(() => repository.deleteItem(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   ListDetailCubit build() => ListDetailCubit(listsRepository: repository);

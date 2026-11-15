@@ -1,8 +1,8 @@
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
+import 'package:app/infrastructure/initializers/preferences_initializer.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system_l10n.dart' as design_system_l10n;
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
-import 'package:flutter_bloc_starter/infrastructure/initializers/preferences_initializer.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:formatters/formatters.dart';
 import 'package:logger/logger.dart';
 

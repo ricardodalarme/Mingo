@@ -1,12 +1,12 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/fragments/generated/GameSessionFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/mutations/generated/AnswerGame.graphql.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/mutations/generated/InviteToGame.graphql.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/mutations/generated/UpdateGame.graphql.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/queries/generated/GameAnswers.graphql.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/queries/generated/GameItems.graphql.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/queries/generated/GameItemsBySlug.graphql.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/queries/generated/GameSessions.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/fragments/generated/GameSessionFragment.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/mutations/generated/AnswerGame.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/mutations/generated/InviteToGame.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/mutations/generated/UpdateGame.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/queries/generated/GameAnswers.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/queries/generated/GameItems.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/queries/generated/GameItemsBySlug.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/queries/generated/GameSessions.graphql.dart';
 import 'package:network/network.dart';
 
 typedef GameSessionRecord = ({

@@ -1,11 +1,11 @@
 import 'dart:math' as math;
 
+import 'package:app/features/profile/data/models/relationship_goal.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 
 part 'intro_state.dart';
 

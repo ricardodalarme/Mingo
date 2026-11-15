@@ -1,11 +1,11 @@
-import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
-import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
-import 'package:flutter_bloc_starter/features/distance/data/data_sources/remote/distance_data_source.dart';
-import 'package:flutter_bloc_starter/features/distance/data/models/distance_info.dart';
-import 'package:flutter_bloc_starter/features/distance/data/repositories/distance_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/dates/data/models/dates_models.dart';
+import 'package:app/features/dates/data/models/important_date_kind.dart';
+import 'package:app/features/dates/data/repositories/dates_repository.dart';
+import 'package:app/features/distance/data/data_sources/remote/distance_data_source.dart';
+import 'package:app/features/distance/data/models/distance_info.dart';
+import 'package:app/features/distance/data/repositories/distance_repository.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

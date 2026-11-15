@@ -1,11 +1,11 @@
+import 'package:app/features/together/data/models/ritual.dart';
+import 'package:app/features/together/data/models/ritual_cadence.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
+import 'package:app/features/together/data/services/ritual_reminder_service.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/ritual.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/ritual_cadence.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/services/ritual_reminder_service.dart';
 import 'package:uuid/uuid.dart';
 
 part 'ritual_edit_state.dart';

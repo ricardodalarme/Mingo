@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
+import 'package:app/features/questions/data/models/question_thread.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

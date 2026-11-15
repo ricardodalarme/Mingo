@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/_shared/data/models/content_kind.dart';
 
 extension ContentKindMapper on ContentKind {
   EnumContentKind toRemote() => switch (this) {

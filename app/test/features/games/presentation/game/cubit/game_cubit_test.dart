@@ -1,14 +1,14 @@
+import 'package:app/features/games/data/models/game_item.dart';
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/game_play.dart';
+import 'package:app/features/games/data/models/game_session.dart';
+import 'package:app/features/games/data/repositories/games_repository.dart';
+import 'package:app/features/games/presentation/game/cubit/game_cubit.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_session.dart';
-import 'package:flutter_bloc_starter/features/games/data/repositories/games_repository.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/cubit/game_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -268,7 +268,9 @@ void main() {
           step: any(named: 'step'),
           answer: any(named: 'answer'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
 
       return build();
     },
@@ -317,7 +319,9 @@ void main() {
           step: any(named: 'step'),
           answer: any(named: 'answer'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
 
       return build();
     },

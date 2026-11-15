@@ -1,9 +1,9 @@
+import 'package:app/features/settings/presentation/language/cubit/language_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/language/cubit/language_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// The language list: Portuguese now, English disabled until it is complete.
 @RoutePage()

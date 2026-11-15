@@ -1,7 +1,7 @@
+import 'package:app/features/lists/presentation/text_prompt/cubit/text_prompt_sheet_cubit.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/text_prompt/cubit/text_prompt_sheet_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
 
 /// A sheet with one text field and its confirm action.
 class const TextPromptSheet({

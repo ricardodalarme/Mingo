@@ -1,9 +1,9 @@
+import 'package:app/features/plus/data/data_sources/remote/plus_data_source.dart';
+import 'package:app/features/plus/data/mappers/plus_enum_mapper.dart';
+import 'package:app/features/plus/data/models/plus_state.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc_starter/features/plus/data/data_sources/remote/plus_data_source.dart';
-import 'package:flutter_bloc_starter/features/plus/data/mappers/plus_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
 import 'package:logger/logger.dart';
 import 'package:purchase_service/purchase_service.dart';
 

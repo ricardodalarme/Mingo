@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/connect/data/repositories/connect_repository.dart';
-import 'package:flutter_bloc_starter/features/connect/presentation/us/cubit/us_cubit.dart';
+import 'package:app/features/connect/data/repositories/connect_repository.dart';
+import 'package:app/features/connect/presentation/us/cubit/us_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -10,7 +10,9 @@ void main() {
 
   setUp(() {
     repository = _MockConnectRepository();
-    when(() => repository.sendMissUs()).thenAnswer((_) async {});
+    when(() => repository.sendMissUs()).thenAnswer((_) async {
+      return;
+    });
   });
 
   test('sending marks it sent and cannot be sent twice', () async {

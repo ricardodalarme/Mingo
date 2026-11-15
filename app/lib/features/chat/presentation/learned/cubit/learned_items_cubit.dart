@@ -1,9 +1,9 @@
+import 'package:app/features/chat/data/models/learned_item.dart';
+import 'package:app/features/chat/data/repositories/learned_items_repository.dart';
+import 'package:app/features/partner/data/repositories/partner_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';
-import 'package:flutter_bloc_starter/features/partner/data/repositories/partner_repository.dart';
 import 'package:uuid/uuid.dart';
 
 part 'learned_items_state.dart';

@@ -1,14 +1,14 @@
 import 'dart:async';
 
+import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
+import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
+import 'package:app/features/lists/data/repositories/lists_repository.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/questions/data/repositories/questions_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
-import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
 
 part 'together_state.dart';
 

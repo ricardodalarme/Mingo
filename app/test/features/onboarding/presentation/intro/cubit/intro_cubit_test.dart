@@ -1,10 +1,10 @@
+import 'package:app/features/onboarding/presentation/intro/cubit/intro_cubit.dart';
+import 'package:app/features/profile/data/models/relationship_goal.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/settings/data/models/settings.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/onboarding/presentation/intro/cubit/intro_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -18,7 +18,9 @@ void main() {
   setUp(() {
     settingsRepository = _MockSettingsRepository();
     when(() => settingsRepository.get()).thenReturn(const Settings.empty());
-    when(() => settingsRepository.save(any())).thenAnswer((_) async {});
+    when(() => settingsRepository.save(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   IntroCubit build() => IntroCubit(settingsRepository: settingsRepository);

@@ -1,14 +1,14 @@
+import 'package:app/features/notes/data/models/sent_message.dart';
+import 'package:app/features/notes/presentation/compose/cubit/compose_cubit.dart';
+import 'package:app/features/notes/presentation/compose/widgets/drawing_canvas.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dart';
-import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/compose_cubit.dart';
-import 'package:flutter_bloc_starter/features/notes/presentation/compose/widgets/drawing_canvas.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:formatters/formatters.dart';
 
 const double _thumbSize = 56;

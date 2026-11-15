@@ -1,10 +1,10 @@
+import 'package:app/features/dates/data/models/dates_models.dart';
+import 'package:app/features/dates/data/models/important_date_kind.dart';
+import 'package:app/features/dates/data/repositories/dates_repository.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
-import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 

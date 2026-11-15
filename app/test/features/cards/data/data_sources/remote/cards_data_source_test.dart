@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/cards_data_source.dart';
+import 'package:app/features/cards/data/data_sources/remote/cards_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network/network.dart';
 

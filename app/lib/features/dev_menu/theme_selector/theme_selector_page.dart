@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 
 class const ThemeSelectorPage({super.key}) extends StatelessWidget {
   @override

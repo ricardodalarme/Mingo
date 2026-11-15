@@ -1,8 +1,8 @@
+import 'package:app/features/devices/data/models/device.dart';
+import 'package:app/features/devices/data/models/device_platform.dart';
+import 'package:app/features/devices/data/repositories/devices_repository.dart';
+import 'package:app/features/devices/presentation/devices/cubit/devices_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/devices/data/models/device.dart';
-import 'package:flutter_bloc_starter/features/devices/data/models/device_platform.dart';
-import 'package:flutter_bloc_starter/features/devices/data/repositories/devices_repository.dart';
-import 'package:flutter_bloc_starter/features/devices/presentation/devices/cubit/devices_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';
@@ -28,7 +28,9 @@ void main() {
 
   setUp(() {
     repository = _MockDevicesRepository();
-    when(() => repository.revokeDevice(any())).thenAnswer((_) async {});
+    when(() => repository.revokeDevice(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   DevicesCubit build() => DevicesCubit(repository: repository);

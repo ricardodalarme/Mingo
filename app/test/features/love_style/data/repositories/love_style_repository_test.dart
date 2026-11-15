@@ -1,8 +1,8 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/love_style/data/data_sources/local/love_style_local_data_source.dart';
+import 'package:app/features/love_style/data/data_sources/remote/love_style_data_source.dart';
+import 'package:app/features/love_style/data/repositories/love_style_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/local/love_style_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/love_style_data_source.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/repositories/love_style_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -37,8 +37,12 @@ void main() {
         userId: any(named: 'userId'),
         id: any(named: 'id'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => localDataSource.clearSharedMessageId(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => localDataSource.clearSharedMessageId(any())).thenAnswer((_) async {
+      return;
+    });
     repository = LoveStyleRepository(
       dataSource: dataSource,
       localDataSource: localDataSource,
@@ -49,7 +53,9 @@ void main() {
   group('ranking', () {
     test('inserts the first ranking and never updates another row', () async {
       when(() => dataSource.getResult()).thenAnswer((_) async => null);
-      when(() => dataSource.insertResult(any())).thenAnswer((_) async {});
+      when(() => dataSource.insertResult(any())).thenAnswer((_) async {
+        return;
+      });
 
       await repository.saveRanked(first);
 
@@ -69,7 +75,9 @@ void main() {
           id: any(named: 'id'),
           ranked: any(named: 'ranked'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
 
       await repository.saveRanked(retaken);
 
@@ -91,7 +99,9 @@ void main() {
           id: any(named: 'id'),
           ranked: any(named: 'ranked'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
 
       await repository.saveRanked(retaken);
 
@@ -102,7 +112,9 @@ void main() {
   group('manual entry', () {
     test('the first save inserts the loved entry', () async {
       when(() => dataSource.getManualEntry('u1')).thenAnswer((_) async => null);
-      when(() => dataSource.insertManualEntry(any())).thenAnswer((_) async {});
+      when(() => dataSource.insertManualEntry(any())).thenAnswer((_) async {
+        return;
+      });
 
       await repository.saveManualEntry('  Você se sente querido(a) com tempo junto.  ');
 
@@ -124,7 +136,9 @@ void main() {
           id: any(named: 'id'),
           value: any(named: 'value'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
 
       await repository.saveManualEntry('Novo');
 
@@ -140,7 +154,9 @@ void main() {
           id: any(named: 'id'),
           value: any(named: 'value'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
 
       expect(await repository.getManualEntry(), 'Compartilhado');
       await repository.saveManualEntry('Novo');
@@ -151,7 +167,9 @@ void main() {
 
     test('the entry value is bounded to 1000 characters', () async {
       when(() => dataSource.getManualEntry('u1')).thenAnswer((_) async => null);
-      when(() => dataSource.insertManualEntry(any())).thenAnswer((_) async {});
+      when(() => dataSource.insertManualEntry(any())).thenAnswer((_) async {
+        return;
+      });
 
       await repository.saveManualEntry('a' * 1200);
 
@@ -174,7 +192,9 @@ void main() {
           id: any(named: 'id'),
           value: any(named: 'value'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
 
       await repository.saveManualEntry('Novo');
 

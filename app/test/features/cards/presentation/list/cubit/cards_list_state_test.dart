@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/cards/presentation/list/cubit/cards_list_cubit.dart';
+import 'package:app/features/cards/presentation/list/cubit/cards_list_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

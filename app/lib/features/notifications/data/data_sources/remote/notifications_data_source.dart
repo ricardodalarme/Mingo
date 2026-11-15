@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/data_sources/remote/mutations/generated/RegisterDevice.graphql.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/data_sources/remote/mutations/generated/UnregisterDevice.graphql.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/data_sources/remote/mutations/generated/UpdateNotificationSettings.graphql.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/data_sources/remote/queries/generated/MyNotificationSettings.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/notifications/data/data_sources/remote/mutations/generated/RegisterDevice.graphql.dart';
+import 'package:app/features/notifications/data/data_sources/remote/mutations/generated/UnregisterDevice.graphql.dart';
+import 'package:app/features/notifications/data/data_sources/remote/mutations/generated/UpdateNotificationSettings.graphql.dart';
+import 'package:app/features/notifications/data/data_sources/remote/queries/generated/MyNotificationSettings.graphql.dart';
 import 'package:network/network.dart';
 
 class NotificationsDataSource({required final GQLClient _client}) {

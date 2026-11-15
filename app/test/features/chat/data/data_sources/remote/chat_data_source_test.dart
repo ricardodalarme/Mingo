@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/chat_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/queries/generated/ChatStatus.graphql.dart';
+import 'package:app/features/chat/data/data_sources/remote/chat_data_source.dart';
+import 'package:app/features/chat/data/data_sources/remote/queries/generated/ChatStatus.graphql.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';

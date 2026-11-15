@@ -1,14 +1,14 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/profile/data/models/profile_details.dart';
+import 'package:app/features/profile/data/models/profile_name.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile_details.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile_name.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 part 'profile_settings_state.dart';

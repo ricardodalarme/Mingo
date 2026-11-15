@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/need_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
-import 'package:flutter_bloc_starter/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/need_kind.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
+import 'package:app/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../test_helpers/pump_app.dart';

@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/mutations/generated/InsertConversationPrep.graphql.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/mutations/generated/UpdateConversationPrep.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/guides/data/data_sources/remote/mutations/generated/InsertConversationPrep.graphql.dart';
+import 'package:app/features/guides/data/data_sources/remote/mutations/generated/UpdateConversationPrep.graphql.dart';
 import 'package:network/network.dart';
 
 class GuidesDataSource({required final GQLClient _client}) {

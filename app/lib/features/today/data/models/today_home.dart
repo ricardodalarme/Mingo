@@ -1,6 +1,6 @@
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
 
 /// A piece of editorial content shown on Hoje.
 final class const Suggestion({

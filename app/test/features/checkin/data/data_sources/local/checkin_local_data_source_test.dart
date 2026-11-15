@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/checkin/data/data_sources/local/checkin_local_data_source.dart';
+import 'package:app/features/checkin/data/data_sources/local/checkin_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:preferences_service/preferences_service.dart';

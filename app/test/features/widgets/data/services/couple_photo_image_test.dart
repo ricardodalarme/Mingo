@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:flutter_bloc_starter/features/widgets/data/services/couple_photo_image.dart';
+import 'package:app/features/widgets/data/services/couple_photo_image.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

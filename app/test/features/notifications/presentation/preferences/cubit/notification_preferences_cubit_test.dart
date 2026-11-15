@@ -1,10 +1,10 @@
+import 'package:app/features/notifications/data/models/notification_preferences.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/notifications/presentation/preferences/cubit/notification_preferences_cubit.dart';
+import 'package:app/features/reminders/data/models/reminder_preferences.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/models/notification_preferences.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/notifications/presentation/preferences/cubit/notification_preferences_cubit.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -31,10 +31,16 @@ void main() {
     when(() => notifications.currentAccess()).thenAnswer((_) async => NotificationAccess.granted);
     when(() => notifications.getPreferences())
         .thenAnswer((_) async => const NotificationPreferences());
-    when(() => notifications.savePreferences(any())).thenAnswer((_) async {});
+    when(() => notifications.savePreferences(any())).thenAnswer((_) async {
+      return;
+    });
     when(() => reminders.getPreferences()).thenReturn(const ReminderPreferences());
-    when(() => reminders.savePreferences(any())).thenAnswer((_) async {});
-    when(() => sync.sync()).thenAnswer((_) async {});
+    when(() => reminders.savePreferences(any())).thenAnswer((_) async {
+      return;
+    });
+    when(() => sync.sync()).thenAnswer((_) async {
+      return;
+    });
   });
 
   NotificationPreferencesCubit build() => NotificationPreferencesCubit(

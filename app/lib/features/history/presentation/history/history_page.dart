@@ -1,16 +1,16 @@
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/history/presentation/history/cubit/history_cubit.dart';
+import 'package:app/features/history/presentation/history/widgets/history_hero_section.dart';
+import 'package:app/features/history/presentation/history/widgets/history_quick_actions.dart';
+import 'package:app/features/history/presentation/history/widgets/history_stats_row.dart';
+import 'package:app/features/history/presentation/history/widgets/history_timeline_section.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/history/cubit/history_cubit.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_hero_section.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_quick_actions.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_stats_row.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_timeline_section.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// "Nossa história" (X-140) — tall scrollable overview with hero counter,
 /// descriptive numbers summary, and year-paginated timeline of milestones & memories.

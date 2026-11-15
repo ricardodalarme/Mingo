@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/notes/data/data_sources/remote/mutations/generated/DeletePartnerMessage.graphql.dart';
-import 'package:flutter_bloc_starter/features/notes/data/data_sources/remote/mutations/generated/SendPartnerMessage.graphql.dart';
-import 'package:flutter_bloc_starter/features/notes/data/data_sources/remote/queries/generated/SentPartnerMessages.graphql.dart';
+import 'package:app/features/notes/data/data_sources/remote/mutations/generated/DeletePartnerMessage.graphql.dart';
+import 'package:app/features/notes/data/data_sources/remote/mutations/generated/SendPartnerMessage.graphql.dart';
+import 'package:app/features/notes/data/data_sources/remote/queries/generated/SentPartnerMessages.graphql.dart';
 import 'package:network/network.dart';
 
 class NotesDataSource({required final GQLClient _client}) {

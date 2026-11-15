@@ -1,11 +1,11 @@
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/together/presentation/together/cubit/together_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/together/presentation/together/cubit/together_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// The shared home: what to do together, and a view with only the person's own things.
 @RoutePage()

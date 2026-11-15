@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/gifts_data_source.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/AddGiftWish.graphql.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/DeleteGiftWish.graphql.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/SetGiftWishVisibility.graphql.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/mutations/generated/UpdateGiftWish.graphql.dart';
+import 'package:app/features/gifts/data/data_sources/remote/gifts_data_source.dart';
+import 'package:app/features/gifts/data/data_sources/remote/mutations/generated/AddGiftWish.graphql.dart';
+import 'package:app/features/gifts/data/data_sources/remote/mutations/generated/DeleteGiftWish.graphql.dart';
+import 'package:app/features/gifts/data/data_sources/remote/mutations/generated/SetGiftWishVisibility.graphql.dart';
+import 'package:app/features/gifts/data/data_sources/remote/mutations/generated/UpdateGiftWish.graphql.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network/network.dart';
 

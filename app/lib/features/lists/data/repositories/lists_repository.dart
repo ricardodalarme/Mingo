@@ -1,11 +1,11 @@
+import 'package:app/features/lists/data/data_sources/remote/lists_data_source.dart';
+import 'package:app/features/lists/data/mappers/list_enum_mapper.dart';
+import 'package:app/features/lists/data/mappers/list_mapper.dart';
+import 'package:app/features/lists/data/models/list_item_status.dart';
+import 'package:app/features/lists/data/models/list_kind.dart';
+import 'package:app/features/lists/data/models/list_models.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
-import 'package:flutter_bloc_starter/features/lists/data/mappers/list_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/lists/data/mappers/list_mapper.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:logger/logger.dart';
 
 class ListsRepository({

@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/help/data/mappers/support_topic_mapper.dart';
-import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
+import 'package:app/features/help/data/mappers/support_topic_mapper.dart';
+import 'package:app/features/help/data/models/support_topic.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

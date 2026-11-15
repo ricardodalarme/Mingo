@@ -1,9 +1,9 @@
+import 'package:app/features/checkin/data/data_sources/local/checkin_local_data_source.dart';
+import 'package:app/features/checkin/data/data_sources/remote/checkin_data_source.dart';
+import 'package:app/features/checkin/data/models/checkin_answer.dart';
+import 'package:app/features/checkin/data/models/checkin_week.dart';
+import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/data_sources/local/checkin_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/data_sources/remote/checkin_data_source.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_answer.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_week.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -287,7 +287,9 @@ void main() {
   });
 
   test('clearing an answer deletes its row', () async {
-    when(() => dataSource.deleteAnswer('a1')).thenAnswer((_) async {});
+    when(() => dataSource.deleteAnswer('a1')).thenAnswer((_) async {
+      return;
+    });
 
     await repository.deleteAnswer('a1');
 
@@ -322,7 +324,9 @@ void main() {
   });
 
   test('dismissing writes the server week start locally', () async {
-    when(() => localDataSource.writeDismissedWeek(monday)).thenAnswer((_) async {});
+    when(() => localDataSource.writeDismissedWeek(monday)).thenAnswer((_) async {
+      return;
+    });
 
     await repository.dismissWeek(monday);
 

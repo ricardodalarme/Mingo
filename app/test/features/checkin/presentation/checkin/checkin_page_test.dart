@@ -1,12 +1,12 @@
+import 'package:app/features/checkin/data/models/checkin_answer.dart';
+import 'package:app/features/checkin/data/models/checkin_week.dart';
+import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
+import 'package:app/features/checkin/presentation/checkin/checkin_page.dart';
+import 'package:app/features/checkin/presentation/checkin/cubit/checkin_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_answer.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_week.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
-import 'package:flutter_bloc_starter/features/checkin/presentation/checkin/checkin_page.dart';
-import 'package:flutter_bloc_starter/features/checkin/presentation/checkin/cubit/checkin_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

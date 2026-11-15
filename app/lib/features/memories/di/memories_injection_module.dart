@@ -1,9 +1,9 @@
+import 'package:app/features/memories/data/data_sources/remote/memories_data_source.dart';
+import 'package:app/features/memories/data/repositories/memories_repository.dart';
+import 'package:app/features/memories/presentation/memories/cubit/memories_cubit.dart';
+import 'package:app/features/memories/presentation/places/cubit/places_cubit.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/memories/data/data_sources/remote/memories_data_source.dart';
-import 'package:flutter_bloc_starter/features/memories/data/repositories/memories_repository.dart';
-import 'package:flutter_bloc_starter/features/memories/presentation/memories/cubit/memories_cubit.dart';
-import 'package:flutter_bloc_starter/features/memories/presentation/places/cubit/places_cubit.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:network/network.dart';
 
 class MemoriesInjectionModule() implements InjectionModule {

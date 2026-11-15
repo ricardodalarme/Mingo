@@ -1,10 +1,10 @@
+import 'package:app/features/_shared/data/models/content_kind.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/together/data/models/date_idea.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 
 part 'help_state.dart';
 

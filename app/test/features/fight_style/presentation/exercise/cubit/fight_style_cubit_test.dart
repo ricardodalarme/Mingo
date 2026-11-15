@@ -1,10 +1,10 @@
+import 'package:app/features/fight_style/data/models/reaction_pattern.dart';
+import 'package:app/features/fight_style/data/repositories/fight_style_repository.dart';
+import 'package:app/features/fight_style/presentation/exercise/cubit/fight_style_cubit.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/models/reaction_pattern.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/repositories/fight_style_repository.dart';
-import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/cubit/fight_style_cubit.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -24,8 +24,12 @@ void main() {
     repository = _MockFightStyleRepository();
     pairingRepository = _MockPairingRepository();
     when(() => repository.getSavedRanked()).thenAnswer((_) async => null);
-    when(() => repository.saveRanked(any())).thenAnswer((_) async {});
-    when(() => repository.addRepairTool(any())).thenAnswer((_) async {});
+    when(() => repository.saveRanked(any())).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.addRepairTool(any())).thenAnswer((_) async {
+      return;
+    });
     when(() => pairingRepository.getPartner()).thenAnswer(
       (_) async => const Profile(id: 'p1', avatarKind: AvatarKind.initials, displayName: 'Marina'),
     );

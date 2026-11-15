@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_plan.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_status.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/plus/data/models/plus_plan.dart';
+import 'package:app/features/plus/data/models/plus_status.dart';
 
 extension EnumEntitlementPlanMapper on EnumEntitlementPlan {
   /// An unknown plan reads as null so the screen falls back to a plain "Plus is active".

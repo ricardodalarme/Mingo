@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/memories/data/data_sources/remote/mutations/generated/AddMemory.graphql.dart';
-import 'package:flutter_bloc_starter/features/memories/data/data_sources/remote/mutations/generated/DeleteMemory.graphql.dart';
-import 'package:flutter_bloc_starter/features/memories/data/data_sources/remote/mutations/generated/DrawFromJar.graphql.dart';
-import 'package:flutter_bloc_starter/features/memories/data/data_sources/remote/queries/generated/Memories.graphql.dart';
+import 'package:app/features/memories/data/data_sources/remote/mutations/generated/AddMemory.graphql.dart';
+import 'package:app/features/memories/data/data_sources/remote/mutations/generated/DeleteMemory.graphql.dart';
+import 'package:app/features/memories/data/data_sources/remote/mutations/generated/DrawFromJar.graphql.dart';
+import 'package:app/features/memories/data/data_sources/remote/queries/generated/Memories.graphql.dart';
 import 'package:network/network.dart';
 
 class MemoriesDataSource({required final GQLClient _client}) {

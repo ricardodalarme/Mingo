@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:app/features/cards/data/models/card_summary.dart';
+import 'package:app/features/cards/data/repositories/cards_repository.dart';
+import 'package:app/features/cards/presentation/list/cubit/cards_list_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dart';
-import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/list/cubit/cards_list_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

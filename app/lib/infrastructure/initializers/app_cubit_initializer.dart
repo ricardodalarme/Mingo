@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/infrastructure/initializers/authentication_initializer.dart';
+import 'package:app/infrastructure/initializers/bloc_initializer.dart';
+import 'package:app/infrastructure/initializers/preferences_initializer.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/infrastructure/initializers/authentication_initializer.dart';
-import 'package:flutter_bloc_starter/infrastructure/initializers/bloc_initializer.dart';
-import 'package:flutter_bloc_starter/infrastructure/initializers/preferences_initializer.dart';
 import 'package:logger/logger.dart';
 
 final class AppCubitInitializer() extends Initializer {

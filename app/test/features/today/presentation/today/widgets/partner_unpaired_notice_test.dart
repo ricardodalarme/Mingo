@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/partner_unpaired_notice.dart';
+import 'package:app/features/today/presentation/today/widgets/partner_unpaired_notice.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../test_helpers/pump_app.dart';

@@ -1,10 +1,10 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/profile/data/data_sources/remote/profile_data_source.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/profile/presentation/profile/cubit/profile_settings_cubit.dart';
+import 'package:app/features/profile/presentation/setup/cubit/profile_setup_cubit.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/profile_data_source.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/presentation/profile/cubit/profile_settings_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/presentation/setup/cubit/profile_setup_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:network/network.dart';
 
 class ProfileInjectionModule() implements InjectionModule {

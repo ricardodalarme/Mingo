@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/mappers/lesson_status_mapper.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/programs/data/mappers/lesson_status_mapper.dart';
+import 'package:app/features/programs/data/models/program.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -10,6 +10,6 @@ void main() {
     }
   });
   test('an unknown status is an error, not a guess', () {
-    expect(() => EnumLessonStatus.$unknown.toModel(), throwsFormatException);
+    expect(EnumLessonStatus.$unknown.toModel, throwsFormatException);
   });
 }

@@ -1,9 +1,9 @@
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/pairing/presentation/unpair/cubit/unpair_cubit.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
+import 'package:app/features/today/data/repositories/today_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/cubit/unpair_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/today/data/repositories/today_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -22,8 +22,12 @@ void main() {
       (_) async =>
           const Profile(id: 'partner', avatarKind: AvatarKind.initials, displayName: 'Marina'),
     );
-    when(() => pairing.unpair()).thenAnswer((_) async {});
-    when(() => today.clearCache()).thenAnswer((_) async {});
+    when(() => pairing.unpair()).thenAnswer((_) async {
+      return;
+    });
+    when(() => today.clearCache()).thenAnswer((_) async {
+      return;
+    });
   });
 
   UnpairCubit build() => UnpairCubit(pairingRepository: pairing, todayRepository: today);

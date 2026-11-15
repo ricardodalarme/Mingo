@@ -1,12 +1,12 @@
+import 'package:app/features/memories/data/models/memory.dart';
+import 'package:app/features/memories/data/repositories/memories_repository.dart';
+import 'package:app/features/memories/presentation/memories/cubit/memories_cubit.dart';
+import 'package:app/features/memories/presentation/memories/memories_page.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
-import 'package:flutter_bloc_starter/features/memories/data/repositories/memories_repository.dart';
-import 'package:flutter_bloc_starter/features/memories/presentation/memories/cubit/memories_cubit.dart';
-import 'package:flutter_bloc_starter/features/memories/presentation/memories/memories_page.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -24,7 +24,9 @@ void main() {
   setUp(() {
     repository = _MockMemoriesRepository();
     when(() => repository.getMemories()).thenAnswer((_) async => []);
-    when(() => repository.deleteMemory(any())).thenAnswer((_) async {});
+    when(() => repository.deleteMemory(any())).thenAnswer((_) async {
+      return;
+    });
     when(() => repository.drawFromJar()).thenAnswer((_) async => null);
     when(
       () => repository.addMemory(
@@ -34,7 +36,9 @@ void main() {
         place: any(named: 'place'),
         happenedOn: any(named: 'happenedOn'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   setUpAll(() => registerFallbackValue(DateTime(2026)));

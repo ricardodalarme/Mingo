@@ -1,10 +1,10 @@
+import 'package:app/features/_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/cards_data_source.dart';
+import 'package:app/features/cards/data/data_sources/remote/queries/generated/CardDetail.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/queries/generated/MyCards.graphql.dart';
+import 'package:app/features/cards/data/repositories/cards_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/cards_data_source.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/queries/generated/CardDetail.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/queries/generated/MyCards.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

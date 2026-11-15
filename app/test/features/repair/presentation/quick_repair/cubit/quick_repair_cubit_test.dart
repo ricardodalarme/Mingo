@@ -1,7 +1,7 @@
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
+import 'package:app/features/repair/presentation/quick_repair/cubit/quick_repair_cubit.dart';
+import 'package:app/features/repair/presentation/soft_start/cubit/soft_start_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/quick_repair/cubit/quick_repair_cubit.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/cubit/soft_start_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -18,7 +18,9 @@ void main() {
         message: any(named: 'message'),
         preset: any(named: 'preset'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   QuickRepairCubit build() => QuickRepairCubit(repairRepository: repository);

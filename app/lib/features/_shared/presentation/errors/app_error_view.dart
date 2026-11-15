@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:app/l10n/translations.g.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:network/network.dart';
 
 /// The shared failure surface: one layout, copy chosen from the stable code, and a retry that

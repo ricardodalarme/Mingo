@@ -1,18 +1,18 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/settings/data/data_sources/local/discreet_local_data_source.dart';
+import 'package:app/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
+import 'package:app/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
+import 'package:app/features/widgets/data/data_sources/remote/widgets_data_source.dart';
+import 'package:app/features/widgets/data/mappers/widgets_mapper.dart';
+import 'package:app/features/widgets/data/models/widget_models.dart';
+import 'package:app/features/widgets/data/models/widget_payload.dart';
+import 'package:app/features/widgets/data/repositories/couple_photo_repository.dart';
+import 'package:app/features/widgets/data/services/widget_data_service.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/discreet_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/widgets_data_source.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/mappers/widgets_mapper.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/couple_photo_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
 import 'package:logger/logger.dart';
 
 /// Coordinates server widget reads, local privacy/rotation settings, and the shared native store.

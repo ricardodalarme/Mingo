@@ -1,12 +1,12 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/mutations/generated/AddGiftIdea.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/mutations/generated/AddImportantDate.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/mutations/generated/DeleteGiftIdea.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/mutations/generated/DeleteImportantDate.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/mutations/generated/SetGiftIdeaStatus.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/queries/generated/GiftIdeas.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/queries/generated/Holidays.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/queries/generated/ImportantDates.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/dates/data/data_sources/remote/mutations/generated/AddGiftIdea.graphql.dart';
+import 'package:app/features/dates/data/data_sources/remote/mutations/generated/AddImportantDate.graphql.dart';
+import 'package:app/features/dates/data/data_sources/remote/mutations/generated/DeleteGiftIdea.graphql.dart';
+import 'package:app/features/dates/data/data_sources/remote/mutations/generated/DeleteImportantDate.graphql.dart';
+import 'package:app/features/dates/data/data_sources/remote/mutations/generated/SetGiftIdeaStatus.graphql.dart';
+import 'package:app/features/dates/data/data_sources/remote/queries/generated/GiftIdeas.graphql.dart';
+import 'package:app/features/dates/data/data_sources/remote/queries/generated/Holidays.graphql.dart';
+import 'package:app/features/dates/data/data_sources/remote/queries/generated/ImportantDates.graphql.dart';
 import 'package:network/network.dart';
 
 class DatesDataSource({required final GQLClient _client}) {

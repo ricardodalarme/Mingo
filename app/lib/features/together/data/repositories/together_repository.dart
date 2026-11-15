@@ -1,14 +1,14 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/data/mappers/content_kind_mapper.dart';
+import 'package:app/features/_shared/data/models/content_kind.dart';
+import 'package:app/features/together/data/data_sources/remote/together_data_source.dart';
+import 'package:app/features/together/data/mappers/together_enum_mapper.dart';
+import 'package:app/features/together/data/models/date_idea.dart';
+import 'package:app/features/together/data/models/date_idea_status.dart';
+import 'package:app/features/together/data/models/logistic_item.dart';
+import 'package:app/features/together/data/models/ritual.dart';
 import 'package:clock/clock.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/mappers/content_kind_mapper.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
-import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/together_data_source.dart';
-import 'package:flutter_bloc_starter/features/together/data/mappers/together_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea_status.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/logistic_item.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/ritual.dart';
 import 'package:logger/logger.dart';
 
 class TogetherRepository({required final TogetherDataSource _dataSource}) {

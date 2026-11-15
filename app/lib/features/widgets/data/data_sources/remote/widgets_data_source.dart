@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
+import 'package:app/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
+import 'package:app/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
 import 'package:network/network.dart';
 
 class WidgetsDataSource({required final GQLClient _client}) {

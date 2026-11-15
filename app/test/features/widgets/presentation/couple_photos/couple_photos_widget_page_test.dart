@@ -1,14 +1,14 @@
 import 'dart:typed_data';
 
+import 'package:app/features/widgets/data/models/widget_models.dart';
+import 'package:app/features/widgets/data/models/widget_payload.dart';
+import 'package:app/features/widgets/data/repositories/couple_photo_repository.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
+import 'package:app/features/widgets/presentation/couple_photos/couple_photos_widget_page.dart';
+import 'package:app/features/widgets/presentation/couple_photos/cubit/couple_photos_widget_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:file_picker_service/file_picker_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/couple_photo_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/couple_photos/couple_photos_widget_page.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/couple_photos/cubit/couple_photos_widget_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -82,8 +82,12 @@ void main() {
         bytes: any(named: 'bytes'),
         contentType: any(named: 'contentType'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => couplePhotoRepository.remove()).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => couplePhotoRepository.remove()).thenAnswer((_) async {
+      return;
+    });
     when(
       () => filePickerService.pickFile(
         dialogTitle: any(named: 'dialogTitle'),

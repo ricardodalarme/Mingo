@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/programs/data/models/program.dart';
 
 extension EnumLessonStatusMapper on EnumLessonStatus {
   LessonStatus toModel() => switch (this) {

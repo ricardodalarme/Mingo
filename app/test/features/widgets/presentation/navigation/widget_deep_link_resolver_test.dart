@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/navigation/widget_deep_link_resolver.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/widgets/presentation/navigation/widget_deep_link_resolver.dart';
+import 'package:app/router/app_router.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

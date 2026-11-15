@@ -1,9 +1,9 @@
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
+import 'package:app/features/history/presentation/variations/counter_variations_page.dart';
+import 'package:app/features/history/presentation/variations/cubit/counter_variations_cubit.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/variations/counter_variations_page.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/variations/cubit/counter_variations_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -22,7 +22,9 @@ void main() {
         profileId: any(named: 'profileId'),
         phase: any(named: 'phase'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     final cubit = CounterVariationsCubit(historyRepository: repository);
     await cubit.load();

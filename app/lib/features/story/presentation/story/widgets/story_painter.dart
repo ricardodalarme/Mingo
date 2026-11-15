@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:app/features/story/data/models/story_card.dart';
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/story/data/models/story_card.dart';
 
 const double _exportWidth = 1080;
 const double _exportHeight = 1920;

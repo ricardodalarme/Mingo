@@ -1,7 +1,7 @@
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// The one lock shown in place of a Plus feature; tapping it opens the plans.
 ///

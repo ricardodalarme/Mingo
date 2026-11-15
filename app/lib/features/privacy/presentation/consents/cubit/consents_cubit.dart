@@ -1,8 +1,8 @@
+import 'package:app/features/privacy/data/models/consent.dart';
+import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/repositories/privacy_repository.dart';
 
 part 'consents_state.dart';
 

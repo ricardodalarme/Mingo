@@ -1,6 +1,6 @@
+import 'package:app/features/fight_style/data/data_sources/remote/fight_style_data_source.dart';
+import 'package:app/features/fight_style/data/repositories/fight_style_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/data_sources/remote/fight_style_data_source.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/repositories/fight_style_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';
@@ -26,7 +26,9 @@ void main() {
 
   test('inserts the first ranking and never updates another row', () async {
     when(() => dataSource.getResult()).thenAnswer((_) async => null);
-    when(() => dataSource.insertResult(any())).thenAnswer((_) async {});
+    when(() => dataSource.insertResult(any())).thenAnswer((_) async {
+      return;
+    });
 
     await repository.saveRanked(first);
 
@@ -46,7 +48,9 @@ void main() {
         id: any(named: 'id'),
         ranked: any(named: 'ranked'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await repository.saveRanked(retaken);
 
@@ -68,7 +72,9 @@ void main() {
         id: any(named: 'id'),
         ranked: any(named: 'ranked'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await repository.saveRanked(retaken);
 
@@ -93,7 +99,9 @@ void main() {
         id: any(named: 'id'),
         note: any(named: 'note'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await repository.addRepairTool('  Você tende a se afastar primeiro.  ');
 

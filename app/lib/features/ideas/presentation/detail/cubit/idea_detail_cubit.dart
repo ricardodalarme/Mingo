@@ -1,15 +1,15 @@
+import 'package:app/features/ideas/data/models/idea.dart';
+import 'package:app/features/ideas/data/repositories/ideas_repository.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/profile/data/models/relationship_goal.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/ideas/data/models/idea.dart';
-import 'package:flutter_bloc_starter/features/ideas/data/repositories/ideas_repository.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 
 part 'idea_detail_state.dart';
 

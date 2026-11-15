@@ -1,5 +1,5 @@
+import 'package:app/features/onboarding/presentation/intro/cubit/intro_cubit.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/onboarding/presentation/intro/cubit/intro_cubit.dart';
 
 /// The shared frame of the first-use screens: step dashes, a highlighted title and a footer.
 class const IntroScaffold({

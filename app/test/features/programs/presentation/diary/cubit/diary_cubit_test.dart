@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:app/features/programs/data/models/diary_entry.dart';
+import 'package:app/features/programs/data/repositories/programs_repository.dart';
+import 'package:app/features/programs/presentation/diary/cubit/diary_cubit.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/diary_entry.dart';
-import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/presentation/diary/cubit/diary_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -24,7 +24,9 @@ void main() {
   setUp(() {
     repository = _MockProgramsRepository();
     when(() => repository.getDiaryEntries()).thenAnswer((_) async => []);
-    when(() => repository.deleteDiaryEntry(any())).thenAnswer((_) async {});
+    when(() => repository.deleteDiaryEntry(any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => repository.saveDiaryEntry(
         entryDate: any(named: 'entryDate'),

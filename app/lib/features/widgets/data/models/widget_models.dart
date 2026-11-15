@@ -1,5 +1,5 @@
+import 'package:app/features/widgets/data/models/widget_payload.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 
 /// Segment tab in the widgets gallery (`X-145`).
 enum WidgetGallerySegment() {

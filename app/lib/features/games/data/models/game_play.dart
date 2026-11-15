@@ -1,7 +1,7 @@
+import 'package:app/features/games/data/models/game_item.dart';
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/game_session.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_session.dart';
 
 /// The stored answer for a question the person chose to skip.
 const String gameSkippedAnswer = '__skipped__';

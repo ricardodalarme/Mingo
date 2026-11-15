@@ -1,7 +1,7 @@
+import 'package:app/features/widgets/data/models/widget_models.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
+import 'package:app/features/widgets/presentation/lock_screen/cubit/lock_screen_widget_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/lock_screen/cubit/lock_screen_widget_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

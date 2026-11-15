@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:app/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:preferences_service/preferences_service.dart';

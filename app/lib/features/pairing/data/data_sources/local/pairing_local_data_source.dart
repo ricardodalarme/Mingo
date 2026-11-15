@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_bloc_starter/features/pairing/data/models/active_invite.dart';
+import 'package:app/features/pairing/data/models/active_invite.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 
 class PairingLocalDataSource({required final SecureStorageService _secureStorageService}) {

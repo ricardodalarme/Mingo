@@ -1,10 +1,10 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/profile_data_source.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/profile_data_source.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

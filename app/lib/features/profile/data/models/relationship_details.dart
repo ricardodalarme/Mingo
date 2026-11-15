@@ -1,6 +1,6 @@
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/profile/data/models/relationship_status.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_status.dart';
 
 /// The relationship fields shown on the relationship settings screen.
 final class const RelationshipDetails({

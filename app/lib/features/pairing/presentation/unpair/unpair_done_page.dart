@@ -1,10 +1,10 @@
+import 'package:app/features/pairing/presentation/unpair/cubit/unpair_done_cubit.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/cubit/unpair_done_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
 class const UnpairDonePage({super.key}) extends StatelessWidget implements AutoRouteWrapper {

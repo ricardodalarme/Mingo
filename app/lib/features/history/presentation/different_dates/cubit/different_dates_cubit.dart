@@ -1,8 +1,8 @@
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
 
 part 'different_dates_state.dart';
 

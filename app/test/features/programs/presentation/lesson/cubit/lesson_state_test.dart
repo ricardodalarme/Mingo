@@ -1,6 +1,6 @@
+import 'package:app/features/programs/data/models/program.dart';
+import 'package:app/features/programs/presentation/lesson/cubit/lesson_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
-import 'package:flutter_bloc_starter/features/programs/presentation/lesson/cubit/lesson_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

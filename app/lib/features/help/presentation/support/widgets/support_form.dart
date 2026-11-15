@@ -1,9 +1,9 @@
+import 'package:app/features/help/data/models/support_topic.dart';
+import 'package:app/features/help/presentation/support/cubit/support_cubit.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
-import 'package:flutter_bloc_starter/features/help/presentation/support/cubit/support_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class const SupportForm({super.key}) extends StatelessWidget {
   @override

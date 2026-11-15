@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/history/data/models/story_event_kind.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
+import 'package:app/features/history/presentation/story_dates/cubit/story_dates_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
-import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/story_dates/cubit/story_dates_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -47,7 +47,9 @@ void main() {
         coupleId: any(named: 'coupleId'),
         updateTogetherSince: any(named: 'updateTogetherSince'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   StoryDatesCubit build() {

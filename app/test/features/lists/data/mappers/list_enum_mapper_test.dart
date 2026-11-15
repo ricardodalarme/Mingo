@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/mappers/list_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/lists/data/mappers/list_enum_mapper.dart';
+import 'package:app/features/lists/data/models/list_item_status.dart';
+import 'package:app/features/lists/data/models/list_kind.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -16,7 +16,7 @@ void main() {
     }
   });
   test('an unknown value is an error, not a guess', () {
-    expect(() => EnumListKind.$unknown.toModel(), throwsFormatException);
-    expect(() => EnumListItemStatus.$unknown.toModel(), throwsFormatException);
+    expect(EnumListKind.$unknown.toModel, throwsFormatException);
+    expect(EnumListItemStatus.$unknown.toModel, throwsFormatException);
   });
 }

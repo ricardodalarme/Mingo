@@ -1,6 +1,6 @@
+import 'package:app/features/dates/data/models/important_date_kind.dart';
+import 'package:app/features/gifts/data/models/gift_idea_status.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea_status.dart';
 
 /// The days before a date that a reminder is sent, offered as choices.
 const List<int> remindDayOptions = [30, 7, 1, 0];

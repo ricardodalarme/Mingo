@@ -1,9 +1,9 @@
+import 'package:app/features/pairing/data/models/active_invite.dart';
+import 'package:app/features/pairing/presentation/invite/cubit/invite_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/models/active_invite.dart';
-import 'package:flutter_bloc_starter/features/pairing/presentation/invite/cubit/invite_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// The invite message the partner receives, shared as the share sheet text.
 String inviteMessage(BuildContext context, ActiveInvite invite) =>

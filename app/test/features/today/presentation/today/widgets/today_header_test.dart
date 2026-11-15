@@ -1,8 +1,8 @@
+import 'package:app/features/today/data/models/today_home.dart';
+import 'package:app/features/today/presentation/today/widgets/today_header.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
-import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/today_header.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../test_helpers/pump_app.dart';

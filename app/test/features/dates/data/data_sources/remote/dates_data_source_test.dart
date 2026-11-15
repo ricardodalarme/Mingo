@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/dates_data_source.dart';
+import 'package:app/features/dates/data/data_sources/remote/dates_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network/network.dart';
 

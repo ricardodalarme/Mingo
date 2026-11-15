@@ -1,9 +1,9 @@
+import 'package:app/features/lists/data/models/list_kind.dart';
+import 'package:app/features/lists/presentation/create_list/cubit/create_list_sheet_cubit.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/create_list/cubit/create_list_sheet_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// The sheet that names a new list, chooses its kind and who can see it.
 class const CreateListSheet({

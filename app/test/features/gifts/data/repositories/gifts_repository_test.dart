@@ -1,9 +1,9 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/fragments/generated/GiftWishFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/gifts_data_source.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/gifts/data/data_sources/remote/fragments/generated/GiftWishFragment.graphql.dart';
+import 'package:app/features/gifts/data/data_sources/remote/gifts_data_source.dart';
+import 'package:app/features/gifts/data/models/gift_budget.dart';
+import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -145,7 +145,9 @@ void main() {
         budget: any(named: 'budget'),
       ),
     ).thenAnswer((_) async => gift());
-    when(() => dataSource.deleteGiftWish(any())).thenAnswer((_) async {});
+    when(() => dataSource.deleteGiftWish(any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => dataSource.setGiftWishVisibility(
         id: any(named: 'id'),

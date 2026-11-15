@@ -1,7 +1,7 @@
+import 'package:app/features/repair/data/models/pause_return.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
+import 'package:app/features/repair/presentation/pause/cubit/pause_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/pause_return.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/pause/cubit/pause_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -20,7 +20,9 @@ void main() {
         returnAt: any(named: 'returnAt'),
         message: any(named: 'message'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   PauseCubit build() => PauseCubit(repairRepository: repository);

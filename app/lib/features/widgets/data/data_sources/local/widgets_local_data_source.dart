@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
+import 'package:app/features/widgets/data/models/widget_models.dart';
+import 'package:app/features/widgets/data/models/widget_payload.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 /// Persists device-local widget preferences and the last sanitized payload for offline fallback.

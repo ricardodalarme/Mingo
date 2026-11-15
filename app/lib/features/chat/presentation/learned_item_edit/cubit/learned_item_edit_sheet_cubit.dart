@@ -1,6 +1,6 @@
+import 'package:app/features/chat/data/models/learned_item.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 part 'learned_item_edit_sheet_state.dart';

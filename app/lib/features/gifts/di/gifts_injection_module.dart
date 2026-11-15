@@ -1,8 +1,8 @@
+import 'package:app/features/gifts/data/data_sources/remote/gifts_data_source.dart';
+import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
+import 'package:app/features/gifts/presentation/gifts/cubit/gifts_cubit.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/data_sources/remote/gifts_data_source.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
-import 'package:flutter_bloc_starter/features/gifts/presentation/gifts/cubit/gifts_cubit.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:network/network.dart';
 
 class GiftsInjectionModule() implements InjectionModule {

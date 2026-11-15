@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.dart';
+import 'package:app/router/observers/analytics_router_observer.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

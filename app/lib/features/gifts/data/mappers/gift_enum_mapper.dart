@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea_status.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/gifts/data/models/gift_budget.dart';
+import 'package:app/features/gifts/data/models/gift_idea_status.dart';
 
 extension EnumGiftBudgetMapper on EnumGiftBudget {
   GiftBudget? toModel() => switch (this) {

@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/devices/data/data_sources/remote/mutations/generated/RevokeDevice.graphql.dart';
-import 'package:flutter_bloc_starter/features/devices/data/data_sources/remote/queries/generated/MyDevices.graphql.dart';
+import 'package:app/features/devices/data/data_sources/remote/mutations/generated/RevokeDevice.graphql.dart';
+import 'package:app/features/devices/data/data_sources/remote/queries/generated/MyDevices.graphql.dart';
 import 'package:network/network.dart';
 
 class DevicesDataSource({required final GQLClient _client}) {

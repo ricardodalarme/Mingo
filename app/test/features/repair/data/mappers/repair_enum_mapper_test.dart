@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/mappers/repair_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/guided_session.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/received_signal.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/repair_path.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/repair/data/mappers/repair_enum_mapper.dart';
+import 'package:app/features/repair/data/models/guided_session.dart';
+import 'package:app/features/repair/data/models/received_signal.dart';
+import 'package:app/features/repair/data/models/repair_path.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

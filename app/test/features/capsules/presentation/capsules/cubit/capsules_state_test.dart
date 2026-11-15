@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/capsules/data/models/capsule.dart';
-import 'package:flutter_bloc_starter/features/capsules/presentation/capsules/cubit/capsules_cubit.dart';
+import 'package:app/features/capsules/data/models/capsule.dart';
+import 'package:app/features/capsules/presentation/capsules/cubit/capsules_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 

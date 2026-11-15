@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/onboarding/presentation/first_slip/cubit/first_slip_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/onboarding/presentation/first_slip/cubit/first_slip_cubit.dart';
+import 'package:app/features/settings/data/models/settings.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -23,14 +23,18 @@ void main() {
     slipRepository = _MockSlipRepository();
     settingsRepository = _MockSettingsRepository();
     when(() => settingsRepository.get()).thenReturn(const Settings.empty());
-    when(() => settingsRepository.save(any())).thenAnswer((_) async {});
+    when(() => settingsRepository.save(any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => slipRepository.keepOnDevice(
         id: any(named: 'id'),
         body: any(named: 'body'),
         createdAt: any(named: 'createdAt'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   FirstSlipCubit build() =>

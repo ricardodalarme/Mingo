@@ -1,12 +1,12 @@
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
+import 'package:app/features/repair/data/models/received_signal.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/received_signal.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
 
 part 'received_signals_state.dart';
 

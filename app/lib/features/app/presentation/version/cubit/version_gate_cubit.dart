@@ -1,7 +1,7 @@
+import 'package:app/features/app/data/repositories/app_config_repository.dart';
 import 'package:app_info_service/app_info_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/app/data/repositories/app_config_repository.dart';
 
 part 'version_gate_state.dart';
 

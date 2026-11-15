@@ -1,17 +1,17 @@
 import 'dart:async';
 
+import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
+import 'package:app/features/chat/data/models/chat_models.dart';
+import 'package:app/features/chat/data/models/learned_item.dart';
+import 'package:app/features/chat/data/repositories/chat_repository.dart';
+import 'package:app/features/chat/data/repositories/learned_items_repository.dart';
+import 'package:app/features/chat/presentation/chat/chat_page.dart';
+import 'package:app/features/chat/presentation/chat/cubit/chat_cubit.dart';
+import 'package:app/features/chat/presentation/save_learning/save_learning_sheet.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:connectivity_service/connectivity_service.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/chat/chat_page.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/chat/cubit/chat_cubit.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/save_learning/save_learning_sheet.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -49,7 +49,9 @@ void main() {
         text: any(named: 'text'),
         excerpt: any(named: 'excerpt'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     when(() => connectivityService.onStatusChange).thenAnswer((_) => connectivity.stream);
   });
 

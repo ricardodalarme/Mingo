@@ -1,9 +1,9 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/learned_items_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/AddLearnedItem.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/DeleteLearnedItem.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/SetLearnedItemStatus.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/UpdateLearnedItem.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/chat/data/data_sources/remote/learned_items_data_source.dart';
+import 'package:app/features/chat/data/data_sources/remote/mutations/generated/AddLearnedItem.graphql.dart';
+import 'package:app/features/chat/data/data_sources/remote/mutations/generated/DeleteLearnedItem.graphql.dart';
+import 'package:app/features/chat/data/data_sources/remote/mutations/generated/SetLearnedItemStatus.graphql.dart';
+import 'package:app/features/chat/data/data_sources/remote/mutations/generated/UpdateLearnedItem.graphql.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network/network.dart';
 

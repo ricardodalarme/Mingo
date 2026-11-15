@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/SetLogisticItemAssignee.graphql.dart';
-import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/mutations/generated/SetLogisticItemDone.graphql.dart';
-import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/queries/generated/MyCouple.graphql.dart';
-import 'package:flutter_bloc_starter/features/together/data/data_sources/remote/together_data_source.dart';
+import 'package:app/features/together/data/data_sources/remote/mutations/generated/SetLogisticItemAssignee.graphql.dart';
+import 'package:app/features/together/data/data_sources/remote/mutations/generated/SetLogisticItemDone.graphql.dart';
+import 'package:app/features/together/data/data_sources/remote/queries/generated/MyCouple.graphql.dart';
+import 'package:app/features/together/data/data_sources/remote/together_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';

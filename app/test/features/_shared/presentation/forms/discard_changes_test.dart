@@ -1,6 +1,6 @@
+import 'package:app/features/_shared/presentation/forms/discard_changes.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/_shared/presentation/forms/discard_changes.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../test_helpers/pump_app.dart';

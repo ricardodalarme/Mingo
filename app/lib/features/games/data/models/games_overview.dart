@@ -1,6 +1,6 @@
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/game_session.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_session.dart';
 
 /// Where one game stands for the couple, from the point of view of the person reading.
 enum GameEntryState() {

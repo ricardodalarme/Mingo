@@ -1,9 +1,9 @@
+import 'package:app/features/_shared/presentation/forms/discard_changes.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
+import 'package:app/features/slips/presentation/quick_slip/quick_slip_page.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/_shared/presentation/forms/discard_changes.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/quick_slip_page.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -23,7 +23,9 @@ void main() {
         now: any(named: 'now'),
         category: any(named: 'category'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     final cubit = QuickSlipCubit(slipRepository: repository)
       ..start()
       ..onTextChanged('Fez café');

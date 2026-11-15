@@ -1,14 +1,14 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/fragments/generated/ListFragment.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/fragments/generated/ListItemFragment.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/lists_data_source.dart';
+import 'package:app/features/lists/data/data_sources/remote/queries/generated/ListDetail.graphql.dart';
+import 'package:app/features/lists/data/models/list_item_status.dart';
+import 'package:app/features/lists/data/models/list_kind.dart';
+import 'package:app/features/lists/data/models/list_models.dart';
+import 'package:app/features/lists/data/repositories/lists_repository.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/fragments/generated/ListFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/fragments/generated/ListItemFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/queries/generated/ListDetail.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
-import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -199,7 +199,9 @@ void main() {
         title: any(named: 'title'),
       ),
     ).thenAnswer((_) async => list(title: 'Nossa viagem'));
-    when(() => dataSource.deleteList(any())).thenAnswer((_) async {});
+    when(() => dataSource.deleteList(any())).thenAnswer((_) async {
+      return;
+    });
 
     final renamed = await repository.renameList(id: 'l1', title: '  Nossa viagem ');
     await repository.deleteList('l1');
@@ -240,7 +242,9 @@ void main() {
         status: any(named: 'status'),
       ),
     ).thenAnswer((_) async => item(status: EnumListItemStatus.done));
-    when(() => dataSource.deleteItem(any())).thenAnswer((_) async {});
+    when(() => dataSource.deleteItem(any())).thenAnswer((_) async {
+      return;
+    });
 
     final added = await repository.addItem(id: 'i1', listId: 'l1', title: '  Lisboa ', position: 2);
     final changed = await repository.setItemStatus(id: 'i1', status: ListItemStatus.done);

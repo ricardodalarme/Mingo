@@ -1,21 +1,21 @@
 import 'dart:async';
 
+import 'package:app/features/guides/data/data_sources/local/guide_session.dart';
+import 'package:app/features/guides/data/models/guide_catalogue.dart';
+import 'package:app/features/guides/data/models/guide_progress.dart';
+import 'package:app/features/guides/data/repositories/guides_repository.dart';
+import 'package:app/features/guides/presentation/viewer/cubit/guide_cubit.dart';
+import 'package:app/features/guides/presentation/viewer/guide_page.dart';
+import 'package:app/features/plus/data/models/plus_state.dart';
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/repair/presentation/soft_start/cubit/soft_start_cubit.dart';
+import 'package:app/features/repair/presentation/soft_start/soft_start_page.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guide_session.dart';
-import 'package:flutter_bloc_starter/features/guides/data/models/guide_catalogue.dart';
-import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
-import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';
-import 'package:flutter_bloc_starter/features/guides/presentation/viewer/cubit/guide_cubit.dart';
-import 'package:flutter_bloc_starter/features/guides/presentation/viewer/guide_page.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/cubit/soft_start_cubit.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/soft_start/soft_start_page.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -63,7 +63,9 @@ void main() {
     when(() => repository.getGuide(any(), languageCode: any(named: 'languageCode')))
         .thenAnswer((_) async => money);
     when(() => repository.getProgress(any())).thenAnswer((_) async => null);
-    when(() => repository.saveProgress(any(), any())).thenAnswer((_) async {});
+    when(() => repository.saveProgress(any(), any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => repository.savePrep(
         prepId: any(named: 'prepId'),
@@ -211,6 +213,7 @@ void main() {
     when(() => repository.getProgress(any())).thenAnswer((_) async => stored);
     when(() => repository.saveProgress(any(), any())).thenAnswer((invocation) async {
       stored = invocation.positionalArguments[1] as GuideProgress;
+      return;
     });
     final cubit = await startCubit();
     addTearDown(cubit.close);

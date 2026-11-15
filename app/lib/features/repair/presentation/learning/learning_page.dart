@@ -1,12 +1,12 @@
+import 'package:app/features/repair/data/models/guided_session.dart';
+import 'package:app/features/repair/presentation/learning/cubit/learning_cubit.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/guided_session.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/learning/cubit/learning_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// Private learnings: write one after a repair and delete any time.
 @RoutePage()

@@ -1,12 +1,12 @@
 import 'dart:async';
 
+import 'package:app/features/chat/data/models/chat_models.dart';
+import 'package:app/features/chat/data/models/hard_conversation_draft.dart';
+import 'package:app/features/chat/data/repositories/chat_repository.dart';
+import 'package:app/features/chat/data/repositories/hard_conversation_repository.dart';
+import 'package:app/features/chat/presentation/hard_conversation/cubit/hard_conversation_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/hard_conversation_draft.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/hard_conversation_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/hard_conversation/cubit/hard_conversation_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -41,8 +41,12 @@ void main() {
         .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: true, hasPlus: true));
     when(repository.readDraft).thenAnswer((_) async => null);
     when(repository.clearDraft).thenAnswer((_) async {});
-    when(() => repository.saveDraft(any())).thenAnswer((_) async {});
-    when(() => repository.sendAsNote(any())).thenAnswer((_) async {});
+    when(() => repository.saveDraft(any())).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.sendAsNote(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   void stubReply(Stream<ChatEvent> Function() events) {

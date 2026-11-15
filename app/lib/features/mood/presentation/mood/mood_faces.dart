@@ -1,5 +1,5 @@
+import 'package:app/features/mood/data/models/mood_kind.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
 
 extension MoodFace on MoodKind {
   FaceKind get face => switch (this) {

@@ -1,8 +1,8 @@
+import 'package:app/features/pairing/presentation/relationship/cubit/relationship_changed_cubit.dart';
+import 'package:app/features/profile/data/models/relationship_details.dart';
+import 'package:app/features/profile/data/models/relationship_status.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/pairing/presentation/relationship/cubit/relationship_changed_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_details.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_status.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -54,7 +54,9 @@ void main() {
         profileId: any(named: 'profileId'),
         status: any(named: 'status'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     await cubit.load();
     cubit.choose(RelationshipStatus.ended);
 

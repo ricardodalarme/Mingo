@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/guides/data/models/guide_catalogue.dart';
+import 'package:app/features/guides/data/models/guide_catalogue.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

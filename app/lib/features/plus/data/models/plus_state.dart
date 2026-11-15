@@ -1,6 +1,6 @@
+import 'package:app/features/plus/data/models/plus_plan.dart';
+import 'package:app/features/plus/data/models/plus_status.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_plan.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_status.dart';
 
 /// What the person has: Plus (their own or their partner's) or the free plan with its monthly room.
 final class const PlusState({

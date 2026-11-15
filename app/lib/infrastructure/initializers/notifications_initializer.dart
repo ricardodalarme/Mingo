@@ -1,7 +1,7 @@
 import 'dart:developer';
 
+import 'package:app/infrastructure/initializers/firebase_initializer.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/infrastructure/initializers/firebase_initializer.dart';
 import 'package:logger/logger.dart';
 import 'package:notification_service/notification_service.dart';
 

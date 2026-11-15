@@ -1,9 +1,9 @@
+import 'package:app/features/games/data/data_sources/remote/games_data_source.dart';
+import 'package:app/features/games/data/repositories/games_repository.dart';
+import 'package:app/features/games/presentation/game/cubit/game_cubit.dart';
+import 'package:app/features/games/presentation/hub/cubit/games_cubit.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/games/data/data_sources/remote/games_data_source.dart';
-import 'package:flutter_bloc_starter/features/games/data/repositories/games_repository.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/cubit/game_cubit.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/hub/cubit/games_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:network/network.dart';
 
 class GamesInjectionModule() implements InjectionModule {

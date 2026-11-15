@@ -1,7 +1,7 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
 
 part 'sign_in_state.dart';
 

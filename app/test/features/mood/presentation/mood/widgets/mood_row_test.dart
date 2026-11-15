@@ -1,5 +1,5 @@
+import 'package:app/features/mood/presentation/mood/widgets/mood_row.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/mood/presentation/mood/widgets/mood_row.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../test_helpers/pump_app.dart';

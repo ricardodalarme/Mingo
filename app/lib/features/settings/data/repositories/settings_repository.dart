@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/settings_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
+import 'package:app/features/settings/data/data_sources/local/settings_local_data_source.dart';
+import 'package:app/features/settings/data/models/settings.dart';
 import 'package:logger/logger.dart';
 
 class SettingsRepository({required final SettingsLocalDataSource _localDataSource}) {

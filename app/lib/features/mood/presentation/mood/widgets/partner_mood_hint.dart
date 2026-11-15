@@ -1,9 +1,9 @@
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/need_kind.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
+import 'package:app/features/mood/presentation/mood/mood_faces.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/need_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
-import 'package:flutter_bloc_starter/features/mood/presentation/mood/mood_faces.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// The partner's shared mood for today, hidden entirely in discreet mode.
 class const PartnerMoodHint({

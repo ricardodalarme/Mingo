@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/queries/generated/CouplePhoto.graphql.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/mappers/couple_photo_mapper.dart';
+import 'package:app/features/widgets/data/data_sources/remote/queries/generated/CouplePhoto.graphql.dart';
+import 'package:app/features/widgets/data/mappers/couple_photo_mapper.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

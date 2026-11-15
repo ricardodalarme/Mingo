@@ -1,6 +1,6 @@
+import 'package:app/features/app/data/repositories/app_config_repository.dart';
+import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.dart';
 import 'package:app_info_service/app_info_service.dart';
-import 'package:flutter_bloc_starter/features/app/data/repositories/app_config_repository.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/version/cubit/version_gate_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

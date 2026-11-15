@@ -1,16 +1,16 @@
 import 'dart:async';
 
+import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
+import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.dart';
+import 'package:app/features/app/presentation/version/update_required_page.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/version/cubit/version_gate_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/version/update_required_page.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Wraps the navigator with the forced-update block, the time-in-app prompt and
 /// the global offline banner.

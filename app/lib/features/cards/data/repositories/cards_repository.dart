@@ -1,12 +1,12 @@
 import 'dart:async';
 
+import 'package:app/features/cards/data/data_sources/remote/cards_data_source.dart';
+import 'package:app/features/cards/data/mappers/card_mapper.dart';
+import 'package:app/features/cards/data/models/card_detail.dart';
+import 'package:app/features/cards/data/models/card_summary.dart';
+import 'package:app/features/cards/data/models/sunday_card.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/cards_data_source.dart';
-import 'package:flutter_bloc_starter/features/cards/data/mappers/card_mapper.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_detail.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:logger/logger.dart';
 
 /// How many cards one page of the history holds.

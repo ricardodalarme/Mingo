@@ -1,8 +1,8 @@
 import 'dart:io';
 
+import 'package:app/l10n/translations.g.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:link_launcher_service/link_launcher_service.dart';
 
 /// The blocking screen for an app below the minimum version. Local drafts are untouched.

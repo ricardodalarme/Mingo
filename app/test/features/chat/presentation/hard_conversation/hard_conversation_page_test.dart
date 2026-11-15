@@ -1,22 +1,22 @@
 import 'dart:async';
 
+import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
+import 'package:app/features/chat/data/models/chat_models.dart';
+import 'package:app/features/chat/data/models/hard_conversation_draft.dart';
+import 'package:app/features/chat/data/repositories/chat_repository.dart';
+import 'package:app/features/chat/data/repositories/hard_conversation_repository.dart';
+import 'package:app/features/chat/presentation/hard_conversation/cubit/hard_conversation_cubit.dart';
+import 'package:app/features/chat/presentation/hard_conversation/hard_conversation_page.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
+import 'package:app/features/repair/presentation/pause/cubit/pause_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_service/connectivity_service.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/hard_conversation_draft.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/hard_conversation_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/hard_conversation/cubit/hard_conversation_cubit.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/hard_conversation/hard_conversation_page.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/pause/cubit/pause_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -69,8 +69,12 @@ void main() {
         .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: true, hasPlus: true));
     when(repository.readDraft).thenAnswer((_) async => null);
     when(repository.clearDraft).thenAnswer((_) async {});
-    when(() => repository.saveDraft(any())).thenAnswer((_) async {});
-    when(() => repository.sendAsNote(any())).thenAnswer((_) async {});
+    when(() => repository.saveDraft(any())).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.sendAsNote(any())).thenAnswer((_) async {
+      return;
+    });
     when(() => connectivityService.onStatusChange).thenAnswer((_) => connectivity.stream);
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
       SystemChannels.platform,

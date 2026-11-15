@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/repair/data/models/pause_return.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/pause/cubit/pause_cubit.dart';
+import 'package:app/features/repair/data/models/pause_return.dart';
+import 'package:app/features/repair/presentation/pause/cubit/pause_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 

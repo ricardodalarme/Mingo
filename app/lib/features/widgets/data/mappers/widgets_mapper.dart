@@ -1,10 +1,10 @@
+import 'package:app/features/mood/data/mappers/mood_enum_mapper.dart';
+import 'package:app/features/profile/data/mappers/relationship_phase_mapper.dart';
+import 'package:app/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
+import 'package:app/features/widgets/data/models/widget_models.dart';
+import 'package:app/features/widgets/data/models/widget_payload.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:clock/clock.dart';
-import 'package:flutter_bloc_starter/features/mood/data/mappers/mood_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/profile/data/mappers/relationship_phase_mapper.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 extension QueryWidgetOverviewMapper on QueryWidgetOverview {
   WidgetOverview toModel({

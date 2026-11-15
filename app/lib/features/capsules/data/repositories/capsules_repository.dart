@@ -1,7 +1,7 @@
+import 'package:app/features/capsules/data/data_sources/remote/capsules_data_source.dart';
+import 'package:app/features/capsules/data/models/capsule.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:clock/clock.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/data_sources/remote/capsules_data_source.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/models/capsule.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:logger/logger.dart';
 
 class CapsulesRepository({

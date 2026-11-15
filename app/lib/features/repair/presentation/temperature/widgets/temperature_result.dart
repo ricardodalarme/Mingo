@@ -1,10 +1,10 @@
+import 'package:app/features/repair/data/models/repair_path.dart';
+import 'package:app/features/repair/presentation/temperature/cubit/temperature_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/repair_path.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/temperature/cubit/temperature_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// The calm outcome of the check; the highest temperatures show care first, never a composer.
 class const TemperatureResult({super.key}) extends StatelessWidget {

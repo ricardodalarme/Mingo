@@ -1,7 +1,7 @@
+import 'package:app/features/connect/data/repositories/connect_repository.dart';
+import 'package:app/features/connect/presentation/touch/cubit/touch_cubit.dart';
+import 'package:app/features/together/data/models/date_idea.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/connect/data/repositories/connect_repository.dart';
-import 'package:flutter_bloc_starter/features/connect/presentation/touch/cubit/touch_cubit.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -16,7 +16,9 @@ void main() {
     when(() => repository.getTouchTopicsEnabled()).thenAnswer((_) async => true);
     when(() => repository.getTouchCards()).thenAnswer((_) async => cards);
     when(() => repository.setTouchTopicsEnabled(enabled: any(named: 'enabled')))
-        .thenAnswer((_) async {});
+        .thenAnswer((_) async {
+          return;
+        });
   });
 
   test('loading with touch on brings the cards', () async {

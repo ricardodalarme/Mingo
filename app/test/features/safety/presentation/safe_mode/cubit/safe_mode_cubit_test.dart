@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/safety/data/repositories/safe_mode_repository.dart';
-import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
+import 'package:app/features/safety/data/repositories/safe_mode_repository.dart';
+import 'package:app/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -10,7 +10,9 @@ void main() {
 
   setUp(() {
     repository = _MockSafeModeRepository();
-    when(() => repository.setOn(value: any(named: 'value'))).thenAnswer((_) async {});
+    when(() => repository.setOn(value: any(named: 'value'))).thenAnswer((_) async {
+      return;
+    });
   });
 
   test('it starts from what the device remembers, so a restart keeps it on', () {

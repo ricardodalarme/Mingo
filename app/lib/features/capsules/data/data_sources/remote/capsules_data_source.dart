@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/capsules/data/data_sources/remote/mutations/generated/AddCapsule.graphql.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/data_sources/remote/mutations/generated/DeleteCapsule.graphql.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/data_sources/remote/queries/generated/Capsules.graphql.dart';
+import 'package:app/features/capsules/data/data_sources/remote/mutations/generated/AddCapsule.graphql.dart';
+import 'package:app/features/capsules/data/data_sources/remote/mutations/generated/DeleteCapsule.graphql.dart';
+import 'package:app/features/capsules/data/data_sources/remote/queries/generated/Capsules.graphql.dart';
 import 'package:network/network.dart';
 
 class CapsulesDataSource({required final GQLClient _client}) {

@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
 
 extension EnumAvatarKindMapper on EnumAvatarKind {
   /// An unknown avatar is shown as initials.

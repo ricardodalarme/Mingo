@@ -1,8 +1,8 @@
+import 'package:app/features/checkin/data/models/checkin_answer.dart';
+import 'package:app/features/checkin/data/models/checkin_week.dart';
+import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
+import 'package:app/features/checkin/presentation/checkin/cubit/checkin_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_answer.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_week.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
-import 'package:flutter_bloc_starter/features/checkin/presentation/checkin/cubit/checkin_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';
@@ -45,8 +45,12 @@ void main() {
   setUp(() {
     repository = _MockCheckinRepository();
     when(() => repository.getWeek()).thenAnswer((_) async => week());
-    when(() => repository.deleteAnswer(any())).thenAnswer((_) async {});
-    when(() => repository.dismissWeek(any())).thenAnswer((_) async {});
+    when(() => repository.deleteAnswer(any())).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.dismissWeek(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   CheckinCubit build() => CheckinCubit(repository: repository);

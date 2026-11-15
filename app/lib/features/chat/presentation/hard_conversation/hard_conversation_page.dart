@@ -1,14 +1,14 @@
+import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
+import 'package:app/features/chat/data/models/hard_conversation_draft.dart';
+import 'package:app/features/chat/presentation/hard_conversation/cubit/hard_conversation_cubit.dart';
+import 'package:app/features/plus/presentation/lock/plus_lock.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/hard_conversation_draft.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/hard_conversation/cubit/hard_conversation_cubit.dart';
-import 'package:flutter_bloc_starter/features/plus/presentation/lock/plus_lock.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Three steps that end with a sentence the person edits and sends themselves.
 @RoutePage()

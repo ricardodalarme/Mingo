@@ -1,6 +1,6 @@
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// Exactly what the partner can and cannot see, with no examples invented.
 @RoutePage()

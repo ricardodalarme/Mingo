@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/mutations/generated/GrantConsent.graphql.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/queries/generated/MyConsents.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/privacy/data/data_sources/remote/mutations/generated/GrantConsent.graphql.dart';
+import 'package:app/features/privacy/data/data_sources/remote/queries/generated/MyConsents.graphql.dart';
 import 'package:network/network.dart';
 
 class PrivacyDataSource({required final GQLClient _client}) {

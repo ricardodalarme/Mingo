@@ -1,14 +1,14 @@
+import 'package:app/features/account/presentation/sign_out/sign_out_dialog.dart';
+import 'package:app/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
+import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
+import 'package:app/features/settings/presentation/home/cubit/settings_home_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/account/presentation/sign_out/sign_out_dialog.dart';
-import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/home/cubit/settings_home_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// The settings root: sections with one line of status each; Safety is always first-level.
 @RoutePage()

@@ -1,9 +1,9 @@
+import 'package:app/features/programs/data/models/diary_entry.dart';
+import 'package:app/features/programs/data/repositories/programs_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/diary_entry.dart';
-import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 part 'diary_state.dart';

@@ -1,12 +1,12 @@
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/game_play.dart';
+import 'package:app/features/games/presentation/game/cubit/game_cubit.dart';
+import 'package:app/features/games/presentation/game/widgets/game_content_view.dart';
+import 'package:app/features/games/presentation/game/widgets/game_kind_l10n.dart';
+import 'package:app/features/games/presentation/game/widgets/game_result_l10n.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/cubit/game_cubit.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_content_view.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_kind_l10n.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_result_l10n.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// The question being answered in a running session.
 class const GameActiveView({required final GamePlay play, super.key}) extends StatelessWidget {

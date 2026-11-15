@@ -1,10 +1,10 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/love_style/data/data_sources/local/love_style_local_data_source.dart';
+import 'package:app/features/love_style/data/data_sources/remote/love_style_data_source.dart';
+import 'package:app/features/love_style/data/repositories/love_style_repository.dart';
+import 'package:app/features/love_style/presentation/exercise/cubit/love_style_cubit.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/local/love_style_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/love_style_data_source.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/repositories/love_style_repository.dart';
-import 'package:flutter_bloc_starter/features/love_style/presentation/exercise/cubit/love_style_cubit.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:network/network.dart';
 import 'package:preferences_service/preferences_service.dart';
 

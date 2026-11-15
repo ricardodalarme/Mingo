@@ -1,7 +1,7 @@
+import 'package:app/features/spice/data/repositories/spice_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/spice/data/repositories/spice_repository.dart';
 
 part 'spice_state.dart';
 

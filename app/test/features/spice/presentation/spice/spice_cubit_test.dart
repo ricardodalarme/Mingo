@@ -1,6 +1,6 @@
+import 'package:app/features/spice/data/repositories/spice_repository.dart';
+import 'package:app/features/spice/presentation/spice/cubit/spice_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/spice/data/repositories/spice_repository.dart';
-import 'package:flutter_bloc_starter/features/spice/presentation/spice/cubit/spice_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -13,7 +13,9 @@ void main() {
     repository = _MockSpiceRepository();
     when(() => repository.isHidden).thenReturn(false);
     when(repository.getView).thenAnswer((_) async => const SpiceView(stage: SpiceStage.off));
-    when(() => repository.setEnabled(enabled: any(named: 'enabled'))).thenAnswer((_) async {});
+    when(() => repository.setEnabled(enabled: any(named: 'enabled'))).thenAnswer((_) async {
+      return;
+    });
   });
 
   test('safe mode hides the section and reads nothing', () async {

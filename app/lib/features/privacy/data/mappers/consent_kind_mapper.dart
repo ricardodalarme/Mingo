@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/privacy/data/models/consent.dart';
 
 /// Converts the consent kinds the database stores into the app's enum and back.
 extension RemoteConsentKindMapper on EnumConsentKind {

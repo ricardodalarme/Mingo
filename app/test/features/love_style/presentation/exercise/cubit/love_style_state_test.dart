@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/love_style/presentation/exercise/cubit/love_style_cubit.dart';
+import 'package:app/features/love_style/presentation/exercise/cubit/love_style_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

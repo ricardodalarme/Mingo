@@ -1,10 +1,10 @@
+import 'package:app/features/guides/data/models/guide.dart';
+import 'package:app/features/guides/data/repositories/guides_repository.dart';
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/guides/data/models/guide.dart';
-import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 part 'guides_state.dart';
 

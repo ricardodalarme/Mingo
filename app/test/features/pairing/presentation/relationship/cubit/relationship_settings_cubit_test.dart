@@ -1,11 +1,11 @@
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/pairing/presentation/relationship/cubit/relationship_settings_cubit.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
+import 'package:app/features/profile/data/models/relationship_details.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/presentation/relationship/cubit/relationship_settings_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_details.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -88,7 +88,9 @@ void main() {
         profileId: any(named: 'profileId'),
         phase: any(named: 'phase'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await cubit.onPhaseChanged(RelationshipPhase.married);
 
@@ -116,7 +118,9 @@ void main() {
         profileId: any(named: 'profileId'),
         togetherSince: any(named: 'togetherSince'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await cubit.onDateChanged(DateTime(2025, 1, 2));
 
@@ -154,7 +158,9 @@ void main() {
         profileId: any(named: 'profileId'),
         togetherSince: any(named: 'togetherSince'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     final future = DateTime(2026, 4, 9);
 
     await cubit.onDateChanged(future);

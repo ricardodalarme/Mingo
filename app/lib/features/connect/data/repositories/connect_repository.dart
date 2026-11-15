@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
-import 'package:flutter_bloc_starter/features/connect/data/data_sources/remote/connect_data_source.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
+import 'package:app/features/_shared/data/models/content_kind.dart';
+import 'package:app/features/connect/data/data_sources/remote/connect_data_source.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/together/data/models/date_idea.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:logger/logger.dart';
 
 class ConnectRepository({

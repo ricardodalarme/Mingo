@@ -1,6 +1,6 @@
+import 'package:app/features/lists/data/models/list_item_status.dart';
+import 'package:app/features/lists/data/models/list_kind.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
 
 /// The longest list title the server accepts.
 const int listTitleMaxLength = 80;

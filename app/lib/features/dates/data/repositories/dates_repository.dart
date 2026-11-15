@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/dates_data_source.dart';
-import 'package:flutter_bloc_starter/features/dates/data/mappers/important_date_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/mappers/gift_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea_status.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
+import 'package:app/features/dates/data/data_sources/remote/dates_data_source.dart';
+import 'package:app/features/dates/data/mappers/important_date_enum_mapper.dart';
+import 'package:app/features/dates/data/models/dates_models.dart';
+import 'package:app/features/dates/data/models/important_date_kind.dart';
+import 'package:app/features/gifts/data/mappers/gift_enum_mapper.dart';
+import 'package:app/features/gifts/data/models/gift_idea_status.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:logger/logger.dart';
 
 class DatesRepository({

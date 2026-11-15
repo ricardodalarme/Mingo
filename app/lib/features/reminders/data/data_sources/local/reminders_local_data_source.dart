@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/ritual_schedule.dart';
+import 'package:app/features/reminders/data/models/reminder_preferences.dart';
+import 'package:app/features/reminders/data/models/ritual_schedule.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 class RemindersLocalDataSource({required final PreferencesService _preferencesService}) {

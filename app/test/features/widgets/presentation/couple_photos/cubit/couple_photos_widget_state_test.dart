@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:flutter_bloc_starter/features/widgets/presentation/couple_photos/cubit/couple_photos_widget_cubit.dart';
+import 'package:app/features/widgets/presentation/couple_photos/cubit/couple_photos_widget_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

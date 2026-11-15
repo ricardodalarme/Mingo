@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_finished_view.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:app/features/games/data/models/game_item.dart';
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/game_play.dart';
+import 'package:app/features/games/presentation/game/widgets/game_finished_view.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../test_helpers/pump_app.dart';

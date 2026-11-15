@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/notes/data/data_sources/remote/notes_data_source.dart';
-import 'package:flutter_bloc_starter/features/notes/data/mappers/message_kind_mapper.dart';
-import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/notes/data/data_sources/remote/notes_data_source.dart';
+import 'package:app/features/notes/data/mappers/message_kind_mapper.dart';
+import 'package:app/features/notes/data/models/sent_message.dart';
 import 'package:logger/logger.dart';
 import 'package:storage_service/storage_service.dart';
 import 'package:uuid/uuid.dart';

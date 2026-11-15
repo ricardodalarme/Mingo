@@ -1,13 +1,13 @@
+import 'package:app/features/dates/data/models/dates_models.dart';
+import 'package:app/features/dates/data/models/important_date_kind.dart';
+import 'package:app/features/dates/data/repositories/dates_repository.dart';
+import 'package:app/features/dates/presentation/dates/cubit/dates_cubit.dart';
+import 'package:app/features/dates/presentation/dates/dates_page.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
-import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
-import 'package:flutter_bloc_starter/features/dates/presentation/dates/cubit/dates_cubit.dart';
-import 'package:flutter_bloc_starter/features/dates/presentation/dates/dates_page.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -31,7 +31,9 @@ void main() {
     when(() => repository.getHolidays(any())).thenAnswer((_) async => const []);
     when(() => profile.getMySettings())
         .thenAnswer((_) async => const AccountSettings(theme: .rose));
-    when(() => repository.deleteDate(any())).thenAnswer((_) async {});
+    when(() => repository.deleteDate(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   Future<DatesCubit> build() async {

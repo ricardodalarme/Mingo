@@ -1,8 +1,8 @@
+import 'package:app/features/gifts/data/models/gift_budget.dart';
+import 'package:app/features/gifts/data/models/gift_idea.dart';
+import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
+import 'package:app/features/gifts/presentation/gifts/cubit/gifts_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
-import 'package:flutter_bloc_starter/features/gifts/presentation/gifts/cubit/gifts_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -53,7 +53,9 @@ void main() {
             budget: invocation.namedArguments[#budget] as GiftBudget?,
           ),
     );
-    when(() => repository.deleteGiftWish(any())).thenAnswer((_) async {});
+    when(() => repository.deleteGiftWish(any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => repository.setGiftWishVisibility(
         id: any(named: 'id'),

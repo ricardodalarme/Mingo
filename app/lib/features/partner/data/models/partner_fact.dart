@@ -1,5 +1,5 @@
+import 'package:app/features/partner/data/models/partner_fact_category.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact_category.dart';
 
 /// The longest label and value the server accepts.
 const int partnerFactLabelMaxLength = 80;

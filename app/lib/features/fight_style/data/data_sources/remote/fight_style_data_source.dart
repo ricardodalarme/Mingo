@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/fight_style/data/data_sources/remote/mutations/generated/AddRepairTool.graphql.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/data_sources/remote/mutations/generated/InsertFightStyleResult.graphql.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/data_sources/remote/mutations/generated/UpdateFightStyleResult.graphql.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/data_sources/remote/queries/generated/FightStyleResult.graphql.dart';
+import 'package:app/features/fight_style/data/data_sources/remote/mutations/generated/AddRepairTool.graphql.dart';
+import 'package:app/features/fight_style/data/data_sources/remote/mutations/generated/InsertFightStyleResult.graphql.dart';
+import 'package:app/features/fight_style/data/data_sources/remote/mutations/generated/UpdateFightStyleResult.graphql.dart';
+import 'package:app/features/fight_style/data/data_sources/remote/queries/generated/FightStyleResult.graphql.dart';
 import 'package:network/network.dart';
 
 /// A saved reaction result with its row id, before the domain mapping.

@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/spice/data/data_sources/remote/mutations/generated/SetSpiceEnabled.graphql.dart';
-import 'package:flutter_bloc_starter/features/spice/data/data_sources/remote/queries/generated/MySpiceSetting.graphql.dart';
-import 'package:flutter_bloc_starter/features/spice/data/data_sources/remote/queries/generated/SpiceCards.graphql.dart';
-import 'package:flutter_bloc_starter/features/spice/data/data_sources/remote/spice_data_source.dart';
+import 'package:app/features/spice/data/data_sources/remote/mutations/generated/SetSpiceEnabled.graphql.dart';
+import 'package:app/features/spice/data/data_sources/remote/queries/generated/MySpiceSetting.graphql.dart';
+import 'package:app/features/spice/data/data_sources/remote/queries/generated/SpiceCards.graphql.dart';
+import 'package:app/features/spice/data/data_sources/remote/spice_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';

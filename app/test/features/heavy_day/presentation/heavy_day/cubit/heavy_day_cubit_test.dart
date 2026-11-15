@@ -1,10 +1,10 @@
+import 'package:app/features/heavy_day/presentation/heavy_day/cubit/heavy_day_cubit.dart';
+import 'package:app/features/notes/data/repositories/notes_repository.dart';
+import 'package:app/features/privacy/data/models/consent.dart';
+import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/heavy_day/presentation/heavy_day/cubit/heavy_day_cubit.dart';
-import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/repositories/privacy_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -31,7 +31,9 @@ void main() {
     profile = _MockProfileRepository();
     notes = _MockNotesRepository();
     when(() => privacy.getConsents()).thenAnswer((_) async => {ConsentKind.sensitiveTracks: true});
-    when(() => privacy.setConsent(any(), granted: any(named: 'granted'))).thenAnswer((_) async {});
+    when(() => privacy.setConsent(any(), granted: any(named: 'granted'))).thenAnswer((_) async {
+      return;
+    });
     when(() => profile.getMySettings()).thenAnswer(
       (_) async => const AccountSettings(
         theme: .rose,
@@ -45,13 +47,17 @@ void main() {
         profileId: any(named: 'profileId'),
         sharing: any(named: 'sharing'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     when(
       () => notes.sendNote(
         body: any(named: 'body'),
         forWidget: any(named: 'forWidget'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   HeavyDayCubit build() =>

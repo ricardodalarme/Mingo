@@ -1,14 +1,14 @@
+import 'package:app/features/reminders/data/models/planned_reminder.dart';
+import 'package:app/features/reminders/data/models/reminder_preferences.dart';
+import 'package:app/features/reminders/data/planner/reminder_planner.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
+import 'package:app/features/repair/data/models/guided_session.dart';
+import 'package:app/features/repair/data/models/repair_path.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
+import 'package:app/features/repair/presentation/guided/cubit/guided_repair_cubit.dart';
+import 'package:app/features/repair/presentation/learning/cubit/learning_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/planned_reminder.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/planner/reminder_planner.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/guided_session.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/repair_path.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/guided/cubit/guided_repair_cubit.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/learning/cubit/learning_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -34,16 +34,24 @@ void main() {
     reminders = _MockRemindersRepository();
     sync = _MockSyncService();
     when(() => repair.openGuidedSession()).thenAnswer((_) async => const GuidedSession(id: 's1'));
-    when(() => repair.saveProgress(any())).thenAnswer((_) async {});
+    when(() => repair.saveProgress(any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => repair.completeSession(
         id: any(named: 'id'),
         now: any(named: 'now'),
         feeling: any(named: 'feeling'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => reminders.addFollowUp(any(), now: any(named: 'now'))).thenAnswer((_) async {});
-    when(() => sync.sync()).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => reminders.addFollowUp(any(), now: any(named: 'now'))).thenAnswer((_) async {
+      return;
+    });
+    when(() => sync.sync()).thenAnswer((_) async {
+      return;
+    });
   });
 
   GuidedRepairCubit build() => GuidedRepairCubit(
@@ -71,7 +79,9 @@ void main() {
         path: any(named: 'path'),
         intensity: any(named: 'intensity'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     final cubit = build();
 
     await cubit.load();
@@ -190,7 +200,9 @@ void main() {
           note: any(named: 'note'),
           sessionId: any(named: 'sessionId'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
       when(() => repair.getLearnings()).thenAnswer((_) async => const []);
       final cubit = LearningCubit(repairRepository: repair)..onNoteChanged('Preciso de calma');
       expect(cubit.state.note.isValid, isTrue);
@@ -219,7 +231,9 @@ void main() {
         createdAt: DateTime(2026),
       );
       when(() => repair.getLearnings()).thenAnswer((_) async => [learning]);
-      when(() => repair.deleteLearning('l1')).thenAnswer((_) async {});
+      when(() => repair.deleteLearning('l1')).thenAnswer((_) async {
+        return;
+      });
       final cubit = LearningCubit(repairRepository: repair);
       await cubit.load();
 

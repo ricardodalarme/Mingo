@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/mappers/relationship_phase_mapper.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/profile/data/mappers/relationship_phase_mapper.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

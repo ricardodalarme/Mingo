@@ -1,29 +1,29 @@
 import 'dart:async';
 
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/app/presentation/navigation/app_state_navigator.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/authentication/presentation/sign_in/cubit/sign_in_cubit.dart';
+import 'package:app/features/devices/data/repositories/devices_repository.dart';
+import 'package:app/features/help/data/repositories/support_repository.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/models/profile.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
+import 'package:app/features/settings/data/models/settings.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
+import 'package:app/features/slips/data/models/slip_detail.dart';
+import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
+import 'package:app/router/guards/auth_guard.dart';
+import 'package:app/router/pending_route.dart';
 import 'package:connectivity_service/connectivity_service.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/navigation/app_state_navigator.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/cubit/sign_in_cubit.dart';
-import 'package:flutter_bloc_starter/features/devices/data/repositories/devices_repository.dart';
-import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_detail.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
-import 'package:flutter_bloc_starter/router/guards/auth_guard.dart';
-import 'package:flutter_bloc_starter/router/pending_route.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -96,13 +96,21 @@ void main() {
     authStates = StreamController<bool>();
 
     when(() => notificationsRepository.unregisterCurrentDevice()).thenAnswer((_) async => true);
-    when(() => devicesRepository.revokeCurrentDevice()).thenAnswer((_) async {});
-    when(() => reminderSyncService.sync()).thenAnswer((_) async {});
-    when(() => slipRepository.flushPending()).thenAnswer((_) async {});
+    when(() => devicesRepository.revokeCurrentDevice()).thenAnswer((_) async {
+      return;
+    });
+    when(() => reminderSyncService.sync()).thenAnswer((_) async {
+      return;
+    });
+    when(() => slipRepository.flushPending()).thenAnswer((_) async {
+      return;
+    });
     when(() => slipRepository.getSlip('s1')).thenAnswer((_) async => _slip);
     when(() => supportRepository.flushPending(authorId: any(named: 'authorId')))
         .thenAnswer((_) async => 0);
-    when(() => supportRepository.clearPending()).thenAnswer((_) async {});
+    when(() => supportRepository.clearPending()).thenAnswer((_) async {
+      return;
+    });
     when(() => connectivityService.onStatusChange).thenAnswer((_) => const Stream.empty());
     when(() => authenticationRepository.isAuthenticatedStream).thenAnswer((_) => authStates.stream);
     when(() => authenticationRepository.isAuthenticated).thenReturn(true);
@@ -112,7 +120,9 @@ void main() {
       (_) async => AccountSettings(theme: AppThemeVariant.blue, onboardedAt: DateTime(2026)),
     );
     when(() => settingsRepository.get()).thenReturn(const Settings.empty());
-    when(() => settingsRepository.save(any())).thenAnswer((_) async {});
+    when(() => settingsRepository.save(any())).thenAnswer((_) async {
+      return;
+    });
 
     slipCubit = SlipDetailCubit(slipRepository: slipRepository);
     pending = PendingRoute();

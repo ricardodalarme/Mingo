@@ -1,14 +1,14 @@
+import 'package:app/features/_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/history/data/data_sources/remote/history_data_source.dart';
+import 'package:app/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/history/data/models/story_event_kind.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/profile/data/models/relationship_status.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/history_data_source.dart';
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
-import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_status.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -203,7 +203,9 @@ void main() {
         datePrecision: any(named: 'datePrecision'),
         origin: any(named: 'origin'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     const existing = HistoryMilestone(
       id: 'mem-1',
@@ -251,8 +253,12 @@ void main() {
         datePrecision: any(named: 'datePrecision'),
         origin: any(named: 'origin'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => dataSource.deleteStoryEvent(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => dataSource.deleteStoryEvent(any())).thenAnswer((_) async {
+      return;
+    });
 
     const existing = HistoryMilestone(
       id: 'se-1',
@@ -301,7 +307,9 @@ void main() {
         year: any(named: 'year'),
         yearly: any(named: 'yearly'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await repository.saveMilestone(
       id: 'ms-unknown',
@@ -338,7 +346,9 @@ void main() {
         datePrecision: any(named: 'datePrecision'),
         origin: any(named: 'origin'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await repository.saveMilestone(
       id: 'ms-trip',
@@ -371,13 +381,17 @@ void main() {
         profileId: any(named: 'profileId'),
         avatarKind: any(named: 'avatarKind'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     when(
       () => dataSource.updatePhase(
         profileId: any(named: 'profileId'),
         phase: any(named: 'phase'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await repository.updateAvatarKind(profileId: 'p1', kind: AvatarKind.illustration);
     await repository.updatePhase(profileId: 'p1', phase: RelationshipPhase.engaged);

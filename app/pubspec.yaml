@@ -1,4 +1,4 @@
-name: flutter_bloc_starter
+name: app
 resolution: workspace
 publish_to: "none"
 version: 0.1.1+3

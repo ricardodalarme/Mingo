@@ -1,17 +1,17 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/devices/data/repositories/devices_repository.dart';
+import 'package:app/features/help/data/repositories/support_repository.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:connectivity_service/connectivity_service.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/devices/data/repositories/devices_repository.dart';
-import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 
 part 'app_state.dart';
 

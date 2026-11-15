@@ -1,19 +1,19 @@
 import 'dart:async';
 
+import 'package:app/features/app/data/repositories/app_config_repository.dart';
+import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/app/presentation/shell/app_shell.dart';
+import 'package:app/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
+import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:app_info_service/app_info_service.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:connectivity_service/connectivity_service.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/app/data/repositories/app_config_repository.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/shell/app_shell.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/version/cubit/version_gate_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
+import 'package:app/features/help/data/models/support_topic.dart';
 
 /// Converts the support topics the backend stores into the app's enum and back.
 extension SupportTopicMapper on SupportTopic {

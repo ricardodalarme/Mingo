@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/app/data/data_sources/remote/queries/generated/MinAppVersion.graphql.dart';
+import 'package:app/features/app/data/data_sources/remote/queries/generated/MinAppVersion.graphql.dart';
 import 'package:network/network.dart';
 
 class AppConfigDataSource({required final GQLClient _client}) {

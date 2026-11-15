@@ -1,7 +1,7 @@
+import 'package:app/features/help/data/repositories/support_repository.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class const SupportSent({required final SupportSendOutcome outcome, super.key})
     extends StatelessWidget {

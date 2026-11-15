@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/local/hard_conversation_local_data_source.dart';
+import 'package:app/features/chat/data/data_sources/local/hard_conversation_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:preferences_service/preferences_service.dart';

@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/chat/data/models/learned_item.dart';
 
 extension EnumLearnedItemTargetMapper on EnumLearnedItemTarget {
   LearnedTarget toModel() => switch (this) {

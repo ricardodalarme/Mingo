@@ -1,5 +1,5 @@
+import 'package:app/features/slips/presentation/need/cubit/need_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/need/cubit/need_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

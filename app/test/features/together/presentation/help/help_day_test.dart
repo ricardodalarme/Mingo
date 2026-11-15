@@ -1,15 +1,15 @@
+import 'package:app/features/_shared/data/models/content_kind.dart';
+import 'package:app/features/dates/data/models/dates_models.dart';
+import 'package:app/features/dates/data/models/important_date_kind.dart';
+import 'package:app/features/dates/data/repositories/dates_repository.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/together/data/models/date_idea.dart';
+import 'package:app/features/together/data/models/date_idea_status.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
+import 'package:app/features/together/presentation/day/cubit/day_cubit.dart';
+import 'package:app/features/together/presentation/help/cubit/help_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
-import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea_status.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
-import 'package:flutter_bloc_starter/features/together/presentation/day/cubit/day_cubit.dart';
-import 'package:flutter_bloc_starter/features/together/presentation/help/cubit/help_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

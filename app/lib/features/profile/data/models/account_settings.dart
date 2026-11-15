@@ -1,7 +1,7 @@
+import 'package:app/features/profile/data/models/relationship_goal.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 
 /// How readily the person lets the partner see a heavy-day notice.
 enum HeavyDaySharing() {

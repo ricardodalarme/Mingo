@@ -1,5 +1,5 @@
+import 'package:app/features/love_style/data/models/love_pattern.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/models/love_pattern.dart';
 
 /// A saved love-style result: the ordered patterns.
 final class const LoveStyleResult({required final List<String> ranked}) with Equatable {

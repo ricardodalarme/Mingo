@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/dates_data_source.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/queries/generated/GiftIdeas.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/dates/data/data_sources/remote/dates_data_source.dart';
+import 'package:app/features/dates/data/data_sources/remote/queries/generated/GiftIdeas.graphql.dart';
+import 'package:app/features/dates/data/repositories/dates_repository.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

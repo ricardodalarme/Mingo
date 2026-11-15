@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/learned_items_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/mappers/learned_item_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
+import 'package:app/features/chat/data/data_sources/remote/learned_items_data_source.dart';
+import 'package:app/features/chat/data/mappers/learned_item_enum_mapper.dart';
+import 'package:app/features/chat/data/models/learned_item.dart';
 import 'package:logger/logger.dart';
 
 class LearnedItemsRepository({required final LearnedItemsDataSource _dataSource}) {

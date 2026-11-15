@@ -1,7 +1,7 @@
+import 'package:app/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
+import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 
 /// Covers the whole app with a blank screen whenever it is not in the foreground and safe or
 /// discreet mode is on, so the app switcher shows nothing.

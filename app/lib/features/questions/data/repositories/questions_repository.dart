@@ -1,6 +1,6 @@
+import 'package:app/features/questions/data/data_sources/remote/questions_data_source.dart';
+import 'package:app/features/questions/data/models/question_thread.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/questions/data/data_sources/remote/questions_data_source.dart';
-import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
 import 'package:logger/logger.dart';
 
 class QuestionsRepository({required final QuestionsDataSource _dataSource}) {

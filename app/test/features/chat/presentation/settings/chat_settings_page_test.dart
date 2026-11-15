@@ -1,9 +1,9 @@
+import 'package:app/features/chat/data/repositories/chat_repository.dart';
+import 'package:app/features/chat/presentation/settings/chat_settings_page.dart';
+import 'package:app/features/chat/presentation/settings/cubit/chat_settings_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/settings/chat_settings_page.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/settings/cubit/chat_settings_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

@@ -1,6 +1,6 @@
+import 'package:app/features/chat/data/repositories/chat_repository.dart';
+import 'package:app/features/chat/presentation/settings/cubit/chat_settings_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/settings/cubit/chat_settings_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/checkin/data/data_sources/remote/mutations/generated/DeleteCheckinAnswer.graphql.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/data_sources/remote/mutations/generated/InsertCheckinAnswer.graphql.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/data_sources/remote/mutations/generated/UpdateCheckinAnswer.graphql.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/data_sources/remote/queries/generated/CheckinAnswers.graphql.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/data_sources/remote/queries/generated/CheckinToday.graphql.dart';
+import 'package:app/features/checkin/data/data_sources/remote/mutations/generated/DeleteCheckinAnswer.graphql.dart';
+import 'package:app/features/checkin/data/data_sources/remote/mutations/generated/InsertCheckinAnswer.graphql.dart';
+import 'package:app/features/checkin/data/data_sources/remote/mutations/generated/UpdateCheckinAnswer.graphql.dart';
+import 'package:app/features/checkin/data/data_sources/remote/queries/generated/CheckinAnswers.graphql.dart';
+import 'package:app/features/checkin/data/data_sources/remote/queries/generated/CheckinToday.graphql.dart';
 import 'package:network/network.dart';
 
 typedef CheckinAnswerRecord = ({String id, bool isMine, int question, String body});

@@ -1,7 +1,7 @@
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/slips/presentation/need/cubit/need_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/need/cubit/need_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -25,7 +25,9 @@ void main() {
   blocTest<NeedCubit, NeedState>(
     'sends the chosen need',
     build: () {
-      when(() => repository.sendNeed(any())).thenAnswer((_) async {});
+      when(() => repository.sendNeed(any())).thenAnswer((_) async {
+        return;
+      });
       return build();
     },
     act: (cubit) async {

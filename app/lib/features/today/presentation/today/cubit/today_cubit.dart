@@ -1,17 +1,17 @@
 import 'dart:async';
 
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/today/data/models/today_home.dart';
+import 'package:app/features/today/data/repositories/today_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
-import 'package:flutter_bloc_starter/features/today/data/repositories/today_repository.dart';
 
 part 'today_state.dart';
 

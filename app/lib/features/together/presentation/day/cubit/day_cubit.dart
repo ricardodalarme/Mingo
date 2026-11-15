@@ -1,11 +1,11 @@
+import 'package:app/features/dates/data/models/dates_models.dart';
+import 'package:app/features/dates/data/repositories/dates_repository.dart';
+import 'package:app/features/together/data/models/date_idea.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/dates_models.dart';
-import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 
 part 'day_state.dart';
 

@@ -1,10 +1,10 @@
+import 'package:app/features/account/data/models/deletion_request.dart';
+import 'package:app/features/account/data/repositories/account_repository.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:biometric_service/biometric_service.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/account/data/models/deletion_request.dart';
-import 'package:flutter_bloc_starter/features/account/data/repositories/account_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:logger/logger.dart';
 
 part 'delete_account_state.dart';

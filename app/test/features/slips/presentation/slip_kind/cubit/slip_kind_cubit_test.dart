@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
+import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/models/slip_work_area.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -31,8 +31,12 @@ void main() {
         text: any(named: 'text'),
         now: any(named: 'now'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => repository.clearDraft()).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.clearDraft()).thenAnswer((_) async {
+      return;
+    });
   });
 
   SlipKindCubit build() => SlipKindCubit(slipRepository: repository);

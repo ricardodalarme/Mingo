@@ -1,9 +1,9 @@
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/mutations/generated/AcceptInvite.graphql.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/mutations/generated/CancelInvite.graphql.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/mutations/generated/CreateInvite.graphql.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/mutations/generated/ResolveSharedItems.graphql.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/mutations/generated/Unpair.graphql.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/data_sources/remote/queries/generated/MyPartner.graphql.dart';
+import 'package:app/features/pairing/data/data_sources/remote/mutations/generated/AcceptInvite.graphql.dart';
+import 'package:app/features/pairing/data/data_sources/remote/mutations/generated/CancelInvite.graphql.dart';
+import 'package:app/features/pairing/data/data_sources/remote/mutations/generated/CreateInvite.graphql.dart';
+import 'package:app/features/pairing/data/data_sources/remote/mutations/generated/ResolveSharedItems.graphql.dart';
+import 'package:app/features/pairing/data/data_sources/remote/mutations/generated/Unpair.graphql.dart';
+import 'package:app/features/pairing/data/data_sources/remote/queries/generated/MyPartner.graphql.dart';
 import 'package:network/network.dart';
 
 class PairingDataSource({required final GQLClient _client}) {

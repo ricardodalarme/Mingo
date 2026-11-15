@@ -1,10 +1,10 @@
+import 'package:app/features/love_style/data/models/love_pattern.dart';
+import 'package:app/features/love_style/data/repositories/love_style_repository.dart';
+import 'package:app/features/love_style/presentation/exercise/cubit/love_style_cubit.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/models/love_pattern.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/repositories/love_style_repository.dart';
-import 'package:flutter_bloc_starter/features/love_style/presentation/exercise/cubit/love_style_cubit.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -26,10 +26,16 @@ void main() {
     when(() => repository.getSavedRanked()).thenAnswer((_) async => null);
     when(() => repository.getSharedMessageId()).thenAnswer((_) async => null);
     when(() => repository.getManualEntry()).thenAnswer((_) async => null);
-    when(() => repository.saveRanked(any())).thenAnswer((_) async {});
-    when(() => repository.saveManualEntry(any())).thenAnswer((_) async {});
+    when(() => repository.saveRanked(any())).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.saveManualEntry(any())).thenAnswer((_) async {
+      return;
+    });
     when(() => repository.share(any())).thenAnswer((_) async => 'msg-1');
-    when(() => repository.revokeShare(any())).thenAnswer((_) async {});
+    when(() => repository.revokeShare(any())).thenAnswer((_) async {
+      return;
+    });
     when(() => pairingRepository.getPartner()).thenAnswer(
       (_) async => const Profile(id: 'p1', avatarKind: AvatarKind.initials, displayName: 'Marina'),
     );

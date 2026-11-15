@@ -1,5 +1,5 @@
+import 'package:app/features/together/data/models/date_idea_status.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea_status.dart';
 
 /// One date idea the couple saved, planned or did.
 final class const DateIdea({

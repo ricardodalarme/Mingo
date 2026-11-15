@@ -1,10 +1,10 @@
+import 'package:app/features/dates/data/data_sources/remote/dates_data_source.dart';
+import 'package:app/features/dates/data/repositories/dates_repository.dart';
+import 'package:app/features/dates/presentation/dates/cubit/dates_cubit.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/dates/data/data_sources/remote/dates_data_source.dart';
-import 'package:flutter_bloc_starter/features/dates/data/repositories/dates_repository.dart';
-import 'package:flutter_bloc_starter/features/dates/presentation/dates/cubit/dates_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:network/network.dart';
 
 class DatesInjectionModule() implements InjectionModule {

@@ -1,7 +1,7 @@
+import 'package:app/features/repair/data/models/repair_path.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
+import 'package:app/features/repair/presentation/temperature/cubit/temperature_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/repair_path.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/temperature/cubit/temperature_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -14,14 +14,18 @@ void main() {
 
   setUp(() {
     repository = _MockRepairRepository();
-    when(() => repository.recordTemperature(any())).thenAnswer((_) async {});
+    when(() => repository.recordTemperature(any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => repository.startSession(
         id: any(named: 'id'),
         path: any(named: 'path'),
         intensity: any(named: 'intensity'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   TemperatureCubit build() => TemperatureCubit(repairRepository: repository);

@@ -1,12 +1,12 @@
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
+import 'package:app/features/repair/data/models/received_signal.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
+import 'package:app/features/repair/presentation/received/cubit/received_signals_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/received_signal.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/received/cubit/received_signals_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -48,9 +48,15 @@ void main() {
         signalId: any(named: 'signalId'),
         response: any(named: 'response'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => reminders.addFollowUp(any(), now: any(named: 'now'))).thenAnswer((_) async {});
-    when(() => sync.sync()).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => reminders.addFollowUp(any(), now: any(named: 'now'))).thenAnswer((_) async {
+      return;
+    });
+    when(() => sync.sync()).thenAnswer((_) async {
+      return;
+    });
   });
 
   ReceivedSignalsCubit build() => ReceivedSignalsCubit(

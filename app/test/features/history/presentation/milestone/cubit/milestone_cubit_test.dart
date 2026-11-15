@@ -1,7 +1,7 @@
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
+import 'package:app/features/history/presentation/milestone/cubit/milestone_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/features/history/data/repositories/history_repository.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/milestone/cubit/milestone_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -33,8 +33,12 @@ void main() {
         coupleId: any(named: 'coupleId'),
         existing: any(named: 'existing'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => repository.deleteMilestone(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.deleteMilestone(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   MilestoneCubit build() => MilestoneCubit(historyRepository: repository);

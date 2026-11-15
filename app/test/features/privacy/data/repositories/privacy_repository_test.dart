@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/privacy_data_source.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/queries/generated/MyConsents.graphql.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/repositories/privacy_repository.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/privacy/data/data_sources/remote/privacy_data_source.dart';
+import 'package:app/features/privacy/data/data_sources/remote/queries/generated/MyConsents.graphql.dart';
+import 'package:app/features/privacy/data/models/consent.dart';
+import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -54,7 +54,9 @@ void main() {
         granted: any(named: 'granted'),
         version: any(named: 'version'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await build().setConsent(ConsentKind.marketing, granted: false);
 

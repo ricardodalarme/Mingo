@@ -1,13 +1,13 @@
+import 'package:app/features/widgets/data/models/widget_models.dart';
+import 'package:app/features/widgets/presentation/configure/cubit/widget_configure_cubit.dart';
+import 'package:app/features/widgets/presentation/configure/widgets/configure_form_section.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/configure/cubit/widget_configure_cubit.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/configure/widgets/configure_form_section.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// Widget configuration screen (`X-154`): content source, photo rotation cadence,
 /// and privacy toggles (`widget_show_names`, `widget_in_discreet`, `widget_allow_partner_notes`).

@@ -1,6 +1,6 @@
+import 'package:app/features/dev_menu/storybook/examples/catalog/catalog_examples.dart';
+import 'package:app/features/dev_menu/storybook/helpers/addons/design_system_theme_addon.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/dev_menu/storybook/examples/catalog/catalog_examples.dart';
-import 'package:flutter_bloc_starter/features/dev_menu/storybook/helpers/addons/design_system_theme_addon.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class const StorybookPage({super.key}) extends StatelessWidget {

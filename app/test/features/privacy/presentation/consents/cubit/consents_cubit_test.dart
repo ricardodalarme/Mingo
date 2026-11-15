@@ -1,7 +1,7 @@
+import 'package:app/features/privacy/data/models/consent.dart';
+import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
+import 'package:app/features/privacy/presentation/consents/cubit/consents_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/repositories/privacy_repository.dart';
-import 'package:flutter_bloc_starter/features/privacy/presentation/consents/cubit/consents_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -14,8 +14,9 @@ void main() {
 
   setUp(() {
     repository = _MockPrivacyRepository();
-    when(() => repository.setConsent(any(), granted: any(named: 'granted')))
-        .thenAnswer((_) async {});
+    when(() => repository.setConsent(any(), granted: any(named: 'granted'))).thenAnswer((_) async {
+      return;
+    });
   });
 
   ConsentsCubit build() => ConsentsCubit(repository: repository);

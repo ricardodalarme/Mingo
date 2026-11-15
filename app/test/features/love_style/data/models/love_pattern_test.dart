@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/love_style/data/models/love_pattern.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/models/love_style_result.dart';
+import 'package:app/features/love_style/data/models/love_pattern.dart';
+import 'package:app/features/love_style/data/models/love_style_result.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

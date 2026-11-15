@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/fight_style/data/models/fight_style_result.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/models/reaction_pattern.dart';
+import 'package:app/features/fight_style/data/models/fight_style_result.dart';
+import 'package:app/features/fight_style/data/models/reaction_pattern.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

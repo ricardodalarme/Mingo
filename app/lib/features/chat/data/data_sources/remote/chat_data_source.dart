@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/mutations/generated/SetChatEnabled.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/queries/generated/ChatStatus.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
+import 'package:app/features/chat/data/data_sources/remote/mutations/generated/SetChatEnabled.graphql.dart';
+import 'package:app/features/chat/data/data_sources/remote/queries/generated/ChatStatus.graphql.dart';
+import 'package:app/features/chat/data/models/chat_models.dart';
 import 'package:network/network.dart';
 
 /// What the server knows before the first message.

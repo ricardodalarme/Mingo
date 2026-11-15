@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/DeleteListItem.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/ReorderListItems.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/SetListItemStatus.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/lists_data_source.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/DeleteListItem.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/ReorderListItems.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/SetListItemStatus.graphql.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network/network.dart';
 

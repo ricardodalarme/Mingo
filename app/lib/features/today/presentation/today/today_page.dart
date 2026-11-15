@@ -1,14 +1,14 @@
+import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
+import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
+import 'package:app/features/today/data/models/today_home.dart';
+import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
+import 'package:app/features/today/presentation/today/widgets/partner_unpaired_notice.dart';
+import 'package:app/features/today/presentation/today/widgets/today_content.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/_shared/presentation/errors/app_error_view.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
-import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';
-import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/partner_unpaired_notice.dart';
-import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/today_content.dart';
 
 @RoutePage()
 class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {

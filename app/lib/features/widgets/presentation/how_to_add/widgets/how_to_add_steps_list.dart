@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class const HowToAddStepsList({super.key}) extends StatelessWidget {
   @override

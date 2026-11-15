@@ -1,11 +1,11 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/guides/data/data_sources/local/guides_local_data_source.dart';
+import 'package:app/features/guides/data/data_sources/remote/guides_data_source.dart';
+import 'package:app/features/guides/data/models/guide_catalogue.dart';
+import 'package:app/features/guides/data/models/guide_progress.dart';
+import 'package:app/features/guides/data/repositories/guides_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guides_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/guides_data_source.dart';
-import 'package:flutter_bloc_starter/features/guides/data/models/guide_catalogue.dart';
-import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
-import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';
@@ -74,7 +74,9 @@ void main() {
     when(() => localDataSource.readProgress('money', ownerId: 'user-a'))
         .thenAnswer((_) async => progress);
     when(() => localDataSource.writeProgress('money', progress, ownerId: 'user-a'))
-        .thenAnswer((_) async {});
+        .thenAnswer((_) async {
+          return;
+        });
 
     await repository.getProgress('money');
     await repository.saveProgress('money', progress);
@@ -126,7 +128,9 @@ void main() {
         notes: any(named: 'notes'),
         draft: any(named: 'draft'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     final id = await repository.savePrep(
       prepId: null,

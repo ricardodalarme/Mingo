@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/questions/data/data_sources/remote/mutations/generated/DeleteQuestionAnswer.graphql.dart';
-import 'package:flutter_bloc_starter/features/questions/data/data_sources/remote/mutations/generated/InsertQuestionAnswer.graphql.dart';
-import 'package:flutter_bloc_starter/features/questions/data/data_sources/remote/queries/generated/QuestionAnswers.graphql.dart';
-import 'package:flutter_bloc_starter/features/questions/data/data_sources/remote/queries/generated/QuestionOfTheWeek.graphql.dart';
+import 'package:app/features/questions/data/data_sources/remote/mutations/generated/DeleteQuestionAnswer.graphql.dart';
+import 'package:app/features/questions/data/data_sources/remote/mutations/generated/InsertQuestionAnswer.graphql.dart';
+import 'package:app/features/questions/data/data_sources/remote/queries/generated/QuestionAnswers.graphql.dart';
+import 'package:app/features/questions/data/data_sources/remote/queries/generated/QuestionOfTheWeek.graphql.dart';
 import 'package:network/network.dart';
 
 typedef QuestionPromptRecord = ({

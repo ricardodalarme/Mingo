@@ -1,6 +1,6 @@
+import 'package:app/features/memories/data/models/memory.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 part 'add_memory_state.dart';

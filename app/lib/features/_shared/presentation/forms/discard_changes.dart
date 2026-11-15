@@ -1,5 +1,5 @@
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// Asks before throwing away text the person wrote but did not save.
 Future<bool> confirmDiscard(BuildContext context, {required String title, required String text}) {

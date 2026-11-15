@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/mappers/gift_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea_status.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/gifts/data/mappers/gift_enum_mapper.dart';
+import 'package:app/features/gifts/data/models/gift_budget.dart';
+import 'package:app/features/gifts/data/models/gift_idea_status.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

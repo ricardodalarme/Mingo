@@ -1,18 +1,18 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/CompleteProgramEnrollment.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/DeleteJournalEntry.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/DeleteLessonProgress.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/InsertJournalEntry.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/InsertLessonProgress.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/InsertProgramEnrollment.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/RestartProgramEnrollment.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/UpdateJournalEntry.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/UpdateLessonProgress.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/mutations/generated/UpdateProgramEnrollment.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/queries/generated/JournalEntries.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/queries/generated/ProgramDetail.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/queries/generated/ProgramProgress.graphql.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/queries/generated/Programs.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/mutations/generated/CompleteProgramEnrollment.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/mutations/generated/DeleteJournalEntry.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/mutations/generated/DeleteLessonProgress.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/mutations/generated/InsertJournalEntry.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/mutations/generated/InsertLessonProgress.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/mutations/generated/InsertProgramEnrollment.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/mutations/generated/RestartProgramEnrollment.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/mutations/generated/UpdateJournalEntry.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/mutations/generated/UpdateLessonProgress.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/mutations/generated/UpdateProgramEnrollment.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/queries/generated/JournalEntries.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/queries/generated/ProgramDetail.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/queries/generated/ProgramProgress.graphql.dart';
+import 'package:app/features/programs/data/data_sources/remote/queries/generated/Programs.graphql.dart';
 import 'package:network/network.dart';
 
 typedef ContentItemRecord = ({

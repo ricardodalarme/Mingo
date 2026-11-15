@@ -1,7 +1,7 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/dev_menu/debug_sign_in/cubit/debug_sign_in_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/cubit/debug_sign_in_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -22,7 +22,9 @@ void main() {
           email: any(named: 'email'),
           password: any(named: 'password'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
       when(() => repository.isAuthenticated).thenReturn(false);
 
       return build();
@@ -39,7 +41,9 @@ void main() {
           email: any(named: 'email'),
           password: any(named: 'password'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
       when(() => repository.isAuthenticated).thenReturn(true);
 
       return build();

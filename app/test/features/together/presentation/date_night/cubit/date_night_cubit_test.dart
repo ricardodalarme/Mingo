@@ -1,10 +1,10 @@
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/together/data/models/date_idea.dart';
+import 'package:app/features/together/data/models/date_idea_status.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
+import 'package:app/features/together/presentation/date_night/cubit/date_night_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea_status.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
-import 'package:flutter_bloc_starter/features/together/presentation/date_night/cubit/date_night_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -34,15 +34,23 @@ void main() {
         title: any(named: 'title'),
         slug: any(named: 'slug'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => together.planDateIdea(any(), day: any(named: 'day'))).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => together.planDateIdea(any(), day: any(named: 'day'))).thenAnswer((_) async {
+      return;
+    });
     when(
       () => together.setDateIdeaDone(
         id: any(named: 'id'),
         isDone: any(named: 'isDone'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => together.deleteDateIdea(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => together.deleteDateIdea(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   DateNightCubit build() =>

@@ -1,13 +1,13 @@
 import 'dart:async';
 
+import 'package:app/features/chat/data/models/chat_models.dart';
+import 'package:app/features/chat/data/models/learned_item.dart';
+import 'package:app/features/chat/data/repositories/chat_repository.dart';
+import 'package:app/features/chat/data/repositories/learned_items_repository.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 

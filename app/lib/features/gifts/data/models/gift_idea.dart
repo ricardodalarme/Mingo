@@ -1,6 +1,6 @@
+import 'package:app/features/gifts/data/models/gift_budget.dart';
+import 'package:app/features/gifts/data/models/gift_idea_status.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_budget.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea_status.dart';
 
 /// The longest gift title the server accepts.
 const int giftTitleMaxLength = 120;

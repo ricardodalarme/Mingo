@@ -1,7 +1,7 @@
+import 'package:app/features/cards/data/models/sunday_card.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// The card as the partner will see it. Shared by the draft, the sent card and previews.
 class const CardView({

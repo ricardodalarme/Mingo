@@ -1,5 +1,5 @@
+import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
 
 final class const Profile({
   required final String id,

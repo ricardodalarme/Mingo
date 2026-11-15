@@ -1,8 +1,8 @@
+import 'package:app/features/notes/presentation/compose/cubit/compose_cubit.dart';
+import 'package:app/features/notes/presentation/compose/widgets/drawing_painter.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/compose_cubit.dart';
-import 'package:flutter_bloc_starter/features/notes/presentation/compose/widgets/drawing_painter.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 const double _penSize = 32;
 

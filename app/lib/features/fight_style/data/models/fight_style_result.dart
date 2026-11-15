@@ -1,5 +1,5 @@
+import 'package:app/features/fight_style/data/models/reaction_pattern.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/models/reaction_pattern.dart';
 
 /// A saved reaction result: the ordered patterns and, when known, the partner's name.
 final class const FightStyleResult({required final List<String> ranked, final String? partnerName})

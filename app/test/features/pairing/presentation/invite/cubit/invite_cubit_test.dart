@@ -1,9 +1,9 @@
+import 'package:app/features/pairing/data/models/active_invite.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/pairing/presentation/invite/cubit/invite_cubit.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/models/active_invite.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/presentation/invite/cubit/invite_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:share_service/share_service.dart';
@@ -80,7 +80,9 @@ void main() {
   });
 
   test('revoke cancels the invite on the server', () async {
-    when(() => pairing.cancelInvite('i1')).thenAnswer((_) async {});
+    when(() => pairing.cancelInvite('i1')).thenAnswer((_) async {
+      return;
+    });
     final cubit = build();
     await cubit.start();
     await cubit.revoke();

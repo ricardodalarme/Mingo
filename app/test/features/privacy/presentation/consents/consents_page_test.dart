@@ -1,10 +1,10 @@
+import 'package:app/features/privacy/data/models/consent.dart';
+import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
+import 'package:app/features/privacy/presentation/consents/consents_page.dart';
+import 'package:app/features/privacy/presentation/consents/cubit/consents_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/repositories/privacy_repository.dart';
-import 'package:flutter_bloc_starter/features/privacy/presentation/consents/consents_page.dart';
-import 'package:flutter_bloc_starter/features/privacy/presentation/consents/cubit/consents_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -22,8 +22,9 @@ void main() {
     final repository = _MockPrivacyRepository();
     when(repository.getConsents)
         .thenAnswer((_) async => {for (final kind in ConsentKind.values) kind: kind.isRequired});
-    when(() => repository.setConsent(any(), granted: any(named: 'granted')))
-        .thenAnswer((_) async {});
+    when(() => repository.setConsent(any(), granted: any(named: 'granted'))).thenAnswer((_) async {
+      return;
+    });
     final cubit = ConsentsCubit(repository: repository);
     addTearDown(cubit.close);
     await cubit.load();

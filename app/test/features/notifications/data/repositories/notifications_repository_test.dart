@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/data/data_sources/local/device_marker_store.dart';
+import 'package:app/features/notifications/data/data_sources/local/notifications_local_data_source.dart';
+import 'package:app/features/notifications/data/data_sources/remote/notifications_data_source.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:core/core.dart';
 import 'package:device_info_service/device_info_service.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/local/device_marker_store.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/data_sources/local/notifications_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/data_sources/remote/notifications_data_source.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:notification_service/notification_service.dart';
@@ -62,7 +62,9 @@ void main() {
         freeDiskSize: 64000,
       ),
     );
-    when(() => markerStore.writeMarker(any())).thenAnswer((_) async {});
+    when(() => markerStore.writeMarker(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   tearDown(() => registration.close());

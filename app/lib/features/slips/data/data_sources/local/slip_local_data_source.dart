@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_bloc_starter/features/slips/data/models/pending_slip.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_draft.dart';
+import 'package:app/features/slips/data/models/pending_slip.dart';
+import 'package:app/features/slips/data/models/slip_draft.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 class SlipLocalDataSource({required final PreferencesService _preferencesService}) {

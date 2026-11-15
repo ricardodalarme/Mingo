@@ -1,12 +1,12 @@
 import 'dart:async';
 
+import 'package:app/features/chat/data/data_sources/remote/chat_data_source.dart';
+import 'package:app/features/chat/data/models/chat_models.dart';
+import 'package:app/features/chat/data/models/learned_item.dart';
+import 'package:app/features/chat/data/repositories/chat_repository.dart';
+import 'package:app/features/chat/data/repositories/learned_items_repository.dart';
+import 'package:app/features/chat/presentation/chat/cubit/chat_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/chat_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/chat/cubit/chat_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -29,14 +29,18 @@ void main() {
     when(repository.getStatus)
         .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: true, hasPlus: true));
     when(repository.enable).thenAnswer((_) async {});
-    when(() => repository.saveAsSlip(any())).thenAnswer((_) async {});
+    when(() => repository.saveAsSlip(any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => learnedItemsRepository.add(
         target: any(named: 'target'),
         text: any(named: 'text'),
         excerpt: any(named: 'excerpt'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   void stubReply(Stream<ChatEvent> Function() events) {

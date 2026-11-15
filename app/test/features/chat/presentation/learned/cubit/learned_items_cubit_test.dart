@@ -1,8 +1,8 @@
+import 'package:app/features/chat/data/models/learned_item.dart';
+import 'package:app/features/chat/data/repositories/learned_items_repository.dart';
+import 'package:app/features/chat/presentation/learned/cubit/learned_items_cubit.dart';
+import 'package:app/features/partner/data/repositories/partner_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/learned_items_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/learned/cubit/learned_items_cubit.dart';
-import 'package:flutter_bloc_starter/features/partner/data/repositories/partner_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -32,8 +32,12 @@ void main() {
     learnedItemsRepository = _MockLearnedItemsRepository();
     partnerRepository = _MockPartnerRepository();
     when(learnedItemsRepository.getItems).thenAnswer((_) async => [partnerItem]);
-    when(() => learnedItemsRepository.setStatus(any(), any())).thenAnswer((_) async {});
-    when(() => learnedItemsRepository.updateText(any(), any())).thenAnswer((_) async {});
+    when(() => learnedItemsRepository.setStatus(any(), any())).thenAnswer((_) async {
+      return;
+    });
+    when(() => learnedItemsRepository.updateText(any(), any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => partnerRepository.addFact(
         id: any(named: 'id'),
@@ -41,7 +45,9 @@ void main() {
         value: any(named: 'value'),
         category: any(named: 'category'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   LearnedItemsCubit build() => LearnedItemsCubit(

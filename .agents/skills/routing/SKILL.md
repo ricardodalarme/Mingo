@@ -8,7 +8,7 @@ description: Adds pages and navigation with auto_route in this app. Covers annot
 Navigation is type-safe auto_route. `app/lib/router/app_router.dart` is hand-written (`AppRouter extends RootStackRouter`, the
 `routes` list); `app_router.gr.dart` is generated, committed and never edited. Codegen scans only
 `lib/features/**/presentation/**.dart` (`app/build.yaml`), so a page outside that tree gets no `XRoute`. Import route classes from
-`package:flutter_bloc_starter/router/app_router.dart`, which re-exports the generated file. There is one router and one
+`package:app/router/app_router.dart`, which re-exports the generated file. There is one router and one
 `@AutoRouterConfig`; never use `Navigator.push` or `MaterialPageRoute`.
 
 General auto_route behavior (push, replace, navigate, pop, nested routers, transitions) is documented upstream; this file covers

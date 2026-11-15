@@ -1,9 +1,9 @@
+import 'package:app/features/lists/data/data_sources/remote/lists_data_source.dart';
+import 'package:app/features/lists/data/repositories/lists_repository.dart';
+import 'package:app/features/lists/presentation/detail/cubit/list_detail_cubit.dart';
+import 'package:app/features/lists/presentation/lists/cubit/lists_cubit.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/lists_data_source.dart';
-import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/detail/cubit/list_detail_cubit.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/lists/cubit/lists_cubit.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:network/network.dart';
 
 class ListsInjectionModule() implements InjectionModule {

@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_status.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/profile/data/models/relationship_status.dart';
 
 extension EnumRelationshipStatusMapper on EnumRelationshipStatus {
   /// An unknown status is treated as together.

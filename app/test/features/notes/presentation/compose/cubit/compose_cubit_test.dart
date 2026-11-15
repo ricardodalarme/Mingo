@@ -1,12 +1,12 @@
 import 'dart:typed_data';
 
+import 'package:app/features/notes/data/models/sent_message.dart';
+import 'package:app/features/notes/data/repositories/notes_repository.dart';
+import 'package:app/features/notes/presentation/compose/cubit/compose_cubit.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dart';
-import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
-import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/compose_cubit.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -36,14 +36,20 @@ void main() {
         body: any(named: 'body'),
         forWidget: any(named: 'forWidget'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     when(
       () => repository.sendDrawing(
         png: any(named: 'png'),
         forWidget: any(named: 'forWidget'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => repository.delete(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.delete(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   setUpAll(() {

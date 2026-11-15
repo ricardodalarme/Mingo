@@ -1,6 +1,6 @@
+import 'package:app/features/safety/data/repositories/safe_mode_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/safety/data/repositories/safe_mode_repository.dart';
 
 part 'safe_mode_state.dart';
 

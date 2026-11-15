@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
 import 'package:connectivity_service/connectivity_service.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

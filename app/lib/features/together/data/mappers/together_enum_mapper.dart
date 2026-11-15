@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/date_idea_status.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/ritual_cadence.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/together/data/models/date_idea_status.dart';
+import 'package:app/features/together/data/models/ritual_cadence.dart';
 
 extension EnumRitualCadenceMapper on EnumRitualCadence {
   RitualCadence toModel() => switch (this) {

@@ -1,10 +1,10 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/help/data/models/support_topic.dart';
+import 'package:app/features/help/data/repositories/support_repository.dart';
+import 'package:app/features/help/data/services/support_app_version_service.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
-import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
-import 'package:flutter_bloc_starter/features/help/data/services/support_app_version_service.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 part 'support_state.dart';

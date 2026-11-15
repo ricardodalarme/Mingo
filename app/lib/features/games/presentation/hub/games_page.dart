@@ -1,15 +1,15 @@
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/games_overview.dart';
+import 'package:app/features/games/presentation/game/widgets/game_kind_l10n.dart';
+import 'package:app/features/games/presentation/hub/cubit/games_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/games_overview.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_kind_l10n.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/hub/cubit/games_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// The games the couple can play, with invitations and the state of each game.
 @RoutePage()

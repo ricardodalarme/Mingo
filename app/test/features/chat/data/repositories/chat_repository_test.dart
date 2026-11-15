@@ -1,13 +1,13 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/chat/data/data_sources/remote/chat_data_source.dart';
+import 'package:app/features/chat/data/models/chat_models.dart';
+import 'package:app/features/chat/data/repositories/chat_repository.dart';
+import 'package:app/features/plus/data/models/plus_state.dart';
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/remote/chat_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

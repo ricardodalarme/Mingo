@@ -1,10 +1,10 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/notes/data/data_sources/remote/notes_data_source.dart';
+import 'package:app/features/notes/data/repositories/notes_repository.dart';
+import 'package:app/features/notes/presentation/compose/cubit/compose_cubit.dart';
+import 'package:app/features/notes/presentation/compose/widgets/drawing_painter.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/notes/data/data_sources/remote/notes_data_source.dart';
-import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
-import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/compose_cubit.dart';
-import 'package:flutter_bloc_starter/features/notes/presentation/compose/widgets/drawing_painter.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:network/network.dart';
 import 'package:storage_service/storage_service.dart';
 

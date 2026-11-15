@@ -1,11 +1,11 @@
+import 'package:app/features/dev_menu/dev_menu_page.dart';
+import 'package:app/features/today/data/models/today_home.dart';
+import 'package:app/infrastructure/config/env_variables.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/dev_menu/dev_menu_page.dart';
-import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
-import 'package:flutter_bloc_starter/infrastructure/config/env_variables.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 const double _chipHeight = 40;
 const double _chipDot = 30;

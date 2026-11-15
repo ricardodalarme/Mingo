@@ -1,12 +1,12 @@
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/game_session.dart';
+import 'package:app/features/games/data/models/games_overview.dart';
+import 'package:app/features/games/data/repositories/games_repository.dart';
+import 'package:app/features/games/presentation/hub/cubit/games_cubit.dart';
+import 'package:app/features/games/presentation/hub/games_page.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:clock/clock.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_session.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/games_overview.dart';
-import 'package:flutter_bloc_starter/features/games/data/repositories/games_repository.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/hub/cubit/games_cubit.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/hub/games_page.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

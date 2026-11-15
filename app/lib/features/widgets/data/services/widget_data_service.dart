@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:app/features/widgets/data/models/widget_models.dart';
+import 'package:app/features/widgets/data/models/widget_payload.dart';
 import 'package:clock/clock.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
 import 'package:home_widget_service/home_widget_service.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 

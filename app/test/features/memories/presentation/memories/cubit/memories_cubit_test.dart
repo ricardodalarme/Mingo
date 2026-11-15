@@ -1,7 +1,7 @@
+import 'package:app/features/memories/data/models/memory.dart';
+import 'package:app/features/memories/data/repositories/memories_repository.dart';
+import 'package:app/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
-import 'package:flutter_bloc_starter/features/memories/data/repositories/memories_repository.dart';
-import 'package:flutter_bloc_starter/features/memories/presentation/memories/cubit/memories_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -25,8 +25,12 @@ void main() {
         place: any(named: 'place'),
         happenedOn: any(named: 'happenedOn'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => repository.deleteMemory(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.deleteMemory(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   MemoriesCubit build() => MemoriesCubit(memoriesRepository: repository);

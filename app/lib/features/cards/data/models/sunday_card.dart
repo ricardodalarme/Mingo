@@ -1,6 +1,6 @@
+import 'package:app/features/cards/data/models/card_status.dart';
+import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
 
 /// One slip on a card.
 final class const CardItem({

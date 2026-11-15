@@ -1,15 +1,15 @@
+import 'package:app/features/widgets/data/models/widget_models.dart';
+import 'package:app/features/widgets/data/models/widget_payload.dart';
+import 'package:app/features/widgets/presentation/card_encounter/widgets/card_encounter_preview_section.dart';
+import 'package:app/features/widgets/presentation/couple_counter/widgets/couple_counter_preview_cards.dart';
+import 'package:app/features/widgets/presentation/couple_photos/widgets/couple_photos_preview_section.dart';
+import 'package:app/features/widgets/presentation/gallery/widgets/gallery_preview_cards.dart';
+import 'package:app/features/widgets/presentation/lock_screen/widgets/lock_screen_preview_section.dart';
+import 'package:app/features/widgets/presentation/own_medium/widgets/own_medium_cards.dart';
+import 'package:app/features/widgets/presentation/own_small/widgets/own_small_grid.dart';
+import 'package:app/features/widgets/presentation/partner_note/widgets/partner_note_preview_section.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/card_encounter/widgets/card_encounter_preview_section.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/couple_counter/widgets/couple_counter_preview_cards.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/couple_photos/widgets/couple_photos_preview_section.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/gallery/widgets/gallery_preview_cards.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/lock_screen/widgets/lock_screen_preview_section.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/own_medium/widgets/own_medium_cards.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/own_small/widgets/own_small_grid.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/partner_note/widgets/partner_note_preview_section.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../test_helpers/pump_app.dart';

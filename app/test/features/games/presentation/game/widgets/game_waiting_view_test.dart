@@ -1,15 +1,15 @@
+import 'package:app/features/games/data/models/game_item.dart';
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/game_play.dart';
+import 'package:app/features/games/data/models/game_session.dart';
+import 'package:app/features/games/data/repositories/games_repository.dart';
+import 'package:app/features/games/presentation/game/cubit/game_cubit.dart';
+import 'package:app/features/games/presentation/game/widgets/game_waiting_view.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_item.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_session.dart';
-import 'package:flutter_bloc_starter/features/games/data/repositories/games_repository.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/cubit/game_cubit.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_waiting_view.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

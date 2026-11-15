@@ -1,8 +1,8 @@
+import 'package:app/features/_shared/data/data_sources/local/device_marker_store.dart';
+import 'package:app/features/devices/data/data_sources/remote/devices_data_source.dart';
+import 'package:app/features/devices/data/mappers/device_platform_mapper.dart';
+import 'package:app/features/devices/data/models/device.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/local/device_marker_store.dart';
-import 'package:flutter_bloc_starter/features/devices/data/data_sources/remote/devices_data_source.dart';
-import 'package:flutter_bloc_starter/features/devices/data/mappers/device_platform_mapper.dart';
-import 'package:flutter_bloc_starter/features/devices/data/models/device.dart';
 import 'package:logger/logger.dart';
 
 /// Reported when the server deletes no device row.

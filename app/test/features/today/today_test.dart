@@ -1,20 +1,20 @@
 import 'dart:async';
 
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/today/data/data_sources/local/today_local_data_source.dart';
+import 'package:app/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
+import 'package:app/features/today/data/data_sources/remote/today_data_source.dart';
+import 'package:app/features/today/data/models/today_home.dart';
+import 'package:app/features/today/data/repositories/today_repository.dart';
+import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/local/today_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/today_data_source.dart';
-import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
-import 'package:flutter_bloc_starter/features/today/data/repositories/today_repository.dart';
-import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';
@@ -110,14 +110,18 @@ void main() {
       remote = _MockTodayDataSource();
       local = _MockTodayLocalDataSource();
       repository = TodayRepository(dataSource: remote, localDataSource: local);
-      when(() => local.write(any())).thenAnswer((_) async {});
+      when(() => local.write(any())).thenAnswer((_) async {
+        return;
+      });
       when(() => local.readRelationship()).thenReturn((wasPaired: false, partnerName: null));
       when(
         () => local.writeRelationship(
           wasPaired: any(named: 'wasPaired'),
           partnerName: any(named: 'partnerName'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
     });
 
     test('offline with a cache returns the cached state', () async {
@@ -242,7 +246,9 @@ void main() {
       when(() => profile.getMyProfile()).thenAnswer(
         (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'),
       );
-      when(() => today.acknowledgeUnpair()).thenAnswer((_) async {});
+      when(() => today.acknowledgeUnpair()).thenAnswer((_) async {
+        return;
+      });
     });
 
     test('load shows the state and the person name', () async {
@@ -281,7 +287,9 @@ void main() {
               : home,
         );
       });
-      when(() => today.endPause()).thenAnswer((_) async {});
+      when(() => today.endPause()).thenAnswer((_) async {
+        return;
+      });
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,

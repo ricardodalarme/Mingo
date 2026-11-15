@@ -1,11 +1,11 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/profile/data/models/profile_details.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/profile/presentation/profile/cubit/profile_settings_cubit.dart';
+import 'package:app/features/settings/data/models/settings.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile_details.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/presentation/profile/cubit/profile_settings_cubit.dart';
-import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -41,7 +41,9 @@ void main() {
     settings = _MockSettingsRepository();
     when(() => authentication.loginProvider).thenReturn('apple');
     when(() => settings.get()).thenReturn(const Settings.empty());
-    when(() => settings.save(any())).thenAnswer((_) async {});
+    when(() => settings.save(any())).thenAnswer((_) async {
+      return;
+    });
     cubit = ProfileSettingsCubit(
       profileRepository: profile,
       authenticationRepository: authentication,
@@ -87,7 +89,9 @@ void main() {
         profileId: any(named: 'profileId'),
         displayName: any(named: 'displayName'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     final actions = <Resource<void>>[];
     final subscription = cubit.stream.listen((state) => actions.add(state.saveAction));
@@ -111,7 +115,9 @@ void main() {
         profileId: any(named: 'profileId'),
         displayName: any(named: 'displayName'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     cubit.onNameChanged('Bia');
     await cubit.close();
@@ -148,7 +154,9 @@ void main() {
         profileId: any(named: 'profileId'),
         pronouns: any(named: 'pronouns'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     cubit.onPronounsChanged('  ele/dele  ');
     await cubit.savePronouns();
@@ -184,7 +192,9 @@ void main() {
         profileId: any(named: 'profileId'),
         theme: any(named: 'theme'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await cubit.onThemeChanged(AppThemeVariant.blue);
 
@@ -221,7 +231,9 @@ void main() {
         profileId: any(named: 'profileId'),
         timeZone: any(named: 'timeZone'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await cubit.onTimeZoneChanged('Europe/Lisbon');
     expect(cubit.state.current?.timeZone, 'Europe/Lisbon');

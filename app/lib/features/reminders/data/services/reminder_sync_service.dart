@@ -1,7 +1,7 @@
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:clock/clock.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:logger/logger.dart';
 
 /// Keeps the pending local reminders in line with what the person allowed and chose.

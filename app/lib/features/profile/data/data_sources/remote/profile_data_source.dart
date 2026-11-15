@@ -1,18 +1,18 @@
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/fragments/generated/ProfileFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/EnsureProfile.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/SaveIntroAnswers.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/SaveProfileSetup.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/SetWidgetInDiscreet.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdatePronouns.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipPhase.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipStatus.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateTheme.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateTimeZone.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/mutations/generated/UpdateTogetherSince.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/queries/generated/MyProfile.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/data_sources/remote/queries/generated/MySettings.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/fragments/generated/ProfileFragment.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/EnsureProfile.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveIntroAnswers.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveProfileSetup.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SetWidgetInDiscreet.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdatePronouns.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipPhase.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipStatus.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateTheme.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateTimeZone.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateTogetherSince.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/queries/generated/MyProfile.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/queries/generated/MySettings.graphql.dart';
 import 'package:network/network.dart';
 
 class ProfileDataSource({required final GQLClient _client}) {

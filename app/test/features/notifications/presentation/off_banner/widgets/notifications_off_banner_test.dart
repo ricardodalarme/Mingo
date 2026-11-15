@@ -1,9 +1,9 @@
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/notifications/presentation/off_banner/cubit/notifications_off_cubit.dart';
+import 'package:app/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/cubit/notifications_off_cubit.dart';
-import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -20,8 +20,9 @@ void main() {
     final repository = _MockNotificationsRepository();
     when(repository.currentAccess).thenAnswer((_) async => NotificationAccess.denied);
     when(() => repository.isOffBannerDismissed).thenReturn(false);
-    when(() => repository.setOffBannerDismissed(value: any(named: 'value')))
-        .thenAnswer((_) async {});
+    when(() => repository.setOffBannerDismissed(value: any(named: 'value'))).thenAnswer((_) async {
+      return;
+    });
     when(repository.openSettings).thenAnswer((_) async => true);
     AppInjector.instance.registerFactory<NotificationsOffCubit>(
       () => NotificationsOffCubit(repository: repository),

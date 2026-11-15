@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
+import 'package:app/features/programs/data/models/program.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

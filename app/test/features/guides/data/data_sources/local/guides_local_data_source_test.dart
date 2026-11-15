@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guides_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
+import 'package:app/features/guides/data/data_sources/local/guides_local_data_source.dart';
+import 'package:app/features/guides/data/models/guide_progress.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:preferences_service/preferences_service.dart';

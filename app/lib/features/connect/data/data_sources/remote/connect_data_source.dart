@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/connect/data/data_sources/remote/mutations/generated/SendMissUs.graphql.dart';
-import 'package:flutter_bloc_starter/features/connect/data/data_sources/remote/mutations/generated/SetTouchTopics.graphql.dart';
-import 'package:flutter_bloc_starter/features/connect/data/data_sources/remote/queries/generated/CoupleTouchSetting.graphql.dart';
+import 'package:app/features/connect/data/data_sources/remote/mutations/generated/SendMissUs.graphql.dart';
+import 'package:app/features/connect/data/data_sources/remote/mutations/generated/SetTouchTopics.graphql.dart';
+import 'package:app/features/connect/data/data_sources/remote/queries/generated/CoupleTouchSetting.graphql.dart';
 import 'package:network/network.dart';
 
 class ConnectDataSource({required final GQLClient _client}) {

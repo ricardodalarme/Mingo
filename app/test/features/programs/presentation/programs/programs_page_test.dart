@@ -1,13 +1,13 @@
+import 'package:app/features/plus/data/models/plus_state.dart';
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/programs/data/models/program.dart';
+import 'package:app/features/programs/data/repositories/programs_repository.dart';
+import 'package:app/features/programs/presentation/programs/cubit/programs_cubit.dart';
+import 'package:app/features/programs/presentation/programs/programs_page.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
-import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/presentation/programs/cubit/programs_cubit.dart';
-import 'package:flutter_bloc_starter/features/programs/presentation/programs/programs_page.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

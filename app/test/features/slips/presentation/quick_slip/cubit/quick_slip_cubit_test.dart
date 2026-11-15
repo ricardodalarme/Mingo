@@ -1,9 +1,9 @@
+import 'package:app/features/slips/data/models/slip_category.dart';
+import 'package:app/features/slips/data/models/slip_draft.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_draft.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -24,8 +24,12 @@ void main() {
         now: any(named: 'now'),
         category: any(named: 'category'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => repository.clearDraft()).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => repository.clearDraft()).thenAnswer((_) async {
+      return;
+    });
     when(
       () => repository.saveQuick(
         id: any(named: 'id'),
@@ -34,7 +38,9 @@ void main() {
         category: any(named: 'category'),
       ),
     ).thenAnswer((_) async => SlipSaveOutcome.synced);
-    when(() => repository.undo(any())).thenAnswer((_) async {});
+    when(() => repository.undo(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   QuickSlipCubit build() => QuickSlipCubit(slipRepository: repository);

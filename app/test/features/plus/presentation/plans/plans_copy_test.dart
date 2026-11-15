@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

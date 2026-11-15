@@ -1,7 +1,7 @@
+import 'package:app/features/privacy/data/data_sources/remote/privacy_data_source.dart';
+import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
+import 'package:app/features/privacy/presentation/consents/cubit/consents_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/privacy_data_source.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/repositories/privacy_repository.dart';
-import 'package:flutter_bloc_starter/features/privacy/presentation/consents/cubit/consents_cubit.dart';
 import 'package:network/network.dart';
 
 class PrivacyInjectionModule() implements InjectionModule {

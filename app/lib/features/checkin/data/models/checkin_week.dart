@@ -1,5 +1,5 @@
+import 'package:app/features/checkin/data/models/checkin_answer.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/checkin/data/models/checkin_answer.dart';
 
 /// Questions in one weekly check-in; the backend reveals only when both answer all four.
 const int checkinQuestionCount = 4;

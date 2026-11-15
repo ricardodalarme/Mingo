@@ -1,6 +1,6 @@
+import 'package:app/features/reminders/data/models/planned_reminder.dart';
+import 'package:app/features/reminders/data/models/reminder_preferences.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/planned_reminder.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
 
 /// When a ritual repeats and at what time its reminder goes off.
 ///

@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/mappers/consent_kind_mapper.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/privacy/data/mappers/consent_kind_mapper.dart';
+import 'package:app/features/privacy/data/models/consent.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -11,6 +11,6 @@ void main() {
   });
 
   test('an unknown server kind fails loudly', () {
-    expect(() => EnumConsentKind.$unknown.toModel(), throwsArgumentError);
+    expect(EnumConsentKind.$unknown.toModel, throwsArgumentError);
   });
 }

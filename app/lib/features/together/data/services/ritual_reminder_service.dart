@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/ritual_schedule.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/ritual.dart';
+import 'package:app/features/reminders/data/models/reminder_preferences.dart';
+import 'package:app/features/reminders/data/models/ritual_schedule.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
+import 'package:app/features/together/data/models/ritual.dart';
 
 /// Keeps the local ritual reminders in line with the rituals that have one switched on.
 class RitualReminderService({

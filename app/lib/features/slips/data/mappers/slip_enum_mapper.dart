@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_work_area.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/slips/data/models/slip_category.dart';
+import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/models/slip_work_area.dart';
 
 extension EnumSlipCategoryMapper on EnumSlipCategory {
   SlipCategory? toModel() => switch (this) {

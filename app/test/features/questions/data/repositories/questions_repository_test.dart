@@ -1,7 +1,7 @@
+import 'package:app/features/questions/data/data_sources/remote/questions_data_source.dart';
+import 'package:app/features/questions/data/models/question_thread.dart';
+import 'package:app/features/questions/data/repositories/questions_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/questions/data/data_sources/remote/questions_data_source.dart';
-import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
-import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';
@@ -52,7 +52,9 @@ void main() {
         coupleId: any(named: 'coupleId'),
       ),
     ).thenAnswer((_) async => (id: 'a2', coupleId: 'couple-1', body: 'Resposta nova'));
-    when(() => dataSource.deleteAnswer(any())).thenAnswer((_) async {});
+    when(() => dataSource.deleteAnswer(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   test('the question keeps the couple context', () async {

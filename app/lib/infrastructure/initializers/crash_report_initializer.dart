@@ -1,7 +1,7 @@
+import 'package:app/infrastructure/initializers/firebase_initializer.dart';
 import 'package:core/core.dart';
 import 'package:crash_report_service/crash_report_service.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc_starter/infrastructure/initializers/firebase_initializer.dart';
 import 'package:logger/logger.dart';
 
 final class CrashReportInitializer({final CrashReportService? crashReportService})

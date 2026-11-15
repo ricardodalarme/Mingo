@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/mutations/generated/EndPause.graphql.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
+import 'package:app/features/today/data/data_sources/remote/mutations/generated/EndPause.graphql.dart';
+import 'package:app/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
 import 'package:network/network.dart';
 
 class TodayDataSource({required final GQLClient _client}) {

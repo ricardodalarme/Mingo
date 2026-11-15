@@ -1,13 +1,13 @@
+import 'package:app/features/slips/data/models/slip_entry.dart';
+import 'package:app/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
+import 'package:app/features/slips/presentation/slips/widgets/slips_groups.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slips/widgets/slips_groups.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// How close to the end of the list, in pixels, the next page starts loading.
 const double _loadMoreThreshold = 400;

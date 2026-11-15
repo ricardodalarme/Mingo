@@ -1,7 +1,7 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/help/data/repositories/support_repository.dart';
+import 'package:app/features/help/presentation/help/cubit/help_hub_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/help/data/repositories/support_repository.dart';
-import 'package:flutter_bloc_starter/features/help/presentation/help/cubit/help_hub_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

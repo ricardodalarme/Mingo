@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/history/presentation/history/cubit/history_cubit.dart';
+import 'package:app/features/history/presentation/history/cubit/history_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

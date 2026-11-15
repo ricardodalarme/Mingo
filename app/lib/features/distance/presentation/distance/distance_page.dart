@@ -1,12 +1,12 @@
+import 'package:app/features/distance/data/models/distance_info.dart';
+import 'package:app/features/distance/presentation/distance/cubit/distance_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/distance/data/models/distance_info.dart';
-import 'package:flutter_bloc_starter/features/distance/presentation/distance/cubit/distance_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Both clocks of a long-distance couple and the days until they see each other.
 @RoutePage()

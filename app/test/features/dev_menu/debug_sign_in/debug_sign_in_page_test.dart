@@ -1,8 +1,8 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/dev_menu/debug_sign_in/cubit/debug_sign_in_cubit.dart';
+import 'package:app/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/cubit/debug_sign_in_cubit.dart';
-import 'package:flutter_bloc_starter/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -40,7 +40,9 @@ void main() {
         email: any(named: 'email'),
         password: any(named: 'password'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     when(() => repository.isAuthenticated).thenReturn(false);
     final cubit = DebugSignInCubit(authenticationRepository: repository);
     addTearDown(cubit.close);

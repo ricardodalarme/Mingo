@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/dates/data/models/important_date_kind.dart';
 
 extension EnumImportantDateKindMapper on EnumImportantDateKind {
   ImportantDateKind toModel() => switch (this) {

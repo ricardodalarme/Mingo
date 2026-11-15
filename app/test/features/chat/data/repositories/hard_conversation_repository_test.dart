@@ -1,13 +1,13 @@
 import 'dart:convert';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/chat/data/data_sources/local/hard_conversation_local_data_source.dart';
+import 'package:app/features/chat/data/models/chat_models.dart';
+import 'package:app/features/chat/data/models/hard_conversation_draft.dart';
+import 'package:app/features/chat/data/repositories/chat_repository.dart';
+import 'package:app/features/chat/data/repositories/hard_conversation_repository.dart';
+import 'package:app/features/notes/data/repositories/notes_repository.dart';
 import 'package:clock/clock.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/data_sources/local/hard_conversation_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/chat_models.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/hard_conversation_draft.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/chat_repository.dart';
-import 'package:flutter_bloc_starter/features/chat/data/repositories/hard_conversation_repository.dart';
-import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -80,7 +80,9 @@ void main() {
         savedAt: clock.now().subtract(const Duration(hours: 25)),
       );
       when(() => localDataSource.read('u1')).thenReturn(jsonEncode(draft.toMap()));
-      when(() => localDataSource.clear(any())).thenAnswer((_) async {});
+      when(() => localDataSource.clear(any())).thenAnswer((_) async {
+        return;
+      });
 
       final read = await repository.readDraft();
 
@@ -91,7 +93,9 @@ void main() {
 
   test('a malformed draft is cleared and forgotten', () async {
     when(() => localDataSource.read('u1')).thenReturn('not-json');
-    when(() => localDataSource.clear(any())).thenAnswer((_) async {});
+    when(() => localDataSource.clear(any())).thenAnswer((_) async {
+      return;
+    });
 
     final read = await repository.readDraft();
 
@@ -105,8 +109,12 @@ void main() {
         userId: any(named: 'userId'),
         draft: any(named: 'draft'),
       ),
-    ).thenAnswer((_) async {});
-    when(() => localDataSource.clear(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => localDataSource.clear(any())).thenAnswer((_) async {
+      return;
+    });
     final draft = HardConversationDraft(
       step: HardConversationStep.whatHappened,
       whatChoice: 'Foi um mal-entendido',
@@ -178,7 +186,9 @@ void main() {
         body: any(named: 'body'),
         forWidget: any(named: 'forWidget'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await repository.sendAsNote('Podemos falar com calma?');
 

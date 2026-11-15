@@ -1,16 +1,16 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/CompleteRepairSession.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/DeleteLearning.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/RecordTemperature.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/RespondToSignal.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/SaveLearning.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/SaveRepairProgress.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/SendRepairSignal.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/StartPause.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/mutations/generated/StartRepairSession.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/queries/generated/MyLearnings.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/queries/generated/OpenGuidedSession.graphql.dart';
-import 'package:flutter_bloc_starter/features/repair/data/data_sources/remote/queries/generated/ReceivedSignals.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/mutations/generated/CompleteRepairSession.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/mutations/generated/DeleteLearning.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/mutations/generated/RecordTemperature.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/mutations/generated/RespondToSignal.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/mutations/generated/SaveLearning.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/mutations/generated/SaveRepairProgress.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/mutations/generated/SendRepairSignal.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/mutations/generated/StartPause.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/mutations/generated/StartRepairSession.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/queries/generated/MyLearnings.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/queries/generated/OpenGuidedSession.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/queries/generated/ReceivedSignals.graphql.dart';
 import 'package:network/network.dart';
 
 class RepairDataSource({required final GQLClient _client}) {

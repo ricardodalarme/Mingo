@@ -1,7 +1,7 @@
+import 'package:app/features/widgets/presentation/how_to_add/widgets/how_to_add_steps_list.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/how_to_add/widgets/how_to_add_steps_list.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// Step-by-step instructions (`X-156`) for placing a widget on the home screen or iOS lock screen.
 @RoutePage()

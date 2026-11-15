@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
-import 'package:flutter_bloc_starter/features/memories/presentation/add_memory/cubit/add_memory_cubit.dart';
+import 'package:app/features/memories/data/models/memory.dart';
+import 'package:app/features/memories/presentation/add_memory/cubit/add_memory_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 

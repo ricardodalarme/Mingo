@@ -1,12 +1,12 @@
+import 'package:app/features/cards/data/data_sources/remote/cards_data_source.dart';
+import 'package:app/features/cards/data/repositories/cards_repository.dart';
+import 'package:app/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
+import 'package:app/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
+import 'package:app/features/cards/presentation/list/cubit/cards_list_cubit.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/cards_data_source.dart';
-import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/list/cubit/cards_list_cubit.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:network/network.dart';
 
 class CardsInjectionModule() implements InjectionModule {

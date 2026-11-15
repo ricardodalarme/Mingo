@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart' show Skeletonizer;
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 
 /// Breakdown of the relationship duration at local midnight.
 typedef TogetherDurationBreakdown = ({int years, int months, int days, int totalDays});

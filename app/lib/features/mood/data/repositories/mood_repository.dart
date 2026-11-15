@@ -1,11 +1,11 @@
+import 'package:app/features/mood/data/data_sources/remote/mood_data_source.dart';
+import 'package:app/features/mood/data/mappers/mood_enum_mapper.dart';
+import 'package:app/features/mood/data/mappers/mood_record_mapper.dart';
+import 'package:app/features/mood/data/models/mood_entry.dart';
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/mood_share.dart';
+import 'package:app/features/mood/data/models/need_kind.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mood_data_source.dart';
-import 'package:flutter_bloc_starter/features/mood/data/mappers/mood_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/mood/data/mappers/mood_record_mapper.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_entry.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_share.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/need_kind.dart';
 import 'package:logger/logger.dart';
 
 /// Today's own mood and the partner's name for the share title.

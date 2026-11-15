@@ -1,11 +1,11 @@
+import 'package:app/features/plus/data/models/plus_state.dart';
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/privacy/data/models/consent.dart';
+import 'package:app/features/privacy/data/repositories/privacy_repository.dart';
+import 'package:app/features/programs/data/models/program.dart';
+import 'package:app/features/programs/data/repositories/programs_repository.dart';
+import 'package:app/features/programs/presentation/lesson/cubit/lesson_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/repositories/privacy_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
-import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/presentation/lesson/cubit/lesson_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -61,20 +61,26 @@ void main() {
         slug: any(named: 'slug'),
         day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     when(
       () => repository.saveLesson(
         slug: any(named: 'slug'),
         day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     when(
       () => repository.advanceProgram(
         slug: any(named: 'slug'),
         currentDay: any(named: 'currentDay'),
         completed: any(named: 'completed'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   LessonCubit build() =>
@@ -123,7 +129,9 @@ void main() {
 
   test('accepting the sensitive consent records it and opens the lesson', () async {
     when(() => repository.getProgram(any())).thenAnswer((_) async => sensitive);
-    when(() => privacy.setConsent(any(), granted: any(named: 'granted'))).thenAnswer((_) async {});
+    when(() => privacy.setConsent(any(), granted: any(named: 'granted'))).thenAnswer((_) async {
+      return;
+    });
     final cubit = build();
     addTearDown(cubit.close);
     await cubit.load(slug: 'grief-together', day: 1);

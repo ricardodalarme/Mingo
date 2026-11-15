@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/fight_style/data/data_sources/remote/fight_style_data_source.dart';
-import 'package:flutter_bloc_starter/features/fight_style/data/data_sources/remote/mutations/generated/UpdateFightStyleResult.graphql.dart';
+import 'package:app/features/fight_style/data/data_sources/remote/fight_style_data_source.dart';
+import 'package:app/features/fight_style/data/data_sources/remote/mutations/generated/UpdateFightStyleResult.graphql.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';

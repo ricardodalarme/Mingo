@@ -1,6 +1,6 @@
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class const HistoryStatsRow({
   required final HistoryNumbers numbers,

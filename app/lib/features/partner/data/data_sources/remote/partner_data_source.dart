@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/partner/data/data_sources/remote/mutations/generated/AddPartnerFact.graphql.dart';
-import 'package:flutter_bloc_starter/features/partner/data/data_sources/remote/mutations/generated/DeletePartnerFact.graphql.dart';
-import 'package:flutter_bloc_starter/features/partner/data/data_sources/remote/queries/generated/PartnerFacts.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/partner/data/data_sources/remote/mutations/generated/AddPartnerFact.graphql.dart';
+import 'package:app/features/partner/data/data_sources/remote/mutations/generated/DeletePartnerFact.graphql.dart';
+import 'package:app/features/partner/data/data_sources/remote/queries/generated/PartnerFacts.graphql.dart';
 import 'package:network/network.dart';
 
 class PartnerDataSource({required final GQLClient _client}) {

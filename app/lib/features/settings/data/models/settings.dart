@@ -1,6 +1,6 @@
+import 'package:app/features/profile/data/models/relationship_goal.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
 
 /// Device-local preferences, including the introduction answers kept until sign-in.
 final class const Settings({

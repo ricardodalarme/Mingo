@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/partner/data/models/partner_fact_category.dart';
-import 'package:flutter_bloc_starter/features/partner/presentation/profile/cubit/partner_profile_cubit.dart';
+import 'package:app/features/partner/data/models/partner_fact_category.dart';
+import 'package:app/features/partner/presentation/profile/cubit/partner_profile_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 

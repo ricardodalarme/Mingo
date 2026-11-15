@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/queries/generated/DailyIdeas.graphql.dart';
+import 'package:app/features/today/data/data_sources/remote/queries/generated/DailyIdeas.graphql.dart';
 import 'package:network/network.dart';
 
 class IdeasDataSource({required final GQLClient _client}) {

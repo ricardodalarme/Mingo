@@ -1,8 +1,8 @@
+import 'package:app/features/lists/data/models/list_kind.dart';
+import 'package:app/features/lists/data/models/list_models.dart';
+import 'package:app/features/lists/data/repositories/lists_repository.dart';
+import 'package:app/features/lists/presentation/lists/cubit/lists_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
-import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/lists/cubit/lists_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -50,7 +50,9 @@ void main() {
           .firstWhere((list) => list.id == invocation.namedArguments[#id])
           .copyWith(title: invocation.namedArguments[#title] as String),
     );
-    when(() => repository.deleteList(any())).thenAnswer((_) async {});
+    when(() => repository.deleteList(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   ListsCubit build() => ListsCubit(listsRepository: repository);

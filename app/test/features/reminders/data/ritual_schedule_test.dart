@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/ritual_schedule.dart';
+import 'package:app/features/reminders/data/models/reminder_preferences.dart';
+import 'package:app/features/reminders/data/models/ritual_schedule.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

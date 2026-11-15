@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
+import 'package:app/features/widgets/data/models/widget_payload.dart';
+import 'package:app/features/widgets/data/services/widget_data_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/dates/data/models/important_date_kind.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/memory_origin.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/dates/data/models/important_date_kind.dart';
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/history/data/models/memory_origin.dart';
+import 'package:app/features/history/data/models/story_event_kind.dart';
 
 extension EnumDatePrecisionMapper on EnumDatePrecision {
   /// An unknown precision is read as a whole day.

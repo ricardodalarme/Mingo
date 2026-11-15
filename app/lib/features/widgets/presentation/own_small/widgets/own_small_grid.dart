@@ -1,8 +1,8 @@
+import 'package:app/features/widgets/data/models/widget_payload.dart';
+import 'package:app/features/widgets/presentation/shared/widget_surface_preview.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/shared/widget_surface_preview.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// 2x2 grid of the four small personal widgets (`X-146`):
 /// Anotar slip, Próxima data, Humor, and Ritual.

@@ -1,5 +1,5 @@
+import 'package:app/features/help/data/data_sources/remote/mutations/generated/CreateSupportRequest.graphql.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/help/data/data_sources/remote/mutations/generated/CreateSupportRequest.graphql.dart';
 import 'package:network/network.dart';
 
 class SupportDataSource({required final GQLClient _client}) {

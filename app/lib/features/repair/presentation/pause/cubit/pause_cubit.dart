@@ -1,9 +1,9 @@
+import 'package:app/features/repair/data/models/pause_return.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/pause_return.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 part 'pause_state.dart';

@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:app/features/slips/data/models/slip_category.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:uuid/uuid.dart';
 

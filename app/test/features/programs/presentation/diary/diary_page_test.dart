@@ -1,14 +1,14 @@
 import 'dart:async';
 
+import 'package:app/features/programs/data/models/diary_entry.dart';
+import 'package:app/features/programs/data/repositories/programs_repository.dart';
+import 'package:app/features/programs/presentation/diary/cubit/diary_cubit.dart';
+import 'package:app/features/programs/presentation/diary/diary_page.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/diary_entry.dart';
-import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/presentation/diary/cubit/diary_cubit.dart';
-import 'package:flutter_bloc_starter/features/programs/presentation/diary/diary_page.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

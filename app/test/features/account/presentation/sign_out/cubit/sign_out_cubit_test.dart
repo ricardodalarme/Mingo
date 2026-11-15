@@ -1,9 +1,9 @@
-import 'package:flutter_bloc_starter/features/account/presentation/sign_out/cubit/sign_out_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/today/data/repositories/today_repository.dart';
+import 'package:app/features/account/presentation/sign_out/cubit/sign_out_cubit.dart';
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/today/data/repositories/today_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:preferences_service/preferences_service.dart';
@@ -41,9 +41,15 @@ void main() {
     secureStorage = _MockSecureStorageService();
     today = _MockTodayRepository();
     when(() => slips.pendingCount).thenReturn(0);
-    when(() => today.clearCache()).thenAnswer((_) async {});
-    when(() => auth.logOut()).thenAnswer((_) async {});
-    when(() => reminders.cancelAll()).thenAnswer((_) async {});
+    when(() => today.clearCache()).thenAnswer((_) async {
+      return;
+    });
+    when(() => auth.logOut()).thenAnswer((_) async {
+      return;
+    });
+    when(() => reminders.cancelAll()).thenAnswer((_) async {
+      return;
+    });
     when(() => preferences.clear()).thenAnswer((_) async {});
     when(() => secureStorage.clear()).thenAnswer((_) async {});
   });

@@ -1,10 +1,10 @@
+import 'package:app/features/together/presentation/day/cubit/day_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/together/presentation/day/cubit/day_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// What matters on a chosen day, with a way to step through the days.
 @RoutePage()

@@ -1,15 +1,15 @@
+import 'package:app/features/cards/data/models/card_detail.dart';
+import 'package:app/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
+import 'package:app/features/cards/presentation/detail/widgets/card_reaction_section.dart';
+import 'package:app/features/cards/presentation/detail/widgets/card_response_received.dart';
+import 'package:app/features/cards/presentation/shared/widgets/card_view.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_detail.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/detail/widgets/card_reaction_section.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/detail/widgets/card_response_received.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/shared/widgets/card_view.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 @RoutePage()
 class const CardDetailPage({@PathParam('id') required final String cardId, super.key})

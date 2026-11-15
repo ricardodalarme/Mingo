@@ -1,12 +1,12 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/guides/data/data_sources/local/guide_session.dart';
+import 'package:app/features/guides/data/data_sources/local/guides_local_data_source.dart';
+import 'package:app/features/guides/data/data_sources/remote/guides_data_source.dart';
+import 'package:app/features/guides/data/repositories/guides_repository.dart';
+import 'package:app/features/guides/presentation/hub/cubit/guides_cubit.dart';
+import 'package:app/features/guides/presentation/viewer/cubit/guide_cubit.dart';
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guide_session.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/local/guides_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/guides/data/data_sources/remote/guides_data_source.dart';
-import 'package:flutter_bloc_starter/features/guides/data/repositories/guides_repository.dart';
-import 'package:flutter_bloc_starter/features/guides/presentation/hub/cubit/guides_cubit.dart';
-import 'package:flutter_bloc_starter/features/guides/presentation/viewer/cubit/guide_cubit.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
 import 'package:network/network.dart';
 import 'package:preferences_service/preferences_service.dart';
 

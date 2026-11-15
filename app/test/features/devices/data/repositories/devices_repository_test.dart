@@ -1,10 +1,10 @@
+import 'package:app/features/_shared/data/data_sources/local/device_marker_store.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/devices/data/data_sources/remote/devices_data_source.dart';
+import 'package:app/features/devices/data/data_sources/remote/queries/generated/MyDevices.graphql.dart';
+import 'package:app/features/devices/data/models/device_platform.dart';
+import 'package:app/features/devices/data/repositories/devices_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/local/device_marker_store.dart';
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/devices/data/data_sources/remote/devices_data_source.dart';
-import 'package:flutter_bloc_starter/features/devices/data/data_sources/remote/queries/generated/MyDevices.graphql.dart';
-import 'package:flutter_bloc_starter/features/devices/data/models/device_platform.dart';
-import 'package:flutter_bloc_starter/features/devices/data/repositories/devices_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';

@@ -1,10 +1,10 @@
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/history/data/models/story_event_kind.dart';
+import 'package:app/features/history/presentation/history/widgets/history_date_formatter.dart';
+import 'package:app/features/history/presentation/story_dates/cubit/story_dates_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/story_event_kind.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/history/widgets/history_date_formatter.dart';
-import 'package:flutter_bloc_starter/features/history/presentation/story_dates/cubit/story_dates_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class const StoryDatesList({required final HistoryOverview overview, super.key})
     extends StatelessWidget {

@@ -1,10 +1,10 @@
+import 'package:app/features/games/data/models/game_kind.dart';
+import 'package:app/features/games/data/models/game_play.dart';
+import 'package:app/features/games/presentation/game/widgets/game_kind_l10n.dart';
+import 'package:app/features/games/presentation/game/widgets/game_result_l10n.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_play.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_kind_l10n.dart';
-import 'package:flutter_bloc_starter/features/games/presentation/game/widgets/game_result_l10n.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// The warm reveal of a finished game; no score and no cancel.
 class const GameFinishedView({required final GamePlay play, super.key}) extends StatelessWidget {

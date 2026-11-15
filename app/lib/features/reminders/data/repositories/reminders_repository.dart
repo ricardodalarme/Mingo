@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/reminders/data/data_sources/local/reminders_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/planned_reminder.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/ritual_schedule.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/planner/reminder_planner.dart';
+import 'package:app/features/reminders/data/data_sources/local/reminders_local_data_source.dart';
+import 'package:app/features/reminders/data/models/planned_reminder.dart';
+import 'package:app/features/reminders/data/models/reminder_preferences.dart';
+import 'package:app/features/reminders/data/models/ritual_schedule.dart';
+import 'package:app/features/reminders/data/planner/reminder_planner.dart';
 import 'package:local_notification_service/local_notification_service.dart';
 import 'package:logger/logger.dart';
 

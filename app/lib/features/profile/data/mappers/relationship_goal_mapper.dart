@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/profile/data/models/relationship_goal.dart';
 
 extension RelationshipGoalMapper on RelationshipGoal {
   /// The text stored in `profile_settings.goals`, which is a list of text.

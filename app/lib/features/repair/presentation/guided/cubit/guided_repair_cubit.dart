@@ -1,12 +1,12 @@
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
+import 'package:app/features/repair/data/models/guided_session.dart';
+import 'package:app/features/repair/data/models/repair_path.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/guided_session.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/repair_path.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
 import 'package:uuid/uuid.dart';
 
 part 'guided_repair_state.dart';

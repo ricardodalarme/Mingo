@@ -1,11 +1,11 @@
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/mutations/generated/InsertLoveStyleManualEntry.graphql.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/mutations/generated/InsertLoveStyleResult.graphql.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/mutations/generated/ShareLoveStyle.graphql.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/mutations/generated/UpdateLoveStyleManualEntry.graphql.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/mutations/generated/UpdateLoveStyleResult.graphql.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/queries/generated/LoveStyleManualEntry.graphql.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/queries/generated/LoveStyleResult.graphql.dart';
-import 'package:flutter_bloc_starter/features/love_style/data/data_sources/remote/queries/generated/LoveStyleSharedMessage.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/InsertLoveStyleManualEntry.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/InsertLoveStyleResult.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/ShareLoveStyle.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/UpdateLoveStyleManualEntry.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/UpdateLoveStyleResult.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/queries/generated/LoveStyleManualEntry.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/queries/generated/LoveStyleResult.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/queries/generated/LoveStyleSharedMessage.graphql.dart';
 import 'package:network/network.dart';
 
 /// A saved love-style result with its row id, before the domain mapping.

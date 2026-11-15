@@ -1,6 +1,6 @@
+import 'package:app/infrastructure/config/env_variables.dart';
 import 'package:authentication_service/authentication_service.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/infrastructure/config/env_variables.dart';
 import 'package:logger/logger.dart';
 
 final class AuthenticationInitializer() extends Initializer {

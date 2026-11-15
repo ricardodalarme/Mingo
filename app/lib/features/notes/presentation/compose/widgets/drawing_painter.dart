@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:app/features/notes/presentation/compose/cubit/drawing_stroke.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/drawing_stroke.dart';
 
 /// The inks a drawing can use; fixed so the partner sees the same colors in any theme.
 const List<Color> drawingPens = [

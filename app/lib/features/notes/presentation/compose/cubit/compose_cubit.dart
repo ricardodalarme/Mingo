@@ -1,13 +1,13 @@
 import 'dart:typed_data';
 import 'dart:ui';
 
+import 'package:app/features/notes/data/models/sent_message.dart';
+import 'package:app/features/notes/data/repositories/notes_repository.dart';
+import 'package:app/features/notes/presentation/compose/cubit/drawing_stroke.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dart';
-import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
-import 'package:flutter_bloc_starter/features/notes/presentation/compose/cubit/drawing_stroke.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 part 'compose_state.dart';

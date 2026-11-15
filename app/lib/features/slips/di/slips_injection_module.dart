@@ -1,12 +1,12 @@
+import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
+import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/slips/presentation/need/cubit/need_cubit.dart';
+import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
+import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
+import 'package:app/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
+import 'package:app/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/local/slip_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/slip_data_source.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/need/cubit/need_cubit.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
 import 'package:network/network.dart';
 import 'package:preferences_service/preferences_service.dart';
 

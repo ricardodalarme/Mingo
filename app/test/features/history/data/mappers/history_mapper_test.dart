@@ -1,8 +1,8 @@
-import 'package:flutter_bloc_starter/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
-import 'package:flutter_bloc_starter/features/history/data/mappers/history_mapper.dart';
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
+import 'package:app/features/history/data/mappers/history_mapper.dart';
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 final _now = DateTime(2026, 11, 9);

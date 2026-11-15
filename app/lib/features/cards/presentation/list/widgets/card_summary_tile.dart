@@ -1,8 +1,8 @@
+import 'package:app/features/cards/data/models/card_summary.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_summary.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// One row of the card history: the date, how many slips, and the partner's answer.
 class const CardSummaryTile({required final CardSummary card, super.key}) extends StatelessWidget {

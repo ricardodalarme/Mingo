@@ -1,27 +1,27 @@
 import 'dart:async';
 
+import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/app/presentation/navigation/app_state_navigator.dart';
+import 'package:app/features/app/presentation/shell/app_shell.dart';
+import 'package:app/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
+import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
+import 'package:app/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
+import 'package:app/features/safety/presentation/safe_mode/widgets/safe_mode_shield.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
+import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
+import 'package:app/features/widgets/data/services/widget_data_service.dart';
+import 'package:app/features/widgets/presentation/navigation/widget_deep_link_resolver.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/observers/analytics_router_observer.dart';
+import 'package:app/router/observers/log_router_observer.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/navigation/app_state_navigator.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/shell/app_shell.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/version/cubit/version_gate_cubit.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/repair/data/repositories/repair_repository.dart';
-import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/safety/presentation/safe_mode/widgets/safe_mode_shield.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/navigation/widget_deep_link_resolver.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/observers/analytics_router_observer.dart';
-import 'package:flutter_bloc_starter/router/observers/log_router_observer.dart';
 
 class const App({super.key}) extends StatelessWidget {
   @override

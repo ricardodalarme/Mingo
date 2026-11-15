@@ -1,7 +1,7 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/authentication/presentation/sign_in/cubit/sign_in_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/authentication/presentation/sign_in/cubit/sign_in_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -16,7 +16,9 @@ void main() {
     blocTest<SignInCubit, SignInState>(
       'signs in with Apple and reports success',
       build: () {
-        when(() => repository.logInWithApple()).thenAnswer((_) async {});
+        when(() => repository.logInWithApple()).thenAnswer((_) async {
+          return;
+        });
         return SignInCubit(authenticationRepository: repository);
       },
       act: (cubit) => cubit.signInWithApple(),

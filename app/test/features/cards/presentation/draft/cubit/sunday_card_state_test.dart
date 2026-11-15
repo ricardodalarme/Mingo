@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/cards/data/models/card_status.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
+import 'package:app/features/cards/data/models/card_status.dart';
+import 'package:app/features/cards/data/models/sunday_card.dart';
+import 'package:app/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

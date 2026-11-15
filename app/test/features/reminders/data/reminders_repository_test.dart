@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/reminders/data/data_sources/local/reminders_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/reminder_preferences.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/reminders/data/data_sources/local/reminders_local_data_source.dart';
+import 'package:app/features/reminders/data/models/reminder_preferences.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:local_notification_service/local_notification_service.dart';
 import 'package:mocktail/mocktail.dart';
@@ -37,7 +37,9 @@ void main() {
     when(() => local.readCustom()).thenReturn(const []);
     when(() => local.readFollowUps()).thenReturn(const []);
     when(() => local.readRituals()).thenReturn(const []);
-    when(() => local.writeCustom(any())).thenAnswer((_) async {});
+    when(() => local.writeCustom(any())).thenAnswer((_) async {
+      return;
+    });
     when(() => notifications.replaceAll(any())).thenAnswer((invocation) async {
       scheduled = invocation.positionalArguments.first as List<LocalNotificationRequest>;
     });

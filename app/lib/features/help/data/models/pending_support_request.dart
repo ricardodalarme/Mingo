@@ -1,6 +1,6 @@
+import 'package:app/features/help/data/mappers/support_topic_mapper.dart';
+import 'package:app/features/help/data/models/support_topic.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/help/data/mappers/support_topic_mapper.dart';
-import 'package:flutter_bloc_starter/features/help/data/models/support_topic.dart';
 
 /// A support request kept on the device until it reaches the server.
 final class const PendingSupportRequest({

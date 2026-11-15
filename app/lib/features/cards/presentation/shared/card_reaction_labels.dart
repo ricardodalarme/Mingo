@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/cards/data/models/card_reaction.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:app/features/cards/data/models/card_reaction.dart';
+import 'package:app/l10n/translations.g.dart';
 
 extension CardReactionLabels on Translations$cardsList$pt {
   String labelFor(CardReaction reaction) => switch (reaction) {

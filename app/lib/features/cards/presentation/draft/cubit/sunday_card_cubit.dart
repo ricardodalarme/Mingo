@@ -1,10 +1,10 @@
+import 'package:app/features/cards/data/models/sunday_card.dart';
+import 'package:app/features/cards/data/repositories/cards_repository.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/sunday_card.dart';
-import 'package:flutter_bloc_starter/features/cards/data/repositories/cards_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
 
 part 'sunday_card_state.dart';
 

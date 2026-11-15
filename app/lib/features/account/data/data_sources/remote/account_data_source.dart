@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/account/data/data_sources/remote/mutations/generated/CancelAccountDeletion.graphql.dart';
-import 'package:flutter_bloc_starter/features/account/data/data_sources/remote/mutations/generated/RequestAccountDeletion.graphql.dart';
-import 'package:flutter_bloc_starter/features/account/data/data_sources/remote/queries/generated/MyDeletionRequest.graphql.dart';
+import 'package:app/features/account/data/data_sources/remote/mutations/generated/CancelAccountDeletion.graphql.dart';
+import 'package:app/features/account/data/data_sources/remote/mutations/generated/RequestAccountDeletion.graphql.dart';
+import 'package:app/features/account/data/data_sources/remote/queries/generated/MyDeletionRequest.graphql.dart';
 import 'package:network/network.dart';
 
 class AccountDataSource({required final GQLClient _client}) {

@@ -1,7 +1,7 @@
+import 'package:app/features/questions/data/models/question_thread.dart';
+import 'package:app/features/questions/data/repositories/questions_repository.dart';
+import 'package:app/features/questions/presentation/questions/cubit/questions_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
-import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
-import 'package:flutter_bloc_starter/features/questions/presentation/questions/cubit/questions_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';

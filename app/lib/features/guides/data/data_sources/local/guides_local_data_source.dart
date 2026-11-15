@@ -1,7 +1,7 @@
 import 'dart:convert';
 
+import 'package:app/features/guides/data/models/guide_progress.dart';
 import 'package:clock/clock.dart';
-import 'package:flutter_bloc_starter/features/guides/data/models/guide_progress.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 /// Keeps each guide's position and answers for one signed-in person.

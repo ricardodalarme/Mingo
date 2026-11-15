@@ -1,9 +1,9 @@
+import 'package:app/features/repair/data/models/guided_session.dart';
+import 'package:app/features/repair/presentation/guided/cubit/guided_repair_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/repair/data/models/guided_session.dart';
-import 'package:flutter_bloc_starter/features/repair/presentation/guided/cubit/guided_repair_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class const GuidedWrittenStep({super.key}) extends StatelessWidget {
   @override

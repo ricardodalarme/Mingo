@@ -1,11 +1,11 @@
+import 'package:app/features/mood/data/models/mood_entry.dart';
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/mood_share.dart';
+import 'package:app/features/mood/data/models/need_kind.dart';
+import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_entry.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_share.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/need_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/repositories/mood_repository.dart';
 
 part 'mood_state.dart';
 

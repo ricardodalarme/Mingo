@@ -1,13 +1,13 @@
+import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
+import 'package:app/features/plus/data/models/plus_state.dart';
+import 'package:app/features/plus/presentation/plans/cubit/plans_cubit.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/_shared/presentation/errors/app_error_view.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_state.dart';
-import 'package:flutter_bloc_starter/features/plus/presentation/plans/cubit/plans_cubit.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// Free and Plus side by side, with store prices and no pressure. Safety, pause and unpair are free.
 @RoutePage()

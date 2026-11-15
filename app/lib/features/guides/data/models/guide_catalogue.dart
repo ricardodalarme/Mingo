@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/guides/data/models/guide.dart';
+import 'package:app/features/guides/data/models/guide.dart';
 
 /// The six private conversation guides, authored in Portuguese and English.
 const List<GuideDefinition> guideCatalogue = [

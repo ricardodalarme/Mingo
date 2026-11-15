@@ -1,10 +1,10 @@
+import 'package:app/features/together/data/models/ritual.dart';
+import 'package:app/features/together/data/models/ritual_cadence.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
+import 'package:app/features/together/data/services/ritual_reminder_service.dart';
+import 'package:app/features/together/presentation/ritual_edit/cubit/ritual_edit_cubit.dart';
+import 'package:app/features/together/presentation/rituals/cubit/rituals_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/ritual.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/ritual_cadence.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
-import 'package:flutter_bloc_starter/features/together/data/services/ritual_reminder_service.dart';
-import 'package:flutter_bloc_starter/features/together/presentation/ritual_edit/cubit/ritual_edit_cubit.dart';
-import 'package:flutter_bloc_starter/features/together/presentation/rituals/cubit/rituals_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -33,10 +33,18 @@ void main() {
     together = _MockTogetherRepository();
     reminders = _MockRitualReminderService();
     when(() => together.getRituals()).thenAnswer((_) async => [dinner]);
-    when(() => together.completeRitual(any(), now: any(named: 'now'))).thenAnswer((_) async {});
-    when(() => together.saveRitual(any(), isNew: any(named: 'isNew'))).thenAnswer((_) async {});
-    when(() => together.archiveRitual(any(), now: any(named: 'now'))).thenAnswer((_) async {});
-    when(() => reminders.update(any())).thenAnswer((_) async {});
+    when(() => together.completeRitual(any(), now: any(named: 'now'))).thenAnswer((_) async {
+      return;
+    });
+    when(() => together.saveRitual(any(), isNew: any(named: 'isNew'))).thenAnswer((_) async {
+      return;
+    });
+    when(() => together.archiveRitual(any(), now: any(named: 'now'))).thenAnswer((_) async {
+      return;
+    });
+    when(() => reminders.update(any())).thenAnswer((_) async {
+      return;
+    });
   });
 
   group('RitualsCubit', () {

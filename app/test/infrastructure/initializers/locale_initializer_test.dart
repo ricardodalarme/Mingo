@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/settings/data/models/settings.dart';
-import 'package:flutter_bloc_starter/features/settings/data/repositories/settings_repository.dart';
-import 'package:flutter_bloc_starter/infrastructure/initializers/locale_initializer.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:app/features/settings/data/models/settings.dart';
+import 'package:app/features/settings/data/repositories/settings_repository.dart';
+import 'package:app/infrastructure/initializers/locale_initializer.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

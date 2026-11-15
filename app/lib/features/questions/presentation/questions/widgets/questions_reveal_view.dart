@@ -1,7 +1,7 @@
+import 'package:app/features/questions/data/models/question_thread.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 class const QuestionsRevealView({required final QuestionThread thread, super.key})
     extends StatelessWidget {

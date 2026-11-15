@@ -1,6 +1,6 @@
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/pairing/presentation/unpair/cubit/unpair_done_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/presentation/unpair/cubit/unpair_done_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -11,7 +11,9 @@ void main() {
 
   setUp(() {
     pairing = _MockPairingRepository();
-    when(() => pairing.resolveSharedItems(keep: any(named: 'keep'))).thenAnswer((_) async {});
+    when(() => pairing.resolveSharedItems(keep: any(named: 'keep'))).thenAnswer((_) async {
+      return;
+    });
   });
 
   UnpairDoneCubit build() => UnpairDoneCubit(pairingRepository: pairing);

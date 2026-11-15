@@ -1,12 +1,12 @@
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/fragments/generated/CardFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/mutations/generated/HoldCard.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/mutations/generated/MarkCardRead.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/mutations/generated/PrepareCard.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/mutations/generated/ReactToCard.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/mutations/generated/SendCard.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/mutations/generated/UpdateCardDraft.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/queries/generated/CardDetail.graphql.dart';
-import 'package:flutter_bloc_starter/features/cards/data/data_sources/remote/queries/generated/MyCards.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/fragments/generated/CardFragment.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/mutations/generated/HoldCard.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/mutations/generated/MarkCardRead.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/mutations/generated/PrepareCard.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/mutations/generated/ReactToCard.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/mutations/generated/SendCard.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/mutations/generated/UpdateCardDraft.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/queries/generated/CardDetail.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/queries/generated/MyCards.graphql.dart';
 import 'package:network/network.dart';
 
 class CardsDataSource({required final GQLClient _client}) {

@@ -1,5 +1,5 @@
+import 'package:app/features/games/data/models/game_kind.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/games/data/models/game_kind.dart';
 
 /// How long an invitation waits for the partner before it counts as expired.
 const Duration gameInviteWindow = Duration(hours: 48);

@@ -1,12 +1,12 @@
+import 'package:app/features/fight_style/presentation/exercise/cubit/fight_style_cubit.dart';
+import 'package:app/features/fight_style/presentation/exercise/widgets/fight_style_question_view.dart';
+import 'package:app/features/fight_style/presentation/exercise/widgets/fight_style_result_view.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/cubit/fight_style_cubit.dart';
-import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/widgets/fight_style_question_view.dart';
-import 'package:flutter_bloc_starter/features/fight_style/presentation/exercise/widgets/fight_style_result_view.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// A private reflection on how the person reacts in a fight.
 @RoutePage()

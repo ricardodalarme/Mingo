@@ -1,19 +1,19 @@
 import 'dart:async';
 
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/avatar_kind.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/profile.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/settings/data/data_sources/local/discreet_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/data_sources/remote/widgets_data_source.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_models.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/couple_photo_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/repositories/widgets_repository.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/services/widget_data_service.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/settings/data/data_sources/local/discreet_local_data_source.dart';
+import 'package:app/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
+import 'package:app/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetPreferences.graphql.dart';
+import 'package:app/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
+import 'package:app/features/widgets/data/data_sources/remote/widgets_data_source.dart';
+import 'package:app/features/widgets/data/models/widget_models.dart';
+import 'package:app/features/widgets/data/models/widget_payload.dart';
+import 'package:app/features/widgets/data/repositories/couple_photo_repository.dart';
+import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
+import 'package:app/features/widgets/data/services/widget_data_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -118,16 +118,23 @@ void main() {
     when(() => localDataSource.readCachedPayload()).thenAnswer((_) => cached);
     when(() => localDataSource.writeCachedPayload(any())).thenAnswer((invocation) async {
       cached = invocation.positionalArguments.first as WidgetPayload;
+      return;
     });
     when(() => localDataSource.clear()).thenAnswer((_) async {
       cached = null;
+      return;
     });
-    when(() => localDataSource.setContentSource(any())).thenAnswer((_) async {});
-    when(() => localDataSource.setRotationCadence(any())).thenAnswer((_) async {});
+    when(() => localDataSource.setContentSource(any())).thenAnswer((_) async {
+      return;
+    });
+    when(() => localDataSource.setRotationCadence(any())).thenAnswer((_) async {
+      return;
+    });
     when(() => discreetLocalDataSource.hideWidgetText).thenAnswer((_) => hideWidgetText);
     when(() => discreetLocalDataSource.setHideWidgetText(value: any(named: 'value')))
         .thenAnswer((invocation) async {
           hideWidgetText = invocation.namedArguments[#value] as bool;
+          return;
         });
     when(
       () => widgetDataService.readCachedPhotoPath(
@@ -137,7 +144,9 @@ void main() {
     ).thenAnswer((_) async => null);
     when(() => couplePhotoRepository.syncWidgetCache(cacheAllowed: any(named: 'cacheAllowed')))
         .thenAnswer((_) async => false);
-    when(() => widgetDataService.clearCouplePhoto()).thenAnswer((_) async {});
+    when(() => widgetDataService.clearCouplePhoto()).thenAnswer((_) async {
+      return;
+    });
     when(() => widgetDataService.readStoredPayload()).thenAnswer((_) async => cached);
     when(() => widgetDataService.writePayload(any(), referenceNow: any(named: 'referenceNow')))
         .thenAnswer((invocation) async {

@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_share.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/need_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/presentation/mood/cubit/mood_cubit.dart';
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/mood_share.dart';
+import 'package:app/features/mood/data/models/need_kind.dart';
+import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

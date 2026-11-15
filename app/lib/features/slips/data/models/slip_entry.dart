@@ -1,6 +1,6 @@
+import 'package:app/features/slips/data/models/slip_category.dart';
+import 'package:app/features/slips/data/models/slip_kind.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_kind.dart';
 
 /// A slip as shown in the list.
 final class const SlipEntry({

@@ -1,7 +1,7 @@
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/notifications/presentation/off_banner/cubit/notifications_off_cubit.dart';
+import 'package:app/features/notifications/presentation/permission/cubit/notification_permission_cubit.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/cubit/notifications_off_cubit.dart';
-import 'package:flutter_bloc_starter/features/notifications/presentation/permission/cubit/notification_permission_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -15,8 +15,9 @@ void main() {
   setUp(() {
     repository = _MockNotificationsRepository();
     when(() => repository.isOffBannerDismissed).thenReturn(false);
-    when(() => repository.setOffBannerDismissed(value: any(named: 'value')))
-        .thenAnswer((_) async {});
+    when(() => repository.setOffBannerDismissed(value: any(named: 'value'))).thenAnswer((_) async {
+      return;
+    });
   });
 
   group('NotificationPermissionCubit', () {
@@ -79,6 +80,7 @@ void main() {
       when(() => repository.setOffBannerDismissed(value: any(named: 'value')))
           .thenAnswer((invocation) async {
             dismissed = invocation.namedArguments[#value] as bool;
+            return;
           });
       final cubit = NotificationsOffCubit(repository: repository);
       await cubit.refresh();

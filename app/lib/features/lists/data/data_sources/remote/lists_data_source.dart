@@ -1,16 +1,16 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/fragments/generated/ListFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/fragments/generated/ListItemFragment.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/AddListItem.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/CreateList.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/DeleteList.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/DeleteListItem.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/RenameList.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/ReorderListItems.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/SetListItemStatus.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/mutations/generated/SetListVisibility.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/queries/generated/ListDetail.graphql.dart';
-import 'package:flutter_bloc_starter/features/lists/data/data_sources/remote/queries/generated/Lists.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/fragments/generated/ListFragment.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/fragments/generated/ListItemFragment.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/AddListItem.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/CreateList.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/DeleteList.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/DeleteListItem.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/RenameList.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/ReorderListItems.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/SetListItemStatus.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/mutations/generated/SetListVisibility.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/queries/generated/ListDetail.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/queries/generated/Lists.graphql.dart';
 import 'package:network/network.dart';
 
 class ListsDataSource({required final GQLClient _client}) {

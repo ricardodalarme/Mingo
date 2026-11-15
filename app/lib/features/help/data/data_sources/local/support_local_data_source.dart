@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_bloc_starter/features/help/data/models/pending_support_request.dart';
+import 'package:app/features/help/data/models/pending_support_request.dart';
 import 'package:preferences_service/preferences_service.dart';
 
 class SupportLocalDataSource({required final PreferencesService _preferencesService}) {

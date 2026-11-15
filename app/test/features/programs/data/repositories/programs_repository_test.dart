@@ -1,9 +1,9 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/programs/data/data_sources/remote/programs_data_source.dart';
-import 'package:flutter_bloc_starter/features/programs/data/models/program.dart';
-import 'package:flutter_bloc_starter/features/programs/data/repositories/programs_repository.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/programs/data/data_sources/remote/programs_data_source.dart';
+import 'package:app/features/programs/data/models/program.dart';
+import 'package:app/features/programs/data/repositories/programs_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -156,7 +156,9 @@ void main() {
         programSlug: any(named: 'programSlug'),
         currentDay: any(named: 'currentDay'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     when(
       () => dataSource.updateEnrollment(
         programSlug: any(named: 'programSlug'),
@@ -170,8 +172,12 @@ void main() {
         completedAt: any(named: 'completedAt'),
       ),
     ).thenAnswer((_) async => true);
-    when(() => dataSource.restartEnrollment(any())).thenAnswer((_) async {});
-    when(() => dataSource.clearLessonProgress(any())).thenAnswer((_) async {});
+    when(() => dataSource.restartEnrollment(any())).thenAnswer((_) async {
+      return;
+    });
+    when(() => dataSource.clearLessonProgress(any())).thenAnswer((_) async {
+      return;
+    });
 
     await repository.startProgram(slug: 'gratitude-7', day: 1);
     await repository.advanceProgram(slug: 'gratitude-7', currentDay: 2, completed: false);
@@ -204,7 +210,9 @@ void main() {
         currentDay: any(named: 'currentDay'),
         completedAt: any(named: 'completedAt'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await repository.advanceProgram(slug: 'gratitude-7', currentDay: 2, completed: false);
 
@@ -228,7 +236,9 @@ void main() {
         currentDay: any(named: 'currentDay'),
         completedAt: any(named: 'completedAt'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await repository.advanceProgram(slug: 'gratitude-7', currentDay: 2, completed: true);
 
@@ -248,7 +258,9 @@ void main() {
         lessonDay: any(named: 'lessonDay'),
         status: any(named: 'status'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
 
     await repository.completeLesson(slug: 'gratitude-7', day: 1);
     await repository.saveLesson(slug: 'gratitude-7', day: 2);
@@ -290,8 +302,12 @@ void main() {
         body: any(named: 'body'),
         mood: null,
       ),
-    ).thenAnswer((_) async {});
-    when(() => dataSource.deleteJournalEntry(any())).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
+    when(() => dataSource.deleteJournalEntry(any())).thenAnswer((_) async {
+      return;
+    });
 
     final entries = await repository.getDiaryEntries();
     final id = await repository.saveDiaryEntry(entryDate: DateTime(2026, 11, 11), body: 'Novo.');

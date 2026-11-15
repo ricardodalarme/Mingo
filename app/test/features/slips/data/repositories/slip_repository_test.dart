@@ -1,10 +1,10 @@
+import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
+import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
+import 'package:app/features/slips/data/models/pending_slip.dart';
+import 'package:app/features/slips/data/models/slip_category.dart';
+import 'package:app/features/slips/data/models/slip_draft.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/local/slip_local_data_source.dart';
-import 'package:flutter_bloc_starter/features/slips/data/data_sources/remote/slip_data_source.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/pending_slip.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_category.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_draft.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network/network.dart';
@@ -29,20 +29,26 @@ void main() {
     local = _MockSlipLocalDataSource();
     repository = SlipRepository(slipDataSource: remote, localDataSource: local);
     when(() => local.readPending()).thenReturn(const []);
-    when(() => local.writePending(any())).thenAnswer((_) async {});
+    when(() => local.writePending(any())).thenAnswer((_) async {
+      return;
+    });
     when(
       () => remote.saveSlip(
         id: any(named: 'id'),
         body: any(named: 'body'),
         createdAt: any(named: 'createdAt'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
     when(
       () => remote.setCategory(
         id: any(named: 'id'),
         category: any(named: 'category'),
       ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   group('saveQuick', () {
@@ -105,7 +111,9 @@ void main() {
     });
 
     test('deletes a synced slip on the server', () async {
-      when(() => remote.deleteSlip('s1')).thenAnswer((_) async {});
+      when(() => remote.deleteSlip('s1')).thenAnswer((_) async {
+        return;
+      });
 
       await repository.undo('s1');
 

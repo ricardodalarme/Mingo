@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/memories/data/models/memory.dart';
+import 'package:app/features/memories/data/models/memory.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

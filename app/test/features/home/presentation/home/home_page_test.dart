@@ -1,5 +1,5 @@
+import 'package:app/features/home/presentation/home/home_page.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/home/presentation/home/home_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

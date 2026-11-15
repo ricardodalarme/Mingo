@@ -1,5 +1,5 @@
-import 'package:flutter_bloc_starter/features/history/data/models/history_models.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/l10n/translations.g.dart';
 
 abstract final class HistoryDateFormatter() {
   static String formatFullDate(Translations$history$pt l10n, DateTime date) {

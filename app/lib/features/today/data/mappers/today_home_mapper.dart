@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/mood/data/mappers/mood_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/partner_mood.dart';
-import 'package:flutter_bloc_starter/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
-import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
+import 'package:app/features/mood/data/mappers/mood_enum_mapper.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
+import 'package:app/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
+import 'package:app/features/today/data/models/today_home.dart';
 
 extension TodayHomeMapper on QueryTodayHome {
   /// The home state, or `null` when the server returned no `today` row.

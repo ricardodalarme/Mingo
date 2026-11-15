@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/privacy/data/data_sources/remote/privacy_data_source.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/mappers/consent_kind_mapper.dart';
-import 'package:flutter_bloc_starter/features/privacy/data/models/consent.dart';
+import 'package:app/features/privacy/data/data_sources/remote/privacy_data_source.dart';
+import 'package:app/features/privacy/data/mappers/consent_kind_mapper.dart';
+import 'package:app/features/privacy/data/models/consent.dart';
 import 'package:logger/logger.dart';
 
 /// Reads the latest consent per kind and records changes.

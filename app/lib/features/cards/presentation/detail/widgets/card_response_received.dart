@@ -1,10 +1,10 @@
+import 'package:app/features/cards/data/models/card_detail.dart';
+import 'package:app/features/cards/data/models/card_reaction.dart';
+import 'package:app/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
+import 'package:app/features/cards/presentation/shared/card_reaction_labels.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_detail.dart';
-import 'package:flutter_bloc_starter/features/cards/data/models/card_reaction.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/shared/card_reaction_labels.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 
 /// The sender's quiet view of the answer the partner gave.
 class const CardResponseReceived({required final CardDetail detail, super.key})

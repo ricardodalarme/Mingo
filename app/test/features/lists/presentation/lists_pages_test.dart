@@ -1,17 +1,17 @@
+import 'package:app/features/lists/data/models/list_item_status.dart';
+import 'package:app/features/lists/data/models/list_kind.dart';
+import 'package:app/features/lists/data/models/list_models.dart';
+import 'package:app/features/lists/data/repositories/lists_repository.dart';
+import 'package:app/features/lists/presentation/create_list/create_list_sheet.dart';
+import 'package:app/features/lists/presentation/detail/cubit/list_detail_cubit.dart';
+import 'package:app/features/lists/presentation/detail/list_detail_page.dart';
+import 'package:app/features/lists/presentation/lists/cubit/lists_cubit.dart';
+import 'package:app/features/lists/presentation/lists/lists_page.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_item_status.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
-import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/create_list/create_list_sheet.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/detail/cubit/list_detail_cubit.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/detail/list_detail_page.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/lists/cubit/lists_cubit.dart';
-import 'package:flutter_bloc_starter/features/lists/presentation/lists/lists_page.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

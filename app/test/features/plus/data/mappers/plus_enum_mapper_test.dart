@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/plus/data/mappers/plus_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_plan.dart';
-import 'package:flutter_bloc_starter/features/plus/data/models/plus_status.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/plus/data/mappers/plus_enum_mapper.dart';
+import 'package:app/features/plus/data/models/plus_plan.dart';
+import 'package:app/features/plus/data/models/plus_status.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

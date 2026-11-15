@@ -1,18 +1,18 @@
 import 'dart:async';
 
-import 'package:flutter_bloc_starter/features/checkin/data/repositories/checkin_repository.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/models/gift_idea.dart';
-import 'package:flutter_bloc_starter/features/gifts/data/repositories/gifts_repository.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_kind.dart';
-import 'package:flutter_bloc_starter/features/lists/data/models/list_models.dart';
-import 'package:flutter_bloc_starter/features/lists/data/repositories/lists_repository.dart';
-import 'package:flutter_bloc_starter/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/questions/data/models/question_thread.dart';
-import 'package:flutter_bloc_starter/features/questions/data/repositories/questions_repository.dart';
-import 'package:flutter_bloc_starter/features/together/presentation/together/cubit/together_cubit.dart';
+import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
+import 'package:app/features/gifts/data/models/gift_idea.dart';
+import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
+import 'package:app/features/lists/data/models/list_kind.dart';
+import 'package:app/features/lists/data/models/list_models.dart';
+import 'package:app/features/lists/data/repositories/lists_repository.dart';
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/questions/data/models/question_thread.dart';
+import 'package:app/features/questions/data/repositories/questions_repository.dart';
+import 'package:app/features/together/presentation/together/cubit/together_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

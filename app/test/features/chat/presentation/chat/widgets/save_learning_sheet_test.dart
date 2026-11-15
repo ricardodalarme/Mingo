@@ -1,7 +1,7 @@
+import 'package:app/features/chat/data/models/learned_item.dart';
+import 'package:app/features/chat/presentation/save_learning/save_learning_sheet.dart';
+import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
-import 'package:flutter_bloc_starter/features/chat/presentation/save_learning/save_learning_sheet.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../test_helpers/pump_app.dart';

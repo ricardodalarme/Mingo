@@ -1,15 +1,15 @@
+import 'package:app/features/ideas/data/models/idea.dart';
+import 'package:app/features/ideas/data/repositories/ideas_repository.dart';
+import 'package:app/features/ideas/presentation/detail/cubit/idea_detail_cubit.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/models/relationship_goal.dart';
+import 'package:app/features/profile/data/models/relationship_phase.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/ideas/data/models/idea.dart';
-import 'package:flutter_bloc_starter/features/ideas/data/repositories/ideas_repository.dart';
-import 'package:flutter_bloc_starter/features/ideas/presentation/detail/cubit/idea_detail_cubit.dart';
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/account_settings.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_goal.dart';
-import 'package:flutter_bloc_starter/features/profile/data/models/relationship_phase.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -87,7 +87,9 @@ void main() {
       notifications = _MockNotifications();
       when(() => ideas.getIdeas(any())).thenAnswer((_) async => list);
       when(() => ideas.isDone(any())).thenReturn(false);
-      when(() => ideas.markDone(any())).thenAnswer((_) async {});
+      when(() => ideas.markDone(any())).thenAnswer((_) async {
+        return;
+      });
       when(() => profile.getMySettings()).thenAnswer(
         (_) async => const AccountSettings(
           theme: AppThemeVariant.rose,
@@ -95,9 +97,12 @@ void main() {
           goals: [RelationshipGoal.keepRomance],
         ),
       );
-      when(() => reminders.addCustomReminder(any(), now: any(named: 'now')))
-          .thenAnswer((_) async {});
-      when(() => sync.sync(now: any(named: 'now'))).thenAnswer((_) async {});
+      when(() => reminders.addCustomReminder(any(), now: any(named: 'now'))).thenAnswer((_) async {
+        return;
+      });
+      when(() => sync.sync(now: any(named: 'now'))).thenAnswer((_) async {
+        return;
+      });
     });
 
     IdeaDetailCubit build() => IdeaDetailCubit(

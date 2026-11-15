@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/local/device_marker_store.dart';
+import 'package:app/features/_shared/data/data_sources/local/device_marker_store.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';

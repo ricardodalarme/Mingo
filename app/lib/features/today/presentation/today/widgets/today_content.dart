@@ -1,21 +1,21 @@
+import 'package:app/features/cards/presentation/shared/widgets/received_card.dart';
+import 'package:app/features/cards/presentation/shared/widgets/week_card.dart';
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/presentation/mood/mood_faces.dart';
+import 'package:app/features/mood/presentation/mood/widgets/mood_row.dart';
+import 'package:app/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
+import 'package:app/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
+import 'package:app/features/today/data/models/today_home.dart';
+import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
+import 'package:app/features/today/presentation/today/widgets/today_header.dart';
+import 'package:app/features/today/presentation/today/widgets/today_pause.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/shared/widgets/received_card.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/shared/widgets/week_card.dart';
-import 'package:flutter_bloc_starter/features/mood/data/models/mood_kind.dart';
-import 'package:flutter_bloc_starter/features/mood/presentation/mood/mood_faces.dart';
-import 'package:flutter_bloc_starter/features/mood/presentation/mood/widgets/mood_row.dart';
-import 'package:flutter_bloc_starter/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
-import 'package:flutter_bloc_starter/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
-import 'package:flutter_bloc_starter/features/today/data/models/today_home.dart';
-import 'package:flutter_bloc_starter/features/today/presentation/today/cubit/today_cubit.dart';
-import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/today_header.dart';
-import 'package:flutter_bloc_starter/features/today/presentation/today/widgets/today_pause.dart';
-import 'package:flutter_bloc_starter/l10n/l10n_map_extension.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// The body of Hoje: banners, the main card, the mood, the week so far and today's idea.
 ///

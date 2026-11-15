@@ -1,9 +1,9 @@
+import 'package:app/features/widgets/data/models/widget_payload.dart';
+import 'package:app/features/widgets/presentation/shared/widget_surface_preview.dart';
+import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/widgets/data/models/widget_payload.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/shared/widget_surface_preview.dart';
-import 'package:flutter_bloc_starter/l10n/translations.g.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 class const PartnerNotePreviewSection({
   required final WidgetPayload payload,

@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:app/features/slips/data/models/slip_entry.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
+import 'package:app/features/slips/presentation/slips/widgets/slips_groups.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/slips/data/models/slip_entry.dart';
-import 'package:flutter_bloc_starter/features/slips/data/repositories/slip_repository.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
-import 'package:flutter_bloc_starter/features/slips/presentation/slips/widgets/slips_groups.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

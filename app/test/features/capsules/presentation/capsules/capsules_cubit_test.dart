@@ -1,11 +1,11 @@
+import 'package:app/features/capsules/data/data_sources/remote/capsules_data_source.dart';
+import 'package:app/features/capsules/data/data_sources/remote/queries/generated/Capsules.graphql.dart';
+import 'package:app/features/capsules/data/models/capsule.dart';
+import 'package:app/features/capsules/data/repositories/capsules_repository.dart';
+import 'package:app/features/capsules/presentation/capsules/cubit/capsules_cubit.dart';
+import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/data_sources/remote/capsules_data_source.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/data_sources/remote/queries/generated/Capsules.graphql.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/models/capsule.dart';
-import 'package:flutter_bloc_starter/features/capsules/data/repositories/capsules_repository.dart';
-import 'package:flutter_bloc_starter/features/capsules/presentation/capsules/cubit/capsules_cubit.dart';
-import 'package:flutter_bloc_starter/features/together/data/repositories/together_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:mocktail/mocktail.dart';
@@ -32,7 +32,9 @@ void main() {
           opensOn: any(named: 'opensOn'),
           isShared: any(named: 'isShared'),
         ),
-      ).thenAnswer((_) async {});
+      ).thenAnswer((_) async {
+        return;
+      });
     });
 
     CapsulesCubit build() => CapsulesCubit(capsulesRepository: repository);

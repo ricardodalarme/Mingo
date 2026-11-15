@@ -1,11 +1,11 @@
 import 'dart:typed_data';
 
+import 'package:app/features/story/data/models/story_card.dart';
+import 'package:app/features/story/data/repositories/story_repository.dart';
+import 'package:app/features/story/presentation/story/widgets/story_painter.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_starter/features/story/data/models/story_card.dart';
-import 'package:flutter_bloc_starter/features/story/data/repositories/story_repository.dart';
-import 'package:flutter_bloc_starter/features/story/presentation/story/widgets/story_painter.dart';
 
 part 'story_state.dart';
 

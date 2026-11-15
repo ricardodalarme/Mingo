@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/plus/data/data_sources/remote/queries/generated/MyPlus.graphql.dart';
+import 'package:app/features/plus/data/data_sources/remote/queries/generated/MyPlus.graphql.dart';
 import 'package:network/network.dart';
 
 class PlusDataSource({required final GQLClient _client}) {

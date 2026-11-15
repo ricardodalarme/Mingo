@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/widgets/presentation/navigation/widget_deep_link_resolver.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/app/presentation/cubit/app_cubit.dart';
-import 'package:flutter_bloc_starter/features/widgets/presentation/navigation/widget_deep_link_resolver.dart';
 
 /// Simulated home-screen widget card surface supporting light and dark system appearances,
 /// ellipsis overflow truncation, and `repara://` deep-link tap navigation.

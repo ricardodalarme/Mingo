@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/notifications/data/repositories/notifications_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/models/planned_reminder.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/repositories/reminders_repository.dart';
-import 'package:flutter_bloc_starter/features/reminders/data/services/reminder_sync_service.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/reminders/data/models/planned_reminder.dart';
+import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
+import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -26,7 +26,9 @@ void main() {
       notificationsRepository: notifications,
       remindersRepository: reminders,
     );
-    when(() => reminders.cancelAll()).thenAnswer((_) async {});
+    when(() => reminders.cancelAll()).thenAnswer((_) async {
+      return;
+    });
     when(
       () => reminders.reschedule(
         texts: any(named: 'texts'),

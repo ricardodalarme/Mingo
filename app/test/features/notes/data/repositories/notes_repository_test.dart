@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:flutter_bloc_starter/features/notes/data/data_sources/remote/notes_data_source.dart';
-import 'package:flutter_bloc_starter/features/notes/data/models/sent_message.dart';
-import 'package:flutter_bloc_starter/features/notes/data/repositories/notes_repository.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/notes/data/data_sources/remote/notes_data_source.dart';
+import 'package:app/features/notes/data/models/sent_message.dart';
+import 'package:app/features/notes/data/repositories/notes_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:storage_service/storage_service.dart';

@@ -1,9 +1,9 @@
+import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/safety/data/repositories/safe_mode_repository.dart';
+import 'package:app/features/spice/data/data_sources/remote/spice_data_source.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/plus/data/repositories/plus_repository.dart';
-import 'package:flutter_bloc_starter/features/profile/data/repositories/profile_repository.dart';
-import 'package:flutter_bloc_starter/features/safety/data/repositories/safe_mode_repository.dart';
-import 'package:flutter_bloc_starter/features/spice/data/data_sources/remote/spice_data_source.dart';
 import 'package:logger/logger.dart';
 
 /// What the spice page can show.

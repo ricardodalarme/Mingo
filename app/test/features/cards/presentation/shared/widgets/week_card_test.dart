@@ -1,5 +1,5 @@
+import 'package:app/features/cards/presentation/shared/widgets/week_card.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/features/cards/presentation/shared/widgets/week_card.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../test_helpers/pump_app.dart';

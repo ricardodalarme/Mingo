@@ -1,5 +1,5 @@
+import 'package:app/features/together/data/models/ritual_cadence.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_starter/features/together/data/models/ritual_cadence.dart';
 
 /// The longest ritual title the server accepts.
 const int ritualTitleMaxLength = 80;

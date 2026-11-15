@@ -1,6 +1,6 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/chat/data/mappers/learned_item_enum_mapper.dart';
-import 'package:flutter_bloc_starter/features/chat/data/models/learned_item.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/chat/data/mappers/learned_item_enum_mapper.dart';
+import 'package:app/features/chat/data/models/learned_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -19,7 +19,7 @@ void main() {
   });
 
   test('an unknown value is an error, not a guess', () {
-    expect(() => EnumLearnedItemTarget.$unknown.toModel(), throwsFormatException);
-    expect(() => EnumLearnedItemStatus.$unknown.toModel(), throwsFormatException);
+    expect(EnumLearnedItemTarget.$unknown.toModel, throwsFormatException);
+    expect(EnumLearnedItemStatus.$unknown.toModel, throwsFormatException);
   });
 }

@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_starter/features/_shared/data/models/content_kind.dart';
+import 'package:app/features/_shared/data/models/content_kind.dart';
 
 /// How a game collects and shows its answers.
 enum GameFlow() {

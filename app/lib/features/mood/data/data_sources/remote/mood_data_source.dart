@@ -1,7 +1,7 @@
-import 'package:flutter_bloc_starter/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mutations/generated/InsertMood.graphql.dart';
-import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/mutations/generated/UpdateMood.graphql.dart';
-import 'package:flutter_bloc_starter/features/mood/data/data_sources/remote/queries/generated/TodayMood.graphql.dart';
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/mood/data/data_sources/remote/mutations/generated/InsertMood.graphql.dart';
+import 'package:app/features/mood/data/data_sources/remote/mutations/generated/UpdateMood.graphql.dart';
+import 'package:app/features/mood/data/data_sources/remote/queries/generated/TodayMood.graphql.dart';
 import 'package:network/network.dart';
 
 /// A mood row with its raw server values, before the domain mapping.

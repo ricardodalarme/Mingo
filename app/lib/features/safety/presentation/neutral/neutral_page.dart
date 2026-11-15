@@ -1,6 +1,6 @@
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc_starter/router/app_router.dart';
 
 /// A blank, neutral screen that quick exit closes to; it says nothing about the app.
 ///
