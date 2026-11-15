@@ -1,0 +1,5 @@
+mutation UnmarkSensitiveDay($day: Date!) {
+  deleteFromCycleDaysCollection(filter: { day: { eq: $day }, kind: { eq: heavy } }) {
+    affectedCount
+  }
+}

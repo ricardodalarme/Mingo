@@ -1,0 +1,8 @@
+mutation MarkSensitiveDay($day: Date!) {
+  insertIntoCycleDaysCollection(objects: [{ day: $day, kind: heavy }]) {
+    records {
+      id
+      day
+    }
+  }
+}

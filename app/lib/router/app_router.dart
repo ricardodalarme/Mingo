@@ -16,6 +16,7 @@ import 'package:app/features/chat/presentation/settings/chat_settings_page.dart'
 import 'package:app/features/checkin/presentation/checkin/checkin_page.dart';
 import 'package:app/features/connect/presentation/touch/touch_page.dart';
 import 'package:app/features/connect/presentation/us/us_page.dart';
+import 'package:app/features/cycle/presentation/sensitive_days/sensitive_days_page.dart';
 import 'package:app/features/dates/presentation/dates/dates_page.dart';
 import 'package:app/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:app/features/devices/presentation/devices/devices_page.dart';
@@ -195,6 +196,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: OurViewRoute.page),
     AutoRoute(page: ConsentsRoute.page),
     AutoRoute(page: HeavyDayRoute.page),
+    AutoRoute(page: SensitiveDaysRoute.page),
     AutoRoute(page: DeleteAccountRoute.page),
     AutoRoute(page: SafeModeRoute.page),
     AutoRoute(page: NeutralRoute.page),

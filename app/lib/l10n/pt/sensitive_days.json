@@ -1,0 +1,19 @@
+{
+  "title": "Dias sensíveis",
+  "subtitle": "Um lugar só seu. Seu par não vê esta tela nem o que você marca aqui.",
+  "todayTitle": "Hoje é um dia sensível",
+  "todayOn": "Marcado",
+  "todayOff": "Não marcado",
+  "calendarTitle": "Seus dias marcados",
+  "calendarNote": "As marcas ficam no seu calendário e só você vê.",
+  "markedDay": "{day} marcado como dia sensível",
+  "noticeTitle": "Avisar meu par",
+  "noticeSupport": "Um aviso curto, sem detalhes, e só quando você quiser.",
+  "entryTitle": "Dias sensíveis",
+  "entrySupport": "Só você vê",
+  "errorTitle": "Não deu para abrir",
+  "errorText": "Nada se perdeu. Tente de novo.",
+  "errors(map)": {
+    "other": "Não deu para salvar agora. Tente de novo."
+  }
+}

@@ -18,6 +18,7 @@ void main() {
 
   test('cycle, mood and fight screens stay out of analytics', () {
     expect(analyticsScreenNameFor('HeavyDayRoute'), 'settings');
+    expect(analyticsScreenNameFor('SensitiveDaysRoute'), 'settings');
     expect(analyticsScreenNameFor('MoodRoute'), 'settings');
     expect(analyticsScreenNameFor('NeedRoute'), 'settings');
     expect(analyticsScreenNameFor('FightStyleRoute'), 'settings');
