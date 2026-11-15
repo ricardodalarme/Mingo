@@ -1,5 +1,7 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/mood/data/data_sources/local/mood_local_data_source.dart';
 import 'package:app/features/mood/data/data_sources/remote/mood_data_source.dart';
+import 'package:app/features/mood/data/models/mood_entry.dart';
 import 'package:app/features/mood/data/models/mood_kind.dart';
 import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/data/models/need_kind.dart';
@@ -11,18 +13,31 @@ import 'package:network/network.dart';
 
 class _MockMoodDataSource() extends Mock implements MoodDataSource;
 
+class _MockMoodLocalDataSource() extends Mock implements MoodLocalDataSource;
+
 void main() {
   late MoodDataSource dataSource;
+  late MoodLocalDataSource localDataSource;
   late MoodRepository repository;
 
   final day = DateTime(2026, 11, 11);
+  final cachedEntry = MoodEntry(
+    id: 'm1',
+    day: day,
+    mood: MoodKind.tired,
+    need: NeedKind.hug,
+    share: MoodShare.moodNeed,
+  );
   MoodRecord record({
     EnumMood mood = EnumMood.tired,
     EnumMoodNeed? need = EnumMoodNeed.hug,
     EnumMoodShare share = EnumMoodShare.mood_need,
   }) => (id: 'm1', day: day, mood: mood, need: need, share: share);
-  MoodTodayRecord today({MoodRecord? mood, String? partnerName = 'Rui'}) =>
-      (day: day, partnerName: partnerName, mood: mood);
+  MoodTodayRecord today({
+    MoodRecord? mood,
+    String? partnerName = 'Rui',
+    PartnerMoodRecord? partnerMood,
+  }) => (day: day, partnerName: partnerName, mood: mood, partnerMood: partnerMood);
 
   setUpAll(() {
     registerFallbackValue('');
@@ -30,12 +45,17 @@ void main() {
     registerFallbackValue(EnumMoodNeed.hug);
     registerFallbackValue(EnumMoodShare.none);
     registerFallbackValue(DateTime(2026));
+    registerFallbackValue(cachedEntry);
   });
 
   setUp(() {
     dataSource = _MockMoodDataSource();
-    repository = MoodRepository(dataSource: dataSource);
+    localDataSource = _MockMoodLocalDataSource();
+    repository = MoodRepository(dataSource: dataSource, localDataSource: localDataSource);
     when(() => dataSource.getTodayMood()).thenAnswer((_) async => today(mood: record()));
+    when(() => localDataSource.write(any())).thenAnswer((_) async {});
+    when(() => localDataSource.readToday()).thenReturn(cachedEntry);
+    when(() => localDataSource.clear()).thenAnswer((_) async {});
   });
 
   test('maps the own mood, need, share and partner name', () async {
@@ -47,6 +67,35 @@ void main() {
     expect(result.entry?.mood, MoodKind.tired);
     expect(result.entry?.need, NeedKind.hug);
     expect(result.entry?.share, MoodShare.moodNeed);
+  });
+
+  test("maps the partner's shared mood and need", () async {
+    when(() => dataSource.getTodayMood()).thenAnswer(
+      (_) async =>
+          today(partnerMood: (day: day, mood: EnumMood.stressed, need: EnumMoodNeed.space)),
+    );
+
+    final result = await repository.getTodayMood();
+
+    expect(result.partnerMood?.mood, MoodKind.stressed);
+    expect(result.partnerMood?.need, NeedKind.space);
+  });
+
+  test('a successful read refreshes the cached mood', () async {
+    await repository.getTodayMood();
+
+    verify(() => localDataSource.write(any())).called(1);
+  });
+
+  test('the cached mood is read without a network call', () {
+    expect(repository.readCachedTodayMood(), cachedEntry);
+    verifyNever(() => dataSource.getTodayMood());
+  });
+
+  test('clearing the cache forgets the stored mood', () async {
+    await repository.clearCache();
+
+    verify(() => localDataSource.clear()).called(1);
   });
 
   test('an unknown server value stays private and moodless', () async {
@@ -103,6 +152,22 @@ void main() {
         day: any(named: 'day'),
       ),
     );
+  });
+
+  test('a save keeps the fresh mood on the device', () async {
+    when(
+      () => dataSource.updateMood(
+        id: any(named: 'id'),
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+        day: any(named: 'day'),
+      ),
+    ).thenAnswer((_) async => record(mood: EnumMood.sad, share: EnumMoodShare.none));
+
+    await repository.saveMood(mood: MoodKind.sad, share: MoodShare.none);
+
+    verify(() => localDataSource.write(any())).called(1);
   });
 
   test('a midnight save re-reads the server day before updating', () async {

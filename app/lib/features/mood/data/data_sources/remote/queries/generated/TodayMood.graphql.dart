@@ -7,11 +7,17 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryTodayMood {
-  QueryTodayMood({this.today, required this.moodsCollection, this.$__typename = 'Query'});
+  QueryTodayMood({
+    this.today,
+    required this.moodsCollection,
+    this.partnerMoodToday,
+    this.$__typename = 'Query',
+  });
 
   factory QueryTodayMood.fromJson(Map<String, dynamic> json) {
     final l$today = json['today'];
     final l$moodsCollection = json['moodsCollection'];
+    final l$partnerMoodToday = json['partnerMoodToday'];
     final l$$__typename = json['__typename'];
     return QueryTodayMood(
       today: l$today == null
@@ -20,6 +26,9 @@ class QueryTodayMood {
       moodsCollection: QueryTodayMoodmoodsCollection.fromJson(
         (l$moodsCollection as Map<String, dynamic>),
       ),
+      partnerMoodToday: l$partnerMoodToday == null
+          ? null
+          : QueryTodayMoodpartnerMoodToday.fromJson((l$partnerMoodToday as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -27,6 +36,8 @@ class QueryTodayMood {
   final QueryTodayMoodtoday? today;
 
   final QueryTodayMoodmoodsCollection moodsCollection;
+
+  final QueryTodayMoodpartnerMoodToday? partnerMoodToday;
 
   final String $__typename;
 
@@ -36,6 +47,8 @@ class QueryTodayMood {
     _resultData['today'] = l$today?.toJson();
     final l$moodsCollection = moodsCollection;
     _resultData['moodsCollection'] = l$moodsCollection.toJson();
+    final l$partnerMoodToday = partnerMoodToday;
+    _resultData['partnerMoodToday'] = l$partnerMoodToday?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -45,8 +58,9 @@ class QueryTodayMood {
   int get hashCode {
     final l$today = today;
     final l$moodsCollection = moodsCollection;
+    final l$partnerMoodToday = partnerMoodToday;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$today, l$moodsCollection, l$$__typename]);
+    return Object.hashAll([l$today, l$moodsCollection, l$partnerMoodToday, l$$__typename]);
   }
 
   @override
@@ -65,6 +79,11 @@ class QueryTodayMood {
     final l$moodsCollection = moodsCollection;
     final lOther$moodsCollection = other.moodsCollection;
     if (l$moodsCollection != lOther$moodsCollection) {
+      return false;
+    }
+    final l$partnerMoodToday = partnerMoodToday;
+    final lOther$partnerMoodToday = other.partnerMoodToday;
+    if (l$partnerMoodToday != lOther$partnerMoodToday) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -211,6 +230,51 @@ const documentNodeQueryTodayMood = DocumentNode(
                       ),
                     ],
                   ),
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: 'partnerMoodToday'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'day'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'mood'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'need'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -622,6 +686,104 @@ class QueryTodayMoodmoodsCollectionedgesnode {
     final l$share = share;
     final lOther$share = other.share;
     if (l$share != lOther$share) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryTodayMoodpartnerMoodToday {
+  QueryTodayMoodpartnerMoodToday({
+    this.id,
+    this.day,
+    this.mood,
+    this.need,
+    this.$__typename = 'PartnerMood',
+  });
+
+  factory QueryTodayMoodpartnerMoodToday.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$day = json['day'];
+    final l$mood = json['mood'];
+    final l$need = json['need'];
+    final l$$__typename = json['__typename'];
+    return QueryTodayMoodpartnerMoodToday(
+      id: (l$id as String?),
+      day: l$day == null ? null : DateTime.parse((l$day as String)),
+      mood: l$mood == null ? null : fromJsonEnumMood((l$mood as String)),
+      need: l$need == null ? null : fromJsonEnumMoodNeed((l$need as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? id;
+
+  final DateTime? day;
+
+  final EnumMood? mood;
+
+  final EnumMoodNeed? need;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$day = day;
+    _resultData['day'] = l$day == null
+        ? null
+        : ((v) => v.toIso8601String().substring(0, 10))(l$day);
+    final l$mood = mood;
+    _resultData['mood'] = l$mood == null ? null : toJsonEnumMood(l$mood);
+    final l$need = need;
+    _resultData['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$day = day;
+    final l$mood = mood;
+    final l$need = need;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$day, l$mood, l$need, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryTodayMoodpartnerMoodToday || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$day = day;
+    final lOther$day = other.day;
+    if (l$day != lOther$day) {
+      return false;
+    }
+    final l$mood = mood;
+    final lOther$mood = other.mood;
+    if (l$mood != lOther$mood) {
+      return false;
+    }
+    final l$need = need;
+    final lOther$need = other.need;
+    if (l$need != lOther$need) {
       return false;
     }
     final l$$__typename = $__typename;

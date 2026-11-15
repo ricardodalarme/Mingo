@@ -25,18 +25,4 @@ query TodayHome {
     title
     body
   }
-  partnerMoodToday {
-    id
-    day
-    mood
-    need
-  }
-  myMood: moodsCollection(first: 1, orderBy: [{day: DescNullsLast}]) {
-    edges {
-      node {
-        day
-        mood
-      }
-    }
-  }
 }

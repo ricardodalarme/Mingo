@@ -50,4 +50,21 @@ void main() {
 
     expect(record.toEntry().mood, isNull);
   });
+
+  test('maps the partner mood and need', () {
+    final PartnerMoodRecord record = (day: day, mood: EnumMood.stressed, need: EnumMoodNeed.space);
+
+    final partnerMood = record.toPartnerMood();
+
+    expect(partnerMood.day, day);
+    expect(partnerMood.mood, MoodKind.stressed);
+    expect(partnerMood.need, NeedKind.space);
+    expect(partnerMood.isVisible, isTrue);
+  });
+
+  test('a partner mood this version does not know stays hidden', () {
+    final PartnerMoodRecord record = (day: day, mood: EnumMood.$unknown, need: null);
+
+    expect(record.toPartnerMood().isVisible, isFalse);
+  });
 }

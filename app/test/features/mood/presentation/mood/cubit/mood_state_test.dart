@@ -1,6 +1,7 @@
 import 'package:app/features/mood/data/models/mood_kind.dart';
 import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/data/models/need_kind.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -18,6 +19,14 @@ void main() {
     const state = MoodState(partnerName: 'Bia');
 
     expect(state.copyWith(clearPartnerName: true).partnerName, isNull);
+  });
+
+  test('clearPartnerMood drops the shared mood', () {
+    final state = MoodState(
+      partnerMood: PartnerMood(day: DateTime(2026, 11, 10), mood: MoodKind.tired),
+    );
+
+    expect(state.copyWith(clearPartnerMood: true).partnerMood, isNull);
   });
 
   test('changing the share keeps the mood and need', () {

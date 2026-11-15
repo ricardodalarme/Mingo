@@ -1,10 +1,13 @@
 import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
+import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
+import 'package:app/features/mood/presentation/mood/widgets/today_mood_block.dart';
 import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:app/features/today/presentation/today/widgets/partner_unpaired_notice.dart';
 import 'package:app/features/today/presentation/today/widgets/today_content.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -14,8 +17,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppInjector.instance.get<TodayCubit>()..start(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => AppInjector.instance.get<TodayCubit>()..start()),
+        BlocProvider(create: (_) => AppInjector.instance.get<MoodCubit>()..load()),
+      ],
       child: this,
     );
   }
@@ -31,6 +37,7 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
     final unpairedPartnerName = context.select(
       (TodayCubit cubit) => cubit.state.unpairedPartnerName,
     );
+    final loadedHome = home is Success<TodayHome> ? home.value : null;
 
     return BaseView(
       appBar: null,
@@ -40,20 +47,37 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
               onOk: context.read<TodayCubit>().acknowledgeUnpairNotice,
             )
           : BaseRefreshable(
-              onRefresh: context.read<TodayCubit>().load,
+              onRefresh: () async {
+                await Future.wait([
+                  context.read<TodayCubit>().load(),
+                  context.read<MoodCubit>().load(),
+                ]);
+              },
               child: BaseStackedContent(
-                body: SkeletonizerResourceWidget<TodayHome>(
-                  home,
-                  fakeValue: const TodayHome.fake(),
-                  successBuilder: (value) => TodayContent(
-                    home: value,
-                    selfName: selfName,
-                    partnerHint: partnerHint,
-                    isFirstDay: isFirstDay,
-                    isDiscreet: isDiscreet,
-                  ),
-                  failureBuilder: (failure) =>
-                      AppErrorView(exception: failure, onRetry: context.read<TodayCubit>().load),
+                body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    TodayMoodBlock(
+                      isDiscreet: isDiscreet,
+                      isFirstDay: isFirstDay,
+                      hasPendingInvite: loadedHome?.hasPendingInvite ?? false,
+                      isPaused: loadedHome?.isPausedAt(clock.now()) ?? false,
+                    ),
+                    SkeletonizerResourceWidget<TodayHome>(
+                      home,
+                      fakeValue: const TodayHome.fake(),
+                      successBuilder: (value) => TodayContent(
+                        home: value,
+                        selfName: selfName,
+                        partnerHint: partnerHint,
+                        isFirstDay: isFirstDay,
+                      ),
+                      failureBuilder: (failure) => AppErrorView(
+                        exception: failure,
+                        onRetry: context.read<TodayCubit>().load,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

@@ -1,3 +1,4 @@
+import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/pairing/presentation/unpair/cubit/unpair_cubit.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
@@ -11,13 +12,17 @@ class _MockPairingRepository() extends Mock implements PairingRepository;
 
 class _MockTodayRepository() extends Mock implements TodayRepository;
 
+class _MockMoodRepository() extends Mock implements MoodRepository;
+
 void main() {
   late PairingRepository pairing;
   late TodayRepository today;
+  late MoodRepository mood;
 
   setUp(() {
     pairing = _MockPairingRepository();
     today = _MockTodayRepository();
+    mood = _MockMoodRepository();
     when(() => pairing.getPartner()).thenAnswer(
       (_) async =>
           const Profile(id: 'partner', avatarKind: AvatarKind.initials, displayName: 'Marina'),
@@ -28,9 +33,13 @@ void main() {
     when(() => today.clearCache()).thenAnswer((_) async {
       return;
     });
+    when(() => mood.clearCache()).thenAnswer((_) async {
+      return;
+    });
   });
 
-  UnpairCubit build() => UnpairCubit(pairingRepository: pairing, todayRepository: today);
+  UnpairCubit build() =>
+      UnpairCubit(pairingRepository: pairing, todayRepository: today, moodRepository: mood);
 
   test('start loads the partner name', () async {
     final cubit = build();
@@ -52,6 +61,7 @@ void main() {
 
     verify(() => pairing.unpair()).called(1);
     verify(() => today.clearCache()).called(1);
+    verify(() => mood.clearCache()).called(1);
     expect(cubit.state.unpairAction, const Success<void>(null));
   });
 

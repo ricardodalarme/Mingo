@@ -13,11 +13,19 @@ typedef MoodRecord = ({
   EnumMoodShare share,
 });
 
-/// The server's local day, the partner's name and today's own mood, when there is one.
-typedef MoodTodayRecord = ({DateTime day, String? partnerName, MoodRecord? mood});
+/// The partner's shared mood with its raw server values, before the domain mapping.
+typedef PartnerMoodRecord = ({DateTime? day, EnumMood? mood, EnumMoodNeed? need});
+
+/// The server's local day, the partner's name, today's own mood and the partner's shared mood.
+typedef MoodTodayRecord = ({
+  DateTime day,
+  String? partnerName,
+  MoodRecord? mood,
+  PartnerMoodRecord? partnerMood,
+});
 
 class MoodDataSource({required final GQLClient _client}) {
-  /// Reads the server local day and today's own mood in one request.
+  /// Reads the server local day, today's own mood and the partner's shared mood in one request.
   Future<MoodTodayRecord> getTodayMood() async {
     final response = await _client.query(
       OptionsQueryTodayMood(fetchPolicy: FetchPolicy.networkOnly),
@@ -28,8 +36,15 @@ class MoodDataSource({required final GQLClient _client}) {
 
     final node = data.moodsCollection.edges.firstOrNull?.node;
     final mood = node != null && node.day == localDate ? node.toRecord() : null;
+    final shared = data.partnerMoodToday;
+    final partnerMood = shared != null && shared.day == localDate ? shared.toRecord() : null;
 
-    return (day: localDate, partnerName: data.today?.partnerName, mood: mood);
+    return (
+      day: localDate,
+      partnerName: data.today?.partnerName,
+      mood: mood,
+      partnerMood: partnerMood,
+    );
   }
 
   Future<MoodRecord> insertMood({
@@ -81,6 +96,10 @@ class MoodDataSource({required final GQLClient _client}) {
 
 extension on QueryTodayMoodmoodsCollectionedgesnode {
   MoodRecord toRecord() => (id: id, day: day, mood: mood, need: need, share: share);
+}
+
+extension on QueryTodayMoodpartnerMoodToday {
+  PartnerMoodRecord toRecord() => (day: day, mood: mood, need: need);
 }
 
 extension on MutationInsertMoodinsertIntoMoodsCollectionrecords {

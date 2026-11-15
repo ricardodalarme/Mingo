@@ -1,3 +1,4 @@
+import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/pairing/data/data_sources/local/pairing_local_data_source.dart';
 import 'package:app/features/pairing/data/data_sources/remote/pairing_data_source.dart';
@@ -61,6 +62,7 @@ class PairingInjectionModule() implements InjectionModule {
       () => UnpairCubit(
         pairingRepository: injector.get<PairingRepository>(),
         todayRepository: injector.get<TodayRepository>(),
+        moodRepository: injector.get<MoodRepository>(),
       ),
     )
     ..registerFactory<UnpairDoneCubit>(

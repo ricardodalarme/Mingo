@@ -1,6 +1,7 @@
 import 'package:app/features/account/presentation/sign_out/cubit/sign_out_cubit.dart';
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/today/data/repositories/today_repository.dart';
@@ -23,6 +24,8 @@ class _MockSecureStorageService() extends Mock implements SecureStorageService;
 
 class _MockTodayRepository() extends Mock implements TodayRepository;
 
+class _MockMoodRepository() extends Mock implements MoodRepository;
+
 void main() {
   late AuthenticationRepository auth;
   late AppCubit appCubit;
@@ -31,6 +34,7 @@ void main() {
   late PreferencesService preferences;
   late SecureStorageService secureStorage;
   late TodayRepository today;
+  late MoodRepository mood;
 
   setUp(() {
     auth = _MockAuthenticationRepository();
@@ -40,8 +44,12 @@ void main() {
     preferences = _MockPreferencesService();
     secureStorage = _MockSecureStorageService();
     today = _MockTodayRepository();
+    mood = _MockMoodRepository();
     when(() => slips.pendingCount).thenReturn(0);
     when(() => today.clearCache()).thenAnswer((_) async {
+      return;
+    });
+    when(() => mood.clearCache()).thenAnswer((_) async {
       return;
     });
     when(() => auth.logOut()).thenAnswer((_) async {
@@ -62,6 +70,7 @@ void main() {
     preferencesService: preferences,
     secureStorageService: secureStorage,
     todayRepository: today,
+    moodRepository: mood,
   );
 
   test('signing out keeps the local data when the person chose so', () async {
@@ -72,6 +81,7 @@ void main() {
     verify(() => auth.logOut()).called(1);
     verify(() => appCubit.markExplicitSignOut()).called(1);
     verify(() => today.clearCache()).called(1);
+    verify(() => mood.clearCache()).called(1);
     verifyNever(() => preferences.clear());
     verifyNever(() => secureStorage.clear());
   });
