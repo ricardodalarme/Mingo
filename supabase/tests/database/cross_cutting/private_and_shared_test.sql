@@ -14,15 +14,14 @@ insert into public.partner_facts (label, value) values ('Flores favoritas', 'Gir
 insert into public.gift_ideas (title) values ('Carta escrita à mão');
 insert into public.manual_entries (key, value) values ('comfort', 'Tempo só nosso'), ('shared_one', 'Gosto de abraço');
 insert into public.moods (mood, need, share) values ('tired', 'hug', 'mood');
-insert into public.cycle_days (day) values (current_date);
 insert into public.quiz_results (quiz_key, ranked) values ('loved', '{time,words}');
 select tests.pair('ana', 'bia');
 select tests.as('bia');
 select is((select count(*)::int from public.temperature_checks) + (select count(*)::int from public.repair_learnings)
   + (select count(*)::int from public.journal_entries) + (select count(*)::int from public.conversation_preps)
   + (select count(*)::int from public.partner_facts) + (select count(*)::int from public.gift_ideas)
-  + (select count(*)::int from public.moods) + (select count(*)::int from public.cycle_days)
-  + (select count(*)::int from public.quiz_results), 0, 'partner sees none of my private tables (temperature, journal, sheet, gifts, mood, cycle, quiz)');
+  + (select count(*)::int from public.moods)
+  + (select count(*)::int from public.quiz_results), 0, 'partner sees none of my private tables (temperature, journal, sheet, gifts, mood, quiz)');
 select is((select count(*)::int from public.manual_entries), 0, 'my manual is private until I share an entry');
 select throws_ok($$insert into public.journal_entries (author_id, body) values (tests.uid('ana'), 'forjado')$$, '42501', null, 'cannot write rows in someone else''s name');
 update public.partner_facts set value = 'x'; delete from public.journal_entries;

@@ -9,7 +9,6 @@ comment on table public.conversation_preps is e'@graphql({"description": "Notes 
 comment on table public.partner_facts is e'@graphql({"max_rows": 200, "description": "What one person knows about their partner. Private to the author."})';
 comment on table public.manual_entries is e'@graphql({"description": "My manual: how to love me. The partner reads only entries marked shared."})';
 comment on table public.moods is e'@graphql({"description": "One mood per person per day. The partner only sees it through partner_mood_today, as far as `share` allows."})';
-comment on table public.cycle_days is e'@graphql({"description": "Heavy-day tracking. Private to the author."})';
 comment on table public.idea_responses is e'@graphql({"description": "What a person did with a daily idea. Private to the author."})';
 comment on table public.program_enrollments is e'@graphql({"description": "A person''s enrollment in a program. Private to the author."})';
 comment on table public.lesson_progress is e'@graphql({"description": "A lesson a person finished or saved inside a program. Private to the author."})';

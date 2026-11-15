@@ -6,7 +6,7 @@ declare t text;
 begin
   -- pattern 1: owner only
   foreach t in array array['temperature_checks', 'repair_sessions', 'repair_learnings', 'journal_entries', 'conversation_preps',
-    'partner_facts', 'manual_entries', 'moods', 'cycle_days', 'idea_responses', 'program_enrollments',
+    'partner_facts', 'manual_entries', 'moods', 'idea_responses', 'program_enrollments',
     'lesson_progress', 'quiz_results', 'decision_ranks'] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('grant select, insert, update, delete on public.%I to authenticated', t);
