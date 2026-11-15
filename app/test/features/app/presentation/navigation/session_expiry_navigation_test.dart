@@ -7,6 +7,7 @@ import 'package:app/features/authentication/presentation/sign_in/cubit/sign_in_c
 import 'package:app/features/devices/data/repositories/devices_repository.dart';
 import 'package:app/features/help/data/repositories/support_repository.dart';
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/models/profile.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
@@ -44,6 +45,17 @@ class _MockConnectivityService() extends Mock implements ConnectivityService;
 class _MockNotificationsRepository() extends Mock implements NotificationsRepository;
 
 class _MockDevicesRepository() extends Mock implements DevicesRepository;
+
+class _FakeInviteCodeStore() implements InviteCodeStore {
+  @override
+  String? read() => null;
+
+  @override
+  Future<void> save(String value) async {}
+
+  @override
+  Future<void> clear() async {}
+}
 
 final _slip = SlipDetail(
   id: 's1',
@@ -174,7 +186,11 @@ void main() {
     final appCubit = buildAppCubit();
     addTearDown(appCubit.close);
     await appCubit.initialize();
-    final navigator = AppStateNavigator(router: router, pending: pending);
+    final navigator = AppStateNavigator(
+      router: router,
+      pending: pending,
+      inviteCodes: _FakeInviteCodeStore(),
+    );
     var previous = appCubit.state;
     final subscription = appCubit.stream.listen((current) {
       navigator.onStateChanged(previous, current);

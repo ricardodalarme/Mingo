@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/router/app_router.dart';
+import 'package:app/router/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 
@@ -95,4 +99,48 @@ String _extractNormalizedTarget(Uri uri) {
   if (host.isEmpty) return trimmedPath;
   if (trimmedPath.isEmpty) return host;
   return '$host/$trimmedPath';
+}
+
+/// The invite code carried by [uri], upper-cased, or null when it is not an invite link.
+///
+/// Accepts `mingo://invite/<code>`, `mingo://invite?code=<code>` and an
+/// `https://<host>/invite/<code>` (or `?code=`) link.
+String? inviteCodeFromUri(Uri uri) {
+  final segments = <String>[
+    if (uri.host.trim().isNotEmpty) uri.host.trim().toLowerCase(),
+    for (final segment in uri.pathSegments)
+      if (segment.trim().isNotEmpty) segment.trim().toLowerCase(),
+  ];
+  final inviteIndex = segments.indexOf('invite');
+  if (inviteIndex == -1) return null;
+
+  final pathCode = inviteIndex + 1 < segments.length ? segments[inviteIndex + 1] : null;
+  final code = (pathCode ?? uri.queryParameters['code'])
+      ?.replaceAll(RegExp(r'\s'), '')
+      .toUpperCase();
+
+  return code == null || code.isEmpty ? null : code;
+}
+
+/// Resolves an invite link to its pages, keeping the code for a signed-out person.
+List<PageRouteInfo>? resolveInviteDeepLinkUri(
+  Uri uri, {
+  required AppState appState,
+  required InviteCodeStore inviteCodes,
+  required PendingRoute pending,
+}) {
+  final code = inviteCodeFromUri(uri);
+  if (code == null) return null;
+
+  if (appState != AppState.authenticated) {
+    unawaited(inviteCodes.save(code));
+    pending.stash(acceptInvitePath);
+
+    return [const WelcomeRoute(), const SignInRoute()];
+  }
+
+  return [
+    const HomeRoute(children: [TodayRoute()]),
+    AcceptInviteRoute(code: code),
+  ];
 }

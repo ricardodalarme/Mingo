@@ -1,3 +1,4 @@
+import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/pairing/data/data_sources/local/pairing_local_data_source.dart';
 import 'package:app/features/pairing/data/data_sources/remote/pairing_data_source.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
@@ -11,6 +12,7 @@ import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/today/data/repositories/today_repository.dart';
 import 'package:core/core.dart';
 import 'package:network/network.dart';
+import 'package:preferences_service/preferences_service.dart';
 import 'package:secure_storage_service/secure_storage_service.dart';
 import 'package:share_service/share_service.dart';
 
@@ -23,6 +25,9 @@ class PairingInjectionModule() implements InjectionModule {
     ..registerLazySingleton<PairingLocalDataSource>(
       () => PairingLocalDataSource(secureStorageService: injector.get<SecureStorageService>()),
     )
+    ..registerLazySingleton<InviteCodeStore>(
+      () => InviteCodeStore(preferencesService: injector.get<PreferencesService>()),
+    )
     ..registerLazySingleton<PairingRepository>(
       () => PairingRepository(
         pairingDataSource: injector.get<PairingDataSource>(),
@@ -33,6 +38,7 @@ class PairingInjectionModule() implements InjectionModule {
       () => AcceptInviteCubit(
         pairingRepository: injector.get<PairingRepository>(),
         profileRepository: injector.get<ProfileRepository>(),
+        inviteCodes: injector.get<InviteCodeStore>(),
       ),
     )
     ..registerFactory<InviteCubit>(

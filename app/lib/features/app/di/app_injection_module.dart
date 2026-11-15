@@ -9,6 +9,7 @@ import 'package:app/features/authentication/data/repositories/authentication_rep
 import 'package:app/features/devices/data/repositories/devices_repository.dart';
 import 'package:app/features/help/data/repositories/support_repository.dart';
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
@@ -29,6 +30,7 @@ class AppInjectionModule() implements InjectionModule {
       () => AppStateNavigator(
         router: injector.get<RootStackRouter>(),
         pending: injector.get<PendingRoute>(),
+        inviteCodes: injector.get<InviteCodeStore>(),
       ),
     )
     ..registerLazySingleton<AppConfigDataSource>(

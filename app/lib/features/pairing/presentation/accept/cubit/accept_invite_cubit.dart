@@ -1,3 +1,4 @@
+import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
@@ -15,8 +16,17 @@ final RegExp _inviteCodePattern = RegExp('^[A-Z0-9]{$inviteCodeLength}\$');
 class AcceptInviteCubit({
   required final PairingRepository _pairingRepository,
   required final ProfileRepository _profileRepository,
+  required final InviteCodeStore _inviteCodes,
 }) extends Cubit<AcceptInviteState> {
   this : super(const AcceptInviteState());
+
+  /// Pre-fills the code from [code] or from the one kept when the link was opened.
+  void start({String? code}) {
+    final pending = code ?? _inviteCodes.read();
+    if (pending == null || pending.isEmpty) return;
+
+    onCodeChanged(pending);
+  }
 
   void onCodeChanged(String value) {
     final code = value.replaceAll(RegExp(r'\s'), '').toUpperCase();
@@ -35,6 +45,7 @@ class AcceptInviteCubit({
     emit(state.copyWith(acceptAction: const Loading()));
     try {
       final connected = await _pairingRepository.acceptInvite(state.code.value);
+      await _inviteCodes.clear();
       if (!connected) {
         emit(state.copyWith(acceptAction: const Success(AcceptOutcome.unusable)));
         return;

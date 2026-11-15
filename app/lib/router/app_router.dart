@@ -127,6 +127,9 @@ import 'package:flutter/widgets.dart';
 
 part 'app_router.gr.dart';
 
+/// Path that reopens an invite kept from a signed-out link after sign-in.
+const String acceptInvitePath = '/accept-invite';
+
 @AutoRouterConfig()
 class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter {
   @override
@@ -148,7 +151,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: ProfileSetupRoute.page),
     AutoRoute(page: ProfileSettingsRoute.page),
     AutoRoute(page: InviteRoute.page),
-    AutoRoute(page: AcceptInviteRoute.page),
+    AutoRoute(page: AcceptInviteRoute.page, path: acceptInvitePath),
     AutoRoute(page: RelationshipRoute.page),
     AutoRoute(page: RelationshipChangedRoute.page),
     AutoRoute(page: GriefSupportRoute.page),

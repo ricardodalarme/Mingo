@@ -10,10 +10,15 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class const AcceptInvitePage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
+class const AcceptInvitePage({@QueryParam('code') final String? code, super.key})
+    extends StatelessWidget
+    implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(create: (_) => AppInjector.instance.get<AcceptInviteCubit>(), child: this);
+    return BlocProvider(
+      create: (_) => AppInjector.instance.get<AcceptInviteCubit>()..start(code: code),
+      child: this,
+    );
   }
 
   @override
