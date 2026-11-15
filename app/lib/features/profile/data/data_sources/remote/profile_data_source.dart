@@ -4,7 +4,6 @@ import 'package:app/features/profile/data/data_sources/remote/mutations/generate
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveProfileSetup.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SetWidgetInDiscreet.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdatePronouns.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipPhase.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipStatus.graphql.dart';
@@ -89,17 +88,6 @@ class ProfileDataSource({required final GQLClient _client}) {
 
   Future<int> updateTimeZone(VariablesMutationUpdateTimeZone variables) async {
     final response = await _client.mutate(OptionsMutationUpdateTimeZone(variables: variables));
-
-    return validateResponseData(
-      response,
-      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
-    );
-  }
-
-  Future<int> updateHeavyDaySharing(VariablesMutationUpdateHeavyDaySharing variables) async {
-    final response = await _client.mutate(
-      OptionsMutationUpdateHeavyDaySharing(variables: variables),
-    );
 
     return validateResponseData(
       response,

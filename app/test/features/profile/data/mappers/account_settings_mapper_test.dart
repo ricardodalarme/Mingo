@@ -1,4 +1,3 @@
-import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/queries/generated/MySettings.graphql.dart';
 import 'package:app/features/profile/data/mappers/account_settings_mapper.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
@@ -18,7 +17,6 @@ void main() {
       'onboardedAt': null,
       'shareReadReceipts': true,
       'widgetInDiscreet': false,
-      'heavyDaySharing': 'always',
       'phase': 'married',
       'goals': ['keep_romance'],
       'locale': 'pt-BR',
@@ -34,21 +32,10 @@ void main() {
         partnerName: 'Rui',
         togetherSince: DateTime(2024, 5, 1),
         shareReadReceipts: true,
-        heavyDaySharing: HeavyDaySharing.always,
         phase: RelationshipPhase.married,
         goals: const [RelationshipGoal.keepRomance],
         locale: 'pt-BR',
       ),
     );
-  });
-
-  test('heavy day sharing survives a trip to the remote enum and back', () {
-    for (final value in HeavyDaySharing.values) {
-      expect(value.toRemote().toModel(), value);
-    }
-  });
-
-  test('an unknown heavy day sharing is off', () {
-    expect(EnumHeavyDaySharing.$unknown.toModel(), HeavyDaySharing.off);
   });
 }

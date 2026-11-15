@@ -107,8 +107,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$hardConversation$en hardConversation =
       _Translations$hardConversation$en._(_root);
   @override
-  late final _Translations$heavyDay$en heavyDay = _Translations$heavyDay$en._(_root);
-  @override
   late final _Translations$help$en help = _Translations$help$en._(_root);
   @override
   late final _Translations$helpSupport$en helpSupport = _Translations$helpSupport$en._(_root);
@@ -1850,52 +1848,6 @@ class _Translations$hardConversation$en extends Translations$hardConversation$pt
     'NOT_PAIRED': 'To send this, you need to be connected with your partner in the app.',
     'other': 'Couldn\'t do that right now. Try again.',
   };
-}
-
-// Path: heavyDay
-class _Translations$heavyDay$en extends Translations$heavyDay$pt {
-  _Translations$heavyDay$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Heavy-day notice';
-  @override
-  String get gateTitle => 'Heavy-day notice';
-  @override
-  String get gateText =>
-      'Some days weigh more. You can tell your partner with one short sentence, without details. Your partner does not see your programs or what you write.';
-  @override
-  String get activate => 'Turn on';
-  @override
-  String get notNow => 'Not now';
-  @override
-  String get noticeBody => 'A delicate day. A little extra care helps.';
-  @override
-  String previewPartner({required Object name}) =>
-      '${name} would see: “A delicate day. A little extra care helps.”';
-  @override
-  String get previewGeneric =>
-      'Your partner would see: “A delicate day. A little extra care helps.”';
-  @override
-  String get frequencyAsk => 'Each time';
-  @override
-  String get frequencyAlways => 'Always';
-  @override
-  String get share => 'Share';
-  @override
-  String get cancel => 'Don\'t share';
-  @override
-  String confirmationTitle({required Object name}) => 'Notice sent to ${name}';
-  @override
-  String get confirmationGeneric => 'Notice sent';
-  @override
-  String get confirmationHint => 'Your partner sees it on the notes widget, if it is on.';
-  @override
-  String get errorTitle => 'Couldn\'t load';
-  @override
-  String get errorText => 'Couldn\'t do that right now. Try again.';
 }
 
 // Path: help
@@ -3946,8 +3898,6 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   String get errorText => 'Try again in a moment.';
   @override
   String get sensitiveTracks => 'Sensitive tracks and notices';
-  @override
-  String get heavyDayNotice => 'Heavy-day notice';
 }
 
 // Path: profileDetails
@@ -4766,10 +4716,6 @@ class _Translations$sensitiveDays$en extends Translations$sensitiveDays$pt {
   String get calendarNote => 'The marks stay in your calendar and only you see them.';
   @override
   String markedDay({required Object day}) => '${day} marked as a sensitive day';
-  @override
-  String get noticeTitle => 'Tell my partner';
-  @override
-  String get noticeSupport => 'A short notice, no details, and only when you want to.';
   @override
   String get entryTitle => 'Sensitive days';
   @override
@@ -8603,26 +8549,6 @@ extension on TranslationsEn {
           'hardConversation.errors.NOT_PAIRED' =>
             'To send this, you need to be connected with your partner in the app.',
           'hardConversation.errors.other' => 'Couldn\'t do that right now. Try again.',
-          'heavyDay.title' => 'Heavy-day notice',
-          'heavyDay.gateTitle' => 'Heavy-day notice',
-          'heavyDay.gateText' => 'Some days weigh more. You can tell your partner with one short sentence, without details. Your partner does not see your programs or what you write.',
-          'heavyDay.activate' => 'Turn on',
-          'heavyDay.notNow' => 'Not now',
-          'heavyDay.noticeBody' => 'A delicate day. A little extra care helps.',
-          'heavyDay.previewPartner' => ({
-            required Object name,
-          }) => '${name} would see: “A delicate day. A little extra care helps.”',
-          'heavyDay.previewGeneric' =>
-            'Your partner would see: “A delicate day. A little extra care helps.”',
-          'heavyDay.frequencyAsk' => 'Each time',
-          'heavyDay.frequencyAlways' => 'Always',
-          'heavyDay.share' => 'Share',
-          'heavyDay.cancel' => 'Don\'t share',
-          'heavyDay.confirmationTitle' => ({required Object name}) => 'Notice sent to ${name}',
-          'heavyDay.confirmationGeneric' => 'Notice sent',
-          'heavyDay.confirmationHint' => 'Your partner sees it on the notes widget, if it is on.',
-          'heavyDay.errorTitle' => 'Couldn\'t load',
-          'heavyDay.errorText' => 'Couldn\'t do that right now. Try again.',
           'help.badDayTitle' => 'A hard day',
           'help.badDayText' => 'Three small things that may help right now. Nothing required.',
           'help.starterTitle' => 'Start a conversation',
@@ -8819,9 +8745,6 @@ extension on TranslationsEn {
           'history.milestonePlaceHint' => 'E.g. Paraty',
           'history.milestonePlaceErrors.tooLong' => 'The place is too long',
           'history.milestoneBodyHint' => 'A note about this moment (optional)',
-          _ => null,
-        } ??
-        switch (path) {
           'history.milestoneBodyErrors.tooLong' => 'The note is too long',
           'history.milestoneKindLabel' => 'Milestone kind',
           'history.kindFirst' => 'First time',
@@ -8839,6 +8762,9 @@ extension on TranslationsEn {
           'history.visibilityBoth' => 'Both',
           'history.visibilityOnlyYou' => 'Only you',
           'history.deleteMilestone' => 'Delete',
+          _ => null,
+        } ??
+        switch (path) {
           'history.deleteMilestoneTitle' => 'Delete this milestone?',
           'history.deleteMilestoneTextShared' => 'It will be removed from both of your stories.',
           'history.deleteMilestoneTextPrivate' => 'It will be removed from your story.',
@@ -9435,9 +9361,6 @@ extension on TranslationsEn {
           'moodHelp.partnerNeedActions.hug' => 'Send a hug',
           'moodHelp.partnerNeedActions.space' => 'Give some space',
           'moodHelp.partnerNeedActions.chocolate' => 'Bring some chocolate',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.partnerNeedActions.cuteMessage' => 'Open the chat',
           'moodHelp.partnerNeedActions.foreheadKiss' => 'A kiss on the forehead',
           'moodHelp.partnerNeedActions.company' => 'Stay close',
@@ -9455,6 +9378,9 @@ extension on TranslationsEn {
           'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'You are not connected yet.',
           'moodHelp.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          _ => null,
+        } ??
+        switch (path) {
           'moodHelp.errors.NETWORK' =>
             'Couldn\'t send it now. Check your connection and try again.',
           'moodHelp.errors.TIMEOUT' => 'Couldn\'t send it in time. Try again.',
@@ -9773,7 +9699,6 @@ extension on TranslationsEn {
           'privacy.errorTitle' => 'Could not load the consents',
           'privacy.errorText' => 'Try again in a moment.',
           'privacy.sensitiveTracks' => 'Sensitive tracks and notices',
-          'privacy.heavyDayNotice' => 'Heavy-day notice',
           'profileDetails.title' => 'Profile',
           'profileDetails.nameLabel' => 'Your name',
           'profileDetails.nameHint' => 'Marina',
@@ -10030,9 +9955,6 @@ extension on TranslationsEn {
           'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
           'quickSlip.saved.added' => 'Slip added to this week.',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.saved.queued' =>
             'Saved on this phone. We send it when the connection is back.',
           'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
@@ -10053,6 +9975,9 @@ extension on TranslationsEn {
           'received.bodies.missUs' => 'Your partner is missing you both.',
           'received.bodies.hug' => 'Your partner would like a hug.',
           'received.bodies.distance' => 'Your partner needs a little distance.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.bodies.heavyDay' => 'Your partner is having a heavy day.',
           'received.bodies.goodNews' => 'Your partner has good news.',
           'received.bodies.other' => '',
@@ -10295,8 +10220,6 @@ extension on TranslationsEn {
           'sensitiveDays.markedDay' => ({
             required Object day,
           }) => '${day} marked as a sensitive day',
-          'sensitiveDays.noticeTitle' => 'Tell my partner',
-          'sensitiveDays.noticeSupport' => 'A short notice, no details, and only when you want to.',
           'sensitiveDays.entryTitle' => 'Sensitive days',
           'sensitiveDays.entrySupport' => 'Only you see it',
           'sensitiveDays.errorTitle' => 'Couldn\'t open it',
@@ -10598,9 +10521,6 @@ extension on TranslationsEn {
           'story.title' => 'Image to share',
           'story.privacyNote' =>
             'The image is made on your device and carries no names or text unless you choose.',
-          _ => null,
-        } ??
-        switch (path) {
           'story.days' => 'days',
           'story.together' => 'together',
           'story.namesLabel' => 'Include the names',
@@ -10622,6 +10542,9 @@ extension on TranslationsEn {
           'sundayCard.noteHint' => 'Thank you for this week.',
           'sundayCard.moveUp' => 'Move up',
           'sundayCard.moveDown' => 'Move down',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.remove' => 'Remove from card',
           'sundayCard.emptyTitle' => 'A week without slips',
           'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',

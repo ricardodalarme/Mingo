@@ -27,7 +27,6 @@ import 'package:app/features/games/presentation/hub/games_page.dart';
 import 'package:app/features/gifts/presentation/gifts/gifts_page.dart';
 import 'package:app/features/guides/presentation/hub/guides_page.dart';
 import 'package:app/features/guides/presentation/viewer/guide_page.dart';
-import 'package:app/features/heavy_day/presentation/heavy_day/heavy_day_page.dart';
 import 'package:app/features/help/data/models/support_topic.dart';
 import 'package:app/features/help/presentation/help/help_page.dart';
 import 'package:app/features/help/presentation/support/support_page.dart';
@@ -191,7 +190,6 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: PartnerViewRoute.page),
     AutoRoute(page: OurViewRoute.page),
     AutoRoute(page: ConsentsRoute.page),
-    AutoRoute(page: HeavyDayRoute.page),
     AutoRoute(page: SensitiveDaysRoute.page),
     AutoRoute(page: DeleteAccountRoute.page),
     AutoRoute(page: BadDayRoute.page),

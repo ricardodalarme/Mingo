@@ -1,8 +1,5 @@
-import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/profile_data_source.dart';
-import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -32,28 +29,6 @@ void main() {
       repository.updateDisplayName(profileId: 'p1', displayName: 'Marina'),
       throwsA(isA<LocalizedException>()),
     );
-  });
-
-  test('the heavy-day setting is saved with its server value', () async {
-    when(
-      () => dataSource.updateHeavyDaySharing(
-        VariablesMutationUpdateHeavyDaySharing(
-          profileId: 'p1',
-          sharing: EnumHeavyDaySharing.always,
-        ),
-      ),
-    ).thenAnswer((_) async => 1);
-
-    await repository.updateHeavyDaySharing(profileId: 'p1', sharing: HeavyDaySharing.always);
-
-    verify(
-      () => dataSource.updateHeavyDaySharing(
-        VariablesMutationUpdateHeavyDaySharing(
-          profileId: 'p1',
-          sharing: EnumHeavyDaySharing.always,
-        ),
-      ),
-    ).called(1);
   });
 
   test('a saved field notifies the app once', () async {

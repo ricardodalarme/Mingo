@@ -17,7 +17,6 @@ const Set<String> _sensitiveRouteNames = {
   'GuideRoute',
   'DistanceRoute',
   'CheckinRoute',
-  'HeavyDayRoute',
   'SensitiveDaysRoute',
   'MoodRoute',
   'NeedRoute',

@@ -89,7 +89,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$guides$pt guides = Translations$guides$pt.internal(_root);
   late final Translations$hardConversation$pt hardConversation =
       Translations$hardConversation$pt.internal(_root);
-  late final Translations$heavyDay$pt heavyDay = Translations$heavyDay$pt.internal(_root);
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
   late final Translations$history$pt history = Translations$history$pt.internal(_root);
@@ -2165,68 +2164,6 @@ class Translations$hardConversation$pt {
     'NOT_PAIRED': 'Para enviar, você precisa estar conectado com seu par no app.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
-}
-
-// Path: heavyDay
-class Translations$heavyDay$pt {
-  Translations$heavyDay$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Aviso de dias pesados'
-  String get title => 'Aviso de dias pesados';
-
-  /// pt: 'Aviso de dias pesados'
-  String get gateTitle => 'Aviso de dias pesados';
-
-  /// pt: 'Às vezes um dia pesa. Você pode avisar seu par com uma frase curta, sem detalhes. Seu par não vê seus programas nem o que você escreve.'
-  String get gateText =>
-      'Às vezes um dia pesa. Você pode avisar seu par com uma frase curta, sem detalhes. Seu par não vê seus programas nem o que você escreve.';
-
-  /// pt: 'Ligar'
-  String get activate => 'Ligar';
-
-  /// pt: 'Agora não'
-  String get notNow => 'Agora não';
-
-  /// pt: 'Um dia delicado. Um pouco mais de carinho ajuda.'
-  String get noticeBody => 'Um dia delicado. Um pouco mais de carinho ajuda.';
-
-  /// pt: '{name} veria: “Um dia delicado. Um pouco mais de carinho ajuda.”'
-  String previewPartner({required Object name}) =>
-      '${name} veria: “Um dia delicado. Um pouco mais de carinho ajuda.”';
-
-  /// pt: 'Seu par veria: “Um dia delicado. Um pouco mais de carinho ajuda.”'
-  String get previewGeneric => 'Seu par veria: “Um dia delicado. Um pouco mais de carinho ajuda.”';
-
-  /// pt: 'A cada vez'
-  String get frequencyAsk => 'A cada vez';
-
-  /// pt: 'Sempre'
-  String get frequencyAlways => 'Sempre';
-
-  /// pt: 'Compartilhar'
-  String get share => 'Compartilhar';
-
-  /// pt: 'Não compartilhar'
-  String get cancel => 'Não compartilhar';
-
-  /// pt: 'Aviso enviado para {name}'
-  String confirmationTitle({required Object name}) => 'Aviso enviado para ${name}';
-
-  /// pt: 'Aviso enviado'
-  String get confirmationGeneric => 'Aviso enviado';
-
-  /// pt: 'Seu par vê no widget de recados, se estiver ativado.'
-  String get confirmationHint => 'Seu par vê no widget de recados, se estiver ativado.';
-
-  /// pt: 'Não deu para carregar'
-  String get errorTitle => 'Não deu para carregar';
-
-  /// pt: 'Não deu para fazer isso agora. Tente de novo.'
-  String get errorText => 'Não deu para fazer isso agora. Tente de novo.';
 }
 
 // Path: help
@@ -4849,9 +4786,6 @@ class Translations$privacy$pt {
 
   /// pt: 'Trilhas e avisos sensíveis'
   String get sensitiveTracks => 'Trilhas e avisos sensíveis';
-
-  /// pt: 'Aviso de dias pesados'
-  String get heavyDayNotice => 'Aviso de dias pesados';
 }
 
 // Path: profileDetails
@@ -5870,12 +5804,6 @@ class Translations$sensitiveDays$pt {
 
   /// pt: '{day} marcado como dia sensível'
   String markedDay({required Object day}) => '${day} marcado como dia sensível';
-
-  /// pt: 'Avisar meu par'
-  String get noticeTitle => 'Avisar meu par';
-
-  /// pt: 'Um aviso curto, sem detalhes, e só quando você quiser.'
-  String get noticeSupport => 'Um aviso curto, sem detalhes, e só quando você quiser.';
 
   /// pt: 'Dias sensíveis'
   String get entryTitle => 'Dias sensíveis';
@@ -10467,26 +10395,6 @@ extension on Translations {
           'hardConversation.errors.NOT_PAIRED' =>
             'Para enviar, você precisa estar conectado com seu par no app.',
           'hardConversation.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          'heavyDay.title' => 'Aviso de dias pesados',
-          'heavyDay.gateTitle' => 'Aviso de dias pesados',
-          'heavyDay.gateText' => 'Às vezes um dia pesa. Você pode avisar seu par com uma frase curta, sem detalhes. Seu par não vê seus programas nem o que você escreve.',
-          'heavyDay.activate' => 'Ligar',
-          'heavyDay.notNow' => 'Agora não',
-          'heavyDay.noticeBody' => 'Um dia delicado. Um pouco mais de carinho ajuda.',
-          'heavyDay.previewPartner' => ({
-            required Object name,
-          }) => '${name} veria: “Um dia delicado. Um pouco mais de carinho ajuda.”',
-          'heavyDay.previewGeneric' =>
-            'Seu par veria: “Um dia delicado. Um pouco mais de carinho ajuda.”',
-          'heavyDay.frequencyAsk' => 'A cada vez',
-          'heavyDay.frequencyAlways' => 'Sempre',
-          'heavyDay.share' => 'Compartilhar',
-          'heavyDay.cancel' => 'Não compartilhar',
-          'heavyDay.confirmationTitle' => ({required Object name}) => 'Aviso enviado para ${name}',
-          'heavyDay.confirmationGeneric' => 'Aviso enviado',
-          'heavyDay.confirmationHint' => 'Seu par vê no widget de recados, se estiver ativado.',
-          'heavyDay.errorTitle' => 'Não deu para carregar',
-          'heavyDay.errorText' => 'Não deu para fazer isso agora. Tente de novo.',
           'help.badDayTitle' => 'Um dia difícil',
           'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
           'help.starterTitle' => 'Começar uma conversa',
@@ -10686,9 +10594,6 @@ extension on Translations {
           'history.milestonePlaceHint' => 'Ex.: Paraty',
           'history.milestonePlaceErrors.tooLong' => 'O lugar está muito longo',
           'history.milestoneBodyHint' => 'Uma nota sobre esse momento (opcional)',
-          _ => null,
-        } ??
-        switch (path) {
           'history.milestoneBodyErrors.tooLong' => 'A nota está muito longa',
           'history.milestoneKindLabel' => 'Tipo de marco',
           'history.kindFirst' => 'Primeira vez',
@@ -10706,6 +10611,9 @@ extension on Translations {
           'history.visibilityBoth' => 'Os dois',
           'history.visibilityOnlyYou' => 'Só você',
           'history.deleteMilestone' => 'Apagar',
+          _ => null,
+        } ??
+        switch (path) {
           'history.deleteMilestoneTitle' => 'Excluir este marco?',
           'history.deleteMilestoneTextShared' => 'Ele será removido da história dos dois.',
           'history.deleteMilestoneTextPrivate' => 'Ele será removido da sua história.',
@@ -11303,9 +11211,6 @@ extension on Translations {
           'moodHelp.partnerNeedActions.hug' => 'Mandar um abraço',
           'moodHelp.partnerNeedActions.space' => 'Dar espaço',
           'moodHelp.partnerNeedActions.chocolate' => 'Levar um chocolate',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.partnerNeedActions.cuteMessage' => 'Abrir a conversa',
           'moodHelp.partnerNeedActions.foreheadKiss' => 'Um beijinho na testa',
           'moodHelp.partnerNeedActions.company' => 'Ficar por perto',
@@ -11323,6 +11228,9 @@ extension on Translations {
           'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'Vocês ainda não estão conectados.',
           'moodHelp.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          _ => null,
+        } ??
+        switch (path) {
           'moodHelp.errors.NETWORK' =>
             'Não deu para enviar agora. Verifique a conexão e tente de novo.',
           'moodHelp.errors.TIMEOUT' => 'Não deu para enviar agora a tempo. Tente de novo.',
@@ -11642,7 +11550,6 @@ extension on Translations {
           'privacy.errorTitle' => 'Não deu para carregar os consentimentos',
           'privacy.errorText' => 'Tente de novo em instantes.',
           'privacy.sensitiveTracks' => 'Trilhas e avisos sensíveis',
-          'privacy.heavyDayNotice' => 'Aviso de dias pesados',
           'profileDetails.title' => 'Perfil',
           'profileDetails.nameLabel' => 'Seu nome',
           'profileDetails.nameHint' => 'Marina',
@@ -11898,9 +11805,6 @@ extension on Translations {
           'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
           'quickSlip.saved.added' => 'Slip adicionado a esta semana.',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
           'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
           'quickSlip.saved.undo' => 'Desfazer',
@@ -11921,6 +11825,9 @@ extension on Translations {
           'received.bodies.missUs' => 'Seu par está com saudade de vocês.',
           'received.bodies.hug' => 'Seu par quer um abraço.',
           'received.bodies.distance' => 'Seu par precisa de um pouco de distância.',
+          _ => null,
+        } ??
+        switch (path) {
           'received.bodies.heavyDay' => 'Seu par está tendo um dia pesado.',
           'received.bodies.goodNews' => 'Seu par tem uma boa notícia.',
           'received.bodies.other' => '',
@@ -12166,8 +12073,6 @@ extension on Translations {
           'sensitiveDays.markedDay' => ({
             required Object day,
           }) => '${day} marcado como dia sensível',
-          'sensitiveDays.noticeTitle' => 'Avisar meu par',
-          'sensitiveDays.noticeSupport' => 'Um aviso curto, sem detalhes, e só quando você quiser.',
           'sensitiveDays.entryTitle' => 'Dias sensíveis',
           'sensitiveDays.entrySupport' => 'Só você vê',
           'sensitiveDays.errorTitle' => 'Não deu para abrir',
@@ -12471,9 +12376,6 @@ extension on Translations {
           'spice.errors.other' => 'Não deu para mudar agora. Tente de novo.',
           'story.title' => 'Imagem para compartilhar',
           'story.privacyNote' => 'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.',
-          _ => null,
-        } ??
-        switch (path) {
           'story.days' => 'dias',
           'story.together' => 'juntos',
           'story.namesLabel' => 'Incluir os nomes',
@@ -12495,6 +12397,9 @@ extension on Translations {
           'sundayCard.noteHint' => 'Obrigada por essa semana.',
           'sundayCard.moveUp' => 'Subir',
           'sundayCard.moveDown' => 'Descer',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.remove' => 'Tirar do cartão',
           'sundayCard.emptyTitle' => 'Semana sem slips',
           'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',

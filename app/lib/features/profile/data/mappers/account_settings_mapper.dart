@@ -15,7 +15,6 @@ extension MySettingsMapper on QueryMySettingsmySettings {
     onboardedAt: onboardedAt,
     shareReadReceipts: shareReadReceipts,
     widgetInDiscreet: widgetInDiscreet,
-    heavyDaySharing: heavyDaySharing.toModel(),
     phase: phase?.toModel(),
     goals: [for (final goal in goals) ?goal?.toRelationshipGoal()],
     locale: locale,
@@ -35,22 +34,5 @@ extension AppThemeVariantMapper on AppThemeVariant {
     .blue => EnumAppTheme.azul,
     .neutral => EnumAppTheme.neutro,
     .rose => EnumAppTheme.rosa,
-  };
-}
-
-extension EnumHeavyDaySharingMapper on EnumHeavyDaySharing {
-  /// An unknown setting is treated as off.
-  HeavyDaySharing toModel() => switch (this) {
-    EnumHeavyDaySharing.off || EnumHeavyDaySharing.$unknown => HeavyDaySharing.off,
-    EnumHeavyDaySharing.ask => HeavyDaySharing.ask,
-    EnumHeavyDaySharing.always => HeavyDaySharing.always,
-  };
-}
-
-extension HeavyDaySharingMapper on HeavyDaySharing {
-  EnumHeavyDaySharing toRemote() => switch (this) {
-    HeavyDaySharing.off => EnumHeavyDaySharing.off,
-    HeavyDaySharing.ask => EnumHeavyDaySharing.ask,
-    HeavyDaySharing.always => EnumHeavyDaySharing.always,
   };
 }

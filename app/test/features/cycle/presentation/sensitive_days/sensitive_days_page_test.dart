@@ -64,6 +64,5 @@ void main() {
     await pumpPage(tester);
 
     expect(find.textContaining('Seu par não vê esta tela'), findsOneWidget);
-    expect(find.text('Avisar meu par'), findsOneWidget);
   });
 }

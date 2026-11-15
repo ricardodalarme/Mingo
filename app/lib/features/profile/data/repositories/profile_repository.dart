@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveIntroAnswers.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveProfileSetup.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateHeavyDaySharing.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdatePronouns.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipPhase.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipStatus.graphql.dart';
@@ -144,22 +143,6 @@ class ProfileRepository({required final ProfileDataSource _profileDataSource}) {
       _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the time zone', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
-
-  Future<void> updateHeavyDaySharing({
-    required String profileId,
-    required HeavyDaySharing sharing,
-  }) async {
-    try {
-      final affected = await _profileDataSource.updateHeavyDaySharing(
-        VariablesMutationUpdateHeavyDaySharing(profileId: profileId, sharing: sharing.toRemote()),
-      );
-      _ensureUpdated(affected);
-      _notifyChanges();
-    } catch (e, stack) {
-      _logger.error('Failed to save the heavy-day notice setting', error: e, stackTrace: stack);
       rethrow;
     }
   }

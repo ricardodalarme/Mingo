@@ -3,7 +3,6 @@ import 'package:app/features/cycle/data/models/sensitive_day.dart';
 import 'package:app/features/cycle/presentation/sensitive_days/cubit/sensitive_days_cubit.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
-import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
@@ -99,18 +98,6 @@ class const _SensitiveDaysBody({required final SensitiveDays value}) extends Sta
           ),
           const SizedBox(height: AppSpace.s12),
           BaseNote(text: l10n.calendarNote),
-          const SizedBox(height: AppSpace.s20),
-          BaseListGroup(
-            children: [
-              BaseListTile(
-                title: l10n.noticeTitle,
-                subtitle: l10n.noticeSupport,
-                icon: AppIcons.bell,
-                showsChevron: true,
-                onTap: () => context.pushRoute(const HeavyDayRoute()),
-              ),
-            ],
-          ),
         ],
       ),
     );

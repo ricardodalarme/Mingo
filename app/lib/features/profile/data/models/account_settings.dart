@@ -3,13 +3,6 @@ import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
 
-/// How readily the person lets the partner see a heavy-day notice.
-enum HeavyDaySharing() {
-  off,
-  ask,
-  always,
-}
-
 final class const AccountSettings({
   required final AppThemeVariant theme,
   final String profileId = '',
@@ -19,7 +12,6 @@ final class const AccountSettings({
   final DateTime? onboardedAt,
   final bool shareReadReceipts = false,
   final bool widgetInDiscreet = false,
-  final HeavyDaySharing heavyDaySharing = HeavyDaySharing.off,
   final RelationshipPhase? phase,
   final List<RelationshipGoal> goals = const [],
   final String locale = 'pt-BR',
@@ -37,7 +29,6 @@ final class const AccountSettings({
     onboardedAt,
     shareReadReceipts,
     widgetInDiscreet,
-    heavyDaySharing,
     phase,
     goals,
     locale,

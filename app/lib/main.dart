@@ -17,7 +17,6 @@ import 'package:app/features/fight_style/di/fight_style_injection_module.dart';
 import 'package:app/features/games/di/games_injection_module.dart';
 import 'package:app/features/gifts/di/gifts_injection_module.dart';
 import 'package:app/features/guides/di/guides_injection_module.dart';
-import 'package:app/features/heavy_day/di/heavy_day_injection_module.dart';
 import 'package:app/features/help/di/help_injection_module.dart';
 import 'package:app/features/history/di/history_injection_module.dart';
 import 'package:app/features/ideas/di/ideas_injection_module.dart';
@@ -81,7 +80,6 @@ void _registerModules() {
     GamesInjectionModule(),
     GiftsInjectionModule(),
     GuidesInjectionModule(),
-    HeavyDayInjectionModule(),
     CycleInjectionModule(),
     IdeasInjectionModule(),
     ListsInjectionModule(),

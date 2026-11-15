@@ -25,7 +25,6 @@ import 'package:app/features/notes/data/models/sent_message.dart';
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:app/features/partner/data/models/partner_fact_category.dart';
 import 'package:app/features/plus/data/models/plus_state.dart';
-import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/programs/data/models/program.dart';
 import 'package:app/features/reminders/data/models/reminder_preferences.dart';
@@ -61,7 +60,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(EnumGiftBudget.free);
   registerFallbackValue(EnumGiftIdeaKind.idea);
   registerFallbackValue(EnumGiftIdeaStatus.idea);
-  registerFallbackValue(EnumHeavyDaySharing.off);
   registerFallbackValue(EnumIdeaResponse.will_do);
   registerFallbackValue(EnumImportantDateKind.relationship);
   registerFallbackValue(EnumImportantDateOrigin.manual);
@@ -127,7 +125,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(PartnerFactCategory.likes);
   registerFallbackValue(PurchaseOutcome.unlocked);
   registerFallbackValue(RestoreOutcome.unlocked);
-  registerFallbackValue(HeavyDaySharing.off);
   registerFallbackValue(AvatarKind.photo);
   registerFallbackValue(LessonStatus.done);
   registerFallbackValue(ReminderKind.dailyIdea);
