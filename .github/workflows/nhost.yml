@@ -1,0 +1,84 @@
+name: Nhost
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            backend:
+              - "nhost/**"
+              - "functions/**"
+              - ".github/workflows/nhost.yml"
+
+  backend:
+    name: Backend
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Install the Nhost CLI
+        run: curl -sSL https://raw.githubusercontent.com/nhost/nhost/main/cli/get.sh | bash
+
+      - name: Write development secrets
+        run: bash nhost/tools/ci-secrets.sh
+
+      - name: Validate the configuration
+        run: nhost config validate
+
+      - name: Start the stack from migrations, metadata and seeds
+        run: nhost/tools/up.sh --apply-seeds
+
+      - name: Unit test the functions
+        run: cd functions && npm test
+
+      - name: Run the backend suite
+        run: cd nhost && npm test
+
+      - name: Regenerate the metadata and the role schemas
+        run: |
+          node nhost/tools/build-metadata.mjs
+          nhost/tools/up.sh
+          nhost/tools/dump-schemas.sh
+
+      - name: Fail when generated files are stale
+        run: |
+          if ! git diff --exit-code; then
+            echo "::error::Generated metadata or schemas are not current. Run 'node nhost/tools/build-metadata.mjs', 'nhost/tools/up.sh' and 'nhost/tools/dump-schemas.sh', then commit the output."
+            exit 1
+          fi
+
+      - name: Stop the stack
+        if: always()
+        run: echo y | nhost down --volumes
