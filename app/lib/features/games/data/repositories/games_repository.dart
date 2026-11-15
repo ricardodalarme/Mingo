@@ -14,6 +14,9 @@ import 'package:network/network.dart';
 /// The code the server raises when finishing before both people answered every item.
 const String gameNotCompleteCode = 'GAME_NOT_COMPLETE';
 
+/// The code the server raises when an answer can no longer change.
+const String gameAnswerLockedCode = 'ANSWER_LOCKED';
+
 class GamesRepository({required final GamesDataSource _dataSource}) {
   final Logger _logger = Logger('GamesRepository');
 

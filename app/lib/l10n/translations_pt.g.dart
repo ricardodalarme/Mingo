@@ -1794,8 +1794,10 @@ class Translations$games$pt {
     'GAME_ALREADY_OPEN': 'Já existe um jogo aberto. Termine ou cancele antes de chamar de novo.',
     'GAME_NOT_COMPLETE': 'Seu par ainda está respondendo. Tente de novo quando terminarem.',
     'INVALID_GAME_INDEX': 'Essa pergunta mudou. Vamos atualizar.',
+    'ANSWER_LOCKED': 'As respostas deste jogo já foram fechadas. Não dá para editar agora.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
+  late final Translations$games$review$pt review = Translations$games$review$pt.internal(_root);
 }
 
 // Path: gifts
@@ -7939,9 +7941,6 @@ class Translations$games$playing$pt {
   /// pt: 'Seu par'
   String get partnerFallback => 'Seu par';
 
-  /// pt: 'Enviar resposta'
-  String get submit => 'Enviar resposta';
-
   /// pt: 'Pular esta'
   String get skip => 'Pular esta';
 
@@ -7974,6 +7973,15 @@ class Translations$games$playing$pt {
 
   /// pt: 'Seu par só vê depois que os dois responderem.'
   String get talkNote => 'Seu par só vê depois que os dois responderem.';
+
+  /// pt: 'Começar a responder'
+  String get introCta => 'Começar a responder';
+
+  /// pt: 'Continuar'
+  String get next => 'Continuar';
+
+  /// pt: 'Revisar respostas'
+  String get reviewAction => 'Revisar respostas';
 }
 
 // Path: games.date
@@ -8137,6 +8145,34 @@ class Translations$games$common$pt {
 
   /// pt: 'Fechar'
   String get close => 'Fechar';
+}
+
+// Path: games.review
+class Translations$games$review$pt {
+  Translations$games$review$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Revisar respostas'
+  String get title => 'Revisar respostas';
+
+  /// pt: 'Confira o que você respondeu. Toque em uma resposta para editar. Nada é enviado antes de você confirmar.'
+  String get text =>
+      'Confira o que você respondeu. Toque em uma resposta para editar. Nada é enviado antes de você confirmar.';
+
+  /// pt: 'Enviar respostas'
+  String get confirm => 'Enviar respostas';
+
+  /// pt: 'Voltar para a revisão'
+  String get back => 'Voltar para a revisão';
+
+  /// pt: 'Fechado'
+  String get locked => 'Fechado';
+
+  /// pt: 'Este jogo já foi fechado. Esta resposta não pode mais ser editada.'
+  String get lockedNote => 'Este jogo já foi fechado. Esta resposta não pode mais ser editada.';
 }
 
 // Path: guides.hub
@@ -9994,7 +10030,6 @@ extension on Translations {
           }) => 'Pergunta ${current} de ${total}',
           'games.playing.you' => 'Você',
           'games.playing.partnerFallback' => 'Seu par',
-          'games.playing.submit' => 'Enviar resposta',
           'games.playing.skip' => 'Pular esta',
           'games.playing.guessAboutYou' => 'Sobre você',
           'games.playing.guessAboutPartner' => ({required Object name}) => 'Sobre ${name}',
@@ -10006,6 +10041,9 @@ extension on Translations {
           'games.playing.guessHint' => 'Tente adivinhar a resposta.',
           'games.playing.talkHint' => 'Escreva sua resposta. Só você lê até os dois terminarem.',
           'games.playing.talkNote' => 'Seu par só vê depois que os dois responderem.',
+          'games.playing.introCta' => 'Começar a responder',
+          'games.playing.next' => 'Continuar',
+          'games.playing.reviewAction' => 'Revisar respostas',
           'games.date.start' => 'Começar o encontro',
           'games.date.startNote' => 'Façam a missão juntos e voltem para contar como foi.',
           'games.date.reflectionTitle' => 'Como foi?',
@@ -10059,7 +10097,16 @@ extension on Translations {
           'games.errors.GAME_NOT_COMPLETE' =>
             'Seu par ainda está respondendo. Tente de novo quando terminarem.',
           'games.errors.INVALID_GAME_INDEX' => 'Essa pergunta mudou. Vamos atualizar.',
+          'games.errors.ANSWER_LOCKED' =>
+            'As respostas deste jogo já foram fechadas. Não dá para editar agora.',
           'games.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'games.review.title' => 'Revisar respostas',
+          'games.review.text' => 'Confira o que você respondeu. Toque em uma resposta para editar. Nada é enviado antes de você confirmar.',
+          'games.review.confirm' => 'Enviar respostas',
+          'games.review.back' => 'Voltar para a revisão',
+          'games.review.locked' => 'Fechado',
+          'games.review.lockedNote' =>
+            'Este jogo já foi fechado. Esta resposta não pode mais ser editada.',
           'gifts.title' => 'Página de presentes',
           'gifts.subtitle' => 'Uma página que seu par vê no app. Você escolhe o que compartilhar.',
           'gifts.myTitle' => 'Meus desejos',
@@ -10438,6 +10485,9 @@ extension on Translations {
           'history.milestonePlaceHint' => 'Ex.: Paraty',
           'history.milestonePlaceErrors.tooLong' => 'O lugar está muito longo',
           'history.milestoneBodyHint' => 'Uma nota sobre esse momento (opcional)',
+          _ => null,
+        } ??
+        switch (path) {
           'history.milestoneBodyErrors.tooLong' => 'A nota está muito longa',
           'history.milestoneKindLabel' => 'Tipo de marco',
           'history.kindFirst' => 'Primeira vez',
@@ -10447,9 +10497,6 @@ extension on Translations {
           'history.unknownDateToggle' => 'Data desconhecida',
           'history.precisionDay' => 'Dia exato',
           'history.precisionMonth' => 'Mês e ano',
-          _ => null,
-        } ??
-        switch (path) {
           'history.precisionYear' => 'Só o ano',
           'history.dateRowLabel' => 'Data',
           'history.addedByRowLabel' => 'Adicionado por',
@@ -11075,6 +11122,9 @@ extension on Translations {
                   other: '${count} dias atrás',
                 ),
           'notes.drawingAlt' => 'Desenho',
+          _ => null,
+        } ??
+        switch (path) {
           'notes.delete' => 'Apagar',
           'notes.deleteConfirmTitle' => 'Apagar este envio?',
           'notes.deleteConfirmText' =>
@@ -11085,9 +11135,6 @@ extension on Translations {
           'notes.emptyTitle' => 'Nada enviado ainda',
           'notes.emptyText' => 'Quando você mandar um bilhete ou desenho, ele aparece aqui.',
           'notes.errorTitle' => 'Não deu para carregar',
-          _ => null,
-        } ??
-        switch (path) {
           'notes.errorText' => 'Tente de novo em instantes.',
           'notes.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'notes.errors.NOT_PAIRED' => 'Para enviar, você precisa estar com seu par no app.',
@@ -11651,6 +11698,9 @@ extension on Translations {
           'relationshipChanged.optionBereaved' => 'Perdi a pessoa',
           'relationshipChanged.optionOnBreak' => 'Um tempo',
           'relationshipChanged.optionTogether' => 'Está tudo bem',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.continueLabel' => 'Continuar',
           'relationshipChanged.saved' => 'Salvo',
           'relationshipChanged.errors.NETWORK' => 'Sem conexão. Tente de novo.',
@@ -11660,9 +11710,6 @@ extension on Translations {
           'relationshipSettings.phasePlaceholder' => 'Escolha uma fase',
           'relationshipSettings.phases.beginning' => 'Começando',
           'relationshipSettings.phases.dating' => 'Namorando',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipSettings.phases.livingTogether' => 'Moramos juntos',
           'relationshipSettings.phases.engaged' => 'Noivos',
           'relationshipSettings.phases.married' => 'Casados',
@@ -12223,6 +12270,9 @@ extension on Translations {
           'tabs.badDayTitle' => 'Um dia difícil',
           'tabs.badDayText' => 'Três coisas pequenas para fazer agora.',
           'tabs.starterLabel' => 'CONVERSA',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.starterTitle' => 'Começar uma conversa',
           'tabs.starterText' => 'Uma pergunta para abrir, sem pressa.',
           'tabs.dayLabel' => 'DIA',
@@ -12232,9 +12282,6 @@ extension on Translations {
           'tabs.plusTitle' => 'Grátis e Plus',
           'tabs.plusText' => 'O que cada plano inclui, sem pressão.',
           'tabs.temperatureLabel' => 'ENTRE VOCÊS',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.temperatureTitle' => 'Como está entre vocês?',
           'tabs.temperatureText' => 'Um registro privado, sem nota.',
           'tabs.learningLabel' => 'SÓ PARA VOCÊ',

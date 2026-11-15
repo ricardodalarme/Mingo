@@ -1569,8 +1569,11 @@ class _Translations$games$en extends Translations$games$pt {
     'GAME_ALREADY_OPEN': 'A game is already open. Finish or cancel it before inviting again.',
     'GAME_NOT_COMPLETE': 'Your partner is still answering. Try again when they finish.',
     'INVALID_GAME_INDEX': 'That question changed. We\'ll refresh.',
+    'ANSWER_LOCKED': 'This game\'s answers are closed. You can\'t edit them now.',
     'other': 'Could not do that right now. Try again.',
   };
+  @override
+  late final _Translations$games$review$en review = _Translations$games$review$en._(_root);
 }
 
 // Path: gifts
@@ -6338,8 +6341,6 @@ class _Translations$games$playing$en extends Translations$games$playing$pt {
   @override
   String get partnerFallback => 'Your partner';
   @override
-  String get submit => 'Send answer';
-  @override
   String get skip => 'Skip this one';
   @override
   String get guessAboutYou => 'About you';
@@ -6361,6 +6362,12 @@ class _Translations$games$playing$en extends Translations$games$playing$pt {
   String get talkHint => 'Write your answer. Only you can read it until you both finish.';
   @override
   String get talkNote => 'Your partner only sees this after both of you answer.';
+  @override
+  String get introCta => 'Start answering';
+  @override
+  String get next => 'Continue';
+  @override
+  String get reviewAction => 'Review answers';
 }
 
 // Path: games.date
@@ -6493,6 +6500,28 @@ class _Translations$games$common$en extends Translations$games$common$pt {
   // Translations
   @override
   String get close => 'Close';
+}
+
+// Path: games.review
+class _Translations$games$review$en extends Translations$games$review$pt {
+  _Translations$games$review$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Review answers';
+  @override
+  String get text =>
+      'Check what you answered. Tap an answer to edit it. Nothing is sent until you confirm.';
+  @override
+  String get confirm => 'Send answers';
+  @override
+  String get back => 'Back to the review';
+  @override
+  String get locked => 'Closed';
+  @override
+  String get lockedNote => 'This game is closed. This answer can no longer be edited.';
 }
 
 // Path: guides.hub
@@ -8187,7 +8216,6 @@ extension on TranslationsEn {
           }) => 'Question ${current} of ${total}',
           'games.playing.you' => 'You',
           'games.playing.partnerFallback' => 'Your partner',
-          'games.playing.submit' => 'Send answer',
           'games.playing.skip' => 'Skip this one',
           'games.playing.guessAboutYou' => 'About you',
           'games.playing.guessAboutPartner' => ({required Object name}) => 'About ${name}',
@@ -8200,6 +8228,9 @@ extension on TranslationsEn {
           'games.playing.talkHint' =>
             'Write your answer. Only you can read it until you both finish.',
           'games.playing.talkNote' => 'Your partner only sees this after both of you answer.',
+          'games.playing.introCta' => 'Start answering',
+          'games.playing.next' => 'Continue',
+          'games.playing.reviewAction' => 'Review answers',
           'games.date.start' => 'Start the date',
           'games.date.startNote' => 'Do the mission together, then come back and tell how it was.',
           'games.date.reflectionTitle' => 'How was it?',
@@ -8253,7 +8284,16 @@ extension on TranslationsEn {
           'games.errors.GAME_NOT_COMPLETE' =>
             'Your partner is still answering. Try again when they finish.',
           'games.errors.INVALID_GAME_INDEX' => 'That question changed. We\'ll refresh.',
+          'games.errors.ANSWER_LOCKED' =>
+            'This game\'s answers are closed. You can\'t edit them now.',
           'games.errors.other' => 'Could not do that right now. Try again.',
+          'games.review.title' => 'Review answers',
+          'games.review.text' =>
+            'Check what you answered. Tap an answer to edit it. Nothing is sent until you confirm.',
+          'games.review.confirm' => 'Send answers',
+          'games.review.back' => 'Back to the review',
+          'games.review.locked' => 'Closed',
+          'games.review.lockedNote' => 'This game is closed. This answer can no longer be edited.',
           'gifts.title' => 'Gift page',
           'gifts.subtitle' => 'A page your partner can see in the app. You choose what to share.',
           'gifts.myTitle' => 'My wishes',
@@ -8625,6 +8665,9 @@ extension on TranslationsEn {
           'history.milestonePlaceHint' => 'E.g. Paraty',
           'history.milestonePlaceErrors.tooLong' => 'The place is too long',
           'history.milestoneBodyHint' => 'A note about this moment (optional)',
+          _ => null,
+        } ??
+        switch (path) {
           'history.milestoneBodyErrors.tooLong' => 'The note is too long',
           'history.milestoneKindLabel' => 'Milestone kind',
           'history.kindFirst' => 'First time',
@@ -8634,9 +8677,6 @@ extension on TranslationsEn {
           'history.unknownDateToggle' => 'Unknown date',
           'history.precisionDay' => 'Exact day',
           'history.precisionMonth' => 'Month and year',
-          _ => null,
-        } ??
-        switch (path) {
           'history.precisionYear' => 'Year only',
           'history.dateRowLabel' => 'Date',
           'history.addedByRowLabel' => 'Added by',
@@ -9262,6 +9302,9 @@ extension on TranslationsEn {
                   other: '${count} days ago',
                 ),
           'notes.drawingAlt' => 'Drawing',
+          _ => null,
+        } ??
+        switch (path) {
           'notes.delete' => 'Delete',
           'notes.deleteConfirmTitle' => 'Delete this?',
           'notes.deleteConfirmText' =>
@@ -9272,9 +9315,6 @@ extension on TranslationsEn {
           'notes.emptyTitle' => 'Nothing sent yet',
           'notes.emptyText' => 'When you send a note or a drawing, it shows up here.',
           'notes.errorTitle' => 'Couldn\'t load',
-          _ => null,
-        } ??
-        switch (path) {
           'notes.errorText' => 'Try again in a moment.',
           'notes.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'notes.errors.NOT_PAIRED' =>
@@ -9837,6 +9877,9 @@ extension on TranslationsEn {
           'relationshipChanged.optionBereaved' => 'I lost them',
           'relationshipChanged.optionOnBreak' => 'A break',
           'relationshipChanged.optionTogether' => 'Everything is fine',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.continueLabel' => 'Continue',
           'relationshipChanged.saved' => 'Saved',
           'relationshipChanged.errors.NETWORK' => 'No connection. Try again.',
@@ -9846,9 +9889,6 @@ extension on TranslationsEn {
           'relationshipSettings.phasePlaceholder' => 'Pick a phase',
           'relationshipSettings.phases.beginning' => 'Just starting',
           'relationshipSettings.phases.dating' => 'Dating',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipSettings.phases.livingTogether' => 'Living together',
           'relationshipSettings.phases.engaged' => 'Engaged',
           'relationshipSettings.phases.married' => 'Married',
@@ -10407,6 +10447,9 @@ extension on TranslationsEn {
           'tabs.badDayTitle' => 'A hard day',
           'tabs.badDayText' => 'Three small things to do right now.',
           'tabs.starterLabel' => 'TALK',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.starterTitle' => 'Start a conversation',
           'tabs.starterText' => 'A question to open with, no rush.',
           'tabs.dayLabel' => 'DAY',
@@ -10416,9 +10459,6 @@ extension on TranslationsEn {
           'tabs.plusTitle' => 'Free and Plus',
           'tabs.plusText' => 'What each plan includes, no pressure.',
           'tabs.temperatureLabel' => 'BETWEEN YOU',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.temperatureTitle' => 'How is it between you?',
           'tabs.temperatureText' => 'A private check-in, never a score.',
           'tabs.learningLabel' => 'JUST FOR YOU',

@@ -12,19 +12,93 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class const GameActiveView({required final GamePlay play, super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (play.stepItem == null) return GameNoContentView(play: play, canCancel: true);
+    final step = context.select((GameCubit cubit) => cubit.state.step);
+    final isLocked = context.select((GameCubit cubit) => cubit.state.isLocked);
+    if (step < 0) return _IntroPlayView(play: play);
+    if (isLocked) return _LockedPlayView(play: play, step: step);
+    if (play.itemAt(step) == null) return GameNoContentView(play: play, canCancel: true);
 
     return switch (play.kind.flow) {
-      GameFlow.pick => _PickPlayView(play: play),
-      GameFlow.guess => _GuessPlayView(play: play),
-      GameFlow.talk => _TalkPlayView(play: play),
-      GameFlow.date => _DatePlayView(play: play),
+      GameFlow.pick => _PickPlayView(play: play, step: step),
+      GameFlow.guess => _GuessPlayView(play: play, step: step),
+      GameFlow.talk => _TalkPlayView(play: play, step: step),
+      GameFlow.date => _DatePlayView(play: play, step: step),
     };
+  }
+}
+
+/// The introduction to the round, before the first question.
+class const _IntroPlayView({required final GamePlay play}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.games;
+    final cubit = context.read<GameCubit>();
+
+    return BaseMomentContent(
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const BaseFace(kind: FaceKind.smile, size: FaceSize.showcase),
+          const SizedBox(height: AppSpace.s20),
+          Semantics(
+            header: true,
+            child: Text(
+              play.kind.title(context),
+              textAlign: TextAlign.center,
+              style: context.text.titleXl,
+            ),
+          ),
+          const SizedBox(height: AppSpace.s10),
+          Text(
+            play.kind.intro(context),
+            textAlign: TextAlign.center,
+            style: context.text.body.copyWith(color: context.colors.textSecondary),
+          ),
+          const SizedBox(height: AppSpace.s16),
+          BaseNote(text: l10n.start.noWinnerNote, icon: AppIcons.heart),
+        ],
+      ),
+      footer: BaseButton.primary(text: l10n.playing.introCta, onPressed: cubit.begin),
+    );
+  }
+}
+
+/// The step the server no longer lets this person change.
+class const _LockedPlayView({required final GamePlay play, required final int step})
+    extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.games;
+    final cubit = context.read<GameCubit>();
+    final item = play.itemAt(step);
+
+    return BaseStackedContent(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            l10n.playing.progress(current: step + 1, total: play.totalSteps),
+            style: context.text.caption.copyWith(color: context.colors.textSecondary),
+          ),
+          const SizedBox(height: AppSpace.s8),
+          if (item != null)
+            Semantics(header: true, child: Text(item.title, style: context.text.titleXl)),
+          const SizedBox(height: AppSpace.s20),
+          BaseNote(text: l10n.review.lockedNote),
+        ],
+      ),
+      footer: BaseButton.secondary(
+        text: l10n.review.back,
+        onPressed: cubit.review,
+        isFullWidth: true,
+      ),
+    );
   }
 }
 
 class const _PlayScaffold({
   required final GamePlay play,
+  required final int step,
   required final String title,
   required final Widget content,
   final String? label,
@@ -40,7 +114,7 @@ class const _PlayScaffold({
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            l10n.progress(current: play.currentStep + 1, total: play.totalSteps),
+            l10n.progress(current: step + 1, total: play.totalSteps),
             style: context.text.caption.copyWith(color: context.colors.textSecondary),
           ),
           const SizedBox(height: AppSpace.s8),
@@ -65,43 +139,35 @@ class const _PlayScaffold({
   }
 }
 
-class const _PickPlayView({required final GamePlay play}) extends StatelessWidget {
+class const _PickPlayView({required final GamePlay play, required final int step})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.games.playing;
     final cubit = context.read<GameCubit>();
     final isBusy = context.select((GameCubit cubit) => cubit.state.isBusy);
+    final answer = context.select((GameCubit cubit) => cubit.state.answers[step]);
     final name = gamePartnerName(play.partnerName, l10n.partnerFallback);
-    final item = play.stepItem!;
-
-    Future<void> choose(String answer) async {
-      cubit.onDraftChanged(answer);
-      await cubit.submit();
-    }
+    final item = play.itemAt(step)!;
 
     return _PlayScaffold(
       play: play,
+      step: step,
       title: item.title,
       content: Column(
         children: [
           BaseOptionTile(
             title: l10n.you,
+            isSelected: answer == pickSelf,
             isEnabled: !isBusy,
-            onTap: isBusy
-                ? null
-                : () async {
-                    await choose(pickSelf);
-                  },
+            onTap: isBusy ? null : () => cubit.choose(pickSelf),
           ),
           const SizedBox(height: AppSpace.s10),
           BaseOptionTile(
             title: name,
+            isSelected: answer == pickPartner,
             isEnabled: !isBusy,
-            onTap: isBusy
-                ? null
-                : () async {
-                    await choose(pickPartner);
-                  },
+            onTap: isBusy ? null : () => cubit.choose(pickPartner),
           ),
         ],
       ),
@@ -109,7 +175,8 @@ class const _PickPlayView({required final GamePlay play}) extends StatelessWidge
   }
 }
 
-class const _GuessPlayView({required final GamePlay play}) extends StatelessWidget {
+class const _GuessPlayView({required final GamePlay play, required final int step})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.games.playing;
@@ -117,8 +184,8 @@ class const _GuessPlayView({required final GamePlay play}) extends StatelessWidg
     final draft = context.select((GameCubit cubit) => cubit.state.draft);
     final isBusy = context.select((GameCubit cubit) => cubit.state.isBusy);
     final name = gamePartnerName(play.partnerName, '');
-    final isGuess = play.stepPhase == GamePhase.guess;
-    final item = play.stepItem!;
+    final isGuess = play.phaseAt(step) == GamePhase.guess;
+    final item = play.itemAt(step)!;
     final label = isGuess
         ? name.isEmpty
               ? l10n.guessAboutPartnerFallback
@@ -134,6 +201,7 @@ class const _GuessPlayView({required final GamePlay play}) extends StatelessWidg
 
     return _PlayScaffold(
       play: play,
+      step: step,
       label: label,
       title: item.title,
       subtitle: prompt,
@@ -161,6 +229,7 @@ class const _GuessPlayView({required final GamePlay play}) extends StatelessWidg
       footer: _AnswerFooter(
         canSubmit: draft.trim().isNotEmpty && !isBusy,
         isBusy: isBusy,
+        actionText: _stepAction(context, play, step),
         onSubmit: cubit.submit,
         onSkip: cubit.skip,
       ),
@@ -168,17 +237,19 @@ class const _GuessPlayView({required final GamePlay play}) extends StatelessWidg
   }
 }
 
-class const _TalkPlayView({required final GamePlay play}) extends StatelessWidget {
+class const _TalkPlayView({required final GamePlay play, required final int step})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.games.playing;
     final cubit = context.read<GameCubit>();
     final draft = context.select((GameCubit cubit) => cubit.state.draft);
     final isBusy = context.select((GameCubit cubit) => cubit.state.isBusy);
-    final item = play.stepItem!;
+    final item = play.itemAt(step)!;
 
     return _PlayScaffold(
       play: play,
+      step: step,
       title: item.title,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -196,6 +267,7 @@ class const _TalkPlayView({required final GamePlay play}) extends StatelessWidge
       footer: _AnswerFooter(
         canSubmit: draft.trim().isNotEmpty && !isBusy,
         isBusy: isBusy,
+        actionText: _stepAction(context, play, step),
         onSubmit: cubit.submit,
         onSkip: cubit.skip,
       ),
@@ -203,7 +275,8 @@ class const _TalkPlayView({required final GamePlay play}) extends StatelessWidge
   }
 }
 
-class const _DatePlayView({required final GamePlay play}) extends StatefulWidget {
+class const _DatePlayView({required final GamePlay play, required final int step})
+    extends StatefulWidget {
   @override
   State<_DatePlayView> createState() => _DatePlayViewState();
 }
@@ -217,11 +290,13 @@ class _DatePlayViewState() extends State<_DatePlayView> {
     final cubit = context.read<GameCubit>();
     final draft = context.select((GameCubit cubit) => cubit.state.draft);
     final isBusy = context.select((GameCubit cubit) => cubit.state.isBusy);
-    final item = widget.play.stepItem!;
+    final answers = context.select((GameCubit cubit) => cubit.state.answers);
+    final item = widget.play.itemAt(widget.step)!;
 
-    if (!_started) {
+    if (!_started && !answers.containsKey(widget.step)) {
       return _PlayScaffold(
         play: widget.play,
+        step: widget.step,
         title: item.title,
         subtitle: item.body,
         content: BaseNote(text: l10n.date.startNote, icon: AppIcons.heart),
@@ -236,6 +311,7 @@ class _DatePlayViewState() extends State<_DatePlayView> {
 
     return _PlayScaffold(
       play: widget.play,
+      step: widget.step,
       title: item.title,
       subtitle: l10n.date.reflectionTitle,
       content: Column(
@@ -254,7 +330,7 @@ class _DatePlayViewState() extends State<_DatePlayView> {
         ],
       ),
       footer: BaseButton.primary(
-        text: l10n.playing.submit,
+        text: _stepAction(context, widget.play, widget.step),
         isEnabled: canSubmit,
         isLoading: isBusy,
         onPressed: canSubmit ? cubit.submit : null,
@@ -266,6 +342,7 @@ class _DatePlayViewState() extends State<_DatePlayView> {
 class const _AnswerFooter({
   required final bool canSubmit,
   required final bool isBusy,
+  required final String actionText,
   required final VoidCallback onSubmit,
   required final VoidCallback onSkip,
 }) extends StatelessWidget {
@@ -278,7 +355,7 @@ class const _AnswerFooter({
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         BaseButton.primary(
-          text: l10n.submit,
+          text: actionText,
           isEnabled: canSubmit,
           isLoading: isBusy,
           onPressed: canSubmit ? onSubmit : null,
@@ -293,4 +370,15 @@ class const _AnswerFooter({
       ],
     );
   }
+}
+
+/// The primary action of a question: keep going or open the review at the end.
+String _stepAction(BuildContext context, GamePlay play, int step) {
+  final answers = context.select((GameCubit cubit) => cubit.state.answers);
+  final l10n = context.l10n.games.playing;
+  final isLast =
+      answers.length >= play.totalSteps ||
+      (answers.length == play.totalSteps - 1 && !answers.containsKey(step));
+
+  return isLast ? l10n.reviewAction : l10n.next;
 }
