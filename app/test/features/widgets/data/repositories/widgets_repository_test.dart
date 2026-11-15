@@ -247,12 +247,12 @@ void main() {
         discreet: any(named: 'discreet'),
         hasPlus: any(named: 'hasPlus'),
       ),
-    ).thenAnswer((_) async => '/tmp/repara_widget_photo.png');
+    ).thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
 
     final overview = await repository.loadAndSync(now: now);
 
     expect(overview.hasPhoto, isTrue);
-    expect(overview.payload.cachedPhotoPath, '/tmp/repara_widget_photo.png');
+    expect(overview.payload.cachedPhotoPath, '/tmp/mingo_widget_photo.png');
     verify(() => couplePhotoRepository.syncWidgetCache(cacheAllowed: true)).called(1);
   });
 

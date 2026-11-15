@@ -1,42 +1,36 @@
-# Flutter Bloc Starter
+# Mingo
 
-[![Code Check](https://github.com/ricardodalarme/quickstart-flutter-bloc/actions/workflows/code-check.yml/badge.svg)](https://github.com/ricardodalarme/quickstart-flutter-bloc/actions/workflows/code-check.yml)
+A small app for couples. Each person quietly saves good things the partner did ("slips"); Mingo turns them into a weekly
+Sunday card, helps repair after a fight, and keeps dates and memories. Portuguese (pt-BR) first, English second.
 
-Base repository for application using Flutter + Bloc
+The repo is a Flutter monorepo (Melos + pub workspaces): the app in `app/`, shared packages in `packages/`, the backend in
+`supabase/` (Postgres, GraphQL through `pg_graphql`, Edge Functions).
 
-## Table of Contents
+## Identifiers
 
-- [Table of Contents](#table-of-contents)
-- [Motivation](#motivation)
-- [Setup](#setup)
-  - [Pre-requirements](#pre-requirements)
-  - [Install Melos](#install-melos)
-  - [Bootstrap](#bootstrap)
-- [Running it](#running-it)
-  - [Mobile App](#mobile-app)
-    - [VSCode (Recommended)](#vscode-recommended)
-    - [Android Studio](#android-studio)
-- [Documentation](#documentation)
-
-## Motivation
-
-A template to build multiplatform mobile projects in Flutter. The Cubit class from [flutter_bloc](https://pub.dev/packages/flutter_bloc) is used to manage the application state.
+| Thing | Value |
+| --- | --- |
+| Dart package | `mingo` |
+| Android application id | `dev.dalarme.mingo` (development: `dev.dalarme.mingo.dev`) |
+| iOS bundle ids | `dev.dalarme.mingo`, `.dev`, `.widgets`, `.dev.widgets` |
+| App group | `group.dev.dalarme.mingo` |
+| Deep-link scheme | `mingo` |
+| Firebase projects | `mingo-app-dev`, `mingo-app-prod` |
+| Supabase project | `Mingo` (ref `esbhdlbhbeoiwaonsgdg`, `sa-east-1`) |
 
 ## Setup
 
 ### Pre-requirements
 
-Download the following installation bundle to get the latest stable release of the [Flutter SDK](https://docs.flutter.dev/get-started/install/linux).
-
-From a console window that has the Flutter directory in the path, run the following command to see if there are any platform dependencies you need to complete the setup:
+Install the latest stable [Flutter SDK](https://docs.flutter.dev/get-started/install), then check the platform toolchain:
 
 ```bash
 flutter doctor
 ```
 
-### Install Melos
+### Melos
 
-[Melos](https://github.com/invertase/melos) is a tool for managing Dart and Flutter projects featuring multiple packages. The quickstart uses it to manage the packages in the project in a easy way. To install Melos, execute the following command:
+[Melos](https://github.com/invertase/melos) manages the packages in this workspace.
 
 ```bash
 dart pub global activate melos
@@ -44,44 +38,38 @@ dart pub global activate melos
 
 ### Bootstrap
 
-To get started, you will need to install the dependencies and the Git Hooks.
-
-Git Hooks are shell scripts that run automatically before or after Git executes an important command, such as _Commit_ or _Push_.
-
-Fortunately, Melos has a command that does this for us. To install the dependencies and Git Hooks, run the following command:
+Installs dependencies and the Git hooks.
 
 ```bash
 melos bootstrap
 ```
 
-## Running it
+## Running
 
-Now everything is set. Let's run it!
+```bash
+cd app && flutter run --dart-define-from-file ../.env.development --flavor development
+```
 
-### Mobile App
+Or pick a device and press F5 in VS Code / the run button in Android Studio.
 
-#### VSCode (Recommended)
+## Commands
 
-- In the target selector, select a device for running the app.
-- Invoke Run > Start Debugging or press F5.
-- Wait for the app to launch — progress is printed in the Debug Console view.
-
-#### Android Studio
-
-- In the target selector, select a device for running the app.
-- Click the run icon in the toolbar, or invoke the menu item Run > Run.
+| Command | What it does |
+| --- | --- |
+| `melos get` | `flutter pub get` in every package |
+| `melos gen` | Codegen for routes, GraphQL and assets |
+| `melos l10n` | Generate the app and design-system translations |
+| `melos lint` | `flutter analyze` plus the format check |
+| `melos test` | Tests for every package |
+| `cd app && flutter test test/path_test.dart` | One test file |
 
 ## Backend
 
-- **Supabase** — schema-first database, migrations, seed, and pgTAP tests live in
-  [`supabase/`](supabase/README.md). The app reads `posts` through `pg_graphql`.
-- **Firebase** — dev and production client configs are committed per flavor under
-  `app/android/app/src/{development,production}` and
-  `app/ios/config/{development,production}`.
+- **Supabase** — schema-first database, migrations, seed and pgTAP tests live in [`supabase/`](supabase/README.md).
+  The app reads through `pg_graphql`.
+- **Firebase** — analytics, crash reporting, performance, remote config and messaging. Client configs are committed per
+  flavor under `app/android/app/src/{development,production}` and `app/ios/config/{development,production}`.
 
-## Documentation
+## Conventions
 
-- [Contributing](https://github.com/ricardodalarme/quickstart-flutter-bloc/wiki/Contributing)
-- [Code Guidelines](https://github.com/ricardodalarme/quickstart-flutter-bloc/wiki/Code-Guidelines)
-- [Environment Variables](https://github.com/ricardodalarme/quickstart-flutter-bloc/wiki/Environment-Variables)
-- [Troubleshooting](https://github.com/ricardodalarme/quickstart-flutter-bloc/wiki/Troubleshooting)
+Architecture, product rules and working agreements are in [`AGENTS.md`](AGENTS.md).

@@ -3,10 +3,10 @@ import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 
-/// Intercepts `repara://<host>/<path>` deep links before AutoRoute matches them and
+/// Intercepts `mingo://<host>/<path>` deep links before AutoRoute matches them and
 /// normalizes the custom-scheme host + path into a canonical `/target` path.
 Future<Uri> transformWidgetDeepLinkUri(Uri uri) {
-  if (uri.scheme != 'repara') return SynchronousFuture(uri);
+  if (uri.scheme != 'mingo') return SynchronousFuture(uri);
   final target = _extractNormalizedTarget(uri);
   final normalizedPath = target.isEmpty ? '/today' : '/$target';
   final updatedQuery = <String, String>{
@@ -18,12 +18,12 @@ Future<Uri> transformWidgetDeepLinkUri(Uri uri) {
   );
 }
 
-/// Resolves `repara://` or normalized `?homeWidget=` deep-link URIs to auto_route page stacks.
+/// Resolves `mingo://` or normalized `?homeWidget=` deep-link URIs to auto_route page stacks.
 ///
 /// When the user is signed out, every widget tap opens the sign-in flow.
 List<PageRouteInfo<void>>? resolveWidgetDeepLinkUri(Uri? uri, {required AppState appState}) {
   if (uri == null) return null;
-  final isWidgetUri = uri.scheme == 'repara' || uri.queryParameters.containsKey('homeWidget');
+  final isWidgetUri = uri.scheme == 'mingo' || uri.queryParameters.containsKey('homeWidget');
   if (!isWidgetUri) return null;
 
   if (appState != AppState.authenticated) {

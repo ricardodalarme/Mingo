@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('signed-out widget tap always resolves to WelcomeRoute + SignInRoute', () {
     final routes = resolveWidgetDeepLinkUri(
-      Uri.parse('repara://today?homeWidget=1'),
+      Uri.parse('mingo://today?homeWidget=1'),
       appState: AppState.unauthenticated,
     );
 
@@ -16,44 +16,44 @@ void main() {
 
   test('authenticated deep links resolve to today, card, dates, and discreet settings', () {
     final todayRoutes = resolveWidgetDeepLinkUri(
-      Uri.parse('repara://today'),
+      Uri.parse('mingo://today'),
       appState: AppState.authenticated,
     );
     expect(todayRoutes, isNotNull);
     expect(todayRoutes!.first.routeName, HomeRoute.name);
 
     final cardRoutes = resolveWidgetDeepLinkUri(
-      Uri.parse('repara://card'),
+      Uri.parse('mingo://card'),
       appState: AppState.authenticated,
     );
     expect(cardRoutes!.last.routeName, SundayCardRoute.name);
 
     final datesRoutes = resolveWidgetDeepLinkUri(
-      Uri.parse('repara://dates'),
+      Uri.parse('mingo://dates'),
       appState: AppState.authenticated,
     );
     expect(datesRoutes!.last.routeName, DatesRoute.name);
 
     final discreetRoutes = resolveWidgetDeepLinkUri(
-      Uri.parse('repara://settings/discreet'),
+      Uri.parse('mingo://settings/discreet'),
       appState: AppState.authenticated,
     );
     expect(discreetRoutes!.last.routeName, DiscreetModeRoute.name);
 
     final togetherRoutes = resolveWidgetDeepLinkUri(
-      Uri.parse('repara://together?homeWidget=1'),
+      Uri.parse('mingo://together?homeWidget=1'),
       appState: AppState.authenticated,
     );
     expect(togetherRoutes!.first.initialChildren?.first.routeName, TogetherRoute.name);
 
     final memoriesRoutes = resolveWidgetDeepLinkUri(
-      Uri.parse('repara://memories?homeWidget=1'),
+      Uri.parse('mingo://memories?homeWidget=1'),
       appState: AppState.authenticated,
     );
     expect(memoriesRoutes!.first.initialChildren?.first.routeName, MemoriesRoute.name);
 
     final inviteRoutes = resolveWidgetDeepLinkUri(
-      Uri.parse('repara://invite?homeWidget=1'),
+      Uri.parse('mingo://invite?homeWidget=1'),
       appState: AppState.authenticated,
     );
     expect(inviteRoutes!.last.routeName, InviteRoute.name);

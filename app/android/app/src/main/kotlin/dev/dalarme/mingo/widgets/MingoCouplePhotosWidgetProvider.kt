@@ -1,55 +1,55 @@
-package com.ricardodalarme.flutter_bloc_starter.widgets
+package dev.dalarme.mingo.widgets
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
-import com.ricardodalarme.flutter_bloc_starter.R
+import dev.dalarme.mingo.R
 
-class ReparaCouplePhotosWidgetProvider : AppWidgetProvider() {
+class MingoCouplePhotosWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray,
     ) {
-        val payload = ReparaWidgetPayload.load(context)
+        val payload = MingoWidgetPayload.load(context)
         for (appWidgetId in appWidgetIds) {
             if (payload.renderGuardState(context, appWidgetManager, appWidgetId, requirePaired = true)) {
                 continue
             }
             if (!payload.hasPlus) {
-                ReparaWidgetPayload.renderCard(
+                MingoWidgetPayload.renderCard(
                     context = context,
                     appWidgetManager = appWidgetManager,
                     appWidgetId = appWidgetId,
-                    label = context.getString(R.string.repara_widget_photo_label),
-                    title = context.getString(R.string.repara_widget_photo_plus_only),
+                    label = context.getString(R.string.mingo_widget_photo_label),
+                    title = context.getString(R.string.mingo_widget_photo_plus_only),
                     subtitle = "",
-                    deepLink = "repara://memories?homeWidget=1",
+                    deepLink = "mingo://memories?homeWidget=1",
                 )
             } else {
                 val days = payload.daysTogether()
                 val fallbackTitle = if (days != null) {
-                    context.getString(R.string.repara_widget_photo_days_together, days.toInt())
+                    context.getString(R.string.mingo_widget_photo_days_together, days.toInt())
                 } else {
-                    context.getString(R.string.repara_widget_photo_fallback_title)
+                    context.getString(R.string.mingo_widget_photo_fallback_title)
                 }
                 val hasCachedPhoto = !payload.cachedPhotoPath.isNullOrBlank()
-                ReparaWidgetPayload.renderCard(
+                MingoWidgetPayload.renderCard(
                     context = context,
                     appWidgetManager = appWidgetManager,
                     appWidgetId = appWidgetId,
-                    label = context.getString(R.string.repara_widget_photo_label),
+                    label = context.getString(R.string.mingo_widget_photo_label),
                     title = if (hasCachedPhoto) {
-                        context.getString(R.string.repara_widget_photo_cached_title)
+                        context.getString(R.string.mingo_widget_photo_cached_title)
                     } else {
                         fallbackTitle
                     },
                     subtitle = if (hasCachedPhoto) {
                         ""
                     } else {
-                        context.getString(R.string.repara_widget_photo_no_photo)
+                        context.getString(R.string.mingo_widget_photo_no_photo)
                     },
-                    deepLink = "repara://memories?homeWidget=1",
+                    deepLink = "mingo://memories?homeWidget=1",
                     imagePath = payload.cachedPhotoPath,
                 )
             }

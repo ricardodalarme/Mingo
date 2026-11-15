@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-	<dict>
-		<key>API_KEY</key>
-		<string>AIzaSyDmhhf2YsTymwlR5RtY4CfM576Qa4MQZtY</string>
-		<key>GCM_SENDER_ID</key>
-		<string>981634080311</string>
-		<key>PLIST_VERSION</key>
-		<string>1</string>
-		<key>BUNDLE_ID</key>
-		<string>com.ricardodalarme.flutterBlocStarter</string>
-		<key>PROJECT_ID</key>
-		<string>flutter-bloc-starter---prd</string>
-		<key>STORAGE_BUCKET</key>
-		<string>flutter-bloc-starter---prd.firebasestorage.app</string>
-		<key>IS_ADS_ENABLED</key>
-		<false></false>
-		<key>IS_ANALYTICS_ENABLED</key>
-		<false></false>
-		<key>IS_APPINVITE_ENABLED</key>
-		<true></true>
-		<key>IS_GCM_ENABLED</key>
-		<true></true>
-		<key>IS_SIGNIN_ENABLED</key>
-		<true></true>
-		<key>GOOGLE_APP_ID</key>
-		<string>1:981634080311:ios:4d76a8868a6061610829b2</string>
-	</dict>
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAbrEhnsvKlv-AT5EVYqR6j71rjsCB5tbg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>176842548644</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>dev.dalarme.mingo</string>
+	<key>PROJECT_ID</key>
+	<string>mingo-app-prod</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mingo-app-prod.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:176842548644:ios:e85a4c9097fa163fd64d31</string>
+</dict>
 </plist>

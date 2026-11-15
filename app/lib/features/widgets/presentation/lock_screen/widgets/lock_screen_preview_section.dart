@@ -17,10 +17,10 @@ class const LockScreenPreviewSection({required final WidgetPayload payload, supe
     final title = payload.discreet ? l10n.lockScreenDiscreetPhrase : l10n.lockScreenGenericPhrase;
     final subtitle = payload.discreet ? l10n.discreetNeutralBody : l10n.lockScreenDefault;
     final deepLink = !payload.isSignedIn
-        ? 'repara://sign-in'
+        ? 'mingo://sign-in'
         : (payload.discreet
-              ? 'repara://settings/discreet'
-              : (!payload.onLockScreen ? 'repara://settings/widgets' : 'repara://today'));
+              ? 'mingo://settings/discreet'
+              : (!payload.onLockScreen ? 'mingo://settings/widgets' : 'mingo://today'));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

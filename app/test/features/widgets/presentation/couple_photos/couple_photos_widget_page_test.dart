@@ -122,7 +122,7 @@ void main() {
 
   testWidgets('a cached photo offers both choose and remove actions', (tester) async {
     when(() => widgetsRepository.loadAndSync())
-        .thenAnswer((_) async => buildOverview(photoPath: '/tmp/repara_widget_photo.jpg'));
+        .thenAnswer((_) async => buildOverview(photoPath: '/tmp/mingo_widget_photo.jpg'));
 
     await pumpPage(tester);
 
@@ -184,7 +184,7 @@ void main() {
 
   testWidgets('removing a photo deletes it and clears the preview', (tester) async {
     when(() => widgetsRepository.loadAndSync())
-        .thenAnswer((_) async => buildOverview(photoPath: '/tmp/repara_widget_photo.jpg'));
+        .thenAnswer((_) async => buildOverview(photoPath: '/tmp/mingo_widget_photo.jpg'));
     await pumpPage(tester);
 
     await tester.tap(find.text('Remover foto'));

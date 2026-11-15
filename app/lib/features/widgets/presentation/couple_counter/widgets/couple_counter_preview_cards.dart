@@ -23,7 +23,7 @@ class const CoupleCounterPreviewCards({
         title: l10n.signedOutBody,
         subtitle: l10n.ownIdeaHint,
         isDark: isDarkPreview,
-        deepLinkUri: Uri.parse('repara://sign-in'),
+        deepLinkUri: Uri.parse('mingo://sign-in'),
       );
     }
 
@@ -33,7 +33,7 @@ class const CoupleCounterPreviewCards({
         title: l10n.discreetReminderLabel,
         subtitle: l10n.discreetNeutralBody,
         isDark: isDarkPreview,
-        deepLinkUri: Uri.parse('repara://settings/discreet'),
+        deepLinkUri: Uri.parse('mingo://settings/discreet'),
       );
     }
 
@@ -95,7 +95,7 @@ class const CoupleCounterPreviewCards({
           title: mediumTitle,
           subtitle: mediumSubtitle,
           isDark: isDarkPreview,
-          deepLinkUri: Uri.parse('repara://today'),
+          deepLinkUri: Uri.parse('mingo://today'),
         ),
         const SizedBox(height: AppSpace.s12),
         WidgetSurfacePreview(
@@ -103,7 +103,7 @@ class const CoupleCounterPreviewCards({
           title: l10n.coupleCounterDays(count: breakdown.totalDays),
           subtitle: l10n.ownIdeaHint,
           isDark: isDarkPreview,
-          deepLinkUri: Uri.parse('repara://today'),
+          deepLinkUri: Uri.parse('mingo://today'),
         ),
         const SizedBox(height: AppSpace.s12),
         BaseNote(text: l10n.counterMidnightNote, icon: AppIcons.clock),

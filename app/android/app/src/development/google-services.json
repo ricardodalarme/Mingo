@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "433662519089",
-    "project_id": "flutter-bloc-starter-1b471",
-    "storage_bucket": "flutter-bloc-starter-1b471.firebasestorage.app"
+    "project_number": "882913851188",
+    "project_id": "mingo-app-dev",
+    "storage_bucket": "mingo-app-dev.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:433662519089:android:7bc9f91729da271d2cb210",
+        "mobilesdk_app_id": "1:882913851188:android:f039f17a1980b0fd881761",
         "android_client_info": {
-          "package_name": "com.ricardodalarme.flutter_bloc_starter.dev"
+          "package_name": "dev.dalarme.mingo.dev"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyADDnEyI1EdKWtgFBGwpFRKTHBo2AhUAME"
+          "current_key": "AIzaSyAHjxv6XVFaqyOa4RGs3s3lmrlagD9Xgm4"
         }
       ],
       "services": {

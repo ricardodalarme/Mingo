@@ -19,7 +19,7 @@ class const OwnMediumWidgetsCards({
         title: l10n.signedOutBody,
         subtitle: l10n.ownIdeaHint,
         isDark: isDarkPreview,
-        deepLinkUri: Uri.parse('repara://sign-in'),
+        deepLinkUri: Uri.parse('mingo://sign-in'),
       );
     }
 
@@ -39,7 +39,7 @@ class const OwnMediumWidgetsCards({
           title: ideaTitle,
           subtitle: ideaSubtitle,
           isDark: isDarkPreview,
-          deepLinkUri: Uri.parse('repara://today'),
+          deepLinkUri: Uri.parse('mingo://today'),
         ),
         const SizedBox(height: AppSpace.s16),
         WidgetSurfacePreview(
@@ -47,7 +47,7 @@ class const OwnMediumWidgetsCards({
           title: jarTitle,
           subtitle: jarSubtitle,
           isDark: isDarkPreview,
-          deepLinkUri: Uri.parse('repara://jar'),
+          deepLinkUri: Uri.parse('mingo://jar'),
         ),
       ],
     );

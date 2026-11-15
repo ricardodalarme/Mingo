@@ -37,7 +37,7 @@
                 <action android:name="es.antonborri.home_widget.action.LAUNCH" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="repara" />
+                <data android:scheme="mingo" />
             </intent-filter>
         </activity>
         <receiver
@@ -54,70 +54,70 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".widgets.ReparaOwnSmallWidgetProvider"
-            android:label="@string/repara_widget_own_small_label"
+            android:name=".widgets.MingoOwnSmallWidgetProvider"
+            android:label="@string/mingo_widget_own_small_label"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/repara_own_small_widget_info" />
+                android:resource="@xml/mingo_own_small_widget_info" />
         </receiver>
         <receiver
-            android:name=".widgets.ReparaOwnMediumWidgetProvider"
-            android:label="@string/repara_widget_own_medium_label"
+            android:name=".widgets.MingoOwnMediumWidgetProvider"
+            android:label="@string/mingo_widget_own_medium_label"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/repara_own_medium_widget_info" />
+                android:resource="@xml/mingo_own_medium_widget_info" />
         </receiver>
         <receiver
-            android:name=".widgets.ReparaCoupleCounterWidgetProvider"
-            android:label="@string/repara_widget_couple_counter_label"
+            android:name=".widgets.MingoCoupleCounterWidgetProvider"
+            android:label="@string/mingo_widget_couple_counter_label"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/repara_couple_counter_widget_info" />
+                android:resource="@xml/mingo_couple_counter_widget_info" />
         </receiver>
         <receiver
-            android:name=".widgets.ReparaCouplePhotosWidgetProvider"
-            android:label="@string/repara_widget_couple_photos_label"
+            android:name=".widgets.MingoCouplePhotosWidgetProvider"
+            android:label="@string/mingo_widget_couple_photos_label"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/repara_couple_photos_widget_info" />
+                android:resource="@xml/mingo_couple_photos_widget_info" />
         </receiver>
         <receiver
-            android:name=".widgets.ReparaPartnerNoteWidgetProvider"
-            android:label="@string/repara_widget_partner_note_label"
+            android:name=".widgets.MingoPartnerNoteWidgetProvider"
+            android:label="@string/mingo_widget_partner_note_label"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/repara_partner_note_widget_info" />
+                android:resource="@xml/mingo_partner_note_widget_info" />
         </receiver>
         <receiver
-            android:name=".widgets.ReparaCardEncounterWidgetProvider"
-            android:label="@string/repara_widget_card_encounter_label"
+            android:name=".widgets.MingoCardEncounterWidgetProvider"
+            android:label="@string/mingo_widget_card_encounter_label"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/repara_card_encounter_widget_info" />
+                android:resource="@xml/mingo_card_encounter_widget_info" />
         </receiver>
         <receiver
             android:name="es.antonborri.home_widget.HomeWidgetScheduledUpdateReceiver"

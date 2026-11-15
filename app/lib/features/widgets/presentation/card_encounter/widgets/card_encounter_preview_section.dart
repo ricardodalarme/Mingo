@@ -21,7 +21,7 @@ class const CardEncounterPreviewSection({
         categoryLabel: l10n.signedOutLabel,
         title: l10n.signedOutBody,
         subtitle: l10n.ownIdeaHint,
-        deepLinkUri: Uri.parse('repara://sign-in'),
+        deepLinkUri: Uri.parse('mingo://sign-in'),
       );
     }
 

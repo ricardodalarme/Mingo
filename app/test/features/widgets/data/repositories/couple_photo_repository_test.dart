@@ -80,7 +80,7 @@ void main() {
       ),
     ).thenAnswer((_) async {});
     when(() => widgetDataService.cacheCouplePhoto(any(), any(), updatedAt: any(named: 'updatedAt')))
-        .thenAnswer((_) async => '/tmp/repara_widget_photo.png');
+        .thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
     when(
       () => widgetDataService.readCachedPhotoPath(
         discreet: any(named: 'discreet'),
@@ -310,7 +310,7 @@ void main() {
           discreet: any(named: 'discreet'),
           hasPlus: any(named: 'hasPlus'),
         ),
-      ).thenAnswer((_) async => '/tmp/repara_widget_photo.png');
+      ).thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
       when(() => widgetDataService.readCachedPhotoUpdatedAt())
           .thenAnswer((_) async => existing.updatedAt.toIso8601String());
 
@@ -335,7 +335,7 @@ void main() {
           discreet: any(named: 'discreet'),
           hasPlus: any(named: 'hasPlus'),
         ),
-      ).thenAnswer((_) async => '/tmp/repara_widget_photo.png');
+      ).thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
       when(() => widgetDataService.readCachedPhotoUpdatedAt())
           .thenAnswer((_) async => DateTime.utc(2026, 11, 10).toIso8601String());
 
@@ -354,7 +354,7 @@ void main() {
           discreet: any(named: 'discreet'),
           hasPlus: any(named: 'hasPlus'),
         ),
-      ).thenAnswer((_) async => '/tmp/repara_widget_photo.png');
+      ).thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
       when(() => widgetDataService.readCachedPhotoUpdatedAt())
           .thenAnswer((_) async => DateTime.utc(2026, 11, 10).toIso8601String());
       when(

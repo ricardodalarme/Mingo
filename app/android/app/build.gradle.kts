@@ -16,7 +16,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.ricardodalarme.flutter_bloc_starter"
+    namespace = "dev.dalarme.mingo"
     compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
@@ -28,7 +28,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.ricardodalarme.flutter_bloc_starter"
+        applicationId = "dev.dalarme.mingo"
         minSdk = 29
         targetSdk = 37
         versionCode = flutter.versionCode
@@ -39,11 +39,11 @@ android {
     productFlavors {
         create("development") {
             applicationIdSuffix = "dev"
-            manifestPlaceholders["appName"] = "QS-Flutter [DEV]"
+            manifestPlaceholders["appName"] = "Mingo [DEV]"
         }
         create("production") {
             applicationIdSuffix = ""
-            manifestPlaceholders["appName"] = "QS-Flutter"
+            manifestPlaceholders["appName"] = "Mingo"
         }
     }
 

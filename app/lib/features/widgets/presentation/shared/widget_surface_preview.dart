@@ -7,7 +7,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 
 /// Simulated home-screen widget card surface supporting light and dark system appearances,
-/// ellipsis overflow truncation, and `repara://` deep-link tap navigation.
+/// ellipsis overflow truncation, and `mingo://` deep-link tap navigation.
 class const WidgetSurfacePreview({
   required final String categoryLabel,
   required final String title,

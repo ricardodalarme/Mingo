@@ -1,13 +1,15 @@
 # AGENTS.md
 
-**Repara** is a mobile app for couples, in Brazilian Portuguese first and English second. Each person quietly saves
+**Mingo** is a mobile app for couples, in Brazilian Portuguese first and English second. Each person quietly saves
 small good things the partner did ("slips"); the app turns them into a weekly Sunday card, helps repair after a fight and keeps
 dates and memories. It is a Flutter monorepo (Melos, pub workspaces): the app is in `app/`, shared code in `packages/`, the
 backend in `supabase/` (Postgres, GraphQL through `pg_graphql`, Edge Functions).
 
-"Repara" is a working name. The Dart package (`flutter_bloc_starter`), the bundle IDs and the Firebase configs keep the
-template's names on purpose until the owner picks the final name. Do not rename them, and do not create Firebase, RevenueCat or
-store projects named after the product before that.
+The product is **Mingo** and the app identifier is `dev.dalarme.mingo` (company `dalarme.dev`). The Dart package is
+`app`, the Android application id and iOS bundle ids derive from it (`dev.dalarme.mingo`, `.dev`, `.widgets`), the app
+group is `group.dev.dalarme.mingo` and the deep-link scheme is `mingo`. Firebase uses the projects `mingo-app-dev` and
+`mingo-app-prod`, with their client configs committed per flavor. Keep these values consistent across Dart, Android, iOS,
+the backend and the docs; changing an identifier is a deliberate, coordinated change.
 
 Before working in an area, load the matching skill from `.agents/skills/` (table at the end). Skills hold the templates and
 gotchas; this file holds the rules that always apply. When a requirement is unclear, ask instead of inventing product
@@ -49,11 +51,12 @@ Supabase commands, the schema layout and the migration workflow are in `supabase
 
 ## Repository layout
 
-`app/` (package `flutter_bloc_starter`, flavors `development` and `production`), `packages/` (`core`, `network`, `design_system`,
+`app/` (package `mingo`, flavors `development` and `production`), `packages/` (`core`, `network`, `design_system`,
 `common_ui`, `form_inputs`, `formatters`, `logger`, `services/*`), `supabase/`, `.agents/skills/`.
 
 Firebase client configuration is committed per flavor: `app/android/app/src/{development,production}/google-services.json` and
-`app/ios/config/{development,production}/GoogleService-Info.plist`. Firebase is initialized from the native flavor config.
+`app/ios/config/{development,production}/GoogleService-Info.plist` (`mingo-app-dev` and `mingo-app-prod`). Firebase is
+initialized from the native flavor config. The Supabase project is `Mingo` (ref `esbhdlbhbeoiwaonsgdg`, `sa-east-1`).
 
 ## App architecture
 

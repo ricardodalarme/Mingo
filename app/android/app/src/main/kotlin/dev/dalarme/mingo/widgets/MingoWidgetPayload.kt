@@ -1,4 +1,4 @@
-package com.ricardodalarme.flutter_bloc_starter.widgets
+package dev.dalarme.mingo.widgets
 
 import android.appwidget.AppWidgetManager
 import android.content.Context
@@ -6,8 +6,8 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.view.View
 import android.widget.RemoteViews
-import com.ricardodalarme.flutter_bloc_starter.MainActivity
-import com.ricardodalarme.flutter_bloc_starter.R
+import dev.dalarme.mingo.MainActivity
+import dev.dalarme.mingo.R
 import es.antonborri.home_widget.HomeWidgetLaunchIntent
 import org.json.JSONObject
 import java.io.File
@@ -15,7 +15,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
-data class ReparaWidgetPayload(
+data class MingoWidgetPayload(
     val isSignedIn: Boolean,
     val discreet: Boolean,
     val isPaired: Boolean,
@@ -79,10 +79,10 @@ data class ReparaWidgetPayload(
                 context = context,
                 appWidgetManager = appWidgetManager,
                 appWidgetId = appWidgetId,
-                label = context.getString(R.string.repara_widget_signed_out_label),
-                title = context.getString(R.string.repara_widget_signed_out_title),
+                label = context.getString(R.string.mingo_widget_signed_out_label),
+                title = context.getString(R.string.mingo_widget_signed_out_title),
                 subtitle = "",
-                deepLink = "repara://sign-in?homeWidget=1",
+                deepLink = "mingo://sign-in?homeWidget=1",
             )
             return true
         }
@@ -91,10 +91,10 @@ data class ReparaWidgetPayload(
                 context = context,
                 appWidgetManager = appWidgetManager,
                 appWidgetId = appWidgetId,
-                label = context.getString(R.string.repara_widget_discreet_label),
-                title = context.getString(R.string.repara_widget_discreet_title),
+                label = context.getString(R.string.mingo_widget_discreet_label),
+                title = context.getString(R.string.mingo_widget_discreet_title),
                 subtitle = "",
-                deepLink = "repara://settings/discreet?homeWidget=1",
+                deepLink = "mingo://settings/discreet?homeWidget=1",
                 imagePath = null,
             )
             return true
@@ -104,10 +104,10 @@ data class ReparaWidgetPayload(
                 context = context,
                 appWidgetManager = appWidgetManager,
                 appWidgetId = appWidgetId,
-                label = context.getString(R.string.repara_widget_unpaired_label),
-                title = context.getString(R.string.repara_widget_unpaired_title),
-                subtitle = context.getString(R.string.repara_widget_unpaired_action),
-                deepLink = "repara://invite?homeWidget=1",
+                label = context.getString(R.string.mingo_widget_unpaired_label),
+                title = context.getString(R.string.mingo_widget_unpaired_title),
+                subtitle = context.getString(R.string.mingo_widget_unpaired_action),
+                deepLink = "mingo://invite?homeWidget=1",
             )
             return true
         }
@@ -116,10 +116,10 @@ data class ReparaWidgetPayload(
 
     companion object {
         private const val PREFS_NAME = "HomeWidgetPreferences"
-        private const val PAYLOAD_KEY = "repara_widget_payload"
-        private const val CACHED_PHOTO_KEY = "repara_widget_photo_path"
+        private const val PAYLOAD_KEY = "mingo_widget_payload"
+        private const val CACHED_PHOTO_KEY = "mingo_widget_photo_path"
 
-        fun load(context: Context): ReparaWidgetPayload {
+        fun load(context: Context): MingoWidgetPayload {
             val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
             val raw = prefs.getString(PAYLOAD_KEY, null) ?: return signedOut()
             return try {
@@ -134,7 +134,7 @@ data class ReparaWidgetPayload(
                 } else {
                     null
                 }
-                ReparaWidgetPayload(
+                MingoWidgetPayload(
                     isSignedIn = isSignedIn,
                     discreet = discreet,
                     isPaired = isPaired,
@@ -161,7 +161,7 @@ data class ReparaWidgetPayload(
             }
         }
 
-        fun signedOut() = ReparaWidgetPayload(
+        fun signedOut() = MingoWidgetPayload(
             isSignedIn = false,
             discreet = false,
             isPaired = false,
@@ -194,12 +194,12 @@ data class ReparaWidgetPayload(
             deepLink: String,
             imagePath: String? = null,
         ) {
-            val views = RemoteViews(context.packageName, R.layout.repara_widget_card)
-            views.setTextViewText(R.id.repara_widget_label, label)
-            views.setTextViewText(R.id.repara_widget_title, title)
-            views.setTextViewText(R.id.repara_widget_subtitle, subtitle)
+            val views = RemoteViews(context.packageName, R.layout.mingo_widget_card)
+            views.setTextViewText(R.id.mingo_widget_label, label)
+            views.setTextViewText(R.id.mingo_widget_title, title)
+            views.setTextViewText(R.id.mingo_widget_subtitle, subtitle)
             views.setViewVisibility(
-                R.id.repara_widget_subtitle,
+                R.id.mingo_widget_subtitle,
                 if (subtitle.isBlank()) View.GONE else View.VISIBLE,
             )
 
@@ -213,10 +213,10 @@ data class ReparaWidgetPayload(
                 null
             }
             if (bitmap != null) {
-                views.setImageViewBitmap(R.id.repara_widget_image, bitmap)
-                views.setViewVisibility(R.id.repara_widget_image, View.VISIBLE)
+                views.setImageViewBitmap(R.id.mingo_widget_image, bitmap)
+                views.setViewVisibility(R.id.mingo_widget_image, View.VISIBLE)
             } else {
-                views.setViewVisibility(R.id.repara_widget_image, View.GONE)
+                views.setViewVisibility(R.id.mingo_widget_image, View.GONE)
             }
 
             val pendingIntent = HomeWidgetLaunchIntent.getActivity(
@@ -224,7 +224,7 @@ data class ReparaWidgetPayload(
                 MainActivity::class.java,
                 Uri.parse(deepLink),
             )
-            views.setOnClickPendingIntent(R.id.repara_widget_root, pendingIntent)
+            views.setOnClickPendingIntent(R.id.mingo_widget_root, pendingIntent)
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
 

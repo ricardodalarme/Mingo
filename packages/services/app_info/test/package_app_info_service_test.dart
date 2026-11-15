@@ -6,8 +6,8 @@ void main() {
   test('reads the version and build number from the platform', () async {
     final service = PackageAppInfoService(
       load: () async => PackageInfo(
-        appName: 'Repara',
-        packageName: 'com.example.repara',
+        appName: 'Mingo',
+        packageName: 'dev.dalarme.mingo',
         version: '1.2.3',
         buildNumber: '7',
       ),
@@ -23,8 +23,8 @@ void main() {
       load: () async {
         loads++;
         return PackageInfo(
-          appName: 'Repara',
-          packageName: 'com.example.repara',
+          appName: 'Mingo',
+          packageName: 'dev.dalarme.mingo',
           version: '1.2.3',
           buildNumber: '7',
         );

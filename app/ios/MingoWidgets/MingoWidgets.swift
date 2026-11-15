@@ -2,7 +2,7 @@ import SwiftUI
 import UIKit
 import WidgetKit
 
-enum ReparaL10n {
+enum MingoL10n {
   static var isEnglish: Bool {
     let code = (Locale.preferredLanguages.first ?? Locale.current.identifier).lowercased()
     return code.hasPrefix("en")
@@ -12,7 +12,7 @@ enum ReparaL10n {
     isEnglish ? en : pt
   }
 
-  static var signedOutLabel: String { "REPARA" }
+  static var signedOutLabel: String { "MINGO" }
   static var signedOutTitle: String { tr(pt: "Toque para entrar", en: "Tap to sign in") }
   static var discreetLabel: String { tr(pt: "LEMBRETE", en: "REMINDER") }
   static var discreetShortLabel: String { tr(pt: "Lembrete", en: "Reminder") }
@@ -85,19 +85,19 @@ enum ReparaL10n {
   static var cardPreparingSubtitle: String { tr(pt: "Em preparação", en: "In preparation") }
 
   static var ownSmallDisplayName: String {
-    tr(pt: "Repara · Meu (pequeno)", en: "Repara · Mine (small)")
+    tr(pt: "Mingo · Meu (pequeno)", en: "Mingo · Mine (small)")
   }
   static var ownSmallDescription: String {
     tr(pt: "Anotar slip, próxima data, humor ou ritual.", en: "Quick slip, next date, mood, or ritual.")
   }
   static var ownMediumDisplayName: String {
-    tr(pt: "Repara · Meu (médio)", en: "Repara · Mine (medium)")
+    tr(pt: "Mingo · Meu (médio)", en: "Mingo · Mine (medium)")
   }
   static var ownMediumDescription: String {
     tr(pt: "Ideia do dia ou potinho do dia ruim.", en: "Idea of the day or bad-day jar.")
   }
   static var lockScreenDisplayName: String {
-    tr(pt: "Repara · Tela de bloqueio", en: "Repara · Lock screen")
+    tr(pt: "Mingo · Tela de bloqueio", en: "Mingo · Lock screen")
   }
   static var lockScreenDescription: String {
     tr(
@@ -106,19 +106,19 @@ enum ReparaL10n {
     )
   }
   static var coupleCounterDisplayName: String {
-    tr(pt: "Repara · Contador do casal", en: "Repara · Couple counter")
+    tr(pt: "Mingo · Contador do casal", en: "Mingo · Couple counter")
   }
   static var coupleCounterDescription: String {
     tr(pt: "Dias juntos, atualizado à meia-noite.", en: "Days together, updated at midnight.")
   }
   static var couplePhotosDisplayName: String {
-    tr(pt: "Repara · Fotos do casal", en: "Repara · Couple photos")
+    tr(pt: "Mingo · Fotos do casal", en: "Mingo · Couple photos")
   }
   static var couplePhotosDescription: String {
     tr(pt: "Foto em cache local ou cartão neutro.", en: "Locally cached photo or neutral card.")
   }
   static var partnerNoteDisplayName: String {
-    tr(pt: "Repara · Recado do parceiro", en: "Repara · Partner note")
+    tr(pt: "Mingo · Recado do parceiro", en: "Mingo · Partner note")
   }
   static var partnerNoteDescription: String {
     tr(
@@ -127,7 +127,7 @@ enum ReparaL10n {
     )
   }
   static var cardEncounterDisplayName: String {
-    tr(pt: "Repara · Cartão e encontro", en: "Repara · Card & date")
+    tr(pt: "Mingo · Cartão e encontro", en: "Mingo · Card & date")
   }
   static var cardEncounterDescription: String {
     tr(
@@ -137,7 +137,7 @@ enum ReparaL10n {
   }
 }
 
-struct ReparaWidgetPayload: Codable {
+struct MingoWidgetPayload: Codable {
   let isSignedIn: Bool
   let discreet: Bool
   let isPaired: Bool
@@ -167,12 +167,12 @@ struct ReparaWidgetPayload: Codable {
   let cachedPhotoPath: String?
   let updatedAt: String
 
-  static let appGroupId = "group.com.ricardodalarme.flutterBlocStarter"
-  static let payloadKey = "repara_widget_payload"
-  static let cachedPhotoKey = "repara_widget_photo_path"
+  static let appGroupId = "group.dev.dalarme.mingo"
+  static let payloadKey = "mingo_widget_payload"
+  static let cachedPhotoKey = "mingo_widget_photo_path"
 
-  static func signedOut() -> ReparaWidgetPayload {
-    ReparaWidgetPayload(
+  static func signedOut() -> MingoWidgetPayload {
+    MingoWidgetPayload(
       isSignedIn: false,
       discreet: false,
       isPaired: false,
@@ -204,12 +204,12 @@ struct ReparaWidgetPayload: Codable {
     )
   }
 
-  static func loadFromSharedStore() -> ReparaWidgetPayload {
+  static func loadFromSharedStore() -> MingoWidgetPayload {
     guard
       let defaults = UserDefaults(suiteName: appGroupId),
       let raw = defaults.string(forKey: payloadKey),
       let data = raw.data(using: .utf8),
-      let decoded = try? JSONDecoder().decode(ReparaWidgetPayload.self, from: data)
+      let decoded = try? JSONDecoder().decode(MingoWidgetPayload.self, from: data)
     else {
       return signedOut()
     }
@@ -217,7 +217,7 @@ struct ReparaWidgetPayload: Codable {
       decoded.cachedPhotoPath == nil || decoded.cachedPhotoPath?.isEmpty == true,
       let directPhotoPath = defaults.string(forKey: cachedPhotoKey), !directPhotoPath.isEmpty
     {
-      return ReparaWidgetPayload(
+      return MingoWidgetPayload(
         isSignedIn: decoded.isSignedIn,
         discreet: decoded.discreet,
         isPaired: decoded.isPaired,
@@ -301,37 +301,37 @@ struct ReparaWidgetPayload: Codable {
   }
 }
 
-struct ReparaWidgetEntry: TimelineEntry {
+struct MingoWidgetEntry: TimelineEntry {
   let date: Date
-  let payload: ReparaWidgetPayload
+  let payload: MingoWidgetPayload
 }
 
-struct ReparaTimelineProvider: TimelineProvider {
+struct MingoTimelineProvider: TimelineProvider {
   let refreshesAtMidnight: Bool
 
   init(refreshesAtMidnight: Bool = false) {
     self.refreshesAtMidnight = refreshesAtMidnight
   }
 
-  func placeholder(in context: Context) -> ReparaWidgetEntry {
-    ReparaWidgetEntry(date: Date(), payload: ReparaWidgetPayload.signedOut())
+  func placeholder(in context: Context) -> MingoWidgetEntry {
+    MingoWidgetEntry(date: Date(), payload: MingoWidgetPayload.signedOut())
   }
 
-  func getSnapshot(in context: Context, completion: @escaping (ReparaWidgetEntry) -> Void) {
-    completion(ReparaWidgetEntry(date: Date(), payload: ReparaWidgetPayload.signedOut()))
+  func getSnapshot(in context: Context, completion: @escaping (MingoWidgetEntry) -> Void) {
+    completion(MingoWidgetEntry(date: Date(), payload: MingoWidgetPayload.signedOut()))
   }
 
-  func getTimeline(in context: Context, completion: @escaping (Timeline<ReparaWidgetEntry>) -> Void) {
+  func getTimeline(in context: Context, completion: @escaping (Timeline<MingoWidgetEntry>) -> Void) {
     let now = Date()
-    let payload = ReparaWidgetPayload.loadFromSharedStore()
-    var entries = [ReparaWidgetEntry(date: now, payload: payload)]
+    let payload = MingoWidgetPayload.loadFromSharedStore()
+    var entries = [MingoWidgetEntry(date: now, payload: payload)]
 
     let fifteenMinutes = Calendar.current.date(byAdding: .minute, value: 15, to: now) ?? now.addingTimeInterval(900)
     var nextRefresh = fifteenMinutes
     if refreshesAtMidnight,
       let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: now))
     {
-      entries.append(ReparaWidgetEntry(date: tomorrow, payload: payload))
+      entries.append(MingoWidgetEntry(date: tomorrow, payload: payload))
       nextRefresh = min(fifteenMinutes, tomorrow)
     }
 
@@ -339,7 +339,7 @@ struct ReparaTimelineProvider: TimelineProvider {
   }
 }
 
-struct ReparaSurfaceCard<Content: View>: View {
+struct MingoSurfaceCard<Content: View>: View {
   @Environment(\.colorScheme) private var colorScheme
   let deepLink: String
   @ViewBuilder let content: () -> Content
@@ -363,48 +363,48 @@ struct ReparaSurfaceCard<Content: View>: View {
   }
 }
 
-struct ReparaSignedOutWidgetCard: View {
+struct MingoSignedOutWidgetCard: View {
   var body: some View {
-    ReparaSurfaceCard(deepLink: "repara://sign-in?homeWidget=1") {
-      Text(ReparaL10n.signedOutLabel)
+    MingoSurfaceCard(deepLink: "mingo://sign-in?homeWidget=1") {
+      Text(MingoL10n.signedOutLabel)
         .font(.caption2.weight(.semibold))
         .foregroundColor(.secondary)
         .lineLimit(1)
       Spacer(minLength: 4)
-      Text(ReparaL10n.signedOutTitle)
+      Text(MingoL10n.signedOutTitle)
         .font(.subheadline.weight(.semibold))
         .lineLimit(2)
     }
   }
 }
 
-struct ReparaDiscreetWidgetCard: View {
+struct MingoDiscreetWidgetCard: View {
   var body: some View {
-    ReparaSurfaceCard(deepLink: "repara://settings/discreet?homeWidget=1") {
-      Text(ReparaL10n.discreetLabel)
+    MingoSurfaceCard(deepLink: "mingo://settings/discreet?homeWidget=1") {
+      Text(MingoL10n.discreetLabel)
         .font(.caption2.weight(.semibold))
         .foregroundColor(.secondary)
         .lineLimit(1)
       Spacer(minLength: 4)
-      Text(ReparaL10n.discreetTitle)
+      Text(MingoL10n.discreetTitle)
         .font(.subheadline.weight(.semibold))
         .lineLimit(2)
     }
   }
 }
 
-struct ReparaUnpairedWidgetCard: View {
+struct MingoUnpairedWidgetCard: View {
   var body: some View {
-    ReparaSurfaceCard(deepLink: "repara://invite?homeWidget=1") {
-      Text(ReparaL10n.unpairedLabel)
+    MingoSurfaceCard(deepLink: "mingo://invite?homeWidget=1") {
+      Text(MingoL10n.unpairedLabel)
         .font(.caption2.weight(.semibold))
         .foregroundColor(.secondary)
         .lineLimit(1)
       Spacer(minLength: 4)
-      Text(ReparaL10n.unpairedTitle)
+      Text(MingoL10n.unpairedTitle)
         .font(.subheadline.weight(.semibold))
         .lineLimit(2)
-      Text(ReparaL10n.unpairedAction)
+      Text(MingoL10n.unpairedAction)
         .font(.caption)
         .foregroundColor(.secondary)
         .lineLimit(1)
@@ -412,24 +412,24 @@ struct ReparaUnpairedWidgetCard: View {
   }
 }
 
-struct ReparaOwnSmallWidgetView: View {
-  let entry: ReparaWidgetEntry
+struct MingoOwnSmallWidgetView: View {
+  let entry: MingoWidgetEntry
 
   @ViewBuilder
   var body: some View {
     let p = entry.payload
     if !p.isSignedIn {
-      ReparaSignedOutWidgetCard()
+      MingoSignedOutWidgetCard()
     } else if p.discreet {
-      ReparaDiscreetWidgetCard()
+      MingoDiscreetWidgetCard()
     } else if let days = p.daysUntilNextDate(on: entry.date), let title = p.nextDateTitle {
-      ReparaSurfaceCard(deepLink: "repara://dates?homeWidget=1") {
-        Text(ReparaL10n.nextDateLabel)
+      MingoSurfaceCard(deepLink: "mingo://dates?homeWidget=1") {
+        Text(MingoL10n.nextDateLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
         Spacer(minLength: 4)
-        Text(ReparaL10n.daysCount(days))
+        Text(MingoL10n.daysCount(days))
           .font(.headline.weight(.semibold))
           .lineLimit(1)
         Text(title)
@@ -438,8 +438,8 @@ struct ReparaOwnSmallWidgetView: View {
           .lineLimit(1)
       }
     } else if let ritual = p.ritualTitle, !ritual.isEmpty {
-      ReparaSurfaceCard(deepLink: "repara://rituals?homeWidget=1") {
-        Text(ReparaL10n.ritualLabel)
+      MingoSurfaceCard(deepLink: "mingo://rituals?homeWidget=1") {
+        Text(MingoL10n.ritualLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
@@ -447,14 +447,14 @@ struct ReparaOwnSmallWidgetView: View {
         Text(ritual)
           .font(.subheadline.weight(.semibold))
           .lineLimit(2)
-        Text(p.ritualSchedule ?? ReparaL10n.ritualDefaultSchedule)
+        Text(p.ritualSchedule ?? MingoL10n.ritualDefaultSchedule)
           .font(.caption)
           .foregroundColor(.secondary)
           .lineLimit(1)
       }
     } else if let mood = p.myMood, !mood.isEmpty {
-      ReparaSurfaceCard(deepLink: "repara://mood?homeWidget=1") {
-        Text(ReparaL10n.moodLabel)
+      MingoSurfaceCard(deepLink: "mingo://mood?homeWidget=1") {
+        Text(MingoL10n.moodLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
@@ -462,22 +462,22 @@ struct ReparaOwnSmallWidgetView: View {
         Text(mood)
           .font(.headline.weight(.semibold))
           .lineLimit(1)
-        Text(ReparaL10n.moodSubtitle)
+        Text(MingoL10n.moodSubtitle)
           .font(.caption)
           .foregroundColor(.secondary)
           .lineLimit(1)
       }
     } else {
-      ReparaSurfaceCard(deepLink: "repara://capture?homeWidget=1") {
-        Text(ReparaL10n.slipLabel)
+      MingoSurfaceCard(deepLink: "mingo://capture?homeWidget=1") {
+        Text(MingoL10n.slipLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
         Spacer(minLength: 4)
-        Text(ReparaL10n.slipTitle)
+        Text(MingoL10n.slipTitle)
           .font(.headline.weight(.semibold))
           .lineLimit(1)
-        Text(ReparaL10n.slipSubtitle)
+        Text(MingoL10n.slipSubtitle)
           .font(.caption)
           .foregroundColor(.secondary)
           .lineLimit(2)
@@ -486,35 +486,35 @@ struct ReparaOwnSmallWidgetView: View {
   }
 }
 
-struct ReparaOwnMediumWidgetView: View {
-  let entry: ReparaWidgetEntry
+struct MingoOwnMediumWidgetView: View {
+  let entry: MingoWidgetEntry
 
   @ViewBuilder
   var body: some View {
     let p = entry.payload
     if !p.isSignedIn {
-      ReparaSignedOutWidgetCard()
+      MingoSignedOutWidgetCard()
     } else if p.discreet {
-      ReparaDiscreetWidgetCard()
+      MingoDiscreetWidgetCard()
     } else if p.dailyIdeaTitle == nil && p.slipsCount > 0 {
-      ReparaSurfaceCard(deepLink: "repara://jar?homeWidget=1") {
-        Text(ReparaL10n.jarLabel)
+      MingoSurfaceCard(deepLink: "mingo://jar?homeWidget=1") {
+        Text(MingoL10n.jarLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
-        Text(ReparaL10n.jarSavedCount(p.slipsCount))
+        Text(MingoL10n.jarSavedCount(p.slipsCount))
           .font(.subheadline.weight(.semibold))
           .lineLimit(2)
         Spacer(minLength: 2)
-        Text(ReparaL10n.jarSubtitle)
+        Text(MingoL10n.jarSubtitle)
           .font(.caption2)
           .foregroundColor(.secondary)
           .lineLimit(1)
       }
     } else {
-      let idea = p.dailyIdeaTitle ?? ReparaL10n.ideaDefault
-      ReparaSurfaceCard(deepLink: "repara://today?homeWidget=1") {
-        Text(ReparaL10n.ideaLabel)
+      let idea = p.dailyIdeaTitle ?? MingoL10n.ideaDefault
+      MingoSurfaceCard(deepLink: "mingo://today?homeWidget=1") {
+        Text(MingoL10n.ideaLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
@@ -522,7 +522,7 @@ struct ReparaOwnMediumWidgetView: View {
           .font(.subheadline.weight(.semibold))
           .lineLimit(2)
         Spacer(minLength: 2)
-        Text(ReparaL10n.ideaSubtitle)
+        Text(MingoL10n.ideaSubtitle)
           .font(.caption2)
           .foregroundColor(.secondary)
           .lineLimit(1)
@@ -531,48 +531,48 @@ struct ReparaOwnMediumWidgetView: View {
   }
 }
 
-struct ReparaOwnSmallWidget: Widget {
-  let kind: String = "ReparaOwnSmallWidget"
+struct MingoOwnSmallWidget: Widget {
+  let kind: String = "MingoOwnSmallWidget"
 
   var body: some WidgetConfiguration {
-    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider()) { entry in
-      ReparaOwnSmallWidgetView(entry: entry)
+    StaticConfiguration(kind: kind, provider: MingoTimelineProvider()) { entry in
+      MingoOwnSmallWidgetView(entry: entry)
     }
-    .configurationDisplayName(ReparaL10n.ownSmallDisplayName)
-    .description(ReparaL10n.ownSmallDescription)
+    .configurationDisplayName(MingoL10n.ownSmallDisplayName)
+    .description(MingoL10n.ownSmallDescription)
     .supportedFamilies([.systemSmall])
   }
 }
 
-struct ReparaOwnMediumWidget: Widget {
-  let kind: String = "ReparaOwnMediumWidget"
+struct MingoOwnMediumWidget: Widget {
+  let kind: String = "MingoOwnMediumWidget"
 
   var body: some WidgetConfiguration {
-    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider()) { entry in
-      ReparaOwnMediumWidgetView(entry: entry)
+    StaticConfiguration(kind: kind, provider: MingoTimelineProvider()) { entry in
+      MingoOwnMediumWidgetView(entry: entry)
     }
-    .configurationDisplayName(ReparaL10n.ownMediumDisplayName)
-    .description(ReparaL10n.ownMediumDescription)
+    .configurationDisplayName(MingoL10n.ownMediumDisplayName)
+    .description(MingoL10n.ownMediumDescription)
     .supportedFamilies([.systemMedium])
   }
 }
 
 @available(iOS 16.0, *)
-struct ReparaLockScreenWidgetView: View {
+struct MingoLockScreenWidgetView: View {
   @Environment(\.widgetFamily) private var family
-  let entry: ReparaWidgetEntry
+  let entry: MingoWidgetEntry
 
   var body: some View {
     let p = entry.payload
     let neutral = p.discreet || !p.isSignedIn || !p.onLockScreen
     let symbol = neutral ? "circle.dotted" : "heart"
-    let label = neutral ? ReparaL10n.discreetShortLabel : ReparaL10n.lockCalmMoment
-    let phrase = neutral ? ReparaL10n.discreetTitle : ReparaL10n.lockNoNamesHint
+    let label = neutral ? MingoL10n.discreetShortLabel : MingoL10n.lockCalmMoment
+    let phrase = neutral ? MingoL10n.discreetTitle : MingoL10n.lockNoNamesHint
     let deepLink = !p.isSignedIn
-      ? "repara://sign-in?homeWidget=1"
+      ? "mingo://sign-in?homeWidget=1"
       : (p.discreet
-        ? "repara://settings/discreet?homeWidget=1"
-        : (p.onLockScreen ? "repara://today?homeWidget=1" : "repara://settings/widgets?homeWidget=1"))
+        ? "mingo://settings/discreet?homeWidget=1"
+        : (p.onLockScreen ? "mingo://today?homeWidget=1" : "mingo://settings/widgets?homeWidget=1"))
 
     switch family {
     case .accessoryCircular:
@@ -608,52 +608,52 @@ private var repaLockScreenFamilies: [WidgetFamily] {
   return []
 }
 
-private struct ReparaLockScreenWidgetContent: View {
-  let entry: ReparaWidgetEntry
+private struct MingoLockScreenWidgetContent: View {
+  let entry: MingoWidgetEntry
 
   @ViewBuilder
   var body: some View {
     if #available(iOS 17.0, *) {
-      ReparaLockScreenWidgetView(entry: entry)
+      MingoLockScreenWidgetView(entry: entry)
         .containerBackground(.clear, for: .widget)
     } else if #available(iOS 16.0, *) {
-      ReparaLockScreenWidgetView(entry: entry)
+      MingoLockScreenWidgetView(entry: entry)
     } else {
       EmptyView()
     }
   }
 }
 
-struct ReparaLockScreenWidget: Widget {
-  let kind: String = "ReparaLockScreenWidget"
+struct MingoLockScreenWidget: Widget {
+  let kind: String = "MingoLockScreenWidget"
 
   var body: some WidgetConfiguration {
-    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider()) { entry in
-      ReparaLockScreenWidgetContent(entry: entry)
+    StaticConfiguration(kind: kind, provider: MingoTimelineProvider()) { entry in
+      MingoLockScreenWidgetContent(entry: entry)
     }
-    .configurationDisplayName(ReparaL10n.lockScreenDisplayName)
-    .description(ReparaL10n.lockScreenDescription)
+    .configurationDisplayName(MingoL10n.lockScreenDisplayName)
+    .description(MingoL10n.lockScreenDescription)
     .supportedFamilies(repaLockScreenFamilies)
   }
 }
 
-struct ReparaCoupleCounterWidgetView: View {
-  let entry: ReparaWidgetEntry
+struct MingoCoupleCounterWidgetView: View {
+  let entry: MingoWidgetEntry
 
   @ViewBuilder
   var body: some View {
     let p = entry.payload
     if !p.isSignedIn {
-      ReparaSignedOutWidgetCard()
+      MingoSignedOutWidgetCard()
     } else if p.discreet {
-      ReparaDiscreetWidgetCard()
+      MingoDiscreetWidgetCard()
     } else if !p.isPaired {
-      ReparaUnpairedWidgetCard()
+      MingoUnpairedWidgetCard()
     } else {
-      let daysText = p.daysTogether(on: entry.date).map { ReparaL10n.daysCount($0) } ?? ReparaL10n.counterUnset
-      let subtitle = (p.showNames ? p.partnerName : nil) ?? ReparaL10n.counterDefaultSubtitle
-      ReparaSurfaceCard(deepLink: "repara://together?homeWidget=1") {
-        Text(ReparaL10n.counterLabel)
+      let daysText = p.daysTogether(on: entry.date).map { MingoL10n.daysCount($0) } ?? MingoL10n.counterUnset
+      let subtitle = (p.showNames ? p.partnerName : nil) ?? MingoL10n.counterDefaultSubtitle
+      MingoSurfaceCard(deepLink: "mingo://together?homeWidget=1") {
+        Text(MingoL10n.counterLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
@@ -670,59 +670,59 @@ struct ReparaCoupleCounterWidgetView: View {
   }
 }
 
-struct ReparaCoupleCounterWidget: Widget {
-  let kind: String = "ReparaCoupleCounterWidget"
+struct MingoCoupleCounterWidget: Widget {
+  let kind: String = "MingoCoupleCounterWidget"
 
   var body: some WidgetConfiguration {
-    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider(refreshesAtMidnight: true)) { entry in
-      ReparaCoupleCounterWidgetView(entry: entry)
+    StaticConfiguration(kind: kind, provider: MingoTimelineProvider(refreshesAtMidnight: true)) { entry in
+      MingoCoupleCounterWidgetView(entry: entry)
     }
-    .configurationDisplayName(ReparaL10n.coupleCounterDisplayName)
-    .description(ReparaL10n.coupleCounterDescription)
+    .configurationDisplayName(MingoL10n.coupleCounterDisplayName)
+    .description(MingoL10n.coupleCounterDescription)
     .supportedFamilies([.systemSmall, .systemMedium])
   }
 }
 
-struct ReparaCouplePhotosWidgetView: View {
-  let entry: ReparaWidgetEntry
+struct MingoCouplePhotosWidgetView: View {
+  let entry: MingoWidgetEntry
 
   @ViewBuilder
   var body: some View {
     let p = entry.payload
     if !p.isSignedIn {
-      ReparaSignedOutWidgetCard()
+      MingoSignedOutWidgetCard()
     } else if p.discreet {
-      ReparaDiscreetWidgetCard()
+      MingoDiscreetWidgetCard()
     } else if !p.isPaired {
-      ReparaUnpairedWidgetCard()
+      MingoUnpairedWidgetCard()
     } else if !p.hasPlus {
-      ReparaSurfaceCard(deepLink: "repara://memories?homeWidget=1") {
-        Text(ReparaL10n.photoLabel)
+      MingoSurfaceCard(deepLink: "mingo://memories?homeWidget=1") {
+        Text(MingoL10n.photoLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
         Spacer(minLength: 4)
-        Text(ReparaL10n.photoPlusOnly)
+        Text(MingoL10n.photoPlusOnly)
           .font(.subheadline.weight(.semibold))
           .lineLimit(2)
       }
     } else if let path = p.cachedPhotoPath, !path.isEmpty, let uiImage = UIImage(contentsOfFile: path) {
-      ReparaSurfaceCard(deepLink: "repara://memories?homeWidget=1") {
+      MingoSurfaceCard(deepLink: "mingo://memories?homeWidget=1") {
         Image(uiImage: uiImage)
           .resizable()
           .scaledToFill()
           .frame(maxWidth: .infinity, maxHeight: .infinity)
           .clipped()
           .cornerRadius(8)
-        Text(ReparaL10n.photoCachedSubtitle)
+        Text(MingoL10n.photoCachedSubtitle)
           .font(.caption2)
           .foregroundColor(.secondary)
           .lineLimit(1)
       }
     } else {
-      let fallbackTitle = p.daysTogether(on: entry.date).map { ReparaL10n.photoDaysTogether($0) } ?? ReparaL10n.photoFallbackTitle
-      ReparaSurfaceCard(deepLink: "repara://memories?homeWidget=1") {
-        Text(ReparaL10n.photoLabel)
+      let fallbackTitle = p.daysTogether(on: entry.date).map { MingoL10n.photoDaysTogether($0) } ?? MingoL10n.photoFallbackTitle
+      MingoSurfaceCard(deepLink: "mingo://memories?homeWidget=1") {
+        Text(MingoL10n.photoLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
@@ -730,7 +730,7 @@ struct ReparaCouplePhotosWidgetView: View {
         Text(fallbackTitle)
           .font(.headline.weight(.semibold))
           .lineLimit(2)
-        Text(ReparaL10n.photoNoPhoto)
+        Text(MingoL10n.photoNoPhoto)
           .font(.caption)
           .foregroundColor(.secondary)
           .lineLimit(1)
@@ -739,35 +739,35 @@ struct ReparaCouplePhotosWidgetView: View {
   }
 }
 
-struct ReparaCouplePhotosWidget: Widget {
-  let kind: String = "ReparaCouplePhotosWidget"
+struct MingoCouplePhotosWidget: Widget {
+  let kind: String = "MingoCouplePhotosWidget"
 
   var body: some WidgetConfiguration {
-    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider(refreshesAtMidnight: true)) { entry in
-      ReparaCouplePhotosWidgetView(entry: entry)
+    StaticConfiguration(kind: kind, provider: MingoTimelineProvider(refreshesAtMidnight: true)) { entry in
+      MingoCouplePhotosWidgetView(entry: entry)
     }
-    .configurationDisplayName(ReparaL10n.couplePhotosDisplayName)
-    .description(ReparaL10n.couplePhotosDescription)
+    .configurationDisplayName(MingoL10n.couplePhotosDisplayName)
+    .description(MingoL10n.couplePhotosDescription)
     .supportedFamilies([.systemSmall, .systemMedium])
   }
 }
 
-struct ReparaPartnerNoteWidgetView: View {
-  let entry: ReparaWidgetEntry
+struct MingoPartnerNoteWidgetView: View {
+  let entry: MingoWidgetEntry
 
   @ViewBuilder
   var body: some View {
     let p = entry.payload
     if !p.isSignedIn {
-      ReparaSignedOutWidgetCard()
+      MingoSignedOutWidgetCard()
     } else if p.discreet {
-      ReparaDiscreetWidgetCard()
+      MingoDiscreetWidgetCard()
     } else if !p.isPaired {
-      ReparaUnpairedWidgetCard()
+      MingoUnpairedWidgetCard()
     } else {
-      let fromLabel = (p.showNames ? p.partnerName.map { ReparaL10n.noteFromNamed($0) } : nil) ?? ReparaL10n.noteFromDefault
+      let fromLabel = (p.showNames ? p.partnerName.map { MingoL10n.noteFromNamed($0) } : nil) ?? MingoL10n.noteFromDefault
       if p.allowPartnerNotes, let note = p.partnerNote, !note.isEmpty {
-        ReparaSurfaceCard(deepLink: "repara://today?homeWidget=1") {
+        MingoSurfaceCard(deepLink: "mingo://today?homeWidget=1") {
           Text(fromLabel)
             .font(.caption2.weight(.semibold))
             .foregroundColor(.secondary)
@@ -776,19 +776,19 @@ struct ReparaPartnerNoteWidgetView: View {
           Text(note)
             .font(.subheadline.weight(.semibold))
             .lineLimit(2)
-          Text(ReparaL10n.noteReplyHint)
+          Text(MingoL10n.noteReplyHint)
             .font(.caption2)
             .foregroundColor(.secondary)
             .lineLimit(1)
         }
       } else {
-        ReparaSurfaceCard(deepLink: "repara://today?homeWidget=1") {
+        MingoSurfaceCard(deepLink: "mingo://today?homeWidget=1") {
           Text(fromLabel)
             .font(.caption2.weight(.semibold))
             .foregroundColor(.secondary)
             .lineLimit(1)
           Spacer(minLength: 4)
-          Text(ReparaL10n.noteEmpty)
+          Text(MingoL10n.noteEmpty)
             .font(.subheadline.weight(.semibold))
             .lineLimit(2)
         }
@@ -797,66 +797,66 @@ struct ReparaPartnerNoteWidgetView: View {
   }
 }
 
-struct ReparaPartnerNoteWidget: Widget {
-  let kind: String = "ReparaPartnerNoteWidget"
+struct MingoPartnerNoteWidget: Widget {
+  let kind: String = "MingoPartnerNoteWidget"
 
   var body: some WidgetConfiguration {
-    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider()) { entry in
-      ReparaPartnerNoteWidgetView(entry: entry)
+    StaticConfiguration(kind: kind, provider: MingoTimelineProvider()) { entry in
+      MingoPartnerNoteWidgetView(entry: entry)
     }
-    .configurationDisplayName(ReparaL10n.partnerNoteDisplayName)
-    .description(ReparaL10n.partnerNoteDescription)
+    .configurationDisplayName(MingoL10n.partnerNoteDisplayName)
+    .description(MingoL10n.partnerNoteDescription)
     .supportedFamilies([.systemSmall, .systemMedium])
   }
 }
 
-struct ReparaCardEncounterWidgetView: View {
-  let entry: ReparaWidgetEntry
+struct MingoCardEncounterWidgetView: View {
+  let entry: MingoWidgetEntry
 
   @ViewBuilder
   var body: some View {
     let p = entry.payload
     if !p.isSignedIn {
-      ReparaSignedOutWidgetCard()
+      MingoSignedOutWidgetCard()
     } else if p.discreet {
-      ReparaDiscreetWidgetCard()
+      MingoDiscreetWidgetCard()
     } else if !p.isPaired {
-      ReparaUnpairedWidgetCard()
+      MingoUnpairedWidgetCard()
     } else if p.isPauseActive(on: entry.date) {
-      ReparaSurfaceCard(deepLink: "repara://pause?homeWidget=1") {
-        Text(ReparaL10n.cardPauseLabel)
+      MingoSurfaceCard(deepLink: "mingo://pause?homeWidget=1") {
+        Text(MingoL10n.cardPauseLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
         Spacer(minLength: 4)
-        Text(ReparaL10n.cardPauseTitle)
+        Text(MingoL10n.cardPauseTitle)
           .font(.subheadline.weight(.semibold))
           .lineLimit(2)
-        Text(ReparaL10n.cardPauseSubtitle)
+        Text(MingoL10n.cardPauseSubtitle)
           .font(.caption2)
           .foregroundColor(.secondary)
           .lineLimit(1)
       }
     } else {
       let cardTitle: String = switch p.cardState {
-      case "ready": ReparaL10n.cardReadyTitle
-      case "sent": ReparaL10n.cardSentTitle
-      default: ReparaL10n.cardDefaultTitle
+      case "ready": MingoL10n.cardReadyTitle
+      case "sent": MingoL10n.cardSentTitle
+      default: MingoL10n.cardDefaultTitle
       }
 
       let days = p.daysUntilNextDate(on: entry.date)
       let encounterSubtitle: String = if let days {
-        "\(ReparaL10n.daysCount(days)) · \(p.nextDateTitle ?? ReparaL10n.cardNextDateDefault)"
+        "\(MingoL10n.daysCount(days)) · \(p.nextDateTitle ?? MingoL10n.cardNextDateDefault)"
       } else {
-        p.cardState == "ready" ? ReparaL10n.cardReadySubtitle : ReparaL10n.cardPreparingSubtitle
+        p.cardState == "ready" ? MingoL10n.cardReadySubtitle : MingoL10n.cardPreparingSubtitle
       }
 
       let targetLink = p.cardState == "ready"
-        ? "repara://card?homeWidget=1"
-        : (days != nil ? "repara://dates?homeWidget=1" : "repara://card?homeWidget=1")
+        ? "mingo://card?homeWidget=1"
+        : (days != nil ? "mingo://dates?homeWidget=1" : "mingo://card?homeWidget=1")
 
-      ReparaSurfaceCard(deepLink: targetLink) {
-        Text(ReparaL10n.cardWeeklyLabel)
+      MingoSurfaceCard(deepLink: targetLink) {
+        Text(MingoL10n.cardWeeklyLabel)
           .font(.caption2.weight(.semibold))
           .foregroundColor(.secondary)
           .lineLimit(1)
@@ -873,28 +873,28 @@ struct ReparaCardEncounterWidgetView: View {
   }
 }
 
-struct ReparaCardEncounterWidget: Widget {
-  let kind: String = "ReparaCardEncounterWidget"
+struct MingoCardEncounterWidget: Widget {
+  let kind: String = "MingoCardEncounterWidget"
 
   var body: some WidgetConfiguration {
-    StaticConfiguration(kind: kind, provider: ReparaTimelineProvider(refreshesAtMidnight: true)) { entry in
-      ReparaCardEncounterWidgetView(entry: entry)
+    StaticConfiguration(kind: kind, provider: MingoTimelineProvider(refreshesAtMidnight: true)) { entry in
+      MingoCardEncounterWidgetView(entry: entry)
     }
-    .configurationDisplayName(ReparaL10n.cardEncounterDisplayName)
-    .description(ReparaL10n.cardEncounterDescription)
+    .configurationDisplayName(MingoL10n.cardEncounterDisplayName)
+    .description(MingoL10n.cardEncounterDescription)
     .supportedFamilies([.systemSmall, .systemMedium])
   }
 }
 
 @main
-struct ReparaWidgetsBundle: WidgetBundle {
+struct MingoWidgetsBundle: WidgetBundle {
   var body: some Widget {
-    ReparaOwnSmallWidget()
-    ReparaOwnMediumWidget()
-    ReparaLockScreenWidget()
-    ReparaCoupleCounterWidget()
-    ReparaCouplePhotosWidget()
-    ReparaPartnerNoteWidget()
-    ReparaCardEncounterWidget()
+    MingoOwnSmallWidget()
+    MingoOwnMediumWidget()
+    MingoLockScreenWidget()
+    MingoCoupleCounterWidget()
+    MingoCouplePhotosWidget()
+    MingoPartnerNoteWidget()
+    MingoCardEncounterWidget()
   }
 }

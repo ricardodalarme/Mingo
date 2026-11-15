@@ -1,4 +1,4 @@
-package com.ricardodalarme.flutter_bloc_starter
+package dev.dalarme.mingo
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

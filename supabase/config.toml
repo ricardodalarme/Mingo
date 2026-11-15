@@ -1,6 +1,6 @@
-# Repara backend. Remote project ref: esbhdlbhbeoiwaonsgdg (sa-east-1). Link with:
+# Mingo backend. Remote project ref: esbhdlbhbeoiwaonsgdg (sa-east-1). Link with:
 #   supabase link --project-ref esbhdlbhbeoiwaonsgdg
-project_id = "repara"
+project_id = "mingo"
 
 [api]
 enabled = true
@@ -38,8 +38,8 @@ file_size_limit = "5MiB"
 
 [auth]
 enabled = true
-site_url = "repara://auth-callback"
-additional_redirect_urls = ["repara://auth-callback", "http://127.0.0.1:3000"]
+site_url = "mingo://auth-callback"
+additional_redirect_urls = ["mingo://auth-callback", "http://127.0.0.1:3000"]
 jwt_expiry = 3600
 enable_refresh_token_rotation = true
 refresh_token_reuse_interval = 10

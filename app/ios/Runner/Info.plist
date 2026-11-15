@@ -15,7 +15,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>flutter_bloc_starter</string>
+		<string>mingo</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -91,10 +91,10 @@
 				<key>CFBundleTypeRole</key>
 				<string>Editor</string>
 				<key>CFBundleURLName</key>
-				<string>com.ricardodalarme.flutterBlocStarter.repara</string>
+				<string>dev.dalarme.mingo.auth</string>
 				<key>CFBundleURLSchemes</key>
 				<array>
-					<string>repara</string>
+					<string>mingo</string>
 				</array>
 			</dict>
 		</array>

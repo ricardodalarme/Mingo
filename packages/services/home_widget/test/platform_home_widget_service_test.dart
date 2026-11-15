@@ -45,16 +45,16 @@ void main() {
 
   test('updateWidget maps the iOS kind and the Android provider', () async {
     await service.updateWidget(
-      iosName: 'ReparaOwnSmallWidget',
-      androidName: 'widgets.ReparaOwnSmallWidgetProvider',
-      qualifiedAndroidName: 'com.example.widgets.ReparaOwnSmallWidgetProvider',
+      iosName: 'MingoOwnSmallWidget',
+      androidName: 'widgets.MingoOwnSmallWidgetProvider',
+      qualifiedAndroidName: 'com.example.widgets.MingoOwnSmallWidgetProvider',
     );
 
     expect(calls.single.arguments, {
       'name': null,
-      'android': 'widgets.ReparaOwnSmallWidgetProvider',
-      'ios': 'ReparaOwnSmallWidget',
-      'qualifiedAndroidName': 'com.example.widgets.ReparaOwnSmallWidgetProvider',
+      'android': 'widgets.MingoOwnSmallWidgetProvider',
+      'ios': 'MingoOwnSmallWidget',
+      'qualifiedAndroidName': 'com.example.widgets.MingoOwnSmallWidgetProvider',
     });
   });
 
@@ -63,30 +63,30 @@ void main() {
 
     await service.scheduleUpdates(
       [nextMidnight],
-      name: 'ReparaCoupleCounterWidgetProvider',
-      androidName: 'widgets.ReparaCoupleCounterWidgetProvider',
-      qualifiedAndroidName: 'com.example.widgets.ReparaCoupleCounterWidgetProvider',
+      name: 'MingoCoupleCounterWidgetProvider',
+      androidName: 'widgets.MingoCoupleCounterWidgetProvider',
+      qualifiedAndroidName: 'com.example.widgets.MingoCoupleCounterWidgetProvider',
     );
 
     expect(calls.single.arguments, {
       'updateTimes': [nextMidnight.millisecondsSinceEpoch],
-      'name': 'ReparaCoupleCounterWidgetProvider',
-      'android': 'widgets.ReparaCoupleCounterWidgetProvider',
-      'qualifiedAndroidName': 'com.example.widgets.ReparaCoupleCounterWidgetProvider',
+      'name': 'MingoCoupleCounterWidgetProvider',
+      'android': 'widgets.MingoCoupleCounterWidgetProvider',
+      'qualifiedAndroidName': 'com.example.widgets.MingoCoupleCounterWidgetProvider',
     });
   });
 
   test('cancelScheduledUpdates sends the provider name', () async {
     await service.cancelScheduledUpdates(
-      name: 'ReparaCoupleCounterWidgetProvider',
-      androidName: 'widgets.ReparaCoupleCounterWidgetProvider',
-      qualifiedAndroidName: 'com.example.widgets.ReparaCoupleCounterWidgetProvider',
+      name: 'MingoCoupleCounterWidgetProvider',
+      androidName: 'widgets.MingoCoupleCounterWidgetProvider',
+      qualifiedAndroidName: 'com.example.widgets.MingoCoupleCounterWidgetProvider',
     );
 
     expect(calls.single.arguments, {
-      'name': 'ReparaCoupleCounterWidgetProvider',
-      'android': 'widgets.ReparaCoupleCounterWidgetProvider',
-      'qualifiedAndroidName': 'com.example.widgets.ReparaCoupleCounterWidgetProvider',
+      'name': 'MingoCoupleCounterWidgetProvider',
+      'android': 'widgets.MingoCoupleCounterWidgetProvider',
+      'qualifiedAndroidName': 'com.example.widgets.MingoCoupleCounterWidgetProvider',
     });
   });
 }

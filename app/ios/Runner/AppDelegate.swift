@@ -14,7 +14,7 @@ import UIKit
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
 
     let channel = FlutterMethodChannel(
-      name: "repara/widgets",
+      name: "mingo/widgets",
       binaryMessenger: engineBridge.applicationRegistrar.messenger()
     )
     channel.setMethodCallHandler { call, result in
@@ -23,7 +23,7 @@ import UIKit
         return
       }
       let container = FileManager.default.containerURL(
-        forSecurityApplicationGroupIdentifier: "group.com.ricardodalarme.flutterBlocStarter"
+        forSecurityApplicationGroupIdentifier: "group.dev.dalarme.mingo"
       )
       result(container?.path)
     }

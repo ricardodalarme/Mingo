@@ -45,7 +45,7 @@ void main() {
     });
 
     test('a cached photo survives only when paired and Plus', () {
-      const path = '/tmp/repara_widget_photo.jpg';
+      const path = '/tmp/mingo_widget_photo.jpg';
       final payload = WidgetPayload.fake().copyWith(cachedPhotoPath: path);
 
       expect(payload.sanitized(referenceNow: now).cachedPhotoPath, path);

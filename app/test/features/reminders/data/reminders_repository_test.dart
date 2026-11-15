@@ -10,7 +10,7 @@ class _MockLocal() extends Mock implements RemindersLocalDataSource;
 class _MockNotifications() extends Mock implements LocalNotificationService;
 
 const ReminderTexts _texts = (
-  title: 'Repara',
+  title: 'Mingo',
   dailyIdea: 'Ideia',
   dates: 'Data',
   weeklyCard: 'Cartão',
@@ -71,7 +71,7 @@ void main() {
 
       expect(plan, isNotEmpty);
       expect(scheduled, hasLength(plan.length));
-      expect(scheduled!.first.title, 'Repara');
+      expect(scheduled!.first.title, 'Mingo');
       expect(scheduled!.map((request) => request.body).toSet(), {'Ideia', 'Cartão'});
     });
 

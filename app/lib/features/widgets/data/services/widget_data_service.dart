@@ -43,7 +43,7 @@ class WidgetStoreDriver({
   final Future<String?> Function()? appGroupPathFn,
   final Future<Directory> Function()? applicationSupportDirectoryFn,
 }) {
-  static const MethodChannel _widgetsChannel = MethodChannel('repara/widgets');
+  static const MethodChannel _widgetsChannel = MethodChannel('mingo/widgets');
 
   static Future<String?> _defaultAppGroupPath() async {
     if (!Platform.isIOS) return null;
@@ -159,60 +159,60 @@ class WidgetStoreDriver({
 ///
 /// Never logs widget payloads or personal names.
 class WidgetDataService({WidgetStoreDriver? driver}) {
-  static const String appGroupId = 'group.com.ricardodalarme.flutterBlocStarter';
-  static const String payloadStorageKey = 'repara_widget_payload';
-  static const String cachedPhotoStorageKey = 'repara_widget_photo_path';
-  static const String cachedPhotoUpdatedAtKey = 'repara_widget_photo_updated_at';
-  static const String _androidPackage = 'com.ricardodalarme.flutter_bloc_starter';
+  static const String appGroupId = 'group.dev.dalarme.mingo';
+  static const String payloadStorageKey = 'mingo_widget_payload';
+  static const String cachedPhotoStorageKey = 'mingo_widget_photo_path';
+  static const String cachedPhotoUpdatedAtKey = 'mingo_widget_photo_updated_at';
+  static const String _androidPackage = 'dev.dalarme.mingo';
 
   static const List<NativeWidgetFamilyTarget> familyTargets = [
     (
       family: WidgetFamilyKind.ownSmall,
-      iOSKind: 'ReparaOwnSmallWidget',
-      androidProviderName: 'widgets.ReparaOwnSmallWidgetProvider',
-      qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaOwnSmallWidgetProvider',
+      iOSKind: 'MingoOwnSmallWidget',
+      androidProviderName: 'widgets.MingoOwnSmallWidgetProvider',
+      qualifiedAndroidProviderName: '$_androidPackage.widgets.MingoOwnSmallWidgetProvider',
       refreshesAtMidnight: false,
     ),
     (
       family: WidgetFamilyKind.ownMedium,
-      iOSKind: 'ReparaOwnMediumWidget',
-      androidProviderName: 'widgets.ReparaOwnMediumWidgetProvider',
-      qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaOwnMediumWidgetProvider',
+      iOSKind: 'MingoOwnMediumWidget',
+      androidProviderName: 'widgets.MingoOwnMediumWidgetProvider',
+      qualifiedAndroidProviderName: '$_androidPackage.widgets.MingoOwnMediumWidgetProvider',
       refreshesAtMidnight: false,
     ),
     (
       family: WidgetFamilyKind.lockScreen,
-      iOSKind: 'ReparaLockScreenWidget',
+      iOSKind: 'MingoLockScreenWidget',
       androidProviderName: null,
       qualifiedAndroidProviderName: null,
       refreshesAtMidnight: false,
     ),
     (
       family: WidgetFamilyKind.coupleCounter,
-      iOSKind: 'ReparaCoupleCounterWidget',
-      androidProviderName: 'widgets.ReparaCoupleCounterWidgetProvider',
-      qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaCoupleCounterWidgetProvider',
+      iOSKind: 'MingoCoupleCounterWidget',
+      androidProviderName: 'widgets.MingoCoupleCounterWidgetProvider',
+      qualifiedAndroidProviderName: '$_androidPackage.widgets.MingoCoupleCounterWidgetProvider',
       refreshesAtMidnight: true,
     ),
     (
       family: WidgetFamilyKind.couplePhotos,
-      iOSKind: 'ReparaCouplePhotosWidget',
-      androidProviderName: 'widgets.ReparaCouplePhotosWidgetProvider',
-      qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaCouplePhotosWidgetProvider',
+      iOSKind: 'MingoCouplePhotosWidget',
+      androidProviderName: 'widgets.MingoCouplePhotosWidgetProvider',
+      qualifiedAndroidProviderName: '$_androidPackage.widgets.MingoCouplePhotosWidgetProvider',
       refreshesAtMidnight: true,
     ),
     (
       family: WidgetFamilyKind.partnerNote,
-      iOSKind: 'ReparaPartnerNoteWidget',
-      androidProviderName: 'widgets.ReparaPartnerNoteWidgetProvider',
-      qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaPartnerNoteWidgetProvider',
+      iOSKind: 'MingoPartnerNoteWidget',
+      androidProviderName: 'widgets.MingoPartnerNoteWidgetProvider',
+      qualifiedAndroidProviderName: '$_androidPackage.widgets.MingoPartnerNoteWidgetProvider',
       refreshesAtMidnight: false,
     ),
     (
       family: WidgetFamilyKind.cardEncounter,
-      iOSKind: 'ReparaCardEncounterWidget',
-      androidProviderName: 'widgets.ReparaCardEncounterWidgetProvider',
-      qualifiedAndroidProviderName: '$_androidPackage.widgets.ReparaCardEncounterWidgetProvider',
+      iOSKind: 'MingoCardEncounterWidget',
+      androidProviderName: 'widgets.MingoCardEncounterWidgetProvider',
+      qualifiedAndroidProviderName: '$_androidPackage.widgets.MingoCardEncounterWidgetProvider',
       refreshesAtMidnight: true,
     ),
   ];
@@ -360,7 +360,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
       final directory = await _photoDirectory();
       if (directory == null) return null;
 
-      final file = File('${directory.path}/repara_widget_photo.$extension');
+      final file = File('${directory.path}/mingo_widget_photo.$extension');
       final previous = await _store.getString(cachedPhotoStorageKey);
       if (previous != null && previous.isNotEmpty && previous != file.path) {
         final old = File(previous);
@@ -447,7 +447,7 @@ class WidgetDataService({WidgetStoreDriver? driver}) {
     final base = appGroup != null && appGroup.isNotEmpty
         ? Directory(appGroup)
         : await _store.getApplicationSupportDirectory();
-    final directory = Directory('${base.path}/repara_widget_photo');
+    final directory = Directory('${base.path}/mingo_widget_photo');
     if (!directory.existsSync()) await directory.create(recursive: true);
     return directory;
   }

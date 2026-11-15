@@ -24,7 +24,7 @@ class const CouplePhotosPreviewSection({
         title: l10n.signedOutBody,
         subtitle: l10n.ownIdeaHint,
         isDark: isDarkPreview,
-        deepLinkUri: Uri.parse('repara://sign-in'),
+        deepLinkUri: Uri.parse('mingo://sign-in'),
       );
     }
 
@@ -37,7 +37,7 @@ class const CouplePhotosPreviewSection({
             title: l10n.discreetReminderLabel,
             subtitle: l10n.discreetNeutralBody,
             isDark: isDarkPreview,
-            deepLinkUri: Uri.parse('repara://settings/discreet'),
+            deepLinkUri: Uri.parse('mingo://settings/discreet'),
           ),
           const SizedBox(height: AppSpace.s12),
           BaseNote(text: l10n.photosNeutralFallbackNote, icon: AppIcons.info),
@@ -96,7 +96,7 @@ class const CouplePhotosPreviewSection({
           subtitle: payload.discreet ? l10n.discreetNeutralBody : l10n.ownIdeaHint,
           badgeText: payload.hasPlus ? null : l10n.photosPlusBadge,
           isDark: isDarkPreview,
-          deepLinkUri: Uri.parse('repara://today'),
+          deepLinkUri: Uri.parse('mingo://today'),
         ),
         if (previewPhoto == null) ...[
           const SizedBox(height: AppSpace.s12),

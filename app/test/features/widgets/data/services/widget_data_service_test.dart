@@ -69,18 +69,18 @@ void main() {
     expect(stored!.partnerName, 'Marina');
     expect(stored.nextDateTitle, 'Aniversário');
     expect(written.updatedAt, now.toIso8601String());
-    expect(updatedIOSKinds, contains('ReparaOwnSmallWidget'));
-    expect(updatedIOSKinds, contains('ReparaLockScreenWidget'));
+    expect(updatedIOSKinds, contains('MingoOwnSmallWidget'));
+    expect(updatedIOSKinds, contains('MingoLockScreenWidget'));
     expect(
       updatedAndroidProviders,
-      contains('com.ricardodalarme.flutter_bloc_starter.widgets.ReparaOwnSmallWidgetProvider'),
+      contains('dev.dalarme.mingo.widgets.MingoOwnSmallWidgetProvider'),
     );
     expect(
       scheduledMidnightProviders,
       containsAll([
-        'com.ricardodalarme.flutter_bloc_starter.widgets.ReparaCoupleCounterWidgetProvider',
-        'com.ricardodalarme.flutter_bloc_starter.widgets.ReparaCouplePhotosWidgetProvider',
-        'com.ricardodalarme.flutter_bloc_starter.widgets.ReparaCardEncounterWidgetProvider',
+        'dev.dalarme.mingo.widgets.MingoCoupleCounterWidgetProvider',
+        'dev.dalarme.mingo.widgets.MingoCouplePhotosWidgetProvider',
+        'dev.dalarme.mingo.widgets.MingoCardEncounterWidgetProvider',
       ]),
     );
   });
@@ -90,7 +90,7 @@ void main() {
     () async {
       final discreetPayload = WidgetPayload.fake().copyWith(
         discreet: true,
-        cachedPhotoPath: '/shared/home_widget/repara_widget_photo_path.jpg',
+        cachedPhotoPath: '/shared/home_widget/mingo_widget_photo_path.jpg',
         pauseReturnAt: DateTime.utc(2026, 11, 11, 13).toIso8601String(),
         cardState: 'pause',
       );
@@ -109,9 +109,7 @@ void main() {
       expect(memoryStore[WidgetDataService.cachedPhotoStorageKey], isNull);
       expect(
         cancelledMidnightProviders,
-        contains(
-          'com.ricardodalarme.flutter_bloc_starter.widgets.ReparaCoupleCounterWidgetProvider',
-        ),
+        contains('dev.dalarme.mingo.widgets.MingoCoupleCounterWidgetProvider'),
       );
     },
   );
@@ -134,9 +132,7 @@ void main() {
       expect(stored.unopenedCards, 0);
       expect(
         cancelledMidnightProviders,
-        contains(
-          'com.ricardodalarme.flutter_bloc_starter.widgets.ReparaCoupleCounterWidgetProvider',
-        ),
+        contains('dev.dalarme.mingo.widgets.MingoCoupleCounterWidgetProvider'),
       );
     },
   );

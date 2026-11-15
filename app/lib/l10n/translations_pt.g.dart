@@ -990,8 +990,8 @@ class Translations$common$pt {
 
   // Translations
 
-  /// pt: 'Flutter Bloc Starter'
-  String get appName => 'Flutter Bloc Starter';
+  /// pt: 'Mingo'
+  String get appName => 'Mingo';
 
   /// pt: 'Enviar'
   String get send => 'Enviar';
@@ -4418,8 +4418,8 @@ class Translations$plus$pt {
 
   // Translations
 
-  /// pt: 'Repara Plus'
-  String get title => 'Repara Plus';
+  /// pt: 'Mingo Plus'
+  String get title => 'Mingo Plus';
 
   /// pt: 'Compare com calma. O plano grátis continua inteiro para o essencial.'
   String get subtitle => 'Compare com calma. O plano grátis continua inteiro para o essencial.';
@@ -5572,8 +5572,8 @@ class Translations$reminders$pt {
 
   // Translations
 
-  /// pt: 'Repara'
-  String get title => 'Repara';
+  /// pt: 'Mingo'
+  String get title => 'Mingo';
 
   /// pt: 'Uma ideia pequena para hoje.'
   String get dailyIdea => 'Uma ideia pequena para hoje.';
@@ -7181,8 +7181,8 @@ class Translations$widgets$pt {
   /// pt: 'TELA INICIAL'
   String get juntosCategory => 'TELA INICIAL';
 
-  /// pt: 'Widgets do Repara'
-  String get juntosTitle => 'Widgets do Repara';
+  /// pt: 'Widgets do Mingo'
+  String get juntosTitle => 'Widgets do Mingo';
 
   /// pt: 'Lembretes calmos para você ou para vocês dois.'
   String get juntosSubtitle => 'Lembretes calmos para você ou para vocês dois.';
@@ -7307,8 +7307,8 @@ class Translations$widgets$pt {
   /// pt: 'Toque no botão +'
   String get howToAddStep2Title => 'Toque no botão +';
 
-  /// pt: 'No canto superior, busque por QS-Flutter.'
-  String get howToAddStep2Body => 'No canto superior, busque por QS-Flutter.';
+  /// pt: 'No canto superior, busque por Mingo.'
+  String get howToAddStep2Body => 'No canto superior, busque por Mingo.';
 
   /// pt: 'Escolha o tamanho'
   String get howToAddStep3Title => 'Escolha o tamanho';
@@ -7399,8 +7399,8 @@ class Translations$widgets$pt {
   /// pt: 'Texto neutro'
   String get discreetNeutralBody => 'Texto neutro';
 
-  /// pt: 'Repara'
-  String get signedOutLabel => 'Repara';
+  /// pt: 'Mingo'
+  String get signedOutLabel => 'Mingo';
 
   /// pt: 'Toque para entrar'
   String get signedOutBody => 'Toque para entrar';
@@ -9588,7 +9588,7 @@ extension on Translations {
           'checkin.loadErrorTitle' => 'Não deu para abrir o check-in',
           'checkin.loadErrorText' => 'Nada foi perdido. Tente de novo.',
           'checkin.errors.other' => 'Não deu para salvar agora. Tente de novo.',
-          'common.appName' => 'Flutter Bloc Starter',
+          'common.appName' => 'Mingo',
           'common.send' => 'Enviar',
           'common.save' => 'Salvar',
           'common.retry' => 'Tentar novamente',
@@ -11217,7 +11217,7 @@ extension on Translations {
           'places.detailEmptyText' => 'As memórias deste lugar não estão mais aqui.',
           'places.errorTitle' => 'Não deu para carregar',
           'places.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
-          'plus.title' => 'Repara Plus',
+          'plus.title' => 'Mingo Plus',
           'plus.subtitle' => 'Compare com calma. O plano grátis continua inteiro para o essencial.',
           'plus.activeTitle' => 'Você tem o Plus',
           'plus.activeText' => 'Obrigado. Tudo está liberado para você e para seu par.',
@@ -11686,7 +11686,7 @@ extension on Translations {
           'relationshipSettings.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'relationshipSettings.changedPrompt' => 'Algo mudou entre vocês?',
           'relationshipSettings.changedSubtitle' => 'Atualize o que o app mostra',
-          'reminders.title' => 'Repara',
+          'reminders.title' => 'Mingo',
           'reminders.dailyIdea' => 'Uma ideia pequena para hoje.',
           'reminders.dates' => 'Uma data está chegando.',
           'reminders.weeklyCard' => 'Seu cartão está pronto.',
@@ -12483,7 +12483,7 @@ extension on Translations {
           'widgets.settingsTitle' => 'Widgets',
           'widgets.settingsSubtitle' => 'Na tela inicial',
           'widgets.juntosCategory' => 'TELA INICIAL',
-          'widgets.juntosTitle' => 'Widgets do Repara',
+          'widgets.juntosTitle' => 'Widgets do Mingo',
           'widgets.juntosSubtitle' => 'Lembretes calmos para você ou para vocês dois.',
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Só meus',
@@ -12532,7 +12532,7 @@ extension on Translations {
           'widgets.howToAddStep1Title' => 'Segure a tela inicial',
           'widgets.howToAddStep1Body' => 'Toque e segure um espaço vazio até os ícones tremerem.',
           'widgets.howToAddStep2Title' => 'Toque no botão +',
-          'widgets.howToAddStep2Body' => 'No canto superior, busque por QS-Flutter.',
+          'widgets.howToAddStep2Body' => 'No canto superior, busque por Mingo.',
           'widgets.howToAddStep3Title' => 'Escolha o tamanho',
           'widgets.howToAddStep3Body' => 'Pequeno ou médio.',
           'widgets.howToAddAndroidLockNote' => 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.',
@@ -12563,7 +12563,7 @@ extension on Translations {
           'widgets.themeDark' => 'Escuro',
           'widgets.discreetReminderLabel' => 'Lembrete',
           'widgets.discreetNeutralBody' => 'Texto neutro',
-          'widgets.signedOutLabel' => 'Repara',
+          'widgets.signedOutLabel' => 'Mingo',
           'widgets.signedOutBody' => 'Toque para entrar',
           'widgets.ownSmallPageTitle' => 'Widget · Meu (pequeno)',
           'widgets.ownSmallSlipAction' => 'Anotar',

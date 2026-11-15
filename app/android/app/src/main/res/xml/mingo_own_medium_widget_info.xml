@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="@string/repara_widget_own_medium_desc"
-    android:initialLayout="@layout/repara_widget_card"
+    android:description="@string/mingo_widget_own_medium_desc"
+    android:initialLayout="@layout/mingo_widget_card"
     android:minWidth="250dp"
     android:minHeight="110dp"
     android:resizeMode="horizontal|vertical"

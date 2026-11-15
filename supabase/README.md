@@ -1,6 +1,6 @@
-# Repara backend (Supabase)
+# Supabase
 
-- Remote project: `repara`, ref `esbhdlbhbeoiwaonsgdg`, region `sa-east-1`
+- Remote project: `Mingo`, ref `esbhdlbhbeoiwaonsgdg`, region `sa-east-1`
 - GraphQL: `https://esbhdlbhbeoiwaonsgdg.supabase.co/graphql/v1` (pg_graphql, camelCase via `inflect_names`)
 - Source of truth: `supabase/schemas/` (declarative) + `supabase/migrations/` (applied in order)
 - Tests: `supabase/tests/database/<domain>/*_test.sql` (pgTAP; `00_setup/000-setup-tests-hooks.sql` installs pgTAP in schema `tap` and helpers in `tests`)

@@ -16,10 +16,10 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		B594F9DD2B63447400604492 /* config in Resources */ = {isa = PBXBuildFile; fileRef = B594F9DC2B63447400604492 /* config */; };
-		D40410012F00000100000001 /* ReparaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40410022F00000100000001 /* ReparaWidgets.swift */; };
+		D40410012F00000100000001 /* MingoWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40410022F00000100000001 /* MingoWidgets.swift */; };
 		D40410032F00000100000001 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40410042F00000100000001 /* WidgetKit.framework */; };
 		D40410052F00000100000001 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40410062F00000100000001 /* SwiftUI.framework */; };
-		D40410072F00000100000001 /* ReparaWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D40410082F00000100000001 /* ReparaWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D40410072F00000100000001 /* MingoWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D40410082F00000100000001 /* MingoWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +28,7 @@
 			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D404100A2F00000100000001;
-			remoteInfo = ReparaWidgetsExtension;
+			remoteInfo = MingoWidgetsExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -49,7 +49,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D40410072F00000100000001 /* ReparaWidgetsExtension.appex in Embed Foundation Extensions */,
+				D40410072F00000100000001 /* MingoWidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,18 +67,18 @@
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
-		97C146EE1CF9000F007C117D /* QS-Flutter [DEV].app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QS-Flutter [DEV].app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		97C146EE1CF9000F007C117D /* Mingo [DEV].app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mingo [DEV].app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C146FB1CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B594F9DC2B63447400604492 /* config */ = {isa = PBXFileReference; lastKnownFileType = folder; path = config; sourceTree = "<group>"; };
-		D40410022F00000100000001 /* ReparaWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReparaWidgets.swift; sourceTree = "<group>"; };
+		D40410022F00000100000001 /* MingoWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MingoWidgets.swift; sourceTree = "<group>"; };
 		D40410042F00000100000001 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D40410062F00000100000001 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		D40410082F00000100000001 /* ReparaWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReparaWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40410082F00000100000001 /* MingoWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MingoWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D404100C2F00000100000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D404100D2F00000100000001 /* ReparaWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReparaWidgets.entitlements; sourceTree = "<group>"; };
+		D404100D2F00000100000001 /* MingoWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MingoWidgets.entitlements; sourceTree = "<group>"; };
 		D404100E2F00000100000001 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,16 +121,17 @@
 				B594F9DC2B63447400604492 /* config */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
-				D40410102F00000100000001 /* ReparaWidgets */,
+				D40410102F00000100000001 /* MingoWidgets */,
 				97C146EF1CF9000F007C117D /* Products */,
+				FD2EB13830A9149500965004 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
 		97C146EF1CF9000F007C117D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				97C146EE1CF9000F007C117D /* QS-Flutter [DEV].app */,
-				D40410082F00000100000001 /* ReparaWidgetsExtension.appex */,
+				97C146EE1CF9000F007C117D /* Mingo [DEV].app */,
+				D40410082F00000100000001 /* MingoWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,14 +153,23 @@
 			path = Runner;
 			sourceTree = "<group>";
 		};
-		D40410102F00000100000001 /* ReparaWidgets */ = {
+		D40410102F00000100000001 /* MingoWidgets */ = {
 			isa = PBXGroup;
 			children = (
-				D40410022F00000100000001 /* ReparaWidgets.swift */,
+				D40410022F00000100000001 /* MingoWidgets.swift */,
 				D404100C2F00000100000001 /* Info.plist */,
-				D404100D2F00000100000001 /* ReparaWidgets.entitlements */,
+				D404100D2F00000100000001 /* MingoWidgets.entitlements */,
 			);
-			path = ReparaWidgets;
+			path = MingoWidgets;
+			sourceTree = "<group>";
+		};
+		FD2EB13830A9149500965004 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D40410042F00000100000001 /* WidgetKit.framework */,
+				D40410062F00000100000001 /* SwiftUI.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,12 +199,12 @@
 				78A3181F2AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage */,
 			);
 			productName = Runner;
-			productReference = 97C146EE1CF9000F007C117D /* QS-Flutter [DEV].app */;
+			productReference = 97C146EE1CF9000F007C117D /* Mingo [DEV].app */;
 			productType = "com.apple.product-type.application";
 		};
-		D404100A2F00000100000001 /* ReparaWidgetsExtension */ = {
+		D404100A2F00000100000001 /* MingoWidgetsExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D40410122F00000100000001 /* Build configuration list for PBXNativeTarget "ReparaWidgetsExtension" */;
+			buildConfigurationList = D40410122F00000100000001 /* Build configuration list for PBXNativeTarget "MingoWidgetsExtension" */;
 			buildPhases = (
 				D40410132F00000100000001 /* Sources */,
 				D404100F2F00000100000001 /* Frameworks */,
@@ -204,9 +214,9 @@
 			);
 			dependencies = (
 			);
-			name = ReparaWidgetsExtension;
-			productName = ReparaWidgetsExtension;
-			productReference = D40410082F00000100000001 /* ReparaWidgetsExtension.appex */;
+			name = MingoWidgetsExtension;
+			productName = MingoWidgetsExtension;
+			productReference = D40410082F00000100000001 /* MingoWidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -245,7 +255,7 @@
 			projectRoot = "";
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
-				D404100A2F00000100000001 /* ReparaWidgetsExtension */,
+				D404100A2F00000100000001 /* MingoWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -362,7 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D40410012F00000100000001 /* ReparaWidgets.swift in Sources */,
+				D40410012F00000100000001 /* MingoWidgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +381,7 @@
 /* Begin PBXTargetDependency section */
 		D40410112F00000100000001 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D404100A2F00000100000001 /* ReparaWidgetsExtension */;
+			target = D404100A2F00000100000001 /* MingoWidgetsExtension */;
 			targetProxy = D40410092F00000100000001 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -463,8 +473,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter.dev;
-				PRODUCT_NAME = "QS-Flutter [DEV]";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.dev;
+				PRODUCT_NAME = "Mingo [DEV]";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -590,6 +600,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = KVV3X87P8F;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -597,8 +608,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter.dev;
-				PRODUCT_NAME = "QS-Flutter [DEV]";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.dev;
+				PRODUCT_NAME = "Mingo [DEV]";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -621,8 +632,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter.dev;
-				PRODUCT_NAME = "QS-Flutter [DEV]";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.dev;
+				PRODUCT_NAME = "Mingo [DEV]";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -701,8 +712,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter;
-				PRODUCT_NAME = "QS-Flutter";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo;
+				PRODUCT_NAME = Mingo;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -779,8 +790,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter;
-				PRODUCT_NAME = "QS-Flutter";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo;
+				PRODUCT_NAME = Mingo;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -854,8 +865,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter;
-				PRODUCT_NAME = "QS-Flutter";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo;
+				PRODUCT_NAME = Mingo;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -867,18 +878,18 @@
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ReparaWidgets/ReparaWidgets.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MingoWidgets/MingoWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = ReparaWidgets/Info.plist;
+				INFOPLIST_FILE = MingoWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter.dev.widgets;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.dev.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -893,18 +904,18 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ReparaWidgets/ReparaWidgets.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MingoWidgets/MingoWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = ReparaWidgets/Info.plist;
+				INFOPLIST_FILE = MingoWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter.dev.widgets;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.dev.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -918,18 +929,18 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ReparaWidgets/ReparaWidgets.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MingoWidgets/MingoWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = ReparaWidgets/Info.plist;
+				INFOPLIST_FILE = MingoWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter.dev.widgets;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.dev.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -943,18 +954,18 @@
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ReparaWidgets/ReparaWidgets.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MingoWidgets/MingoWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = ReparaWidgets/Info.plist;
+				INFOPLIST_FILE = MingoWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter.widgets;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -969,18 +980,18 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ReparaWidgets/ReparaWidgets.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MingoWidgets/MingoWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = ReparaWidgets/Info.plist;
+				INFOPLIST_FILE = MingoWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter.widgets;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -994,18 +1005,18 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ReparaWidgets/ReparaWidgets.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MingoWidgets/MingoWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = ReparaWidgets/Info.plist;
+				INFOPLIST_FILE = MingoWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ricardodalarme.flutterBlocStarter.widgets;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1043,7 +1054,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release-development";
 		};
-		D40410122F00000100000001 /* Build configuration list for PBXNativeTarget "ReparaWidgetsExtension" */ = {
+		D40410122F00000100000001 /* Build configuration list for PBXNativeTarget "MingoWidgetsExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D40410152F00000100000001 /* Debug-development */,

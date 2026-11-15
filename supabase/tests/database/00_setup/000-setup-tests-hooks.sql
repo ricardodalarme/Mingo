@@ -14,14 +14,14 @@ create schema if not exists tests;
 grant usage on schema tests to anon, authenticated, service_role;
 
 create or replace function tests.uid(alias text) returns uuid language sql immutable set search_path = '' as $$
-  select md5('repara-test:' || alias)::uuid;
+  select md5('mingo-test:' || alias)::uuid;
 $$;
 -- Creates an auth user (which fires the profile bootstrap trigger) and returns its id.
 create or replace function tests.create_user(alias text, full_name text default null) returns uuid
 language plpgsql security definer set search_path = '' as $$
 begin
   insert into auth.users (id, email, raw_user_meta_data)
-  values (tests.uid(alias), alias || '@test.repara.invalid',
+  values (tests.uid(alias), alias || '@test.mingo.invalid',
           case when full_name is null then '{}'::jsonb else jsonb_build_object('full_name', full_name) end);
   return tests.uid(alias);
 end $$;

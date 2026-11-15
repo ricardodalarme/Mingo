@@ -895,7 +895,7 @@ class _Translations$common$en extends Translations$common$pt {
 
   // Translations
   @override
-  String get appName => 'Flutter Bloc Starter';
+  String get appName => 'Mingo';
   @override
   String get send => 'Send';
   @override
@@ -3643,7 +3643,7 @@ class _Translations$plus$en extends Translations$plus$pt {
 
   // Translations
   @override
-  String get title => 'Repara Plus';
+  String get title => 'Mingo Plus';
   @override
   String get subtitle => 'Compare calmly. The free plan stays whole for the essentials.';
   @override
@@ -4536,7 +4536,7 @@ class _Translations$reminders$en extends Translations$reminders$pt {
 
   // Translations
   @override
-  String get title => 'Repara';
+  String get title => 'Mingo';
   @override
   String get dailyIdea => 'A small idea for today.';
   @override
@@ -5778,7 +5778,7 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get juntosCategory => 'HOME SCREEN';
   @override
-  String get juntosTitle => 'Repara widgets';
+  String get juntosTitle => 'Mingo widgets';
   @override
   String get juntosSubtitle => 'Calm reminders for you or for the two of you.';
   @override
@@ -5864,7 +5864,7 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get howToAddStep2Title => 'Tap the + button';
   @override
-  String get howToAddStep2Body => 'In the top corner, search for QS-Flutter.';
+  String get howToAddStep2Body => 'In the top corner, search for Mingo.';
   @override
   String get howToAddStep3Title => 'Pick a size';
   @override
@@ -5925,7 +5925,7 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get discreetNeutralBody => 'Neutral text';
   @override
-  String get signedOutLabel => 'Repara';
+  String get signedOutLabel => 'Mingo';
   @override
   String get signedOutBody => 'Tap to sign in';
   @override
@@ -7782,7 +7782,7 @@ extension on TranslationsEn {
           'checkin.loadErrorTitle' => 'Couldn\'t open the check-in',
           'checkin.loadErrorText' => 'Nothing was lost. Try again.',
           'checkin.errors.other' => 'Couldn\'t save that now. Try again.',
-          'common.appName' => 'Flutter Bloc Starter',
+          'common.appName' => 'Mingo',
           'common.send' => 'Send',
           'common.save' => 'Save',
           'common.retry' => 'Retry',
@@ -9406,7 +9406,7 @@ extension on TranslationsEn {
           'places.detailEmptyText' => 'The memories of this place are not here anymore.',
           'places.errorTitle' => 'Couldn\'t load',
           'places.errorText' => 'Your memories are still saved. Try again.',
-          'plus.title' => 'Repara Plus',
+          'plus.title' => 'Mingo Plus',
           'plus.subtitle' => 'Compare calmly. The free plan stays whole for the essentials.',
           'plus.activeTitle' => 'You have Plus',
           'plus.activeText' => 'Thank you. Everything is unlocked for you and your partner.',
@@ -9876,7 +9876,7 @@ extension on TranslationsEn {
           'relationshipSettings.errors.other' => 'Could not save right now. Try again.',
           'relationshipSettings.changedPrompt' => 'Something changed between you two?',
           'relationshipSettings.changedSubtitle' => 'Update what the app shows',
-          'reminders.title' => 'Repara',
+          'reminders.title' => 'Mingo',
           'reminders.dailyIdea' => 'A small idea for today.',
           'reminders.dates' => 'A date is coming up.',
           'reminders.weeklyCard' => 'Your card is ready.',
@@ -10670,7 +10670,7 @@ extension on TranslationsEn {
           'widgets.settingsTitle' => 'Widgets',
           'widgets.settingsSubtitle' => 'Home screen',
           'widgets.juntosCategory' => 'HOME SCREEN',
-          'widgets.juntosTitle' => 'Repara widgets',
+          'widgets.juntosTitle' => 'Mingo widgets',
           'widgets.juntosSubtitle' => 'Calm reminders for you or for the two of you.',
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Just mine',
@@ -10717,7 +10717,7 @@ extension on TranslationsEn {
           'widgets.howToAddStep1Title' => 'Hold the home screen',
           'widgets.howToAddStep1Body' => 'Touch and hold an empty space until the icons jiggle.',
           'widgets.howToAddStep2Title' => 'Tap the + button',
-          'widgets.howToAddStep2Body' => 'In the top corner, search for QS-Flutter.',
+          'widgets.howToAddStep2Body' => 'In the top corner, search for Mingo.',
           'widgets.howToAddStep3Title' => 'Pick a size',
           'widgets.howToAddStep3Body' => 'Small or medium.',
           'widgets.howToAddAndroidLockNote' => 'On modern Android, widgets live on the home screen. The lock screen only shows neutral notification icons.',
@@ -10748,7 +10748,7 @@ extension on TranslationsEn {
           'widgets.themeDark' => 'Dark',
           'widgets.discreetReminderLabel' => 'Reminder',
           'widgets.discreetNeutralBody' => 'Neutral text',
-          'widgets.signedOutLabel' => 'Repara',
+          'widgets.signedOutLabel' => 'Mingo',
           'widgets.signedOutBody' => 'Tap to sign in',
           'widgets.ownSmallPageTitle' => 'Widget · Mine (small)',
           'widgets.ownSmallSlipAction' => 'Log',
