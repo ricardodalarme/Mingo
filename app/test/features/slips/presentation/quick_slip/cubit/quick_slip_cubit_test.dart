@@ -1,5 +1,6 @@
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_draft.dart';
+import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
@@ -13,7 +14,10 @@ class _MockSlipRepository() extends Mock implements SlipRepository;
 void main() {
   late SlipRepository repository;
 
-  setUpAll(() => registerFallbackValue(DateTime(2026)));
+  setUpAll(() {
+    registerFallbackValue(DateTime(2026));
+    registerFallbackValue(SlipPolarity.liked);
+  });
 
   setUp(() {
     repository = _MockSlipRepository();
@@ -23,6 +27,7 @@ void main() {
         text: any(named: 'text'),
         now: any(named: 'now'),
         category: any(named: 'category'),
+        polarity: any(named: 'polarity'),
       ),
     ).thenAnswer((_) async {
       return;
@@ -88,6 +93,40 @@ void main() {
         body: 'Fez café',
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
+      ),
+    ).called(1),
+  );
+
+  blocTest<QuickSlipCubit, QuickSlipState>(
+    'a bothered slip is saved with its polarity',
+    build: build,
+    act: (cubit) async {
+      cubit
+        ..onPolarityChanged(SlipPolarity.bothered)
+        ..onTextChanged('Chegou tarde sem avisar');
+      await cubit.save();
+    },
+    verify: (_) => verify(
+      () => repository.saveQuick(
+        id: any(named: 'id'),
+        body: 'Chegou tarde sem avisar',
+        createdAt: any(named: 'createdAt'),
+        category: any(named: 'category'),
+        polarity: SlipPolarity.bothered,
+      ),
+    ).called(1),
+  );
+
+  blocTest<QuickSlipCubit, QuickSlipState>(
+    'the polarity is kept in the draft',
+    build: build,
+    act: (cubit) => cubit.onPolarityChanged(SlipPolarity.bothered),
+    verify: (_) => verify(
+      () => repository.saveDraft(
+        text: any(named: 'text'),
+        now: any(named: 'now'),
+        category: any(named: 'category'),
+        polarity: SlipPolarity.bothered,
       ),
     ).called(1),
   );

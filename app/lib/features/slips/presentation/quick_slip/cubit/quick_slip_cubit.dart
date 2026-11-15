@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/features/slips/data/models/slip_category.dart';
+import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
@@ -30,11 +31,24 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
     final draft = _slipRepository.readDraft(clock.now());
     if (draft == null) return;
 
-    emit(state.copyWith(text: FormInput(draft.text), category: draft.category));
+    emit(
+      state.copyWith(
+        text: FormInput(draft.text),
+        category: draft.category,
+        polarity: draft.polarity,
+      ),
+    );
   }
 
   void onTextChanged(String text) {
     emit(state.copyWith(text: FormInput(text)));
+    unawaited(_persistDraft());
+  }
+
+  void onPolarityChanged(SlipPolarity polarity) {
+    if (state.polarity == polarity) return;
+
+    emit(state.copyWith(polarity: polarity));
     unawaited(_persistDraft());
   }
 
@@ -58,6 +72,7 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
         body: state.text.value.trim(),
         createdAt: clock.now(),
         category: state.category,
+        polarity: state.polarity,
       );
       await _slipRepository.clearDraft();
       emit(state.copyWith(saveAction: Success(outcome), canUndo: true));
@@ -93,8 +108,12 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
     return validatedText.isValid;
   }
 
-  Future<void> _persistDraft() =>
-      _slipRepository.saveDraft(text: state.text.value, category: state.category, now: clock.now());
+  Future<void> _persistDraft() => _slipRepository.saveDraft(
+    text: state.text.value,
+    category: state.category,
+    polarity: state.polarity,
+    now: clock.now(),
+  );
 
   @override
   Future<void> close() {

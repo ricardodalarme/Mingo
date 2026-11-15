@@ -9,6 +9,7 @@ import 'package:app/features/slips/data/models/slip_detail.dart';
 import 'package:app/features/slips/data/models/slip_draft.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/models/slip_work_area.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
@@ -51,6 +52,7 @@ class SlipRepository({
     String? feeling,
     String? planNote,
     SlipWorkArea? workArea,
+    SlipPolarity polarity = SlipPolarity.liked,
   }) async {
     final slip = PendingSlip(
       id: id,
@@ -61,6 +63,7 @@ class SlipRepository({
       feeling: feeling,
       planNote: planNote,
       workArea: workArea,
+      polarity: polarity,
     );
     try {
       await _send(slip);
@@ -93,6 +96,7 @@ class SlipRepository({
         planNote: node.planNote,
         category: node.category?.toModel(),
         workArea: node.workArea?.toModel(),
+        polarity: node.polarity.toModel() ?? SlipPolarity.liked,
         isArchived: node.archivedAt != null,
         isInJar: node.inJar,
         wasInCard: node.cardItemsCollection?.edges.isNotEmpty ?? false,
@@ -114,6 +118,7 @@ class SlipRepository({
         feeling: slip.feeling,
         planNote: slip.planNote,
         forCard: slip.forCard && slip.canGoInCard,
+        polarity: slip.polarity.toRpc(),
       );
       _changes.add(null);
     } catch (e, stack) {
@@ -187,6 +192,7 @@ class SlipRepository({
               body: edge.node.body,
               kind: edge.node.kind.toModel() ?? SlipKind.quick,
               category: edge.node.category?.toModel(),
+              polarity: edge.node.polarity.toModel() ?? SlipPolarity.liked,
               createdAt: edge.node.createdAt,
             ),
         ],
@@ -245,10 +251,19 @@ class SlipRepository({
     return draft != null && draft.isFresh(now) ? draft : null;
   }
 
-  Future<void> saveDraft({required String text, required DateTime now, SlipCategory? category}) {
-    if (text.trim().isEmpty && category == null) return _localDataSource.clearDraft();
+  Future<void> saveDraft({
+    required String text,
+    required DateTime now,
+    SlipCategory? category,
+    SlipPolarity polarity = SlipPolarity.liked,
+  }) {
+    if (text.trim().isEmpty && category == null && polarity == SlipPolarity.liked) {
+      return _localDataSource.clearDraft();
+    }
 
-    return _localDataSource.writeDraft(SlipDraft(text: text, savedAt: now, category: category));
+    return _localDataSource.writeDraft(
+      SlipDraft(text: text, savedAt: now, category: category, polarity: polarity),
+    );
   }
 
   Future<void> clearDraft() => _localDataSource.clearDraft();
@@ -261,6 +276,7 @@ class SlipRepository({
       kind: slip.kind.toRpc(),
       feeling: slip.feeling,
       planNote: slip.planNote,
+      polarity: slip.polarity.toRpc(),
     );
     if (slip.category != null) {
       await _slipDataSource.setCategory(id: slip.id, category: slip.category?.toRpc());

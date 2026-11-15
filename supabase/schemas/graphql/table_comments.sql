@@ -35,7 +35,7 @@ comment on table public.decision_options is e'@graphql({"description": "An optio
 comment on table public.gift_ideas is e'@graphql({"max_rows": 200, "description": "A gift idea or wish. Shared with the partner while couple_id is set."})';
 
 -- Slips, cards, content ----------------------------------------------------------------------------
-comment on table public.slips is e'@graphql({"description": "Private to the author. Reaches the partner only as a frozen copy inside a sent card."})';
+comment on table public.slips is e'@graphql({"description": "Private to the author. A bothered slip never reaches a card; a liked slip reaches the partner only as a frozen copy inside a sent card."})';
 comment on table public.cards is e'@graphql({"description": "A card made of slips. Drafts and held cards are private to the author; the recipient sees sent cards."})';
 comment on table public.card_items is e'@graphql({"description": "A frozen copy of a slip inside a card."})';
 comment on table public.card_reactions is e'@graphql({"description": "How the recipient reacted to a card."})';

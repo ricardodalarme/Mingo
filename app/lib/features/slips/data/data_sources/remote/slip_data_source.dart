@@ -20,6 +20,7 @@ class SlipDataSource({required final GQLClient _client}) {
     String? feeling,
     String? planNote,
     bool? forCard,
+    String polarity = 'liked',
   }) async {
     final response = await _client.mutate(
       OptionsMutationSaveSlip(
@@ -31,6 +32,7 @@ class SlipDataSource({required final GQLClient _client}) {
           feeling: feeling,
           planNote: planNote,
           forCard: forCard,
+          polarity: polarity,
         ),
       ),
     );

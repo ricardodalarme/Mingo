@@ -6,6 +6,7 @@ mutation SaveSlip(
   $planNote: String
   $forCard: Boolean
   $createdAt: Datetime
+  $polarity: String
 ) {
   saveSlip(
     id: $id
@@ -15,6 +16,7 @@ mutation SaveSlip(
     planNote: $planNote
     forCard: $forCard
     createdAt: $createdAt
+    polarity: $polarity
   ) {
     id
   }

@@ -5344,6 +5344,15 @@ class Translations$quickSlip$pt {
   /// pt: 'Uma linha basta. 30 segundos.'
   String get subtitle => 'Uma linha basta. 30 segundos.';
 
+  /// pt: 'Gostei ou me incomodou'
+  String get polarityLabel => 'Gostei ou me incomodou';
+
+  /// pt: 'Gostei'
+  String get polarityLiked => 'Gostei';
+
+  /// pt: 'Me incomodou'
+  String get polarityBothered => 'Me incomodou';
+
   /// pt: 'Ex.: fez café antes de eu acordar'
   String get hint => 'Ex.: fez café antes de eu acordar';
 
@@ -5361,6 +5370,9 @@ class Translations$quickSlip$pt {
 
   /// pt: 'Fica privado. No domingo você escolhe o que vai para o cartão.'
   String get privacyNote => 'Fica privado. No domingo você escolhe o que vai para o cartão.';
+
+  /// pt: 'Fica só com você. Um slip assim nunca entra no cartão.'
+  String get botheredNote => 'Fica só com você. Um slip assim nunca entra no cartão.';
 
   /// pt: 'Salvar'
   String get save => 'Salvar';
@@ -5954,6 +5966,12 @@ class Translations$slipDetail$pt {
   /// pt: 'Só você vê este slip.'
   String get private => 'Só você vê este slip.';
 
+  Map<String, String> get polarities => {
+    'liked': 'Gostei',
+    'bothered': 'Me incomodou',
+    'other': '',
+  };
+
   /// pt: 'Arquivado'
   String get archived => 'Arquivado';
 
@@ -5986,6 +6004,9 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Slips invisíveis nunca entram em um cartão.'
   String get cardInvisible => 'Slips invisíveis nunca entram em um cartão.';
+
+  /// pt: 'Um slip que te incomodou fica só com você e nunca entra no cartão.'
+  String get cardBothered => 'Um slip que te incomodou fica só com você e nunca entra no cartão.';
 
   /// pt: 'O que seu par leria'
   String get previewTitle => 'O que seu par leria';
@@ -6176,6 +6197,9 @@ class Translations$slipsList$pt {
 
   /// pt: '{weekday} · {category}'
   String dayLine({required Object weekday, required Object category}) => '${weekday} · ${category}';
+
+  /// pt: 'Só eu'
+  String get privateMark => 'Só eu';
 
   List<String> get weekdaysShort => ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
   List<String> get monthsShort => [
@@ -11636,6 +11660,9 @@ extension on Translations {
           'quickSlip.title' => 'O que te deixou feliz?',
           'quickSlip.titleHighlight' => 'feliz',
           'quickSlip.subtitle' => 'Uma linha basta. 30 segundos.',
+          'quickSlip.polarityLabel' => 'Gostei ou me incomodou',
+          'quickSlip.polarityLiked' => 'Gostei',
+          'quickSlip.polarityBothered' => 'Me incomodou',
           'quickSlip.hint' => 'Ex.: fez café antes de eu acordar',
           'quickSlip.textErrors.empty' => 'Escreva o slip primeiro',
           'quickSlip.textErrors.tooLong' => 'Este slip está muito longo',
@@ -11646,6 +11673,7 @@ extension on Translations {
           'quickSlip.categories.other' => '',
           'quickSlip.privacyNote' =>
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
+          'quickSlip.botheredNote' => 'Fica só com você. Um slip assim nunca entra no cartão.',
           'quickSlip.save' => 'Salvar',
           'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
@@ -11694,13 +11722,13 @@ extension on Translations {
           'relationshipChanged.title' => 'Algo mudou?',
           'relationshipChanged.highlight' => 'mudou',
           'relationshipChanged.subtitle' => 'Conte com calma. Isso só muda o que o app mostra.',
+          _ => null,
+        } ??
+        switch (path) {
           'relationshipChanged.optionEnded' => 'Terminamos',
           'relationshipChanged.optionBereaved' => 'Perdi a pessoa',
           'relationshipChanged.optionOnBreak' => 'Um tempo',
           'relationshipChanged.optionTogether' => 'Está tudo bem',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.continueLabel' => 'Continuar',
           'relationshipChanged.saved' => 'Salvo',
           'relationshipChanged.errors.NETWORK' => 'Sem conexão. Tente de novo.',
@@ -11981,6 +12009,9 @@ extension on Translations {
           'slipDetail.kinds.invisible' => 'Invisível',
           'slipDetail.kinds.other' => '',
           'slipDetail.private' => 'Só você vê este slip.',
+          'slipDetail.polarities.liked' => 'Gostei',
+          'slipDetail.polarities.bothered' => 'Me incomodou',
+          'slipDetail.polarities.other' => '',
           'slipDetail.archived' => 'Arquivado',
           'slipDetail.feeling' => 'Como você se sentiu',
           'slipDetail.plan' => 'Então eu…',
@@ -11992,6 +12023,8 @@ extension on Translations {
           'slipDetail.cardOn' => 'Pode entrar no cartão',
           'slipDetail.cardOnText' => 'No domingo você escolhe se ele vai.',
           'slipDetail.cardInvisible' => 'Slips invisíveis nunca entram em um cartão.',
+          'slipDetail.cardBothered' =>
+            'Um slip que te incomodou fica só com você e nunca entra no cartão.',
           'slipDetail.previewTitle' => 'O que seu par leria',
           'slipDetail.previewText' => 'Se este slip entrar no cartão, é este texto que aparece.',
           'slipDetail.sentNote' => 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.',
@@ -12090,6 +12123,7 @@ extension on Translations {
             required Object weekday,
             required Object category,
           }) => '${weekday} · ${category}',
+          'slipsList.privateMark' => 'Só eu',
           'slipsList.weekdaysShort.0' => 'Seg',
           'slipsList.weekdaysShort.1' => 'Ter',
           'slipsList.weekdaysShort.2' => 'Qua',
@@ -12261,6 +12295,9 @@ extension on Translations {
           'tabs.parentsLabel' => 'COM OS PAIS',
           'tabs.parentsText' => 'Um momento curto e só de vocês dois, mesmo com a casa cheia.',
           'tabs.capsulesLabel' => 'CÁPSULA DO TEMPO',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.capsulesTitle' => 'Uma mensagem para o futuro',
           'tabs.capsulesText' => 'Fica fechada até a data que você escolher.',
           'tabs.datesLabel' => 'DATAS',
@@ -12270,9 +12307,6 @@ extension on Translations {
           'tabs.badDayTitle' => 'Um dia difícil',
           'tabs.badDayText' => 'Três coisas pequenas para fazer agora.',
           'tabs.starterLabel' => 'CONVERSA',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.starterTitle' => 'Começar uma conversa',
           'tabs.starterText' => 'Uma pergunta para abrir, sem pressa.',
           'tabs.dayLabel' => 'DIA',

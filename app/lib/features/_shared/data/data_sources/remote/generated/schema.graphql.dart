@@ -70772,6 +70772,148 @@ class InputSlipKindFilter {
   }
 }
 
+class InputSlipPolarityFilter {
+  factory InputSlipPolarityFilter({
+    EnumSlipPolarity? eq,
+    List<EnumSlipPolarity>? $in,
+    EnumFilterIs? $is,
+    EnumSlipPolarity? neq,
+  }) => InputSlipPolarityFilter._({
+    if (eq != null) r'eq': eq,
+    if ($in != null) r'in': $in,
+    if ($is != null) r'is': $is,
+    if (neq != null) r'neq': neq,
+  });
+
+  InputSlipPolarityFilter._(this._$data);
+
+  factory InputSlipPolarityFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('eq')) {
+      final l$eq = data['eq'];
+      result$data['eq'] = l$eq == null ? null : fromJsonEnumSlipPolarity((l$eq as String));
+    }
+    if (data.containsKey('in')) {
+      final l$$in = data['in'];
+      result$data['in'] = (l$$in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumSlipPolarity((e as String)))
+          .toList();
+    }
+    if (data.containsKey('is')) {
+      final l$$is = data['is'];
+      result$data['is'] = l$$is == null ? null : fromJsonEnumFilterIs((l$$is as String));
+    }
+    if (data.containsKey('neq')) {
+      final l$neq = data['neq'];
+      result$data['neq'] = l$neq == null ? null : fromJsonEnumSlipPolarity((l$neq as String));
+    }
+    return InputSlipPolarityFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumSlipPolarity? get eq => (_$data['eq'] as EnumSlipPolarity?);
+
+  List<EnumSlipPolarity>? get $in => (_$data['in'] as List<EnumSlipPolarity>?);
+
+  EnumFilterIs? get $is => (_$data['is'] as EnumFilterIs?);
+
+  EnumSlipPolarity? get neq => (_$data['neq'] as EnumSlipPolarity?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('eq')) {
+      final l$eq = eq;
+      result$data['eq'] = l$eq == null ? null : toJsonEnumSlipPolarity(l$eq);
+    }
+    if (_$data.containsKey('in')) {
+      final l$$in = $in;
+      result$data['in'] = l$$in?.map((e) => toJsonEnumSlipPolarity(e)).toList();
+    }
+    if (_$data.containsKey('is')) {
+      final l$$is = $is;
+      result$data['is'] = l$$is == null ? null : toJsonEnumFilterIs(l$$is);
+    }
+    if (_$data.containsKey('neq')) {
+      final l$neq = neq;
+      result$data['neq'] = l$neq == null ? null : toJsonEnumSlipPolarity(l$neq);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputSlipPolarityFilter || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$eq = eq;
+    final lOther$eq = other.eq;
+    if (_$data.containsKey('eq') != other._$data.containsKey('eq')) {
+      return false;
+    }
+    if (l$eq != lOther$eq) {
+      return false;
+    }
+    final l$$in = $in;
+    final lOther$$in = other.$in;
+    if (_$data.containsKey('in') != other._$data.containsKey('in')) {
+      return false;
+    }
+    if (l$$in != null && lOther$$in != null) {
+      if (l$$in.length != lOther$$in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$in.length; i++) {
+        final l$$in$entry = l$$in[i];
+        final lOther$$in$entry = lOther$$in[i];
+        if (l$$in$entry != lOther$$in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$in != lOther$$in) {
+      return false;
+    }
+    final l$$is = $is;
+    final lOther$$is = other.$is;
+    if (_$data.containsKey('is') != other._$data.containsKey('is')) {
+      return false;
+    }
+    if (l$$is != lOther$$is) {
+      return false;
+    }
+    final l$neq = neq;
+    final lOther$neq = other.neq;
+    if (_$data.containsKey('neq') != other._$data.containsKey('neq')) {
+      return false;
+    }
+    if (l$neq != lOther$neq) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$eq = eq;
+    final l$$in = $in;
+    final l$$is = $is;
+    final l$neq = neq;
+    return Object.hashAll([
+      _$data.containsKey('eq') ? l$eq : const {},
+      _$data.containsKey('in')
+          ? l$$in == null
+                ? null
+                : Object.hashAll(l$$in.map((v) => v))
+          : const {},
+      _$data.containsKey('is') ? l$$is : const {},
+      _$data.containsKey('neq') ? l$neq : const {},
+    ]);
+  }
+}
+
 class InputSlipsFilter {
   factory InputSlipsFilter({
     InputUUIDFilter? id,
@@ -70791,6 +70933,7 @@ class InputSlipsFilter {
     InputSlipCategoryFilter? category,
     InputWorkAreaFilter? workArea,
     InputBooleanFilter? inJar,
+    InputSlipPolarityFilter? polarity,
     InputIDFilter? nodeId,
     List<InputSlipsFilter>? and,
     List<InputSlipsFilter>? or,
@@ -70813,6 +70956,7 @@ class InputSlipsFilter {
     if (category != null) r'category': category,
     if (workArea != null) r'workArea': workArea,
     if (inJar != null) r'inJar': inJar,
+    if (polarity != null) r'polarity': polarity,
     if (nodeId != null) r'nodeId': nodeId,
     if (and != null) r'and': and,
     if (or != null) r'or': or,
@@ -70925,6 +71069,12 @@ class InputSlipsFilter {
           ? null
           : InputBooleanFilter.fromJson((l$inJar as Map<String, dynamic>));
     }
+    if (data.containsKey('polarity')) {
+      final l$polarity = data['polarity'];
+      result$data['polarity'] = l$polarity == null
+          ? null
+          : InputSlipPolarityFilter.fromJson((l$polarity as Map<String, dynamic>));
+    }
     if (data.containsKey('nodeId')) {
       final l$nodeId = data['nodeId'];
       result$data['nodeId'] = l$nodeId == null
@@ -70987,6 +71137,8 @@ class InputSlipsFilter {
   InputWorkAreaFilter? get workArea => (_$data['workArea'] as InputWorkAreaFilter?);
 
   InputBooleanFilter? get inJar => (_$data['inJar'] as InputBooleanFilter?);
+
+  InputSlipPolarityFilter? get polarity => (_$data['polarity'] as InputSlipPolarityFilter?);
 
   InputIDFilter? get nodeId => (_$data['nodeId'] as InputIDFilter?);
 
@@ -71065,6 +71217,10 @@ class InputSlipsFilter {
     if (_$data.containsKey('inJar')) {
       final l$inJar = inJar;
       result$data['inJar'] = l$inJar?.toJson();
+    }
+    if (_$data.containsKey('polarity')) {
+      final l$polarity = polarity;
+      result$data['polarity'] = l$polarity?.toJson();
     }
     if (_$data.containsKey('nodeId')) {
       final l$nodeId = nodeId;
@@ -71229,6 +71385,14 @@ class InputSlipsFilter {
     if (l$inJar != lOther$inJar) {
       return false;
     }
+    final l$polarity = polarity;
+    final lOther$polarity = other.polarity;
+    if (_$data.containsKey('polarity') != other._$data.containsKey('polarity')) {
+      return false;
+    }
+    if (l$polarity != lOther$polarity) {
+      return false;
+    }
     final l$nodeId = nodeId;
     final lOther$nodeId = other.nodeId;
     if (_$data.containsKey('nodeId') != other._$data.containsKey('nodeId')) {
@@ -71305,6 +71469,7 @@ class InputSlipsFilter {
     final l$category = category;
     final l$workArea = workArea;
     final l$inJar = inJar;
+    final l$polarity = polarity;
     final l$nodeId = nodeId;
     final l$and = and;
     final l$or = or;
@@ -71327,6 +71492,7 @@ class InputSlipsFilter {
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('workArea') ? l$workArea : const {},
       _$data.containsKey('inJar') ? l$inJar : const {},
+      _$data.containsKey('polarity') ? l$polarity : const {},
       _$data.containsKey('nodeId') ? l$nodeId : const {},
       _$data.containsKey('and')
           ? l$and == null
@@ -71362,6 +71528,7 @@ class InputSlipsInsertInput {
     EnumSlipCategory? category,
     EnumWorkArea? workArea,
     bool? inJar,
+    EnumSlipPolarity? polarity,
   }) => InputSlipsInsertInput._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
@@ -71380,6 +71547,7 @@ class InputSlipsInsertInput {
     if (category != null) r'category': category,
     if (workArea != null) r'workArea': workArea,
     if (inJar != null) r'inJar': inJar,
+    if (polarity != null) r'polarity': polarity,
   });
 
   InputSlipsInsertInput._(this._$data);
@@ -71468,6 +71636,12 @@ class InputSlipsInsertInput {
       final l$inJar = data['inJar'];
       result$data['inJar'] = (l$inJar as bool?);
     }
+    if (data.containsKey('polarity')) {
+      final l$polarity = data['polarity'];
+      result$data['polarity'] = l$polarity == null
+          ? null
+          : fromJsonEnumSlipPolarity((l$polarity as String));
+    }
     return InputSlipsInsertInput._(result$data);
   }
 
@@ -71506,6 +71680,8 @@ class InputSlipsInsertInput {
   EnumWorkArea? get workArea => (_$data['workArea'] as EnumWorkArea?);
 
   bool? get inJar => (_$data['inJar'] as bool?);
+
+  EnumSlipPolarity? get polarity => (_$data['polarity'] as EnumSlipPolarity?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -71586,6 +71762,10 @@ class InputSlipsInsertInput {
     if (_$data.containsKey('inJar')) {
       final l$inJar = inJar;
       result$data['inJar'] = l$inJar;
+    }
+    if (_$data.containsKey('polarity')) {
+      final l$polarity = polarity;
+      result$data['polarity'] = l$polarity == null ? null : toJsonEnumSlipPolarity(l$polarity);
     }
     return result$data;
   }
@@ -71745,6 +71925,14 @@ class InputSlipsInsertInput {
     if (l$inJar != lOther$inJar) {
       return false;
     }
+    final l$polarity = polarity;
+    final lOther$polarity = other.polarity;
+    if (_$data.containsKey('polarity') != other._$data.containsKey('polarity')) {
+      return false;
+    }
+    if (l$polarity != lOther$polarity) {
+      return false;
+    }
     return true;
   }
 
@@ -71767,6 +71955,7 @@ class InputSlipsInsertInput {
     final l$category = category;
     final l$workArea = workArea;
     final l$inJar = inJar;
+    final l$polarity = polarity;
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
@@ -71789,6 +71978,7 @@ class InputSlipsInsertInput {
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('workArea') ? l$workArea : const {},
       _$data.containsKey('inJar') ? l$inJar : const {},
+      _$data.containsKey('polarity') ? l$polarity : const {},
     ]);
   }
 }
@@ -71811,6 +72001,7 @@ class InputSlipsOrderBy {
     EnumOrderByDirection? category,
     EnumOrderByDirection? workArea,
     EnumOrderByDirection? inJar,
+    EnumOrderByDirection? polarity,
   }) => InputSlipsOrderBy._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
@@ -71828,6 +72019,7 @@ class InputSlipsOrderBy {
     if (category != null) r'category': category,
     if (workArea != null) r'workArea': workArea,
     if (inJar != null) r'inJar': inJar,
+    if (polarity != null) r'polarity': polarity,
   });
 
   InputSlipsOrderBy._(this._$data);
@@ -71928,6 +72120,12 @@ class InputSlipsOrderBy {
           ? null
           : fromJsonEnumOrderByDirection((l$inJar as String));
     }
+    if (data.containsKey('polarity')) {
+      final l$polarity = data['polarity'];
+      result$data['polarity'] = l$polarity == null
+          ? null
+          : fromJsonEnumOrderByDirection((l$polarity as String));
+    }
     return InputSlipsOrderBy._(result$data);
   }
 
@@ -71964,6 +72162,8 @@ class InputSlipsOrderBy {
   EnumOrderByDirection? get workArea => (_$data['workArea'] as EnumOrderByDirection?);
 
   EnumOrderByDirection? get inJar => (_$data['inJar'] as EnumOrderByDirection?);
+
+  EnumOrderByDirection? get polarity => (_$data['polarity'] as EnumOrderByDirection?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -72042,6 +72242,10 @@ class InputSlipsOrderBy {
     if (_$data.containsKey('inJar')) {
       final l$inJar = inJar;
       result$data['inJar'] = l$inJar == null ? null : toJsonEnumOrderByDirection(l$inJar);
+    }
+    if (_$data.containsKey('polarity')) {
+      final l$polarity = polarity;
+      result$data['polarity'] = l$polarity == null ? null : toJsonEnumOrderByDirection(l$polarity);
     }
     return result$data;
   }
@@ -72182,6 +72386,14 @@ class InputSlipsOrderBy {
     if (l$inJar != lOther$inJar) {
       return false;
     }
+    final l$polarity = polarity;
+    final lOther$polarity = other.polarity;
+    if (_$data.containsKey('polarity') != other._$data.containsKey('polarity')) {
+      return false;
+    }
+    if (l$polarity != lOther$polarity) {
+      return false;
+    }
     return true;
   }
 
@@ -72203,6 +72415,7 @@ class InputSlipsOrderBy {
     final l$category = category;
     final l$workArea = workArea;
     final l$inJar = inJar;
+    final l$polarity = polarity;
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
@@ -72220,6 +72433,7 @@ class InputSlipsOrderBy {
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('workArea') ? l$workArea : const {},
       _$data.containsKey('inJar') ? l$inJar : const {},
+      _$data.containsKey('polarity') ? l$polarity : const {},
     ]);
   }
 }
@@ -72243,6 +72457,7 @@ class InputSlipsUpdateInput {
     EnumSlipCategory? category,
     EnumWorkArea? workArea,
     bool? inJar,
+    EnumSlipPolarity? polarity,
   }) => InputSlipsUpdateInput._({
     if (id != null) r'id': id,
     if (authorId != null) r'authorId': authorId,
@@ -72261,6 +72476,7 @@ class InputSlipsUpdateInput {
     if (category != null) r'category': category,
     if (workArea != null) r'workArea': workArea,
     if (inJar != null) r'inJar': inJar,
+    if (polarity != null) r'polarity': polarity,
   });
 
   InputSlipsUpdateInput._(this._$data);
@@ -72349,6 +72565,12 @@ class InputSlipsUpdateInput {
       final l$inJar = data['inJar'];
       result$data['inJar'] = (l$inJar as bool?);
     }
+    if (data.containsKey('polarity')) {
+      final l$polarity = data['polarity'];
+      result$data['polarity'] = l$polarity == null
+          ? null
+          : fromJsonEnumSlipPolarity((l$polarity as String));
+    }
     return InputSlipsUpdateInput._(result$data);
   }
 
@@ -72387,6 +72609,8 @@ class InputSlipsUpdateInput {
   EnumWorkArea? get workArea => (_$data['workArea'] as EnumWorkArea?);
 
   bool? get inJar => (_$data['inJar'] as bool?);
+
+  EnumSlipPolarity? get polarity => (_$data['polarity'] as EnumSlipPolarity?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -72467,6 +72691,10 @@ class InputSlipsUpdateInput {
     if (_$data.containsKey('inJar')) {
       final l$inJar = inJar;
       result$data['inJar'] = l$inJar;
+    }
+    if (_$data.containsKey('polarity')) {
+      final l$polarity = polarity;
+      result$data['polarity'] = l$polarity == null ? null : toJsonEnumSlipPolarity(l$polarity);
     }
     return result$data;
   }
@@ -72626,6 +72854,14 @@ class InputSlipsUpdateInput {
     if (l$inJar != lOther$inJar) {
       return false;
     }
+    final l$polarity = polarity;
+    final lOther$polarity = other.polarity;
+    if (_$data.containsKey('polarity') != other._$data.containsKey('polarity')) {
+      return false;
+    }
+    if (l$polarity != lOther$polarity) {
+      return false;
+    }
     return true;
   }
 
@@ -72648,6 +72884,7 @@ class InputSlipsUpdateInput {
     final l$category = category;
     final l$workArea = workArea;
     final l$inJar = inJar;
+    final l$polarity = polarity;
     return Object.hashAll([
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
@@ -72670,6 +72907,7 @@ class InputSlipsUpdateInput {
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('workArea') ? l$workArea : const {},
       _$data.containsKey('inJar') ? l$inJar : const {},
+      _$data.containsKey('polarity') ? l$polarity : const {},
     ]);
   }
 }
@@ -84922,6 +85160,38 @@ EnumSlipKind fromJsonEnumSlipKind(String value) {
       return EnumSlipKind.invisible;
     default:
       return EnumSlipKind.$unknown;
+  }
+}
+
+enum EnumSlipPolarity {
+  liked,
+  bothered,
+  $unknown;
+
+  factory EnumSlipPolarity.fromJson(String value) => fromJsonEnumSlipPolarity(value);
+
+  String toJson() => toJsonEnumSlipPolarity(this);
+}
+
+String toJsonEnumSlipPolarity(EnumSlipPolarity e) {
+  switch (e) {
+    case EnumSlipPolarity.liked:
+      return r'liked';
+    case EnumSlipPolarity.bothered:
+      return r'bothered';
+    case EnumSlipPolarity.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumSlipPolarity fromJsonEnumSlipPolarity(String value) {
+  switch (value) {
+    case r'liked':
+      return EnumSlipPolarity.liked;
+    case r'bothered':
+      return EnumSlipPolarity.bothered;
+    default:
+      return EnumSlipPolarity.$unknown;
   }
 }
 

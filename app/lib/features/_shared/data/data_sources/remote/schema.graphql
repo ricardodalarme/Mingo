@@ -7038,7 +7038,7 @@ type Mutation {
   """
   Creates or edits a slip. Editing an existing slip keeps working at the free-plan limit.
   """
-  saveSlip(id: UUID!, body: String!, kind: String = "quick", feeling: String, planNote: String, tags: [String], forCard: Boolean = true, occurredOn: Date, photoPath: String, createdAt: Datetime): Slips
+  saveSlip(id: UUID!, body: String!, kind: String = "quick", feeling: String, planNote: String, tags: [String], forCard: Boolean = true, occurredOn: Date, photoPath: String, createdAt: Datetime, polarity: String = "liked"): Slips
 
   """
   Sends a card to the current partner. With no partner the card travels only by guest link.
@@ -13993,8 +13993,24 @@ input SlipKindFilter {
   neq: SlipKind
 }
 
+enum SlipPolarity {
+  liked
+  bothered
+}
+
 """
-Private to the author. Reaches the partner only as a frozen copy inside a sent card.
+Boolean expression comparing fields on type "SlipPolarity"
+"""
+input SlipPolarityFilter {
+  eq: SlipPolarity
+  in: [SlipPolarity!]
+  is: FilterIs
+  neq: SlipPolarity
+}
+
+"""
+Private to the author. A bothered slip never reaches a card; a liked slip
+reaches the partner only as a frozen copy inside a sent card.
 """
 type Slips implements Node {
   """Globally Unique Record Identifier"""
@@ -14016,6 +14032,7 @@ type Slips implements Node {
   category: SlipCategory
   workArea: WorkArea
   inJar: Boolean!
+  polarity: SlipPolarity!
   author: Profiles
   cardItemsCollection(
     """Query the first `n` records in the collection"""
@@ -14079,6 +14096,7 @@ input SlipsFilter {
   category: SlipCategoryFilter
   workArea: WorkAreaFilter
   inJar: BooleanFilter
+  polarity: SlipPolarityFilter
   nodeId: IDFilter
 
   """
@@ -14113,6 +14131,7 @@ input SlipsInsertInput {
   category: SlipCategory
   workArea: WorkArea
   inJar: Boolean
+  polarity: SlipPolarity
 }
 
 type SlipsInsertResponse {
@@ -14140,6 +14159,7 @@ input SlipsOrderBy {
   category: OrderByDirection
   workArea: OrderByDirection
   inJar: OrderByDirection
+  polarity: OrderByDirection
 }
 
 input SlipsUpdateInput {
@@ -14160,6 +14180,7 @@ input SlipsUpdateInput {
   category: SlipCategory
   workArea: WorkArea
   inJar: Boolean
+  polarity: SlipPolarity
 }
 
 type SlipsUpdateResponse {
