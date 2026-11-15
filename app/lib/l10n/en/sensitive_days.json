@@ -1,0 +1,19 @@
+{
+  "title": "Sensitive days",
+  "subtitle": "Somewhere only yours. Your partner sees neither this screen nor what you mark here.",
+  "todayTitle": "Today is a sensitive day",
+  "todayOn": "Marked",
+  "todayOff": "Not marked",
+  "calendarTitle": "Your marked days",
+  "calendarNote": "The marks stay in your calendar and only you see them.",
+  "markedDay": "{day} marked as a sensitive day",
+  "noticeTitle": "Tell my partner",
+  "noticeSupport": "A short notice, no details, and only when you want to.",
+  "entryTitle": "Sensitive days",
+  "entrySupport": "Only you see it",
+  "errorTitle": "Couldn't open it",
+  "errorText": "Nothing was lost. Try again.",
+  "errors(map)": {
+    "other": "Couldn't save it now. Try again."
+  }
+}

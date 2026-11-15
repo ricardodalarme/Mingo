@@ -138,6 +138,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$rituals$pt rituals = Translations$rituals$pt.internal(_root);
   late final Translations$safeMode$pt safeMode = Translations$safeMode$pt.internal(_root);
   late final Translations$safety$pt safety = Translations$safety$pt.internal(_root);
+  late final Translations$sensitiveDays$pt sensitiveDays = Translations$sensitiveDays$pt.internal(
+    _root,
+  );
   late final Translations$sessionExpired$pt sessionExpired =
       Translations$sessionExpired$pt.internal(_root);
   late final Translations$settingsHome$pt settingsHome = Translations$settingsHome$pt.internal(
@@ -5989,6 +5992,59 @@ class Translations$safety$pt {
 
   /// pt: 'Segurança e apoio'
   String get entry => 'Segurança e apoio';
+}
+
+// Path: sensitiveDays
+class Translations$sensitiveDays$pt {
+  Translations$sensitiveDays$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Dias sensíveis'
+  String get title => 'Dias sensíveis';
+
+  /// pt: 'Um lugar só seu. Seu par não vê esta tela nem o que você marca aqui.'
+  String get subtitle => 'Um lugar só seu. Seu par não vê esta tela nem o que você marca aqui.';
+
+  /// pt: 'Hoje é um dia sensível'
+  String get todayTitle => 'Hoje é um dia sensível';
+
+  /// pt: 'Marcado'
+  String get todayOn => 'Marcado';
+
+  /// pt: 'Não marcado'
+  String get todayOff => 'Não marcado';
+
+  /// pt: 'Seus dias marcados'
+  String get calendarTitle => 'Seus dias marcados';
+
+  /// pt: 'As marcas ficam no seu calendário e só você vê.'
+  String get calendarNote => 'As marcas ficam no seu calendário e só você vê.';
+
+  /// pt: '{day} marcado como dia sensível'
+  String markedDay({required Object day}) => '${day} marcado como dia sensível';
+
+  /// pt: 'Avisar meu par'
+  String get noticeTitle => 'Avisar meu par';
+
+  /// pt: 'Um aviso curto, sem detalhes, e só quando você quiser.'
+  String get noticeSupport => 'Um aviso curto, sem detalhes, e só quando você quiser.';
+
+  /// pt: 'Dias sensíveis'
+  String get entryTitle => 'Dias sensíveis';
+
+  /// pt: 'Só você vê'
+  String get entrySupport => 'Só você vê';
+
+  /// pt: 'Não deu para abrir'
+  String get errorTitle => 'Não deu para abrir';
+
+  /// pt: 'Nada se perdeu. Tente de novo.'
+  String get errorText => 'Nada se perdeu. Tente de novo.';
+
+  Map<String, String> get errors => {'other': 'Não deu para salvar agora. Tente de novo.'};
 }
 
 // Path: sessionExpired
@@ -12350,6 +12406,24 @@ extension on Translations {
           'safeMode.localOnly' => 'Isto fica só neste celular. Nada é enviado nem registrado.',
           'safeMode.quickExit' => 'Sair agora',
           'safety.entry' => 'Segurança e apoio',
+          'sensitiveDays.title' => 'Dias sensíveis',
+          'sensitiveDays.subtitle' =>
+            'Um lugar só seu. Seu par não vê esta tela nem o que você marca aqui.',
+          'sensitiveDays.todayTitle' => 'Hoje é um dia sensível',
+          'sensitiveDays.todayOn' => 'Marcado',
+          'sensitiveDays.todayOff' => 'Não marcado',
+          'sensitiveDays.calendarTitle' => 'Seus dias marcados',
+          'sensitiveDays.calendarNote' => 'As marcas ficam no seu calendário e só você vê.',
+          'sensitiveDays.markedDay' => ({
+            required Object day,
+          }) => '${day} marcado como dia sensível',
+          'sensitiveDays.noticeTitle' => 'Avisar meu par',
+          'sensitiveDays.noticeSupport' => 'Um aviso curto, sem detalhes, e só quando você quiser.',
+          'sensitiveDays.entryTitle' => 'Dias sensíveis',
+          'sensitiveDays.entrySupport' => 'Só você vê',
+          'sensitiveDays.errorTitle' => 'Não deu para abrir',
+          'sensitiveDays.errorText' => 'Nada se perdeu. Tente de novo.',
+          'sensitiveDays.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'sessionExpired.title' => 'Sua sessão terminou',
           'sessionExpired.highlight' => 'terminou',
           'sessionExpired.text' => 'Entre de novo para continuar. Seus dados estão seguros.',
@@ -12605,6 +12679,9 @@ extension on Translations {
           'slipsList.weekdaysShort.1' => 'Ter',
           'slipsList.weekdaysShort.2' => 'Qua',
           'slipsList.weekdaysShort.3' => 'Qui',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.weekdaysShort.4' => 'Sex',
           'slipsList.weekdaysShort.5' => 'Sáb',
           'slipsList.weekdaysShort.6' => 'Dom',
@@ -12620,9 +12697,6 @@ extension on Translations {
           'slipsList.monthsShort.9' => 'out',
           'slipsList.monthsShort.10' => 'nov',
           'slipsList.monthsShort.11' => 'dez',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.categories.said' => 'Disse algo',
           'slipsList.categories.did' => 'Fez algo',
           'slipsList.categories.noticed' => 'Me notou',
@@ -13229,6 +13303,9 @@ extension on Translations {
           'widgets.statesPrecedenceNote' => 'Quando o modo discreto e o estado sem parceiro estão ativos ao mesmo tempo, o widget usa sempre a variante mais neutra (Lembrete).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Não foi possível salvar as preferências agora.',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' =>
             'Não foi possível carregar a foto do casal agora.',
           'widgets.errors.COUPLE_PHOTO_UPLOAD_FAILED' =>

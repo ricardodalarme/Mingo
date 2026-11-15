@@ -197,6 +197,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$safety$en safety = _Translations$safety$en._(_root);
   @override
+  late final _Translations$sensitiveDays$en sensitiveDays = _Translations$sensitiveDays$en._(_root);
+  @override
   late final _Translations$sessionExpired$en sessionExpired = _Translations$sessionExpired$en._(
     _root,
   );
@@ -4862,6 +4864,46 @@ class _Translations$safety$en extends Translations$safety$pt {
   // Translations
   @override
   String get entry => 'Safety and support';
+}
+
+// Path: sensitiveDays
+class _Translations$sensitiveDays$en extends Translations$sensitiveDays$pt {
+  _Translations$sensitiveDays$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Sensitive days';
+  @override
+  String get subtitle =>
+      'Somewhere only yours. Your partner sees neither this screen nor what you mark here.';
+  @override
+  String get todayTitle => 'Today is a sensitive day';
+  @override
+  String get todayOn => 'Marked';
+  @override
+  String get todayOff => 'Not marked';
+  @override
+  String get calendarTitle => 'Your marked days';
+  @override
+  String get calendarNote => 'The marks stay in your calendar and only you see them.';
+  @override
+  String markedDay({required Object day}) => '${day} marked as a sensitive day';
+  @override
+  String get noticeTitle => 'Tell my partner';
+  @override
+  String get noticeSupport => 'A short notice, no details, and only when you want to.';
+  @override
+  String get entryTitle => 'Sensitive days';
+  @override
+  String get entrySupport => 'Only you see it';
+  @override
+  String get errorTitle => 'Couldn\'t open it';
+  @override
+  String get errorText => 'Nothing was lost. Try again.';
+  @override
+  Map<String, String> get errors => {'other': 'Couldn\'t save it now. Try again.'};
 }
 
 // Path: sessionExpired
@@ -10445,6 +10487,24 @@ extension on TranslationsEn {
           'safeMode.localOnly' => 'This stays only on this phone. Nothing is sent or recorded.',
           'safeMode.quickExit' => 'Leave now',
           'safety.entry' => 'Safety and support',
+          'sensitiveDays.title' => 'Sensitive days',
+          'sensitiveDays.subtitle' =>
+            'Somewhere only yours. Your partner sees neither this screen nor what you mark here.',
+          'sensitiveDays.todayTitle' => 'Today is a sensitive day',
+          'sensitiveDays.todayOn' => 'Marked',
+          'sensitiveDays.todayOff' => 'Not marked',
+          'sensitiveDays.calendarTitle' => 'Your marked days',
+          'sensitiveDays.calendarNote' => 'The marks stay in your calendar and only you see them.',
+          'sensitiveDays.markedDay' => ({
+            required Object day,
+          }) => '${day} marked as a sensitive day',
+          'sensitiveDays.noticeTitle' => 'Tell my partner',
+          'sensitiveDays.noticeSupport' => 'A short notice, no details, and only when you want to.',
+          'sensitiveDays.entryTitle' => 'Sensitive days',
+          'sensitiveDays.entrySupport' => 'Only you see it',
+          'sensitiveDays.errorTitle' => 'Couldn\'t open it',
+          'sensitiveDays.errorText' => 'Nothing was lost. Try again.',
+          'sensitiveDays.errors.other' => 'Couldn\'t save it now. Try again.',
           'sessionExpired.title' => 'Your session ended',
           'sessionExpired.highlight' => 'ended',
           'sessionExpired.text' => 'Sign in again to continue. Your data is safe.',
@@ -10697,6 +10757,9 @@ extension on TranslationsEn {
           'slipsList.weekdaysShort.1' => 'Tue',
           'slipsList.weekdaysShort.2' => 'Wed',
           'slipsList.weekdaysShort.3' => 'Thu',
+          _ => null,
+        } ??
+        switch (path) {
           'slipsList.weekdaysShort.4' => 'Fri',
           'slipsList.weekdaysShort.5' => 'Sat',
           'slipsList.weekdaysShort.6' => 'Sun',
@@ -10712,9 +10775,6 @@ extension on TranslationsEn {
           'slipsList.monthsShort.9' => 'Oct',
           'slipsList.monthsShort.10' => 'Nov',
           'slipsList.monthsShort.11' => 'Dec',
-          _ => null,
-        } ??
-        switch (path) {
           'slipsList.categories.said' => 'Said something',
           'slipsList.categories.did' => 'Did something',
           'slipsList.categories.noticed' => 'Noticed me',
@@ -11318,6 +11378,9 @@ extension on TranslationsEn {
           'widgets.statesPrecedenceNote' => 'When both discreet mode and no-partner are active at the same time, widgets always degrade to the most neutral variant (Reminder).',
           'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
             'Could not save widget preferences right now.',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' => 'Could not load the couple photo right now.',
           'widgets.errors.COUPLE_PHOTO_UPLOAD_FAILED' =>
             'Could not save the couple photo right now.',

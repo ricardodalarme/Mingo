@@ -2089,6 +2089,22 @@ class SafeModeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SensitiveDaysPage]
+class SensitiveDaysRoute extends PageRouteInfo<void> {
+  const SensitiveDaysRoute({List<PageRouteInfo>? children})
+    : super(SensitiveDaysRoute.name, initialChildren: children);
+
+  static const String name = 'SensitiveDaysRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SensitiveDaysPage());
+    },
+  );
+}
+
+/// generated route for
 /// [SessionExpiredPage]
 class SessionExpiredRoute extends PageRouteInfo<SessionExpiredRouteArgs> {
   SessionExpiredRoute({
