@@ -376,6 +376,53 @@ enum WorkArea_enum {
   planning
 }
 """
+unique or primary key constraints on table "annoyances"
+"""
+enum annoyances_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  annoyances_pkey
+}
+"""
+select columns of table "annoyances"
+"""
+enum annoyances_select_column {
+  """
+  column name
+  """
+  authorId
+  """
+  column name
+  """
+  body
+  """
+  column name
+  """
+  checkSentAt
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  expiresAt
+  """
+  column name
+  """
+  id
+}
+"""
+update columns of table "annoyances"
+"""
+enum annoyances_update_column {
+  """
+  column name
+  """
+  body
+}
+"""
 select columns of table "app_config"
 """
 enum appConfig_select_column {
@@ -1408,6 +1455,59 @@ enum gameSessions_update_column {
   placeholder (do not use)
   """
   _PLACEHOLDER
+}
+"""
+select columns of table "gentle_requests"
+"""
+enum gentleRequests_select_column {
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  feelText
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  purgeAfter
+  """
+  column name
+  """
+  recipientId
+  """
+  column name
+  """
+  respondedAt
+  """
+  column name
+  """
+  response
+  """
+  column name
+  """
+  seenAt
+  """
+  column name
+  """
+  senderId
+  """
+  column name
+  """
+  thankedAt
+  """
+  column name
+  """
+  whenText
+  """
+  column name
+  """
+  wishText
 }
 """
 unique or primary key constraints on table "gift_ideas"
@@ -4020,6 +4120,71 @@ enum yearRecaps_select_column {
   year
 }
 """
+columns and relationships of "annoyances"
+"""
+type annoyances {
+  """
+  An object relationship
+  """
+  author: profiles!
+  authorId: uuid!
+  body: String!
+  checkSentAt: timestamptz
+  createdAt: timestamptz!
+  expiresAt: timestamptz!
+  id: uuid!
+}
+"""
+aggregated selection of "annoyances"
+"""
+type annoyances_aggregate {
+  aggregate: annoyances_aggregate_fields
+  nodes: [annoyances!]!
+}
+"""
+aggregate fields of "annoyances"
+"""
+type annoyances_aggregate_fields {
+  count(columns: [annoyances_select_column!], distinct: Boolean): Int!
+  max: annoyances_max_fields
+  min: annoyances_min_fields
+}
+"""
+aggregate max on columns
+"""
+type annoyances_max_fields {
+  authorId: uuid
+  body: String
+  checkSentAt: timestamptz
+  createdAt: timestamptz
+  expiresAt: timestamptz
+  id: uuid
+}
+"""
+aggregate min on columns
+"""
+type annoyances_min_fields {
+  authorId: uuid
+  body: String
+  checkSentAt: timestamptz
+  createdAt: timestamptz
+  expiresAt: timestamptz
+  id: uuid
+}
+"""
+response of any mutation on the table "annoyances"
+"""
+type annoyances_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [annoyances!]!
+}
+"""
 columns and relationships of "app_config"
 """
 type appConfig {
@@ -5064,6 +5229,44 @@ type gameSessions_mutation_response {
   data from the rows affected by the mutation
   """
   returning: [gameSessions!]!
+}
+"""
+columns and relationships of "gentle_requests"
+"""
+type gentleRequests {
+  createdAt: timestamptz!
+  feelText: String!
+  id: uuid!
+  purgeAfter: timestamptz!
+  """
+  An object relationship
+  """
+  recipient: profiles!
+  recipientId: uuid!
+  respondedAt: timestamptz
+  response: String
+  seenAt: timestamptz
+  """
+  An object relationship
+  """
+  sender: profiles!
+  senderId: uuid!
+  thankedAt: timestamptz
+  whenText: String!
+  wishText: String!
+}
+"""
+response of any mutation on the table "gentle_requests"
+"""
+type gentleRequests_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [gentleRequests!]!
 }
 """
 columns and relationships of "gift_ideas"
@@ -6292,6 +6495,19 @@ type mutation_root {
     where: profiles_bool_exp
   ): [profiles!]!
   """
+  delete data from the table: "annoyances"
+  """
+  deleteAnnoyances(
+    """
+    filter the rows which have to be deleted
+    """
+    where: annoyances_bool_exp!
+  ): annoyances_mutation_response
+  """
+  delete single row from the table: "annoyances"
+  """
+  deleteAnnoyancesByPk(id: uuid!): annoyances
+  """
   delete data from the table: "capsules"
   """
   deleteCapsules(
@@ -6759,6 +6975,34 @@ type mutation_root {
   delete single row from the table: "temperature_checks"
   """
   deleteTemperatureChecksByPk(id: uuid!): temperatureChecks
+  """
+  insert data into the table: "annoyances"
+  """
+  insertAnnoyances(
+    """
+    the rows to be inserted
+    """
+    objects: [annoyances_insert_input!]!
+
+    """
+    upsert condition
+    """
+    on_conflict: annoyances_on_conflict
+  ): annoyances_mutation_response
+  """
+  insert a single row into the table: "annoyances"
+  """
+  insertAnnoyancesOne(
+    """
+    the row to be inserted
+    """
+    object: annoyances_insert_input!
+
+    """
+    upsert condition
+    """
+    on_conflict: annoyances_on_conflict
+  ): annoyances
   """
   insert data into the table: "capsules"
   """
@@ -8067,6 +8311,40 @@ type mutation_root {
     where: cards_bool_exp
   ): [cards!]!
   """
+  execute VOLATILE function "send_gentle_request" which returns "gentle_requests"
+  """
+  sendGentleRequest(
+    """
+    input parameters for function "sendGentleRequest"
+    """
+    args: sendGentleRequest_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [gentleRequests_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [gentleRequests_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: gentleRequests_bool_exp
+  ): [gentleRequests!]!
+  """
   execute VOLATILE function "send_slip" which returns "cards"
   """
   sendSlip(
@@ -8198,6 +8476,40 @@ type mutation_root {
     where: chatTurns_bool_exp
   ): [chatTurns!]!
   """
+  execute VOLATILE function "thank_gentle_request" which returns "slips"
+  """
+  thankGentleRequest(
+    """
+    input parameters for function "thankGentleRequest"
+    """
+    args: thankGentleRequest_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [slips_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [slips_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: slips_bool_exp
+  ): [slips!]!
+  """
   execute VOLATILE function "try_accept_invite" which returns "invite_accept_results"
   """
   tryAcceptInvite(
@@ -8260,6 +8572,38 @@ type mutation_root {
     """
     where: profiles_bool_exp
   ): [profiles!]!
+  """
+  update data of the table: "annoyances"
+  """
+  updateAnnoyances(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: annoyances_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: annoyances_bool_exp!
+  ): annoyances_mutation_response
+  """
+  update single row of the table: "annoyances"
+  """
+  updateAnnoyancesByPk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: annoyances_set_input
+  pk_columns: annoyances_pk_columns_input!): annoyances
+  """
+  update multiples rows of table: "annoyances"
+  """
+  updateAnnoyancesMany(
+    """
+    updates to execute, in order
+    """
+    updates: [annoyances_updates!]!
+  ): [annoyances_mutation_response]
   """
   update data of the table: "card_items"
   """
@@ -8592,6 +8936,38 @@ type mutation_root {
     """
     updates: [gameAnswers_updates!]!
   ): [gameAnswers_mutation_response]
+  """
+  update data of the table: "gentle_requests"
+  """
+  updateGentleRequests(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: gentleRequests_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: gentleRequests_bool_exp!
+  ): gentleRequests_mutation_response
+  """
+  update single row of the table: "gentle_requests"
+  """
+  updateGentleRequestsByPk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: gentleRequests_set_input
+  pk_columns: gentleRequests_pk_columns_input!): gentleRequests
+  """
+  update multiples rows of table: "gentle_requests"
+  """
+  updateGentleRequestsMany(
+    """
+    updates to execute, in order
+    """
+    updates: [gentleRequests_updates!]!
+  ): [gentleRequests_mutation_response]
   """
   update data of the table: "gift_ideas"
   """
@@ -9947,6 +10323,68 @@ type programEnrollments_variance_fields {
 }
 type query_root {
   """
+  fetch data from the table: "annoyances"
+  """
+  annoyances(
+    """
+    distinct select on columns
+    """
+    distinct_on: [annoyances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [annoyances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: annoyances_bool_exp
+  ): [annoyances!]!
+  """
+  fetch aggregated fields from the table: "annoyances"
+  """
+  annoyancesAggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [annoyances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [annoyances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: annoyances_bool_exp
+  ): annoyances_aggregate!
+  """
+  fetch data from the table: "annoyances" using primary key columns
+  """
+  annoyancesByPk(id: uuid!): annoyances
+  """
   fetch data from the table: "app_config"
   """
   appConfig(
@@ -10823,6 +11261,39 @@ type query_root {
   fetch data from the table: "game_sessions" using primary key columns
   """
   gameSessionsByPk(id: uuid!): gameSessions
+  """
+  fetch data from the table: "gentle_requests"
+  """
+  gentleRequests(
+    """
+    distinct select on columns
+    """
+    distinct_on: [gentleRequests_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [gentleRequests_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: gentleRequests_bool_exp
+  ): [gentleRequests!]!
+  """
+  fetch data from the table: "gentle_requests" using primary key columns
+  """
+  gentleRequestsByPk(id: uuid!): gentleRequests
   """
   fetch data from the table: "gift_ideas"
   """
@@ -13918,6 +14389,87 @@ type storyEvents_mutation_response {
 }
 type subscription_root {
   """
+  fetch data from the table: "annoyances"
+  """
+  annoyances(
+    """
+    distinct select on columns
+    """
+    distinct_on: [annoyances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [annoyances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: annoyances_bool_exp
+  ): [annoyances!]!
+  """
+  fetch aggregated fields from the table: "annoyances"
+  """
+  annoyancesAggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [annoyances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [annoyances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: annoyances_bool_exp
+  ): annoyances_aggregate!
+  """
+  fetch data from the table: "annoyances" using primary key columns
+  """
+  annoyancesByPk(id: uuid!): annoyances
+  """
+  fetch data from the table in a streaming manner: "annoyances"
+  """
+  annoyancesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [annoyances_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: annoyances_bool_exp
+  ): [annoyances!]!
+  """
   fetch data from the table: "app_config"
   """
   appConfig(
@@ -15231,6 +15783,58 @@ type subscription_root {
     """
     where: gameSessions_bool_exp
   ): [gameSessions!]!
+  """
+  fetch data from the table: "gentle_requests"
+  """
+  gentleRequests(
+    """
+    distinct select on columns
+    """
+    distinct_on: [gentleRequests_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [gentleRequests_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: gentleRequests_bool_exp
+  ): [gentleRequests!]!
+  """
+  fetch data from the table: "gentle_requests" using primary key columns
+  """
+  gentleRequestsByPk(id: uuid!): gentleRequests
+  """
+  fetch data from the table in a streaming manner: "gentle_requests"
+  """
+  gentleRequestsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [gentleRequests_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: gentleRequests_bool_exp
+  ): [gentleRequests!]!
   """
   fetch data from the table: "gift_ideas"
   """
@@ -19029,6 +19633,94 @@ input acceptInvite_args {
   code: String
 }
 """
+Boolean expression to filter rows from the table "annoyances". All fields are combined with a logical 'AND'.
+"""
+input annoyances_bool_exp {
+  _and: [annoyances_bool_exp!]
+  _not: annoyances_bool_exp
+  _or: [annoyances_bool_exp!]
+  author: profiles_bool_exp
+  authorId: uuid_comparison_exp
+  body: String_comparison_exp
+  checkSentAt: timestamptz_comparison_exp
+  createdAt: timestamptz_comparison_exp
+  expiresAt: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+}
+"""
+input type for inserting data into table "annoyances"
+"""
+input annoyances_insert_input {
+  body: String
+  id: uuid
+}
+"""
+on_conflict condition type for table "annoyances"
+"""
+input annoyances_on_conflict {
+  constraint: annoyances_constraint!
+  update_columns: [annoyances_update_column!]! = []
+  where: annoyances_bool_exp
+}
+"""
+Ordering options when selecting data from "annoyances".
+"""
+input annoyances_order_by {
+  author: profiles_order_by
+  authorId: order_by
+  body: order_by
+  checkSentAt: order_by
+  createdAt: order_by
+  expiresAt: order_by
+  id: order_by
+}
+"""
+primary key columns input for table: annoyances
+"""
+input annoyances_pk_columns_input {
+  id: uuid!
+}
+"""
+input type for updating data in table "annoyances"
+"""
+input annoyances_set_input {
+  body: String
+}
+"""
+Streaming cursor of the table "annoyances"
+"""
+input annoyances_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: annoyances_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input annoyances_stream_cursor_value_input {
+  authorId: uuid
+  body: String
+  checkSentAt: timestamptz
+  createdAt: timestamptz
+  expiresAt: timestamptz
+  id: uuid
+}
+input annoyances_updates {
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: annoyances_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: annoyances_bool_exp!
+}
+"""
 Boolean expression to filter rows from the table "app_config". All fields are combined with a logical 'AND'.
 """
 input appConfig_bool_exp {
@@ -21065,6 +21757,100 @@ input gameSessions_stream_cursor_value_input {
   openKey: String
   outcome: GameOutcome_enum
   status: GameStatus_enum
+}
+"""
+Boolean expression to filter rows from the table "gentle_requests". All fields are combined with a logical 'AND'.
+"""
+input gentleRequests_bool_exp {
+  _and: [gentleRequests_bool_exp!]
+  _not: gentleRequests_bool_exp
+  _or: [gentleRequests_bool_exp!]
+  createdAt: timestamptz_comparison_exp
+  feelText: String_comparison_exp
+  id: uuid_comparison_exp
+  purgeAfter: timestamptz_comparison_exp
+  recipient: profiles_bool_exp
+  recipientId: uuid_comparison_exp
+  respondedAt: timestamptz_comparison_exp
+  response: String_comparison_exp
+  seenAt: timestamptz_comparison_exp
+  sender: profiles_bool_exp
+  senderId: uuid_comparison_exp
+  thankedAt: timestamptz_comparison_exp
+  whenText: String_comparison_exp
+  wishText: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "gentle_requests".
+"""
+input gentleRequests_order_by {
+  createdAt: order_by
+  feelText: order_by
+  id: order_by
+  purgeAfter: order_by
+  recipient: profiles_order_by
+  recipientId: order_by
+  respondedAt: order_by
+  response: order_by
+  seenAt: order_by
+  sender: profiles_order_by
+  senderId: order_by
+  thankedAt: order_by
+  whenText: order_by
+  wishText: order_by
+}
+"""
+primary key columns input for table: gentle_requests
+"""
+input gentleRequests_pk_columns_input {
+  id: uuid!
+}
+"""
+input type for updating data in table "gentle_requests"
+"""
+input gentleRequests_set_input {
+  response: String
+  seenAt: timestamptz
+}
+"""
+Streaming cursor of the table "gentleRequests"
+"""
+input gentleRequests_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: gentleRequests_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input gentleRequests_stream_cursor_value_input {
+  createdAt: timestamptz
+  feelText: String
+  id: uuid
+  purgeAfter: timestamptz
+  recipientId: uuid
+  respondedAt: timestamptz
+  response: String
+  seenAt: timestamptz
+  senderId: uuid
+  thankedAt: timestamptz
+  whenText: String
+  wishText: String
+}
+input gentleRequests_updates {
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: gentleRequests_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: gentleRequests_bool_exp!
 }
 """
 Boolean expression to filter rows from the table "gift_ideas". All fields are combined with a logical 'AND'.
@@ -24527,6 +25313,12 @@ input savedDateIdeas_updates {
 input sendCard_args {
   cardId: uuid
 }
+input sendGentleRequest_args {
+  annoyanceId: uuid
+  feelText: String
+  whenText: String
+  wishText: String
+}
 input sendSlip_args {
   note: String
   slipId: uuid
@@ -25196,6 +25988,10 @@ input temperatureChecks_updates {
   filter the rows which have to be updated
   """
   where: temperatureChecks_bool_exp!
+}
+input thankGentleRequest_args {
+  body: String
+  requestId: uuid
 }
 """
 Boolean expression to compare columns of type "time". All fields are combined with logical 'AND'.

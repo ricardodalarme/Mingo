@@ -75,7 +75,7 @@ function sharedWithCouple({ insert, update, object, array, partnerWrites = true,
 const cardVisible = or(mine(), and(mine('recipient_id'), { status: { _eq: 'sent' } }));
 const myUnsentCard = and(mine(), { status: { _neq: 'sent' } });
 const receivedCard = and(mine('recipient_id'), { status: { _eq: 'sent' } });
-const eligibleSlip = and(mine(), { for_card: { _eq: true } }, { kind: { _neq: 'invisible' } }, { polarity: { _eq: 'liked' } }, isNull('archived_at'));
+const eligibleSlip = and(mine(), { for_card: { _eq: true } }, { kind: { _neq: 'invisible' } }, isNull('archived_at'));
 
 // Spice cards exist only for a couple where both switched the mode on.
 const spiceAllowed = and(
@@ -156,6 +156,19 @@ export const tables = {
   start_dates: resultTable(['user']),
   invite_statuses: resultTable(['public', 'user']),
   invite_accept_results: resultTable(['user']),
+
+  // Annoyances and gentle requests ---------------------------------------------------------------------------------------
+  annoyances: ownerOnly({ insert: ['body'], update: ['body'] }),
+  gentle_requests: {
+    object: { sender: 'sender_id', recipient: 'recipient_id' },
+    roles: {
+      user: {
+        select: { columns: '*', filter: or(mine('sender_id'), mine('recipient_id')) },
+        // The recipient answers; the request itself is created by `sendGentleRequest` after the confirmation.
+        update: { columns: ['response', 'seen_at'], filter: mine('recipient_id') },
+      },
+    },
+  },
 
   // Slips and cards ------------------------------------------------------------------------------------------------
   slips: ownerOnly({
@@ -617,6 +630,8 @@ export const functions = {
   try_accept_invite: { session: true, roles: ['user'] },
   invite_status: { roles: ['public', 'user'] },
   unpair: { session: true, roles: ['user'] },
+  send_gentle_request: { session: true, roles: ['user'] },
+  thank_gentle_request: { session: true, roles: ['user'] },
   start_date_state: { session: true, roles: ['user'] },
   set_couple_start_date: { session: true, roles: ['user'] },
   resolve_shared_items: { session: true, roles: ['user'] },

@@ -1,0 +1,11 @@
+function:
+  name: thank_gentle_request
+  schema: public
+configuration:
+  custom_name: thankGentleRequest
+  custom_root_fields:
+    function: thankGentleRequest
+    function_aggregate: thankGentleRequestAggregate
+  session_argument: session
+permissions:
+  - role: user

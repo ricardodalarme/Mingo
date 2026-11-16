@@ -41,20 +41,18 @@ test('the author of a slip is always the caller, whatever the client sends', asy
   assert.equal(again.insertSlipsOne.body, 'edited', 'saving the same id again edits the slip');
 });
 
-test('a bothered or invisible slip never reaches a card, and a request needs a bothered slip', async () => {
+test('an invisible slip never reaches a card, and a bothered slip can no longer be written', async () => {
   const a = await person();
-  const bothered = await addSlip(a, 'body: "left the dishes", polarity: bothered, forCard: true, request: " next time tell me "');
-  assert.deepEqual([bothered.forCard, bothered.request], [false, 'next time tell me']);
+  await denied(a, `mutation { insertSlipsOne(object: {body: "left the dishes", polarity: bothered}) { id } }`);
   const invisible = await addSlip(a, 'body: "planned the week", kind: invisible, forCard: true');
   assert.equal(invisible.forCard, false);
   const liked = await addSlip(a, 'body: "nice", request: "ignored"');
   assert.equal(liked.request, null);
   const { prepareCard } = await ok(a, `mutation { prepareCard { cardId } }`);
   assert.deepEqual((await ok(a, `{ cardItems { slipId } }`)).cardItems, [{ slipId: liked.id }]);
-  await denied(a, `mutation ($c: uuid!, $s: uuid!) { insertCardItemsOne(object: {cardId: $c, slipId: $s}) { id } }`, { c: prepareCard[0].cardId, s: bothered.id });
-  await ok(a, `mutation ($s: uuid!) { updateSlipsByPk(pk_columns: {id: $s}, _set: {polarity: bothered}) { id } }`, { s: liked.id });
-  assert.deepEqual((await ok(a, `{ cardItems { id } }`)).cardItems, [], 'a slip turned bothered leaves the draft');
-  assert.deepEqual((await ok(a, `mutation ($s: uuid!) { sendSlip(args: {slipId: $s}) { id } }`, { s: bothered.id })).sendSlip, []);
+  await denied(a, `mutation ($c: uuid!, $s: uuid!) { insertCardItemsOne(object: {cardId: $c, slipId: $s}) { id } }`, { c: prepareCard[0].cardId, s: invisible.id });
+  await denied(a, `mutation ($s: uuid!) { updateSlipsByPk(pk_columns: {id: $s}, _set: {polarity: bothered}) { id } }`, { s: liked.id });
+  assert.deepEqual((await ok(a, `mutation ($s: uuid!) { sendSlip(args: {slipId: $s}) { id } }`, { s: invisible.id })).sendSlip, []);
 });
 
 test('slips are unlimited on the free plan', async () => {

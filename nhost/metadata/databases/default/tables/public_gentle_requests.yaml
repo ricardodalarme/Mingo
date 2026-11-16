@@ -1,0 +1,94 @@
+table:
+  name: gentle_requests
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    feel_text:
+      custom_name: feelText
+    id:
+      custom_name: id
+    purge_after:
+      custom_name: purgeAfter
+    recipient_id:
+      custom_name: recipientId
+    responded_at:
+      custom_name: respondedAt
+    response:
+      custom_name: response
+    seen_at:
+      custom_name: seenAt
+    sender_id:
+      custom_name: senderId
+    thanked_at:
+      custom_name: thankedAt
+    when_text:
+      custom_name: whenText
+    wish_text:
+      custom_name: wishText
+  custom_column_names:
+    created_at: createdAt
+    feel_text: feelText
+    id: id
+    purge_after: purgeAfter
+    recipient_id: recipientId
+    responded_at: respondedAt
+    response: response
+    seen_at: seenAt
+    sender_id: senderId
+    thanked_at: thankedAt
+    when_text: whenText
+    wish_text: wishText
+  custom_name: gentleRequests
+  custom_root_fields:
+    delete: deleteGentleRequests
+    delete_by_pk: deleteGentleRequestsByPk
+    insert: insertGentleRequests
+    insert_one: insertGentleRequestsOne
+    select: gentleRequests
+    select_aggregate: gentleRequestsAggregate
+    select_by_pk: gentleRequestsByPk
+    select_stream: gentleRequestsStream
+    update: updateGentleRequests
+    update_by_pk: updateGentleRequestsByPk
+    update_many: updateGentleRequestsMany
+object_relationships:
+  - name: recipient
+    using:
+      foreign_key_constraint_on: recipient_id
+  - name: sender
+    using:
+      foreign_key_constraint_on: sender_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - feel_text
+        - id
+        - purge_after
+        - recipient_id
+        - responded_at
+        - response
+        - seen_at
+        - sender_id
+        - thanked_at
+        - when_text
+        - wish_text
+      filter:
+        _or:
+          - sender_id:
+              _eq: X-Hasura-User-Id
+          - recipient_id:
+              _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - response
+        - seen_at
+      filter:
+        recipient_id:
+          _eq: X-Hasura-User-Id
+      check: null

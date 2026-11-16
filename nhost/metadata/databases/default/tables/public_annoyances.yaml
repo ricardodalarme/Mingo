@@ -1,0 +1,79 @@
+table:
+  name: annoyances
+  schema: public
+configuration:
+  column_config:
+    author_id:
+      custom_name: authorId
+    body:
+      custom_name: body
+    check_sent_at:
+      custom_name: checkSentAt
+    created_at:
+      custom_name: createdAt
+    expires_at:
+      custom_name: expiresAt
+    id:
+      custom_name: id
+  custom_column_names:
+    author_id: authorId
+    body: body
+    check_sent_at: checkSentAt
+    created_at: createdAt
+    expires_at: expiresAt
+    id: id
+  custom_name: annoyances
+  custom_root_fields:
+    delete: deleteAnnoyances
+    delete_by_pk: deleteAnnoyancesByPk
+    insert: insertAnnoyances
+    insert_one: insertAnnoyancesOne
+    select: annoyances
+    select_aggregate: annoyancesAggregate
+    select_by_pk: annoyancesByPk
+    select_stream: annoyancesStream
+    update: updateAnnoyances
+    update_by_pk: updateAnnoyancesByPk
+    update_many: updateAnnoyancesMany
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        author_id: X-Hasura-User-Id
+      columns:
+        - id
+        - body
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - author_id
+        - body
+        - check_sent_at
+        - created_at
+        - expires_at
+        - id
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - body
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id

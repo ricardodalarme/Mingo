@@ -1,0 +1,11 @@
+function:
+  name: send_gentle_request
+  schema: public
+configuration:
+  custom_name: sendGentleRequest
+  custom_root_fields:
+    function: sendGentleRequest
+    function_aggregate: sendGentleRequestAggregate
+  session_argument: session
+permissions:
+  - role: user

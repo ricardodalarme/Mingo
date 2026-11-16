@@ -61,8 +61,6 @@ insert_permissions:
                     _eq: true
                 - kind:
                     _neq: invisible
-                - polarity:
-                    _eq: liked
                 - archived_at:
                     _is_null: true
       columns:
