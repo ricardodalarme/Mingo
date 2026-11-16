@@ -92,55 +92,6 @@ export async function relay(chunks: AsyncIterable<Uint8Array>, send: (event: Cha
   send({ type: 'done', options });
 }
 
-export type PromptOptions = {
-  pronouns?: string | null;
-  partnerPronouns?: string | null;
-  partnerName?: string | null;
-  context?: string;
-  actions?: boolean;
-};
-
-const PRONOUN_WORDS: Record<string, { pt: string; en: string }> = {
-  she: { pt: 'ela/dela', en: 'she/her' },
-  he: { pt: 'ele/dele', en: 'he/him' },
-  name_only: { pt: 'sem pronomes: use só o nome', en: 'no pronouns: use the name only' },
-};
-
-function pronounRule(pt: boolean, options: PromptOptions): string {
-  const word = (key?: string | null) => (key && PRONOUN_WORDS[key] ? PRONOUN_WORDS[key][pt ? 'pt' : 'en'] : null);
-  const own = word(options.pronouns);
-  const partner = word(options.partnerPronouns);
-  const name = options.partnerName ? (pt ? ` O nome do parceiro é ${options.partnerName}.` : ` The partner's name is ${options.partnerName}.`) : '';
-  if (pt) {
-    return ` Pronomes: a pessoa usa ${own ?? 'não informado'}; o parceiro usa ${partner ?? 'não informado'}.${name} Use exatamente esses pronomes; quando não estiverem informados, use o nome ou frases neutras e nunca adivinhe.`;
-  }
-  return ` Pronouns: the person uses ${own ?? 'not stated'}; their partner uses ${partner ?? 'not stated'}.${name} Use exactly these pronouns; when they are not stated, use the name or neutral phrasing and never guess.`;
-}
-
-export function systemPrompt(locale: string, mode: string, options: PromptOptions | null = null): string {
-  const pt = locale.startsWith('pt');
-  const base = pt
-    ? 'Você é a mascote de um app para casais: calma, acolhedora e curta. Responda em português do Brasil, em no máximo 90 palavras, com no máximo uma pergunta. Nunca diagnostique, nunca dê conselho médico, jurídico ou clínico, nunca tome partido contra a outra pessoa e nunca pressione a pessoa a ficar ou a terminar. Não use pontuação, ranking ou cobrança. Só se a pessoa descrever perigo real, sugira procurar alguém de confiança ou o serviço de emergência da região; em qualquer outra conversa não mencione isso. Termine sempre com uma última linha no formato [[options: resposta curta 1 | resposta curta 2 | resposta curta 3]], com no máximo três opções de até quatro palavras.'
-    : 'You are the mascot of a couples app: calm, warm and brief. Answer in English, in at most 90 words, with at most one question. Never diagnose, never give medical, legal or clinical advice, never take sides against the other person and never push the person to stay or to leave. No scores, rankings or guilt. Only if the person describes real danger, suggest reaching someone they trust or local emergency services; in any other conversation do not mention it. Always end with a last line in the format [[options: short answer 1 | short answer 2 | short answer 3]], with at most three options of up to four words.';
-  let prompt = base;
-  if (mode === 'hard_conversation') {
-    prompt += pt
-      ? ' Neste modo você ajuda a pessoa a se preparar para uma conversa difícil: primeiro escute, depois ajude a nomear o que ela sente e precisa, e por fim ofereça uma frase de abertura suave que ela possa dizer com as próprias palavras.'
-      : ' In this mode you help the person prepare for a hard conversation: first listen, then help name what they feel and need, and finally offer one soft opening sentence they can say in their own words.';
-  }
-  if (!options) return prompt;
-  prompt += pronounRule(pt, options);
-  if (options.actions) {
-    prompt += pt
-      ? ' Você pode sugerir ações com as ferramentas oferecidas. Nunca diga que algo foi feito: o app pergunta à pessoa antes de qualquer coisa que chegue ao parceiro.'
-      : ' You may suggest actions with the tools provided. Never say something was done: the app asks the person before anything that reaches their partner.';
-  }
-  if (options.context) {
-    prompt += (pt ? '\n\nO que a pessoa deixou você ler (privado, não repita literalmente):\n' : '\n\nWhat the person let you read (private, do not quote verbatim):\n') + options.context;
-  }
-  return prompt;
-}
-
 /** A JSON object from an environment variable, or an empty object when it is unset or not an object. */
 export function jsonEnv(name: string): Record<string, unknown> {
   try {

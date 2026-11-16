@@ -12,7 +12,8 @@
 // CHAT_EXTRA_BODY and CHAT_EXTRA_HEADERS (JSON objects) are optional.
 import { randomUUID } from 'node:crypto';
 import { asAdmin, asCaller, header, log, type Req, type Res } from '../_lib/backend';
-import { type ChatEvent, jsonEnv, relay, systemPrompt } from './_relay';
+import { type ChatEvent, jsonEnv, relay } from './_relay';
+import { systemPrompt } from './_prompts/index.ts';
 import { loadContext } from './_context';
 import { toolDefinitions, validateAction } from './_tools';
 

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { TOOLS, toolDefinitions, validateAction } from '../_tools.ts';
-import { relay, systemPrompt, type ChatEvent } from '../_relay.ts';
+import { relay, type ChatEvent } from '../_relay.ts';
 
 const chunk = (text: string) => new TextEncoder().encode(text);
 const sse = (deltas: unknown[]) =>
@@ -89,12 +89,4 @@ test('at most three actions are relayed, and none without a validator', async ()
   const without: ChatEvent[] = [];
   await relay(sse(many), (e) => without.push(e));
   assert.deepEqual(without, [{ type: 'done', options: [] }]);
-});
-
-test('the prompt carries the stated pronouns, never a guess, and the context', () => {
-  const stated = systemPrompt('en', 'free', { pronouns: 'she', partnerPronouns: 'he', partnerName: 'Bruno', actions: true, context: 'slip: made tea' });
-  for (const word of ['she/her', 'he/him', 'Bruno', 'never guess', 'slip: made tea', 'tools provided']) assert.ok(stated.includes(word), word);
-  const unknown = systemPrompt('pt-BR', 'free', { pronouns: null, partnerPronouns: 'name_only' });
-  assert.ok(unknown.includes('não informado') && unknown.includes('só o nome') && unknown.includes('nunca adivinhe'));
-  assert.equal(systemPrompt('en', 'free'), systemPrompt('en', 'free', null), 'without options the prompt is the plain one');
 });
