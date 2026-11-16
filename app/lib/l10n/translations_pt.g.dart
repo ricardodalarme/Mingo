@@ -864,17 +864,6 @@ class Translations$chat$pt {
   /// pt: 'Mascote'
   String get title => 'Mascote';
 
-  /// pt: 'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.'
-  String get consentText =>
-      'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.';
-
-  /// pt: 'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.'
-  String get consentPrivacy =>
-      'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.';
-
-  /// pt: 'Ligar a conversa'
-  String get consentTurnOn => 'Ligar a conversa';
-
   /// pt: 'Escreva aqui'
   String get inputHint => 'Escreva aqui';
 
@@ -932,12 +921,6 @@ class Translations$chat$pt {
   /// pt: 'Configurações da conversa'
   String get settingsTitle => 'Configurações da conversa';
 
-  /// pt: 'Conversar com a mascote'
-  String get toggleLabel => 'Conversar com a mascote';
-
-  /// pt: 'Só você decide quando a conversa está ligada.'
-  String get toggleSubtitle => 'Só você decide quando a conversa está ligada.';
-
   /// pt: 'Plano Plus'
   String get planPlus => 'Plano Plus';
 
@@ -957,16 +940,6 @@ class Translations$chat$pt {
   /// pt: 'Só o texto que você escreve e os últimos turnos da conversa vão para o modelo, para gerar a resposta. Nada é guardado, a menos que você salve como slip ou aprendizado.'
   String get sendingText =>
       'Só o texto que você escreve e os últimos turnos da conversa vão para o modelo, para gerar a resposta. Nada é guardado, a menos que você salve como slip ou aprendizado.';
-
-  /// pt: 'Ao desligar, o passo de consentimento volta. A próxima mensagem só é enviada depois que você ligar de novo.'
-  String get disableNote =>
-      'Ao desligar, o passo de consentimento volta. A próxima mensagem só é enviada depois que você ligar de novo.';
-
-  /// pt: 'Conversa ligada'
-  String get settingsOn => 'Conversa ligada';
-
-  /// pt: 'Conversa desligada'
-  String get settingsOff => 'Conversa desligada';
 
   /// pt: 'Sem conexão. A conversa volta quando você reconectar.'
   String get offline => 'Sem conexão. A conversa volta quando você reconectar.';
@@ -10284,9 +10257,6 @@ extension on Translations {
           'cardsList.notFound' => 'Esse cartão não está mais disponível.',
           'cardsList.reactionQuoteMadeMyDay' => 'Isso fez a minha semana.',
           'chat.title' => 'Mascote',
-          'chat.consentText' => 'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.',
-          'chat.consentPrivacy' => 'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.',
-          'chat.consentTurnOn' => 'Ligar a conversa',
           'chat.inputHint' => 'Escreva aqui',
           'chat.draftErrors.empty' => 'Escreva algo para enviar',
           'chat.draftErrors.tooLong' => 'Esta mensagem está muito longa',
@@ -10311,8 +10281,6 @@ extension on Translations {
           'chat.learningSaved' => 'Aprendizado guardado',
           'chat.learnedLink' => 'O que aprendi',
           'chat.settingsTitle' => 'Configurações da conversa',
-          'chat.toggleLabel' => 'Conversar com a mascote',
-          'chat.toggleSubtitle' => 'Só você decide quando a conversa está ligada.',
           'chat.planPlus' => 'Plano Plus',
           'chat.planFree' => 'Plano gratuito',
           'chat.usagePlus' => ({
@@ -10322,9 +10290,6 @@ extension on Translations {
           'chat.usageFree' => 'A conversa faz parte do Plus. O plano gratuito não tem mensagens.',
           'chat.sendingTitle' => 'O que é enviado',
           'chat.sendingText' => 'Só o texto que você escreve e os últimos turnos da conversa vão para o modelo, para gerar a resposta. Nada é guardado, a menos que você salve como slip ou aprendizado.',
-          'chat.disableNote' => 'Ao desligar, o passo de consentimento volta. A próxima mensagem só é enviada depois que você ligar de novo.',
-          'chat.settingsOn' => 'Conversa ligada',
-          'chat.settingsOff' => 'Conversa desligada',
           'chat.offline' => 'Sem conexão. A conversa volta quando você reconectar.',
           'chat.interrupted' => 'A resposta foi interrompida.',
           'chat.retry' => 'Tentar de novo',
@@ -10522,9 +10487,6 @@ extension on Translations {
           'dates.kinds.custom' => 'Outra',
           'dates.kinds.holiday' => 'Feriado',
           'dates.kinds.reunion' => 'Reencontro',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.kinds.other' => '',
           'dates.monthLabel' => 'Mês',
           'dates.dayLabel' => 'Dia',
@@ -10533,6 +10495,9 @@ extension on Translations {
           'dates.yearHelp' => 'Sem o ano, a data só se repete, sem idade.',
           'dates.yearErrors.invalid' => 'Use um ano entre 1900 e 2200',
           'dates.months.0' => 'janeiro',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.months.1' => 'fevereiro',
           'dates.months.2' => 'março',
           'dates.months.3' => 'abril',
@@ -11138,9 +11103,6 @@ extension on Translations {
             'A mensagem fica salva e sai quando você estiver online de novo.',
           'helpSupport.faqAnswers.privacy' =>
             'Só a equipe de suporte. Nada é compartilhado com seu parceiro.',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.faqAnswers.reportBug' =>
             'Escolha Erro no formulário e conte o que aconteceu.',
           'helpSupport.pendingNote' =>
@@ -11151,6 +11113,9 @@ extension on Translations {
           'helpSupport.supportHighlight' => 'ajudar',
           'helpSupport.topics.account' => 'Conta',
           'helpSupport.topics.billing' => 'Cobrança',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.topics.bug' => 'Erro',
           'helpSupport.topics.other' => 'Outro',
           'helpSupport.messageLabel' => 'Mensagem',
@@ -11821,9 +11786,6 @@ extension on Translations {
             'Muitas tentativas seguidas. Espere um instante.',
           'loveStyle.revokeErrors.other' => 'Não deu para tirar do widget agora. Tente de novo.',
           'memories.title' => 'Memórias',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.historyLabel' => 'NOSSA HISTÓRIA',
           'memories.historyTitle' => 'Nossa história',
           'memories.historyText' => 'Marcos, datas, lugares e a nossa história em números.',
@@ -11832,6 +11794,9 @@ extension on Translations {
           'memories.storyText' => 'Seus números em uma imagem, só com o que você escolher.',
           'memories.placesLabel' => 'LUGARES',
           'memories.placesText' => 'Só o nome do lugar, nunca a localização.',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.placeLabel' => 'Lugar (opcional)',
           'memories.placeHint' => 'Ex.: Paraty',
           'memories.placeAddressNote' => 'Prefira só o nome do lugar, sem endereço ou número.',
@@ -12418,9 +12383,6 @@ extension on Translations {
           'programs.completed' => 'Concluído',
           'programs.lessonsTitle' => 'Lições',
           'programs.lessonsComingTitle' => 'Lições chegando',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.lessonsComingText' =>
             'Este programa ainda está sendo preparado. Volte em breve.',
           'programs.lessonGoneTitle' => 'Lição indisponível',
@@ -12431,6 +12393,9 @@ extension on Translations {
           'programs.shortRead' => 'Uma ideia curta para hoje.',
           'programs.ready' => 'Pronto',
           'programs.saveForLater' => 'Salvar para depois',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.saved' => 'Guardado para depois.',
           'programs.savedTag' => 'Guardado',
           'programs.lockedTitle' => 'Lição do Plus',
@@ -12991,9 +12956,6 @@ extension on Translations {
           'slipDetail.weekdaysShort.3' => 'Qui',
           'slipDetail.weekdaysShort.4' => 'Sex',
           'slipDetail.weekdaysShort.5' => 'Sáb',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.weekdaysShort.6' => 'Dom',
           'slipDetail.factDate' => ({
             required Object weekday,
@@ -13006,6 +12968,9 @@ extension on Translations {
           'slipDetail.factInCard' => 'Incluído no cartão',
           'slipDetail.visibilityPrivate' => 'Privado',
           'slipDetail.visibilityCard' => 'No cartão semanal',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.visibilitySent' => 'Enviado',
           'slipDetail.yes' => 'Sim',
           'slipDetail.no' => 'Não',
@@ -13640,9 +13605,6 @@ extension on Translations {
           'welcome.start' => 'Começar',
           'welcome.haveAccount' => 'Já tenho conta',
           'welcome.debugSignIn' => 'Entrar (debug)',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.settingsTitle' => 'Widgets',
           'widgets.settingsSubtitle' => 'Na tela inicial',
           'widgets.juntosCategory' => 'TELA INICIAL',
@@ -13651,6 +13613,9 @@ extension on Translations {
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Só meus',
           'widgets.segmentCouple' => 'Do casal',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.ownSlipLabel' => 'ANOTAR SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Toque para anotar',

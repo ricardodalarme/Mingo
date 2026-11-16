@@ -51,7 +51,7 @@ void main() {
     connectivityService = _MockConnectivityService();
     connectivity = StreamController<bool>.broadcast();
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: true, hasPlus: true));
+        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, hasPlus: true));
     when(repository.readDraft).thenAnswer((_) async => null);
     when(repository.clearDraft).thenAnswer((_) async {});
     when(() => repository.saveDraft(any())).thenAnswer((_) async {
@@ -197,27 +197,19 @@ void main() {
     expect(cubit.state.step, HardConversationStep.whatINeed);
   });
 
-  testWidgets('without consent the page asks first and can turn it on', (tester) async {
-    var enabled = false;
+  testWidgets('a person with messages left starts on the first step', (tester) async {
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: enabled, hasPlus: true));
-    when(chatRepository.enable).thenAnswer((_) async => enabled = true);
+        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, hasPlus: true));
 
     final cubit = await pumpPage(tester);
 
-    expect(find.text('Ligar a conversa'), findsOneWidget);
-    await tester.tap(find.text('Ligar a conversa'));
-    await tester.pump();
-    await tester.pump();
-
-    verify(chatRepository.enable).called(1);
     expect(cubit.state.gate, HardConversationGate.ready);
     expect(find.text('O que aconteceu?'), findsOneWidget);
   });
 
   testWidgets('a free person sees the hard-conversation gate with a plans action', (tester) async {
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 0, limit: 0, isEnabled: false, hasPlus: false));
+        .thenAnswer((_) async => (messagesLeft: 0, limit: 0, hasPlus: false));
 
     await pumpPage(tester);
 
@@ -229,7 +221,7 @@ void main() {
 
   testWidgets('the daily limit shows the Plus limit card', (tester) async {
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 0, limit: 20, isEnabled: true, hasPlus: true));
+        .thenAnswer((_) async => (messagesLeft: 0, limit: 20, hasPlus: true));
 
     await pumpPage(tester);
 

@@ -7,8 +7,6 @@ configuration:
       custom_name: cardChannel
     card_theme:
       custom_name: cardTheme
-    chat_enabled:
-      custom_name: chatEnabled
     chat_store_facts:
       custom_name: chatStoreFacts
     created_at:
@@ -64,7 +62,6 @@ configuration:
   custom_column_names:
     card_channel: cardChannel
     card_theme: cardTheme
-    chat_enabled: chatEnabled
     chat_store_facts: chatStoreFacts
     created_at: createdAt
     goal: goal
@@ -114,7 +111,6 @@ select_permissions:
       columns:
         - card_channel
         - card_theme
-        - chat_enabled
         - chat_store_facts
         - created_at
         - goal
@@ -169,7 +165,6 @@ update_permissions:
         - widget_show_names
         - spice_enabled
         - low_stimulation
-        - chat_enabled
         - chat_store_facts
         - has_kids
         - spice_max_level

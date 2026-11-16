@@ -56,7 +56,6 @@ class QueryChatStatus {
     required this.plusStates,
     this.plusLimit,
     this.freeLimit,
-    this.userSettingsByPk,
     this.$__typename = 'query_root',
   });
 
@@ -64,7 +63,6 @@ class QueryChatStatus {
     final l$plusStates = json['plusStates'];
     final l$plusLimit = json['plusLimit'];
     final l$freeLimit = json['freeLimit'];
-    final l$userSettingsByPk = json['userSettingsByPk'];
     final l$$__typename = json['__typename'];
     return QueryChatStatus(
       plusStates: (l$plusStates as List<dynamic>)
@@ -76,9 +74,6 @@ class QueryChatStatus {
       freeLimit: l$freeLimit == null
           ? null
           : QueryChatStatusfreeLimit.fromJson((l$freeLimit as Map<String, dynamic>)),
-      userSettingsByPk: l$userSettingsByPk == null
-          ? null
-          : QueryChatStatususerSettingsByPk.fromJson((l$userSettingsByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -88,8 +83,6 @@ class QueryChatStatus {
   final QueryChatStatusplusLimit? plusLimit;
 
   final QueryChatStatusfreeLimit? freeLimit;
-
-  final QueryChatStatususerSettingsByPk? userSettingsByPk;
 
   final String $__typename;
 
@@ -101,8 +94,6 @@ class QueryChatStatus {
     _resultData['plusLimit'] = l$plusLimit?.toJson();
     final l$freeLimit = freeLimit;
     _resultData['freeLimit'] = l$freeLimit?.toJson();
-    final l$userSettingsByPk = userSettingsByPk;
-    _resultData['userSettingsByPk'] = l$userSettingsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -113,13 +104,11 @@ class QueryChatStatus {
     final l$plusStates = plusStates;
     final l$plusLimit = plusLimit;
     final l$freeLimit = freeLimit;
-    final l$userSettingsByPk = userSettingsByPk;
     final l$$__typename = $__typename;
     return Object.hashAll([
       Object.hashAll(l$plusStates.map((v) => v)),
       l$plusLimit,
       l$freeLimit,
-      l$userSettingsByPk,
       l$$__typename,
     ]);
   }
@@ -152,11 +141,6 @@ class QueryChatStatus {
     final l$freeLimit = freeLimit;
     final lOther$freeLimit = other.freeLimit;
     if (l$freeLimit != lOther$freeLimit) {
-      return false;
-    }
-    final l$userSettingsByPk = userSettingsByPk;
-    final lOther$userSettingsByPk = other.userSettingsByPk;
-    if (l$userSettingsByPk != lOther$userSettingsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -274,42 +258,6 @@ const documentNodeQueryChatStatus = DocumentNode(
               selections: [
                 FieldNode(
                   name: NameNode(value: 'value'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
-            name: NameNode(value: 'userSettingsByPk'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                name: NameNode(value: 'userId'),
-                value: VariableNode(name: NameNode(value: 'userId')),
-              ),
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'userId'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'chatEnabled'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -616,76 +564,6 @@ class QueryChatStatusfreeLimit {
     final l$value = value;
     final lOther$value = other.value;
     if (l$value != lOther$value) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryChatStatususerSettingsByPk {
-  QueryChatStatususerSettingsByPk({
-    required this.userId,
-    required this.chatEnabled,
-    this.$__typename = 'userSettings',
-  });
-
-  factory QueryChatStatususerSettingsByPk.fromJson(Map<String, dynamic> json) {
-    final l$userId = json['userId'];
-    final l$chatEnabled = json['chatEnabled'];
-    final l$$__typename = json['__typename'];
-    return QueryChatStatususerSettingsByPk(
-      userId: (l$userId as String),
-      chatEnabled: (l$chatEnabled as bool),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String userId;
-
-  final bool chatEnabled;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$userId = userId;
-    _resultData['userId'] = l$userId;
-    final l$chatEnabled = chatEnabled;
-    _resultData['chatEnabled'] = l$chatEnabled;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$userId = userId;
-    final l$chatEnabled = chatEnabled;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$userId, l$chatEnabled, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryChatStatususerSettingsByPk || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$userId = userId;
-    final lOther$userId = other.userId;
-    if (l$userId != lOther$userId) {
-      return false;
-    }
-    final l$chatEnabled = chatEnabled;
-    final lOther$chatEnabled = other.chatEnabled;
-    if (l$chatEnabled != lOther$chatEnabled) {
       return false;
     }
     final l$$__typename = $__typename;

@@ -4260,10 +4260,6 @@ enum userSettings_select_column {
   """
   column name
   """
-  chatEnabled
-  """
-  column name
-  """
   chatStoreFacts
   """
   column name
@@ -20849,7 +20845,6 @@ columns and relationships of "user_settings"
 type userSettings {
   cardChannel: CardChannel_enum!
   cardTheme: String!
-  chatEnabled: Boolean!
   chatStoreFacts: Boolean!
   createdAt: timestamptz!
   goal: RelationshipGoal_enum
@@ -28585,7 +28580,6 @@ input userSettings_bool_exp {
   _or: [userSettings_bool_exp!]
   cardChannel: CardChannel_enum_comparison_exp
   cardTheme: String_comparison_exp
-  chatEnabled: Boolean_comparison_exp
   chatStoreFacts: Boolean_comparison_exp
   createdAt: timestamptz_comparison_exp
   goal: RelationshipGoal_enum_comparison_exp
@@ -28626,7 +28620,6 @@ Ordering options when selecting data from "user_settings".
 input userSettings_order_by {
   cardChannel: order_by
   cardTheme: order_by
-  chatEnabled: order_by
   chatStoreFacts: order_by
   createdAt: order_by
   goal: order_by
@@ -28667,7 +28660,6 @@ input type for updating data in table "user_settings"
 input userSettings_set_input {
   cardChannel: CardChannel_enum
   cardTheme: String
-  chatEnabled: Boolean
   chatStoreFacts: Boolean
   goal: RelationshipGoal_enum
   goals: [String!]
@@ -28711,7 +28703,6 @@ Initial value of the column from where the streaming should start
 input userSettings_stream_cursor_value_input {
   cardChannel: CardChannel_enum
   cardTheme: String
-  chatEnabled: Boolean
   chatStoreFacts: Boolean
   createdAt: timestamptz
   goal: RelationshipGoal_enum

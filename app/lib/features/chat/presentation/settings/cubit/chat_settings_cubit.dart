@@ -9,7 +9,7 @@ class ChatSettingsCubit({required final ChatRepository _chatRepository})
     extends Cubit<ChatSettingsState> {
   this : super(const ChatSettingsState());
 
-  /// Reads whether the chat is on and today's usage.
+  /// Reads today's usage.
   Future<void> load() async {
     emit(state.copyWith(status: const Loading()));
     try {
@@ -18,7 +18,6 @@ class ChatSettingsCubit({required final ChatRepository _chatRepository})
       emit(
         state.copyWith(
           status: const Success(null),
-          isEnabled: status.isEnabled,
           messagesLeft: status.messagesLeft,
           limit: status.limit,
           hasPlus: status.hasPlus,
@@ -28,27 +27,5 @@ class ChatSettingsCubit({required final ChatRepository _chatRepository})
       if (isClosed) return;
       emit(state.copyWith(status: Failure.fromObject(exception)));
     }
-  }
-
-  /// Turns the chat on or off; the switch moves before the server confirms and returns on failure.
-  Future<void> setEnabled({required bool enabled}) async {
-    if (state.toggleAction.isLoading || enabled == state.isEnabled) return;
-
-    final previous = state.isEnabled;
-    emit(state.copyWith(isEnabled: enabled, toggleAction: const Loading()));
-    try {
-      if (enabled) {
-        await _chatRepository.enable();
-      } else {
-        await _chatRepository.disable();
-      }
-      if (isClosed) return;
-      emit(state.copyWith(toggleAction: const Success(null)));
-    } catch (exception) {
-      if (isClosed) return;
-      emit(state.copyWith(isEnabled: previous, toggleAction: Failure.fromObject(exception)));
-    }
-    if (isClosed) return;
-    emit(state.copyWith(toggleAction: const Initial()));
   }
 }

@@ -29,7 +29,7 @@ export const tables = {
           columns: ['theme', 'locale', 'goal', 'goals', 'phase', 'relationship_status', 'partner_name', 'partner_pronouns', 'partner_intent', 'together_since', 'onboarded_at',
             'share_read_receipts', 'holiday_countries', 'card_channel', 'card_theme', 'slips_default_for_card',
             'widget_allow_partner_notes', 'widget_on_lock_screen', 'widget_show_names', 'spice_enabled', 'low_stimulation',
-            'chat_enabled', 'chat_store_facts', 'has_kids', 'spice_max_level', 'spice_notifications'],
+            'chat_store_facts', 'has_kids', 'spice_max_level', 'spice_notifications'],
           filter: mine('user_id'),
         },
       },

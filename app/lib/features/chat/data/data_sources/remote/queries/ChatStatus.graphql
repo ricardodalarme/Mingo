@@ -8,8 +8,4 @@ query ChatStatus($userId: uuid!) {
   freeLimit: appConfigByPk(key: "chat_messages_per_day_free") {
     value
   }
-  userSettingsByPk(userId: $userId) {
-    userId
-    chatEnabled
-  }
 }

@@ -40,8 +40,6 @@ class ChatCubit({
           stage: Success(
             !status.hasPlus
                 ? ChatStage.plusRequired
-                : !status.isEnabled
-                ? ChatStage.needsConsent
                 : status.messagesLeft <= 0
                 ? ChatStage.limitReached
                 : ChatStage.ready,
@@ -53,21 +51,6 @@ class ChatCubit({
     } catch (exception) {
       emit(state.copyWith(stage: Failure.fromObject(exception)));
     }
-  }
-
-  /// Turns the chat on, which is the consent to send messages to the model.
-  Future<void> enable() async {
-    if (state.enableAction.isLoading) return;
-
-    emit(state.copyWith(enableAction: const Loading()));
-    try {
-      await _chatRepository.enable();
-      emit(state.copyWith(enableAction: const Success(null)));
-      await load();
-    } catch (exception) {
-      emit(state.copyWith(enableAction: Failure.fromObject(exception)));
-    }
-    emit(state.copyWith(enableAction: const Initial()));
   }
 
   void onDraftChanged(String draft) => emit(state.copyWith(draft: FormInput(draft)));
@@ -275,14 +258,6 @@ class ChatCubit({
             messages: withoutReply,
             stage: const Success(ChatStage.limitReached),
             messagesLeft: 0,
-            isReplying: false,
-          ),
-        );
-      case 'CHAT_DISABLED':
-        emit(
-          state.copyWith(
-            messages: withoutReply,
-            stage: const Success(ChatStage.needsConsent),
             isReplying: false,
           ),
         );

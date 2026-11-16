@@ -38,7 +38,7 @@ void main() {
     repository = _MockHardConversationRepository();
     chatRepository = _MockChatRepository();
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: true, hasPlus: true));
+        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, hasPlus: true));
     when(repository.readDraft).thenAnswer((_) async => null);
     when(repository.clearDraft).thenAnswer((_) async {});
     when(() => repository.saveDraft(any())).thenAnswer((_) async {
@@ -103,39 +103,24 @@ void main() {
     expect(cubit.state.message.value, 'Podemos falar com calma?');
   });
 
-  test('the gate follows Plus, consent and today usage', () async {
+  test('the gate follows Plus and today usage', () async {
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 0, limit: 0, isEnabled: false, hasPlus: false));
+        .thenAnswer((_) async => (messagesLeft: 0, limit: 0, hasPlus: false));
     var cubit = build();
     await cubit.load();
     expect(cubit.state.gate, HardConversationGate.plusRequired);
 
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: false, hasPlus: true));
+        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, hasPlus: true));
     cubit = build();
     await cubit.load();
-    expect(cubit.state.gate, HardConversationGate.needsConsent);
+    expect(cubit.state.gate, HardConversationGate.ready);
 
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 0, limit: 20, isEnabled: true, hasPlus: true));
+        .thenAnswer((_) async => (messagesLeft: 0, limit: 20, hasPlus: true));
     cubit = build();
     await cubit.load();
     expect(cubit.state.gate, HardConversationGate.limitReached);
-  });
-
-  test('turning the chat on loads the steps again', () async {
-    when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: false, hasPlus: true));
-    final cubit = build();
-    await cubit.load();
-    when(chatRepository.enable).thenAnswer((_) async {});
-    when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: true, hasPlus: true));
-
-    await cubit.enable();
-
-    verify(chatRepository.enable).called(1);
-    expect(cubit.state.gate, HardConversationGate.ready);
   });
 
   test('the first step waits for a choice or text before moving on', () async {
@@ -236,10 +221,9 @@ void main() {
     ).called(1);
   });
 
-  test('the limit, the consent and an unconfigured server change the gate', () async {
+  test('the limit and an unconfigured server change the gate', () async {
     for (final (code, gate) in [
       ('CHAT_LIMIT', HardConversationGate.limitReached),
-      ('CHAT_DISABLED', HardConversationGate.needsConsent),
       ('CHAT_UNAVAILABLE', HardConversationGate.unavailable),
     ]) {
       stubReply(() => Stream.value(ChatError(code)));

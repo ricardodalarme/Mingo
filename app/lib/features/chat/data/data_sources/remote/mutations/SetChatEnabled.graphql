@@ -1,5 +1,0 @@
-mutation SetChatEnabled($userId: uuid!, $enabled: Boolean!) {
-  updateUserSettingsByPk(pk_columns: { userId: $userId }, _set: { chatEnabled: $enabled }) {
-    userId
-  }
-}

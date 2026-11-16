@@ -803,14 +803,6 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get title => 'Mascot';
   @override
-  String get consentText =>
-      'A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.';
-  @override
-  String get consentPrivacy =>
-      'What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.';
-  @override
-  String get consentTurnOn => 'Turn on the chat';
-  @override
   String get inputHint => 'Write here';
   @override
   Map<String, String> get draftErrors => {
@@ -854,10 +846,6 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get settingsTitle => 'Conversation settings';
   @override
-  String get toggleLabel => 'Talk with the mascot';
-  @override
-  String get toggleSubtitle => 'Only you decide when the conversation is on.';
-  @override
   String get planPlus => 'Plus plan';
   @override
   String get planFree => 'Free plan';
@@ -871,13 +859,6 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get sendingText =>
       'Only the text you type and the last turns of the conversation go to the model, to produce the reply. Nothing is stored unless you save it as a slip or a learning.';
-  @override
-  String get disableNote =>
-      'Turning it off brings back the consent step. The next message is only sent after you turn it on again.';
-  @override
-  String get settingsOn => 'Chat turned on';
-  @override
-  String get settingsOff => 'Chat turned off';
   @override
   String get offline => 'You\'re offline. The chat resumes when you reconnect.';
   @override
@@ -8339,9 +8320,6 @@ extension on TranslationsEn {
           'cardsList.notFound' => 'That card is no longer available.',
           'cardsList.reactionQuoteMadeMyDay' => 'That made my week.',
           'chat.title' => 'Mascot',
-          'chat.consentText' => 'A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.',
-          'chat.consentPrivacy' => 'What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.',
-          'chat.consentTurnOn' => 'Turn on the chat',
           'chat.inputHint' => 'Write here',
           'chat.draftErrors.empty' => 'Write something to send',
           'chat.draftErrors.tooLong' => 'This message is too long',
@@ -8366,8 +8344,6 @@ extension on TranslationsEn {
           'chat.learningSaved' => 'Learning saved',
           'chat.learnedLink' => 'What I learned',
           'chat.settingsTitle' => 'Conversation settings',
-          'chat.toggleLabel' => 'Talk with the mascot',
-          'chat.toggleSubtitle' => 'Only you decide when the conversation is on.',
           'chat.planPlus' => 'Plus plan',
           'chat.planFree' => 'Free plan',
           'chat.usagePlus' => ({
@@ -8377,9 +8353,6 @@ extension on TranslationsEn {
           'chat.usageFree' => 'The chat is part of Plus. The free plan has no messages.',
           'chat.sendingTitle' => 'What is sent',
           'chat.sendingText' => 'Only the text you type and the last turns of the conversation go to the model, to produce the reply. Nothing is stored unless you save it as a slip or a learning.',
-          'chat.disableNote' => 'Turning it off brings back the consent step. The next message is only sent after you turn it on again.',
-          'chat.settingsOn' => 'Chat turned on',
-          'chat.settingsOff' => 'Chat turned off',
           'chat.offline' => 'You\'re offline. The chat resumes when you reconnect.',
           'chat.interrupted' => 'The reply was interrupted.',
           'chat.retry' => 'Try again',
@@ -8580,9 +8553,6 @@ extension on TranslationsEn {
           'dates.kinds.custom' => 'Other',
           'dates.kinds.holiday' => 'Holiday',
           'dates.kinds.reunion' => 'Reunion',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.kinds.other' => '',
           'dates.monthLabel' => 'Month',
           'dates.dayLabel' => 'Day',
@@ -8591,6 +8561,9 @@ extension on TranslationsEn {
           'dates.yearHelp' => 'Without the year the date just repeats, with no age.',
           'dates.yearErrors.invalid' => 'Use a year between 1900 and 2200',
           'dates.months.0' => 'January',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.months.1' => 'February',
           'dates.months.2' => 'March',
           'dates.months.3' => 'April',
@@ -9191,9 +9164,6 @@ extension on TranslationsEn {
             'Your message stays saved and goes out when you\'re online again.',
           'helpSupport.faqAnswers.privacy' =>
             'Only the support team. Nothing is shared with your partner.',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.faqAnswers.reportBug' => 'Choose Bug in the form and tell us what happened.',
           'helpSupport.pendingNote' => 'A message is saved and will be sent when you\'re online.',
           'helpSupport.discardedNote' => 'A saved message couldn\'t be sent and was removed. Write to us again if it still matters.',
@@ -9202,6 +9172,9 @@ extension on TranslationsEn {
           'helpSupport.supportHighlight' => 'help',
           'helpSupport.topics.account' => 'Account',
           'helpSupport.topics.billing' => 'Billing',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.topics.bug' => 'Bug',
           'helpSupport.topics.other' => 'Other',
           'helpSupport.messageLabel' => 'Message',
@@ -9875,9 +9848,6 @@ extension on TranslationsEn {
           'loveStyle.revokeErrors.other' =>
             'Couldn\'t remove it from their widget right now. Try again.',
           'memories.title' => 'Memories',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.historyLabel' => 'OUR HISTORY',
           'memories.historyTitle' => 'Our history',
           'memories.historyText' => 'Milestones, dates, places and our story in numbers.',
@@ -9886,6 +9856,9 @@ extension on TranslationsEn {
           'memories.storyText' => 'Your numbers in an image, with only what you choose.',
           'memories.placesLabel' => 'PLACES',
           'memories.placesText' => 'Only the name of the place, never the location.',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.placeLabel' => 'Place (optional)',
           'memories.placeHint' => 'E.g. Lisbon',
           'memories.placeAddressNote' =>
@@ -10467,9 +10440,6 @@ extension on TranslationsEn {
           'programs.completed' => 'Completed',
           'programs.lessonsTitle' => 'Lessons',
           'programs.lessonsComingTitle' => 'Lessons coming',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.lessonsComingText' => 'This program is still being prepared. Come back soon.',
           'programs.lessonGoneTitle' => 'Lesson not here',
           'programs.lessonGoneText' =>
@@ -10479,6 +10449,9 @@ extension on TranslationsEn {
           'programs.shortRead' => 'A short idea for today.',
           'programs.ready' => 'Done',
           'programs.saveForLater' => 'Save for later',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.saved' => 'Saved for later.',
           'programs.savedTag' => 'Saved',
           'programs.lockedTitle' => 'Plus lesson',
@@ -11034,9 +11007,6 @@ extension on TranslationsEn {
           'slipDetail.weekdaysShort.3' => 'Thu',
           'slipDetail.weekdaysShort.4' => 'Fri',
           'slipDetail.weekdaysShort.5' => 'Sat',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.weekdaysShort.6' => 'Sun',
           'slipDetail.factDate' => ({
             required Object weekday,
@@ -11049,6 +11019,9 @@ extension on TranslationsEn {
           'slipDetail.factInCard' => 'Included in a card',
           'slipDetail.visibilityPrivate' => 'Private',
           'slipDetail.visibilityCard' => 'In the weekly card',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.visibilitySent' => 'Sent',
           'slipDetail.yes' => 'Yes',
           'slipDetail.no' => 'No',
@@ -11683,9 +11656,6 @@ extension on TranslationsEn {
           'welcome.start' => 'Get started',
           'welcome.haveAccount' => 'I already have an account',
           'welcome.debugSignIn' => 'Sign in (debug)',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.settingsTitle' => 'Widgets',
           'widgets.settingsSubtitle' => 'Home screen',
           'widgets.juntosCategory' => 'HOME SCREEN',
@@ -11694,6 +11664,9 @@ extension on TranslationsEn {
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Just mine',
           'widgets.segmentCouple' => 'Couple',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.ownSlipLabel' => 'LOG SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Tap to log',

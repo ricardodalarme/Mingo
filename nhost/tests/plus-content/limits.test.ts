@@ -69,7 +69,6 @@ test('a card theme outside the free list needs Plus, on change only', async () =
   await plus(a);
   await ok(a, set('midnight'));
   await sql(`delete from public.entitlements where user_id = '${a.id}'`);
-  await ok(a, `mutation { updateUserSettingsByPk(pk_columns: {userId: "${a.id}"}, _set: {chatEnabled: true}) { chatEnabled } }`);
 });
 
 test('plus-only content keeps its title and loses its body for a person without Plus', async () => {

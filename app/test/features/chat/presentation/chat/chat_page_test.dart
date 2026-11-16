@@ -43,7 +43,7 @@ void main() {
     connectivity = StreamController<bool>(sync: true);
     addTearDown(connectivity.close);
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, isEnabled: true, hasPlus: true));
+        .thenAnswer((_) async => (messagesLeft: 5, limit: 20, hasPlus: true));
     when(
       () => learnedItemsRepository.add(
         target: any(named: 'target'),
@@ -117,7 +117,7 @@ void main() {
 
   testWidgets('a free person sees the Plus gate instead of the composer', (tester) async {
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 0, limit: 0, isEnabled: false, hasPlus: false));
+        .thenAnswer((_) async => (messagesLeft: 0, limit: 0, hasPlus: false));
     final cubits = await build(isOnline: true);
 
     await pumpChat(tester, cubits.chat, cubits.connectivity);
@@ -135,7 +135,7 @@ void main() {
     expect(find.textContaining('mensagens hoje'), findsNothing);
 
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 1, limit: 20, isEnabled: true, hasPlus: true));
+        .thenAnswer((_) async => (messagesLeft: 1, limit: 20, hasPlus: true));
     await cubits.chat.load();
     await tester.pump();
     await tester.pump();

@@ -31,7 +31,6 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
   Widget build(BuildContext context) {
     final l10n = context.l10n.chat;
     final stage = context.select((ChatCubit cubit) => cubit.state.stage);
-    final isEnabling = context.select((ChatCubit cubit) => cubit.state.enableAction.isLoading);
     final cubit = context.read<ChatCubit>();
 
     return BaseView(
@@ -61,17 +60,10 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
       body: BlocListener<ChatCubit, ChatState>(
         listenWhen: (previous, current) =>
             previous.saveAction != current.saveAction ||
-            previous.saveLearningAction != current.saveLearningAction ||
-            previous.enableAction != current.enableAction,
+            previous.saveLearningAction != current.saveLearningAction,
         listener: (context, state) {
-          final failure = switch ((
-            state.saveAction,
-            state.saveLearningAction,
-            state.enableAction,
-          )) {
-            (Failure(:final exception), _, _) ||
-            (_, Failure(:final exception), _) ||
-            (_, _, Failure(:final exception)) => exception,
+          final failure = switch ((state.saveAction, state.saveLearningAction)) {
+            (Failure(:final exception), _) || (_, Failure(:final exception)) => exception,
             _ => null,
           };
           if (failure != null) {
@@ -91,26 +83,6 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
             onAction: cubit.load,
           ),
           Success(:final value) => switch (value) {
-            ChatStage.needsConsent => BaseStackedContent(
-              body: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
-                  const SizedBox(height: AppSpace.s8),
-                  Text(
-                    l10n.consentText,
-                    style: context.text.body.copyWith(color: context.colors.textSecondary),
-                  ),
-                  const SizedBox(height: AppSpace.s16),
-                  BaseNote(text: l10n.consentPrivacy),
-                ],
-              ),
-              footer: BaseButton(
-                text: l10n.consentTurnOn,
-                isLoading: isEnabling,
-                onPressed: cubit.enable,
-              ),
-            ),
             ChatStage.unavailable => BaseEmptyState(
               title: l10n.unavailableTitle,
               text: l10n.unavailableText,
@@ -137,12 +109,6 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
       ),
     );
   }
-}
-
-/// Re-reads the consent when the person comes back, so turning it off closes the composer.
-Future<void> _openSettings(BuildContext context, ChatCubit cubit) async {
-  await context.pushRoute(const ChatSettingsRoute());
-  if (!cubit.isClosed) await cubit.load();
 }
 
 enum _ChatMenuAction() {
@@ -179,7 +145,7 @@ Future<void> _openMenu(BuildContext context, ChatCubit cubit) async {
     case _ChatMenuAction.learned:
       await context.pushRoute(const LearnedItemsRoute());
     case _ChatMenuAction.settings:
-      await _openSettings(context, cubit);
+      await context.pushRoute(const ChatSettingsRoute());
     case null:
       return;
   }

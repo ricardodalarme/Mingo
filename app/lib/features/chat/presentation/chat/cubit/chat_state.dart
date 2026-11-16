@@ -2,9 +2,6 @@ part of 'chat_cubit.dart';
 
 /// Where the chat is before and after the first message.
 enum ChatStage() {
-  /// The person has not turned the chat on, so nothing is sent yet.
-  needsConsent,
-
   ready,
 
   /// Today's messages are used up.
@@ -13,7 +10,7 @@ enum ChatStage() {
   /// The server has no model configured.
   unavailable,
 
-  /// The free plan has no messages; the gate comes before the consent step.
+  /// The free plan has no messages.
   plusRequired,
 }
 
@@ -26,7 +23,6 @@ final class const ChatState({
   final int messagesLeft = 0,
   final bool hasPlus = false,
   final bool isReplying = false,
-  final Resource<void> enableAction = const Initial(),
   final Resource<void> saveAction = const Initial(),
   final Resource<void> saveLearningAction = const Initial(),
 }) with Equatable {
@@ -39,7 +35,6 @@ final class const ChatState({
     int? messagesLeft,
     bool? hasPlus,
     bool? isReplying,
-    Resource<void>? enableAction,
     Resource<void>? saveAction,
     Resource<void>? saveLearningAction,
   }) {
@@ -52,7 +47,6 @@ final class const ChatState({
       messagesLeft: messagesLeft ?? this.messagesLeft,
       hasPlus: hasPlus ?? this.hasPlus,
       isReplying: isReplying ?? this.isReplying,
-      enableAction: enableAction ?? this.enableAction,
       saveAction: saveAction ?? this.saveAction,
       saveLearningAction: saveLearningAction ?? this.saveLearningAction,
     );
@@ -68,7 +62,6 @@ final class const ChatState({
     messagesLeft,
     hasPlus,
     isReplying,
-    enableAction,
     saveAction,
     saveLearningAction,
   ];

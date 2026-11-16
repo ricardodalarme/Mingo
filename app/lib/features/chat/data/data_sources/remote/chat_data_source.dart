@@ -2,12 +2,11 @@ import 'dart:convert';
 
 import 'package:app/features/chat/data/data_sources/remote/dtos/chat_event_dto.dart';
 import 'package:app/features/chat/data/data_sources/remote/dtos/chat_request_dto.dart';
-import 'package:app/features/chat/data/data_sources/remote/mutations/generated/SetChatEnabled.graphql.dart';
 import 'package:app/features/chat/data/data_sources/remote/queries/generated/ChatStatus.graphql.dart';
 import 'package:network/network.dart';
 
 /// What the server knows before the first message.
-typedef ChatSettings = ({int messagesLeft, bool isEnabled, int plusLimit, int freeLimit});
+typedef ChatSettings = ({int messagesLeft, int plusLimit, int freeLimit});
 
 class ChatDataSource({
   required final GQLClient _client,
@@ -26,21 +25,10 @@ class ChatDataSource({
       response,
       getData: (data) => (
         messagesLeft: data.plusStates.firstOrNull?.chatMessagesLeftToday ?? 0,
-        isEnabled: data.userSettingsByPk?.chatEnabled ?? false,
         plusLimit: int.tryParse(data.plusLimit?.value ?? '') ?? 0,
         freeLimit: int.tryParse(data.freeLimit?.value ?? '') ?? 0,
       ),
     );
-  }
-
-  Future<void> setEnabled({required String profileId, required bool enabled}) async {
-    final response = await _client.mutate(
-      OptionsMutationSetChatEnabled(
-        variables: VariablesMutationSetChatEnabled(userId: profileId, enabled: enabled),
-      ),
-    );
-
-    validateResponse(response);
   }
 
   /// Sends [request] and streams the reply; the stream ends when the server closes it.

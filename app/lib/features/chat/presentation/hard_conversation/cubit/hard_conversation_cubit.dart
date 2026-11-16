@@ -22,7 +22,7 @@ class HardConversationCubit({
 
   final String _session = const Uuid().v4();
 
-  /// Reads the consent, today's usage and the draft from the last day.
+  /// Reads today's usage and the draft from the last day.
   Future<void> load() async {
     emit(state.copyWith(status: const Loading()));
     try {
@@ -34,8 +34,6 @@ class HardConversationCubit({
           status: const Success(null),
           gate: !status.hasPlus
               ? HardConversationGate.plusRequired
-              : !status.isEnabled
-              ? HardConversationGate.needsConsent
               : status.messagesLeft <= 0
               ? HardConversationGate.limitReached
               : HardConversationGate.ready,
@@ -52,24 +50,6 @@ class HardConversationCubit({
       if (isClosed) return;
       emit(state.copyWith(status: Failure.fromObject(exception)));
     }
-  }
-
-  /// Turns the chat on from the consent step.
-  Future<void> enable() async {
-    if (state.enableAction.isLoading) return;
-
-    emit(state.copyWith(enableAction: const Loading()));
-    try {
-      await _chatRepository.enable();
-      if (isClosed) return;
-      emit(state.copyWith(enableAction: const Success(null)));
-      await load();
-    } catch (exception) {
-      if (isClosed) return;
-      emit(state.copyWith(enableAction: Failure.fromObject(exception)));
-    }
-    if (isClosed) return;
-    emit(state.copyWith(enableAction: const Initial()));
   }
 
   Future<void> selectWhat(String choice) async {
@@ -241,7 +221,6 @@ class HardConversationCubit({
   void _onError(String code) {
     final gate = switch (code) {
       'CHAT_LIMIT' => HardConversationGate.limitReached,
-      'CHAT_DISABLED' => HardConversationGate.needsConsent,
       'CHAT_UNAVAILABLE' => HardConversationGate.unavailable,
       _ => null,
     };

@@ -114463,7 +114463,6 @@ class InputuserSettings_bool_exp {
     List<InputuserSettings_bool_exp>? $_or,
     InputCardChannel_enum_comparison_exp? cardChannel,
     InputString_comparison_exp? cardTheme,
-    InputBoolean_comparison_exp? chatEnabled,
     InputBoolean_comparison_exp? chatStoreFacts,
     Inputtimestamptz_comparison_exp? createdAt,
     InputRelationshipGoal_enum_comparison_exp? goal,
@@ -114497,7 +114496,6 @@ class InputuserSettings_bool_exp {
     if ($_or != null) r'_or': $_or,
     if (cardChannel != null) r'cardChannel': cardChannel,
     if (cardTheme != null) r'cardTheme': cardTheme,
-    if (chatEnabled != null) r'chatEnabled': chatEnabled,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
     if (createdAt != null) r'createdAt': createdAt,
     if (goal != null) r'goal': goal,
@@ -114560,12 +114558,6 @@ class InputuserSettings_bool_exp {
       result$data['cardTheme'] = l$cardTheme == null
           ? null
           : InputString_comparison_exp.fromJson((l$cardTheme as Map<String, dynamic>));
-    }
-    if (data.containsKey('chatEnabled')) {
-      final l$chatEnabled = data['chatEnabled'];
-      result$data['chatEnabled'] = l$chatEnabled == null
-          ? null
-          : InputBoolean_comparison_exp.fromJson((l$chatEnabled as Map<String, dynamic>));
     }
     if (data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = data['chatStoreFacts'];
@@ -114753,9 +114745,6 @@ class InputuserSettings_bool_exp {
 
   InputString_comparison_exp? get cardTheme => (_$data['cardTheme'] as InputString_comparison_exp?);
 
-  InputBoolean_comparison_exp? get chatEnabled =>
-      (_$data['chatEnabled'] as InputBoolean_comparison_exp?);
-
   InputBoolean_comparison_exp? get chatStoreFacts =>
       (_$data['chatStoreFacts'] as InputBoolean_comparison_exp?);
 
@@ -114854,10 +114843,6 @@ class InputuserSettings_bool_exp {
     if (_$data.containsKey('cardTheme')) {
       final l$cardTheme = cardTheme;
       result$data['cardTheme'] = l$cardTheme?.toJson();
-    }
-    if (_$data.containsKey('chatEnabled')) {
-      final l$chatEnabled = chatEnabled;
-      result$data['chatEnabled'] = l$chatEnabled?.toJson();
     }
     if (_$data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = chatStoreFacts;
@@ -115040,14 +115025,6 @@ class InputuserSettings_bool_exp {
     if (l$cardTheme != lOther$cardTheme) {
       return false;
     }
-    final l$chatEnabled = chatEnabled;
-    final lOther$chatEnabled = other.chatEnabled;
-    if (_$data.containsKey('chatEnabled') != other._$data.containsKey('chatEnabled')) {
-      return false;
-    }
-    if (l$chatEnabled != lOther$chatEnabled) {
-      return false;
-    }
     final l$chatStoreFacts = chatStoreFacts;
     final lOther$chatStoreFacts = other.chatStoreFacts;
     if (_$data.containsKey('chatStoreFacts') != other._$data.containsKey('chatStoreFacts')) {
@@ -115279,7 +115256,6 @@ class InputuserSettings_bool_exp {
     final l$$_or = $_or;
     final l$cardChannel = cardChannel;
     final l$cardTheme = cardTheme;
-    final l$chatEnabled = chatEnabled;
     final l$chatStoreFacts = chatStoreFacts;
     final l$createdAt = createdAt;
     final l$goal = goal;
@@ -115321,7 +115297,6 @@ class InputuserSettings_bool_exp {
           : const {},
       _$data.containsKey('cardChannel') ? l$cardChannel : const {},
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
-      _$data.containsKey('chatEnabled') ? l$chatEnabled : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('goal') ? l$goal : const {},
@@ -115411,7 +115386,6 @@ class InputuserSettings_order_by {
   factory InputuserSettings_order_by({
     Enumorder_by? cardChannel,
     Enumorder_by? cardTheme,
-    Enumorder_by? chatEnabled,
     Enumorder_by? chatStoreFacts,
     Enumorder_by? createdAt,
     Enumorder_by? goal,
@@ -115442,7 +115416,6 @@ class InputuserSettings_order_by {
   }) => InputuserSettings_order_by._({
     if (cardChannel != null) r'cardChannel': cardChannel,
     if (cardTheme != null) r'cardTheme': cardTheme,
-    if (chatEnabled != null) r'chatEnabled': chatEnabled,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
     if (createdAt != null) r'createdAt': createdAt,
     if (goal != null) r'goal': goal,
@@ -115487,12 +115460,6 @@ class InputuserSettings_order_by {
       result$data['cardTheme'] = l$cardTheme == null
           ? null
           : fromJsonEnumorder_by((l$cardTheme as String));
-    }
-    if (data.containsKey('chatEnabled')) {
-      final l$chatEnabled = data['chatEnabled'];
-      result$data['chatEnabled'] = l$chatEnabled == null
-          ? null
-          : fromJsonEnumorder_by((l$chatEnabled as String));
     }
     if (data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = data['chatStoreFacts'];
@@ -115653,8 +115620,6 @@ class InputuserSettings_order_by {
 
   Enumorder_by? get cardTheme => (_$data['cardTheme'] as Enumorder_by?);
 
-  Enumorder_by? get chatEnabled => (_$data['chatEnabled'] as Enumorder_by?);
-
   Enumorder_by? get chatStoreFacts => (_$data['chatStoreFacts'] as Enumorder_by?);
 
   Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
@@ -115718,10 +115683,6 @@ class InputuserSettings_order_by {
     if (_$data.containsKey('cardTheme')) {
       final l$cardTheme = cardTheme;
       result$data['cardTheme'] = l$cardTheme == null ? null : toJsonEnumorder_by(l$cardTheme);
-    }
-    if (_$data.containsKey('chatEnabled')) {
-      final l$chatEnabled = chatEnabled;
-      result$data['chatEnabled'] = l$chatEnabled == null ? null : toJsonEnumorder_by(l$chatEnabled);
     }
     if (_$data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = chatStoreFacts;
@@ -115886,14 +115847,6 @@ class InputuserSettings_order_by {
       return false;
     }
     if (l$cardTheme != lOther$cardTheme) {
-      return false;
-    }
-    final l$chatEnabled = chatEnabled;
-    final lOther$chatEnabled = other.chatEnabled;
-    if (_$data.containsKey('chatEnabled') != other._$data.containsKey('chatEnabled')) {
-      return false;
-    }
-    if (l$chatEnabled != lOther$chatEnabled) {
       return false;
     }
     final l$chatStoreFacts = chatStoreFacts;
@@ -116124,7 +116077,6 @@ class InputuserSettings_order_by {
   int get hashCode {
     final l$cardChannel = cardChannel;
     final l$cardTheme = cardTheme;
-    final l$chatEnabled = chatEnabled;
     final l$chatStoreFacts = chatStoreFacts;
     final l$createdAt = createdAt;
     final l$goal = goal;
@@ -116155,7 +116107,6 @@ class InputuserSettings_order_by {
     return Object.hashAll([
       _$data.containsKey('cardChannel') ? l$cardChannel : const {},
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
-      _$data.containsKey('chatEnabled') ? l$chatEnabled : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('goal') ? l$goal : const {},
@@ -116238,7 +116189,6 @@ class InputuserSettings_set_input {
   factory InputuserSettings_set_input({
     EnumCardChannel_enum? cardChannel,
     String? cardTheme,
-    bool? chatEnabled,
     bool? chatStoreFacts,
     EnumRelationshipGoal_enum? goal,
     List<String>? goals,
@@ -116265,7 +116215,6 @@ class InputuserSettings_set_input {
   }) => InputuserSettings_set_input._({
     if (cardChannel != null) r'cardChannel': cardChannel,
     if (cardTheme != null) r'cardTheme': cardTheme,
-    if (chatEnabled != null) r'chatEnabled': chatEnabled,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
     if (goal != null) r'goal': goal,
     if (goals != null) r'goals': goals,
@@ -116304,10 +116253,6 @@ class InputuserSettings_set_input {
     if (data.containsKey('cardTheme')) {
       final l$cardTheme = data['cardTheme'];
       result$data['cardTheme'] = (l$cardTheme as String?);
-    }
-    if (data.containsKey('chatEnabled')) {
-      final l$chatEnabled = data['chatEnabled'];
-      result$data['chatEnabled'] = (l$chatEnabled as bool?);
     }
     if (data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = data['chatStoreFacts'];
@@ -116428,8 +116373,6 @@ class InputuserSettings_set_input {
 
   String? get cardTheme => (_$data['cardTheme'] as String?);
 
-  bool? get chatEnabled => (_$data['chatEnabled'] as bool?);
-
   bool? get chatStoreFacts => (_$data['chatStoreFacts'] as bool?);
 
   EnumRelationshipGoal_enum? get goal => (_$data['goal'] as EnumRelationshipGoal_enum?);
@@ -116488,10 +116431,6 @@ class InputuserSettings_set_input {
     if (_$data.containsKey('cardTheme')) {
       final l$cardTheme = cardTheme;
       result$data['cardTheme'] = l$cardTheme;
-    }
-    if (_$data.containsKey('chatEnabled')) {
-      final l$chatEnabled = chatEnabled;
-      result$data['chatEnabled'] = l$chatEnabled;
     }
     if (_$data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = chatStoreFacts;
@@ -116620,14 +116559,6 @@ class InputuserSettings_set_input {
       return false;
     }
     if (l$cardTheme != lOther$cardTheme) {
-      return false;
-    }
-    final l$chatEnabled = chatEnabled;
-    final lOther$chatEnabled = other.chatEnabled;
-    if (_$data.containsKey('chatEnabled') != other._$data.containsKey('chatEnabled')) {
-      return false;
-    }
-    if (l$chatEnabled != lOther$chatEnabled) {
       return false;
     }
     final l$chatStoreFacts = chatStoreFacts;
@@ -116848,7 +116779,6 @@ class InputuserSettings_set_input {
   int get hashCode {
     final l$cardChannel = cardChannel;
     final l$cardTheme = cardTheme;
-    final l$chatEnabled = chatEnabled;
     final l$chatStoreFacts = chatStoreFacts;
     final l$goal = goal;
     final l$goals = goals;
@@ -116875,7 +116805,6 @@ class InputuserSettings_set_input {
     return Object.hashAll([
       _$data.containsKey('cardChannel') ? l$cardChannel : const {},
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
-      _$data.containsKey('chatEnabled') ? l$chatEnabled : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
       _$data.containsKey('goal') ? l$goal : const {},
       _$data.containsKey('goals')
@@ -116994,7 +116923,6 @@ class InputuserSettings_stream_cursor_value_input {
   factory InputuserSettings_stream_cursor_value_input({
     EnumCardChannel_enum? cardChannel,
     String? cardTheme,
-    bool? chatEnabled,
     bool? chatStoreFacts,
     DateTime? createdAt,
     EnumRelationshipGoal_enum? goal,
@@ -117024,7 +116952,6 @@ class InputuserSettings_stream_cursor_value_input {
   }) => InputuserSettings_stream_cursor_value_input._({
     if (cardChannel != null) r'cardChannel': cardChannel,
     if (cardTheme != null) r'cardTheme': cardTheme,
-    if (chatEnabled != null) r'chatEnabled': chatEnabled,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
     if (createdAt != null) r'createdAt': createdAt,
     if (goal != null) r'goal': goal,
@@ -117066,10 +116993,6 @@ class InputuserSettings_stream_cursor_value_input {
     if (data.containsKey('cardTheme')) {
       final l$cardTheme = data['cardTheme'];
       result$data['cardTheme'] = (l$cardTheme as String?);
-    }
-    if (data.containsKey('chatEnabled')) {
-      final l$chatEnabled = data['chatEnabled'];
-      result$data['chatEnabled'] = (l$chatEnabled as bool?);
     }
     if (data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = data['chatStoreFacts'];
@@ -117206,8 +117129,6 @@ class InputuserSettings_stream_cursor_value_input {
 
   String? get cardTheme => (_$data['cardTheme'] as String?);
 
-  bool? get chatEnabled => (_$data['chatEnabled'] as bool?);
-
   bool? get chatStoreFacts => (_$data['chatStoreFacts'] as bool?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
@@ -117272,10 +117193,6 @@ class InputuserSettings_stream_cursor_value_input {
     if (_$data.containsKey('cardTheme')) {
       final l$cardTheme = cardTheme;
       result$data['cardTheme'] = l$cardTheme;
-    }
-    if (_$data.containsKey('chatEnabled')) {
-      final l$chatEnabled = chatEnabled;
-      result$data['chatEnabled'] = l$chatEnabled;
     }
     if (_$data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = chatStoreFacts;
@@ -117420,14 +117337,6 @@ class InputuserSettings_stream_cursor_value_input {
       return false;
     }
     if (l$cardTheme != lOther$cardTheme) {
-      return false;
-    }
-    final l$chatEnabled = chatEnabled;
-    final lOther$chatEnabled = other.chatEnabled;
-    if (_$data.containsKey('chatEnabled') != other._$data.containsKey('chatEnabled')) {
-      return false;
-    }
-    if (l$chatEnabled != lOther$chatEnabled) {
       return false;
     }
     final l$chatStoreFacts = chatStoreFacts;
@@ -117672,7 +117581,6 @@ class InputuserSettings_stream_cursor_value_input {
   int get hashCode {
     final l$cardChannel = cardChannel;
     final l$cardTheme = cardTheme;
-    final l$chatEnabled = chatEnabled;
     final l$chatStoreFacts = chatStoreFacts;
     final l$createdAt = createdAt;
     final l$goal = goal;
@@ -117702,7 +117610,6 @@ class InputuserSettings_stream_cursor_value_input {
     return Object.hashAll([
       _$data.containsKey('cardChannel') ? l$cardChannel : const {},
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
-      _$data.containsKey('chatEnabled') ? l$chatEnabled : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('goal') ? l$goal : const {},
@@ -130848,7 +130755,6 @@ Enumtoday_select_column fromJsonEnumtoday_select_column(String value) {
 enum EnumuserSettings_select_column {
   cardChannel,
   cardTheme,
-  chatEnabled,
   chatStoreFacts,
   createdAt,
   goal,
@@ -130889,8 +130795,6 @@ String toJsonEnumuserSettings_select_column(EnumuserSettings_select_column e) {
       return r'cardChannel';
     case EnumuserSettings_select_column.cardTheme:
       return r'cardTheme';
-    case EnumuserSettings_select_column.chatEnabled:
-      return r'chatEnabled';
     case EnumuserSettings_select_column.chatStoreFacts:
       return r'chatStoreFacts';
     case EnumuserSettings_select_column.createdAt:
@@ -130954,8 +130858,6 @@ EnumuserSettings_select_column fromJsonEnumuserSettings_select_column(String val
       return EnumuserSettings_select_column.cardChannel;
     case r'cardTheme':
       return EnumuserSettings_select_column.cardTheme;
-    case r'chatEnabled':
-      return EnumuserSettings_select_column.chatEnabled;
     case r'chatStoreFacts':
       return EnumuserSettings_select_column.chatStoreFacts;
     case r'createdAt':

@@ -43,19 +43,12 @@ class const HardConversationPage({super.key}) extends StatelessWidget implements
         listenWhen: (previous, current) =>
             previous.generateAction != current.generateAction ||
             previous.sendAction != current.sendAction ||
-            previous.copyAction != current.copyAction ||
-            previous.enableAction != current.enableAction,
+            previous.copyAction != current.copyAction,
         listener: (context, state) {
-          final failure = switch ((
-            state.generateAction,
-            state.sendAction,
-            state.copyAction,
-            state.enableAction,
-          )) {
-            (Failure(:final exception), _, _, _) ||
-            (_, Failure(:final exception), _, _) ||
-            (_, _, Failure(:final exception), _) ||
-            (_, _, _, Failure(:final exception)) => exception,
+          final failure = switch ((state.generateAction, state.sendAction, state.copyAction)) {
+            (Failure(:final exception), _, _) ||
+            (_, Failure(:final exception), _) ||
+            (_, _, Failure(:final exception)) => exception,
             _ => null,
           };
           if (failure != null) {
@@ -88,7 +81,6 @@ class const _Body({
   @override
   Widget build(BuildContext context) {
     final chat = context.l10n.chat;
-    final cubit = context.read<HardConversationCubit>();
 
     return switch (gate) {
       HardConversationGate.plusRequired => BaseStackedContent(
@@ -110,25 +102,6 @@ class const _Body({
           text: context.l10n.hardConversation.plusCta,
           onPressed: () => context.pushRoute(const PlansRoute()),
         ),
-      ),
-      HardConversationGate.needsConsent => BaseStackedContent(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Semantics(
-              header: true,
-              child: Text(context.l10n.hardConversation.title, style: context.text.titleXl),
-            ),
-            const SizedBox(height: AppSpace.s8),
-            Text(
-              chat.consentText,
-              style: context.text.body.copyWith(color: context.colors.textSecondary),
-            ),
-            const SizedBox(height: AppSpace.s16),
-            BaseNote(text: chat.consentPrivacy),
-          ],
-        ),
-        footer: BaseButton(text: chat.consentTurnOn, onPressed: cubit.enable),
       ),
       HardConversationGate.limitReached => BaseStackedContent(
         body: Column(

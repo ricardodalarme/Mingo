@@ -112,7 +112,6 @@ test('the chat endpoint answers as server-sent events, and refuses an anonymous 
   assert.equal(anonymous.status, 401);
 
   const session = await signUp();
-  await sql(`update public.user_settings set chat_enabled = true where user_id = '${session.id}'`);
   const previous = (await sql(`select value from public.app_config where key = 'chat_messages_per_day_free'`))[0]?.[0] ?? '0';
   await sql(`insert into public.app_config (key, value) values ('chat_messages_per_day_free', '5')
              on conflict (key) do update set value = '5'`);
@@ -125,9 +124,11 @@ test('the chat endpoint answers as server-sent events, and refuses an anonymous 
     assert.equal(res.headers.get('content-type'), 'text/event-stream');
     const text = await res.text();
     assert.match(text, /^data: /, 'the body is an event stream, not a buffered JSON document');
-    assert.match(text, /"type":"error","code":"CHAT_UNAVAILABLE"/, 'no provider is configured locally');
-    assert.deepEqual(await sql(`select count(*) from public.chat_turns where user_id = '${session.id}'`), [['0']],
-      'a failed turn is refunded');
+    // Without a provider the turn fails and is refunded; with one configured the reply ends in `done` and the turn counts.
+    const unavailable = /"type":"error","code":"CHAT_UNAVAILABLE"/.test(text);
+    if (!unavailable) assert.match(text, /"type":"done"/, 'a configured provider ends the stream with done');
+    assert.deepEqual(await sql(`select count(*) from public.chat_turns where user_id = '${session.id}'`), [[unavailable ? '0' : '1']],
+      'a failed turn is refunded and an answered turn is counted');
   } finally {
     await sql(`update public.app_config set value = '${previous}' where key = 'chat_messages_per_day_free'`);
   }
