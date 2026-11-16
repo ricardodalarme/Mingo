@@ -116,9 +116,12 @@ select_permissions:
                     user_id:
                       _eq: X-Hasura-User-Id
           - memories:
-              coupleMembers:
-                user_id:
-                  _eq: X-Hasura-User-Id
+              _and:
+                - coupleMembers:
+                    user_id:
+                      _eq: X-Hasura-User-Id
+                - accepted_at:
+                    _is_null: false
           - partnerMessages:
               recipient_id:
                 _eq: X-Hasura-User-Id

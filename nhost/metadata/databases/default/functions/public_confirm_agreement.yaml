@@ -1,0 +1,11 @@
+function:
+  name: confirm_agreement
+  schema: public
+configuration:
+  custom_name: confirmAgreement
+  custom_root_fields:
+    function: confirmAgreement
+    function_aggregate: confirmAgreementAggregate
+  session_argument: session
+permissions:
+  - role: user

@@ -1,0 +1,11 @@
+function:
+  name: confirm_logistic_item
+  schema: public
+configuration:
+  custom_name: confirmLogisticItem
+  custom_root_fields:
+    function: confirmLogisticItem
+    function_aggregate: confirmLogisticItemAggregate
+  session_argument: session
+permissions:
+  - role: user

@@ -376,6 +376,73 @@ enum WorkArea_enum {
   planning
 }
 """
+unique or primary key constraints on table "agreements"
+"""
+enum agreements_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  agreements_pkey
+}
+"""
+select columns of table "agreements"
+"""
+enum agreements_select_column {
+  """
+  column name
+  """
+  archivedAt
+  """
+  column name
+  """
+  authorId
+  """
+  column name
+  """
+  body
+  """
+  column name
+  """
+  confirmedAt
+  """
+  column name
+  """
+  confirmedBy
+  """
+  column name
+  """
+  coupleId
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  updatedAt
+}
+"""
+update columns of table "agreements"
+"""
+enum agreements_update_column {
+  """
+  column name
+  """
+  archivedAt
+  """
+  column name
+  """
+  body
+  """
+  column name
+  """
+  coupleId
+}
+"""
 unique or primary key constraints on table "annoyances"
 """
 enum annoyances_constraint {
@@ -2228,6 +2295,14 @@ enum logisticItems_select_column {
   """
   column name
   """
+  confirmedAt
+  """
+  column name
+  """
+  confirmedBy
+  """
+  column name
+  """
   coupleId
   """
   column name
@@ -2374,6 +2449,10 @@ enum memories_select_column {
   """
   column name
   """
+  acceptedAt
+  """
+  column name
+  """
   authorId
   """
   column name
@@ -2391,6 +2470,10 @@ enum memories_select_column {
   column name
   """
   datePrecision
+  """
+  column name
+  """
+  declinedAt
   """
   column name
   """
@@ -3081,6 +3164,10 @@ enum quizResults_select_column {
   """
   column name
   """
+  sharedAt
+  """
+  column name
+  """
   updatedAt
 }
 """
@@ -3091,6 +3178,10 @@ enum quizResults_update_column {
   column name
   """
   ranked
+  """
+  column name
+  """
+  sharedAt
 }
 """
 unique or primary key constraints on table "repair_learnings"
@@ -4126,6 +4217,113 @@ enum yearRecaps_select_column {
   column name
   """
   year
+}
+"""
+columns and relationships of "agreements"
+"""
+type agreements {
+  archivedAt: timestamptz
+  """
+  An object relationship
+  """
+  author: profiles!
+  authorId: uuid!
+  body: String!
+  confirmedAt: timestamptz
+  confirmedBy: uuid
+  """
+  An object relationship
+  """
+  couple: couples
+  coupleId: uuid
+  """
+  An array relationship
+  """
+  coupleMembers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [coupleMembers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [coupleMembers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: coupleMembers_bool_exp
+  ): [coupleMembers!]!
+  createdAt: timestamptz!
+  id: uuid!
+  updatedAt: timestamptz!
+}
+"""
+aggregated selection of "agreements"
+"""
+type agreements_aggregate {
+  aggregate: agreements_aggregate_fields
+  nodes: [agreements!]!
+}
+"""
+aggregate fields of "agreements"
+"""
+type agreements_aggregate_fields {
+  count(columns: [agreements_select_column!], distinct: Boolean): Int!
+  max: agreements_max_fields
+  min: agreements_min_fields
+}
+"""
+aggregate max on columns
+"""
+type agreements_max_fields {
+  archivedAt: timestamptz
+  authorId: uuid
+  body: String
+  confirmedAt: timestamptz
+  confirmedBy: uuid
+  coupleId: uuid
+  createdAt: timestamptz
+  id: uuid
+  updatedAt: timestamptz
+}
+"""
+aggregate min on columns
+"""
+type agreements_min_fields {
+  archivedAt: timestamptz
+  authorId: uuid
+  body: String
+  confirmedAt: timestamptz
+  confirmedBy: uuid
+  coupleId: uuid
+  createdAt: timestamptz
+  id: uuid
+  updatedAt: timestamptz
+}
+"""
+response of any mutation on the table "agreements"
+"""
+type agreements_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [agreements!]!
 }
 """
 columns and relationships of "annoyances"
@@ -6153,6 +6351,8 @@ type logisticItems {
   """
   author: profiles!
   authorId: uuid!
+  confirmedAt: timestamptz
+  confirmedBy: uuid
   """
   An object relationship
   """
@@ -6217,6 +6417,8 @@ aggregate max on columns
 type logisticItems_max_fields {
   assigneeId: uuid
   authorId: uuid
+  confirmedAt: timestamptz
+  confirmedBy: uuid
   coupleId: uuid
   createdAt: timestamptz
   doneAt: timestamptz
@@ -6232,6 +6434,8 @@ aggregate min on columns
 type logisticItems_min_fields {
   assigneeId: uuid
   authorId: uuid
+  confirmedAt: timestamptz
+  confirmedBy: uuid
   coupleId: uuid
   createdAt: timestamptz
   doneAt: timestamptz
@@ -6287,6 +6491,7 @@ type manualEntries_mutation_response {
 columns and relationships of "memories"
 """
 type memories {
+  acceptedAt: timestamptz
   """
   An object relationship
   """
@@ -6329,6 +6534,7 @@ type memories {
   ): [coupleMembers!]!
   createdAt: timestamptz!
   datePrecision: DatePrecision_enum!
+  declinedAt: timestamptz
   happenedOn: date!
   id: uuid!
   origin: MemoryOrigin_enum!
@@ -6361,10 +6567,12 @@ type memories_aggregate_fields {
 aggregate max on columns
 """
 type memories_max_fields {
+  acceptedAt: timestamptz
   authorId: uuid
   body: String
   coupleId: uuid
   createdAt: timestamptz
+  declinedAt: timestamptz
   happenedOn: date
   id: uuid
   photoFileId: uuid
@@ -6377,10 +6585,12 @@ type memories_max_fields {
 aggregate min on columns
 """
 type memories_min_fields {
+  acceptedAt: timestamptz
   authorId: uuid
   body: String
   coupleId: uuid
   createdAt: timestamptz
+  declinedAt: timestamptz
   happenedOn: date
   id: uuid
   photoFileId: uuid
@@ -6505,6 +6715,87 @@ type mutation_root {
     """
     where: profiles_bool_exp
   ): [profiles!]!
+  """
+  execute VOLATILE function "confirm_agreement" which returns "agreements"
+  """
+  confirmAgreement(
+    """
+    input parameters for function "confirmAgreement"
+    """
+    args: confirmAgreement_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [agreements_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [agreements_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): [agreements!]!
+  """
+  execute VOLATILE function "confirm_logistic_item" which returns "logistic_items"
+  """
+  confirmLogisticItem(
+    """
+    input parameters for function "confirmLogisticItem"
+    """
+    args: confirmLogisticItem_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [logisticItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [logisticItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: logisticItems_bool_exp
+  ): [logisticItems!]!
+  """
+  delete data from the table: "agreements"
+  """
+  deleteAgreements(
+    """
+    filter the rows which have to be deleted
+    """
+    where: agreements_bool_exp!
+  ): agreements_mutation_response
+  """
+  delete single row from the table: "agreements"
+  """
+  deleteAgreementsByPk(id: uuid!): agreements
   """
   delete data from the table: "annoyances"
   """
@@ -6999,6 +7290,34 @@ type mutation_root {
   delete single row from the table: "temperature_checks"
   """
   deleteTemperatureChecksByPk(id: uuid!): temperatureChecks
+  """
+  insert data into the table: "agreements"
+  """
+  insertAgreements(
+    """
+    the rows to be inserted
+    """
+    objects: [agreements_insert_input!]!
+
+    """
+    upsert condition
+    """
+    on_conflict: agreements_on_conflict
+  ): agreements_mutation_response
+  """
+  insert a single row into the table: "agreements"
+  """
+  insertAgreementsOne(
+    """
+    the row to be inserted
+    """
+    object: agreements_insert_input!
+
+    """
+    upsert condition
+    """
+    on_conflict: agreements_on_conflict
+  ): agreements
   """
   insert data into the table: "annoyances"
   """
@@ -8301,6 +8620,40 @@ type mutation_root {
     where: profiles_bool_exp
   ): [profiles!]!
   """
+  execute VOLATILE function "respond_memory" which returns "memories"
+  """
+  respondMemory(
+    """
+    input parameters for function "respondMemory"
+    """
+    args: respondMemory_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [memories_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [memories_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: memories_bool_exp
+  ): [memories!]!
+  """
   execute VOLATILE function "send_card" which returns "cards"
   """
   sendCard(
@@ -8596,6 +8949,38 @@ type mutation_root {
     """
     where: profiles_bool_exp
   ): [profiles!]!
+  """
+  update data of the table: "agreements"
+  """
+  updateAgreements(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: agreements_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: agreements_bool_exp!
+  ): agreements_mutation_response
+  """
+  update single row of the table: "agreements"
+  """
+  updateAgreementsByPk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: agreements_set_input
+  pk_columns: agreements_pk_columns_input!): agreements
+  """
+  update multiples rows of table: "agreements"
+  """
+  updateAgreementsMany(
+    """
+    updates to execute, in order
+    """
+    updates: [agreements_updates!]!
+  ): [agreements_mutation_response]
   """
   update data of the table: "annoyances"
   """
@@ -10347,6 +10732,68 @@ type programEnrollments_variance_fields {
   currentDay: Float
 }
 type query_root {
+  """
+  fetch data from the table: "agreements"
+  """
+  agreements(
+    """
+    distinct select on columns
+    """
+    distinct_on: [agreements_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [agreements_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): [agreements!]!
+  """
+  fetch aggregated fields from the table: "agreements"
+  """
+  agreementsAggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [agreements_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [agreements_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): agreements_aggregate!
+  """
+  fetch data from the table: "agreements" using primary key columns
+  """
+  agreementsByPk(id: uuid!): agreements
   """
   fetch data from the table: "annoyances"
   """
@@ -13562,6 +14009,7 @@ type quizResults {
   id: uuid!
   quizKey: QuizKey_enum!
   ranked: [String!]!
+  sharedAt: timestamptz
   updatedAt: timestamptz!
 }
 """
@@ -13587,6 +14035,7 @@ type quizResults_max_fields {
   createdAt: timestamptz
   id: uuid
   ranked: [String!]
+  sharedAt: timestamptz
   updatedAt: timestamptz
 }
 """
@@ -13597,6 +14046,7 @@ type quizResults_min_fields {
   createdAt: timestamptz
   id: uuid
   ranked: [String!]
+  sharedAt: timestamptz
   updatedAt: timestamptz
 }
 """
@@ -14413,6 +14863,87 @@ type storyEvents_mutation_response {
   returning: [storyEvents!]!
 }
 type subscription_root {
+  """
+  fetch data from the table: "agreements"
+  """
+  agreements(
+    """
+    distinct select on columns
+    """
+    distinct_on: [agreements_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [agreements_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): [agreements!]!
+  """
+  fetch aggregated fields from the table: "agreements"
+  """
+  agreementsAggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [agreements_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [agreements_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): agreements_aggregate!
+  """
+  fetch data from the table: "agreements" using primary key columns
+  """
+  agreementsByPk(id: uuid!): agreements
+  """
+  fetch data from the table in a streaming manner: "agreements"
+  """
+  agreementsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [agreements_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): [agreements!]!
   """
   fetch data from the table: "annoyances"
   """
@@ -19658,6 +20189,110 @@ input acceptInvite_args {
   code: String
 }
 """
+Boolean expression to filter rows from the table "agreements". All fields are combined with a logical 'AND'.
+"""
+input agreements_bool_exp {
+  _and: [agreements_bool_exp!]
+  _not: agreements_bool_exp
+  _or: [agreements_bool_exp!]
+  archivedAt: timestamptz_comparison_exp
+  author: profiles_bool_exp
+  authorId: uuid_comparison_exp
+  body: String_comparison_exp
+  confirmedAt: timestamptz_comparison_exp
+  confirmedBy: uuid_comparison_exp
+  couple: couples_bool_exp
+  coupleId: uuid_comparison_exp
+  coupleMembers: coupleMembers_bool_exp
+  createdAt: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  updatedAt: timestamptz_comparison_exp
+}
+"""
+input type for inserting data into table "agreements"
+"""
+input agreements_insert_input {
+  body: String
+  coupleId: uuid
+  id: uuid
+}
+"""
+on_conflict condition type for table "agreements"
+"""
+input agreements_on_conflict {
+  constraint: agreements_constraint!
+  update_columns: [agreements_update_column!]! = []
+  where: agreements_bool_exp
+}
+"""
+Ordering options when selecting data from "agreements".
+"""
+input agreements_order_by {
+  archivedAt: order_by
+  author: profiles_order_by
+  authorId: order_by
+  body: order_by
+  confirmedAt: order_by
+  confirmedBy: order_by
+  couple: couples_order_by
+  coupleId: order_by
+  coupleMembers_aggregate: coupleMembers_aggregate_order_by
+  createdAt: order_by
+  id: order_by
+  updatedAt: order_by
+}
+"""
+primary key columns input for table: agreements
+"""
+input agreements_pk_columns_input {
+  id: uuid!
+}
+"""
+input type for updating data in table "agreements"
+"""
+input agreements_set_input {
+  archivedAt: timestamptz
+  body: String
+  coupleId: uuid
+}
+"""
+Streaming cursor of the table "agreements"
+"""
+input agreements_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: agreements_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input agreements_stream_cursor_value_input {
+  archivedAt: timestamptz
+  authorId: uuid
+  body: String
+  confirmedAt: timestamptz
+  confirmedBy: uuid
+  coupleId: uuid
+  createdAt: timestamptz
+  id: uuid
+  updatedAt: timestamptz
+}
+input agreements_updates {
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: agreements_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: agreements_bool_exp!
+}
+"""
 Boolean expression to filter rows from the table "annoyances". All fields are combined with a logical 'AND'.
 """
 input annoyances_bool_exp {
@@ -20599,6 +21234,12 @@ input checkins_updates {
   filter the rows which have to be updated
   """
   where: checkins_bool_exp!
+}
+input confirmAgreement_args {
+  agreementId: uuid
+}
+input confirmLogisticItem_args {
+  itemId: uuid
 }
 """
 Boolean expression to filter rows from the table "consents". All fields are combined with a logical 'AND'.
@@ -23198,6 +23839,8 @@ input logisticItems_bool_exp {
   assigneeId: uuid_comparison_exp
   author: profiles_bool_exp
   authorId: uuid_comparison_exp
+  confirmedAt: timestamptz_comparison_exp
+  confirmedBy: uuid_comparison_exp
   couple: couples_bool_exp
   coupleId: uuid_comparison_exp
   coupleMembers: coupleMembers_bool_exp
@@ -23239,6 +23882,8 @@ input logisticItems_order_by {
   assigneeId: order_by
   author: profiles_order_by
   authorId: order_by
+  confirmedAt: order_by
+  confirmedBy: order_by
   couple: couples_order_by
   coupleId: order_by
   coupleMembers_aggregate: coupleMembers_aggregate_order_by
@@ -23288,6 +23933,8 @@ Initial value of the column from where the streaming should start
 input logisticItems_stream_cursor_value_input {
   assigneeId: uuid
   authorId: uuid
+  confirmedAt: timestamptz
+  confirmedBy: uuid
   coupleId: uuid
   createdAt: timestamptz
   doneAt: timestamptz
@@ -23437,6 +24084,7 @@ input memories_bool_exp {
   _and: [memories_bool_exp!]
   _not: memories_bool_exp
   _or: [memories_bool_exp!]
+  acceptedAt: timestamptz_comparison_exp
   author: profiles_bool_exp
   authorId: uuid_comparison_exp
   body: String_comparison_exp
@@ -23445,6 +24093,7 @@ input memories_bool_exp {
   coupleMembers: coupleMembers_bool_exp
   createdAt: timestamptz_comparison_exp
   datePrecision: DatePrecision_enum_comparison_exp
+  declinedAt: timestamptz_comparison_exp
   happenedOn: date_comparison_exp
   id: uuid_comparison_exp
   origin: MemoryOrigin_enum_comparison_exp
@@ -23475,10 +24124,12 @@ input memories_insert_input {
 order by max() on columns of table "memories"
 """
 input memories_max_order_by {
+  acceptedAt: order_by
   authorId: order_by
   body: order_by
   coupleId: order_by
   createdAt: order_by
+  declinedAt: order_by
   happenedOn: order_by
   id: order_by
   photoFileId: order_by
@@ -23491,10 +24142,12 @@ input memories_max_order_by {
 order by min() on columns of table "memories"
 """
 input memories_min_order_by {
+  acceptedAt: order_by
   authorId: order_by
   body: order_by
   coupleId: order_by
   createdAt: order_by
+  declinedAt: order_by
   happenedOn: order_by
   id: order_by
   photoFileId: order_by
@@ -23515,6 +24168,7 @@ input memories_on_conflict {
 Ordering options when selecting data from "memories".
 """
 input memories_order_by {
+  acceptedAt: order_by
   author: profiles_order_by
   authorId: order_by
   body: order_by
@@ -23523,6 +24177,7 @@ input memories_order_by {
   coupleMembers_aggregate: coupleMembers_aggregate_order_by
   createdAt: order_by
   datePrecision: order_by
+  declinedAt: order_by
   happenedOn: order_by
   id: order_by
   origin: order_by
@@ -23568,11 +24223,13 @@ input memories_stream_cursor_input {
 Initial value of the column from where the streaming should start
 """
 input memories_stream_cursor_value_input {
+  acceptedAt: timestamptz
   authorId: uuid
   body: String
   coupleId: uuid
   createdAt: timestamptz
   datePrecision: DatePrecision_enum
+  declinedAt: timestamptz
   happenedOn: date
   id: uuid
   origin: MemoryOrigin_enum
@@ -24697,6 +25354,7 @@ input quizResults_bool_exp {
   id: uuid_comparison_exp
   quizKey: QuizKey_enum_comparison_exp
   ranked: String_array_comparison_exp
+  sharedAt: timestamptz_comparison_exp
   updatedAt: timestamptz_comparison_exp
 }
 """
@@ -24725,6 +25383,7 @@ input quizResults_order_by {
   id: order_by
   quizKey: order_by
   ranked: order_by
+  sharedAt: order_by
   updatedAt: order_by
 }
 """
@@ -24738,6 +25397,7 @@ input type for updating data in table "quiz_results"
 """
 input quizResults_set_input {
   ranked: [String!]
+  sharedAt: timestamptz
 }
 """
 Streaming cursor of the table "quizResults"
@@ -24761,6 +25421,7 @@ input quizResults_stream_cursor_value_input {
   id: uuid
   quizKey: QuizKey_enum
   ranked: [String!]
+  sharedAt: timestamptz
   updatedAt: timestamptz
 }
 input quizResults_updates {
@@ -25003,6 +25664,10 @@ input repairSessions_updates {
 }
 input resolveSharedItems_args {
   keep: Boolean
+}
+input respondMemory_args {
+  accept: Boolean
+  memoryId: uuid
 }
 """
 order by aggregate values of table "ritual_logs"

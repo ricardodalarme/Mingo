@@ -1,0 +1,11 @@
+function:
+  name: respond_memory
+  schema: public
+configuration:
+  custom_name: respondMemory
+  custom_root_fields:
+    function: respondMemory
+    function_aggregate: respondMemoryAggregate
+  session_argument: session
+permissions:
+  - role: user

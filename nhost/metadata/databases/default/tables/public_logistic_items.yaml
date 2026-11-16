@@ -7,6 +7,10 @@ configuration:
       custom_name: assigneeId
     author_id:
       custom_name: authorId
+    confirmed_at:
+      custom_name: confirmedAt
+    confirmed_by:
+      custom_name: confirmedBy
     couple_id:
       custom_name: coupleId
     created_at:
@@ -28,6 +32,8 @@ configuration:
   custom_column_names:
     assignee_id: assigneeId
     author_id: authorId
+    confirmed_at: confirmedAt
+    confirmed_by: confirmedBy
     couple_id: coupleId
     created_at: createdAt
     done_at: doneAt
@@ -110,6 +116,8 @@ select_permissions:
       columns:
         - assignee_id
         - author_id
+        - confirmed_at
+        - confirmed_by
         - couple_id
         - created_at
         - done_at

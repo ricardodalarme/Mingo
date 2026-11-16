@@ -3,6 +3,8 @@ table:
   schema: public
 configuration:
   column_config:
+    accepted_at:
+      custom_name: acceptedAt
     author_id:
       custom_name: authorId
     body:
@@ -13,6 +15,8 @@ configuration:
       custom_name: createdAt
     date_precision:
       custom_name: datePrecision
+    declined_at:
+      custom_name: declinedAt
     happened_on:
       custom_name: happenedOn
     id:
@@ -30,11 +34,13 @@ configuration:
     updated_at:
       custom_name: updatedAt
   custom_column_names:
+    accepted_at: acceptedAt
     author_id: authorId
     body: body
     couple_id: coupleId
     created_at: createdAt
     date_precision: datePrecision
+    declined_at: declinedAt
     happened_on: happenedOn
     id: id
     origin: origin
@@ -110,11 +116,13 @@ select_permissions:
   - role: user
     permission:
       columns:
+        - accepted_at
         - author_id
         - body
         - couple_id
         - created_at
         - date_precision
+        - declined_at
         - happened_on
         - id
         - origin

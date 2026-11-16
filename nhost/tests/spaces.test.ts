@@ -74,6 +74,7 @@ const sharedTables: Record<string, string> = {
   storyEvents: 'kind: met, happenedOn: "2020-01-01"',
   lists: 'title: "filmes"',
   giftIdeas: 'title: "livro"',
+  agreements: 'body: "sem celular na mesa"',
 };
 
 for (const [table, row] of Object.entries(sharedTables)) {

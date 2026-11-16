@@ -13,6 +13,8 @@ configuration:
       custom_name: quizKey
     ranked:
       custom_name: ranked
+    shared_at:
+      custom_name: sharedAt
     updated_at:
       custom_name: updatedAt
   custom_column_names:
@@ -21,6 +23,7 @@ configuration:
     id: id
     quiz_key: quizKey
     ranked: ranked
+    shared_at: sharedAt
     updated_at: updatedAt
   custom_name: quizResults
   custom_root_fields:
@@ -58,16 +61,28 @@ select_permissions:
         - id
         - quiz_key
         - ranked
+        - shared_at
         - updated_at
       filter:
-        author_id:
-          _eq: X-Hasura-User-Id
+        _or:
+          - author_id:
+              _eq: X-Hasura-User-Id
+          - _and:
+              - shared_at:
+                  _is_null: false
+              - author:
+                  membership:
+                    couple:
+                      members:
+                        user_id:
+                          _eq: X-Hasura-User-Id
       allow_aggregations: true
 update_permissions:
   - role: user
     permission:
       columns:
         - ranked
+        - shared_at
       filter:
         author_id:
           _eq: X-Hasura-User-Id

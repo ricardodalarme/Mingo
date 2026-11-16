@@ -509,7 +509,18 @@ export const tables = {
   },
   program_enrollments: ownerOnly({ insert: ['program_slug', 'current_day', 'completed_at'], update: ['current_day', 'completed_at'] }),
   lesson_progress: ownerOnly({ insert: ['program_slug', 'lesson_day', 'status'], update: ['status'] }),
-  quiz_results: ownerOnly({ insert: ['quiz_key', 'ranked'], update: ['ranked'] }),
+  quiz_results: {
+    object: { author: 'author_id' },
+    roles: {
+      user: {
+        // The partner sees the result only after the person chose to show it, never the answers behind it.
+        select: { columns: '*', filter: or(mine(), and({ shared_at: { _is_null: false } }, { author: meOrPartner })), aggregate: true },
+        insert: { columns: ['id', 'quiz_key', 'ranked'], set: { author_id: ME } },
+        update: { columns: ['ranked', 'shared_at'], filter: mine() },
+        delete: { filter: mine() },
+      },
+    },
+  },
 
   // Shared space ---------------------------------------------------------------------------------------------------
   rituals: sharedWithCouple({
@@ -547,6 +558,8 @@ export const tables = {
     extraCheck: ownFile('photo_file_id', 'photoFile'),
     partnerWrites: false,
   }),
+  // The partner reads an agreement but confirms it through `confirmAgreement`.
+  agreements: sharedWithCouple({ insert: ['body'], update: ['body', 'archived_at'], partnerWrites: false }),
   story_events: sharedWithCouple({ insert: ['kind', 'title', 'happened_on', 'date_precision'] }),
   capsules: {
     object: { author: 'author_id', couple: 'couple_id' },
@@ -607,7 +620,8 @@ export const storageFiles = {
         filter: or(
           mine('uploaded_by_user_id'),
           { avatarOf: meOrPartner },
-          { memories: inMyCouple },
+          // A shared memory photo is the partner's to read only after the memory was accepted.
+          { memories: and(inMyCouple, { accepted_at: { _is_null: false } }) },
           { partnerMessages: mine('recipient_id') },
           { couplePhotos: inMyCouple },
         ),
@@ -632,6 +646,9 @@ export const functions = {
   try_accept_invite: { session: true, roles: ['user'] },
   invite_status: { roles: ['public', 'user'] },
   unpair: { session: true, roles: ['user'] },
+  confirm_agreement: { session: true, roles: ['user'] },
+  confirm_logistic_item: { session: true, roles: ['user'] },
+  respond_memory: { session: true, roles: ['user'] },
   send_gentle_request: { session: true, roles: ['user'] },
   thank_gentle_request: { session: true, roles: ['user'] },
   start_date_state: { session: true, roles: ['user'] },
