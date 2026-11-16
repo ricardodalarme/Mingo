@@ -3,6 +3,7 @@
 //   node nhost/tools/build-metadata.mjs
 // It rewrites `nhost/metadata/databases/default/{tables,functions}`; the `auth_*` and `storage_*` files that Nhost
 // owns are kept, except `storage_files.yaml`, which gains the app's relationships and permissions.
+// Run `nhost/tools/up.sh` afterwards: Nhost normalizes the files it loads, and that normalized form is what is committed.
 import { readFileSync, readdirSync, rmSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
