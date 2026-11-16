@@ -36,8 +36,6 @@ class const QuickSlipForm({super.key}) extends StatelessWidget {
             style: context.text.body.copyWith(color: context.colors.textSecondary),
           ),
           const SizedBox(height: AppSpace.s20),
-          const _PolarityToggle(),
-          const SizedBox(height: AppSpace.s16),
           const _TextField(),
           const SizedBox(height: AppSpace.s16),
           const _CategoryChips(),
@@ -65,23 +63,6 @@ class const _DateLine() extends StatelessWidget {
     );
 
     return Text(text, style: context.text.label.copyWith(color: context.colors.textSecondary));
-  }
-}
-
-class const _PolarityToggle() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.quickSlip;
-    final polarity = context.select((QuickSlipCubit cubit) => cubit.state.polarity);
-
-    return BaseSegmented(
-      segments: [l10n.polarityLiked, l10n.polarityBothered],
-      selectedIndex: polarity == SlipPolarity.bothered ? 1 : 0,
-      semanticLabel: l10n.polarityLabel,
-      onSelectionChanged: (index) => context.read<QuickSlipCubit>().onPolarityChanged(
-        index == 1 ? SlipPolarity.bothered : SlipPolarity.liked,
-      ),
-    );
   }
 }
 
