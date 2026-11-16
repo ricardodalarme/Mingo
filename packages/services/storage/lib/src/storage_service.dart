@@ -20,6 +20,8 @@ class StorageService({
 
   final Map<String, ({String url, DateTime expiresAt})> _urls = {};
 
+  String _cacheKey(String fileId) => '$fileId:${session?.accessToken?.hashCode ?? 0}';
+
   String get _url {
     final url = baseUrl ?? '';
     return url.endsWith('/') ? url.substring(0, url.length - 1) : url;
@@ -46,11 +48,12 @@ class StorageService({
 
   /// A URL that lets the file with [fileId] be read.
   Future<String> signedUrl({required String fileId, int seconds = 300}) async {
-    final cached = _urls[fileId];
+    final key = _cacheKey(fileId);
+    final cached = _urls[key];
     if (cached != null && DateTime.now().isBefore(cached.expiresAt)) return cached.url;
     try {
       final url = (await _client.getPresignedUrl(fileId)).url;
-      _urls[fileId] = (url: url, expiresAt: DateTime.now().add(const Duration(minutes: 4)));
+      _urls[key] = (url: url, expiresAt: DateTime.now().add(const Duration(minutes: 4)));
       return url;
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(FileStorageException(error), stackTrace);
@@ -59,7 +62,7 @@ class StorageService({
 
   /// Removes the file with [fileId]; a file that is already gone is not an error.
   Future<void> remove({required String fileId}) async {
-    _urls.remove(fileId);
+    _urls.removeWhere((key, _) => key.startsWith('$fileId:'));
     try {
       await _client.delete(fileId);
     } on ApiException catch (error) {
