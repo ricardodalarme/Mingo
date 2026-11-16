@@ -62,12 +62,11 @@ D validateResponseData<T, D>(QueryResult<T> response, {D? Function(T data)? getD
   return parsedData as D;
 }
 
-extension WatchQueryStreamX<T> on Stream<T> {
-  Stream<R> mapData<R>(R? Function(T data) select) => map((data) {
-    final result = select(data);
-    if (result == null) {
-      throw const NoDataException();
-    }
-    return result;
-  });
+/// Streams of results from a subscription or a watched query.
+extension QueryResultStreamX<T> on Stream<QueryResult<T>> {
+  /// Validates each result and maps its data like [validateResponseData] does for one result.
+  ///
+  /// A failing result becomes an error event; the stream stays open for the next result.
+  Stream<D> mapResponseData<D>(D? Function(T data) getData) =>
+      map((result) => validateResponseData<T, D>(result, getData: getData));
 }

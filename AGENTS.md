@@ -111,7 +111,7 @@ Never write the old separate form (`const SlipCard({required this.slip});` in th
 - **Feature data uses GraphQL.** Each feature keeps its `queries/`, `mutations/` and `fragments/` under
   `data/data_sources/remote/`; the schema snapshot is `app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
   `RestClient` is for Functions and other REST APIs only.
-- **Subscriptions** live in `data/data_sources/remote/subscriptions/` and are used only for such waiting signals. They run over a
+- **Subscriptions** live in `data/data_sources/remote/subscriptions/` and are used only for such waiting signals. Data sources wrap their stream with `mapResponseData`, the stream form of `validateResponseData`. They run over a
   WebSocket on the same endpoint; `GQLClient.subscribe` handles the connection and the token. Codegen leaves `__typename` off
   subscription roots (`addTypenameExcludedPaths` in `app/build.yaml`) because the server allows one root field.
 - **Data sources** are concrete classes that call `GQLClient` from `package:network/network.dart`, wrap one-shot queries in

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:graphql/client.dart';
 import 'package:network/network.dart';
 import 'package:network/src/graphql/links/timeout_link.dart';
@@ -53,5 +55,53 @@ void main() {
     );
 
     expect(mapResponseException(result), isNull);
+  });
+
+  group('mapResponseData', () {
+    QueryResult<Map<String, Object?>> data(
+      Map<String, Object?>? value, {
+      OperationException? error,
+    }) => QueryResult<Map<String, Object?>>(
+      options: QueryOptions<Map<String, Object?>>(
+        document: parseString('query { a }'),
+        parserFn: (json) => json,
+      ),
+      source: QueryResultSource.network,
+      data: value,
+      exception: error,
+    );
+
+    test('maps the data of each result', () async {
+      final values = await Stream.fromIterable([
+        data({'a': 1}),
+        data({'a': 2}),
+      ]).mapResponseData((json) => json['a']! as int).toList();
+
+      expect(values, [1, 2]);
+    });
+
+    test('turns a failing result into an error and keeps the stream open', () async {
+      final events = <Object?>[];
+      final done = Completer<void>();
+      Stream.fromIterable([
+            data(
+              null,
+              error: OperationException(graphqlErrors: [const GraphQLError(message: 'NOT_PAIRED')]),
+            ),
+            data({'a': 3}),
+          ])
+          .mapResponseData((json) => json['a']! as int)
+          .listen(events.add, onError: events.add, onDone: done.complete);
+      await done.future;
+
+      expect(events.first, isA<ServerResponseException>());
+      expect(events.last, 3);
+    });
+
+    test('fails with no data when the mapper finds nothing', () {
+      final stream = Stream.value(data({'a': 1})).mapResponseData<int>((json) => null);
+
+      expect(stream.first, throwsA(isA<NoDataException>()));
+    });
   });
 }

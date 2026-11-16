@@ -47,11 +47,7 @@ class PairingDataSource({required final GQLClient _client}) {
             variables: VariablesSubscriptionWatchMyCouple(userId: userId),
           ),
         )
-        .map((result) {
-          validateResponse(result);
-
-          return result.parsedData?.couples.isNotEmpty ?? false;
-        });
+        .mapResponseData((data) => data.couples.isNotEmpty);
   }
 
   /// Cancels an invite that has not been used yet.
