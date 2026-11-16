@@ -1,6 +1,4 @@
-import 'package:app/features/dev_menu/dev_menu_page.dart';
 import 'package:app/features/today/data/models/today_home.dart';
-import 'package:app/infrastructure/config/env_variables.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
@@ -76,23 +74,18 @@ class const TodayHeader({
           ],
         ),
         const SizedBox(height: AppSpace.s24),
-        GestureDetector(
-          onLongPress: EnvVariables.debugSignIn
-              ? () => context.router.pushWidget(const DevMenuPage())
-              : null,
-          child: Semantics(
-            header: true,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Flexible(child: Text(greeting, style: context.text.titleLg)),
-                const SizedBox(width: AppSpace.s8),
-                Padding(
-                  padding: const EdgeInsets.only(top: AppSpace.s2),
-                  child: AppIcon(icon: timeIcon, color: context.colors.accentLabel),
-                ),
-              ],
-            ),
+        Semantics(
+          header: true,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(child: Text(greeting, style: context.text.titleLg)),
+              const SizedBox(width: AppSpace.s8),
+              Padding(
+                padding: const EdgeInsets.only(top: AppSpace.s2),
+                child: AppIcon(icon: timeIcon, color: context.colors.accentLabel),
+              ),
+            ],
           ),
         ),
         const SizedBox(height: AppSpace.s4),
