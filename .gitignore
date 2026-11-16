@@ -47,3 +47,4 @@ CLAUDE.md
 # Nhost local
 .secrets
 .nhost/
+node_modules/
