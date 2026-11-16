@@ -180,5 +180,4 @@ export async function zoneAtHour(hour: number): Promise<string> {
   return rows[0][0];
 }
 
-export const ids = (rows: { id: string }[]) => rows.map((r) => r.id).sort();
 export { assert, randomUUID };
