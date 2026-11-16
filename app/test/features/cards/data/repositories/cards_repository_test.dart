@@ -117,4 +117,21 @@ void main() {
       ),
     );
   });
+
+  test('the card default is read and saved for the signed in person', () async {
+    when(() => dataSource.getSlipsDefaultForCard('me')).thenAnswer((_) async => true);
+    when(() => dataSource.setSlipsDefaultForCard(userId: 'me', value: false))
+        .thenAnswer((_) async {});
+
+    expect(await repository.getSlipsDefaultForCard(), isTrue);
+    await repository.setSlipsDefaultForCard(value: false);
+
+    verify(() => dataSource.setSlipsDefaultForCard(userId: 'me', value: false)).called(1);
+  });
+
+  test('the card default without a signed in person is refused', () {
+    when(() => authentication.currentUserId).thenReturn(null);
+
+    expect(repository.getSlipsDefaultForCard(), throwsA(isA<LocalizedException>()));
+  });
 }

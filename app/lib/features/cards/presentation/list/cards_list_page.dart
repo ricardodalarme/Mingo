@@ -3,6 +3,7 @@ import 'package:app/features/cards/presentation/list/cubit/cards_list_cubit.dart
 import 'package:app/features/cards/presentation/list/widgets/card_summary_tile.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
@@ -53,7 +54,14 @@ class _CardsListPageState() extends State<CardsListPage> {
     final cubit = context.read<CardsListCubit>();
 
     return BaseView(
-      appBar: BaseAppBar(title: l10n.title),
+      appBar: BaseAppBar(
+        title: l10n.title,
+        trailing: BaseRoundButton(
+          icon: AppIcons.settings,
+          semanticLabel: context.l10n.cardSettings.open,
+          onPressed: () => context.pushRoute(const CardSettingsRoute()),
+        ),
+      ),
       body: SkeletonizerResourceWidget<List<CardSummary>>(
         cards,
         fakeValue: [CardSummary.fake(), CardSummary.fake()],

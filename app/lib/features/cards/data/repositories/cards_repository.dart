@@ -156,4 +156,31 @@ class CardsRepository({
       rethrow;
     }
   }
+
+  /// Whether new slips go on the weekly card by default.
+  Future<bool> getSlipsDefaultForCard() async {
+    try {
+      return await _dataSource.getSlipsDefaultForCard(_userId);
+    } catch (e, stack) {
+      _logger.error('Failed to read the card default', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Sets whether new slips go on the weekly card by default.
+  Future<void> setSlipsDefaultForCard({required bool value}) async {
+    try {
+      await _dataSource.setSlipsDefaultForCard(userId: _userId, value: value);
+    } catch (e, stack) {
+      _logger.error('Failed to save the card default', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  String get _userId {
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) throw const LocalizedException(l10nKey: 'UNAUTHENTICATED');
+
+    return userId;
+  }
 }

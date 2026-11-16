@@ -244,6 +244,22 @@ class CardEncounterWidgetRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CardSettingsPage]
+class CardSettingsRoute extends PageRouteInfo<void> {
+  const CardSettingsRoute({List<PageRouteInfo>? children})
+    : super(CardSettingsRoute.name, initialChildren: children);
+
+  static const String name = 'CardSettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CardSettingsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [CardsListPage]
 class CardsListRoute extends PageRouteInfo<void> {
   const CardsListRoute({List<PageRouteInfo>? children})

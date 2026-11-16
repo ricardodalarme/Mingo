@@ -6,8 +6,10 @@ import 'package:app/features/cards/data/data_sources/remote/mutations/generated/
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/ReactToCard.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/ReopenCard.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/SendCard.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/mutations/generated/SetSlipsDefaultForCard.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/UpdateCardDraft.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/queries/generated/CardDetail.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/queries/generated/CardSettings.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/queries/generated/MyCards.graphql.dart';
 import 'package:network/network.dart';
 
@@ -120,5 +122,31 @@ class CardsDataSource({required final GQLClient _client}) {
     );
 
     return validateResponseData(response, getData: (data) => data.updateCardsByPk);
+  }
+
+  /// Reads whether new slips go on the weekly card by default.
+  Future<bool> getSlipsDefaultForCard(String userId) async {
+    final response = await _client.query(
+      OptionsQueryCardSettings(
+        fetchPolicy: FetchPolicy.networkOnly,
+        variables: VariablesQueryCardSettings(userId: userId),
+      ),
+    );
+
+    return validateResponseData(
+      response,
+      getData: (data) => data.userSettingsByPk?.slipsDefaultForCard ?? false,
+    );
+  }
+
+  /// Sets whether new slips go on the weekly card by default.
+  Future<void> setSlipsDefaultForCard({required String userId, required bool value}) async {
+    final response = await _client.mutate(
+      OptionsMutationSetSlipsDefaultForCard(
+        variables: VariablesMutationSetSlipsDefaultForCard(userId: userId, value: value),
+      ),
+    );
+
+    validateResponse(response);
   }
 }

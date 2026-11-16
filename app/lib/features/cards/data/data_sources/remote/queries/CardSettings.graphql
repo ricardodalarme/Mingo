@@ -1,0 +1,6 @@
+query CardSettings($userId: uuid!) {
+  userSettingsByPk(userId: $userId) {
+    userId
+    slipsDefaultForCard
+  }
+}

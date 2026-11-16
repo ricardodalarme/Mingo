@@ -1,0 +1,15 @@
+{
+  "title": "Cartão semanal",
+  "day": "Dia",
+  "hour": "Hora",
+  "defaultTitle": "Slips novos entram no cartão",
+  "defaultSubtitle": "Cada slip pode mudar isso depois.",
+  "note": "Mudanças valem para o próximo cartão.",
+  "saveError": "Não deu para salvar. Sua escolha anterior foi mantida.",
+  "errorTitle": "Não deu para abrir as configurações",
+  "errors(map)": {
+    "NETWORK": "Sem conexão. Tente de novo.",
+    "other": "Suas escolhas continuam salvas. Tente de novo."
+  },
+  "open": "Configurações do cartão"
+}

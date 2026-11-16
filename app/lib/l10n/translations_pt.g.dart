@@ -62,6 +62,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
   late final Translations$capsules$pt capsules = Translations$capsules$pt.internal(_root);
+  late final Translations$cardSettings$pt cardSettings = Translations$cardSettings$pt.internal(
+    _root,
+  );
   late final Translations$cardView$pt cardView = Translations$cardView$pt.internal(_root);
   late final Translations$cardsList$pt cardsList = Translations$cardsList$pt.internal(_root);
   late final Translations$chat$pt chat = Translations$chat$pt.internal(_root);
@@ -661,6 +664,47 @@ class Translations$capsules$pt {
   Map<String, String> get deleteErrors => {
     'other': 'Não deu para apagar esta cápsula. Ela continua aqui.',
   };
+}
+
+// Path: cardSettings
+class Translations$cardSettings$pt {
+  Translations$cardSettings$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Cartão semanal'
+  String get title => 'Cartão semanal';
+
+  /// pt: 'Dia'
+  String get day => 'Dia';
+
+  /// pt: 'Hora'
+  String get hour => 'Hora';
+
+  /// pt: 'Slips novos entram no cartão'
+  String get defaultTitle => 'Slips novos entram no cartão';
+
+  /// pt: 'Cada slip pode mudar isso depois.'
+  String get defaultSubtitle => 'Cada slip pode mudar isso depois.';
+
+  /// pt: 'Mudanças valem para o próximo cartão.'
+  String get note => 'Mudanças valem para o próximo cartão.';
+
+  /// pt: 'Não deu para salvar. Sua escolha anterior foi mantida.'
+  String get saveError => 'Não deu para salvar. Sua escolha anterior foi mantida.';
+
+  /// pt: 'Não deu para abrir as configurações'
+  String get errorTitle => 'Não deu para abrir as configurações';
+
+  Map<String, String> get errors => {
+    'NETWORK': 'Sem conexão. Tente de novo.',
+    'other': 'Suas escolhas continuam salvas. Tente de novo.',
+  };
+
+  /// pt: 'Configurações do cartão'
+  String get open => 'Configurações do cartão';
 }
 
 // Path: cardView
@@ -10155,6 +10199,17 @@ extension on Translations {
           'capsules.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'capsules.errors.other' => 'Não deu para guardar agora. Seu texto continua aqui.',
           'capsules.deleteErrors.other' => 'Não deu para apagar esta cápsula. Ela continua aqui.',
+          'cardSettings.title' => 'Cartão semanal',
+          'cardSettings.day' => 'Dia',
+          'cardSettings.hour' => 'Hora',
+          'cardSettings.defaultTitle' => 'Slips novos entram no cartão',
+          'cardSettings.defaultSubtitle' => 'Cada slip pode mudar isso depois.',
+          'cardSettings.note' => 'Mudanças valem para o próximo cartão.',
+          'cardSettings.saveError' => 'Não deu para salvar. Sua escolha anterior foi mantida.',
+          'cardSettings.errorTitle' => 'Não deu para abrir as configurações',
+          'cardSettings.errors.NETWORK' => 'Sem conexão. Tente de novo.',
+          'cardSettings.errors.other' => 'Suas escolhas continuam salvas. Tente de novo.',
+          'cardSettings.open' => 'Configurações do cartão',
           'cardView.forPartner' => ({required Object name}) => 'Para ${name}',
           'cardView.forPartnerNoName' => 'Para sua pessoa',
           'cardView.goodThings' =>
@@ -10467,6 +10522,9 @@ extension on Translations {
           'dates.kinds.custom' => 'Outra',
           'dates.kinds.holiday' => 'Feriado',
           'dates.kinds.reunion' => 'Reencontro',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.kinds.other' => '',
           'dates.monthLabel' => 'Mês',
           'dates.dayLabel' => 'Dia',
@@ -10478,9 +10536,6 @@ extension on Translations {
           'dates.months.1' => 'fevereiro',
           'dates.months.2' => 'março',
           'dates.months.3' => 'abril',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.months.4' => 'maio',
           'dates.months.5' => 'junho',
           'dates.months.6' => 'julho',
@@ -11083,6 +11138,9 @@ extension on Translations {
             'A mensagem fica salva e sai quando você estiver online de novo.',
           'helpSupport.faqAnswers.privacy' =>
             'Só a equipe de suporte. Nada é compartilhado com seu parceiro.',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.faqAnswers.reportBug' =>
             'Escolha Erro no formulário e conte o que aconteceu.',
           'helpSupport.pendingNote' =>
@@ -11096,9 +11154,6 @@ extension on Translations {
           'helpSupport.topics.bug' => 'Erro',
           'helpSupport.topics.other' => 'Outro',
           'helpSupport.messageLabel' => 'Mensagem',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.messageHint' =>
             'Conte o que aconteceu, com o máximo de detalhes que quiser.',
           'helpSupport.messageErrors.empty' => 'Escreva sua mensagem primeiro',
@@ -11766,6 +11821,9 @@ extension on Translations {
             'Muitas tentativas seguidas. Espere um instante.',
           'loveStyle.revokeErrors.other' => 'Não deu para tirar do widget agora. Tente de novo.',
           'memories.title' => 'Memórias',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.historyLabel' => 'NOSSA HISTÓRIA',
           'memories.historyTitle' => 'Nossa história',
           'memories.historyText' => 'Marcos, datas, lugares e a nossa história em números.',
@@ -11777,9 +11835,6 @@ extension on Translations {
           'memories.placeLabel' => 'Lugar (opcional)',
           'memories.placeHint' => 'Ex.: Paraty',
           'memories.placeAddressNote' => 'Prefira só o nome do lugar, sem endereço ou número.',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.segmentTimeline' => 'Linha do tempo',
           'memories.segmentJar' => 'Potinho',
           'memories.jarEmpty' =>
@@ -12363,6 +12418,9 @@ extension on Translations {
           'programs.completed' => 'Concluído',
           'programs.lessonsTitle' => 'Lições',
           'programs.lessonsComingTitle' => 'Lições chegando',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.lessonsComingText' =>
             'Este programa ainda está sendo preparado. Volte em breve.',
           'programs.lessonGoneTitle' => 'Lição indisponível',
@@ -12376,9 +12434,6 @@ extension on Translations {
           'programs.saved' => 'Guardado para depois.',
           'programs.savedTag' => 'Guardado',
           'programs.lockedTitle' => 'Lição do Plus',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.lockedLessonText' => 'Esta lição faz parte do Plus.',
           'programs.lockedProgramText' => 'Este programa faz parte do Plus.',
           'programs.completeTitle' => 'Muito bem',
@@ -12936,6 +12991,9 @@ extension on Translations {
           'slipDetail.weekdaysShort.3' => 'Qui',
           'slipDetail.weekdaysShort.4' => 'Sex',
           'slipDetail.weekdaysShort.5' => 'Sáb',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.weekdaysShort.6' => 'Dom',
           'slipDetail.factDate' => ({
             required Object weekday,
@@ -12951,9 +13009,6 @@ extension on Translations {
           'slipDetail.visibilitySent' => 'Enviado',
           'slipDetail.yes' => 'Sim',
           'slipDetail.no' => 'Não',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.categories.said' => 'Disse algo',
           'slipDetail.categories.did' => 'Fez algo',
           'slipDetail.categories.noticed' => 'Me notou',
@@ -13585,6 +13640,9 @@ extension on Translations {
           'welcome.start' => 'Começar',
           'welcome.haveAccount' => 'Já tenho conta',
           'welcome.debugSignIn' => 'Entrar (debug)',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.settingsTitle' => 'Widgets',
           'widgets.settingsSubtitle' => 'Na tela inicial',
           'widgets.juntosCategory' => 'TELA INICIAL',
@@ -13596,9 +13654,6 @@ extension on Translations {
           'widgets.ownSlipLabel' => 'ANOTAR SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Toque para anotar',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.ownIdeaLabel' => 'IDEIA DO DIA',
           'widgets.ownIdeaDefault' => 'Deixe um bilhete hoje',
           'widgets.ownIdeaHint' => 'Toque para abrir',

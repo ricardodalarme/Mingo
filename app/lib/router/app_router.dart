@@ -12,6 +12,7 @@ import 'package:app/features/capsules/presentation/capsules/capsules_page.dart';
 import 'package:app/features/cards/presentation/detail/card_detail_page.dart';
 import 'package:app/features/cards/presentation/draft/sunday_card_page.dart';
 import 'package:app/features/cards/presentation/list/cards_list_page.dart';
+import 'package:app/features/cards/presentation/settings/card_settings_page.dart';
 import 'package:app/features/chat/data/models/chat_models.dart';
 import 'package:app/features/chat/presentation/chat/chat_page.dart';
 import 'package:app/features/chat/presentation/chat_tab/chat_tab_page.dart';
@@ -223,6 +224,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: DevicesRoute.page),
     AutoRoute(page: SundayCardRoute.page),
     AutoRoute(page: CardsListRoute.page),
+    AutoRoute(page: CardSettingsRoute.page),
     AutoRoute(page: CheckinRoute.page),
     AutoRoute(page: QuestionsRoute.page),
     AutoRoute(page: ProgramsRoute.page),

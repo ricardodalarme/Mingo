@@ -1,0 +1,5 @@
+mutation SetSlipsDefaultForCard($userId: uuid!, $value: Boolean!) {
+  updateUserSettingsByPk(pk_columns: { userId: $userId }, _set: { slipsDefaultForCard: $value }) {
+    userId
+  }
+}

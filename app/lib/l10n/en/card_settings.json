@@ -1,0 +1,15 @@
+{
+  "title": "Weekly card",
+  "day": "Day",
+  "hour": "Time",
+  "defaultTitle": "New slips go on the card",
+  "defaultSubtitle": "Each slip can change this later.",
+  "note": "Changes apply to the next card.",
+  "saveError": "Could not save. Your earlier choice was kept.",
+  "errorTitle": "We could not open the settings",
+  "errors(map)": {
+    "NETWORK": "No connection. Try again.",
+    "other": "Your choices are still saved. Try again."
+  },
+  "open": "Card settings"
+}
