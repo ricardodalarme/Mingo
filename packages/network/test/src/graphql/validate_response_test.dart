@@ -20,6 +20,21 @@ void main() {
     expect(mapResponseException(result)?.code, 'FREE_LIMIT_REACHED');
   });
 
+  test('reads the stable code a database error ends with', () {
+    final result = _result(
+      OperationException(
+        graphqlErrors: [
+          const GraphQLError(
+            message: 'Check constraint violation. NOT_PAIRED',
+            extensions: {'code': 'permission-error'},
+          ),
+        ],
+      ),
+    );
+
+    expect(mapResponseException(result)?.code, 'NOT_PAIRED');
+  });
+
   test('prefers the message over an extension code when it is a stable code', () {
     final result = _result(
       OperationException(

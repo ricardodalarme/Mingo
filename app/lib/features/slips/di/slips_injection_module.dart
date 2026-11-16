@@ -1,3 +1,4 @@
+import 'package:app/features/annoyances/data/repositories/annoyance_repository.dart';
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
@@ -27,7 +28,10 @@ class SlipsInjectionModule() implements InjectionModule {
       () => SlipsListCubit(slipRepository: injector.get<SlipRepository>()),
     )
     ..registerFactory<QuickSlipCubit>(
-      () => QuickSlipCubit(slipRepository: injector.get<SlipRepository>()),
+      () => QuickSlipCubit(
+        slipRepository: injector.get<SlipRepository>(),
+        annoyanceRepository: injector.get<AnnoyanceRepository>(),
+      ),
     )
     ..registerFactory<SlipKindCubit>(
       () => SlipKindCubit(slipRepository: injector.get<SlipRepository>()),

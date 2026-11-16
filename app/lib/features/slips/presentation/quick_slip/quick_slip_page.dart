@@ -5,6 +5,7 @@ import 'package:app/features/slips/presentation/quick_slip/widgets/quick_slip_sa
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,10 @@ class const QuickSlipPage({super.key}) extends StatelessWidget implements AutoRo
     final cubit = context.read<QuickSlipCubit>();
 
     return BaseView(
-      appBar: BaseAppBar(onClose: () => context.router.maybePop()),
+      appBar: BaseAppBar(
+        onClose: () => context.router.maybePop(),
+        trailing: isSaved ? null : const _DateLine(),
+      ),
       body: DirtyFormGuard(
         isDirty: !isSaved && hasDraft,
         title: l10n.discardTitle,
@@ -56,5 +60,20 @@ class const QuickSlipPage({super.key}) extends StatelessWidget implements AutoRo
       return;
     }
     if (state.undoAction is Success) context.router.maybePop();
+  }
+}
+
+class const _DateLine() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.quickSlip;
+    final now = clock.now();
+    final text = l10n.dateLine(
+      weekday: l10n.weekdays[now.weekday - 1],
+      day: now.day,
+      month: l10n.monthsShort[now.month - 1],
+    );
+
+    return Text(text, style: context.text.body.copyWith(color: context.colors.textSecondary));
   }
 }

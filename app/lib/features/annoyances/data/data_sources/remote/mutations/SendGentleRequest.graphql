@@ -1,0 +1,7 @@
+mutation SendGentleRequest($whenText: String!, $feelText: String!, $wishText: String!, $annoyanceId: uuid) {
+  sendGentleRequest(
+    args: { whenText: $whenText, feelText: $feelText, wishText: $wishText, annoyanceId: $annoyanceId }
+  ) {
+    id
+  }
+}

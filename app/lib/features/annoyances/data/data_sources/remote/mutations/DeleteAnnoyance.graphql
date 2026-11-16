@@ -1,0 +1,5 @@
+mutation DeleteAnnoyance($id: uuid!) {
+  deleteAnnoyancesByPk(id: $id) {
+    id
+  }
+}

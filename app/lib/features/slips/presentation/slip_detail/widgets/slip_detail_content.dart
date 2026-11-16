@@ -1,5 +1,4 @@
 import 'package:app/features/slips/data/models/slip_detail.dart';
-import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:app/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
@@ -28,10 +27,6 @@ class const SlipDetailContent({super.key}) extends StatelessWidget {
           if (slip.planNote != null && !isEditing) ...[
             const SizedBox(height: AppSpace.s16),
             _Labelled(label: context.l10n.slipDetail.plan, text: slip.planNote!),
-          ],
-          if (slip.request != null && !isEditing) ...[
-            const SizedBox(height: AppSpace.s16),
-            _Labelled(label: context.l10n.slipDetail.request, text: slip.request!),
           ],
           const SizedBox(height: AppSpace.s24),
           if (!isEditing) ...[
@@ -73,8 +68,6 @@ class const _Header({required final SlipDetail slip}) extends StatelessWidget {
 
     return Row(
       children: [
-        BaseTag(text: l10n.polarities.selectOrFallback(slip.polarity.name)),
-        const SizedBox(width: AppSpace.s8),
         BaseTag(text: l10n.kinds.selectOrFallback(slip.kind.name)),
         if (slip.isArchived) ...[const SizedBox(width: AppSpace.s8), BaseTag(text: l10n.archived)],
         const Spacer(),
@@ -131,9 +124,7 @@ class const _CardSection({required final SlipDetail slip}) extends StatelessWidg
       children: [
         BaseSectionHeader(title: l10n.cardTitle),
         const SizedBox(height: AppSpace.s8),
-        if (slip.polarity == SlipPolarity.bothered)
-          BaseNote(text: l10n.cardBothered)
-        else if (!slip.canGoInCard)
+        if (!slip.canGoInCard)
           BaseNote(text: l10n.cardInvisible)
         else ...[
           BaseListGroup(

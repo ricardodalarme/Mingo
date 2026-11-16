@@ -1,6 +1,7 @@
+import 'package:app/features/annoyances/data/models/annoyance.dart';
+import 'package:app/features/annoyances/data/repositories/annoyance_repository.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_draft.dart';
-import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
@@ -11,24 +12,34 @@ import 'package:mocktail/mocktail.dart';
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
 
+class _MockAnnoyanceRepository() extends Mock implements AnnoyanceRepository;
+
 void main() {
   late SlipRepository repository;
+  late AnnoyanceRepository annoyances;
 
   setUpAll(() {
     registerFallbackValue(DateTime(2026));
-    registerFallbackValue(SlipPolarity.liked);
   });
 
   setUp(() {
     repository = _MockSlipRepository();
+    annoyances = _MockAnnoyanceRepository();
+    when(() => annoyances.save(any())).thenAnswer(
+      (_) async => Annoyance(
+        id: 'a1',
+        body: 'Chegou tarde',
+        createdAt: DateTime(2026),
+        expiresAt: DateTime(2026, 1, 15),
+      ),
+    );
+    when(() => annoyances.delete(any())).thenAnswer((_) async {});
     when(() => repository.readDraft(any())).thenReturn(null);
     when(
       () => repository.saveDraft(
         text: any(named: 'text'),
         now: any(named: 'now'),
         category: any(named: 'category'),
-        polarity: any(named: 'polarity'),
-        request: any(named: 'request'),
       ),
     ).thenAnswer((_) async {
       return;
@@ -42,7 +53,6 @@ void main() {
         body: any(named: 'body'),
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
-        request: any(named: 'request'),
       ),
     ).thenAnswer((_) async => SlipSaveOutcome.synced);
     when(() => repository.undo(any())).thenAnswer((_) async {
@@ -50,7 +60,8 @@ void main() {
     });
   });
 
-  QuickSlipCubit build() => QuickSlipCubit(slipRepository: repository);
+  QuickSlipCubit build() =>
+      QuickSlipCubit(slipRepository: repository, annoyanceRepository: annoyances);
 
   blocTest<QuickSlipCubit, QuickSlipState>(
     'start restores a fresh draft',
@@ -78,7 +89,6 @@ void main() {
         body: any(named: 'body'),
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
-        request: any(named: 'request'),
       ),
     ),
   );
@@ -96,101 +106,70 @@ void main() {
         body: 'Fez café',
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
-        request: any(named: 'request'),
       ),
     ).called(1),
   );
 
   blocTest<QuickSlipCubit, QuickSlipState>(
-    'a bothered slip is saved with its polarity',
+    'something that bothered the person is kept as an annoyance, never as a slip',
     build: build,
     act: (cubit) async {
       cubit
-        ..onPolarityChanged(SlipPolarity.bothered)
+        ..onModeChanged(QuickSlipMode.annoyance)
         ..onTextChanged('Chegou tarde sem avisar');
       await cubit.save();
     },
-    verify: (_) => verify(
-      () => repository.saveQuick(
-        id: any(named: 'id'),
-        body: 'Chegou tarde sem avisar',
-        createdAt: any(named: 'createdAt'),
-        category: any(named: 'category'),
-        polarity: SlipPolarity.bothered,
-        request: any(named: 'request'),
-      ),
-    ).called(1),
+    verify: (cubit) {
+      verify(() => annoyances.save('Chegou tarde sem avisar')).called(1);
+      verifyNever(
+        () => repository.saveQuick(
+          id: any(named: 'id'),
+          body: any(named: 'body'),
+          createdAt: any(named: 'createdAt'),
+          category: any(named: 'category'),
+        ),
+      );
+      expect(cubit.savedAnnoyance?.id, 'a1');
+    },
   );
 
   blocTest<QuickSlipCubit, QuickSlipState>(
-    'a bothered slip is saved with its gentle request',
+    'what bothered the person is never written to the device',
     build: build,
-    act: (cubit) async {
-      cubit
-        ..onPolarityChanged(SlipPolarity.bothered)
-        ..onTextChanged('Chegou tarde sem avisar')
-        ..onRequestChanged('  Poderia me avisar antes?  ');
-      await cubit.save();
-    },
-    verify: (_) => verify(
-      () => repository.saveQuick(
-        id: any(named: 'id'),
-        body: 'Chegou tarde sem avisar',
-        createdAt: any(named: 'createdAt'),
-        category: any(named: 'category'),
-        polarity: SlipPolarity.bothered,
-        request: 'Poderia me avisar antes?',
-      ),
-    ).called(1),
-  );
-
-  blocTest<QuickSlipCubit, QuickSlipState>(
-    'a request over the limit is refused',
-    build: build,
-    act: (cubit) async {
-      cubit
-        ..onPolarityChanged(SlipPolarity.bothered)
-        ..onTextChanged('Chegou tarde')
-        ..onRequestChanged('a' * (slipRequestMaxLength + 1));
-      await cubit.save();
-    },
+    act: (cubit) => cubit
+      ..onModeChanged(QuickSlipMode.annoyance)
+      ..onTextChanged('Chegou tarde sem avisar'),
     verify: (_) => verifyNever(
-      () => repository.saveQuick(
-        id: any(named: 'id'),
-        body: any(named: 'body'),
-        createdAt: any(named: 'createdAt'),
+      () => repository.saveDraft(
+        text: any(named: 'text'),
+        now: any(named: 'now'),
         category: any(named: 'category'),
-        polarity: any(named: 'polarity'),
-        request: any(named: 'request'),
       ),
     ),
   );
 
   blocTest<QuickSlipCubit, QuickSlipState>(
-    'the polarity is kept in the draft',
+    'switching to an annoyance drops the category',
     build: build,
-    act: (cubit) => cubit.onPolarityChanged(SlipPolarity.bothered),
-    verify: (_) => verify(
-      () => repository.saveDraft(
-        text: any(named: 'text'),
-        now: any(named: 'now'),
-        category: any(named: 'category'),
-        polarity: SlipPolarity.bothered,
-        request: any(named: 'request'),
-      ),
-    ).called(1),
+    seed: () => const QuickSlipState(category: SlipCategory.did),
+    act: (cubit) => cubit.onModeChanged(QuickSlipMode.annoyance),
+    expect: () => const [QuickSlipState(mode: QuickSlipMode.annoyance)],
   );
 
   blocTest<QuickSlipCubit, QuickSlipState>(
-    'going back to liked drops the request',
+    'undoing an annoyance deletes it',
     build: build,
-    act: (cubit) {
+    act: (cubit) async {
       cubit
-        ..onPolarityChanged(SlipPolarity.bothered)
-        ..onRequestChanged('Poderia me avisar antes?')
-        ..onPolarityChanged(SlipPolarity.liked);
+        ..onModeChanged(QuickSlipMode.annoyance)
+        ..onTextChanged('Chegou tarde sem avisar');
+      await cubit.save();
+      await cubit.undo();
     },
-    verify: (cubit) => expect(cubit.state.request.value, isEmpty),
+    verify: (_) {
+      verify(() => annoyances.delete('a1')).called(1);
+      verifyNever(() => repository.undo(any()));
+    },
   );
 
   blocTest<QuickSlipCubit, QuickSlipState>(
@@ -216,7 +195,6 @@ void main() {
           body: any(named: 'body'),
           createdAt: any(named: 'createdAt'),
           category: any(named: 'category'),
-          request: any(named: 'request'),
         ),
       ).thenAnswer((_) async => throw const LocalizedException(l10nKey: 'FREE_LIMIT_REACHED'));
       return build();

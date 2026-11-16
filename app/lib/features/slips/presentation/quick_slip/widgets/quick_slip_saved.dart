@@ -13,6 +13,9 @@ class const QuickSlipSaved({super.key}) extends StatelessWidget {
     final outcome = context.select((QuickSlipCubit cubit) => cubit.state.saveAction);
     final canUndo = context.select((QuickSlipCubit cubit) => cubit.state.canUndo);
     final isUndoing = context.select((QuickSlipCubit cubit) => cubit.state.undoAction.isLoading);
+    final isAnnoyance = context.select(
+      (QuickSlipCubit cubit) => cubit.state.mode == QuickSlipMode.annoyance,
+    );
     final isQueued = outcome is Success<SlipSaveOutcome> && outcome.value == SlipSaveOutcome.queued;
 
     return BaseMomentContent(
@@ -24,11 +27,19 @@ class const QuickSlipSaved({super.key}) extends StatelessWidget {
           Semantics(
             header: true,
             liveRegion: true,
-            child: Text(l10n.title, style: context.text.titleXl, textAlign: TextAlign.center),
+            child: Text(
+              isAnnoyance ? l10n.annoyanceTitle : l10n.title,
+              style: context.text.titleXl,
+              textAlign: TextAlign.center,
+            ),
           ),
           const SizedBox(height: AppSpace.s8),
           Text(
-            isQueued ? l10n.queued : l10n.added,
+            isAnnoyance
+                ? l10n.annoyanceAdded
+                : isQueued
+                ? l10n.queued
+                : l10n.added,
             textAlign: TextAlign.center,
             style: context.text.body.copyWith(color: context.colors.textSecondary),
           ),

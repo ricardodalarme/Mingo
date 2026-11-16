@@ -1,5 +1,4 @@
 import 'package:app/features/slips/data/models/slip_category.dart';
-import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:core/core.dart';
@@ -33,12 +32,5 @@ void main() {
     expect(const QuickSlipState(text: FormInput('  ')).hasDraft, isFalse);
     expect(const QuickSlipState(text: FormInput('Fez café')).hasDraft, isTrue);
     expect(const QuickSlipState(category: SlipCategory.did).hasDraft, isTrue);
-    expect(const QuickSlipState(polarity: SlipPolarity.bothered).hasDraft, isTrue);
-  });
-
-  test('a bothered slip survives a copyWith that changes only the text', () {
-    const state = QuickSlipState(polarity: SlipPolarity.bothered);
-
-    expect(state.copyWith(text: const FormInput('Chegou tarde')).polarity, SlipPolarity.bothered);
   });
 }

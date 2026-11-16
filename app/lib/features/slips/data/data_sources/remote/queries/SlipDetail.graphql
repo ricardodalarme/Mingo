@@ -8,8 +8,6 @@ query SlipDetail($id: uuid!) {
     forCard
     category
     workArea
-    polarity
-    request
     createdAt
     archivedAt
     inJar

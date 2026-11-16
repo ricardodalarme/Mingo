@@ -1,4 +1,5 @@
 import 'package:app/features/account/presentation/delete/delete_account_page.dart';
+import 'package:app/features/annoyances/presentation/gentle_request/gentle_request_page.dart';
 import 'package:app/features/app/presentation/time_in_app/time_in_app_page.dart';
 import 'package:app/features/authentication/presentation/create_account/create_account_page.dart';
 import 'package:app/features/authentication/presentation/existing_account/existing_account_page.dart';
@@ -151,6 +152,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: BreakupRoute.page),
     AutoRoute(page: UnpairDoneRoute.page),
     AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
+    AutoRoute(page: GentleRequestRoute.page),
     AutoRoute(page: SlipKindRoute.page, fullscreenDialog: true),
     AutoRoute(page: NeedRoute.page, fullscreenDialog: true),
     AutoRoute(page: TemperatureRoute.page, fullscreenDialog: true),

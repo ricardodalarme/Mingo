@@ -96,6 +96,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$games$en games = _Translations$games$en._(_root);
   @override
+  late final _Translations$gentleRequest$en gentleRequest = _Translations$gentleRequest$en._(_root);
+  @override
   late final _Translations$gifts$en gifts = _Translations$gifts$en._(_root);
   @override
   late final _Translations$globalErrors$en globalErrors = _Translations$globalErrors$en._(_root);
@@ -1597,6 +1599,65 @@ class _Translations$games$en extends Translations$games$pt {
   };
   @override
   late final _Translations$games$review$en review = _Translations$games$review$en._(_root);
+}
+
+// Path: gentleRequest
+class _Translations$gentleRequest$en extends Translations$gentleRequest$pt {
+  _Translations$gentleRequest$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Gentle request';
+  @override
+  String get titleHighlight => 'Gentle';
+  @override
+  String get whenLabel => 'When…';
+  @override
+  String get feelLabel => 'I feel…';
+  @override
+  String get wishLabel => 'I would like to…';
+  @override
+  String get whenHint => 'I get home and the house is a mess';
+  @override
+  String get feelHint => 'alone with the chores';
+  @override
+  String get wishHint => 'share Saturday afternoon with you';
+  @override
+  String previewTitle({required Object name}) => 'What ${name} will read';
+  @override
+  String get previewTitleNoName => 'What your person will read';
+  @override
+  String get previewEmpty => 'Fill in the three sentences to see the request.';
+  @override
+  String sentence({required Object when, required Object feel, required Object wish}) =>
+      'When ${when}, I feel ${feel}. I would like to ${wish}.';
+  @override
+  String get note =>
+      'It does not go on the Sunday card. The request goes away 7 days after it is answered.';
+  @override
+  String get keep => 'Keep';
+  @override
+  String get sendNow => 'Send now';
+  @override
+  String get confirmTitle => 'Send this request?';
+  @override
+  String get confirmText =>
+      'Your person will read the three sentences. The note it came from stops existing.';
+  @override
+  String get sent => 'Request sent';
+  @override
+  Map<String, String> get fieldErrors => {
+    'empty': 'Fill in this sentence.',
+    'tooLong': 'Use at most 140 characters.',
+  };
+  @override
+  Map<String, String> get errors => {
+    'NOT_PAIRED': 'A gentle request needs a connected person.',
+    'NETWORK': 'No connection. Try again.',
+    'other': 'We could not send it now. Try again.',
+  };
 }
 
 // Path: gifts
@@ -4438,19 +4499,6 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   @override
   String get privacyNote => 'It stays private. On Sunday you choose what goes on the card.';
   @override
-  String get botheredNote => 'Only you see it. A slip like this never goes on the card.';
-  @override
-  String get requestLabel => 'A request, if you want';
-  @override
-  String get requestHint => 'E.g. could you let me know beforehand?';
-  @override
-  String get requestHelper => 'Optional. It stays with you and is not sent to anyone.';
-  @override
-  Map<String, String> get requestErrors => {
-    'tooLong': 'Use at most 140 characters',
-    'other': 'Check this field',
-  };
-  @override
   String get save => 'Save';
   @override
   String get discardTitle => 'Discard this slip?';
@@ -4462,6 +4510,23 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'Could not save right now. Your text is still here, try again.',
   };
+  @override
+  String get annoyanceTitle => 'What bothered you?';
+  @override
+  String get annoyanceTitleHighlight => 'bothered';
+  @override
+  String get annoyanceSubtitle => 'One line is enough. Only you see it.';
+  @override
+  String get annoyanceHint => 'E.g. I was left with the dishes again';
+  @override
+  String get annoyanceNote =>
+      'It stays with you and goes away on its own in 14 days. It never goes on the card. It only continues if you turn it into a gentle request.';
+  @override
+  String get gentleRequest => 'Gentle request';
+  @override
+  String get keep => 'Keep';
+  @override
+  String get addDetails => 'Add details';
 }
 
 // Path: received
@@ -4992,15 +5057,11 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   @override
   String get private => 'Only you see this slip.';
   @override
-  Map<String, String> get polarities => {'liked': 'Liked', 'bothered': 'Bothered me', 'other': ''};
-  @override
   String get archived => 'Archived';
   @override
   String get feeling => 'How you felt';
   @override
   String get plan => 'Then I…';
-  @override
-  String get request => 'What I would ask for';
   @override
   String get jarTitle => 'Keep in the jar';
   @override
@@ -5017,8 +5078,6 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   String get cardOnText => 'On Sunday you choose whether it goes.';
   @override
   String get cardInvisible => 'Invisible slips never go in a card.';
-  @override
-  String get cardBothered => 'A slip that bothered you stays with you and never goes on the card.';
   @override
   String get previewTitle => 'What your partner would read';
   @override
@@ -6784,6 +6843,10 @@ class _Translations$quickSlip$saved$en extends Translations$quickSlip$saved$pt {
   String get undo => 'Undo';
   @override
   String get done => 'Done';
+  @override
+  String get annoyanceTitle => 'Kept';
+  @override
+  String get annoyanceAdded => 'It stays with you and goes away on its own in 14 days.';
 }
 
 // Path: repair.calm
@@ -8356,6 +8419,35 @@ extension on TranslationsEn {
           'games.review.back' => 'Back to the review',
           'games.review.locked' => 'Closed',
           'games.review.lockedNote' => 'This game is closed. This answer can no longer be edited.',
+          'gentleRequest.title' => 'Gentle request',
+          'gentleRequest.titleHighlight' => 'Gentle',
+          'gentleRequest.whenLabel' => 'When…',
+          'gentleRequest.feelLabel' => 'I feel…',
+          'gentleRequest.wishLabel' => 'I would like to…',
+          'gentleRequest.whenHint' => 'I get home and the house is a mess',
+          'gentleRequest.feelHint' => 'alone with the chores',
+          'gentleRequest.wishHint' => 'share Saturday afternoon with you',
+          'gentleRequest.previewTitle' => ({required Object name}) => 'What ${name} will read',
+          'gentleRequest.previewTitleNoName' => 'What your person will read',
+          'gentleRequest.previewEmpty' => 'Fill in the three sentences to see the request.',
+          'gentleRequest.sentence' => ({
+            required Object when,
+            required Object feel,
+            required Object wish,
+          }) => 'When ${when}, I feel ${feel}. I would like to ${wish}.',
+          'gentleRequest.note' =>
+            'It does not go on the Sunday card. The request goes away 7 days after it is answered.',
+          'gentleRequest.keep' => 'Keep',
+          'gentleRequest.sendNow' => 'Send now',
+          'gentleRequest.confirmTitle' => 'Send this request?',
+          'gentleRequest.confirmText' =>
+            'Your person will read the three sentences. The note it came from stops existing.',
+          'gentleRequest.sent' => 'Request sent',
+          'gentleRequest.fieldErrors.empty' => 'Fill in this sentence.',
+          'gentleRequest.fieldErrors.tooLong' => 'Use at most 140 characters.',
+          'gentleRequest.errors.NOT_PAIRED' => 'A gentle request needs a connected person.',
+          'gentleRequest.errors.NETWORK' => 'No connection. Try again.',
+          'gentleRequest.errors.other' => 'We could not send it now. Try again.',
           'gifts.title' => 'Gift page',
           'gifts.subtitle' => 'A page your partner can see in the app. You choose what to share.',
           'gifts.myTitle' => 'My wishes',
@@ -8675,6 +8767,9 @@ extension on TranslationsEn {
           'history.monthsLong.7' => 'August',
           'history.monthsLong.8' => 'September',
           'history.monthsLong.9' => 'October',
+          _ => null,
+        } ??
+        switch (path) {
           'history.monthsLong.10' => 'November',
           'history.monthsLong.11' => 'December',
           'history.fullDate' => ({
@@ -8712,9 +8807,6 @@ extension on TranslationsEn {
           'history.kindTrip' => 'Trip',
           'history.kindHome' => 'Moved in together',
           'history.kindCustom' => 'Milestone',
-          _ => null,
-        } ??
-        switch (path) {
           'history.unknownDateToggle' => 'Unknown date',
           'history.precisionDay' => 'Exact day',
           'history.precisionMonth' => 'Month and year',
@@ -9306,6 +9398,9 @@ extension on TranslationsEn {
           'mood.partnerLoving' => ({required Object name}) => '${name} is feeling tender today',
           'mood.partnerPlayful' => ({required Object name}) => '${name} is in a playful mood today',
           'mood.partnerNeedListen' => 'What helps: just listening.',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.partnerNeedOpinion' => 'What helps: an opinion.',
           'mood.partnerNeedHug' => 'What helps: a hug.',
           'mood.partnerNeedSpace' => 'What helps: some space.',
@@ -9329,9 +9424,6 @@ extension on TranslationsEn {
           'moodHelp.askToTalkSupport' => 'An open question, with no rush for an answer.',
           'moodHelp.careLabel' => 'Care',
           'moodHelp.sendLove' => 'Send a little love',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.sendLoveSupport' => 'A hug arrives as a signal in the app.',
           'moodHelp.helpLabel' => 'Help',
           'moodHelp.seeHowToHelp' => 'See how to help',
@@ -9901,6 +9993,9 @@ extension on TranslationsEn {
           'quickSlip.monthsShort.2' => 'Mar',
           'quickSlip.monthsShort.3' => 'Apr',
           'quickSlip.monthsShort.4' => 'May',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.monthsShort.5' => 'Jun',
           'quickSlip.monthsShort.6' => 'Jul',
           'quickSlip.monthsShort.7' => 'Aug',
@@ -9924,15 +10019,6 @@ extension on TranslationsEn {
           'quickSlip.categories.other' => '',
           'quickSlip.privacyNote' =>
             'It stays private. On Sunday you choose what goes on the card.',
-          'quickSlip.botheredNote' => 'Only you see it. A slip like this never goes on the card.',
-          _ => null,
-        } ??
-        switch (path) {
-          'quickSlip.requestLabel' => 'A request, if you want',
-          'quickSlip.requestHint' => 'E.g. could you let me know beforehand?',
-          'quickSlip.requestHelper' => 'Optional. It stays with you and is not sent to anyone.',
-          'quickSlip.requestErrors.tooLong' => 'Use at most 140 characters',
-          'quickSlip.requestErrors.other' => 'Check this field',
           'quickSlip.save' => 'Save',
           'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
@@ -9942,10 +10028,21 @@ extension on TranslationsEn {
           'quickSlip.saved.undoHint' => 'Undo for 30 seconds.',
           'quickSlip.saved.undo' => 'Undo',
           'quickSlip.saved.done' => 'Done',
+          'quickSlip.saved.annoyanceTitle' => 'Kept',
+          'quickSlip.saved.annoyanceAdded' =>
+            'It stays with you and goes away on its own in 14 days.',
           'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'quickSlip.errors.other' =>
             'Could not save right now. Your text is still here, try again.',
+          'quickSlip.annoyanceTitle' => 'What bothered you?',
+          'quickSlip.annoyanceTitleHighlight' => 'bothered',
+          'quickSlip.annoyanceSubtitle' => 'One line is enough. Only you see it.',
+          'quickSlip.annoyanceHint' => 'E.g. I was left with the dishes again',
+          'quickSlip.annoyanceNote' => 'It stays with you and goes away on its own in 14 days. It never goes on the card. It only continues if you turn it into a gentle request.',
+          'quickSlip.gentleRequest' => 'Gentle request',
+          'quickSlip.keep' => 'Keep',
+          'quickSlip.addDetails' => 'Add details',
           'received.kinds.repair' => 'Repair card',
           'received.kinds.need' => 'I need…',
           'received.kinds.missUs' => 'Missing you',
@@ -10311,13 +10408,9 @@ extension on TranslationsEn {
           'slipDetail.kinds.invisible' => 'Invisible',
           'slipDetail.kinds.other' => '',
           'slipDetail.private' => 'Only you see this slip.',
-          'slipDetail.polarities.liked' => 'Liked',
-          'slipDetail.polarities.bothered' => 'Bothered me',
-          'slipDetail.polarities.other' => '',
           'slipDetail.archived' => 'Archived',
           'slipDetail.feeling' => 'How you felt',
           'slipDetail.plan' => 'Then I…',
-          'slipDetail.request' => 'What I would ask for',
           'slipDetail.jarTitle' => 'Keep in the jar',
           'slipDetail.jarText' => 'To open on a bad day. Only you see it.',
           'slipDetail.cardTitle' => 'Who sees this',
@@ -10326,8 +10419,6 @@ extension on TranslationsEn {
           'slipDetail.cardOn' => 'Can go in the card',
           'slipDetail.cardOnText' => 'On Sunday you choose whether it goes.',
           'slipDetail.cardInvisible' => 'Invisible slips never go in a card.',
-          'slipDetail.cardBothered' =>
-            'A slip that bothered you stays with you and never goes on the card.',
           'slipDetail.previewTitle' => 'What your partner would read',
           'slipDetail.previewText' => 'If this slip goes in the card, this is the text that shows.',
           'slipDetail.sentNote' => 'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.',
@@ -10467,6 +10558,9 @@ extension on TranslationsEn {
           'spice.offText' => 'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.',
           'spice.turnOn' => 'Turn on',
           'spice.notNow' => 'Not now',
+          _ => null,
+        } ??
+        switch (path) {
           'spice.waitingText' => 'You both need to accept. Nothing is sent to your partner; when they turn it on too, the cards show up here.',
           'spice.readyText' => 'Light cards for the two of you. Do it or skip it, no pressure.',
           'spice.drawCard' => 'Draw a card',
@@ -10491,9 +10585,6 @@ extension on TranslationsEn {
           'story.errorTitle' => 'Couldn\'t load',
           'story.errorText' => 'Try again in a moment.',
           'story.errors.other' => 'Couldn\'t share right now. Try again.',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.title' => 'Your card',
           'sundayCard.edit' => 'Edit',
           'sundayCard.save' => 'Save',

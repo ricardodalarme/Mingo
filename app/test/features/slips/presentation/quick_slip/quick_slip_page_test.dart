@@ -1,5 +1,5 @@
 import 'package:app/features/_shared/presentation/forms/discard_changes.dart';
-import 'package:app/features/slips/data/models/slip_polarity.dart';
+import 'package:app/features/annoyances/data/repositories/annoyance_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:app/features/slips/presentation/quick_slip/quick_slip_page.dart';
@@ -12,10 +12,11 @@ import '../../../../test_helpers/pump_app.dart';
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
 
+class _MockAnnoyanceRepository() extends Mock implements AnnoyanceRepository;
+
 void main() {
   setUpAll(() {
     LocaleSettings.setLocaleSync(AppLocale.pt);
-    registerFallbackValue(SlipPolarity.liked);
   });
 
   testWidgets('an unsaved quick slip is guarded before leaving', (tester) async {
@@ -26,15 +27,14 @@ void main() {
         text: any(named: 'text'),
         now: any(named: 'now'),
         category: any(named: 'category'),
-        polarity: any(named: 'polarity'),
-        request: any(named: 'request'),
       ),
     ).thenAnswer((_) async {
       return;
     });
-    final cubit = QuickSlipCubit(slipRepository: repository)
-      ..start()
-      ..onTextChanged('Fez café');
+    final cubit =
+        QuickSlipCubit(slipRepository: repository, annoyanceRepository: _MockAnnoyanceRepository())
+          ..start()
+          ..onTextChanged('Fez café');
     addTearDown(cubit.close);
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuickSlipPage()));
@@ -43,17 +43,22 @@ void main() {
     expect(tester.widget<DirtyFormGuard>(find.byType(DirtyFormGuard)).isDirty, isTrue);
   });
 
-  testWidgets('a new slip is always a good thing: there is no me incomodou choice', (tester) async {
+  testWidgets('a new slip starts as a good thing, with the switch to what bothered', (
+    tester,
+  ) async {
     final repository = _MockSlipRepository();
     when(() => repository.readDraft(any())).thenReturn(null);
-    final cubit = QuickSlipCubit(slipRepository: repository)..start();
+    final cubit = QuickSlipCubit(
+      slipRepository: repository,
+      annoyanceRepository: _MockAnnoyanceRepository(),
+    )..start();
     addTearDown(cubit.close);
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuickSlipPage()));
     await tester.pump();
 
-    expect(find.text('Me incomodou'), findsNothing);
-    expect(find.text('Um pedido, se quiser'), findsNothing);
-    expect(cubit.state.polarity, SlipPolarity.liked);
+    expect(find.text('Gostei'), findsOneWidget);
+    expect(find.text('Me incomodou'), findsOneWidget);
+    expect(cubit.state.mode, QuickSlipMode.liked);
   });
 }

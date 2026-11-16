@@ -1,6 +1,5 @@
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
-import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/models/slip_work_area.dart';
 import 'package:equatable/equatable.dart';
 
@@ -18,8 +17,6 @@ final class const SlipDetail({
   final bool isArchived = false,
   final bool wasInCard = false,
   final bool isInJar = false,
-  final SlipPolarity polarity = SlipPolarity.liked,
-  final String? request,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() => SlipDetail(
@@ -31,7 +28,7 @@ final class const SlipDetail({
   );
 
   /// Whether the slip may appear in a card.
-  bool get canGoInCard => kind != SlipKind.invisible && polarity == SlipPolarity.liked;
+  bool get canGoInCard => kind != SlipKind.invisible;
 
   SlipDetail copyWith({
     String? body,
@@ -53,8 +50,6 @@ final class const SlipDetail({
     isArchived: isArchived ?? this.isArchived,
     wasInCard: wasInCard,
     isInJar: isInJar ?? this.isInJar,
-    polarity: polarity,
-    request: request,
   );
 
   @override
@@ -71,7 +66,5 @@ final class const SlipDetail({
     isArchived,
     wasInCard,
     isInJar,
-    polarity,
-    request,
   ];
 }

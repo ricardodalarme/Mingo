@@ -4,7 +4,6 @@ import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dar
 import 'package:app/features/slips/data/models/pending_slip.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_draft.dart';
-import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,7 +24,6 @@ void main() {
     registerFallbackValue(<PendingSlip>[]);
     registerFallbackValue(SlipDraft(text: '', savedAt: DateTime(2026)));
     registerFallbackValue(EnumSlipKind_enum.quick);
-    registerFallbackValue(EnumSlipPolarity_enum.liked);
     registerFallbackValue(EnumSlipCategory_enum.did);
     registerFallbackValue(EnumWorkArea_enum.other);
   });
@@ -46,8 +44,6 @@ void main() {
         kind: any(named: 'kind'),
         feeling: any(named: 'feeling'),
         planNote: any(named: 'planNote'),
-        polarity: any(named: 'polarity'),
-        request: any(named: 'request'),
         category: any(named: 'category'),
         workArea: any(named: 'workArea'),
       ),
@@ -74,83 +70,7 @@ void main() {
           kind: EnumSlipKind_enum.quick,
           feeling: null,
           planNote: null,
-          polarity: EnumSlipPolarity_enum.liked,
-          request: null,
           category: EnumSlipCategory_enum.did,
-          workArea: null,
-        ),
-      ).called(1);
-    });
-
-    test('sends a bothered slip with its polarity', () async {
-      await repository.saveQuick(
-        id: 's1',
-        body: 'Chegou tarde sem avisar',
-        createdAt: createdAt,
-        polarity: SlipPolarity.bothered,
-      );
-
-      verify(
-        () => remote.saveSlip(
-          id: 's1',
-          body: 'Chegou tarde sem avisar',
-          createdAt: createdAt,
-          kind: EnumSlipKind_enum.quick,
-          feeling: null,
-          planNote: null,
-          polarity: EnumSlipPolarity_enum.bothered,
-          request: null,
-          category: null,
-          workArea: null,
-        ),
-      ).called(1);
-    });
-
-    test('trims the gentle request and sends it with the slip', () async {
-      await repository.saveQuick(
-        id: 's1',
-        body: 'Chegou tarde sem avisar',
-        createdAt: createdAt,
-        polarity: SlipPolarity.bothered,
-        request: '  Poderia me avisar antes?  ',
-      );
-
-      verify(
-        () => remote.saveSlip(
-          id: 's1',
-          body: 'Chegou tarde sem avisar',
-          createdAt: createdAt,
-          kind: EnumSlipKind_enum.quick,
-          feeling: null,
-          planNote: null,
-          polarity: EnumSlipPolarity_enum.bothered,
-          request: 'Poderia me avisar antes?',
-          category: null,
-          workArea: null,
-        ),
-      ).called(1);
-    });
-
-    test('a blank request is sent as null', () async {
-      await repository.saveQuick(
-        id: 's1',
-        body: 'Chegou tarde sem avisar',
-        createdAt: createdAt,
-        polarity: SlipPolarity.bothered,
-        request: '   ',
-      );
-
-      verify(
-        () => remote.saveSlip(
-          id: 's1',
-          body: 'Chegou tarde sem avisar',
-          createdAt: createdAt,
-          kind: EnumSlipKind_enum.quick,
-          feeling: null,
-          planNote: null,
-          polarity: EnumSlipPolarity_enum.bothered,
-          request: null,
-          category: null,
           workArea: null,
         ),
       ).called(1);
@@ -165,8 +85,6 @@ void main() {
           kind: any(named: 'kind'),
           feeling: any(named: 'feeling'),
           planNote: any(named: 'planNote'),
-          polarity: any(named: 'polarity'),
-          request: any(named: 'request'),
           category: any(named: 'category'),
           workArea: any(named: 'workArea'),
         ),
@@ -188,8 +106,6 @@ void main() {
           kind: any(named: 'kind'),
           feeling: any(named: 'feeling'),
           planNote: any(named: 'planNote'),
-          polarity: any(named: 'polarity'),
-          request: any(named: 'request'),
           category: any(named: 'category'),
           workArea: any(named: 'workArea'),
         ),
@@ -242,8 +158,6 @@ void main() {
           kind: EnumSlipKind_enum.quick,
           feeling: null,
           planNote: null,
-          polarity: EnumSlipPolarity_enum.liked,
-          request: null,
           category: null,
           workArea: null,
         ),

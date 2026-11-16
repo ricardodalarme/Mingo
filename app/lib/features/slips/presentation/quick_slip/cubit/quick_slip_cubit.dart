@@ -1,7 +1,8 @@
 import 'dart:async';
 
+import 'package:app/features/annoyances/data/models/annoyance.dart';
+import 'package:app/features/annoyances/data/repositories/annoyance_repository.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
-import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
@@ -15,54 +16,41 @@ part 'quick_slip_state.dart';
 /// The longest slip the capture screen accepts.
 const int quickSlipMaxLength = 140;
 
-/// The longest gentle request a bothered slip accepts.
-const int slipRequestMaxLength = 140;
-
 /// How long the undo stays available after a slip is saved.
 const Duration undoWindow = Duration(seconds: 30);
 
-class QuickSlipCubit({required final SlipRepository _slipRepository})
-    extends Cubit<QuickSlipState> {
+class QuickSlipCubit({
+  required final SlipRepository _slipRepository,
+  required final AnnoyanceRepository _annoyanceRepository,
+}) extends Cubit<QuickSlipState> {
   this : super(const QuickSlipState());
 
   final Uuid _uuid = const Uuid();
   String? _savedId;
+  Annoyance? _savedAnnoyance;
   Timer? _undoTimer;
 
+  /// The annoyance just saved, for the pages that go on from it.
+  Annoyance? get savedAnnoyance => _savedAnnoyance;
+
   /// Restores a draft left less than an hour ago.
+  ///
+  /// Only a good slip is ever kept on the device; what bothered the person is not written to it.
   void start() {
     final draft = _slipRepository.readDraft(clock.now());
     if (draft == null) return;
 
-    emit(
-      state.copyWith(
-        text: FormInput(draft.text),
-        category: draft.category,
-        polarity: draft.polarity,
-        request: FormInput(draft.request ?? ''),
-      ),
-    );
+    emit(state.copyWith(text: FormInput(draft.text), category: draft.category));
+  }
+
+  void onModeChanged(QuickSlipMode mode) {
+    if (state.mode == mode) return;
+
+    emit(state.copyWith(mode: mode, clearCategory: mode == QuickSlipMode.annoyance));
   }
 
   void onTextChanged(String text) {
     emit(state.copyWith(text: FormInput(text)));
-    unawaited(_persistDraft());
-  }
-
-  void onPolarityChanged(SlipPolarity polarity) {
-    if (state.polarity == polarity) return;
-
-    emit(
-      state.copyWith(
-        polarity: polarity,
-        request: polarity == SlipPolarity.bothered ? state.request : const FormInput(''),
-      ),
-    );
-    unawaited(_persistDraft());
-  }
-
-  void onRequestChanged(String request) {
-    emit(state.copyWith(request: FormInput(request)));
     unawaited(_persistDraft());
   }
 
@@ -75,36 +63,41 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
   /// Forgets the stored draft so the next visit starts clean.
   void discardDraft() => unawaited(_slipRepository.clearDraft());
 
-  Future<void> save() async {
-    if (state.saveAction.isLoading || state.isSaved || !_validate()) return;
+  /// Saves what was written; returns whether it reached the server or the device.
+  Future<bool> save() async {
+    if (state.saveAction.isLoading || state.isSaved || !_validate()) return false;
 
     emit(state.copyWith(saveAction: const Loading()));
-    final id = _savedId ??= _uuid.v4();
     try {
-      final outcome = await _slipRepository.saveQuick(
-        id: id,
-        body: state.text.value.trim(),
-        createdAt: clock.now(),
-        category: state.category,
-        polarity: state.polarity,
-        request: state.polarity == SlipPolarity.bothered ? state.request.value.trim() : null,
-      );
+      final outcome = state.mode == QuickSlipMode.liked
+          ? await _saveSlip()
+          : await _saveAnnoyance();
       await _slipRepository.clearDraft();
       emit(state.copyWith(saveAction: Success(outcome), canUndo: true));
       _undoTimer = Timer(undoWindow, () => emit(state.copyWith(canUndo: false)));
+
+      return true;
     } catch (exception) {
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
+
+      return false;
     }
   }
 
   Future<void> undo() async {
-    final id = _savedId;
-    if (id == null || !state.canUndo || state.undoAction.isLoading) return;
+    if (!state.canUndo || state.undoAction.isLoading) return;
 
     emit(state.copyWith(undoAction: const Loading()));
     try {
-      await _slipRepository.undo(id);
+      switch (state.mode) {
+        case QuickSlipMode.liked:
+          if (_savedId case final id?) await _slipRepository.undo(id);
+        case QuickSlipMode.annoyance:
+          if (_savedAnnoyance case final annoyance?) {
+            await _annoyanceRepository.delete(annoyance.id);
+          }
+      }
       _undoTimer?.cancel();
       emit(state.copyWith(undoAction: const Success(null), canUndo: false));
     } catch (exception) {
@@ -113,26 +106,42 @@ class QuickSlipCubit({required final SlipRepository _slipRepository})
     }
   }
 
+  Future<SlipSaveOutcome> _saveSlip() {
+    final id = _savedId ??= _uuid.v4();
+
+    return _slipRepository.saveQuick(
+      id: id,
+      body: state.text.value.trim(),
+      createdAt: clock.now(),
+      category: state.category,
+    );
+  }
+
+  Future<SlipSaveOutcome> _saveAnnoyance() async {
+    _savedAnnoyance = await _annoyanceRepository.save(state.text.value);
+
+    return SlipSaveOutcome.synced;
+  }
+
   bool _validate() {
     final validatedText = state.text.validate(
       CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(quickSlipMaxLength)]),
     );
-    final validatedRequest = state.polarity == SlipPolarity.bothered
-        ? state.request.validate(MaxLengthValidator(slipRequestMaxLength))
-        : state.request.toPure();
 
-    emit(state.copyWith(text: validatedText, request: validatedRequest));
+    emit(state.copyWith(text: validatedText));
 
-    return validatedText.isValid && validatedRequest.isValid;
+    return validatedText.isValid;
   }
 
-  Future<void> _persistDraft() => _slipRepository.saveDraft(
-    text: state.text.value,
-    category: state.category,
-    polarity: state.polarity,
-    request: state.request.value,
-    now: clock.now(),
-  );
+  Future<void> _persistDraft() {
+    if (state.mode != QuickSlipMode.liked) return Future<void>.value();
+
+    return _slipRepository.saveDraft(
+      text: state.text.value,
+      category: state.category,
+      now: clock.now(),
+    );
+  }
 
   @override
   Future<void> close() {

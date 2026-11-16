@@ -6,8 +6,6 @@ mutation SaveSlip(
   $planNote: String
   $forCard: Boolean
   $createdAt: timestamptz
-  $polarity: SlipPolarity_enum!
-  $request: String
   $category: SlipCategory_enum
   $workArea: WorkArea_enum
 ) {
@@ -20,14 +18,12 @@ mutation SaveSlip(
       planNote: $planNote
       forCard: $forCard
       createdAt: $createdAt
-      polarity: $polarity
-      request: $request
       category: $category
       workArea: $workArea
     }
     on_conflict: {
       constraint: slips_pkey
-      update_columns: [body, kind, feeling, planNote, forCard, polarity, request, category, workArea]
+      update_columns: [body, kind, feeling, planNote, forCard, category, workArea]
     }
   ) {
     id

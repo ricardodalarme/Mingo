@@ -648,6 +648,57 @@ class GamesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GentleRequestPage]
+class GentleRequestRoute extends PageRouteInfo<GentleRequestRouteArgs> {
+  GentleRequestRoute({
+    String? annoyanceId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         GentleRequestRoute.name,
+         args: GentleRequestRouteArgs(annoyanceId: annoyanceId, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'GentleRequestRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GentleRequestRouteArgs>(
+        orElse: () => const GentleRequestRouteArgs(),
+      );
+      return WrappedRoute(
+        child: GentleRequestPage(annoyanceId: args.annoyanceId, key: args.key),
+      );
+    },
+  );
+}
+
+class GentleRequestRouteArgs {
+  const GentleRequestRouteArgs({this.annoyanceId, this.key});
+
+  final String? annoyanceId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'GentleRequestRouteArgs{annoyanceId: $annoyanceId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! GentleRequestRouteArgs) return false;
+    return annoyanceId == other.annoyanceId && key == other.key;
+  }
+
+  @override
+  int get hashCode => annoyanceId.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [GiftsPage]
 class GiftsRoute extends PageRouteInfo<void> {
   const GiftsRoute({List<PageRouteInfo>? children})

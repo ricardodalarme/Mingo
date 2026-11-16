@@ -4,7 +4,7 @@ query MySlips($limit: Int, $offset: Int, $where: slips_bool_exp) {
     body
     kind
     category
-    polarity
+    forCard
     createdAt
   }
 }

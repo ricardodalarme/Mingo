@@ -15,8 +15,6 @@ class VariablesMutationSaveSlip {
     String? planNote,
     bool? forCard,
     DateTime? createdAt,
-    required EnumSlipPolarity_enum polarity,
-    String? request,
     EnumSlipCategory_enum? category,
     EnumWorkArea_enum? workArea,
   }) => VariablesMutationSaveSlip._({
@@ -27,8 +25,6 @@ class VariablesMutationSaveSlip {
     if (planNote != null) r'planNote': planNote,
     if (forCard != null) r'forCard': forCard,
     if (createdAt != null) r'createdAt': createdAt,
-    r'polarity': polarity,
-    if (request != null) r'request': request,
     if (category != null) r'category': category,
     if (workArea != null) r'workArea': workArea,
   });
@@ -61,12 +57,6 @@ class VariablesMutationSaveSlip {
           ? null
           : DateTime.parse((l$createdAt as String));
     }
-    final l$polarity = data['polarity'];
-    result$data['polarity'] = fromJsonEnumSlipPolarity_enum((l$polarity as String));
-    if (data.containsKey('request')) {
-      final l$request = data['request'];
-      result$data['request'] = (l$request as String?);
-    }
     if (data.containsKey('category')) {
       final l$category = data['category'];
       result$data['category'] = l$category == null
@@ -98,10 +88,6 @@ class VariablesMutationSaveSlip {
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
-  EnumSlipPolarity_enum get polarity => (_$data['polarity'] as EnumSlipPolarity_enum);
-
-  String? get request => (_$data['request'] as String?);
-
   EnumSlipCategory_enum? get category => (_$data['category'] as EnumSlipCategory_enum?);
 
   EnumWorkArea_enum? get workArea => (_$data['workArea'] as EnumWorkArea_enum?);
@@ -131,12 +117,6 @@ class VariablesMutationSaveSlip {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$createdAt);
-    }
-    final l$polarity = polarity;
-    result$data['polarity'] = toJsonEnumSlipPolarity_enum(l$polarity);
-    if (_$data.containsKey('request')) {
-      final l$request = request;
-      result$data['request'] = l$request;
     }
     if (_$data.containsKey('category')) {
       final l$category = category;
@@ -204,19 +184,6 @@ class VariablesMutationSaveSlip {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
-    final l$polarity = polarity;
-    final lOther$polarity = other.polarity;
-    if (l$polarity != lOther$polarity) {
-      return false;
-    }
-    final l$request = request;
-    final lOther$request = other.request;
-    if (_$data.containsKey('request') != other._$data.containsKey('request')) {
-      return false;
-    }
-    if (l$request != lOther$request) {
-      return false;
-    }
     final l$category = category;
     final lOther$category = other.category;
     if (_$data.containsKey('category') != other._$data.containsKey('category')) {
@@ -245,8 +212,6 @@ class VariablesMutationSaveSlip {
     final l$planNote = planNote;
     final l$forCard = forCard;
     final l$createdAt = createdAt;
-    final l$polarity = polarity;
-    final l$request = request;
     final l$category = category;
     final l$workArea = workArea;
     return Object.hashAll([
@@ -257,8 +222,6 @@ class VariablesMutationSaveSlip {
       _$data.containsKey('planNote') ? l$planNote : const {},
       _$data.containsKey('forCard') ? l$forCard : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
-      l$polarity,
-      _$data.containsKey('request') ? l$request : const {},
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('workArea') ? l$workArea : const {},
     ]);
@@ -370,18 +333,6 @@ const documentNodeMutationSaveSlip = DocumentNode(
           directives: [],
         ),
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'polarity')),
-          type: NamedTypeNode(name: NameNode(value: 'SlipPolarity_enum'), isNonNull: true),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'request')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
-        VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'category')),
           type: NamedTypeNode(name: NameNode(value: 'SlipCategory_enum'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
@@ -434,14 +385,6 @@ const documentNodeMutationSaveSlip = DocumentNode(
                       value: VariableNode(name: NameNode(value: 'createdAt')),
                     ),
                     ObjectFieldNode(
-                      name: NameNode(value: 'polarity'),
-                      value: VariableNode(name: NameNode(value: 'polarity')),
-                    ),
-                    ObjectFieldNode(
-                      name: NameNode(value: 'request'),
-                      value: VariableNode(name: NameNode(value: 'request')),
-                    ),
-                    ObjectFieldNode(
                       name: NameNode(value: 'category'),
                       value: VariableNode(name: NameNode(value: 'category')),
                     ),
@@ -469,8 +412,6 @@ const documentNodeMutationSaveSlip = DocumentNode(
                           EnumValueNode(name: NameNode(value: 'feeling')),
                           EnumValueNode(name: NameNode(value: 'planNote')),
                           EnumValueNode(name: NameNode(value: 'forCard')),
-                          EnumValueNode(name: NameNode(value: 'polarity')),
-                          EnumValueNode(name: NameNode(value: 'request')),
                           EnumValueNode(name: NameNode(value: 'category')),
                           EnumValueNode(name: NameNode(value: 'workArea')),
                         ],

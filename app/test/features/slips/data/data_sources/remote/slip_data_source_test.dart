@@ -1,4 +1,3 @@
-import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network/network.dart';
@@ -12,25 +11,21 @@ class const _StubGQLClient(final Map<String, dynamic> _data) implements GQLClien
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
-Map<String, dynamic> _slip({
-  String? archivedAt,
-  String polarity = 'liked',
-  List<Map<String, dynamic>> cardItems = const [],
-}) => {
-  'slipsByPk': {
-    'id': 's1',
-    'body': 'Obrigado pelo café',
-    'kind': 'quick',
-    'forCard': false,
-    'polarity': polarity,
-    'createdAt': '2026-11-10T10:00:00Z',
-    'archivedAt': archivedAt,
-    'inJar': false,
-    '__typename': 'slips',
-  },
-  'cardItems': cardItems,
-  '__typename': 'query_root',
-};
+Map<String, dynamic> _slip({String? archivedAt, List<Map<String, dynamic>> cardItems = const []}) =>
+    {
+      'slipsByPk': {
+        'id': 's1',
+        'body': 'Obrigado pelo café',
+        'kind': 'quick',
+        'forCard': false,
+        'createdAt': '2026-11-10T10:00:00Z',
+        'archivedAt': archivedAt,
+        'inJar': false,
+        '__typename': 'slips',
+      },
+      'cardItems': cardItems,
+      '__typename': 'query_root',
+    };
 
 void main() {
   test('reads a slip by its primary key', () async {
@@ -40,14 +35,7 @@ void main() {
 
     expect(row?.slip.id, 's1');
     expect(row?.slip.body, 'Obrigado pelo café');
-    expect(row?.slip.polarity, EnumSlipPolarity_enum.liked);
     expect(row?.wasInCard, isFalse);
-  });
-
-  test('a bothered slip keeps its polarity', () async {
-    final dataSource = SlipDataSource(client: _StubGQLClient(_slip(polarity: 'bothered')));
-
-    expect((await dataSource.getSlip('s1'))?.slip.polarity, EnumSlipPolarity_enum.bothered);
   });
 
   test('a slip that is already on a card says so', () async {

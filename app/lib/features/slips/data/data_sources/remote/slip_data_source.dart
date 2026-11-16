@@ -21,8 +21,6 @@ class SlipDataSource({required final GQLClient _client}) {
     String? feeling,
     String? planNote,
     bool forCard = true,
-    EnumSlipPolarity_enum polarity = EnumSlipPolarity_enum.liked,
-    String? request,
     EnumSlipCategory_enum? category,
     EnumWorkArea_enum? workArea,
   }) async {
@@ -36,8 +34,6 @@ class SlipDataSource({required final GQLClient _client}) {
           feeling: feeling,
           planNote: planNote,
           forCard: forCard,
-          polarity: polarity,
-          request: request,
           category: category,
           workArea: workArea,
         ),

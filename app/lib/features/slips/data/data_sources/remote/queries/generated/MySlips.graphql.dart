@@ -263,7 +263,7 @@ const documentNodeQueryMySlips = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'polarity'),
+                  name: NameNode(value: 'forCard'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -423,7 +423,7 @@ class QueryMySlipsslips {
     required this.body,
     required this.kind,
     this.category,
-    required this.polarity,
+    required this.forCard,
     required this.createdAt,
     this.$__typename = 'slips',
   });
@@ -433,7 +433,7 @@ class QueryMySlipsslips {
     final l$body = json['body'];
     final l$kind = json['kind'];
     final l$category = json['category'];
-    final l$polarity = json['polarity'];
+    final l$forCard = json['forCard'];
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
     return QueryMySlipsslips(
@@ -441,7 +441,7 @@ class QueryMySlipsslips {
       body: (l$body as String),
       kind: fromJsonEnumSlipKind_enum((l$kind as String)),
       category: l$category == null ? null : fromJsonEnumSlipCategory_enum((l$category as String)),
-      polarity: fromJsonEnumSlipPolarity_enum((l$polarity as String)),
+      forCard: (l$forCard as bool),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
     );
@@ -455,7 +455,7 @@ class QueryMySlipsslips {
 
   final EnumSlipCategory_enum? category;
 
-  final EnumSlipPolarity_enum polarity;
+  final bool forCard;
 
   final DateTime createdAt;
 
@@ -471,8 +471,8 @@ class QueryMySlipsslips {
     _resultData['kind'] = toJsonEnumSlipKind_enum(l$kind);
     final l$category = category;
     _resultData['category'] = l$category == null ? null : toJsonEnumSlipCategory_enum(l$category);
-    final l$polarity = polarity;
-    _resultData['polarity'] = toJsonEnumSlipPolarity_enum(l$polarity);
+    final l$forCard = forCard;
+    _resultData['forCard'] = l$forCard;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;
@@ -486,7 +486,7 @@ class QueryMySlipsslips {
     final l$body = body;
     final l$kind = kind;
     final l$category = category;
-    final l$polarity = polarity;
+    final l$forCard = forCard;
     final l$createdAt = createdAt;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -494,7 +494,7 @@ class QueryMySlipsslips {
       l$body,
       l$kind,
       l$category,
-      l$polarity,
+      l$forCard,
       l$createdAt,
       l$$__typename,
     ]);
@@ -528,9 +528,9 @@ class QueryMySlipsslips {
     if (l$category != lOther$category) {
       return false;
     }
-    final l$polarity = polarity;
-    final lOther$polarity = other.polarity;
-    if (l$polarity != lOther$polarity) {
+    final l$forCard = forCard;
+    final lOther$forCard = other.forCard;
+    if (l$forCard != lOther$forCard) {
       return false;
     }
     final l$createdAt = createdAt;

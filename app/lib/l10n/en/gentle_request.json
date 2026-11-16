@@ -1,0 +1,29 @@
+{
+  "title": "Gentle request",
+  "titleHighlight": "Gentle",
+  "whenLabel": "When…",
+  "feelLabel": "I feel…",
+  "wishLabel": "I would like to…",
+  "whenHint": "I get home and the house is a mess",
+  "feelHint": "alone with the chores",
+  "wishHint": "share Saturday afternoon with you",
+  "previewTitle": "What {name} will read",
+  "previewTitleNoName": "What your person will read",
+  "previewEmpty": "Fill in the three sentences to see the request.",
+  "sentence": "When {when}, I feel {feel}. I would like to {wish}.",
+  "note": "It does not go on the Sunday card. The request goes away 7 days after it is answered.",
+  "keep": "Keep",
+  "sendNow": "Send now",
+  "confirmTitle": "Send this request?",
+  "confirmText": "Your person will read the three sentences. The note it came from stops existing.",
+  "sent": "Request sent",
+  "fieldErrors(map)": {
+    "empty": "Fill in this sentence.",
+    "tooLong": "Use at most 140 characters."
+  },
+  "errors(map)": {
+    "NOT_PAIRED": "A gentle request needs a connected person.",
+    "NETWORK": "No connection. Try again.",
+    "other": "We could not send it now. Try again."
+  }
+}

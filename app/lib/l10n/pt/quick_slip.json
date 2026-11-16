@@ -1,7 +1,28 @@
 {
   "dateLine": "{weekday}, {day} de {month}",
-  "weekdays": ["segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo"],
-  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "weekdays": [
+    "segunda",
+    "terça",
+    "quarta",
+    "quinta",
+    "sexta",
+    "sábado",
+    "domingo"
+  ],
+  "monthsShort": [
+    "jan",
+    "fev",
+    "mar",
+    "abr",
+    "mai",
+    "jun",
+    "jul",
+    "ago",
+    "set",
+    "out",
+    "nov",
+    "dez"
+  ],
   "title": "O que te deixou feliz?",
   "titleHighlight": "feliz",
   "subtitle": "Uma linha basta. 30 segundos.",
@@ -21,14 +42,6 @@
     "other": ""
   },
   "privacyNote": "Fica privado. No domingo você escolhe o que vai para o cartão.",
-  "botheredNote": "Fica só com você. Um slip assim nunca entra no cartão.",
-  "requestLabel": "Um pedido, se quiser",
-  "requestHint": "Ex.: poderia me avisar antes?",
-  "requestHelper": "Opcional. Fica só com você, não é enviado para ninguém.",
-  "requestErrors(map)": {
-    "tooLong": "Use no máximo 140 caracteres",
-    "other": "Revise este campo"
-  },
   "save": "Salvar",
   "discardTitle": "Descartar este slip?",
   "saved": {
@@ -37,11 +50,21 @@
     "queued": "Salvo neste celular. Enviamos quando a conexão voltar.",
     "undoHint": "Desfazer por 30 segundos.",
     "undo": "Desfazer",
-    "done": "Pronto"
+    "done": "Pronto",
+    "annoyanceTitle": "Guardado",
+    "annoyanceAdded": "Fica só com você e some sozinho em 14 dias."
   },
   "errors(map)": {
     "FREE_LIMIT_REACHED": "Você chegou ao limite de slips do plano grátis.",
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para salvar agora. Seu texto continua aqui, tente de novo."
-  }
+  },
+  "annoyanceTitle": "O que te incomodou?",
+  "annoyanceTitleHighlight": "incomodou",
+  "annoyanceSubtitle": "Uma linha basta. Só você vê.",
+  "annoyanceHint": "Ex.: fiquei com a louça sozinha de novo",
+  "annoyanceNote": "Fica só com você e some sozinho em 14 dias. Nunca vai para o cartão. Só continua se você transformar em um pedido gentil.",
+  "gentleRequest": "Pedido gentil",
+  "keep": "Guardar",
+  "addDetails": "Adicionar detalhes"
 }

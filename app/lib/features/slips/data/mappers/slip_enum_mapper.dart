@@ -1,7 +1,6 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
-import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/models/slip_work_area.dart';
 
 extension EnumSlipCategoryMapper on EnumSlipCategory_enum {
@@ -47,21 +46,6 @@ extension SlipWorkAreaMapper on SlipWorkArea {
     SlipWorkArea.emotional => EnumWorkArea_enum.emotional,
     SlipWorkArea.finances => EnumWorkArea_enum.finances,
     SlipWorkArea.other => EnumWorkArea_enum.other,
-  };
-}
-
-extension EnumSlipPolarityMapper on EnumSlipPolarity_enum {
-  SlipPolarity? toModel() => switch (this) {
-    EnumSlipPolarity_enum.liked => SlipPolarity.liked,
-    EnumSlipPolarity_enum.bothered => SlipPolarity.bothered,
-    EnumSlipPolarity_enum.$unknown => null,
-  };
-}
-
-extension SlipPolarityMapper on SlipPolarity {
-  EnumSlipPolarity_enum toRemote() => switch (this) {
-    SlipPolarity.liked => EnumSlipPolarity_enum.liked,
-    SlipPolarity.bothered => EnumSlipPolarity_enum.bothered,
   };
 }
 

@@ -28,7 +28,8 @@ ServerResponseException? mapResponseException(QueryResult response) {
   final message = firstError?.message;
   final code = message != null && _stableCode.hasMatch(message)
       ? message
-      : firstError?.extensions?['code']?.toString() ??
+      : _trailingCode(message) ??
+            firstError?.extensions?['code']?.toString() ??
             firstError?.extensions?['error_code']?.toString() ??
             message;
 
@@ -42,6 +43,12 @@ const String networkErrorCode = 'NETWORK';
 const String timeoutErrorCode = 'TIMEOUT';
 
 final RegExp _stableCode = RegExp(r'^[A-Z][A-Z0-9_]+$');
+
+/// A stable code that ends a longer message, as in `Check constraint violation. NOT_PAIRED`.
+final RegExp _trailingStableCode = RegExp(r'\s([A-Z][A-Z0-9_]{2,})$');
+
+String? _trailingCode(String? message) =>
+    message == null ? null : _trailingStableCode.firstMatch(message)?.group(1);
 
 D validateResponseData<T, D>(QueryResult<T> response, {D? Function(T data)? getData}) {
   validateResponse(response);

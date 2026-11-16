@@ -1,6 +1,5 @@
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
-import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/models/slip_work_area.dart';
 import 'package:equatable/equatable.dart';
 
@@ -14,8 +13,6 @@ final class const PendingSlip({
   final String? feeling,
   final String? planNote,
   final SlipWorkArea? workArea,
-  final SlipPolarity polarity = SlipPolarity.liked,
-  final String? request,
 }) with Equatable {
   factory fromMap(Map<String, dynamic> map) => PendingSlip(
     id: map['id'] as String,
@@ -26,8 +23,6 @@ final class const PendingSlip({
     feeling: map['feeling'] as String?,
     planNote: map['planNote'] as String?,
     workArea: SlipWorkArea.values.asNameMap()[map['workArea'] as String?],
-    polarity: SlipPolarity.values.asNameMap()[map['polarity'] as String?] ?? SlipPolarity.liked,
-    request: map['request'] as String?,
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -39,21 +34,8 @@ final class const PendingSlip({
     'feeling': feeling,
     'planNote': planNote,
     'workArea': workArea?.name,
-    'polarity': polarity.name,
-    'request': request,
   };
 
   @override
-  List<Object?> get props => [
-    id,
-    body,
-    createdAt,
-    category,
-    kind,
-    feeling,
-    planNote,
-    workArea,
-    polarity,
-    request,
-  ];
+  List<Object?> get props => [id, body, createdAt, category, kind, feeling, planNote, workArea];
 }

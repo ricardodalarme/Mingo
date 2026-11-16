@@ -1,10 +1,15 @@
 part of 'quick_slip_cubit.dart';
 
+/// What the person is writing: something good, or something that bothered them.
+enum QuickSlipMode() {
+  liked,
+  annoyance,
+}
+
 final class const QuickSlipState({
+  final QuickSlipMode mode = QuickSlipMode.liked,
   final FormInput<String> text = const FormInput(''),
   final SlipCategory? category,
-  final SlipPolarity polarity = SlipPolarity.liked,
-  final FormInput<String> request = const FormInput(''),
   final Resource<SlipSaveOutcome> saveAction = const Initial(),
   final Resource<void> undoAction = const Initial(),
   final bool canUndo = false,
@@ -12,28 +17,22 @@ final class const QuickSlipState({
   /// Whether the saved confirmation is showing.
   bool get isSaved => saveAction is Success;
 
-  /// Whether there is text, a category or a bothered slip to lose.
-  bool get hasDraft =>
-      text.value.trim().isNotEmpty ||
-      request.value.trim().isNotEmpty ||
-      category != null ||
-      polarity == SlipPolarity.bothered;
+  /// Whether there is text or a category to lose.
+  bool get hasDraft => text.value.trim().isNotEmpty || category != null;
 
   QuickSlipState copyWith({
+    QuickSlipMode? mode,
     FormInput<String>? text,
     SlipCategory? category,
     bool clearCategory = false,
-    SlipPolarity? polarity,
-    FormInput<String>? request,
     Resource<SlipSaveOutcome>? saveAction,
     Resource<void>? undoAction,
     bool? canUndo,
   }) {
     return QuickSlipState(
+      mode: mode ?? this.mode,
       text: text ?? this.text,
       category: clearCategory ? null : category ?? this.category,
-      polarity: polarity ?? this.polarity,
-      request: request ?? this.request,
       saveAction: saveAction ?? this.saveAction,
       undoAction: undoAction ?? this.undoAction,
       canUndo: canUndo ?? this.canUndo,
@@ -41,5 +40,5 @@ final class const QuickSlipState({
   }
 
   @override
-  List<Object?> get props => [text, category, polarity, request, saveAction, undoAction, canUndo];
+  List<Object?> get props => [mode, text, category, saveAction, undoAction, canUndo];
 }

@@ -81,6 +81,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$fightStyle$pt fightStyle = Translations$fightStyle$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
   late final Translations$games$pt games = Translations$games$pt.internal(_root);
+  late final Translations$gentleRequest$pt gentleRequest = Translations$gentleRequest$pt.internal(
+    _root,
+  );
   late final Translations$gifts$pt gifts = Translations$gifts$pt.internal(_root);
   late final Translations$globalErrors$pt globalErrors = Translations$globalErrors$pt.internal(
     _root,
@@ -1838,6 +1841,81 @@ class Translations$games$pt {
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
   late final Translations$games$review$pt review = Translations$games$review$pt.internal(_root);
+}
+
+// Path: gentleRequest
+class Translations$gentleRequest$pt {
+  Translations$gentleRequest$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Pedido gentil'
+  String get title => 'Pedido gentil';
+
+  /// pt: 'gentil'
+  String get titleHighlight => 'gentil';
+
+  /// pt: 'Quando…'
+  String get whenLabel => 'Quando…';
+
+  /// pt: 'Eu me sinto…'
+  String get feelLabel => 'Eu me sinto…';
+
+  /// pt: 'Eu gostaria de…'
+  String get wishLabel => 'Eu gostaria de…';
+
+  /// pt: 'chego e a casa está bagunçada'
+  String get whenHint => 'chego e a casa está bagunçada';
+
+  /// pt: 'sozinha com as tarefas'
+  String get feelHint => 'sozinha com as tarefas';
+
+  /// pt: 'dividir a tarde de sábado com você'
+  String get wishHint => 'dividir a tarde de sábado com você';
+
+  /// pt: 'O que o {name} vai ler'
+  String previewTitle({required Object name}) => 'O que o ${name} vai ler';
+
+  /// pt: 'O que sua pessoa vai ler'
+  String get previewTitleNoName => 'O que sua pessoa vai ler';
+
+  /// pt: 'Complete as três frases para ver o pedido.'
+  String get previewEmpty => 'Complete as três frases para ver o pedido.';
+
+  /// pt: 'Quando {when}, me sinto {feel}. Eu gostaria de {wish}.'
+  String sentence({required Object when, required Object feel, required Object wish}) =>
+      'Quando ${when}, me sinto ${feel}. Eu gostaria de ${wish}.';
+
+  /// pt: 'Não vai para o cartão de domingo. O pedido some 7 dias depois de respondido.'
+  String get note => 'Não vai para o cartão de domingo. O pedido some 7 dias depois de respondido.';
+
+  /// pt: 'Guardar'
+  String get keep => 'Guardar';
+
+  /// pt: 'Enviar agora'
+  String get sendNow => 'Enviar agora';
+
+  /// pt: 'Enviar este pedido?'
+  String get confirmTitle => 'Enviar este pedido?';
+
+  /// pt: 'Sua pessoa vai ler as três frases. A anotação de origem deixa de existir.'
+  String get confirmText =>
+      'Sua pessoa vai ler as três frases. A anotação de origem deixa de existir.';
+
+  /// pt: 'Pedido enviado'
+  String get sent => 'Pedido enviado';
+
+  Map<String, String> get fieldErrors => {
+    'empty': 'Preencha esta frase.',
+    'tooLong': 'Use no máximo 140 caracteres.',
+  };
+  Map<String, String> get errors => {
+    'NOT_PAIRED': 'Um pedido gentil precisa de uma pessoa conectada.',
+    'NETWORK': 'Sem conexão. Tente de novo.',
+    'other': 'Não deu para enviar agora. Tente de novo.',
+  };
 }
 
 // Path: gifts
@@ -5487,23 +5565,6 @@ class Translations$quickSlip$pt {
   /// pt: 'Fica privado. No domingo você escolhe o que vai para o cartão.'
   String get privacyNote => 'Fica privado. No domingo você escolhe o que vai para o cartão.';
 
-  /// pt: 'Fica só com você. Um slip assim nunca entra no cartão.'
-  String get botheredNote => 'Fica só com você. Um slip assim nunca entra no cartão.';
-
-  /// pt: 'Um pedido, se quiser'
-  String get requestLabel => 'Um pedido, se quiser';
-
-  /// pt: 'Ex.: poderia me avisar antes?'
-  String get requestHint => 'Ex.: poderia me avisar antes?';
-
-  /// pt: 'Opcional. Fica só com você, não é enviado para ninguém.'
-  String get requestHelper => 'Opcional. Fica só com você, não é enviado para ninguém.';
-
-  Map<String, String> get requestErrors => {
-    'tooLong': 'Use no máximo 140 caracteres',
-    'other': 'Revise este campo',
-  };
-
   /// pt: 'Salvar'
   String get save => 'Salvar';
 
@@ -5518,6 +5579,31 @@ class Translations$quickSlip$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
   };
+
+  /// pt: 'O que te incomodou?'
+  String get annoyanceTitle => 'O que te incomodou?';
+
+  /// pt: 'incomodou'
+  String get annoyanceTitleHighlight => 'incomodou';
+
+  /// pt: 'Uma linha basta. Só você vê.'
+  String get annoyanceSubtitle => 'Uma linha basta. Só você vê.';
+
+  /// pt: 'Ex.: fiquei com a louça sozinha de novo'
+  String get annoyanceHint => 'Ex.: fiquei com a louça sozinha de novo';
+
+  /// pt: 'Fica só com você e some sozinho em 14 dias. Nunca vai para o cartão. Só continua se você transformar em um pedido gentil.'
+  String get annoyanceNote =>
+      'Fica só com você e some sozinho em 14 dias. Nunca vai para o cartão. Só continua se você transformar em um pedido gentil.';
+
+  /// pt: 'Pedido gentil'
+  String get gentleRequest => 'Pedido gentil';
+
+  /// pt: 'Guardar'
+  String get keep => 'Guardar';
+
+  /// pt: 'Adicionar detalhes'
+  String get addDetails => 'Adicionar detalhes';
 }
 
 // Path: received
@@ -6162,12 +6248,6 @@ class Translations$slipDetail$pt {
   /// pt: 'Só você vê este slip.'
   String get private => 'Só você vê este slip.';
 
-  Map<String, String> get polarities => {
-    'liked': 'Gostei',
-    'bothered': 'Me incomodou',
-    'other': '',
-  };
-
   /// pt: 'Arquivado'
   String get archived => 'Arquivado';
 
@@ -6176,9 +6256,6 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Então eu…'
   String get plan => 'Então eu…';
-
-  /// pt: 'O que eu pediria'
-  String get request => 'O que eu pediria';
 
   /// pt: 'Guardar no potinho'
   String get jarTitle => 'Guardar no potinho';
@@ -6203,9 +6280,6 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Slips invisíveis nunca entram em um cartão.'
   String get cardInvisible => 'Slips invisíveis nunca entram em um cartão.';
-
-  /// pt: 'Um slip que te incomodou fica só com você e nunca entra no cartão.'
-  String get cardBothered => 'Um slip que te incomodou fica só com você e nunca entra no cartão.';
 
   /// pt: 'O que seu par leria'
   String get previewTitle => 'O que seu par leria';
@@ -8494,6 +8568,12 @@ class Translations$quickSlip$saved$pt {
 
   /// pt: 'Pronto'
   String get done => 'Pronto';
+
+  /// pt: 'Guardado'
+  String get annoyanceTitle => 'Guardado';
+
+  /// pt: 'Fica só com você e some sozinho em 14 dias.'
+  String get annoyanceAdded => 'Fica só com você e some sozinho em 14 dias.';
 }
 
 // Path: repair.calm
@@ -10177,6 +10257,35 @@ extension on Translations {
           'games.review.locked' => 'Fechado',
           'games.review.lockedNote' =>
             'Este jogo já foi fechado. Esta resposta não pode mais ser editada.',
+          'gentleRequest.title' => 'Pedido gentil',
+          'gentleRequest.titleHighlight' => 'gentil',
+          'gentleRequest.whenLabel' => 'Quando…',
+          'gentleRequest.feelLabel' => 'Eu me sinto…',
+          'gentleRequest.wishLabel' => 'Eu gostaria de…',
+          'gentleRequest.whenHint' => 'chego e a casa está bagunçada',
+          'gentleRequest.feelHint' => 'sozinha com as tarefas',
+          'gentleRequest.wishHint' => 'dividir a tarde de sábado com você',
+          'gentleRequest.previewTitle' => ({required Object name}) => 'O que o ${name} vai ler',
+          'gentleRequest.previewTitleNoName' => 'O que sua pessoa vai ler',
+          'gentleRequest.previewEmpty' => 'Complete as três frases para ver o pedido.',
+          'gentleRequest.sentence' => ({
+            required Object when,
+            required Object feel,
+            required Object wish,
+          }) => 'Quando ${when}, me sinto ${feel}. Eu gostaria de ${wish}.',
+          'gentleRequest.note' =>
+            'Não vai para o cartão de domingo. O pedido some 7 dias depois de respondido.',
+          'gentleRequest.keep' => 'Guardar',
+          'gentleRequest.sendNow' => 'Enviar agora',
+          'gentleRequest.confirmTitle' => 'Enviar este pedido?',
+          'gentleRequest.confirmText' =>
+            'Sua pessoa vai ler as três frases. A anotação de origem deixa de existir.',
+          'gentleRequest.sent' => 'Pedido enviado',
+          'gentleRequest.fieldErrors.empty' => 'Preencha esta frase.',
+          'gentleRequest.fieldErrors.tooLong' => 'Use no máximo 140 caracteres.',
+          'gentleRequest.errors.NOT_PAIRED' => 'Um pedido gentil precisa de uma pessoa conectada.',
+          'gentleRequest.errors.NETWORK' => 'Sem conexão. Tente de novo.',
+          'gentleRequest.errors.other' => 'Não deu para enviar agora. Tente de novo.',
           'gifts.title' => 'Página de presentes',
           'gifts.subtitle' => 'Uma página que seu par vê no app. Você escolhe o que compartilhar.',
           'gifts.myTitle' => 'Meus desejos',
@@ -10503,6 +10612,9 @@ extension on Translations {
           'history.monthsLong.7' => 'agosto',
           'history.monthsLong.8' => 'setembro',
           'history.monthsLong.9' => 'outubro',
+          _ => null,
+        } ??
+        switch (path) {
           'history.monthsLong.10' => 'novembro',
           'history.monthsLong.11' => 'dezembro',
           'history.fullDate' => ({
@@ -10540,9 +10652,6 @@ extension on Translations {
           'history.kindTrip' => 'Viagem',
           'history.kindHome' => 'Moramos juntos',
           'history.kindCustom' => 'Marco',
-          _ => null,
-        } ??
-        switch (path) {
           'history.unknownDateToggle' => 'Data desconhecida',
           'history.precisionDay' => 'Dia exato',
           'history.precisionMonth' => 'Mês e ano',
@@ -11135,6 +11244,9 @@ extension on Translations {
             required Object name,
           }) => '${name} está com vontade de brincar hoje',
           'mood.partnerNeedListen' => 'O que ajuda: só ouvir.',
+          _ => null,
+        } ??
+        switch (path) {
           'mood.partnerNeedOpinion' => 'O que ajuda: uma opinião.',
           'mood.partnerNeedHug' => 'O que ajuda: um abraço.',
           'mood.partnerNeedSpace' => 'O que ajuda: um pouco de espaço.',
@@ -11158,9 +11270,6 @@ extension on Translations {
           'moodHelp.askToTalkSupport' => 'Uma pergunta aberta, sem pressa de resposta.',
           'moodHelp.careLabel' => 'Carinho',
           'moodHelp.sendLove' => 'Mandar um carinho',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.sendLoveSupport' => 'Um abraço chega como sinal no app.',
           'moodHelp.helpLabel' => 'Ajuda',
           'moodHelp.seeHowToHelp' => 'Ver como ajudar',
@@ -11730,6 +11839,9 @@ extension on Translations {
           'quickSlip.monthsShort.2' => 'mar',
           'quickSlip.monthsShort.3' => 'abr',
           'quickSlip.monthsShort.4' => 'mai',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.monthsShort.5' => 'jun',
           'quickSlip.monthsShort.6' => 'jul',
           'quickSlip.monthsShort.7' => 'ago',
@@ -11753,15 +11865,6 @@ extension on Translations {
           'quickSlip.categories.other' => '',
           'quickSlip.privacyNote' =>
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
-          'quickSlip.botheredNote' => 'Fica só com você. Um slip assim nunca entra no cartão.',
-          _ => null,
-        } ??
-        switch (path) {
-          'quickSlip.requestLabel' => 'Um pedido, se quiser',
-          'quickSlip.requestHint' => 'Ex.: poderia me avisar antes?',
-          'quickSlip.requestHelper' => 'Opcional. Fica só com você, não é enviado para ninguém.',
-          'quickSlip.requestErrors.tooLong' => 'Use no máximo 140 caracteres',
-          'quickSlip.requestErrors.other' => 'Revise este campo',
           'quickSlip.save' => 'Salvar',
           'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
@@ -11770,11 +11873,21 @@ extension on Translations {
           'quickSlip.saved.undoHint' => 'Desfazer por 30 segundos.',
           'quickSlip.saved.undo' => 'Desfazer',
           'quickSlip.saved.done' => 'Pronto',
+          'quickSlip.saved.annoyanceTitle' => 'Guardado',
+          'quickSlip.saved.annoyanceAdded' => 'Fica só com você e some sozinho em 14 dias.',
           'quickSlip.errors.FREE_LIMIT_REACHED' =>
             'Você chegou ao limite de slips do plano grátis.',
           'quickSlip.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'quickSlip.errors.other' =>
             'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
+          'quickSlip.annoyanceTitle' => 'O que te incomodou?',
+          'quickSlip.annoyanceTitleHighlight' => 'incomodou',
+          'quickSlip.annoyanceSubtitle' => 'Uma linha basta. Só você vê.',
+          'quickSlip.annoyanceHint' => 'Ex.: fiquei com a louça sozinha de novo',
+          'quickSlip.annoyanceNote' => 'Fica só com você e some sozinho em 14 dias. Nunca vai para o cartão. Só continua se você transformar em um pedido gentil.',
+          'quickSlip.gentleRequest' => 'Pedido gentil',
+          'quickSlip.keep' => 'Guardar',
+          'quickSlip.addDetails' => 'Adicionar detalhes',
           'received.kinds.repair' => 'Cartão de reparo',
           'received.kinds.need' => 'Preciso de…',
           'received.kinds.missUs' => 'Saudade',
@@ -12147,13 +12260,9 @@ extension on Translations {
           'slipDetail.kinds.invisible' => 'Invisível',
           'slipDetail.kinds.other' => '',
           'slipDetail.private' => 'Só você vê este slip.',
-          'slipDetail.polarities.liked' => 'Gostei',
-          'slipDetail.polarities.bothered' => 'Me incomodou',
-          'slipDetail.polarities.other' => '',
           'slipDetail.archived' => 'Arquivado',
           'slipDetail.feeling' => 'Como você se sentiu',
           'slipDetail.plan' => 'Então eu…',
-          'slipDetail.request' => 'O que eu pediria',
           'slipDetail.jarTitle' => 'Guardar no potinho',
           'slipDetail.jarText' => 'Para abrir em um dia ruim. Só você vê.',
           'slipDetail.cardTitle' => 'Quem vê isto',
@@ -12162,8 +12271,6 @@ extension on Translations {
           'slipDetail.cardOn' => 'Pode entrar no cartão',
           'slipDetail.cardOnText' => 'No domingo você escolhe se ele vai.',
           'slipDetail.cardInvisible' => 'Slips invisíveis nunca entram em um cartão.',
-          'slipDetail.cardBothered' =>
-            'Um slip que te incomodou fica só com você e nunca entra no cartão.',
           'slipDetail.previewTitle' => 'O que seu par leria',
           'slipDetail.previewText' => 'Se este slip entrar no cartão, é este texto que aparece.',
           'slipDetail.sentNote' => 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.',
@@ -12302,6 +12409,9 @@ extension on Translations {
           'spice.offText' => 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.',
           'spice.turnOn' => 'Ligar',
           'spice.notNow' => 'Agora não',
+          _ => null,
+        } ??
+        switch (path) {
           'spice.waitingText' => 'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.',
           'spice.readyText' => 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.',
           'spice.drawCard' => 'Tirar uma carta',
@@ -12325,9 +12435,6 @@ extension on Translations {
           'story.errorTitle' => 'Não deu para carregar',
           'story.errorText' => 'Tente de novo em instantes.',
           'story.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.title' => 'Seu cartão',
           'sundayCard.edit' => 'Editar',
           'sundayCard.save' => 'Salvar',

@@ -9,7 +9,6 @@ import 'package:app/features/slips/data/models/slip_detail.dart';
 import 'package:app/features/slips/data/models/slip_draft.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
-import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/models/slip_work_area.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
@@ -52,8 +51,6 @@ class SlipRepository({
     String? feeling,
     String? planNote,
     SlipWorkArea? workArea,
-    SlipPolarity polarity = SlipPolarity.liked,
-    String? request,
   }) async {
     final slip = PendingSlip(
       id: id,
@@ -64,8 +61,6 @@ class SlipRepository({
       feeling: feeling,
       planNote: planNote,
       workArea: workArea,
-      polarity: polarity,
-      request: _trimmedOrNull(request),
     );
     try {
       await _send(slip);
@@ -99,8 +94,6 @@ class SlipRepository({
         planNote: node.planNote,
         category: node.category?.toModel(),
         workArea: node.workArea?.toModel(),
-        polarity: node.polarity.toModel() ?? SlipPolarity.liked,
-        request: node.request,
         isArchived: node.archivedAt != null,
         isInJar: node.inJar,
         wasInCard: row.wasInCard,
@@ -122,8 +115,6 @@ class SlipRepository({
         feeling: slip.feeling,
         planNote: slip.planNote,
         forCard: slip.forCard && slip.canGoInCard,
-        polarity: slip.polarity.toRemote(),
-        request: slip.request,
         category: slip.category?.toRemote(),
         workArea: slip.workArea?.toRemote(),
       );
@@ -230,7 +221,7 @@ class SlipRepository({
               body: row.body,
               kind: row.kind.toModel() ?? SlipKind.quick,
               category: row.category?.toModel(),
-              polarity: row.polarity.toModel() ?? SlipPolarity.liked,
+              forCard: row.forCard,
               createdAt: row.createdAt,
             ),
         ],
@@ -289,30 +280,10 @@ class SlipRepository({
     return draft != null && draft.isFresh(now) ? draft : null;
   }
 
-  Future<void> saveDraft({
-    required String text,
-    required DateTime now,
-    SlipCategory? category,
-    SlipPolarity polarity = SlipPolarity.liked,
-    String? request,
-  }) {
-    final trimmedRequest = _trimmedOrNull(request);
-    if (text.trim().isEmpty &&
-        category == null &&
-        polarity == SlipPolarity.liked &&
-        trimmedRequest == null) {
-      return _localDataSource.clearDraft();
-    }
+  Future<void> saveDraft({required String text, required DateTime now, SlipCategory? category}) {
+    if (text.trim().isEmpty && category == null) return _localDataSource.clearDraft();
 
-    return _localDataSource.writeDraft(
-      SlipDraft(
-        text: text,
-        savedAt: now,
-        category: category,
-        polarity: polarity,
-        request: trimmedRequest,
-      ),
-    );
+    return _localDataSource.writeDraft(SlipDraft(text: text, savedAt: now, category: category));
   }
 
   Future<void> clearDraft() => _localDataSource.clearDraft();
@@ -325,8 +296,6 @@ class SlipRepository({
       kind: slip.kind.toRemote(),
       feeling: slip.feeling,
       planNote: slip.planNote,
-      polarity: slip.polarity.toRemote(),
-      request: slip.request,
       category: slip.category?.toRemote(),
       workArea: slip.workArea?.toRemote(),
     );
@@ -338,10 +307,4 @@ class SlipRepository({
   }
 
   bool _isOffline(Object error) => error is LocalizedException && error.l10nKey == networkErrorCode;
-
-  String? _trimmedOrNull(String? value) {
-    final trimmed = value?.trim();
-
-    return trimmed == null || trimmed.isEmpty ? null : trimmed;
-  }
 }

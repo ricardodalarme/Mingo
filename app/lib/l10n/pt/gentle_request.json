@@ -1,0 +1,29 @@
+{
+  "title": "Pedido gentil",
+  "titleHighlight": "gentil",
+  "whenLabel": "Quando…",
+  "feelLabel": "Eu me sinto…",
+  "wishLabel": "Eu gostaria de…",
+  "whenHint": "chego e a casa está bagunçada",
+  "feelHint": "sozinha com as tarefas",
+  "wishHint": "dividir a tarde de sábado com você",
+  "previewTitle": "O que o {name} vai ler",
+  "previewTitleNoName": "O que sua pessoa vai ler",
+  "previewEmpty": "Complete as três frases para ver o pedido.",
+  "sentence": "Quando {when}, me sinto {feel}. Eu gostaria de {wish}.",
+  "note": "Não vai para o cartão de domingo. O pedido some 7 dias depois de respondido.",
+  "keep": "Guardar",
+  "sendNow": "Enviar agora",
+  "confirmTitle": "Enviar este pedido?",
+  "confirmText": "Sua pessoa vai ler as três frases. A anotação de origem deixa de existir.",
+  "sent": "Pedido enviado",
+  "fieldErrors(map)": {
+    "empty": "Preencha esta frase.",
+    "tooLong": "Use no máximo 140 caracteres."
+  },
+  "errors(map)": {
+    "NOT_PAIRED": "Um pedido gentil precisa de uma pessoa conectada.",
+    "NETWORK": "Sem conexão. Tente de novo.",
+    "other": "Não deu para enviar agora. Tente de novo."
+  }
+}
