@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^2.4.0
+  lottie: ^3.3.2
   material_ui: ^1.11.1
   skeletonizer: ^3.0.0
   slang: ^4.19.2
@@ -22,6 +23,8 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  assets:
+    - assets/faces/
   fonts:
     - family: Caveat
       fonts:
