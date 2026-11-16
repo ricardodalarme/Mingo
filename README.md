@@ -4,7 +4,7 @@ A small app for couples. Each person quietly saves good things the partner did (
 Sunday card, helps repair after a fight, and keeps dates and memories. Portuguese (pt-BR) first, English second.
 
 The repo is a Flutter monorepo (Melos + pub workspaces): the app in `app/`, shared packages in `packages/`, the backend in
-`supabase/` (Postgres, GraphQL through `pg_graphql`, Edge Functions).
+`nhost/` (Postgres, GraphQL through Hasura, Auth, Storage and Functions).
 
 ## Identifiers
 
@@ -16,7 +16,7 @@ The repo is a Flutter monorepo (Melos + pub workspaces): the app in `app/`, shar
 | App group | `group.dev.dalarme.mingo` |
 | Deep-link scheme | `mingo` |
 | Firebase projects | `mingo-app-dev`, `mingo-app-prod` |
-| Supabase project | `Mingo` (ref `esbhdlbhbeoiwaonsgdg`, `sa-east-1`) |
+| Nhost project | `Mingo` (subdomain `vukuojqsudvjfwowyped`, region `sa-east-1`) |
 
 ## Setup
 
@@ -65,8 +65,8 @@ Or pick a device and press F5 in VS Code / the run button in Android Studio.
 
 ## Backend
 
-- **Supabase** — schema-first database, migrations, seed and pgTAP tests live in [`supabase/`](supabase/README.md).
-  The app reads through `pg_graphql`.
+- **Nhost** — Postgres, Hasura GraphQL, Auth, Storage and Functions live in [`nhost/`](nhost/) and [`functions/`](functions/).
+  The app reads through the GraphQL contract in `nhost/schema/user.graphqls`; the local stack runs with `nhost/tools/up.sh`.
 - **Firebase** — analytics, crash reporting, performance, remote config and messaging. Client configs are committed per
   flavor under `app/android/app/src/{development,production}` and `app/ios/config/{development,production}`.
 

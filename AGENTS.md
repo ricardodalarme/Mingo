@@ -3,7 +3,7 @@
 **Mingo** is a mobile app for couples, in Brazilian Portuguese first and English second. Each person quietly saves
 small good things the partner did ("slips"); the app turns them into a weekly Sunday card, helps repair after a fight and keeps
 dates and memories. It is a Flutter monorepo (Melos, pub workspaces): the app is in `app/`, shared code in `packages/`, the
-backend in `supabase/` (Postgres, GraphQL through `pg_graphql`, Edge Functions).
+backend in `nhost/` (Postgres, GraphQL through Hasura, Auth, Storage and Functions).
 
 The product is **Mingo** and the app identifier is `dev.dalarme.mingo` (company `dalarme.dev`). The Dart package is
 `app`, the Android application id and iOS bundle ids derive from it (`dev.dalarme.mingo`, `.dev`, `.widgets`), the app
@@ -18,7 +18,7 @@ behavior.
 ## Product rules that constrain the code
 
 - **Whoever produces data decides who sees it.** Slips, moods, partner notes and cycle data are private until shared, item by
-  item. RLS enforces it; the app never fetches what it must not show.
+  item. GraphQL permissions enforce it; the app never fetches what it must not show.
 - **Never score the relationship.** No health score, no "who did more", no predictions. Metrics are individual and opt-in.
 - **No guilt, no surveillance.** No real-time location, no reading messages, no partner activity history.
 - **Works with one person.** Everything that can work alone does. The partner joins by invite code or a guest link.
@@ -42,21 +42,25 @@ Product, design and ticket documents are in `.work/` (local only, never committe
 | `melos test` | Run every package's tests in random order (`very_good test`) |
 | `cd app && flutter test test/path_test.dart [--plain-name "..."]` | One test file |
 | `cd app && flutter run --dart-define-from-file ../.env.development --flavor development` | Run the app |
+| `nhost/tools/up.sh` | Start or reload the local backend with seeds |
+| `nhost/tools/reset.sh` | Clean backend replay from migrations, metadata and seeds |
+| `cd nhost && npm test` | Backend suite |
+| `cd functions && npm test` | Functions unit tests |
+| `nhost/tools/dump-schemas.sh` | Refresh the per-role GraphQL snapshots |
 
 Melos is configured under `melos:` in the root `pubspec.yaml` (there is no `melos.yaml`). Generated files are committed and CI
 does not run codegen.
 
-Supabase commands, the schema layout and the migration workflow are in `supabase/README.md` and the `supabase` skill. Run
-`supabase test db` only against the local stack, and push to the linked project only when the owner asks.
+The backend workflow, schema layout, permissions and tests are in `nhost/` and the `nhost` skill. Run the suite only against the local stack.
 
 ## Repository layout
 
 `app/` (package `app`, flavors `development` and `production`), `packages/` (`core`, `network`, `design_system`,
-`common_ui`, `form_inputs`, `formatters`, `logger`, `services/*`), `supabase/`, `.agents/skills/`.
+`common_ui`, `form_inputs`, `formatters`, `logger`, `services/*`), `nhost/`, `functions/`, `.agents/skills/`.
 
 Firebase client configuration is committed per flavor: `app/android/app/src/{development,production}/google-services.json` and
 `app/ios/config/{development,production}/GoogleService-Info.plist` (`mingo-app-dev` and `mingo-app-prod`). Firebase is
-initialized from the native flavor config. The Supabase project is `Mingo` (ref `esbhdlbhbeoiwaonsgdg`, `sa-east-1`).
+initialized from the native flavor config. The Nhost project is `Mingo` (subdomain `vukuojqsudvjfwowyped`, region `sa-east-1`).
 
 ## App architecture
 
@@ -105,25 +109,25 @@ Never write the old separate form (`const SlipCard({required this.slip});` in th
 
 - **Feature data uses GraphQL.** Each feature keeps its `queries/`, `mutations/` and `fragments/` under
   `data/data_sources/remote/`; the schema snapshot is `app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
-  `RestClient` is for Edge Functions and other REST APIs only.
+  `RestClient` is for Functions and other REST APIs only.
 - **Data sources** are concrete classes that call `GQLClient` from `package:network/network.dart`, wrap one-shot queries in
   `validateResponseData`, and never let generated GraphQL types escape the data layer. **Repositories** are concrete classes with a
   `Logger` that return models. There is no domain layer, no use cases and no repository interfaces.
-- **Closed value sets are enums end to end.** A column with a fixed set of values is a Postgres enum, so GraphQL and codegen
-  expose it as an enum. The app models it as a plain camelCase Dart enum with no `value`, `wire` or `serverValue` field,
+- **Closed value sets are enums end to end.** A column with a fixed set of values is an enum table, so GraphQL and codegen
+  expose it as a GraphQL enum. The app models it as a plain camelCase Dart enum with no `value`, `wire` or `serverValue` field,
   and converts at the data boundary with a mapper (`toModel()` on the generated enum, `toRemote()` on the domain enum; only the
   directions in use). Never compare a domain value with a string literal; translation keys and local storage use `.name`. The same
-  applies to values sent to an Edge Function.
+  applies to values sent to a Function.
 - **Codegen owns generated types.** Run `melos gen` after editing a `.graphql` file. After a schema change run
   `melos graphql:schema`, then `melos gen`. Never hand-edit the snapshot or any generated file.
 - **No invented server data.** `Model.fake` values exist only as skeleton placeholders behind `Skeletonizer`; never render them as
-  real records. `supabase/seed.sql` is development-only.
-- **Backend changes come first.** A feature that needs a new table, query or mutation edits `supabase/schemas/` and adds a
-  migration; ask before inventing one. New tables need explicit grants and RLS policies.
-- **Notifications are created by the backend.** Clients read and update only `notification_settings`, register a push token
-  through `registerDevice` (and remove it with `unregisterDevice` or `revokeDevice`), and never read tokens or the outbox.
-- **Secrets.** Never put a `service_role` or secret key in the app. `SERVER_API_KEY` and `SUPABASE_ANON_KEY` are the project's
-  publishable key.
+  real records. `nhost/seeds/default/` is development reference data.
+- **Backend changes come first.** A feature that needs a new table, query or mutation adds a migration under
+  `nhost/migrations/default/` and a permission entry in `nhost/tools/metadata-spec.mjs`; ask before inventing one. New tables need explicit
+  permissions and relationships.
+- **Notifications are created by the backend.** Clients read and update only `notificationSettings` and `notificationMutes`, register a
+  push token through `insertDevicesOne`, and never read tokens or the notification queue.
+- **Secrets.** Never put the admin secret, webhook secret or any provider key in the app. The app authenticates with the user's JWT.
 
 ## Design system
 
@@ -172,16 +176,16 @@ installs `MaterialApp.router`, so app code never touches `Scaffold`, `AppBar` or
 - **History is linear.** Integrate with rebase or cherry-pick, never a merge commit. Push every commit to `origin` so the remote
   is always current; never force-push, open a PR or rewrite shared history unless the owner asks. The owner may squash or rebase
   your commits; check `git reflog` before amending.
-- **Remote systems.** Do not change the linked Supabase project, Firebase, RevenueCat or the stores unless the owner asks for that
-  action, and say exactly what you changed. Run `supabase test db` only against the local stack.
+- **Remote systems.** Do not change the linked Nhost project, Firebase, RevenueCat or the stores unless the owner asks for that action, and say
+  exactly what you changed. Run the backend suite only against the local stack.
 - **Builds and distribution.** `codemagic.yaml` owns CI/CD, one workflow per platform so Android and iOS run in parallel.
   `internal-android` and `internal-ios` ship the `development` flavor to Firebase App Distribution (`internal` and
   `internal-ios` groups); `store-android` and `store-ios` upload the `production` flavor to the Play internal track as a draft
   and to TestFlight on `v*` tags. They read the Codemagic UI setup listed at the top of the file. Nothing publishes to
   production users automatically; do not change that without the owner asking.
 - **Secrets and local files.** Keys live only in `.env*`. Never commit `.work/`, `.env*`, screenshots or build output.
-- **Done means verified.** `melos gen`, `melos l10n`, `melos l10n:analyze`, `melos lint` and `melos test` pass; for backend
-  changes the drift check and `supabase test db` pass too. Run the app for UI changes.
+- **Done means verified.** `melos gen`, `melos l10n`, `melos l10n:analyze`, `melos lint` and `melos test` pass; for backend changes a
+  clean replay (`nhost/tools/reset.sh`), `cd nhost && npm test`, current schema snapshots and a clean parity diff pass too. Run the app for UI changes.
 
 ## Comments
 
@@ -210,5 +214,5 @@ not its history or its consumers.
 | `storybook` | Widgetbook examples for components and widgets |
 | `design-system` | Any UI, styling, tokens or reusable widget; `Base*` naming |
 | `package` | A new workspace package or a third-party SDK wrapper |
-| `supabase` | Schema, migrations, RLS, pgTAP, pg_graphql, Edge Functions, the GraphQL snapshot |
+| `nhost` | Any Nhost backend work: docs, CLI, layout, config, GraphQL permissions, auth, storage, functions, events, testing, parity |
 | `git-workflow` | Committing, splitting, rebasing, writing commit messages or branch names |

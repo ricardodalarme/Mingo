@@ -29,15 +29,14 @@ features/<feature>/data/data_sources/
   operation name. Share fields through fragments.
 - The schema snapshot is `app/lib/features/_shared/data/data_sources/remote/schema.graphql`. Only `_shared` holds a schema file;
   features add operations. Write a document only against fields the snapshot has. If the backend lacks one, ask for it (see
-  `supabase`); do not work around it.
+  `nhost`); do not work around it.
 - After editing any `.graphql` file run `melos gen`. After a backend schema change run `melos graphql:schema` first. Never edit
   `generated/` or the snapshot by hand.
 - GraphQL documents use enum literals unquoted (`kind: wish`) and enum variable types (`$kind: GiftKind!`), never `String`. The
   Dart analyzer cannot see inside a `.graphql` file, so after changing the schema, validate every document against the snapshot
   before `melos gen`.
-- Codegen (`app/build.yaml`): `namingSeparator: ""`, output in `generated/`, `setOperationName: true`, scalars `Date`, `Datetime`,
-  `BigInt`, `BigFloat`, `JSON`, `Opaque` and `Time` mapped to Dart types. Add a scalar mapping there before using a new custom
-  scalar. Generated names are fixed: `OptionsQueryGiftPage`, `VariablesMutationAddGiftWish`, `FragmentGiftWishFragment`,
+- Codegen (`app/build.yaml`): `namingSeparator: ""`, output in `generated/`, `setOperationName: true`, scalars `date`, `timestamptz`,
+  `uuid`, `jsonb`, `time` and `smallint` mapped to Dart types. Add a scalar mapping there before using a new custom scalar. Generated names are fixed: `OptionsQueryGiftPage`, `VariablesMutationAddGiftWish`, `FragmentGiftWishFragment`,
   `Enum<TypeName>`. Never rename or alias them.
 
 ## 2. Data source
@@ -89,8 +88,8 @@ class const GiftIdea({required final String id, required final String title, fin
 - Add `fake()` to every model rendered behind a `Skeletonizer`. It is a placeholder, never production data, and it must have the
   same shape as real data.
 - Use `sealed` when the server type has variants, and switch exhaustively in the mapper.
-- Ownership flags such as `isMine` and `isShared` come from the server's computed fields; do not recompute them from user or
-  couple ids in the app.
+- Ownership flags such as `isMine` and `isShared` are not server fields. Derive them once at the mapper boundary from `authorId`/
+  `coupleId` when the UI needs an edit affordance; permissions already decide what is visible.
 
 ## 4. Mapper
 
@@ -99,7 +98,7 @@ One `extension <Generated>Mapper on <GeneratedType>` per model in `data/mappers/
 
 ## 5. Enums
 
-A closed set of values is a Postgres enum, so GraphQL has an enum and codegen emits `Enum<Name>` (snake_case members plus
+A closed set of values is an enum table, so GraphQL has an enum and codegen emits `Enum<Name>_enum` (snake_case members plus
 `$unknown`). Model it as a plain camelCase Dart enum with **no** `value`, `wire`, `serverValue` or `key` field and no parser:
 
 ```dart
@@ -107,12 +106,12 @@ A closed set of values is a Postgres enum, so GraphQL has an enum and codegen em
 enum GiftBudget { free, low, medium, high }
 
 // mappers/gift_enum_mapper.dart
-extension EnumGiftBudgetMapper on EnumGiftBudget {
-  GiftBudget? toModel() => switch (this) { EnumGiftBudget.free => GiftBudget.free, /* ... */ EnumGiftBudget.$unknown => null };
+extension EnumGiftBudgetMapper on EnumGiftBudget_enum {
+  GiftBudget? toModel() => switch (this) { EnumGiftBudget_enum.free => GiftBudget.free, /* ... */ EnumGiftBudget_enum.$unknown => null };
 }
 
 extension GiftBudgetMapper on GiftBudget {
-  EnumGiftBudget toRemote() => switch (this) { GiftBudget.free => EnumGiftBudget.free, /* ... */ };
+  EnumGiftBudget_enum toRemote() => switch (this) { GiftBudget.free => EnumGiftBudget_enum.free, /* ... */ };
 }
 ```
 
@@ -123,9 +122,8 @@ extension GiftBudgetMapper on GiftBudget {
   domain enums.
 - Handle `$unknown` explicitly: throw `FormatException` when the value cannot be shown or acted on, or degrade (return `null`, fall
   back to a neutral member) when the UI can hide it, and say so in a one-line doc comment.
-- A SQL function parameter that is an enum is not exposed by `pg_graphql`, so function parameters stay `text`. Convert with a
-  `toRpc()` in the mapper (`toRemote().toJson()`), as `SlipCategoryMapper` does. The same rule covers values sent to an Edge Function:
-  map the enum, do not give it a `wire` string.
+- Function parameters stay `text` or `jsonb` when the contract must be portable across engines. Convert with the enum mapper before the
+  call; map the enum, do not give it a `wire` string.
 - Never compare a domain value with a string literal. The analyzer only warns (`unrelated_type_equality_checks`) and the comparison
   silently never matches.
 - Local storage (preferences, widget payloads) stores `.name` and reads it back with `Enum.values.asNameMap()[name]`; an unknown name
@@ -174,8 +172,8 @@ or exception message.
 
 ## 8. Backend changes
 
-The backend lives in this repository under `supabase/`. A feature that needs a new table, column, query or mutation changes
-`supabase/schemas/` and adds a migration first (see the `supabase` skill), then refreshes the snapshot with
+The backend lives in this repository under `nhost/`. A feature that needs a new table, column, query or mutation adds a migration
+and a permission entry first (see the `nhost` skill), then refreshes the snapshot with
 `melos graphql:schema`, then `melos gen`. Ask before inventing backend surface.
 
 ## Gotchas

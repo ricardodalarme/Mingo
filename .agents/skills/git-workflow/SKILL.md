@@ -23,7 +23,7 @@ A commit holds one logical change. Split a mixed working tree by concern:
 
 - A refactor, a behavior change, a formatting-only change and a docs-only change are separate commits.
 - Keep together what cannot stand alone: code with its tests; a `.graphql` edit with the regenerated files; an l10n JSON edit with the
-  regenerated translations; a schema edit with its migration and pgTAP test; a package with its workspace and consumer wiring.
+  regenerated translations; a schema edit with its migration and backend test; a package with its workspace and consumer wiring.
 - Order commits from the bottom up so each one builds: backend schema, then data layer, then cubit, then page, then wiring and
   localization. A commit must never leave the app failing to compile or a test red.
 - A change that spans features has no feature scope (`refactor: read single records with byPk`).
@@ -69,7 +69,7 @@ Pass a multi-line message with `git commit -F <file>` so quoting and newlines ca
 ## Only when the owner asks
 
 Pushing, force-pushing, opening or merging a pull request, deleting a remote branch, tagging, and anything that changes the linked
-Supabase project, Firebase, RevenueCat or the stores. State exactly what you ran. Look at what a destructive command will discard
+Nhost project, Firebase, RevenueCat or the stores. State exactly what you ran. Look at what a destructive command will discard
 (`git reset --hard`, `git checkout -- .`, `git clean -f`, `git branch -D`, `git stash drop`) before running it, and prefer a
 reversible alternative such as a new commit or a stash.
 

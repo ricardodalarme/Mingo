@@ -1,7 +1,0 @@
--- Scheduled jobs (pg_cron). Declared here so a declarative sync keeps them instead of unscheduling them.
-select cron.schedule('weekly-card-drafts', '5 * * * *', 'select private.generate_weekly_cards()');
-select cron.schedule('purge-deleted-accounts', '17 3 * * *', 'select private.purge_deleted_accounts()');
-select cron.schedule('daily-reminders', '0 * * * *', 'select private.enqueue_daily_reminders()');
-select cron.schedule('prune-expired-rows', '27 3 * * *', 'select private.prune_expired_rows()');
-select cron.schedule('push-sender', '* * * * *', 'select private.invoke_edge_function(''push-sender'')');
-select cron.schedule('storage-cleanup', '37 3 * * *', 'select private.invoke_edge_function(''storage-cleanup'')');
