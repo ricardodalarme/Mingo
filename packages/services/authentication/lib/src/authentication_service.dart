@@ -96,14 +96,23 @@ class AuthenticationService({
     if (stored == null) return;
     try {
       final session = Session.fromJson(jsonDecode(stored));
-      if (session.accessToken == null || session.refreshToken == null) {
+      final refreshToken = session.refreshToken;
+      if (session.accessToken == null || refreshToken == null) {
         throw const FormatException();
+      }
+      final expiry = _expiry(session.accessToken);
+      if (expiry == null || DateTime.now().isAfter(expiry.subtract(const Duration(seconds: 30)))) {
+        await _auth.signInWithRefreshToken(refreshToken);
+        await _persist();
+        return;
       }
       // Restoring the stored session is the documented use of this setter; the annotation is about tests.
       // ignore: invalid_use_of_visible_for_testing_member
-      await _auth.setSession(session);
+      await _auth.setSession(
+        session.copyWith(accessTokenExpiresIn: expiry.difference(DateTime.now())),
+      );
     } on Object {
-      await _storage.delete(key: _sessionKey);
+      await _clear();
     }
   }
 
@@ -143,10 +152,29 @@ class AuthenticationService({
 
   Future<String?> getFreshAccessToken() async {
     final token = _auth.accessToken;
-    if (token != null) return token;
-    if (!await refreshSession()) return null;
+    if (token == null) return null;
+    final expiry = _expiry(token);
+    if (expiry != null && DateTime.now().isAfter(expiry.subtract(const Duration(seconds: 60)))) {
+      if (await refreshSession()) return _auth.accessToken;
+    }
 
-    return _auth.accessToken;
+    return token;
+  }
+
+  DateTime? _expiry(String? token) {
+    if (token == null) return null;
+    final parts = token.split('.');
+    if (parts.length != 3) return null;
+    try {
+      final payload =
+          jsonDecode(utf8.decode(base64Url.decode(base64Url.normalize(parts[1])))) as Map;
+      final exp = payload['exp'];
+      if (exp is! num) return null;
+
+      return DateTime.fromMillisecondsSinceEpoch(exp.toInt() * 1000, isUtc: true);
+    } on Object {
+      return null;
+    }
   }
 
   Future<bool> refreshSession() async {
@@ -197,6 +225,9 @@ class AuthenticationService({
 
   Future<void> _clear() async {
     await _storage.delete(key: _sessionKey);
+    // Clearing locally is the documented way to end an unusable refresh token without a network call.
+    // ignore: invalid_use_of_visible_for_testing_member
+    await _auth.clearSession();
     _authChanges.add(false);
   }
 

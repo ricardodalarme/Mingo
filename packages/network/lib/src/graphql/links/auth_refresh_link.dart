@@ -2,24 +2,49 @@ import 'dart:async';
 
 import 'package:graphql/client.dart';
 
-/// Renews the session once when the server answers 401, then sends the request again.
+/// Renews the session once when the server rejects the token, then sends the request again.
 ///
-/// Place it outside the `AuthLink`, so the repeated request reads the new token. Requests that fail
-/// at the same time share one renewal. When the renewal fails, or the repeated request is rejected
-/// again, the error is returned to the caller.
+/// Hasura answers an expired token with an HTTP 200 and a GraphQL `invalid-jwt` error, so the link
+/// checks both the response errors and an HTTP 401. Place it outside the `AuthLink`, so the repeated
+/// request reads the new token. Requests that fail at the same time share one renewal. When the
+/// renewal fails, or the repeated request is rejected again, the response is returned to the caller.
 class AuthRefreshLink({required final Future<bool> Function() refreshSession}) extends Link {
   Future<bool>? _refreshing;
 
-  late final ErrorLink _errorLink = ErrorLink(onException: _onException);
-
   @override
-  Stream<Response> request(Request request, [NextLink? forward]) =>
-      _errorLink.request(request, forward);
+  Stream<Response> request(Request request, [NextLink? forward]) async* {
+    var retried = false;
+    try {
+      await for (final response in forward!(request)) {
+        if (!retried && _isInvalidToken(response)) {
+          retried = true;
+          if (!await _refresh()) {
+            yield response;
+            return;
+          }
+          yield* forward(request);
+          return;
+        }
+        yield response;
+      }
+    } on LinkException catch (exception) {
+      if (!retried && exception is HttpLinkServerException && exception.statusCode == 401) {
+        if (!await _refresh()) rethrow;
+        yield* forward!(request);
+        return;
+      }
+      rethrow;
+    }
+  }
 
-  Stream<Response>? _onException(Request request, NextLink forward, LinkException exception) =>
-      exception is HttpLinkServerException && exception.statusCode == 401
-      ? _retry(request, forward, exception)
-      : null;
+  bool _isInvalidToken(Response response) =>
+      response.errors?.any(
+        (error) =>
+            error.extensions?['code'] == 'invalid-jwt' ||
+            error.message.contains('JWTExpired') ||
+            error.message.contains('Could not verify JWT'),
+      ) ??
+      false;
 
   Future<bool> _refresh() => _refreshing ??= _renew().whenComplete(() => _refreshing = null);
 
@@ -29,11 +54,5 @@ class AuthRefreshLink({required final Future<bool> Function() refreshSession}) e
     } on Object {
       return false;
     }
-  }
-
-  Stream<Response> _retry(Request request, NextLink forward, LinkException exception) async* {
-    if (!await _refresh()) throw exception;
-
-    yield* forward(request);
   }
 }

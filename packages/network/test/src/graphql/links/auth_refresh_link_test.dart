@@ -97,6 +97,52 @@ void main() {
     expect(refreshes, 1);
   });
 
+  test('renews the session when the engine reports invalid-jwt with HTTP 200', () async {
+    final link = build(
+      handler: (call) => call == 1
+          ? Stream.value(
+              const Response(
+                response: {},
+                errors: [
+                  GraphQLError(
+                    message: 'Could not verify JWT: JWTExpired',
+                    extensions: {'code': 'invalid-jwt'},
+                  ),
+                ],
+              ),
+            )
+          : Stream.value(okResponse()),
+    );
+
+    final response = await link.request(queryRequest()).first;
+
+    expect(response.data, {'a': 1});
+    expect(refreshes, 1);
+    expect(sent, 2);
+  });
+
+  test('does not loop when the repeated request is still invalid-jwt', () async {
+    final link = build(
+      handler: (_) => Stream.value(
+        const Response(
+          response: {},
+          errors: [
+            GraphQLError(
+              message: 'Could not verify JWT: JWTExpired',
+              extensions: {'code': 'invalid-jwt'},
+            ),
+          ],
+        ),
+      ),
+    );
+
+    final response = await link.request(queryRequest()).first;
+
+    expect(response.errors, isNotEmpty);
+    expect(refreshes, 1);
+    expect(sent, 2);
+  });
+
   test('leaves other failures alone', () async {
     final link = build(handler: (_) => Stream.error(httpError(500)));
 

@@ -136,6 +136,44 @@ void main() {
     expect(service.currentSession?.user.id, 'user-1');
   });
 
+  test('a stored session with an expired access token is refreshed at start', () async {
+    const expiredToken =
+        'eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJ1c2VyLTEiLCJleHAiOjE2MDAwMDAwMDAsImh0dHBzOi8vaGFzdXJhLmlvL2p3dC9jbGFpbXMiOnsieC1oYXN1cmEtdXNlci1pZCI6InVzZXItMSJ9fQ.';
+    var refreshes = 0;
+    final client = MockClient((request) async {
+      expect(request.url.toString(), '$base/token');
+      refreshes++;
+
+      return http.Response(
+        jsonEncode({
+          'accessToken': accessToken,
+          'accessTokenExpiresIn': 900,
+          'refreshToken': 'refresh-2',
+          'user': session['user'],
+        }),
+        200,
+        headers: {'content-type': 'application/json'},
+      );
+    });
+    when(() => storage.read(key: 'auth.session')).thenAnswer(
+      (_) async => jsonEncode({
+        'accessToken': expiredToken,
+        'refreshToken': 'refresh-1',
+        'user': session['user'],
+      }),
+    );
+    final service = AuthenticationService(
+      authClient: NhostAuthClient(url: base, httpClient: client),
+      secureStorage: storage,
+    );
+    addTearDown(service.dispose);
+    await service.initialize(url: base);
+
+    expect(refreshes, 1);
+    expect(service.currentSession?.refreshToken, 'refresh-2');
+    expect(service.currentSession?.user.id, 'user-1');
+  });
+
   test('an empty auth url is refused', () {
     expect(AuthenticationService().initialize(url: ''), throwsA(isA<AuthenticationException>()));
   });
