@@ -1,0 +1,11 @@
+function:
+  name: spice_off
+  schema: public
+configuration:
+  custom_name: spiceOff
+  custom_root_fields:
+    function: spiceOff
+    function_aggregate: spiceOffAggregate
+  session_argument: session
+permissions:
+  - role: user

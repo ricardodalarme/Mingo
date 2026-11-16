@@ -77,6 +77,8 @@ const myUnsentCard = and(mine(), { status: { _neq: 'sent' } });
 const receivedCard = and(mine('recipient_id'), { status: { _eq: 'sent' } });
 const eligibleSlip = and(mine(), { for_card: { _eq: true } }, { kind: { _neq: 'invisible' } }, isNull('archived_at'));
 
+const SPICE_KINDS = ['spice_card', 'spice_desire', 'spice_challenge'];
+
 // Spice cards exist only for a couple where both switched the mode on.
 const spiceAllowed = and(
   { _exists: { _table: { schema: 'public', name: 'couple_members' }, _where: { user_id: { _eq: ME } } } },
@@ -121,7 +123,7 @@ export const tables = {
           columns: ['theme', 'locale', 'goal', 'goals', 'phase', 'relationship_status', 'partner_name', 'partner_pronouns', 'partner_intent', 'together_since', 'onboarded_at',
             'share_read_receipts', 'holiday_countries', 'card_channel', 'card_theme', 'slips_default_for_card',
             'widget_allow_partner_notes', 'widget_on_lock_screen', 'widget_show_names', 'spice_enabled', 'low_stimulation',
-            'chat_enabled', 'chat_store_facts', 'has_kids'],
+            'chat_enabled', 'chat_store_facts', 'has_kids', 'spice_max_level', 'spice_notifications'],
           filter: mine('user_id'),
         },
       },
@@ -154,6 +156,7 @@ export const tables = {
   },
   invite_previews: resultTable(['public', 'user']),
   start_dates: resultTable(['user']),
+  spice_states: resultTable(['user']),
   invite_statuses: resultTable(['public', 'user']),
   invite_accept_results: resultTable(['user']),
 
@@ -322,7 +325,7 @@ export const tables = {
         // Plus-only rows are read through `contentCatalog`, which hides their body from a person without Plus.
         select: {
           columns: '*',
-          filter: and({ published: { _eq: true } }, { plus_only: { _eq: false } }, or({ kind: { _neq: 'spice_card' } }, spiceAllowed)),
+          filter: and({ published: { _eq: true } }, { plus_only: { _eq: false } }, or({ kind: { _nin: SPICE_KINDS } }, spiceAllowed)),
         },
       },
     },
@@ -371,6 +374,28 @@ export const tables = {
   // Mascot chat ----------------------------------------------------------------------------------------------------
   chat_turns: { roles: { user: { select: { columns: ['id', 'created_at'], filter: mine('user_id') } } } },
   learned_items: ownerOnly({ insert: ['target', 'text', 'excerpt'], update: ['text', 'status'] }),
+
+  // Tempero ----------------------------------------------------------------------------------------------------------
+  // Nothing here has a relationship from another table, so no query can reach it by joining. Answers are the person's
+  // alone; the cards and the challenge are written only through functions.
+  spice_desire_answers: {
+    roles: {
+      user: {
+        select: { columns: '*', filter: mine('user_id') },
+        insert: { columns: ['content_slug', 'answer'], set: { user_id: ME } },
+        update: { columns: ['answer'], filter: mine('user_id') },
+        delete: { filter: mine('user_id') },
+      },
+    },
+  },
+  spice_card_plays: {
+    array: { coupleMembers },
+    roles: { user: { select: { columns: '*', filter: and(inMyCouple, spiceAllowed) } } },
+  },
+  spice_challenges: {
+    array: { coupleMembers },
+    roles: { user: { select: { columns: '*', filter: and(inMyCouple, spiceAllowed) } } },
+  },
 
   // Between partners -----------------------------------------------------------------------------------------------
   couple_photos: {
@@ -646,6 +671,13 @@ export const functions = {
   try_accept_invite: { session: true, roles: ['user'] },
   invite_status: { roles: ['public', 'user'] },
   unpair: { session: true, roles: ['user'] },
+  spice_state: { session: true, roles: ['user'] },
+  spice_next_card: { session: true, roles: ['user'] },
+  spice_respond_card: { session: true, roles: ['user'] },
+  spice_matches: { session: true, roles: ['user'] },
+  spice_challenge: { session: true, roles: ['user'] },
+  spice_challenge_act: { session: true, roles: ['user'] },
+  spice_off: { session: true, roles: ['user'] },
   confirm_agreement: { session: true, roles: ['user'] },
   confirm_logistic_item: { session: true, roles: ['user'] },
   respond_memory: { session: true, roles: ['user'] },

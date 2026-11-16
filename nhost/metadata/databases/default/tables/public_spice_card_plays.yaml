@@ -1,0 +1,89 @@
+table:
+  name: spice_card_plays
+  schema: public
+configuration:
+  column_config:
+    accepted_by:
+      custom_name: acceptedBy
+    content_slug:
+      custom_name: contentSlug
+    couple_id:
+      custom_name: coupleId
+    created_at:
+      custom_name: createdAt
+    declined_at:
+      custom_name: declinedAt
+    id:
+      custom_name: id
+    proposed_by:
+      custom_name: proposedBy
+  custom_column_names:
+    accepted_by: acceptedBy
+    content_slug: contentSlug
+    couple_id: coupleId
+    created_at: createdAt
+    declined_at: declinedAt
+    id: id
+    proposed_by: proposedBy
+  custom_name: spiceCardPlays
+  custom_root_fields:
+    delete: deleteSpiceCardPlays
+    delete_by_pk: deleteSpiceCardPlaysByPk
+    insert: insertSpiceCardPlays
+    insert_one: insertSpiceCardPlaysOne
+    select: spiceCardPlays
+    select_aggregate: spiceCardPlaysAggregate
+    select_by_pk: spiceCardPlaysByPk
+    select_stream: spiceCardPlaysStream
+    update: updateSpiceCardPlays
+    update_by_pk: updateSpiceCardPlaysByPk
+    update_many: updateSpiceCardPlaysMany
+array_relationships:
+  - name: coupleMembers
+    using:
+      manual_configuration:
+        column_mapping:
+          couple_id: couple_id
+        insertion_order: null
+        remote_table:
+          name: couple_members
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - accepted_by
+        - content_slug
+        - couple_id
+        - created_at
+        - declined_at
+        - id
+        - proposed_by
+      filter:
+        _and:
+          - coupleMembers:
+              user_id:
+                _eq: X-Hasura-User-Id
+          - _and:
+              - _exists:
+                  _table:
+                    name: couple_members
+                    schema: public
+                  _where:
+                    user_id:
+                      _eq: X-Hasura-User-Id
+              - _not:
+                  _exists:
+                    _table:
+                      name: couple_members
+                      schema: public
+                    _where:
+                      _and:
+                        - couple:
+                            members:
+                              user_id:
+                                _eq: X-Hasura-User-Id
+                        - profile:
+                            settings:
+                              spice_enabled:
+                                _eq: false

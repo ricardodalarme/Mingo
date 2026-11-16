@@ -1,0 +1,36 @@
+table:
+  name: spice_states
+  schema: public
+configuration:
+  column_config:
+    couple_level:
+      custom_name: coupleLevel
+    my_level:
+      custom_name: myLevel
+    state:
+      custom_name: state
+  custom_column_names:
+    couple_level: coupleLevel
+    my_level: myLevel
+    state: state
+  custom_name: spiceStates
+  custom_root_fields:
+    delete: deleteSpiceStates
+    delete_by_pk: deleteSpiceStatesByPk
+    insert: insertSpiceStates
+    insert_one: insertSpiceStatesOne
+    select: spiceStates
+    select_aggregate: spiceStatesAggregate
+    select_by_pk: spiceStatesByPk
+    select_stream: spiceStatesStream
+    update: updateSpiceStates
+    update_by_pk: updateSpiceStatesByPk
+    update_many: updateSpiceStatesMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple_level
+        - my_level
+        - state
+      filter: {}

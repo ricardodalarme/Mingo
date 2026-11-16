@@ -1,0 +1,11 @@
+function:
+  name: spice_state
+  schema: public
+configuration:
+  custom_name: spiceState
+  custom_root_fields:
+    function: spiceState
+    function_aggregate: spiceStateAggregate
+  session_argument: session
+permissions:
+  - role: user

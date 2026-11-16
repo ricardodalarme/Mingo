@@ -1,0 +1,11 @@
+function:
+  name: spice_next_card
+  schema: public
+configuration:
+  custom_name: spiceNextCard
+  custom_root_fields:
+    function: spiceNextCard
+    function_aggregate: spiceNextCardAggregate
+  session_argument: session
+permissions:
+  - role: user

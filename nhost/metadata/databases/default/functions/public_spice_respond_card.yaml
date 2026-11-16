@@ -1,0 +1,11 @@
+function:
+  name: spice_respond_card
+  schema: public
+configuration:
+  custom_name: spiceRespondCard
+  custom_root_fields:
+    function: spiceRespondCard
+    function_aggregate: spiceRespondCardAggregate
+  session_argument: session
+permissions:
+  - role: user

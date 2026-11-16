@@ -1,0 +1,11 @@
+function:
+  name: spice_challenge
+  schema: public
+configuration:
+  custom_name: spiceChallenge
+  custom_root_fields:
+    function: spiceChallenge
+    function_aggregate: spiceChallengeAggregate
+  session_argument: session
+permissions:
+  - role: user

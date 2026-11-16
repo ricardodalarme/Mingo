@@ -13,6 +13,8 @@ configuration:
       custom_name: id
     kind:
       custom_name: kind
+    level:
+      custom_name: level
     locale:
       custom_name: locale
     month:
@@ -39,6 +41,7 @@ configuration:
     day: day
     id: id
     kind: kind
+    level: level
     locale: locale
     month: month
     parent_slug: parentSlug
@@ -71,6 +74,7 @@ select_permissions:
         - day
         - id
         - kind
+        - level
         - locale
         - month
         - parent_slug
@@ -89,7 +93,10 @@ select_permissions:
               _eq: false
           - _or:
               - kind:
-                  _neq: spice_card
+                  _nin:
+                    - spice_card
+                    - spice_desire
+                    - spice_challenge
               - _and:
                   - _exists:
                       _table:

@@ -1,0 +1,70 @@
+table:
+  name: spice_desire_answers
+  schema: public
+configuration:
+  column_config:
+    answer:
+      custom_name: answer
+    content_slug:
+      custom_name: contentSlug
+    created_at:
+      custom_name: createdAt
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    answer: answer
+    content_slug: contentSlug
+    created_at: createdAt
+    updated_at: updatedAt
+    user_id: userId
+  custom_name: spiceDesireAnswers
+  custom_root_fields:
+    delete: deleteSpiceDesireAnswers
+    delete_by_pk: deleteSpiceDesireAnswersByPk
+    insert: insertSpiceDesireAnswers
+    insert_one: insertSpiceDesireAnswersOne
+    select: spiceDesireAnswers
+    select_aggregate: spiceDesireAnswersAggregate
+    select_by_pk: spiceDesireAnswersByPk
+    select_stream: spiceDesireAnswersStream
+    update: updateSpiceDesireAnswers
+    update_by_pk: updateSpiceDesireAnswersByPk
+    update_many: updateSpiceDesireAnswersMany
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        user_id: X-Hasura-User-Id
+      columns:
+        - content_slug
+        - answer
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - answer
+        - content_slug
+        - created_at
+        - updated_at
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - answer
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

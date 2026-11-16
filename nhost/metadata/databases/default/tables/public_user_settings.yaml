@@ -43,6 +43,10 @@ configuration:
       custom_name: slipsDefaultForCard
     spice_enabled:
       custom_name: spiceEnabled
+    spice_max_level:
+      custom_name: spiceMaxLevel
+    spice_notifications:
+      custom_name: spiceNotifications
     theme:
       custom_name: theme
     together_since:
@@ -78,6 +82,8 @@ configuration:
     share_read_receipts: shareReadReceipts
     slips_default_for_card: slipsDefaultForCard
     spice_enabled: spiceEnabled
+    spice_max_level: spiceMaxLevel
+    spice_notifications: spiceNotifications
     theme: theme
     together_since: togetherSince
     updated_at: updatedAt
@@ -126,6 +132,8 @@ select_permissions:
         - share_read_receipts
         - slips_default_for_card
         - spice_enabled
+        - spice_max_level
+        - spice_notifications
         - theme
         - together_since
         - updated_at
@@ -164,6 +172,8 @@ update_permissions:
         - chat_enabled
         - chat_store_facts
         - has_kids
+        - spice_max_level
+        - spice_notifications
       filter:
         user_id:
           _eq: X-Hasura-User-Id

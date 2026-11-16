@@ -55,6 +55,8 @@ enum ContentKind_enum {
   repair_card
   ritual_idea
   spice_card
+  spice_challenge
+  spice_desire
   touch_card
 }
 enum ConversationGuide_enum {
@@ -980,6 +982,10 @@ enum contentItems_select_column {
   column name
   """
   kind
+  """
+  column name
+  """
+  level
   """
   column name
   """
@@ -3802,6 +3808,140 @@ enum slips_update_column {
   workArea
 }
 """
+select columns of table "spice_card_plays"
+"""
+enum spiceCardPlays_select_column {
+  """
+  column name
+  """
+  acceptedBy
+  """
+  column name
+  """
+  contentSlug
+  """
+  column name
+  """
+  coupleId
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  declinedAt
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  proposedBy
+}
+"""
+select columns of table "spice_challenges"
+"""
+enum spiceChallenges_select_column {
+  """
+  column name
+  """
+  acceptedBy
+  """
+  column name
+  """
+  contentSlug
+  """
+  column name
+  """
+  coupleId
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  doneBy
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  seenBy
+  """
+  column name
+  """
+  swaps
+  """
+  column name
+  """
+  weekStart
+}
+"""
+unique or primary key constraints on table "spice_desire_answers"
+"""
+enum spiceDesireAnswers_constraint {
+  """
+  unique or primary key constraint on columns "user_id", "content_slug"
+  """
+  spice_desire_answers_pkey
+}
+"""
+select columns of table "spice_desire_answers"
+"""
+enum spiceDesireAnswers_select_column {
+  """
+  column name
+  """
+  answer
+  """
+  column name
+  """
+  contentSlug
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  updatedAt
+  """
+  column name
+  """
+  userId
+}
+"""
+update columns of table "spice_desire_answers"
+"""
+enum spiceDesireAnswers_update_column {
+  """
+  column name
+  """
+  answer
+}
+"""
+select columns of table "spice_states"
+"""
+enum spiceStates_select_column {
+  """
+  column name
+  """
+  coupleLevel
+  """
+  column name
+  """
+  myLevel
+  """
+  column name
+  """
+  state
+}
+"""
 select columns of table "start_dates"
 """
 enum startDates_select_column {
@@ -4152,6 +4292,14 @@ enum userSettings_select_column {
   column name
   """
   spiceEnabled
+  """
+  column name
+  """
+  spiceMaxLevel
+  """
+  column name
+  """
+  spiceNotifications
   """
   column name
   """
@@ -4849,6 +4997,7 @@ type contentItems {
   day: smallint
   id: uuid!
   kind: ContentKind_enum!
+  level: smallint
   locale: String!
   month: smallint
   parentSlug: String
@@ -7265,6 +7414,19 @@ type mutation_root {
   """
   deleteSlipsByPk(id: uuid!): slips
   """
+  delete data from the table: "spice_desire_answers"
+  """
+  deleteSpiceDesireAnswers(
+    """
+    filter the rows which have to be deleted
+    """
+    where: spiceDesireAnswers_bool_exp!
+  ): spiceDesireAnswers_mutation_response
+  """
+  delete single row from the table: "spice_desire_answers"
+  """
+  deleteSpiceDesireAnswersByPk(contentSlug: String!, userId: uuid!): spiceDesireAnswers
+  """
   delete data from the table: "story_events"
   """
   deleteStoryEvents(
@@ -8439,6 +8601,34 @@ type mutation_root {
     on_conflict: slips_on_conflict
   ): slips
   """
+  insert data into the table: "spice_desire_answers"
+  """
+  insertSpiceDesireAnswers(
+    """
+    the rows to be inserted
+    """
+    objects: [spiceDesireAnswers_insert_input!]!
+
+    """
+    upsert condition
+    """
+    on_conflict: spiceDesireAnswers_on_conflict
+  ): spiceDesireAnswers_mutation_response
+  """
+  insert a single row into the table: "spice_desire_answers"
+  """
+  insertSpiceDesireAnswersOne(
+    """
+    the row to be inserted
+    """
+    object: spiceDesireAnswers_insert_input!
+
+    """
+    upsert condition
+    """
+    on_conflict: spiceDesireAnswers_on_conflict
+  ): spiceDesireAnswers
+  """
   insert data into the table: "story_events"
   """
   insertStoryEvents(
@@ -8823,6 +9013,161 @@ type mutation_root {
     """
     where: notificationMutes_bool_exp
   ): [notificationMutes!]!
+  """
+  execute VOLATILE function "spice_challenge" which returns "spice_challenges"
+  """
+  spiceChallenge(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceChallenges_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceChallenges_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceChallenges_bool_exp
+  ): [spiceChallenges!]!
+  """
+  execute VOLATILE function "spice_challenge_act" which returns "spice_challenges"
+  """
+  spiceChallengeAct(
+    """
+    input parameters for function "spiceChallengeAct"
+    """
+    args: spiceChallengeAct_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceChallenges_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceChallenges_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceChallenges_bool_exp
+  ): [spiceChallenges!]!
+  """
+  execute VOLATILE function "spice_next_card" which returns "spice_card_plays"
+  """
+  spiceNextCard(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceCardPlays_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceCardPlays_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceCardPlays_bool_exp
+  ): [spiceCardPlays!]!
+  """
+  execute VOLATILE function "spice_off" which returns "user_settings"
+  """
+  spiceOff(
+    """
+    distinct select on columns
+    """
+    distinct_on: [userSettings_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [userSettings_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: userSettings_bool_exp
+  ): [userSettings!]!
+  """
+  execute VOLATILE function "spice_respond_card" which returns "spice_card_plays"
+  """
+  spiceRespondCard(
+    """
+    input parameters for function "spiceRespondCard"
+    """
+    args: spiceRespondCard_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceCardPlays_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceCardPlays_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceCardPlays_bool_exp
+  ): [spiceCardPlays!]!
   """
   execute VOLATILE function "take_chat_turn" which returns "chat_turns"
   """
@@ -10270,6 +10615,38 @@ type mutation_root {
     updates: [slips_updates!]!
   ): [slips_mutation_response]
   """
+  update data of the table: "spice_desire_answers"
+  """
+  updateSpiceDesireAnswers(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: spiceDesireAnswers_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: spiceDesireAnswers_bool_exp!
+  ): spiceDesireAnswers_mutation_response
+  """
+  update single row of the table: "spice_desire_answers"
+  """
+  updateSpiceDesireAnswersByPk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: spiceDesireAnswers_set_input
+  pk_columns: spiceDesireAnswers_pk_columns_input!): spiceDesireAnswers
+  """
+  update multiples rows of table: "spice_desire_answers"
+  """
+  updateSpiceDesireAnswersMany(
+    """
+    updates to execute, in order
+    """
+    updates: [spiceDesireAnswers_updates!]!
+  ): [spiceDesireAnswers_mutation_response]
+  """
   update data of the table: "story_events"
   """
   updateStoryEvents(
@@ -10338,6 +10715,11 @@ type mutation_root {
   """
   updateUserSettings(
     """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: userSettings_inc_input
+
+    """
     sets the columns of the filtered rows to the given values
     """
     _set: userSettings_set_input
@@ -10351,6 +10733,11 @@ type mutation_root {
   update single row of the table: "user_settings"
   """
   updateUserSettingsByPk(
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: userSettings_inc_input
+
     """
     sets the columns of the filtered rows to the given values
     """
@@ -13596,6 +13983,192 @@ type query_root {
   """
   slipsByPk(id: uuid!): slips
   """
+  fetch data from the table: "spice_card_plays"
+  """
+  spiceCardPlays(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceCardPlays_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceCardPlays_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceCardPlays_bool_exp
+  ): [spiceCardPlays!]!
+  """
+  fetch data from the table: "spice_card_plays" using primary key columns
+  """
+  spiceCardPlaysByPk(id: uuid!): spiceCardPlays
+  """
+  fetch data from the table: "spice_challenges"
+  """
+  spiceChallenges(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceChallenges_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceChallenges_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceChallenges_bool_exp
+  ): [spiceChallenges!]!
+  """
+  fetch data from the table: "spice_challenges" using primary key columns
+  """
+  spiceChallengesByPk(id: uuid!): spiceChallenges
+  """
+  fetch data from the table: "spice_desire_answers"
+  """
+  spiceDesireAnswers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceDesireAnswers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceDesireAnswers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceDesireAnswers_bool_exp
+  ): [spiceDesireAnswers!]!
+  """
+  fetch data from the table: "spice_desire_answers" using primary key columns
+  """
+  spiceDesireAnswersByPk(contentSlug: String!, userId: uuid!): spiceDesireAnswers
+  """
+  execute function "spice_matches" which returns "catalog_items"
+  """
+  spiceMatches(
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
+  """
+  execute function "spice_state" which returns "spice_states"
+  """
+  spiceState(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceStates_bool_exp
+  ): [spiceStates!]!
+  """
+  fetch data from the table: "spice_states"
+  """
+  spiceStates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceStates_bool_exp
+  ): [spiceStates!]!
+  """
   execute function "start_date_state" which returns "start_dates"
   """
   startDateState(
@@ -14749,6 +15322,121 @@ type slips_mutation_response {
   data from the rows affected by the mutation
   """
   returning: [slips!]!
+}
+"""
+columns and relationships of "spice_card_plays"
+"""
+type spiceCardPlays {
+  acceptedBy: uuid
+  contentSlug: String!
+  coupleId: uuid!
+  """
+  An array relationship
+  """
+  coupleMembers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [coupleMembers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [coupleMembers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: coupleMembers_bool_exp
+  ): [coupleMembers!]!
+  createdAt: timestamptz!
+  declinedAt: timestamptz
+  id: uuid!
+  proposedBy: uuid!
+}
+"""
+columns and relationships of "spice_challenges"
+"""
+type spiceChallenges {
+  acceptedBy: [uuid!]!
+  contentSlug: String!
+  coupleId: uuid!
+  """
+  An array relationship
+  """
+  coupleMembers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [coupleMembers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [coupleMembers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: coupleMembers_bool_exp
+  ): [coupleMembers!]!
+  createdAt: timestamptz!
+  doneBy: [uuid!]!
+  id: uuid!
+  seenBy: [uuid!]!
+  swaps: smallint!
+  weekStart: date!
+}
+"""
+columns and relationships of "spice_desire_answers"
+"""
+type spiceDesireAnswers {
+  answer: String!
+  contentSlug: String!
+  createdAt: timestamptz!
+  updatedAt: timestamptz!
+  userId: uuid!
+}
+"""
+response of any mutation on the table "spice_desire_answers"
+"""
+type spiceDesireAnswers_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [spiceDesireAnswers!]!
+}
+"""
+columns and relationships of "spice_states"
+"""
+type spiceStates {
+  coupleLevel: smallint
+  myLevel: smallint
+  state: String!
 }
 """
 columns and relationships of "start_dates"
@@ -18905,6 +19593,268 @@ type subscription_root {
     where: slips_bool_exp
   ): [slips!]!
   """
+  fetch data from the table: "spice_card_plays"
+  """
+  spiceCardPlays(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceCardPlays_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceCardPlays_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceCardPlays_bool_exp
+  ): [spiceCardPlays!]!
+  """
+  fetch data from the table: "spice_card_plays" using primary key columns
+  """
+  spiceCardPlaysByPk(id: uuid!): spiceCardPlays
+  """
+  fetch data from the table in a streaming manner: "spice_card_plays"
+  """
+  spiceCardPlaysStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [spiceCardPlays_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: spiceCardPlays_bool_exp
+  ): [spiceCardPlays!]!
+  """
+  fetch data from the table: "spice_challenges"
+  """
+  spiceChallenges(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceChallenges_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceChallenges_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceChallenges_bool_exp
+  ): [spiceChallenges!]!
+  """
+  fetch data from the table: "spice_challenges" using primary key columns
+  """
+  spiceChallengesByPk(id: uuid!): spiceChallenges
+  """
+  fetch data from the table in a streaming manner: "spice_challenges"
+  """
+  spiceChallengesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [spiceChallenges_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: spiceChallenges_bool_exp
+  ): [spiceChallenges!]!
+  """
+  fetch data from the table: "spice_desire_answers"
+  """
+  spiceDesireAnswers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceDesireAnswers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceDesireAnswers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceDesireAnswers_bool_exp
+  ): [spiceDesireAnswers!]!
+  """
+  fetch data from the table: "spice_desire_answers" using primary key columns
+  """
+  spiceDesireAnswersByPk(contentSlug: String!, userId: uuid!): spiceDesireAnswers
+  """
+  fetch data from the table in a streaming manner: "spice_desire_answers"
+  """
+  spiceDesireAnswersStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [spiceDesireAnswers_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: spiceDesireAnswers_bool_exp
+  ): [spiceDesireAnswers!]!
+  """
+  execute function "spice_matches" which returns "catalog_items"
+  """
+  spiceMatches(
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
+  """
+  execute function "spice_state" which returns "spice_states"
+  """
+  spiceState(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceStates_bool_exp
+  ): [spiceStates!]!
+  """
+  fetch data from the table: "spice_states"
+  """
+  spiceStates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceStates_bool_exp
+  ): [spiceStates!]!
+  """
+  fetch data from the table in a streaming manner: "spice_states"
+  """
+  spiceStatesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [spiceStates_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: spiceStates_bool_exp
+  ): [spiceStates!]!
+  """
   execute function "start_date_state" which returns "start_dates"
   """
   startDateState(
@@ -19497,6 +20447,8 @@ type userSettings {
   shareReadReceipts: Boolean!
   slipsDefaultForCard: Boolean!
   spiceEnabled: Boolean!
+  spiceMaxLevel: smallint!
+  spiceNotifications: Boolean!
   theme: AppTheme_enum!
   togetherSince: date
   updatedAt: timestamptz!
@@ -21322,6 +22274,7 @@ input contentItems_bool_exp {
   day: smallint_comparison_exp
   id: uuid_comparison_exp
   kind: ContentKind_enum_comparison_exp
+  level: smallint_comparison_exp
   locale: String_comparison_exp
   month: smallint_comparison_exp
   parentSlug: String_comparison_exp
@@ -21342,6 +22295,7 @@ input contentItems_order_by {
   day: order_by
   id: order_by
   kind: order_by
+  level: order_by
   locale: order_by
   month: order_by
   parentSlug: order_by
@@ -21375,6 +22329,7 @@ input contentItems_stream_cursor_value_input {
   day: smallint
   id: uuid
   kind: ContentKind_enum
+  level: smallint
   locale: String
   month: smallint
   parentSlug: String
@@ -26439,6 +27394,251 @@ input smallint_comparison_exp {
   _nin: [smallint!]
 }
 """
+Boolean expression to filter rows from the table "spice_card_plays". All fields are combined with a logical 'AND'.
+"""
+input spiceCardPlays_bool_exp {
+  _and: [spiceCardPlays_bool_exp!]
+  _not: spiceCardPlays_bool_exp
+  _or: [spiceCardPlays_bool_exp!]
+  acceptedBy: uuid_comparison_exp
+  contentSlug: String_comparison_exp
+  coupleId: uuid_comparison_exp
+  coupleMembers: coupleMembers_bool_exp
+  createdAt: timestamptz_comparison_exp
+  declinedAt: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  proposedBy: uuid_comparison_exp
+}
+"""
+Ordering options when selecting data from "spice_card_plays".
+"""
+input spiceCardPlays_order_by {
+  acceptedBy: order_by
+  contentSlug: order_by
+  coupleId: order_by
+  coupleMembers_aggregate: coupleMembers_aggregate_order_by
+  createdAt: order_by
+  declinedAt: order_by
+  id: order_by
+  proposedBy: order_by
+}
+"""
+Streaming cursor of the table "spiceCardPlays"
+"""
+input spiceCardPlays_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: spiceCardPlays_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input spiceCardPlays_stream_cursor_value_input {
+  acceptedBy: uuid
+  contentSlug: String
+  coupleId: uuid
+  createdAt: timestamptz
+  declinedAt: timestamptz
+  id: uuid
+  proposedBy: uuid
+}
+input spiceChallengeAct_args {
+  action: String
+}
+"""
+Boolean expression to filter rows from the table "spice_challenges". All fields are combined with a logical 'AND'.
+"""
+input spiceChallenges_bool_exp {
+  _and: [spiceChallenges_bool_exp!]
+  _not: spiceChallenges_bool_exp
+  _or: [spiceChallenges_bool_exp!]
+  acceptedBy: uuid_array_comparison_exp
+  contentSlug: String_comparison_exp
+  coupleId: uuid_comparison_exp
+  coupleMembers: coupleMembers_bool_exp
+  createdAt: timestamptz_comparison_exp
+  doneBy: uuid_array_comparison_exp
+  id: uuid_comparison_exp
+  seenBy: uuid_array_comparison_exp
+  swaps: smallint_comparison_exp
+  weekStart: date_comparison_exp
+}
+"""
+Ordering options when selecting data from "spice_challenges".
+"""
+input spiceChallenges_order_by {
+  acceptedBy: order_by
+  contentSlug: order_by
+  coupleId: order_by
+  coupleMembers_aggregate: coupleMembers_aggregate_order_by
+  createdAt: order_by
+  doneBy: order_by
+  id: order_by
+  seenBy: order_by
+  swaps: order_by
+  weekStart: order_by
+}
+"""
+Streaming cursor of the table "spiceChallenges"
+"""
+input spiceChallenges_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: spiceChallenges_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input spiceChallenges_stream_cursor_value_input {
+  acceptedBy: [uuid!]
+  contentSlug: String
+  coupleId: uuid
+  createdAt: timestamptz
+  doneBy: [uuid!]
+  id: uuid
+  seenBy: [uuid!]
+  swaps: smallint
+  weekStart: date
+}
+"""
+Boolean expression to filter rows from the table "spice_desire_answers". All fields are combined with a logical 'AND'.
+"""
+input spiceDesireAnswers_bool_exp {
+  _and: [spiceDesireAnswers_bool_exp!]
+  _not: spiceDesireAnswers_bool_exp
+  _or: [spiceDesireAnswers_bool_exp!]
+  answer: String_comparison_exp
+  contentSlug: String_comparison_exp
+  createdAt: timestamptz_comparison_exp
+  updatedAt: timestamptz_comparison_exp
+  userId: uuid_comparison_exp
+}
+"""
+input type for inserting data into table "spice_desire_answers"
+"""
+input spiceDesireAnswers_insert_input {
+  answer: String
+  contentSlug: String
+}
+"""
+on_conflict condition type for table "spice_desire_answers"
+"""
+input spiceDesireAnswers_on_conflict {
+  constraint: spiceDesireAnswers_constraint!
+  update_columns: [spiceDesireAnswers_update_column!]! = []
+  where: spiceDesireAnswers_bool_exp
+}
+"""
+Ordering options when selecting data from "spice_desire_answers".
+"""
+input spiceDesireAnswers_order_by {
+  answer: order_by
+  contentSlug: order_by
+  createdAt: order_by
+  updatedAt: order_by
+  userId: order_by
+}
+"""
+primary key columns input for table: spice_desire_answers
+"""
+input spiceDesireAnswers_pk_columns_input {
+  contentSlug: String!
+  userId: uuid!
+}
+"""
+input type for updating data in table "spice_desire_answers"
+"""
+input spiceDesireAnswers_set_input {
+  answer: String
+}
+"""
+Streaming cursor of the table "spiceDesireAnswers"
+"""
+input spiceDesireAnswers_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: spiceDesireAnswers_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input spiceDesireAnswers_stream_cursor_value_input {
+  answer: String
+  contentSlug: String
+  createdAt: timestamptz
+  updatedAt: timestamptz
+  userId: uuid
+}
+input spiceDesireAnswers_updates {
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: spiceDesireAnswers_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: spiceDesireAnswers_bool_exp!
+}
+input spiceRespondCard_args {
+  accept: Boolean
+  playId: uuid
+}
+"""
+Boolean expression to filter rows from the table "spice_states". All fields are combined with a logical 'AND'.
+"""
+input spiceStates_bool_exp {
+  _and: [spiceStates_bool_exp!]
+  _not: spiceStates_bool_exp
+  _or: [spiceStates_bool_exp!]
+  coupleLevel: smallint_comparison_exp
+  myLevel: smallint_comparison_exp
+  state: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "spice_states".
+"""
+input spiceStates_order_by {
+  coupleLevel: order_by
+  myLevel: order_by
+  state: order_by
+}
+"""
+Streaming cursor of the table "spiceStates"
+"""
+input spiceStates_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: spiceStates_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input spiceStates_stream_cursor_value_input {
+  coupleLevel: smallint
+  myLevel: smallint
+  state: String
+}
+"""
 Boolean expression to filter rows from the table "start_dates". All fields are combined with a logical 'AND'.
 """
 input startDates_bool_exp {
@@ -26904,6 +28104,8 @@ input userSettings_bool_exp {
   shareReadReceipts: Boolean_comparison_exp
   slipsDefaultForCard: Boolean_comparison_exp
   spiceEnabled: Boolean_comparison_exp
+  spiceMaxLevel: smallint_comparison_exp
+  spiceNotifications: Boolean_comparison_exp
   theme: AppTheme_enum_comparison_exp
   togetherSince: date_comparison_exp
   updatedAt: timestamptz_comparison_exp
@@ -26911,6 +28113,12 @@ input userSettings_bool_exp {
   widgetAllowPartnerNotes: Boolean_comparison_exp
   widgetOnLockScreen: Boolean_comparison_exp
   widgetShowNames: Boolean_comparison_exp
+}
+"""
+input type for incrementing numeric columns in table "user_settings"
+"""
+input userSettings_inc_input {
+  spiceMaxLevel: smallint
 }
 """
 Ordering options when selecting data from "user_settings".
@@ -26937,6 +28145,8 @@ input userSettings_order_by {
   shareReadReceipts: order_by
   slipsDefaultForCard: order_by
   spiceEnabled: order_by
+  spiceMaxLevel: order_by
+  spiceNotifications: order_by
   theme: order_by
   togetherSince: order_by
   updatedAt: order_by
@@ -26974,6 +28184,8 @@ input userSettings_set_input {
   shareReadReceipts: Boolean
   slipsDefaultForCard: Boolean
   spiceEnabled: Boolean
+  spiceMaxLevel: smallint
+  spiceNotifications: Boolean
   theme: AppTheme_enum
   togetherSince: date
   widgetAllowPartnerNotes: Boolean
@@ -27017,6 +28229,8 @@ input userSettings_stream_cursor_value_input {
   shareReadReceipts: Boolean
   slipsDefaultForCard: Boolean
   spiceEnabled: Boolean
+  spiceMaxLevel: smallint
+  spiceNotifications: Boolean
   theme: AppTheme_enum
   togetherSince: date
   updatedAt: timestamptz
@@ -27027,6 +28241,10 @@ input userSettings_stream_cursor_value_input {
 }
 input userSettings_updates {
   """
+  increments the numeric columns with given value of the filtered values
+  """
+  _inc: userSettings_inc_input
+  """
   sets the columns of the filtered rows to the given values
   """
   _set: userSettings_set_input
@@ -27034,6 +28252,28 @@ input userSettings_updates {
   filter the rows which have to be updated
   """
   where: userSettings_bool_exp!
+}
+"""
+Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.
+"""
+input uuid_array_comparison_exp {
+  """
+  is the array contained in the given array value
+  """
+  _contained_in: [uuid!]
+  """
+  does the array contain the given value
+  """
+  _contains: [uuid!]
+  _eq: [uuid!]
+  _gt: [uuid!]
+  _gte: [uuid!]
+  _in: [[uuid!]!]
+  _is_null: Boolean
+  _lt: [uuid!]
+  _lte: [uuid!]
+  _neq: [uuid!]
+  _nin: [[uuid!]!]
 }
 """
 Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.
