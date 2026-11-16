@@ -6870,15 +6870,6 @@ class Translations$sundayCard$pt {
   /// pt: 'Obrigada por essa semana.'
   String get noteHint => 'Obrigada por essa semana.';
 
-  /// pt: 'Subir'
-  String get moveUp => 'Subir';
-
-  /// pt: 'Descer'
-  String get moveDown => 'Descer';
-
-  /// pt: 'Tirar do cartão'
-  String get remove => 'Tirar do cartão';
-
   /// pt: 'Semana sem slips'
   String get emptyTitle => 'Semana sem slips';
 
@@ -6918,6 +6909,21 @@ class Translations$sundayCard$pt {
 
   /// pt: 'Vale para o próximo cartão.'
   String get dayNote => 'Vale para o próximo cartão.';
+
+  /// pt: 'Editar esta semana'
+  String get editTitle => 'Editar esta semana';
+
+  /// pt: 'Escolha o que entra'
+  String get editSubtitle => 'Escolha o que entra';
+
+  /// pt: 'Incluído'
+  String get included => 'Incluído';
+
+  /// pt: 'Não incluído'
+  String get notIncluded => 'Não incluído';
+
+  /// pt: 'Prévia'
+  String get preview => 'Prévia';
 }
 
 // Path: tabs
@@ -13107,9 +13113,6 @@ extension on Translations {
           'sundayCard.cancel' => 'Cancelar',
           'sundayCard.noteLabel' => 'Mensagem final',
           'sundayCard.noteHint' => 'Obrigada por essa semana.',
-          'sundayCard.moveUp' => 'Subir',
-          'sundayCard.moveDown' => 'Descer',
-          'sundayCard.remove' => 'Tirar do cartão',
           'sundayCard.emptyTitle' => 'Semana sem slips',
           'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
           'sundayCard.emptyAction' => 'Anotar um slip',
@@ -13159,6 +13162,11 @@ extension on Translations {
           'sundayCard.dayTitle' => 'Dia',
           'sundayCard.dayError' => 'Não deu para mudar o dia. O anterior foi mantido.',
           'sundayCard.dayNote' => 'Vale para o próximo cartão.',
+          'sundayCard.editTitle' => 'Editar esta semana',
+          'sundayCard.editSubtitle' => 'Escolha o que entra',
+          'sundayCard.included' => 'Incluído',
+          'sundayCard.notIncluded' => 'Não incluído',
+          'sundayCard.preview' => 'Prévia',
           'tabs.today' => 'Hoje',
           'tabs.slips' => 'Slips',
           'tabs.together' => 'Juntos',
@@ -13588,11 +13596,11 @@ extension on Translations {
           'widgets.ownSlipLabel' => 'ANOTAR SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Toque para anotar',
-          'widgets.ownIdeaLabel' => 'IDEIA DO DIA',
-          'widgets.ownIdeaDefault' => 'Deixe um bilhete hoje',
           _ => null,
         } ??
         switch (path) {
+          'widgets.ownIdeaLabel' => 'IDEIA DO DIA',
+          'widgets.ownIdeaDefault' => 'Deixe um bilhete hoje',
           'widgets.ownIdeaHint' => 'Toque para abrir',
           'widgets.ownJarLabel' => 'POTINHO DO DIA RUIM',
           'widgets.ownJarTitle' => 'Abrir um slip guardado',

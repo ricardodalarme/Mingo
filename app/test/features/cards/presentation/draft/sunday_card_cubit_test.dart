@@ -93,9 +93,10 @@ void main() {
   test('editing works on a copy and cancelling drops it', () async {
     final cubit = await loaded()
       ..startEditing()
-      ..removeItem(0);
+      ..toggleItem('a');
 
-    expect(cubit.state.draft!.items.map((item) => item.id), ['b', 'c']);
+    expect(cubit.state.excludedIds, {'a'});
+    expect(cubit.state.draft!.items, hasLength(3));
     expect((cubit.state.card as Success<SundayCard>).value.items, hasLength(3));
 
     cubit.cancelEditing();
@@ -117,16 +118,22 @@ void main() {
     expect(cubit.state.isEditing, isFalse);
   });
 
-  test('items move one place and stay inside the list', () async {
+  test('an item taken off can be put back before saving', () async {
     final cubit = await loaded()
       ..startEditing()
-      ..moveItem(0, -1)
-      ..moveItem(0, 1);
+      ..toggleItem('b');
+    expect(cubit.state.excludedIds, {'b'});
 
-    expect(cubit.state.draft!.items.map((item) => item.id), ['b', 'a', 'c']);
+    cubit.toggleItem('b');
+    expect(cubit.state.excludedIds, isEmpty);
+  });
 
-    cubit.moveItem(2, 1);
-    expect(cubit.state.draft!.items.map((item) => item.id), ['b', 'a', 'c']);
+  test('an unknown item is ignored', () async {
+    final cubit = await loaded()
+      ..startEditing()
+      ..toggleItem('zzz');
+
+    expect(cubit.state.excludedIds, isEmpty);
   });
 
   test('the closing note is capped', () async {
@@ -147,8 +154,8 @@ void main() {
         });
     final cubit = await loaded()
       ..startEditing()
-      ..removeItem(0)
-      ..removeItem(1)
+      ..toggleItem('a')
+      ..toggleItem('c')
       ..onNoteChanged('Obrigada');
     await cubit.save();
 
@@ -163,11 +170,11 @@ void main() {
         .thenAnswer((_) async => throw Exception());
     final cubit = await loaded()
       ..startEditing()
-      ..removeItem(0);
+      ..toggleItem('a');
     await cubit.save();
 
     expect(cubit.state.isEditing, isTrue);
-    expect(cubit.state.draft!.items, hasLength(2));
+    expect(cubit.state.excludedIds, {'a'});
   });
 
   test('a connected partner is detected', () async {

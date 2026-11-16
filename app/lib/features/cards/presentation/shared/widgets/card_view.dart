@@ -8,7 +8,6 @@ class const CardView({
   required final SundayCard card,
   final String? fromName,
   final String? toName,
-  final Widget Function(BuildContext context, int index)? itemTrailing,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -33,7 +32,7 @@ class const CardView({
           ),
           const SizedBox(height: AppSpace.s16),
           for (var index = 0; index < card.items.length; index++) ...[
-            _Item(item: card.items[index], trailing: itemTrailing?.call(context, index)),
+            _Item(item: card.items[index]),
             const SizedBox(height: AppSpace.s14),
           ],
           if (note != null && note.isNotEmpty) ...[
@@ -46,7 +45,7 @@ class const CardView({
   }
 }
 
-class const _Item({required final CardItem item, final Widget? trailing}) extends StatelessWidget {
+class const _Item({required final CardItem item}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.cardView;
@@ -81,7 +80,6 @@ class const _Item({required final CardItem item, final Widget? trailing}) extend
             ],
           ),
         ),
-        ?trailing,
       ],
     );
   }

@@ -5,9 +5,6 @@
   "cancel": "Cancel",
   "noteLabel": "Closing note",
   "noteHint": "Thank you for this week.",
-  "moveUp": "Move up",
-  "moveDown": "Move down",
-  "remove": "Remove from card",
   "emptyTitle": "A week without slips",
   "emptyText": "Note one good thing and it goes on the Sunday card.",
   "emptyAction": "Note a slip",
@@ -60,5 +57,10 @@
   },
   "dayTitle": "Day",
   "dayError": "Could not change the day. The earlier one was kept.",
-  "dayNote": "Applies to the next card."
+  "dayNote": "Applies to the next card.",
+  "editTitle": "Edit this week",
+  "editSubtitle": "Choose what goes in",
+  "included": "Included",
+  "notIncluded": "Not included",
+  "preview": "Preview"
 }

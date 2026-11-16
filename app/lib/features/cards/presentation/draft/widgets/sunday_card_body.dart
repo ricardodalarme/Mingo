@@ -24,6 +24,7 @@ class const SundayCardBody({required final SundayCard card, super.key}) extends 
     final sendDay = context.select((SundayCardCubit cubit) => cubit.state.sendDay);
     final cubit = context.read<SundayCardCubit>();
     final shown = draft ?? card;
+    final excluded = context.select((SundayCardCubit cubit) => cubit.state.excludedIds);
 
     if (card.isHeldByRule && draft == null) return SundayCardHeldByRule(reason: card.heldReason!);
     if (card.isHeld && draft == null) return const SundayCardHeld();
@@ -41,14 +42,31 @@ class const SundayCardBody({required final SundayCard card, super.key}) extends 
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          CardView(
-            card: shown,
-            fromName: selfName,
-            toName: partnerName,
-            itemTrailing: draft == null
-                ? null
-                : (context, index) => _ItemActions(index: index, count: shown.items.length),
-          ),
+          if (draft == null)
+            CardView(card: shown, fromName: selfName, toName: partnerName)
+          else ...[
+            Semantics(header: true, child: Text(l10n.editTitle, style: context.text.titleXl)),
+            const SizedBox(height: AppSpace.s4),
+            Text(
+              l10n.editSubtitle,
+              style: context.text.body.copyWith(color: context.colors.textSecondary),
+            ),
+            const SizedBox(height: AppSpace.s16),
+            BaseListGroup(
+              children: [
+                for (final item in draft.items)
+                  BaseListTile(
+                    title: item.body,
+                    subtitle: excluded.contains(item.id) ? l10n.notIncluded : l10n.included,
+                    control: BaseSwitch(
+                      value: !excluded.contains(item.id),
+                      semanticLabel: item.body,
+                      onChanged: (_) => cubit.toggleItem(item.id),
+                    ),
+                  ),
+              ],
+            ),
+          ],
           if (draft == null && sendDay != null) ...[
             const SizedBox(height: AppSpace.s12),
             BaseListGroup(
@@ -75,6 +93,12 @@ class const SundayCardBody({required final SundayCard card, super.key}) extends 
               maxLength: cardNoteMaxLength,
               maxLines: 3,
               onChanged: cubit.onNoteChanged,
+            ),
+            const SizedBox(height: AppSpace.s12),
+            BaseButton.secondary(
+              text: l10n.preview,
+              isFullWidth: true,
+              onPressed: () => _preview(context, draft, excluded, selfName, partnerName),
             ),
           ],
         ],
@@ -153,34 +177,23 @@ Future<void> _chooseDay(BuildContext context, int current) async {
   if (chosen != null) await cubit.setSendDay(chosen);
 }
 
-class const _ItemActions({required final int index, required final int count})
-    extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.sundayCard;
-    final cubit = context.read<SundayCardCubit>();
+Future<void> _preview(
+  BuildContext context,
+  SundayCard draft,
+  Set<String> excluded,
+  String? selfName,
+  String? partnerName,
+) {
+  final included = draft.copyWith(
+    items: [
+      for (final item in draft.items)
+        if (!excluded.contains(item.id)) item,
+    ],
+  );
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (index > 0)
-          BaseRoundButton(
-            icon: AppIcons.chevron_up,
-            semanticLabel: l10n.moveUp,
-            onPressed: () => cubit.moveItem(index, -1),
-          ),
-        if (index < count - 1)
-          BaseRoundButton(
-            icon: AppIcons.chevron_down,
-            semanticLabel: l10n.moveDown,
-            onPressed: () => cubit.moveItem(index, 1),
-          ),
-        BaseRoundButton(
-          icon: AppIcons.close,
-          semanticLabel: l10n.remove,
-          onPressed: () => cubit.removeItem(index),
-        ),
-      ],
-    );
-  }
+  return BaseSheet.show<void>(
+    context: context,
+    title: context.l10n.sundayCard.preview,
+    child: CardView(card: included, fromName: selfName, toName: partnerName),
+  );
 }

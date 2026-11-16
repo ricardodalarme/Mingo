@@ -5557,12 +5557,6 @@ class _Translations$sundayCard$en extends Translations$sundayCard$pt {
   @override
   String get noteHint => 'Thank you for this week.';
   @override
-  String get moveUp => 'Move up';
-  @override
-  String get moveDown => 'Move down';
-  @override
-  String get remove => 'Remove from card';
-  @override
   String get emptyTitle => 'A week without slips';
   @override
   String get emptyText => 'Note one good thing and it goes on the Sunday card.';
@@ -5595,6 +5589,16 @@ class _Translations$sundayCard$en extends Translations$sundayCard$pt {
   String get dayError => 'Could not change the day. The earlier one was kept.';
   @override
   String get dayNote => 'Applies to the next card.';
+  @override
+  String get editTitle => 'Edit this week';
+  @override
+  String get editSubtitle => 'Choose what goes in';
+  @override
+  String get included => 'Included';
+  @override
+  String get notIncluded => 'Not included';
+  @override
+  String get preview => 'Preview';
 }
 
 // Path: tabs
@@ -11164,9 +11168,6 @@ extension on TranslationsEn {
           'sundayCard.cancel' => 'Cancel',
           'sundayCard.noteLabel' => 'Closing note',
           'sundayCard.noteHint' => 'Thank you for this week.',
-          'sundayCard.moveUp' => 'Move up',
-          'sundayCard.moveDown' => 'Move down',
-          'sundayCard.remove' => 'Remove from card',
           'sundayCard.emptyTitle' => 'A week without slips',
           'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
           'sundayCard.emptyAction' => 'Note a slip',
@@ -11215,6 +11216,11 @@ extension on TranslationsEn {
           'sundayCard.dayTitle' => 'Day',
           'sundayCard.dayError' => 'Could not change the day. The earlier one was kept.',
           'sundayCard.dayNote' => 'Applies to the next card.',
+          'sundayCard.editTitle' => 'Edit this week',
+          'sundayCard.editSubtitle' => 'Choose what goes in',
+          'sundayCard.included' => 'Included',
+          'sundayCard.notIncluded' => 'Not included',
+          'sundayCard.preview' => 'Preview',
           'tabs.today' => 'Today',
           'tabs.slips' => 'Slips',
           'tabs.together' => 'Together',
@@ -11643,11 +11649,11 @@ extension on TranslationsEn {
           'widgets.ownSlipLabel' => 'LOG SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Tap to log',
-          'widgets.ownIdeaLabel' => 'DAILY IDEA',
-          'widgets.ownIdeaDefault' => 'Leave a small note today',
           _ => null,
         } ??
         switch (path) {
+          'widgets.ownIdeaLabel' => 'DAILY IDEA',
+          'widgets.ownIdeaDefault' => 'Leave a small note today',
           'widgets.ownIdeaHint' => 'Tap to open',
           'widgets.ownJarLabel' => 'BAD DAY JAR',
           'widgets.ownJarTitle' => 'Open a saved slip',

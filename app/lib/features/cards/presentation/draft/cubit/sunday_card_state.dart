@@ -3,6 +3,7 @@ part of 'sunday_card_cubit.dart';
 final class const SundayCardState({
   final Resource<SundayCard> card = const Loading(),
   final SundayCard? draft,
+  final Set<String> excludedIds = const {},
   final String? selfName,
   final String? partnerName,
   final bool isPaired = false,
@@ -18,6 +19,7 @@ final class const SundayCardState({
     Resource<SundayCard>? card,
     SundayCard? draft,
     bool clearDraft = false,
+    Set<String>? excludedIds,
     String? selfName,
     String? partnerName,
     bool? isPaired,
@@ -29,6 +31,7 @@ final class const SundayCardState({
     return SundayCardState(
       card: card ?? this.card,
       draft: clearDraft ? null : draft ?? this.draft,
+      excludedIds: excludedIds ?? this.excludedIds,
       selfName: selfName ?? this.selfName,
       partnerName: partnerName ?? this.partnerName,
       isPaired: isPaired ?? this.isPaired,
@@ -43,6 +46,7 @@ final class const SundayCardState({
   List<Object?> get props => [
     card,
     draft,
+    excludedIds,
     selfName,
     partnerName,
     isPaired,

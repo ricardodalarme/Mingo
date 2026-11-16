@@ -21,7 +21,6 @@ class SundayCardCubit({
 }) extends Cubit<SundayCardState> {
   this : super(const SundayCardState());
 
-  final Set<String> _removedItemIds = {};
   NotificationPreferences? _preferences;
 
   Future<void> load() async {
@@ -73,35 +72,22 @@ class SundayCardCubit({
   void startEditing() {
     final card = state.card;
     if (card is Success<SundayCard> && card.value.isDraft) {
-      _removedItemIds.clear();
-      emit(state.copyWith(draft: card.value));
+      emit(state.copyWith(draft: card.value, excludedIds: const {}));
     }
   }
 
   void cancelEditing() {
-    _removedItemIds.clear();
-    emit(state.copyWith(clearDraft: true));
+    emit(state.copyWith(clearDraft: true, excludedIds: const {}));
   }
 
-  void removeItem(int index) {
+  /// Puts an item on the card or takes it off; an item taken off stays in the editor until saved.
+  void toggleItem(String id) {
     final draft = state.draft;
-    if (draft == null || index < 0 || index >= draft.items.length) return;
+    if (draft == null || !draft.items.any((item) => item.id == id)) return;
 
-    _removedItemIds.add(draft.items[index].id);
-    emit(state.copyWith(draft: draft.copyWith(items: [...draft.items]..removeAt(index))));
-  }
-
-  /// Moves an item one place up (`-1`) or down (`1`).
-  void moveItem(int index, int delta) {
-    final draft = state.draft;
-    final target = index + delta;
-    if (draft == null || index < 0 || target < 0) return;
-    if (index >= draft.items.length || target >= draft.items.length) return;
-
-    final items = [...draft.items];
-    final moved = items.removeAt(index);
-    items.insert(target, moved);
-    emit(state.copyWith(draft: draft.copyWith(items: items)));
+    final excluded = {...state.excludedIds};
+    if (!excluded.remove(id)) excluded.add(id);
+    emit(state.copyWith(excludedIds: excluded));
   }
 
   void onNoteChanged(String note) {
@@ -123,12 +109,24 @@ class SundayCardCubit({
 
     emit(state.copyWith(saveAction: const Loading()));
     try {
+      final excluded = state.excludedIds;
       final saved = await _cardsRepository.saveDraft(
-        draft,
-        removedItemIds: _removedItemIds.toList(),
+        draft.copyWith(
+          items: [
+            for (final item in draft.items)
+              if (!excluded.contains(item.id)) item,
+          ],
+        ),
+        removedItemIds: draft.items.map((item) => item.id).where(excluded.contains).toList(),
       );
-      _removedItemIds.clear();
-      emit(state.copyWith(card: Success(saved), clearDraft: true, saveAction: const Success(null)));
+      emit(
+        state.copyWith(
+          card: Success(saved),
+          clearDraft: true,
+          excludedIds: const {},
+          saveAction: const Success(null),
+        ),
+      );
       emit(state.copyWith(saveAction: const Initial()));
     } catch (exception) {
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));

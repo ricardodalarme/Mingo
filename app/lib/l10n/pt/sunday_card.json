@@ -5,9 +5,6 @@
   "cancel": "Cancelar",
   "noteLabel": "Mensagem final",
   "noteHint": "Obrigada por essa semana.",
-  "moveUp": "Subir",
-  "moveDown": "Descer",
-  "remove": "Tirar do cartão",
   "emptyTitle": "Semana sem slips",
   "emptyText": "Anote uma coisa boa e ela entra no cartão de domingo.",
   "emptyAction": "Anotar um slip",
@@ -60,5 +57,10 @@
   },
   "dayTitle": "Dia",
   "dayError": "Não deu para mudar o dia. O anterior foi mantido.",
-  "dayNote": "Vale para o próximo cartão."
+  "dayNote": "Vale para o próximo cartão.",
+  "editTitle": "Editar esta semana",
+  "editSubtitle": "Escolha o que entra",
+  "included": "Incluído",
+  "notIncluded": "Não incluído",
+  "preview": "Prévia"
 }
