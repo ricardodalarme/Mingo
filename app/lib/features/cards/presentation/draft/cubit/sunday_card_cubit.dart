@@ -25,10 +25,12 @@ class SundayCardCubit({
 
   Future<void> load() async {
     if (state.card is! Success) emit(state.copyWith(card: const Loading()));
-    final names = await _readNames();
-    final preferences = await _readPreferences();
     try {
-      final card = await _cardsRepository.getDraft();
+      final (names, preferences, card) = await (
+        _readNames(),
+        _readPreferences(),
+        _cardsRepository.getDraft(),
+      ).wait;
       emit(
         state.copyWith(
           card: Success(card),

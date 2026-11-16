@@ -21,13 +21,11 @@ class DeleteAccountCubit({
 
   Future<void> load() async {
     try {
-      final partner = await _pairingRepository.getPartner();
-      emit(
-        state.copyWith(
-          deletion: Success(await _repository.getDeletion()),
-          partnerName: partner?.displayName,
-        ),
-      );
+      final (partner, deletion) = await (
+        _pairingRepository.getPartner(),
+        _repository.getDeletion(),
+      ).wait;
+      emit(state.copyWith(deletion: Success(deletion), partnerName: partner?.displayName));
     } catch (exception) {
       emit(state.copyWith(deletion: Failure.fromObject(exception)));
     }

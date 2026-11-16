@@ -33,17 +33,25 @@ class DatesCubit({
   Future<void> load() async {
     if (state.dates is! Success) emit(state.copyWith(dates: const Loading()));
     if (state.gifts is! Success) emit(state.copyWith(gifts: const Loading()));
+    await (_loadDates(), _loadGifts(), _loadHolidays()).wait;
+  }
+
+  Future<void> _loadDates() async {
     try {
-      emit(state.copyWith(dates: Success(await _datesRepository.getDates())));
+      final dates = await _datesRepository.getDates();
+      emit(state.copyWith(dates: Success(dates)));
     } catch (exception) {
       if (state.dates is! Success) emit(state.copyWith(dates: Failure.fromObject(exception)));
     }
+  }
+
+  Future<void> _loadGifts() async {
     try {
-      emit(state.copyWith(gifts: Success(await _datesRepository.getGiftIdeas())));
+      final gifts = await _datesRepository.getGiftIdeas();
+      emit(state.copyWith(gifts: Success(gifts)));
     } catch (exception) {
       if (state.gifts is! Success) emit(state.copyWith(gifts: Failure.fromObject(exception)));
     }
-    if (state.holidays is! Success) await _loadHolidays();
   }
 
   void onTitleChanged(String title) => emit(state.copyWith(title: FormInput(title)));
@@ -141,9 +149,12 @@ class DatesCubit({
   Future<void> deleteGift(GiftIdea gift) => _change(() => _datesRepository.deleteGiftIdea(gift.id));
 
   Future<void> _loadHolidays() async {
+    if (state.holidays is Success) return;
+
     try {
       final settings = await _profileRepository.getMySettings();
-      emit(state.copyWith(holidays: Success(await _datesRepository.getHolidays(settings.locale))));
+      final holidays = await _datesRepository.getHolidays(settings.locale);
+      emit(state.copyWith(holidays: Success(holidays)));
     } catch (exception) {
       emit(state.copyWith(holidays: Failure.fromObject(exception)));
     }

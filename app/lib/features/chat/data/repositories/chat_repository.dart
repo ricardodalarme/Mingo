@@ -29,9 +29,11 @@ class ChatRepository({
   /// How many messages are left today and whether the person has Plus.
   Future<ChatStatus> getStatus() async {
     try {
-      final settings = await _profileRepository.getMySettings();
+      final (settings, plus) = await (
+        _profileRepository.getMySettings(),
+        _plusRepository.getPlus(),
+      ).wait;
       final status = await _dataSource.getStatus(settings.profileId);
-      final plus = await _plusRepository.getPlus();
 
       return (
         messagesLeft: status.messagesLeft,

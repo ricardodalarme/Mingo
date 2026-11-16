@@ -28,71 +28,64 @@ class TogetherCubit({
 
   StreamSubscription<void>? _profileChanges;
 
-  /// Finds the partner, the check-in entry, the list count and the current question title.
+  /// Finds the partner, the check-in entry, the list count and the other hub details, all at once.
+  ///
+  /// Each detail has its own fallback, so one failing read never hides the hub.
   Future<void> load() async {
-    var hasPartner = true;
-    try {
-      hasPartner = (await _pairingRepository.getPartner()) != null;
-    } on Object {
-      // The hub still works without knowing; the note about a missing partner stays hidden.
-    }
+    final hasPartner = _orElse(() async => (await _pairingRepository.getPartner()) != null, true);
+    final showCheckin = _orElse(
+      () async => !(await _checkinRepository.isCurrentWeekDismissed()),
+      true,
+    );
+    final listCount = _orElse(() async => (await _listsRepository.getLists()).length, 0);
+    final phase = _orElse<RelationshipPhase?>(
+      () async => (await _profileRepository.getMySettings()).phase,
+      null,
+    );
+    final questionTitle = _orElse<String?>(
+      () async => (await _questionsRepository.getPrompt()).title,
+      null,
+    );
+    final sharedGiftCount = _orElse(
+      () async => (await _giftsRepository.getGiftIdeas()).where((gift) => gift.isShared).length,
+      0,
+    );
+    final togetherSince = _orElse<DateTime?>(
+      () async => (await _historyRepository.getOverview()).togetherSince,
+      null,
+    );
 
-    var showCheckin = true;
-    try {
-      showCheckin = !(await _checkinRepository.isCurrentWeekDismissed());
-    } on Object {
-      // An unreadable dismissal shows the entry rather than hiding it.
-    }
-
-    var listCount = 0;
-    try {
-      listCount = (await _listsRepository.getLists()).length;
-    } on Object {
-      // An unreadable count leaves the entry without a number.
-    }
-
-    RelationshipPhase? phase;
-    try {
-      phase = (await _profileRepository.getMySettings()).phase;
-    } on Object {
-      // Without the phase the hub shows the default set of modules.
-    }
-
-    String? questionTitle;
-    try {
-      questionTitle = (await _questionsRepository.getPrompt()).title;
-    } on Object {
-      // The card falls back to its own title when the question cannot be read.
-    }
-
-    var sharedGiftCount = 0;
-    try {
-      sharedGiftCount = (await _giftsRepository.getGiftIdeas())
-          .where((gift) => gift.isShared)
-          .length;
-    } on Object {
-      // An unreadable count keeps the entry's neutral subtitle.
-    }
-
-    DateTime? togetherSince;
-    try {
-      togetherSince = (await _historyRepository.getOverview()).togetherSince;
-    } on Object {
-      // Without the date the title shows no duration.
-    }
+    final results = await Future.wait<Object?>([
+      hasPartner,
+      showCheckin,
+      listCount,
+      phase,
+      questionTitle,
+      sharedGiftCount,
+      togetherSince,
+    ]);
 
     if (isClosed) return;
     emit(
       state.copyWith(
-        hasPartner: hasPartner,
-        showCheckin: showCheckin,
-        listCount: listCount,
-        questionTitle: questionTitle,
-        phase: phase,
-        sharedGiftCount: sharedGiftCount,
-        togetherSince: togetherSince,
+        hasPartner: results[0]! as bool,
+        showCheckin: results[1]! as bool,
+        listCount: results[2]! as int,
+        phase: results[3] as RelationshipPhase?,
+        questionTitle: results[4] as String?,
+        sharedGiftCount: results[5]! as int,
+        togetherSince: results[6] as DateTime?,
       ),
     );
+  }
+
+  /// Runs one read and falls back to [fallback] when it fails, so the hub still opens.
+  Future<T> _orElse<T>(Future<T> Function() read, T fallback) async {
+    try {
+      return await read();
+    } on Object {
+      return fallback;
+    }
   }
 
   @override

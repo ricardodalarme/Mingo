@@ -16,8 +16,10 @@ class CardSettingsCubit({
   Future<void> load() async {
     emit(state.copyWith(preferences: const Loading()));
     try {
-      final preferences = await _notificationsRepository.getPreferences();
-      final isDefault = await _cardsRepository.getSlipsDefaultForCard();
+      final (preferences, isDefault) = await (
+        _notificationsRepository.getPreferences(),
+        _cardsRepository.getSlipsDefaultForCard(),
+      ).wait;
       if (isClosed) return;
       emit(state.copyWith(preferences: Success(preferences), slipsDefaultForCard: isDefault));
     } catch (exception) {

@@ -27,8 +27,10 @@ class DayCubit({
   Future<void> load() async {
     emit(state.copyWith(content: const Loading()));
     try {
-      final dates = await _datesRepository.getDates();
-      final ideas = await _togetherRepository.getDateIdeas();
+      final (dates, ideas) = await (
+        _datesRepository.getDates(),
+        _togetherRepository.getDateIdeas(),
+      ).wait;
       emit(
         state.copyWith(
           content: Success((

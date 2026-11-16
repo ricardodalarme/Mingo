@@ -26,8 +26,7 @@ class HardConversationCubit({
   Future<void> load() async {
     emit(state.copyWith(status: const Loading()));
     try {
-      final status = await _chatRepository.getStatus();
-      final draft = await _repository.readDraft();
+      final (status, draft) = await (_chatRepository.getStatus(), _repository.readDraft()).wait;
       if (isClosed) return;
       emit(
         state.copyWith(

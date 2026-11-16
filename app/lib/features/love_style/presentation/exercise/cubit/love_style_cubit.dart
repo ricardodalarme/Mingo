@@ -19,10 +19,12 @@ class LoveStyleCubit({
   Future<void> load() async {
     emit(state.copyWith(result: const Loading(), pairingFailed: false));
     try {
-      final saved = await _repository.getSavedRanked();
-      final sharedMessageId = await _repository.getSharedMessageId();
-      final manualValue = await _repository.getManualEntry();
-      final partner = await _readPartner();
+      final (saved, sharedMessageId, manualValue, partner) = await (
+        _repository.getSavedRanked(),
+        _repository.getSharedMessageId(),
+        _repository.getManualEntry(),
+        _readPartner(),
+      ).wait;
       final result = LoveStyleResult.fromRecord(saved);
       if (isClosed) return;
       emit(

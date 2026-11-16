@@ -22,9 +22,11 @@ class LogisticsCubit({
   Future<void> load() async {
     if (state.items is! Success) emit(state.copyWith(items: const Loading()));
     try {
-      final me = await _profileRepository.getMyProfile();
-      final partner = await _pairingRepository.getPartner();
-      final items = await _togetherRepository.getLogisticItems();
+      final (me, partner, items) = await (
+        _profileRepository.getMyProfile(),
+        _pairingRepository.getPartner(),
+        _togetherRepository.getLogisticItems(),
+      ).wait;
       emit(
         state.copyWith(
           items: Success(items),

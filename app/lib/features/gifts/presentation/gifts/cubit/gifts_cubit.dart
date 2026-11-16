@@ -17,8 +17,10 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
   Future<void> load() async {
     if (state.gifts is! Success) emit(state.copyWith(gifts: const Loading()));
     try {
-      final coupleId = await _giftsRepository.getCoupleId();
-      final gifts = await _giftsRepository.getGiftIdeas();
+      final (coupleId, gifts) = await (
+        _giftsRepository.getCoupleId(),
+        _giftsRepository.getGiftIdeas(),
+      ).wait;
       emit(state.copyWith(gifts: Success(gifts), coupleId: coupleId));
     } catch (exception) {
       if (state.gifts is Success) return;
