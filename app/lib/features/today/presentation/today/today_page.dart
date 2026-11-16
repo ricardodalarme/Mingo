@@ -1,7 +1,6 @@
 import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/dev_menu/dev_menu_page.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
-import 'package:app/features/mood/presentation/mood/widgets/today_mood_block.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:app/features/today/presentation/today/widgets/partner_unpaired_notice.dart';
@@ -37,7 +36,6 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
     final unpairedPartnerName = context.select(
       (TodayCubit cubit) => cubit.state.unpairedPartnerName,
     );
-    final loadedHome = home is Success<TodayHome> ? home.value : null;
 
     return BaseView(
       appBar: null,
@@ -57,10 +55,6 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
                 body: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    TodayMoodBlock(
-                      isFirstDay: isFirstDay,
-                      hasPendingInvite: loadedHome?.hasPendingInvite ?? false,
-                    ),
                     SkeletonizerResourceWidget<TodayHome>(
                       home,
                       fakeValue: const TodayHome.fake(),

@@ -27,20 +27,6 @@
     "November",
     "December"
   ],
-  "togetherYears(plural, param=count)": {
-    "one": "1 year",
-    "other": "{count} years"
-  },
-  "togetherMonths(plural, param=count)": {
-    "one": "1 month",
-    "other": "{count} months"
-  },
-  "togetherDays(plural, param=count)": {
-    "one": "1 day",
-    "other": "{count} days"
-  },
-  "togetherChipAction": "Open our story",
-  "togetherJoin": "{first} and {second}",
   "invitePerson": "Invite your person",
   "pendingInviteTitle": "Invite sent",
   "pendingInviteText": "They have not joined yet. Send again or revoke.",
@@ -55,11 +41,6 @@
   "weekHint": "card on Sunday",
   "forToday": "For today",
   "ideaLabel": "Idea of the day",
-  "slipsThisWeekPrivate(plural, param=count)": {
-    "zero": "Your private slips: none this week",
-    "one": "Your private slips: 1 this week",
-    "other": "Your private slips: {count} this week"
-  },
   "sundayCardLabel": "Sunday card",
   "sundayCardTitle": "Your card for this week",
   "inviteCardLabel": "Invite",
@@ -96,5 +77,24 @@
   "cardReceivedNamed": "{name} sent you a card",
   "signalReceived": "Your partner sent you a message",
   "signalReceivedAction": "View",
-  "weekHintToday": "card goes out today, 18:00"
+  "weekHintToday": "card goes out today, 18:00",
+  "privateSupport": "It stays with you until you invite someone.",
+  "inviteCardSupport": "Your space already works. The other person joins whenever they want.",
+  "inviteCardAction": "Invite",
+  "carouselCardTag": "Card",
+  "carouselCardSupport": "Open to see the good things from this week.",
+  "carouselCardAction": "Open",
+  "weekTag": "Your week",
+  "weekReadyTitle": "Your week is ready",
+  "weekReadySupport": "A summary of what you two did.",
+  "weekReadySupportPrivate": "A summary just for you.",
+  "weekReadyAction": "See",
+  "haveCode": "I already have a code",
+  "partnerProfile": "Partner profile",
+  "privateWeekTitle": "Your private slips",
+  "privateWeekCount(plural, param=count)": {
+    "zero": "no rush",
+    "one": "1 this week",
+    "other": "{count} this week"
+  }
 }

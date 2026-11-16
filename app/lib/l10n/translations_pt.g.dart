@@ -7005,36 +7005,6 @@ class Translations$today$pt {
     'dezembro',
   ];
 
-  /// pt: '(one) {1 ano} (other) {{count} anos}'
-  String togetherYears({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '1 ano',
-        other: '${count} anos',
-      );
-
-  /// pt: '(one) {1 mês} (other) {{count} meses}'
-  String togetherMonths({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '1 mês',
-        other: '${count} meses',
-      );
-
-  /// pt: '(one) {1 dia} (other) {{count} dias}'
-  String togetherDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '1 dia',
-        other: '${count} dias',
-      );
-
-  /// pt: 'Abrir nossa história'
-  String get togetherChipAction => 'Abrir nossa história';
-
-  /// pt: '{first} e {second}'
-  String togetherJoin({required Object first, required Object second}) => '${first} e ${second}';
-
   /// pt: 'Convidar sua pessoa'
   String get invitePerson => 'Convidar sua pessoa';
 
@@ -7070,15 +7040,6 @@ class Translations$today$pt {
 
   /// pt: 'Ideia do dia'
   String get ideaLabel => 'Ideia do dia';
-
-  /// pt: '(zero) {Seus slips privados: nenhum esta semana} (one) {Seus slips privados: 1 esta semana} (other) {Seus slips privados: {count} esta semana}'
-  String slipsThisWeekPrivate({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        zero: 'Seus slips privados: nenhum esta semana',
-        one: 'Seus slips privados: 1 esta semana',
-        other: 'Seus slips privados: ${count} esta semana',
-      );
 
   /// pt: 'Cartão de domingo'
   String get sundayCardLabel => 'Cartão de domingo';
@@ -7183,6 +7144,57 @@ class Translations$today$pt {
 
   /// pt: 'cartão sai hoje, 18:00'
   String get weekHintToday => 'cartão sai hoje, 18:00';
+
+  /// pt: 'Fica só com você até você convidar alguém.'
+  String get privateSupport => 'Fica só com você até você convidar alguém.';
+
+  /// pt: 'Seu espaço já funciona. A outra pessoa entra quando quiser.'
+  String get inviteCardSupport => 'Seu espaço já funciona. A outra pessoa entra quando quiser.';
+
+  /// pt: 'Convidar'
+  String get inviteCardAction => 'Convidar';
+
+  /// pt: 'Cartão'
+  String get carouselCardTag => 'Cartão';
+
+  /// pt: 'Abra para ver as coisas boas desta semana.'
+  String get carouselCardSupport => 'Abra para ver as coisas boas desta semana.';
+
+  /// pt: 'Abrir'
+  String get carouselCardAction => 'Abrir';
+
+  /// pt: 'Sua semana'
+  String get weekTag => 'Sua semana';
+
+  /// pt: 'Sua semana está pronta'
+  String get weekReadyTitle => 'Sua semana está pronta';
+
+  /// pt: 'Um resumo do que vocês fizeram.'
+  String get weekReadySupport => 'Um resumo do que vocês fizeram.';
+
+  /// pt: 'Um resumo só seu.'
+  String get weekReadySupportPrivate => 'Um resumo só seu.';
+
+  /// pt: 'Ver'
+  String get weekReadyAction => 'Ver';
+
+  /// pt: 'Já tenho um código'
+  String get haveCode => 'Já tenho um código';
+
+  /// pt: 'Perfil do parceiro'
+  String get partnerProfile => 'Perfil do parceiro';
+
+  /// pt: 'Seus slips privados'
+  String get privateWeekTitle => 'Seus slips privados';
+
+  /// pt: '(zero) {sem pressa} (one) {1 nesta semana} (other) {{count} nesta semana}'
+  String privateWeekCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        zero: 'sem pressa',
+        one: '1 nesta semana',
+        other: '${count} nesta semana',
+      );
 }
 
 // Path: unpair
@@ -12395,32 +12407,6 @@ extension on Translations {
           'today.months.9' => 'outubro',
           'today.months.10' => 'novembro',
           'today.months.11' => 'dezembro',
-          'today.togetherYears' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '1 ano',
-                  other: '${count} anos',
-                ),
-          'today.togetherMonths' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '1 mês',
-                  other: '${count} meses',
-                ),
-          'today.togetherDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '1 dia',
-                  other: '${count} dias',
-                ),
-          'today.togetherChipAction' => 'Abrir nossa história',
-          'today.togetherJoin' => ({
-            required Object first,
-            required Object second,
-          }) => '${first} e ${second}',
           'today.invitePerson' => 'Convidar sua pessoa',
           'today.pendingInviteTitle' => 'Convite enviado',
           'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
@@ -12438,14 +12424,6 @@ extension on Translations {
           'today.weekHint' => 'cartão no domingo',
           'today.forToday' => 'Para hoje',
           'today.ideaLabel' => 'Ideia do dia',
-          'today.slipsThisWeekPrivate' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  zero: 'Seus slips privados: nenhum esta semana',
-                  one: 'Seus slips privados: 1 esta semana',
-                  other: 'Seus slips privados: ${count} esta semana',
-                ),
           'today.sundayCardLabel' => 'Cartão de domingo',
           'today.sundayCardTitle' => 'Seu cartão desta semana',
           'today.inviteCardLabel' => 'Convite',
@@ -12490,6 +12468,29 @@ extension on Translations {
           'today.signalReceived' => 'Seu par te mandou uma mensagem',
           'today.signalReceivedAction' => 'Ver',
           'today.weekHintToday' => 'cartão sai hoje, 18:00',
+          'today.privateSupport' => 'Fica só com você até você convidar alguém.',
+          'today.inviteCardSupport' =>
+            'Seu espaço já funciona. A outra pessoa entra quando quiser.',
+          'today.inviteCardAction' => 'Convidar',
+          'today.carouselCardTag' => 'Cartão',
+          'today.carouselCardSupport' => 'Abra para ver as coisas boas desta semana.',
+          'today.carouselCardAction' => 'Abrir',
+          'today.weekTag' => 'Sua semana',
+          'today.weekReadyTitle' => 'Sua semana está pronta',
+          'today.weekReadySupport' => 'Um resumo do que vocês fizeram.',
+          'today.weekReadySupportPrivate' => 'Um resumo só seu.',
+          'today.weekReadyAction' => 'Ver',
+          'today.haveCode' => 'Já tenho um código',
+          'today.partnerProfile' => 'Perfil do parceiro',
+          'today.privateWeekTitle' => 'Seus slips privados',
+          'today.privateWeekCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  zero: 'sem pressa',
+                  one: '1 nesta semana',
+                  other: '${count} nesta semana',
+                ),
           'unpair.appBarTitle' => 'Desvincular',
           'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
           'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',

@@ -27,20 +27,6 @@
     "novembro",
     "dezembro"
   ],
-  "togetherYears(plural, param=count)": {
-    "one": "1 ano",
-    "other": "{count} anos"
-  },
-  "togetherMonths(plural, param=count)": {
-    "one": "1 mês",
-    "other": "{count} meses"
-  },
-  "togetherDays(plural, param=count)": {
-    "one": "1 dia",
-    "other": "{count} dias"
-  },
-  "togetherChipAction": "Abrir nossa história",
-  "togetherJoin": "{first} e {second}",
   "invitePerson": "Convidar sua pessoa",
   "pendingInviteTitle": "Convite enviado",
   "pendingInviteText": "A pessoa ainda não entrou. Reenviar ou revogar.",
@@ -55,11 +41,6 @@
   "weekHint": "cartão no domingo",
   "forToday": "Para hoje",
   "ideaLabel": "Ideia do dia",
-  "slipsThisWeekPrivate(plural, param=count)": {
-    "zero": "Seus slips privados: nenhum esta semana",
-    "one": "Seus slips privados: 1 esta semana",
-    "other": "Seus slips privados: {count} esta semana"
-  },
   "sundayCardLabel": "Cartão de domingo",
   "sundayCardTitle": "Seu cartão desta semana",
   "inviteCardLabel": "Convite",
@@ -96,5 +77,24 @@
   "cardReceivedNamed": "{name} te mandou um cartão",
   "signalReceived": "Seu par te mandou uma mensagem",
   "signalReceivedAction": "Ver",
-  "weekHintToday": "cartão sai hoje, 18:00"
+  "weekHintToday": "cartão sai hoje, 18:00",
+  "privateSupport": "Fica só com você até você convidar alguém.",
+  "inviteCardSupport": "Seu espaço já funciona. A outra pessoa entra quando quiser.",
+  "inviteCardAction": "Convidar",
+  "carouselCardTag": "Cartão",
+  "carouselCardSupport": "Abra para ver as coisas boas desta semana.",
+  "carouselCardAction": "Abrir",
+  "weekTag": "Sua semana",
+  "weekReadyTitle": "Sua semana está pronta",
+  "weekReadySupport": "Um resumo do que vocês fizeram.",
+  "weekReadySupportPrivate": "Um resumo só seu.",
+  "weekReadyAction": "Ver",
+  "haveCode": "Já tenho um código",
+  "partnerProfile": "Perfil do parceiro",
+  "privateWeekTitle": "Seus slips privados",
+  "privateWeekCount(plural, param=count)": {
+    "zero": "sem pressa",
+    "one": "1 nesta semana",
+    "other": "{count} nesta semana"
+  }
 }

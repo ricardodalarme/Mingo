@@ -5,6 +5,7 @@ const int _dayCount = 7;
 const List<double> _tilts = [-5, 2, -2, 4, -3, 1.5, -4];
 const double _slotHeight = 44;
 const double _emptyDot = 8;
+const double _supportMaxWidth = 150;
 
 /// A week of paper slips, keyed by weekday.
 ///
@@ -50,7 +51,8 @@ class const WeekCard({
                   ),
                   if (supportText != null) ...[
                     const SizedBox(width: AppSpace.s8),
-                    Flexible(
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: _supportMaxWidth),
                       child: Text(
                         supportText!,
                         maxLines: 2,

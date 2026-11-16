@@ -40,7 +40,7 @@ void main() {
     });
   });
 
-  testWidgets('the date and the together chip use the small body scale', (tester) async {
+  testWidgets('the date uses the small body scale', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
       final now = clock.now();
       final l10n = Translations();
@@ -50,35 +50,15 @@ void main() {
         month: l10n.today.months[now.month - 1],
       );
 
-      await tester.pumpApp(
-        TodayHeader(
-          home: TodayHome(
-            isPaired: true,
-            unopenedCards: 0,
-            slipsThisWeek: 2,
-            slipsTotal: 2,
-            hasPendingInvite: false,
-            hasPlus: false,
-            partnerName: 'Rui',
-            togetherSince: DateTime(now.year, now.month, now.day),
-          ),
-          selfName: 'Ana',
-        ),
-      );
+      await tester.pumpApp(const TodayHeader(home: home, selfName: 'Ana'));
 
       final date = tester.widget<Text>(find.text(dateLine));
       expect(date.style?.fontSize, AppTypography.system.bodySm.fontSize);
-
-      final chip = tester.widget<Text>(find.text(l10n.today.togetherDays(count: 0)));
-      expect(chip.style?.fontSize, AppTypography.system.bodySm.fontSize);
-      expect(chip.style?.fontWeight, FontWeight.w500);
     });
   });
 
-  testWidgets('the together chip opens our story', (tester) async {
+  testWidgets('the header no longer shows how long the couple has been together', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
-      final l10n = Translations();
-
       await tester.pumpApp(
         TodayHeader(
           home: TodayHome(
@@ -95,15 +75,7 @@ void main() {
         ),
       );
 
-      final pressable = tester.widget<AppPressable>(
-        find.ancestor(
-          of: find.text(l10n.today.togetherYears(count: 2)),
-          matching: find.byType(AppPressable),
-        ),
-      );
-
-      expect(pressable.onTap, isNotNull);
-      expect(pressable.semanticLabel, l10n.today.togetherChipAction);
+      expect(find.byIcon(AppIcons.heart_filled), findsNothing);
     });
   });
 
@@ -132,11 +104,11 @@ void main() {
     });
   });
 
-  testWidgets('with a partner the settings gear is not repeated', (tester) async {
+  testWidgets('with a partner the header still offers settings', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
       await tester.pumpApp(const TodayHeader(home: home, selfName: 'Ana'));
 
-      expect(find.byIcon(AppIcons.settings), findsNothing);
+      expect(find.byIcon(AppIcons.settings), findsOneWidget);
     });
   });
 }

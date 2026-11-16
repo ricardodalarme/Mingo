@@ -6,10 +6,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 
-const double _chipHeight = 40;
-const double _chipDot = 30;
-
-/// Avatars or the invite chip, the time-together chip, then the greeting and the date.
+/// Avatars or the invite chip beside the settings button, then the greeting and the date.
 class const TodayHeader({
   required final TodayHome home,
   final String? selfName,
@@ -49,8 +46,8 @@ class const TodayHeader({
               BaseAvatarPair(
                 selfInitials: _initial(name),
                 partnerInitials: _initial(home.partnerName),
-                onTap: () => context.pushRoute(const SettingsHomeRoute()),
-                semanticLabel: context.l10n.settingsHome.title,
+                onTap: () => context.pushRoute(const PartnerProfileRoute()),
+                semanticLabel: l10n.partnerProfile,
               )
             else
               BaseAvatarPair(
@@ -58,19 +55,10 @@ class const TodayHeader({
                 onTap: () => openInvite(context),
                 semanticLabel: l10n.invitePerson,
               ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (home.togetherSince != null) _TogetherChip(since: home.togetherSince!),
-                if (!home.isPaired) ...[
-                  if (home.togetherSince != null) const SizedBox(width: AppSpace.s8),
-                  BaseRoundButton(
-                    icon: AppIcons.settings,
-                    semanticLabel: context.l10n.settingsHome.title,
-                    onPressed: () => context.pushRoute(const SettingsHomeRoute()),
-                  ),
-                ],
-              ],
+            BaseRoundButton(
+              icon: AppIcons.settings,
+              semanticLabel: context.l10n.settingsHome.title,
+              onPressed: () => context.pushRoute(const SettingsHomeRoute()),
             ),
           ],
         ),
@@ -97,68 +85,4 @@ class const TodayHeader({
 
   String _initial(String? name) =>
       name == null || name.isEmpty ? '' : name.substring(0, 1).toUpperCase();
-}
-
-class const _TogetherChip({required final DateTime since}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    final l10n = context.l10n.today;
-
-    return AppPressable(
-      onTap: () => context.pushRoute(const HistoryRoute()),
-      semanticLabel: l10n.togetherChipAction,
-      borderRadius: BorderRadius.circular(AppRadius.pill),
-      enforceMinTapTarget: true,
-      child: Container(
-        height: _chipHeight,
-        padding: const EdgeInsets.only(left: AppSpace.s4, right: AppSpace.s14),
-        decoration: BoxDecoration(
-          color: colors.bgSurface,
-          borderRadius: BorderRadius.circular(AppRadius.pill),
-          border: Border.all(color: colors.borderDefault),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: _chipDot,
-              height: _chipDot,
-              decoration: BoxDecoration(color: colors.accentSoft, shape: BoxShape.circle),
-              child: Icon(
-                AppIcons.heart_filled,
-                size: AppIconSize.xs,
-                color: colors.accentHighlight,
-              ),
-            ),
-            const SizedBox(width: AppSpace.s8),
-            Text(
-              _label(l10n, since),
-              style: context.text.bodySm.copyWith(
-                color: colors.textPrimary,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  String _label(Translations$today$pt l10n, DateTime since) {
-    final now = clock.now();
-    final months =
-        (now.year - since.year) * 12 + now.month - since.month - (now.day < since.day ? 1 : 0);
-    if (months < 1) return l10n.togetherDays(count: now.difference(since).inDays.clamp(0, 31));
-
-    final years = months ~/ 12;
-    final rest = months % 12;
-    if (years == 0) return l10n.togetherMonths(count: rest);
-    if (rest == 0) return l10n.togetherYears(count: years);
-
-    return l10n.togetherJoin(
-      first: l10n.togetherYears(count: years),
-      second: l10n.togetherMonths(count: rest),
-    );
-  }
 }

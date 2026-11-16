@@ -5638,31 +5638,6 @@ class _Translations$today$en extends Translations$today$pt {
     'December',
   ];
   @override
-  String togetherYears({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 year',
-        other: '${count} years',
-      );
-  @override
-  String togetherMonths({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 month',
-        other: '${count} months',
-      );
-  @override
-  String togetherDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 day',
-        other: '${count} days',
-      );
-  @override
-  String get togetherChipAction => 'Open our story';
-  @override
-  String togetherJoin({required Object first, required Object second}) => '${first} and ${second}';
-  @override
   String get invitePerson => 'Invite your person';
   @override
   String get pendingInviteTitle => 'Invite sent';
@@ -5688,14 +5663,6 @@ class _Translations$today$en extends Translations$today$pt {
   String get forToday => 'For today';
   @override
   String get ideaLabel => 'Idea of the day';
-  @override
-  String slipsThisWeekPrivate({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        zero: 'Your private slips: none this week',
-        one: 'Your private slips: 1 this week',
-        other: 'Your private slips: ${count} this week',
-      );
   @override
   String get sundayCardLabel => 'Sunday card';
   @override
@@ -5768,6 +5735,43 @@ class _Translations$today$en extends Translations$today$pt {
   String get signalReceivedAction => 'View';
   @override
   String get weekHintToday => 'card goes out today, 18:00';
+  @override
+  String get privateSupport => 'It stays with you until you invite someone.';
+  @override
+  String get inviteCardSupport =>
+      'Your space already works. The other person joins whenever they want.';
+  @override
+  String get inviteCardAction => 'Invite';
+  @override
+  String get carouselCardTag => 'Card';
+  @override
+  String get carouselCardSupport => 'Open to see the good things from this week.';
+  @override
+  String get carouselCardAction => 'Open';
+  @override
+  String get weekTag => 'Your week';
+  @override
+  String get weekReadyTitle => 'Your week is ready';
+  @override
+  String get weekReadySupport => 'A summary of what you two did.';
+  @override
+  String get weekReadySupportPrivate => 'A summary just for you.';
+  @override
+  String get weekReadyAction => 'See';
+  @override
+  String get haveCode => 'I already have a code';
+  @override
+  String get partnerProfile => 'Partner profile';
+  @override
+  String get privateWeekTitle => 'Your private slips';
+  @override
+  String privateWeekCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        zero: 'no rush',
+        one: '1 this week',
+        other: '${count} this week',
+      );
 }
 
 // Path: unpair
@@ -10599,32 +10603,6 @@ extension on TranslationsEn {
           'today.months.9' => 'October',
           'today.months.10' => 'November',
           'today.months.11' => 'December',
-          'today.togetherYears' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 year',
-                  other: '${count} years',
-                ),
-          'today.togetherMonths' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 month',
-                  other: '${count} months',
-                ),
-          'today.togetherDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 day',
-                  other: '${count} days',
-                ),
-          'today.togetherChipAction' => 'Open our story',
-          'today.togetherJoin' => ({
-            required Object first,
-            required Object second,
-          }) => '${first} and ${second}',
           'today.invitePerson' => 'Invite your person',
           'today.pendingInviteTitle' => 'Invite sent',
           'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
@@ -10642,14 +10620,6 @@ extension on TranslationsEn {
           'today.weekHint' => 'card on Sunday',
           'today.forToday' => 'For today',
           'today.ideaLabel' => 'Idea of the day',
-          'today.slipsThisWeekPrivate' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  zero: 'Your private slips: none this week',
-                  one: 'Your private slips: 1 this week',
-                  other: 'Your private slips: ${count} this week',
-                ),
           'today.sundayCardLabel' => 'Sunday card',
           'today.sundayCardTitle' => 'Your card for this week',
           'today.inviteCardLabel' => 'Invite',
@@ -10694,6 +10664,29 @@ extension on TranslationsEn {
           'today.signalReceived' => 'Your partner sent you a message',
           'today.signalReceivedAction' => 'View',
           'today.weekHintToday' => 'card goes out today, 18:00',
+          'today.privateSupport' => 'It stays with you until you invite someone.',
+          'today.inviteCardSupport' =>
+            'Your space already works. The other person joins whenever they want.',
+          'today.inviteCardAction' => 'Invite',
+          'today.carouselCardTag' => 'Card',
+          'today.carouselCardSupport' => 'Open to see the good things from this week.',
+          'today.carouselCardAction' => 'Open',
+          'today.weekTag' => 'Your week',
+          'today.weekReadyTitle' => 'Your week is ready',
+          'today.weekReadySupport' => 'A summary of what you two did.',
+          'today.weekReadySupportPrivate' => 'A summary just for you.',
+          'today.weekReadyAction' => 'See',
+          'today.haveCode' => 'I already have a code',
+          'today.partnerProfile' => 'Partner profile',
+          'today.privateWeekTitle' => 'Your private slips',
+          'today.privateWeekCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  zero: 'no rush',
+                  one: '1 this week',
+                  other: '${count} this week',
+                ),
           'unpair.appBarTitle' => 'Unpair',
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
           'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',

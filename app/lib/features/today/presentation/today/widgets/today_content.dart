@@ -1,9 +1,10 @@
-import 'package:app/features/cards/presentation/shared/widgets/received_card.dart';
 import 'package:app/features/cards/presentation/shared/widgets/week_card.dart';
+import 'package:app/features/mood/presentation/mood/widgets/today_mood_block.dart';
 import 'package:app/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:app/features/today/presentation/today/widgets/open_invite.dart';
+import 'package:app/features/today/presentation/today/widgets/today_carousel.dart';
 import 'package:app/features/today/presentation/today/widgets/today_header.dart';
 import 'package:app/features/today/presentation/today/widgets/today_share_entry.dart';
 import 'package:app/l10n/translations.g.dart';
@@ -13,10 +14,10 @@ import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// The home-driven body of Hoje: banners, the main card, the week so far and today's idea.
+/// The home-driven body of Hoje: header, mood, the main card, the week so far and "Para hoje".
 ///
-/// The main card follows the person's state: the partner's question when connected, a private
-/// prompt when on their own, and a welcome on the first day.
+/// The main card follows the person's state: the question when connected and a welcome on the
+/// first day. On their own the person sees the invite entry and a code shortcut instead.
 class const TodayContent({
   required final TodayHome home,
   final String? selfName,
@@ -27,21 +28,37 @@ class const TodayContent({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final idea = home.idea;
+    final isAlone = !home.isPaired;
+    final canInvite = isAlone && !isSoloOnly;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _HeroSection(home: home, selfName: selfName, isFirstDay: isFirstDay),
-        _MoreCardsSection(home: home, partnerHint: partnerHint, isSoloOnly: isSoloOnly),
-        if (idea != null) _IdeaSection(idea: idea),
+        _TopSection(home: home, selfName: selfName, isFirstDay: isFirstDay),
+        if (canInvite && !home.hasPendingInvite) ...[
+          const SizedBox(height: AppSpace.s12),
+          BaseListCard(
+            categoryLabel: context.l10n.today.inviteCardLabel,
+            category: AppCategory.invite,
+            title: partnerHint == null
+                ? context.l10n.today.inviteCardTitleNoName
+                : context.l10n.today.inviteCardTitle(name: partnerHint!),
+            supportText: context.l10n.today.inviteCardText,
+            onTap: () => openInvite(context),
+          ),
+        ],
+        if (isFirstDay)
+          _FirstDayIdea(idea: home.idea)
+        else
+          TodayCarousel(home: home, isSoloOnly: isSoloOnly),
+        if (canInvite) const _HaveCodeButton(),
         TodayShareEntry(home: home),
       ],
     );
   }
 }
 
-class const _HeroSection({
+class const _TopSection({
   required final TodayHome home,
   required final String? selfName,
   required final bool isFirstDay,
@@ -68,19 +85,6 @@ class const _HeroSection({
         TodayHeader(home: home, selfName: selfName, isFirstDay: isFirstDay),
         const SizedBox(height: AppSpace.s20),
         const NotificationsOffBanner(),
-        if (home.unopenedCards > 0) ...[
-          ReceivedCard(
-            title: home.partnerName == null
-                ? l10n.cardReceived
-                : l10n.cardReceivedNamed(name: home.partnerName!),
-            actionText: l10n.cardReceivedAction,
-            onAction: () async {
-              await context.pushRoute(const CardsListRoute());
-              if (context.mounted) await context.read<TodayCubit>().load();
-            },
-          ),
-          const SizedBox(height: AppSpace.s12),
-        ],
         if (home.unseenSignals > 0) ...[
           BaseBanner(
             text: l10n.signalReceived,
@@ -103,14 +107,15 @@ class const _HeroSection({
           ),
           const SizedBox(height: AppSpace.s12),
         ],
-        _MainCard(home: home, isFirstDay: isFirstDay),
+        TodayMoodBlock(isFirstDay: isFirstDay, hasPendingInvite: home.hasPendingInvite),
+        if (!isAlone || isFirstDay) _MainCard(home: home, isFirstDay: isFirstDay),
         if (!home.hasPendingInvite) ...[
           const SizedBox(height: AppSpace.s16),
           WeekCard(
-            title: isAlone
-                ? l10n.slipsThisWeekPrivate(count: home.slipsThisWeek)
-                : l10n.slipsThisWeek(count: home.slipsThisWeek),
-            supportText: home.slipsThisWeek == 0
+            title: isAlone ? l10n.privateWeekTitle : l10n.slipsThisWeek(count: home.slipsThisWeek),
+            supportText: isAlone
+                ? l10n.privateWeekCount(count: home.slipsThisWeek)
+                : home.slipsThisWeek == 0
                 ? l10n.weekHintEmpty
                 : today.weekday == DateTime.sunday
                 ? l10n.weekHintToday
@@ -134,49 +139,12 @@ class const _HeroSection({
   }
 }
 
-class const _MoreCardsSection({
-  required final TodayHome home,
-  required final String? partnerHint,
-  required final bool isSoloOnly,
-}) extends StatelessWidget {
+class const _FirstDayIdea({required final Suggestion? idea}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.today;
-    final isAlone = !home.isPaired;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (home.slipsThisWeek > 0) ...[
-          const SizedBox(height: AppSpace.s12),
-          BaseListCard(
-            categoryLabel: l10n.sundayCardLabel,
-            title: l10n.sundayCardTitle,
-            supportText: context.l10n.sundayCard.openFromToday,
-            onTap: () => context.pushRoute(const SundayCardRoute()),
-          ),
-        ],
-        if (isAlone && !isSoloOnly && !home.hasPendingInvite) ...[
-          const SizedBox(height: AppSpace.s12),
-          BaseListCard(
-            categoryLabel: l10n.inviteCardLabel,
-            category: AppCategory.invite,
-            title: partnerHint == null
-                ? l10n.inviteCardTitleNoName
-                : l10n.inviteCardTitle(name: partnerHint!),
-            supportText: l10n.inviteCardText,
-            onTap: () => openInvite(context),
-          ),
-        ],
-      ],
-    );
-  }
-}
-
-class const _IdeaSection({required final Suggestion idea}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.today;
+    final suggestion = idea;
+    if (suggestion == null) return const SizedBox.shrink();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -187,12 +155,26 @@ class const _IdeaSection({required final Suggestion idea}) extends StatelessWidg
         BaseListCard(
           categoryLabel: l10n.ideaLabel,
           category: AppCategory.idea,
-          title: idea.title,
-          supportText: idea.body,
+          title: suggestion.title,
+          supportText: suggestion.body,
           face: FaceKind.smile,
-          onTap: () => context.pushRoute(IdeaDetailRoute(slug: idea.slug)),
+          onTap: () => context.pushRoute(IdeaDetailRoute(slug: suggestion.slug)),
         ),
       ],
+    );
+  }
+}
+
+class const _HaveCodeButton() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSpace.s16),
+      child: BaseButton(
+        text: context.l10n.today.haveCode,
+        variant: .secondary,
+        onPressed: () => context.pushRoute(AcceptInviteRoute()),
+      ),
     );
   }
 }
@@ -211,16 +193,6 @@ class const _MainCard({required final TodayHome home, required final bool isFirs
         highlightedWord: l10n.firstDayHighlight(count: home.slipsTotal),
         supportText: l10n.firstDayText,
         actionText: l10n.firstDayAction,
-        onAction: openCapture,
-      );
-    }
-    if (!home.isPaired) {
-      return BaseFeatureCard(
-        tag: l10n.privateTag,
-        question: l10n.privateQuestion,
-        highlightedWord: l10n.privateHighlight,
-        face: FaceKind.thinking,
-        actionText: l10n.privateAction,
         onAction: openCapture,
       );
     }

@@ -55,31 +55,29 @@ class const PartnerMoodHint({
     final isGoodMood =
         mood == MoodKind.happy || mood == MoodKind.loving || mood == MoodKind.playful;
 
-    return BaseListCard(
-      categoryLabel: l10n.partnerLabel,
-      title: line,
-      supportText: needLine,
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          BaseFace(kind: mood.face, size: FaceSize.small),
-          if (isGoodMood && onReact != null) ...[
-            const SizedBox(width: AppSpace.s8),
-            BaseRoundButton(
-              icon: AppIcons.heart_filled,
-              semanticLabel: helpL10n.reactionLabel,
-              onPressed: onReact,
-            ),
-          ],
-        ],
-      ),
-      onTap: need != null
-          ? () => _openNeed(context, need)
-          : switch (mood) {
-              MoodKind.happy || MoodKind.loving || MoodKind.playful => null,
-              MoodKind.tired || MoodKind.stressed => () => _openHelp(context, mood),
-              MoodKind.sad => () => _openListen(context),
-            },
+    return BaseListGroup(
+      children: [
+        BaseListTile(
+          title: line,
+          subtitle: needLine,
+          leading: BaseFace(kind: mood.face, size: FaceSize.small),
+          trailing: isGoodMood && onReact != null
+              ? BaseRoundButton(
+                  icon: AppIcons.heart_filled,
+                  semanticLabel: helpL10n.reactionLabel,
+                  onPressed: onReact,
+                )
+              : null,
+          showsChevron: !(isGoodMood && onReact != null),
+          onTap: need != null
+              ? () => _openNeed(context, need)
+              : switch (mood) {
+                  MoodKind.happy || MoodKind.loving || MoodKind.playful => null,
+                  MoodKind.tired || MoodKind.stressed => () => _openHelp(context, mood),
+                  MoodKind.sad => () => _openListen(context),
+                },
+        ),
+      ],
     );
   }
 

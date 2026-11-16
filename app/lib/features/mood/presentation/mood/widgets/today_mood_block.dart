@@ -54,17 +54,6 @@ class const TodayMoodBlock({
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (partnerMood != null && partnerMood.isVisible) ...[
-            PartnerMoodHint(
-              partnerMood: partnerMood,
-              partnerName: partnerName,
-              onReact: context.read<MoodCubit>().reactToPartner,
-              onAskToTalk: context.read<MoodCubit>().askToTalk,
-              onSendMessage: () =>
-                  context.read<MoodCubit>().sendSweetMessage(helpL10n.sweetMessageBody),
-            ),
-            const SizedBox(height: AppSpace.s24),
-          ],
           if (!isFirstDay && !hasPendingInvite)
             SkeletonizerResourceWidget<MoodEntry?>(
               entry,
@@ -88,6 +77,18 @@ class const TodayMoodBlock({
                     onSelected: (index) =>
                         context.read<MoodCubit>().saveTodayMood(_homeMoods[index]),
                   ),
+                  const SizedBox(height: AppSpace.s12),
+                  if (partnerMood != null && partnerMood.isVisible) ...[
+                    PartnerMoodHint(
+                      partnerMood: partnerMood,
+                      partnerName: partnerName,
+                      onReact: context.read<MoodCubit>().reactToPartner,
+                      onAskToTalk: context.read<MoodCubit>().askToTalk,
+                      onSendMessage: () =>
+                          context.read<MoodCubit>().sendSweetMessage(helpL10n.sweetMessageBody),
+                    ),
+                    const SizedBox(height: AppSpace.s4),
+                  ],
                   const SizedBox(height: AppSpace.s8),
                   const _NeedEntry(),
                   const SizedBox(height: AppSpace.s8),
