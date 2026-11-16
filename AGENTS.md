@@ -74,7 +74,8 @@ entry in `HomePage`'s `routes`; keep the two in sync.
 
 **State.** Cubit with `Resource<T>` (`Initial`, `Loading`, `Success`, `Failure`). Name read slots after the data (`slips`) and
 action slots with an `Action` suffix (`saveAction`). Reads start as `const Loading()`, actions as `const Initial()`. On failure
-emit `Failure.fromObject(exception)`. Reads are Futures: a cubit awaits a repository `getX()`; there is no stream convention.
+emit `Failure.fromObject(exception)`. Reads are Futures: a cubit awaits a repository `getX()`. The exception is a live signal the person is
+waiting on (a partner accepting an invite): a repository `watchX()` stream a cubit listens to and cancels in `close()`.
 
 **UI.** Pages are `@RoutePage()` plus `AutoRouteWrapper` and create their cubit in `wrappedRoute`. Read state with
 `context.select`, act with `context.read`, and use `BlocListener` only for side effects. Render read slots with
@@ -110,6 +111,9 @@ Never write the old separate form (`const SlipCard({required this.slip});` in th
 - **Feature data uses GraphQL.** Each feature keeps its `queries/`, `mutations/` and `fragments/` under
   `data/data_sources/remote/`; the schema snapshot is `app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
   `RestClient` is for Functions and other REST APIs only.
+- **Subscriptions** live in `data/data_sources/remote/subscriptions/` and are used only for such waiting signals. They run over a
+  WebSocket on the same endpoint; `GQLClient.subscribe` handles the connection and the token. Codegen leaves `__typename` off
+  subscription roots (`addTypenameExcludedPaths` in `app/build.yaml`) because the server allows one root field.
 - **Data sources** are concrete classes that call `GQLClient` from `package:network/network.dart`, wrap one-shot queries in
   `validateResponseData`, and never let generated GraphQL types escape the data layer. **Repositories** are concrete classes with a
   `Logger` that return models. There is no domain layer, no use cases and no repository interfaces.

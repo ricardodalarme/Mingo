@@ -166,4 +166,56 @@ void main() {
       expect(sent, hasLength(1));
     });
   });
+
+  group('subscriptions', () {
+    test('travel through the subscription link and skip the http chain', () async {
+      final live = <Request>[];
+      final link = buildGraphQLLink(
+        terminatingLink: terminating((request) {
+          sent.add(request);
+
+          return Stream.value(okResponse());
+        }),
+        subscriptionLink: terminating((request) {
+          live.add(request);
+
+          return Stream.value(okResponse('live'));
+        }),
+      );
+
+      final response = await link.request(subscriptionRequest()).first;
+
+      expect(response.data, {'a': 'live'});
+      expect(live, hasLength(1));
+      expect(sent, isEmpty);
+    });
+
+    test('leave queries on the http chain when a subscription link is given', () async {
+      final live = <Request>[];
+      final link = buildGraphQLLink(
+        terminatingLink: terminating((request) {
+          sent.add(request);
+
+          return Stream.value(okResponse());
+        }),
+        subscriptionLink: terminating((request) {
+          live.add(request);
+
+          return Stream.value(okResponse('live'));
+        }),
+      );
+
+      await link.request(queryRequest()).first;
+
+      expect(sent, hasLength(1));
+      expect(live, isEmpty);
+    });
+  });
+
+  group('webSocketUrlFor', () {
+    test('keeps the endpoint and swaps the scheme', () {
+      expect(webSocketUrlFor('https://x.graphql.nhost.run/v1'), 'wss://x.graphql.nhost.run/v1');
+      expect(webSocketUrlFor('http://localhost:8080/v1/graphql'), 'ws://localhost:8080/v1/graphql');
+    });
+  });
 }

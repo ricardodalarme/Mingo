@@ -23,6 +23,10 @@ class const GQLClient._(final GraphQLClient _client) {
       refreshSession: refreshSession,
       queryTimeout: queryTimeout,
       mutationTimeout: mutationTimeout,
+      subscriptionLink: buildSubscriptionLink(
+        webSocketUrl: webSocketUrlFor(serverUrl),
+        tokenCallback: tokenCallback,
+      ),
     );
 
     return GQLClient._(
@@ -48,6 +52,12 @@ class const GQLClient._(final GraphQLClient _client) {
 
   Future<QueryResult<T>> mutate<T>(MutationOptions<T> options) {
     return _client.mutate(options);
+  }
+
+  /// Opens a live query that emits each time the result changes, and ends when the stream is
+  /// cancelled. It runs over a WebSocket to the `serverUrl` endpoint, connected on first use.
+  Stream<QueryResult<T>> subscribe<T>(SubscriptionOptions<T> options) {
+    return _client.subscribe(options);
   }
 
   ObservableQuery<T> watchQuery<T>(WatchQueryOptions<T> options) {

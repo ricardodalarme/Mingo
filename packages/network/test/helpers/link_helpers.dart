@@ -14,6 +14,11 @@ Request mutationRequest([Map<String, dynamic> variables = const {}]) => Request(
   variables: variables,
 );
 
+Request subscriptionRequest([Map<String, dynamic> variables = const {}]) => Request(
+  operation: Operation(document: parseString('subscription Probe { a }'), operationName: 'Probe'),
+  variables: variables,
+);
+
 Response okResponse([Object? value = 1]) => Response(data: {'a': value}, response: const {});
 
 HttpLinkServerException httpError(int status, {Map<String, String> headers = const {}}) =>

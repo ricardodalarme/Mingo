@@ -1,4 +1,5 @@
 import 'package:app/features/pairing/data/models/active_invite.dart';
+import 'package:app/features/pairing/presentation/accept/widgets/connected_moment.dart';
 import 'package:app/features/pairing/presentation/invite/cubit/invite_cubit.dart';
 import 'package:app/features/pairing/presentation/invite/widgets/invite_compose.dart';
 import 'package:app/features/pairing/presentation/invite/widgets/invite_sent.dart';
@@ -25,12 +26,15 @@ class const InvitePage({super.key}) extends StatelessWidget implements AutoRoute
     final invite = context.select((InviteCubit cubit) => cubit.state.invite);
     final hasShared = context.select((InviteCubit cubit) => cubit.state.hasShared);
 
+    final isConnected = context.select((InviteCubit cubit) => cubit.state.isConnected);
     final title = invite is Success<ActiveInvite> && hasShared
         ? l10n.waitingTitle
         : l10n.shareTitle;
 
     return BaseView(
-      appBar: BaseAppBar(title: title, onBack: () => context.router.maybePop()),
+      appBar: isConnected
+          ? null
+          : BaseAppBar(title: title, onBack: () => context.router.maybePop()),
       body: BlocListener<InviteCubit, InviteState>(
         listenWhen: (previous, current) => previous.revokeAction != current.revokeAction,
         listener: (context, state) {
@@ -43,17 +47,23 @@ class const InvitePage({super.key}) extends StatelessWidget implements AutoRoute
               break;
           }
         },
-        child: switch (invite) {
-          Success<ActiveInvite>(:final value) =>
-            hasShared ? InviteSent(invite: value) : InviteCompose(invite: value),
-          Failure(:final exception) => BaseEmptyState(
-            title: l10n.errorTitle,
-            text: l10n.errors.selectOrFallback(exception.l10nKey),
-            actionText: context.l10n.common.retry,
-            onAction: context.read<InviteCubit>().start,
-          ),
-          _ => const Center(child: BaseLoadingDots()),
-        },
+        child: isConnected
+            ? ConnectedMoment(
+                selfName: context.select((InviteCubit cubit) => cubit.state.selfName),
+                partnerName: context.select((InviteCubit cubit) => cubit.state.partnerName),
+                onDone: () => context.router.maybePop(),
+              )
+            : switch (invite) {
+                Success<ActiveInvite>(:final value) =>
+                  hasShared ? InviteSent(invite: value) : InviteCompose(invite: value),
+                Failure(:final exception) => BaseEmptyState(
+                  title: l10n.errorTitle,
+                  text: l10n.errors.selectOrFallback(exception.l10nKey),
+                  actionText: context.l10n.common.retry,
+                  onAction: context.read<InviteCubit>().start,
+                ),
+                _ => const Center(child: BaseLoadingDots()),
+              },
       ),
     );
   }

@@ -7,6 +7,7 @@ export 'package:graphql/client.dart'
         QueryOptions,
         QueryResult,
         QueryResultSource,
+        SubscriptionOptions,
         WatchQueryOptions;
 
 export 'src/exceptions/no_data_exception.dart';

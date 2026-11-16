@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:app/features/pairing/data/models/active_invite.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/pairing/presentation/invite/cubit/invite_cubit.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -22,11 +26,24 @@ void main() {
 
   setUpAll(() => registerFallbackValue(DateTime(2026)));
 
+  late StreamController<bool> couple;
+
   setUp(() {
+    couple = StreamController<bool>();
+    addTearDown(() {
+      unawaited(couple.close());
+    });
     pairing = _MockPairingRepository();
     profile = _MockProfileRepository();
     share = _MockShareService();
     when(() => pairing.getOrCreateInvite(any())).thenAnswer((_) async => invite);
+    when(() => pairing.watchIsConnected()).thenAnswer((_) => couple.stream);
+    when(() => pairing.getPartner()).thenAnswer(
+      (_) async => const Profile(id: 'p2', avatarKind: AvatarKind.initials, displayName: 'Luanna'),
+    );
+    when(() => profile.getMyProfile()).thenAnswer(
+      (_) async => const Profile(id: 'p1', avatarKind: AvatarKind.initials, displayName: 'Ricardo'),
+    );
     when(() => profile.getMySettings())
         .thenAnswer((_) async => const AccountSettings(theme: .rose, partnerName: 'Marina'));
   });
@@ -58,6 +75,34 @@ void main() {
 
     expect(cubit.state.invite, Success(invite));
     verify(() => pairing.getOrCreateInvite(any())).called(1);
+  });
+
+  test('the partner accepting the invite shows the connection', () async {
+    final cubit = build();
+    addTearDown(cubit.close);
+    await cubit.start();
+
+    couple
+      ..add(false)
+      ..add(true);
+    await Future<void>.delayed(Duration.zero);
+    await Future<void>.delayed(Duration.zero);
+
+    expect(cubit.state.isConnected, isTrue);
+    expect(cubit.state.partnerName, 'Luanna');
+    expect(cubit.state.selfName, 'Ricardo');
+  });
+
+  test('being connected from the start is not a new connection', () async {
+    final cubit = build();
+    addTearDown(cubit.close);
+    await cubit.start();
+
+    couple.add(true);
+    await Future<void>.delayed(Duration.zero);
+    await Future<void>.delayed(Duration.zero);
+
+    expect(cubit.state.isConnected, isFalse);
   });
 
   test('a failing create shows a failure that can be retried', () async {

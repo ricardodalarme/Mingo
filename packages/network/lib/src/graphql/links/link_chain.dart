@@ -7,7 +7,8 @@ import 'package:network/src/graphql/links/timeout_link.dart';
 
 /// Composes the links a request passes through, outermost first: identical queries in flight are
 /// shared, a failed query is retried, each attempt gets a deadline, an expired session is renewed
-/// once, and the token is attached just before the [terminatingLink] sends it.
+/// once, and the token is attached just before the [terminatingLink] sends it. Subscriptions skip
+/// all of that and go through [subscriptionLink] when one is given.
 Link buildGraphQLLink({
   required Link terminatingLink,
   FutureOr<String?> Function()? tokenCallback,
@@ -16,6 +17,7 @@ Link buildGraphQLLink({
   Duration mutationTimeout = const Duration(seconds: 30),
   int maxQueryAttempts = 2,
   Duration retryDelay = const Duration(milliseconds: 400),
+  Link? subscriptionLink,
 }) {
   final authLink = AuthLink(
     getToken: () async {
@@ -25,7 +27,7 @@ Link buildGraphQLLink({
     },
   );
 
-  return Link.from([
+  final httpLink = Link.from([
     DedupeLink(shouldDedupe: (request) => request.isQuery),
     RetryLink(maxAttempts: maxQueryAttempts, baseDelay: retryDelay),
     TimeoutLink(queryTimeout: queryTimeout, mutationTimeout: mutationTimeout),
@@ -33,4 +35,41 @@ Link buildGraphQLLink({
     authLink,
     terminatingLink,
   ]);
+
+  if (subscriptionLink == null) return httpLink;
+
+  return Link.split((request) => request.isSubscription, subscriptionLink, httpLink);
+}
+
+/// The WebSocket address of a GraphQL [serverUrl]: the same endpoint over `ws` or `wss`.
+String webSocketUrlFor(String serverUrl) {
+  final uri = Uri.parse(serverUrl);
+
+  return uri.replace(scheme: uri.scheme == 'https' ? 'wss' : 'ws').toString();
+}
+
+/// Builds the WebSocket link subscriptions travel through.
+///
+/// The token is read again each time the socket connects, so a reconnect after a renewal carries
+/// the new one. Hasura reads the session from the `headers` of the connection payload.
+Link buildSubscriptionLink({
+  required String webSocketUrl,
+  FutureOr<String?> Function()? tokenCallback,
+  Duration reconnectDelay = const Duration(seconds: 3),
+}) {
+  return WebSocketLink(
+    webSocketUrl,
+    subProtocol: GraphQLProtocol.graphqlTransportWs,
+    config: SocketClientConfig(
+      delayBetweenReconnectionAttempts: reconnectDelay,
+      initialPayload: () async {
+        final accessToken = await tokenCallback?.call();
+        if (accessToken == null || accessToken.isEmpty) return <String, dynamic>{};
+
+        return <String, dynamic>{
+          'headers': <String, String>{'Authorization': 'Bearer $accessToken'},
+        };
+      },
+    ),
+  );
 }

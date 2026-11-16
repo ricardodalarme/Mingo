@@ -4,6 +4,7 @@ import 'package:app/features/pairing/data/data_sources/remote/mutations/generate
 import 'package:app/features/pairing/data/data_sources/remote/mutations/generated/ResolveSharedItems.graphql.dart';
 import 'package:app/features/pairing/data/data_sources/remote/mutations/generated/Unpair.graphql.dart';
 import 'package:app/features/pairing/data/data_sources/remote/queries/generated/MyPartner.graphql.dart';
+import 'package:app/features/pairing/data/data_sources/remote/subscriptions/generated/WatchMyCouple.graphql.dart';
 import 'package:network/network.dart';
 
 class PairingDataSource({required final GQLClient _client}) {
@@ -36,6 +37,21 @@ class PairingDataSource({required final GQLClient _client}) {
     final couple = response.parsedData?.couples.firstOrNull;
 
     return couple?.members.where((member) => member.userId != userId).firstOrNull?.profile;
+  }
+
+  /// Emits whether the person is in a couple, now and each time that changes.
+  Stream<bool> watchIsConnected(String userId) {
+    return _client
+        .subscribe(
+          OptionsSubscriptionWatchMyCouple(
+            variables: VariablesSubscriptionWatchMyCouple(userId: userId),
+          ),
+        )
+        .map((result) {
+          validateResponse(result);
+
+          return result.parsedData?.couples.isNotEmpty ?? false;
+        });
   }
 
   /// Cancels an invite that has not been used yet.

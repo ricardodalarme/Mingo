@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/pairing/data/models/active_invite.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
@@ -17,6 +19,9 @@ class InviteCubit({
 }) extends Cubit<InviteState> {
   this : super(const InviteState());
 
+  StreamSubscription<bool>? _connection;
+  bool? _wasConnected;
+
   /// Starts once; later calls keep what is already loaded.
   Future<void> ensureStarted() async {
     if (state.invite is Success<ActiveInvite>) return;
@@ -30,6 +35,7 @@ class InviteCubit({
     try {
       final invite = await _pairingRepository.getOrCreateInvite(clock.now());
       emit(state.copyWith(invite: Success(invite), partnerName: partnerName));
+      _watchConnection();
     } catch (exception) {
       emit(state.copyWith(invite: Failure.fromObject(exception), partnerName: partnerName));
     }
@@ -74,11 +80,56 @@ class InviteCubit({
     }
   }
 
+  /// Follows the couple on the server; a change from alone to connected means the invite was
+  /// accepted, while being connected from the start is not news.
+  void _watchConnection() {
+    if (_connection != null) return;
+
+    _connection = _pairingRepository.watchIsConnected().listen((isConnected) {
+      final wasAlone = _wasConnected == false;
+      _wasConnected = isConnected;
+      if (wasAlone && isConnected) unawaited(_markConnected());
+    }, onError: (Object _) {});
+  }
+
+  Future<void> _markConnected() async {
+    final partner = await _readPartner();
+    final self = await _readOwnName();
+    if (isClosed) return;
+
+    emit(
+      state.copyWith(isConnected: true, partnerName: partner ?? state.partnerName, selfName: self),
+    );
+  }
+
+  Future<String?> _readPartner() async {
+    try {
+      return (await _pairingRepository.getPartner())?.displayName;
+    } on Object {
+      return null;
+    }
+  }
+
+  Future<String?> _readOwnName() async {
+    try {
+      return (await _profileRepository.getMyProfile()).displayName;
+    } on Object {
+      return null;
+    }
+  }
+
   Future<String?> _readPartnerName() async {
     try {
       return (await _profileRepository.getMySettings()).partnerName;
     } on Object {
       return null;
     }
+  }
+
+  @override
+  Future<void> close() async {
+    await _connection?.cancel();
+
+    return super.close();
   }
 }

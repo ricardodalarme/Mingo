@@ -78,6 +78,16 @@ class PairingRepository({
     }
   }
 
+  /// Emits whether the person is connected, now and each time that changes; empty when signed out.
+  Stream<bool> watchIsConnected() {
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) return const Stream.empty();
+
+    return _pairingDataSource.watchIsConnected(userId).handleError((Object e, StackTrace stack) {
+      _logger.error('The couple subscription failed', error: e, stackTrace: stack);
+    });
+  }
+
   Future<void> cancelInvite(String inviteId) async {
     try {
       await _pairingDataSource.cancelInvite(inviteId);
