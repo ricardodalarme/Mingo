@@ -5052,7 +5052,13 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get appPreferencesStatus => 'Appearance, text and language';
   @override
-  String get theme => 'Theme';
+  String get theme => 'App colour';
+  @override
+  String get themeTitle => 'Which colour suits you?';
+  @override
+  String get themeHighlight => 'colour';
+  @override
+  String get themeSubtitle => 'Applies to the app and to the widgets. The features are the same.';
   @override
   String get weeklyCard => 'Weekly card';
   @override
@@ -10693,7 +10699,11 @@ extension on TranslationsEn {
           'settingsHome.helpStatus' => 'FAQ and contact',
           'settingsHome.appPreferences' => 'App preferences',
           'settingsHome.appPreferencesStatus' => 'Appearance, text and language',
-          'settingsHome.theme' => 'Theme',
+          'settingsHome.theme' => 'App colour',
+          'settingsHome.themeTitle' => 'Which colour suits you?',
+          'settingsHome.themeHighlight' => 'colour',
+          'settingsHome.themeSubtitle' =>
+            'Applies to the app and to the widgets. The features are the same.',
           'settingsHome.weeklyCard' => 'Weekly card',
           'settingsHome.language' => 'Language',
           'settingsHome.accountSection' => 'Account',
@@ -10872,12 +10882,12 @@ extension on TranslationsEn {
           'slipKind.ifThen.thenHint' => 'E.g. I ask for 10 minutes alone',
           'slipKind.invisible.title' => 'Things nobody notices',
           'slipKind.invisible.titleHighlight' => 'nobody notices',
-          'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
-          'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
-          'slipKind.invisible.areaLabel' => 'What kind of work?',
           _ => null,
         } ??
         switch (path) {
+          'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
+          'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
+          'slipKind.invisible.areaLabel' => 'What kind of work?',
           'slipKind.invisible.private' => 'Stays with you and never enters a card.',
           'slipKind.workAreas.planning' => 'Planning',
           'slipKind.workAreas.dates' => 'Dates',
@@ -11502,12 +11512,12 @@ extension on TranslationsEn {
             required Object months,
             required Object days,
           }) => '${months} months · ${days} days',
-          'widgets.counterStatusDating' => 'Dating',
-          'widgets.counterStatusLivingTogether' => 'Living together',
-          'widgets.counterStatusMarried' => 'Married',
           _ => null,
         } ??
         switch (path) {
+          'widgets.counterStatusDating' => 'Dating',
+          'widgets.counterStatusLivingTogether' => 'Living together',
+          'widgets.counterStatusMarried' => 'Married',
           'widgets.counterStatusTogether' => 'Together',
           'widgets.counterMidnightNote' => 'The counter updates automatically at local midnight.',
           'widgets.counterSetDateAction' => 'Set relationship date',

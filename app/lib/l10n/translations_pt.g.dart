@@ -6259,8 +6259,17 @@ class Translations$settingsHome$pt {
   /// pt: 'Aparência, texto e idioma'
   String get appPreferencesStatus => 'Aparência, texto e idioma';
 
-  /// pt: 'Tema'
-  String get theme => 'Tema';
+  /// pt: 'Cor do app'
+  String get theme => 'Cor do app';
+
+  /// pt: 'Qual cor combina com você?'
+  String get themeTitle => 'Qual cor combina com você?';
+
+  /// pt: 'cor'
+  String get themeHighlight => 'cor';
+
+  /// pt: 'Vale para o app e para os widgets. Os recursos são os mesmos.'
+  String get themeSubtitle => 'Vale para o app e para os widgets. Os recursos são os mesmos.';
 
   /// pt: 'Cartão semanal'
   String get weeklyCard => 'Cartão semanal';
@@ -12608,7 +12617,11 @@ extension on Translations {
           'settingsHome.helpStatus' => 'Perguntas e contato',
           'settingsHome.appPreferences' => 'Preferências do app',
           'settingsHome.appPreferencesStatus' => 'Aparência, texto e idioma',
-          'settingsHome.theme' => 'Tema',
+          'settingsHome.theme' => 'Cor do app',
+          'settingsHome.themeTitle' => 'Qual cor combina com você?',
+          'settingsHome.themeHighlight' => 'cor',
+          'settingsHome.themeSubtitle' =>
+            'Vale para o app e para os widgets. Os recursos são os mesmos.',
           'settingsHome.weeklyCard' => 'Cartão semanal',
           'settingsHome.language' => 'Idioma',
           'settingsHome.accountSection' => 'Conta',
@@ -12791,12 +12804,12 @@ extension on Translations {
           'slipKind.ifThen.thenHint' => 'Ex.: peço um tempo de 10 minutos',
           'slipKind.invisible.title' => 'Coisas que ninguém percebe',
           'slipKind.invisible.titleHighlight' => 'ninguém percebe',
-          'slipKind.invisible.subtitle' => 'Só para você. Isto nunca vai para o cartão.',
-          'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
-          'slipKind.invisible.areaLabel' => 'Que tipo de trabalho?',
           _ => null,
         } ??
         switch (path) {
+          'slipKind.invisible.subtitle' => 'Só para você. Isto nunca vai para o cartão.',
+          'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
+          'slipKind.invisible.areaLabel' => 'Que tipo de trabalho?',
           'slipKind.invisible.private' => 'Fica só com você, não entra em nenhum cartão.',
           'slipKind.workAreas.planning' => 'Planejar',
           'slipKind.workAreas.dates' => 'Datas',
@@ -13423,12 +13436,12 @@ extension on Translations {
             required Object months,
             required Object days,
           }) => '${months} meses · ${days} dias',
-          'widgets.counterStatusDating' => 'Namorando',
-          'widgets.counterStatusLivingTogether' => 'Morando juntos',
-          'widgets.counterStatusMarried' => 'Casados',
           _ => null,
         } ??
         switch (path) {
+          'widgets.counterStatusDating' => 'Namorando',
+          'widgets.counterStatusLivingTogether' => 'Morando juntos',
+          'widgets.counterStatusMarried' => 'Casados',
           'widgets.counterStatusTogether' => 'Juntos',
           'widgets.counterMidnightNote' =>
             'O contador atualiza automaticamente à meia-noite no fuso local.',

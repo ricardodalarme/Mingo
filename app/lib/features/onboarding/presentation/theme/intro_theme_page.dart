@@ -1,6 +1,6 @@
 import 'package:app/features/onboarding/presentation/intro/cubit/intro_cubit.dart';
 import 'package:app/features/onboarding/presentation/intro/widgets/intro_scaffold.dart';
-import 'package:app/features/profile/presentation/widgets/theme_preview.dart';
+import 'package:app/features/profile/presentation/widgets/theme_option_selector.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
@@ -58,31 +58,14 @@ class const IntroThemePage({super.key}) extends StatelessWidget implements AutoR
 class const _ThemeOptions() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.intro.theme;
     final selected = context.select((IntroCubit cubit) => cubit.state.theme);
 
-    final options = [
-      (AppThemeVariant.rose, l10n.rose, l10n.roseSupport),
-      (AppThemeVariant.blue, l10n.blue, l10n.blueSupport),
-      (AppThemeVariant.neutral, l10n.neutral, l10n.neutralSupport),
-    ];
-
-    return Column(
-      children: [
-        for (final (variant, title, support) in options) ...[
-          BaseOptionTile(
-            title: title,
-            support: support,
-            preview: ThemePreview(variant: variant),
-            isSelected: selected == variant,
-            onTap: () {
-              context.read<IntroCubit>().selectTheme(variant);
-              AppThemeScope.set(context, variant);
-            },
-          ),
-          const SizedBox(height: AppSpace.s10),
-        ],
-      ],
+    return ThemeOptionSelector(
+      selected: selected,
+      onChanged: (variant) {
+        context.read<IntroCubit>().selectTheme(variant);
+        AppThemeScope.set(context, variant);
+      },
     );
   }
 }
