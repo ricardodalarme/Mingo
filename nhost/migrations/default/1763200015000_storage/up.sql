@@ -7,6 +7,3 @@ values
   ('messages', 1, 10000000, 'private, max-age=3600', true, 300),
   ('couple-photos', 1, 10000000, 'private, max-age=3600', true, 300)
 on conflict (id) do nothing;
-
--- Every file permission and the account purge look files up by uploader.
-create index if not exists files_uploaded_by_user_idx on storage.files (uploaded_by_user_id);
