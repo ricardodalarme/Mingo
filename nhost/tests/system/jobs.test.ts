@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, download, ok, person, signUp, sql, upload, waitFor, webhook, zoneAtHour } from './lib.ts';
+import { assert, couple, denied, download, ok, person, signUp, sql, upload, waitFor, webhook, zoneAtHour } from '../lib.ts';
 
 async function run(job: string): Promise<number> {
   const { runJob } = await ok('admin', `mutation ($job: String!) { runJob(args: {job: $job}) { affected job } }`, { job });

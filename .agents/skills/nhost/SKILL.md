@@ -46,10 +46,10 @@ nhost/
   metadata/                       # Hasura metadata: databases/default/tables/*.yaml, functions, cron_triggers.yaml, ...
   seeds/default/*.sql             # reference data, applied with `nhost up --apply-seeds`
   schema/<role>.graphqls          # per-role contract snapshots
-  tests/                          # backend tests, see references/testing.md
+  tests/<domain>/                 # backend tests by domain, lib.ts shared, see references/testing.md
   tools/                          # up.sh, reset.sh, build-metadata.mjs, metadata-spec.mjs + spec/<domain>.mjs, dump-schemas.sh, schema-diff.sh
   run/<service>.toml              # Nhost Run services, if any
-functions/                        # Nhost Functions (Node), one file = one endpoint
+functions/                        # Nhost Functions (Node): one folder per feature, index.ts is the route, _helpers and _tests are never routed
 .secrets                          # local secrets, never committed
 .nhost/                           # CLI state, never committed
 ```

@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, download, ok, plus, signUp, sql, upload, waitFor, type Session } from './lib.ts';
+import { assert, couple, denied, download, ok, plus, signUp, sql, upload, waitFor, type Session } from '../lib.ts';
 
 const inbox = (who: any, type: string) => ok(who, `{ inboxItems(where: {type: {_eq: ${type}}}) { refId } }`).then((d) => d.inboxItems);
 

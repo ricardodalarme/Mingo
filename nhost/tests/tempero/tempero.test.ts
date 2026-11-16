@@ -2,9 +2,9 @@ import { test, before } from 'node:test';
 import { readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { adult, assert, couple, denied, gql, ok, person, plus, sql, type Person } from './lib.ts';
+import { adult, assert, couple, denied, gql, ok, person, plus, sql, type Person } from '../lib.ts';
 
-const metadataDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'metadata', 'databases', 'default', 'tables');
+const metadataDir = join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'metadata', 'databases', 'default', 'tables');
 
 // Test content sorts before any shipped content, so the first pick of a function is one of these.
 before(async () => {

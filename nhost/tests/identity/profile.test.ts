@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { adult, assert, couple, denied, ok, person, signUp, sql, upload, download } from './lib.ts';
+import { adult, assert, couple, denied, ok, person, signUp, sql, upload, download } from '../lib.ts';
 
 const enableSpice = (who: { id: string }) =>
   `mutation { updateUserSettingsByPk(pk_columns: {userId: "${who.id}"}, _set: {spiceEnabled: true}) { spiceEnabled } }`;

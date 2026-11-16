@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, ok, person, plus, randomUUID, sql } from './lib.ts';
+import { assert, couple, denied, ok, person, plus, randomUUID, sql } from '../lib.ts';
 
 test('the free plan starts 3 games a week for the couple and Plus lifts it', async () => {
   const { a, b } = await couple();

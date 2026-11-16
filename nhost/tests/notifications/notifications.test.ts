@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, ok, person, randomUUID, sql } from './lib.ts';
+import { assert, ok, person, randomUUID, sql } from '../lib.ts';
 
 const device = () => randomUUID().replace(/-/g, '');
 
@@ -121,7 +121,7 @@ test('a person cannot claim or complete a notification, and cannot read the queu
   const p = await person();
   const id = await queue(p.id, 'card_ready');
   const deniedQuery = `mutation ($id: uuid!) { claimNotification(args: {notification_id: $id}) { token } }`;
-  const { gql } = await import('./lib.ts');
+  const { gql } = await import('../lib.ts');
   assert.ok((await gql(p, deniedQuery, { id })).errors?.length);
   const read = await gql(p, `{ pushNotifications { id } }`);
   assert.ok(read.errors?.length);

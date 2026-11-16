@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, ok, person, randomUUID, signUp, sql, urls, waitFor, webhook } from './lib.ts';
+import { assert, ok, person, randomUUID, signUp, sql, urls, waitFor, webhook } from '../lib.ts';
 
 const revenueCatSecret = 'local-revenuecat-secret';
 

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
-import { adminSecret, assert, gql, ok, sql, urls } from './lib.ts';
+import { adminSecret, assert, gql, ok, sql, urls } from '../lib.ts';
 // @ts-expect-error the spec is plain JavaScript, which Node runs as is.
-import { enums, functions as functionSpec, tables as tableSpec } from '../tools/metadata-spec.mjs';
+import { enums, functions as functionSpec, tables as tableSpec } from '../../tools/metadata-spec.mjs';
 
 const qualify = (name: string) => (name.includes('.') ? name : `public.${name}`);
 
@@ -126,7 +126,7 @@ test('every tracked function is an explicit entry, with roles or for the admin o
 });
 
 test('one person alone can use the app without a partner', async () => {
-  const solo = (await import('./lib.ts')).person;
+  const solo = (await import('../lib.ts')).person;
   const p = await solo();
   const slip = (await ok(p, `mutation { insertSlipsOne(object: {body: "um bom momento comigo"}) { id } }`)).insertSlipsOne;
   const card = (await ok(p, `mutation { prepareCard { cardId status items } }`)).prepareCard[0];

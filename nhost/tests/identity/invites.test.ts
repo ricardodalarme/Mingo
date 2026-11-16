@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, ok, person, sql } from './lib.ts';
+import { assert, ok, person, sql } from '../lib.ts';
 
 const status = (who: any, code: string) =>
   ok(who, `query ($c: String!) { inviteStatus(args: {code: $c}) { state inviterName expiresAt } }`, { c: code }).then((d) => d.inviteStatus[0]);

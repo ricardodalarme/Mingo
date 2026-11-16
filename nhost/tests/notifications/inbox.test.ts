@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, ok, person, plus, randomUUID, sql } from './lib.ts';
+import { assert, couple, denied, ok, person, plus, randomUUID, sql } from '../lib.ts';
 
 const notify = (userId: string, type: string, key: string | null = randomUUID()) =>
   sql(`select private.notify('${userId}', '${type}', null, ${key === null ? 'null' : `'${key}'`})`);

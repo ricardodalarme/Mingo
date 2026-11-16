@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, gql, ok, pair, person, sql } from './lib.ts';
+import { assert, couple, denied, gql, ok, pair, person, sql } from '../lib.ts';
 
 test('a new auth user gets a profile, settings and notification settings', async () => {
   const p = await person('Ana Souza');
@@ -104,7 +104,7 @@ test('accepting is limited to ten attempts an hour', async () => {
 test('a couple never has a third member', async () => {
   const { coupleId } = await couple();
   const c = await person();
-  const res = await fetch('http://localhost:8080/v2/query', { method: 'POST', headers: { 'x-hasura-admin-secret': (await import('./lib.ts')).adminSecret },
+  const res = await fetch('http://localhost:8080/v2/query', { method: 'POST', headers: { 'x-hasura-admin-secret': (await import('../lib.ts')).adminSecret },
     body: JSON.stringify({ type: 'run_sql', args: { sql: `insert into public.couple_members (couple_id, user_id, role) values ('${coupleId}', '${c.id}', 'invitee')` } }) });
   assert.equal(res.ok, false);
 });

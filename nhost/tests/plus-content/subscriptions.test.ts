@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { adminSecret, assert, couple, denied, ok, person, urls } from './lib.ts';
+import { adminSecret, assert, couple, denied, ok, person, urls } from '../lib.ts';
 
 type Actor = 'public' | { id: string };
 

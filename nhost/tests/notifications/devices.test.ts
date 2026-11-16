@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, ok, person, randomUUID, sql } from './lib.ts';
+import { assert, couple, denied, ok, person, randomUUID, sql } from '../lib.ts';
 
 const token = () => randomUUID().replace(/-/g, '');
 

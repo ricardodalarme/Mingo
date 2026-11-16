@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, ok, person } from './lib.ts';
+import { assert, couple, ok, person } from '../lib.ts';
 
 test('a person learns whether the partner answered a question without seeing the answer', async () => {
   const { a, b } = await couple();

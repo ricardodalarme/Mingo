@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, ok, person, randomUUID, signUp, sql, upload, waitFor } from './lib.ts';
+import { assert, couple, denied, ok, person, randomUUID, signUp, sql, upload, waitFor } from '../lib.ts';
 
 test('asking to delete the account ends the pairing at once and schedules the purge in 14 days', async () => {
   const { a, b } = await couple();

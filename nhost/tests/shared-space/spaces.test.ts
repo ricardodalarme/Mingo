@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { adult, assert, couple, denied, gql, ok, person, randomUUID, sql, type Person } from './lib.ts';
+import { adult, assert, couple, denied, gql, ok, person, randomUUID, sql, type Person } from '../lib.ts';
 
 // table -> a minimal valid row, for the tables that are private to their author.
 const privateTables: Record<string, string> = {

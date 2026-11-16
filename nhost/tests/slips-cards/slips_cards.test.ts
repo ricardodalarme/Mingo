@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { createHash, randomBytes } from 'node:crypto';
-import { assert, couple, denied, ok, person, plus, randomUUID, sql, type Person } from './lib.ts';
+import { assert, couple, denied, ok, person, plus, randomUUID, sql, type Person } from '../lib.ts';
 
 const addSlip = (who: Person, fields = 'body: "made coffee"') =>
   ok(who, `mutation { insertSlipsOne(object: { ${fields} }) { id authorId forCard kind polarity request body } }`).then((d) => d.insertSlipsOne);

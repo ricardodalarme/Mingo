@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { M4A, assert, couple, denied, ok, signUp, sql, upload, type Session } from './lib.ts';
+import { M4A, assert, couple, denied, ok, signUp, sql, upload, type Session } from '../lib.ts';
 
 async function pairSessions(): Promise<{ a: Session; b: Session }> {
   const a = await signUp('Ana');

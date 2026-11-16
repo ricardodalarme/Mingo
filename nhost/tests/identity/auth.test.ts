@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, okToken, person, signUp, urls } from './lib.ts';
+import { assert, okToken, person, signUp, urls } from '../lib.ts';
 
 async function gqlAnonymous(query: string) {
   const res = await fetch(urls.graphql, {

@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, ok, person, sql } from './lib.ts';
+import { assert, couple, denied, ok, person, sql } from '../lib.ts';
 
 async function run(job: string): Promise<number> {
   const { runJob } = await ok('admin', `mutation ($job: String!) { runJob(args: {job: $job}) { affected } }`, { job });

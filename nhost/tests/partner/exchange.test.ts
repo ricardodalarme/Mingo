@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, ok, person, sql } from './lib.ts';
+import { assert, couple, denied, ok, person, sql } from '../lib.ts';
 
 test('a signal goes to the current partner only, and only the recipient answers it', async () => {
   const { a, b } = await couple();
@@ -62,7 +62,7 @@ test('a solo answer joins the couple when the person pairs', async () => {
   const a = await person();
   const b = await person();
   await ok(a, `mutation { insertQuestionAnswersOne(object: {questionSlug: "q", body: "solo"}) { id } }`);
-  const { pair } = await import('./lib.ts');
+  const { pair } = await import('../lib.ts');
   const coupleId = await pair(a, b);
   assert.deepEqual((await ok(a, `{ questionAnswers { coupleId } }`)).questionAnswers, [{ coupleId }]);
 });

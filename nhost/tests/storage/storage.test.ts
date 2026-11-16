@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, download, gql, ok, okToken, randomUUID, signUp, sql, upload, waitFor } from './lib.ts';
+import { assert, couple, denied, download, gql, ok, okToken, randomUUID, signUp, sql, upload, waitFor } from '../lib.ts';
 
 test('the owner reads a file through Storage, a stranger gets the same answer as a missing file', async () => {
   const owner = await signUp();
