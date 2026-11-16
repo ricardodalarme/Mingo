@@ -9,6 +9,8 @@ configuration:
       custom_name: coupleId
     created_at:
       custom_name: createdAt
+    held_reason:
+      custom_name: heldReason
     id:
       custom_name: id
     kind:
@@ -29,6 +31,7 @@ configuration:
     author_id: authorId
     couple_id: coupleId
     created_at: createdAt
+    held_reason: heldReason
     id: id
     kind: kind
     note: note
@@ -93,6 +96,7 @@ select_permissions:
         - author_id
         - couple_id
         - created_at
+        - held_reason
         - id
         - kind
         - note

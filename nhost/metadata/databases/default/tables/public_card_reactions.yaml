@@ -87,3 +87,13 @@ update_permissions:
       check: null
       set:
         from_guest: "false"
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        card:
+          _and:
+            - recipient_id:
+                _eq: X-Hasura-User-Id
+            - status:
+                _eq: sent

@@ -7,6 +7,8 @@ configuration:
       custom_name: body
     created_at:
       custom_name: createdAt
+    duration_ms:
+      custom_name: durationMs
     for_widget:
       custom_name: forWidget
     hearted_at:
@@ -26,6 +28,7 @@ configuration:
   custom_column_names:
     body: body
     created_at: createdAt
+    duration_ms: durationMs
     for_widget: forWidget
     hearted_at: heartedAt
     id: id
@@ -75,12 +78,14 @@ insert_permissions:
         - body
         - media_file_id
         - for_widget
+        - duration_ms
 select_permissions:
   - role: user
     permission:
       columns:
         - body
         - created_at
+        - duration_ms
         - for_widget
         - hearted_at
         - id

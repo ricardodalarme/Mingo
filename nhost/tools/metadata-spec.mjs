@@ -213,6 +213,8 @@ export const tables = {
         select: { columns: '*', filter: { card: cardVisible } },
         insert: { columns: ['card_id', 'reaction', 'reply'], check: { card: receivedCard }, set: { from_guest: 'false' } },
         update: { columns: ['reaction', 'reply'], filter: { card: receivedCard }, set: { from_guest: 'false' } },
+        // The recipient can take a reaction back.
+        delete: { filter: { card: receivedCard } },
       },
     },
   },
@@ -408,7 +410,7 @@ export const tables = {
       user: {
         select: { columns: '*', filter: or(mine('sender_id'), mine('recipient_id')) },
         insert: {
-          columns: ['id', 'kind', 'body', 'media_file_id', 'for_widget'],
+          columns: ['id', 'kind', 'body', 'media_file_id', 'for_widget', 'duration_ms'],
           check: ownFile('media_file_id', 'mediaFile'),
           set: { sender_id: ME },
         },

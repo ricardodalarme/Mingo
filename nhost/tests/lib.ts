@@ -158,6 +158,9 @@ export async function upload(token: string, bucket: string, bytes: number[] = PN
   return body.processedFiles[0];
 }
 
+// A minimal MPEG-4 audio header; Storage detects the type from the content.
+export const M4A = [0, 0, 0, 0x20, 0x66, 0x74, 0x79, 0x70, 0x4d, 0x34, 0x41, 0x20, 0, 0, 0, 0, 0x4d, 0x34, 0x41, 0x20, 0x6d, 0x70, 0x34, 0x32, 0x69, 0x73, 0x6f, 0x6d, 0, 0, 0, 0];
+
 /** The HTTP status a download gets: 200 when the caller may read the file, 404 when they may not. */
 export async function download(token: string, fileId: string): Promise<number> {
   const res = await fetch(`${urls.storage}/files/${fileId}`, { headers: { authorization: `Bearer ${token}` } });

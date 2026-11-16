@@ -638,6 +638,10 @@ enum cards_select_column {
   """
   column name
   """
+  heldReason
+  """
+  column name
+  """
   id
   """
   column name
@@ -2700,6 +2704,10 @@ enum partnerMessages_select_column {
   """
   column name
   """
+  durationMs
+  """
+  column name
+  """
   forWidget
   """
   column name
@@ -4377,6 +4385,7 @@ type cards {
     """
     where: guestLinks_bool_exp
   ): [guestLinks!]!
+  heldReason: String
   id: uuid!
   """
   An array relationship
@@ -4449,6 +4458,7 @@ type cards_max_fields {
   authorId: uuid
   coupleId: uuid
   createdAt: timestamptz
+  heldReason: String
   id: uuid
   note: String
   recipientId: uuid
@@ -4463,6 +4473,7 @@ type cards_min_fields {
   authorId: uuid
   coupleId: uuid
   createdAt: timestamptz
+  heldReason: String
   id: uuid
   note: String
   recipientId: uuid
@@ -6533,6 +6544,19 @@ type mutation_root {
   delete single row from the table: "card_items"
   """
   deleteCardItemsByPk(id: uuid!): cardItems
+  """
+  delete data from the table: "card_reactions"
+  """
+  deleteCardReactions(
+    """
+    filter the rows which have to be deleted
+    """
+    where: cardReactions_bool_exp!
+  ): cardReactions_mutation_response
+  """
+  delete single row from the table: "card_reactions"
+  """
+  deleteCardReactionsByPk(cardId: uuid!): cardReactions
   """
   delete data from the table: "cards"
   """
@@ -10074,6 +10098,7 @@ columns and relationships of "partner_messages"
 type partnerMessages {
   body: String
   createdAt: timestamptz!
+  durationMs: Int
   forWidget: Boolean!
   heartedAt: timestamptz
   id: uuid!
@@ -20176,6 +20201,7 @@ input cards_bool_exp {
   coupleId: uuid_comparison_exp
   createdAt: timestamptz_comparison_exp
   guestLinks: guestLinks_bool_exp
+  heldReason: String_comparison_exp
   id: uuid_comparison_exp
   items: cardItems_bool_exp
   kind: CardKind_enum_comparison_exp
@@ -20198,6 +20224,7 @@ input cards_order_by {
   coupleId: order_by
   createdAt: order_by
   guestLinks_aggregate: guestLinks_aggregate_order_by
+  heldReason: order_by
   id: order_by
   items_aggregate: cardItems_aggregate_order_by
   kind: order_by
@@ -20244,6 +20271,7 @@ input cards_stream_cursor_value_input {
   authorId: uuid
   coupleId: uuid
   createdAt: timestamptz
+  heldReason: String
   id: uuid
   kind: CardKind_enum
   note: String
@@ -23908,9 +23936,17 @@ input partnerFacts_updates {
 order by aggregate values of table "partner_messages"
 """
 input partnerMessages_aggregate_order_by {
+  avg: partnerMessages_avg_order_by
   count: order_by
   max: partnerMessages_max_order_by
   min: partnerMessages_min_order_by
+  stddev: partnerMessages_stddev_order_by
+  stddev_pop: partnerMessages_stddev_pop_order_by
+  stddev_samp: partnerMessages_stddev_samp_order_by
+  sum: partnerMessages_sum_order_by
+  var_pop: partnerMessages_var_pop_order_by
+  var_samp: partnerMessages_var_samp_order_by
+  variance: partnerMessages_variance_order_by
 }
 """
 input type for inserting array relation for remote table "partner_messages"
@@ -23923,6 +23959,12 @@ input partnerMessages_arr_rel_insert_input {
   on_conflict: partnerMessages_on_conflict
 }
 """
+order by avg() on columns of table "partner_messages"
+"""
+input partnerMessages_avg_order_by {
+  durationMs: order_by
+}
+"""
 Boolean expression to filter rows from the table "partner_messages". All fields are combined with a logical 'AND'.
 """
 input partnerMessages_bool_exp {
@@ -23931,6 +23973,7 @@ input partnerMessages_bool_exp {
   _or: [partnerMessages_bool_exp!]
   body: String_comparison_exp
   createdAt: timestamptz_comparison_exp
+  durationMs: Int_comparison_exp
   forWidget: Boolean_comparison_exp
   heartedAt: timestamptz_comparison_exp
   id: uuid_comparison_exp
@@ -23948,6 +23991,7 @@ input type for inserting data into table "partner_messages"
 """
 input partnerMessages_insert_input {
   body: String
+  durationMs: Int
   forWidget: Boolean
   id: uuid
   kind: PartnerMessageKind_enum
@@ -23960,6 +24004,7 @@ order by max() on columns of table "partner_messages"
 input partnerMessages_max_order_by {
   body: order_by
   createdAt: order_by
+  durationMs: order_by
   heartedAt: order_by
   id: order_by
   mediaFileId: order_by
@@ -23973,6 +24018,7 @@ order by min() on columns of table "partner_messages"
 input partnerMessages_min_order_by {
   body: order_by
   createdAt: order_by
+  durationMs: order_by
   heartedAt: order_by
   id: order_by
   mediaFileId: order_by
@@ -23994,6 +24040,7 @@ Ordering options when selecting data from "partner_messages".
 input partnerMessages_order_by {
   body: order_by
   createdAt: order_by
+  durationMs: order_by
   forWidget: order_by
   heartedAt: order_by
   id: order_by
@@ -24020,6 +24067,24 @@ input partnerMessages_set_input {
   seenAt: timestamptz
 }
 """
+order by stddev() on columns of table "partner_messages"
+"""
+input partnerMessages_stddev_order_by {
+  durationMs: order_by
+}
+"""
+order by stddev_pop() on columns of table "partner_messages"
+"""
+input partnerMessages_stddev_pop_order_by {
+  durationMs: order_by
+}
+"""
+order by stddev_samp() on columns of table "partner_messages"
+"""
+input partnerMessages_stddev_samp_order_by {
+  durationMs: order_by
+}
+"""
 Streaming cursor of the table "partnerMessages"
 """
 input partnerMessages_stream_cursor_input {
@@ -24038,6 +24103,7 @@ Initial value of the column from where the streaming should start
 input partnerMessages_stream_cursor_value_input {
   body: String
   createdAt: timestamptz
+  durationMs: Int
   forWidget: Boolean
   heartedAt: timestamptz
   id: uuid
@@ -24046,6 +24112,12 @@ input partnerMessages_stream_cursor_value_input {
   recipientId: uuid
   seenAt: timestamptz
   senderId: uuid
+}
+"""
+order by sum() on columns of table "partner_messages"
+"""
+input partnerMessages_sum_order_by {
+  durationMs: order_by
 }
 input partnerMessages_updates {
   """
@@ -24056,6 +24128,24 @@ input partnerMessages_updates {
   filter the rows which have to be updated
   """
   where: partnerMessages_bool_exp!
+}
+"""
+order by var_pop() on columns of table "partner_messages"
+"""
+input partnerMessages_var_pop_order_by {
+  durationMs: order_by
+}
+"""
+order by var_samp() on columns of table "partner_messages"
+"""
+input partnerMessages_var_samp_order_by {
+  durationMs: order_by
+}
+"""
+order by variance() on columns of table "partner_messages"
+"""
+input partnerMessages_variance_order_by {
+  durationMs: order_by
 }
 input partnerQuestionStates_args {
   questionSlugs: jsonb
@@ -25311,6 +25401,7 @@ input savedDateIdeas_updates {
   where: savedDateIdeas_bool_exp!
 }
 input sendCard_args {
+  anyway: Boolean
   cardId: uuid
 }
 input sendGentleRequest_args {
@@ -25320,6 +25411,7 @@ input sendGentleRequest_args {
   wishText: String
 }
 input sendSlip_args {
+  anyway: Boolean
   note: String
   slipId: uuid
 }

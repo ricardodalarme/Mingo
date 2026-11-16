@@ -31,8 +31,8 @@ test('a partner reads the media in a message and a stranger does not', async () 
   const stranger = await signUp('Carla');
   const { insertInvitesOne } = await ok(session, `mutation { insertInvitesOne(object: {}) { code } }`);
   await ok(partner, `mutation ($c: String!) { acceptInvite(args: {code: $c}) { id } }`, { c: insertInvitesOne.code });
-  const file = await upload(session.token, 'messages', [8, 8, 8]);
-  await ok(session, `mutation ($id: uuid!) { insertPartnerMessagesOne(object: {kind: voice, mediaFileId: $id}) { id } }`, { id: file.id });
+  const file = await upload(session.token, 'messages');
+  await ok(session, `mutation ($id: uuid!) { insertPartnerMessagesOne(object: {kind: drawing, mediaFileId: $id}) { id } }`, { id: file.id });
   assert.equal(await download(session.token, file.id), 200);
   assert.equal(await download(partner.token, file.id), 200);
   assert.equal(await download(stranger.token, file.id), 404);
