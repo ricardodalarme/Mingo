@@ -1,0 +1,80 @@
+table:
+  name: weekly_reviews
+  schema: public
+configuration:
+  column_config:
+    active_days:
+      custom_name: activeDays
+    both_checkin_done:
+      custom_name: bothCheckinDone
+    cards_received:
+      custom_name: cardsReceived
+    cards_sent:
+      custom_name: cardsSent
+    checkin_done:
+      custom_name: checkinDone
+    couple_rituals_done:
+      custom_name: coupleRitualsDone
+    low_data:
+      custom_name: lowData
+    missing:
+      custom_name: missing
+    moods_logged:
+      custom_name: moodsLogged
+    partner_cards_sent:
+      custom_name: partnerCardsSent
+    rituals_done:
+      custom_name: ritualsDone
+    slips:
+      custom_name: slips
+    streak_days:
+      custom_name: streakDays
+    week_start:
+      custom_name: weekStart
+  custom_column_names:
+    active_days: activeDays
+    both_checkin_done: bothCheckinDone
+    cards_received: cardsReceived
+    cards_sent: cardsSent
+    checkin_done: checkinDone
+    couple_rituals_done: coupleRitualsDone
+    low_data: lowData
+    missing: missing
+    moods_logged: moodsLogged
+    partner_cards_sent: partnerCardsSent
+    rituals_done: ritualsDone
+    slips: slips
+    streak_days: streakDays
+    week_start: weekStart
+  custom_name: weeklyReviews
+  custom_root_fields:
+    delete: deleteWeeklyReviews
+    delete_by_pk: deleteWeeklyReviewsByPk
+    insert: insertWeeklyReviews
+    insert_one: insertWeeklyReviewsOne
+    select: weeklyReviews
+    select_aggregate: weeklyReviewsAggregate
+    select_by_pk: weeklyReviewsByPk
+    select_stream: weeklyReviewsStream
+    update: updateWeeklyReviews
+    update_by_pk: updateWeeklyReviewsByPk
+    update_many: updateWeeklyReviewsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - active_days
+        - both_checkin_done
+        - cards_received
+        - cards_sent
+        - checkin_done
+        - couple_rituals_done
+        - low_data
+        - missing
+        - moods_logged
+        - partner_cards_sent
+        - rituals_done
+        - slips
+        - streak_days
+        - week_start
+      filter: {}

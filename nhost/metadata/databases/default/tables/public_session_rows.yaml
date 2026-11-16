@@ -1,0 +1,48 @@
+table:
+  name: session_rows
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    device_id:
+      custom_name: deviceId
+    device_label:
+      custom_name: deviceLabel
+    expires_at:
+      custom_name: expiresAt
+    id:
+      custom_name: id
+    platform:
+      custom_name: platform
+  custom_column_names:
+    created_at: createdAt
+    device_id: deviceId
+    device_label: deviceLabel
+    expires_at: expiresAt
+    id: id
+    platform: platform
+  custom_name: sessionRows
+  custom_root_fields:
+    delete: deleteSessionRows
+    delete_by_pk: deleteSessionRowsByPk
+    insert: insertSessionRows
+    insert_one: insertSessionRowsOne
+    select: sessionRows
+    select_aggregate: sessionRowsAggregate
+    select_by_pk: sessionRowsByPk
+    select_stream: sessionRowsStream
+    update: updateSessionRows
+    update_by_pk: updateSessionRowsByPk
+    update_many: updateSessionRowsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - device_id
+        - device_label
+        - expires_at
+        - id
+        - platform
+      filter: {}

@@ -6,7 +6,8 @@ values
   ('slips', 1, 10000000, 'private, max-age=3600', true, 300),
   ('memories', 1, 10000000, 'private, max-age=3600', true, 300),
   ('messages', 1, 10000000, 'private, max-age=3600', true, 300),
-  ('couple-photos', 1, 10000000, 'private, max-age=3600', true, 300)
+  ('couple-photos', 1, 10000000, 'private, max-age=3600', true, 300),
+  ('exports', 1, 10000000, 'private, max-age=0', true, 300)
 on conflict (id) do update
   set max_upload_file_size = excluded.max_upload_file_size,
       cache_control = excluded.cache_control,

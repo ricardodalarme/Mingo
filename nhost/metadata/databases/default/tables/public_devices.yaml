@@ -15,6 +15,8 @@ configuration:
       custom_name: lastSeenAt
     platform:
       custom_name: platform
+    refresh_token_id:
+      custom_name: refreshTokenId
     token:
       custom_name: token
     user_id:
@@ -26,6 +28,7 @@ configuration:
     label: label
     last_seen_at: lastSeenAt
     platform: platform
+    refresh_token_id: refreshTokenId
     token: token
     user_id: userId
   custom_name: devices
@@ -51,6 +54,7 @@ insert_permissions:
         - token
         - platform
         - label
+        - refresh_token_id
 select_permissions:
   - role: user
     permission:
@@ -60,6 +64,7 @@ select_permissions:
         - token
         - platform
         - label
+        - refresh_token_id
         - created_at
         - last_seen_at
       filter:
@@ -71,6 +76,7 @@ update_permissions:
       columns:
         - platform
         - label
+        - refresh_token_id
       filter:
         user_id:
           _eq: X-Hasura-User-Id

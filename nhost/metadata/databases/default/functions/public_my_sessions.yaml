@@ -1,0 +1,11 @@
+function:
+  name: my_sessions
+  schema: public
+configuration:
+  custom_name: mySessions
+  custom_root_fields:
+    function: mySessions
+    function_aggregate: mySessionsAggregate
+  session_argument: session
+permissions:
+  - role: user

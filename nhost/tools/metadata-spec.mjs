@@ -156,6 +156,9 @@ export const tables = {
   },
   invite_previews: resultTable(['public', 'user']),
   start_dates: resultTable(['user']),
+  weekly_reviews: resultTable(['user']),
+  session_rows: resultTable(['user']),
+  export_documents: {},
   spice_states: resultTable(['user']),
   invite_statuses: resultTable(['public', 'user']),
   invite_accept_results: resultTable(['user']),
@@ -256,9 +259,9 @@ export const tables = {
   devices: {
     roles: {
       user: {
-        select: { columns: ['id', 'user_id', 'token', 'platform', 'label', 'created_at', 'last_seen_at'], filter: mine('user_id') },
-        insert: { columns: ['token', 'platform', 'label'], set: { user_id: ME } },
-        update: { columns: ['platform', 'label'], filter: mine('user_id') },
+        select: { columns: ['id', 'user_id', 'token', 'platform', 'label', 'refresh_token_id', 'created_at', 'last_seen_at'], filter: mine('user_id') },
+        insert: { columns: ['token', 'platform', 'label', 'refresh_token_id'], set: { user_id: ME } },
+        update: { columns: ['platform', 'label', 'refresh_token_id'], filter: mine('user_id') },
         delete: { filter: mine('user_id') },
       },
     },
@@ -316,6 +319,7 @@ export const tables = {
     ],
   },
   'private.job_runs': { name: 'jobRuns' },
+  'private.export_requests': { name: 'exportRequests' },
 
   // Content and plan -----------------------------------------------------------------------------------------------
   app_config: { roles: { public: { select: { columns: '*' } }, user: { select: { columns: '*' } } } },
@@ -671,6 +675,10 @@ export const functions = {
   try_accept_invite: { session: true, roles: ['user'] },
   invite_status: { roles: ['public', 'user'] },
   unpair: { session: true, roles: ['user'] },
+  weekly_review: { session: true, roles: ['user'] },
+  my_sessions: { session: true, roles: ['user'] },
+  revoke_session: { session: true, roles: ['user'] },
+  export_user_data: {},
   spice_state: { session: true, roles: ['user'] },
   spice_next_card: { session: true, roles: ['user'] },
   spice_respond_card: { session: true, roles: ['user'] },

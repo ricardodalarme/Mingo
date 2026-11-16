@@ -1,0 +1,25 @@
+table:
+  name: export_requests
+  schema: private
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    created_at: createdAt
+    user_id: userId
+  custom_name: exportRequests
+  custom_root_fields:
+    delete: deleteExportRequests
+    delete_by_pk: deleteExportRequestsByPk
+    insert: insertExportRequests
+    insert_one: insertExportRequestsOne
+    select: exportRequests
+    select_aggregate: exportRequestsAggregate
+    select_by_pk: exportRequestsByPk
+    select_stream: exportRequestsStream
+    update: updateExportRequests
+    update_by_pk: updateExportRequestsByPk
+    update_many: updateExportRequestsMany

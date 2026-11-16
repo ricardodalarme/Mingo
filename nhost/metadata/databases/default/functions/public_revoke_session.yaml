@@ -1,0 +1,11 @@
+function:
+  name: revoke_session
+  schema: public
+configuration:
+  custom_name: revokeSession
+  custom_root_fields:
+    function: revokeSession
+    function_aggregate: revokeSessionAggregate
+  session_argument: session
+permissions:
+  - role: user

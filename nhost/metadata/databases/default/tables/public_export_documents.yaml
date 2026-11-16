@@ -1,0 +1,22 @@
+table:
+  name: export_documents
+  schema: public
+configuration:
+  column_config:
+    data:
+      custom_name: data
+  custom_column_names:
+    data: data
+  custom_name: exportDocuments
+  custom_root_fields:
+    delete: deleteExportDocuments
+    delete_by_pk: deleteExportDocumentsByPk
+    insert: insertExportDocuments
+    insert_one: insertExportDocumentsOne
+    select: exportDocuments
+    select_aggregate: exportDocumentsAggregate
+    select_by_pk: exportDocumentsByPk
+    select_stream: exportDocumentsStream
+    update: updateExportDocuments
+    update_by_pk: updateExportDocumentsByPk
+    update_many: updateExportDocumentsMany
