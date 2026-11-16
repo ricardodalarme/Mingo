@@ -14,6 +14,7 @@ const Set<String> publicRouteNames = {
   FirstSlipRoute.name,
   PartnerStepRoute.name,
   SignInRoute.name,
+  CreateAccountRoute.name,
   ExistingAccountRoute.name,
   DebugSignInRoute.name,
   SessionExpiredRoute.name,

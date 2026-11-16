@@ -1,0 +1,9 @@
+table:
+  name: partner_intent
+  schema: public
+is_enum: true
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: PartnerIntent
+  custom_root_fields: {}

@@ -6982,6 +6982,191 @@ class InputPartnerFactSource_enum_comparison_exp {
   }
 }
 
+class InputPartnerIntent_enum_comparison_exp {
+  factory InputPartnerIntent_enum_comparison_exp({
+    EnumPartnerIntent_enum? $_eq,
+    List<EnumPartnerIntent_enum>? $_in,
+    bool? $_is_null,
+    EnumPartnerIntent_enum? $_neq,
+    List<EnumPartnerIntent_enum>? $_nin,
+  }) => InputPartnerIntent_enum_comparison_exp._({
+    if ($_eq != null) r'_eq': $_eq,
+    if ($_in != null) r'_in': $_in,
+    if ($_is_null != null) r'_is_null': $_is_null,
+    if ($_neq != null) r'_neq': $_neq,
+    if ($_nin != null) r'_nin': $_nin,
+  });
+
+  InputPartnerIntent_enum_comparison_exp._(this._$data);
+
+  factory InputPartnerIntent_enum_comparison_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_eq')) {
+      final l$$_eq = data['_eq'];
+      result$data['_eq'] = l$$_eq == null
+          ? null
+          : fromJsonEnumPartnerIntent_enum((l$$_eq as String));
+    }
+    if (data.containsKey('_in')) {
+      final l$$_in = data['_in'];
+      result$data['_in'] = (l$$_in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumPartnerIntent_enum((e as String)))
+          .toList();
+    }
+    if (data.containsKey('_is_null')) {
+      final l$$_is_null = data['_is_null'];
+      result$data['_is_null'] = (l$$_is_null as bool?);
+    }
+    if (data.containsKey('_neq')) {
+      final l$$_neq = data['_neq'];
+      result$data['_neq'] = l$$_neq == null
+          ? null
+          : fromJsonEnumPartnerIntent_enum((l$$_neq as String));
+    }
+    if (data.containsKey('_nin')) {
+      final l$$_nin = data['_nin'];
+      result$data['_nin'] = (l$$_nin as List<dynamic>?)
+          ?.map((e) => fromJsonEnumPartnerIntent_enum((e as String)))
+          .toList();
+    }
+    return InputPartnerIntent_enum_comparison_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumPartnerIntent_enum? get $_eq => (_$data['_eq'] as EnumPartnerIntent_enum?);
+
+  List<EnumPartnerIntent_enum>? get $_in => (_$data['_in'] as List<EnumPartnerIntent_enum>?);
+
+  bool? get $_is_null => (_$data['_is_null'] as bool?);
+
+  EnumPartnerIntent_enum? get $_neq => (_$data['_neq'] as EnumPartnerIntent_enum?);
+
+  List<EnumPartnerIntent_enum>? get $_nin => (_$data['_nin'] as List<EnumPartnerIntent_enum>?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_eq')) {
+      final l$$_eq = $_eq;
+      result$data['_eq'] = l$$_eq == null ? null : toJsonEnumPartnerIntent_enum(l$$_eq);
+    }
+    if (_$data.containsKey('_in')) {
+      final l$$_in = $_in;
+      result$data['_in'] = l$$_in?.map((e) => toJsonEnumPartnerIntent_enum(e)).toList();
+    }
+    if (_$data.containsKey('_is_null')) {
+      final l$$_is_null = $_is_null;
+      result$data['_is_null'] = l$$_is_null;
+    }
+    if (_$data.containsKey('_neq')) {
+      final l$$_neq = $_neq;
+      result$data['_neq'] = l$$_neq == null ? null : toJsonEnumPartnerIntent_enum(l$$_neq);
+    }
+    if (_$data.containsKey('_nin')) {
+      final l$$_nin = $_nin;
+      result$data['_nin'] = l$$_nin?.map((e) => toJsonEnumPartnerIntent_enum(e)).toList();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputPartnerIntent_enum_comparison_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_eq = $_eq;
+    final lOther$$_eq = other.$_eq;
+    if (_$data.containsKey('_eq') != other._$data.containsKey('_eq')) {
+      return false;
+    }
+    if (l$$_eq != lOther$$_eq) {
+      return false;
+    }
+    final l$$_in = $_in;
+    final lOther$$_in = other.$_in;
+    if (_$data.containsKey('_in') != other._$data.containsKey('_in')) {
+      return false;
+    }
+    if (l$$_in != null && lOther$$_in != null) {
+      if (l$$_in.length != lOther$$_in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_in.length; i++) {
+        final l$$_in$entry = l$$_in[i];
+        final lOther$$_in$entry = lOther$$_in[i];
+        if (l$$_in$entry != lOther$$_in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_in != lOther$$_in) {
+      return false;
+    }
+    final l$$_is_null = $_is_null;
+    final lOther$$_is_null = other.$_is_null;
+    if (_$data.containsKey('_is_null') != other._$data.containsKey('_is_null')) {
+      return false;
+    }
+    if (l$$_is_null != lOther$$_is_null) {
+      return false;
+    }
+    final l$$_neq = $_neq;
+    final lOther$$_neq = other.$_neq;
+    if (_$data.containsKey('_neq') != other._$data.containsKey('_neq')) {
+      return false;
+    }
+    if (l$$_neq != lOther$$_neq) {
+      return false;
+    }
+    final l$$_nin = $_nin;
+    final lOther$$_nin = other.$_nin;
+    if (_$data.containsKey('_nin') != other._$data.containsKey('_nin')) {
+      return false;
+    }
+    if (l$$_nin != null && lOther$$_nin != null) {
+      if (l$$_nin.length != lOther$$_nin.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_nin.length; i++) {
+        final l$$_nin$entry = l$$_nin[i];
+        final lOther$$_nin$entry = lOther$$_nin[i];
+        if (l$$_nin$entry != lOther$$_nin$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_nin != lOther$$_nin) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_eq = $_eq;
+    final l$$_in = $_in;
+    final l$$_is_null = $_is_null;
+    final l$$_neq = $_neq;
+    final l$$_nin = $_nin;
+    return Object.hashAll([
+      _$data.containsKey('_eq') ? l$$_eq : const {},
+      _$data.containsKey('_in')
+          ? l$$_in == null
+                ? null
+                : Object.hashAll(l$$_in.map((v) => v))
+          : const {},
+      _$data.containsKey('_is_null') ? l$$_is_null : const {},
+      _$data.containsKey('_neq') ? l$$_neq : const {},
+      _$data.containsKey('_nin')
+          ? l$$_nin == null
+                ? null
+                : Object.hashAll(l$$_nin.map((v) => v))
+          : const {},
+    ]);
+  }
+}
+
 class InputPartnerMessageKind_enum_comparison_exp {
   factory InputPartnerMessageKind_enum_comparison_exp({
     EnumPartnerMessageKind_enum? $_eq,
@@ -7077,6 +7262,187 @@ class InputPartnerMessageKind_enum_comparison_exp {
       return true;
     }
     if (other is! InputPartnerMessageKind_enum_comparison_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_eq = $_eq;
+    final lOther$$_eq = other.$_eq;
+    if (_$data.containsKey('_eq') != other._$data.containsKey('_eq')) {
+      return false;
+    }
+    if (l$$_eq != lOther$$_eq) {
+      return false;
+    }
+    final l$$_in = $_in;
+    final lOther$$_in = other.$_in;
+    if (_$data.containsKey('_in') != other._$data.containsKey('_in')) {
+      return false;
+    }
+    if (l$$_in != null && lOther$$_in != null) {
+      if (l$$_in.length != lOther$$_in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_in.length; i++) {
+        final l$$_in$entry = l$$_in[i];
+        final lOther$$_in$entry = lOther$$_in[i];
+        if (l$$_in$entry != lOther$$_in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_in != lOther$$_in) {
+      return false;
+    }
+    final l$$_is_null = $_is_null;
+    final lOther$$_is_null = other.$_is_null;
+    if (_$data.containsKey('_is_null') != other._$data.containsKey('_is_null')) {
+      return false;
+    }
+    if (l$$_is_null != lOther$$_is_null) {
+      return false;
+    }
+    final l$$_neq = $_neq;
+    final lOther$$_neq = other.$_neq;
+    if (_$data.containsKey('_neq') != other._$data.containsKey('_neq')) {
+      return false;
+    }
+    if (l$$_neq != lOther$$_neq) {
+      return false;
+    }
+    final l$$_nin = $_nin;
+    final lOther$$_nin = other.$_nin;
+    if (_$data.containsKey('_nin') != other._$data.containsKey('_nin')) {
+      return false;
+    }
+    if (l$$_nin != null && lOther$$_nin != null) {
+      if (l$$_nin.length != lOther$$_nin.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_nin.length; i++) {
+        final l$$_nin$entry = l$$_nin[i];
+        final lOther$$_nin$entry = lOther$$_nin[i];
+        if (l$$_nin$entry != lOther$$_nin$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_nin != lOther$$_nin) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_eq = $_eq;
+    final l$$_in = $_in;
+    final l$$_is_null = $_is_null;
+    final l$$_neq = $_neq;
+    final l$$_nin = $_nin;
+    return Object.hashAll([
+      _$data.containsKey('_eq') ? l$$_eq : const {},
+      _$data.containsKey('_in')
+          ? l$$_in == null
+                ? null
+                : Object.hashAll(l$$_in.map((v) => v))
+          : const {},
+      _$data.containsKey('_is_null') ? l$$_is_null : const {},
+      _$data.containsKey('_neq') ? l$$_neq : const {},
+      _$data.containsKey('_nin')
+          ? l$$_nin == null
+                ? null
+                : Object.hashAll(l$$_nin.map((v) => v))
+          : const {},
+    ]);
+  }
+}
+
+class InputPronoun_enum_comparison_exp {
+  factory InputPronoun_enum_comparison_exp({
+    EnumPronoun_enum? $_eq,
+    List<EnumPronoun_enum>? $_in,
+    bool? $_is_null,
+    EnumPronoun_enum? $_neq,
+    List<EnumPronoun_enum>? $_nin,
+  }) => InputPronoun_enum_comparison_exp._({
+    if ($_eq != null) r'_eq': $_eq,
+    if ($_in != null) r'_in': $_in,
+    if ($_is_null != null) r'_is_null': $_is_null,
+    if ($_neq != null) r'_neq': $_neq,
+    if ($_nin != null) r'_nin': $_nin,
+  });
+
+  InputPronoun_enum_comparison_exp._(this._$data);
+
+  factory InputPronoun_enum_comparison_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_eq')) {
+      final l$$_eq = data['_eq'];
+      result$data['_eq'] = l$$_eq == null ? null : fromJsonEnumPronoun_enum((l$$_eq as String));
+    }
+    if (data.containsKey('_in')) {
+      final l$$_in = data['_in'];
+      result$data['_in'] = (l$$_in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumPronoun_enum((e as String)))
+          .toList();
+    }
+    if (data.containsKey('_is_null')) {
+      final l$$_is_null = data['_is_null'];
+      result$data['_is_null'] = (l$$_is_null as bool?);
+    }
+    if (data.containsKey('_neq')) {
+      final l$$_neq = data['_neq'];
+      result$data['_neq'] = l$$_neq == null ? null : fromJsonEnumPronoun_enum((l$$_neq as String));
+    }
+    if (data.containsKey('_nin')) {
+      final l$$_nin = data['_nin'];
+      result$data['_nin'] = (l$$_nin as List<dynamic>?)
+          ?.map((e) => fromJsonEnumPronoun_enum((e as String)))
+          .toList();
+    }
+    return InputPronoun_enum_comparison_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumPronoun_enum? get $_eq => (_$data['_eq'] as EnumPronoun_enum?);
+
+  List<EnumPronoun_enum>? get $_in => (_$data['_in'] as List<EnumPronoun_enum>?);
+
+  bool? get $_is_null => (_$data['_is_null'] as bool?);
+
+  EnumPronoun_enum? get $_neq => (_$data['_neq'] as EnumPronoun_enum?);
+
+  List<EnumPronoun_enum>? get $_nin => (_$data['_nin'] as List<EnumPronoun_enum>?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_eq')) {
+      final l$$_eq = $_eq;
+      result$data['_eq'] = l$$_eq == null ? null : toJsonEnumPronoun_enum(l$$_eq);
+    }
+    if (_$data.containsKey('_in')) {
+      final l$$_in = $_in;
+      result$data['_in'] = l$$_in?.map((e) => toJsonEnumPronoun_enum(e)).toList();
+    }
+    if (_$data.containsKey('_is_null')) {
+      final l$$_is_null = $_is_null;
+      result$data['_is_null'] = l$$_is_null;
+    }
+    if (_$data.containsKey('_neq')) {
+      final l$$_neq = $_neq;
+      result$data['_neq'] = l$$_neq == null ? null : toJsonEnumPronoun_enum(l$$_neq);
+    }
+    if (_$data.containsKey('_nin')) {
+      final l$$_nin = $_nin;
+      result$data['_nin'] = l$$_nin?.map((e) => toJsonEnumPronoun_enum(e)).toList();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputPronoun_enum_comparison_exp || runtimeType != other.runtimeType) {
       return false;
     }
     final l$$_eq = $_eq;
@@ -70243,7 +70609,7 @@ class Inputprofiles_bool_exp {
     InputString_comparison_exp? displayName,
     Inputuuid_comparison_exp? id,
     InputcoupleMembers_bool_exp? membership,
-    InputString_comparison_exp? pronouns,
+    InputPronoun_enum_comparison_exp? pronouns,
     InputuserSettings_bool_exp? settings,
     InputsharedMoods_bool_exp? sharedMood,
     InputString_comparison_exp? timeZone,
@@ -70341,7 +70707,7 @@ class Inputprofiles_bool_exp {
       final l$pronouns = data['pronouns'];
       result$data['pronouns'] = l$pronouns == null
           ? null
-          : InputString_comparison_exp.fromJson((l$pronouns as Map<String, dynamic>));
+          : InputPronoun_enum_comparison_exp.fromJson((l$pronouns as Map<String, dynamic>));
     }
     if (data.containsKey('settings')) {
       final l$settings = data['settings'];
@@ -70399,7 +70765,8 @@ class Inputprofiles_bool_exp {
   InputcoupleMembers_bool_exp? get membership =>
       (_$data['membership'] as InputcoupleMembers_bool_exp?);
 
-  InputString_comparison_exp? get pronouns => (_$data['pronouns'] as InputString_comparison_exp?);
+  InputPronoun_enum_comparison_exp? get pronouns =>
+      (_$data['pronouns'] as InputPronoun_enum_comparison_exp?);
 
   InputuserSettings_bool_exp? get settings => (_$data['settings'] as InputuserSettings_bool_exp?);
 
@@ -70694,7 +71061,6 @@ class Inputprofiles_max_order_by {
     Enumorder_by? createdAt,
     Enumorder_by? displayName,
     Enumorder_by? id,
-    Enumorder_by? pronouns,
     Enumorder_by? timeZone,
     Enumorder_by? updatedAt,
   }) => Inputprofiles_max_order_by._({
@@ -70703,7 +71069,6 @@ class Inputprofiles_max_order_by {
     if (createdAt != null) r'createdAt': createdAt,
     if (displayName != null) r'displayName': displayName,
     if (id != null) r'id': id,
-    if (pronouns != null) r'pronouns': pronouns,
     if (timeZone != null) r'timeZone': timeZone,
     if (updatedAt != null) r'updatedAt': updatedAt,
   });
@@ -70738,12 +71103,6 @@ class Inputprofiles_max_order_by {
       final l$id = data['id'];
       result$data['id'] = l$id == null ? null : fromJsonEnumorder_by((l$id as String));
     }
-    if (data.containsKey('pronouns')) {
-      final l$pronouns = data['pronouns'];
-      result$data['pronouns'] = l$pronouns == null
-          ? null
-          : fromJsonEnumorder_by((l$pronouns as String));
-    }
     if (data.containsKey('timeZone')) {
       final l$timeZone = data['timeZone'];
       result$data['timeZone'] = l$timeZone == null
@@ -70770,8 +71129,6 @@ class Inputprofiles_max_order_by {
   Enumorder_by? get displayName => (_$data['displayName'] as Enumorder_by?);
 
   Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
-
-  Enumorder_by? get pronouns => (_$data['pronouns'] as Enumorder_by?);
 
   Enumorder_by? get timeZone => (_$data['timeZone'] as Enumorder_by?);
 
@@ -70800,10 +71157,6 @@ class Inputprofiles_max_order_by {
     if (_$data.containsKey('id')) {
       final l$id = id;
       result$data['id'] = l$id == null ? null : toJsonEnumorder_by(l$id);
-    }
-    if (_$data.containsKey('pronouns')) {
-      final l$pronouns = pronouns;
-      result$data['pronouns'] = l$pronouns == null ? null : toJsonEnumorder_by(l$pronouns);
     }
     if (_$data.containsKey('timeZone')) {
       final l$timeZone = timeZone;
@@ -70864,14 +71217,6 @@ class Inputprofiles_max_order_by {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$pronouns = pronouns;
-    final lOther$pronouns = other.pronouns;
-    if (_$data.containsKey('pronouns') != other._$data.containsKey('pronouns')) {
-      return false;
-    }
-    if (l$pronouns != lOther$pronouns) {
-      return false;
-    }
     final l$timeZone = timeZone;
     final lOther$timeZone = other.timeZone;
     if (_$data.containsKey('timeZone') != other._$data.containsKey('timeZone')) {
@@ -70898,7 +71243,6 @@ class Inputprofiles_max_order_by {
     final l$createdAt = createdAt;
     final l$displayName = displayName;
     final l$id = id;
-    final l$pronouns = pronouns;
     final l$timeZone = timeZone;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
@@ -70907,7 +71251,6 @@ class Inputprofiles_max_order_by {
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('displayName') ? l$displayName : const {},
       _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('pronouns') ? l$pronouns : const {},
       _$data.containsKey('timeZone') ? l$timeZone : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
     ]);
@@ -70921,7 +71264,6 @@ class Inputprofiles_min_order_by {
     Enumorder_by? createdAt,
     Enumorder_by? displayName,
     Enumorder_by? id,
-    Enumorder_by? pronouns,
     Enumorder_by? timeZone,
     Enumorder_by? updatedAt,
   }) => Inputprofiles_min_order_by._({
@@ -70930,7 +71272,6 @@ class Inputprofiles_min_order_by {
     if (createdAt != null) r'createdAt': createdAt,
     if (displayName != null) r'displayName': displayName,
     if (id != null) r'id': id,
-    if (pronouns != null) r'pronouns': pronouns,
     if (timeZone != null) r'timeZone': timeZone,
     if (updatedAt != null) r'updatedAt': updatedAt,
   });
@@ -70965,12 +71306,6 @@ class Inputprofiles_min_order_by {
       final l$id = data['id'];
       result$data['id'] = l$id == null ? null : fromJsonEnumorder_by((l$id as String));
     }
-    if (data.containsKey('pronouns')) {
-      final l$pronouns = data['pronouns'];
-      result$data['pronouns'] = l$pronouns == null
-          ? null
-          : fromJsonEnumorder_by((l$pronouns as String));
-    }
     if (data.containsKey('timeZone')) {
       final l$timeZone = data['timeZone'];
       result$data['timeZone'] = l$timeZone == null
@@ -70997,8 +71332,6 @@ class Inputprofiles_min_order_by {
   Enumorder_by? get displayName => (_$data['displayName'] as Enumorder_by?);
 
   Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
-
-  Enumorder_by? get pronouns => (_$data['pronouns'] as Enumorder_by?);
 
   Enumorder_by? get timeZone => (_$data['timeZone'] as Enumorder_by?);
 
@@ -71027,10 +71360,6 @@ class Inputprofiles_min_order_by {
     if (_$data.containsKey('id')) {
       final l$id = id;
       result$data['id'] = l$id == null ? null : toJsonEnumorder_by(l$id);
-    }
-    if (_$data.containsKey('pronouns')) {
-      final l$pronouns = pronouns;
-      result$data['pronouns'] = l$pronouns == null ? null : toJsonEnumorder_by(l$pronouns);
     }
     if (_$data.containsKey('timeZone')) {
       final l$timeZone = timeZone;
@@ -71091,14 +71420,6 @@ class Inputprofiles_min_order_by {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$pronouns = pronouns;
-    final lOther$pronouns = other.pronouns;
-    if (_$data.containsKey('pronouns') != other._$data.containsKey('pronouns')) {
-      return false;
-    }
-    if (l$pronouns != lOther$pronouns) {
-      return false;
-    }
     final l$timeZone = timeZone;
     final lOther$timeZone = other.timeZone;
     if (_$data.containsKey('timeZone') != other._$data.containsKey('timeZone')) {
@@ -71125,7 +71446,6 @@ class Inputprofiles_min_order_by {
     final l$createdAt = createdAt;
     final l$displayName = displayName;
     final l$id = id;
-    final l$pronouns = pronouns;
     final l$timeZone = timeZone;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
@@ -71134,7 +71454,6 @@ class Inputprofiles_min_order_by {
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('displayName') ? l$displayName : const {},
       _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('pronouns') ? l$pronouns : const {},
       _$data.containsKey('timeZone') ? l$timeZone : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
     ]);
@@ -71542,7 +71861,7 @@ class Inputprofiles_set_input {
     EnumAvatarKind_enum? avatarKind,
     String? city,
     String? displayName,
-    String? pronouns,
+    EnumPronoun_enum? pronouns,
     String? timeZone,
   }) => Inputprofiles_set_input._({
     if (avatarFileId != null) r'avatarFileId': avatarFileId,
@@ -71577,7 +71896,9 @@ class Inputprofiles_set_input {
     }
     if (data.containsKey('pronouns')) {
       final l$pronouns = data['pronouns'];
-      result$data['pronouns'] = (l$pronouns as String?);
+      result$data['pronouns'] = l$pronouns == null
+          ? null
+          : fromJsonEnumPronoun_enum((l$pronouns as String));
     }
     if (data.containsKey('timeZone')) {
       final l$timeZone = data['timeZone'];
@@ -71596,7 +71917,7 @@ class Inputprofiles_set_input {
 
   String? get displayName => (_$data['displayName'] as String?);
 
-  String? get pronouns => (_$data['pronouns'] as String?);
+  EnumPronoun_enum? get pronouns => (_$data['pronouns'] as EnumPronoun_enum?);
 
   String? get timeZone => (_$data['timeZone'] as String?);
 
@@ -71622,7 +71943,7 @@ class Inputprofiles_set_input {
     }
     if (_$data.containsKey('pronouns')) {
       final l$pronouns = pronouns;
-      result$data['pronouns'] = l$pronouns;
+      result$data['pronouns'] = l$pronouns == null ? null : toJsonEnumPronoun_enum(l$pronouns);
     }
     if (_$data.containsKey('timeZone')) {
       final l$timeZone = timeZone;
@@ -71796,7 +72117,7 @@ class Inputprofiles_stream_cursor_value_input {
     DateTime? createdAt,
     String? displayName,
     String? id,
-    String? pronouns,
+    EnumPronoun_enum? pronouns,
     String? timeZone,
     DateTime? updatedAt,
   }) => Inputprofiles_stream_cursor_value_input._({
@@ -71845,7 +72166,9 @@ class Inputprofiles_stream_cursor_value_input {
     }
     if (data.containsKey('pronouns')) {
       final l$pronouns = data['pronouns'];
-      result$data['pronouns'] = (l$pronouns as String?);
+      result$data['pronouns'] = l$pronouns == null
+          ? null
+          : fromJsonEnumPronoun_enum((l$pronouns as String));
     }
     if (data.containsKey('timeZone')) {
       final l$timeZone = data['timeZone'];
@@ -71874,7 +72197,7 @@ class Inputprofiles_stream_cursor_value_input {
 
   String? get id => (_$data['id'] as String?);
 
-  String? get pronouns => (_$data['pronouns'] as String?);
+  EnumPronoun_enum? get pronouns => (_$data['pronouns'] as EnumPronoun_enum?);
 
   String? get timeZone => (_$data['timeZone'] as String?);
 
@@ -71912,7 +72235,7 @@ class Inputprofiles_stream_cursor_value_input {
     }
     if (_$data.containsKey('pronouns')) {
       final l$pronouns = pronouns;
-      result$data['pronouns'] = l$pronouns;
+      result$data['pronouns'] = l$pronouns == null ? null : toJsonEnumPronoun_enum(l$pronouns);
     }
     if (_$data.containsKey('timeZone')) {
       final l$timeZone = timeZone;
@@ -98164,7 +98487,9 @@ class InputuserSettings_bool_exp {
     InputString_comparison_exp? locale,
     InputBoolean_comparison_exp? lowStimulation,
     Inputtimestamptz_comparison_exp? onboardedAt,
+    InputPartnerIntent_enum_comparison_exp? partnerIntent,
     InputString_comparison_exp? partnerName,
+    InputPronoun_enum_comparison_exp? partnerPronouns,
     InputRelationshipPhase_enum_comparison_exp? phase,
     Inputprofiles_bool_exp? profile,
     InputRelationshipStatus_enum_comparison_exp? relationshipStatus,
@@ -98193,7 +98518,9 @@ class InputuserSettings_bool_exp {
     if (locale != null) r'locale': locale,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
     if (onboardedAt != null) r'onboardedAt': onboardedAt,
+    if (partnerIntent != null) r'partnerIntent': partnerIntent,
     if (partnerName != null) r'partnerName': partnerName,
+    if (partnerPronouns != null) r'partnerPronouns': partnerPronouns,
     if (phase != null) r'phase': phase,
     if (profile != null) r'profile': profile,
     if (relationshipStatus != null) r'relationshipStatus': relationshipStatus,
@@ -98297,11 +98624,25 @@ class InputuserSettings_bool_exp {
           ? null
           : Inputtimestamptz_comparison_exp.fromJson((l$onboardedAt as Map<String, dynamic>));
     }
+    if (data.containsKey('partnerIntent')) {
+      final l$partnerIntent = data['partnerIntent'];
+      result$data['partnerIntent'] = l$partnerIntent == null
+          ? null
+          : InputPartnerIntent_enum_comparison_exp.fromJson(
+              (l$partnerIntent as Map<String, dynamic>),
+            );
+    }
     if (data.containsKey('partnerName')) {
       final l$partnerName = data['partnerName'];
       result$data['partnerName'] = l$partnerName == null
           ? null
           : InputString_comparison_exp.fromJson((l$partnerName as Map<String, dynamic>));
+    }
+    if (data.containsKey('partnerPronouns')) {
+      final l$partnerPronouns = data['partnerPronouns'];
+      result$data['partnerPronouns'] = l$partnerPronouns == null
+          ? null
+          : InputPronoun_enum_comparison_exp.fromJson((l$partnerPronouns as Map<String, dynamic>));
     }
     if (data.containsKey('phase')) {
       final l$phase = data['phase'];
@@ -98429,8 +98770,14 @@ class InputuserSettings_bool_exp {
   Inputtimestamptz_comparison_exp? get onboardedAt =>
       (_$data['onboardedAt'] as Inputtimestamptz_comparison_exp?);
 
+  InputPartnerIntent_enum_comparison_exp? get partnerIntent =>
+      (_$data['partnerIntent'] as InputPartnerIntent_enum_comparison_exp?);
+
   InputString_comparison_exp? get partnerName =>
       (_$data['partnerName'] as InputString_comparison_exp?);
+
+  InputPronoun_enum_comparison_exp? get partnerPronouns =>
+      (_$data['partnerPronouns'] as InputPronoun_enum_comparison_exp?);
 
   InputRelationshipPhase_enum_comparison_exp? get phase =>
       (_$data['phase'] as InputRelationshipPhase_enum_comparison_exp?);
@@ -98527,9 +98874,17 @@ class InputuserSettings_bool_exp {
       final l$onboardedAt = onboardedAt;
       result$data['onboardedAt'] = l$onboardedAt?.toJson();
     }
+    if (_$data.containsKey('partnerIntent')) {
+      final l$partnerIntent = partnerIntent;
+      result$data['partnerIntent'] = l$partnerIntent?.toJson();
+    }
     if (_$data.containsKey('partnerName')) {
       final l$partnerName = partnerName;
       result$data['partnerName'] = l$partnerName?.toJson();
+    }
+    if (_$data.containsKey('partnerPronouns')) {
+      final l$partnerPronouns = partnerPronouns;
+      result$data['partnerPronouns'] = l$partnerPronouns?.toJson();
     }
     if (_$data.containsKey('phase')) {
       final l$phase = phase;
@@ -98728,12 +99083,28 @@ class InputuserSettings_bool_exp {
     if (l$onboardedAt != lOther$onboardedAt) {
       return false;
     }
+    final l$partnerIntent = partnerIntent;
+    final lOther$partnerIntent = other.partnerIntent;
+    if (_$data.containsKey('partnerIntent') != other._$data.containsKey('partnerIntent')) {
+      return false;
+    }
+    if (l$partnerIntent != lOther$partnerIntent) {
+      return false;
+    }
     final l$partnerName = partnerName;
     final lOther$partnerName = other.partnerName;
     if (_$data.containsKey('partnerName') != other._$data.containsKey('partnerName')) {
       return false;
     }
     if (l$partnerName != lOther$partnerName) {
+      return false;
+    }
+    final l$partnerPronouns = partnerPronouns;
+    final lOther$partnerPronouns = other.partnerPronouns;
+    if (_$data.containsKey('partnerPronouns') != other._$data.containsKey('partnerPronouns')) {
+      return false;
+    }
+    if (l$partnerPronouns != lOther$partnerPronouns) {
       return false;
     }
     final l$phase = phase;
@@ -98863,7 +99234,9 @@ class InputuserSettings_bool_exp {
     final l$locale = locale;
     final l$lowStimulation = lowStimulation;
     final l$onboardedAt = onboardedAt;
+    final l$partnerIntent = partnerIntent;
     final l$partnerName = partnerName;
+    final l$partnerPronouns = partnerPronouns;
     final l$phase = phase;
     final l$profile = profile;
     final l$relationshipStatus = relationshipStatus;
@@ -98900,7 +99273,9 @@ class InputuserSettings_bool_exp {
       _$data.containsKey('locale') ? l$locale : const {},
       _$data.containsKey('lowStimulation') ? l$lowStimulation : const {},
       _$data.containsKey('onboardedAt') ? l$onboardedAt : const {},
+      _$data.containsKey('partnerIntent') ? l$partnerIntent : const {},
       _$data.containsKey('partnerName') ? l$partnerName : const {},
+      _$data.containsKey('partnerPronouns') ? l$partnerPronouns : const {},
       _$data.containsKey('phase') ? l$phase : const {},
       _$data.containsKey('profile') ? l$profile : const {},
       _$data.containsKey('relationshipStatus') ? l$relationshipStatus : const {},
@@ -98931,7 +99306,9 @@ class InputuserSettings_order_by {
     Enumorder_by? locale,
     Enumorder_by? lowStimulation,
     Enumorder_by? onboardedAt,
+    Enumorder_by? partnerIntent,
     Enumorder_by? partnerName,
+    Enumorder_by? partnerPronouns,
     Enumorder_by? phase,
     Inputprofiles_order_by? profile,
     Enumorder_by? relationshipStatus,
@@ -98957,7 +99334,9 @@ class InputuserSettings_order_by {
     if (locale != null) r'locale': locale,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
     if (onboardedAt != null) r'onboardedAt': onboardedAt,
+    if (partnerIntent != null) r'partnerIntent': partnerIntent,
     if (partnerName != null) r'partnerName': partnerName,
+    if (partnerPronouns != null) r'partnerPronouns': partnerPronouns,
     if (phase != null) r'phase': phase,
     if (profile != null) r'profile': profile,
     if (relationshipStatus != null) r'relationshipStatus': relationshipStatus,
@@ -99037,11 +99416,23 @@ class InputuserSettings_order_by {
           ? null
           : fromJsonEnumorder_by((l$onboardedAt as String));
     }
+    if (data.containsKey('partnerIntent')) {
+      final l$partnerIntent = data['partnerIntent'];
+      result$data['partnerIntent'] = l$partnerIntent == null
+          ? null
+          : fromJsonEnumorder_by((l$partnerIntent as String));
+    }
     if (data.containsKey('partnerName')) {
       final l$partnerName = data['partnerName'];
       result$data['partnerName'] = l$partnerName == null
           ? null
           : fromJsonEnumorder_by((l$partnerName as String));
+    }
+    if (data.containsKey('partnerPronouns')) {
+      final l$partnerPronouns = data['partnerPronouns'];
+      result$data['partnerPronouns'] = l$partnerPronouns == null
+          ? null
+          : fromJsonEnumorder_by((l$partnerPronouns as String));
     }
     if (data.containsKey('phase')) {
       final l$phase = data['phase'];
@@ -99142,7 +99533,11 @@ class InputuserSettings_order_by {
 
   Enumorder_by? get onboardedAt => (_$data['onboardedAt'] as Enumorder_by?);
 
+  Enumorder_by? get partnerIntent => (_$data['partnerIntent'] as Enumorder_by?);
+
   Enumorder_by? get partnerName => (_$data['partnerName'] as Enumorder_by?);
+
+  Enumorder_by? get partnerPronouns => (_$data['partnerPronouns'] as Enumorder_by?);
 
   Enumorder_by? get phase => (_$data['phase'] as Enumorder_by?);
 
@@ -99222,9 +99617,21 @@ class InputuserSettings_order_by {
       final l$onboardedAt = onboardedAt;
       result$data['onboardedAt'] = l$onboardedAt == null ? null : toJsonEnumorder_by(l$onboardedAt);
     }
+    if (_$data.containsKey('partnerIntent')) {
+      final l$partnerIntent = partnerIntent;
+      result$data['partnerIntent'] = l$partnerIntent == null
+          ? null
+          : toJsonEnumorder_by(l$partnerIntent);
+    }
     if (_$data.containsKey('partnerName')) {
       final l$partnerName = partnerName;
       result$data['partnerName'] = l$partnerName == null ? null : toJsonEnumorder_by(l$partnerName);
+    }
+    if (_$data.containsKey('partnerPronouns')) {
+      final l$partnerPronouns = partnerPronouns;
+      result$data['partnerPronouns'] = l$partnerPronouns == null
+          ? null
+          : toJsonEnumorder_by(l$partnerPronouns);
     }
     if (_$data.containsKey('phase')) {
       final l$phase = phase;
@@ -99393,12 +99800,28 @@ class InputuserSettings_order_by {
     if (l$onboardedAt != lOther$onboardedAt) {
       return false;
     }
+    final l$partnerIntent = partnerIntent;
+    final lOther$partnerIntent = other.partnerIntent;
+    if (_$data.containsKey('partnerIntent') != other._$data.containsKey('partnerIntent')) {
+      return false;
+    }
+    if (l$partnerIntent != lOther$partnerIntent) {
+      return false;
+    }
     final l$partnerName = partnerName;
     final lOther$partnerName = other.partnerName;
     if (_$data.containsKey('partnerName') != other._$data.containsKey('partnerName')) {
       return false;
     }
     if (l$partnerName != lOther$partnerName) {
+      return false;
+    }
+    final l$partnerPronouns = partnerPronouns;
+    final lOther$partnerPronouns = other.partnerPronouns;
+    if (_$data.containsKey('partnerPronouns') != other._$data.containsKey('partnerPronouns')) {
+      return false;
+    }
+    if (l$partnerPronouns != lOther$partnerPronouns) {
       return false;
     }
     final l$phase = phase;
@@ -99525,7 +99948,9 @@ class InputuserSettings_order_by {
     final l$locale = locale;
     final l$lowStimulation = lowStimulation;
     final l$onboardedAt = onboardedAt;
+    final l$partnerIntent = partnerIntent;
     final l$partnerName = partnerName;
+    final l$partnerPronouns = partnerPronouns;
     final l$phase = phase;
     final l$profile = profile;
     final l$relationshipStatus = relationshipStatus;
@@ -99551,7 +99976,9 @@ class InputuserSettings_order_by {
       _$data.containsKey('locale') ? l$locale : const {},
       _$data.containsKey('lowStimulation') ? l$lowStimulation : const {},
       _$data.containsKey('onboardedAt') ? l$onboardedAt : const {},
+      _$data.containsKey('partnerIntent') ? l$partnerIntent : const {},
       _$data.containsKey('partnerName') ? l$partnerName : const {},
+      _$data.containsKey('partnerPronouns') ? l$partnerPronouns : const {},
       _$data.containsKey('phase') ? l$phase : const {},
       _$data.containsKey('profile') ? l$profile : const {},
       _$data.containsKey('relationshipStatus') ? l$relationshipStatus : const {},
@@ -99628,7 +100055,9 @@ class InputuserSettings_set_input {
     String? locale,
     bool? lowStimulation,
     DateTime? onboardedAt,
+    EnumPartnerIntent_enum? partnerIntent,
     String? partnerName,
+    EnumPronoun_enum? partnerPronouns,
     EnumRelationshipPhase_enum? phase,
     EnumRelationshipStatus_enum? relationshipStatus,
     bool? shareReadReceipts,
@@ -99650,7 +100079,9 @@ class InputuserSettings_set_input {
     if (locale != null) r'locale': locale,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
     if (onboardedAt != null) r'onboardedAt': onboardedAt,
+    if (partnerIntent != null) r'partnerIntent': partnerIntent,
     if (partnerName != null) r'partnerName': partnerName,
+    if (partnerPronouns != null) r'partnerPronouns': partnerPronouns,
     if (phase != null) r'phase': phase,
     if (relationshipStatus != null) r'relationshipStatus': relationshipStatus,
     if (shareReadReceipts != null) r'shareReadReceipts': shareReadReceipts,
@@ -99715,9 +100146,21 @@ class InputuserSettings_set_input {
           ? null
           : DateTime.parse((l$onboardedAt as String));
     }
+    if (data.containsKey('partnerIntent')) {
+      final l$partnerIntent = data['partnerIntent'];
+      result$data['partnerIntent'] = l$partnerIntent == null
+          ? null
+          : fromJsonEnumPartnerIntent_enum((l$partnerIntent as String));
+    }
     if (data.containsKey('partnerName')) {
       final l$partnerName = data['partnerName'];
       result$data['partnerName'] = (l$partnerName as String?);
+    }
+    if (data.containsKey('partnerPronouns')) {
+      final l$partnerPronouns = data['partnerPronouns'];
+      result$data['partnerPronouns'] = l$partnerPronouns == null
+          ? null
+          : fromJsonEnumPronoun_enum((l$partnerPronouns as String));
     }
     if (data.containsKey('phase')) {
       final l$phase = data['phase'];
@@ -99792,7 +100235,11 @@ class InputuserSettings_set_input {
 
   DateTime? get onboardedAt => (_$data['onboardedAt'] as DateTime?);
 
+  EnumPartnerIntent_enum? get partnerIntent => (_$data['partnerIntent'] as EnumPartnerIntent_enum?);
+
   String? get partnerName => (_$data['partnerName'] as String?);
+
+  EnumPronoun_enum? get partnerPronouns => (_$data['partnerPronouns'] as EnumPronoun_enum?);
 
   EnumRelationshipPhase_enum? get phase => (_$data['phase'] as EnumRelationshipPhase_enum?);
 
@@ -99861,9 +100308,21 @@ class InputuserSettings_set_input {
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$onboardedAt);
     }
+    if (_$data.containsKey('partnerIntent')) {
+      final l$partnerIntent = partnerIntent;
+      result$data['partnerIntent'] = l$partnerIntent == null
+          ? null
+          : toJsonEnumPartnerIntent_enum(l$partnerIntent);
+    }
     if (_$data.containsKey('partnerName')) {
       final l$partnerName = partnerName;
       result$data['partnerName'] = l$partnerName;
+    }
+    if (_$data.containsKey('partnerPronouns')) {
+      final l$partnerPronouns = partnerPronouns;
+      result$data['partnerPronouns'] = l$partnerPronouns == null
+          ? null
+          : toJsonEnumPronoun_enum(l$partnerPronouns);
     }
     if (_$data.containsKey('phase')) {
       final l$phase = phase;
@@ -100022,12 +100481,28 @@ class InputuserSettings_set_input {
     if (l$onboardedAt != lOther$onboardedAt) {
       return false;
     }
+    final l$partnerIntent = partnerIntent;
+    final lOther$partnerIntent = other.partnerIntent;
+    if (_$data.containsKey('partnerIntent') != other._$data.containsKey('partnerIntent')) {
+      return false;
+    }
+    if (l$partnerIntent != lOther$partnerIntent) {
+      return false;
+    }
     final l$partnerName = partnerName;
     final lOther$partnerName = other.partnerName;
     if (_$data.containsKey('partnerName') != other._$data.containsKey('partnerName')) {
       return false;
     }
     if (l$partnerName != lOther$partnerName) {
+      return false;
+    }
+    final l$partnerPronouns = partnerPronouns;
+    final lOther$partnerPronouns = other.partnerPronouns;
+    if (_$data.containsKey('partnerPronouns') != other._$data.containsKey('partnerPronouns')) {
+      return false;
+    }
+    if (l$partnerPronouns != lOther$partnerPronouns) {
       return false;
     }
     final l$phase = phase;
@@ -100129,7 +100604,9 @@ class InputuserSettings_set_input {
     final l$locale = locale;
     final l$lowStimulation = lowStimulation;
     final l$onboardedAt = onboardedAt;
+    final l$partnerIntent = partnerIntent;
     final l$partnerName = partnerName;
+    final l$partnerPronouns = partnerPronouns;
     final l$phase = phase;
     final l$relationshipStatus = relationshipStatus;
     final l$shareReadReceipts = shareReadReceipts;
@@ -100159,7 +100636,9 @@ class InputuserSettings_set_input {
       _$data.containsKey('locale') ? l$locale : const {},
       _$data.containsKey('lowStimulation') ? l$lowStimulation : const {},
       _$data.containsKey('onboardedAt') ? l$onboardedAt : const {},
+      _$data.containsKey('partnerIntent') ? l$partnerIntent : const {},
       _$data.containsKey('partnerName') ? l$partnerName : const {},
+      _$data.containsKey('partnerPronouns') ? l$partnerPronouns : const {},
       _$data.containsKey('phase') ? l$phase : const {},
       _$data.containsKey('relationshipStatus') ? l$relationshipStatus : const {},
       _$data.containsKey('shareReadReceipts') ? l$shareReadReceipts : const {},
@@ -100266,7 +100745,9 @@ class InputuserSettings_stream_cursor_value_input {
     String? locale,
     bool? lowStimulation,
     DateTime? onboardedAt,
+    EnumPartnerIntent_enum? partnerIntent,
     String? partnerName,
+    EnumPronoun_enum? partnerPronouns,
     EnumRelationshipPhase_enum? phase,
     EnumRelationshipStatus_enum? relationshipStatus,
     bool? shareReadReceipts,
@@ -100291,7 +100772,9 @@ class InputuserSettings_stream_cursor_value_input {
     if (locale != null) r'locale': locale,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
     if (onboardedAt != null) r'onboardedAt': onboardedAt,
+    if (partnerIntent != null) r'partnerIntent': partnerIntent,
     if (partnerName != null) r'partnerName': partnerName,
+    if (partnerPronouns != null) r'partnerPronouns': partnerPronouns,
     if (phase != null) r'phase': phase,
     if (relationshipStatus != null) r'relationshipStatus': relationshipStatus,
     if (shareReadReceipts != null) r'shareReadReceipts': shareReadReceipts,
@@ -100364,9 +100847,21 @@ class InputuserSettings_stream_cursor_value_input {
           ? null
           : DateTime.parse((l$onboardedAt as String));
     }
+    if (data.containsKey('partnerIntent')) {
+      final l$partnerIntent = data['partnerIntent'];
+      result$data['partnerIntent'] = l$partnerIntent == null
+          ? null
+          : fromJsonEnumPartnerIntent_enum((l$partnerIntent as String));
+    }
     if (data.containsKey('partnerName')) {
       final l$partnerName = data['partnerName'];
       result$data['partnerName'] = (l$partnerName as String?);
+    }
+    if (data.containsKey('partnerPronouns')) {
+      final l$partnerPronouns = data['partnerPronouns'];
+      result$data['partnerPronouns'] = l$partnerPronouns == null
+          ? null
+          : fromJsonEnumPronoun_enum((l$partnerPronouns as String));
     }
     if (data.containsKey('phase')) {
       final l$phase = data['phase'];
@@ -100453,7 +100948,11 @@ class InputuserSettings_stream_cursor_value_input {
 
   DateTime? get onboardedAt => (_$data['onboardedAt'] as DateTime?);
 
+  EnumPartnerIntent_enum? get partnerIntent => (_$data['partnerIntent'] as EnumPartnerIntent_enum?);
+
   String? get partnerName => (_$data['partnerName'] as String?);
+
+  EnumPronoun_enum? get partnerPronouns => (_$data['partnerPronouns'] as EnumPronoun_enum?);
 
   EnumRelationshipPhase_enum? get phase => (_$data['phase'] as EnumRelationshipPhase_enum?);
 
@@ -100532,9 +101031,21 @@ class InputuserSettings_stream_cursor_value_input {
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$onboardedAt);
     }
+    if (_$data.containsKey('partnerIntent')) {
+      final l$partnerIntent = partnerIntent;
+      result$data['partnerIntent'] = l$partnerIntent == null
+          ? null
+          : toJsonEnumPartnerIntent_enum(l$partnerIntent);
+    }
     if (_$data.containsKey('partnerName')) {
       final l$partnerName = partnerName;
       result$data['partnerName'] = l$partnerName;
+    }
+    if (_$data.containsKey('partnerPronouns')) {
+      final l$partnerPronouns = partnerPronouns;
+      result$data['partnerPronouns'] = l$partnerPronouns == null
+          ? null
+          : toJsonEnumPronoun_enum(l$partnerPronouns);
     }
     if (_$data.containsKey('phase')) {
       final l$phase = phase;
@@ -100711,12 +101222,28 @@ class InputuserSettings_stream_cursor_value_input {
     if (l$onboardedAt != lOther$onboardedAt) {
       return false;
     }
+    final l$partnerIntent = partnerIntent;
+    final lOther$partnerIntent = other.partnerIntent;
+    if (_$data.containsKey('partnerIntent') != other._$data.containsKey('partnerIntent')) {
+      return false;
+    }
+    if (l$partnerIntent != lOther$partnerIntent) {
+      return false;
+    }
     final l$partnerName = partnerName;
     final lOther$partnerName = other.partnerName;
     if (_$data.containsKey('partnerName') != other._$data.containsKey('partnerName')) {
       return false;
     }
     if (l$partnerName != lOther$partnerName) {
+      return false;
+    }
+    final l$partnerPronouns = partnerPronouns;
+    final lOther$partnerPronouns = other.partnerPronouns;
+    if (_$data.containsKey('partnerPronouns') != other._$data.containsKey('partnerPronouns')) {
+      return false;
+    }
+    if (l$partnerPronouns != lOther$partnerPronouns) {
       return false;
     }
     final l$phase = phase;
@@ -100835,7 +101362,9 @@ class InputuserSettings_stream_cursor_value_input {
     final l$locale = locale;
     final l$lowStimulation = lowStimulation;
     final l$onboardedAt = onboardedAt;
+    final l$partnerIntent = partnerIntent;
     final l$partnerName = partnerName;
+    final l$partnerPronouns = partnerPronouns;
     final l$phase = phase;
     final l$relationshipStatus = relationshipStatus;
     final l$shareReadReceipts = shareReadReceipts;
@@ -100868,7 +101397,9 @@ class InputuserSettings_stream_cursor_value_input {
       _$data.containsKey('locale') ? l$locale : const {},
       _$data.containsKey('lowStimulation') ? l$lowStimulation : const {},
       _$data.containsKey('onboardedAt') ? l$onboardedAt : const {},
+      _$data.containsKey('partnerIntent') ? l$partnerIntent : const {},
       _$data.containsKey('partnerName') ? l$partnerName : const {},
+      _$data.containsKey('partnerPronouns') ? l$partnerPronouns : const {},
       _$data.containsKey('phase') ? l$phase : const {},
       _$data.containsKey('relationshipStatus') ? l$relationshipStatus : const {},
       _$data.containsKey('shareReadReceipts') ? l$shareReadReceipts : const {},
@@ -103643,6 +104174,43 @@ EnumPartnerFactSource_enum fromJsonEnumPartnerFactSource_enum(String value) {
   }
 }
 
+enum EnumPartnerIntent_enum {
+  invite,
+  later,
+  solo_only,
+  $unknown;
+
+  factory EnumPartnerIntent_enum.fromJson(String value) => fromJsonEnumPartnerIntent_enum(value);
+
+  String toJson() => toJsonEnumPartnerIntent_enum(this);
+}
+
+String toJsonEnumPartnerIntent_enum(EnumPartnerIntent_enum e) {
+  switch (e) {
+    case EnumPartnerIntent_enum.invite:
+      return r'invite';
+    case EnumPartnerIntent_enum.later:
+      return r'later';
+    case EnumPartnerIntent_enum.solo_only:
+      return r'solo_only';
+    case EnumPartnerIntent_enum.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumPartnerIntent_enum fromJsonEnumPartnerIntent_enum(String value) {
+  switch (value) {
+    case r'invite':
+      return EnumPartnerIntent_enum.invite;
+    case r'later':
+      return EnumPartnerIntent_enum.later;
+    case r'solo_only':
+      return EnumPartnerIntent_enum.solo_only;
+    default:
+      return EnumPartnerIntent_enum.$unknown;
+  }
+}
+
 enum EnumPartnerMessageKind_enum {
   drawing,
   note,
@@ -103683,6 +104251,43 @@ EnumPartnerMessageKind_enum fromJsonEnumPartnerMessageKind_enum(String value) {
       return EnumPartnerMessageKind_enum.voice;
     default:
       return EnumPartnerMessageKind_enum.$unknown;
+  }
+}
+
+enum EnumPronoun_enum {
+  he,
+  name_only,
+  she,
+  $unknown;
+
+  factory EnumPronoun_enum.fromJson(String value) => fromJsonEnumPronoun_enum(value);
+
+  String toJson() => toJsonEnumPronoun_enum(this);
+}
+
+String toJsonEnumPronoun_enum(EnumPronoun_enum e) {
+  switch (e) {
+    case EnumPronoun_enum.he:
+      return r'he';
+    case EnumPronoun_enum.name_only:
+      return r'name_only';
+    case EnumPronoun_enum.she:
+      return r'she';
+    case EnumPronoun_enum.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumPronoun_enum fromJsonEnumPronoun_enum(String value) {
+  switch (value) {
+    case r'he':
+      return EnumPronoun_enum.he;
+    case r'name_only':
+      return EnumPronoun_enum.name_only;
+    case r'she':
+      return EnumPronoun_enum.she;
+    default:
+      return EnumPronoun_enum.$unknown;
   }
 }
 
@@ -110947,7 +111552,9 @@ enum EnumuserSettings_select_column {
   locale,
   lowStimulation,
   onboardedAt,
+  partnerIntent,
   partnerName,
+  partnerPronouns,
   phase,
   relationshipStatus,
   shareReadReceipts,
@@ -110992,8 +111599,12 @@ String toJsonEnumuserSettings_select_column(EnumuserSettings_select_column e) {
       return r'lowStimulation';
     case EnumuserSettings_select_column.onboardedAt:
       return r'onboardedAt';
+    case EnumuserSettings_select_column.partnerIntent:
+      return r'partnerIntent';
     case EnumuserSettings_select_column.partnerName:
       return r'partnerName';
+    case EnumuserSettings_select_column.partnerPronouns:
+      return r'partnerPronouns';
     case EnumuserSettings_select_column.phase:
       return r'phase';
     case EnumuserSettings_select_column.relationshipStatus:
@@ -111047,8 +111658,12 @@ EnumuserSettings_select_column fromJsonEnumuserSettings_select_column(String val
       return EnumuserSettings_select_column.lowStimulation;
     case r'onboardedAt':
       return EnumuserSettings_select_column.onboardedAt;
+    case r'partnerIntent':
+      return EnumuserSettings_select_column.partnerIntent;
     case r'partnerName':
       return EnumuserSettings_select_column.partnerName;
+    case r'partnerPronouns':
+      return EnumuserSettings_select_column.partnerPronouns;
     case r'phase':
       return EnumuserSettings_select_column.phase;
     case r'relationshipStatus':

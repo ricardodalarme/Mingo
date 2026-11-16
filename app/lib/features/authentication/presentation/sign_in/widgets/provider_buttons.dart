@@ -4,9 +4,6 @@ import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// Whether the build offers Apple and Google. The dev project keeps both off.
-const bool showProviderButtons = !EnvVariables.debugSignIn;
-
 const double _markSize = 20;
 
 const String _appleMark =
@@ -17,27 +14,12 @@ const String _googleMark =
 
 /// The Apple and Google actions shared by the sign-in and existing-account screens.
 ///
-/// When [showProviders] is false it offers the email/password fallback instead.
-class const ProviderButtons({
-  final bool showProviders = showProviderButtons,
-  final void Function()? onEmailSignIn,
-  super.key,
-}) extends StatelessWidget {
+/// Debug-sign-in builds add an e-mail and password action for testing.
+class const ProviderButtons({final void Function()? onEmailSignIn, super.key})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.authentication;
-
-    if (!showProviders) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          BaseNote(text: l10n.providersUnavailable),
-          const SizedBox(height: AppSpace.s16),
-          BaseButton(text: l10n.emailSignInFallback, onPressed: onEmailSignIn),
-        ],
-      );
-    }
-
     final isLoading = context.select((SignInCubit cubit) => cubit.state.signInAction.isLoading);
     final cubit = context.read<SignInCubit>();
 
@@ -58,6 +40,15 @@ class const ProviderButtons({
           leading: SvgPicture.string(_googleMark, width: _markSize, height: _markSize),
           onPressed: cubit.signInWithGoogle,
         ),
+        if (EnvVariables.debugSignIn) ...[
+          const SizedBox(height: AppSpace.s12),
+          BaseButton(
+            text: l10n.emailSignInFallback,
+            variant: .secondary,
+            isEnabled: !isLoading,
+            onPressed: onEmailSignIn,
+          ),
+        ],
       ],
     );
   }

@@ -16,7 +16,7 @@ PageRouteInfo<void> _nextIntroRoute() {
     1 => const IntroGoalsRoute(),
     2 => const IntroThemeRoute(),
     3 => const FirstSlipRoute(),
-    _ => const SignInRoute(),
+    _ => const CreateAccountRoute(),
   };
 }
 
@@ -32,17 +32,7 @@ class const WelcomePage({super.key}) extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                BaseRoundButton(
-                  icon: AppIcons.settings,
-                  semanticLabel: context.l10n.settingsHome.title,
-                  onPressed: () => context.pushRoute(const SettingsHomeRoute()),
-                ),
-              ],
-            ),
-            const SizedBox(height: AppSpace.s16),
+            const SizedBox(height: AppSpace.s44),
             const BaseFace(kind: FaceKind.smile, size: FaceSize.showcase),
             const SizedBox(height: AppSpace.s34),
             Semantics(

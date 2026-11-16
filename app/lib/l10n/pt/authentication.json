@@ -1,9 +1,7 @@
 {
   "signInTitle": "Entrar",
   "signInSubtitle": "Sem e-mail e senha. Só Apple ou Google.",
-  "signInDebugSubtitle": "Neste build de teste, entre com e-mail e senha.",
   "signInNote": "Entrar leva direto para o seu Hoje.",
-  "providersUnavailable": "Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.",
   "emailSignInFallback": "Entrar com e-mail e senha",
   "existingAccountTitle": "Você já tem uma conta",
   "existingAccountSubtitle": "Entre para continuar de onde parou.",
@@ -89,5 +87,10 @@
     "validation_failed": "Confira as informações e tente de novo.",
     "weak_password": "Escolha uma senha mais forte.",
     "other": "Não deu para entrar agora. Tente de novo."
-  }
+  },
+  "legal": "Ao continuar, você confirma que tem 18 anos ou mais e concorda com os {terms} e a {privacy}.",
+  "legalTerms": "Termos",
+  "legalPrivacy": "Política de Privacidade",
+  "legalPlain": "Ao continuar, você confirma que tem 18 anos ou mais e concorda com os Termos e a Política de Privacidade.",
+  "tryAgain": "Tentar de novo"
 }

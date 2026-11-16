@@ -1,12 +1,17 @@
 mutation SaveProfileSetup(
   $profileId: uuid!
   $displayName: String!
+  $pronouns: Pronoun_enum
   $theme: AppTheme_enum!
   $partnerName: String
+  $partnerPronouns: Pronoun_enum
   $togetherSince: date
   $onboardedAt: timestamptz!
 ) {
-  updateProfiles(where: { id: { _eq: $profileId } }, _set: { displayName: $displayName }) {
+  updateProfiles(
+    where: { id: { _eq: $profileId } }
+    _set: { displayName: $displayName, pronouns: $pronouns }
+  ) {
     affected_rows
   }
   updateUserSettings(
@@ -14,6 +19,7 @@ mutation SaveProfileSetup(
     _set: {
       theme: $theme
       partnerName: $partnerName
+      partnerPronouns: $partnerPronouns
       togetherSince: $togetherSince
       onboardedAt: $onboardedAt
     }

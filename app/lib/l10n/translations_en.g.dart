@@ -76,6 +76,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$connectUs$en connectUs = _Translations$connectUs$en._(_root);
   @override
+  late final _Translations$createAccount$en createAccount = _Translations$createAccount$en._(_root);
+  @override
   late final _Translations$dateNight$en dateNight = _Translations$dateNight$en._(_root);
   @override
   late final _Translations$dates$en dates = _Translations$dates$en._(_root);
@@ -162,6 +164,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
   @override
   late final _Translations$programs$en programs = _Translations$programs$en._(_root);
+  @override
+  late final _Translations$pronouns$en pronouns = _Translations$pronouns$en._(_root);
   @override
   late final _Translations$questions$en questions = _Translations$questions$en._(_root);
   @override
@@ -354,12 +358,7 @@ class _Translations$authentication$en extends Translations$authentication$pt {
   @override
   String get signInSubtitle => 'No email and password. Just Apple or Google.';
   @override
-  String get signInDebugSubtitle => 'In this test build, sign in with email and password.';
-  @override
   String get signInNote => 'Signing in takes you straight to your Today.';
-  @override
-  String get providersUnavailable =>
-      'Apple and Google are off in this test build. Sign in with email and password.';
   @override
   String get emailSignInFallback => 'Sign in with email and password';
   @override
@@ -453,6 +452,18 @@ class _Translations$authentication$en extends Translations$authentication$pt {
     'weak_password': 'Choose a stronger password.',
     'other': 'Could not sign you in right now. Try again.',
   };
+  @override
+  String legal({required Object terms, required Object privacy}) =>
+      'By continuing, you confirm you are 18 or older and agree to the ${terms} and the ${privacy}.';
+  @override
+  String get legalTerms => 'Terms';
+  @override
+  String get legalPrivacy => 'Privacy Policy';
+  @override
+  String get legalPlain =>
+      'By continuing, you confirm you are 18 or older and agree to the Terms and the Privacy Policy.';
+  @override
+  String get tryAgain => 'Try again';
 }
 
 // Path: capsules
@@ -981,6 +992,26 @@ class _Translations$connectUs$en extends Translations$connectUs$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t send right now. Try again.',
   };
+}
+
+// Path: createAccount
+class _Translations$createAccount$en extends Translations$createAccount$pt {
+  _Translations$createAccount$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Create account';
+  @override
+  String get headline => 'Keep it safe';
+  @override
+  String get headlineHighlight => 'safe';
+  @override
+  String get subtitleWithSlip =>
+      'Your first slip is saved on this phone. Create the account so you do not lose it.';
+  @override
+  String get subtitleWithoutSlip => 'Create the account to keep your slips and not lose them.';
 }
 
 // Path: dateNight
@@ -3601,6 +3632,14 @@ class _Translations$partnerStep$en extends Translations$partnerStep$pt {
   String get haveCode => 'I have an invite code';
   @override
   String get continueButton => 'Continue';
+  @override
+  String get soloOnlyTitle => 'Just for me';
+  @override
+  String get soloOnlySupport => 'Without inviting anyone';
+  @override
+  String get whyInvite => 'Why invite?';
+  @override
+  late final _Translations$partnerStep$why$en why = _Translations$partnerStep$why$en._(_root);
 }
 
 // Path: plus
@@ -3834,10 +3873,6 @@ class _Translations$profileDetails$en extends Translations$profileDetails$pt {
   @override
   String get pronounsLabel => 'Pronouns';
   @override
-  String get pronounsHint => 'Optional';
-  @override
-  Map<String, String> get pronounsErrors => {'tooLong': 'Use at most 30 characters.'};
-  @override
   String get timeZoneLabel => 'Time zone';
   @override
   String get timeZonePlaceholder => 'Pick a time zone';
@@ -3913,16 +3948,6 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   @override
   Map<String, String> get partnerNameErrors => {'tooLong': 'Use at most 30 characters.'};
   @override
-  String get partnerNameNote => 'Your partner\'s name stays on your account only.';
-  @override
-  String get themeLabel => 'Your app colour';
-  @override
-  String get themeRose => 'Rose';
-  @override
-  String get themeBlue => 'Blue';
-  @override
-  String get themeNeutral => 'Neutral';
-  @override
   String get dateLabel => 'When did you start?';
   @override
   String get dateHint => 'Pick a date';
@@ -3954,6 +3979,17 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
     'NETWORK': 'No connection. Your answers are still here, try again.',
     'other': 'Could not save right now. Try again.',
   };
+  @override
+  String get pronounsNote =>
+      'How to refer to each of you in sentences. When the other person joins, their own choice applies.';
+  @override
+  String get themeLabel => 'Your app colour';
+  @override
+  String get themeRose => 'Rose';
+  @override
+  String get themeBlue => 'Blue';
+  @override
+  String get themeNeutral => 'Neutral';
 }
 
 // Path: programs
@@ -4119,6 +4155,22 @@ class _Translations$programs$en extends Translations$programs$pt {
   };
   @override
   String get freeNote => 'Free shows only the first lesson.';
+}
+
+// Path: pronouns
+class _Translations$pronouns$en extends Translations$pronouns$pt {
+  _Translations$pronouns$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  Map<String, String> get options => {
+    'she': 'She',
+    'he': 'He',
+    'nameOnly': 'Name only',
+    'other': 'Name only',
+  };
 }
 
 // Path: questions
@@ -6586,6 +6638,21 @@ class _Translations$need$sent$en extends Translations$need$sent$pt {
   String get done => 'Done';
 }
 
+// Path: partnerStep.why
+class _Translations$partnerStep$why$en extends Translations$partnerStep$why$pt {
+  _Translations$partnerStep$why$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Why invite?';
+  @override
+  String get shared => 'Shared cards and tools need both of you.';
+  @override
+  String get privacy => 'Your slips and private notes stay yours until you share them.';
+}
+
 // Path: quickSlip.saved
 class _Translations$quickSlip$saved$en extends Translations$quickSlip$saved$pt {
   _Translations$quickSlip$saved$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -7340,11 +7407,7 @@ extension on TranslationsEn {
           'account.errors.other' => 'Could not finish now. Try again.',
           'authentication.signInTitle' => 'Sign in',
           'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
-          'authentication.signInDebugSubtitle' =>
-            'In this test build, sign in with email and password.',
           'authentication.signInNote' => 'Signing in takes you straight to your Today.',
-          'authentication.providersUnavailable' =>
-            'Apple and Google are off in this test build. Sign in with email and password.',
           'authentication.emailSignInFallback' => 'Sign in with email and password',
           'authentication.existingAccountTitle' => 'You already have an account',
           'authentication.existingAccountSubtitle' => 'Sign in to pick up where you left off.',
@@ -7461,6 +7524,14 @@ extension on TranslationsEn {
           'authentication.errors.validation_failed' => 'Check the information and try again.',
           'authentication.errors.weak_password' => 'Choose a stronger password.',
           'authentication.errors.other' => 'Could not sign you in right now. Try again.',
+          'authentication.legal' => ({
+            required Object terms,
+            required Object privacy,
+          }) => 'By continuing, you confirm you are 18 or older and agree to the ${terms} and the ${privacy}.',
+          'authentication.legalTerms' => 'Terms',
+          'authentication.legalPrivacy' => 'Privacy Policy',
+          'authentication.legalPlain' => 'By continuing, you confirm you are 18 or older and agree to the Terms and the Privacy Policy.',
+          'authentication.tryAgain' => 'Try again',
           'capsules.title' => 'Time capsule',
           'capsules.text' => 'Write something to be opened on a future date. Until then nobody reads it, not even you.',
           'capsules.bodyHint' => 'What do you want to say to the future?',
@@ -7725,6 +7796,13 @@ extension on TranslationsEn {
           'connectUs.sentNote' => 'Sent. No rush to reply.',
           'connectUs.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'connectUs.errors.other' => 'Couldn\'t send right now. Try again.',
+          'createAccount.title' => 'Create account',
+          'createAccount.headline' => 'Keep it safe',
+          'createAccount.headlineHighlight' => 'safe',
+          'createAccount.subtitleWithSlip' =>
+            'Your first slip is saved on this phone. Create the account so you do not lose it.',
+          'createAccount.subtitleWithoutSlip' =>
+            'Create the account to keep your slips and not lose them.',
           'dateNight.title' => 'Date night',
           'dateNight.subtitle' => 'Ideas for the two of you, picked together.',
           'dateNight.hint' => 'E.g. picnic in the park',
@@ -7864,6 +7942,9 @@ extension on TranslationsEn {
           'debugSignIn.title' => 'Sign in (debug)',
           'debugSignIn.signIn' => 'Sign in',
           'debugSignIn.createAccount' => 'Create account',
+          _ => null,
+        } ??
+        switch (path) {
           'debugSignIn.confirmEmail' =>
             'Account created. Check your email to confirm it before signing in.',
           'devices.title' => 'Notification devices',
@@ -7875,9 +7956,6 @@ extension on TranslationsEn {
           }) => 'Registered yesterday at ${time}',
           'devices.registeredOn' => ({required Object date}) => 'Registered on ${date}',
           'devices.platformIos' => 'iPhone',
-          _ => null,
-        } ??
-        switch (path) {
           'devices.platformAndroid' => 'Android',
           'devices.revokeTitle' => 'Stop notifications on this device?',
           'devices.revokeText' => ({
@@ -8520,6 +8598,9 @@ extension on TranslationsEn {
           'history.addedByYou' => 'You',
           'history.visibilityRowLabel' => 'Who sees it',
           'history.visibilityBoth' => 'Both',
+          _ => null,
+        } ??
+        switch (path) {
           'history.visibilityOnlyYou' => 'Only you',
           'history.deleteMilestone' => 'Delete',
           'history.deleteMilestoneTitle' => 'Delete this milestone?',
@@ -8528,9 +8609,6 @@ extension on TranslationsEn {
           'history.deleteMilestoneConfirm' => 'Delete',
           'history.saveMilestone' => 'Save',
           'history.storyDatesTitle' => 'Dates of our story',
-          _ => null,
-        } ??
-        switch (path) {
           'history.storyMet' => 'We met',
           'history.storyDating' => 'Started dating',
           'history.storyEngaged' => 'Got engaged',
@@ -9136,6 +9214,9 @@ extension on TranslationsEn {
           'moodHelp.partnerNeedSupports.rest' => 'Take what you can off their plate.',
           'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'You are not connected yet.',
+          _ => null,
+        } ??
+        switch (path) {
           'moodHelp.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'moodHelp.errors.NETWORK' =>
             'Couldn\'t send it now. Check your connection and try again.',
@@ -9145,9 +9226,6 @@ extension on TranslationsEn {
           'need.titleHighlight' => 'need',
           'need.subtitle' => 'Pick one thing. Your partner gets a gentle note, no pressure.',
           'need.options.hug' => 'A hug',
-          _ => null,
-        } ??
-        switch (path) {
           'need.options.talk' => 'To talk',
           'need.options.help_home' => 'Help at home',
           'need.options.quiet' => 'Some quiet time',
@@ -9319,6 +9397,13 @@ extension on TranslationsEn {
           'partnerStep.aloneSupport' => 'Your slips stay with you only',
           'partnerStep.haveCode' => 'I have an invite code',
           'partnerStep.continueButton' => 'Continue',
+          'partnerStep.soloOnlyTitle' => 'Just for me',
+          'partnerStep.soloOnlySupport' => 'Without inviting anyone',
+          'partnerStep.whyInvite' => 'Why invite?',
+          'partnerStep.why.title' => 'Why invite?',
+          'partnerStep.why.shared' => 'Shared cards and tools need both of you.',
+          'partnerStep.why.privacy' =>
+            'Your slips and private notes stay yours until you share them.',
           'plus.title' => 'Mingo Plus',
           'plus.subtitle' => 'Compare calmly. The free plan stays whole for the essentials.',
           'plus.activeTitle' => 'You have Plus',
@@ -9431,8 +9516,6 @@ extension on TranslationsEn {
           'profileDetails.nameErrors.empty' => 'Your name cannot be empty.',
           'profileDetails.nameErrors.tooLong' => 'Use at most 30 characters.',
           'profileDetails.pronounsLabel' => 'Pronouns',
-          'profileDetails.pronounsHint' => 'Optional',
-          'profileDetails.pronounsErrors.tooLong' => 'Use at most 30 characters.',
           'profileDetails.timeZoneLabel' => 'Time zone',
           'profileDetails.timeZonePlaceholder' => 'Pick a time zone',
           'profileDetails.loginLabel' => 'Login',
@@ -9472,11 +9555,6 @@ extension on TranslationsEn {
           'profileSetup.partnerNameLabel' => 'Partner\'s name',
           'profileSetup.partnerNameHint' => 'Ricardo',
           'profileSetup.partnerNameErrors.tooLong' => 'Use at most 30 characters.',
-          'profileSetup.partnerNameNote' => 'Your partner\'s name stays on your account only.',
-          'profileSetup.themeLabel' => 'Your app colour',
-          'profileSetup.themeRose' => 'Rose',
-          'profileSetup.themeBlue' => 'Blue',
-          'profileSetup.themeNeutral' => 'Neutral',
           'profileSetup.dateLabel' => 'When did you start?',
           'profileSetup.dateHint' => 'Pick a date',
           'profileSetup.dateErrors.empty' => 'Pick the date you started.',
@@ -9502,6 +9580,11 @@ extension on TranslationsEn {
             'That date does not look right. Pick one between 1950 and today.',
           'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
           'profileSetup.errors.other' => 'Could not save right now. Try again.',
+          'profileSetup.pronounsNote' => 'How to refer to each of you in sentences. When the other person joins, their own choice applies.',
+          'profileSetup.themeLabel' => 'Your app colour',
+          'profileSetup.themeRose' => 'Rose',
+          'profileSetup.themeBlue' => 'Blue',
+          'profileSetup.themeNeutral' => 'Neutral',
           'programs.label' => 'PROGRAMS',
           'programs.title' => 'Programs',
           'programs.entryText' => 'Short guided programs, at your own pace.',
@@ -9593,6 +9676,10 @@ extension on TranslationsEn {
           'programs.lessonErrors.other' => 'Couldn\'t do that right now. Try again.',
           'programs.diaryErrors.other' => 'Couldn\'t save right now. Your text is still here.',
           'programs.freeNote' => 'Free shows only the first lesson.',
+          'pronouns.options.she' => 'She',
+          'pronouns.options.he' => 'He',
+          'pronouns.options.nameOnly' => 'Name only',
+          'pronouns.options.other' => 'Name only',
           'questions.tag' => 'Question for you two',
           'questions.eyebrow' => 'Question of the day',
           'questions.answerCta' => 'Answer',
@@ -9719,6 +9806,9 @@ extension on TranslationsEn {
           'received.doneTitle' => 'All good',
           'received.doneText' => 'Thanks for reading it calmly.',
           'received.emptyTitle' => 'Nothing new',
+          _ => null,
+        } ??
+        switch (path) {
           'received.emptyText' => 'When your partner sends something, it shows up here.',
           'received.close' => 'Close',
           'received.errorTitle' => 'Couldn\'t open this',
@@ -9735,9 +9825,6 @@ extension on TranslationsEn {
           'relationshipChanged.continueLabel' => 'Continue',
           'relationshipChanged.saved' => 'Saved',
           'relationshipChanged.errors.NETWORK' => 'No connection. Try again.',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.errors.other' => 'Could not save right now. Try again.',
           'relationshipSettings.title' => 'Relationship',
           'relationshipSettings.phaseLabel' => 'Phase',
@@ -10289,6 +10376,9 @@ extension on TranslationsEn {
           'tabs.capture' => 'New slip',
           'tabs.soonTitle' => 'Under construction',
           'tabs.soonText' => 'This part of the app is still being prepared.',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.segmentTogether' => 'Us',
           'tabs.forMeFooter' => 'Private tools. Never shared.',
           'tabs.segmentForMe' => 'For me',
@@ -10317,9 +10407,6 @@ extension on TranslationsEn {
                   other: '${count} lists, private',
                 ),
           'tabs.soloNote' => 'When your partner joins, shared things show up here.',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.ritualsLabel' => 'ROUTINE',
           'tabs.ritualsTitle' => 'Rituals',
           'tabs.ritualsText' => 'Small habits you want to protect.',

@@ -25,7 +25,7 @@ class const FirstSlipPage({super.key}) extends StatelessWidget implements AutoRo
       listener: (context, state) {
         switch (state.saveAction) {
           case Success():
-            context.pushRoute(const SignInRoute());
+            context.pushRoute(const CreateAccountRoute());
           case Failure():
             BaseToast.show(context, l10n.saveError);
           default:
@@ -34,6 +34,7 @@ class const FirstSlipPage({super.key}) extends StatelessWidget implements AutoRo
       },
       child: IntroScaffold(
         stepIndex: 3,
+        isClosable: true,
         title: l10n.title,
         highlight: l10n.titleHighlight,
         subtitle: l10n.subtitle,
@@ -71,7 +72,7 @@ class const _Footer() extends StatelessWidget {
           isFullWidth: false,
           onPressed: () async {
             await cubit.skip();
-            if (context.mounted) await context.pushRoute(const SignInRoute());
+            if (context.mounted) await context.pushRoute(const CreateAccountRoute());
           },
         ),
         const SizedBox(width: AppSpace.s12),

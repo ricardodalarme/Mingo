@@ -8,15 +8,12 @@ import '../../../../test_helpers/pump_app.dart';
 void main() {
   setUp(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
-  testWidgets('the welcome screen offers settings before sign-in', (tester) async {
+  testWidgets('the welcome screen offers starting or signing in and no settings', (tester) async {
     await tester.pumpApp(const WelcomePage());
     await tester.pumpAndSettle();
 
-    final gear = tester.widget<BaseRoundButton>(
-      find.widgetWithIcon(BaseRoundButton, AppIcons.settings),
-    );
-
-    expect(gear.onPressed, isNotNull);
-    expect(gear.semanticLabel, Translations().settingsHome.title);
+    expect(find.text('Começar'), findsOneWidget);
+    expect(find.text('Já tenho conta'), findsOneWidget);
+    expect(find.widgetWithIcon(BaseRoundButton, AppIcons.settings), findsNothing);
   });
 }

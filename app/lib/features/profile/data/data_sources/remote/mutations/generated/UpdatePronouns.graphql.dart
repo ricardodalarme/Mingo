@@ -1,15 +1,19 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationUpdatePronouns {
-  factory VariablesMutationUpdatePronouns({required String profileId, String? pronouns}) =>
-      VariablesMutationUpdatePronouns._({
-        r'profileId': profileId,
-        if (pronouns != null) r'pronouns': pronouns,
-      });
+  factory VariablesMutationUpdatePronouns({
+    required String profileId,
+    EnumPronoun_enum? pronouns,
+  }) => VariablesMutationUpdatePronouns._({
+    r'profileId': profileId,
+    if (pronouns != null) r'pronouns': pronouns,
+  });
 
   VariablesMutationUpdatePronouns._(this._$data);
 
@@ -19,7 +23,9 @@ class VariablesMutationUpdatePronouns {
     result$data['profileId'] = (l$profileId as String);
     if (data.containsKey('pronouns')) {
       final l$pronouns = data['pronouns'];
-      result$data['pronouns'] = (l$pronouns as String?);
+      result$data['pronouns'] = l$pronouns == null
+          ? null
+          : fromJsonEnumPronoun_enum((l$pronouns as String));
     }
     return VariablesMutationUpdatePronouns._(result$data);
   }
@@ -28,7 +34,7 @@ class VariablesMutationUpdatePronouns {
 
   String get profileId => (_$data['profileId'] as String);
 
-  String? get pronouns => (_$data['pronouns'] as String?);
+  EnumPronoun_enum? get pronouns => (_$data['pronouns'] as EnumPronoun_enum?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -36,7 +42,7 @@ class VariablesMutationUpdatePronouns {
     result$data['profileId'] = l$profileId;
     if (_$data.containsKey('pronouns')) {
       final l$pronouns = pronouns;
-      result$data['pronouns'] = l$pronouns;
+      result$data['pronouns'] = l$pronouns == null ? null : toJsonEnumPronoun_enum(l$pronouns);
     }
     return result$data;
   }
@@ -145,7 +151,7 @@ const documentNodeMutationUpdatePronouns = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'pronouns')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'Pronoun_enum'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

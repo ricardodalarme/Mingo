@@ -1,5 +1,7 @@
 import 'package:app/features/onboarding/presentation/first_slip/cubit/first_slip_cubit.dart';
 import 'package:app/features/onboarding/presentation/intro/cubit/intro_cubit.dart';
+import 'package:app/features/onboarding/presentation/partner/cubit/partner_step_cubit.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:core/core.dart';
@@ -15,5 +17,8 @@ class OnboardingInjectionModule() implements InjectionModule {
         slipRepository: injector.get<SlipRepository>(),
         settingsRepository: injector.get<SettingsRepository>(),
       ),
+    )
+    ..registerFactory<PartnerStepCubit>(
+      () => PartnerStepCubit(profileRepository: injector.get<ProfileRepository>()),
     );
 }

@@ -1,5 +1,6 @@
 import 'package:app/features/profile/data/data_sources/remote/fragments/generated/ProfileFragment.graphql.dart';
 import 'package:app/features/profile/data/mappers/avatar_kind_mapper.dart';
+import 'package:app/features/profile/data/mappers/pronoun_mapper.dart';
 import 'package:app/features/profile/data/models/profile.dart';
 
 extension ProfileFragmentMapper on FragmentProfileFragment {
@@ -9,6 +10,6 @@ extension ProfileFragmentMapper on FragmentProfileFragment {
     displayName: displayName,
     avatarFileId: avatarFileId,
     city: city,
-    pronouns: pronouns,
+    pronouns: pronouns?.toModel(),
   );
 }

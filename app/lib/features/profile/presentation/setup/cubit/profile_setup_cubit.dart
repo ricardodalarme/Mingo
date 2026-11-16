@@ -1,4 +1,5 @@
 import 'package:app/features/profile/data/models/profile_name.dart';
+import 'package:app/features/profile/data/models/pronoun.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:clock/clock.dart';
@@ -26,6 +27,11 @@ class ProfileSetupCubit({
 
   void onPartnerNameChanged(String name) => emit(state.copyWith(partnerName: FormInput(name)));
 
+  void onPronounsChanged(Pronoun pronouns) => emit(state.copyWith(pronouns: pronouns));
+
+  void onPartnerPronounsChanged(Pronoun pronouns) =>
+      emit(state.copyWith(partnerPronouns: pronouns));
+
   void onThemeChanged(AppThemeVariant theme) => emit(state.copyWith(theme: theme));
 
   void onDateChanged(DateTime date) =>
@@ -49,7 +55,9 @@ class ProfileSetupCubit({
         profileId: profile.id,
         displayName: sanitizeName(state.name.value),
         theme: state.theme,
+        pronouns: state.pronouns,
         partnerName: partner.isEmpty ? null : partner,
+        partnerPronouns: partner.isEmpty ? null : state.partnerPronouns,
         togetherSince: date,
       );
       final settings = _settingsRepository.get();

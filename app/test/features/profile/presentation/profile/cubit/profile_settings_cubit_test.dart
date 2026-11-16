@@ -1,5 +1,6 @@
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/profile/data/models/profile_details.dart';
+import 'package:app/features/profile/data/models/pronoun.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/profile/presentation/profile/cubit/profile_settings_cubit.dart';
 import 'package:app/features/settings/data/models/settings.dart';
@@ -19,7 +20,7 @@ class _MockSettingsRepository() extends Mock implements SettingsRepository;
 const _details = ProfileDetails(
   profileId: 'p1',
   displayName: 'Marina Sobrenome',
-  pronouns: 'ela/dela',
+  pronouns: Pronoun.she,
   timeZone: 'America/Sao_Paulo',
   theme: AppThemeVariant.rose,
 );
@@ -147,7 +148,7 @@ void main() {
     expect(actions.whereType<Failure>(), isNotEmpty);
   });
 
-  test('saves pronouns and clears them when emptied', () async {
+  test('saves a pronoun choice and shows it at once', () async {
     await load();
     when(
       () => profile.updatePronouns(
@@ -158,31 +159,24 @@ void main() {
       return;
     });
 
-    cubit.onPronounsChanged('  ele/dele  ');
-    await cubit.savePronouns();
+    await cubit.onPronounsChanged(Pronoun.he);
 
-    verify(() => profile.updatePronouns(profileId: 'p1', pronouns: 'ele/dele')).called(1);
-
-    cubit.onPronounsChanged('');
-    await cubit.savePronouns();
-
-    verify(() => profile.updatePronouns(profileId: 'p1', pronouns: null)).called(1);
-    expect(cubit.state.current?.pronouns, isNull);
+    verify(() => profile.updatePronouns(profileId: 'p1', pronouns: Pronoun.he)).called(1);
+    expect(cubit.state.current?.pronouns, Pronoun.he);
   });
 
-  test('caps pronouns at 30 characters and shows a field error', () async {
+  test('puts the previous pronoun back when saving fails', () async {
     await load();
-
-    cubit.onPronounsChanged('a' * 31);
-    await cubit.savePronouns();
-
-    expect(cubit.state.pronounsDraft?.error, MaxLengthValidationError.tooLong);
-    verifyNever(
+    when(
       () => profile.updatePronouns(
         profileId: any(named: 'profileId'),
         pronouns: any(named: 'pronouns'),
       ),
-    );
+    ).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
+
+    await cubit.onPronounsChanged(Pronoun.he);
+
+    expect(cubit.state.current?.pronouns, Pronoun.she);
   });
 
   test('saves the theme and keeps it on failure', () async {

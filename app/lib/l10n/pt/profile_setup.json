@@ -13,11 +13,6 @@
   "partnerNameErrors(map)": {
     "tooLong": "Use no máximo 30 caracteres."
   },
-  "partnerNameNote": "O nome do parceiro fica só na sua conta.",
-  "themeLabel": "Cor do seu app",
-  "themeRose": "Rosa",
-  "themeBlue": "Azul",
-  "themeNeutral": "Neutro",
   "dateLabel": "Quando começaram?",
   "dateHint": "Escolha uma data",
   "dateErrors(map)": {
@@ -43,5 +38,10 @@
     "INVALID_DATE": "Essa data não parece certa. Escolha uma entre 1950 e hoje.",
     "NETWORK": "Sem conexão. Seus dados continuam aqui, tente de novo.",
     "other": "Não deu para salvar agora. Tente de novo."
-  }
+  },
+  "pronounsNote": "Como chamar cada um nas frases. Quando a outra pessoa entrar, vale a escolha dela.",
+  "themeLabel": "Cor do seu app",
+  "themeRose": "Rosa",
+  "themeBlue": "Azul",
+  "themeNeutral": "Neutro"
 }

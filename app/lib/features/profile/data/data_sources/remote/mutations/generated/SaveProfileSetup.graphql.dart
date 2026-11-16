@@ -10,15 +10,19 @@ class VariablesMutationSaveProfileSetup {
   factory VariablesMutationSaveProfileSetup({
     required String profileId,
     required String displayName,
+    EnumPronoun_enum? pronouns,
     required EnumAppTheme_enum theme,
     String? partnerName,
+    EnumPronoun_enum? partnerPronouns,
     DateTime? togetherSince,
     required DateTime onboardedAt,
   }) => VariablesMutationSaveProfileSetup._({
     r'profileId': profileId,
     r'displayName': displayName,
+    if (pronouns != null) r'pronouns': pronouns,
     r'theme': theme,
     if (partnerName != null) r'partnerName': partnerName,
+    if (partnerPronouns != null) r'partnerPronouns': partnerPronouns,
     if (togetherSince != null) r'togetherSince': togetherSince,
     r'onboardedAt': onboardedAt,
   });
@@ -31,11 +35,23 @@ class VariablesMutationSaveProfileSetup {
     result$data['profileId'] = (l$profileId as String);
     final l$displayName = data['displayName'];
     result$data['displayName'] = (l$displayName as String);
+    if (data.containsKey('pronouns')) {
+      final l$pronouns = data['pronouns'];
+      result$data['pronouns'] = l$pronouns == null
+          ? null
+          : fromJsonEnumPronoun_enum((l$pronouns as String));
+    }
     final l$theme = data['theme'];
     result$data['theme'] = fromJsonEnumAppTheme_enum((l$theme as String));
     if (data.containsKey('partnerName')) {
       final l$partnerName = data['partnerName'];
       result$data['partnerName'] = (l$partnerName as String?);
+    }
+    if (data.containsKey('partnerPronouns')) {
+      final l$partnerPronouns = data['partnerPronouns'];
+      result$data['partnerPronouns'] = l$partnerPronouns == null
+          ? null
+          : fromJsonEnumPronoun_enum((l$partnerPronouns as String));
     }
     if (data.containsKey('togetherSince')) {
       final l$togetherSince = data['togetherSince'];
@@ -54,9 +70,13 @@ class VariablesMutationSaveProfileSetup {
 
   String get displayName => (_$data['displayName'] as String);
 
+  EnumPronoun_enum? get pronouns => (_$data['pronouns'] as EnumPronoun_enum?);
+
   EnumAppTheme_enum get theme => (_$data['theme'] as EnumAppTheme_enum);
 
   String? get partnerName => (_$data['partnerName'] as String?);
+
+  EnumPronoun_enum? get partnerPronouns => (_$data['partnerPronouns'] as EnumPronoun_enum?);
 
   DateTime? get togetherSince => (_$data['togetherSince'] as DateTime?);
 
@@ -68,11 +88,21 @@ class VariablesMutationSaveProfileSetup {
     result$data['profileId'] = l$profileId;
     final l$displayName = displayName;
     result$data['displayName'] = l$displayName;
+    if (_$data.containsKey('pronouns')) {
+      final l$pronouns = pronouns;
+      result$data['pronouns'] = l$pronouns == null ? null : toJsonEnumPronoun_enum(l$pronouns);
+    }
     final l$theme = theme;
     result$data['theme'] = toJsonEnumAppTheme_enum(l$theme);
     if (_$data.containsKey('partnerName')) {
       final l$partnerName = partnerName;
       result$data['partnerName'] = l$partnerName;
+    }
+    if (_$data.containsKey('partnerPronouns')) {
+      final l$partnerPronouns = partnerPronouns;
+      result$data['partnerPronouns'] = l$partnerPronouns == null
+          ? null
+          : toJsonEnumPronoun_enum(l$partnerPronouns);
     }
     if (_$data.containsKey('togetherSince')) {
       final l$togetherSince = togetherSince;
@@ -103,6 +133,14 @@ class VariablesMutationSaveProfileSetup {
     if (l$displayName != lOther$displayName) {
       return false;
     }
+    final l$pronouns = pronouns;
+    final lOther$pronouns = other.pronouns;
+    if (_$data.containsKey('pronouns') != other._$data.containsKey('pronouns')) {
+      return false;
+    }
+    if (l$pronouns != lOther$pronouns) {
+      return false;
+    }
     final l$theme = theme;
     final lOther$theme = other.theme;
     if (l$theme != lOther$theme) {
@@ -114,6 +152,14 @@ class VariablesMutationSaveProfileSetup {
       return false;
     }
     if (l$partnerName != lOther$partnerName) {
+      return false;
+    }
+    final l$partnerPronouns = partnerPronouns;
+    final lOther$partnerPronouns = other.partnerPronouns;
+    if (_$data.containsKey('partnerPronouns') != other._$data.containsKey('partnerPronouns')) {
+      return false;
+    }
+    if (l$partnerPronouns != lOther$partnerPronouns) {
       return false;
     }
     final l$togetherSince = togetherSince;
@@ -136,15 +182,19 @@ class VariablesMutationSaveProfileSetup {
   int get hashCode {
     final l$profileId = profileId;
     final l$displayName = displayName;
+    final l$pronouns = pronouns;
     final l$theme = theme;
     final l$partnerName = partnerName;
+    final l$partnerPronouns = partnerPronouns;
     final l$togetherSince = togetherSince;
     final l$onboardedAt = onboardedAt;
     return Object.hashAll([
       l$profileId,
       l$displayName,
+      _$data.containsKey('pronouns') ? l$pronouns : const {},
       l$theme,
       _$data.containsKey('partnerName') ? l$partnerName : const {},
+      _$data.containsKey('partnerPronouns') ? l$partnerPronouns : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       l$onboardedAt,
     ]);
@@ -248,6 +298,12 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
           directives: [],
         ),
         VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'pronouns')),
+          type: NamedTypeNode(name: NameNode(value: 'Pronoun_enum'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'theme')),
           type: NamedTypeNode(name: NameNode(value: 'AppTheme_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
@@ -256,6 +312,12 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'partnerName')),
           type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'partnerPronouns')),
+          type: NamedTypeNode(name: NameNode(value: 'Pronoun_enum'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -304,6 +366,10 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
                     ObjectFieldNode(
                       name: NameNode(value: 'displayName'),
                       value: VariableNode(name: NameNode(value: 'displayName')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'pronouns'),
+                      value: VariableNode(name: NameNode(value: 'pronouns')),
                     ),
                   ],
                 ),
@@ -362,6 +428,10 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
                     ObjectFieldNode(
                       name: NameNode(value: 'partnerName'),
                       value: VariableNode(name: NameNode(value: 'partnerName')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'partnerPronouns'),
+                      value: VariableNode(name: NameNode(value: 'partnerPronouns')),
                     ),
                     ObjectFieldNode(
                       name: NameNode(value: 'togetherSince'),

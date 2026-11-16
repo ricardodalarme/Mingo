@@ -1,6 +1,7 @@
 import 'package:app/features/profile/data/models/profile_details.dart';
 import 'package:app/features/profile/presentation/profile/cubit/profile_settings_cubit.dart';
 import 'package:app/features/profile/presentation/widgets/profile_theme_picker.dart';
+import 'package:app/features/profile/presentation/widgets/pronoun_chips.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
@@ -74,10 +75,7 @@ class const _ProfileForm() extends StatelessWidget {
     final currentName = context.select(
       (ProfileSettingsCubit cubit) => cubit.state.current?.displayName,
     );
-    final pronouns = context.select((ProfileSettingsCubit cubit) => cubit.state.pronounsDraft);
-    final currentPronouns = context.select(
-      (ProfileSettingsCubit cubit) => cubit.state.current?.pronouns,
-    );
+    final pronouns = context.select((ProfileSettingsCubit cubit) => cubit.state.current?.pronouns);
     final timeZone = context.select((ProfileSettingsCubit cubit) => cubit.state.current?.timeZone);
     final theme = context.select((ProfileSettingsCubit cubit) => cubit.state.current?.theme);
     final loginProvider = context.select((ProfileSettingsCubit cubit) => cubit.state.loginProvider);
@@ -98,14 +96,12 @@ class const _ProfileForm() extends StatelessWidget {
             onSubmitted: (_) => cubit.saveName(),
           ),
           const SizedBox(height: AppSpace.s14),
-          BaseTextField(
-            label: l10n.pronounsLabel,
-            hint: l10n.pronounsHint,
-            text: pronouns?.value ?? currentPronouns ?? '',
-            errorText: l10n.pronounsErrors.selectOrNull(pronouns?.errorName),
-            onChanged: cubit.onPronounsChanged,
-            onSubmitted: (_) => cubit.savePronouns(),
+          Text(
+            l10n.pronounsLabel,
+            style: context.text.label.copyWith(color: context.colors.textSecondary),
           ),
+          const SizedBox(height: AppSpace.s8),
+          PronounChips(selected: pronouns, onChanged: cubit.onPronounsChanged),
           const SizedBox(height: AppSpace.s14),
           BaseSelect<String>(
             label: l10n.timeZoneLabel,

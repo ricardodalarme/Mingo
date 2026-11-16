@@ -7,10 +7,6 @@
     "tooLong": "Use at most 30 characters."
   },
   "pronounsLabel": "Pronouns",
-  "pronounsHint": "Optional",
-  "pronounsErrors(map)": {
-    "tooLong": "Use at most 30 characters."
-  },
   "timeZoneLabel": "Time zone",
   "timeZonePlaceholder": "Pick a time zone",
   "loginLabel": "Login",

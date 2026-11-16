@@ -1,5 +1,6 @@
+import 'package:app/features/onboarding/presentation/intro/cubit/intro_cubit.dart';
 import 'package:app/features/profile/presentation/setup/cubit/profile_setup_cubit.dart';
-import 'package:app/features/profile/presentation/widgets/profile_theme_picker.dart';
+import 'package:app/features/profile/presentation/widgets/pronoun_chips.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
@@ -25,7 +26,9 @@ class const ProfileSetupPage({super.key}) extends StatelessWidget implements Aut
     final l10n = context.l10n.profileSetup;
 
     return BaseView(
-      appBar: null,
+      appBar: const BaseAppBar(
+        stepIndicator: BaseStepper(count: introStepCount, currentIndex: introStepCount - 1),
+      ),
       body: BlocListener<ProfileSetupCubit, ProfileSetupState>(
         listenWhen: (previous, current) => previous.saveAction != current.saveAction,
         listener: _onSaveChanged,
@@ -33,13 +36,13 @@ class const ProfileSetupPage({super.key}) extends StatelessWidget implements Aut
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: AppSpace.s24),
+              const SizedBox(height: AppSpace.s12),
               Semantics(
                 header: true,
                 child: AppHighlightedText(
                   text: l10n.title,
                   highlight: l10n.titleHighlight,
-                  style: context.text.display,
+                  style: context.text.titleXl,
                 ),
               ),
               const SizedBox(height: AppSpace.s8),
@@ -49,14 +52,16 @@ class const ProfileSetupPage({super.key}) extends StatelessWidget implements Aut
               ),
               const SizedBox(height: AppSpace.s28),
               const _NameField(),
-              const SizedBox(height: AppSpace.s14),
+              const SizedBox(height: AppSpace.s10),
+              const _PronounsField(isPartner: false),
+              const SizedBox(height: AppSpace.s18),
               const _PartnerNameField(),
-              const SizedBox(height: AppSpace.s14),
-              const _ThemePickerField(),
+              const SizedBox(height: AppSpace.s10),
+              const _PronounsField(isPartner: true),
               const SizedBox(height: AppSpace.s14),
               const _DateField(),
               const SizedBox(height: AppSpace.s14),
-              BaseNote(text: l10n.partnerNameNote),
+              BaseNote(text: l10n.pronounsNote),
             ],
           ),
           footer: const _ContinueButton(),
@@ -112,17 +117,18 @@ class const _PartnerNameField() extends StatelessWidget {
   }
 }
 
-class const _ThemePickerField() extends StatelessWidget {
+class const _PronounsField({required final bool isPartner}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final selected = context.select((ProfileSetupCubit cubit) => cubit.state.theme);
+    final selected = context.select(
+      (ProfileSetupCubit cubit) => isPartner ? cubit.state.partnerPronouns : cubit.state.pronouns,
+    );
+    final cubit = context.read<ProfileSetupCubit>();
 
-    void choose(AppThemeVariant variant) {
-      context.read<ProfileSetupCubit>().onThemeChanged(variant);
-      AppThemeScope.set(context, variant);
-    }
-
-    return ProfileThemePicker(selected: selected, onChanged: choose);
+    return PronounChips(
+      selected: selected,
+      onChanged: isPartner ? cubit.onPartnerPronounsChanged : cubit.onPronounsChanged,
+    );
   }
 }
 

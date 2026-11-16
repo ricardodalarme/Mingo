@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/models/partner_intent.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/today/data/models/today_home.dart';
@@ -78,6 +79,7 @@ class TodayCubit({
             selfName: selfName,
             partnerHint: settings?.partnerName,
             isFirstDay: _isFirstDay(settings),
+            isSoloOnly: settings?.partnerIntent == PartnerIntent.soloOnly,
             showUnpairNotice: result.wasUnpaired || state.showUnpairNotice,
             unpairedPartnerName: result.wasUnpaired
                 ? result.previousPartnerName
@@ -107,6 +109,7 @@ class TodayCubit({
         selfName: state.selfName,
         partnerHint: state.partnerHint,
         isFirstDay: state.isFirstDay,
+        isSoloOnly: state.isSoloOnly,
       ),
     );
   }

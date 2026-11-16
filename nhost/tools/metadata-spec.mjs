@@ -28,6 +28,7 @@ export const enums = [
   'repair_learning_kind', 'repair_path', 'temperature_level', 'partner_fact_category', 'partner_fact_source', 'lesson_status',
   'quiz_key', 'ritual_cadence', 'date_idea_status', 'important_date_kind', 'important_date_origin', 'date_precision',
   'memory_origin', 'story_event_kind', 'list_kind', 'list_item_status', 'gift_idea_kind', 'gift_idea_status', 'gift_budget',
+  'pronoun', 'partner_intent',
 ];
 
 // Private to the author: full control, nobody else sees a row.
@@ -117,7 +118,7 @@ export const tables = {
       user: {
         select: { columns: '*', filter: mine('user_id') },
         update: {
-          columns: ['theme', 'locale', 'goal', 'goals', 'phase', 'relationship_status', 'partner_name', 'together_since', 'onboarded_at',
+          columns: ['theme', 'locale', 'goal', 'goals', 'phase', 'relationship_status', 'partner_name', 'partner_pronouns', 'partner_intent', 'together_since', 'onboarded_at',
             'share_read_receipts', 'holiday_countries', 'card_channel', 'card_theme', 'slips_default_for_card',
             'widget_allow_partner_notes', 'widget_on_lock_screen', 'widget_show_names', 'spice_enabled', 'low_stimulation',
             'chat_enabled', 'chat_store_facts'],

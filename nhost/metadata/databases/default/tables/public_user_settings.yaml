@@ -25,8 +25,12 @@ configuration:
       custom_name: lowStimulation
     onboarded_at:
       custom_name: onboardedAt
+    partner_intent:
+      custom_name: partnerIntent
     partner_name:
       custom_name: partnerName
+    partner_pronouns:
+      custom_name: partnerPronouns
     phase:
       custom_name: phase
     relationship_status:
@@ -63,7 +67,9 @@ configuration:
     locale: locale
     low_stimulation: lowStimulation
     onboarded_at: onboardedAt
+    partner_intent: partnerIntent
     partner_name: partnerName
+    partner_pronouns: partnerPronouns
     phase: phase
     relationship_status: relationshipStatus
     share_read_receipts: shareReadReceipts
@@ -108,7 +114,9 @@ select_permissions:
         - locale
         - low_stimulation
         - onboarded_at
+        - partner_intent
         - partner_name
+        - partner_pronouns
         - phase
         - relationship_status
         - share_read_receipts
@@ -135,6 +143,8 @@ update_permissions:
         - phase
         - relationship_status
         - partner_name
+        - partner_pronouns
+        - partner_intent
         - together_since
         - onboarded_at
         - share_read_receipts

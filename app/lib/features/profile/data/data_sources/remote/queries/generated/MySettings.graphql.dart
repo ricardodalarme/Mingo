@@ -159,6 +159,20 @@ const documentNodeQueryMySettings = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'partnerPronouns'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'partnerIntent'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'togetherSince'),
                   alias: null,
                   arguments: [],
@@ -386,6 +400,8 @@ class QueryMySettingsuserSettingsByPk {
     required this.userId,
     required this.theme,
     this.partnerName,
+    this.partnerPronouns,
+    this.partnerIntent,
     this.togetherSince,
     required this.relationshipStatus,
     this.onboardedAt,
@@ -401,6 +417,8 @@ class QueryMySettingsuserSettingsByPk {
     final l$userId = json['userId'];
     final l$theme = json['theme'];
     final l$partnerName = json['partnerName'];
+    final l$partnerPronouns = json['partnerPronouns'];
+    final l$partnerIntent = json['partnerIntent'];
     final l$togetherSince = json['togetherSince'];
     final l$relationshipStatus = json['relationshipStatus'];
     final l$onboardedAt = json['onboardedAt'];
@@ -414,6 +432,12 @@ class QueryMySettingsuserSettingsByPk {
       userId: (l$userId as String),
       theme: fromJsonEnumAppTheme_enum((l$theme as String)),
       partnerName: (l$partnerName as String?),
+      partnerPronouns: l$partnerPronouns == null
+          ? null
+          : fromJsonEnumPronoun_enum((l$partnerPronouns as String)),
+      partnerIntent: l$partnerIntent == null
+          ? null
+          : fromJsonEnumPartnerIntent_enum((l$partnerIntent as String)),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       relationshipStatus: fromJsonEnumRelationshipStatus_enum((l$relationshipStatus as String)),
       onboardedAt: l$onboardedAt == null ? null : DateTime.parse((l$onboardedAt as String)),
@@ -431,6 +455,10 @@ class QueryMySettingsuserSettingsByPk {
   final EnumAppTheme_enum theme;
 
   final String? partnerName;
+
+  final EnumPronoun_enum? partnerPronouns;
+
+  final EnumPartnerIntent_enum? partnerIntent;
 
   final DateTime? togetherSince;
 
@@ -458,6 +486,14 @@ class QueryMySettingsuserSettingsByPk {
     _resultData['theme'] = toJsonEnumAppTheme_enum(l$theme);
     final l$partnerName = partnerName;
     _resultData['partnerName'] = l$partnerName;
+    final l$partnerPronouns = partnerPronouns;
+    _resultData['partnerPronouns'] = l$partnerPronouns == null
+        ? null
+        : toJsonEnumPronoun_enum(l$partnerPronouns);
+    final l$partnerIntent = partnerIntent;
+    _resultData['partnerIntent'] = l$partnerIntent == null
+        ? null
+        : toJsonEnumPartnerIntent_enum(l$partnerIntent);
     final l$togetherSince = togetherSince;
     _resultData['togetherSince'] = l$togetherSince == null
         ? null
@@ -488,6 +524,8 @@ class QueryMySettingsuserSettingsByPk {
     final l$userId = userId;
     final l$theme = theme;
     final l$partnerName = partnerName;
+    final l$partnerPronouns = partnerPronouns;
+    final l$partnerIntent = partnerIntent;
     final l$togetherSince = togetherSince;
     final l$relationshipStatus = relationshipStatus;
     final l$onboardedAt = onboardedAt;
@@ -501,6 +539,8 @@ class QueryMySettingsuserSettingsByPk {
       l$userId,
       l$theme,
       l$partnerName,
+      l$partnerPronouns,
+      l$partnerIntent,
       l$togetherSince,
       l$relationshipStatus,
       l$onboardedAt,
@@ -534,6 +574,16 @@ class QueryMySettingsuserSettingsByPk {
     final l$partnerName = partnerName;
     final lOther$partnerName = other.partnerName;
     if (l$partnerName != lOther$partnerName) {
+      return false;
+    }
+    final l$partnerPronouns = partnerPronouns;
+    final lOther$partnerPronouns = other.partnerPronouns;
+    if (l$partnerPronouns != lOther$partnerPronouns) {
+      return false;
+    }
+    final l$partnerIntent = partnerIntent;
+    final lOther$partnerIntent = other.partnerIntent;
+    if (l$partnerIntent != lOther$partnerIntent) {
       return false;
     }
     final l$togetherSince = togetherSince;

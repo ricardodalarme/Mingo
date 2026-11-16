@@ -1,4 +1,4 @@
-mutation UpdatePronouns($profileId: uuid!, $pronouns: String) {
+mutation UpdatePronouns($profileId: uuid!, $pronouns: Pronoun_enum) {
   updateProfiles(where: { id: { _eq: $profileId } }, _set: { pronouns: $pronouns }) {
     affected_rows
   }

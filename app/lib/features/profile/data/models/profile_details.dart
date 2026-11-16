@@ -1,3 +1,4 @@
+import 'package:app/features/profile/data/models/pronoun.dart';
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
 
@@ -5,7 +6,7 @@ import 'package:equatable/equatable.dart';
 final class const ProfileDetails({
   required final String profileId,
   required final String displayName,
-  final String? pronouns,
+  final Pronoun? pronouns,
   final String timeZone = 'UTC',
   final AppThemeVariant theme = AppThemeVariant.rose,
 }) with Equatable {
@@ -14,13 +15,13 @@ final class const ProfileDetails({
     : this(
         profileId: 'fake',
         displayName: 'Nome Sobrenome',
-        pronouns: 'ela/dela',
+        pronouns: Pronoun.she,
         timeZone: 'America/Sao_Paulo',
       );
 
   ProfileDetails copyWith({
     String? displayName,
-    String? pronouns,
+    Pronoun? pronouns,
     bool clearPronouns = false,
     String? timeZone,
     AppThemeVariant? theme,

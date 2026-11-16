@@ -6,6 +6,7 @@ final class const TodayState({
   final String? selfName,
   final String? partnerHint,
   final bool isFirstDay = false,
+  final bool isSoloOnly = false,
   final bool showUnpairNotice = false,
   final String? unpairedPartnerName,
 }) with Equatable {
@@ -15,6 +16,7 @@ final class const TodayState({
     String? selfName,
     String? partnerHint,
     bool? isFirstDay,
+    bool? isSoloOnly,
     bool? showUnpairNotice,
     String? unpairedPartnerName,
   }) {
@@ -24,6 +26,7 @@ final class const TodayState({
       selfName: selfName ?? this.selfName,
       partnerHint: partnerHint ?? this.partnerHint,
       isFirstDay: isFirstDay ?? this.isFirstDay,
+      isSoloOnly: isSoloOnly ?? this.isSoloOnly,
       showUnpairNotice: showUnpairNotice ?? this.showUnpairNotice,
       unpairedPartnerName: unpairedPartnerName ?? this.unpairedPartnerName,
     );
@@ -36,6 +39,7 @@ final class const TodayState({
     selfName,
     partnerHint,
     isFirstDay,
+    isSoloOnly,
     showUnpairNotice,
     unpairedPartnerName,
   ];

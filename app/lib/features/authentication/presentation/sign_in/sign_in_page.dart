@@ -1,4 +1,5 @@
 import 'package:app/features/authentication/presentation/sign_in/cubit/sign_in_cubit.dart';
+import 'package:app/features/authentication/presentation/sign_in/widgets/legal_footer.dart';
 import 'package:app/features/authentication/presentation/sign_in/widgets/provider_buttons.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
@@ -20,6 +21,7 @@ class const SignInPage({super.key}) extends StatelessWidget implements AutoRoute
     final l10n = context.l10n.authentication;
 
     return BaseView(
+      appBar: BaseAppBar(onBack: () => context.router.maybePop()),
       body: BlocListener<SignInCubit, SignInState>(
         listenWhen: (previous, current) => previous.signInAction != current.signInAction,
         listener: _onStateChanged,
@@ -30,15 +32,16 @@ class const SignInPage({super.key}) extends StatelessWidget implements AutoRoute
               Text(l10n.signInTitle, style: context.text.titleXl),
               const SizedBox(height: AppSpace.s8),
               Text(
-                showProviderButtons ? l10n.signInSubtitle : l10n.signInDebugSubtitle,
+                l10n.signInSubtitle,
                 style: context.text.body.copyWith(color: context.colors.textSecondary),
               ),
               const SizedBox(height: AppSpace.s28),
               ProviderButtons(onEmailSignIn: () => context.pushRoute(const DebugSignInRoute())),
-              const SizedBox(height: AppSpace.s24),
-              BaseNote(text: l10n.signInNote),
+              const SizedBox(height: AppSpace.s16),
+              const LegalFooter(),
             ],
           ),
+          footer: BaseNote(text: l10n.signInNote),
         ),
       ),
     );
@@ -52,7 +55,13 @@ class const SignInPage({super.key}) extends StatelessWidget implements AutoRoute
         context.router.replace(const ExistingAccountRoute());
         return;
       }
-      BaseToast.show(context, l10n.errors.selectOrFallback(exception.l10nKey));
+      BaseToast.show(
+        context,
+        l10n.errors.selectOrFallback(exception.l10nKey),
+        variant: BaseToastVariant.error,
+        actionLabel: l10n.tryAgain,
+        onAction: context.read<SignInCubit>().retry,
+      );
     }
   }
 }

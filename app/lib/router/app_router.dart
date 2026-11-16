@@ -1,5 +1,6 @@
 import 'package:app/features/account/presentation/delete/delete_account_page.dart';
 import 'package:app/features/app/presentation/time_in_app/time_in_app_page.dart';
+import 'package:app/features/authentication/presentation/create_account/create_account_page.dart';
 import 'package:app/features/authentication/presentation/existing_account/existing_account_page.dart';
 import 'package:app/features/authentication/presentation/session_expired/session_expired_page.dart';
 import 'package:app/features/authentication/presentation/sign_in/sign_in_page.dart';
@@ -134,6 +135,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: PartnerStepRoute.page),
     AutoRoute(page: NotificationPermissionRoute.page, fullscreenDialog: true),
     AutoRoute(page: SignInRoute.page),
+    AutoRoute(page: CreateAccountRoute.page),
     AutoRoute(page: SessionExpiredRoute.page),
     AutoRoute(page: ExistingAccountRoute.page),
     AutoRoute(page: DebugSignInRoute.page),

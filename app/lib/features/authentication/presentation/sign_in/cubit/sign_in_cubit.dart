@@ -15,12 +15,21 @@ class SignInCubit({required final AuthenticationRepository _authenticationReposi
     extends Cubit<SignInState> {
   this : super(const SignInState());
 
+  Future<void> Function()? _lastAttempt;
+
   Future<void> signInWithApple() => _run(_authenticationRepository.logInWithApple);
 
   Future<void> signInWithGoogle() => _run(_authenticationRepository.logInWithGoogle);
 
+  /// Repeats the provider the person last tried.
+  Future<void> retry() async {
+    if (_lastAttempt case final attempt?) await _run(attempt);
+  }
+
   Future<void> _run(Future<void> Function() action) async {
     if (state.signInAction.isLoading) return;
+
+    _lastAttempt = action;
 
     emit(state.copyWith(signInAction: const Loading()));
     try {

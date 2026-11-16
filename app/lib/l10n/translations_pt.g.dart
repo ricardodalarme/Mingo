@@ -69,6 +69,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$connectUs$pt connectUs = Translations$connectUs$pt.internal(_root);
+  late final Translations$createAccount$pt createAccount = Translations$createAccount$pt.internal(
+    _root,
+  );
   late final Translations$dateNight$pt dateNight = Translations$dateNight$pt.internal(_root);
   late final Translations$dates$pt dates = Translations$dates$pt.internal(_root);
   late final Translations$day$pt day = Translations$day$pt.internal(_root);
@@ -120,6 +123,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$programs$pt programs = Translations$programs$pt.internal(_root);
+  late final Translations$pronouns$pt pronouns = Translations$pronouns$pt.internal(_root);
   late final Translations$questions$pt questions = Translations$questions$pt.internal(_root);
   late final Translations$questionsEntry$pt questionsEntry =
       Translations$questionsEntry$pt.internal(_root);
@@ -319,15 +323,8 @@ class Translations$authentication$pt {
   /// pt: 'Sem e-mail e senha. Só Apple ou Google.'
   String get signInSubtitle => 'Sem e-mail e senha. Só Apple ou Google.';
 
-  /// pt: 'Neste build de teste, entre com e-mail e senha.'
-  String get signInDebugSubtitle => 'Neste build de teste, entre com e-mail e senha.';
-
   /// pt: 'Entrar leva direto para o seu Hoje.'
   String get signInNote => 'Entrar leva direto para o seu Hoje.';
-
-  /// pt: 'Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.'
-  String get providersUnavailable =>
-      'Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.';
 
   /// pt: 'Entrar com e-mail e senha'
   String get emailSignInFallback => 'Entrar com e-mail e senha';
@@ -426,6 +423,23 @@ class Translations$authentication$pt {
     'weak_password': 'Escolha uma senha mais forte.',
     'other': 'Não deu para entrar agora. Tente de novo.',
   };
+
+  /// pt: 'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os {terms} e a {privacy}.'
+  String legal({required Object terms, required Object privacy}) =>
+      'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os ${terms} e a ${privacy}.';
+
+  /// pt: 'Termos'
+  String get legalTerms => 'Termos';
+
+  /// pt: 'Política de Privacidade'
+  String get legalPrivacy => 'Política de Privacidade';
+
+  /// pt: 'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os Termos e a Política de Privacidade.'
+  String get legalPlain =>
+      'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os Termos e a Política de Privacidade.';
+
+  /// pt: 'Tentar de novo'
+  String get tryAgain => 'Tentar de novo';
 }
 
 // Path: capsules
@@ -1114,6 +1128,31 @@ class Translations$connectUs$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para enviar agora. Tente de novo.',
   };
+}
+
+// Path: createAccount
+class Translations$createAccount$pt {
+  Translations$createAccount$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Criar conta'
+  String get title => 'Criar conta';
+
+  /// pt: 'Mantenha seguro'
+  String get headline => 'Mantenha seguro';
+
+  /// pt: 'seguro'
+  String get headlineHighlight => 'seguro';
+
+  /// pt: 'Seu primeiro slip está salvo neste celular. Crie a conta para não perdê-lo.'
+  String get subtitleWithSlip =>
+      'Seu primeiro slip está salvo neste celular. Crie a conta para não perdê-lo.';
+
+  /// pt: 'Crie a conta para guardar seus slips e não perdê-los.'
+  String get subtitleWithoutSlip => 'Crie a conta para guardar seus slips e não perdê-los.';
 }
 
 // Path: dateNight
@@ -4385,6 +4424,17 @@ class Translations$partnerStep$pt {
 
   /// pt: 'Continuar'
   String get continueButton => 'Continuar';
+
+  /// pt: 'Só para mim'
+  String get soloOnlyTitle => 'Só para mim';
+
+  /// pt: 'Sem convidar ninguém'
+  String get soloOnlySupport => 'Sem convidar ninguém';
+
+  /// pt: 'Por que convidar?'
+  String get whyInvite => 'Por que convidar?';
+
+  late final Translations$partnerStep$why$pt why = Translations$partnerStep$why$pt.internal(_root);
 }
 
 // Path: plus
@@ -4707,11 +4757,6 @@ class Translations$profileDetails$pt {
   /// pt: 'Pronomes'
   String get pronounsLabel => 'Pronomes';
 
-  /// pt: 'Opcional'
-  String get pronounsHint => 'Opcional';
-
-  Map<String, String> get pronounsErrors => {'tooLong': 'Use no máximo 30 caracteres.'};
-
   /// pt: 'Fuso horário'
   String get timeZoneLabel => 'Fuso horário';
 
@@ -4804,21 +4849,6 @@ class Translations$profileSetup$pt {
 
   Map<String, String> get partnerNameErrors => {'tooLong': 'Use no máximo 30 caracteres.'};
 
-  /// pt: 'O nome do parceiro fica só na sua conta.'
-  String get partnerNameNote => 'O nome do parceiro fica só na sua conta.';
-
-  /// pt: 'Cor do seu app'
-  String get themeLabel => 'Cor do seu app';
-
-  /// pt: 'Rosa'
-  String get themeRose => 'Rosa';
-
-  /// pt: 'Azul'
-  String get themeBlue => 'Azul';
-
-  /// pt: 'Neutro'
-  String get themeNeutral => 'Neutro';
-
   /// pt: 'Quando começaram?'
   String get dateLabel => 'Quando começaram?';
 
@@ -4854,6 +4884,22 @@ class Translations$profileSetup$pt {
     'NETWORK': 'Sem conexão. Seus dados continuam aqui, tente de novo.',
     'other': 'Não deu para salvar agora. Tente de novo.',
   };
+
+  /// pt: 'Como chamar cada um nas frases. Quando a outra pessoa entrar, vale a escolha dela.'
+  String get pronounsNote =>
+      'Como chamar cada um nas frases. Quando a outra pessoa entrar, vale a escolha dela.';
+
+  /// pt: 'Cor do seu app'
+  String get themeLabel => 'Cor do seu app';
+
+  /// pt: 'Rosa'
+  String get themeRose => 'Rosa';
+
+  /// pt: 'Azul'
+  String get themeBlue => 'Azul';
+
+  /// pt: 'Neutro'
+  String get themeNeutral => 'Neutro';
 }
 
 // Path: programs
@@ -5077,6 +5123,21 @@ class Translations$programs$pt {
 
   /// pt: 'No grátis aparece só a primeira lição.'
   String get freeNote => 'No grátis aparece só a primeira lição.';
+}
+
+// Path: pronouns
+class Translations$pronouns$pt {
+  Translations$pronouns$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+  Map<String, String> get options => {
+    'she': 'Ela',
+    'he': 'Ele',
+    'nameOnly': 'Só o nome',
+    'other': 'Só o nome',
+  };
 }
 
 // Path: questions
@@ -8227,6 +8288,24 @@ class Translations$need$sent$pt {
   String get done => 'Pronto';
 }
 
+// Path: partnerStep.why
+class Translations$partnerStep$why$pt {
+  Translations$partnerStep$why$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Por que convidar?'
+  String get title => 'Por que convidar?';
+
+  /// pt: 'Cartões e ferramentas compartilhadas precisam dos dois.'
+  String get shared => 'Cartões e ferramentas compartilhadas precisam dos dois.';
+
+  /// pt: 'Seus slips e notas privadas continuam só seus até você compartilhar.'
+  String get privacy => 'Seus slips e notas privadas continuam só seus até você compartilhar.';
+}
+
 // Path: quickSlip.saved
 class Translations$quickSlip$saved$pt {
   Translations$quickSlip$saved$pt.internal(this._root);
@@ -9091,10 +9170,7 @@ extension on Translations {
           'account.errors.other' => 'Não deu para concluir agora. Tente de novo.',
           'authentication.signInTitle' => 'Entrar',
           'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
-          'authentication.signInDebugSubtitle' => 'Neste build de teste, entre com e-mail e senha.',
           'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
-          'authentication.providersUnavailable' =>
-            'Apple e Google estão desativados neste build de teste. Entre com e-mail e senha.',
           'authentication.emailSignInFallback' => 'Entrar com e-mail e senha',
           'authentication.existingAccountTitle' => 'Você já tem uma conta',
           'authentication.existingAccountSubtitle' => 'Entre para continuar de onde parou.',
@@ -9218,6 +9294,14 @@ extension on Translations {
           'authentication.errors.validation_failed' => 'Confira as informações e tente de novo.',
           'authentication.errors.weak_password' => 'Escolha uma senha mais forte.',
           'authentication.errors.other' => 'Não deu para entrar agora. Tente de novo.',
+          'authentication.legal' => ({
+            required Object terms,
+            required Object privacy,
+          }) => 'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os ${terms} e a ${privacy}.',
+          'authentication.legalTerms' => 'Termos',
+          'authentication.legalPrivacy' => 'Política de Privacidade',
+          'authentication.legalPlain' => 'Ao continuar, você confirma que tem 18 anos ou mais e concorda com os Termos e a Política de Privacidade.',
+          'authentication.tryAgain' => 'Tentar de novo',
           'capsules.title' => 'Cápsula do tempo',
           'capsules.text' =>
             'Escreva algo para ser aberto em uma data futura. Até lá, ninguém lê, nem você.',
@@ -9483,6 +9567,13 @@ extension on Translations {
           'connectUs.sentNote' => 'Enviado. Sem pressa de resposta.',
           'connectUs.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'connectUs.errors.other' => 'Não deu para enviar agora. Tente de novo.',
+          'createAccount.title' => 'Criar conta',
+          'createAccount.headline' => 'Mantenha seguro',
+          'createAccount.headlineHighlight' => 'seguro',
+          'createAccount.subtitleWithSlip' =>
+            'Seu primeiro slip está salvo neste celular. Crie a conta para não perdê-lo.',
+          'createAccount.subtitleWithoutSlip' =>
+            'Crie a conta para guardar seus slips e não perdê-los.',
           'dateNight.title' => 'Encontro',
           'dateNight.subtitle' => 'Ideias para vocês dois, escolhidas juntos.',
           'dateNight.hint' => 'Ex.: piquenique no parque',
@@ -9622,6 +9713,9 @@ extension on Translations {
           'debugSignIn.title' => 'Entrar (debug)',
           'debugSignIn.signIn' => 'Entrar',
           'debugSignIn.createAccount' => 'Criar conta',
+          _ => null,
+        } ??
+        switch (path) {
           'debugSignIn.confirmEmail' =>
             'Conta criada. Confira seu e-mail para confirmar antes de entrar.',
           'devices.title' => 'Dispositivos de notificação',
@@ -9634,9 +9728,6 @@ extension on Translations {
           }) => 'Registrado ontem às ${time}',
           'devices.registeredOn' => ({required Object date}) => 'Registrado em ${date}',
           'devices.platformIos' => 'iPhone',
-          _ => null,
-        } ??
-        switch (path) {
           'devices.platformAndroid' => 'Android',
           'devices.revokeTitle' => 'Parar notificações deste dispositivo?',
           'devices.revokeText' => ({
@@ -10284,6 +10375,9 @@ extension on Translations {
           'history.addedByYou' => 'Você',
           'history.visibilityRowLabel' => 'Quem vê',
           'history.visibilityBoth' => 'Os dois',
+          _ => null,
+        } ??
+        switch (path) {
           'history.visibilityOnlyYou' => 'Só você',
           'history.deleteMilestone' => 'Apagar',
           'history.deleteMilestoneTitle' => 'Excluir este marco?',
@@ -10292,9 +10386,6 @@ extension on Translations {
           'history.deleteMilestoneConfirm' => 'Excluir',
           'history.saveMilestone' => 'Salvar',
           'history.storyDatesTitle' => 'Datas da nossa história',
-          _ => null,
-        } ??
-        switch (path) {
           'history.storyMet' => 'Nos conhecemos',
           'history.storyDating' => 'Começamos a namorar',
           'history.storyEngaged' => 'Noivamos',
@@ -10901,6 +10992,9 @@ extension on Translations {
           'moodHelp.partnerNeedSupports.rest' => 'Assumir o que der e deixar quieto.',
           'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'Vocês ainda não estão conectados.',
+          _ => null,
+        } ??
+        switch (path) {
           'moodHelp.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'moodHelp.errors.NETWORK' =>
             'Não deu para enviar agora. Verifique a conexão e tente de novo.',
@@ -10910,9 +11004,6 @@ extension on Translations {
           'need.titleHighlight' => 'Preciso',
           'need.subtitle' => 'Escolha uma coisa. Seu par recebe um aviso gentil, sem cobrança.',
           'need.options.hug' => 'Um abraço',
-          _ => null,
-        } ??
-        switch (path) {
           'need.options.talk' => 'Conversar',
           'need.options.help_home' => 'Ajuda em casa',
           'need.options.quiet' => 'Um tempo quieta',
@@ -11086,6 +11177,13 @@ extension on Translations {
           'partnerStep.aloneSupport' => 'Seus slips ficam só com você',
           'partnerStep.haveCode' => 'Tenho um código de convite',
           'partnerStep.continueButton' => 'Continuar',
+          'partnerStep.soloOnlyTitle' => 'Só para mim',
+          'partnerStep.soloOnlySupport' => 'Sem convidar ninguém',
+          'partnerStep.whyInvite' => 'Por que convidar?',
+          'partnerStep.why.title' => 'Por que convidar?',
+          'partnerStep.why.shared' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
+          'partnerStep.why.privacy' =>
+            'Seus slips e notas privadas continuam só seus até você compartilhar.',
           'plus.title' => 'Mingo Plus',
           'plus.subtitle' => 'Compare com calma. O plano grátis continua inteiro para o essencial.',
           'plus.activeTitle' => 'Você tem o Plus',
@@ -11198,8 +11296,6 @@ extension on Translations {
           'profileDetails.nameErrors.empty' => 'Seu nome não pode ficar vazio.',
           'profileDetails.nameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileDetails.pronounsLabel' => 'Pronomes',
-          'profileDetails.pronounsHint' => 'Opcional',
-          'profileDetails.pronounsErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileDetails.timeZoneLabel' => 'Fuso horário',
           'profileDetails.timeZonePlaceholder' => 'Escolha um fuso',
           'profileDetails.loginLabel' => 'Login',
@@ -11239,11 +11335,6 @@ extension on Translations {
           'profileSetup.partnerNameLabel' => 'Nome do parceiro',
           'profileSetup.partnerNameHint' => 'Ricardo',
           'profileSetup.partnerNameErrors.tooLong' => 'Use no máximo 30 caracteres.',
-          'profileSetup.partnerNameNote' => 'O nome do parceiro fica só na sua conta.',
-          'profileSetup.themeLabel' => 'Cor do seu app',
-          'profileSetup.themeRose' => 'Rosa',
-          'profileSetup.themeBlue' => 'Azul',
-          'profileSetup.themeNeutral' => 'Neutro',
           'profileSetup.dateLabel' => 'Quando começaram?',
           'profileSetup.dateHint' => 'Escolha uma data',
           'profileSetup.dateErrors.empty' => 'Escolha a data de vocês.',
@@ -11269,6 +11360,12 @@ extension on Translations {
             'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
           'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
           'profileSetup.errors.other' => 'Não deu para salvar agora. Tente de novo.',
+          'profileSetup.pronounsNote' =>
+            'Como chamar cada um nas frases. Quando a outra pessoa entrar, vale a escolha dela.',
+          'profileSetup.themeLabel' => 'Cor do seu app',
+          'profileSetup.themeRose' => 'Rosa',
+          'profileSetup.themeBlue' => 'Azul',
+          'profileSetup.themeNeutral' => 'Neutro',
           'programs.label' => 'PROGRAMAS',
           'programs.title' => 'Programas',
           'programs.entryText' => 'Programas curtos e guiados, no seu ritmo.',
@@ -11360,6 +11457,10 @@ extension on Translations {
           'programs.lessonErrors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'programs.diaryErrors.other' => 'Não deu para salvar agora. Seu texto continua aqui.',
           'programs.freeNote' => 'No grátis aparece só a primeira lição.',
+          'pronouns.options.she' => 'Ela',
+          'pronouns.options.he' => 'Ele',
+          'pronouns.options.nameOnly' => 'Só o nome',
+          'pronouns.options.other' => 'Só o nome',
           'questions.tag' => 'Pergunta para vocês dois',
           'questions.eyebrow' => 'Pergunta do dia',
           'questions.answerCta' => 'Responder',
@@ -11485,6 +11586,9 @@ extension on Translations {
           'received.doneTitle' => 'Tudo certo',
           'received.doneText' => 'Que bom que você leu com calma.',
           'received.emptyTitle' => 'Nada novo',
+          _ => null,
+        } ??
+        switch (path) {
           'received.emptyText' => 'Quando seu par mandar algo, aparece aqui.',
           'received.close' => 'Fechar',
           'received.errorTitle' => 'Não deu para abrir',
@@ -11501,9 +11605,6 @@ extension on Translations {
           'relationshipChanged.continueLabel' => 'Continuar',
           'relationshipChanged.saved' => 'Salvo',
           'relationshipChanged.errors.NETWORK' => 'Sem conexão. Tente de novo.',
-          _ => null,
-        } ??
-        switch (path) {
           'relationshipChanged.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'relationshipSettings.title' => 'Relacionamento',
           'relationshipSettings.phaseLabel' => 'Fase',
@@ -12061,6 +12162,9 @@ extension on Translations {
           'tabs.capture' => 'Novo slip',
           'tabs.soonTitle' => 'Em construção',
           'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.segmentTogether' => 'Nós',
           'tabs.forMeFooter' => 'Ferramentas privadas. Nunca compartilhadas.',
           'tabs.segmentForMe' => 'Para mim',
@@ -12089,9 +12193,6 @@ extension on Translations {
                   other: '${count} listas, privadas',
                 ),
           'tabs.soloNote' => 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.ritualsLabel' => 'ROTINA',
           'tabs.ritualsTitle' => 'Rituais',
           'tabs.ritualsText' => 'Pequenos hábitos que vocês querem proteger.',

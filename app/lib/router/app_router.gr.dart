@@ -374,6 +374,22 @@ class CouplePhotosWidgetRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CreateAccountPage]
+class CreateAccountRoute extends PageRouteInfo<void> {
+  const CreateAccountRoute({List<PageRouteInfo>? children})
+    : super(CreateAccountRoute.name, initialChildren: children);
+
+  static const String name = 'CreateAccountRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CreateAccountPage());
+    },
+  );
+}
+
+/// generated route for
 /// [DateNightPage]
 class DateNightRoute extends PageRouteInfo<void> {
   const DateNightRoute({List<PageRouteInfo>? children})

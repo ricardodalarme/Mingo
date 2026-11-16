@@ -130,3 +130,32 @@ test('the anonymous role reaches nothing of a person', async () => {
   }
   assert.deepEqual((await gql('public', `mutation { unpair { id } }`)).data, undefined);
 });
+
+test('pronouns and the partner intent are closed sets a person chooses for themselves', async () => {
+  const { a, b } = await couple();
+  const chosen = await ok(a, `mutation ($id: uuid!) {
+    updateProfilesByPk(pk_columns: {id: $id}, _set: {pronouns: she}) { pronouns }
+    updateUserSettingsByPk(pk_columns: {userId: $id}, _set: {partnerPronouns: he, partnerIntent: solo_only}) { partnerPronouns partnerIntent } }`, { id: a.id });
+  assert.deepEqual(chosen, {
+    updateProfilesByPk: { pronouns: 'she' },
+    updateUserSettingsByPk: { partnerPronouns: 'he', partnerIntent: 'solo_only' },
+  });
+  await denied(a, `mutation ($id: uuid!) { updateProfilesByPk(pk_columns: {id: $id}, _set: {pronouns: "any text"}) { id } }`, { id: a.id });
+  await denied(a, `mutation ($id: uuid!) { updateUserSettingsByPk(pk_columns: {userId: $id}, _set: {partnerIntent: "never"}) { userId } }`, { id: a.id });
+  assert.deepEqual(
+    await ok(b, `mutation ($id: uuid!) { updateUserSettingsByPk(pk_columns: {userId: $id}, _set: {partnerIntent: invite}) { userId } }`, { id: a.id }),
+    { updateUserSettingsByPk: null },
+    'nobody sets another person\'s choice',
+  );
+  const own = await ok(a, `{ userSettings { partnerPronouns partnerIntent } }`);
+  assert.deepEqual(own.userSettings, [{ partnerPronouns: 'he', partnerIntent: 'solo_only' }]);
+});
+
+test('the partner reads the pronouns a person chose but never their partner intent', async () => {
+  const { a, b } = await couple();
+  await ok(a, `mutation ($id: uuid!) {
+    updateProfilesByPk(pk_columns: {id: $id}, _set: {pronouns: name_only}) { id }
+    updateUserSettingsByPk(pk_columns: {userId: $id}, _set: {partnerIntent: later}) { userId } }`, { id: a.id });
+  const seen = await ok(b, `query ($id: uuid!) { profilesByPk(id: $id) { pronouns } userSettingsByPk(userId: $id) { partnerIntent } }`, { id: a.id });
+  assert.deepEqual(seen, { profilesByPk: { pronouns: 'name_only' }, userSettingsByPk: null });
+});

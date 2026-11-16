@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/profile/data/models/profile_details.dart';
 import 'package:app/features/profile/data/models/profile_name.dart';
+import 'package:app/features/profile/data/models/pronoun.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:core/core.dart';
@@ -14,7 +15,6 @@ import 'package:form_inputs/form_inputs.dart';
 part 'profile_settings_state.dart';
 
 const Duration _editDebounce = Duration(milliseconds: 600);
-const int maxPronounsLength = 30;
 
 class ProfileSettingsCubit({
   required final ProfileRepository _profileRepository,
@@ -24,13 +24,12 @@ class ProfileSettingsCubit({
   this : super(const ProfileSettingsState());
 
   Timer? _nameTimer;
-  Timer? _pronounsTimer;
   Future<void>? _nameSave;
   Future<void>? _pronounsSave;
   Future<void>? _themeSave;
   Future<void>? _timeZoneSave;
   String _savedName = '';
-  String? _savedPronouns;
+  Pronoun? _savedPronouns;
   bool _isClosing = false;
 
   bool get _canEmit => !isClosed && !_isClosing;
@@ -47,7 +46,6 @@ class ProfileSettingsCubit({
         state.copyWith(
           details: Success(details),
           nameDraft: FormInput(details.displayName),
-          pronounsDraft: FormInput(details.pronouns ?? ''),
           loginProvider: _authenticationRepository.loginProvider,
         ),
       );
@@ -122,34 +120,18 @@ class ProfileSettingsCubit({
     }
   }
 
-  void onPronounsChanged(String value) {
-    if (!_canEmit) return;
-
-    _pronounsTimer?.cancel();
-    emit(state.copyWith(pronounsDraft: FormInput(value)));
-    if (value.trim().runes.length > maxPronounsLength) {
-      _validatePronouns();
-      return;
-    }
-
-    _pronounsTimer = Timer(_editDebounce, savePronouns);
-  }
-
-  Future<void> savePronouns() async {
-    _pronounsTimer?.cancel();
+  Future<void> onPronounsChanged(Pronoun pronouns) async {
     if (_pronounsSave case final pending?) await pending;
 
     final current = state.current;
-    if (current == null || !_canEmit) return;
-    if (!_validatePronouns()) return;
+    if (current == null || current.pronouns == pronouns || !_canEmit) return;
 
-    final raw = (state.pronounsDraft?.value ?? current.pronouns ?? '').trim();
-    final pronouns = raw.isEmpty ? null : raw;
-    if (pronouns == _savedPronouns) {
-      emit(state.copyWith(pronounsDraft: FormInput(pronouns ?? '')));
-      return;
-    }
-
+    emit(
+      state.copyWith(
+        details: Success(current.copyWith(pronouns: pronouns)),
+        saveAction: const Loading(),
+      ),
+    );
     final future = _savePronouns(current, pronouns);
     _pronounsSave = future;
     try {
@@ -159,20 +141,13 @@ class ProfileSettingsCubit({
     }
   }
 
-  Future<void> _savePronouns(ProfileDetails previous, String? pronouns) async {
-    emit(state.copyWith(saveAction: const Loading()));
+  Future<void> _savePronouns(ProfileDetails previous, Pronoun pronouns) async {
     try {
       await _profileRepository.updatePronouns(profileId: previous.profileId, pronouns: pronouns);
       _savedPronouns = pronouns;
       if (!_canEmit) return;
-      final latest = state.current ?? previous;
-      emit(
-        state.copyWith(
-          details: Success(latest.copyWith(pronouns: pronouns, clearPronouns: pronouns == null)),
-          pronounsDraft: FormInput(pronouns ?? ''),
-          saveAction: const Initial(),
-        ),
-      );
+      emit(state.copyWith(saveAction: const Success(null)));
+      emit(state.copyWith(saveAction: const Initial()));
     } catch (exception) {
       if (!_canEmit) return;
       final latest = state.current ?? previous;
@@ -181,7 +156,6 @@ class ProfileSettingsCubit({
           details: Success(
             latest.copyWith(pronouns: _savedPronouns, clearPronouns: _savedPronouns == null),
           ),
-          pronounsDraft: FormInput(_savedPronouns ?? ''),
           saveAction: Failure.fromObject(exception),
         ),
       );
@@ -284,17 +258,6 @@ class ProfileSettingsCubit({
     return validatedName.isValid;
   }
 
-  bool _validatePronouns() {
-    final draft = state.pronounsDraft;
-    if (draft == null) return true;
-
-    final validatedPronouns = draft.validate(MaxLengthValidator(maxPronounsLength));
-
-    emit(state.copyWith(pronounsDraft: validatedPronouns));
-
-    return validatedPronouns.isValid;
-  }
-
   Future<void> _rememberLocalTheme(AppThemeVariant theme) async {
     try {
       final settings = _settingsRepository.get();
@@ -308,7 +271,6 @@ class ProfileSettingsCubit({
   Future<void> close() async {
     _isClosing = true;
     _nameTimer?.cancel();
-    _pronounsTimer?.cancel();
     await _nameSave;
     await _pronounsSave;
 
@@ -323,21 +285,6 @@ class ProfileSettingsCubit({
           );
         } on Object {
           // Closing cannot surface a failed last write.
-        }
-      }
-
-      final rawPronouns = (state.pronounsDraft?.value ?? current.pronouns ?? '').trim();
-      if (rawPronouns.runes.length <= maxPronounsLength) {
-        final pronouns = rawPronouns.isEmpty ? null : rawPronouns;
-        if (pronouns != _savedPronouns) {
-          try {
-            await _profileRepository.updatePronouns(
-              profileId: current.profileId,
-              pronouns: pronouns,
-            );
-          } on Object {
-            // Closing cannot surface a failed last write.
-          }
         }
       }
     }

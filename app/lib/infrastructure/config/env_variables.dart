@@ -1,5 +1,7 @@
 abstract interface class EnvVariables() {
   static const bool debugSignIn = bool.fromEnvironment('DEBUG_SIGN_IN');
+  static const String termsUrl = String.fromEnvironment('TERMS_URL');
+  static const String privacyUrl = String.fromEnvironment('PRIVACY_URL');
   static const String serverUrl = String.fromEnvironment('SERVER_URL');
   static const String authUrl = String.fromEnvironment('AUTH_URL');
   static const String storageUrl = String.fromEnvironment('STORAGE_URL');

@@ -4,6 +4,7 @@ import 'package:app/features/authentication/data/repositories/authentication_rep
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveIntroAnswers.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveProfileSetup.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdatePartnerIntent.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdatePronouns.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipPhase.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipStatus.graphql.dart';
@@ -12,13 +13,17 @@ import 'package:app/features/profile/data/data_sources/remote/mutations/generate
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateTogetherSince.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/profile_data_source.dart';
 import 'package:app/features/profile/data/mappers/account_settings_mapper.dart';
+import 'package:app/features/profile/data/mappers/partner_intent_mapper.dart';
 import 'package:app/features/profile/data/mappers/profile_mapper.dart';
+import 'package:app/features/profile/data/mappers/pronoun_mapper.dart';
 import 'package:app/features/profile/data/mappers/relationship_goal_mapper.dart';
 import 'package:app/features/profile/data/mappers/relationship_phase_mapper.dart';
 import 'package:app/features/profile/data/mappers/relationship_status_mapper.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
+import 'package:app/features/profile/data/models/partner_intent.dart';
 import 'package:app/features/profile/data/models/profile.dart';
 import 'package:app/features/profile/data/models/profile_details.dart';
+import 'package:app/features/profile/data/models/pronoun.dart';
 import 'package:app/features/profile/data/models/relationship_details.dart';
 import 'package:app/features/profile/data/models/relationship_goal.dart';
 import 'package:app/features/profile/data/models/relationship_phase.dart';
@@ -65,7 +70,7 @@ class ProfileRepository({
       return ProfileDetails(
         profileId: profile.id,
         displayName: profile.displayName ?? '',
-        pronouns: profile.pronouns,
+        pronouns: profile.pronouns?.toModel(),
         timeZone: settings.profile.timeZone,
         theme: settings.theme.toVariant(),
       );
@@ -103,15 +108,31 @@ class ProfileRepository({
     }
   }
 
-  Future<void> updatePronouns({required String profileId, required String? pronouns}) async {
+  Future<void> updatePronouns({required String profileId, required Pronoun? pronouns}) async {
     try {
       final affected = await _profileDataSource.updatePronouns(
-        VariablesMutationUpdatePronouns(profileId: profileId, pronouns: pronouns),
+        VariablesMutationUpdatePronouns(profileId: profileId, pronouns: pronouns?.toRemote()),
       );
       _ensureUpdated(affected);
       _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the pronouns', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  Future<void> updatePartnerIntent({
+    required String profileId,
+    required PartnerIntent? intent,
+  }) async {
+    try {
+      final affected = await _profileDataSource.updatePartnerIntent(
+        VariablesMutationUpdatePartnerIntent(profileId: profileId, intent: intent?.toRemote()),
+      );
+      _ensureUpdated(affected);
+      _notifyChanges();
+    } catch (e, stack) {
+      _logger.error('Failed to save the partner choice', error: e, stackTrace: stack);
       rethrow;
     }
   }
@@ -230,13 +251,15 @@ class ProfileRepository({
     }
   }
 
-  /// Saves the name, theme, optional partner name and relationship date, and marks the
-  /// person as onboarded.
+  /// Saves the names, how each person is addressed, the theme and the relationship date, and marks
+  /// the person as onboarded.
   Future<void> saveProfileSetup({
     required String profileId,
     required String displayName,
     required AppThemeVariant theme,
+    Pronoun? pronouns,
     String? partnerName,
+    Pronoun? partnerPronouns,
     DateTime? togetherSince,
   }) async {
     try {
@@ -244,8 +267,10 @@ class ProfileRepository({
         VariablesMutationSaveProfileSetup(
           profileId: profileId,
           displayName: displayName,
+          pronouns: pronouns?.toRemote(),
           theme: theme.toServerTheme(),
           partnerName: partnerName,
+          partnerPronouns: partnerPronouns?.toRemote(),
           togetherSince: togetherSince,
           onboardedAt: clock.now().toUtc(),
         ),

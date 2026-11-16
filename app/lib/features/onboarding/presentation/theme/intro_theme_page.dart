@@ -1,14 +1,12 @@
 import 'package:app/features/onboarding/presentation/intro/cubit/intro_cubit.dart';
 import 'package:app/features/onboarding/presentation/intro/widgets/intro_scaffold.dart';
+import 'package:app/features/profile/presentation/widgets/theme_preview.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-const double _swatchSide = 44;
-const double _swatchRadius = 12;
 
 @RoutePage()
 class const IntroThemePage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
@@ -75,7 +73,7 @@ class const _ThemeOptions() extends StatelessWidget {
           BaseOptionTile(
             title: title,
             support: support,
-            leading: _Swatch(variant: variant),
+            preview: ThemePreview(variant: variant),
             isSelected: selected == variant,
             onTap: () {
               context.read<IntroCubit>().selectTheme(variant);
@@ -85,32 +83,6 @@ class const _ThemeOptions() extends StatelessWidget {
           const SizedBox(height: AppSpace.s10),
         ],
       ],
-    );
-  }
-}
-
-class const _Swatch({required final AppThemeVariant variant}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final colors = AppColors.forVariant(variant);
-
-    return Container(
-      width: _swatchSide,
-      height: _swatchSide,
-      decoration: BoxDecoration(
-        color: colors.bgScreen,
-        borderRadius: BorderRadius.circular(_swatchRadius),
-        border: Border.all(color: colors.borderDefault),
-      ),
-      alignment: Alignment.center,
-      child: Container(
-        width: _swatchSide / 2,
-        height: AppSpace.s6,
-        decoration: BoxDecoration(
-          color: colors.accentHighlight,
-          borderRadius: BorderRadius.circular(AppSpace.s2),
-        ),
-      ),
     );
   }
 }

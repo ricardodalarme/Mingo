@@ -31,6 +31,7 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
     final home = context.select((TodayCubit cubit) => cubit.state.home);
     final selfName = context.select((TodayCubit cubit) => cubit.state.selfName);
     final partnerHint = context.select((TodayCubit cubit) => cubit.state.partnerHint);
+    final isSoloOnly = context.select((TodayCubit cubit) => cubit.state.isSoloOnly);
     final isFirstDay = context.select((TodayCubit cubit) => cubit.state.isFirstDay);
     final showUnpairNotice = context.select((TodayCubit cubit) => cubit.state.showUnpairNotice);
     final unpairedPartnerName = context.select(
@@ -68,6 +69,7 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
                         selfName: selfName,
                         partnerHint: partnerHint,
                         isFirstDay: isFirstDay,
+                        isSoloOnly: isSoloOnly,
                       ),
                       failureBuilder: (failure) => AppErrorView(
                         exception: failure,

@@ -238,11 +238,21 @@ enum PartnerFactSource_enum {
   learning
   manual
 }
+enum PartnerIntent_enum {
+  invite
+  later
+  solo_only
+}
 enum PartnerMessageKind_enum {
   drawing
   note
   pack
   voice
+}
+enum Pronoun_enum {
+  he
+  name_only
+  she
 }
 enum QuizKey_enum {
   conflict_style
@@ -3685,7 +3695,15 @@ enum userSettings_select_column {
   """
   column name
   """
+  partnerIntent
+  """
+  column name
+  """
   partnerName
+  """
+  column name
+  """
+  partnerPronouns
   """
   column name
   """
@@ -9319,7 +9337,7 @@ type profiles {
   An object relationship
   """
   membership: coupleMembers
-  pronouns: String
+  pronouns: Pronoun_enum
   """
   An object relationship
   """
@@ -17108,7 +17126,9 @@ type userSettings {
   locale: String!
   lowStimulation: Boolean!
   onboardedAt: timestamptz
+  partnerIntent: PartnerIntent_enum
   partnerName: String
+  partnerPronouns: Pronoun_enum
   phase: RelationshipPhase_enum
   """
   An object relationship
@@ -17531,6 +17551,16 @@ input PartnerFactSource_enum_comparison_exp {
   _nin: [PartnerFactSource_enum!]
 }
 """
+Boolean expression to compare columns of type "PartnerIntent_enum". All fields are combined with logical 'AND'.
+"""
+input PartnerIntent_enum_comparison_exp {
+  _eq: PartnerIntent_enum
+  _in: [PartnerIntent_enum!]
+  _is_null: Boolean
+  _neq: PartnerIntent_enum
+  _nin: [PartnerIntent_enum!]
+}
+"""
 Boolean expression to compare columns of type "PartnerMessageKind_enum". All fields are combined with logical 'AND'.
 """
 input PartnerMessageKind_enum_comparison_exp {
@@ -17539,6 +17569,16 @@ input PartnerMessageKind_enum_comparison_exp {
   _is_null: Boolean
   _neq: PartnerMessageKind_enum
   _nin: [PartnerMessageKind_enum!]
+}
+"""
+Boolean expression to compare columns of type "Pronoun_enum". All fields are combined with logical 'AND'.
+"""
+input Pronoun_enum_comparison_exp {
+  _eq: Pronoun_enum
+  _in: [Pronoun_enum!]
+  _is_null: Boolean
+  _neq: Pronoun_enum
+  _nin: [Pronoun_enum!]
 }
 """
 Boolean expression to compare columns of type "QuizKey_enum". All fields are combined with logical 'AND'.
@@ -21893,7 +21933,7 @@ input profiles_bool_exp {
   displayName: String_comparison_exp
   id: uuid_comparison_exp
   membership: coupleMembers_bool_exp
-  pronouns: String_comparison_exp
+  pronouns: Pronoun_enum_comparison_exp
   settings: userSettings_bool_exp
   sharedMood: sharedMoods_bool_exp
   timeZone: String_comparison_exp
@@ -21908,7 +21948,6 @@ input profiles_max_order_by {
   createdAt: order_by
   displayName: order_by
   id: order_by
-  pronouns: order_by
   timeZone: order_by
   updatedAt: order_by
 }
@@ -21921,7 +21960,6 @@ input profiles_min_order_by {
   createdAt: order_by
   displayName: order_by
   id: order_by
-  pronouns: order_by
   timeZone: order_by
   updatedAt: order_by
 }
@@ -21957,7 +21995,7 @@ input profiles_set_input {
   avatarKind: AvatarKind_enum
   city: String
   displayName: String
-  pronouns: String
+  pronouns: Pronoun_enum
   timeZone: String
 }
 """
@@ -21983,7 +22021,7 @@ input profiles_stream_cursor_value_input {
   createdAt: timestamptz
   displayName: String
   id: uuid
-  pronouns: String
+  pronouns: Pronoun_enum
   timeZone: String
   updatedAt: timestamptz
 }
@@ -23739,7 +23777,9 @@ input userSettings_bool_exp {
   locale: String_comparison_exp
   lowStimulation: Boolean_comparison_exp
   onboardedAt: timestamptz_comparison_exp
+  partnerIntent: PartnerIntent_enum_comparison_exp
   partnerName: String_comparison_exp
+  partnerPronouns: Pronoun_enum_comparison_exp
   phase: RelationshipPhase_enum_comparison_exp
   profile: profiles_bool_exp
   relationshipStatus: RelationshipStatus_enum_comparison_exp
@@ -23769,7 +23809,9 @@ input userSettings_order_by {
   locale: order_by
   lowStimulation: order_by
   onboardedAt: order_by
+  partnerIntent: order_by
   partnerName: order_by
+  partnerPronouns: order_by
   phase: order_by
   profile: profiles_order_by
   relationshipStatus: order_by
@@ -23804,7 +23846,9 @@ input userSettings_set_input {
   locale: String
   lowStimulation: Boolean
   onboardedAt: timestamptz
+  partnerIntent: PartnerIntent_enum
   partnerName: String
+  partnerPronouns: Pronoun_enum
   phase: RelationshipPhase_enum
   relationshipStatus: RelationshipStatus_enum
   shareReadReceipts: Boolean
@@ -23844,7 +23888,9 @@ input userSettings_stream_cursor_value_input {
   locale: String
   lowStimulation: Boolean
   onboardedAt: timestamptz
+  partnerIntent: PartnerIntent_enum
   partnerName: String
+  partnerPronouns: Pronoun_enum
   phase: RelationshipPhase_enum
   relationshipStatus: RelationshipStatus_enum
   shareReadReceipts: Boolean

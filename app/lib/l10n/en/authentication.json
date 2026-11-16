@@ -1,9 +1,7 @@
 {
   "signInTitle": "Sign in",
   "signInSubtitle": "No email and password. Just Apple or Google.",
-  "signInDebugSubtitle": "In this test build, sign in with email and password.",
   "signInNote": "Signing in takes you straight to your Today.",
-  "providersUnavailable": "Apple and Google are off in this test build. Sign in with email and password.",
   "emailSignInFallback": "Sign in with email and password",
   "existingAccountTitle": "You already have an account",
   "existingAccountSubtitle": "Sign in to pick up where you left off.",
@@ -89,5 +87,10 @@
     "validation_failed": "Check the information and try again.",
     "weak_password": "Choose a stronger password.",
     "other": "Could not sign you in right now. Try again."
-  }
+  },
+  "legal": "By continuing, you confirm you are 18 or older and agree to the {terms} and the {privacy}.",
+  "legalTerms": "Terms",
+  "legalPrivacy": "Privacy Policy",
+  "legalPlain": "By continuing, you confirm you are 18 or older and agree to the Terms and the Privacy Policy.",
+  "tryAgain": "Try again"
 }

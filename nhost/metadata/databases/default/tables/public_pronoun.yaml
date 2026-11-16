@@ -1,0 +1,9 @@
+table:
+  name: pronoun
+  schema: public
+is_enum: true
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: Pronoun
+  custom_root_fields: {}

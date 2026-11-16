@@ -21,6 +21,7 @@ class const TodayContent({
   final String? selfName,
   final String? partnerHint,
   final bool isFirstDay = false,
+  final bool isSoloOnly = false,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -31,7 +32,7 @@ class const TodayContent({
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _HeroSection(home: home, selfName: selfName, isFirstDay: isFirstDay),
-        _MoreCardsSection(home: home, partnerHint: partnerHint),
+        _MoreCardsSection(home: home, partnerHint: partnerHint, isSoloOnly: isSoloOnly),
         if (idea != null) _IdeaSection(idea: idea),
         TodayShareEntry(home: home),
       ],
@@ -132,8 +133,11 @@ class const _HeroSection({
   }
 }
 
-class const _MoreCardsSection({required final TodayHome home, required final String? partnerHint})
-    extends StatelessWidget {
+class const _MoreCardsSection({
+  required final TodayHome home,
+  required final String? partnerHint,
+  required final bool isSoloOnly,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.today;
@@ -151,7 +155,7 @@ class const _MoreCardsSection({required final TodayHome home, required final Str
             onTap: () => context.pushRoute(const SundayCardRoute()),
           ),
         ],
-        if (isAlone && !home.hasPendingInvite) ...[
+        if (isAlone && !isSoloOnly && !home.hasPendingInvite) ...[
           const SizedBox(height: AppSpace.s12),
           BaseListCard(
             categoryLabel: l10n.inviteCardLabel,

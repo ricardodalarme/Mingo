@@ -7,5 +7,13 @@
   "aloneTitle": "Start on my own for now",
   "aloneSupport": "Your slips stay with you only",
   "haveCode": "I have an invite code",
-  "continueButton": "Continue"
+  "continueButton": "Continue",
+  "soloOnlyTitle": "Just for me",
+  "soloOnlySupport": "Without inviting anyone",
+  "whyInvite": "Why invite?",
+  "why": {
+    "title": "Why invite?",
+    "shared": "Shared cards and tools need both of you.",
+    "privacy": "Your slips and private notes stay yours until you share them."
+  }
 }

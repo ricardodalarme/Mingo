@@ -2,6 +2,7 @@ import 'package:app/features/_shared/data/data_sources/remote/generated/schema.g
 import 'package:app/features/pairing/data/data_sources/remote/queries/generated/MyPartner.graphql.dart';
 import 'package:app/features/pairing/data/mappers/partner_profile_mapper.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/pronoun.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -11,14 +12,14 @@ void main() {
       displayName: 'Bia',
       avatarKind: EnumAvatarKind_enum.photo,
       city: 'Curitiba',
-      pronouns: 'ela/dela',
+      pronouns: EnumPronoun_enum.she,
     ).toModel();
 
     expect(profile.id, 'p1');
     expect(profile.displayName, 'Bia');
     expect(profile.avatarKind, AvatarKind.photo);
     expect(profile.city, 'Curitiba');
-    expect(profile.pronouns, 'ela/dela');
+    expect(profile.pronouns, Pronoun.she);
   });
 
   test('a partner with only an id keeps the other fields empty and shows initials', () {

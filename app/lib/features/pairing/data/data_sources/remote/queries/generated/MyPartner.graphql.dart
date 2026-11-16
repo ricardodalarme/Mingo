@@ -566,7 +566,7 @@ class QueryMyPartnercouplesmembersprofile {
       displayName: (l$displayName as String?),
       avatarKind: fromJsonEnumAvatarKind_enum((l$avatarKind as String)),
       city: (l$city as String?),
-      pronouns: (l$pronouns as String?),
+      pronouns: l$pronouns == null ? null : fromJsonEnumPronoun_enum((l$pronouns as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -579,7 +579,7 @@ class QueryMyPartnercouplesmembersprofile {
 
   final String? city;
 
-  final String? pronouns;
+  final EnumPronoun_enum? pronouns;
 
   final String $__typename;
 
@@ -594,7 +594,7 @@ class QueryMyPartnercouplesmembersprofile {
     final l$city = city;
     _resultData['city'] = l$city;
     final l$pronouns = pronouns;
-    _resultData['pronouns'] = l$pronouns;
+    _resultData['pronouns'] = l$pronouns == null ? null : toJsonEnumPronoun_enum(l$pronouns);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

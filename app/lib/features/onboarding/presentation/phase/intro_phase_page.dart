@@ -30,15 +30,14 @@ class const IntroPhasePage({super.key}) extends StatelessWidget implements AutoR
 
     return IntroScaffold(
       stepIndex: 0,
+      isFirst: true,
       title: l10n.title,
       highlight: l10n.titleHighlight,
       subtitle: l10n.subtitle,
       body: const _PhaseOptions(),
-      footer: IntroFooter(
-        skipText: context.l10n.intro.skip,
-        continueText: context.l10n.intro.continueButton,
-        onSkip: () => next(() => cubit.skip(1)),
-        onContinue: () => next(() => cubit.complete(1)),
+      footer: IntroContinueFooter(
+        text: context.l10n.intro.continueButton,
+        onPressed: () => next(() => cubit.complete(1)),
       ),
     );
   }

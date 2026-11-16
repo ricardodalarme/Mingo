@@ -3,6 +3,8 @@ query MySettings($userId: uuid!) {
     userId
     theme
     partnerName
+    partnerPronouns
+    partnerIntent
     togetherSince
     relationshipStatus
     onboardedAt

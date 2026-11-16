@@ -2,6 +2,7 @@ import 'package:app/features/profile/data/data_sources/remote/fragments/generate
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveIntroAnswers.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveProfileSetup.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
+import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdatePartnerIntent.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdatePronouns.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipPhase.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipStatus.graphql.dart';
@@ -62,6 +63,15 @@ class ProfileDataSource({required final GQLClient _client}) {
     return validateResponseData(
       response,
       getData: (data) => data.updateProfiles?.affected_rows ?? 0,
+    );
+  }
+
+  Future<int> updatePartnerIntent(VariablesMutationUpdatePartnerIntent variables) async {
+    final response = await _client.mutate(OptionsMutationUpdatePartnerIntent(variables: variables));
+
+    return validateResponseData(
+      response,
+      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/pronoun.dart';
 import 'package:equatable/equatable.dart';
 
 final class const Profile({
@@ -7,7 +8,7 @@ final class const Profile({
   final String? displayName,
   final String? avatarFileId,
   final String? city,
-  final String? pronouns,
+  final Pronoun? pronouns,
 }) with Equatable {
   const new fake()
     : this(id: 'fake', avatarKind: AvatarKind.initials, displayName: 'Nome Sobrenome');

@@ -1,3 +1,5 @@
+import 'package:app/features/profile/data/models/partner_intent.dart';
+import 'package:app/features/profile/data/models/pronoun.dart';
 import 'package:app/features/profile/data/models/relationship_goal.dart';
 import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:design_system/design_system.dart';
@@ -8,6 +10,8 @@ final class const AccountSettings({
   final String profileId = '',
   final String timeZone = 'UTC',
   final String? partnerName,
+  final Pronoun? partnerPronouns,
+  final PartnerIntent? partnerIntent,
   final DateTime? togetherSince,
   final DateTime? onboardedAt,
   final bool shareReadReceipts = false,
@@ -24,6 +28,8 @@ final class const AccountSettings({
     profileId,
     timeZone,
     partnerName,
+    partnerPronouns,
+    partnerIntent,
     togetherSince,
     onboardedAt,
     shareReadReceipts,
