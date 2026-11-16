@@ -6,23 +6,29 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('maps the games the app has screens for', () {
-    expect(EnumGameKind.me_or_you.toModel(), GameKind.meOrYou);
-    expect(EnumGameKind.how_well.toModel(), GameKind.howWell);
-    expect(EnumGameKind.twenty_questions.toModel(), GameKind.twentyQuestions);
-    expect(EnumGameKind.never_have_we.toModel(), GameKind.neverHaveWe);
-    expect(EnumGameKind.mission.toModel(), GameKind.mission);
+    expect(EnumGameKind_enum.me_or_you.toModel(), GameKind.meOrYou);
+    expect(EnumGameKind_enum.how_well.toModel(), GameKind.howWell);
+    expect(EnumGameKind_enum.twenty_questions.toModel(), GameKind.twentyQuestions);
+    expect(EnumGameKind_enum.never_have_we.toModel(), GameKind.neverHaveWe);
+    expect(EnumGameKind_enum.mission.toModel(), GameKind.mission);
   });
 
   test('a game without screens is left out', () {
-    expect(EnumGameKind.compliments.toModel(), isNull);
-    expect(EnumGameKind.$unknown.toModel(), isNull);
+    expect(EnumGameKind_enum.compliments.toModel(), isNull);
+    expect(EnumGameKind_enum.$unknown.toModel(), isNull);
+  });
+
+  test('a game survives a trip to the remote enum and back', () {
+    for (final value in GameKind.values) {
+      expect(value.toRemote().toModel(), value);
+    }
   });
 
   test('maps every status and counts an unknown one as cancelled', () {
-    expect(EnumGameStatus.invited.toModel(), GameStatus.invited);
-    expect(EnumGameStatus.active.toModel(), GameStatus.active);
-    expect(EnumGameStatus.finished.toModel(), GameStatus.finished);
-    expect(EnumGameStatus.cancelled.toModel(), GameStatus.cancelled);
-    expect(EnumGameStatus.$unknown.toModel(), GameStatus.cancelled);
+    expect(EnumGameStatus_enum.invited.toModel(), GameStatus.invited);
+    expect(EnumGameStatus_enum.active.toModel(), GameStatus.active);
+    expect(EnumGameStatus_enum.finished.toModel(), GameStatus.finished);
+    expect(EnumGameStatus_enum.cancelled.toModel(), GameStatus.cancelled);
+    expect(EnumGameStatus_enum.$unknown.toModel(), GameStatus.cancelled);
   });
 }

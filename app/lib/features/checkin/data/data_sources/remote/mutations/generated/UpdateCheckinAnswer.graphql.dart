@@ -1,12 +1,16 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationUpdateCheckinAnswer {
-  factory VariablesMutationUpdateCheckinAnswer({required String id, required String body}) =>
-      VariablesMutationUpdateCheckinAnswer._({r'id': id, r'body': body});
+  factory VariablesMutationUpdateCheckinAnswer({
+    required String id,
+    required Inputcheckins_set_input answers,
+  }) => VariablesMutationUpdateCheckinAnswer._({r'id': id, r'answers': answers});
 
   VariablesMutationUpdateCheckinAnswer._(this._$data);
 
@@ -14,8 +18,8 @@ class VariablesMutationUpdateCheckinAnswer {
     final result$data = <String, dynamic>{};
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
-    final l$body = data['body'];
-    result$data['body'] = (l$body as String);
+    final l$answers = data['answers'];
+    result$data['answers'] = Inputcheckins_set_input.fromJson((l$answers as Map<String, dynamic>));
     return VariablesMutationUpdateCheckinAnswer._(result$data);
   }
 
@@ -23,14 +27,14 @@ class VariablesMutationUpdateCheckinAnswer {
 
   String get id => (_$data['id'] as String);
 
-  String get body => (_$data['body'] as String);
+  Inputcheckins_set_input get answers => (_$data['answers'] as Inputcheckins_set_input);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
     result$data['id'] = l$id;
-    final l$body = body;
-    result$data['body'] = l$body;
+    final l$answers = answers;
+    result$data['answers'] = l$answers.toJson();
     return result$data;
   }
 
@@ -47,9 +51,9 @@ class VariablesMutationUpdateCheckinAnswer {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$body = body;
-    final lOther$body = other.body;
-    if (l$body != lOther$body) {
+    final l$answers = answers;
+    final lOther$answers = other.answers;
+    if (l$answers != lOther$answers) {
       return false;
     }
     return true;
@@ -58,37 +62,35 @@ class VariablesMutationUpdateCheckinAnswer {
   @override
   int get hashCode {
     final l$id = id;
-    final l$body = body;
-    return Object.hashAll([l$id, l$body]);
+    final l$answers = answers;
+    return Object.hashAll([l$id, l$answers]);
   }
 }
 
 class MutationUpdateCheckinAnswer {
-  MutationUpdateCheckinAnswer({
-    required this.updateCheckinAnswersCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateCheckinAnswer({this.updateCheckinsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateCheckinAnswer.fromJson(Map<String, dynamic> json) {
-    final l$updateCheckinAnswersCollection = json['updateCheckinAnswersCollection'];
+    final l$updateCheckinsByPk = json['updateCheckinsByPk'];
     final l$$__typename = json['__typename'];
     return MutationUpdateCheckinAnswer(
-      updateCheckinAnswersCollection:
-          MutationUpdateCheckinAnswerupdateCheckinAnswersCollection.fromJson(
-            (l$updateCheckinAnswersCollection as Map<String, dynamic>),
-          ),
+      updateCheckinsByPk: l$updateCheckinsByPk == null
+          ? null
+          : MutationUpdateCheckinAnswerupdateCheckinsByPk.fromJson(
+              (l$updateCheckinsByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateCheckinAnswerupdateCheckinAnswersCollection updateCheckinAnswersCollection;
+  final MutationUpdateCheckinAnswerupdateCheckinsByPk? updateCheckinsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateCheckinAnswersCollection = updateCheckinAnswersCollection;
-    _resultData['updateCheckinAnswersCollection'] = l$updateCheckinAnswersCollection.toJson();
+    final l$updateCheckinsByPk = updateCheckinsByPk;
+    _resultData['updateCheckinsByPk'] = l$updateCheckinsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -96,9 +98,9 @@ class MutationUpdateCheckinAnswer {
 
   @override
   int get hashCode {
-    final l$updateCheckinAnswersCollection = updateCheckinAnswersCollection;
+    final l$updateCheckinsByPk = updateCheckinsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateCheckinAnswersCollection, l$$__typename]);
+    return Object.hashAll([l$updateCheckinsByPk, l$$__typename]);
   }
 
   @override
@@ -109,9 +111,9 @@ class MutationUpdateCheckinAnswer {
     if (other is! MutationUpdateCheckinAnswer || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateCheckinAnswersCollection = updateCheckinAnswersCollection;
-    final lOther$updateCheckinAnswersCollection = other.updateCheckinAnswersCollection;
-    if (l$updateCheckinAnswersCollection != lOther$updateCheckinAnswersCollection) {
+    final l$updateCheckinsByPk = updateCheckinsByPk;
+    final lOther$updateCheckinsByPk = other.updateCheckinsByPk;
+    if (l$updateCheckinsByPk != lOther$updateCheckinsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -131,13 +133,13 @@ const documentNodeMutationUpdateCheckinAnswer = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'body')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          variable: VariableNode(name: NameNode(value: 'answers')),
+          type: NamedTypeNode(name: NameNode(value: 'checkins_set_input'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -146,86 +148,69 @@ const documentNodeMutationUpdateCheckinAnswer = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateCheckinAnswersCollection'),
+            name: NameNode(value: 'updateCheckinsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
-                      name: NameNode(value: 'body'),
-                      value: VariableNode(name: NameNode(value: 'body')),
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
                     ),
                   ],
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                name: NameNode(value: '_set'),
+                value: VariableNode(name: NameNode(value: 'answers')),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'records'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'weekStart'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'question'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'body'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'weekStart'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'answer1'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'answer2'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'answer3'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'answer4'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -344,101 +329,32 @@ extension ClientExtensionMutationUpdateCheckinAnswer on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateCheckinAnswerupdateCheckinAnswersCollection {
-  MutationUpdateCheckinAnswerupdateCheckinAnswersCollection({
-    required this.records,
-    this.$__typename = 'CheckinAnswersUpdateResponse',
-  });
-
-  factory MutationUpdateCheckinAnswerupdateCheckinAnswersCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationUpdateCheckinAnswerupdateCheckinAnswersCollection(
-      records: (l$records as List<dynamic>)
-          .map(
-            (e) => MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationUpdateCheckinAnswerupdateCheckinAnswersCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
-  MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords({
+class MutationUpdateCheckinAnswerupdateCheckinsByPk {
+  MutationUpdateCheckinAnswerupdateCheckinsByPk({
     required this.id,
     required this.weekStart,
-    required this.question,
-    required this.body,
-    this.$__typename = 'CheckinAnswers',
+    this.answer1,
+    this.answer2,
+    this.answer3,
+    this.answer4,
+    this.$__typename = 'checkins',
   });
 
-  factory MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory MutationUpdateCheckinAnswerupdateCheckinsByPk.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$weekStart = json['weekStart'];
-    final l$question = json['question'];
-    final l$body = json['body'];
+    final l$answer1 = json['answer1'];
+    final l$answer2 = json['answer2'];
+    final l$answer3 = json['answer3'];
+    final l$answer4 = json['answer4'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords(
+    return MutationUpdateCheckinAnswerupdateCheckinsByPk(
       id: (l$id as String),
       weekStart: DateTime.parse((l$weekStart as String)),
-      question: (l$question as int),
-      body: (l$body as String),
+      answer1: (l$answer1 as String?),
+      answer2: (l$answer2 as String?),
+      answer3: (l$answer3 as String?),
+      answer4: (l$answer4 as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -447,9 +363,13 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
 
   final DateTime weekStart;
 
-  final int question;
+  final String? answer1;
 
-  final String body;
+  final String? answer2;
+
+  final String? answer3;
+
+  final String? answer4;
 
   final String $__typename;
 
@@ -459,10 +379,14 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
     _resultData['id'] = l$id;
     final l$weekStart = weekStart;
     _resultData['weekStart'] = ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
-    final l$question = question;
-    _resultData['question'] = l$question;
-    final l$body = body;
-    _resultData['body'] = l$body;
+    final l$answer1 = answer1;
+    _resultData['answer1'] = l$answer1;
+    final l$answer2 = answer2;
+    _resultData['answer2'] = l$answer2;
+    final l$answer3 = answer3;
+    _resultData['answer3'] = l$answer3;
+    final l$answer4 = answer4;
+    _resultData['answer4'] = l$answer4;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -472,10 +396,20 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
   int get hashCode {
     final l$id = id;
     final l$weekStart = weekStart;
-    final l$question = question;
-    final l$body = body;
+    final l$answer1 = answer1;
+    final l$answer2 = answer2;
+    final l$answer3 = answer3;
+    final l$answer4 = answer4;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$weekStart, l$question, l$body, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$weekStart,
+      l$answer1,
+      l$answer2,
+      l$answer3,
+      l$answer4,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -483,7 +417,7 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords ||
+    if (other is! MutationUpdateCheckinAnswerupdateCheckinsByPk ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -497,14 +431,24 @@ class MutationUpdateCheckinAnswerupdateCheckinAnswersCollectionrecords {
     if (l$weekStart != lOther$weekStart) {
       return false;
     }
-    final l$question = question;
-    final lOther$question = other.question;
-    if (l$question != lOther$question) {
+    final l$answer1 = answer1;
+    final lOther$answer1 = other.answer1;
+    if (l$answer1 != lOther$answer1) {
       return false;
     }
-    final l$body = body;
-    final lOther$body = other.body;
-    if (l$body != lOther$body) {
+    final l$answer2 = answer2;
+    final lOther$answer2 = other.answer2;
+    if (l$answer2 != lOther$answer2) {
+      return false;
+    }
+    final l$answer3 = answer3;
+    final lOther$answer3 = other.answer3;
+    if (l$answer3 != lOther$answer3) {
+      return false;
+    }
+    final l$answer4 = answer4;
+    final lOther$answer4 = other.answer4;
+    if (l$answer4 != lOther$answer4) {
       return false;
     }
     final l$$__typename = $__typename;

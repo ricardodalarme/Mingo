@@ -21,20 +21,21 @@ void main() {
     togetherRepository = _MockTogetherRepository();
     repository = GiftsRepository(dataSource: dataSource, togetherRepository: togetherRepository);
     when(togetherRepository.getCoupleId).thenAnswer((_) async => 'couple-1');
+    when(togetherRepository.getCurrentUserId).thenAnswer((_) async => 'user-1');
   });
 
   FragmentGiftWishFragment gift({
     String id = 'g1',
-    bool isMine = true,
-    bool isShared = true,
+    String authorId = 'user-1',
+    String? coupleId = 'couple-1',
     String title = 'Livro',
     String? note,
-    EnumGiftBudget? budget,
-    EnumGiftIdeaStatus status = EnumGiftIdeaStatus.idea,
+    EnumGiftBudget_enum? budget,
+    EnumGiftIdeaStatus_enum status = EnumGiftIdeaStatus_enum.idea,
   }) => FragmentGiftWishFragment(
     id: id,
-    isMine: isMine,
-    isShared: isShared,
+    authorId: authorId,
+    coupleId: coupleId,
     title: title,
     note: note,
     budget: budget,
@@ -43,7 +44,10 @@ void main() {
 
   test('maps my wishes and my partner shared wishes', () async {
     when(dataSource.getGiftIdeas).thenAnswer(
-      (_) async => [gift(id: 'g1', title: 'Livro'), gift(id: 'g2', isMine: false, title: 'Vinil')],
+      (_) async => [
+        gift(id: 'g1', title: 'Livro'),
+        gift(id: 'g2', authorId: 'user-2', title: 'Vinil'),
+      ],
     );
 
     final gifts = await repository.getGiftIdeas();
@@ -58,7 +62,7 @@ void main() {
   });
 
   test('a wish from a couple that is no longer current is private', () async {
-    when(dataSource.getGiftIdeas).thenAnswer((_) async => [gift(isShared: false)]);
+    when(dataSource.getGiftIdeas).thenAnswer((_) async => [gift(coupleId: null)]);
 
     final gifts = await repository.getGiftIdeas();
 
@@ -67,7 +71,7 @@ void main() {
 
   test('a partner private wish never reaches the page', () async {
     when(dataSource.getGiftIdeas)
-        .thenAnswer((_) async => [gift(id: 'g1', isMine: false, isShared: false)]);
+        .thenAnswer((_) async => [gift(id: 'g1', authorId: 'user-2', coupleId: null)]);
 
     final gifts = await repository.getGiftIdeas();
 
@@ -106,7 +110,7 @@ void main() {
         id: 'g1',
         title: 'Livro',
         note: 'Capa dura',
-        budget: EnumGiftBudget.low,
+        budget: EnumGiftBudget_enum.low,
         coupleId: 'couple-1',
       ),
     ).called(1);

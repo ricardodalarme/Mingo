@@ -5,23 +5,30 @@ import 'package:network/network.dart';
 
 class AccountDataSource({required final GQLClient _client}) {
   /// The pending deletion, or `null` when there is none.
-  Future<QueryMyDeletionRequestdeletionRequestsCollectionedgesnode?> getDeletion() async {
+  Future<QueryMyDeletionRequestdeletionRequestsByPk?> getDeletion(String userId) async {
     final response = await _client.query(
-      OptionsQueryMyDeletionRequest(fetchPolicy: FetchPolicy.networkOnly),
+      OptionsQueryMyDeletionRequest(
+        variables: VariablesQueryMyDeletionRequest(userId: userId),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
     );
-    final data = validateResponseData(response, getData: (data) => data.deletionRequestsCollection);
+    final data = validateResponseData(response, getData: (data) => data);
 
-    return data.edges.firstOrNull?.node;
+    return data.deletionRequestsByPk;
   }
 
-  Future<MutationRequestAccountDeletionrequestAccountDeletion> requestDeletion() async {
+  Future<MutationRequestAccountDeletioninsertDeletionRequestsOne> requestDeletion() async {
     final response = await _client.mutate(OptionsMutationRequestAccountDeletion());
 
-    return validateResponseData(response, getData: (data) => data.requestAccountDeletion);
+    return validateResponseData(response, getData: (data) => data.insertDeletionRequestsOne);
   }
 
-  Future<void> cancelDeletion() async {
-    final response = await _client.mutate(OptionsMutationCancelAccountDeletion());
+  Future<void> cancelDeletion(String userId) async {
+    final response = await _client.mutate(
+      OptionsMutationCancelAccountDeletion(
+        variables: VariablesMutationCancelAccountDeletion(userId: userId),
+      ),
+    );
 
     validateResponse(response);
   }

@@ -1,16 +1,12 @@
 query GiftIdeas {
-  giftIdeasCollection(
-    filter: {kind: {eq: idea}}
-    orderBy: [{createdAt: DescNullsLast}]
-    first: 200
+  giftIdeas(
+    where: { kind: { _eq: idea } }
+    order_by: [{ createdAt: desc_nulls_last }]
+    limit: 200
   ) {
-    edges {
-      node {
-        id
-        title
-        status
-        isMine
-      }
-    }
+    id
+    title
+    status
+    authorId
   }
 }

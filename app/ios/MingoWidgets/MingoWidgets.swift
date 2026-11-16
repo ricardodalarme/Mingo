@@ -379,7 +379,7 @@ struct MingoOwnSmallWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    }    } else if let days = p.daysUntilNextDate(on: entry.date), let title = p.nextDateTitle {
+    } else if let days = p.daysUntilNextDate(on: entry.date), let title = p.nextDateTitle {
       MingoSurfaceCard(deepLink: "mingo://dates?homeWidget=1") {
         Text(MingoL10n.nextDateLabel)
           .font(.caption2.weight(.semibold))
@@ -451,7 +451,7 @@ struct MingoOwnMediumWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    }    } else if p.dailyIdeaTitle == nil && p.slipsCount > 0 {
+    } else if p.dailyIdeaTitle == nil && p.slipsCount > 0 {
       MingoSurfaceCard(deepLink: "mingo://jar?homeWidget=1") {
         Text(MingoL10n.jarLabel)
           .font(.caption2.weight(.semibold))
@@ -598,7 +598,7 @@ struct MingoCoupleCounterWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    }    } else if !p.isPaired {
+    } else if !p.isPaired {
       MingoUnpairedWidgetCard()
     } else {
       let daysText = p.daysTogether(on: entry.date).map { MingoL10n.daysCount($0) } ?? MingoL10n.counterUnset
@@ -642,7 +642,7 @@ struct MingoCouplePhotosWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    }    } else if !p.isPaired {
+    } else if !p.isPaired {
       MingoUnpairedWidgetCard()
     } else if !p.hasPlus {
       MingoSurfaceCard(deepLink: "mingo://memories?homeWidget=1") {
@@ -709,7 +709,7 @@ struct MingoPartnerNoteWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    }    } else if !p.isPaired {
+    } else if !p.isPaired {
       MingoUnpairedWidgetCard()
     } else {
       let fromLabel = (p.showNames ? p.partnerName.map { MingoL10n.noteFromNamed($0) } : nil) ?? MingoL10n.noteFromDefault
@@ -765,7 +765,7 @@ struct MingoCardEncounterWidgetView: View {
     let p = entry.payload
     if !p.isSignedIn {
       MingoSignedOutWidgetCard()
-    }    } else if !p.isPaired {
+    } else if !p.isPaired {
       MingoUnpairedWidgetCard()
     } else {
       let cardTitle: String = switch p.cardState {

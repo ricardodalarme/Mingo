@@ -10,6 +10,6 @@ void main() {
     }
   });
   test('an unknown status is an error, not a guess', () {
-    expect(EnumLessonStatus.$unknown.toModel, throwsFormatException);
+    expect(EnumLessonStatus_enum.$unknown.toModel, throwsFormatException);
   });
 }

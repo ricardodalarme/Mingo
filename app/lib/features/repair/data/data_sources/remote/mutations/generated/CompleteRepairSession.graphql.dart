@@ -9,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationCompleteRepairSession {
   factory VariablesMutationCompleteRepairSession({
     required String id,
-    EnumRepairFeeling? feeling,
+    EnumRepairFeeling_enum? feeling,
     required DateTime completedAt,
   }) => VariablesMutationCompleteRepairSession._({
     r'id': id,
@@ -27,7 +27,7 @@ class VariablesMutationCompleteRepairSession {
       final l$feeling = data['feeling'];
       result$data['feeling'] = l$feeling == null
           ? null
-          : fromJsonEnumRepairFeeling((l$feeling as String));
+          : fromJsonEnumRepairFeeling_enum((l$feeling as String));
     }
     final l$completedAt = data['completedAt'];
     result$data['completedAt'] = DateTime.parse((l$completedAt as String));
@@ -38,7 +38,7 @@ class VariablesMutationCompleteRepairSession {
 
   String get id => (_$data['id'] as String);
 
-  EnumRepairFeeling? get feeling => (_$data['feeling'] as EnumRepairFeeling?);
+  EnumRepairFeeling_enum? get feeling => (_$data['feeling'] as EnumRepairFeeling_enum?);
 
   DateTime get completedAt => (_$data['completedAt'] as DateTime);
 
@@ -48,7 +48,7 @@ class VariablesMutationCompleteRepairSession {
     result$data['id'] = l$id;
     if (_$data.containsKey('feeling')) {
       final l$feeling = feeling;
-      result$data['feeling'] = l$feeling == null ? null : toJsonEnumRepairFeeling(l$feeling);
+      result$data['feeling'] = l$feeling == null ? null : toJsonEnumRepairFeeling_enum(l$feeling);
     }
     final l$completedAt = completedAt;
     result$data['completedAt'] = ((v) => v.toUtc().toIso8601String())(l$completedAt);
@@ -98,31 +98,29 @@ class VariablesMutationCompleteRepairSession {
 }
 
 class MutationCompleteRepairSession {
-  MutationCompleteRepairSession({
-    required this.updateRepairSessionsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationCompleteRepairSession({this.updateRepairSessions, this.$__typename = 'mutation_root'});
 
   factory MutationCompleteRepairSession.fromJson(Map<String, dynamic> json) {
-    final l$updateRepairSessionsCollection = json['updateRepairSessionsCollection'];
+    final l$updateRepairSessions = json['updateRepairSessions'];
     final l$$__typename = json['__typename'];
     return MutationCompleteRepairSession(
-      updateRepairSessionsCollection:
-          MutationCompleteRepairSessionupdateRepairSessionsCollection.fromJson(
-            (l$updateRepairSessionsCollection as Map<String, dynamic>),
-          ),
+      updateRepairSessions: l$updateRepairSessions == null
+          ? null
+          : MutationCompleteRepairSessionupdateRepairSessions.fromJson(
+              (l$updateRepairSessions as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationCompleteRepairSessionupdateRepairSessionsCollection updateRepairSessionsCollection;
+  final MutationCompleteRepairSessionupdateRepairSessions? updateRepairSessions;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateRepairSessionsCollection = updateRepairSessionsCollection;
-    _resultData['updateRepairSessionsCollection'] = l$updateRepairSessionsCollection.toJson();
+    final l$updateRepairSessions = updateRepairSessions;
+    _resultData['updateRepairSessions'] = l$updateRepairSessions?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -130,9 +128,9 @@ class MutationCompleteRepairSession {
 
   @override
   int get hashCode {
-    final l$updateRepairSessionsCollection = updateRepairSessionsCollection;
+    final l$updateRepairSessions = updateRepairSessions;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateRepairSessionsCollection, l$$__typename]);
+    return Object.hashAll([l$updateRepairSessions, l$$__typename]);
   }
 
   @override
@@ -143,9 +141,9 @@ class MutationCompleteRepairSession {
     if (other is! MutationCompleteRepairSession || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateRepairSessionsCollection = updateRepairSessionsCollection;
-    final lOther$updateRepairSessionsCollection = other.updateRepairSessionsCollection;
-    if (l$updateRepairSessionsCollection != lOther$updateRepairSessionsCollection) {
+    final l$updateRepairSessions = updateRepairSessions;
+    final lOther$updateRepairSessions = other.updateRepairSessions;
+    if (l$updateRepairSessions != lOther$updateRepairSessions) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -165,19 +163,19 @@ const documentNodeMutationCompleteRepairSession = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'feeling')),
-          type: NamedTypeNode(name: NameNode(value: 'RepairFeeling'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'RepairFeeling_enum'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'completedAt')),
-          type: NamedTypeNode(name: NameNode(value: 'Datetime'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'timestamptz'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -186,11 +184,29 @@ const documentNodeMutationCompleteRepairSession = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateRepairSessionsCollection'),
+            name: NameNode(value: 'updateRepairSessions'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'id')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -204,34 +220,12 @@ const documentNodeMutationCompleteRepairSession = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -354,31 +348,29 @@ extension ClientExtensionMutationCompleteRepairSession on graphql.GraphQLClient 
   ) => this.watchMutation(options);
 }
 
-class MutationCompleteRepairSessionupdateRepairSessionsCollection {
-  MutationCompleteRepairSessionupdateRepairSessionsCollection({
-    required this.affectedCount,
-    this.$__typename = 'RepairSessionsUpdateResponse',
+class MutationCompleteRepairSessionupdateRepairSessions {
+  MutationCompleteRepairSessionupdateRepairSessions({
+    required this.affected_rows,
+    this.$__typename = 'repairSessions_mutation_response',
   });
 
-  factory MutationCompleteRepairSessionupdateRepairSessionsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationCompleteRepairSessionupdateRepairSessions.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationCompleteRepairSessionupdateRepairSessionsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationCompleteRepairSessionupdateRepairSessions(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -386,9 +378,9 @@ class MutationCompleteRepairSessionupdateRepairSessionsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -396,13 +388,13 @@ class MutationCompleteRepairSessionupdateRepairSessionsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationCompleteRepairSessionupdateRepairSessionsCollection ||
+    if (other is! MutationCompleteRepairSessionupdateRepairSessions ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

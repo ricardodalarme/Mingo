@@ -1,9 +1,8 @@
-mutation PlanDateIdea($id: UUID!, $day: Date!) {
-  updateSavedDateIdeasCollection(
-    set: { status: planned, plannedFor: $day }
-    filter: { id: { eq: $id } }
-    atMost: 1
+mutation PlanDateIdea($id: uuid!, $day: date!) {
+  updateSavedDateIdeasByPk(
+    pk_columns: { id: $id }
+    _set: { status: planned, plannedFor: $day }
   ) {
-    affectedCount
+    id
   }
 }

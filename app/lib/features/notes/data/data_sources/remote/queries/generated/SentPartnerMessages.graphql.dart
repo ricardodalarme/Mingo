@@ -54,27 +54,27 @@ class VariablesQuerySentPartnerMessages {
 }
 
 class QuerySentPartnerMessages {
-  QuerySentPartnerMessages({required this.partnerMessagesCollection, this.$__typename = 'Query'});
+  QuerySentPartnerMessages({required this.partnerMessages, this.$__typename = 'query_root'});
 
   factory QuerySentPartnerMessages.fromJson(Map<String, dynamic> json) {
-    final l$partnerMessagesCollection = json['partnerMessagesCollection'];
+    final l$partnerMessages = json['partnerMessages'];
     final l$$__typename = json['__typename'];
     return QuerySentPartnerMessages(
-      partnerMessagesCollection: QuerySentPartnerMessagespartnerMessagesCollection.fromJson(
-        (l$partnerMessagesCollection as Map<String, dynamic>),
-      ),
+      partnerMessages: (l$partnerMessages as List<dynamic>)
+          .map((e) => QuerySentPartnerMessagespartnerMessages.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QuerySentPartnerMessagespartnerMessagesCollection partnerMessagesCollection;
+  final List<QuerySentPartnerMessagespartnerMessages> partnerMessages;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$partnerMessagesCollection = partnerMessagesCollection;
-    _resultData['partnerMessagesCollection'] = l$partnerMessagesCollection.toJson();
+    final l$partnerMessages = partnerMessages;
+    _resultData['partnerMessages'] = l$partnerMessages.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -82,9 +82,9 @@ class QuerySentPartnerMessages {
 
   @override
   int get hashCode {
-    final l$partnerMessagesCollection = partnerMessagesCollection;
+    final l$partnerMessages = partnerMessages;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$partnerMessagesCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$partnerMessages.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -95,10 +95,17 @@ class QuerySentPartnerMessages {
     if (other is! QuerySentPartnerMessages || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$partnerMessagesCollection = partnerMessagesCollection;
-    final lOther$partnerMessagesCollection = other.partnerMessagesCollection;
-    if (l$partnerMessagesCollection != lOther$partnerMessagesCollection) {
+    final l$partnerMessages = partnerMessages;
+    final lOther$partnerMessages = other.partnerMessages;
+    if (l$partnerMessages.length != lOther$partnerMessages.length) {
       return false;
+    }
+    for (int i = 0; i < l$partnerMessages.length; i++) {
+      final l$partnerMessages$entry = l$partnerMessages[i];
+      final lOther$partnerMessages$entry = lOther$partnerMessages[i];
+      if (l$partnerMessages$entry != lOther$partnerMessages$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -117,7 +124,7 @@ const documentNodeQuerySentPartnerMessages = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'senderId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -126,11 +133,11 @@ const documentNodeQuerySentPartnerMessages = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'partnerMessagesCollection'),
+            name: NameNode(value: 'partnerMessages'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -138,7 +145,7 @@ const documentNodeQuerySentPartnerMessages = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'senderId')),
                           ),
                         ],
@@ -148,14 +155,14 @@ const documentNodeQuerySentPartnerMessages = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -163,7 +170,7 @@ const documentNodeQuerySentPartnerMessages = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '30'),
               ),
             ],
@@ -171,80 +178,46 @@ const documentNodeQuerySentPartnerMessages = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'kind'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'body'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'mediaPath'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'forWidget'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'createdAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'kind'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'mediaFileId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'forWidget'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'createdAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -398,165 +371,30 @@ extension ClientExtensionQuerySentPartnerMessages on graphql.GraphQLClient {
   }
 }
 
-class QuerySentPartnerMessagespartnerMessagesCollection {
-  QuerySentPartnerMessagespartnerMessagesCollection({
-    required this.edges,
-    this.$__typename = 'PartnerMessagesConnection',
-  });
-
-  factory QuerySentPartnerMessagespartnerMessagesCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QuerySentPartnerMessagespartnerMessagesCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QuerySentPartnerMessagespartnerMessagesCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QuerySentPartnerMessagespartnerMessagesCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QuerySentPartnerMessagespartnerMessagesCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QuerySentPartnerMessagespartnerMessagesCollectionedges {
-  QuerySentPartnerMessagespartnerMessagesCollectionedges({
-    required this.node,
-    this.$__typename = 'PartnerMessagesEdge',
-  });
-
-  factory QuerySentPartnerMessagespartnerMessagesCollectionedges.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QuerySentPartnerMessagespartnerMessagesCollectionedges(
-      node: QuerySentPartnerMessagespartnerMessagesCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QuerySentPartnerMessagespartnerMessagesCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QuerySentPartnerMessagespartnerMessagesCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
-  QuerySentPartnerMessagespartnerMessagesCollectionedgesnode({
+class QuerySentPartnerMessagespartnerMessages {
+  QuerySentPartnerMessagespartnerMessages({
     required this.id,
     required this.kind,
     this.body,
-    this.mediaPath,
+    this.mediaFileId,
     required this.forWidget,
     required this.createdAt,
-    this.$__typename = 'PartnerMessages',
+    this.$__typename = 'partnerMessages',
   });
 
-  factory QuerySentPartnerMessagespartnerMessagesCollectionedgesnode.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QuerySentPartnerMessagespartnerMessages.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$kind = json['kind'];
     final l$body = json['body'];
-    final l$mediaPath = json['mediaPath'];
+    final l$mediaFileId = json['mediaFileId'];
     final l$forWidget = json['forWidget'];
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
-    return QuerySentPartnerMessagespartnerMessagesCollectionedgesnode(
+    return QuerySentPartnerMessagespartnerMessages(
       id: (l$id as String),
-      kind: fromJsonEnumPartnerMessageKind((l$kind as String)),
+      kind: fromJsonEnumPartnerMessageKind_enum((l$kind as String)),
       body: (l$body as String?),
-      mediaPath: (l$mediaPath as String?),
+      mediaFileId: (l$mediaFileId as String?),
       forWidget: (l$forWidget as bool),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
@@ -565,11 +403,11 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
 
   final String id;
 
-  final EnumPartnerMessageKind kind;
+  final EnumPartnerMessageKind_enum kind;
 
   final String? body;
 
-  final String? mediaPath;
+  final String? mediaFileId;
 
   final bool forWidget;
 
@@ -582,11 +420,11 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$kind = kind;
-    _resultData['kind'] = toJsonEnumPartnerMessageKind(l$kind);
+    _resultData['kind'] = toJsonEnumPartnerMessageKind_enum(l$kind);
     final l$body = body;
     _resultData['body'] = l$body;
-    final l$mediaPath = mediaPath;
-    _resultData['mediaPath'] = l$mediaPath;
+    final l$mediaFileId = mediaFileId;
+    _resultData['mediaFileId'] = l$mediaFileId;
     final l$forWidget = forWidget;
     _resultData['forWidget'] = l$forWidget;
     final l$createdAt = createdAt;
@@ -601,7 +439,7 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     final l$id = id;
     final l$kind = kind;
     final l$body = body;
-    final l$mediaPath = mediaPath;
+    final l$mediaFileId = mediaFileId;
     final l$forWidget = forWidget;
     final l$createdAt = createdAt;
     final l$$__typename = $__typename;
@@ -609,7 +447,7 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
       l$id,
       l$kind,
       l$body,
-      l$mediaPath,
+      l$mediaFileId,
       l$forWidget,
       l$createdAt,
       l$$__typename,
@@ -621,8 +459,7 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QuerySentPartnerMessagespartnerMessagesCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QuerySentPartnerMessagespartnerMessages || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -640,9 +477,9 @@ class QuerySentPartnerMessagespartnerMessagesCollectionedgesnode {
     if (l$body != lOther$body) {
       return false;
     }
-    final l$mediaPath = mediaPath;
-    final lOther$mediaPath = other.mediaPath;
-    if (l$mediaPath != lOther$mediaPath) {
+    final l$mediaFileId = mediaFileId;
+    final lOther$mediaFileId = other.mediaFileId;
+    if (l$mediaFileId != lOther$mediaFileId) {
       return false;
     }
     final l$forWidget = forWidget;

@@ -4,90 +4,82 @@ import 'package:app/features/slips/data/models/slip_kind.dart';
 import 'package:app/features/slips/data/models/slip_polarity.dart';
 import 'package:app/features/slips/data/models/slip_work_area.dart';
 
-extension EnumSlipCategoryMapper on EnumSlipCategory {
+extension EnumSlipCategoryMapper on EnumSlipCategory_enum {
   SlipCategory? toModel() => switch (this) {
-    EnumSlipCategory.said => SlipCategory.said,
-    EnumSlipCategory.did => SlipCategory.did,
-    EnumSlipCategory.noticed => SlipCategory.noticed,
-    EnumSlipCategory.helped => SlipCategory.helped,
-    EnumSlipCategory.$unknown => null,
+    EnumSlipCategory_enum.said => SlipCategory.said,
+    EnumSlipCategory_enum.did => SlipCategory.did,
+    EnumSlipCategory_enum.noticed => SlipCategory.noticed,
+    EnumSlipCategory_enum.helped => SlipCategory.helped,
+    EnumSlipCategory_enum.$unknown => null,
   };
 }
 
 extension SlipCategoryMapper on SlipCategory {
-  String toRpc() => toRemote().toJson();
-
-  EnumSlipCategory toRemote() => switch (this) {
-    SlipCategory.said => EnumSlipCategory.said,
-    SlipCategory.did => EnumSlipCategory.did,
-    SlipCategory.noticed => EnumSlipCategory.noticed,
-    SlipCategory.helped => EnumSlipCategory.helped,
+  EnumSlipCategory_enum toRemote() => switch (this) {
+    SlipCategory.said => EnumSlipCategory_enum.said,
+    SlipCategory.did => EnumSlipCategory_enum.did,
+    SlipCategory.noticed => EnumSlipCategory_enum.noticed,
+    SlipCategory.helped => EnumSlipCategory_enum.helped,
   };
 }
 
-extension EnumWorkAreaMapper on EnumWorkArea {
+extension EnumWorkAreaMapper on EnumWorkArea_enum {
   SlipWorkArea? toModel() => switch (this) {
-    EnumWorkArea.planning => SlipWorkArea.planning,
-    EnumWorkArea.dates => SlipWorkArea.dates,
-    EnumWorkArea.kitchen => SlipWorkArea.kitchen,
-    EnumWorkArea.cleaning => SlipWorkArea.cleaning,
-    EnumWorkArea.kids => SlipWorkArea.kids,
-    EnumWorkArea.emotional => SlipWorkArea.emotional,
-    EnumWorkArea.finances => SlipWorkArea.finances,
-    EnumWorkArea.other => SlipWorkArea.other,
-    EnumWorkArea.$unknown => null,
+    EnumWorkArea_enum.planning => SlipWorkArea.planning,
+    EnumWorkArea_enum.dates => SlipWorkArea.dates,
+    EnumWorkArea_enum.kitchen => SlipWorkArea.kitchen,
+    EnumWorkArea_enum.cleaning => SlipWorkArea.cleaning,
+    EnumWorkArea_enum.kids => SlipWorkArea.kids,
+    EnumWorkArea_enum.emotional => SlipWorkArea.emotional,
+    EnumWorkArea_enum.finances => SlipWorkArea.finances,
+    EnumWorkArea_enum.other => SlipWorkArea.other,
+    EnumWorkArea_enum.$unknown => null,
   };
 }
 
 extension SlipWorkAreaMapper on SlipWorkArea {
-  String toRpc() => toRemote().toJson();
-
-  EnumWorkArea toRemote() => switch (this) {
-    SlipWorkArea.planning => EnumWorkArea.planning,
-    SlipWorkArea.dates => EnumWorkArea.dates,
-    SlipWorkArea.kitchen => EnumWorkArea.kitchen,
-    SlipWorkArea.cleaning => EnumWorkArea.cleaning,
-    SlipWorkArea.kids => EnumWorkArea.kids,
-    SlipWorkArea.emotional => EnumWorkArea.emotional,
-    SlipWorkArea.finances => EnumWorkArea.finances,
-    SlipWorkArea.other => EnumWorkArea.other,
+  EnumWorkArea_enum toRemote() => switch (this) {
+    SlipWorkArea.planning => EnumWorkArea_enum.planning,
+    SlipWorkArea.dates => EnumWorkArea_enum.dates,
+    SlipWorkArea.kitchen => EnumWorkArea_enum.kitchen,
+    SlipWorkArea.cleaning => EnumWorkArea_enum.cleaning,
+    SlipWorkArea.kids => EnumWorkArea_enum.kids,
+    SlipWorkArea.emotional => EnumWorkArea_enum.emotional,
+    SlipWorkArea.finances => EnumWorkArea_enum.finances,
+    SlipWorkArea.other => EnumWorkArea_enum.other,
   };
 }
 
-extension EnumSlipPolarityMapper on EnumSlipPolarity {
+extension EnumSlipPolarityMapper on EnumSlipPolarity_enum {
   SlipPolarity? toModel() => switch (this) {
-    EnumSlipPolarity.liked => SlipPolarity.liked,
-    EnumSlipPolarity.bothered => SlipPolarity.bothered,
-    EnumSlipPolarity.$unknown => null,
+    EnumSlipPolarity_enum.liked => SlipPolarity.liked,
+    EnumSlipPolarity_enum.bothered => SlipPolarity.bothered,
+    EnumSlipPolarity_enum.$unknown => null,
   };
 }
 
 extension SlipPolarityMapper on SlipPolarity {
-  String toRpc() => toRemote().toJson();
-
-  EnumSlipPolarity toRemote() => switch (this) {
-    SlipPolarity.liked => EnumSlipPolarity.liked,
-    SlipPolarity.bothered => EnumSlipPolarity.bothered,
+  EnumSlipPolarity_enum toRemote() => switch (this) {
+    SlipPolarity.liked => EnumSlipPolarity_enum.liked,
+    SlipPolarity.bothered => EnumSlipPolarity_enum.bothered,
   };
 }
 
-extension EnumSlipKindMapper on EnumSlipKind {
+extension EnumSlipKindMapper on EnumSlipKind_enum {
   SlipKind? toModel() => switch (this) {
-    EnumSlipKind.quick => SlipKind.quick,
-    EnumSlipKind.specific => SlipKind.specific,
-    EnumSlipKind.if_then => SlipKind.ifThen,
-    EnumSlipKind.invisible => SlipKind.invisible,
-    EnumSlipKind.$unknown => null,
+    EnumSlipKind_enum.quick => SlipKind.quick,
+    EnumSlipKind_enum.specific => SlipKind.specific,
+    EnumSlipKind_enum.if_then => SlipKind.ifThen,
+    EnumSlipKind_enum.invisible => SlipKind.invisible,
+    EnumSlipKind_enum.$unknown => null,
   };
 }
 
 extension SlipKindMapper on SlipKind {
-  String toRpc() => toRemote().toJson();
-
-  EnumSlipKind toRemote() => switch (this) {
-    SlipKind.quick => EnumSlipKind.quick,
-    SlipKind.specific => EnumSlipKind.specific,
-    SlipKind.ifThen => EnumSlipKind.if_then,
-    SlipKind.invisible => EnumSlipKind.invisible,
+  EnumSlipKind_enum toRemote() => switch (this) {
+    SlipKind.quick => EnumSlipKind_enum.quick,
+    SlipKind.specific => EnumSlipKind_enum.specific,
+    SlipKind.ifThen => EnumSlipKind_enum.if_then,
+    SlipKind.invisible => EnumSlipKind_enum.invisible,
   };
 }

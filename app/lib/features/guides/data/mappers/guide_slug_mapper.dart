@@ -2,11 +2,11 @@ import 'package:app/features/_shared/data/data_sources/remote/generated/schema.g
 
 extension GuideSlugMapper on String {
   /// The stored kind of conversation prep for a guide slug; guides without their own kind are free preps.
-  EnumConversationGuide toConversationGuide() => switch (this) {
-    'transition' => EnumConversationGuide.transition,
-    'money' => EnumConversationGuide.money,
-    'apology' => EnumConversationGuide.apology,
-    'difficult' => EnumConversationGuide.difficult,
-    _ => EnumConversationGuide.free,
+  EnumConversationGuide_enum toConversationGuide() => switch (this) {
+    'transition' => EnumConversationGuide_enum.transition,
+    'money' => EnumConversationGuide_enum.money,
+    'apology' => EnumConversationGuide_enum.apology,
+    'difficult' => EnumConversationGuide_enum.difficult,
+    _ => EnumConversationGuide_enum.free,
   };
 }

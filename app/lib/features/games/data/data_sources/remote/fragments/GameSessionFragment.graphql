@@ -1,4 +1,4 @@
-fragment GameSessionFragment on GameSessions {
+fragment GameSessionFragment on gameSessions {
   id
   game
   status

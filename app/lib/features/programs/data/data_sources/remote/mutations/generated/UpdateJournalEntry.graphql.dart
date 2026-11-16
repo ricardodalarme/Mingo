@@ -90,31 +90,29 @@ class VariablesMutationUpdateJournalEntry {
 }
 
 class MutationUpdateJournalEntry {
-  MutationUpdateJournalEntry({
-    required this.updateJournalEntriesCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateJournalEntry({this.updateJournalEntries, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateJournalEntry.fromJson(Map<String, dynamic> json) {
-    final l$updateJournalEntriesCollection = json['updateJournalEntriesCollection'];
+    final l$updateJournalEntries = json['updateJournalEntries'];
     final l$$__typename = json['__typename'];
     return MutationUpdateJournalEntry(
-      updateJournalEntriesCollection:
-          MutationUpdateJournalEntryupdateJournalEntriesCollection.fromJson(
-            (l$updateJournalEntriesCollection as Map<String, dynamic>),
-          ),
+      updateJournalEntries: l$updateJournalEntries == null
+          ? null
+          : MutationUpdateJournalEntryupdateJournalEntries.fromJson(
+              (l$updateJournalEntries as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateJournalEntryupdateJournalEntriesCollection updateJournalEntriesCollection;
+  final MutationUpdateJournalEntryupdateJournalEntries? updateJournalEntries;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateJournalEntriesCollection = updateJournalEntriesCollection;
-    _resultData['updateJournalEntriesCollection'] = l$updateJournalEntriesCollection.toJson();
+    final l$updateJournalEntries = updateJournalEntries;
+    _resultData['updateJournalEntries'] = l$updateJournalEntries?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -122,9 +120,9 @@ class MutationUpdateJournalEntry {
 
   @override
   int get hashCode {
-    final l$updateJournalEntriesCollection = updateJournalEntriesCollection;
+    final l$updateJournalEntries = updateJournalEntries;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateJournalEntriesCollection, l$$__typename]);
+    return Object.hashAll([l$updateJournalEntries, l$$__typename]);
   }
 
   @override
@@ -135,9 +133,9 @@ class MutationUpdateJournalEntry {
     if (other is! MutationUpdateJournalEntry || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateJournalEntriesCollection = updateJournalEntriesCollection;
-    final lOther$updateJournalEntriesCollection = other.updateJournalEntriesCollection;
-    if (l$updateJournalEntriesCollection != lOther$updateJournalEntriesCollection) {
+    final l$updateJournalEntries = updateJournalEntries;
+    final lOther$updateJournalEntries = other.updateJournalEntries;
+    if (l$updateJournalEntries != lOther$updateJournalEntries) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -157,7 +155,7 @@ const documentNodeMutationUpdateJournalEntry = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -178,11 +176,29 @@ const documentNodeMutationUpdateJournalEntry = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateJournalEntriesCollection'),
+            name: NameNode(value: 'updateJournalEntries'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'id')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -196,34 +212,12 @@ const documentNodeMutationUpdateJournalEntry = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -346,31 +340,29 @@ extension ClientExtensionMutationUpdateJournalEntry on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateJournalEntryupdateJournalEntriesCollection {
-  MutationUpdateJournalEntryupdateJournalEntriesCollection({
-    required this.affectedCount,
-    this.$__typename = 'JournalEntriesUpdateResponse',
+class MutationUpdateJournalEntryupdateJournalEntries {
+  MutationUpdateJournalEntryupdateJournalEntries({
+    required this.affected_rows,
+    this.$__typename = 'journalEntries_mutation_response',
   });
 
-  factory MutationUpdateJournalEntryupdateJournalEntriesCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateJournalEntryupdateJournalEntries.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateJournalEntryupdateJournalEntriesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateJournalEntryupdateJournalEntries(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -378,9 +370,9 @@ class MutationUpdateJournalEntryupdateJournalEntriesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -388,13 +380,13 @@ class MutationUpdateJournalEntryupdateJournalEntriesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateJournalEntryupdateJournalEntriesCollection ||
+    if (other is! MutationUpdateJournalEntryupdateJournalEntries ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

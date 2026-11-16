@@ -1,5 +1,5 @@
-import 'package:app/features/_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/history/data/data_sources/remote/history_data_source.dart';
 import 'package:app/features/history/data/data_sources/remote/queries/generated/HistoryOverview.graphql.dart';
 import 'package:app/features/history/data/models/history_models.dart';
@@ -14,113 +14,123 @@ import 'package:mocktail/mocktail.dart';
 
 class _MockHistoryDataSource() extends Mock implements HistoryDataSource;
 
+class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
+
 void main() {
   late HistoryDataSource dataSource;
+  late AuthenticationRepository authenticationRepository;
   late HistoryRepository repository;
 
   setUpAll(() {
     registerFallbackValue(DateTime(2026));
-    registerFallbackValue(EnumRelationshipPhase.dating);
+    registerFallbackValue(EnumRelationshipPhase_enum.dating);
   });
 
   setUp(() {
     dataSource = _MockHistoryDataSource();
-    repository = HistoryRepository(dataSource: dataSource);
+    authenticationRepository = _MockAuthenticationRepository();
+    when(() => authenticationRepository.currentUserId).thenReturn('self-1');
+    repository = HistoryRepository(
+      dataSource: dataSource,
+      authenticationRepository: authenticationRepository,
+    );
   });
 
   test('getOverview maps story events, memories, unknown-year dates, and year recap', () async {
-    when(() => dataSource.getOverview(year: any(named: 'year'))).thenAnswer(
+    when(
+      () => dataSource.getOverview(
+        userId: any(named: 'userId'),
+        year: any(named: 'year'),
+      ),
+    ).thenAnswer(
       (_) async => QueryHistoryOverview(
-        myProfile: QueryHistoryOverviewmyProfile(
+        profile: QueryHistoryOverviewprofile(
           id: 'self-1',
           displayName: 'Rafa',
-          avatarKind: EnumAvatarKind.initials,
+          avatarKind: EnumAvatarKind_enum.initials,
         ),
-        myPartner: QueryHistoryOverviewmyPartner(
-          id: 'partner-1',
-          displayName: 'Marina',
-          avatarKind: EnumAvatarKind.photo,
+        member: QueryHistoryOverviewmember(
+          couple: QueryHistoryOverviewmembercouple(
+            id: 'couple-1',
+            members: [
+              QueryHistoryOverviewmembercouplemembers(
+                userId: 'self-1',
+                profile: QueryHistoryOverviewmembercouplemembersprofile(
+                  id: 'self-1',
+                  displayName: 'Rafa',
+                  avatarKind: EnumAvatarKind_enum.initials,
+                ),
+              ),
+              QueryHistoryOverviewmembercouplemembers(
+                userId: 'partner-1',
+                profile: QueryHistoryOverviewmembercouplemembersprofile(
+                  id: 'partner-1',
+                  displayName: 'Marina',
+                  avatarKind: EnumAvatarKind_enum.photo,
+                ),
+              ),
+            ],
+          ),
         ),
-        mySettings: QueryHistoryOverviewmySettings(
-          profileId: 'self-1',
-          phase: EnumRelationshipPhase.dating,
+        settings: QueryHistoryOverviewsettings(
+          userId: 'self-1',
+          phase: EnumRelationshipPhase_enum.dating,
           togetherSince: DateTime(2024, 3, 14),
           partnerName: 'Marina',
-          relationshipStatus: EnumRelationshipStatus.together,
+          relationshipStatus: EnumRelationshipStatus_enum.together,
         ),
-        myCouple: QueryHistoryOverviewmyCouple(id: 'couple-1'),
-        storyEventsCollection: QueryHistoryOverviewstoryEventsCollection(
-          edges: [
-            QueryHistoryOverviewstoryEventsCollectionedges(
-              node: QueryHistoryOverviewstoryEventsCollectionedgesnode(
-                id: 'se-1',
-                isMine: true,
-                isShared: true,
-                kind: EnumStoryEventKind.met,
-                title: 'Nos conhecemos',
-                happenedOn: DateTime(2024, 3, 14),
-                datePrecision: EnumDatePrecision.day,
-              ),
-            ),
-            QueryHistoryOverviewstoryEventsCollectionedges(
-              node: QueryHistoryOverviewstoryEventsCollectionedgesnode(
-                id: 'se-2',
-                isMine: false,
-                isShared: true,
-                kind: EnumStoryEventKind.dating,
-                title: 'Começamos a namorar',
-                happenedOn: DateTime(2024, 3, 22),
-                datePrecision: EnumDatePrecision.day,
-              ),
-            ),
-          ],
-          pageInfo: FragmentPageInfoFragment(hasNextPage: false, hasPreviousPage: false),
-        ),
-        memoriesCollection: QueryHistoryOverviewmemoriesCollection(
-          edges: [
-            QueryHistoryOverviewmemoriesCollectionedges(
-              node: QueryHistoryOverviewmemoriesCollectionedgesnode(
-                id: 'mem-1',
-                isMine: true,
-                isShared: true,
-                title: 'Primeira viagem juntos',
-                happenedOn: DateTime(2025, 7, 1),
-                datePrecision: EnumDatePrecision.month,
-                place: 'Paraty',
-                origin: EnumMemoryOrigin.manual,
-              ),
-            ),
-          ],
-          pageInfo: FragmentPageInfoFragment(hasNextPage: false, hasPreviousPage: false),
-        ),
-        importantDatesCollection: QueryHistoryOverviewimportantDatesCollection(
-          edges: [
-            QueryHistoryOverviewimportantDatesCollectionedges(
-              node: QueryHistoryOverviewimportantDatesCollectionedgesnode(
-                id: 'id-1',
-                isMine: true,
-                isShared: true,
-                title: 'Primeiro olhar',
-                kind: EnumImportantDateKind.first,
-                month: 1,
-                day: 1,
-                year: null,
-                yearly: false,
-                hidden: false,
-              ),
-            ),
-          ],
-          pageInfo: FragmentPageInfoFragment(hasNextPage: false, hasPreviousPage: false),
-        ),
-        myYear: QueryHistoryOverviewmyYear(
-          year: 2026,
-          memories: 4,
-          firsts: 2,
-          slips: 10,
-          cardsSent: 3,
-          cardsReceived: 3,
-          ritualsDone: 5,
-        ),
+        storyEvents: [
+          QueryHistoryOverviewstoryEvents(
+            id: 'se-1',
+            authorId: 'self-1',
+            kind: EnumStoryEventKind_enum.met,
+            title: 'Nos conhecemos',
+            happenedOn: DateTime(2024, 3, 14),
+            datePrecision: EnumDatePrecision_enum.day,
+          ),
+          QueryHistoryOverviewstoryEvents(
+            id: 'se-2',
+            authorId: 'partner-1',
+            kind: EnumStoryEventKind_enum.dating,
+            title: 'Começamos a namorar',
+            happenedOn: DateTime(2024, 3, 22),
+            datePrecision: EnumDatePrecision_enum.day,
+          ),
+        ],
+        memories: [
+          QueryHistoryOverviewmemories(
+            id: 'mem-1',
+            authorId: 'self-1',
+            title: 'Primeira viagem juntos',
+            happenedOn: DateTime(2025, 7, 1),
+            datePrecision: EnumDatePrecision_enum.month,
+            place: 'Paraty',
+            origin: EnumMemoryOrigin_enum.manual,
+          ),
+        ],
+        importantDates: [
+          QueryHistoryOverviewimportantDates(
+            id: 'id-1',
+            authorId: 'self-1',
+            title: 'Primeiro olhar',
+            kind: EnumImportantDateKind_enum.first,
+            month: 1,
+            day: 1,
+            yearly: false,
+            hidden: false,
+          ),
+        ],
+        yearRecaps: [
+          QueryHistoryOverviewyearRecaps(
+            year: 2026,
+            memories: 4,
+            firsts: 2,
+            slips: 10,
+            cardsSent: 3,
+            cardsReceived: 3,
+            ritualsDone: 5,
+          ),
+        ],
       ),
     );
 
@@ -191,7 +201,7 @@ void main() {
     );
   });
 
-  test('updates a memory with the kind origin round-trip', () async {
+  test('updates a memory in place', () async {
     when(
       () => dataSource.updateMemory(
         id: any(named: 'id'),
@@ -201,7 +211,6 @@ void main() {
         place: any(named: 'place'),
         happenedOn: any(named: 'happenedOn'),
         datePrecision: any(named: 'datePrecision'),
-        origin: any(named: 'origin'),
       ),
     ).thenAnswer((_) async {
       return;
@@ -235,8 +244,7 @@ void main() {
         body: 'Guardado',
         place: null,
         happenedOn: DateTime.utc(2025, 7, 1),
-        datePrecision: EnumDatePrecision.month,
-        origin: EnumMemoryOrigin.first,
+        datePrecision: EnumDatePrecision_enum.month,
       ),
     ).called(1);
   });
@@ -288,8 +296,8 @@ void main() {
         body: null,
         place: 'Paraty',
         happenedOn: DateTime.utc(2024, 3, 1),
-        datePrecision: EnumDatePrecision.month,
-        origin: EnumMemoryOrigin.manual,
+        datePrecision: EnumDatePrecision_enum.month,
+        origin: EnumMemoryOrigin_enum.manual,
       ),
       () => dataSource.deleteStoryEvent('se-1'),
     ]);
@@ -325,7 +333,7 @@ void main() {
         id: 'ms-unknown',
         coupleId: 'couple-1',
         title: 'Primeira música',
-        kind: EnumImportantDateKind.first,
+        kind: EnumImportantDateKind_enum.first,
         month: 1,
         day: 1,
         year: null,
@@ -334,7 +342,7 @@ void main() {
     ).called(1);
   });
 
-  test('saveMilestone stores milestones with place in memoriesCollection', () async {
+  test('saveMilestone stores milestones with place in memories', () async {
     when(
       () => dataSource.insertMemory(
         id: any(named: 'id'),
@@ -369,8 +377,8 @@ void main() {
         body: null,
         place: 'Paraty',
         happenedOn: DateTime.utc(2025, 7, 1),
-        datePrecision: EnumDatePrecision.month,
-        origin: EnumMemoryOrigin.manual,
+        datePrecision: EnumDatePrecision_enum.month,
+        origin: EnumMemoryOrigin_enum.manual,
       ),
     ).called(1);
   });
@@ -397,9 +405,12 @@ void main() {
     await repository.updatePhase(profileId: 'p1', phase: RelationshipPhase.engaged);
 
     verify(
-      () => dataSource.updateAvatarKind(profileId: 'p1', avatarKind: EnumAvatarKind.illustration),
+      () => dataSource.updateAvatarKind(
+        profileId: 'p1',
+        avatarKind: EnumAvatarKind_enum.illustration,
+      ),
     ).called(1);
-    verify(() => dataSource.updatePhase(profileId: 'p1', phase: EnumRelationshipPhase.engaged))
+    verify(() => dataSource.updatePhase(profileId: 'p1', phase: EnumRelationshipPhase_enum.engaged))
         .called(1);
   });
 }

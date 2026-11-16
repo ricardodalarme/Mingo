@@ -1,23 +1,28 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationSendSignal {
-  factory VariablesMutationSendSignal({required String kind, String? value, String? body}) =>
-      VariablesMutationSendSignal._({
-        r'kind': kind,
-        if (value != null) r'value': value,
-        if (body != null) r'body': body,
-      });
+  factory VariablesMutationSendSignal({
+    required EnumSignalKind_enum kind,
+    String? value,
+    String? body,
+  }) => VariablesMutationSendSignal._({
+    r'kind': kind,
+    if (value != null) r'value': value,
+    if (body != null) r'body': body,
+  });
 
   VariablesMutationSendSignal._(this._$data);
 
   factory VariablesMutationSendSignal.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$kind = data['kind'];
-    result$data['kind'] = (l$kind as String);
+    result$data['kind'] = fromJsonEnumSignalKind_enum((l$kind as String));
     if (data.containsKey('value')) {
       final l$value = data['value'];
       result$data['value'] = (l$value as String?);
@@ -31,7 +36,7 @@ class VariablesMutationSendSignal {
 
   Map<String, dynamic> _$data;
 
-  String get kind => (_$data['kind'] as String);
+  EnumSignalKind_enum get kind => (_$data['kind'] as EnumSignalKind_enum);
 
   String? get value => (_$data['value'] as String?);
 
@@ -40,7 +45,7 @@ class VariablesMutationSendSignal {
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$kind = kind;
-    result$data['kind'] = l$kind;
+    result$data['kind'] = toJsonEnumSignalKind_enum(l$kind);
     if (_$data.containsKey('value')) {
       final l$value = value;
       result$data['value'] = l$value;
@@ -98,27 +103,29 @@ class VariablesMutationSendSignal {
 }
 
 class MutationSendSignal {
-  MutationSendSignal({this.sendSignal, this.$__typename = 'Mutation'});
+  MutationSendSignal({this.insertSignalsOne, this.$__typename = 'mutation_root'});
 
   factory MutationSendSignal.fromJson(Map<String, dynamic> json) {
-    final l$sendSignal = json['sendSignal'];
+    final l$insertSignalsOne = json['insertSignalsOne'];
     final l$$__typename = json['__typename'];
     return MutationSendSignal(
-      sendSignal: l$sendSignal == null
+      insertSignalsOne: l$insertSignalsOne == null
           ? null
-          : MutationSendSignalsendSignal.fromJson((l$sendSignal as Map<String, dynamic>)),
+          : MutationSendSignalinsertSignalsOne.fromJson(
+              (l$insertSignalsOne as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSendSignalsendSignal? sendSignal;
+  final MutationSendSignalinsertSignalsOne? insertSignalsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$sendSignal = sendSignal;
-    _resultData['sendSignal'] = l$sendSignal?.toJson();
+    final l$insertSignalsOne = insertSignalsOne;
+    _resultData['insertSignalsOne'] = l$insertSignalsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -126,9 +133,9 @@ class MutationSendSignal {
 
   @override
   int get hashCode {
-    final l$sendSignal = sendSignal;
+    final l$insertSignalsOne = insertSignalsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$sendSignal, l$$__typename]);
+    return Object.hashAll([l$insertSignalsOne, l$$__typename]);
   }
 
   @override
@@ -139,9 +146,9 @@ class MutationSendSignal {
     if (other is! MutationSendSignal || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$sendSignal = sendSignal;
-    final lOther$sendSignal = other.sendSignal;
-    if (l$sendSignal != lOther$sendSignal) {
+    final l$insertSignalsOne = insertSignalsOne;
+    final lOther$insertSignalsOne = other.insertSignalsOne;
+    if (l$insertSignalsOne != lOther$insertSignalsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -161,7 +168,7 @@ const documentNodeMutationSendSignal = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'SignalKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -182,20 +189,27 @@ const documentNodeMutationSendSignal = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'sendSignal'),
+            name: NameNode(value: 'insertSignalsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'kind'),
-                value: VariableNode(name: NameNode(value: 'kind')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'value'),
-                value: VariableNode(name: NameNode(value: 'value')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'body'),
-                value: VariableNode(name: NameNode(value: 'body')),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: VariableNode(name: NameNode(value: 'kind')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'value'),
+                      value: VariableNode(name: NameNode(value: 'value')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'body'),
+                      value: VariableNode(name: NameNode(value: 'body')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -320,13 +334,13 @@ extension ClientExtensionMutationSendSignal on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSendSignalsendSignal {
-  MutationSendSignalsendSignal({required this.id, this.$__typename = 'Signals'});
+class MutationSendSignalinsertSignalsOne {
+  MutationSendSignalinsertSignalsOne({required this.id, this.$__typename = 'signals'});
 
-  factory MutationSendSignalsendSignal.fromJson(Map<String, dynamic> json) {
+  factory MutationSendSignalinsertSignalsOne.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationSendSignalsendSignal(
+    return MutationSendSignalinsertSignalsOne(
       id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
@@ -357,7 +371,7 @@ class MutationSendSignalsendSignal {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSendSignalsendSignal || runtimeType != other.runtimeType) {
+    if (other is! MutationSendSignalinsertSignalsOne || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

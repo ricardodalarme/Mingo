@@ -1,10 +1,15 @@
-query MyPartner {
-  myPartner {
+query MyPartner($userId: uuid!) {
+  couples(where: { members: { userId: { _eq: $userId } } }, limit: 1) {
     id
-    displayName
-    avatarPath
-    avatarKind
-    city
-    pronouns
+    members {
+      userId
+      profile {
+        id
+        displayName
+        avatarKind
+        city
+        pronouns
+      }
+    }
   }
 }

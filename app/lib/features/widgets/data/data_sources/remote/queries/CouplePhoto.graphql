@@ -1,12 +1,10 @@
-query CouplePhoto {
-  myCouple {
-    id
-  }
-  couplePhotosCollection(first: 1) {
-    edges {
-      node {
+query CouplePhoto($userId: uuid!) {
+  coupleMembersByPk(userId: $userId) {
+    couple {
+      id
+      photo {
         coupleId
-        storagePath
+        fileId
         uploadedBy
         updatedAt
       }

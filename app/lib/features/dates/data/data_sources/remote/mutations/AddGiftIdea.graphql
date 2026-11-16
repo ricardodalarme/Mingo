@@ -1,5 +1,5 @@
-mutation AddGiftIdea($id: UUID!, $title: String!) {
-  insertIntoGiftIdeasCollection(objects: [{ id: $id, title: $title, kind: idea }]) {
-    affectedCount
+mutation AddGiftIdea($id: uuid!, $title: String!) {
+  insertGiftIdeasOne(object: { id: $id, title: $title, kind: idea }) {
+    id
   }
 }

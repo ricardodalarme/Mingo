@@ -18,6 +18,8 @@ class SundayCardCubit({
 }) extends Cubit<SundayCardState> {
   this : super(const SundayCardState());
 
+  final Set<String> _removedItemIds = {};
+
   Future<void> load() async {
     if (state.card is! Success) emit(state.copyWith(card: const Loading()));
     final names = await _readNames();
@@ -40,16 +42,21 @@ class SundayCardCubit({
   void startEditing() {
     final card = state.card;
     if (card is Success<SundayCard> && card.value.isDraft) {
+      _removedItemIds.clear();
       emit(state.copyWith(draft: card.value));
     }
   }
 
-  void cancelEditing() => emit(state.copyWith(clearDraft: true));
+  void cancelEditing() {
+    _removedItemIds.clear();
+    emit(state.copyWith(clearDraft: true));
+  }
 
   void removeItem(int index) {
     final draft = state.draft;
     if (draft == null || index < 0 || index >= draft.items.length) return;
 
+    _removedItemIds.add(draft.items[index].id);
     emit(state.copyWith(draft: draft.copyWith(items: [...draft.items]..removeAt(index))));
   }
 
@@ -85,7 +92,11 @@ class SundayCardCubit({
 
     emit(state.copyWith(saveAction: const Loading()));
     try {
-      final saved = await _cardsRepository.saveDraft(draft);
+      final saved = await _cardsRepository.saveDraft(
+        draft,
+        removedItemIds: _removedItemIds.toList(),
+      );
+      _removedItemIds.clear();
       emit(state.copyWith(card: Success(saved), clearDraft: true, saveAction: const Success(null)));
       emit(state.copyWith(saveAction: const Initial()));
     } catch (exception) {

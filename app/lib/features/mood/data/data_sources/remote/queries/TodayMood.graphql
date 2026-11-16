@@ -2,22 +2,19 @@ query TodayMood {
   today {
     localDate
     partnerName
-  }
-  moodsCollection(first: 1, orderBy: [{ day: DescNullsLast }]) {
-    edges {
-      node {
-        id
+    partner {
+      sharedMood {
         day
         mood
         need
-        share
       }
     }
   }
-  partnerMoodToday {
+  moods(limit: 1, order_by: [{ day: desc_nulls_last }]) {
     id
     day
     mood
     need
+    share
   }
 }

@@ -52,31 +52,29 @@ class VariablesMutationDeleteStoryEvent {
 }
 
 class MutationDeleteStoryEvent {
-  MutationDeleteStoryEvent({
-    required this.deleteFromStoryEventsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteStoryEvent({this.deleteStoryEvents, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteStoryEvent.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromStoryEventsCollection = json['deleteFromStoryEventsCollection'];
+    final l$deleteStoryEvents = json['deleteStoryEvents'];
     final l$$__typename = json['__typename'];
     return MutationDeleteStoryEvent(
-      deleteFromStoryEventsCollection:
-          MutationDeleteStoryEventdeleteFromStoryEventsCollection.fromJson(
-            (l$deleteFromStoryEventsCollection as Map<String, dynamic>),
-          ),
+      deleteStoryEvents: l$deleteStoryEvents == null
+          ? null
+          : MutationDeleteStoryEventdeleteStoryEvents.fromJson(
+              (l$deleteStoryEvents as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteStoryEventdeleteFromStoryEventsCollection deleteFromStoryEventsCollection;
+  final MutationDeleteStoryEventdeleteStoryEvents? deleteStoryEvents;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromStoryEventsCollection = deleteFromStoryEventsCollection;
-    _resultData['deleteFromStoryEventsCollection'] = l$deleteFromStoryEventsCollection.toJson();
+    final l$deleteStoryEvents = deleteStoryEvents;
+    _resultData['deleteStoryEvents'] = l$deleteStoryEvents?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -84,9 +82,9 @@ class MutationDeleteStoryEvent {
 
   @override
   int get hashCode {
-    final l$deleteFromStoryEventsCollection = deleteFromStoryEventsCollection;
+    final l$deleteStoryEvents = deleteStoryEvents;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromStoryEventsCollection, l$$__typename]);
+    return Object.hashAll([l$deleteStoryEvents, l$$__typename]);
   }
 
   @override
@@ -97,9 +95,9 @@ class MutationDeleteStoryEvent {
     if (other is! MutationDeleteStoryEvent || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromStoryEventsCollection = deleteFromStoryEventsCollection;
-    final lOther$deleteFromStoryEventsCollection = other.deleteFromStoryEventsCollection;
-    if (l$deleteFromStoryEventsCollection != lOther$deleteFromStoryEventsCollection) {
+    final l$deleteStoryEvents = deleteStoryEvents;
+    final lOther$deleteStoryEvents = other.deleteStoryEvents;
+    if (l$deleteStoryEvents != lOther$deleteStoryEvents) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -119,7 +117,7 @@ const documentNodeMutationDeleteStoryEvent = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -128,11 +126,11 @@ const documentNodeMutationDeleteStoryEvent = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromStoryEventsCollection'),
+            name: NameNode(value: 'deleteStoryEvents'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -140,7 +138,7 @@ const documentNodeMutationDeleteStoryEvent = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'id')),
                           ),
                         ],
@@ -149,16 +147,12 @@ const documentNodeMutationDeleteStoryEvent = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -278,31 +272,29 @@ extension ClientExtensionMutationDeleteStoryEvent on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteStoryEventdeleteFromStoryEventsCollection {
-  MutationDeleteStoryEventdeleteFromStoryEventsCollection({
-    required this.affectedCount,
-    this.$__typename = 'StoryEventsDeleteResponse',
+class MutationDeleteStoryEventdeleteStoryEvents {
+  MutationDeleteStoryEventdeleteStoryEvents({
+    required this.affected_rows,
+    this.$__typename = 'storyEvents_mutation_response',
   });
 
-  factory MutationDeleteStoryEventdeleteFromStoryEventsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteStoryEventdeleteStoryEvents.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteStoryEventdeleteFromStoryEventsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteStoryEventdeleteStoryEvents(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -310,9 +302,9 @@ class MutationDeleteStoryEventdeleteFromStoryEventsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -320,13 +312,12 @@ class MutationDeleteStoryEventdeleteFromStoryEventsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteStoryEventdeleteFromStoryEventsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationDeleteStoryEventdeleteStoryEvents || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

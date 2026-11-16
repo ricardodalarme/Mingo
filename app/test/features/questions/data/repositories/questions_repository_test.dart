@@ -32,8 +32,12 @@ void main() {
       (id: id, isMine: isMine, coupleId: coupleId, body: 'Foi na festa da Ana.');
 
   void stubAnswers({List<QuestionAnswerRecord> rows = const [], bool partnerAnswered = false}) {
-    when(() => dataSource.getAnswers('first-meeting'))
-        .thenAnswer((_) async => (rows: rows, partnerAnswered: partnerAnswered));
+    when(
+      () => dataSource.getAnswers(
+        questionSlug: 'first-meeting',
+        selfId: any(named: 'selfId'),
+      ),
+    ).thenAnswer((_) async => (rows: rows, partnerAnswered: partnerAnswered));
   }
 
   setUpAll(() {
@@ -49,7 +53,6 @@ void main() {
       () => dataSource.insertAnswer(
         questionSlug: any(named: 'questionSlug'),
         body: any(named: 'body'),
-        coupleId: any(named: 'coupleId'),
       ),
     ).thenAnswer((_) async => (id: 'a2', coupleId: 'couple-1', body: 'Resposta nova'));
     when(() => dataSource.deleteAnswer(any())).thenAnswer((_) async {
@@ -81,7 +84,7 @@ void main() {
     expect(thread.ownAnswer?.body, 'Foi na festa da Ana.');
     expect(thread.partnerAnswer?.body, 'Foi na festa da Ana.');
     expect(thread.isRevealed, isTrue);
-    verify(() => dataSource.getAnswers('first-meeting')).called(1);
+    verify(() => dataSource.getAnswers(questionSlug: 'first-meeting', selfId: 'me')).called(1);
   });
 
   test('a partner answer flag without a visible row never reveals', () async {
@@ -139,13 +142,8 @@ void main() {
     await repository.saveAnswer(thread: thread, body: '  Minha lembrança.  ');
 
     verifyNever(() => dataSource.deleteAnswer(any()));
-    verify(
-      () => dataSource.insertAnswer(
-        questionSlug: 'first-meeting',
-        body: 'Minha lembrança.',
-        coupleId: 'couple-1',
-      ),
-    ).called(1);
+    verify(() => dataSource.insertAnswer(questionSlug: 'first-meeting', body: 'Minha lembrança.'))
+        .called(1);
   });
 
   test('a solo first answer inserts without a couple id', () async {
@@ -155,10 +153,8 @@ void main() {
 
     await repository.saveAnswer(thread: thread, body: 'Só minha.');
 
-    verify(
-      () =>
-          dataSource.insertAnswer(questionSlug: 'first-meeting', body: 'Só minha.', coupleId: null),
-    ).called(1);
+    verify(() => dataSource.insertAnswer(questionSlug: 'first-meeting', body: 'Só minha.'))
+        .called(1);
   });
 
   test('editing removes the own row before inserting the new text', () async {
@@ -169,11 +165,7 @@ void main() {
 
     verifyInOrder([
       () => dataSource.deleteAnswer('a1'),
-      () => dataSource.insertAnswer(
-        questionSlug: 'first-meeting',
-        body: 'Texto novo',
-        coupleId: 'couple-1',
-      ),
+      () => dataSource.insertAnswer(questionSlug: 'first-meeting', body: 'Texto novo'),
     ]);
   });
 
@@ -183,7 +175,6 @@ void main() {
       () => dataSource.insertAnswer(
         questionSlug: any(named: 'questionSlug'),
         body: any(named: 'body'),
-        coupleId: any(named: 'coupleId'),
       ),
     ).thenAnswer((_) async {
       inserts++;
@@ -201,16 +192,8 @@ void main() {
 
     verifyInOrder([
       () => dataSource.deleteAnswer('a1'),
-      () => dataSource.insertAnswer(
-        questionSlug: 'first-meeting',
-        body: 'Texto novo',
-        coupleId: 'couple-1',
-      ),
-      () => dataSource.insertAnswer(
-        questionSlug: 'first-meeting',
-        body: 'Foi na festa da Ana.',
-        coupleId: 'couple-1',
-      ),
+      () => dataSource.insertAnswer(questionSlug: 'first-meeting', body: 'Texto novo'),
+      () => dataSource.insertAnswer(questionSlug: 'first-meeting', body: 'Foi na festa da Ana.'),
     ]);
   });
 
@@ -220,7 +203,6 @@ void main() {
       () => dataSource.insertAnswer(
         questionSlug: any(named: 'questionSlug'),
         body: any(named: 'body'),
-        coupleId: any(named: 'coupleId'),
       ),
     ).thenAnswer((_) async {
       inserts++;
@@ -236,17 +218,9 @@ void main() {
 
     verifyInOrder([
       () => dataSource.deleteAnswer('old'),
-      () => dataSource.insertAnswer(
-        questionSlug: 'first-meeting',
-        body: 'Resposta nova',
-        coupleId: 'couple-1',
-      ),
+      () => dataSource.insertAnswer(questionSlug: 'first-meeting', body: 'Resposta nova'),
       () => dataSource.deleteAnswer('old'),
-      () => dataSource.insertAnswer(
-        questionSlug: 'first-meeting',
-        body: 'Resposta nova',
-        coupleId: 'couple-1',
-      ),
+      () => dataSource.insertAnswer(questionSlug: 'first-meeting', body: 'Resposta nova'),
     ]);
   });
 }

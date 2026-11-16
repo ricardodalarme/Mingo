@@ -55,10 +55,9 @@ class SharedInjectionModule() implements InjectionModule {
         serverUrl: EnvVariables.serverUrl,
         tokenCallback: injector.get<AuthenticationRepository>().getFreshAccessToken,
         refreshSession: injector.get<AuthenticationRepository>().refreshSession,
-        defaultHeaders: {'apikey': EnvVariables.serverApiKey},
       ),
     )
-    ..registerLazySingleton<RestClient>(() => RestClientImpl(baseUrl: EnvVariables.restServerUrl))
+    ..registerLazySingleton<RestClient>(() => RestClientImpl(baseUrl: EnvVariables.functionsUrl))
     ..registerLazySingleton<AnalyticsService>(FirebaseAnalyticsService.new)
     ..registerLazySingleton<RemoteConfigService>(RemoteConfigService.new)
     ..registerLazySingleton<ReviewService>(ReviewService.new)
@@ -75,7 +74,12 @@ class SharedInjectionModule() implements InjectionModule {
       ),
     )
     ..registerLazySingleton<ShareService>(ShareService.new)
-    ..registerLazySingleton<StorageService>(StorageService.new)
+    ..registerLazySingleton<StorageService>(
+      () => StorageService(
+        baseUrl: EnvVariables.storageUrl,
+        tokenCallback: injector.get<AuthenticationRepository>().getFreshAccessToken,
+      ),
+    )
     ..registerLazySingleton<AppInfoService>(PackageAppInfoService.new)
     ..registerLazySingleton<LinkLauncherService>(UrlLauncherService.new)
     ..registerLazySingleton<HomeWidgetService>(PlatformHomeWidgetService.new)

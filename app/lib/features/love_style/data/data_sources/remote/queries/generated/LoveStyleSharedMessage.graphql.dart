@@ -52,7 +52,7 @@ class VariablesQueryLoveStyleSharedMessage {
 }
 
 class QueryLoveStyleSharedMessage {
-  QueryLoveStyleSharedMessage({this.partnerMessagesByPk, this.$__typename = 'Query'});
+  QueryLoveStyleSharedMessage({this.partnerMessagesByPk, this.$__typename = 'query_root'});
 
   factory QueryLoveStyleSharedMessage.fromJson(Map<String, dynamic> json) {
     final l$partnerMessagesByPk = json['partnerMessagesByPk'];
@@ -117,7 +117,7 @@ const documentNodeQueryLoveStyleSharedMessage = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -301,7 +301,7 @@ extension ClientExtensionQueryLoveStyleSharedMessage on graphql.GraphQLClient {
 class QueryLoveStyleSharedMessagepartnerMessagesByPk {
   QueryLoveStyleSharedMessagepartnerMessagesByPk({
     required this.id,
-    this.$__typename = 'PartnerMessages',
+    this.$__typename = 'partnerMessages',
   });
 
   factory QueryLoveStyleSharedMessagepartnerMessagesByPk.fromJson(Map<String, dynamic> json) {

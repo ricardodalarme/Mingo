@@ -52,31 +52,29 @@ class VariablesMutationDeletePartnerFact {
 }
 
 class MutationDeletePartnerFact {
-  MutationDeletePartnerFact({
-    required this.deleteFromPartnerFactsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeletePartnerFact({this.deletePartnerFacts, this.$__typename = 'mutation_root'});
 
   factory MutationDeletePartnerFact.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromPartnerFactsCollection = json['deleteFromPartnerFactsCollection'];
+    final l$deletePartnerFacts = json['deletePartnerFacts'];
     final l$$__typename = json['__typename'];
     return MutationDeletePartnerFact(
-      deleteFromPartnerFactsCollection:
-          MutationDeletePartnerFactdeleteFromPartnerFactsCollection.fromJson(
-            (l$deleteFromPartnerFactsCollection as Map<String, dynamic>),
-          ),
+      deletePartnerFacts: l$deletePartnerFacts == null
+          ? null
+          : MutationDeletePartnerFactdeletePartnerFacts.fromJson(
+              (l$deletePartnerFacts as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeletePartnerFactdeleteFromPartnerFactsCollection deleteFromPartnerFactsCollection;
+  final MutationDeletePartnerFactdeletePartnerFacts? deletePartnerFacts;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromPartnerFactsCollection = deleteFromPartnerFactsCollection;
-    _resultData['deleteFromPartnerFactsCollection'] = l$deleteFromPartnerFactsCollection.toJson();
+    final l$deletePartnerFacts = deletePartnerFacts;
+    _resultData['deletePartnerFacts'] = l$deletePartnerFacts?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -84,9 +82,9 @@ class MutationDeletePartnerFact {
 
   @override
   int get hashCode {
-    final l$deleteFromPartnerFactsCollection = deleteFromPartnerFactsCollection;
+    final l$deletePartnerFacts = deletePartnerFacts;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromPartnerFactsCollection, l$$__typename]);
+    return Object.hashAll([l$deletePartnerFacts, l$$__typename]);
   }
 
   @override
@@ -97,9 +95,9 @@ class MutationDeletePartnerFact {
     if (other is! MutationDeletePartnerFact || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromPartnerFactsCollection = deleteFromPartnerFactsCollection;
-    final lOther$deleteFromPartnerFactsCollection = other.deleteFromPartnerFactsCollection;
-    if (l$deleteFromPartnerFactsCollection != lOther$deleteFromPartnerFactsCollection) {
+    final l$deletePartnerFacts = deletePartnerFacts;
+    final lOther$deletePartnerFacts = other.deletePartnerFacts;
+    if (l$deletePartnerFacts != lOther$deletePartnerFacts) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -119,7 +117,7 @@ const documentNodeMutationDeletePartnerFact = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -128,11 +126,11 @@ const documentNodeMutationDeletePartnerFact = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromPartnerFactsCollection'),
+            name: NameNode(value: 'deletePartnerFacts'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -140,7 +138,7 @@ const documentNodeMutationDeletePartnerFact = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'id')),
                           ),
                         ],
@@ -149,16 +147,12 @@ const documentNodeMutationDeletePartnerFact = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -280,31 +274,29 @@ extension ClientExtensionMutationDeletePartnerFact on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeletePartnerFactdeleteFromPartnerFactsCollection {
-  MutationDeletePartnerFactdeleteFromPartnerFactsCollection({
-    required this.affectedCount,
-    this.$__typename = 'PartnerFactsDeleteResponse',
+class MutationDeletePartnerFactdeletePartnerFacts {
+  MutationDeletePartnerFactdeletePartnerFacts({
+    required this.affected_rows,
+    this.$__typename = 'partnerFacts_mutation_response',
   });
 
-  factory MutationDeletePartnerFactdeleteFromPartnerFactsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeletePartnerFactdeletePartnerFacts.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeletePartnerFactdeleteFromPartnerFactsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeletePartnerFactdeletePartnerFacts(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -312,9 +304,9 @@ class MutationDeletePartnerFactdeleteFromPartnerFactsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -322,13 +314,12 @@ class MutationDeletePartnerFactdeleteFromPartnerFactsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeletePartnerFactdeleteFromPartnerFactsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationDeletePartnerFactdeletePartnerFacts || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

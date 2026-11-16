@@ -1,10 +1,12 @@
-query MyPlus {
-  myPlus {
+query MyPlus($userId: uuid!) {
+  plusStates(where: { userId: { _eq: $userId } }, limit: 1) {
     hasPlus
     paidByPartner
-    plan
-    status
     slipsLeftThisMonth
     cardsLeftThisMonth
+    entitlement {
+      plan
+      status
+    }
   }
 }

@@ -1,5 +1,0 @@
-mutation SetSlipCategory($id: UUID!, $category: String) {
-  setSlipDetails(id: $id, category: $category) {
-    id
-  }
-}

@@ -1,5 +1,5 @@
-query MyProfile {
-  myProfile {
+query MyProfile($userId: uuid!) {
+  profilesByPk(id: $userId) {
     ...ProfileFragment
   }
 }

@@ -3792,8 +3792,6 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   @override
   String get consents => 'Consents';
   @override
-  String get sensitiveData => 'Sensitive data';
-  @override
   String get analytics => 'Analytics';
   @override
   String get marketing => 'Marketing';
@@ -3804,7 +3802,7 @@ class _Translations$privacy$en extends Translations$privacy$pt {
   @override
   String get required => 'Required';
   @override
-  String get requiredNote => 'Sensitive data and Terms are required to use the app.';
+  String get requiredNote => 'Accepting the Terms is required to use the app.';
   @override
   String get consentsNote => 'Changes apply now.';
   @override
@@ -9417,13 +9415,12 @@ extension on TranslationsEn {
           'privacy.ourAnalytics' => 'Analytics: counts only.',
           'privacy.ourPlain' => 'This page in plain language.',
           'privacy.consents' => 'Consents',
-          'privacy.sensitiveData' => 'Sensitive data',
           'privacy.analytics' => 'Analytics',
           'privacy.marketing' => 'Marketing',
           'privacy.ai' => 'AI (when available)',
           'privacy.terms' => 'Terms',
           'privacy.required' => 'Required',
-          'privacy.requiredNote' => 'Sensitive data and Terms are required to use the app.',
+          'privacy.requiredNote' => 'Accepting the Terms is required to use the app.',
           'privacy.consentsNote' => 'Changes apply now.',
           'privacy.saveError' => 'Could not save now. Try again.',
           'privacy.errorTitle' => 'Could not load the consents',
@@ -9737,10 +9734,10 @@ extension on TranslationsEn {
           'relationshipChanged.optionTogether' => 'Everything is fine',
           'relationshipChanged.continueLabel' => 'Continue',
           'relationshipChanged.saved' => 'Saved',
+          'relationshipChanged.errors.NETWORK' => 'No connection. Try again.',
           _ => null,
         } ??
         switch (path) {
-          'relationshipChanged.errors.NETWORK' => 'No connection. Try again.',
           'relationshipChanged.errors.other' => 'Could not save right now. Try again.',
           'relationshipSettings.title' => 'Relationship',
           'relationshipSettings.phaseLabel' => 'Phase',
@@ -10319,10 +10316,10 @@ extension on TranslationsEn {
                   one: '1 list, private',
                   other: '${count} lists, private',
                 ),
+          'tabs.soloNote' => 'When your partner joins, shared things show up here.',
           _ => null,
         } ??
         switch (path) {
-          'tabs.soloNote' => 'When your partner joins, shared things show up here.',
           'tabs.ritualsLabel' => 'ROUTINE',
           'tabs.ritualsTitle' => 'Rituals',
           'tabs.ritualsText' => 'Small habits you want to protect.',

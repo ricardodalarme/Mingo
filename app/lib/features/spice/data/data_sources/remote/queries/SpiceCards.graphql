@@ -1,14 +1,10 @@
 query SpiceCards($locale: String!) {
-  contentItemsCollection(
-    first: 30
-    filter: { kind: { eq: spice_card }, locale: { eq: $locale }, published: { eq: true } }
-    orderBy: [{ position: AscNullsLast }]
+  contentItems(
+    limit: 30
+    where: { kind: { _eq: spice_card }, locale: { _eq: $locale }, published: { _eq: true } }
+    order_by: { position: asc }
   ) {
-    edges {
-      node {
-        slug
-        title
-      }
-    }
+    slug
+    title
   }
 }

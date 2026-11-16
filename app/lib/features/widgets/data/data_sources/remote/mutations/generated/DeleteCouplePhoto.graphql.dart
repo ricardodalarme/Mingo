@@ -52,31 +52,29 @@ class VariablesMutationDeleteCouplePhoto {
 }
 
 class MutationDeleteCouplePhoto {
-  MutationDeleteCouplePhoto({
-    required this.deleteFromCouplePhotosCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteCouplePhoto({this.deleteCouplePhotos, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteCouplePhoto.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromCouplePhotosCollection = json['deleteFromCouplePhotosCollection'];
+    final l$deleteCouplePhotos = json['deleteCouplePhotos'];
     final l$$__typename = json['__typename'];
     return MutationDeleteCouplePhoto(
-      deleteFromCouplePhotosCollection:
-          MutationDeleteCouplePhotodeleteFromCouplePhotosCollection.fromJson(
-            (l$deleteFromCouplePhotosCollection as Map<String, dynamic>),
-          ),
+      deleteCouplePhotos: l$deleteCouplePhotos == null
+          ? null
+          : MutationDeleteCouplePhotodeleteCouplePhotos.fromJson(
+              (l$deleteCouplePhotos as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteCouplePhotodeleteFromCouplePhotosCollection deleteFromCouplePhotosCollection;
+  final MutationDeleteCouplePhotodeleteCouplePhotos? deleteCouplePhotos;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromCouplePhotosCollection = deleteFromCouplePhotosCollection;
-    _resultData['deleteFromCouplePhotosCollection'] = l$deleteFromCouplePhotosCollection.toJson();
+    final l$deleteCouplePhotos = deleteCouplePhotos;
+    _resultData['deleteCouplePhotos'] = l$deleteCouplePhotos?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -84,9 +82,9 @@ class MutationDeleteCouplePhoto {
 
   @override
   int get hashCode {
-    final l$deleteFromCouplePhotosCollection = deleteFromCouplePhotosCollection;
+    final l$deleteCouplePhotos = deleteCouplePhotos;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromCouplePhotosCollection, l$$__typename]);
+    return Object.hashAll([l$deleteCouplePhotos, l$$__typename]);
   }
 
   @override
@@ -97,9 +95,9 @@ class MutationDeleteCouplePhoto {
     if (other is! MutationDeleteCouplePhoto || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromCouplePhotosCollection = deleteFromCouplePhotosCollection;
-    final lOther$deleteFromCouplePhotosCollection = other.deleteFromCouplePhotosCollection;
-    if (l$deleteFromCouplePhotosCollection != lOther$deleteFromCouplePhotosCollection) {
+    final l$deleteCouplePhotos = deleteCouplePhotos;
+    final lOther$deleteCouplePhotos = other.deleteCouplePhotos;
+    if (l$deleteCouplePhotos != lOther$deleteCouplePhotos) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -119,7 +117,7 @@ const documentNodeMutationDeleteCouplePhoto = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -128,11 +126,11 @@ const documentNodeMutationDeleteCouplePhoto = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromCouplePhotosCollection'),
+            name: NameNode(value: 'deleteCouplePhotos'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -140,7 +138,7 @@ const documentNodeMutationDeleteCouplePhoto = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'coupleId')),
                           ),
                         ],
@@ -149,16 +147,12 @@ const documentNodeMutationDeleteCouplePhoto = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -280,31 +274,29 @@ extension ClientExtensionMutationDeleteCouplePhoto on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteCouplePhotodeleteFromCouplePhotosCollection {
-  MutationDeleteCouplePhotodeleteFromCouplePhotosCollection({
-    required this.affectedCount,
-    this.$__typename = 'CouplePhotosDeleteResponse',
+class MutationDeleteCouplePhotodeleteCouplePhotos {
+  MutationDeleteCouplePhotodeleteCouplePhotos({
+    required this.affected_rows,
+    this.$__typename = 'couplePhotos_mutation_response',
   });
 
-  factory MutationDeleteCouplePhotodeleteFromCouplePhotosCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteCouplePhotodeleteCouplePhotos.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteCouplePhotodeleteFromCouplePhotosCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteCouplePhotodeleteCouplePhotos(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -312,9 +304,9 @@ class MutationDeleteCouplePhotodeleteFromCouplePhotosCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -322,13 +314,12 @@ class MutationDeleteCouplePhotodeleteFromCouplePhotosCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteCouplePhotodeleteFromCouplePhotosCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationDeleteCouplePhotodeleteCouplePhotos || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

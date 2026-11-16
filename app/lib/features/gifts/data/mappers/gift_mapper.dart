@@ -3,13 +3,13 @@ import 'package:app/features/gifts/data/mappers/gift_enum_mapper.dart';
 import 'package:app/features/gifts/data/models/gift_idea.dart';
 
 extension GiftWishFragmentMapper on FragmentGiftWishFragment {
-  GiftIdea toModel() => GiftIdea(
+  GiftIdea toModel({required String? currentUserId}) => GiftIdea(
     id: id,
     title: title,
     note: note,
     budget: budget?.toModel(),
     status: status.toModel(),
-    isShared: isShared ?? false,
-    isMine: isMine ?? false,
+    isShared: coupleId != null,
+    isMine: authorId == currentUserId,
   );
 }

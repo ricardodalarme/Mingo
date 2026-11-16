@@ -1,12 +1,8 @@
-mutation InsertQuestionAnswer($questionSlug: String!, $body: String!, $coupleId: UUID) {
-  insertIntoQuestionAnswersCollection(
-    objects: [{ questionSlug: $questionSlug, body: $body, coupleId: $coupleId }]
-  ) {
-    records {
-      id
-      coupleId
-      questionSlug
-      body
-    }
+mutation InsertQuestionAnswer($questionSlug: String!, $body: String!) {
+  insertQuestionAnswersOne(object: { questionSlug: $questionSlug, body: $body }) {
+    id
+    coupleId
+    questionSlug
+    body
   }
 }

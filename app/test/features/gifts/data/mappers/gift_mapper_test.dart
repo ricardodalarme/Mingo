@@ -6,16 +6,16 @@ import 'package:app/features/gifts/data/models/gift_idea_status.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('maps a wish with the flags the server computed', () {
+  test('maps a wish with the authorship and visibility the server stored', () {
     final gift = FragmentGiftWishFragment(
       id: 'g1',
       title: 'Livro',
       note: 'Capa dura',
-      budget: EnumGiftBudget.low,
-      status: EnumGiftIdeaStatus.planned,
-      isMine: true,
-      isShared: true,
-    ).toModel();
+      budget: EnumGiftBudget_enum.low,
+      status: EnumGiftIdeaStatus_enum.planned,
+      authorId: 'user-1',
+      coupleId: 'couple-1',
+    ).toModel(currentUserId: 'user-1');
 
     expect(gift.id, 'g1');
     expect(gift.note, 'Capa dura');
@@ -25,13 +25,15 @@ void main() {
     expect(gift.isShared, isTrue);
   });
 
-  test('a flag the server did not return is false and an unknown budget is left out', () {
+  test('a wish without a couple is private and a partner wish is not mine', () {
     final gift = FragmentGiftWishFragment(
       id: 'g1',
       title: 'Livro',
-      budget: EnumGiftBudget.$unknown,
-      status: EnumGiftIdeaStatus.idea,
-    ).toModel();
+      budget: EnumGiftBudget_enum.$unknown,
+      status: EnumGiftIdeaStatus_enum.idea,
+      authorId: 'user-2',
+      coupleId: null,
+    ).toModel(currentUserId: 'user-1');
 
     expect(gift.isMine, isFalse);
     expect(gift.isShared, isFalse);

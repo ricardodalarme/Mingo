@@ -52,27 +52,27 @@ class VariablesQueryGameAnswers {
 }
 
 class QueryGameAnswers {
-  QueryGameAnswers({required this.gameAnswersCollection, this.$__typename = 'Query'});
+  QueryGameAnswers({required this.gameAnswers, this.$__typename = 'query_root'});
 
   factory QueryGameAnswers.fromJson(Map<String, dynamic> json) {
-    final l$gameAnswersCollection = json['gameAnswersCollection'];
+    final l$gameAnswers = json['gameAnswers'];
     final l$$__typename = json['__typename'];
     return QueryGameAnswers(
-      gameAnswersCollection: QueryGameAnswersgameAnswersCollection.fromJson(
-        (l$gameAnswersCollection as Map<String, dynamic>),
-      ),
+      gameAnswers: (l$gameAnswers as List<dynamic>)
+          .map((e) => QueryGameAnswersgameAnswers.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryGameAnswersgameAnswersCollection gameAnswersCollection;
+  final List<QueryGameAnswersgameAnswers> gameAnswers;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$gameAnswersCollection = gameAnswersCollection;
-    _resultData['gameAnswersCollection'] = l$gameAnswersCollection.toJson();
+    final l$gameAnswers = gameAnswers;
+    _resultData['gameAnswers'] = l$gameAnswers.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -80,9 +80,9 @@ class QueryGameAnswers {
 
   @override
   int get hashCode {
-    final l$gameAnswersCollection = gameAnswersCollection;
+    final l$gameAnswers = gameAnswers;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$gameAnswersCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$gameAnswers.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -93,10 +93,17 @@ class QueryGameAnswers {
     if (other is! QueryGameAnswers || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$gameAnswersCollection = gameAnswersCollection;
-    final lOther$gameAnswersCollection = other.gameAnswersCollection;
-    if (l$gameAnswersCollection != lOther$gameAnswersCollection) {
+    final l$gameAnswers = gameAnswers;
+    final lOther$gameAnswers = other.gameAnswers;
+    if (l$gameAnswers.length != lOther$gameAnswers.length) {
       return false;
+    }
+    for (int i = 0; i < l$gameAnswers.length; i++) {
+      final l$gameAnswers$entry = l$gameAnswers[i];
+      final lOther$gameAnswers$entry = lOther$gameAnswers[i];
+      if (l$gameAnswers$entry != lOther$gameAnswers$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -115,7 +122,7 @@ const documentNodeQueryGameAnswers = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'sessionId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -124,11 +131,11 @@ const documentNodeQueryGameAnswers = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'gameAnswersCollection'),
+            name: NameNode(value: 'gameAnswers'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -136,7 +143,7 @@ const documentNodeQueryGameAnswers = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'sessionId')),
                           ),
                         ],
@@ -146,7 +153,7 @@ const documentNodeQueryGameAnswers = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '120'),
               ),
             ],
@@ -154,59 +161,25 @@ const documentNodeQueryGameAnswers = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'authorId'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'isMine'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'idx'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'answer'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'idx'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'answer'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -358,155 +331,28 @@ extension ClientExtensionQueryGameAnswers on graphql.GraphQLClient {
   }
 }
 
-class QueryGameAnswersgameAnswersCollection {
-  QueryGameAnswersgameAnswersCollection({
-    required this.edges,
-    this.$__typename = 'GameAnswersConnection',
-  });
-
-  factory QueryGameAnswersgameAnswersCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryGameAnswersgameAnswersCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryGameAnswersgameAnswersCollectionedges.fromJson((e as Map<String, dynamic>)),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryGameAnswersgameAnswersCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGameAnswersgameAnswersCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGameAnswersgameAnswersCollectionedges {
-  QueryGameAnswersgameAnswersCollectionedges({
-    required this.node,
-    this.$__typename = 'GameAnswersEdge',
-  });
-
-  factory QueryGameAnswersgameAnswersCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryGameAnswersgameAnswersCollectionedges(
-      node: QueryGameAnswersgameAnswersCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryGameAnswersgameAnswersCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGameAnswersgameAnswersCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGameAnswersgameAnswersCollectionedgesnode {
-  QueryGameAnswersgameAnswersCollectionedgesnode({
-    this.isMine,
+class QueryGameAnswersgameAnswers {
+  QueryGameAnswersgameAnswers({
+    required this.authorId,
     required this.idx,
     required this.answer,
-    this.$__typename = 'GameAnswers',
+    this.$__typename = 'gameAnswers',
   });
 
-  factory QueryGameAnswersgameAnswersCollectionedgesnode.fromJson(Map<String, dynamic> json) {
-    final l$isMine = json['isMine'];
+  factory QueryGameAnswersgameAnswers.fromJson(Map<String, dynamic> json) {
+    final l$authorId = json['authorId'];
     final l$idx = json['idx'];
     final l$answer = json['answer'];
     final l$$__typename = json['__typename'];
-    return QueryGameAnswersgameAnswersCollectionedgesnode(
-      isMine: (l$isMine as bool?),
+    return QueryGameAnswersgameAnswers(
+      authorId: (l$authorId as String),
       idx: (l$idx as int),
       answer: (l$answer as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? isMine;
+  final String authorId;
 
   final int idx;
 
@@ -516,8 +362,8 @@ class QueryGameAnswersgameAnswersCollectionedgesnode {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
     final l$idx = idx;
     _resultData['idx'] = l$idx;
     final l$answer = answer;
@@ -529,11 +375,11 @@ class QueryGameAnswersgameAnswersCollectionedgesnode {
 
   @override
   int get hashCode {
-    final l$isMine = isMine;
+    final l$authorId = authorId;
     final l$idx = idx;
     final l$answer = answer;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$isMine, l$idx, l$answer, l$$__typename]);
+    return Object.hashAll([l$authorId, l$idx, l$answer, l$$__typename]);
   }
 
   @override
@@ -541,13 +387,12 @@ class QueryGameAnswersgameAnswersCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryGameAnswersgameAnswersCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryGameAnswersgameAnswers || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
     final l$idx = idx;

@@ -10,6 +10,6 @@ void main() {
     }
   });
   test('an unknown category is left out', () {
-    expect(EnumPartnerFactCategory.$unknown.toModel(), isNull);
+    expect(EnumPartnerFactCategory_enum.$unknown.toModel(), isNull);
   });
 }

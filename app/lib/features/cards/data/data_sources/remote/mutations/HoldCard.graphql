@@ -1,5 +1,5 @@
-mutation HoldCard($cardId: UUID!) {
-  holdCard(cardId: $cardId) {
+mutation HoldCard($cardId: uuid!) {
+  updateCardsByPk(pk_columns: { id: $cardId }, _set: { status: held }) {
     ...CardFragment
   }
 }

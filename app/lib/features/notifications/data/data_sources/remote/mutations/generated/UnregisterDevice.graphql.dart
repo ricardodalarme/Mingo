@@ -52,25 +52,29 @@ class VariablesMutationUnregisterDevice {
 }
 
 class MutationUnregisterDevice {
-  MutationUnregisterDevice({this.unregisterDevice, this.$__typename = 'Mutation'});
+  MutationUnregisterDevice({this.deleteDevices, this.$__typename = 'mutation_root'});
 
   factory MutationUnregisterDevice.fromJson(Map<String, dynamic> json) {
-    final l$unregisterDevice = json['unregisterDevice'];
+    final l$deleteDevices = json['deleteDevices'];
     final l$$__typename = json['__typename'];
     return MutationUnregisterDevice(
-      unregisterDevice: (l$unregisterDevice as bool?),
+      deleteDevices: l$deleteDevices == null
+          ? null
+          : MutationUnregisterDevicedeleteDevices.fromJson(
+              (l$deleteDevices as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? unregisterDevice;
+  final MutationUnregisterDevicedeleteDevices? deleteDevices;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$unregisterDevice = unregisterDevice;
-    _resultData['unregisterDevice'] = l$unregisterDevice;
+    final l$deleteDevices = deleteDevices;
+    _resultData['deleteDevices'] = l$deleteDevices?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -78,9 +82,9 @@ class MutationUnregisterDevice {
 
   @override
   int get hashCode {
-    final l$unregisterDevice = unregisterDevice;
+    final l$deleteDevices = deleteDevices;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$unregisterDevice, l$$__typename]);
+    return Object.hashAll([l$deleteDevices, l$$__typename]);
   }
 
   @override
@@ -91,9 +95,9 @@ class MutationUnregisterDevice {
     if (other is! MutationUnregisterDevice || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$unregisterDevice = unregisterDevice;
-    final lOther$unregisterDevice = other.unregisterDevice;
-    if (l$unregisterDevice != lOther$unregisterDevice) {
+    final l$deleteDevices = deleteDevices;
+    final lOther$deleteDevices = other.deleteDevices;
+    if (l$deleteDevices != lOther$deleteDevices) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -122,16 +126,47 @@ const documentNodeMutationUnregisterDevice = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'unregisterDevice'),
+            name: NameNode(value: 'deleteDevices'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'token'),
-                value: VariableNode(name: NameNode(value: 'token')),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'token'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'token')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'affected_rows'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -235,4 +270,61 @@ extension ClientExtensionMutationUnregisterDevice on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationUnregisterDevice> watchMutationUnregisterDevice(
     WatchOptionsMutationUnregisterDevice options,
   ) => this.watchMutation(options);
+}
+
+class MutationUnregisterDevicedeleteDevices {
+  MutationUnregisterDevicedeleteDevices({
+    required this.affected_rows,
+    this.$__typename = 'devices_mutation_response',
+  });
+
+  factory MutationUnregisterDevicedeleteDevices.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return MutationUnregisterDevicedeleteDevices(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$affected_rows, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationUnregisterDevicedeleteDevices || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
 }

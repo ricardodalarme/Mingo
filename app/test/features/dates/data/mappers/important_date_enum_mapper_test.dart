@@ -10,12 +10,12 @@ void main() {
     }
   });
   test('an unknown date kind is a custom date', () {
-    expect(EnumImportantDateKind.$unknown.toModel(), ImportantDateKind.custom);
+    expect(EnumImportantDateKind_enum.$unknown.toModel(), ImportantDateKind.custom);
   });
 
   test('every date origin has a stored value', () {
-    expect(ImportantDateOrigin.manual.toRemote(), EnumImportantDateOrigin.manual);
-    expect(ImportantDateOrigin.auto.toRemote(), EnumImportantDateOrigin.auto);
-    expect(ImportantDateOrigin.chat.toRemote(), EnumImportantDateOrigin.chat);
+    expect(ImportantDateOrigin.manual.toRemote(), EnumImportantDateOrigin_enum.manual);
+    expect(ImportantDateOrigin.auto.toRemote(), EnumImportantDateOrigin_enum.auto);
+    expect(ImportantDateOrigin.chat.toRemote(), EnumImportantDateOrigin_enum.chat);
   });
 }

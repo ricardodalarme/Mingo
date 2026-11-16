@@ -64,31 +64,39 @@ class VariablesQueryProgramDetail {
 }
 
 class QueryProgramDetail {
-  QueryProgramDetail({required this.program, required this.lessons, this.$__typename = 'Query'});
+  QueryProgramDetail({
+    required this.program,
+    required this.lessons,
+    this.$__typename = 'query_root',
+  });
 
   factory QueryProgramDetail.fromJson(Map<String, dynamic> json) {
     final l$program = json['program'];
     final l$lessons = json['lessons'];
     final l$$__typename = json['__typename'];
     return QueryProgramDetail(
-      program: QueryProgramDetailprogram.fromJson((l$program as Map<String, dynamic>)),
-      lessons: QueryProgramDetaillessons.fromJson((l$lessons as Map<String, dynamic>)),
+      program: (l$program as List<dynamic>)
+          .map((e) => QueryProgramDetailprogram.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      lessons: (l$lessons as List<dynamic>)
+          .map((e) => QueryProgramDetaillessons.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryProgramDetailprogram program;
+  final List<QueryProgramDetailprogram> program;
 
-  final QueryProgramDetaillessons lessons;
+  final List<QueryProgramDetaillessons> lessons;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$program = program;
-    _resultData['program'] = l$program.toJson();
+    _resultData['program'] = l$program.map((e) => e.toJson()).toList();
     final l$lessons = lessons;
-    _resultData['lessons'] = l$lessons.toJson();
+    _resultData['lessons'] = l$lessons.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -99,7 +107,11 @@ class QueryProgramDetail {
     final l$program = program;
     final l$lessons = lessons;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$program, l$lessons, l$$__typename]);
+    return Object.hashAll([
+      Object.hashAll(l$program.map((v) => v)),
+      Object.hashAll(l$lessons.map((v) => v)),
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -112,13 +124,27 @@ class QueryProgramDetail {
     }
     final l$program = program;
     final lOther$program = other.program;
-    if (l$program != lOther$program) {
+    if (l$program.length != lOther$program.length) {
       return false;
+    }
+    for (int i = 0; i < l$program.length; i++) {
+      final l$program$entry = l$program[i];
+      final lOther$program$entry = lOther$program[i];
+      if (l$program$entry != lOther$program$entry) {
+        return false;
+      }
     }
     final l$lessons = lessons;
     final lOther$lessons = other.lessons;
-    if (l$lessons != lOther$lessons) {
+    if (l$lessons.length != lOther$lessons.length) {
       return false;
+    }
+    for (int i = 0; i < l$lessons.length; i++) {
+      final l$lessons$entry = l$lessons[i];
+      final lOther$lessons$entry = lOther$lessons[i];
+      if (l$lessons$entry != lOther$lessons$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -152,11 +178,11 @@ const documentNodeQueryProgramDetail = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'contentItemsCollection'),
+            name: NameNode(value: 'contentItems'),
             alias: NameNode(value: 'program'),
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -164,7 +190,7 @@ const documentNodeQueryProgramDetail = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: EnumValueNode(name: NameNode(value: 'program')),
                           ),
                         ],
@@ -175,7 +201,7 @@ const documentNodeQueryProgramDetail = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'slug')),
                           ),
                         ],
@@ -186,7 +212,7 @@ const documentNodeQueryProgramDetail = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'locale')),
                           ),
                         ],
@@ -197,7 +223,7 @@ const documentNodeQueryProgramDetail = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: BooleanValueNode(value: true),
                           ),
                         ],
@@ -207,7 +233,7 @@ const documentNodeQueryProgramDetail = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '1'),
               ),
             ],
@@ -215,73 +241,39 @@ const documentNodeQueryProgramDetail = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'slug'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'slug'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'body'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'position'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'plusOnly'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'position'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'plusOnly'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -294,11 +286,11 @@ const documentNodeQueryProgramDetail = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'contentItemsCollection'),
+            name: NameNode(value: 'contentItems'),
             alias: NameNode(value: 'lessons'),
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -306,7 +298,7 @@ const documentNodeQueryProgramDetail = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: EnumValueNode(name: NameNode(value: 'lesson')),
                           ),
                         ],
@@ -317,7 +309,7 @@ const documentNodeQueryProgramDetail = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'slug')),
                           ),
                         ],
@@ -328,7 +320,7 @@ const documentNodeQueryProgramDetail = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'locale')),
                           ),
                         ],
@@ -339,7 +331,7 @@ const documentNodeQueryProgramDetail = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: BooleanValueNode(value: true),
                           ),
                         ],
@@ -349,14 +341,14 @@ const documentNodeQueryProgramDetail = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'position'),
-                          value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'asc_nulls_last')),
                         ),
                       ],
                     ),
@@ -364,7 +356,7 @@ const documentNodeQueryProgramDetail = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '100'),
               ),
             ],
@@ -372,80 +364,46 @@ const documentNodeQueryProgramDetail = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'slug'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'slug'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'body'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'parentSlug'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'position'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'plusOnly'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'parentSlug'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'position'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'plusOnly'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -598,140 +556,23 @@ extension ClientExtensionQueryProgramDetail on graphql.GraphQLClient {
 }
 
 class QueryProgramDetailprogram {
-  QueryProgramDetailprogram({required this.edges, this.$__typename = 'ContentItemsConnection'});
-
-  factory QueryProgramDetailprogram.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryProgramDetailprogram(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryProgramDetailprogramedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryProgramDetailprogramedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryProgramDetailprogram || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryProgramDetailprogramedges {
-  QueryProgramDetailprogramedges({required this.node, this.$__typename = 'ContentItemsEdge'});
-
-  factory QueryProgramDetailprogramedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryProgramDetailprogramedges(
-      node: QueryProgramDetailprogramedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryProgramDetailprogramedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryProgramDetailprogramedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryProgramDetailprogramedgesnode {
-  QueryProgramDetailprogramedgesnode({
+  QueryProgramDetailprogram({
     required this.slug,
     required this.title,
     this.body,
     required this.position,
     required this.plusOnly,
-    this.$__typename = 'ContentItems',
+    this.$__typename = 'contentItems',
   });
 
-  factory QueryProgramDetailprogramedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryProgramDetailprogram.fromJson(Map<String, dynamic> json) {
     final l$slug = json['slug'];
     final l$title = json['title'];
     final l$body = json['body'];
     final l$position = json['position'];
     final l$plusOnly = json['plusOnly'];
     final l$$__typename = json['__typename'];
-    return QueryProgramDetailprogramedgesnode(
+    return QueryProgramDetailprogram(
       slug: (l$slug as String),
       title: (l$title as String),
       body: (l$body as String?),
@@ -786,7 +627,7 @@ class QueryProgramDetailprogramedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryProgramDetailprogramedgesnode || runtimeType != other.runtimeType) {
+    if (other is! QueryProgramDetailprogram || runtimeType != other.runtimeType) {
       return false;
     }
     final l$slug = slug;
@@ -824,134 +665,17 @@ class QueryProgramDetailprogramedgesnode {
 }
 
 class QueryProgramDetaillessons {
-  QueryProgramDetaillessons({required this.edges, this.$__typename = 'ContentItemsConnection'});
-
-  factory QueryProgramDetaillessons.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryProgramDetaillessons(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryProgramDetaillessonsedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryProgramDetaillessonsedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryProgramDetaillessons || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryProgramDetaillessonsedges {
-  QueryProgramDetaillessonsedges({required this.node, this.$__typename = 'ContentItemsEdge'});
-
-  factory QueryProgramDetaillessonsedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryProgramDetaillessonsedges(
-      node: QueryProgramDetaillessonsedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryProgramDetaillessonsedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryProgramDetaillessonsedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryProgramDetaillessonsedgesnode {
-  QueryProgramDetaillessonsedgesnode({
+  QueryProgramDetaillessons({
     required this.slug,
     required this.title,
     this.body,
     this.parentSlug,
     required this.position,
     required this.plusOnly,
-    this.$__typename = 'ContentItems',
+    this.$__typename = 'contentItems',
   });
 
-  factory QueryProgramDetaillessonsedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryProgramDetaillessons.fromJson(Map<String, dynamic> json) {
     final l$slug = json['slug'];
     final l$title = json['title'];
     final l$body = json['body'];
@@ -959,7 +683,7 @@ class QueryProgramDetaillessonsedgesnode {
     final l$position = json['position'];
     final l$plusOnly = json['plusOnly'];
     final l$$__typename = json['__typename'];
-    return QueryProgramDetaillessonsedgesnode(
+    return QueryProgramDetaillessons(
       slug: (l$slug as String),
       title: (l$title as String),
       body: (l$body as String?),
@@ -1028,7 +752,7 @@ class QueryProgramDetaillessonsedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryProgramDetaillessonsedgesnode || runtimeType != other.runtimeType) {
+    if (other is! QueryProgramDetaillessons || runtimeType != other.runtimeType) {
       return false;
     }
     final l$slug = slug;

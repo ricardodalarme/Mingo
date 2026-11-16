@@ -54,7 +54,7 @@ class MoodRepository({
     final today = await _dataSource.getTodayMood();
     final existing = today.mood;
     if (existing != null) {
-      return _update(id: existing.id, day: today.day, mood: mood, need: need, share: share);
+      return _update(id: existing.id, mood: mood, need: need, share: share);
     }
 
     try {
@@ -72,13 +72,12 @@ class MoodRepository({
       final row = raced.mood;
       if (row == null) rethrow;
 
-      return _update(id: row.id, day: raced.day, mood: mood, need: need, share: share);
+      return _update(id: row.id, mood: mood, need: need, share: share);
     }
   }
 
   Future<MoodEntry> _update({
     required String id,
-    required DateTime day,
     required MoodKind mood,
     required NeedKind? need,
     required MoodShare share,
@@ -88,7 +87,6 @@ class MoodRepository({
       mood: mood.toRemote(),
       need: need?.toRemote(),
       share: share.toRemote(),
-      day: day,
     );
 
     return record.toEntry();

@@ -6,28 +6,75 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
+class VariablesQueryMyPartner {
+  factory VariablesQueryMyPartner({required String userId}) =>
+      VariablesQueryMyPartner._({r'userId': userId});
+
+  VariablesQueryMyPartner._(this._$data);
+
+  factory VariablesQueryMyPartner.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
+    return VariablesQueryMyPartner._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get userId => (_$data['userId'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! VariablesQueryMyPartner || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    return Object.hashAll([l$userId]);
+  }
+}
+
 class QueryMyPartner {
-  QueryMyPartner({this.myPartner, this.$__typename = 'Query'});
+  QueryMyPartner({required this.couples, this.$__typename = 'query_root'});
 
   factory QueryMyPartner.fromJson(Map<String, dynamic> json) {
-    final l$myPartner = json['myPartner'];
+    final l$couples = json['couples'];
     final l$$__typename = json['__typename'];
     return QueryMyPartner(
-      myPartner: l$myPartner == null
-          ? null
-          : QueryMyPartnermyPartner.fromJson((l$myPartner as Map<String, dynamic>)),
+      couples: (l$couples as List<dynamic>)
+          .map((e) => QueryMyPartnercouples.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryMyPartnermyPartner? myPartner;
+  final List<QueryMyPartnercouples> couples;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$myPartner = myPartner;
-    _resultData['myPartner'] = l$myPartner?.toJson();
+    final l$couples = couples;
+    _resultData['couples'] = l$couples.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +82,9 @@ class QueryMyPartner {
 
   @override
   int get hashCode {
-    final l$myPartner = myPartner;
+    final l$couples = couples;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$myPartner, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$couples.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -48,10 +95,17 @@ class QueryMyPartner {
     if (other is! QueryMyPartner || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$myPartner = myPartner;
-    final lOther$myPartner = other.myPartner;
-    if (l$myPartner != lOther$myPartner) {
+    final l$couples = couples;
+    final lOther$couples = other.couples;
+    if (l$couples.length != lOther$couples.length) {
       return false;
+    }
+    for (int i = 0; i < l$couples.length; i++) {
+      final l$couples$entry = l$couples[i];
+      final lOther$couples$entry = lOther$couples[i];
+      if (l$couples$entry != lOther$couples$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -67,14 +121,51 @@ const documentNodeQueryMyPartner = DocumentNode(
     OperationDefinitionNode(
       type: OperationType.query,
       name: NameNode(value: 'MyPartner'),
-      variableDefinitions: [],
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'userId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'myPartner'),
+            name: NameNode(value: 'couples'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'members'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: 'userId'),
+                            value: ObjectValueNode(
+                              fields: [
+                                ObjectFieldNode(
+                                  name: NameNode(value: '_eq'),
+                                  value: VariableNode(name: NameNode(value: 'userId')),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
@@ -86,39 +177,80 @@ const documentNodeQueryMyPartner = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'displayName'),
+                  name: NameNode(value: 'members'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'avatarPath'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'avatarKind'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'city'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'pronouns'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'userId'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'profile'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(
+                          selections: [
+                            FieldNode(
+                              name: NameNode(value: 'id'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'displayName'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'avatarKind'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'city'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'pronouns'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                          ],
+                        ),
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -151,6 +283,7 @@ typedef OnQueryCompleteQueryMyPartner = FutureOr<void> Function(
 class OptionsQueryMyPartner extends graphql.QueryOptions<QueryMyPartner> {
   OptionsQueryMyPartner({
     String? operationName,
+    required VariablesQueryMyPartner variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -162,6 +295,7 @@ class OptionsQueryMyPartner extends graphql.QueryOptions<QueryMyPartner> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'MyPartner',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -191,6 +325,7 @@ class OptionsQueryMyPartner extends graphql.QueryOptions<QueryMyPartner> {
 class WatchOptionsQueryMyPartner extends graphql.WatchQueryOptions<QueryMyPartner> {
   WatchOptionsQueryMyPartner({
     String? operationName,
+    required VariablesQueryMyPartner variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -202,6 +337,7 @@ class WatchOptionsQueryMyPartner extends graphql.WatchQueryOptions<QueryMyPartne
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'MyPartner',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -218,59 +354,217 @@ class WatchOptionsQueryMyPartner extends graphql.WatchQueryOptions<QueryMyPartne
 }
 
 class FetchMoreOptionsQueryMyPartner extends graphql.FetchMoreOptions {
-  FetchMoreOptionsQueryMyPartner({required graphql.UpdateQuery updateQuery})
-    : super(updateQuery: updateQuery, document: documentNodeQueryMyPartner);
+  FetchMoreOptionsQueryMyPartner({
+    required graphql.UpdateQuery updateQuery,
+    required VariablesQueryMyPartner variables,
+  }) : super(
+         updateQuery: updateQuery,
+         variables: variables.toJson(),
+         document: documentNodeQueryMyPartner,
+       );
 }
 
 extension ClientExtensionQueryMyPartner on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QueryMyPartner>> queryMyPartner([
-    OptionsQueryMyPartner? options,
-  ]) async => await this.query(options ?? OptionsQueryMyPartner());
+  Future<graphql.QueryResult<QueryMyPartner>> queryMyPartner(OptionsQueryMyPartner options) async =>
+      await this.query(options);
 
-  graphql.ObservableQuery<QueryMyPartner> watchQueryMyPartner([
-    WatchOptionsQueryMyPartner? options,
-  ]) => this.watchQuery(options ?? WatchOptionsQueryMyPartner());
+  graphql.ObservableQuery<QueryMyPartner> watchQueryMyPartner(WatchOptionsQueryMyPartner options) =>
+      this.watchQuery(options);
 
-  void writeQueryMyPartner({required QueryMyPartner data, bool broadcast = true}) =>
-      this.writeQuery(
-        graphql.Request(operation: graphql.Operation(document: documentNodeQueryMyPartner)),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
+  void writeQueryMyPartner({
+    required QueryMyPartner data,
+    required VariablesQueryMyPartner variables,
+    bool broadcast = true,
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(document: documentNodeQueryMyPartner),
+      variables: variables.toJson(),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
 
-  QueryMyPartner? readQueryMyPartner({bool optimistic = true}) {
+  QueryMyPartner? readQueryMyPartner({
+    required VariablesQueryMyPartner variables,
+    bool optimistic = true,
+  }) {
     final result = this.readQuery(
-      graphql.Request(operation: graphql.Operation(document: documentNodeQueryMyPartner)),
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryMyPartner),
+        variables: variables.toJson(),
+      ),
       optimistic: optimistic,
     );
     return result == null ? null : QueryMyPartner.fromJson(result);
   }
 }
 
-class QueryMyPartnermyPartner {
-  QueryMyPartnermyPartner({
+class QueryMyPartnercouples {
+  QueryMyPartnercouples({required this.id, required this.members, this.$__typename = 'couples'});
+
+  factory QueryMyPartnercouples.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$members = json['members'];
+    final l$$__typename = json['__typename'];
+    return QueryMyPartnercouples(
+      id: (l$id as String),
+      members: (l$members as List<dynamic>)
+          .map((e) => QueryMyPartnercouplesmembers.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final List<QueryMyPartnercouplesmembers> members;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$members = members;
+    _resultData['members'] = l$members.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$members = members;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, Object.hashAll(l$members.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryMyPartnercouples || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$members = members;
+    final lOther$members = other.members;
+    if (l$members.length != lOther$members.length) {
+      return false;
+    }
+    for (int i = 0; i < l$members.length; i++) {
+      final l$members$entry = l$members[i];
+      final lOther$members$entry = lOther$members[i];
+      if (l$members$entry != lOther$members$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryMyPartnercouplesmembers {
+  QueryMyPartnercouplesmembers({
+    required this.userId,
+    required this.profile,
+    this.$__typename = 'coupleMembers',
+  });
+
+  factory QueryMyPartnercouplesmembers.fromJson(Map<String, dynamic> json) {
+    final l$userId = json['userId'];
+    final l$profile = json['profile'];
+    final l$$__typename = json['__typename'];
+    return QueryMyPartnercouplesmembers(
+      userId: (l$userId as String),
+      profile: QueryMyPartnercouplesmembersprofile.fromJson((l$profile as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String userId;
+
+  final QueryMyPartnercouplesmembersprofile profile;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
+    final l$profile = profile;
+    _resultData['profile'] = l$profile.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    final l$profile = profile;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$userId, l$profile, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryMyPartnercouplesmembers || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$profile = profile;
+    final lOther$profile = other.profile;
+    if (l$profile != lOther$profile) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryMyPartnercouplesmembersprofile {
+  QueryMyPartnercouplesmembersprofile({
     required this.id,
     this.displayName,
-    this.avatarPath,
     required this.avatarKind,
     this.city,
     this.pronouns,
-    this.$__typename = 'Profiles',
+    this.$__typename = 'profiles',
   });
 
-  factory QueryMyPartnermyPartner.fromJson(Map<String, dynamic> json) {
+  factory QueryMyPartnercouplesmembersprofile.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$displayName = json['displayName'];
-    final l$avatarPath = json['avatarPath'];
     final l$avatarKind = json['avatarKind'];
     final l$city = json['city'];
     final l$pronouns = json['pronouns'];
     final l$$__typename = json['__typename'];
-    return QueryMyPartnermyPartner(
+    return QueryMyPartnercouplesmembersprofile(
       id: (l$id as String),
       displayName: (l$displayName as String?),
-      avatarPath: (l$avatarPath as String?),
-      avatarKind: fromJsonEnumAvatarKind((l$avatarKind as String)),
+      avatarKind: fromJsonEnumAvatarKind_enum((l$avatarKind as String)),
       city: (l$city as String?),
       pronouns: (l$pronouns as String?),
       $__typename: (l$$__typename as String),
@@ -281,9 +575,7 @@ class QueryMyPartnermyPartner {
 
   final String? displayName;
 
-  final String? avatarPath;
-
-  final EnumAvatarKind avatarKind;
+  final EnumAvatarKind_enum avatarKind;
 
   final String? city;
 
@@ -297,10 +589,8 @@ class QueryMyPartnermyPartner {
     _resultData['id'] = l$id;
     final l$displayName = displayName;
     _resultData['displayName'] = l$displayName;
-    final l$avatarPath = avatarPath;
-    _resultData['avatarPath'] = l$avatarPath;
     final l$avatarKind = avatarKind;
-    _resultData['avatarKind'] = toJsonEnumAvatarKind(l$avatarKind);
+    _resultData['avatarKind'] = toJsonEnumAvatarKind_enum(l$avatarKind);
     final l$city = city;
     _resultData['city'] = l$city;
     final l$pronouns = pronouns;
@@ -314,20 +604,11 @@ class QueryMyPartnermyPartner {
   int get hashCode {
     final l$id = id;
     final l$displayName = displayName;
-    final l$avatarPath = avatarPath;
     final l$avatarKind = avatarKind;
     final l$city = city;
     final l$pronouns = pronouns;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$displayName,
-      l$avatarPath,
-      l$avatarKind,
-      l$city,
-      l$pronouns,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$id, l$displayName, l$avatarKind, l$city, l$pronouns, l$$__typename]);
   }
 
   @override
@@ -335,7 +616,7 @@ class QueryMyPartnermyPartner {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMyPartnermyPartner || runtimeType != other.runtimeType) {
+    if (other is! QueryMyPartnercouplesmembersprofile || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -346,11 +627,6 @@ class QueryMyPartnermyPartner {
     final l$displayName = displayName;
     final lOther$displayName = other.displayName;
     if (l$displayName != lOther$displayName) {
-      return false;
-    }
-    final l$avatarPath = avatarPath;
-    final lOther$avatarPath = other.avatarPath;
-    if (l$avatarPath != lOther$avatarPath) {
       return false;
     }
     final l$avatarKind = avatarKind;

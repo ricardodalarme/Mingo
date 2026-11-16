@@ -5,7 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('every topic reads back from the label it sends', () {
     for (final topic in SupportTopic.values) {
-      expect(topic.toRemote().toSupportTopic(), topic);
+      expect(topic.toRemote().name, topic.name);
+      expect(topic.name.toSupportTopic(), topic);
     }
   });
 

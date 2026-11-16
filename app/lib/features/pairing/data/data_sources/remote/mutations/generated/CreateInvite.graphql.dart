@@ -5,27 +5,29 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class MutationCreateInvite {
-  MutationCreateInvite({this.createInvite, this.$__typename = 'Mutation'});
+  MutationCreateInvite({this.insertInvitesOne, this.$__typename = 'mutation_root'});
 
   factory MutationCreateInvite.fromJson(Map<String, dynamic> json) {
-    final l$createInvite = json['createInvite'];
+    final l$insertInvitesOne = json['insertInvitesOne'];
     final l$$__typename = json['__typename'];
     return MutationCreateInvite(
-      createInvite: l$createInvite == null
+      insertInvitesOne: l$insertInvitesOne == null
           ? null
-          : MutationCreateInvitecreateInvite.fromJson((l$createInvite as Map<String, dynamic>)),
+          : MutationCreateInviteinsertInvitesOne.fromJson(
+              (l$insertInvitesOne as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationCreateInvitecreateInvite? createInvite;
+  final MutationCreateInviteinsertInvitesOne? insertInvitesOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$createInvite = createInvite;
-    _resultData['createInvite'] = l$createInvite?.toJson();
+    final l$insertInvitesOne = insertInvitesOne;
+    _resultData['insertInvitesOne'] = l$insertInvitesOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33,9 +35,9 @@ class MutationCreateInvite {
 
   @override
   int get hashCode {
-    final l$createInvite = createInvite;
+    final l$insertInvitesOne = insertInvitesOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$createInvite, l$$__typename]);
+    return Object.hashAll([l$insertInvitesOne, l$$__typename]);
   }
 
   @override
@@ -46,9 +48,9 @@ class MutationCreateInvite {
     if (other is! MutationCreateInvite || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$createInvite = createInvite;
-    final lOther$createInvite = other.createInvite;
-    if (l$createInvite != lOther$createInvite) {
+    final l$insertInvitesOne = insertInvitesOne;
+    final lOther$insertInvitesOne = other.insertInvitesOne;
+    if (l$insertInvitesOne != lOther$insertInvitesOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -70,9 +72,14 @@ const documentNodeMutationCreateInvite = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'createInvite'),
+            name: NameNode(value: 'insertInvitesOne'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(fields: []),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
@@ -206,32 +213,32 @@ extension ClientExtensionMutationCreateInvite on graphql.GraphQLClient {
   ]) => this.watchMutation(options ?? WatchOptionsMutationCreateInvite());
 }
 
-class MutationCreateInvitecreateInvite {
-  MutationCreateInvitecreateInvite({
-    this.id,
-    this.code,
-    this.expiresAt,
-    this.$__typename = 'InviteCreated',
+class MutationCreateInviteinsertInvitesOne {
+  MutationCreateInviteinsertInvitesOne({
+    required this.id,
+    required this.code,
+    required this.expiresAt,
+    this.$__typename = 'invites',
   });
 
-  factory MutationCreateInvitecreateInvite.fromJson(Map<String, dynamic> json) {
+  factory MutationCreateInviteinsertInvitesOne.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$code = json['code'];
     final l$expiresAt = json['expiresAt'];
     final l$$__typename = json['__typename'];
-    return MutationCreateInvitecreateInvite(
-      id: (l$id as String?),
-      code: (l$code as String?),
-      expiresAt: l$expiresAt == null ? null : DateTime.parse((l$expiresAt as String)),
+    return MutationCreateInviteinsertInvitesOne(
+      id: (l$id as String),
+      code: (l$code as String),
+      expiresAt: DateTime.parse((l$expiresAt as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String? id;
+  final String id;
 
-  final String? code;
+  final String code;
 
-  final DateTime? expiresAt;
+  final DateTime expiresAt;
 
   final String $__typename;
 
@@ -242,9 +249,7 @@ class MutationCreateInvitecreateInvite {
     final l$code = code;
     _resultData['code'] = l$code;
     final l$expiresAt = expiresAt;
-    _resultData['expiresAt'] = l$expiresAt == null
-        ? null
-        : ((v) => v.toUtc().toIso8601String())(l$expiresAt);
+    _resultData['expiresAt'] = ((v) => v.toUtc().toIso8601String())(l$expiresAt);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -264,7 +269,7 @@ class MutationCreateInvitecreateInvite {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationCreateInvitecreateInvite || runtimeType != other.runtimeType) {
+    if (other is! MutationCreateInviteinsertInvitesOne || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

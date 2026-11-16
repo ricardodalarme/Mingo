@@ -1,5 +1,6 @@
 query MyCouple {
-  myCouple {
-    id
+  today(limit: 1) {
+    userId
+    coupleId
   }
 }

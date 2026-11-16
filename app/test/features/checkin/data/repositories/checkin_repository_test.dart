@@ -23,10 +23,12 @@ void main() {
     DateTime? localDate,
     String? partnerName = 'Marina',
     String? coupleId = 'couple-1',
+    String selfId = 'me',
     bool isPaired = true,
   }) => (
     localDate: localDate ?? sunday,
     partnerName: partnerName,
+    selfId: selfId,
     coupleId: coupleId,
     isPaired: isPaired,
   );
@@ -58,13 +60,14 @@ void main() {
       ),
   };
 
-  void stubAnswers(List<CheckinAnswerRecord> rows) {
+  void stubAnswers(List<CheckinAnswerRecord> rows, {String? ownRowId}) {
     when(
       () => dataSource.getAnswers(
         weekStart: any(named: 'weekStart'),
         coupleId: any(named: 'coupleId'),
+        selfId: any(named: 'selfId'),
       ),
-    ).thenAnswer((_) async => rows);
+    ).thenAnswer((_) async => (ownRowId: ownRowId, answers: rows));
   }
 
   setUpAll(() => registerFallbackValue(DateTime(2026, 11, 2)));
@@ -81,14 +84,16 @@ void main() {
     final week = await repository.getWeek();
 
     expect(week.weekStart, monday);
-    verify(() => dataSource.getAnswers(weekStart: monday, coupleId: 'couple-1')).called(1);
+    verify(() => dataSource.getAnswers(weekStart: monday, coupleId: 'couple-1', selfId: 'me'))
+        .called(1);
   });
 
   test('the read is scoped to the current couple, never another', () async {
     await repository.getWeek();
 
-    verify(() => dataSource.getAnswers(weekStart: monday, coupleId: 'couple-1')).called(1);
-    verifyNever(() => dataSource.getAnswers(weekStart: monday, coupleId: 'couple-2'));
+    verify(() => dataSource.getAnswers(weekStart: monday, coupleId: 'couple-1', selfId: 'me'))
+        .called(1);
+    verifyNever(() => dataSource.getAnswers(weekStart: monday, coupleId: 'couple-2', selfId: 'me'));
   });
 
   test('own and partner rows are kept apart', () async {
@@ -165,6 +170,7 @@ void main() {
       () => dataSource.getAnswers(
         weekStart: any(named: 'weekStart'),
         coupleId: any(named: 'coupleId'),
+        selfId: any(named: 'selfId'),
       ),
     );
   });
@@ -179,6 +185,7 @@ void main() {
       () => dataSource.getAnswers(
         weekStart: any(named: 'weekStart'),
         coupleId: any(named: 'coupleId'),
+        selfId: any(named: 'selfId'),
       ),
     );
   });
@@ -187,8 +194,6 @@ void main() {
     when(
       () => dataSource.saveAnswer(
         id: any(named: 'id'),
-        coupleId: any(named: 'coupleId'),
-        weekStart: any(named: 'weekStart'),
         question: any(named: 'question'),
         body: any(named: 'body'),
       ),
@@ -197,29 +202,20 @@ void main() {
       weekStart: monday,
       coupleId: 'couple-1',
       isPaired: true,
+      ownRowId: 'a1',
       ownAnswers: {1: const CheckinAnswer(id: 'a1', question: 1, body: 'Texto antigo')},
     );
 
     final answer = await repository.saveAnswer(week: week, question: 1, body: '  Texto novo  ');
 
     expect(answer.body, 'Texto novo');
-    verify(
-      () => dataSource.saveAnswer(
-        id: 'a1',
-        coupleId: 'couple-1',
-        weekStart: monday,
-        question: 1,
-        body: 'Texto novo',
-      ),
-    ).called(1);
+    verify(() => dataSource.saveAnswer(id: 'a1', question: 1, body: 'Texto novo')).called(1);
   });
 
   test('a new answer inserts without an id', () async {
     when(
       () => dataSource.saveAnswer(
         id: any(named: 'id'),
-        coupleId: any(named: 'coupleId'),
-        weekStart: any(named: 'weekStart'),
         question: any(named: 'question'),
         body: any(named: 'body'),
       ),
@@ -231,25 +227,39 @@ void main() {
       body: 'Uma resposta',
     );
 
-    verify(
+    verify(() => dataSource.saveAnswer(id: null, question: 2, body: 'Uma resposta')).called(1);
+  });
+
+  test('an unanswered question in the existing week updates its row', () async {
+    when(
       () => dataSource.saveAnswer(
-        id: null,
-        coupleId: 'couple-1',
-        weekStart: monday,
-        question: 2,
-        body: 'Uma resposta',
+        id: any(named: 'id'),
+        question: any(named: 'question'),
+        body: any(named: 'body'),
       ),
-    ).called(1);
+    ).thenAnswer((_) async => writeRow(id: 'r1', question: 2, body: 'Outra resposta'));
+
+    await repository.saveAnswer(
+      week: CheckinWeek(
+        weekStart: monday,
+        coupleId: 'couple-1',
+        isPaired: true,
+        ownRowId: 'r1',
+        ownAnswers: {1: const CheckinAnswer(id: 'r1', question: 1, body: 'Primeira')},
+      ),
+      question: 2,
+      body: 'Outra resposta',
+    );
+
+    verify(() => dataSource.saveAnswer(id: 'r1', question: 2, body: 'Outra resposta')).called(1);
   });
 
   test('a unique race updates the row that already exists', () async {
-    stubAnswers([row(id: 'a1')]);
+    stubAnswers(const [], ownRowId: 'a1');
     var attempts = 0;
     when(
       () => dataSource.saveAnswer(
         id: any(named: 'id'),
-        coupleId: any(named: 'coupleId'),
-        weekStart: any(named: 'weekStart'),
         question: any(named: 'question'),
         body: any(named: 'body'),
       ),
@@ -266,34 +276,18 @@ void main() {
       body: 'Oi',
     );
 
-    verify(
-      () => dataSource.saveAnswer(
-        id: null,
-        coupleId: 'couple-1',
-        weekStart: monday,
-        question: 1,
-        body: 'Oi',
-      ),
-    ).called(1);
-    verify(
-      () => dataSource.saveAnswer(
-        id: 'a1',
-        coupleId: 'couple-1',
-        weekStart: monday,
-        question: 1,
-        body: 'Oi',
-      ),
-    ).called(1);
+    verify(() => dataSource.saveAnswer(id: null, question: 1, body: 'Oi')).called(1);
+    verify(() => dataSource.saveAnswer(id: 'a1', question: 1, body: 'Oi')).called(1);
   });
 
-  test('clearing an answer deletes its row', () async {
-    when(() => dataSource.deleteAnswer('a1')).thenAnswer((_) async {
+  test('clearing an answer clears its column', () async {
+    when(() => dataSource.deleteAnswer(id: 'a1', question: 2)).thenAnswer((_) async {
       return;
     });
 
-    await repository.deleteAnswer('a1');
+    await repository.deleteAnswer(id: 'a1', question: 2);
 
-    verify(() => dataSource.deleteAnswer('a1')).called(1);
+    verify(() => dataSource.deleteAnswer(id: 'a1', question: 2)).called(1);
   });
 
   test('a solo week stops before any network save', () async {
@@ -306,8 +300,6 @@ void main() {
     verifyNever(
       () => dataSource.saveAnswer(
         id: any(named: 'id'),
-        coupleId: any(named: 'coupleId'),
-        weekStart: any(named: 'weekStart'),
         question: any(named: 'question'),
         body: any(named: 'body'),
       ),

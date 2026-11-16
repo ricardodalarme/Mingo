@@ -1,5 +1,5 @@
 mutation RequestAccountDeletion {
-  requestAccountDeletion {
+  insertDeletionRequestsOne(object: {}) {
     requestedAt
     purgeAfter
   }

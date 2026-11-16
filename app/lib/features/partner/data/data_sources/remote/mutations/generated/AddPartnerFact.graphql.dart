@@ -11,7 +11,7 @@ class VariablesMutationAddPartnerFact {
     required String id,
     required String label,
     required String value,
-    EnumPartnerFactCategory? category,
+    EnumPartnerFactCategory_enum? category,
   }) => VariablesMutationAddPartnerFact._({
     r'id': id,
     r'label': label,
@@ -33,7 +33,7 @@ class VariablesMutationAddPartnerFact {
       final l$category = data['category'];
       result$data['category'] = l$category == null
           ? null
-          : fromJsonEnumPartnerFactCategory((l$category as String));
+          : fromJsonEnumPartnerFactCategory_enum((l$category as String));
     }
     return VariablesMutationAddPartnerFact._(result$data);
   }
@@ -46,7 +46,8 @@ class VariablesMutationAddPartnerFact {
 
   String get value => (_$data['value'] as String);
 
-  EnumPartnerFactCategory? get category => (_$data['category'] as EnumPartnerFactCategory?);
+  EnumPartnerFactCategory_enum? get category =>
+      (_$data['category'] as EnumPartnerFactCategory_enum?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -60,7 +61,7 @@ class VariablesMutationAddPartnerFact {
       final l$category = category;
       result$data['category'] = l$category == null
           ? null
-          : toJsonEnumPartnerFactCategory(l$category);
+          : toJsonEnumPartnerFactCategory_enum(l$category);
     }
     return result$data;
   }
@@ -115,29 +116,29 @@ class VariablesMutationAddPartnerFact {
 }
 
 class MutationAddPartnerFact {
-  MutationAddPartnerFact({this.insertIntoPartnerFactsCollection, this.$__typename = 'Mutation'});
+  MutationAddPartnerFact({this.insertPartnerFacts, this.$__typename = 'mutation_root'});
 
   factory MutationAddPartnerFact.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoPartnerFactsCollection = json['insertIntoPartnerFactsCollection'];
+    final l$insertPartnerFacts = json['insertPartnerFacts'];
     final l$$__typename = json['__typename'];
     return MutationAddPartnerFact(
-      insertIntoPartnerFactsCollection: l$insertIntoPartnerFactsCollection == null
+      insertPartnerFacts: l$insertPartnerFacts == null
           ? null
-          : MutationAddPartnerFactinsertIntoPartnerFactsCollection.fromJson(
-              (l$insertIntoPartnerFactsCollection as Map<String, dynamic>),
+          : MutationAddPartnerFactinsertPartnerFacts.fromJson(
+              (l$insertPartnerFacts as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddPartnerFactinsertIntoPartnerFactsCollection? insertIntoPartnerFactsCollection;
+  final MutationAddPartnerFactinsertPartnerFacts? insertPartnerFacts;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoPartnerFactsCollection = insertIntoPartnerFactsCollection;
-    _resultData['insertIntoPartnerFactsCollection'] = l$insertIntoPartnerFactsCollection?.toJson();
+    final l$insertPartnerFacts = insertPartnerFacts;
+    _resultData['insertPartnerFacts'] = l$insertPartnerFacts?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -145,9 +146,9 @@ class MutationAddPartnerFact {
 
   @override
   int get hashCode {
-    final l$insertIntoPartnerFactsCollection = insertIntoPartnerFactsCollection;
+    final l$insertPartnerFacts = insertPartnerFacts;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoPartnerFactsCollection, l$$__typename]);
+    return Object.hashAll([l$insertPartnerFacts, l$$__typename]);
   }
 
   @override
@@ -158,9 +159,9 @@ class MutationAddPartnerFact {
     if (other is! MutationAddPartnerFact || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoPartnerFactsCollection = insertIntoPartnerFactsCollection;
-    final lOther$insertIntoPartnerFactsCollection = other.insertIntoPartnerFactsCollection;
-    if (l$insertIntoPartnerFactsCollection != lOther$insertIntoPartnerFactsCollection) {
+    final l$insertPartnerFacts = insertPartnerFacts;
+    final lOther$insertPartnerFacts = other.insertPartnerFacts;
+    if (l$insertPartnerFacts != lOther$insertPartnerFacts) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -180,7 +181,7 @@ const documentNodeMutationAddPartnerFact = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -198,7 +199,7 @@ const documentNodeMutationAddPartnerFact = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'category')),
-          type: NamedTypeNode(name: NameNode(value: 'PartnerFactCategory'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'PartnerFactCategory_enum'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -207,7 +208,7 @@ const documentNodeMutationAddPartnerFact = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoPartnerFactsCollection'),
+            name: NameNode(value: 'insertPartnerFacts'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -242,7 +243,7 @@ const documentNodeMutationAddPartnerFact = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -361,31 +362,29 @@ extension ClientExtensionMutationAddPartnerFact on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationAddPartnerFactinsertIntoPartnerFactsCollection {
-  MutationAddPartnerFactinsertIntoPartnerFactsCollection({
-    required this.affectedCount,
-    this.$__typename = 'PartnerFactsInsertResponse',
+class MutationAddPartnerFactinsertPartnerFacts {
+  MutationAddPartnerFactinsertPartnerFacts({
+    required this.affected_rows,
+    this.$__typename = 'partnerFacts_mutation_response',
   });
 
-  factory MutationAddPartnerFactinsertIntoPartnerFactsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationAddPartnerFactinsertPartnerFacts.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationAddPartnerFactinsertIntoPartnerFactsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationAddPartnerFactinsertPartnerFacts(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -393,9 +392,9 @@ class MutationAddPartnerFactinsertIntoPartnerFactsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -403,13 +402,12 @@ class MutationAddPartnerFactinsertIntoPartnerFactsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationAddPartnerFactinsertIntoPartnerFactsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationAddPartnerFactinsertPartnerFacts || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

@@ -2,7 +2,7 @@ import 'package:app/features/_shared/data/data_sources/remote/generated/schema.g
 import 'package:app/features/profile/data/models/relationship_goal.dart';
 
 extension RelationshipGoalMapper on RelationshipGoal {
-  /// The text stored in `profile_settings.goals`, which is a list of text.
+  /// The text stored in `user_settings.goals`, which is a list of text.
   String toRemote() => switch (this) {
     RelationshipGoal.reconnect => 'reconnect',
     RelationshipGoal.fightLess => 'fight_less',
@@ -13,10 +13,10 @@ extension RelationshipGoalMapper on RelationshipGoal {
   };
 
   /// The single goal the account keeps as its main one, for goals that have one.
-  EnumRelationshipGoal? toPrimaryRemote() => switch (this) {
-    RelationshipGoal.reconnect => EnumRelationshipGoal.reconnect,
-    RelationshipGoal.fightLess => EnumRelationshipGoal.after_fight,
-    RelationshipGoal.keepRomance => EnumRelationshipGoal.keep,
+  EnumRelationshipGoal_enum? toPrimaryRemote() => switch (this) {
+    RelationshipGoal.reconnect => EnumRelationshipGoal_enum.reconnect,
+    RelationshipGoal.fightLess => EnumRelationshipGoal_enum.after_fight,
+    RelationshipGoal.keepRomance => EnumRelationshipGoal_enum.keep,
     _ => null,
   };
 }

@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/spice/data/data_sources/remote/spice_data_source.dart';
@@ -31,6 +32,7 @@ class SpiceRepository({
   required final SpiceDataSource _dataSource,
   required final ProfileRepository _profileRepository,
   required final PlusRepository _plusRepository,
+  required final AuthenticationRepository _authenticationRepository,
 }) {
   final Logger _logger = Logger('SpiceRepository');
 
@@ -40,10 +42,13 @@ class SpiceRepository({
         return const SpiceView(stage: SpiceStage.plusLocked);
       }
 
-      final settings = await _profileRepository.getMySettings();
-      final enabled = await _dataSource.getEnabled(settings.profileId);
+      final userId = _authenticationRepository.currentUserId;
+      if (userId == null) return const SpiceView(stage: SpiceStage.off);
+
+      final enabled = await _dataSource.getEnabled(userId);
       if (!enabled) return const SpiceView(stage: SpiceStage.off);
 
+      final settings = await _profileRepository.getMySettings();
       final cards = await _dataSource.getCards(settings.locale);
 
       return SpiceView(stage: cards.isEmpty ? SpiceStage.waiting : SpiceStage.ready, cards: cards);
@@ -56,11 +61,10 @@ class SpiceRepository({
   /// Switches the mode for this person only; nothing is sent to the partner.
   Future<void> setEnabled({required bool enabled}) async {
     try {
-      final settings = await _profileRepository.getMySettings();
-      final affected = await _dataSource.setEnabled(
-        profileId: settings.profileId,
-        enabled: enabled,
-      );
+      final userId = _authenticationRepository.currentUserId;
+      if (userId == null) throw const LocalizedException(l10nKey: 'UNAUTHENTICATED');
+
+      final affected = await _dataSource.setEnabled(userId: userId, enabled: enabled);
       if (affected != 1) throw const LocalizedException(l10nKey: 'UPDATE_FAILED');
     } catch (e, stack) {
       _logger.error('Failed to change the spice mode', error: e, stackTrace: stack);

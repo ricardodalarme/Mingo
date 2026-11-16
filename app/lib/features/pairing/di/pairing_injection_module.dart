@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/mood/data/repositories/mood_repository.dart';
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/pairing/data/data_sources/local/pairing_local_data_source.dart';
@@ -33,6 +34,7 @@ class PairingInjectionModule() implements InjectionModule {
       () => PairingRepository(
         pairingDataSource: injector.get<PairingDataSource>(),
         localDataSource: injector.get<PairingLocalDataSource>(),
+        authenticationRepository: injector.get<AuthenticationRepository>(),
       ),
     )
     ..registerFactory<AcceptInviteCubit>(

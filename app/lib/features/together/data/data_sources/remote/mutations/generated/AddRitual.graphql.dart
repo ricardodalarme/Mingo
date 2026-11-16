@@ -10,7 +10,7 @@ class VariablesMutationAddRitual {
   factory VariablesMutationAddRitual({
     required String id,
     required String title,
-    required EnumRitualCadence cadence,
+    required EnumRitualCadence_enum cadence,
     int? weekday,
     String? atTime,
     required bool reminder,
@@ -34,7 +34,7 @@ class VariablesMutationAddRitual {
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
     final l$cadence = data['cadence'];
-    result$data['cadence'] = fromJsonEnumRitualCadence((l$cadence as String));
+    result$data['cadence'] = fromJsonEnumRitualCadence_enum((l$cadence as String));
     if (data.containsKey('weekday')) {
       final l$weekday = data['weekday'];
       result$data['weekday'] = (l$weekday as int?);
@@ -58,7 +58,7 @@ class VariablesMutationAddRitual {
 
   String get title => (_$data['title'] as String);
 
-  EnumRitualCadence get cadence => (_$data['cadence'] as EnumRitualCadence);
+  EnumRitualCadence_enum get cadence => (_$data['cadence'] as EnumRitualCadence_enum);
 
   int? get weekday => (_$data['weekday'] as int?);
 
@@ -75,7 +75,7 @@ class VariablesMutationAddRitual {
     final l$title = title;
     result$data['title'] = l$title;
     final l$cadence = cadence;
-    result$data['cadence'] = toJsonEnumRitualCadence(l$cadence);
+    result$data['cadence'] = toJsonEnumRitualCadence_enum(l$cadence);
     if (_$data.containsKey('weekday')) {
       final l$weekday = weekday;
       result$data['weekday'] = l$weekday;
@@ -170,29 +170,29 @@ class VariablesMutationAddRitual {
 }
 
 class MutationAddRitual {
-  MutationAddRitual({this.insertIntoRitualsCollection, this.$__typename = 'Mutation'});
+  MutationAddRitual({this.insertRitualsOne, this.$__typename = 'mutation_root'});
 
   factory MutationAddRitual.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoRitualsCollection = json['insertIntoRitualsCollection'];
+    final l$insertRitualsOne = json['insertRitualsOne'];
     final l$$__typename = json['__typename'];
     return MutationAddRitual(
-      insertIntoRitualsCollection: l$insertIntoRitualsCollection == null
+      insertRitualsOne: l$insertRitualsOne == null
           ? null
-          : MutationAddRitualinsertIntoRitualsCollection.fromJson(
-              (l$insertIntoRitualsCollection as Map<String, dynamic>),
+          : MutationAddRitualinsertRitualsOne.fromJson(
+              (l$insertRitualsOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddRitualinsertIntoRitualsCollection? insertIntoRitualsCollection;
+  final MutationAddRitualinsertRitualsOne? insertRitualsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoRitualsCollection = insertIntoRitualsCollection;
-    _resultData['insertIntoRitualsCollection'] = l$insertIntoRitualsCollection?.toJson();
+    final l$insertRitualsOne = insertRitualsOne;
+    _resultData['insertRitualsOne'] = l$insertRitualsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -200,9 +200,9 @@ class MutationAddRitual {
 
   @override
   int get hashCode {
-    final l$insertIntoRitualsCollection = insertIntoRitualsCollection;
+    final l$insertRitualsOne = insertRitualsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoRitualsCollection, l$$__typename]);
+    return Object.hashAll([l$insertRitualsOne, l$$__typename]);
   }
 
   @override
@@ -213,9 +213,9 @@ class MutationAddRitual {
     if (other is! MutationAddRitual || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoRitualsCollection = insertIntoRitualsCollection;
-    final lOther$insertIntoRitualsCollection = other.insertIntoRitualsCollection;
-    if (l$insertIntoRitualsCollection != lOther$insertIntoRitualsCollection) {
+    final l$insertRitualsOne = insertRitualsOne;
+    final lOther$insertRitualsOne = other.insertRitualsOne;
+    if (l$insertRitualsOne != lOther$insertRitualsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -235,7 +235,7 @@ const documentNodeMutationAddRitual = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -247,19 +247,19 @@ const documentNodeMutationAddRitual = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'cadence')),
-          type: NamedTypeNode(name: NameNode(value: 'RitualCadence'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'RitualCadence_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'weekday')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'atTime')),
-          type: NamedTypeNode(name: NameNode(value: 'Time'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'time'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -271,7 +271,7 @@ const documentNodeMutationAddRitual = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -280,44 +280,40 @@ const documentNodeMutationAddRitual = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoRitualsCollection'),
+            name: NameNode(value: 'insertRitualsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'id'),
-                          value: VariableNode(name: NameNode(value: 'id')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'title'),
-                          value: VariableNode(name: NameNode(value: 'title')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'cadence'),
-                          value: VariableNode(name: NameNode(value: 'cadence')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'weekday'),
-                          value: VariableNode(name: NameNode(value: 'weekday')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'atTime'),
-                          value: VariableNode(name: NameNode(value: 'atTime')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'reminder'),
-                          value: VariableNode(name: NameNode(value: 'reminder')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'coupleId'),
-                          value: VariableNode(name: NameNode(value: 'coupleId')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'title'),
+                      value: VariableNode(name: NameNode(value: 'title')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'cadence'),
+                      value: VariableNode(name: NameNode(value: 'cadence')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'weekday'),
+                      value: VariableNode(name: NameNode(value: 'weekday')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'atTime'),
+                      value: VariableNode(name: NameNode(value: 'atTime')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'reminder'),
+                      value: VariableNode(name: NameNode(value: 'reminder')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'coupleId'),
+                      value: VariableNode(name: NameNode(value: 'coupleId')),
                     ),
                   ],
                 ),
@@ -327,7 +323,7 @@ const documentNodeMutationAddRitual = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -445,29 +441,26 @@ extension ClientExtensionMutationAddRitual on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationAddRitualinsertIntoRitualsCollection {
-  MutationAddRitualinsertIntoRitualsCollection({
-    required this.affectedCount,
-    this.$__typename = 'RitualsInsertResponse',
-  });
+class MutationAddRitualinsertRitualsOne {
+  MutationAddRitualinsertRitualsOne({required this.id, this.$__typename = 'rituals'});
 
-  factory MutationAddRitualinsertIntoRitualsCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationAddRitualinsertRitualsOne.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationAddRitualinsertIntoRitualsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationAddRitualinsertRitualsOne(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -475,9 +468,9 @@ class MutationAddRitualinsertIntoRitualsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -485,13 +478,12 @@ class MutationAddRitualinsertIntoRitualsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationAddRitualinsertIntoRitualsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationAddRitualinsertRitualsOne || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

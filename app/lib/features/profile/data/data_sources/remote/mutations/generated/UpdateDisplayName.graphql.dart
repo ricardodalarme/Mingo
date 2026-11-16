@@ -67,30 +67,29 @@ class VariablesMutationUpdateDisplayName {
 }
 
 class MutationUpdateDisplayName {
-  MutationUpdateDisplayName({
-    required this.updateProfilesCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateDisplayName({this.updateProfiles, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateDisplayName.fromJson(Map<String, dynamic> json) {
-    final l$updateProfilesCollection = json['updateProfilesCollection'];
+    final l$updateProfiles = json['updateProfiles'];
     final l$$__typename = json['__typename'];
     return MutationUpdateDisplayName(
-      updateProfilesCollection: MutationUpdateDisplayNameupdateProfilesCollection.fromJson(
-        (l$updateProfilesCollection as Map<String, dynamic>),
-      ),
+      updateProfiles: l$updateProfiles == null
+          ? null
+          : MutationUpdateDisplayNameupdateProfiles.fromJson(
+              (l$updateProfiles as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateDisplayNameupdateProfilesCollection updateProfilesCollection;
+  final MutationUpdateDisplayNameupdateProfiles? updateProfiles;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProfilesCollection = updateProfilesCollection;
-    _resultData['updateProfilesCollection'] = l$updateProfilesCollection.toJson();
+    final l$updateProfiles = updateProfiles;
+    _resultData['updateProfiles'] = l$updateProfiles?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -98,9 +97,9 @@ class MutationUpdateDisplayName {
 
   @override
   int get hashCode {
-    final l$updateProfilesCollection = updateProfilesCollection;
+    final l$updateProfiles = updateProfiles;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateProfilesCollection, l$$__typename]);
+    return Object.hashAll([l$updateProfiles, l$$__typename]);
   }
 
   @override
@@ -111,9 +110,9 @@ class MutationUpdateDisplayName {
     if (other is! MutationUpdateDisplayName || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProfilesCollection = updateProfilesCollection;
-    final lOther$updateProfilesCollection = other.updateProfilesCollection;
-    if (l$updateProfilesCollection != lOther$updateProfilesCollection) {
+    final l$updateProfiles = updateProfiles;
+    final lOther$updateProfiles = other.updateProfiles;
+    if (l$updateProfiles != lOther$updateProfiles) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -133,7 +132,7 @@ const documentNodeMutationUpdateDisplayName = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'profileId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -148,22 +147,11 @@ const documentNodeMutationUpdateDisplayName = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProfilesCollection'),
+            name: NameNode(value: 'updateProfiles'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'displayName'),
-                      value: VariableNode(name: NameNode(value: 'displayName')),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -171,7 +159,7 @@ const documentNodeMutationUpdateDisplayName = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'profileId')),
                           ),
                         ],
@@ -181,15 +169,22 @@ const documentNodeMutationUpdateDisplayName = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'displayName'),
+                      value: VariableNode(name: NameNode(value: 'displayName')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -311,29 +306,29 @@ extension ClientExtensionMutationUpdateDisplayName on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateDisplayNameupdateProfilesCollection {
-  MutationUpdateDisplayNameupdateProfilesCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProfilesUpdateResponse',
+class MutationUpdateDisplayNameupdateProfiles {
+  MutationUpdateDisplayNameupdateProfiles({
+    required this.affected_rows,
+    this.$__typename = 'profiles_mutation_response',
   });
 
-  factory MutationUpdateDisplayNameupdateProfilesCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateDisplayNameupdateProfiles.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateDisplayNameupdateProfilesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateDisplayNameupdateProfiles(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -341,9 +336,9 @@ class MutationUpdateDisplayNameupdateProfilesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -351,13 +346,12 @@ class MutationUpdateDisplayNameupdateProfilesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateDisplayNameupdateProfilesCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationUpdateDisplayNameupdateProfiles || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

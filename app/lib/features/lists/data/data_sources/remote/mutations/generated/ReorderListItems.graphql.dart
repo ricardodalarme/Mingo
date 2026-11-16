@@ -1,4 +1,5 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import '../../fragments/generated/ListItemFragment.graphql.dart';
 
 import 'dart:async';
@@ -7,34 +8,28 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationReorderListItems {
-  factory VariablesMutationReorderListItems({
-    required String listId,
-    required List<String> itemIds,
-  }) => VariablesMutationReorderListItems._({r'listId': listId, r'itemIds': itemIds});
+  factory VariablesMutationReorderListItems({required List<InputlistItems_updates> updates}) =>
+      VariablesMutationReorderListItems._({r'updates': updates});
 
   VariablesMutationReorderListItems._(this._$data);
 
   factory VariablesMutationReorderListItems.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$listId = data['listId'];
-    result$data['listId'] = (l$listId as String);
-    final l$itemIds = data['itemIds'];
-    result$data['itemIds'] = (l$itemIds as List<dynamic>).map((e) => (e as String)).toList();
+    final l$updates = data['updates'];
+    result$data['updates'] = (l$updates as List<dynamic>)
+        .map((e) => InputlistItems_updates.fromJson((e as Map<String, dynamic>)))
+        .toList();
     return VariablesMutationReorderListItems._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String get listId => (_$data['listId'] as String);
-
-  List<String> get itemIds => (_$data['itemIds'] as List<String>);
+  List<InputlistItems_updates> get updates => (_$data['updates'] as List<InputlistItems_updates>);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$listId = listId;
-    result$data['listId'] = l$listId;
-    final l$itemIds = itemIds;
-    result$data['itemIds'] = l$itemIds.map((e) => e).toList();
+    final l$updates = updates;
+    result$data['updates'] = l$updates.map((e) => e.toJson()).toList();
     return result$data;
   }
 
@@ -46,20 +41,15 @@ class VariablesMutationReorderListItems {
     if (other is! VariablesMutationReorderListItems || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$listId = listId;
-    final lOther$listId = other.listId;
-    if (l$listId != lOther$listId) {
+    final l$updates = updates;
+    final lOther$updates = other.updates;
+    if (l$updates.length != lOther$updates.length) {
       return false;
     }
-    final l$itemIds = itemIds;
-    final lOther$itemIds = other.itemIds;
-    if (l$itemIds.length != lOther$itemIds.length) {
-      return false;
-    }
-    for (int i = 0; i < l$itemIds.length; i++) {
-      final l$itemIds$entry = l$itemIds[i];
-      final lOther$itemIds$entry = lOther$itemIds[i];
-      if (l$itemIds$entry != lOther$itemIds$entry) {
+    for (int i = 0; i < l$updates.length; i++) {
+      final l$updates$entry = l$updates[i];
+      final lOther$updates$entry = lOther$updates[i];
+      if (l$updates$entry != lOther$updates$entry) {
         return false;
       }
     }
@@ -68,36 +58,37 @@ class VariablesMutationReorderListItems {
 
   @override
   int get hashCode {
-    final l$listId = listId;
-    final l$itemIds = itemIds;
-    return Object.hashAll([l$listId, Object.hashAll(l$itemIds.map((v) => v))]);
+    final l$updates = updates;
+    return Object.hashAll([Object.hashAll(l$updates.map((v) => v))]);
   }
 }
 
 class MutationReorderListItems {
-  MutationReorderListItems({this.reorderListItems, this.$__typename = 'Mutation'});
+  MutationReorderListItems({this.updateListItemsMany, this.$__typename = 'mutation_root'});
 
   factory MutationReorderListItems.fromJson(Map<String, dynamic> json) {
-    final l$reorderListItems = json['reorderListItems'];
+    final l$updateListItemsMany = json['updateListItemsMany'];
     final l$$__typename = json['__typename'];
     return MutationReorderListItems(
-      reorderListItems: l$reorderListItems == null
-          ? null
-          : MutationReorderListItemsreorderListItems.fromJson(
-              (l$reorderListItems as Map<String, dynamic>),
-            ),
+      updateListItemsMany: (l$updateListItemsMany as List<dynamic>?)
+          ?.map(
+            (e) => e == null
+                ? null
+                : MutationReorderListItemsupdateListItemsMany.fromJson((e as Map<String, dynamic>)),
+          )
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationReorderListItemsreorderListItems? reorderListItems;
+  final List<MutationReorderListItemsupdateListItemsMany?>? updateListItemsMany;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$reorderListItems = reorderListItems;
-    _resultData['reorderListItems'] = l$reorderListItems?.toJson();
+    final l$updateListItemsMany = updateListItemsMany;
+    _resultData['updateListItemsMany'] = l$updateListItemsMany?.map((e) => e?.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -105,9 +96,12 @@ class MutationReorderListItems {
 
   @override
   int get hashCode {
-    final l$reorderListItems = reorderListItems;
+    final l$updateListItemsMany = updateListItemsMany;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$reorderListItems, l$$__typename]);
+    return Object.hashAll([
+      l$updateListItemsMany == null ? null : Object.hashAll(l$updateListItemsMany.map((v) => v)),
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -118,9 +112,20 @@ class MutationReorderListItems {
     if (other is! MutationReorderListItems || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$reorderListItems = reorderListItems;
-    final lOther$reorderListItems = other.reorderListItems;
-    if (l$reorderListItems != lOther$reorderListItems) {
+    final l$updateListItemsMany = updateListItemsMany;
+    final lOther$updateListItemsMany = other.updateListItemsMany;
+    if (l$updateListItemsMany != null && lOther$updateListItemsMany != null) {
+      if (l$updateListItemsMany.length != lOther$updateListItemsMany.length) {
+        return false;
+      }
+      for (int i = 0; i < l$updateListItemsMany.length; i++) {
+        final l$updateListItemsMany$entry = l$updateListItemsMany[i];
+        final lOther$updateListItemsMany$entry = lOther$updateListItemsMany[i];
+        if (l$updateListItemsMany$entry != lOther$updateListItemsMany$entry) {
+          return false;
+        }
+      }
+    } else if (l$updateListItemsMany != lOther$updateListItemsMany) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -139,15 +144,9 @@ const documentNodeMutationReorderListItems = DocumentNode(
       name: NameNode(value: 'ReorderListItems'),
       variableDefinitions: [
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'listId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'itemIds')),
+          variable: VariableNode(name: NameNode(value: 'updates')),
           type: ListTypeNode(
-            type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+            type: NamedTypeNode(name: NameNode(value: 'listItems_updates'), isNonNull: true),
             isNonNull: true,
           ),
           defaultValue: DefaultValueNode(value: null),
@@ -158,48 +157,27 @@ const documentNodeMutationReorderListItems = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'reorderListItems'),
+            name: NameNode(value: 'updateListItemsMany'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'listId'),
-                value: VariableNode(name: NameNode(value: 'listId')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'itemIds'),
-                value: VariableNode(name: NameNode(value: 'itemIds')),
+                name: NameNode(value: 'updates'),
+                value: VariableNode(name: NameNode(value: 'updates')),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'returning'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'ListItemFragment'),
                         directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FragmentSpreadNode(
-                              name: NameNode(value: 'ListItemFragment'),
-                              directives: [],
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
                       ),
                       FieldNode(
                         name: NameNode(value: '__typename'),
@@ -326,34 +304,31 @@ extension ClientExtensionMutationReorderListItems on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationReorderListItemsreorderListItems {
-  MutationReorderListItemsreorderListItems({
-    required this.edges,
-    this.$__typename = 'ListItemsConnection',
+class MutationReorderListItemsupdateListItemsMany {
+  MutationReorderListItemsupdateListItemsMany({
+    required this.returning,
+    this.$__typename = 'listItems_mutation_response',
   });
 
-  factory MutationReorderListItemsreorderListItems.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
+  factory MutationReorderListItemsupdateListItemsMany.fromJson(Map<String, dynamic> json) {
+    final l$returning = json['returning'];
     final l$$__typename = json['__typename'];
-    return MutationReorderListItemsreorderListItems(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) =>
-                MutationReorderListItemsreorderListItemsedges.fromJson((e as Map<String, dynamic>)),
-          )
+    return MutationReorderListItemsupdateListItemsMany(
+      returning: (l$returning as List<dynamic>)
+          .map((e) => FragmentListItemFragment.fromJson((e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final List<MutationReorderListItemsreorderListItemsedges> edges;
+  final List<FragmentListItemFragment> returning;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
+    final l$returning = returning;
+    _resultData['returning'] = l$returning.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -361,9 +336,9 @@ class MutationReorderListItemsreorderListItems {
 
   @override
   int get hashCode {
-    final l$edges = edges;
+    final l$returning = returning;
     final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$returning.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -371,78 +346,20 @@ class MutationReorderListItemsreorderListItems {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationReorderListItemsreorderListItems || runtimeType != other.runtimeType) {
+    if (other is! MutationReorderListItemsupdateListItemsMany || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
+    final l$returning = returning;
+    final lOther$returning = other.returning;
+    if (l$returning.length != lOther$returning.length) {
       return false;
     }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
+    for (int i = 0; i < l$returning.length; i++) {
+      final l$returning$entry = l$returning[i];
+      final lOther$returning$entry = lOther$returning[i];
+      if (l$returning$entry != lOther$returning$entry) {
         return false;
       }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class MutationReorderListItemsreorderListItemsedges {
-  MutationReorderListItemsreorderListItemsedges({
-    required this.node,
-    this.$__typename = 'ListItemsEdge',
-  });
-
-  factory MutationReorderListItemsreorderListItemsedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return MutationReorderListItemsreorderListItemsedges(
-      node: FragmentListItemFragment.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final FragmentListItemFragment node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationReorderListItemsreorderListItemsedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;

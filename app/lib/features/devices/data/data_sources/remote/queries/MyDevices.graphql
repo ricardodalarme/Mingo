@@ -1,12 +1,8 @@
 query MyDevices {
-  devicesCollection(first: 50, orderBy: [{ lastSeenAt: DescNullsLast }]) {
-    edges {
-      node {
-        id
-        platform
-        label
-        lastSeenAt
-      }
-    }
+  devices(order_by: [{ lastSeenAt: desc_nulls_last }], limit: 50) {
+    id
+    platform
+    label
+    lastSeenAt
   }
 }

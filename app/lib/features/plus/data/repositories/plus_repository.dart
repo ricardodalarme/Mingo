@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/plus/data/data_sources/remote/plus_data_source.dart';
 import 'package:app/features/plus/data/mappers/plus_enum_mapper.dart';
 import 'package:app/features/plus/data/models/plus_state.dart';
@@ -10,11 +11,19 @@ import 'package:purchase_service/purchase_service.dart';
 class PlusRepository({
   required final PlusDataSource _dataSource,
   required final PurchaseService _purchaseService,
+  required final AuthenticationRepository _authenticationRepository,
   final Duration _confirmationWindow = confirmationWindow,
   final Duration _confirmationStep = confirmationStep,
 }) {
   final Logger _logger = Logger('PlusRepository');
   Map<String, Package> _packages = const {};
+
+  String get _userId {
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) throw const LocalizedException(l10nKey: 'UNAUTHENTICATED');
+
+    return userId;
+  }
 
   /// How long to wait for the server to confirm a purchase or a restore, and how often to ask.
   static const Duration confirmationWindow = Duration(seconds: 30);
@@ -44,15 +53,15 @@ class PlusRepository({
   /// What the server says the person has; Plus from the partner counts for the couple.
   Future<PlusState> getPlus() async {
     try {
-      final plus = await _dataSource.getPlus();
+      final plus = await _dataSource.getPlus(_userId);
 
       return PlusState(
         hasPlus: plus.hasPlus ?? false,
         isPaidByPartner: plus.paidByPartner ?? false,
         slipsLeft: plus.slipsLeftThisMonth ?? 0,
         cardsLeft: plus.cardsLeftThisMonth ?? 0,
-        plan: plus.plan?.toModel(),
-        status: plus.status?.toModel(),
+        plan: plus.entitlement?.plan.toModel(),
+        status: plus.entitlement?.status.toModel(),
       );
     } catch (e, stack) {
       _logger.error('Failed to read the plan', error: e, stackTrace: stack);

@@ -18,8 +18,8 @@ final class const CardDetail({
       status: CardStatus.sent,
       weekStart: DateTime(2026),
       items: const [
-        CardItem(slipId: 'fake', body: 'Uma coisa boa desta semana'),
-        CardItem(slipId: 'fake-2', body: 'Outra coisa boa'),
+        CardItem(id: 'fake', body: 'Uma coisa boa desta semana'),
+        CardItem(id: 'fake-2', body: 'Outra coisa boa'),
       ],
     ),
     isMine: false,

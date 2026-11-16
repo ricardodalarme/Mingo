@@ -52,31 +52,29 @@ class VariablesMutationDeleteHistoryMemory {
 }
 
 class MutationDeleteHistoryMemory {
-  MutationDeleteHistoryMemory({
-    required this.deleteFromMemoriesCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteHistoryMemory({this.deleteMemories, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteHistoryMemory.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromMemoriesCollection = json['deleteFromMemoriesCollection'];
+    final l$deleteMemories = json['deleteMemories'];
     final l$$__typename = json['__typename'];
     return MutationDeleteHistoryMemory(
-      deleteFromMemoriesCollection:
-          MutationDeleteHistoryMemorydeleteFromMemoriesCollection.fromJson(
-            (l$deleteFromMemoriesCollection as Map<String, dynamic>),
-          ),
+      deleteMemories: l$deleteMemories == null
+          ? null
+          : MutationDeleteHistoryMemorydeleteMemories.fromJson(
+              (l$deleteMemories as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteHistoryMemorydeleteFromMemoriesCollection deleteFromMemoriesCollection;
+  final MutationDeleteHistoryMemorydeleteMemories? deleteMemories;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromMemoriesCollection = deleteFromMemoriesCollection;
-    _resultData['deleteFromMemoriesCollection'] = l$deleteFromMemoriesCollection.toJson();
+    final l$deleteMemories = deleteMemories;
+    _resultData['deleteMemories'] = l$deleteMemories?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -84,9 +82,9 @@ class MutationDeleteHistoryMemory {
 
   @override
   int get hashCode {
-    final l$deleteFromMemoriesCollection = deleteFromMemoriesCollection;
+    final l$deleteMemories = deleteMemories;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromMemoriesCollection, l$$__typename]);
+    return Object.hashAll([l$deleteMemories, l$$__typename]);
   }
 
   @override
@@ -97,9 +95,9 @@ class MutationDeleteHistoryMemory {
     if (other is! MutationDeleteHistoryMemory || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromMemoriesCollection = deleteFromMemoriesCollection;
-    final lOther$deleteFromMemoriesCollection = other.deleteFromMemoriesCollection;
-    if (l$deleteFromMemoriesCollection != lOther$deleteFromMemoriesCollection) {
+    final l$deleteMemories = deleteMemories;
+    final lOther$deleteMemories = other.deleteMemories;
+    if (l$deleteMemories != lOther$deleteMemories) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -119,7 +117,7 @@ const documentNodeMutationDeleteHistoryMemory = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -128,11 +126,11 @@ const documentNodeMutationDeleteHistoryMemory = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromMemoriesCollection'),
+            name: NameNode(value: 'deleteMemories'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -140,7 +138,7 @@ const documentNodeMutationDeleteHistoryMemory = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'id')),
                           ),
                         ],
@@ -149,16 +147,12 @@ const documentNodeMutationDeleteHistoryMemory = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -281,31 +275,29 @@ extension ClientExtensionMutationDeleteHistoryMemory on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteHistoryMemorydeleteFromMemoriesCollection {
-  MutationDeleteHistoryMemorydeleteFromMemoriesCollection({
-    required this.affectedCount,
-    this.$__typename = 'MemoriesDeleteResponse',
+class MutationDeleteHistoryMemorydeleteMemories {
+  MutationDeleteHistoryMemorydeleteMemories({
+    required this.affected_rows,
+    this.$__typename = 'memories_mutation_response',
   });
 
-  factory MutationDeleteHistoryMemorydeleteFromMemoriesCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteHistoryMemorydeleteMemories.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteHistoryMemorydeleteFromMemoriesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteHistoryMemorydeleteMemories(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -313,9 +305,9 @@ class MutationDeleteHistoryMemorydeleteFromMemoriesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -323,13 +315,12 @@ class MutationDeleteHistoryMemorydeleteFromMemoriesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteHistoryMemorydeleteFromMemoriesCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationDeleteHistoryMemorydeleteMemories || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

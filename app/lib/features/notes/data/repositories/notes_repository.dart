@@ -29,15 +29,15 @@ class NotesRepository({
       return await Future.wait([
         for (final node in nodes)
           () async {
-            final path = node.mediaPath;
+            final fileId = node.mediaFileId;
             return SentMessage(
               id: node.id,
               kind: node.kind.toModel(),
               createdAt: node.createdAt,
               forWidget: node.forWidget,
               body: node.body,
-              mediaPath: path,
-              imageUrl: path == null ? null : await _signedUrl(path),
+              mediaFileId: fileId,
+              imageUrl: fileId == null ? null : await _signedUrl(fileId),
             );
           }(),
       ]);
@@ -49,30 +49,34 @@ class NotesRepository({
 
   Future<void> sendNote({required String body, required bool forWidget}) async {
     try {
-      await _dataSource.send(kind: 'note', body: body.trim(), forWidget: forWidget);
+      await _dataSource.send(
+        kind: MessageKind.note.toRemote(),
+        body: body.trim(),
+        forWidget: forWidget,
+      );
     } catch (e, stack) {
       _logger.error('Failed to send a note', error: e, stackTrace: stack);
       rethrow;
     }
   }
 
-  /// Uploads the [png] under the user's own folder and then sends it as a drawing.
+  /// Uploads the [png] and then sends it as a drawing.
   Future<void> sendDrawing({required Uint8List png, required bool forWidget}) async {
-    final userId = _authenticationRepository.currentUserId;
-    if (userId == null) return;
-
-    final path = '$userId/${_uuid.v4()}.png';
     try {
-      await _storageService.upload(
+      final fileId = await _storageService.upload(
         bucket: _bucket,
-        path: path,
         bytes: png,
         contentType: 'image/png',
+        name: '${_uuid.v4()}.png',
       );
       try {
-        await _dataSource.send(kind: 'drawing', mediaPath: path, forWidget: forWidget);
+        await _dataSource.send(
+          kind: MessageKind.drawing.toRemote(),
+          mediaFileId: fileId,
+          forWidget: forWidget,
+        );
       } catch (_) {
-        await _removeQuietly(path);
+        await _removeQuietly(fileId);
         rethrow;
       }
     } catch (e, stack) {
@@ -87,25 +91,25 @@ class NotesRepository({
   Future<void> delete(SentMessage message) async {
     try {
       await _dataSource.delete(message.id);
-      final path = message.mediaPath;
-      if (path != null) await _removeQuietly(path);
+      final fileId = message.mediaFileId;
+      if (fileId != null) await _removeQuietly(fileId);
     } catch (e, stack) {
       _logger.error('Failed to delete a message', error: e, stackTrace: stack);
       rethrow;
     }
   }
 
-  Future<String?> _signedUrl(String path) async {
+  Future<String?> _signedUrl(String fileId) async {
     try {
-      return await _storageService.signedUrl(bucket: _bucket, path: path);
+      return await _storageService.signedUrl(fileId: fileId);
     } catch (_) {
       return null;
     }
   }
 
-  Future<void> _removeQuietly(String path) async {
+  Future<void> _removeQuietly(String fileId) async {
     try {
-      await _storageService.remove(bucket: _bucket, path: path);
+      await _storageService.remove(fileId: fileId);
     } catch (e, stack) {
       _logger.error('Failed to remove a drawing file', error: e, stackTrace: stack);
     }

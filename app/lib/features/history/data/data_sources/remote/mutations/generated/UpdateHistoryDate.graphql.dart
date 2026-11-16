@@ -11,7 +11,7 @@ class VariablesMutationUpdateHistoryDate {
     required String id,
     String? coupleId,
     required String title,
-    required EnumImportantDateKind kind,
+    required EnumImportantDateKind_enum kind,
     required int month,
     required int day,
     int? year,
@@ -40,7 +40,7 @@ class VariablesMutationUpdateHistoryDate {
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
     final l$kind = data['kind'];
-    result$data['kind'] = fromJsonEnumImportantDateKind((l$kind as String));
+    result$data['kind'] = fromJsonEnumImportantDateKind_enum((l$kind as String));
     final l$month = data['month'];
     result$data['month'] = (l$month as int);
     final l$day = data['day'];
@@ -62,7 +62,7 @@ class VariablesMutationUpdateHistoryDate {
 
   String get title => (_$data['title'] as String);
 
-  EnumImportantDateKind get kind => (_$data['kind'] as EnumImportantDateKind);
+  EnumImportantDateKind_enum get kind => (_$data['kind'] as EnumImportantDateKind_enum);
 
   int get month => (_$data['month'] as int);
 
@@ -83,7 +83,7 @@ class VariablesMutationUpdateHistoryDate {
     final l$title = title;
     result$data['title'] = l$title;
     final l$kind = kind;
-    result$data['kind'] = toJsonEnumImportantDateKind(l$kind);
+    result$data['kind'] = toJsonEnumImportantDateKind_enum(l$kind);
     final l$month = month;
     result$data['month'] = l$month;
     final l$day = day;
@@ -178,31 +178,29 @@ class VariablesMutationUpdateHistoryDate {
 }
 
 class MutationUpdateHistoryDate {
-  MutationUpdateHistoryDate({
-    required this.updateImportantDatesCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateHistoryDate({this.updateImportantDates, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateHistoryDate.fromJson(Map<String, dynamic> json) {
-    final l$updateImportantDatesCollection = json['updateImportantDatesCollection'];
+    final l$updateImportantDates = json['updateImportantDates'];
     final l$$__typename = json['__typename'];
     return MutationUpdateHistoryDate(
-      updateImportantDatesCollection:
-          MutationUpdateHistoryDateupdateImportantDatesCollection.fromJson(
-            (l$updateImportantDatesCollection as Map<String, dynamic>),
-          ),
+      updateImportantDates: l$updateImportantDates == null
+          ? null
+          : MutationUpdateHistoryDateupdateImportantDates.fromJson(
+              (l$updateImportantDates as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateHistoryDateupdateImportantDatesCollection updateImportantDatesCollection;
+  final MutationUpdateHistoryDateupdateImportantDates? updateImportantDates;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateImportantDatesCollection = updateImportantDatesCollection;
-    _resultData['updateImportantDatesCollection'] = l$updateImportantDatesCollection.toJson();
+    final l$updateImportantDates = updateImportantDates;
+    _resultData['updateImportantDates'] = l$updateImportantDates?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -210,9 +208,9 @@ class MutationUpdateHistoryDate {
 
   @override
   int get hashCode {
-    final l$updateImportantDatesCollection = updateImportantDatesCollection;
+    final l$updateImportantDates = updateImportantDates;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateImportantDatesCollection, l$$__typename]);
+    return Object.hashAll([l$updateImportantDates, l$$__typename]);
   }
 
   @override
@@ -223,9 +221,9 @@ class MutationUpdateHistoryDate {
     if (other is! MutationUpdateHistoryDate || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateImportantDatesCollection = updateImportantDatesCollection;
-    final lOther$updateImportantDatesCollection = other.updateImportantDatesCollection;
-    if (l$updateImportantDatesCollection != lOther$updateImportantDatesCollection) {
+    final l$updateImportantDates = updateImportantDates;
+    final lOther$updateImportantDates = other.updateImportantDates;
+    if (l$updateImportantDates != lOther$updateImportantDates) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -245,13 +243,13 @@ const documentNodeMutationUpdateHistoryDate = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -263,25 +261,25 @@ const documentNodeMutationUpdateHistoryDate = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'ImportantDateKind'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ImportantDateKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'month')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'day')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'year')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -296,11 +294,29 @@ const documentNodeMutationUpdateHistoryDate = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateImportantDatesCollection'),
+            name: NameNode(value: 'updateImportantDates'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'id')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -334,34 +350,12 @@ const documentNodeMutationUpdateHistoryDate = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -483,31 +477,29 @@ extension ClientExtensionMutationUpdateHistoryDate on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateHistoryDateupdateImportantDatesCollection {
-  MutationUpdateHistoryDateupdateImportantDatesCollection({
-    required this.affectedCount,
-    this.$__typename = 'ImportantDatesUpdateResponse',
+class MutationUpdateHistoryDateupdateImportantDates {
+  MutationUpdateHistoryDateupdateImportantDates({
+    required this.affected_rows,
+    this.$__typename = 'importantDates_mutation_response',
   });
 
-  factory MutationUpdateHistoryDateupdateImportantDatesCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateHistoryDateupdateImportantDates.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateHistoryDateupdateImportantDatesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateHistoryDateupdateImportantDates(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -515,9 +507,9 @@ class MutationUpdateHistoryDateupdateImportantDatesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -525,13 +517,13 @@ class MutationUpdateHistoryDateupdateImportantDatesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateHistoryDateupdateImportantDatesCollection ||
+    if (other is! MutationUpdateHistoryDateupdateImportantDates ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

@@ -1,3 +1,9 @@
-query PartnerTimeZone {
-  partnerTimeZone
+query PartnerTimeZone($userId: uuid!) {
+  couples(where: { endedAt: { _is_null: true }, members: { userId: { _eq: $userId } } }, limit: 1) {
+    members(where: { userId: { _neq: $userId } }) {
+      profile {
+        timeZone
+      }
+    }
+  }
 }

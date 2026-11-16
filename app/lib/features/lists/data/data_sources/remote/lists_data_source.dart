@@ -16,9 +16,10 @@ import 'package:network/network.dart';
 class ListsDataSource({required final GQLClient _client}) {
   Future<List<FragmentListFragment>> getLists() async {
     final response = await _client.query(OptionsQueryLists(fetchPolicy: FetchPolicy.networkOnly));
-    final edges = validateResponseData(response, getData: (data) => data.listsCollection.edges);
 
-    return [for (final edge in edges) edge.node];
+    return List<FragmentListFragment>.of(
+      validateResponseData(response, getData: (data) => data.lists),
+    );
   }
 
   /// The list and its items, or null when the list is no longer visible.
@@ -37,7 +38,7 @@ class ListsDataSource({required final GQLClient _client}) {
   Future<FragmentListFragment> createList({
     required String id,
     required String title,
-    required EnumListKind kind,
+    required EnumListKind_enum kind,
     String? coupleId,
   }) async {
     final response = await _client.mutate(
@@ -51,10 +52,7 @@ class ListsDataSource({required final GQLClient _client}) {
       ),
     );
 
-    return validateResponseData(
-      response,
-      getData: (data) => data.insertIntoListsCollection?.records.firstOrNull,
-    );
+    return validateResponseData(response, getData: (data) => data.insertListsOne);
   }
 
   Future<FragmentListFragment> renameList({required String id, required String title}) async {
@@ -64,10 +62,7 @@ class ListsDataSource({required final GQLClient _client}) {
       ),
     );
 
-    return validateResponseData(
-      response,
-      getData: (data) => data.updateListsCollection.records.firstOrNull,
-    );
+    return validateResponseData(response, getData: (data) => data.updateListsByPk);
   }
 
   Future<void> deleteList(String id) async {
@@ -76,7 +71,7 @@ class ListsDataSource({required final GQLClient _client}) {
     );
     final affected = validateResponseData(
       response,
-      getData: (data) => data.deleteFromListsCollection.affectedCount,
+      getData: (data) => data.deleteLists?.affected_rows,
     );
     if (affected == 0) throw const NoDataException();
   }
@@ -90,10 +85,7 @@ class ListsDataSource({required final GQLClient _client}) {
       ),
     );
 
-    return validateResponseData(
-      response,
-      getData: (data) => data.updateListsCollection.records.firstOrNull,
-    );
+    return validateResponseData(response, getData: (data) => data.updateListsByPk);
   }
 
   Future<FragmentListItemFragment> addItem({
@@ -113,15 +105,12 @@ class ListsDataSource({required final GQLClient _client}) {
       ),
     );
 
-    return validateResponseData(
-      response,
-      getData: (data) => data.insertIntoListItemsCollection?.records.firstOrNull,
-    );
+    return validateResponseData(response, getData: (data) => data.insertListItemsOne);
   }
 
   Future<FragmentListItemFragment> setItemStatus({
     required String id,
-    required EnumListItemStatus status,
+    required EnumListItemStatus_enum status,
   }) async {
     final response = await _client.mutate(
       OptionsMutationSetListItemStatus(
@@ -129,10 +118,7 @@ class ListsDataSource({required final GQLClient _client}) {
       ),
     );
 
-    return validateResponseData(
-      response,
-      getData: (data) => data.updateListItemsCollection.records.firstOrNull,
-    );
+    return validateResponseData(response, getData: (data) => data.updateListItemsByPk);
   }
 
   /// Sets each item's position to its index in [itemIds] and returns the whole list in order.
@@ -142,12 +128,28 @@ class ListsDataSource({required final GQLClient _client}) {
   }) async {
     final response = await _client.mutate(
       OptionsMutationReorderListItems(
-        variables: VariablesMutationReorderListItems(listId: listId, itemIds: itemIds),
+        variables: VariablesMutationReorderListItems(
+          updates: [
+            for (final (index, id) in itemIds.indexed)
+              InputlistItems_updates(
+                where: InputlistItems_bool_exp(
+                  id: Inputuuid_comparison_exp($_eq: id),
+                  listId: Inputuuid_comparison_exp($_eq: listId),
+                ),
+                $_set: InputlistItems_set_input(position: index),
+              ),
+          ],
+        ),
       ),
     );
-    final edges = validateResponseData(response, getData: (data) => data.reorderListItems?.edges);
+    final items = validateResponseData(
+      response,
+      getData: (data) => data.updateListItemsMany
+          ?.expand((result) => result?.returning ?? const <FragmentListItemFragment>[])
+          .toList(),
+    );
 
-    return [for (final edge in edges) edge.node];
+    return [...items]..sort((a, b) => a.position.compareTo(b.position));
   }
 
   Future<void> deleteItem(String id) async {
@@ -156,7 +158,7 @@ class ListsDataSource({required final GQLClient _client}) {
     );
     final affected = validateResponseData(
       response,
-      getData: (data) => data.deleteFromListItemsCollection.affectedCount,
+      getData: (data) => data.deleteListItems?.affected_rows,
     );
     if (affected == 0) throw const NoDataException();
   }

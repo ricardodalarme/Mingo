@@ -59,6 +59,21 @@ class AuthenticationRepository({required final AuthenticationService _authentica
   }
 
   LocalizedException _toLocalizedException(AuthenticationException exception) {
-    return LocalizedException(l10nKey: exception.code);
+    const codes = {
+      'invalid-email-password': 'invalid_credentials',
+      'user-already-exists': 'user_already_exists',
+      'unverified-user': 'email_not_confirmed',
+      'password-too-short': 'weak_password',
+      'password-in-hibp-database': 'weak_password',
+      'signup-disabled': 'signup_disabled',
+      'disabled-user': 'user_banned',
+      'invalid-refresh-token': 'session_not_found',
+      'invalid-request': 'validation_failed',
+      'locale-not-allowed': 'validation_failed',
+      'provider_not_configured': 'provider_disabled',
+      'network_error': 'NETWORK',
+    };
+
+    return LocalizedException(l10nKey: codes[exception.code] ?? 'other');
   }
 }

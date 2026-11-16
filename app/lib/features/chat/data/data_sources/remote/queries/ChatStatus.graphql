@@ -1,13 +1,15 @@
-query ChatStatus($profileId: UUID!) {
-  chatMessagesLeft
+query ChatStatus($userId: uuid!) {
+  plusStates(where: { userId: { _eq: $userId } }, limit: 1) {
+    chatMessagesLeftToday
+  }
   plusLimit: appConfigByPk(key: "chat_messages_per_day_plus") {
     value
   }
   freeLimit: appConfigByPk(key: "chat_messages_per_day_free") {
     value
   }
-  profileSettingsByPk(profileId: $profileId) {
-    profileId
+  userSettingsByPk(userId: $userId) {
+    userId
     chatEnabled
   }
 }

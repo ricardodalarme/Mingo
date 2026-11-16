@@ -16,28 +16,20 @@ targets:
           outputDirectory: generated
           setOperationName: true
           scalars:
-            BigFloat:
-              type: double
-              fromJsonFunctionName: double.parse
-              toJsonFunctionName: ((v) => "$v")
-            BigInt:
-              type: BigInt
-              fromJsonFunctionName: BigInt.parse
-              toJsonFunctionName: ((v) => "$v")
-            Date:
+            date:
               type: DateTime
               toJsonFunctionName: ((v) => v.toIso8601String().substring(0, 10))
-            Datetime:
+            timestamptz:
               type: DateTime
               toJsonFunctionName: ((v) => v.toUtc().toIso8601String())
-            JSON:
+            uuid:
+              type: String
+            jsonb:
               type: dynamic
               fromJsonFunctionName: jsonDecode
               toJsonFunctionName: jsonEncode
               import: dart:convert
-            Opaque:
-              type: Object
-            Time:
+            time:
               type: String
-            UUID:
-              type: String
+            smallint:
+              type: int

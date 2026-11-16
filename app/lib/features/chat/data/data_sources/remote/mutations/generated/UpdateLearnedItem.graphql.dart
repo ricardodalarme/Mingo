@@ -64,30 +64,29 @@ class VariablesMutationUpdateLearnedItem {
 }
 
 class MutationUpdateLearnedItem {
-  MutationUpdateLearnedItem({
-    required this.updateLearnedItemsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateLearnedItem({this.updateLearnedItemsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateLearnedItem.fromJson(Map<String, dynamic> json) {
-    final l$updateLearnedItemsCollection = json['updateLearnedItemsCollection'];
+    final l$updateLearnedItemsByPk = json['updateLearnedItemsByPk'];
     final l$$__typename = json['__typename'];
     return MutationUpdateLearnedItem(
-      updateLearnedItemsCollection: MutationUpdateLearnedItemupdateLearnedItemsCollection.fromJson(
-        (l$updateLearnedItemsCollection as Map<String, dynamic>),
-      ),
+      updateLearnedItemsByPk: l$updateLearnedItemsByPk == null
+          ? null
+          : MutationUpdateLearnedItemupdateLearnedItemsByPk.fromJson(
+              (l$updateLearnedItemsByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateLearnedItemupdateLearnedItemsCollection updateLearnedItemsCollection;
+  final MutationUpdateLearnedItemupdateLearnedItemsByPk? updateLearnedItemsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateLearnedItemsCollection = updateLearnedItemsCollection;
-    _resultData['updateLearnedItemsCollection'] = l$updateLearnedItemsCollection.toJson();
+    final l$updateLearnedItemsByPk = updateLearnedItemsByPk;
+    _resultData['updateLearnedItemsByPk'] = l$updateLearnedItemsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -95,9 +94,9 @@ class MutationUpdateLearnedItem {
 
   @override
   int get hashCode {
-    final l$updateLearnedItemsCollection = updateLearnedItemsCollection;
+    final l$updateLearnedItemsByPk = updateLearnedItemsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateLearnedItemsCollection, l$$__typename]);
+    return Object.hashAll([l$updateLearnedItemsByPk, l$$__typename]);
   }
 
   @override
@@ -108,9 +107,9 @@ class MutationUpdateLearnedItem {
     if (other is! MutationUpdateLearnedItem || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateLearnedItemsCollection = updateLearnedItemsCollection;
-    final lOther$updateLearnedItemsCollection = other.updateLearnedItemsCollection;
-    if (l$updateLearnedItemsCollection != lOther$updateLearnedItemsCollection) {
+    final l$updateLearnedItemsByPk = updateLearnedItemsByPk;
+    final lOther$updateLearnedItemsByPk = other.updateLearnedItemsByPk;
+    if (l$updateLearnedItemsByPk != lOther$updateLearnedItemsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -130,7 +129,7 @@ const documentNodeMutationUpdateLearnedItem = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -145,11 +144,22 @@ const documentNodeMutationUpdateLearnedItem = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateLearnedItemsCollection'),
+            name: NameNode(value: 'updateLearnedItemsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -159,30 +169,12 @@ const documentNodeMutationUpdateLearnedItem = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -304,31 +296,29 @@ extension ClientExtensionMutationUpdateLearnedItem on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateLearnedItemupdateLearnedItemsCollection {
-  MutationUpdateLearnedItemupdateLearnedItemsCollection({
-    required this.affectedCount,
-    this.$__typename = 'LearnedItemsUpdateResponse',
+class MutationUpdateLearnedItemupdateLearnedItemsByPk {
+  MutationUpdateLearnedItemupdateLearnedItemsByPk({
+    required this.id,
+    this.$__typename = 'learnedItems',
   });
 
-  factory MutationUpdateLearnedItemupdateLearnedItemsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateLearnedItemupdateLearnedItemsByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateLearnedItemupdateLearnedItemsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateLearnedItemupdateLearnedItemsByPk(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -336,9 +326,9 @@ class MutationUpdateLearnedItemupdateLearnedItemsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -346,13 +336,13 @@ class MutationUpdateLearnedItemupdateLearnedItemsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateLearnedItemupdateLearnedItemsCollection ||
+    if (other is! MutationUpdateLearnedItemupdateLearnedItemsByPk ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

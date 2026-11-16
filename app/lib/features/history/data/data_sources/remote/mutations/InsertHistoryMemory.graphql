@@ -1,14 +1,14 @@
 mutation InsertHistoryMemory(
-  $id: UUID!
-  $coupleId: UUID
+  $id: uuid!
+  $coupleId: uuid
   $title: String!
   $body: String
-  $happenedOn: Date!
-  $datePrecision: DatePrecision!
+  $happenedOn: date!
+  $datePrecision: DatePrecision_enum!
   $place: String
-  $origin: MemoryOrigin!
+  $origin: MemoryOrigin_enum!
 ) {
-  insertIntoMemoriesCollection(
+  insertMemories(
     objects: [
       {
         id: $id
@@ -22,6 +22,6 @@ mutation InsertHistoryMemory(
       }
     ]
   ) {
-    affectedCount
+    affected_rows
   }
 }

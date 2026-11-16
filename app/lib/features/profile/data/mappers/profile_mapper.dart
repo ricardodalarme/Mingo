@@ -7,7 +7,7 @@ extension ProfileFragmentMapper on FragmentProfileFragment {
     id: id,
     avatarKind: avatarKind.toModel(),
     displayName: displayName,
-    avatarPath: avatarPath,
+    avatarFileId: avatarFileId,
     city: city,
     pronouns: pronouns,
   );

@@ -1,16 +1,12 @@
 query Holidays($locale: String!) {
-  contentItemsCollection(
-    first: 50
-    filter: { kind: { eq: holiday }, locale: { eq: $locale }, published: { eq: true } }
-    orderBy: [{ month: AscNullsLast }, { day: AscNullsLast }]
+  contentItems(
+    limit: 50
+    where: { kind: { _eq: holiday }, locale: { _eq: $locale }, published: { _eq: true } }
+    order_by: [{ month: asc_nulls_last }, { day: asc_nulls_last }]
   ) {
-    edges {
-      node {
-        slug
-        title
-        month
-        day
-      }
-    }
+    slug
+    title
+    month
+    day
   }
 }

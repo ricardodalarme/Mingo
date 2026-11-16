@@ -1,7 +1,5 @@
-mutation GrantConsent($kind: ConsentKind!, $granted: Boolean!, $version: String!) {
-  insertIntoConsentsCollection(
-    objects: [{ kind: $kind, granted: $granted, version: $version }]
-  ) {
-    affectedCount
+mutation GrantConsent($kind: ConsentKind_enum!, $granted: Boolean!, $version: String!) {
+  insertConsents(objects: [{ kind: $kind, granted: $granted, version: $version }]) {
+    affected_rows
   }
 }

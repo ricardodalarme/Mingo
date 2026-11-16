@@ -1,5 +1,4 @@
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
 import 'package:app/features/widgets/data/data_sources/remote/couple_photo_data_source.dart';
 import 'package:app/features/widgets/data/data_sources/remote/widgets_data_source.dart';
@@ -37,7 +36,6 @@ class WidgetsInjectionModule() implements InjectionModule {
         () => CouplePhotoRepository(
           dataSource: injector.get<CouplePhotoDataSource>(),
           storageService: injector.get<StorageService>(),
-          profileRepository: injector.get<ProfileRepository>(),
           authenticationRepository: injector.get<AuthenticationRepository>(),
           widgetDataService: injector.get<WidgetDataService>(),
         ),
@@ -48,6 +46,7 @@ class WidgetsInjectionModule() implements InjectionModule {
           localDataSource: injector.get<WidgetsLocalDataSource>(),
           widgetDataService: injector.get<WidgetDataService>(),
           couplePhotoRepository: injector.get<CouplePhotoRepository>(),
+          authenticationRepository: injector.get<AuthenticationRepository>(),
         ),
       )
       ..registerFactory<WidgetsGalleryCubit>(

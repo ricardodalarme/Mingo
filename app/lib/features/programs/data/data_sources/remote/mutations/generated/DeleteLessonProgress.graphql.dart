@@ -52,33 +52,29 @@ class VariablesMutationDeleteLessonProgress {
 }
 
 class MutationDeleteLessonProgress {
-  MutationDeleteLessonProgress({
-    required this.deleteFromLessonProgressCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteLessonProgress({this.deleteLessonProgress, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteLessonProgress.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromLessonProgressCollection = json['deleteFromLessonProgressCollection'];
+    final l$deleteLessonProgress = json['deleteLessonProgress'];
     final l$$__typename = json['__typename'];
     return MutationDeleteLessonProgress(
-      deleteFromLessonProgressCollection:
-          MutationDeleteLessonProgressdeleteFromLessonProgressCollection.fromJson(
-            (l$deleteFromLessonProgressCollection as Map<String, dynamic>),
-          ),
+      deleteLessonProgress: l$deleteLessonProgress == null
+          ? null
+          : MutationDeleteLessonProgressdeleteLessonProgress.fromJson(
+              (l$deleteLessonProgress as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteLessonProgressdeleteFromLessonProgressCollection
-  deleteFromLessonProgressCollection;
+  final MutationDeleteLessonProgressdeleteLessonProgress? deleteLessonProgress;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromLessonProgressCollection = deleteFromLessonProgressCollection;
-    _resultData['deleteFromLessonProgressCollection'] = l$deleteFromLessonProgressCollection
-        .toJson();
+    final l$deleteLessonProgress = deleteLessonProgress;
+    _resultData['deleteLessonProgress'] = l$deleteLessonProgress?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -86,9 +82,9 @@ class MutationDeleteLessonProgress {
 
   @override
   int get hashCode {
-    final l$deleteFromLessonProgressCollection = deleteFromLessonProgressCollection;
+    final l$deleteLessonProgress = deleteLessonProgress;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromLessonProgressCollection, l$$__typename]);
+    return Object.hashAll([l$deleteLessonProgress, l$$__typename]);
   }
 
   @override
@@ -99,9 +95,9 @@ class MutationDeleteLessonProgress {
     if (other is! MutationDeleteLessonProgress || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromLessonProgressCollection = deleteFromLessonProgressCollection;
-    final lOther$deleteFromLessonProgressCollection = other.deleteFromLessonProgressCollection;
-    if (l$deleteFromLessonProgressCollection != lOther$deleteFromLessonProgressCollection) {
+    final l$deleteLessonProgress = deleteLessonProgress;
+    final lOther$deleteLessonProgress = other.deleteLessonProgress;
+    if (l$deleteLessonProgress != lOther$deleteLessonProgress) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -130,11 +126,11 @@ const documentNodeMutationDeleteLessonProgress = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromLessonProgressCollection'),
+            name: NameNode(value: 'deleteLessonProgress'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -142,7 +138,7 @@ const documentNodeMutationDeleteLessonProgress = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'programSlug')),
                           ),
                         ],
@@ -156,7 +152,7 @@ const documentNodeMutationDeleteLessonProgress = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -279,31 +275,29 @@ extension ClientExtensionMutationDeleteLessonProgress on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteLessonProgressdeleteFromLessonProgressCollection {
-  MutationDeleteLessonProgressdeleteFromLessonProgressCollection({
-    required this.affectedCount,
-    this.$__typename = 'LessonProgressDeleteResponse',
+class MutationDeleteLessonProgressdeleteLessonProgress {
+  MutationDeleteLessonProgressdeleteLessonProgress({
+    required this.affected_rows,
+    this.$__typename = 'lessonProgress_mutation_response',
   });
 
-  factory MutationDeleteLessonProgressdeleteFromLessonProgressCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteLessonProgressdeleteLessonProgress.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteLessonProgressdeleteFromLessonProgressCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteLessonProgressdeleteLessonProgress(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -311,9 +305,9 @@ class MutationDeleteLessonProgressdeleteFromLessonProgressCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -321,13 +315,13 @@ class MutationDeleteLessonProgressdeleteFromLessonProgressCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteLessonProgressdeleteFromLessonProgressCollection ||
+    if (other is! MutationDeleteLessonProgressdeleteLessonProgress ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

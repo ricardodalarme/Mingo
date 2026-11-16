@@ -1,9 +1,5 @@
-mutation UpdateJournalEntry($id: UUID!, $body: String!, $mood: String) {
-  updateJournalEntriesCollection(
-    set: { body: $body, mood: $mood }
-    filter: { id: { eq: $id } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation UpdateJournalEntry($id: uuid!, $body: String!, $mood: String) {
+  updateJournalEntries(where: { id: { _eq: $id } }, _set: { body: $body, mood: $mood }) {
+    affected_rows
   }
 }

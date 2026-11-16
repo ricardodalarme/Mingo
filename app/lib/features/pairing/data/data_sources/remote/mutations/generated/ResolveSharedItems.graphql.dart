@@ -52,25 +52,33 @@ class VariablesMutationResolveSharedItems {
 }
 
 class MutationResolveSharedItems {
-  MutationResolveSharedItems({this.resolveSharedItems, this.$__typename = 'Mutation'});
+  MutationResolveSharedItems({
+    required this.resolveSharedItems,
+    this.$__typename = 'mutation_root',
+  });
 
   factory MutationResolveSharedItems.fromJson(Map<String, dynamic> json) {
     final l$resolveSharedItems = json['resolveSharedItems'];
     final l$$__typename = json['__typename'];
     return MutationResolveSharedItems(
-      resolveSharedItems: (l$resolveSharedItems as bool?),
+      resolveSharedItems: (l$resolveSharedItems as List<dynamic>)
+          .map(
+            (e) =>
+                MutationResolveSharedItemsresolveSharedItems.fromJson((e as Map<String, dynamic>)),
+          )
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? resolveSharedItems;
+  final List<MutationResolveSharedItemsresolveSharedItems> resolveSharedItems;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$resolveSharedItems = resolveSharedItems;
-    _resultData['resolveSharedItems'] = l$resolveSharedItems;
+    _resultData['resolveSharedItems'] = l$resolveSharedItems.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -80,7 +88,7 @@ class MutationResolveSharedItems {
   int get hashCode {
     final l$resolveSharedItems = resolveSharedItems;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$resolveSharedItems, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$resolveSharedItems.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -93,8 +101,15 @@ class MutationResolveSharedItems {
     }
     final l$resolveSharedItems = resolveSharedItems;
     final lOther$resolveSharedItems = other.resolveSharedItems;
-    if (l$resolveSharedItems != lOther$resolveSharedItems) {
+    if (l$resolveSharedItems.length != lOther$resolveSharedItems.length) {
       return false;
+    }
+    for (int i = 0; i < l$resolveSharedItems.length; i++) {
+      final l$resolveSharedItems$entry = l$resolveSharedItems[i];
+      final lOther$resolveSharedItems$entry = lOther$resolveSharedItems[i];
+      if (l$resolveSharedItems$entry != lOther$resolveSharedItems$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -126,12 +141,36 @@ const documentNodeMutationResolveSharedItems = DocumentNode(
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'keep'),
-                value: VariableNode(name: NameNode(value: 'keep')),
+                name: NameNode(value: 'args'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'keep'),
+                      value: VariableNode(name: NameNode(value: 'keep')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -238,4 +277,59 @@ extension ClientExtensionMutationResolveSharedItems on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationResolveSharedItems> watchMutationResolveSharedItems(
     WatchOptionsMutationResolveSharedItems options,
   ) => this.watchMutation(options);
+}
+
+class MutationResolveSharedItemsresolveSharedItems {
+  MutationResolveSharedItemsresolveSharedItems({required this.id, this.$__typename = 'profiles'});
+
+  factory MutationResolveSharedItemsresolveSharedItems.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return MutationResolveSharedItemsresolveSharedItems(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationResolveSharedItemsresolveSharedItems ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
 }

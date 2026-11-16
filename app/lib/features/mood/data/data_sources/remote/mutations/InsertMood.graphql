@@ -1,14 +1,9 @@
-mutation InsertMood($mood: Mood!, $need: MoodNeed, $share: MoodShare!, $day: Date!) {
-  insertIntoMoodsCollection(
-    objects: [{ mood: $mood, need: $need, share: $share, day: $day }]
-  ) {
-    affectedCount
-    records {
-      id
-      day
-      mood
-      need
-      share
-    }
+mutation InsertMood($mood: Mood_enum!, $need: MoodNeed_enum, $share: MoodShare_enum!, $day: date!) {
+  insertMoodsOne(object: { mood: $mood, need: $need, share: $share, day: $day }) {
+    id
+    day
+    mood
+    need
+    share
   }
 }

@@ -52,25 +52,29 @@ class VariablesMutationMarkCardRead {
 }
 
 class MutationMarkCardRead {
-  MutationMarkCardRead({this.markCardRead, this.$__typename = 'Mutation'});
+  MutationMarkCardRead({this.insertCardOpensOne, this.$__typename = 'mutation_root'});
 
   factory MutationMarkCardRead.fromJson(Map<String, dynamic> json) {
-    final l$markCardRead = json['markCardRead'];
+    final l$insertCardOpensOne = json['insertCardOpensOne'];
     final l$$__typename = json['__typename'];
     return MutationMarkCardRead(
-      markCardRead: (l$markCardRead as bool?),
+      insertCardOpensOne: l$insertCardOpensOne == null
+          ? null
+          : MutationMarkCardReadinsertCardOpensOne.fromJson(
+              (l$insertCardOpensOne as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? markCardRead;
+  final MutationMarkCardReadinsertCardOpensOne? insertCardOpensOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$markCardRead = markCardRead;
-    _resultData['markCardRead'] = l$markCardRead;
+    final l$insertCardOpensOne = insertCardOpensOne;
+    _resultData['insertCardOpensOne'] = l$insertCardOpensOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -78,9 +82,9 @@ class MutationMarkCardRead {
 
   @override
   int get hashCode {
-    final l$markCardRead = markCardRead;
+    final l$insertCardOpensOne = insertCardOpensOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$markCardRead, l$$__typename]);
+    return Object.hashAll([l$insertCardOpensOne, l$$__typename]);
   }
 
   @override
@@ -91,9 +95,9 @@ class MutationMarkCardRead {
     if (other is! MutationMarkCardRead || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$markCardRead = markCardRead;
-    final lOther$markCardRead = other.markCardRead;
-    if (l$markCardRead != lOther$markCardRead) {
+    final l$insertCardOpensOne = insertCardOpensOne;
+    final lOther$insertCardOpensOne = other.insertCardOpensOne;
+    if (l$insertCardOpensOne != lOther$insertCardOpensOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -113,7 +117,7 @@ const documentNodeMutationMarkCardRead = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'cardId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -122,16 +126,62 @@ const documentNodeMutationMarkCardRead = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'markCardRead'),
+            name: NameNode(value: 'insertCardOpensOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'cardId'),
-                value: VariableNode(name: NameNode(value: 'cardId')),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'cardId'),
+                      value: VariableNode(name: NameNode(value: 'cardId')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'on_conflict'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'constraint'),
+                      value: EnumValueNode(name: NameNode(value: 'card_opens_pkey')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'update_columns'),
+                      value: ListValueNode(values: []),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'cardId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'openedAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -234,4 +284,74 @@ extension ClientExtensionMutationMarkCardRead on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationMarkCardRead> watchMutationMarkCardRead(
     WatchOptionsMutationMarkCardRead options,
   ) => this.watchMutation(options);
+}
+
+class MutationMarkCardReadinsertCardOpensOne {
+  MutationMarkCardReadinsertCardOpensOne({
+    required this.cardId,
+    required this.openedAt,
+    this.$__typename = 'cardOpens',
+  });
+
+  factory MutationMarkCardReadinsertCardOpensOne.fromJson(Map<String, dynamic> json) {
+    final l$cardId = json['cardId'];
+    final l$openedAt = json['openedAt'];
+    final l$$__typename = json['__typename'];
+    return MutationMarkCardReadinsertCardOpensOne(
+      cardId: (l$cardId as String),
+      openedAt: DateTime.parse((l$openedAt as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String cardId;
+
+  final DateTime openedAt;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$cardId = cardId;
+    _resultData['cardId'] = l$cardId;
+    final l$openedAt = openedAt;
+    _resultData['openedAt'] = ((v) => v.toUtc().toIso8601String())(l$openedAt);
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$cardId = cardId;
+    final l$openedAt = openedAt;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$cardId, l$openedAt, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationMarkCardReadinsertCardOpensOne || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$cardId = cardId;
+    final lOther$cardId = other.cardId;
+    if (l$cardId != lOther$cardId) {
+      return false;
+    }
+    final l$openedAt = openedAt;
+    final lOther$openedAt = other.openedAt;
+    if (l$openedAt != lOther$openedAt) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
 }

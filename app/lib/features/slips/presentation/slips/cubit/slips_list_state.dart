@@ -16,7 +16,7 @@ final class const SlipsListState({
   final Resource<List<SlipEntry>> slips = const Loading(),
   final SlipsScope scope = SlipsScope.week,
   final bool hasNext = false,
-  final String? cursor,
+  final int offset = 0,
   final bool isLoadingMore = false,
   final bool isSearching = false,
   final String query = '',
@@ -36,7 +36,7 @@ final class const SlipsListState({
     Resource<List<SlipEntry>>? slips,
     SlipsScope? scope,
     bool? hasNext,
-    String? cursor,
+    int? offset,
     bool? isLoadingMore,
     bool? isSearching,
     String? query,
@@ -45,7 +45,7 @@ final class const SlipsListState({
       slips: slips ?? this.slips,
       scope: scope ?? this.scope,
       hasNext: hasNext ?? this.hasNext,
-      cursor: cursor ?? this.cursor,
+      offset: offset ?? this.offset,
       isLoadingMore: isLoadingMore ?? this.isLoadingMore,
       isSearching: isSearching ?? this.isSearching,
       query: query ?? this.query,
@@ -53,5 +53,5 @@ final class const SlipsListState({
   }
 
   @override
-  List<Object?> get props => [slips, scope, hasNext, cursor, isLoadingMore, isSearching, query];
+  List<Object?> get props => [slips, scope, hasNext, offset, isLoadingMore, isSearching, query];
 }

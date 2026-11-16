@@ -5,28 +5,28 @@ import 'package:network/network.dart';
 
 class SpiceDataSource({required final GQLClient _client}) {
   /// Whether the person switched the mode on; false when no settings row is found.
-  Future<bool> getEnabled(String profileId) async {
+  Future<bool> getEnabled(String userId) async {
     final response = await _client.query(
       OptionsQueryMySpiceSetting(
-        variables: VariablesQueryMySpiceSetting(profileId: profileId),
+        variables: VariablesQueryMySpiceSetting(userId: userId),
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
     validateResponse(response);
 
-    return response.parsedData?.profileSettingsByPk?.spiceEnabled ?? false;
+    return response.parsedData?.userSettingsByPk?.spiceEnabled ?? false;
   }
 
-  Future<int> setEnabled({required String profileId, required bool enabled}) async {
+  Future<int> setEnabled({required String userId, required bool enabled}) async {
     final response = await _client.mutate(
       OptionsMutationSetSpiceEnabled(
-        variables: VariablesMutationSetSpiceEnabled(profileId: profileId, enabled: enabled),
+        variables: VariablesMutationSetSpiceEnabled(userId: userId, enabled: enabled),
       ),
     );
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
+      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
     );
   }
 
@@ -38,11 +38,8 @@ class SpiceDataSource({required final GQLClient _client}) {
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.contentItemsCollection.edges,
-    );
+    final cards = validateResponseData(response, getData: (data) => data.contentItems);
 
-    return [for (final edge in edges) edge.node.title];
+    return [for (final card in cards) card.title];
   }
 }

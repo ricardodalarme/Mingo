@@ -64,27 +64,27 @@ class VariablesQueryCheckinAnswers {
 }
 
 class QueryCheckinAnswers {
-  QueryCheckinAnswers({required this.checkinAnswersCollection, this.$__typename = 'Query'});
+  QueryCheckinAnswers({required this.checkins, this.$__typename = 'query_root'});
 
   factory QueryCheckinAnswers.fromJson(Map<String, dynamic> json) {
-    final l$checkinAnswersCollection = json['checkinAnswersCollection'];
+    final l$checkins = json['checkins'];
     final l$$__typename = json['__typename'];
     return QueryCheckinAnswers(
-      checkinAnswersCollection: QueryCheckinAnswerscheckinAnswersCollection.fromJson(
-        (l$checkinAnswersCollection as Map<String, dynamic>),
-      ),
+      checkins: (l$checkins as List<dynamic>)
+          .map((e) => QueryCheckinAnswerscheckins.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryCheckinAnswerscheckinAnswersCollection checkinAnswersCollection;
+  final List<QueryCheckinAnswerscheckins> checkins;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$checkinAnswersCollection = checkinAnswersCollection;
-    _resultData['checkinAnswersCollection'] = l$checkinAnswersCollection.toJson();
+    final l$checkins = checkins;
+    _resultData['checkins'] = l$checkins.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -92,9 +92,9 @@ class QueryCheckinAnswers {
 
   @override
   int get hashCode {
-    final l$checkinAnswersCollection = checkinAnswersCollection;
+    final l$checkins = checkins;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$checkinAnswersCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$checkins.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -105,10 +105,17 @@ class QueryCheckinAnswers {
     if (other is! QueryCheckinAnswers || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$checkinAnswersCollection = checkinAnswersCollection;
-    final lOther$checkinAnswersCollection = other.checkinAnswersCollection;
-    if (l$checkinAnswersCollection != lOther$checkinAnswersCollection) {
+    final l$checkins = checkins;
+    final lOther$checkins = other.checkins;
+    if (l$checkins.length != lOther$checkins.length) {
       return false;
+    }
+    for (int i = 0; i < l$checkins.length; i++) {
+      final l$checkins$entry = l$checkins[i];
+      final lOther$checkins$entry = lOther$checkins[i];
+      if (l$checkins$entry != lOther$checkins$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -127,13 +134,13 @@ const documentNodeQueryCheckinAnswers = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'weekStart')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -142,11 +149,11 @@ const documentNodeQueryCheckinAnswers = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'checkinAnswersCollection'),
+            name: NameNode(value: 'checkins'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -154,7 +161,7 @@ const documentNodeQueryCheckinAnswers = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'weekStart')),
                           ),
                         ],
@@ -165,7 +172,7 @@ const documentNodeQueryCheckinAnswers = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'coupleId')),
                           ),
                         ],
@@ -175,96 +182,61 @@ const documentNodeQueryCheckinAnswers = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'question'),
-                          value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '50'),
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '10'),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isMine'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'weekStart'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'question'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'body'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'authorId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'weekStart'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'answer1'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'answer2'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'answer3'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'answer4'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -416,172 +388,52 @@ extension ClientExtensionQueryCheckinAnswers on graphql.GraphQLClient {
   }
 }
 
-class QueryCheckinAnswerscheckinAnswersCollection {
-  QueryCheckinAnswerscheckinAnswersCollection({
-    required this.edges,
-    this.$__typename = 'CheckinAnswersConnection',
-  });
-
-  factory QueryCheckinAnswerscheckinAnswersCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryCheckinAnswerscheckinAnswersCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryCheckinAnswerscheckinAnswersCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryCheckinAnswerscheckinAnswersCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryCheckinAnswerscheckinAnswersCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryCheckinAnswerscheckinAnswersCollectionedges {
-  QueryCheckinAnswerscheckinAnswersCollectionedges({
-    required this.node,
-    this.$__typename = 'CheckinAnswersEdge',
-  });
-
-  factory QueryCheckinAnswerscheckinAnswersCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryCheckinAnswerscheckinAnswersCollectionedges(
-      node: QueryCheckinAnswerscheckinAnswersCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryCheckinAnswerscheckinAnswersCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryCheckinAnswerscheckinAnswersCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryCheckinAnswerscheckinAnswersCollectionedgesnode {
-  QueryCheckinAnswerscheckinAnswersCollectionedgesnode({
+class QueryCheckinAnswerscheckins {
+  QueryCheckinAnswerscheckins({
     required this.id,
-    this.isMine,
+    required this.authorId,
     required this.weekStart,
-    required this.question,
-    required this.body,
-    this.$__typename = 'CheckinAnswers',
+    this.answer1,
+    this.answer2,
+    this.answer3,
+    this.answer4,
+    this.$__typename = 'checkins',
   });
 
-  factory QueryCheckinAnswerscheckinAnswersCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryCheckinAnswerscheckins.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$isMine = json['isMine'];
+    final l$authorId = json['authorId'];
     final l$weekStart = json['weekStart'];
-    final l$question = json['question'];
-    final l$body = json['body'];
+    final l$answer1 = json['answer1'];
+    final l$answer2 = json['answer2'];
+    final l$answer3 = json['answer3'];
+    final l$answer4 = json['answer4'];
     final l$$__typename = json['__typename'];
-    return QueryCheckinAnswerscheckinAnswersCollectionedgesnode(
+    return QueryCheckinAnswerscheckins(
       id: (l$id as String),
-      isMine: (l$isMine as bool?),
+      authorId: (l$authorId as String),
       weekStart: DateTime.parse((l$weekStart as String)),
-      question: (l$question as int),
-      body: (l$body as String),
+      answer1: (l$answer1 as String?),
+      answer2: (l$answer2 as String?),
+      answer3: (l$answer3 as String?),
+      answer4: (l$answer4 as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
 
-  final bool? isMine;
+  final String authorId;
 
   final DateTime weekStart;
 
-  final int question;
+  final String? answer1;
 
-  final String body;
+  final String? answer2;
+
+  final String? answer3;
+
+  final String? answer4;
 
   final String $__typename;
 
@@ -589,14 +441,18 @@ class QueryCheckinAnswerscheckinAnswersCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
     final l$weekStart = weekStart;
     _resultData['weekStart'] = ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
-    final l$question = question;
-    _resultData['question'] = l$question;
-    final l$body = body;
-    _resultData['body'] = l$body;
+    final l$answer1 = answer1;
+    _resultData['answer1'] = l$answer1;
+    final l$answer2 = answer2;
+    _resultData['answer2'] = l$answer2;
+    final l$answer3 = answer3;
+    _resultData['answer3'] = l$answer3;
+    final l$answer4 = answer4;
+    _resultData['answer4'] = l$answer4;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -605,12 +461,23 @@ class QueryCheckinAnswerscheckinAnswersCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$isMine = isMine;
+    final l$authorId = authorId;
     final l$weekStart = weekStart;
-    final l$question = question;
-    final l$body = body;
+    final l$answer1 = answer1;
+    final l$answer2 = answer2;
+    final l$answer3 = answer3;
+    final l$answer4 = answer4;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$isMine, l$weekStart, l$question, l$body, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$authorId,
+      l$weekStart,
+      l$answer1,
+      l$answer2,
+      l$answer3,
+      l$answer4,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -618,8 +485,7 @@ class QueryCheckinAnswerscheckinAnswersCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryCheckinAnswerscheckinAnswersCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryCheckinAnswerscheckins || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -627,9 +493,9 @@ class QueryCheckinAnswerscheckinAnswersCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
     final l$weekStart = weekStart;
@@ -637,14 +503,24 @@ class QueryCheckinAnswerscheckinAnswersCollectionedgesnode {
     if (l$weekStart != lOther$weekStart) {
       return false;
     }
-    final l$question = question;
-    final lOther$question = other.question;
-    if (l$question != lOther$question) {
+    final l$answer1 = answer1;
+    final lOther$answer1 = other.answer1;
+    if (l$answer1 != lOther$answer1) {
       return false;
     }
-    final l$body = body;
-    final lOther$body = other.body;
-    if (l$body != lOther$body) {
+    final l$answer2 = answer2;
+    final lOther$answer2 = other.answer2;
+    if (l$answer2 != lOther$answer2) {
+      return false;
+    }
+    final l$answer3 = answer3;
+    final lOther$answer3 = other.answer3;
+    if (l$answer3 != lOther$answer3) {
+      return false;
+    }
+    final l$answer4 = answer4;
+    final lOther$answer4 = other.answer4;
+    if (l$answer4 != lOther$answer4) {
       return false;
     }
     final l$$__typename = $__typename;

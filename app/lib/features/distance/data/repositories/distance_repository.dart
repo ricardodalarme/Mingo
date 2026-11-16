@@ -21,7 +21,7 @@ class DistanceRepository({
     try {
       final moment = now ?? clock.now();
       final settings = await _profileRepository.getMySettings();
-      final partnerZone = await _dataSource.getPartnerTimeZone();
+      final partnerZone = await _dataSource.getPartnerTimeZone(settings.profileId);
       final reunion = await _nextReunion(moment);
 
       return DistanceInfo(

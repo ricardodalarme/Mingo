@@ -1,3 +1,5 @@
-mutation RevokeDevice($deviceId: UUID!) {
-  revokeDevice(deviceId: $deviceId)
+mutation RevokeDevice($deviceId: uuid!) {
+  deleteDevicesByPk(id: $deviceId) {
+    id
+  }
 }

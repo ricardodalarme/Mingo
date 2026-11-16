@@ -52,32 +52,29 @@ class VariablesMutationDeleteLogisticItem {
 }
 
 class MutationDeleteLogisticItem {
-  MutationDeleteLogisticItem({
-    required this.deleteFromLogisticItemsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteLogisticItem({this.deleteLogisticItems, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteLogisticItem.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromLogisticItemsCollection = json['deleteFromLogisticItemsCollection'];
+    final l$deleteLogisticItems = json['deleteLogisticItems'];
     final l$$__typename = json['__typename'];
     return MutationDeleteLogisticItem(
-      deleteFromLogisticItemsCollection:
-          MutationDeleteLogisticItemdeleteFromLogisticItemsCollection.fromJson(
-            (l$deleteFromLogisticItemsCollection as Map<String, dynamic>),
-          ),
+      deleteLogisticItems: l$deleteLogisticItems == null
+          ? null
+          : MutationDeleteLogisticItemdeleteLogisticItems.fromJson(
+              (l$deleteLogisticItems as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteLogisticItemdeleteFromLogisticItemsCollection
-  deleteFromLogisticItemsCollection;
+  final MutationDeleteLogisticItemdeleteLogisticItems? deleteLogisticItems;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromLogisticItemsCollection = deleteFromLogisticItemsCollection;
-    _resultData['deleteFromLogisticItemsCollection'] = l$deleteFromLogisticItemsCollection.toJson();
+    final l$deleteLogisticItems = deleteLogisticItems;
+    _resultData['deleteLogisticItems'] = l$deleteLogisticItems?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -85,9 +82,9 @@ class MutationDeleteLogisticItem {
 
   @override
   int get hashCode {
-    final l$deleteFromLogisticItemsCollection = deleteFromLogisticItemsCollection;
+    final l$deleteLogisticItems = deleteLogisticItems;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromLogisticItemsCollection, l$$__typename]);
+    return Object.hashAll([l$deleteLogisticItems, l$$__typename]);
   }
 
   @override
@@ -98,9 +95,9 @@ class MutationDeleteLogisticItem {
     if (other is! MutationDeleteLogisticItem || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromLogisticItemsCollection = deleteFromLogisticItemsCollection;
-    final lOther$deleteFromLogisticItemsCollection = other.deleteFromLogisticItemsCollection;
-    if (l$deleteFromLogisticItemsCollection != lOther$deleteFromLogisticItemsCollection) {
+    final l$deleteLogisticItems = deleteLogisticItems;
+    final lOther$deleteLogisticItems = other.deleteLogisticItems;
+    if (l$deleteLogisticItems != lOther$deleteLogisticItems) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -120,7 +117,7 @@ const documentNodeMutationDeleteLogisticItem = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -129,11 +126,11 @@ const documentNodeMutationDeleteLogisticItem = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromLogisticItemsCollection'),
+            name: NameNode(value: 'deleteLogisticItems'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -141,7 +138,7 @@ const documentNodeMutationDeleteLogisticItem = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'id')),
                           ),
                         ],
@@ -150,16 +147,12 @@ const documentNodeMutationDeleteLogisticItem = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -282,31 +275,29 @@ extension ClientExtensionMutationDeleteLogisticItem on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteLogisticItemdeleteFromLogisticItemsCollection {
-  MutationDeleteLogisticItemdeleteFromLogisticItemsCollection({
-    required this.affectedCount,
-    this.$__typename = 'LogisticItemsDeleteResponse',
+class MutationDeleteLogisticItemdeleteLogisticItems {
+  MutationDeleteLogisticItemdeleteLogisticItems({
+    required this.affected_rows,
+    this.$__typename = 'logisticItems_mutation_response',
   });
 
-  factory MutationDeleteLogisticItemdeleteFromLogisticItemsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteLogisticItemdeleteLogisticItems.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteLogisticItemdeleteFromLogisticItemsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteLogisticItemdeleteLogisticItems(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -314,9 +305,9 @@ class MutationDeleteLogisticItemdeleteFromLogisticItemsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -324,13 +315,13 @@ class MutationDeleteLogisticItemdeleteFromLogisticItemsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteLogisticItemdeleteFromLogisticItemsCollection ||
+    if (other is! MutationDeleteLogisticItemdeleteLogisticItems ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

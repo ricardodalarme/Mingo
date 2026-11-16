@@ -8,13 +8,13 @@ import 'package:network/network.dart';
 typedef MoodRecord = ({
   String id,
   DateTime day,
-  EnumMood mood,
-  EnumMoodNeed? need,
-  EnumMoodShare share,
+  EnumMood_enum mood,
+  EnumMoodNeed_enum? need,
+  EnumMoodShare_enum share,
 });
 
 /// The partner's shared mood with its raw server values, before the domain mapping.
-typedef PartnerMoodRecord = ({DateTime? day, EnumMood? mood, EnumMoodNeed? need});
+typedef PartnerMoodRecord = ({DateTime? day, EnumMood_enum? mood, EnumMoodNeed_enum? need});
 
 /// The server's local day, the partner's name, today's own mood and the partner's shared mood.
 typedef MoodTodayRecord = ({
@@ -31,26 +31,22 @@ class MoodDataSource({required final GQLClient _client}) {
       OptionsQueryTodayMood(fetchPolicy: FetchPolicy.networkOnly),
     );
     final data = validateResponseData<QueryTodayMood, QueryTodayMood>(response);
-    final localDate = data.today?.localDate;
-    if (localDate == null) throw const NoDataException();
+    final today = data.today.firstOrNull;
+    final localDate = today?.localDate;
+    if (today == null || localDate == null) throw const NoDataException();
 
-    final node = data.moodsCollection.edges.firstOrNull?.node;
+    final node = data.moods.firstOrNull;
     final mood = node != null && node.day == localDate ? node.toRecord() : null;
-    final shared = data.partnerMoodToday;
+    final shared = today.partner?.sharedMood;
     final partnerMood = shared != null && shared.day == localDate ? shared.toRecord() : null;
 
-    return (
-      day: localDate,
-      partnerName: data.today?.partnerName,
-      mood: mood,
-      partnerMood: partnerMood,
-    );
+    return (day: localDate, partnerName: today.partnerName, mood: mood, partnerMood: partnerMood);
   }
 
   Future<MoodRecord> insertMood({
-    required EnumMood mood,
-    required EnumMoodNeed? need,
-    required EnumMoodShare share,
+    required EnumMood_enum mood,
+    required EnumMoodNeed_enum? need,
+    required EnumMoodShare_enum share,
     required DateTime day,
   }) async {
     final response = await _client.mutate(
@@ -59,7 +55,7 @@ class MoodDataSource({required final GQLClient _client}) {
       ),
     );
     final data = validateResponseData<MutationInsertMood, MutationInsertMood>(response);
-    final record = data.insertIntoMoodsCollection?.records.firstOrNull;
+    final record = data.insertMoodsOne;
     if (record == null) throw const NoDataException();
 
     return record.toRecord();
@@ -68,10 +64,9 @@ class MoodDataSource({required final GQLClient _client}) {
   /// Saves today's mood. A null [need] clears it.
   Future<MoodRecord> updateMood({
     required String id,
-    required EnumMood mood,
-    required EnumMoodNeed? need,
-    required EnumMoodShare share,
-    required DateTime day,
+    required EnumMood_enum mood,
+    required EnumMoodNeed_enum? need,
+    required EnumMoodShare_enum share,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateMood(
@@ -79,33 +74,30 @@ class MoodDataSource({required final GQLClient _client}) {
         // which would leave the old need in place.
         variables: VariablesMutationUpdateMood.fromJson({
           'id': id,
-          'mood': mood.toJson(),
-          'need': need?.toJson(),
-          'share': share.toJson(),
-          'day': day.toIso8601String().substring(0, 10),
+          'changes': {'mood': mood.toJson(), 'need': need?.toJson(), 'share': share.toJson()},
         }),
       ),
     );
     final data = validateResponseData<MutationUpdateMood, MutationUpdateMood>(response);
-    final record = data.updateMoodsCollection.records.firstOrNull;
+    final record = data.updateMoodsByPk;
     if (record == null) throw const NoDataException();
 
     return record.toRecord();
   }
 }
 
-extension on QueryTodayMoodmoodsCollectionedgesnode {
+extension on QueryTodayMoodmoods {
   MoodRecord toRecord() => (id: id, day: day, mood: mood, need: need, share: share);
 }
 
-extension on QueryTodayMoodpartnerMoodToday {
+extension on QueryTodayMoodtodaypartnersharedMood {
   PartnerMoodRecord toRecord() => (day: day, mood: mood, need: need);
 }
 
-extension on MutationInsertMoodinsertIntoMoodsCollectionrecords {
+extension on MutationInsertMoodinsertMoodsOne {
   MoodRecord toRecord() => (id: id, day: day, mood: mood, need: need, share: share);
 }
 
-extension on MutationUpdateMoodupdateMoodsCollectionrecords {
+extension on MutationUpdateMoodupdateMoodsByPk {
   MoodRecord toRecord() => (id: id, day: day, mood: mood, need: need, share: share);
 }

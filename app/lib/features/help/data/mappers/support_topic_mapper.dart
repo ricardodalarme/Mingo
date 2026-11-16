@@ -1,9 +1,14 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/help/data/models/support_topic.dart';
 
-/// Converts the support topics the backend stores into the app's enum and back.
+/// Converts the support topics the app uses into the ones the backend stores.
 extension SupportTopicMapper on SupportTopic {
-  /// The label the support request function receives.
-  String toRemote() => name;
+  EnumSupportTopic_enum toRemote() => switch (this) {
+    SupportTopic.account => EnumSupportTopic_enum.account,
+    SupportTopic.billing => EnumSupportTopic_enum.billing,
+    SupportTopic.bug => EnumSupportTopic_enum.bug,
+    SupportTopic.other => EnumSupportTopic_enum.other,
+  };
 }
 
 extension RemoteSupportTopicMapper on String {

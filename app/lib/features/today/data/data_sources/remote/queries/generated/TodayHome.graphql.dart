@@ -1,11 +1,18 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryTodayHome {
-  QueryTodayHome({this.today, this.question, this.idea, this.$__typename = 'Query'});
+  QueryTodayHome({
+    required this.today,
+    required this.question,
+    required this.idea,
+    this.$__typename = 'query_root',
+  });
 
   factory QueryTodayHome.fromJson(Map<String, dynamic> json) {
     final l$today = json['today'];
@@ -13,33 +20,35 @@ class QueryTodayHome {
     final l$idea = json['idea'];
     final l$$__typename = json['__typename'];
     return QueryTodayHome(
-      today: l$today == null
-          ? null
-          : QueryTodayHometoday.fromJson((l$today as Map<String, dynamic>)),
-      question: l$question == null
-          ? null
-          : QueryTodayHomequestion.fromJson((l$question as Map<String, dynamic>)),
-      idea: l$idea == null ? null : QueryTodayHomeidea.fromJson((l$idea as Map<String, dynamic>)),
+      today: (l$today as List<dynamic>)
+          .map((e) => QueryTodayHometoday.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      question: (l$question as List<dynamic>)
+          .map((e) => QueryTodayHomequestion.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      idea: (l$idea as List<dynamic>)
+          .map((e) => QueryTodayHomeidea.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryTodayHometoday? today;
+  final List<QueryTodayHometoday> today;
 
-  final QueryTodayHomequestion? question;
+  final List<QueryTodayHomequestion> question;
 
-  final QueryTodayHomeidea? idea;
+  final List<QueryTodayHomeidea> idea;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$today = today;
-    _resultData['today'] = l$today?.toJson();
+    _resultData['today'] = l$today.map((e) => e.toJson()).toList();
     final l$question = question;
-    _resultData['question'] = l$question?.toJson();
+    _resultData['question'] = l$question.map((e) => e.toJson()).toList();
     final l$idea = idea;
-    _resultData['idea'] = l$idea?.toJson();
+    _resultData['idea'] = l$idea.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -51,7 +60,12 @@ class QueryTodayHome {
     final l$question = question;
     final l$idea = idea;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$today, l$question, l$idea, l$$__typename]);
+    return Object.hashAll([
+      Object.hashAll(l$today.map((v) => v)),
+      Object.hashAll(l$question.map((v) => v)),
+      Object.hashAll(l$idea.map((v) => v)),
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -64,18 +78,39 @@ class QueryTodayHome {
     }
     final l$today = today;
     final lOther$today = other.today;
-    if (l$today != lOther$today) {
+    if (l$today.length != lOther$today.length) {
       return false;
+    }
+    for (int i = 0; i < l$today.length; i++) {
+      final l$today$entry = l$today[i];
+      final lOther$today$entry = lOther$today[i];
+      if (l$today$entry != lOther$today$entry) {
+        return false;
+      }
     }
     final l$question = question;
     final lOther$question = other.question;
-    if (l$question != lOther$question) {
+    if (l$question.length != lOther$question.length) {
       return false;
+    }
+    for (int i = 0; i < l$question.length; i++) {
+      final l$question$entry = l$question[i];
+      final lOther$question$entry = lOther$question[i];
+      if (l$question$entry != lOther$question$entry) {
+        return false;
+      }
     }
     final l$idea = idea;
     final lOther$idea = other.idea;
-    if (l$idea != lOther$idea) {
+    if (l$idea.length != lOther$idea.length) {
       return false;
+    }
+    for (int i = 0; i < l$idea.length; i++) {
+      final l$idea$entry = l$idea[i];
+      final lOther$idea$entry = lOther$idea[i];
+      if (l$idea$entry != lOther$idea$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -103,7 +138,21 @@ const documentNodeQueryTodayHome = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'isPaired'),
+                  name: NameNode(value: 'localDate'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'weekStart'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'partnerId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -117,14 +166,7 @@ const documentNodeQueryTodayHome = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'localDate'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'cardStatus'),
+                  name: NameNode(value: 'togetherSince'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -152,21 +194,14 @@ const documentNodeQueryTodayHome = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'slipDays'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'hasPendingInvite'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'togetherSince'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'hasPlus'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -180,11 +215,52 @@ const documentNodeQueryTodayHome = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'slipDays'),
+                  name: NameNode(value: 'card'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null,
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'status'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
+                ),
+                FieldNode(
+                  name: NameNode(value: 'plus'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'hasPlus'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -201,8 +277,15 @@ const documentNodeQueryTodayHome = DocumentNode(
             alias: NameNode(value: 'question'),
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'kind'),
-                value: StringValueNode(value: 'question', isBlock: false),
+                name: NameNode(value: 'args'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: StringValueNode(value: 'question', isBlock: false),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -244,8 +327,15 @@ const documentNodeQueryTodayHome = DocumentNode(
             alias: NameNode(value: 'idea'),
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'kind'),
-                value: StringValueNode(value: 'daily_idea', isBlock: false),
+                name: NameNode(value: 'args'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: StringValueNode(value: 'daily_idea', isBlock: false),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -401,61 +491,68 @@ extension ClientExtensionQueryTodayHome on graphql.GraphQLClient {
 
 class QueryTodayHometoday {
   QueryTodayHometoday({
-    this.isPaired,
-    this.partnerName,
     this.localDate,
-    this.cardStatus,
+    this.weekStart,
+    this.partnerId,
+    this.partnerName,
+    this.togetherSince,
     this.unopenedCards,
     this.slipsThisWeek,
     this.slipsTotal,
-    this.hasPendingInvite,
-    this.togetherSince,
-    this.hasPlus,
-    this.unseenSignals,
     this.slipDays,
-    this.$__typename = 'TodayState',
+    this.hasPendingInvite,
+    this.unseenSignals,
+    this.card,
+    this.plus,
+    this.$__typename = 'today',
   });
 
   factory QueryTodayHometoday.fromJson(Map<String, dynamic> json) {
-    final l$isPaired = json['isPaired'];
-    final l$partnerName = json['partnerName'];
     final l$localDate = json['localDate'];
-    final l$cardStatus = json['cardStatus'];
+    final l$weekStart = json['weekStart'];
+    final l$partnerId = json['partnerId'];
+    final l$partnerName = json['partnerName'];
+    final l$togetherSince = json['togetherSince'];
     final l$unopenedCards = json['unopenedCards'];
     final l$slipsThisWeek = json['slipsThisWeek'];
     final l$slipsTotal = json['slipsTotal'];
-    final l$hasPendingInvite = json['hasPendingInvite'];
-    final l$togetherSince = json['togetherSince'];
-    final l$hasPlus = json['hasPlus'];
-    final l$unseenSignals = json['unseenSignals'];
     final l$slipDays = json['slipDays'];
+    final l$hasPendingInvite = json['hasPendingInvite'];
+    final l$unseenSignals = json['unseenSignals'];
+    final l$card = json['card'];
+    final l$plus = json['plus'];
     final l$$__typename = json['__typename'];
     return QueryTodayHometoday(
-      isPaired: (l$isPaired as bool?),
-      partnerName: (l$partnerName as String?),
       localDate: l$localDate == null ? null : DateTime.parse((l$localDate as String)),
-      cardStatus: (l$cardStatus as String?),
+      weekStart: l$weekStart == null ? null : DateTime.parse((l$weekStart as String)),
+      partnerId: (l$partnerId as String?),
+      partnerName: (l$partnerName as String?),
+      togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       unopenedCards: (l$unopenedCards as int?),
       slipsThisWeek: (l$slipsThisWeek as int?),
       slipsTotal: (l$slipsTotal as int?),
+      slipDays: (l$slipDays as List<dynamic>?)?.map((e) => DateTime.parse((e as String))).toList(),
       hasPendingInvite: (l$hasPendingInvite as bool?),
-      togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
-      hasPlus: (l$hasPlus as bool?),
       unseenSignals: (l$unseenSignals as int?),
-      slipDays: (l$slipDays as List<dynamic>?)
-          ?.map((e) => e == null ? null : DateTime.parse((e as String)))
-          .toList(),
+      card: l$card == null
+          ? null
+          : QueryTodayHometodaycard.fromJson((l$card as Map<String, dynamic>)),
+      plus: l$plus == null
+          ? null
+          : QueryTodayHometodayplus.fromJson((l$plus as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? isPaired;
+  final DateTime? localDate;
+
+  final DateTime? weekStart;
+
+  final String? partnerId;
 
   final String? partnerName;
 
-  final DateTime? localDate;
-
-  final String? cardStatus;
+  final DateTime? togetherSince;
 
   final int? unopenedCards;
 
@@ -463,50 +560,54 @@ class QueryTodayHometoday {
 
   final int? slipsTotal;
 
+  final List<DateTime>? slipDays;
+
   final bool? hasPendingInvite;
-
-  final DateTime? togetherSince;
-
-  final bool? hasPlus;
 
   final int? unseenSignals;
 
-  final List<DateTime?>? slipDays;
+  final QueryTodayHometodaycard? card;
+
+  final QueryTodayHometodayplus? plus;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$isPaired = isPaired;
-    _resultData['isPaired'] = l$isPaired;
-    final l$partnerName = partnerName;
-    _resultData['partnerName'] = l$partnerName;
     final l$localDate = localDate;
     _resultData['localDate'] = l$localDate == null
         ? null
         : ((v) => v.toIso8601String().substring(0, 10))(l$localDate);
-    final l$cardStatus = cardStatus;
-    _resultData['cardStatus'] = l$cardStatus;
+    final l$weekStart = weekStart;
+    _resultData['weekStart'] = l$weekStart == null
+        ? null
+        : ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
+    final l$partnerId = partnerId;
+    _resultData['partnerId'] = l$partnerId;
+    final l$partnerName = partnerName;
+    _resultData['partnerName'] = l$partnerName;
+    final l$togetherSince = togetherSince;
+    _resultData['togetherSince'] = l$togetherSince == null
+        ? null
+        : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
     final l$unopenedCards = unopenedCards;
     _resultData['unopenedCards'] = l$unopenedCards;
     final l$slipsThisWeek = slipsThisWeek;
     _resultData['slipsThisWeek'] = l$slipsThisWeek;
     final l$slipsTotal = slipsTotal;
     _resultData['slipsTotal'] = l$slipsTotal;
-    final l$hasPendingInvite = hasPendingInvite;
-    _resultData['hasPendingInvite'] = l$hasPendingInvite;
-    final l$togetherSince = togetherSince;
-    _resultData['togetherSince'] = l$togetherSince == null
-        ? null
-        : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
-    final l$hasPlus = hasPlus;
-    _resultData['hasPlus'] = l$hasPlus;
-    final l$unseenSignals = unseenSignals;
-    _resultData['unseenSignals'] = l$unseenSignals;
     final l$slipDays = slipDays;
     _resultData['slipDays'] = l$slipDays
-        ?.map((e) => e == null ? null : ((v) => v.toIso8601String().substring(0, 10))(e))
+        ?.map((e) => ((v) => v.toIso8601String().substring(0, 10))(e))
         .toList();
+    final l$hasPendingInvite = hasPendingInvite;
+    _resultData['hasPendingInvite'] = l$hasPendingInvite;
+    final l$unseenSignals = unseenSignals;
+    _resultData['unseenSignals'] = l$unseenSignals;
+    final l$card = card;
+    _resultData['card'] = l$card?.toJson();
+    final l$plus = plus;
+    _resultData['plus'] = l$plus?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -514,32 +615,34 @@ class QueryTodayHometoday {
 
   @override
   int get hashCode {
-    final l$isPaired = isPaired;
-    final l$partnerName = partnerName;
     final l$localDate = localDate;
-    final l$cardStatus = cardStatus;
+    final l$weekStart = weekStart;
+    final l$partnerId = partnerId;
+    final l$partnerName = partnerName;
+    final l$togetherSince = togetherSince;
     final l$unopenedCards = unopenedCards;
     final l$slipsThisWeek = slipsThisWeek;
     final l$slipsTotal = slipsTotal;
-    final l$hasPendingInvite = hasPendingInvite;
-    final l$togetherSince = togetherSince;
-    final l$hasPlus = hasPlus;
-    final l$unseenSignals = unseenSignals;
     final l$slipDays = slipDays;
+    final l$hasPendingInvite = hasPendingInvite;
+    final l$unseenSignals = unseenSignals;
+    final l$card = card;
+    final l$plus = plus;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$isPaired,
-      l$partnerName,
       l$localDate,
-      l$cardStatus,
+      l$weekStart,
+      l$partnerId,
+      l$partnerName,
+      l$togetherSince,
       l$unopenedCards,
       l$slipsThisWeek,
       l$slipsTotal,
-      l$hasPendingInvite,
-      l$togetherSince,
-      l$hasPlus,
-      l$unseenSignals,
       l$slipDays == null ? null : Object.hashAll(l$slipDays.map((v) => v)),
+      l$hasPendingInvite,
+      l$unseenSignals,
+      l$card,
+      l$plus,
       l$$__typename,
     ]);
   }
@@ -552,9 +655,19 @@ class QueryTodayHometoday {
     if (other is! QueryTodayHometoday || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$isPaired = isPaired;
-    final lOther$isPaired = other.isPaired;
-    if (l$isPaired != lOther$isPaired) {
+    final l$localDate = localDate;
+    final lOther$localDate = other.localDate;
+    if (l$localDate != lOther$localDate) {
+      return false;
+    }
+    final l$weekStart = weekStart;
+    final lOther$weekStart = other.weekStart;
+    if (l$weekStart != lOther$weekStart) {
+      return false;
+    }
+    final l$partnerId = partnerId;
+    final lOther$partnerId = other.partnerId;
+    if (l$partnerId != lOther$partnerId) {
       return false;
     }
     final l$partnerName = partnerName;
@@ -562,14 +675,9 @@ class QueryTodayHometoday {
     if (l$partnerName != lOther$partnerName) {
       return false;
     }
-    final l$localDate = localDate;
-    final lOther$localDate = other.localDate;
-    if (l$localDate != lOther$localDate) {
-      return false;
-    }
-    final l$cardStatus = cardStatus;
-    final lOther$cardStatus = other.cardStatus;
-    if (l$cardStatus != lOther$cardStatus) {
+    final l$togetherSince = togetherSince;
+    final lOther$togetherSince = other.togetherSince;
+    if (l$togetherSince != lOther$togetherSince) {
       return false;
     }
     final l$unopenedCards = unopenedCards;
@@ -585,26 +693,6 @@ class QueryTodayHometoday {
     final l$slipsTotal = slipsTotal;
     final lOther$slipsTotal = other.slipsTotal;
     if (l$slipsTotal != lOther$slipsTotal) {
-      return false;
-    }
-    final l$hasPendingInvite = hasPendingInvite;
-    final lOther$hasPendingInvite = other.hasPendingInvite;
-    if (l$hasPendingInvite != lOther$hasPendingInvite) {
-      return false;
-    }
-    final l$togetherSince = togetherSince;
-    final lOther$togetherSince = other.togetherSince;
-    if (l$togetherSince != lOther$togetherSince) {
-      return false;
-    }
-    final l$hasPlus = hasPlus;
-    final lOther$hasPlus = other.hasPlus;
-    if (l$hasPlus != lOther$hasPlus) {
-      return false;
-    }
-    final l$unseenSignals = unseenSignals;
-    final lOther$unseenSignals = other.unseenSignals;
-    if (l$unseenSignals != lOther$unseenSignals) {
       return false;
     }
     final l$slipDays = slipDays;
@@ -623,6 +711,134 @@ class QueryTodayHometoday {
     } else if (l$slipDays != lOther$slipDays) {
       return false;
     }
+    final l$hasPendingInvite = hasPendingInvite;
+    final lOther$hasPendingInvite = other.hasPendingInvite;
+    if (l$hasPendingInvite != lOther$hasPendingInvite) {
+      return false;
+    }
+    final l$unseenSignals = unseenSignals;
+    final lOther$unseenSignals = other.unseenSignals;
+    if (l$unseenSignals != lOther$unseenSignals) {
+      return false;
+    }
+    final l$card = card;
+    final lOther$card = other.card;
+    if (l$card != lOther$card) {
+      return false;
+    }
+    final l$plus = plus;
+    final lOther$plus = other.plus;
+    if (l$plus != lOther$plus) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryTodayHometodaycard {
+  QueryTodayHometodaycard({required this.status, this.$__typename = 'cards'});
+
+  factory QueryTodayHometodaycard.fromJson(Map<String, dynamic> json) {
+    final l$status = json['status'];
+    final l$$__typename = json['__typename'];
+    return QueryTodayHometodaycard(
+      status: fromJsonEnumCardStatus_enum((l$status as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final EnumCardStatus_enum status;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$status = status;
+    _resultData['status'] = toJsonEnumCardStatus_enum(l$status);
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$status = status;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$status, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryTodayHometodaycard || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryTodayHometodayplus {
+  QueryTodayHometodayplus({this.hasPlus, this.$__typename = 'plusStates'});
+
+  factory QueryTodayHometodayplus.fromJson(Map<String, dynamic> json) {
+    final l$hasPlus = json['hasPlus'];
+    final l$$__typename = json['__typename'];
+    return QueryTodayHometodayplus(
+      hasPlus: (l$hasPlus as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? hasPlus;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$hasPlus = hasPlus;
+    _resultData['hasPlus'] = l$hasPlus;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$hasPlus = hasPlus;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$hasPlus, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryTodayHometodayplus || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$hasPlus = hasPlus;
+    final lOther$hasPlus = other.hasPlus;
+    if (l$hasPlus != lOther$hasPlus) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -637,7 +853,7 @@ class QueryTodayHomequestion {
     required this.slug,
     required this.title,
     required this.tags,
-    this.$__typename = 'ContentItems',
+    this.$__typename = 'contentItems',
   });
 
   factory QueryTodayHomequestion.fromJson(Map<String, dynamic> json) {
@@ -648,7 +864,7 @@ class QueryTodayHomequestion {
     return QueryTodayHomequestion(
       slug: (l$slug as String),
       title: (l$title as String),
-      tags: (l$tags as List<dynamic>).map((e) => (e as String?)).toList(),
+      tags: (l$tags as List<dynamic>).map((e) => (e as String)).toList(),
       $__typename: (l$$__typename as String),
     );
   }
@@ -657,7 +873,7 @@ class QueryTodayHomequestion {
 
   final String title;
 
-  final List<String?> tags;
+  final List<String> tags;
 
   final String $__typename;
 
@@ -727,7 +943,7 @@ class QueryTodayHomeidea {
     required this.slug,
     required this.title,
     this.body,
-    this.$__typename = 'ContentItems',
+    this.$__typename = 'contentItems',
   });
 
   factory QueryTodayHomeidea.fromJson(Map<String, dynamic> json) {

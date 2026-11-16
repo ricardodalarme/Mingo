@@ -1,9 +1,5 @@
-mutation UpdateDisplayName($profileId: UUID!, $displayName: String!) {
-  updateProfilesCollection(
-    set: { displayName: $displayName }
-    filter: { id: { eq: $profileId } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation UpdateDisplayName($profileId: uuid!, $displayName: String!) {
+  updateProfiles(where: { id: { _eq: $profileId } }, _set: { displayName: $displayName }) {
+    affected_rows
   }
 }

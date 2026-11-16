@@ -68,11 +68,12 @@ class DatesRepository({
   });
 
   Future<List<GiftIdea>> getGiftIdeas() => _run('read gift ideas', () async {
+    final currentUserId = await _togetherRepository.getCurrentUserId();
     final nodes = await _dataSource.getGiftIdeas();
 
     return [
       for (final node in nodes)
-        if (node.isMine ?? false)
+        if (node.authorId == currentUserId)
           GiftIdea(id: node.id, title: node.title, status: node.status.toModel()),
     ];
   });

@@ -90,34 +90,29 @@ class VariablesMutationInsertJournalEntry {
 }
 
 class MutationInsertJournalEntry {
-  MutationInsertJournalEntry({
-    this.insertIntoJournalEntriesCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationInsertJournalEntry({this.insertJournalEntriesOne, this.$__typename = 'mutation_root'});
 
   factory MutationInsertJournalEntry.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoJournalEntriesCollection = json['insertIntoJournalEntriesCollection'];
+    final l$insertJournalEntriesOne = json['insertJournalEntriesOne'];
     final l$$__typename = json['__typename'];
     return MutationInsertJournalEntry(
-      insertIntoJournalEntriesCollection: l$insertIntoJournalEntriesCollection == null
+      insertJournalEntriesOne: l$insertJournalEntriesOne == null
           ? null
-          : MutationInsertJournalEntryinsertIntoJournalEntriesCollection.fromJson(
-              (l$insertIntoJournalEntriesCollection as Map<String, dynamic>),
+          : MutationInsertJournalEntryinsertJournalEntriesOne.fromJson(
+              (l$insertJournalEntriesOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationInsertJournalEntryinsertIntoJournalEntriesCollection?
-  insertIntoJournalEntriesCollection;
+  final MutationInsertJournalEntryinsertJournalEntriesOne? insertJournalEntriesOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoJournalEntriesCollection = insertIntoJournalEntriesCollection;
-    _resultData['insertIntoJournalEntriesCollection'] = l$insertIntoJournalEntriesCollection
-        ?.toJson();
+    final l$insertJournalEntriesOne = insertJournalEntriesOne;
+    _resultData['insertJournalEntriesOne'] = l$insertJournalEntriesOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -125,9 +120,9 @@ class MutationInsertJournalEntry {
 
   @override
   int get hashCode {
-    final l$insertIntoJournalEntriesCollection = insertIntoJournalEntriesCollection;
+    final l$insertJournalEntriesOne = insertJournalEntriesOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoJournalEntriesCollection, l$$__typename]);
+    return Object.hashAll([l$insertJournalEntriesOne, l$$__typename]);
   }
 
   @override
@@ -138,9 +133,9 @@ class MutationInsertJournalEntry {
     if (other is! MutationInsertJournalEntry || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoJournalEntriesCollection = insertIntoJournalEntriesCollection;
-    final lOther$insertIntoJournalEntriesCollection = other.insertIntoJournalEntriesCollection;
-    if (l$insertIntoJournalEntriesCollection != lOther$insertIntoJournalEntriesCollection) {
+    final l$insertJournalEntriesOne = insertJournalEntriesOne;
+    final lOther$insertJournalEntriesOne = other.insertJournalEntriesOne;
+    if (l$insertJournalEntriesOne != lOther$insertJournalEntriesOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -160,7 +155,7 @@ const documentNodeMutationInsertJournalEntry = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'entryDate')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -181,28 +176,24 @@ const documentNodeMutationInsertJournalEntry = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoJournalEntriesCollection'),
+            name: NameNode(value: 'insertJournalEntriesOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'entryDate'),
-                          value: VariableNode(name: NameNode(value: 'entryDate')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'body'),
-                          value: VariableNode(name: NameNode(value: 'body')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'mood'),
-                          value: VariableNode(name: NameNode(value: 'mood')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'entryDate'),
+                      value: VariableNode(name: NameNode(value: 'entryDate')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'body'),
+                      value: VariableNode(name: NameNode(value: 'body')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'mood'),
+                      value: VariableNode(name: NameNode(value: 'mood')),
                     ),
                   ],
                 ),
@@ -212,49 +203,32 @@ const documentNodeMutationInsertJournalEntry = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'records'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'entryDate'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'body'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'mood'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'entryDate'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'mood'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -373,97 +347,22 @@ extension ClientExtensionMutationInsertJournalEntry on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationInsertJournalEntryinsertIntoJournalEntriesCollection {
-  MutationInsertJournalEntryinsertIntoJournalEntriesCollection({
-    required this.records,
-    this.$__typename = 'JournalEntriesInsertResponse',
-  });
-
-  factory MutationInsertJournalEntryinsertIntoJournalEntriesCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationInsertJournalEntryinsertIntoJournalEntriesCollection(
-      records: (l$records as List<dynamic>)
-          .map(
-            (e) => MutationInsertJournalEntryinsertIntoJournalEntriesCollectionrecords.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<MutationInsertJournalEntryinsertIntoJournalEntriesCollectionrecords> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationInsertJournalEntryinsertIntoJournalEntriesCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class MutationInsertJournalEntryinsertIntoJournalEntriesCollectionrecords {
-  MutationInsertJournalEntryinsertIntoJournalEntriesCollectionrecords({
+class MutationInsertJournalEntryinsertJournalEntriesOne {
+  MutationInsertJournalEntryinsertJournalEntriesOne({
     required this.id,
     required this.entryDate,
     required this.body,
     this.mood,
-    this.$__typename = 'JournalEntries',
+    this.$__typename = 'journalEntries',
   });
 
-  factory MutationInsertJournalEntryinsertIntoJournalEntriesCollectionrecords.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory MutationInsertJournalEntryinsertJournalEntriesOne.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$entryDate = json['entryDate'];
     final l$body = json['body'];
     final l$mood = json['mood'];
     final l$$__typename = json['__typename'];
-    return MutationInsertJournalEntryinsertIntoJournalEntriesCollectionrecords(
+    return MutationInsertJournalEntryinsertJournalEntriesOne(
       id: (l$id as String),
       entryDate: DateTime.parse((l$entryDate as String)),
       body: (l$body as String),
@@ -512,7 +411,7 @@ class MutationInsertJournalEntryinsertIntoJournalEntriesCollectionrecords {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationInsertJournalEntryinsertIntoJournalEntriesCollectionrecords ||
+    if (other is! MutationInsertJournalEntryinsertJournalEntriesOne ||
         runtimeType != other.runtimeType) {
       return false;
     }

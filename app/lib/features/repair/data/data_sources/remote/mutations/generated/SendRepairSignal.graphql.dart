@@ -84,27 +84,29 @@ class VariablesMutationSendRepairSignal {
 }
 
 class MutationSendRepairSignal {
-  MutationSendRepairSignal({this.sendSignal, this.$__typename = 'Mutation'});
+  MutationSendRepairSignal({this.insertSignalsOne, this.$__typename = 'mutation_root'});
 
   factory MutationSendRepairSignal.fromJson(Map<String, dynamic> json) {
-    final l$sendSignal = json['sendSignal'];
+    final l$insertSignalsOne = json['insertSignalsOne'];
     final l$$__typename = json['__typename'];
     return MutationSendRepairSignal(
-      sendSignal: l$sendSignal == null
+      insertSignalsOne: l$insertSignalsOne == null
           ? null
-          : MutationSendRepairSignalsendSignal.fromJson((l$sendSignal as Map<String, dynamic>)),
+          : MutationSendRepairSignalinsertSignalsOne.fromJson(
+              (l$insertSignalsOne as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSendRepairSignalsendSignal? sendSignal;
+  final MutationSendRepairSignalinsertSignalsOne? insertSignalsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$sendSignal = sendSignal;
-    _resultData['sendSignal'] = l$sendSignal?.toJson();
+    final l$insertSignalsOne = insertSignalsOne;
+    _resultData['insertSignalsOne'] = l$insertSignalsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -112,9 +114,9 @@ class MutationSendRepairSignal {
 
   @override
   int get hashCode {
-    final l$sendSignal = sendSignal;
+    final l$insertSignalsOne = insertSignalsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$sendSignal, l$$__typename]);
+    return Object.hashAll([l$insertSignalsOne, l$$__typename]);
   }
 
   @override
@@ -125,9 +127,9 @@ class MutationSendRepairSignal {
     if (other is! MutationSendRepairSignal || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$sendSignal = sendSignal;
-    final lOther$sendSignal = other.sendSignal;
-    if (l$sendSignal != lOther$sendSignal) {
+    final l$insertSignalsOne = insertSignalsOne;
+    final lOther$insertSignalsOne = other.insertSignalsOne;
+    if (l$insertSignalsOne != lOther$insertSignalsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -162,20 +164,27 @@ const documentNodeMutationSendRepairSignal = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'sendSignal'),
+            name: NameNode(value: 'insertSignalsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'kind'),
-                value: StringValueNode(value: 'repair', isBlock: false),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'value'),
-                value: VariableNode(name: NameNode(value: 'value')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'body'),
-                value: VariableNode(name: NameNode(value: 'body')),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: EnumValueNode(name: NameNode(value: 'repair')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'value'),
+                      value: VariableNode(name: NameNode(value: 'value')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'body'),
+                      value: VariableNode(name: NameNode(value: 'body')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -302,13 +311,13 @@ extension ClientExtensionMutationSendRepairSignal on graphql.GraphQLClient {
   ]) => this.watchMutation(options ?? WatchOptionsMutationSendRepairSignal());
 }
 
-class MutationSendRepairSignalsendSignal {
-  MutationSendRepairSignalsendSignal({required this.id, this.$__typename = 'Signals'});
+class MutationSendRepairSignalinsertSignalsOne {
+  MutationSendRepairSignalinsertSignalsOne({required this.id, this.$__typename = 'signals'});
 
-  factory MutationSendRepairSignalsendSignal.fromJson(Map<String, dynamic> json) {
+  factory MutationSendRepairSignalinsertSignalsOne.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationSendRepairSignalsendSignal(
+    return MutationSendRepairSignalinsertSignalsOne(
       id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
@@ -339,7 +348,7 @@ class MutationSendRepairSignalsendSignal {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSendRepairSignalsendSignal || runtimeType != other.runtimeType) {
+    if (other is! MutationSendRepairSignalinsertSignalsOne || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

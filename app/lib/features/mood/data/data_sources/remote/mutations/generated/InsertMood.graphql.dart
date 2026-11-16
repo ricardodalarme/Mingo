@@ -8,9 +8,9 @@ import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationInsertMood {
   factory VariablesMutationInsertMood({
-    required EnumMood mood,
-    EnumMoodNeed? need,
-    required EnumMoodShare share,
+    required EnumMood_enum mood,
+    EnumMoodNeed_enum? need,
+    required EnumMoodShare_enum share,
     required DateTime day,
   }) => VariablesMutationInsertMood._({
     r'mood': mood,
@@ -24,13 +24,13 @@ class VariablesMutationInsertMood {
   factory VariablesMutationInsertMood.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$mood = data['mood'];
-    result$data['mood'] = fromJsonEnumMood((l$mood as String));
+    result$data['mood'] = fromJsonEnumMood_enum((l$mood as String));
     if (data.containsKey('need')) {
       final l$need = data['need'];
-      result$data['need'] = l$need == null ? null : fromJsonEnumMoodNeed((l$need as String));
+      result$data['need'] = l$need == null ? null : fromJsonEnumMoodNeed_enum((l$need as String));
     }
     final l$share = data['share'];
-    result$data['share'] = fromJsonEnumMoodShare((l$share as String));
+    result$data['share'] = fromJsonEnumMoodShare_enum((l$share as String));
     final l$day = data['day'];
     result$data['day'] = DateTime.parse((l$day as String));
     return VariablesMutationInsertMood._(result$data);
@@ -38,24 +38,24 @@ class VariablesMutationInsertMood {
 
   Map<String, dynamic> _$data;
 
-  EnumMood get mood => (_$data['mood'] as EnumMood);
+  EnumMood_enum get mood => (_$data['mood'] as EnumMood_enum);
 
-  EnumMoodNeed? get need => (_$data['need'] as EnumMoodNeed?);
+  EnumMoodNeed_enum? get need => (_$data['need'] as EnumMoodNeed_enum?);
 
-  EnumMoodShare get share => (_$data['share'] as EnumMoodShare);
+  EnumMoodShare_enum get share => (_$data['share'] as EnumMoodShare_enum);
 
   DateTime get day => (_$data['day'] as DateTime);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$mood = mood;
-    result$data['mood'] = toJsonEnumMood(l$mood);
+    result$data['mood'] = toJsonEnumMood_enum(l$mood);
     if (_$data.containsKey('need')) {
       final l$need = need;
-      result$data['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
+      result$data['need'] = l$need == null ? null : toJsonEnumMoodNeed_enum(l$need);
     }
     final l$share = share;
-    result$data['share'] = toJsonEnumMoodShare(l$share);
+    result$data['share'] = toJsonEnumMoodShare_enum(l$share);
     final l$day = day;
     result$data['day'] = ((v) => v.toIso8601String().substring(0, 10))(l$day);
     return result$data;
@@ -106,29 +106,27 @@ class VariablesMutationInsertMood {
 }
 
 class MutationInsertMood {
-  MutationInsertMood({this.insertIntoMoodsCollection, this.$__typename = 'Mutation'});
+  MutationInsertMood({this.insertMoodsOne, this.$__typename = 'mutation_root'});
 
   factory MutationInsertMood.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoMoodsCollection = json['insertIntoMoodsCollection'];
+    final l$insertMoodsOne = json['insertMoodsOne'];
     final l$$__typename = json['__typename'];
     return MutationInsertMood(
-      insertIntoMoodsCollection: l$insertIntoMoodsCollection == null
+      insertMoodsOne: l$insertMoodsOne == null
           ? null
-          : MutationInsertMoodinsertIntoMoodsCollection.fromJson(
-              (l$insertIntoMoodsCollection as Map<String, dynamic>),
-            ),
+          : MutationInsertMoodinsertMoodsOne.fromJson((l$insertMoodsOne as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationInsertMoodinsertIntoMoodsCollection? insertIntoMoodsCollection;
+  final MutationInsertMoodinsertMoodsOne? insertMoodsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoMoodsCollection = insertIntoMoodsCollection;
-    _resultData['insertIntoMoodsCollection'] = l$insertIntoMoodsCollection?.toJson();
+    final l$insertMoodsOne = insertMoodsOne;
+    _resultData['insertMoodsOne'] = l$insertMoodsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -136,9 +134,9 @@ class MutationInsertMood {
 
   @override
   int get hashCode {
-    final l$insertIntoMoodsCollection = insertIntoMoodsCollection;
+    final l$insertMoodsOne = insertMoodsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoMoodsCollection, l$$__typename]);
+    return Object.hashAll([l$insertMoodsOne, l$$__typename]);
   }
 
   @override
@@ -149,9 +147,9 @@ class MutationInsertMood {
     if (other is! MutationInsertMood || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoMoodsCollection = insertIntoMoodsCollection;
-    final lOther$insertIntoMoodsCollection = other.insertIntoMoodsCollection;
-    if (l$insertIntoMoodsCollection != lOther$insertIntoMoodsCollection) {
+    final l$insertMoodsOne = insertMoodsOne;
+    final lOther$insertMoodsOne = other.insertMoodsOne;
+    if (l$insertMoodsOne != lOther$insertMoodsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -171,25 +169,25 @@ const documentNodeMutationInsertMood = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'mood')),
-          type: NamedTypeNode(name: NameNode(value: 'Mood'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'Mood_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'need')),
-          type: NamedTypeNode(name: NameNode(value: 'MoodNeed'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'MoodNeed_enum'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'share')),
-          type: NamedTypeNode(name: NameNode(value: 'MoodShare'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'MoodShare_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'day')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -198,32 +196,28 @@ const documentNodeMutationInsertMood = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoMoodsCollection'),
+            name: NameNode(value: 'insertMoodsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'mood'),
-                          value: VariableNode(name: NameNode(value: 'mood')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'need'),
-                          value: VariableNode(name: NameNode(value: 'need')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'share'),
-                          value: VariableNode(name: NameNode(value: 'share')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'day'),
-                          value: VariableNode(name: NameNode(value: 'day')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'mood'),
+                      value: VariableNode(name: NameNode(value: 'mood')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'need'),
+                      value: VariableNode(name: NameNode(value: 'need')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'share'),
+                      value: VariableNode(name: NameNode(value: 'share')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'day'),
+                      value: VariableNode(name: NameNode(value: 'day')),
                     ),
                   ],
                 ),
@@ -233,63 +227,39 @@ const documentNodeMutationInsertMood = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'records'),
+                  name: NameNode(value: 'day'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'day'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'mood'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'need'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'share'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'mood'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'need'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'share'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -403,116 +373,29 @@ extension ClientExtensionMutationInsertMood on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationInsertMoodinsertIntoMoodsCollection {
-  MutationInsertMoodinsertIntoMoodsCollection({
-    required this.affectedCount,
-    required this.records,
-    this.$__typename = 'MoodsInsertResponse',
-  });
-
-  factory MutationInsertMoodinsertIntoMoodsCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationInsertMoodinsertIntoMoodsCollection(
-      affectedCount: (l$affectedCount as int),
-      records: (l$records as List<dynamic>)
-          .map(
-            (e) => MutationInsertMoodinsertIntoMoodsCollectionrecords.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int affectedCount;
-
-  final List<MutationInsertMoodinsertIntoMoodsCollectionrecords> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$affectedCount = affectedCount;
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$affectedCount,
-      Object.hashAll(l$records.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationInsertMoodinsertIntoMoodsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class MutationInsertMoodinsertIntoMoodsCollectionrecords {
-  MutationInsertMoodinsertIntoMoodsCollectionrecords({
+class MutationInsertMoodinsertMoodsOne {
+  MutationInsertMoodinsertMoodsOne({
     required this.id,
     required this.day,
     required this.mood,
     this.need,
     required this.share,
-    this.$__typename = 'Moods',
+    this.$__typename = 'moods',
   });
 
-  factory MutationInsertMoodinsertIntoMoodsCollectionrecords.fromJson(Map<String, dynamic> json) {
+  factory MutationInsertMoodinsertMoodsOne.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$day = json['day'];
     final l$mood = json['mood'];
     final l$need = json['need'];
     final l$share = json['share'];
     final l$$__typename = json['__typename'];
-    return MutationInsertMoodinsertIntoMoodsCollectionrecords(
+    return MutationInsertMoodinsertMoodsOne(
       id: (l$id as String),
       day: DateTime.parse((l$day as String)),
-      mood: fromJsonEnumMood((l$mood as String)),
-      need: l$need == null ? null : fromJsonEnumMoodNeed((l$need as String)),
-      share: fromJsonEnumMoodShare((l$share as String)),
+      mood: fromJsonEnumMood_enum((l$mood as String)),
+      need: l$need == null ? null : fromJsonEnumMoodNeed_enum((l$need as String)),
+      share: fromJsonEnumMoodShare_enum((l$share as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -521,11 +404,11 @@ class MutationInsertMoodinsertIntoMoodsCollectionrecords {
 
   final DateTime day;
 
-  final EnumMood mood;
+  final EnumMood_enum mood;
 
-  final EnumMoodNeed? need;
+  final EnumMoodNeed_enum? need;
 
-  final EnumMoodShare share;
+  final EnumMoodShare_enum share;
 
   final String $__typename;
 
@@ -536,11 +419,11 @@ class MutationInsertMoodinsertIntoMoodsCollectionrecords {
     final l$day = day;
     _resultData['day'] = ((v) => v.toIso8601String().substring(0, 10))(l$day);
     final l$mood = mood;
-    _resultData['mood'] = toJsonEnumMood(l$mood);
+    _resultData['mood'] = toJsonEnumMood_enum(l$mood);
     final l$need = need;
-    _resultData['need'] = l$need == null ? null : toJsonEnumMoodNeed(l$need);
+    _resultData['need'] = l$need == null ? null : toJsonEnumMoodNeed_enum(l$need);
     final l$share = share;
-    _resultData['share'] = toJsonEnumMoodShare(l$share);
+    _resultData['share'] = toJsonEnumMoodShare_enum(l$share);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -562,8 +445,7 @@ class MutationInsertMoodinsertIntoMoodsCollectionrecords {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationInsertMoodinsertIntoMoodsCollectionrecords ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationInsertMoodinsertMoodsOne || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

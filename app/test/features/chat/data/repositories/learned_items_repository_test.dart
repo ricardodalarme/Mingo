@@ -13,19 +13,24 @@ void main() {
   late LearnedItemsDataSource dataSource;
   late LearnedItemsRepository repository;
 
+  setUpAll(() {
+    registerFallbackValue(EnumLearnedItemTarget_enum.date);
+    registerFallbackValue(EnumLearnedItemStatus_enum.pending);
+  });
+
   setUp(() {
     dataSource = _MockLearnedItemsDataSource();
     repository = LearnedItemsRepository(dataSource: dataSource);
   });
 
-  QueryLearnedItemslearnedItemsCollectionedgesnode item({
+  QueryLearnedItemslearnedItems item({
     String id = 'l1',
-    EnumLearnedItemTarget target = EnumLearnedItemTarget.partner_fact,
+    EnumLearnedItemTarget_enum target = EnumLearnedItemTarget_enum.partner_fact,
     String text = 'Gosta de café',
     String? excerpt = 'Da conversa',
-    EnumLearnedItemStatus status = EnumLearnedItemStatus.pending,
+    EnumLearnedItemStatus_enum status = EnumLearnedItemStatus_enum.pending,
     DateTime? createdAt,
-  }) => QueryLearnedItemslearnedItemsCollectionedgesnode(
+  }) => QueryLearnedItemslearnedItems(
     id: id,
     target: target,
     text: text,
@@ -38,13 +43,17 @@ void main() {
     when(dataSource.getItems).thenAnswer(
       (_) async => [
         item(),
-        item(id: 'l2', target: EnumLearnedItemTarget.date, status: EnumLearnedItemStatus.confirmed),
+        item(
+          id: 'l2',
+          target: EnumLearnedItemTarget_enum.date,
+          status: EnumLearnedItemStatus_enum.confirmed,
+        ),
         item(
           id: 'l3',
-          target: EnumLearnedItemTarget.memory,
-          status: EnumLearnedItemStatus.rejected,
+          target: EnumLearnedItemTarget_enum.memory,
+          status: EnumLearnedItemStatus_enum.rejected,
         ),
-        item(id: 'l4', target: EnumLearnedItemTarget.commitment),
+        item(id: 'l4', target: EnumLearnedItemTarget_enum.commitment),
       ],
     );
 
@@ -73,10 +82,8 @@ void main() {
         excerpt: any(named: 'excerpt'),
       ),
     ).thenAnswer(
-      (_) async => MutationAddLearnedIteminsertIntoLearnedItemsCollectionrecords(
-        id: 'l1',
-        createdAt: DateTime(2026, 11, 11),
-      ),
+      (_) async =>
+          MutationAddLearnedIteminsertLearnedItemsOne(id: 'l1', createdAt: DateTime(2026, 11, 11)),
     );
 
     await repository.add(
@@ -87,7 +94,7 @@ void main() {
 
     verify(
       () => dataSource.add(
-        target: EnumLearnedItemTarget.partner_fact,
+        target: EnumLearnedItemTarget_enum.partner_fact,
         text: 'Gosta de café',
         excerpt: 'a' * learnedExcerptMaxLength,
       ),
@@ -120,7 +127,8 @@ void main() {
     await repository.delete('l1');
 
     verify(() => dataSource.updateText(id: 'l1', text: 'Gosta de chá')).called(1);
-    verify(() => dataSource.setStatus(id: 'l1', status: EnumLearnedItemStatus.confirmed)).called(1);
+    verify(() => dataSource.setStatus(id: 'l1', status: EnumLearnedItemStatus_enum.confirmed))
+        .called(1);
     verify(() => dataSource.delete('l1')).called(1);
   });
 }

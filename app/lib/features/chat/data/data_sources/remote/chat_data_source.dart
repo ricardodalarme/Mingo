@@ -12,12 +12,11 @@ class ChatDataSource({
   required final GQLClient _client,
   required final RestClient _restClient,
   required final String _functionUrl,
-  required final String _apiKey,
 }) {
   Future<ChatSettings> getStatus(String profileId) async {
     final response = await _client.query(
       OptionsQueryChatStatus(
-        variables: VariablesQueryChatStatus(profileId: profileId),
+        variables: VariablesQueryChatStatus(userId: profileId),
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
@@ -25,8 +24,8 @@ class ChatDataSource({
     return validateResponseData(
       response,
       getData: (data) => (
-        messagesLeft: data.chatMessagesLeft ?? 0,
-        isEnabled: data.profileSettingsByPk?.chatEnabled ?? false,
+        messagesLeft: data.plusStates.firstOrNull?.chatMessagesLeftToday ?? 0,
+        isEnabled: data.userSettingsByPk?.chatEnabled ?? false,
         plusLimit: int.tryParse(data.plusLimit?.value ?? '') ?? 0,
         freeLimit: int.tryParse(data.freeLimit?.value ?? '') ?? 0,
       ),
@@ -36,7 +35,7 @@ class ChatDataSource({
   Future<void> setEnabled({required String profileId, required bool enabled}) async {
     final response = await _client.mutate(
       OptionsMutationSetChatEnabled(
-        variables: VariablesMutationSetChatEnabled(profileId: profileId, enabled: enabled),
+        variables: VariablesMutationSetChatEnabled(userId: profileId, enabled: enabled),
       ),
     );
 
@@ -63,7 +62,7 @@ class ChatDataSource({
           for (final turn in history) {'role': turn.role.wire, 'text': turn.text},
         ],
       },
-      headers: {'apikey': _apiKey, 'authorization': 'Bearer ${accessToken ?? _apiKey}'},
+      headers: {'authorization': 'Bearer $accessToken'},
     );
     await for (final line in lines) {
       final event = parseChatLine(line);

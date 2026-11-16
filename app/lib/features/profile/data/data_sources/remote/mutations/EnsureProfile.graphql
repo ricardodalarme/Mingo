@@ -1,5 +1,0 @@
-mutation EnsureProfile {
-  ensureProfile {
-    ...ProfileFragment
-  }
-}

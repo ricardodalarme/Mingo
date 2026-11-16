@@ -2,18 +2,18 @@ import 'package:app/features/cards/presentation/list/cubit/cards_list_cubit.dart
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('clearCursor drops the cursor', () {
-    const state = CardsListState(cursor: 'cursor-1');
+  test('the next offset replaces the previous one', () {
+    const state = CardsListState(offset: 20);
 
-    expect(state.copyWith(clearCursor: true).cursor, isNull);
+    expect(state.copyWith(offset: 40).offset, 40);
   });
 
-  test('changing the loading flag keeps the cursor', () {
-    const state = CardsListState(cursor: 'cursor-1', hasNext: true);
+  test('changing the loading flag keeps the offset', () {
+    const state = CardsListState(offset: 20, hasNext: true);
 
     final updated = state.copyWith(isLoadingMore: true);
 
-    expect(updated.cursor, 'cursor-1');
+    expect(updated.offset, 20);
     expect(updated.isLoadingMore, isTrue);
   });
 }

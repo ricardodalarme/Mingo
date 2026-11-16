@@ -1,5 +1,5 @@
-mutation DeletePartnerFact($id: UUID!) {
-  deleteFromPartnerFactsCollection(filter: { id: { eq: $id } }, atMost: 1) {
-    affectedCount
+mutation DeletePartnerFact($id: uuid!) {
+  deletePartnerFacts(where: { id: { _eq: $id } }) {
+    affected_rows
   }
 }

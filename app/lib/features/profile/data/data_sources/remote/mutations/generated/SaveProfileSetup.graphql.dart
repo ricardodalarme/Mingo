@@ -10,7 +10,7 @@ class VariablesMutationSaveProfileSetup {
   factory VariablesMutationSaveProfileSetup({
     required String profileId,
     required String displayName,
-    required EnumAppTheme theme,
+    required EnumAppTheme_enum theme,
     String? partnerName,
     DateTime? togetherSince,
     required DateTime onboardedAt,
@@ -32,7 +32,7 @@ class VariablesMutationSaveProfileSetup {
     final l$displayName = data['displayName'];
     result$data['displayName'] = (l$displayName as String);
     final l$theme = data['theme'];
-    result$data['theme'] = fromJsonEnumAppTheme((l$theme as String));
+    result$data['theme'] = fromJsonEnumAppTheme_enum((l$theme as String));
     if (data.containsKey('partnerName')) {
       final l$partnerName = data['partnerName'];
       result$data['partnerName'] = (l$partnerName as String?);
@@ -54,7 +54,7 @@ class VariablesMutationSaveProfileSetup {
 
   String get displayName => (_$data['displayName'] as String);
 
-  EnumAppTheme get theme => (_$data['theme'] as EnumAppTheme);
+  EnumAppTheme_enum get theme => (_$data['theme'] as EnumAppTheme_enum);
 
   String? get partnerName => (_$data['partnerName'] as String?);
 
@@ -69,7 +69,7 @@ class VariablesMutationSaveProfileSetup {
     final l$displayName = displayName;
     result$data['displayName'] = l$displayName;
     final l$theme = theme;
-    result$data['theme'] = toJsonEnumAppTheme(l$theme);
+    result$data['theme'] = toJsonEnumAppTheme_enum(l$theme);
     if (_$data.containsKey('partnerName')) {
       final l$partnerName = partnerName;
       result$data['partnerName'] = l$partnerName;
@@ -153,39 +153,42 @@ class VariablesMutationSaveProfileSetup {
 
 class MutationSaveProfileSetup {
   MutationSaveProfileSetup({
-    required this.updateProfilesCollection,
-    required this.updateProfileSettingsCollection,
-    this.$__typename = 'Mutation',
+    this.updateProfiles,
+    this.updateUserSettings,
+    this.$__typename = 'mutation_root',
   });
 
   factory MutationSaveProfileSetup.fromJson(Map<String, dynamic> json) {
-    final l$updateProfilesCollection = json['updateProfilesCollection'];
-    final l$updateProfileSettingsCollection = json['updateProfileSettingsCollection'];
+    final l$updateProfiles = json['updateProfiles'];
+    final l$updateUserSettings = json['updateUserSettings'];
     final l$$__typename = json['__typename'];
     return MutationSaveProfileSetup(
-      updateProfilesCollection: MutationSaveProfileSetupupdateProfilesCollection.fromJson(
-        (l$updateProfilesCollection as Map<String, dynamic>),
-      ),
-      updateProfileSettingsCollection:
-          MutationSaveProfileSetupupdateProfileSettingsCollection.fromJson(
-            (l$updateProfileSettingsCollection as Map<String, dynamic>),
-          ),
+      updateProfiles: l$updateProfiles == null
+          ? null
+          : MutationSaveProfileSetupupdateProfiles.fromJson(
+              (l$updateProfiles as Map<String, dynamic>),
+            ),
+      updateUserSettings: l$updateUserSettings == null
+          ? null
+          : MutationSaveProfileSetupupdateUserSettings.fromJson(
+              (l$updateUserSettings as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSaveProfileSetupupdateProfilesCollection updateProfilesCollection;
+  final MutationSaveProfileSetupupdateProfiles? updateProfiles;
 
-  final MutationSaveProfileSetupupdateProfileSettingsCollection updateProfileSettingsCollection;
+  final MutationSaveProfileSetupupdateUserSettings? updateUserSettings;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProfilesCollection = updateProfilesCollection;
-    _resultData['updateProfilesCollection'] = l$updateProfilesCollection.toJson();
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    _resultData['updateProfileSettingsCollection'] = l$updateProfileSettingsCollection.toJson();
+    final l$updateProfiles = updateProfiles;
+    _resultData['updateProfiles'] = l$updateProfiles?.toJson();
+    final l$updateUserSettings = updateUserSettings;
+    _resultData['updateUserSettings'] = l$updateUserSettings?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -193,14 +196,10 @@ class MutationSaveProfileSetup {
 
   @override
   int get hashCode {
-    final l$updateProfilesCollection = updateProfilesCollection;
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
+    final l$updateProfiles = updateProfiles;
+    final l$updateUserSettings = updateUserSettings;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$updateProfilesCollection,
-      l$updateProfileSettingsCollection,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$updateProfiles, l$updateUserSettings, l$$__typename]);
   }
 
   @override
@@ -211,14 +210,14 @@ class MutationSaveProfileSetup {
     if (other is! MutationSaveProfileSetup || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProfilesCollection = updateProfilesCollection;
-    final lOther$updateProfilesCollection = other.updateProfilesCollection;
-    if (l$updateProfilesCollection != lOther$updateProfilesCollection) {
+    final l$updateProfiles = updateProfiles;
+    final lOther$updateProfiles = other.updateProfiles;
+    if (l$updateProfiles != lOther$updateProfiles) {
       return false;
     }
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    final lOther$updateProfileSettingsCollection = other.updateProfileSettingsCollection;
-    if (l$updateProfileSettingsCollection != lOther$updateProfileSettingsCollection) {
+    final l$updateUserSettings = updateUserSettings;
+    final lOther$updateUserSettings = other.updateUserSettings;
+    if (l$updateUserSettings != lOther$updateUserSettings) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -238,7 +237,7 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'profileId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -250,7 +249,7 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'theme')),
-          type: NamedTypeNode(name: NameNode(value: 'AppTheme'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'AppTheme_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -262,13 +261,13 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'togetherSince')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'onboardedAt')),
-          type: NamedTypeNode(name: NameNode(value: 'Datetime'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'timestamptz'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -277,11 +276,29 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProfilesCollection'),
+            name: NameNode(value: 'updateProfiles'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'profileId')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -291,30 +308,12 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'profileId')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -331,11 +330,29 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'updateProfileSettingsCollection'),
+            name: NameNode(value: 'updateUserSettings'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'userId'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'profileId')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -357,30 +374,12 @@ const documentNodeMutationSaveProfileSetup = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'profileId'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'profileId')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -500,29 +499,29 @@ extension ClientExtensionMutationSaveProfileSetup on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSaveProfileSetupupdateProfilesCollection {
-  MutationSaveProfileSetupupdateProfilesCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProfilesUpdateResponse',
+class MutationSaveProfileSetupupdateProfiles {
+  MutationSaveProfileSetupupdateProfiles({
+    required this.affected_rows,
+    this.$__typename = 'profiles_mutation_response',
   });
 
-  factory MutationSaveProfileSetupupdateProfilesCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationSaveProfileSetupupdateProfiles.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationSaveProfileSetupupdateProfilesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationSaveProfileSetupupdateProfiles(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -530,9 +529,9 @@ class MutationSaveProfileSetupupdateProfilesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -540,13 +539,12 @@ class MutationSaveProfileSetupupdateProfilesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSaveProfileSetupupdateProfilesCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationSaveProfileSetupupdateProfiles || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -558,31 +556,29 @@ class MutationSaveProfileSetupupdateProfilesCollection {
   }
 }
 
-class MutationSaveProfileSetupupdateProfileSettingsCollection {
-  MutationSaveProfileSetupupdateProfileSettingsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProfileSettingsUpdateResponse',
+class MutationSaveProfileSetupupdateUserSettings {
+  MutationSaveProfileSetupupdateUserSettings({
+    required this.affected_rows,
+    this.$__typename = 'userSettings_mutation_response',
   });
 
-  factory MutationSaveProfileSetupupdateProfileSettingsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationSaveProfileSetupupdateUserSettings.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationSaveProfileSetupupdateProfileSettingsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationSaveProfileSetupupdateUserSettings(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -590,9 +586,9 @@ class MutationSaveProfileSetupupdateProfileSettingsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -600,13 +596,12 @@ class MutationSaveProfileSetupupdateProfileSettingsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSaveProfileSetupupdateProfileSettingsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationSaveProfileSetupupdateUserSettings || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

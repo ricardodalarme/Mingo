@@ -4,13 +4,12 @@ import 'package:network/network.dart';
 
 class DevicesDataSource({required final GQLClient _client}) {
   /// Reads the devices that receive notifications, most recently registered first.
-  Future<List<QueryMyDevicesdevicesCollectionedgesnode>> getDevices() async {
+  Future<List<QueryMyDevicesdevices>> getDevices() async {
     final response = await _client.query(
       OptionsQueryMyDevices(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final collection = validateResponseData(response, getData: (data) => data.devicesCollection);
 
-    return [for (final edge in collection.edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.devices);
   }
 
   /// Deletes one device row; false means there was nothing left to delete.
@@ -19,6 +18,6 @@ class DevicesDataSource({required final GQLClient _client}) {
       OptionsMutationRevokeDevice(variables: VariablesMutationRevokeDevice(deviceId: deviceId)),
     );
 
-    return validateResponseData(response, getData: (data) => data.revokeDevice);
+    return validateResponseData(response, getData: (data) => data.deleteDevicesByPk != null);
   }
 }

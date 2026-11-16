@@ -152,7 +152,7 @@ void main() {
     verify(
       () => dataSource.insertPrep(
         id: any(named: 'id'),
-        guide: EnumConversationGuide.money,
+        guide: EnumConversationGuide_enum.money,
         topic: 'Dinheiro',
         notes: 'Uma nota',
         draft: 'Uma nota',
@@ -161,7 +161,7 @@ void main() {
     verify(
       () => dataSource.updatePrep(
         id: 'prep-1',
-        guide: EnumConversationGuide.money,
+        guide: EnumConversationGuide_enum.money,
         topic: 'Dinheiro',
         notes: 'Uma nota nova',
         draft: 'Uma nota nova',
@@ -201,7 +201,7 @@ void main() {
     verify(
       () => dataSource.insertPrep(
         id: any(named: 'id'),
-        guide: EnumConversationGuide.money,
+        guide: EnumConversationGuide_enum.money,
         topic: 'Dinheiro',
         notes: 'Uma nota',
         draft: null,
@@ -231,7 +231,7 @@ void main() {
     final captured = verify(
       () => dataSource.insertPrep(
         id: any(named: 'id'),
-        guide: EnumConversationGuide.money,
+        guide: EnumConversationGuide_enum.money,
         topic: 'Dinheiro',
         notes: captureAny(named: 'notes'),
         draft: null,

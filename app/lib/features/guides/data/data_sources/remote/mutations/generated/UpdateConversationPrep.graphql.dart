@@ -9,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationUpdateConversationPrep {
   factory VariablesMutationUpdateConversationPrep({
     required String id,
-    required EnumConversationGuide guide,
+    required EnumConversationGuide_enum guide,
     required String topic,
     String? notes,
     String? draft,
@@ -28,7 +28,7 @@ class VariablesMutationUpdateConversationPrep {
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
     final l$guide = data['guide'];
-    result$data['guide'] = fromJsonEnumConversationGuide((l$guide as String));
+    result$data['guide'] = fromJsonEnumConversationGuide_enum((l$guide as String));
     final l$topic = data['topic'];
     result$data['topic'] = (l$topic as String);
     if (data.containsKey('notes')) {
@@ -46,7 +46,7 @@ class VariablesMutationUpdateConversationPrep {
 
   String get id => (_$data['id'] as String);
 
-  EnumConversationGuide get guide => (_$data['guide'] as EnumConversationGuide);
+  EnumConversationGuide_enum get guide => (_$data['guide'] as EnumConversationGuide_enum);
 
   String get topic => (_$data['topic'] as String);
 
@@ -59,7 +59,7 @@ class VariablesMutationUpdateConversationPrep {
     final l$id = id;
     result$data['id'] = l$id;
     final l$guide = guide;
-    result$data['guide'] = toJsonEnumConversationGuide(l$guide);
+    result$data['guide'] = toJsonEnumConversationGuide_enum(l$guide);
     final l$topic = topic;
     result$data['topic'] = l$topic;
     if (_$data.containsKey('notes')) {
@@ -134,31 +134,31 @@ class VariablesMutationUpdateConversationPrep {
 
 class MutationUpdateConversationPrep {
   MutationUpdateConversationPrep({
-    required this.updateConversationPrepsCollection,
-    this.$__typename = 'Mutation',
+    this.updateConversationPrepsByPk,
+    this.$__typename = 'mutation_root',
   });
 
   factory MutationUpdateConversationPrep.fromJson(Map<String, dynamic> json) {
-    final l$updateConversationPrepsCollection = json['updateConversationPrepsCollection'];
+    final l$updateConversationPrepsByPk = json['updateConversationPrepsByPk'];
     final l$$__typename = json['__typename'];
     return MutationUpdateConversationPrep(
-      updateConversationPrepsCollection:
-          MutationUpdateConversationPrepupdateConversationPrepsCollection.fromJson(
-            (l$updateConversationPrepsCollection as Map<String, dynamic>),
-          ),
+      updateConversationPrepsByPk: l$updateConversationPrepsByPk == null
+          ? null
+          : MutationUpdateConversationPrepupdateConversationPrepsByPk.fromJson(
+              (l$updateConversationPrepsByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateConversationPrepupdateConversationPrepsCollection
-  updateConversationPrepsCollection;
+  final MutationUpdateConversationPrepupdateConversationPrepsByPk? updateConversationPrepsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateConversationPrepsCollection = updateConversationPrepsCollection;
-    _resultData['updateConversationPrepsCollection'] = l$updateConversationPrepsCollection.toJson();
+    final l$updateConversationPrepsByPk = updateConversationPrepsByPk;
+    _resultData['updateConversationPrepsByPk'] = l$updateConversationPrepsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -166,9 +166,9 @@ class MutationUpdateConversationPrep {
 
   @override
   int get hashCode {
-    final l$updateConversationPrepsCollection = updateConversationPrepsCollection;
+    final l$updateConversationPrepsByPk = updateConversationPrepsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateConversationPrepsCollection, l$$__typename]);
+    return Object.hashAll([l$updateConversationPrepsByPk, l$$__typename]);
   }
 
   @override
@@ -179,9 +179,9 @@ class MutationUpdateConversationPrep {
     if (other is! MutationUpdateConversationPrep || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateConversationPrepsCollection = updateConversationPrepsCollection;
-    final lOther$updateConversationPrepsCollection = other.updateConversationPrepsCollection;
-    if (l$updateConversationPrepsCollection != lOther$updateConversationPrepsCollection) {
+    final l$updateConversationPrepsByPk = updateConversationPrepsByPk;
+    final lOther$updateConversationPrepsByPk = other.updateConversationPrepsByPk;
+    if (l$updateConversationPrepsByPk != lOther$updateConversationPrepsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -201,13 +201,13 @@ const documentNodeMutationUpdateConversationPrep = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'guide')),
-          type: NamedTypeNode(name: NameNode(value: 'ConversationGuide'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ConversationGuide_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -234,11 +234,22 @@ const documentNodeMutationUpdateConversationPrep = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateConversationPrepsCollection'),
+            name: NameNode(value: 'updateConversationPrepsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -260,34 +271,12 @@ const documentNodeMutationUpdateConversationPrep = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -410,31 +399,31 @@ extension ClientExtensionMutationUpdateConversationPrep on graphql.GraphQLClient
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateConversationPrepupdateConversationPrepsCollection {
-  MutationUpdateConversationPrepupdateConversationPrepsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ConversationPrepsUpdateResponse',
+class MutationUpdateConversationPrepupdateConversationPrepsByPk {
+  MutationUpdateConversationPrepupdateConversationPrepsByPk({
+    required this.id,
+    this.$__typename = 'conversationPreps',
   });
 
-  factory MutationUpdateConversationPrepupdateConversationPrepsCollection.fromJson(
+  factory MutationUpdateConversationPrepupdateConversationPrepsByPk.fromJson(
     Map<String, dynamic> json,
   ) {
-    final l$affectedCount = json['affectedCount'];
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateConversationPrepupdateConversationPrepsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateConversationPrepupdateConversationPrepsByPk(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -442,9 +431,9 @@ class MutationUpdateConversationPrepupdateConversationPrepsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -452,13 +441,13 @@ class MutationUpdateConversationPrepupdateConversationPrepsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateConversationPrepupdateConversationPrepsCollection ||
+    if (other is! MutationUpdateConversationPrepupdateConversationPrepsByPk ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

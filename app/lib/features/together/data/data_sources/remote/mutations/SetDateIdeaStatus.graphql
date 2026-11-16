@@ -1,9 +1,5 @@
-mutation SetDateIdeaStatus($id: UUID!, $status: DateIdeaStatus!) {
-  updateSavedDateIdeasCollection(
-    set: { status: $status }
-    filter: { id: { eq: $id } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation SetDateIdeaStatus($id: uuid!, $status: DateIdeaStatus_enum!) {
+  updateSavedDateIdeasByPk(pk_columns: { id: $id }, _set: { status: $status }) {
+    id
   }
 }

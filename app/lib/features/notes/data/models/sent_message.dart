@@ -16,7 +16,7 @@ final class const SentMessage({
   required final DateTime createdAt,
   required final bool forWidget,
   final String? body,
-  final String? mediaPath,
+  final String? mediaFileId,
   final String? imageUrl,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
@@ -29,5 +29,5 @@ final class const SentMessage({
   );
 
   @override
-  List<Object?> get props => [id, kind, createdAt, forWidget, body, mediaPath, imageUrl];
+  List<Object?> get props => [id, kind, createdAt, forWidget, body, mediaFileId, imageUrl];
 }

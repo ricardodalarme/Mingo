@@ -1,5 +1,5 @@
-mutation RecordTemperature($level: TemperatureLevel!) {
-  insertIntoTemperatureChecksCollection(objects: [{ level: $level }]) {
-    affectedCount
+mutation RecordTemperature($level: TemperatureLevel_enum!) {
+  insertTemperatureChecks(objects: [{ level: $level }]) {
+    affected_rows
   }
 }

@@ -21,6 +21,9 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
   /// The id of the couple the person is in, or null when they are on their own.
   Future<String?> getCoupleId() => _dataSource.getCoupleId();
 
+  /// The id of the signed-in person, or null when they are signed out.
+  Future<String?> getCurrentUserId() => _dataSource.getCurrentUserId();
+
   Future<List<LogisticItem>> getLogisticItems() async {
     try {
       return [
@@ -84,7 +87,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
             weekday: node.weekday,
             hour: _hourOf(node.atTime),
             hasReminder: node.reminder,
-            lastDoneOn: node.ritualLogsCollection?.edges.firstOrNull?.node.doneOn,
+            lastDoneOn: node.logs.firstOrNull?.doneOn,
           ),
       ];
     } catch (e, stack) {

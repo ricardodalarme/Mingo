@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/cards/data/data_sources/remote/cards_data_source.dart';
 import 'package:app/features/cards/data/repositories/cards_repository.dart';
 import 'package:app/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
@@ -18,6 +19,7 @@ class CardsInjectionModule() implements InjectionModule {
     ..registerLazySingleton<CardsRepository>(
       () => CardsRepository(
         dataSource: injector.get<CardsDataSource>(),
+        authenticationRepository: injector.get<AuthenticationRepository>(),
         widgetsRepository: injector.get<WidgetsRepository>(),
       ),
     )

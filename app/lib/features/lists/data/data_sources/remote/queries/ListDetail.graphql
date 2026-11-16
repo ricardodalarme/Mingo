@@ -1,15 +1,8 @@
-query ListDetail($id: UUID!) {
+query ListDetail($id: uuid!) {
   listsByPk(id: $id) {
     ...ListFragment
-    listItemsCollection(
-      orderBy: [{ position: AscNullsLast }, { createdAt: AscNullsLast }]
-      first: 500
-    ) {
-      edges {
-        node {
-          ...ListItemFragment
-        }
-      }
+    items(order_by: [{ position: asc_nulls_last }, { createdAt: asc_nulls_last }], limit: 500) {
+      ...ListItemFragment
     }
   }
 }

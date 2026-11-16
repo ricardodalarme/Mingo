@@ -12,7 +12,11 @@ class const _StubGQLClient(final Map<String, dynamic> _data) implements GQLClien
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
-Map<String, dynamic> _slip({String? deletedAt, String polarity = 'liked'}) => {
+Map<String, dynamic> _slip({
+  String? archivedAt,
+  String polarity = 'liked',
+  List<Map<String, dynamic>> cardItems = const [],
+}) => {
   'slipsByPk': {
     'id': 's1',
     'body': 'Obrigado pelo café',
@@ -20,41 +24,53 @@ Map<String, dynamic> _slip({String? deletedAt, String polarity = 'liked'}) => {
     'forCard': false,
     'polarity': polarity,
     'createdAt': '2026-11-10T10:00:00Z',
-    'deletedAt': deletedAt,
+    'archivedAt': archivedAt,
     'inJar': false,
-    '__typename': 'Slips',
+    '__typename': 'slips',
   },
-  '__typename': 'Query',
+  'cardItems': cardItems,
+  '__typename': 'query_root',
 };
 
 void main() {
   test('reads a slip by its primary key', () async {
     final dataSource = SlipDataSource(client: _StubGQLClient(_slip()));
 
-    final slip = await dataSource.getSlip('s1');
+    final row = await dataSource.getSlip('s1');
 
-    expect(slip?.id, 's1');
-    expect(slip?.body, 'Obrigado pelo café');
-    expect(slip?.polarity, EnumSlipPolarity.liked);
+    expect(row?.slip.id, 's1');
+    expect(row?.slip.body, 'Obrigado pelo café');
+    expect(row?.slip.polarity, EnumSlipPolarity_enum.liked);
+    expect(row?.wasInCard, isFalse);
   });
 
-  test('reads a bothered slip with its polarity', () async {
+  test('a bothered slip keeps its polarity', () async {
     final dataSource = SlipDataSource(client: _StubGQLClient(_slip(polarity: 'bothered')));
 
-    expect((await dataSource.getSlip('s1'))?.polarity, EnumSlipPolarity.bothered);
+    expect((await dataSource.getSlip('s1'))?.slip.polarity, EnumSlipPolarity_enum.bothered);
   });
 
-  test('a deleted slip reads as not found', () async {
+  test('a slip that is already on a card says so', () async {
     final dataSource = SlipDataSource(
-      client: _StubGQLClient(_slip(deletedAt: '2026-11-11T10:00:00Z')),
+      client: _StubGQLClient(
+        _slip(
+          cardItems: [
+            {'id': 'i1', '__typename': 'cardItems'},
+          ],
+        ),
+      ),
     );
 
-    expect(await dataSource.getSlip('s1'), isNull);
+    expect((await dataSource.getSlip('s1'))?.wasInCard, isTrue);
   });
 
   test('a slip that is not visible reads as not found', () async {
     final dataSource = SlipDataSource(
-      client: const _StubGQLClient({'slipsByPk': null, '__typename': 'Query'}),
+      client: const _StubGQLClient({
+        'slipsByPk': null,
+        'cardItems': <Map<String, dynamic>>[],
+        '__typename': 'query_root',
+      }),
     );
 
     expect(await dataSource.getSlip('s1'), isNull);

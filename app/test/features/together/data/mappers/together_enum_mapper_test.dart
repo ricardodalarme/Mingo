@@ -16,7 +16,7 @@ void main() {
     }
   });
   test('an unknown value is an error, not a guess', () {
-    expect(EnumRitualCadence.$unknown.toModel, throwsFormatException);
-    expect(EnumDateIdeaStatus.$unknown.toModel, throwsFormatException);
+    expect(EnumRitualCadence_enum.$unknown.toModel, throwsFormatException);
+    expect(EnumDateIdeaStatus_enum.$unknown.toModel, throwsFormatException);
   });
 }

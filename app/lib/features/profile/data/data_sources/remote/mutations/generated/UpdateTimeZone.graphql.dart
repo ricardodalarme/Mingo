@@ -64,31 +64,29 @@ class VariablesMutationUpdateTimeZone {
 }
 
 class MutationUpdateTimeZone {
-  MutationUpdateTimeZone({
-    required this.updateProfileSettingsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateTimeZone({this.updateProfiles, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateTimeZone.fromJson(Map<String, dynamic> json) {
-    final l$updateProfileSettingsCollection = json['updateProfileSettingsCollection'];
+    final l$updateProfiles = json['updateProfiles'];
     final l$$__typename = json['__typename'];
     return MutationUpdateTimeZone(
-      updateProfileSettingsCollection:
-          MutationUpdateTimeZoneupdateProfileSettingsCollection.fromJson(
-            (l$updateProfileSettingsCollection as Map<String, dynamic>),
-          ),
+      updateProfiles: l$updateProfiles == null
+          ? null
+          : MutationUpdateTimeZoneupdateProfiles.fromJson(
+              (l$updateProfiles as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateTimeZoneupdateProfileSettingsCollection updateProfileSettingsCollection;
+  final MutationUpdateTimeZoneupdateProfiles? updateProfiles;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    _resultData['updateProfileSettingsCollection'] = l$updateProfileSettingsCollection.toJson();
+    final l$updateProfiles = updateProfiles;
+    _resultData['updateProfiles'] = l$updateProfiles?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -96,9 +94,9 @@ class MutationUpdateTimeZone {
 
   @override
   int get hashCode {
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
+    final l$updateProfiles = updateProfiles;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateProfileSettingsCollection, l$$__typename]);
+    return Object.hashAll([l$updateProfiles, l$$__typename]);
   }
 
   @override
@@ -109,9 +107,9 @@ class MutationUpdateTimeZone {
     if (other is! MutationUpdateTimeZone || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    final lOther$updateProfileSettingsCollection = other.updateProfileSettingsCollection;
-    if (l$updateProfileSettingsCollection != lOther$updateProfileSettingsCollection) {
+    final l$updateProfiles = updateProfiles;
+    final lOther$updateProfiles = other.updateProfiles;
+    if (l$updateProfiles != lOther$updateProfiles) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -131,7 +129,7 @@ const documentNodeMutationUpdateTimeZone = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'profileId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -146,30 +144,19 @@ const documentNodeMutationUpdateTimeZone = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProfileSettingsCollection'),
+            name: NameNode(value: 'updateProfiles'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
-                      name: NameNode(value: 'timeZone'),
-                      value: VariableNode(name: NameNode(value: 'timeZone')),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'profileId'),
+                      name: NameNode(value: 'id'),
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'profileId')),
                           ),
                         ],
@@ -179,15 +166,22 @@ const documentNodeMutationUpdateTimeZone = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'timeZone'),
+                      value: VariableNode(name: NameNode(value: 'timeZone')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -306,31 +300,29 @@ extension ClientExtensionMutationUpdateTimeZone on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateTimeZoneupdateProfileSettingsCollection {
-  MutationUpdateTimeZoneupdateProfileSettingsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProfileSettingsUpdateResponse',
+class MutationUpdateTimeZoneupdateProfiles {
+  MutationUpdateTimeZoneupdateProfiles({
+    required this.affected_rows,
+    this.$__typename = 'profiles_mutation_response',
   });
 
-  factory MutationUpdateTimeZoneupdateProfileSettingsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateTimeZoneupdateProfiles.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateTimeZoneupdateProfileSettingsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateTimeZoneupdateProfiles(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -338,9 +330,9 @@ class MutationUpdateTimeZoneupdateProfileSettingsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -348,13 +340,12 @@ class MutationUpdateTimeZoneupdateProfileSettingsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateTimeZoneupdateProfileSettingsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationUpdateTimeZoneupdateProfiles || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

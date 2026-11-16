@@ -5,26 +5,26 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesQueryMySpiceSetting {
-  factory VariablesQueryMySpiceSetting({required String profileId}) =>
-      VariablesQueryMySpiceSetting._({r'profileId': profileId});
+  factory VariablesQueryMySpiceSetting({required String userId}) =>
+      VariablesQueryMySpiceSetting._({r'userId': userId});
 
   VariablesQueryMySpiceSetting._(this._$data);
 
   factory VariablesQueryMySpiceSetting.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$profileId = data['profileId'];
-    result$data['profileId'] = (l$profileId as String);
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
     return VariablesQueryMySpiceSetting._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String get profileId => (_$data['profileId'] as String);
+  String get userId => (_$data['userId'] as String);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$profileId = profileId;
-    result$data['profileId'] = l$profileId;
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
     return result$data;
   }
 
@@ -36,9 +36,9 @@ class VariablesQueryMySpiceSetting {
     if (other is! VariablesQueryMySpiceSetting || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$profileId = profileId;
-    final lOther$profileId = other.profileId;
-    if (l$profileId != lOther$profileId) {
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
       return false;
     }
     return true;
@@ -46,35 +46,35 @@ class VariablesQueryMySpiceSetting {
 
   @override
   int get hashCode {
-    final l$profileId = profileId;
-    return Object.hashAll([l$profileId]);
+    final l$userId = userId;
+    return Object.hashAll([l$userId]);
   }
 }
 
 class QueryMySpiceSetting {
-  QueryMySpiceSetting({this.profileSettingsByPk, this.$__typename = 'Query'});
+  QueryMySpiceSetting({this.userSettingsByPk, this.$__typename = 'query_root'});
 
   factory QueryMySpiceSetting.fromJson(Map<String, dynamic> json) {
-    final l$profileSettingsByPk = json['profileSettingsByPk'];
+    final l$userSettingsByPk = json['userSettingsByPk'];
     final l$$__typename = json['__typename'];
     return QueryMySpiceSetting(
-      profileSettingsByPk: l$profileSettingsByPk == null
+      userSettingsByPk: l$userSettingsByPk == null
           ? null
-          : QueryMySpiceSettingprofileSettingsByPk.fromJson(
-              (l$profileSettingsByPk as Map<String, dynamic>),
+          : QueryMySpiceSettinguserSettingsByPk.fromJson(
+              (l$userSettingsByPk as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryMySpiceSettingprofileSettingsByPk? profileSettingsByPk;
+  final QueryMySpiceSettinguserSettingsByPk? userSettingsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$profileSettingsByPk = profileSettingsByPk;
-    _resultData['profileSettingsByPk'] = l$profileSettingsByPk?.toJson();
+    final l$userSettingsByPk = userSettingsByPk;
+    _resultData['userSettingsByPk'] = l$userSettingsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -82,9 +82,9 @@ class QueryMySpiceSetting {
 
   @override
   int get hashCode {
-    final l$profileSettingsByPk = profileSettingsByPk;
+    final l$userSettingsByPk = userSettingsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$profileSettingsByPk, l$$__typename]);
+    return Object.hashAll([l$userSettingsByPk, l$$__typename]);
   }
 
   @override
@@ -95,9 +95,9 @@ class QueryMySpiceSetting {
     if (other is! QueryMySpiceSetting || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$profileSettingsByPk = profileSettingsByPk;
-    final lOther$profileSettingsByPk = other.profileSettingsByPk;
-    if (l$profileSettingsByPk != lOther$profileSettingsByPk) {
+    final l$userSettingsByPk = userSettingsByPk;
+    final lOther$userSettingsByPk = other.userSettingsByPk;
+    if (l$userSettingsByPk != lOther$userSettingsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -116,8 +116,8 @@ const documentNodeQueryMySpiceSetting = DocumentNode(
       name: NameNode(value: 'MySpiceSetting'),
       variableDefinitions: [
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'profileId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          variable: VariableNode(name: NameNode(value: 'userId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -126,19 +126,19 @@ const documentNodeQueryMySpiceSetting = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'profileSettingsByPk'),
+            name: NameNode(value: 'userSettingsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'profileId'),
-                value: VariableNode(name: NameNode(value: 'profileId')),
+                name: NameNode(value: 'userId'),
+                value: VariableNode(name: NameNode(value: 'userId')),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'profileId'),
+                  name: NameNode(value: 'userId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -301,25 +301,25 @@ extension ClientExtensionQueryMySpiceSetting on graphql.GraphQLClient {
   }
 }
 
-class QueryMySpiceSettingprofileSettingsByPk {
-  QueryMySpiceSettingprofileSettingsByPk({
-    required this.profileId,
+class QueryMySpiceSettinguserSettingsByPk {
+  QueryMySpiceSettinguserSettingsByPk({
+    required this.userId,
     required this.spiceEnabled,
-    this.$__typename = 'ProfileSettings',
+    this.$__typename = 'userSettings',
   });
 
-  factory QueryMySpiceSettingprofileSettingsByPk.fromJson(Map<String, dynamic> json) {
-    final l$profileId = json['profileId'];
+  factory QueryMySpiceSettinguserSettingsByPk.fromJson(Map<String, dynamic> json) {
+    final l$userId = json['userId'];
     final l$spiceEnabled = json['spiceEnabled'];
     final l$$__typename = json['__typename'];
-    return QueryMySpiceSettingprofileSettingsByPk(
-      profileId: (l$profileId as String),
+    return QueryMySpiceSettinguserSettingsByPk(
+      userId: (l$userId as String),
       spiceEnabled: (l$spiceEnabled as bool),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String profileId;
+  final String userId;
 
   final bool spiceEnabled;
 
@@ -327,8 +327,8 @@ class QueryMySpiceSettingprofileSettingsByPk {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$profileId = profileId;
-    _resultData['profileId'] = l$profileId;
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
     final l$spiceEnabled = spiceEnabled;
     _resultData['spiceEnabled'] = l$spiceEnabled;
     final l$$__typename = $__typename;
@@ -338,10 +338,10 @@ class QueryMySpiceSettingprofileSettingsByPk {
 
   @override
   int get hashCode {
-    final l$profileId = profileId;
+    final l$userId = userId;
     final l$spiceEnabled = spiceEnabled;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$profileId, l$spiceEnabled, l$$__typename]);
+    return Object.hashAll([l$userId, l$spiceEnabled, l$$__typename]);
   }
 
   @override
@@ -349,12 +349,12 @@ class QueryMySpiceSettingprofileSettingsByPk {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMySpiceSettingprofileSettingsByPk || runtimeType != other.runtimeType) {
+    if (other is! QueryMySpiceSettinguserSettingsByPk || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$profileId = profileId;
-    final lOther$profileId = other.profileId;
-    if (l$profileId != lOther$profileId) {
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
       return false;
     }
     final l$spiceEnabled = spiceEnabled;

@@ -1,3 +1,6 @@
-mutation CancelInvite($inviteId: UUID!) {
-  cancelInvite(inviteId: $inviteId)
+mutation CancelInvite($inviteId: uuid!, $cancelledAt: timestamptz!) {
+  updateInvitesByPk(pk_columns: { id: $inviteId }, _set: { cancelledAt: $cancelledAt }) {
+    id
+    cancelledAt
+  }
 }

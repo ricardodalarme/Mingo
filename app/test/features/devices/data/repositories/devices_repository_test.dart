@@ -26,17 +26,12 @@ void main() {
     repository = DevicesRepository(dataSource: dataSource, markerStore: markerStore);
   });
 
-  QueryMyDevicesdevicesCollectionedgesnode row({
+  QueryMyDevicesdevices row({
     required String id,
-    required EnumDevicePlatform platform,
+    required EnumDevicePlatform_enum platform,
     required DateTime lastSeenAt,
     String? label,
-  }) => QueryMyDevicesdevicesCollectionedgesnode(
-    id: id,
-    platform: platform,
-    label: label,
-    lastSeenAt: lastSeenAt,
-  );
+  }) => QueryMyDevicesdevices(id: id, platform: platform, label: label, lastSeenAt: lastSeenAt);
 
   test('maps devices and marks the one matching the stored marker', () async {
     const token = 'token-12345678';
@@ -46,11 +41,11 @@ void main() {
       (_) async => [
         row(
           id: 'd1',
-          platform: EnumDevicePlatform.ios,
+          platform: EnumDevicePlatform_enum.ios,
           label: 'iPhone 14#$marker',
           lastSeenAt: newest,
         ),
-        row(id: 'd2', platform: EnumDevicePlatform.android, lastSeenAt: oldest),
+        row(id: 'd2', platform: EnumDevicePlatform_enum.android, lastSeenAt: oldest),
       ],
     );
 
@@ -72,7 +67,7 @@ void main() {
       (_) async => [
         row(
           id: 'd1',
-          platform: EnumDevicePlatform.ios,
+          platform: EnumDevicePlatform_enum.ios,
           label: 'iPhone#${DeviceMarkerStore.markerFor('token-12345678')}',
           lastSeenAt: newest,
         ),

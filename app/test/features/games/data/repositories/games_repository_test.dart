@@ -14,7 +14,8 @@ class _MockGamesDataSource() extends Mock implements GamesDataSource;
 void main() {
   setUpAll(() {
     registerFallbackValue(GameKind.meOrYou);
-    registerFallbackValue(EnumContentKind.me_or_you);
+    registerFallbackValue(EnumContentKind_enum.me_or_you);
+    registerFallbackValue(EnumGameKind_enum.me_or_you);
   });
 
   late GamesDataSource dataSource;
@@ -25,8 +26,8 @@ void main() {
 
   GameSessionRecord record({
     String id = 's1',
-    EnumGameKind game = EnumGameKind.me_or_you,
-    EnumGameStatus status = EnumGameStatus.active,
+    EnumGameKind_enum game = EnumGameKind_enum.me_or_you,
+    EnumGameStatus_enum status = EnumGameStatus_enum.active,
     String invitedBy = 'me',
     List<String> slugs = const ['a', 'b'],
   }) => (
@@ -49,7 +50,7 @@ void main() {
       () => dataSource.getItems(
         kind: any(named: 'kind'),
         locale: any(named: 'locale'),
-        first: any(named: 'first'),
+        limit: any(named: 'limit'),
       ),
     ).thenAnswer((_) async => items);
     when(
@@ -70,7 +71,7 @@ void main() {
     stubSessions(
       sessions: [
         record(),
-        record(id: 's2', game: EnumGameKind.compliments),
+        record(id: 's2', game: EnumGameKind_enum.compliments),
       ],
     );
 
@@ -95,7 +96,7 @@ void main() {
       () => dataSource.getItems(
         kind: any(named: 'kind'),
         locale: any(named: 'locale'),
-        first: any(named: 'first'),
+        limit: any(named: 'limit'),
       ),
     );
   });
@@ -121,7 +122,7 @@ void main() {
       () => dataSource.getItems(
         kind: any(named: 'kind'),
         locale: any(named: 'locale'),
-        first: any(named: 'first'),
+        limit: any(named: 'limit'),
       ),
     );
   });
@@ -138,7 +139,7 @@ void main() {
 
   test('an open invitation does not read items twice or answers', () async {
     stubSessions(
-      sessions: [record(status: EnumGameStatus.invited, invitedBy: 'partner')],
+      sessions: [record(status: EnumGameStatus_enum.invited, invitedBy: 'partner')],
     );
     stubItems(const [(slug: 'a', title: 'A?', body: null), (slug: 'b', title: 'B?', body: null)]);
 
@@ -146,11 +147,16 @@ void main() {
 
     expect(play.stage(now), GameStage.invitation);
     expect(play.available, isEmpty);
-    verifyNever(() => dataSource.getAnswers(any()));
+    verifyNever(
+      () => dataSource.getAnswers(
+        sessionId: any(named: 'sessionId'),
+        selfId: any(named: 'selfId'),
+      ),
+    );
   });
 
   test('keeps a cancelled session so the start screen can explain it', () async {
-    stubSessions(sessions: [record(status: EnumGameStatus.cancelled)]);
+    stubSessions(sessions: [record(status: EnumGameStatus_enum.cancelled)]);
     stubItems(const [(slug: 'a', title: 'A?', body: null)]);
 
     final play = await repository.getPlay(kind: GameKind.meOrYou, locale: 'pt-BR', now: now);
@@ -161,7 +167,7 @@ void main() {
   });
 
   test('keeps an expired invitation so the start screen can explain it', () async {
-    stubSessions(sessions: [record(status: EnumGameStatus.invited)]);
+    stubSessions(sessions: [record(status: EnumGameStatus_enum.invited)]);
     stubItems(const [(slug: 'a', title: 'A?', body: null)]);
     final later = created.add(const Duration(hours: 49));
 
@@ -173,9 +179,14 @@ void main() {
   });
 
   test('splits the answers by the server ownership flag', () async {
-    stubSessions(sessions: [record(status: EnumGameStatus.finished)]);
+    stubSessions(sessions: [record(status: EnumGameStatus_enum.finished)]);
     stubItems(const [(slug: 'a', title: 'A?', body: null), (slug: 'b', title: 'B?', body: null)]);
-    when(() => dataSource.getAnswers('s1')).thenAnswer(
+    when(
+      () => dataSource.getAnswers(
+        sessionId: 's1',
+        selfId: any(named: 'selfId'),
+      ),
+    ).thenAnswer(
       (_) async => [
         (isMine: true, idx: 0, answer: pickSelf),
         (isMine: false, idx: 0, answer: pickPartner),
@@ -195,7 +206,7 @@ void main() {
         game: any(named: 'game'),
         itemSlugs: any(named: 'itemSlugs'),
       ),
-    ).thenAnswer((_) async => record(status: EnumGameStatus.invited));
+    ).thenAnswer((_) async => record(status: EnumGameStatus_enum.invited));
     const play = GamePlay(
       kind: GameKind.meOrYou,
       selfId: 'me',
@@ -208,7 +219,8 @@ void main() {
     final session = await repository.invite(play);
 
     expect(session.status, GameStatus.invited);
-    verify(() => dataSource.invite(game: 'me_or_you', itemSlugs: ['a', 'b'])).called(1);
+    verify(() => dataSource.invite(game: EnumGameKind_enum.me_or_you, itemSlugs: ['a', 'b']))
+        .called(1);
   });
 
   test('keeps the server code when another game is already open', () async {
@@ -258,7 +270,9 @@ void main() {
     ).thenAnswer((invocation) async {
       final action = invocation.namedArguments[#action] as String;
 
-      return record(status: action == 'join' ? EnumGameStatus.active : EnumGameStatus.cancelled);
+      return record(
+        status: action == 'join' ? EnumGameStatus_enum.active : EnumGameStatus_enum.cancelled,
+      );
     });
     final session = GameSession(
       id: 's1',

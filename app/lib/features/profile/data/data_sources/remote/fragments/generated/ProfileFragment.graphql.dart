@@ -8,17 +8,17 @@ class FragmentProfileFragment {
   FragmentProfileFragment({
     required this.id,
     this.displayName,
-    this.avatarPath,
+    this.avatarFileId,
     required this.avatarKind,
     this.city,
     this.pronouns,
-    this.$__typename = 'Profiles',
+    this.$__typename = 'profiles',
   });
 
   factory FragmentProfileFragment.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$displayName = json['displayName'];
-    final l$avatarPath = json['avatarPath'];
+    final l$avatarFileId = json['avatarFileId'];
     final l$avatarKind = json['avatarKind'];
     final l$city = json['city'];
     final l$pronouns = json['pronouns'];
@@ -26,8 +26,8 @@ class FragmentProfileFragment {
     return FragmentProfileFragment(
       id: (l$id as String),
       displayName: (l$displayName as String?),
-      avatarPath: (l$avatarPath as String?),
-      avatarKind: fromJsonEnumAvatarKind((l$avatarKind as String)),
+      avatarFileId: (l$avatarFileId as String?),
+      avatarKind: fromJsonEnumAvatarKind_enum((l$avatarKind as String)),
       city: (l$city as String?),
       pronouns: (l$pronouns as String?),
       $__typename: (l$$__typename as String),
@@ -38,9 +38,9 @@ class FragmentProfileFragment {
 
   final String? displayName;
 
-  final String? avatarPath;
+  final String? avatarFileId;
 
-  final EnumAvatarKind avatarKind;
+  final EnumAvatarKind_enum avatarKind;
 
   final String? city;
 
@@ -54,10 +54,10 @@ class FragmentProfileFragment {
     _resultData['id'] = l$id;
     final l$displayName = displayName;
     _resultData['displayName'] = l$displayName;
-    final l$avatarPath = avatarPath;
-    _resultData['avatarPath'] = l$avatarPath;
+    final l$avatarFileId = avatarFileId;
+    _resultData['avatarFileId'] = l$avatarFileId;
     final l$avatarKind = avatarKind;
-    _resultData['avatarKind'] = toJsonEnumAvatarKind(l$avatarKind);
+    _resultData['avatarKind'] = toJsonEnumAvatarKind_enum(l$avatarKind);
     final l$city = city;
     _resultData['city'] = l$city;
     final l$pronouns = pronouns;
@@ -71,7 +71,7 @@ class FragmentProfileFragment {
   int get hashCode {
     final l$id = id;
     final l$displayName = displayName;
-    final l$avatarPath = avatarPath;
+    final l$avatarFileId = avatarFileId;
     final l$avatarKind = avatarKind;
     final l$city = city;
     final l$pronouns = pronouns;
@@ -79,7 +79,7 @@ class FragmentProfileFragment {
     return Object.hashAll([
       l$id,
       l$displayName,
-      l$avatarPath,
+      l$avatarFileId,
       l$avatarKind,
       l$city,
       l$pronouns,
@@ -105,9 +105,9 @@ class FragmentProfileFragment {
     if (l$displayName != lOther$displayName) {
       return false;
     }
-    final l$avatarPath = avatarPath;
-    final lOther$avatarPath = other.avatarPath;
-    if (l$avatarPath != lOther$avatarPath) {
+    final l$avatarFileId = avatarFileId;
+    final lOther$avatarFileId = other.avatarFileId;
+    if (l$avatarFileId != lOther$avatarFileId) {
       return false;
     }
     final l$avatarKind = avatarKind;
@@ -137,7 +137,7 @@ class FragmentProfileFragment {
 const fragmentDefinitionProfileFragment = FragmentDefinitionNode(
   name: NameNode(value: 'ProfileFragment'),
   typeCondition: TypeConditionNode(
-    on: NamedTypeNode(name: NameNode(value: 'Profiles'), isNonNull: false),
+    on: NamedTypeNode(name: NameNode(value: 'profiles'), isNonNull: false),
   ),
   directives: [],
   selectionSet: SelectionSetNode(
@@ -157,7 +157,7 @@ const fragmentDefinitionProfileFragment = FragmentDefinitionNode(
         selectionSet: null,
       ),
       FieldNode(
-        name: NameNode(value: 'avatarPath'),
+        name: NameNode(value: 'avatarFileId'),
         alias: null,
         arguments: [],
         directives: [],

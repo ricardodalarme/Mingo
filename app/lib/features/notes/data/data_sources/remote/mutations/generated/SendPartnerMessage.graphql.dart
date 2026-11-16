@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -6,14 +8,14 @@ import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationSendPartnerMessage {
   factory VariablesMutationSendPartnerMessage({
-    required String kind,
+    required EnumPartnerMessageKind_enum kind,
     String? body,
-    String? mediaPath,
+    String? mediaFileId,
     bool? forWidget,
   }) => VariablesMutationSendPartnerMessage._({
     r'kind': kind,
     if (body != null) r'body': body,
-    if (mediaPath != null) r'mediaPath': mediaPath,
+    if (mediaFileId != null) r'mediaFileId': mediaFileId,
     if (forWidget != null) r'forWidget': forWidget,
   });
 
@@ -22,14 +24,14 @@ class VariablesMutationSendPartnerMessage {
   factory VariablesMutationSendPartnerMessage.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$kind = data['kind'];
-    result$data['kind'] = (l$kind as String);
+    result$data['kind'] = fromJsonEnumPartnerMessageKind_enum((l$kind as String));
     if (data.containsKey('body')) {
       final l$body = data['body'];
       result$data['body'] = (l$body as String?);
     }
-    if (data.containsKey('mediaPath')) {
-      final l$mediaPath = data['mediaPath'];
-      result$data['mediaPath'] = (l$mediaPath as String?);
+    if (data.containsKey('mediaFileId')) {
+      final l$mediaFileId = data['mediaFileId'];
+      result$data['mediaFileId'] = (l$mediaFileId as String?);
     }
     if (data.containsKey('forWidget')) {
       final l$forWidget = data['forWidget'];
@@ -40,25 +42,25 @@ class VariablesMutationSendPartnerMessage {
 
   Map<String, dynamic> _$data;
 
-  String get kind => (_$data['kind'] as String);
+  EnumPartnerMessageKind_enum get kind => (_$data['kind'] as EnumPartnerMessageKind_enum);
 
   String? get body => (_$data['body'] as String?);
 
-  String? get mediaPath => (_$data['mediaPath'] as String?);
+  String? get mediaFileId => (_$data['mediaFileId'] as String?);
 
   bool? get forWidget => (_$data['forWidget'] as bool?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$kind = kind;
-    result$data['kind'] = l$kind;
+    result$data['kind'] = toJsonEnumPartnerMessageKind_enum(l$kind);
     if (_$data.containsKey('body')) {
       final l$body = body;
       result$data['body'] = l$body;
     }
-    if (_$data.containsKey('mediaPath')) {
-      final l$mediaPath = mediaPath;
-      result$data['mediaPath'] = l$mediaPath;
+    if (_$data.containsKey('mediaFileId')) {
+      final l$mediaFileId = mediaFileId;
+      result$data['mediaFileId'] = l$mediaFileId;
     }
     if (_$data.containsKey('forWidget')) {
       final l$forWidget = forWidget;
@@ -88,12 +90,12 @@ class VariablesMutationSendPartnerMessage {
     if (l$body != lOther$body) {
       return false;
     }
-    final l$mediaPath = mediaPath;
-    final lOther$mediaPath = other.mediaPath;
-    if (_$data.containsKey('mediaPath') != other._$data.containsKey('mediaPath')) {
+    final l$mediaFileId = mediaFileId;
+    final lOther$mediaFileId = other.mediaFileId;
+    if (_$data.containsKey('mediaFileId') != other._$data.containsKey('mediaFileId')) {
       return false;
     }
-    if (l$mediaPath != lOther$mediaPath) {
+    if (l$mediaFileId != lOther$mediaFileId) {
       return false;
     }
     final l$forWidget = forWidget;
@@ -111,41 +113,41 @@ class VariablesMutationSendPartnerMessage {
   int get hashCode {
     final l$kind = kind;
     final l$body = body;
-    final l$mediaPath = mediaPath;
+    final l$mediaFileId = mediaFileId;
     final l$forWidget = forWidget;
     return Object.hashAll([
       l$kind,
       _$data.containsKey('body') ? l$body : const {},
-      _$data.containsKey('mediaPath') ? l$mediaPath : const {},
+      _$data.containsKey('mediaFileId') ? l$mediaFileId : const {},
       _$data.containsKey('forWidget') ? l$forWidget : const {},
     ]);
   }
 }
 
 class MutationSendPartnerMessage {
-  MutationSendPartnerMessage({this.sendPartnerMessage, this.$__typename = 'Mutation'});
+  MutationSendPartnerMessage({this.insertPartnerMessagesOne, this.$__typename = 'mutation_root'});
 
   factory MutationSendPartnerMessage.fromJson(Map<String, dynamic> json) {
-    final l$sendPartnerMessage = json['sendPartnerMessage'];
+    final l$insertPartnerMessagesOne = json['insertPartnerMessagesOne'];
     final l$$__typename = json['__typename'];
     return MutationSendPartnerMessage(
-      sendPartnerMessage: l$sendPartnerMessage == null
+      insertPartnerMessagesOne: l$insertPartnerMessagesOne == null
           ? null
-          : MutationSendPartnerMessagesendPartnerMessage.fromJson(
-              (l$sendPartnerMessage as Map<String, dynamic>),
+          : MutationSendPartnerMessageinsertPartnerMessagesOne.fromJson(
+              (l$insertPartnerMessagesOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSendPartnerMessagesendPartnerMessage? sendPartnerMessage;
+  final MutationSendPartnerMessageinsertPartnerMessagesOne? insertPartnerMessagesOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$sendPartnerMessage = sendPartnerMessage;
-    _resultData['sendPartnerMessage'] = l$sendPartnerMessage?.toJson();
+    final l$insertPartnerMessagesOne = insertPartnerMessagesOne;
+    _resultData['insertPartnerMessagesOne'] = l$insertPartnerMessagesOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -153,9 +155,9 @@ class MutationSendPartnerMessage {
 
   @override
   int get hashCode {
-    final l$sendPartnerMessage = sendPartnerMessage;
+    final l$insertPartnerMessagesOne = insertPartnerMessagesOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$sendPartnerMessage, l$$__typename]);
+    return Object.hashAll([l$insertPartnerMessagesOne, l$$__typename]);
   }
 
   @override
@@ -166,9 +168,9 @@ class MutationSendPartnerMessage {
     if (other is! MutationSendPartnerMessage || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$sendPartnerMessage = sendPartnerMessage;
-    final lOther$sendPartnerMessage = other.sendPartnerMessage;
-    if (l$sendPartnerMessage != lOther$sendPartnerMessage) {
+    final l$insertPartnerMessagesOne = insertPartnerMessagesOne;
+    final lOther$insertPartnerMessagesOne = other.insertPartnerMessagesOne;
+    if (l$insertPartnerMessagesOne != lOther$insertPartnerMessagesOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -188,7 +190,7 @@ const documentNodeMutationSendPartnerMessage = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'PartnerMessageKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -199,8 +201,8 @@ const documentNodeMutationSendPartnerMessage = DocumentNode(
           directives: [],
         ),
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'mediaPath')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          variable: VariableNode(name: NameNode(value: 'mediaFileId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -215,24 +217,31 @@ const documentNodeMutationSendPartnerMessage = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'sendPartnerMessage'),
+            name: NameNode(value: 'insertPartnerMessagesOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'kind'),
-                value: VariableNode(name: NameNode(value: 'kind')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'body'),
-                value: VariableNode(name: NameNode(value: 'body')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'mediaPath'),
-                value: VariableNode(name: NameNode(value: 'mediaPath')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'forWidget'),
-                value: VariableNode(name: NameNode(value: 'forWidget')),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: VariableNode(name: NameNode(value: 'kind')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'body'),
+                      value: VariableNode(name: NameNode(value: 'body')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'mediaFileId'),
+                      value: VariableNode(name: NameNode(value: 'mediaFileId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'forWidget'),
+                      value: VariableNode(name: NameNode(value: 'forWidget')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -362,16 +371,16 @@ extension ClientExtensionMutationSendPartnerMessage on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSendPartnerMessagesendPartnerMessage {
-  MutationSendPartnerMessagesendPartnerMessage({
+class MutationSendPartnerMessageinsertPartnerMessagesOne {
+  MutationSendPartnerMessageinsertPartnerMessagesOne({
     required this.id,
-    this.$__typename = 'PartnerMessages',
+    this.$__typename = 'partnerMessages',
   });
 
-  factory MutationSendPartnerMessagesendPartnerMessage.fromJson(Map<String, dynamic> json) {
+  factory MutationSendPartnerMessageinsertPartnerMessagesOne.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationSendPartnerMessagesendPartnerMessage(
+    return MutationSendPartnerMessageinsertPartnerMessagesOne(
       id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
@@ -402,7 +411,7 @@ class MutationSendPartnerMessagesendPartnerMessage {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSendPartnerMessagesendPartnerMessage ||
+    if (other is! MutationSendPartnerMessageinsertPartnerMessagesOne ||
         runtimeType != other.runtimeType) {
       return false;
     }

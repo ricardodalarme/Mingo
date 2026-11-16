@@ -52,27 +52,27 @@ class VariablesQueryLoveStyleManualEntry {
 }
 
 class QueryLoveStyleManualEntry {
-  QueryLoveStyleManualEntry({required this.manualEntriesCollection, this.$__typename = 'Query'});
+  QueryLoveStyleManualEntry({required this.manualEntries, this.$__typename = 'query_root'});
 
   factory QueryLoveStyleManualEntry.fromJson(Map<String, dynamic> json) {
-    final l$manualEntriesCollection = json['manualEntriesCollection'];
+    final l$manualEntries = json['manualEntries'];
     final l$$__typename = json['__typename'];
     return QueryLoveStyleManualEntry(
-      manualEntriesCollection: QueryLoveStyleManualEntrymanualEntriesCollection.fromJson(
-        (l$manualEntriesCollection as Map<String, dynamic>),
-      ),
+      manualEntries: (l$manualEntries as List<dynamic>)
+          .map((e) => QueryLoveStyleManualEntrymanualEntries.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryLoveStyleManualEntrymanualEntriesCollection manualEntriesCollection;
+  final List<QueryLoveStyleManualEntrymanualEntries> manualEntries;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$manualEntriesCollection = manualEntriesCollection;
-    _resultData['manualEntriesCollection'] = l$manualEntriesCollection.toJson();
+    final l$manualEntries = manualEntries;
+    _resultData['manualEntries'] = l$manualEntries.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -80,9 +80,9 @@ class QueryLoveStyleManualEntry {
 
   @override
   int get hashCode {
-    final l$manualEntriesCollection = manualEntriesCollection;
+    final l$manualEntries = manualEntries;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$manualEntriesCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$manualEntries.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -93,10 +93,17 @@ class QueryLoveStyleManualEntry {
     if (other is! QueryLoveStyleManualEntry || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$manualEntriesCollection = manualEntriesCollection;
-    final lOther$manualEntriesCollection = other.manualEntriesCollection;
-    if (l$manualEntriesCollection != lOther$manualEntriesCollection) {
+    final l$manualEntries = manualEntries;
+    final lOther$manualEntries = other.manualEntries;
+    if (l$manualEntries.length != lOther$manualEntries.length) {
       return false;
+    }
+    for (int i = 0; i < l$manualEntries.length; i++) {
+      final l$manualEntries$entry = l$manualEntries[i];
+      final lOther$manualEntries$entry = lOther$manualEntries[i];
+      if (l$manualEntries$entry != lOther$manualEntries$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -115,7 +122,7 @@ const documentNodeQueryLoveStyleManualEntry = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'authorId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -124,11 +131,11 @@ const documentNodeQueryLoveStyleManualEntry = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'manualEntriesCollection'),
+            name: NameNode(value: 'manualEntries'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -136,7 +143,7 @@ const documentNodeQueryLoveStyleManualEntry = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: StringValueNode(value: 'loved', isBlock: false),
                           ),
                         ],
@@ -147,7 +154,7 @@ const documentNodeQueryLoveStyleManualEntry = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'authorId')),
                           ),
                         ],
@@ -157,7 +164,7 @@ const documentNodeQueryLoveStyleManualEntry = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '1'),
               ),
             ],
@@ -165,52 +172,18 @@ const documentNodeQueryLoveStyleManualEntry = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'value'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'value'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -364,153 +337,18 @@ extension ClientExtensionQueryLoveStyleManualEntry on graphql.GraphQLClient {
   }
 }
 
-class QueryLoveStyleManualEntrymanualEntriesCollection {
-  QueryLoveStyleManualEntrymanualEntriesCollection({
-    required this.edges,
-    this.$__typename = 'ManualEntriesConnection',
-  });
-
-  factory QueryLoveStyleManualEntrymanualEntriesCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryLoveStyleManualEntrymanualEntriesCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryLoveStyleManualEntrymanualEntriesCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryLoveStyleManualEntrymanualEntriesCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryLoveStyleManualEntrymanualEntriesCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryLoveStyleManualEntrymanualEntriesCollectionedges {
-  QueryLoveStyleManualEntrymanualEntriesCollectionedges({
-    required this.node,
-    this.$__typename = 'ManualEntriesEdge',
-  });
-
-  factory QueryLoveStyleManualEntrymanualEntriesCollectionedges.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryLoveStyleManualEntrymanualEntriesCollectionedges(
-      node: QueryLoveStyleManualEntrymanualEntriesCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryLoveStyleManualEntrymanualEntriesCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryLoveStyleManualEntrymanualEntriesCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryLoveStyleManualEntrymanualEntriesCollectionedgesnode {
-  QueryLoveStyleManualEntrymanualEntriesCollectionedgesnode({
+class QueryLoveStyleManualEntrymanualEntries {
+  QueryLoveStyleManualEntrymanualEntries({
     required this.id,
     required this.value,
-    this.$__typename = 'ManualEntries',
+    this.$__typename = 'manualEntries',
   });
 
-  factory QueryLoveStyleManualEntrymanualEntriesCollectionedgesnode.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QueryLoveStyleManualEntrymanualEntries.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$value = json['value'];
     final l$$__typename = json['__typename'];
-    return QueryLoveStyleManualEntrymanualEntriesCollectionedgesnode(
+    return QueryLoveStyleManualEntrymanualEntries(
       id: (l$id as String),
       value: (l$value as String),
       $__typename: (l$$__typename as String),
@@ -547,8 +385,7 @@ class QueryLoveStyleManualEntrymanualEntriesCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryLoveStyleManualEntrymanualEntriesCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryLoveStyleManualEntrymanualEntries || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

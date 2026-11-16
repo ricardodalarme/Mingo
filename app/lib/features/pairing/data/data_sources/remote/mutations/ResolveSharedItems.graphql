@@ -1,3 +1,5 @@
 mutation ResolveSharedItems($keep: Boolean!) {
-  resolveSharedItems(keep: $keep)
+  resolveSharedItems(args: { keep: $keep }) {
+    id
+  }
 }

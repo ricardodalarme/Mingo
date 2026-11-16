@@ -1,15 +1,14 @@
 mutation UpdateConversationPrep(
-  $id: UUID!
-  $guide: ConversationGuide!
+  $id: uuid!
+  $guide: ConversationGuide_enum!
   $topic: String!
   $notes: String
   $draft: String
 ) {
-  updateConversationPrepsCollection(
-    set: { guide: $guide, topic: $topic, notes: $notes, draft: $draft }
-    filter: { id: { eq: $id } }
-    atMost: 1
+  updateConversationPrepsByPk(
+    pk_columns: { id: $id }
+    _set: { guide: $guide, topic: $topic, notes: $notes, draft: $draft }
   ) {
-    affectedCount
+    id
   }
 }

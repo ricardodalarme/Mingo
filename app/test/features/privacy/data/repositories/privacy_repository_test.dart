@@ -8,21 +8,18 @@ import 'package:mocktail/mocktail.dart';
 
 class _MockPrivacyDataSource() extends Mock implements PrivacyDataSource;
 
-QueryMyConsentsconsentsCollectionedgesnode _row(
-  EnumConsentKind kind,
-  bool granted, {
-  DateTime? at,
-}) => QueryMyConsentsconsentsCollectionedgesnode(
-  kind: kind,
-  granted: granted,
-  version: '1',
-  createdAt: at ?? DateTime(2026, 11, 10),
-);
+QueryMyConsentsconsents _row(EnumConsentKind_enum kind, bool granted, {DateTime? at}) =>
+    QueryMyConsentsconsents(
+      kind: kind,
+      granted: granted,
+      version: '1',
+      createdAt: at ?? DateTime(2026, 11, 10),
+    );
 
 void main() {
   late PrivacyDataSource dataSource;
 
-  setUpAll(() => registerFallbackValue(EnumConsentKind.analytics));
+  setUpAll(() => registerFallbackValue(EnumConsentKind_enum.analytics));
 
   setUp(() => dataSource = _MockPrivacyDataSource());
 
@@ -31,9 +28,9 @@ void main() {
   test('the newest row per kind wins and missing kinds use the defaults', () async {
     when(() => dataSource.getConsents()).thenAnswer(
       (_) async => [
-        _row(EnumConsentKind.analytics, false, at: DateTime(2026, 11, 10)),
-        _row(EnumConsentKind.analytics, true, at: DateTime(2026, 11, 9)),
-        _row(EnumConsentKind.marketing, true),
+        _row(EnumConsentKind_enum.analytics, false, at: DateTime(2026, 11, 10)),
+        _row(EnumConsentKind_enum.analytics, true, at: DateTime(2026, 11, 9)),
+        _row(EnumConsentKind_enum.marketing, true),
       ],
     );
 
@@ -41,7 +38,6 @@ void main() {
 
     expect(consents[ConsentKind.analytics], isFalse);
     expect(consents[ConsentKind.marketing], isTrue);
-    expect(consents[ConsentKind.sensitiveData], isTrue);
     expect(consents[ConsentKind.terms], isTrue);
     expect(consents[ConsentKind.ai], isFalse);
   });
@@ -61,7 +57,7 @@ void main() {
 
     verify(
       () => dataSource.grant(
-        kind: EnumConsentKind.marketing,
+        kind: EnumConsentKind_enum.marketing,
         granted: false,
         version: PrivacyRepository.consentVersion,
       ),

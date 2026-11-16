@@ -1,5 +1,5 @@
-mutation DeleteGiftWish($id: UUID!) {
-  deleteFromGiftIdeasCollection(filter: { id: { eq: $id } }, atMost: 1) {
-    affectedCount
+mutation DeleteGiftWish($id: uuid!) {
+  deleteGiftIdeas(where: { id: { _eq: $id } }) {
+    affected_rows
   }
 }

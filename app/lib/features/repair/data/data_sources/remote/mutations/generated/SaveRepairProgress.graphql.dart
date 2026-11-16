@@ -90,31 +90,29 @@ class VariablesMutationSaveRepairProgress {
 }
 
 class MutationSaveRepairProgress {
-  MutationSaveRepairProgress({
-    required this.updateRepairSessionsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationSaveRepairProgress({this.updateRepairSessions, this.$__typename = 'mutation_root'});
 
   factory MutationSaveRepairProgress.fromJson(Map<String, dynamic> json) {
-    final l$updateRepairSessionsCollection = json['updateRepairSessionsCollection'];
+    final l$updateRepairSessions = json['updateRepairSessions'];
     final l$$__typename = json['__typename'];
     return MutationSaveRepairProgress(
-      updateRepairSessionsCollection:
-          MutationSaveRepairProgressupdateRepairSessionsCollection.fromJson(
-            (l$updateRepairSessionsCollection as Map<String, dynamic>),
-          ),
+      updateRepairSessions: l$updateRepairSessions == null
+          ? null
+          : MutationSaveRepairProgressupdateRepairSessions.fromJson(
+              (l$updateRepairSessions as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSaveRepairProgressupdateRepairSessionsCollection updateRepairSessionsCollection;
+  final MutationSaveRepairProgressupdateRepairSessions? updateRepairSessions;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateRepairSessionsCollection = updateRepairSessionsCollection;
-    _resultData['updateRepairSessionsCollection'] = l$updateRepairSessionsCollection.toJson();
+    final l$updateRepairSessions = updateRepairSessions;
+    _resultData['updateRepairSessions'] = l$updateRepairSessions?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -122,9 +120,9 @@ class MutationSaveRepairProgress {
 
   @override
   int get hashCode {
-    final l$updateRepairSessionsCollection = updateRepairSessionsCollection;
+    final l$updateRepairSessions = updateRepairSessions;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateRepairSessionsCollection, l$$__typename]);
+    return Object.hashAll([l$updateRepairSessions, l$$__typename]);
   }
 
   @override
@@ -135,9 +133,9 @@ class MutationSaveRepairProgress {
     if (other is! MutationSaveRepairProgress || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateRepairSessionsCollection = updateRepairSessionsCollection;
-    final lOther$updateRepairSessionsCollection = other.updateRepairSessionsCollection;
-    if (l$updateRepairSessionsCollection != lOther$updateRepairSessionsCollection) {
+    final l$updateRepairSessions = updateRepairSessions;
+    final lOther$updateRepairSessions = other.updateRepairSessions;
+    if (l$updateRepairSessions != lOther$updateRepairSessions) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -157,13 +155,13 @@ const documentNodeMutationSaveRepairProgress = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'step')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -178,11 +176,29 @@ const documentNodeMutationSaveRepairProgress = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateRepairSessionsCollection'),
+            name: NameNode(value: 'updateRepairSessions'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'id')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -196,34 +212,12 @@ const documentNodeMutationSaveRepairProgress = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -346,31 +340,29 @@ extension ClientExtensionMutationSaveRepairProgress on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSaveRepairProgressupdateRepairSessionsCollection {
-  MutationSaveRepairProgressupdateRepairSessionsCollection({
-    required this.affectedCount,
-    this.$__typename = 'RepairSessionsUpdateResponse',
+class MutationSaveRepairProgressupdateRepairSessions {
+  MutationSaveRepairProgressupdateRepairSessions({
+    required this.affected_rows,
+    this.$__typename = 'repairSessions_mutation_response',
   });
 
-  factory MutationSaveRepairProgressupdateRepairSessionsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationSaveRepairProgressupdateRepairSessions.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationSaveRepairProgressupdateRepairSessionsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationSaveRepairProgressupdateRepairSessions(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -378,9 +370,9 @@ class MutationSaveRepairProgressupdateRepairSessionsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -388,13 +380,13 @@ class MutationSaveRepairProgressupdateRepairSessionsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSaveRepairProgressupdateRepairSessionsCollection ||
+    if (other is! MutationSaveRepairProgressupdateRepairSessions ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

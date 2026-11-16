@@ -2,14 +2,13 @@ import 'package:equatable/equatable.dart';
 
 /// The consents the backend records, in the order the board lists them.
 enum ConsentKind() {
-  sensitiveData,
   analytics,
   marketing,
   ai,
   terms;
 
   /// Whether the consent is required to use the app.
-  bool get isRequired => this == sensitiveData || this == terms;
+  bool get isRequired => this == terms;
 }
 
 /// The latest decision for one consent kind.

@@ -1,6 +1,6 @@
-query MySpiceSetting($profileId: UUID!) {
-  profileSettingsByPk(profileId: $profileId) {
-    profileId
+query MySpiceSetting($userId: uuid!) {
+  userSettingsByPk(userId: $userId) {
+    userId
     spiceEnabled
   }
 }

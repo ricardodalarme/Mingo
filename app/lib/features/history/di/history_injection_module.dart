@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/history/data/data_sources/remote/history_data_source.dart';
 import 'package:app/features/history/data/repositories/history_repository.dart';
 import 'package:app/features/history/presentation/avatar/cubit/history_avatar_cubit.dart';
@@ -17,7 +18,10 @@ class HistoryInjectionModule() implements InjectionModule {
       () => HistoryDataSource(client: injector.get<GQLClient>()),
     )
     ..registerLazySingleton<HistoryRepository>(
-      () => HistoryRepository(dataSource: injector.get<HistoryDataSource>()),
+      () => HistoryRepository(
+        dataSource: injector.get<HistoryDataSource>(),
+        authenticationRepository: injector.get<AuthenticationRepository>(),
+      ),
     )
     ..registerFactory<HistoryCubit>(
       () => HistoryCubit(historyRepository: injector.get<HistoryRepository>()),

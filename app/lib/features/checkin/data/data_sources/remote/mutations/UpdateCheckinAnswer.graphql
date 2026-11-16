@@ -1,10 +1,10 @@
-mutation UpdateCheckinAnswer($id: UUID!, $body: String!) {
-  updateCheckinAnswersCollection(set: { body: $body }, filter: { id: { eq: $id } }) {
-    records {
-      id
-      weekStart
-      question
-      body
-    }
+mutation UpdateCheckinAnswer($id: uuid!, $answers: checkins_set_input!) {
+  updateCheckinsByPk(pk_columns: { id: $id }, _set: $answers) {
+    id
+    weekStart
+    answer1
+    answer2
+    answer3
+    answer4
   }
 }

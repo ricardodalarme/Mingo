@@ -5,27 +5,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryJournalEntries {
-  QueryJournalEntries({required this.journalEntriesCollection, this.$__typename = 'Query'});
+  QueryJournalEntries({required this.journalEntries, this.$__typename = 'query_root'});
 
   factory QueryJournalEntries.fromJson(Map<String, dynamic> json) {
-    final l$journalEntriesCollection = json['journalEntriesCollection'];
+    final l$journalEntries = json['journalEntries'];
     final l$$__typename = json['__typename'];
     return QueryJournalEntries(
-      journalEntriesCollection: QueryJournalEntriesjournalEntriesCollection.fromJson(
-        (l$journalEntriesCollection as Map<String, dynamic>),
-      ),
+      journalEntries: (l$journalEntries as List<dynamic>)
+          .map((e) => QueryJournalEntriesjournalEntries.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryJournalEntriesjournalEntriesCollection journalEntriesCollection;
+  final List<QueryJournalEntriesjournalEntries> journalEntries;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$journalEntriesCollection = journalEntriesCollection;
-    _resultData['journalEntriesCollection'] = l$journalEntriesCollection.toJson();
+    final l$journalEntries = journalEntries;
+    _resultData['journalEntries'] = l$journalEntries.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33,9 +33,9 @@ class QueryJournalEntries {
 
   @override
   int get hashCode {
-    final l$journalEntriesCollection = journalEntriesCollection;
+    final l$journalEntries = journalEntries;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$journalEntriesCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$journalEntries.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -46,10 +46,17 @@ class QueryJournalEntries {
     if (other is! QueryJournalEntries || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$journalEntriesCollection = journalEntriesCollection;
-    final lOther$journalEntriesCollection = other.journalEntriesCollection;
-    if (l$journalEntriesCollection != lOther$journalEntriesCollection) {
+    final l$journalEntries = journalEntries;
+    final lOther$journalEntries = other.journalEntries;
+    if (l$journalEntries.length != lOther$journalEntries.length) {
       return false;
+    }
+    for (int i = 0; i < l$journalEntries.length; i++) {
+      final l$journalEntries$entry = l$journalEntries[i];
+      final lOther$journalEntries$entry = lOther$journalEntries[i];
+      if (l$journalEntries$entry != lOther$journalEntries$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -70,18 +77,18 @@ const documentNodeQueryJournalEntries = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'journalEntriesCollection'),
+            name: NameNode(value: 'journalEntries'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'entryDate'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -89,7 +96,7 @@ const documentNodeQueryJournalEntries = DocumentNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -97,7 +104,7 @@ const documentNodeQueryJournalEntries = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '100'),
               ),
             ],
@@ -105,66 +112,32 @@ const documentNodeQueryJournalEntries = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'entryDate'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'body'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'mood'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'entryDate'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'mood'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -294,152 +267,22 @@ extension ClientExtensionQueryJournalEntries on graphql.GraphQLClient {
   }
 }
 
-class QueryJournalEntriesjournalEntriesCollection {
-  QueryJournalEntriesjournalEntriesCollection({
-    required this.edges,
-    this.$__typename = 'JournalEntriesConnection',
-  });
-
-  factory QueryJournalEntriesjournalEntriesCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryJournalEntriesjournalEntriesCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryJournalEntriesjournalEntriesCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryJournalEntriesjournalEntriesCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryJournalEntriesjournalEntriesCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryJournalEntriesjournalEntriesCollectionedges {
-  QueryJournalEntriesjournalEntriesCollectionedges({
-    required this.node,
-    this.$__typename = 'JournalEntriesEdge',
-  });
-
-  factory QueryJournalEntriesjournalEntriesCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryJournalEntriesjournalEntriesCollectionedges(
-      node: QueryJournalEntriesjournalEntriesCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryJournalEntriesjournalEntriesCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryJournalEntriesjournalEntriesCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryJournalEntriesjournalEntriesCollectionedgesnode {
-  QueryJournalEntriesjournalEntriesCollectionedgesnode({
+class QueryJournalEntriesjournalEntries {
+  QueryJournalEntriesjournalEntries({
     required this.id,
     required this.entryDate,
     required this.body,
     this.mood,
-    this.$__typename = 'JournalEntries',
+    this.$__typename = 'journalEntries',
   });
 
-  factory QueryJournalEntriesjournalEntriesCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryJournalEntriesjournalEntries.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$entryDate = json['entryDate'];
     final l$body = json['body'];
     final l$mood = json['mood'];
     final l$$__typename = json['__typename'];
-    return QueryJournalEntriesjournalEntriesCollectionedgesnode(
+    return QueryJournalEntriesjournalEntries(
       id: (l$id as String),
       entryDate: DateTime.parse((l$entryDate as String)),
       body: (l$body as String),
@@ -488,8 +331,7 @@ class QueryJournalEntriesjournalEntriesCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryJournalEntriesjournalEntriesCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryJournalEntriesjournalEntries || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

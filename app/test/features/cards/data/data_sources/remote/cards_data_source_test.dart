@@ -19,22 +19,24 @@ void main() {
           'id': 'c1',
           'status': 'sent',
           'weekStart': '2026-11-09',
-          'isMine': true,
-          '__typename': 'Cards',
+          'authorId': 'u1',
+          'author': {'displayName': 'Ana', '__typename': 'profiles'},
+          'items': <Map<String, dynamic>>[],
+          '__typename': 'cards',
         },
-        '__typename': 'Query',
+        '__typename': 'query_root',
       }),
     );
 
     final card = await dataSource.getCard('c1');
 
     expect(card?.id, 'c1');
-    expect(card?.isMine, isTrue);
+    expect(card?.authorId, 'u1');
   });
 
   test('a card that is gone or not visible reads as not found', () async {
     final dataSource = CardsDataSource(
-      client: const _StubGQLClient({'cardsByPk': null, '__typename': 'Query'}),
+      client: const _StubGQLClient({'cardsByPk': null, '__typename': 'query_root'}),
     );
 
     expect(await dataSource.getCard('c1'), isNull);

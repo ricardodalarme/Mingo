@@ -1,3 +1,4 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/help/data/data_sources/local/support_local_data_source.dart';
 import 'package:app/features/help/data/data_sources/remote/support_data_source.dart';
 import 'package:app/features/help/data/models/pending_support_request.dart';
@@ -68,7 +69,7 @@ void main() {
       expect(outcome, SupportSendOutcome.sent);
       verify(
         () => remote.createSupportRequest(
-          topic: 'account',
+          topic: EnumSupportTopic_enum.account,
           message: 'Não consigo entrar',
           replyEmail: 'eu@email.com',
           appVersion: '0.1.1+3',
@@ -167,7 +168,7 @@ void main() {
       expect(queue.map((request) => request.message), ['Do B']);
       verify(
         () => remote.createSupportRequest(
-          topic: 'billing',
+          topic: EnumSupportTopic_enum.billing,
           message: 'Do A',
           replyEmail: null,
           appVersion: null,
@@ -175,7 +176,7 @@ void main() {
       ).called(1);
       verifyNever(
         () => remote.createSupportRequest(
-          topic: 'billing',
+          topic: EnumSupportTopic_enum.billing,
           message: 'Do B',
           replyEmail: null,
           appVersion: null,
@@ -209,7 +210,7 @@ void main() {
       verify(() => local.writeDiscarded(value: true)).called(1);
       verify(
         () => remote.createSupportRequest(
-          topic: 'billing',
+          topic: EnumSupportTopic_enum.billing,
           message: 'good',
           replyEmail: null,
           appVersion: null,

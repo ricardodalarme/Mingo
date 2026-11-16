@@ -45,7 +45,12 @@ void main() {
   setUp(() {
     repository = _MockCheckinRepository();
     when(() => repository.getWeek()).thenAnswer((_) async => week());
-    when(() => repository.deleteAnswer(any())).thenAnswer((_) async {
+    when(
+      () => repository.deleteAnswer(
+        id: any(named: 'id'),
+        question: any(named: 'question'),
+      ),
+    ).thenAnswer((_) async {
       return;
     });
     when(() => repository.dismissWeek(any())).thenAnswer((_) async {
@@ -205,7 +210,12 @@ void main() {
         body: any(named: 'body'),
       ),
     );
-    verifyNever(() => repository.deleteAnswer(any()));
+    verifyNever(
+      () => repository.deleteAnswer(
+        id: any(named: 'id'),
+        question: any(named: 'question'),
+      ),
+    );
   });
 
   test('skip on an already saved answer deletes the row', () async {
@@ -218,7 +228,12 @@ void main() {
 
     expect(cubit.state.current?.answerFor(1), isNull);
     expect(cubit.state.questionNumber, 2);
-    verify(() => repository.deleteAnswer('a1')).called(1);
+    verify(
+      () => repository.deleteAnswer(
+        id: 'a1',
+        question: any(named: 'question'),
+      ),
+    ).called(1);
   });
 
   test('clearing a saved answer deletes the row and keeps the week incomplete', () async {
@@ -233,7 +248,12 @@ void main() {
 
     expect(cubit.state.current?.answerFor(1), isNull);
     expect(cubit.state.current?.isOwnComplete, isFalse);
-    verify(() => repository.deleteAnswer('a1')).called(1);
+    verify(
+      () => repository.deleteAnswer(
+        id: 'a1',
+        question: any(named: 'question'),
+      ),
+    ).called(1);
     verifyNever(
       () => repository.saveAnswer(
         week: any(named: 'week'),
@@ -245,8 +265,12 @@ void main() {
 
   test('a delete failure keeps the question and the saved answer', () async {
     when(() => repository.getWeek()).thenAnswer((_) async => week(own: answers(4)));
-    when(() => repository.deleteAnswer(any()))
-        .thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+    when(
+      () => repository.deleteAnswer(
+        id: any(named: 'id'),
+        question: any(named: 'question'),
+      ),
+    ).thenThrow(const LocalizedException(l10nKey: networkErrorCode));
     final cubit = build();
     await cubit.load();
     cubit.review();

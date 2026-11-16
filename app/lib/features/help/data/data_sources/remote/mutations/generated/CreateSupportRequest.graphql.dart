@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -6,7 +8,7 @@ import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationCreateSupportRequest {
   factory VariablesMutationCreateSupportRequest({
-    required String topic,
+    required EnumSupportTopic_enum topic,
     required String message,
     String? replyEmail,
     String? appVersion,
@@ -22,7 +24,7 @@ class VariablesMutationCreateSupportRequest {
   factory VariablesMutationCreateSupportRequest.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$topic = data['topic'];
-    result$data['topic'] = (l$topic as String);
+    result$data['topic'] = fromJsonEnumSupportTopic_enum((l$topic as String));
     final l$message = data['message'];
     result$data['message'] = (l$message as String);
     if (data.containsKey('replyEmail')) {
@@ -38,7 +40,7 @@ class VariablesMutationCreateSupportRequest {
 
   Map<String, dynamic> _$data;
 
-  String get topic => (_$data['topic'] as String);
+  EnumSupportTopic_enum get topic => (_$data['topic'] as EnumSupportTopic_enum);
 
   String get message => (_$data['message'] as String);
 
@@ -49,7 +51,7 @@ class VariablesMutationCreateSupportRequest {
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$topic = topic;
-    result$data['topic'] = l$topic;
+    result$data['topic'] = toJsonEnumSupportTopic_enum(l$topic);
     final l$message = message;
     result$data['message'] = l$message;
     if (_$data.containsKey('replyEmail')) {
@@ -116,25 +118,29 @@ class VariablesMutationCreateSupportRequest {
 }
 
 class MutationCreateSupportRequest {
-  MutationCreateSupportRequest({this.createSupportRequest, this.$__typename = 'Mutation'});
+  MutationCreateSupportRequest({this.insertSupportRequests, this.$__typename = 'mutation_root'});
 
   factory MutationCreateSupportRequest.fromJson(Map<String, dynamic> json) {
-    final l$createSupportRequest = json['createSupportRequest'];
+    final l$insertSupportRequests = json['insertSupportRequests'];
     final l$$__typename = json['__typename'];
     return MutationCreateSupportRequest(
-      createSupportRequest: (l$createSupportRequest as bool?),
+      insertSupportRequests: l$insertSupportRequests == null
+          ? null
+          : MutationCreateSupportRequestinsertSupportRequests.fromJson(
+              (l$insertSupportRequests as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? createSupportRequest;
+  final MutationCreateSupportRequestinsertSupportRequests? insertSupportRequests;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$createSupportRequest = createSupportRequest;
-    _resultData['createSupportRequest'] = l$createSupportRequest;
+    final l$insertSupportRequests = insertSupportRequests;
+    _resultData['insertSupportRequests'] = l$insertSupportRequests?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -142,9 +148,9 @@ class MutationCreateSupportRequest {
 
   @override
   int get hashCode {
-    final l$createSupportRequest = createSupportRequest;
+    final l$insertSupportRequests = insertSupportRequests;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$createSupportRequest, l$$__typename]);
+    return Object.hashAll([l$insertSupportRequests, l$$__typename]);
   }
 
   @override
@@ -155,9 +161,9 @@ class MutationCreateSupportRequest {
     if (other is! MutationCreateSupportRequest || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$createSupportRequest = createSupportRequest;
-    final lOther$createSupportRequest = other.createSupportRequest;
-    if (l$createSupportRequest != lOther$createSupportRequest) {
+    final l$insertSupportRequests = insertSupportRequests;
+    final lOther$insertSupportRequests = other.insertSupportRequests;
+    if (l$insertSupportRequests != lOther$insertSupportRequests) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -177,7 +183,7 @@ const documentNodeMutationCreateSupportRequest = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'topic')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'SupportTopic_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -204,28 +210,56 @@ const documentNodeMutationCreateSupportRequest = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'createSupportRequest'),
+            name: NameNode(value: 'insertSupportRequests'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'topic'),
-                value: VariableNode(name: NameNode(value: 'topic')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'message'),
-                value: VariableNode(name: NameNode(value: 'message')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'replyEmail'),
-                value: VariableNode(name: NameNode(value: 'replyEmail')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'appVersion'),
-                value: VariableNode(name: NameNode(value: 'appVersion')),
+                name: NameNode(value: 'objects'),
+                value: ListValueNode(
+                  values: [
+                    ObjectValueNode(
+                      fields: [
+                        ObjectFieldNode(
+                          name: NameNode(value: 'topic'),
+                          value: VariableNode(name: NameNode(value: 'topic')),
+                        ),
+                        ObjectFieldNode(
+                          name: NameNode(value: 'message'),
+                          value: VariableNode(name: NameNode(value: 'message')),
+                        ),
+                        ObjectFieldNode(
+                          name: NameNode(value: 'replyEmail'),
+                          value: VariableNode(name: NameNode(value: 'replyEmail')),
+                        ),
+                        ObjectFieldNode(
+                          name: NameNode(value: 'appVersion'),
+                          value: VariableNode(name: NameNode(value: 'appVersion')),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'affected_rows'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -332,4 +366,62 @@ extension ClientExtensionMutationCreateSupportRequest on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationCreateSupportRequest> watchMutationCreateSupportRequest(
     WatchOptionsMutationCreateSupportRequest options,
   ) => this.watchMutation(options);
+}
+
+class MutationCreateSupportRequestinsertSupportRequests {
+  MutationCreateSupportRequestinsertSupportRequests({
+    required this.affected_rows,
+    this.$__typename = 'supportRequests_mutation_response',
+  });
+
+  factory MutationCreateSupportRequestinsertSupportRequests.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return MutationCreateSupportRequestinsertSupportRequests(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$affected_rows, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationCreateSupportRequestinsertSupportRequests ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
 }

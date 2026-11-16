@@ -32,7 +32,7 @@ typedef ProgramRecord = ({ContentItemRecord? program, List<ContentItemRecord> le
 
 typedef EnrollmentRecord = ({String programSlug, int currentDay, DateTime? completedAt});
 
-typedef LessonProgressRecord = ({String programSlug, int lessonDay, EnumLessonStatus status});
+typedef LessonProgressRecord = ({String programSlug, int lessonDay, EnumLessonStatus_enum status});
 
 typedef JournalEntryRecord = ({String id, DateTime entryDate, String body, String? mood});
 
@@ -48,25 +48,25 @@ class ProgramsDataSource({required final GQLClient _client}) {
 
     return (
       programs: [
-        for (final edge in data.programs.edges)
+        for (final node in data.programs)
           _content(
-            slug: edge.node.slug,
-            title: edge.node.title,
-            body: edge.node.body,
+            slug: node.slug,
+            title: node.title,
+            body: node.body,
             parentSlug: null,
-            position: edge.node.position,
-            plusOnly: edge.node.plusOnly,
+            position: node.position,
+            plusOnly: node.plusOnly,
           ),
       ],
       lessons: [
-        for (final edge in data.lessons.edges)
+        for (final node in data.lessons)
           _content(
-            slug: edge.node.slug,
-            title: edge.node.title,
-            body: edge.node.body,
-            parentSlug: edge.node.parentSlug,
-            position: edge.node.position,
-            plusOnly: edge.node.plusOnly,
+            slug: node.slug,
+            title: node.title,
+            body: node.body,
+            parentSlug: node.parentSlug,
+            position: node.position,
+            plusOnly: node.plusOnly,
           ),
       ],
     );
@@ -81,26 +81,28 @@ class ProgramsDataSource({required final GQLClient _client}) {
     );
     final data = validateResponseData<QueryProgramDetail, QueryProgramDetail>(response);
 
+    final program = data.program.firstOrNull;
+
     return (
-      program: data.program.edges.firstOrNull == null
+      program: program == null
           ? null
           : _content(
-              slug: data.program.edges.first.node.slug,
-              title: data.program.edges.first.node.title,
-              body: data.program.edges.first.node.body,
+              slug: program.slug,
+              title: program.title,
+              body: program.body,
               parentSlug: null,
-              position: data.program.edges.first.node.position,
-              plusOnly: data.program.edges.first.node.plusOnly,
+              position: program.position,
+              plusOnly: program.plusOnly,
             ),
       lessons: [
-        for (final edge in data.lessons.edges)
+        for (final node in data.lessons)
           _content(
-            slug: edge.node.slug,
-            title: edge.node.title,
-            body: edge.node.body,
-            parentSlug: edge.node.parentSlug,
-            position: edge.node.position,
-            plusOnly: edge.node.plusOnly,
+            slug: node.slug,
+            title: node.title,
+            body: node.body,
+            parentSlug: node.parentSlug,
+            position: node.position,
+            plusOnly: node.plusOnly,
           ),
       ],
     );
@@ -134,7 +136,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
     );
     final affected = validateResponseData(
       response,
-      getData: (data) => data.insertIntoProgramEnrollmentsCollection?.affectedCount ?? 0,
+      getData: (data) => data.insertProgramEnrollments?.affected_rows ?? 0,
     );
     if (affected == 0) throw const NoDataException();
   }
@@ -151,7 +153,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
     );
     final affected = validateResponseData(
       response,
-      getData: (data) => data.updateProgramEnrollmentsCollection.affectedCount,
+      getData: (data) => data.updateProgramEnrollments?.affected_rows ?? 0,
     );
 
     return affected > 0;
@@ -174,7 +176,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
     );
     final affected = validateResponseData(
       response,
-      getData: (data) => data.updateProgramEnrollmentsCollection.affectedCount,
+      getData: (data) => data.updateProgramEnrollments?.affected_rows ?? 0,
     );
 
     return affected > 0;
@@ -188,7 +190,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
     );
     final affected = validateResponseData(
       response,
-      getData: (data) => data.updateProgramEnrollmentsCollection.affectedCount,
+      getData: (data) => data.updateProgramEnrollments?.affected_rows ?? 0,
     );
     if (affected == 0) throw const NoDataException();
   }
@@ -207,7 +209,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
   Future<void> setLessonStatus({
     required String programSlug,
     required int lessonDay,
-    required EnumLessonStatus status,
+    required EnumLessonStatus_enum status,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateLessonProgress(
@@ -220,7 +222,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
     );
     final affected = validateResponseData<MutationUpdateLessonProgress, int>(
       response,
-      getData: (data) => data.updateLessonProgressCollection.affectedCount,
+      getData: (data) => data.updateLessonProgress?.affected_rows ?? 0,
     );
     if (affected > 0) return;
 
@@ -243,13 +245,8 @@ class ProgramsDataSource({required final GQLClient _client}) {
     final data = validateResponseData<QueryJournalEntries, QueryJournalEntries>(response);
 
     return [
-      for (final edge in data.journalEntriesCollection.edges)
-        (
-          id: edge.node.id,
-          entryDate: edge.node.entryDate,
-          body: edge.node.body,
-          mood: edge.node.mood,
-        ),
+      for (final node in data.journalEntries)
+        (id: node.id, entryDate: node.entryDate, body: node.body, mood: node.mood),
     ];
   }
 
@@ -267,10 +264,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
         ),
       ),
     );
-    final node = validateResponseData(
-      response,
-      getData: (data) => data.insertIntoJournalEntriesCollection?.records.firstOrNull,
-    );
+    final node = validateResponseData(response, getData: (data) => data.insertJournalEntriesOne);
 
     return (id: node.id, entryDate: node.entryDate, body: node.body, mood: node.mood);
   }
@@ -283,7 +277,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
     );
     final affected = validateResponseData(
       response,
-      getData: (data) => data.updateJournalEntriesCollection.affectedCount,
+      getData: (data) => data.updateJournalEntries?.affected_rows ?? 0,
     );
     if (affected == 0) throw const NoDataException();
   }
@@ -294,7 +288,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
     );
     final affected = validateResponseData(
       response,
-      getData: (data) => data.deleteFromJournalEntriesCollection.affectedCount,
+      getData: (data) => data.deleteJournalEntries?.affected_rows ?? 0,
     );
     if (affected == 0) throw const NoDataException();
   }
@@ -307,7 +301,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
       ),
     );
     final data = validateResponseData<QueryProgramProgress, QueryProgramProgress>(response);
-    final enrollment = data.programEnrollmentsCollection.edges.firstOrNull?.node;
+    final enrollment = data.programEnrollments.firstOrNull;
 
     return (
       enrollment == null
@@ -318,12 +312,8 @@ class ProgramsDataSource({required final GQLClient _client}) {
               completedAt: enrollment.completedAt,
             ),
       [
-        for (final edge in data.lessonProgressCollection.edges)
-          (
-            programSlug: edge.node.programSlug,
-            lessonDay: edge.node.lessonDay,
-            status: edge.node.status,
-          ),
+        for (final node in data.lessonProgress)
+          (programSlug: node.programSlug, lessonDay: node.lessonDay, status: node.status),
       ],
     );
   }

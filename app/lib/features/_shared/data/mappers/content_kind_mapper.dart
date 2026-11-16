@@ -2,13 +2,13 @@ import 'package:app/features/_shared/data/data_sources/remote/generated/schema.g
 import 'package:app/features/_shared/data/models/content_kind.dart';
 
 extension ContentKindMapper on ContentKind {
-  EnumContentKind toRemote() => switch (this) {
-    ContentKind.question => EnumContentKind.question,
-    ContentKind.touchCard => EnumContentKind.touch_card,
-    ContentKind.moodTip => EnumContentKind.mood_tip,
-    ContentKind.meOrYou => EnumContentKind.me_or_you,
-    ContentKind.howWell => EnumContentKind.how_well,
-    ContentKind.neverHaveWe => EnumContentKind.never_have_we,
-    ContentKind.mission => EnumContentKind.mission,
+  EnumContentKind_enum toRemote() => switch (this) {
+    ContentKind.question => EnumContentKind_enum.question,
+    ContentKind.touchCard => EnumContentKind_enum.touch_card,
+    ContentKind.moodTip => EnumContentKind_enum.mood_tip,
+    ContentKind.meOrYou => EnumContentKind_enum.me_or_you,
+    ContentKind.howWell => EnumContentKind_enum.how_well,
+    ContentKind.neverHaveWe => EnumContentKind_enum.never_have_we,
+    ContentKind.mission => EnumContentKind_enum.mission,
   };
 }

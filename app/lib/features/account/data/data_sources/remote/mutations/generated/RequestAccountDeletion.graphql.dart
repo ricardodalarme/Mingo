@@ -5,29 +5,32 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class MutationRequestAccountDeletion {
-  MutationRequestAccountDeletion({this.requestAccountDeletion, this.$__typename = 'Mutation'});
+  MutationRequestAccountDeletion({
+    this.insertDeletionRequestsOne,
+    this.$__typename = 'mutation_root',
+  });
 
   factory MutationRequestAccountDeletion.fromJson(Map<String, dynamic> json) {
-    final l$requestAccountDeletion = json['requestAccountDeletion'];
+    final l$insertDeletionRequestsOne = json['insertDeletionRequestsOne'];
     final l$$__typename = json['__typename'];
     return MutationRequestAccountDeletion(
-      requestAccountDeletion: l$requestAccountDeletion == null
+      insertDeletionRequestsOne: l$insertDeletionRequestsOne == null
           ? null
-          : MutationRequestAccountDeletionrequestAccountDeletion.fromJson(
-              (l$requestAccountDeletion as Map<String, dynamic>),
+          : MutationRequestAccountDeletioninsertDeletionRequestsOne.fromJson(
+              (l$insertDeletionRequestsOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationRequestAccountDeletionrequestAccountDeletion? requestAccountDeletion;
+  final MutationRequestAccountDeletioninsertDeletionRequestsOne? insertDeletionRequestsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$requestAccountDeletion = requestAccountDeletion;
-    _resultData['requestAccountDeletion'] = l$requestAccountDeletion?.toJson();
+    final l$insertDeletionRequestsOne = insertDeletionRequestsOne;
+    _resultData['insertDeletionRequestsOne'] = l$insertDeletionRequestsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +38,9 @@ class MutationRequestAccountDeletion {
 
   @override
   int get hashCode {
-    final l$requestAccountDeletion = requestAccountDeletion;
+    final l$insertDeletionRequestsOne = insertDeletionRequestsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$requestAccountDeletion, l$$__typename]);
+    return Object.hashAll([l$insertDeletionRequestsOne, l$$__typename]);
   }
 
   @override
@@ -48,9 +51,9 @@ class MutationRequestAccountDeletion {
     if (other is! MutationRequestAccountDeletion || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$requestAccountDeletion = requestAccountDeletion;
-    final lOther$requestAccountDeletion = other.requestAccountDeletion;
-    if (l$requestAccountDeletion != lOther$requestAccountDeletion) {
+    final l$insertDeletionRequestsOne = insertDeletionRequestsOne;
+    final lOther$insertDeletionRequestsOne = other.insertDeletionRequestsOne;
+    if (l$insertDeletionRequestsOne != lOther$insertDeletionRequestsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -72,9 +75,14 @@ const documentNodeMutationRequestAccountDeletion = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'requestAccountDeletion'),
+            name: NameNode(value: 'insertDeletionRequestsOne'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(fields: []),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
@@ -205,18 +213,20 @@ extension ClientExtensionMutationRequestAccountDeletion on graphql.GraphQLClient
   ]) => this.watchMutation(options ?? WatchOptionsMutationRequestAccountDeletion());
 }
 
-class MutationRequestAccountDeletionrequestAccountDeletion {
-  MutationRequestAccountDeletionrequestAccountDeletion({
+class MutationRequestAccountDeletioninsertDeletionRequestsOne {
+  MutationRequestAccountDeletioninsertDeletionRequestsOne({
     required this.requestedAt,
     required this.purgeAfter,
-    this.$__typename = 'DeletionRequests',
+    this.$__typename = 'deletionRequests',
   });
 
-  factory MutationRequestAccountDeletionrequestAccountDeletion.fromJson(Map<String, dynamic> json) {
+  factory MutationRequestAccountDeletioninsertDeletionRequestsOne.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final l$requestedAt = json['requestedAt'];
     final l$purgeAfter = json['purgeAfter'];
     final l$$__typename = json['__typename'];
-    return MutationRequestAccountDeletionrequestAccountDeletion(
+    return MutationRequestAccountDeletioninsertDeletionRequestsOne(
       requestedAt: DateTime.parse((l$requestedAt as String)),
       purgeAfter: DateTime.parse((l$purgeAfter as String)),
       $__typename: (l$$__typename as String),
@@ -253,7 +263,7 @@ class MutationRequestAccountDeletionrequestAccountDeletion {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationRequestAccountDeletionrequestAccountDeletion ||
+    if (other is! MutationRequestAccountDeletioninsertDeletionRequestsOne ||
         runtimeType != other.runtimeType) {
       return false;
     }

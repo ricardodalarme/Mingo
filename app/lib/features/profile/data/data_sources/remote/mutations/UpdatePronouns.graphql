@@ -1,9 +1,5 @@
-mutation UpdatePronouns($profileId: UUID!, $pronouns: String) {
-  updateProfilesCollection(
-    set: { pronouns: $pronouns }
-    filter: { id: { eq: $profileId } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation UpdatePronouns($profileId: uuid!, $pronouns: String) {
+  updateProfiles(where: { id: { _eq: $profileId } }, _set: { pronouns: $pronouns }) {
+    affected_rows
   }
 }

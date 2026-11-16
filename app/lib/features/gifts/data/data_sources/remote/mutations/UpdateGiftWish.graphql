@@ -1,11 +1,8 @@
-mutation UpdateGiftWish($id: UUID!, $title: String!, $note: String, $budget: GiftBudget) {
-  updateGiftIdeasCollection(
-    set: { title: $title, note: $note, budget: $budget }
-    filter: { id: { eq: $id } }
-    atMost: 1
+mutation UpdateGiftWish($id: uuid!, $title: String!, $note: String, $budget: GiftBudget_enum) {
+  updateGiftIdeasByPk(
+    pk_columns: { id: $id }
+    _set: { title: $title, note: $note, budget: $budget }
   ) {
-    records {
-      ...GiftWishFragment
-    }
+    ...GiftWishFragment
   }
 }

@@ -6,28 +6,75 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
+class VariablesQueryMySettings {
+  factory VariablesQueryMySettings({required String userId}) =>
+      VariablesQueryMySettings._({r'userId': userId});
+
+  VariablesQueryMySettings._(this._$data);
+
+  factory VariablesQueryMySettings.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
+    return VariablesQueryMySettings._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get userId => (_$data['userId'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! VariablesQueryMySettings || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    return Object.hashAll([l$userId]);
+  }
+}
+
 class QueryMySettings {
-  QueryMySettings({this.mySettings, this.$__typename = 'Query'});
+  QueryMySettings({this.userSettingsByPk, this.$__typename = 'query_root'});
 
   factory QueryMySettings.fromJson(Map<String, dynamic> json) {
-    final l$mySettings = json['mySettings'];
+    final l$userSettingsByPk = json['userSettingsByPk'];
     final l$$__typename = json['__typename'];
     return QueryMySettings(
-      mySettings: l$mySettings == null
+      userSettingsByPk: l$userSettingsByPk == null
           ? null
-          : QueryMySettingsmySettings.fromJson((l$mySettings as Map<String, dynamic>)),
+          : QueryMySettingsuserSettingsByPk.fromJson((l$userSettingsByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryMySettingsmySettings? mySettings;
+  final QueryMySettingsuserSettingsByPk? userSettingsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$mySettings = mySettings;
-    _resultData['mySettings'] = l$mySettings?.toJson();
+    final l$userSettingsByPk = userSettingsByPk;
+    _resultData['userSettingsByPk'] = l$userSettingsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +82,9 @@ class QueryMySettings {
 
   @override
   int get hashCode {
-    final l$mySettings = mySettings;
+    final l$userSettingsByPk = userSettingsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$mySettings, l$$__typename]);
+    return Object.hashAll([l$userSettingsByPk, l$$__typename]);
   }
 
   @override
@@ -48,9 +95,9 @@ class QueryMySettings {
     if (other is! QueryMySettings || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$mySettings = mySettings;
-    final lOther$mySettings = other.mySettings;
-    if (l$mySettings != lOther$mySettings) {
+    final l$userSettingsByPk = userSettingsByPk;
+    final lOther$userSettingsByPk = other.userSettingsByPk;
+    if (l$userSettingsByPk != lOther$userSettingsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -67,19 +114,31 @@ const documentNodeQueryMySettings = DocumentNode(
     OperationDefinitionNode(
       type: OperationType.query,
       name: NameNode(value: 'MySettings'),
-      variableDefinitions: [],
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'userId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'mySettings'),
+            name: NameNode(value: 'userSettingsByPk'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'userId'),
+                value: VariableNode(name: NameNode(value: 'userId')),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'profileId'),
+                  name: NameNode(value: 'userId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -87,13 +146,6 @@ const documentNodeQueryMySettings = DocumentNode(
                 ),
                 FieldNode(
                   name: NameNode(value: 'theme'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'timeZone'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -156,6 +208,30 @@ const documentNodeQueryMySettings = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'profile'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'timeZone'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
+                ),
+                FieldNode(
                   name: NameNode(value: '__typename'),
                   alias: null,
                   arguments: [],
@@ -187,6 +263,7 @@ typedef OnQueryCompleteQueryMySettings = FutureOr<void> Function(
 class OptionsQueryMySettings extends graphql.QueryOptions<QueryMySettings> {
   OptionsQueryMySettings({
     String? operationName,
+    required VariablesQueryMySettings variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -198,6 +275,7 @@ class OptionsQueryMySettings extends graphql.QueryOptions<QueryMySettings> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'MySettings',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -227,6 +305,7 @@ class OptionsQueryMySettings extends graphql.QueryOptions<QueryMySettings> {
 class WatchOptionsQueryMySettings extends graphql.WatchQueryOptions<QueryMySettings> {
   WatchOptionsQueryMySettings({
     String? operationName,
+    required VariablesQueryMySettings variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -238,6 +317,7 @@ class WatchOptionsQueryMySettings extends graphql.WatchQueryOptions<QueryMySetti
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'MySettings',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -254,40 +334,57 @@ class WatchOptionsQueryMySettings extends graphql.WatchQueryOptions<QueryMySetti
 }
 
 class FetchMoreOptionsQueryMySettings extends graphql.FetchMoreOptions {
-  FetchMoreOptionsQueryMySettings({required graphql.UpdateQuery updateQuery})
-    : super(updateQuery: updateQuery, document: documentNodeQueryMySettings);
+  FetchMoreOptionsQueryMySettings({
+    required graphql.UpdateQuery updateQuery,
+    required VariablesQueryMySettings variables,
+  }) : super(
+         updateQuery: updateQuery,
+         variables: variables.toJson(),
+         document: documentNodeQueryMySettings,
+       );
 }
 
 extension ClientExtensionQueryMySettings on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QueryMySettings>> queryMySettings([
-    OptionsQueryMySettings? options,
-  ]) async => await this.query(options ?? OptionsQueryMySettings());
+  Future<graphql.QueryResult<QueryMySettings>> queryMySettings(
+    OptionsQueryMySettings options,
+  ) async => await this.query(options);
 
-  graphql.ObservableQuery<QueryMySettings> watchQueryMySettings([
-    WatchOptionsQueryMySettings? options,
-  ]) => this.watchQuery(options ?? WatchOptionsQueryMySettings());
+  graphql.ObservableQuery<QueryMySettings> watchQueryMySettings(
+    WatchOptionsQueryMySettings options,
+  ) => this.watchQuery(options);
 
-  void writeQueryMySettings({required QueryMySettings data, bool broadcast = true}) =>
-      this.writeQuery(
-        graphql.Request(operation: graphql.Operation(document: documentNodeQueryMySettings)),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
+  void writeQueryMySettings({
+    required QueryMySettings data,
+    required VariablesQueryMySettings variables,
+    bool broadcast = true,
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(document: documentNodeQueryMySettings),
+      variables: variables.toJson(),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
 
-  QueryMySettings? readQueryMySettings({bool optimistic = true}) {
+  QueryMySettings? readQueryMySettings({
+    required VariablesQueryMySettings variables,
+    bool optimistic = true,
+  }) {
     final result = this.readQuery(
-      graphql.Request(operation: graphql.Operation(document: documentNodeQueryMySettings)),
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryMySettings),
+        variables: variables.toJson(),
+      ),
       optimistic: optimistic,
     );
     return result == null ? null : QueryMySettings.fromJson(result);
   }
 }
 
-class QueryMySettingsmySettings {
-  QueryMySettingsmySettings({
-    required this.profileId,
+class QueryMySettingsuserSettingsByPk {
+  QueryMySettingsuserSettingsByPk({
+    required this.userId,
     required this.theme,
-    required this.timeZone,
     this.partnerName,
     this.togetherSince,
     required this.relationshipStatus,
@@ -296,13 +393,13 @@ class QueryMySettingsmySettings {
     this.phase,
     required this.goals,
     required this.locale,
-    this.$__typename = 'ProfileSettings',
+    required this.profile,
+    this.$__typename = 'userSettings',
   });
 
-  factory QueryMySettingsmySettings.fromJson(Map<String, dynamic> json) {
-    final l$profileId = json['profileId'];
+  factory QueryMySettingsuserSettingsByPk.fromJson(Map<String, dynamic> json) {
+    final l$userId = json['userId'];
     final l$theme = json['theme'];
-    final l$timeZone = json['timeZone'];
     final l$partnerName = json['partnerName'];
     final l$togetherSince = json['togetherSince'];
     final l$relationshipStatus = json['relationshipStatus'];
@@ -311,55 +408,54 @@ class QueryMySettingsmySettings {
     final l$phase = json['phase'];
     final l$goals = json['goals'];
     final l$locale = json['locale'];
+    final l$profile = json['profile'];
     final l$$__typename = json['__typename'];
-    return QueryMySettingsmySettings(
-      profileId: (l$profileId as String),
-      theme: fromJsonEnumAppTheme((l$theme as String)),
-      timeZone: (l$timeZone as String),
+    return QueryMySettingsuserSettingsByPk(
+      userId: (l$userId as String),
+      theme: fromJsonEnumAppTheme_enum((l$theme as String)),
       partnerName: (l$partnerName as String?),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
-      relationshipStatus: fromJsonEnumRelationshipStatus((l$relationshipStatus as String)),
+      relationshipStatus: fromJsonEnumRelationshipStatus_enum((l$relationshipStatus as String)),
       onboardedAt: l$onboardedAt == null ? null : DateTime.parse((l$onboardedAt as String)),
       shareReadReceipts: (l$shareReadReceipts as bool),
-      phase: l$phase == null ? null : fromJsonEnumRelationshipPhase((l$phase as String)),
-      goals: (l$goals as List<dynamic>).map((e) => (e as String?)).toList(),
+      phase: l$phase == null ? null : fromJsonEnumRelationshipPhase_enum((l$phase as String)),
+      goals: (l$goals as List<dynamic>).map((e) => (e as String)).toList(),
       locale: (l$locale as String),
+      profile: QueryMySettingsuserSettingsByPkprofile.fromJson((l$profile as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String profileId;
+  final String userId;
 
-  final EnumAppTheme theme;
-
-  final String timeZone;
+  final EnumAppTheme_enum theme;
 
   final String? partnerName;
 
   final DateTime? togetherSince;
 
-  final EnumRelationshipStatus relationshipStatus;
+  final EnumRelationshipStatus_enum relationshipStatus;
 
   final DateTime? onboardedAt;
 
   final bool shareReadReceipts;
 
-  final EnumRelationshipPhase? phase;
+  final EnumRelationshipPhase_enum? phase;
 
-  final List<String?> goals;
+  final List<String> goals;
 
   final String locale;
+
+  final QueryMySettingsuserSettingsByPkprofile profile;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$profileId = profileId;
-    _resultData['profileId'] = l$profileId;
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
     final l$theme = theme;
-    _resultData['theme'] = toJsonEnumAppTheme(l$theme);
-    final l$timeZone = timeZone;
-    _resultData['timeZone'] = l$timeZone;
+    _resultData['theme'] = toJsonEnumAppTheme_enum(l$theme);
     final l$partnerName = partnerName;
     _resultData['partnerName'] = l$partnerName;
     final l$togetherSince = togetherSince;
@@ -367,7 +463,7 @@ class QueryMySettingsmySettings {
         ? null
         : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
     final l$relationshipStatus = relationshipStatus;
-    _resultData['relationshipStatus'] = toJsonEnumRelationshipStatus(l$relationshipStatus);
+    _resultData['relationshipStatus'] = toJsonEnumRelationshipStatus_enum(l$relationshipStatus);
     final l$onboardedAt = onboardedAt;
     _resultData['onboardedAt'] = l$onboardedAt == null
         ? null
@@ -375,11 +471,13 @@ class QueryMySettingsmySettings {
     final l$shareReadReceipts = shareReadReceipts;
     _resultData['shareReadReceipts'] = l$shareReadReceipts;
     final l$phase = phase;
-    _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase(l$phase);
+    _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase_enum(l$phase);
     final l$goals = goals;
     _resultData['goals'] = l$goals.map((e) => e).toList();
     final l$locale = locale;
     _resultData['locale'] = l$locale;
+    final l$profile = profile;
+    _resultData['profile'] = l$profile.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -387,9 +485,8 @@ class QueryMySettingsmySettings {
 
   @override
   int get hashCode {
-    final l$profileId = profileId;
+    final l$userId = userId;
     final l$theme = theme;
-    final l$timeZone = timeZone;
     final l$partnerName = partnerName;
     final l$togetherSince = togetherSince;
     final l$relationshipStatus = relationshipStatus;
@@ -398,11 +495,11 @@ class QueryMySettingsmySettings {
     final l$phase = phase;
     final l$goals = goals;
     final l$locale = locale;
+    final l$profile = profile;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$profileId,
+      l$userId,
       l$theme,
-      l$timeZone,
       l$partnerName,
       l$togetherSince,
       l$relationshipStatus,
@@ -411,6 +508,7 @@ class QueryMySettingsmySettings {
       l$phase,
       Object.hashAll(l$goals.map((v) => v)),
       l$locale,
+      l$profile,
       l$$__typename,
     ]);
   }
@@ -420,22 +518,17 @@ class QueryMySettingsmySettings {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMySettingsmySettings || runtimeType != other.runtimeType) {
+    if (other is! QueryMySettingsuserSettingsByPk || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$profileId = profileId;
-    final lOther$profileId = other.profileId;
-    if (l$profileId != lOther$profileId) {
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
       return false;
     }
     final l$theme = theme;
     final lOther$theme = other.theme;
     if (l$theme != lOther$theme) {
-      return false;
-    }
-    final l$timeZone = timeZone;
-    final lOther$timeZone = other.timeZone;
-    if (l$timeZone != lOther$timeZone) {
       return false;
     }
     final l$partnerName = partnerName;
@@ -483,6 +576,65 @@ class QueryMySettingsmySettings {
     final l$locale = locale;
     final lOther$locale = other.locale;
     if (l$locale != lOther$locale) {
+      return false;
+    }
+    final l$profile = profile;
+    final lOther$profile = other.profile;
+    if (l$profile != lOther$profile) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryMySettingsuserSettingsByPkprofile {
+  QueryMySettingsuserSettingsByPkprofile({required this.timeZone, this.$__typename = 'profiles'});
+
+  factory QueryMySettingsuserSettingsByPkprofile.fromJson(Map<String, dynamic> json) {
+    final l$timeZone = json['timeZone'];
+    final l$$__typename = json['__typename'];
+    return QueryMySettingsuserSettingsByPkprofile(
+      timeZone: (l$timeZone as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String timeZone;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$timeZone = timeZone;
+    _resultData['timeZone'] = l$timeZone;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$timeZone = timeZone;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$timeZone, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryMySettingsuserSettingsByPkprofile || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$timeZone = timeZone;
+    final lOther$timeZone = other.timeZone;
+    if (l$timeZone != lOther$timeZone) {
       return false;
     }
     final l$$__typename = $__typename;

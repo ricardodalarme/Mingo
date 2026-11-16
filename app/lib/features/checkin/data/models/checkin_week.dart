@@ -16,6 +16,7 @@ final class const CheckinWeek({
   required final String? coupleId,
   required final bool isPaired,
   final String? partnerName,
+  final String? ownRowId,
   final Map<int, CheckinAnswer> ownAnswers = const {},
   final Map<int, CheckinAnswer> partnerAnswers = const {},
 }) with Equatable {
@@ -54,6 +55,7 @@ final class const CheckinWeek({
     coupleId: coupleId,
     isPaired: isPaired,
     partnerName: partnerName,
+    ownRowId: answer.id,
     ownAnswers: {...ownAnswers, answer.question: answer},
     partnerAnswers: partnerAnswers,
   );
@@ -63,6 +65,7 @@ final class const CheckinWeek({
     coupleId: coupleId,
     isPaired: isPaired,
     partnerName: partnerName,
+    ownRowId: ownRowId,
     ownAnswers: {...ownAnswers}..remove(question),
     partnerAnswers: partnerAnswers,
   );
@@ -73,6 +76,7 @@ final class const CheckinWeek({
     coupleId,
     isPaired,
     partnerName,
+    ownRowId,
     _fingerprint(ownAnswers),
     _fingerprint(partnerAnswers),
   ];

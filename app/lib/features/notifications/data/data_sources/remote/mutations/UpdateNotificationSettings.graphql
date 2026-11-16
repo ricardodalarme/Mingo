@@ -1,5 +1,20 @@
-mutation UpdateNotificationSettings($set: NotificationSettingsUpdateInput!) {
-  updateNotificationSettingsCollection(set: $set, atMost: 1) {
-    affectedCount
+mutation UpdateNotificationSettings(
+  $userId: uuid!
+  $enabled: Boolean!
+  $cardDay: smallint!
+  $cardHour: smallint!
+  $mutes: [notificationMutes_insert_input!]!
+) {
+  updateNotificationSettings(
+    where: { userId: { _eq: $userId } }
+    _set: { enabled: $enabled, cardDay: $cardDay, cardHour: $cardHour }
+  ) {
+    affected_rows
+  }
+  deleteNotificationMutes(where: { userId: { _eq: $userId } }) {
+    affected_rows
+  }
+  insertNotificationMutes(objects: $mutes) {
+    affected_rows
   }
 }

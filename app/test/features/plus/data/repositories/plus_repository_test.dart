@@ -1,4 +1,5 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/plus/data/data_sources/remote/plus_data_source.dart';
 import 'package:app/features/plus/data/data_sources/remote/queries/generated/MyPlus.graphql.dart';
 import 'package:app/features/plus/data/models/plus_plan.dart';
@@ -13,6 +14,8 @@ import 'package:purchase_service/purchase_service.dart';
 class _MockPlusDataSource() extends Mock implements PlusDataSource;
 
 class _MockPurchaseService() extends Mock implements PurchaseService;
+
+class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
 CustomerInfo _customerInfo({bool active = false}) => CustomerInfo.fromJson({
   'entitlements': const {'all': <String, dynamic>{}, 'active': <String, dynamic>{}},
@@ -29,10 +32,13 @@ CustomerInfo _customerInfo({bool active = false}) => CustomerInfo.fromJson({
 void main() {
   late PlusDataSource dataSource;
   late PurchaseService purchaseService;
+  late AuthenticationRepository authenticationRepository;
 
   setUp(() {
     dataSource = _MockPlusDataSource();
     purchaseService = _MockPurchaseService();
+    authenticationRepository = _MockAuthenticationRepository();
+    when(() => authenticationRepository.currentUserId).thenReturn('u1');
   });
 
   PlusRepository build({
@@ -41,19 +47,22 @@ void main() {
   }) => PlusRepository(
     dataSource: dataSource,
     purchaseService: purchaseService,
+    authenticationRepository: authenticationRepository,
     confirmationWindow: window,
     confirmationStep: step,
   );
 
   test('myPlus maps the plan, status and monthly room', () async {
-    when(() => dataSource.getPlus()).thenAnswer(
-      (_) async => QueryMyPlusmyPlus(
+    when(() => dataSource.getPlus('u1')).thenAnswer(
+      (_) async => QueryMyPlusplusStates(
         hasPlus: true,
         paidByPartner: true,
-        plan: EnumEntitlementPlan.plus_annual,
-        status: EnumEntitlementStatus.active,
         slipsLeftThisMonth: 2,
         cardsLeftThisMonth: 1,
+        entitlement: QueryMyPlusplusStatesentitlement(
+          plan: EnumEntitlementPlan_enum.plus_annual,
+          status: EnumEntitlementStatus_enum.active,
+        ),
       ),
     );
 
@@ -71,12 +80,12 @@ void main() {
     when(() => purchaseService.restorePurchases())
         .thenAnswer((_) async => _customerInfo(active: true));
     var reads = 0;
-    when(() => dataSource.getPlus())
-        .thenAnswer((_) async => QueryMyPlusmyPlus(hasPlus: reads++ > 0));
+    when(() => dataSource.getPlus(any()))
+        .thenAnswer((_) async => QueryMyPlusplusStates(hasPlus: reads++ > 0));
 
     expect(await build().restorePurchases(), RestoreOutcome.unlocked);
     verify(() => purchaseService.restorePurchases()).called(1);
-    verify(() => dataSource.getPlus()).called(2);
+    verify(() => dataSource.getPlus('u1')).called(2);
   });
 
   test('a store with nothing to restore ends without a Plus read', () async {
@@ -85,13 +94,14 @@ void main() {
     final outcome = await build(window: const Duration(seconds: 30)).restorePurchases();
 
     expect(outcome, RestoreOutcome.nothing);
-    verifyNever(() => dataSource.getPlus());
+    verifyNever(() => dataSource.getPlus(any()));
   });
 
   test('a store purchase the server has not confirmed stays pending', () async {
     when(() => purchaseService.restorePurchases())
         .thenAnswer((_) async => _customerInfo(active: true));
-    when(() => dataSource.getPlus()).thenAnswer((_) async => QueryMyPlusmyPlus(hasPlus: false));
+    when(() => dataSource.getPlus(any()))
+        .thenAnswer((_) async => QueryMyPlusplusStates(hasPlus: false));
 
     final outcome = await build(
       window: const Duration(milliseconds: 1),

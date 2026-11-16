@@ -6,76 +6,141 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
+class VariablesQueryWidgetOverview {
+  factory VariablesQueryWidgetOverview({required String userId}) =>
+      VariablesQueryWidgetOverview._({r'userId': userId});
+
+  VariablesQueryWidgetOverview._(this._$data);
+
+  factory VariablesQueryWidgetOverview.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
+    return VariablesQueryWidgetOverview._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get userId => (_$data['userId'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! VariablesQueryWidgetOverview || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    return Object.hashAll([l$userId]);
+  }
+}
+
 class QueryWidgetOverview {
   QueryWidgetOverview({
-    this.widget,
-    this.today,
-    this.mySettings,
-    this.idea,
-    required this.ritualsCollection,
-    required this.moodsCollection,
-    this.$__typename = 'Query',
+    required this.today,
+    this.settings,
+    required this.plusStates,
+    required this.partnerNote,
+    required this.partnerMood,
+    required this.myMood,
+    required this.rituals,
+    required this.idea,
+    this.$__typename = 'query_root',
   });
 
   factory QueryWidgetOverview.fromJson(Map<String, dynamic> json) {
-    final l$widget = json['widget'];
     final l$today = json['today'];
-    final l$mySettings = json['mySettings'];
+    final l$settings = json['settings'];
+    final l$plusStates = json['plusStates'];
+    final l$partnerNote = json['partnerNote'];
+    final l$partnerMood = json['partnerMood'];
+    final l$myMood = json['myMood'];
+    final l$rituals = json['rituals'];
     final l$idea = json['idea'];
-    final l$ritualsCollection = json['ritualsCollection'];
-    final l$moodsCollection = json['moodsCollection'];
     final l$$__typename = json['__typename'];
     return QueryWidgetOverview(
-      widget: l$widget == null
+      today: (l$today as List<dynamic>)
+          .map((e) => QueryWidgetOverviewtoday.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      settings: l$settings == null
           ? null
-          : QueryWidgetOverviewwidget.fromJson((l$widget as Map<String, dynamic>)),
-      today: l$today == null
-          ? null
-          : QueryWidgetOverviewtoday.fromJson((l$today as Map<String, dynamic>)),
-      mySettings: l$mySettings == null
-          ? null
-          : QueryWidgetOverviewmySettings.fromJson((l$mySettings as Map<String, dynamic>)),
-      idea: l$idea == null
-          ? null
-          : QueryWidgetOverviewidea.fromJson((l$idea as Map<String, dynamic>)),
-      ritualsCollection: QueryWidgetOverviewritualsCollection.fromJson(
-        (l$ritualsCollection as Map<String, dynamic>),
-      ),
-      moodsCollection: QueryWidgetOverviewmoodsCollection.fromJson(
-        (l$moodsCollection as Map<String, dynamic>),
-      ),
+          : QueryWidgetOverviewsettings.fromJson((l$settings as Map<String, dynamic>)),
+      plusStates: (l$plusStates as List<dynamic>)
+          .map((e) => QueryWidgetOverviewplusStates.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      partnerNote: (l$partnerNote as List<dynamic>)
+          .map((e) => QueryWidgetOverviewpartnerNote.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      partnerMood: (l$partnerMood as List<dynamic>)
+          .map((e) => QueryWidgetOverviewpartnerMood.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      myMood: (l$myMood as List<dynamic>)
+          .map((e) => QueryWidgetOverviewmyMood.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      rituals: (l$rituals as List<dynamic>)
+          .map((e) => QueryWidgetOverviewrituals.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      idea: (l$idea as List<dynamic>)
+          .map((e) => QueryWidgetOverviewidea.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryWidgetOverviewwidget? widget;
+  final List<QueryWidgetOverviewtoday> today;
 
-  final QueryWidgetOverviewtoday? today;
+  final QueryWidgetOverviewsettings? settings;
 
-  final QueryWidgetOverviewmySettings? mySettings;
+  final List<QueryWidgetOverviewplusStates> plusStates;
 
-  final QueryWidgetOverviewidea? idea;
+  final List<QueryWidgetOverviewpartnerNote> partnerNote;
 
-  final QueryWidgetOverviewritualsCollection ritualsCollection;
+  final List<QueryWidgetOverviewpartnerMood> partnerMood;
 
-  final QueryWidgetOverviewmoodsCollection moodsCollection;
+  final List<QueryWidgetOverviewmyMood> myMood;
+
+  final List<QueryWidgetOverviewrituals> rituals;
+
+  final List<QueryWidgetOverviewidea> idea;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$widget = widget;
-    _resultData['widget'] = l$widget?.toJson();
     final l$today = today;
-    _resultData['today'] = l$today?.toJson();
-    final l$mySettings = mySettings;
-    _resultData['mySettings'] = l$mySettings?.toJson();
+    _resultData['today'] = l$today.map((e) => e.toJson()).toList();
+    final l$settings = settings;
+    _resultData['settings'] = l$settings?.toJson();
+    final l$plusStates = plusStates;
+    _resultData['plusStates'] = l$plusStates.map((e) => e.toJson()).toList();
+    final l$partnerNote = partnerNote;
+    _resultData['partnerNote'] = l$partnerNote.map((e) => e.toJson()).toList();
+    final l$partnerMood = partnerMood;
+    _resultData['partnerMood'] = l$partnerMood.map((e) => e.toJson()).toList();
+    final l$myMood = myMood;
+    _resultData['myMood'] = l$myMood.map((e) => e.toJson()).toList();
+    final l$rituals = rituals;
+    _resultData['rituals'] = l$rituals.map((e) => e.toJson()).toList();
     final l$idea = idea;
-    _resultData['idea'] = l$idea?.toJson();
-    final l$ritualsCollection = ritualsCollection;
-    _resultData['ritualsCollection'] = l$ritualsCollection.toJson();
-    final l$moodsCollection = moodsCollection;
-    _resultData['moodsCollection'] = l$moodsCollection.toJson();
+    _resultData['idea'] = l$idea.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -83,20 +148,24 @@ class QueryWidgetOverview {
 
   @override
   int get hashCode {
-    final l$widget = widget;
     final l$today = today;
-    final l$mySettings = mySettings;
+    final l$settings = settings;
+    final l$plusStates = plusStates;
+    final l$partnerNote = partnerNote;
+    final l$partnerMood = partnerMood;
+    final l$myMood = myMood;
+    final l$rituals = rituals;
     final l$idea = idea;
-    final l$ritualsCollection = ritualsCollection;
-    final l$moodsCollection = moodsCollection;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$widget,
-      l$today,
-      l$mySettings,
-      l$idea,
-      l$ritualsCollection,
-      l$moodsCollection,
+      Object.hashAll(l$today.map((v) => v)),
+      l$settings,
+      Object.hashAll(l$plusStates.map((v) => v)),
+      Object.hashAll(l$partnerNote.map((v) => v)),
+      Object.hashAll(l$partnerMood.map((v) => v)),
+      Object.hashAll(l$myMood.map((v) => v)),
+      Object.hashAll(l$rituals.map((v) => v)),
+      Object.hashAll(l$idea.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -109,35 +178,94 @@ class QueryWidgetOverview {
     if (other is! QueryWidgetOverview || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$widget = widget;
-    final lOther$widget = other.widget;
-    if (l$widget != lOther$widget) {
-      return false;
-    }
     final l$today = today;
     final lOther$today = other.today;
-    if (l$today != lOther$today) {
+    if (l$today.length != lOther$today.length) {
       return false;
     }
-    final l$mySettings = mySettings;
-    final lOther$mySettings = other.mySettings;
-    if (l$mySettings != lOther$mySettings) {
+    for (int i = 0; i < l$today.length; i++) {
+      final l$today$entry = l$today[i];
+      final lOther$today$entry = lOther$today[i];
+      if (l$today$entry != lOther$today$entry) {
+        return false;
+      }
+    }
+    final l$settings = settings;
+    final lOther$settings = other.settings;
+    if (l$settings != lOther$settings) {
       return false;
+    }
+    final l$plusStates = plusStates;
+    final lOther$plusStates = other.plusStates;
+    if (l$plusStates.length != lOther$plusStates.length) {
+      return false;
+    }
+    for (int i = 0; i < l$plusStates.length; i++) {
+      final l$plusStates$entry = l$plusStates[i];
+      final lOther$plusStates$entry = lOther$plusStates[i];
+      if (l$plusStates$entry != lOther$plusStates$entry) {
+        return false;
+      }
+    }
+    final l$partnerNote = partnerNote;
+    final lOther$partnerNote = other.partnerNote;
+    if (l$partnerNote.length != lOther$partnerNote.length) {
+      return false;
+    }
+    for (int i = 0; i < l$partnerNote.length; i++) {
+      final l$partnerNote$entry = l$partnerNote[i];
+      final lOther$partnerNote$entry = lOther$partnerNote[i];
+      if (l$partnerNote$entry != lOther$partnerNote$entry) {
+        return false;
+      }
+    }
+    final l$partnerMood = partnerMood;
+    final lOther$partnerMood = other.partnerMood;
+    if (l$partnerMood.length != lOther$partnerMood.length) {
+      return false;
+    }
+    for (int i = 0; i < l$partnerMood.length; i++) {
+      final l$partnerMood$entry = l$partnerMood[i];
+      final lOther$partnerMood$entry = lOther$partnerMood[i];
+      if (l$partnerMood$entry != lOther$partnerMood$entry) {
+        return false;
+      }
+    }
+    final l$myMood = myMood;
+    final lOther$myMood = other.myMood;
+    if (l$myMood.length != lOther$myMood.length) {
+      return false;
+    }
+    for (int i = 0; i < l$myMood.length; i++) {
+      final l$myMood$entry = l$myMood[i];
+      final lOther$myMood$entry = lOther$myMood[i];
+      if (l$myMood$entry != lOther$myMood$entry) {
+        return false;
+      }
+    }
+    final l$rituals = rituals;
+    final lOther$rituals = other.rituals;
+    if (l$rituals.length != lOther$rituals.length) {
+      return false;
+    }
+    for (int i = 0; i < l$rituals.length; i++) {
+      final l$rituals$entry = l$rituals[i];
+      final lOther$rituals$entry = lOther$rituals[i];
+      if (l$rituals$entry != lOther$rituals$entry) {
+        return false;
+      }
     }
     final l$idea = idea;
     final lOther$idea = other.idea;
-    if (l$idea != lOther$idea) {
+    if (l$idea.length != lOther$idea.length) {
       return false;
     }
-    final l$ritualsCollection = ritualsCollection;
-    final lOther$ritualsCollection = other.ritualsCollection;
-    if (l$ritualsCollection != lOther$ritualsCollection) {
-      return false;
-    }
-    final l$moodsCollection = moodsCollection;
-    final lOther$moodsCollection = other.moodsCollection;
-    if (l$moodsCollection != lOther$moodsCollection) {
-      return false;
+    for (int i = 0; i < l$idea.length; i++) {
+      final l$idea$entry = l$idea[i];
+      final lOther$idea$entry = lOther$idea[i];
+      if (l$idea$entry != lOther$idea$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -153,40 +281,38 @@ const documentNodeQueryWidgetOverview = DocumentNode(
     OperationDefinitionNode(
       type: OperationType.query,
       name: NameNode(value: 'WidgetOverview'),
-      variableDefinitions: [],
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'userId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'widget'),
+            name: NameNode(value: 'today'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'nodeId'),
+                  name: NameNode(value: 'userId'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'profileId'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'isPaired'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'togetherSince'),
+                  name: NameNode(value: 'coupleId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -200,87 +326,7 @@ const documentNodeQueryWidgetOverview = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'nextDateTitle'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'nextDateOn'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'unopenedCards'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'partnerNote'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'partnerNoteMedia'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'partnerNoteAt'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'partnerMood'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
-            name: NameNode(value: 'today'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'nodeId'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'isPaired'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'localDate'),
+                  name: NameNode(value: 'togetherSince'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -288,13 +334,6 @@ const documentNodeQueryWidgetOverview = DocumentNode(
                 ),
                 FieldNode(
                   name: NameNode(value: 'cardId'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'cardStatus'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -322,25 +361,35 @@ const documentNodeQueryWidgetOverview = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'suggestionKey'),
+                  name: NameNode(value: 'nextDateOn'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'togetherSince'),
+                  name: NameNode(value: 'nextDate'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'hasPlus'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'title'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -353,21 +402,19 @@ const documentNodeQueryWidgetOverview = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'mySettings'),
-            alias: null,
-            arguments: [],
+            name: NameNode(value: 'userSettingsByPk'),
+            alias: NameNode(value: 'settings'),
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'userId'),
+                value: VariableNode(name: NameNode(value: 'userId')),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'nodeId'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'profileId'),
+                  name: NameNode(value: 'userId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -419,12 +466,374 @@ const documentNodeQueryWidgetOverview = DocumentNode(
             ),
           ),
           FieldNode(
+            name: NameNode(value: 'plusStates'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'userId'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'userId')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'hasPlus'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: 'partnerMessages'),
+            alias: NameNode(value: 'partnerNote'),
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'forWidget'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: BooleanValueNode(value: true),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'senderId'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_neq'),
+                            value: VariableNode(name: NameNode(value: 'userId')),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'recipientId'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'userId')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'order_by'),
+                value: ListValueNode(
+                  values: [
+                    ObjectValueNode(
+                      fields: [
+                        ObjectFieldNode(
+                          name: NameNode(value: 'createdAt'),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'kind'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'mediaFileId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'createdAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: 'sharedMoods'),
+            alias: NameNode(value: 'partnerMood'),
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'userId'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_neq'),
+                            value: VariableNode(name: NameNode(value: 'userId')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'mood'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: 'moods'),
+            alias: NameNode(value: 'myMood'),
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'authorId'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'userId')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'order_by'),
+                value: ListValueNode(
+                  values: [
+                    ObjectValueNode(
+                      fields: [
+                        ObjectFieldNode(
+                          name: NameNode(value: 'day'),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'mood'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: 'rituals'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'archivedAt'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_is_null'),
+                            value: BooleanValueNode(value: true),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'order_by'),
+                value: ListValueNode(
+                  values: [
+                    ObjectValueNode(
+                      fields: [
+                        ObjectFieldNode(
+                          name: NameNode(value: 'createdAt'),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'cadence'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'weekday'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'atTime'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
             name: NameNode(value: 'dailyContent'),
             alias: NameNode(value: 'idea'),
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'kind'),
-                value: StringValueNode(value: 'daily_idea', isBlock: false),
+                name: NameNode(value: 'args'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: StringValueNode(value: 'daily_idea', isBlock: false),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
               ),
             ],
             directives: [],
@@ -462,222 +871,6 @@ const documentNodeQueryWidgetOverview = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'ritualsCollection'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'archivedAt'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'is'),
-                            value: EnumValueNode(name: NameNode(value: 'NULL')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'orderBy'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '1'),
-              ),
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'edges'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'cadence'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'weekday'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'atTime'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
-            name: NameNode(value: 'moodsCollection'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '1'),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'orderBy'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'day'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'edges'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'day'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'mood'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -699,6 +892,7 @@ typedef OnQueryCompleteQueryWidgetOverview = FutureOr<void> Function(
 class OptionsQueryWidgetOverview extends graphql.QueryOptions<QueryWidgetOverview> {
   OptionsQueryWidgetOverview({
     String? operationName,
+    required VariablesQueryWidgetOverview variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -710,6 +904,7 @@ class OptionsQueryWidgetOverview extends graphql.QueryOptions<QueryWidgetOvervie
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'WidgetOverview',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -739,6 +934,7 @@ class OptionsQueryWidgetOverview extends graphql.QueryOptions<QueryWidgetOvervie
 class WatchOptionsQueryWidgetOverview extends graphql.WatchQueryOptions<QueryWidgetOverview> {
   WatchOptionsQueryWidgetOverview({
     String? operationName,
+    required VariablesQueryWidgetOverview variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -750,6 +946,7 @@ class WatchOptionsQueryWidgetOverview extends graphql.WatchQueryOptions<QueryWid
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'WidgetOverview',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -766,309 +963,106 @@ class WatchOptionsQueryWidgetOverview extends graphql.WatchQueryOptions<QueryWid
 }
 
 class FetchMoreOptionsQueryWidgetOverview extends graphql.FetchMoreOptions {
-  FetchMoreOptionsQueryWidgetOverview({required graphql.UpdateQuery updateQuery})
-    : super(updateQuery: updateQuery, document: documentNodeQueryWidgetOverview);
+  FetchMoreOptionsQueryWidgetOverview({
+    required graphql.UpdateQuery updateQuery,
+    required VariablesQueryWidgetOverview variables,
+  }) : super(
+         updateQuery: updateQuery,
+         variables: variables.toJson(),
+         document: documentNodeQueryWidgetOverview,
+       );
 }
 
 extension ClientExtensionQueryWidgetOverview on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QueryWidgetOverview>> queryWidgetOverview([
-    OptionsQueryWidgetOverview? options,
-  ]) async => await this.query(options ?? OptionsQueryWidgetOverview());
+  Future<graphql.QueryResult<QueryWidgetOverview>> queryWidgetOverview(
+    OptionsQueryWidgetOverview options,
+  ) async => await this.query(options);
 
-  graphql.ObservableQuery<QueryWidgetOverview> watchQueryWidgetOverview([
-    WatchOptionsQueryWidgetOverview? options,
-  ]) => this.watchQuery(options ?? WatchOptionsQueryWidgetOverview());
+  graphql.ObservableQuery<QueryWidgetOverview> watchQueryWidgetOverview(
+    WatchOptionsQueryWidgetOverview options,
+  ) => this.watchQuery(options);
 
-  void writeQueryWidgetOverview({required QueryWidgetOverview data, bool broadcast = true}) =>
-      this.writeQuery(
-        graphql.Request(operation: graphql.Operation(document: documentNodeQueryWidgetOverview)),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
+  void writeQueryWidgetOverview({
+    required QueryWidgetOverview data,
+    required VariablesQueryWidgetOverview variables,
+    bool broadcast = true,
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(document: documentNodeQueryWidgetOverview),
+      variables: variables.toJson(),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
 
-  QueryWidgetOverview? readQueryWidgetOverview({bool optimistic = true}) {
+  QueryWidgetOverview? readQueryWidgetOverview({
+    required VariablesQueryWidgetOverview variables,
+    bool optimistic = true,
+  }) {
     final result = this.readQuery(
-      graphql.Request(operation: graphql.Operation(document: documentNodeQueryWidgetOverview)),
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryWidgetOverview),
+        variables: variables.toJson(),
+      ),
       optimistic: optimistic,
     );
     return result == null ? null : QueryWidgetOverview.fromJson(result);
   }
 }
 
-class QueryWidgetOverviewwidget {
-  QueryWidgetOverviewwidget({
-    required this.nodeId,
-    this.profileId,
-    this.isPaired,
-    this.togetherSince,
-    this.partnerName,
-    this.nextDateTitle,
-    this.nextDateOn,
-    this.unopenedCards,
-    this.partnerNote,
-    this.partnerNoteMedia,
-    this.partnerNoteAt,
-    this.partnerMood,
-    this.$__typename = 'WidgetState',
-  });
-
-  factory QueryWidgetOverviewwidget.fromJson(Map<String, dynamic> json) {
-    final l$nodeId = json['nodeId'];
-    final l$profileId = json['profileId'];
-    final l$isPaired = json['isPaired'];
-    final l$togetherSince = json['togetherSince'];
-    final l$partnerName = json['partnerName'];
-    final l$nextDateTitle = json['nextDateTitle'];
-    final l$nextDateOn = json['nextDateOn'];
-    final l$unopenedCards = json['unopenedCards'];
-    final l$partnerNote = json['partnerNote'];
-    final l$partnerNoteMedia = json['partnerNoteMedia'];
-    final l$partnerNoteAt = json['partnerNoteAt'];
-    final l$partnerMood = json['partnerMood'];
-    final l$$__typename = json['__typename'];
-    return QueryWidgetOverviewwidget(
-      nodeId: (l$nodeId as String),
-      profileId: (l$profileId as String?),
-      isPaired: (l$isPaired as bool?),
-      togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
-      partnerName: (l$partnerName as String?),
-      nextDateTitle: (l$nextDateTitle as String?),
-      nextDateOn: l$nextDateOn == null ? null : DateTime.parse((l$nextDateOn as String)),
-      unopenedCards: (l$unopenedCards as int?),
-      partnerNote: (l$partnerNote as String?),
-      partnerNoteMedia: (l$partnerNoteMedia as String?),
-      partnerNoteAt: l$partnerNoteAt == null ? null : DateTime.parse((l$partnerNoteAt as String)),
-      partnerMood: (l$partnerMood as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String nodeId;
-
-  final String? profileId;
-
-  final bool? isPaired;
-
-  final DateTime? togetherSince;
-
-  final String? partnerName;
-
-  final String? nextDateTitle;
-
-  final DateTime? nextDateOn;
-
-  final int? unopenedCards;
-
-  final String? partnerNote;
-
-  final String? partnerNoteMedia;
-
-  final DateTime? partnerNoteAt;
-
-  final String? partnerMood;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$nodeId = nodeId;
-    _resultData['nodeId'] = l$nodeId;
-    final l$profileId = profileId;
-    _resultData['profileId'] = l$profileId;
-    final l$isPaired = isPaired;
-    _resultData['isPaired'] = l$isPaired;
-    final l$togetherSince = togetherSince;
-    _resultData['togetherSince'] = l$togetherSince == null
-        ? null
-        : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
-    final l$partnerName = partnerName;
-    _resultData['partnerName'] = l$partnerName;
-    final l$nextDateTitle = nextDateTitle;
-    _resultData['nextDateTitle'] = l$nextDateTitle;
-    final l$nextDateOn = nextDateOn;
-    _resultData['nextDateOn'] = l$nextDateOn == null
-        ? null
-        : ((v) => v.toIso8601String().substring(0, 10))(l$nextDateOn);
-    final l$unopenedCards = unopenedCards;
-    _resultData['unopenedCards'] = l$unopenedCards;
-    final l$partnerNote = partnerNote;
-    _resultData['partnerNote'] = l$partnerNote;
-    final l$partnerNoteMedia = partnerNoteMedia;
-    _resultData['partnerNoteMedia'] = l$partnerNoteMedia;
-    final l$partnerNoteAt = partnerNoteAt;
-    _resultData['partnerNoteAt'] = l$partnerNoteAt == null
-        ? null
-        : ((v) => v.toUtc().toIso8601String())(l$partnerNoteAt);
-    final l$partnerMood = partnerMood;
-    _resultData['partnerMood'] = l$partnerMood;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$nodeId = nodeId;
-    final l$profileId = profileId;
-    final l$isPaired = isPaired;
-    final l$togetherSince = togetherSince;
-    final l$partnerName = partnerName;
-    final l$nextDateTitle = nextDateTitle;
-    final l$nextDateOn = nextDateOn;
-    final l$unopenedCards = unopenedCards;
-    final l$partnerNote = partnerNote;
-    final l$partnerNoteMedia = partnerNoteMedia;
-    final l$partnerNoteAt = partnerNoteAt;
-    final l$partnerMood = partnerMood;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$nodeId,
-      l$profileId,
-      l$isPaired,
-      l$togetherSince,
-      l$partnerName,
-      l$nextDateTitle,
-      l$nextDateOn,
-      l$unopenedCards,
-      l$partnerNote,
-      l$partnerNoteMedia,
-      l$partnerNoteAt,
-      l$partnerMood,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryWidgetOverviewwidget || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$nodeId = nodeId;
-    final lOther$nodeId = other.nodeId;
-    if (l$nodeId != lOther$nodeId) {
-      return false;
-    }
-    final l$profileId = profileId;
-    final lOther$profileId = other.profileId;
-    if (l$profileId != lOther$profileId) {
-      return false;
-    }
-    final l$isPaired = isPaired;
-    final lOther$isPaired = other.isPaired;
-    if (l$isPaired != lOther$isPaired) {
-      return false;
-    }
-    final l$togetherSince = togetherSince;
-    final lOther$togetherSince = other.togetherSince;
-    if (l$togetherSince != lOther$togetherSince) {
-      return false;
-    }
-    final l$partnerName = partnerName;
-    final lOther$partnerName = other.partnerName;
-    if (l$partnerName != lOther$partnerName) {
-      return false;
-    }
-    final l$nextDateTitle = nextDateTitle;
-    final lOther$nextDateTitle = other.nextDateTitle;
-    if (l$nextDateTitle != lOther$nextDateTitle) {
-      return false;
-    }
-    final l$nextDateOn = nextDateOn;
-    final lOther$nextDateOn = other.nextDateOn;
-    if (l$nextDateOn != lOther$nextDateOn) {
-      return false;
-    }
-    final l$unopenedCards = unopenedCards;
-    final lOther$unopenedCards = other.unopenedCards;
-    if (l$unopenedCards != lOther$unopenedCards) {
-      return false;
-    }
-    final l$partnerNote = partnerNote;
-    final lOther$partnerNote = other.partnerNote;
-    if (l$partnerNote != lOther$partnerNote) {
-      return false;
-    }
-    final l$partnerNoteMedia = partnerNoteMedia;
-    final lOther$partnerNoteMedia = other.partnerNoteMedia;
-    if (l$partnerNoteMedia != lOther$partnerNoteMedia) {
-      return false;
-    }
-    final l$partnerNoteAt = partnerNoteAt;
-    final lOther$partnerNoteAt = other.partnerNoteAt;
-    if (l$partnerNoteAt != lOther$partnerNoteAt) {
-      return false;
-    }
-    final l$partnerMood = partnerMood;
-    final lOther$partnerMood = other.partnerMood;
-    if (l$partnerMood != lOther$partnerMood) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
 class QueryWidgetOverviewtoday {
   QueryWidgetOverviewtoday({
-    required this.nodeId,
-    this.isPaired,
-    this.localDate,
+    this.userId,
+    this.coupleId,
+    this.partnerName,
+    this.togetherSince,
     this.cardId,
-    this.cardStatus,
     this.unopenedCards,
     this.slipsThisWeek,
     this.slipsTotal,
-    this.suggestionKey,
-    this.togetherSince,
-    this.hasPlus,
-    this.$__typename = 'TodayState',
+    this.nextDateOn,
+    this.nextDate,
+    this.$__typename = 'today',
   });
 
   factory QueryWidgetOverviewtoday.fromJson(Map<String, dynamic> json) {
-    final l$nodeId = json['nodeId'];
-    final l$isPaired = json['isPaired'];
-    final l$localDate = json['localDate'];
+    final l$userId = json['userId'];
+    final l$coupleId = json['coupleId'];
+    final l$partnerName = json['partnerName'];
+    final l$togetherSince = json['togetherSince'];
     final l$cardId = json['cardId'];
-    final l$cardStatus = json['cardStatus'];
     final l$unopenedCards = json['unopenedCards'];
     final l$slipsThisWeek = json['slipsThisWeek'];
     final l$slipsTotal = json['slipsTotal'];
-    final l$suggestionKey = json['suggestionKey'];
-    final l$togetherSince = json['togetherSince'];
-    final l$hasPlus = json['hasPlus'];
+    final l$nextDateOn = json['nextDateOn'];
+    final l$nextDate = json['nextDate'];
     final l$$__typename = json['__typename'];
     return QueryWidgetOverviewtoday(
-      nodeId: (l$nodeId as String),
-      isPaired: (l$isPaired as bool?),
-      localDate: l$localDate == null ? null : DateTime.parse((l$localDate as String)),
+      userId: (l$userId as String?),
+      coupleId: (l$coupleId as String?),
+      partnerName: (l$partnerName as String?),
+      togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       cardId: (l$cardId as String?),
-      cardStatus: (l$cardStatus as String?),
       unopenedCards: (l$unopenedCards as int?),
       slipsThisWeek: (l$slipsThisWeek as int?),
       slipsTotal: (l$slipsTotal as int?),
-      suggestionKey: (l$suggestionKey as String?),
-      togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
-      hasPlus: (l$hasPlus as bool?),
+      nextDateOn: l$nextDateOn == null ? null : DateTime.parse((l$nextDateOn as String)),
+      nextDate: l$nextDate == null
+          ? null
+          : QueryWidgetOverviewtodaynextDate.fromJson((l$nextDate as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String nodeId;
+  final String? userId;
 
-  final bool? isPaired;
+  final String? coupleId;
 
-  final DateTime? localDate;
+  final String? partnerName;
+
+  final DateTime? togetherSince;
 
   final String? cardId;
-
-  final String? cardStatus;
 
   final int? unopenedCards;
 
@@ -1076,42 +1070,38 @@ class QueryWidgetOverviewtoday {
 
   final int? slipsTotal;
 
-  final String? suggestionKey;
+  final DateTime? nextDateOn;
 
-  final DateTime? togetherSince;
-
-  final bool? hasPlus;
+  final QueryWidgetOverviewtodaynextDate? nextDate;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$nodeId = nodeId;
-    _resultData['nodeId'] = l$nodeId;
-    final l$isPaired = isPaired;
-    _resultData['isPaired'] = l$isPaired;
-    final l$localDate = localDate;
-    _resultData['localDate'] = l$localDate == null
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
+    final l$partnerName = partnerName;
+    _resultData['partnerName'] = l$partnerName;
+    final l$togetherSince = togetherSince;
+    _resultData['togetherSince'] = l$togetherSince == null
         ? null
-        : ((v) => v.toIso8601String().substring(0, 10))(l$localDate);
+        : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
     final l$cardId = cardId;
     _resultData['cardId'] = l$cardId;
-    final l$cardStatus = cardStatus;
-    _resultData['cardStatus'] = l$cardStatus;
     final l$unopenedCards = unopenedCards;
     _resultData['unopenedCards'] = l$unopenedCards;
     final l$slipsThisWeek = slipsThisWeek;
     _resultData['slipsThisWeek'] = l$slipsThisWeek;
     final l$slipsTotal = slipsTotal;
     _resultData['slipsTotal'] = l$slipsTotal;
-    final l$suggestionKey = suggestionKey;
-    _resultData['suggestionKey'] = l$suggestionKey;
-    final l$togetherSince = togetherSince;
-    _resultData['togetherSince'] = l$togetherSince == null
+    final l$nextDateOn = nextDateOn;
+    _resultData['nextDateOn'] = l$nextDateOn == null
         ? null
-        : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
-    final l$hasPlus = hasPlus;
-    _resultData['hasPlus'] = l$hasPlus;
+        : ((v) => v.toIso8601String().substring(0, 10))(l$nextDateOn);
+    final l$nextDate = nextDate;
+    _resultData['nextDate'] = l$nextDate?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1119,30 +1109,28 @@ class QueryWidgetOverviewtoday {
 
   @override
   int get hashCode {
-    final l$nodeId = nodeId;
-    final l$isPaired = isPaired;
-    final l$localDate = localDate;
+    final l$userId = userId;
+    final l$coupleId = coupleId;
+    final l$partnerName = partnerName;
+    final l$togetherSince = togetherSince;
     final l$cardId = cardId;
-    final l$cardStatus = cardStatus;
     final l$unopenedCards = unopenedCards;
     final l$slipsThisWeek = slipsThisWeek;
     final l$slipsTotal = slipsTotal;
-    final l$suggestionKey = suggestionKey;
-    final l$togetherSince = togetherSince;
-    final l$hasPlus = hasPlus;
+    final l$nextDateOn = nextDateOn;
+    final l$nextDate = nextDate;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$nodeId,
-      l$isPaired,
-      l$localDate,
+      l$userId,
+      l$coupleId,
+      l$partnerName,
+      l$togetherSince,
       l$cardId,
-      l$cardStatus,
       l$unopenedCards,
       l$slipsThisWeek,
       l$slipsTotal,
-      l$suggestionKey,
-      l$togetherSince,
-      l$hasPlus,
+      l$nextDateOn,
+      l$nextDate,
       l$$__typename,
     ]);
   }
@@ -1155,29 +1143,29 @@ class QueryWidgetOverviewtoday {
     if (other is! QueryWidgetOverviewtoday || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$nodeId = nodeId;
-    final lOther$nodeId = other.nodeId;
-    if (l$nodeId != lOther$nodeId) {
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
       return false;
     }
-    final l$isPaired = isPaired;
-    final lOther$isPaired = other.isPaired;
-    if (l$isPaired != lOther$isPaired) {
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
       return false;
     }
-    final l$localDate = localDate;
-    final lOther$localDate = other.localDate;
-    if (l$localDate != lOther$localDate) {
+    final l$partnerName = partnerName;
+    final lOther$partnerName = other.partnerName;
+    if (l$partnerName != lOther$partnerName) {
+      return false;
+    }
+    final l$togetherSince = togetherSince;
+    final lOther$togetherSince = other.togetherSince;
+    if (l$togetherSince != lOther$togetherSince) {
       return false;
     }
     final l$cardId = cardId;
     final lOther$cardId = other.cardId;
     if (l$cardId != lOther$cardId) {
-      return false;
-    }
-    final l$cardStatus = cardStatus;
-    final lOther$cardStatus = other.cardStatus;
-    if (l$cardStatus != lOther$cardStatus) {
       return false;
     }
     final l$unopenedCards = unopenedCards;
@@ -1195,19 +1183,14 @@ class QueryWidgetOverviewtoday {
     if (l$slipsTotal != lOther$slipsTotal) {
       return false;
     }
-    final l$suggestionKey = suggestionKey;
-    final lOther$suggestionKey = other.suggestionKey;
-    if (l$suggestionKey != lOther$suggestionKey) {
+    final l$nextDateOn = nextDateOn;
+    final lOther$nextDateOn = other.nextDateOn;
+    if (l$nextDateOn != lOther$nextDateOn) {
       return false;
     }
-    final l$togetherSince = togetherSince;
-    final lOther$togetherSince = other.togetherSince;
-    if (l$togetherSince != lOther$togetherSince) {
-      return false;
-    }
-    final l$hasPlus = hasPlus;
-    final lOther$hasPlus = other.hasPlus;
-    if (l$hasPlus != lOther$hasPlus) {
+    final l$nextDate = nextDate;
+    final lOther$nextDate = other.nextDate;
+    if (l$nextDate != lOther$nextDate) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -1219,31 +1202,82 @@ class QueryWidgetOverviewtoday {
   }
 }
 
-class QueryWidgetOverviewmySettings {
-  QueryWidgetOverviewmySettings({
-    required this.nodeId,
-    required this.profileId,
+class QueryWidgetOverviewtodaynextDate {
+  QueryWidgetOverviewtodaynextDate({required this.title, this.$__typename = 'importantDates'});
+
+  factory QueryWidgetOverviewtodaynextDate.fromJson(Map<String, dynamic> json) {
+    final l$title = json['title'];
+    final l$$__typename = json['__typename'];
+    return QueryWidgetOverviewtodaynextDate(
+      title: (l$title as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$title, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryWidgetOverviewtodaynextDate || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryWidgetOverviewsettings {
+  QueryWidgetOverviewsettings({
+    required this.userId,
     this.phase,
     this.togetherSince,
     required this.widgetAllowPartnerNotes,
     required this.widgetOnLockScreen,
     required this.widgetShowNames,
-    this.$__typename = 'ProfileSettings',
+    this.$__typename = 'userSettings',
   });
 
-  factory QueryWidgetOverviewmySettings.fromJson(Map<String, dynamic> json) {
-    final l$nodeId = json['nodeId'];
-    final l$profileId = json['profileId'];
+  factory QueryWidgetOverviewsettings.fromJson(Map<String, dynamic> json) {
+    final l$userId = json['userId'];
     final l$phase = json['phase'];
     final l$togetherSince = json['togetherSince'];
     final l$widgetAllowPartnerNotes = json['widgetAllowPartnerNotes'];
     final l$widgetOnLockScreen = json['widgetOnLockScreen'];
     final l$widgetShowNames = json['widgetShowNames'];
     final l$$__typename = json['__typename'];
-    return QueryWidgetOverviewmySettings(
-      nodeId: (l$nodeId as String),
-      profileId: (l$profileId as String),
-      phase: l$phase == null ? null : fromJsonEnumRelationshipPhase((l$phase as String)),
+    return QueryWidgetOverviewsettings(
+      userId: (l$userId as String),
+      phase: l$phase == null ? null : fromJsonEnumRelationshipPhase_enum((l$phase as String)),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       widgetAllowPartnerNotes: (l$widgetAllowPartnerNotes as bool),
       widgetOnLockScreen: (l$widgetOnLockScreen as bool),
@@ -1252,11 +1286,9 @@ class QueryWidgetOverviewmySettings {
     );
   }
 
-  final String nodeId;
+  final String userId;
 
-  final String profileId;
-
-  final EnumRelationshipPhase? phase;
+  final EnumRelationshipPhase_enum? phase;
 
   final DateTime? togetherSince;
 
@@ -1270,12 +1302,10 @@ class QueryWidgetOverviewmySettings {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$nodeId = nodeId;
-    _resultData['nodeId'] = l$nodeId;
-    final l$profileId = profileId;
-    _resultData['profileId'] = l$profileId;
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
     final l$phase = phase;
-    _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase(l$phase);
+    _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase_enum(l$phase);
     final l$togetherSince = togetherSince;
     _resultData['togetherSince'] = l$togetherSince == null
         ? null
@@ -1293,8 +1323,7 @@ class QueryWidgetOverviewmySettings {
 
   @override
   int get hashCode {
-    final l$nodeId = nodeId;
-    final l$profileId = profileId;
+    final l$userId = userId;
     final l$phase = phase;
     final l$togetherSince = togetherSince;
     final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
@@ -1302,8 +1331,7 @@ class QueryWidgetOverviewmySettings {
     final l$widgetShowNames = widgetShowNames;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$nodeId,
-      l$profileId,
+      l$userId,
       l$phase,
       l$togetherSince,
       l$widgetAllowPartnerNotes,
@@ -1318,17 +1346,12 @@ class QueryWidgetOverviewmySettings {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryWidgetOverviewmySettings || runtimeType != other.runtimeType) {
+    if (other is! QueryWidgetOverviewsettings || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$nodeId = nodeId;
-    final lOther$nodeId = other.nodeId;
-    if (l$nodeId != lOther$nodeId) {
-      return false;
-    }
-    final l$profileId = profileId;
-    final lOther$profileId = other.profileId;
-    if (l$profileId != lOther$profileId) {
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
       return false;
     }
     final l$phase = phase;
@@ -1365,12 +1388,379 @@ class QueryWidgetOverviewmySettings {
   }
 }
 
+class QueryWidgetOverviewplusStates {
+  QueryWidgetOverviewplusStates({this.hasPlus, this.$__typename = 'plusStates'});
+
+  factory QueryWidgetOverviewplusStates.fromJson(Map<String, dynamic> json) {
+    final l$hasPlus = json['hasPlus'];
+    final l$$__typename = json['__typename'];
+    return QueryWidgetOverviewplusStates(
+      hasPlus: (l$hasPlus as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? hasPlus;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$hasPlus = hasPlus;
+    _resultData['hasPlus'] = l$hasPlus;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$hasPlus = hasPlus;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$hasPlus, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryWidgetOverviewplusStates || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$hasPlus = hasPlus;
+    final lOther$hasPlus = other.hasPlus;
+    if (l$hasPlus != lOther$hasPlus) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryWidgetOverviewpartnerNote {
+  QueryWidgetOverviewpartnerNote({
+    this.body,
+    required this.kind,
+    this.mediaFileId,
+    required this.createdAt,
+    this.$__typename = 'partnerMessages',
+  });
+
+  factory QueryWidgetOverviewpartnerNote.fromJson(Map<String, dynamic> json) {
+    final l$body = json['body'];
+    final l$kind = json['kind'];
+    final l$mediaFileId = json['mediaFileId'];
+    final l$createdAt = json['createdAt'];
+    final l$$__typename = json['__typename'];
+    return QueryWidgetOverviewpartnerNote(
+      body: (l$body as String?),
+      kind: fromJsonEnumPartnerMessageKind_enum((l$kind as String)),
+      mediaFileId: (l$mediaFileId as String?),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? body;
+
+  final EnumPartnerMessageKind_enum kind;
+
+  final String? mediaFileId;
+
+  final DateTime createdAt;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$body = body;
+    _resultData['body'] = l$body;
+    final l$kind = kind;
+    _resultData['kind'] = toJsonEnumPartnerMessageKind_enum(l$kind);
+    final l$mediaFileId = mediaFileId;
+    _resultData['mediaFileId'] = l$mediaFileId;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$body = body;
+    final l$kind = kind;
+    final l$mediaFileId = mediaFileId;
+    final l$createdAt = createdAt;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$body, l$kind, l$mediaFileId, l$createdAt, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryWidgetOverviewpartnerNote || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$mediaFileId = mediaFileId;
+    final lOther$mediaFileId = other.mediaFileId;
+    if (l$mediaFileId != lOther$mediaFileId) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryWidgetOverviewpartnerMood {
+  QueryWidgetOverviewpartnerMood({required this.mood, this.$__typename = 'sharedMoods'});
+
+  factory QueryWidgetOverviewpartnerMood.fromJson(Map<String, dynamic> json) {
+    final l$mood = json['mood'];
+    final l$$__typename = json['__typename'];
+    return QueryWidgetOverviewpartnerMood(
+      mood: fromJsonEnumMood_enum((l$mood as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final EnumMood_enum mood;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$mood = mood;
+    _resultData['mood'] = toJsonEnumMood_enum(l$mood);
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$mood = mood;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$mood, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryWidgetOverviewpartnerMood || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$mood = mood;
+    final lOther$mood = other.mood;
+    if (l$mood != lOther$mood) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryWidgetOverviewmyMood {
+  QueryWidgetOverviewmyMood({required this.mood, this.$__typename = 'moods'});
+
+  factory QueryWidgetOverviewmyMood.fromJson(Map<String, dynamic> json) {
+    final l$mood = json['mood'];
+    final l$$__typename = json['__typename'];
+    return QueryWidgetOverviewmyMood(
+      mood: fromJsonEnumMood_enum((l$mood as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final EnumMood_enum mood;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$mood = mood;
+    _resultData['mood'] = toJsonEnumMood_enum(l$mood);
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$mood = mood;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$mood, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryWidgetOverviewmyMood || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$mood = mood;
+    final lOther$mood = other.mood;
+    if (l$mood != lOther$mood) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryWidgetOverviewrituals {
+  QueryWidgetOverviewrituals({
+    required this.id,
+    required this.title,
+    required this.cadence,
+    this.weekday,
+    this.atTime,
+    this.$__typename = 'rituals',
+  });
+
+  factory QueryWidgetOverviewrituals.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$cadence = json['cadence'];
+    final l$weekday = json['weekday'];
+    final l$atTime = json['atTime'];
+    final l$$__typename = json['__typename'];
+    return QueryWidgetOverviewrituals(
+      id: (l$id as String),
+      title: (l$title as String),
+      cadence: fromJsonEnumRitualCadence_enum((l$cadence as String)),
+      weekday: (l$weekday as int?),
+      atTime: (l$atTime as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String title;
+
+  final EnumRitualCadence_enum cadence;
+
+  final int? weekday;
+
+  final String? atTime;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$cadence = cadence;
+    _resultData['cadence'] = toJsonEnumRitualCadence_enum(l$cadence);
+    final l$weekday = weekday;
+    _resultData['weekday'] = l$weekday;
+    final l$atTime = atTime;
+    _resultData['atTime'] = l$atTime;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$cadence = cadence;
+    final l$weekday = weekday;
+    final l$atTime = atTime;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$title, l$cadence, l$weekday, l$atTime, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryWidgetOverviewrituals || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$cadence = cadence;
+    final lOther$cadence = other.cadence;
+    if (l$cadence != lOther$cadence) {
+      return false;
+    }
+    final l$weekday = weekday;
+    final lOther$weekday = other.weekday;
+    if (l$weekday != lOther$weekday) {
+      return false;
+    }
+    final l$atTime = atTime;
+    final lOther$atTime = other.atTime;
+    if (l$atTime != lOther$atTime) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
 class QueryWidgetOverviewidea {
   QueryWidgetOverviewidea({
     required this.slug,
     required this.title,
     this.body,
-    this.$__typename = 'ContentItems',
+    this.$__typename = 'contentItems',
   });
 
   factory QueryWidgetOverviewidea.fromJson(Map<String, dynamic> json) {
@@ -1437,440 +1827,6 @@ class QueryWidgetOverviewidea {
     final l$body = body;
     final lOther$body = other.body;
     if (l$body != lOther$body) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryWidgetOverviewritualsCollection {
-  QueryWidgetOverviewritualsCollection({
-    required this.edges,
-    this.$__typename = 'RitualsConnection',
-  });
-
-  factory QueryWidgetOverviewritualsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryWidgetOverviewritualsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryWidgetOverviewritualsCollectionedges.fromJson((e as Map<String, dynamic>)),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryWidgetOverviewritualsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryWidgetOverviewritualsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryWidgetOverviewritualsCollectionedges {
-  QueryWidgetOverviewritualsCollectionedges({required this.node, this.$__typename = 'RitualsEdge'});
-
-  factory QueryWidgetOverviewritualsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryWidgetOverviewritualsCollectionedges(
-      node: QueryWidgetOverviewritualsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryWidgetOverviewritualsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryWidgetOverviewritualsCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryWidgetOverviewritualsCollectionedgesnode {
-  QueryWidgetOverviewritualsCollectionedgesnode({
-    required this.id,
-    required this.title,
-    required this.cadence,
-    this.weekday,
-    this.atTime,
-    this.$__typename = 'Rituals',
-  });
-
-  factory QueryWidgetOverviewritualsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$title = json['title'];
-    final l$cadence = json['cadence'];
-    final l$weekday = json['weekday'];
-    final l$atTime = json['atTime'];
-    final l$$__typename = json['__typename'];
-    return QueryWidgetOverviewritualsCollectionedgesnode(
-      id: (l$id as String),
-      title: (l$title as String),
-      cadence: fromJsonEnumRitualCadence((l$cadence as String)),
-      weekday: (l$weekday as int?),
-      atTime: (l$atTime as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String title;
-
-  final EnumRitualCadence cadence;
-
-  final int? weekday;
-
-  final String? atTime;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$cadence = cadence;
-    _resultData['cadence'] = toJsonEnumRitualCadence(l$cadence);
-    final l$weekday = weekday;
-    _resultData['weekday'] = l$weekday;
-    final l$atTime = atTime;
-    _resultData['atTime'] = l$atTime;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$title = title;
-    final l$cadence = cadence;
-    final l$weekday = weekday;
-    final l$atTime = atTime;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$title, l$cadence, l$weekday, l$atTime, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryWidgetOverviewritualsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$cadence = cadence;
-    final lOther$cadence = other.cadence;
-    if (l$cadence != lOther$cadence) {
-      return false;
-    }
-    final l$weekday = weekday;
-    final lOther$weekday = other.weekday;
-    if (l$weekday != lOther$weekday) {
-      return false;
-    }
-    final l$atTime = atTime;
-    final lOther$atTime = other.atTime;
-    if (l$atTime != lOther$atTime) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryWidgetOverviewmoodsCollection {
-  QueryWidgetOverviewmoodsCollection({required this.edges, this.$__typename = 'MoodsConnection'});
-
-  factory QueryWidgetOverviewmoodsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryWidgetOverviewmoodsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryWidgetOverviewmoodsCollectionedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryWidgetOverviewmoodsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryWidgetOverviewmoodsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryWidgetOverviewmoodsCollectionedges {
-  QueryWidgetOverviewmoodsCollectionedges({required this.node, this.$__typename = 'MoodsEdge'});
-
-  factory QueryWidgetOverviewmoodsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryWidgetOverviewmoodsCollectionedges(
-      node: QueryWidgetOverviewmoodsCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryWidgetOverviewmoodsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryWidgetOverviewmoodsCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryWidgetOverviewmoodsCollectionedgesnode {
-  QueryWidgetOverviewmoodsCollectionedgesnode({
-    required this.id,
-    required this.day,
-    required this.mood,
-    this.$__typename = 'Moods',
-  });
-
-  factory QueryWidgetOverviewmoodsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$day = json['day'];
-    final l$mood = json['mood'];
-    final l$$__typename = json['__typename'];
-    return QueryWidgetOverviewmoodsCollectionedgesnode(
-      id: (l$id as String),
-      day: DateTime.parse((l$day as String)),
-      mood: fromJsonEnumMood((l$mood as String)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final DateTime day;
-
-  final EnumMood mood;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$day = day;
-    _resultData['day'] = ((v) => v.toIso8601String().substring(0, 10))(l$day);
-    final l$mood = mood;
-    _resultData['mood'] = toJsonEnumMood(l$mood);
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$day = day;
-    final l$mood = mood;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$day, l$mood, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryWidgetOverviewmoodsCollectionedgesnode || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$day = day;
-    final lOther$day = other.day;
-    if (l$day != lOther$day) {
-      return false;
-    }
-    final l$mood = mood;
-    final lOther$mood = other.mood;
-    if (l$mood != lOther$mood) {
       return false;
     }
     final l$$__typename = $__typename;

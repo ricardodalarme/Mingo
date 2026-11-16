@@ -83,32 +83,29 @@ class VariablesMutationUpdateHistoryTogetherSince {
 }
 
 class MutationUpdateHistoryTogetherSince {
-  MutationUpdateHistoryTogetherSince({
-    required this.updateProfileSettingsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateHistoryTogetherSince({this.updateUserSettings, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateHistoryTogetherSince.fromJson(Map<String, dynamic> json) {
-    final l$updateProfileSettingsCollection = json['updateProfileSettingsCollection'];
+    final l$updateUserSettings = json['updateUserSettings'];
     final l$$__typename = json['__typename'];
     return MutationUpdateHistoryTogetherSince(
-      updateProfileSettingsCollection:
-          MutationUpdateHistoryTogetherSinceupdateProfileSettingsCollection.fromJson(
-            (l$updateProfileSettingsCollection as Map<String, dynamic>),
-          ),
+      updateUserSettings: l$updateUserSettings == null
+          ? null
+          : MutationUpdateHistoryTogetherSinceupdateUserSettings.fromJson(
+              (l$updateUserSettings as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateHistoryTogetherSinceupdateProfileSettingsCollection
-  updateProfileSettingsCollection;
+  final MutationUpdateHistoryTogetherSinceupdateUserSettings? updateUserSettings;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    _resultData['updateProfileSettingsCollection'] = l$updateProfileSettingsCollection.toJson();
+    final l$updateUserSettings = updateUserSettings;
+    _resultData['updateUserSettings'] = l$updateUserSettings?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -116,9 +113,9 @@ class MutationUpdateHistoryTogetherSince {
 
   @override
   int get hashCode {
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
+    final l$updateUserSettings = updateUserSettings;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateProfileSettingsCollection, l$$__typename]);
+    return Object.hashAll([l$updateUserSettings, l$$__typename]);
   }
 
   @override
@@ -129,9 +126,9 @@ class MutationUpdateHistoryTogetherSince {
     if (other is! MutationUpdateHistoryTogetherSince || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    final lOther$updateProfileSettingsCollection = other.updateProfileSettingsCollection;
-    if (l$updateProfileSettingsCollection != lOther$updateProfileSettingsCollection) {
+    final l$updateUserSettings = updateUserSettings;
+    final lOther$updateUserSettings = other.updateUserSettings;
+    if (l$updateUserSettings != lOther$updateUserSettings) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -151,13 +148,13 @@ const documentNodeMutationUpdateHistoryTogetherSince = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'profileId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'togetherSince')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -166,30 +163,19 @@ const documentNodeMutationUpdateHistoryTogetherSince = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProfileSettingsCollection'),
+            name: NameNode(value: 'updateUserSettings'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
-                      name: NameNode(value: 'togetherSince'),
-                      value: VariableNode(name: NameNode(value: 'togetherSince')),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'profileId'),
+                      name: NameNode(value: 'userId'),
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'profileId')),
                           ),
                         ],
@@ -199,15 +185,22 @@ const documentNodeMutationUpdateHistoryTogetherSince = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'togetherSince'),
+                      value: VariableNode(name: NameNode(value: 'togetherSince')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -331,31 +324,29 @@ extension ClientExtensionMutationUpdateHistoryTogetherSince on graphql.GraphQLCl
       this.watchMutation(options);
 }
 
-class MutationUpdateHistoryTogetherSinceupdateProfileSettingsCollection {
-  MutationUpdateHistoryTogetherSinceupdateProfileSettingsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProfileSettingsUpdateResponse',
+class MutationUpdateHistoryTogetherSinceupdateUserSettings {
+  MutationUpdateHistoryTogetherSinceupdateUserSettings({
+    required this.affected_rows,
+    this.$__typename = 'userSettings_mutation_response',
   });
 
-  factory MutationUpdateHistoryTogetherSinceupdateProfileSettingsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateHistoryTogetherSinceupdateUserSettings.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateHistoryTogetherSinceupdateProfileSettingsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateHistoryTogetherSinceupdateUserSettings(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -363,9 +354,9 @@ class MutationUpdateHistoryTogetherSinceupdateProfileSettingsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -373,13 +364,13 @@ class MutationUpdateHistoryTogetherSinceupdateProfileSettingsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateHistoryTogetherSinceupdateProfileSettingsCollection ||
+    if (other is! MutationUpdateHistoryTogetherSinceupdateUserSettings ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

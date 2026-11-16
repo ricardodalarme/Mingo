@@ -24,7 +24,7 @@ void main() {
   test('load shows the latest values', () async {
     when(() => repository.getConsents()).thenAnswer(
       (_) async => {
-        ConsentKind.sensitiveData: true,
+        ConsentKind.terms: true,
         ConsentKind.analytics: true,
         ConsentKind.marketing: false,
       },
@@ -51,11 +51,11 @@ void main() {
   });
 
   test('a required consent never changes', () async {
-    when(() => repository.getConsents()).thenAnswer((_) async => {ConsentKind.sensitiveData: true});
+    when(() => repository.getConsents()).thenAnswer((_) async => {ConsentKind.terms: true});
     final cubit = build();
     await cubit.load();
 
-    await cubit.toggle(ConsentKind.sensitiveData);
+    await cubit.toggle(ConsentKind.terms);
 
     verifyNever(() => repository.setConsent(any(), granted: any(named: 'granted')));
   });

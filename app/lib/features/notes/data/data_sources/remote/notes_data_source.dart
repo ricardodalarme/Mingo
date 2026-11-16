@@ -1,38 +1,34 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/notes/data/data_sources/remote/mutations/generated/DeletePartnerMessage.graphql.dart';
 import 'package:app/features/notes/data/data_sources/remote/mutations/generated/SendPartnerMessage.graphql.dart';
 import 'package:app/features/notes/data/data_sources/remote/queries/generated/SentPartnerMessages.graphql.dart';
 import 'package:network/network.dart';
 
 class NotesDataSource({required final GQLClient _client}) {
-  Future<List<QuerySentPartnerMessagespartnerMessagesCollectionedgesnode>> getSent(
-    String senderId,
-  ) async {
+  Future<List<QuerySentPartnerMessagespartnerMessages>> getSent(String senderId) async {
     final response = await _client.query(
       OptionsQuerySentPartnerMessages(
         variables: VariablesQuerySentPartnerMessages(senderId: senderId),
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.partnerMessagesCollection.edges,
-    );
+    final rows = validateResponseData(response, getData: (data) => data.partnerMessages);
 
-    return [for (final edge in edges) edge.node];
+    return rows;
   }
 
   Future<void> send({
-    required String kind,
+    required EnumPartnerMessageKind_enum kind,
     required bool forWidget,
     String? body,
-    String? mediaPath,
+    String? mediaFileId,
   }) async {
     final response = await _client.mutate(
       OptionsMutationSendPartnerMessage(
         variables: VariablesMutationSendPartnerMessage(
           kind: kind,
           body: body,
-          mediaPath: mediaPath,
+          mediaFileId: mediaFileId,
           forWidget: forWidget,
         ),
       ),
@@ -49,6 +45,9 @@ class NotesDataSource({required final GQLClient _client}) {
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data.deletePartnerMessage ?? false);
+    return validateResponseData(
+      response,
+      getData: (data) => data.deletePartnerMessagesByPk != null,
+    );
   }
 }

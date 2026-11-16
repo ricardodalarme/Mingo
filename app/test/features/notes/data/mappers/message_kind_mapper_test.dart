@@ -5,13 +5,19 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('a drawing is a drawing', () {
-    expect(EnumPartnerMessageKind.drawing.toModel(), MessageKind.drawing);
+    expect(EnumPartnerMessageKind_enum.drawing.toModel(), MessageKind.drawing);
   });
 
   test('every other kind is shown as a note', () {
-    expect(EnumPartnerMessageKind.note.toModel(), MessageKind.note);
-    expect(EnumPartnerMessageKind.voice.toModel(), MessageKind.note);
-    expect(EnumPartnerMessageKind.pack.toModel(), MessageKind.note);
-    expect(EnumPartnerMessageKind.$unknown.toModel(), MessageKind.note);
+    expect(EnumPartnerMessageKind_enum.note.toModel(), MessageKind.note);
+    expect(EnumPartnerMessageKind_enum.voice.toModel(), MessageKind.note);
+    expect(EnumPartnerMessageKind_enum.pack.toModel(), MessageKind.note);
+    expect(EnumPartnerMessageKind_enum.$unknown.toModel(), MessageKind.note);
+  });
+
+  test('a message kind survives a trip to the remote enum and back', () {
+    for (final value in MessageKind.values) {
+      expect(value.toRemote().toModel(), value);
+    }
   });
 }

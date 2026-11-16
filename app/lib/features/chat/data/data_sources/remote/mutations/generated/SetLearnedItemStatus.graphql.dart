@@ -9,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationSetLearnedItemStatus {
   factory VariablesMutationSetLearnedItemStatus({
     required String id,
-    required EnumLearnedItemStatus status,
+    required EnumLearnedItemStatus_enum status,
   }) => VariablesMutationSetLearnedItemStatus._({r'id': id, r'status': status});
 
   VariablesMutationSetLearnedItemStatus._(this._$data);
@@ -19,7 +19,7 @@ class VariablesMutationSetLearnedItemStatus {
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
     final l$status = data['status'];
-    result$data['status'] = fromJsonEnumLearnedItemStatus((l$status as String));
+    result$data['status'] = fromJsonEnumLearnedItemStatus_enum((l$status as String));
     return VariablesMutationSetLearnedItemStatus._(result$data);
   }
 
@@ -27,14 +27,14 @@ class VariablesMutationSetLearnedItemStatus {
 
   String get id => (_$data['id'] as String);
 
-  EnumLearnedItemStatus get status => (_$data['status'] as EnumLearnedItemStatus);
+  EnumLearnedItemStatus_enum get status => (_$data['status'] as EnumLearnedItemStatus_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
     result$data['id'] = l$id;
     final l$status = status;
-    result$data['status'] = toJsonEnumLearnedItemStatus(l$status);
+    result$data['status'] = toJsonEnumLearnedItemStatus_enum(l$status);
     return result$data;
   }
 
@@ -68,31 +68,29 @@ class VariablesMutationSetLearnedItemStatus {
 }
 
 class MutationSetLearnedItemStatus {
-  MutationSetLearnedItemStatus({
-    required this.updateLearnedItemsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationSetLearnedItemStatus({this.updateLearnedItemsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationSetLearnedItemStatus.fromJson(Map<String, dynamic> json) {
-    final l$updateLearnedItemsCollection = json['updateLearnedItemsCollection'];
+    final l$updateLearnedItemsByPk = json['updateLearnedItemsByPk'];
     final l$$__typename = json['__typename'];
     return MutationSetLearnedItemStatus(
-      updateLearnedItemsCollection:
-          MutationSetLearnedItemStatusupdateLearnedItemsCollection.fromJson(
-            (l$updateLearnedItemsCollection as Map<String, dynamic>),
-          ),
+      updateLearnedItemsByPk: l$updateLearnedItemsByPk == null
+          ? null
+          : MutationSetLearnedItemStatusupdateLearnedItemsByPk.fromJson(
+              (l$updateLearnedItemsByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSetLearnedItemStatusupdateLearnedItemsCollection updateLearnedItemsCollection;
+  final MutationSetLearnedItemStatusupdateLearnedItemsByPk? updateLearnedItemsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateLearnedItemsCollection = updateLearnedItemsCollection;
-    _resultData['updateLearnedItemsCollection'] = l$updateLearnedItemsCollection.toJson();
+    final l$updateLearnedItemsByPk = updateLearnedItemsByPk;
+    _resultData['updateLearnedItemsByPk'] = l$updateLearnedItemsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -100,9 +98,9 @@ class MutationSetLearnedItemStatus {
 
   @override
   int get hashCode {
-    final l$updateLearnedItemsCollection = updateLearnedItemsCollection;
+    final l$updateLearnedItemsByPk = updateLearnedItemsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateLearnedItemsCollection, l$$__typename]);
+    return Object.hashAll([l$updateLearnedItemsByPk, l$$__typename]);
   }
 
   @override
@@ -113,9 +111,9 @@ class MutationSetLearnedItemStatus {
     if (other is! MutationSetLearnedItemStatus || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateLearnedItemsCollection = updateLearnedItemsCollection;
-    final lOther$updateLearnedItemsCollection = other.updateLearnedItemsCollection;
-    if (l$updateLearnedItemsCollection != lOther$updateLearnedItemsCollection) {
+    final l$updateLearnedItemsByPk = updateLearnedItemsByPk;
+    final lOther$updateLearnedItemsByPk = other.updateLearnedItemsByPk;
+    if (l$updateLearnedItemsByPk != lOther$updateLearnedItemsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -135,13 +133,13 @@ const documentNodeMutationSetLearnedItemStatus = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'status')),
-          type: NamedTypeNode(name: NameNode(value: 'LearnedItemStatus'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'LearnedItemStatus_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -150,11 +148,22 @@ const documentNodeMutationSetLearnedItemStatus = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateLearnedItemsCollection'),
+            name: NameNode(value: 'updateLearnedItemsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -164,30 +173,12 @@ const documentNodeMutationSetLearnedItemStatus = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -310,31 +301,29 @@ extension ClientExtensionMutationSetLearnedItemStatus on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSetLearnedItemStatusupdateLearnedItemsCollection {
-  MutationSetLearnedItemStatusupdateLearnedItemsCollection({
-    required this.affectedCount,
-    this.$__typename = 'LearnedItemsUpdateResponse',
+class MutationSetLearnedItemStatusupdateLearnedItemsByPk {
+  MutationSetLearnedItemStatusupdateLearnedItemsByPk({
+    required this.id,
+    this.$__typename = 'learnedItems',
   });
 
-  factory MutationSetLearnedItemStatusupdateLearnedItemsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationSetLearnedItemStatusupdateLearnedItemsByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationSetLearnedItemStatusupdateLearnedItemsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationSetLearnedItemStatusupdateLearnedItemsByPk(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -342,9 +331,9 @@ class MutationSetLearnedItemStatusupdateLearnedItemsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -352,13 +341,13 @@ class MutationSetLearnedItemStatusupdateLearnedItemsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSetLearnedItemStatusupdateLearnedItemsCollection ||
+    if (other is! MutationSetLearnedItemStatusupdateLearnedItemsByPk ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

@@ -10,32 +10,31 @@ class _MockDatesDataSource() extends Mock implements DatesDataSource;
 
 class _MockTogetherRepository() extends Mock implements TogetherRepository;
 
-QueryGiftIdeasgiftIdeasCollectionedgesnode _gift({required String id, required bool? isMine}) =>
-    QueryGiftIdeasgiftIdeasCollectionedgesnode(
+QueryGiftIdeasgiftIdeas _gift({required String id, required String authorId}) =>
+    QueryGiftIdeasgiftIdeas(
       id: id,
       title: id,
-      status: EnumGiftIdeaStatus.idea,
-      isMine: isMine,
+      status: EnumGiftIdeaStatus_enum.idea,
+      authorId: authorId,
     );
 
 void main() {
   late DatesDataSource dataSource;
+  late TogetherRepository togetherRepository;
   late DatesRepository repository;
 
   setUp(() {
     dataSource = _MockDatesDataSource();
-    repository = DatesRepository(
-      dataSource: dataSource,
-      togetherRepository: _MockTogetherRepository(),
-    );
+    togetherRepository = _MockTogetherRepository();
+    repository = DatesRepository(dataSource: dataSource, togetherRepository: togetherRepository);
+    when(togetherRepository.getCurrentUserId).thenAnswer((_) async => 'user-1');
   });
 
   test('the gift list keeps only the gifts the caller added', () async {
     when(() => dataSource.getGiftIdeas()).thenAnswer(
       (_) async => [
-        _gift(id: 'mine', isMine: true),
-        _gift(id: 'partner', isMine: false),
-        _gift(id: 'unknown', isMine: null),
+        _gift(id: 'mine', authorId: 'user-1'),
+        _gift(id: 'partner', authorId: 'user-2'),
       ],
     );
 

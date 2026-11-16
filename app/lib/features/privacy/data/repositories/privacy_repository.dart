@@ -12,9 +12,8 @@ class PrivacyRepository({required final PrivacyDataSource _dataSource}) {
   /// The consent text version this build asks for.
   static const String consentVersion = '1';
 
-  /// Sensitive data and terms are required; the optional ones start off.
+  /// Terms are required; the optional ones start off.
   static const Map<ConsentKind, bool> defaults = {
-    ConsentKind.sensitiveData: true,
     ConsentKind.terms: true,
     ConsentKind.analytics: false,
     ConsentKind.marketing: false,

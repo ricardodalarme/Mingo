@@ -1,3 +1,8 @@
-mutation AnswerGame($sessionId: UUID!, $idx: Int!, $answer: String!) {
-  answerGame(sessionId: $sessionId, idx: $idx, answer: $answer)
+mutation AnswerGame($sessionId: uuid!, $idx: smallint!, $answer: String!) {
+  insertGameAnswersOne(
+    object: { sessionId: $sessionId, idx: $idx, answer: $answer }
+    on_conflict: { constraint: game_answers_once, update_columns: [answer] }
+  ) {
+    id
+  }
 }

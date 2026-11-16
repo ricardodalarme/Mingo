@@ -11,8 +11,8 @@ import 'package:network/network.dart';
 
 typedef GameSessionRecord = ({
   String id,
-  EnumGameKind game,
-  EnumGameStatus status,
+  EnumGameKind_enum game,
+  EnumGameStatus_enum status,
   String invitedBy,
   List<String> itemSlugs,
   DateTime createdAt,
@@ -36,42 +36,37 @@ class GamesDataSource({required final GQLClient _client}) {
       OptionsQueryGameSessions(fetchPolicy: FetchPolicy.networkOnly),
     );
     final data = validateResponseData<QueryGameSessions, QueryGameSessions>(response);
-    final selfId = data.myProfile?.id;
-    if (selfId == null) throw const NoDataException();
+    final today = data.today.firstOrNull;
+    final selfId = today?.userId;
+    if (today == null || selfId == null) throw const NoDataException();
 
     return (
       selfId: selfId,
-      hasCouple: data.myCouple != null,
-      partnerName: data.today?.partnerName,
-      sessions: [for (final edge in data.gameSessionsCollection.edges) _session(edge.node)],
+      hasCouple: today.coupleId != null,
+      partnerName: today.partnerName,
+      sessions: [for (final node in data.gameSessions) _session(node)],
     );
   }
 
   /// The published items of a content [kind] for [locale], in editorial order.
   Future<List<GameItemRecord>> getItems({
-    required EnumContentKind kind,
+    required EnumContentKind_enum kind,
     required String locale,
-    required int first,
+    required int limit,
   }) async {
     final response = await _client.query(
       OptionsQueryGameItems(
-        variables: VariablesQueryGameItems(kind: kind, locale: locale, first: first),
+        variables: VariablesQueryGameItems(kind: kind, locale: locale, limit: limit),
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.contentItemsCollection.edges,
-    );
+    final rows = validateResponseData(response, getData: (data) => data.contentItems);
 
-    return [
-      for (final edge in edges)
-        (slug: edge.node.slug, title: edge.node.title, body: edge.node.body),
-    ];
+    return [for (final row in rows) (slug: row.slug, title: row.title, body: row.body)];
   }
 
   Future<List<GameItemRecord>> getItemsBySlug({
-    required EnumContentKind kind,
+    required EnumContentKind_enum kind,
     required String locale,
     required List<String> slugs,
   }) async {
@@ -81,43 +76,39 @@ class GamesDataSource({required final GQLClient _client}) {
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.contentItemsCollection.edges,
-    );
+    final rows = validateResponseData(response, getData: (data) => data.contentItems);
 
-    return [
-      for (final edge in edges)
-        (slug: edge.node.slug, title: edge.node.title, body: edge.node.body),
-    ];
+    return [for (final row in rows) (slug: row.slug, title: row.title, body: row.body)];
   }
 
   /// The answer rows the server lets this person read.
-  Future<List<GameAnswerRecord>> getAnswers(String sessionId) async {
+  Future<List<GameAnswerRecord>> getAnswers({
+    required String sessionId,
+    required String selfId,
+  }) async {
     final response = await _client.query(
       OptionsQueryGameAnswers(
         variables: VariablesQueryGameAnswers(sessionId: sessionId),
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.gameAnswersCollection.edges,
-    );
+    final rows = validateResponseData(response, getData: (data) => data.gameAnswers);
 
     return [
-      for (final edge in edges)
-        (isMine: edge.node.isMine ?? false, idx: edge.node.idx, answer: edge.node.answer),
+      for (final row in rows) (isMine: row.authorId == selfId, idx: row.idx, answer: row.answer),
     ];
   }
 
-  Future<GameSessionRecord> invite({required String game, required List<String> itemSlugs}) async {
+  Future<GameSessionRecord> invite({
+    required EnumGameKind_enum game,
+    required List<String> itemSlugs,
+  }) async {
     final response = await _client.mutate(
       OptionsMutationInviteToGame(
         variables: VariablesMutationInviteToGame(game: game, itemSlugs: itemSlugs),
       ),
     );
-    final node = validateResponseData(response, getData: (data) => data.inviteToGame);
+    final node = validateResponseData(response, getData: (data) => data.insertGameSessionsOne);
 
     return _session(node);
   }
@@ -137,7 +128,7 @@ class GamesDataSource({required final GQLClient _client}) {
         ),
       ),
     );
-    final node = validateResponseData(response, getData: (data) => data.updateGame);
+    final node = validateResponseData(response, getData: (data) => data.updateGame.firstOrNull);
 
     return _session(node);
   }

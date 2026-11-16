@@ -1,5 +1,5 @@
 mutation CreateInvite {
-  createInvite {
+  insertInvitesOne(object: {}) {
     id
     code
     expiresAt

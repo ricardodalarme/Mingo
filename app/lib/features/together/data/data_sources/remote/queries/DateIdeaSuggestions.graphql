@@ -1,19 +1,15 @@
 query DateIdeaSuggestions($locale: String!) {
-  contentItemsCollection(
-    first: 10
-    filter: {
-      kind: { eq: date_idea }
-      locale: { eq: $locale }
-      plusOnly: { eq: false }
-      published: { eq: true }
+  contentItems(
+    limit: 10
+    where: {
+      kind: { _eq: date_idea }
+      locale: { _eq: $locale }
+      plusOnly: { _eq: false }
+      published: { _eq: true }
     }
-    orderBy: [{ position: AscNullsLast }]
+    order_by: [{ position: asc_nulls_last }]
   ) {
-    edges {
-      node {
-        slug
-        title
-      }
-    }
+    slug
+    title
   }
 }

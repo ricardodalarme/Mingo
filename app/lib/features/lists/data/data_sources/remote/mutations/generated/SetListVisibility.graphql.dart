@@ -76,27 +76,27 @@ class VariablesMutationSetListVisibility {
 }
 
 class MutationSetListVisibility {
-  MutationSetListVisibility({required this.updateListsCollection, this.$__typename = 'Mutation'});
+  MutationSetListVisibility({this.updateListsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationSetListVisibility.fromJson(Map<String, dynamic> json) {
-    final l$updateListsCollection = json['updateListsCollection'];
+    final l$updateListsByPk = json['updateListsByPk'];
     final l$$__typename = json['__typename'];
     return MutationSetListVisibility(
-      updateListsCollection: MutationSetListVisibilityupdateListsCollection.fromJson(
-        (l$updateListsCollection as Map<String, dynamic>),
-      ),
+      updateListsByPk: l$updateListsByPk == null
+          ? null
+          : FragmentListFragment.fromJson((l$updateListsByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSetListVisibilityupdateListsCollection updateListsCollection;
+  final FragmentListFragment? updateListsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateListsCollection = updateListsCollection;
-    _resultData['updateListsCollection'] = l$updateListsCollection.toJson();
+    final l$updateListsByPk = updateListsByPk;
+    _resultData['updateListsByPk'] = l$updateListsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -104,9 +104,9 @@ class MutationSetListVisibility {
 
   @override
   int get hashCode {
-    final l$updateListsCollection = updateListsCollection;
+    final l$updateListsByPk = updateListsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateListsCollection, l$$__typename]);
+    return Object.hashAll([l$updateListsByPk, l$$__typename]);
   }
 
   @override
@@ -117,9 +117,9 @@ class MutationSetListVisibility {
     if (other is! MutationSetListVisibility || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateListsCollection = updateListsCollection;
-    final lOther$updateListsCollection = other.updateListsCollection;
-    if (l$updateListsCollection != lOther$updateListsCollection) {
+    final l$updateListsByPk = updateListsByPk;
+    final lOther$updateListsByPk = other.updateListsByPk;
+    if (l$updateListsByPk != lOther$updateListsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -139,13 +139,13 @@ const documentNodeMutationSetListVisibility = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -154,11 +154,22 @@ const documentNodeMutationSetListVisibility = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateListsCollection'),
+            name: NameNode(value: 'updateListsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -168,52 +179,13 @@ const documentNodeMutationSetListVisibility = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'records'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'ListFragment'),
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'ListFragment'),
-                        directives: [],
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -330,71 +302,4 @@ extension ClientExtensionMutationSetListVisibility on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationSetListVisibility> watchMutationSetListVisibility(
     WatchOptionsMutationSetListVisibility options,
   ) => this.watchMutation(options);
-}
-
-class MutationSetListVisibilityupdateListsCollection {
-  MutationSetListVisibilityupdateListsCollection({
-    required this.records,
-    this.$__typename = 'ListsUpdateResponse',
-  });
-
-  factory MutationSetListVisibilityupdateListsCollection.fromJson(Map<String, dynamic> json) {
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationSetListVisibilityupdateListsCollection(
-      records: (l$records as List<dynamic>)
-          .map((e) => FragmentListFragment.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<FragmentListFragment> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationSetListVisibilityupdateListsCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
 }

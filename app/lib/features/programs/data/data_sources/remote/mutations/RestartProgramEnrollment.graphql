@@ -1,9 +1,8 @@
 mutation RestartProgramEnrollment($programSlug: String!) {
-  updateProgramEnrollmentsCollection(
-    set: { currentDay: 1, completedAt: null }
-    filter: { programSlug: { eq: $programSlug } }
-    atMost: 1
+  updateProgramEnrollments(
+    where: { programSlug: { _eq: $programSlug } }
+    _set: { currentDay: 1, completedAt: null }
   ) {
-    affectedCount
+    affected_rows
   }
 }

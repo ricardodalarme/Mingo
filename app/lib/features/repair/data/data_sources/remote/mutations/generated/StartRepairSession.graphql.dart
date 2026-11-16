@@ -10,7 +10,7 @@ class VariablesMutationStartRepairSession {
   factory VariablesMutationStartRepairSession({
     required String id,
     int? intensity,
-    required EnumRepairPath path,
+    required EnumRepairPath_enum path,
   }) => VariablesMutationStartRepairSession._({
     r'id': id,
     if (intensity != null) r'intensity': intensity,
@@ -28,7 +28,7 @@ class VariablesMutationStartRepairSession {
       result$data['intensity'] = (l$intensity as int?);
     }
     final l$path = data['path'];
-    result$data['path'] = fromJsonEnumRepairPath((l$path as String));
+    result$data['path'] = fromJsonEnumRepairPath_enum((l$path as String));
     return VariablesMutationStartRepairSession._(result$data);
   }
 
@@ -38,7 +38,7 @@ class VariablesMutationStartRepairSession {
 
   int? get intensity => (_$data['intensity'] as int?);
 
-  EnumRepairPath get path => (_$data['path'] as EnumRepairPath);
+  EnumRepairPath_enum get path => (_$data['path'] as EnumRepairPath_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -49,7 +49,7 @@ class VariablesMutationStartRepairSession {
       result$data['intensity'] = l$intensity;
     }
     final l$path = path;
-    result$data['path'] = toJsonEnumRepairPath(l$path);
+    result$data['path'] = toJsonEnumRepairPath_enum(l$path);
     return result$data;
   }
 
@@ -92,34 +92,29 @@ class VariablesMutationStartRepairSession {
 }
 
 class MutationStartRepairSession {
-  MutationStartRepairSession({
-    this.insertIntoRepairSessionsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationStartRepairSession({this.insertRepairSessions, this.$__typename = 'mutation_root'});
 
   factory MutationStartRepairSession.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoRepairSessionsCollection = json['insertIntoRepairSessionsCollection'];
+    final l$insertRepairSessions = json['insertRepairSessions'];
     final l$$__typename = json['__typename'];
     return MutationStartRepairSession(
-      insertIntoRepairSessionsCollection: l$insertIntoRepairSessionsCollection == null
+      insertRepairSessions: l$insertRepairSessions == null
           ? null
-          : MutationStartRepairSessioninsertIntoRepairSessionsCollection.fromJson(
-              (l$insertIntoRepairSessionsCollection as Map<String, dynamic>),
+          : MutationStartRepairSessioninsertRepairSessions.fromJson(
+              (l$insertRepairSessions as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationStartRepairSessioninsertIntoRepairSessionsCollection?
-  insertIntoRepairSessionsCollection;
+  final MutationStartRepairSessioninsertRepairSessions? insertRepairSessions;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoRepairSessionsCollection = insertIntoRepairSessionsCollection;
-    _resultData['insertIntoRepairSessionsCollection'] = l$insertIntoRepairSessionsCollection
-        ?.toJson();
+    final l$insertRepairSessions = insertRepairSessions;
+    _resultData['insertRepairSessions'] = l$insertRepairSessions?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -127,9 +122,9 @@ class MutationStartRepairSession {
 
   @override
   int get hashCode {
-    final l$insertIntoRepairSessionsCollection = insertIntoRepairSessionsCollection;
+    final l$insertRepairSessions = insertRepairSessions;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoRepairSessionsCollection, l$$__typename]);
+    return Object.hashAll([l$insertRepairSessions, l$$__typename]);
   }
 
   @override
@@ -140,9 +135,9 @@ class MutationStartRepairSession {
     if (other is! MutationStartRepairSession || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoRepairSessionsCollection = insertIntoRepairSessionsCollection;
-    final lOther$insertIntoRepairSessionsCollection = other.insertIntoRepairSessionsCollection;
-    if (l$insertIntoRepairSessionsCollection != lOther$insertIntoRepairSessionsCollection) {
+    final l$insertRepairSessions = insertRepairSessions;
+    final lOther$insertRepairSessions = other.insertRepairSessions;
+    if (l$insertRepairSessions != lOther$insertRepairSessions) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -162,19 +157,19 @@ const documentNodeMutationStartRepairSession = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'intensity')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'path')),
-          type: NamedTypeNode(name: NameNode(value: 'RepairPath'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'RepairPath_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -183,7 +178,7 @@ const documentNodeMutationStartRepairSession = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoRepairSessionsCollection'),
+            name: NameNode(value: 'insertRepairSessions'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -214,7 +209,7 @@ const documentNodeMutationStartRepairSession = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -337,31 +332,29 @@ extension ClientExtensionMutationStartRepairSession on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationStartRepairSessioninsertIntoRepairSessionsCollection {
-  MutationStartRepairSessioninsertIntoRepairSessionsCollection({
-    required this.affectedCount,
-    this.$__typename = 'RepairSessionsInsertResponse',
+class MutationStartRepairSessioninsertRepairSessions {
+  MutationStartRepairSessioninsertRepairSessions({
+    required this.affected_rows,
+    this.$__typename = 'repairSessions_mutation_response',
   });
 
-  factory MutationStartRepairSessioninsertIntoRepairSessionsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationStartRepairSessioninsertRepairSessions.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationStartRepairSessioninsertIntoRepairSessionsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationStartRepairSessioninsertRepairSessions(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -369,9 +362,9 @@ class MutationStartRepairSessioninsertIntoRepairSessionsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -379,13 +372,13 @@ class MutationStartRepairSessioninsertIntoRepairSessionsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationStartRepairSessioninsertIntoRepairSessionsCollection ||
+    if (other is! MutationStartRepairSessioninsertRepairSessions ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

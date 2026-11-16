@@ -15,12 +15,12 @@ class IdeasRepository({
       final result = await _dataSource.getIdeas(locale);
 
       return [
-        for (final edge in result.edges)
+        for (final node in result)
           Idea(
-            slug: edge.node.slug,
-            title: edge.node.title,
-            body: edge.node.body,
-            tags: edge.node.tags.whereType<String>().toList(),
+            slug: node.slug,
+            title: node.title,
+            body: node.body,
+            tags: node.tags.whereType<String>().toList(),
           ),
       ];
     } catch (e, stack) {

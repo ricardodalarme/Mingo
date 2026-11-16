@@ -1,4 +1,4 @@
-fragment ListItemFragment on ListItems {
+fragment ListItemFragment on listItems {
   id
   listId
   title

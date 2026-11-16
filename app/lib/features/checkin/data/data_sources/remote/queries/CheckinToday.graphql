@@ -2,12 +2,7 @@ query CheckinToday {
   today {
     localDate
     partnerName
-    isPaired
-  }
-  myProfile {
-    id
-  }
-  myCouple {
-    id
+    userId
+    coupleId
   }
 }

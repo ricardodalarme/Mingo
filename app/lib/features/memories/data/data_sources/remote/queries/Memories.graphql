@@ -1,13 +1,9 @@
 query Memories {
-  memoriesCollection(orderBy: [{ happenedOn: DescNullsLast }], first: 200) {
-    edges {
-      node {
-        id
-        title
-        body
-        happenedOn
-        place
-      }
-    }
+  memories(order_by: { happenedOn: desc }, limit: 200) {
+    id
+    title
+    body
+    happenedOn
+    place
   }
 }

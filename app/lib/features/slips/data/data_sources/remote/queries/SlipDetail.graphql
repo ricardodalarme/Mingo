@@ -1,4 +1,4 @@
-query SlipDetail($id: UUID!) {
+query SlipDetail($id: uuid!) {
   slipsByPk(id: $id) {
     id
     body
@@ -12,14 +12,9 @@ query SlipDetail($id: UUID!) {
     request
     createdAt
     archivedAt
-    deletedAt
     inJar
-    cardItemsCollection(first: 1) {
-      edges {
-        node {
-          id
-        }
-      }
-    }
+  }
+  cardItems(where: { slipId: { _eq: $id } }, limit: 1) {
+    id
   }
 }

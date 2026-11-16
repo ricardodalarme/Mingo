@@ -84,32 +84,31 @@ class VariablesMutationCompleteProgramEnrollment {
 
 class MutationCompleteProgramEnrollment {
   MutationCompleteProgramEnrollment({
-    required this.updateProgramEnrollmentsCollection,
-    this.$__typename = 'Mutation',
+    this.updateProgramEnrollments,
+    this.$__typename = 'mutation_root',
   });
 
   factory MutationCompleteProgramEnrollment.fromJson(Map<String, dynamic> json) {
-    final l$updateProgramEnrollmentsCollection = json['updateProgramEnrollmentsCollection'];
+    final l$updateProgramEnrollments = json['updateProgramEnrollments'];
     final l$$__typename = json['__typename'];
     return MutationCompleteProgramEnrollment(
-      updateProgramEnrollmentsCollection:
-          MutationCompleteProgramEnrollmentupdateProgramEnrollmentsCollection.fromJson(
-            (l$updateProgramEnrollmentsCollection as Map<String, dynamic>),
-          ),
+      updateProgramEnrollments: l$updateProgramEnrollments == null
+          ? null
+          : MutationCompleteProgramEnrollmentupdateProgramEnrollments.fromJson(
+              (l$updateProgramEnrollments as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationCompleteProgramEnrollmentupdateProgramEnrollmentsCollection
-  updateProgramEnrollmentsCollection;
+  final MutationCompleteProgramEnrollmentupdateProgramEnrollments? updateProgramEnrollments;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProgramEnrollmentsCollection = updateProgramEnrollmentsCollection;
-    _resultData['updateProgramEnrollmentsCollection'] = l$updateProgramEnrollmentsCollection
-        .toJson();
+    final l$updateProgramEnrollments = updateProgramEnrollments;
+    _resultData['updateProgramEnrollments'] = l$updateProgramEnrollments?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -117,9 +116,9 @@ class MutationCompleteProgramEnrollment {
 
   @override
   int get hashCode {
-    final l$updateProgramEnrollmentsCollection = updateProgramEnrollmentsCollection;
+    final l$updateProgramEnrollments = updateProgramEnrollments;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateProgramEnrollmentsCollection, l$$__typename]);
+    return Object.hashAll([l$updateProgramEnrollments, l$$__typename]);
   }
 
   @override
@@ -130,9 +129,9 @@ class MutationCompleteProgramEnrollment {
     if (other is! MutationCompleteProgramEnrollment || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProgramEnrollmentsCollection = updateProgramEnrollmentsCollection;
-    final lOther$updateProgramEnrollmentsCollection = other.updateProgramEnrollmentsCollection;
-    if (l$updateProgramEnrollmentsCollection != lOther$updateProgramEnrollmentsCollection) {
+    final l$updateProgramEnrollments = updateProgramEnrollments;
+    final lOther$updateProgramEnrollments = other.updateProgramEnrollments;
+    if (l$updateProgramEnrollments != lOther$updateProgramEnrollments) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -158,13 +157,13 @@ const documentNodeMutationCompleteProgramEnrollment = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'currentDay')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'completedAt')),
-          type: NamedTypeNode(name: NameNode(value: 'Datetime'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'timestamptz'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -173,11 +172,29 @@ const documentNodeMutationCompleteProgramEnrollment = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProgramEnrollmentsCollection'),
+            name: NameNode(value: 'updateProgramEnrollments'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'programSlug'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'programSlug')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -191,34 +208,12 @@ const documentNodeMutationCompleteProgramEnrollment = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'programSlug'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'programSlug')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -342,31 +337,31 @@ extension ClientExtensionMutationCompleteProgramEnrollment on graphql.GraphQLCli
   ) => this.watchMutation(options);
 }
 
-class MutationCompleteProgramEnrollmentupdateProgramEnrollmentsCollection {
-  MutationCompleteProgramEnrollmentupdateProgramEnrollmentsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProgramEnrollmentsUpdateResponse',
+class MutationCompleteProgramEnrollmentupdateProgramEnrollments {
+  MutationCompleteProgramEnrollmentupdateProgramEnrollments({
+    required this.affected_rows,
+    this.$__typename = 'programEnrollments_mutation_response',
   });
 
-  factory MutationCompleteProgramEnrollmentupdateProgramEnrollmentsCollection.fromJson(
+  factory MutationCompleteProgramEnrollmentupdateProgramEnrollments.fromJson(
     Map<String, dynamic> json,
   ) {
-    final l$affectedCount = json['affectedCount'];
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationCompleteProgramEnrollmentupdateProgramEnrollmentsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationCompleteProgramEnrollmentupdateProgramEnrollments(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -374,9 +369,9 @@ class MutationCompleteProgramEnrollmentupdateProgramEnrollmentsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -384,13 +379,13 @@ class MutationCompleteProgramEnrollmentupdateProgramEnrollmentsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationCompleteProgramEnrollmentupdateProgramEnrollmentsCollection ||
+    if (other is! MutationCompleteProgramEnrollmentupdateProgramEnrollments ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

@@ -1,5 +1,6 @@
 import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/InsertLoveStyleManualEntry.graphql.dart';
 import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/InsertLoveStyleResult.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/RevokeLoveStyleShare.graphql.dart';
 import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/ShareLoveStyle.graphql.dart';
 import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/UpdateLoveStyleManualEntry.graphql.dart';
 import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/UpdateLoveStyleResult.graphql.dart';
@@ -19,37 +20,31 @@ class LoveStyleDataSource({required final GQLClient _client}) {
     final response = await _client.query(
       OptionsQueryLoveStyleResult(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.quizResultsCollection.edges,
-    );
-    final node = edges.firstOrNull?.node;
+    final rows = validateResponseData(response, getData: (data) => data.quizResults);
+    final node = rows.firstOrNull;
 
-    return node == null ? null : (id: node.id, ranked: node.ranked.whereType<String>().toList());
+    return node == null ? null : (id: node.id, ranked: node.ranked);
   }
 
   Future<void> insertResult(List<String> ranked) async {
     final response = await _client.mutate(
       OptionsMutationInsertLoveStyleResult(
-        variables: VariablesMutationInsertLoveStyleResult(ranked: ranked.cast<String?>()),
+        variables: VariablesMutationInsertLoveStyleResult(ranked: ranked),
       ),
     );
 
-    validateResponseData(
-      response,
-      getData: (data) => data.insertIntoQuizResultsCollection?.records.firstOrNull,
-    );
+    validateResponseData(response, getData: (data) => data.insertQuizResultsOne);
   }
 
   Future<void> updateResult({required String id, required List<String> ranked}) async {
     final response = await _client.mutate(
       OptionsMutationUpdateLoveStyleResult(
-        variables: VariablesMutationUpdateLoveStyleResult(id: id, ranked: ranked.cast<String?>()),
+        variables: VariablesMutationUpdateLoveStyleResult(id: id, ranked: ranked),
       ),
     );
     final affectedCount = validateResponseData(
       response,
-      getData: (data) => data.updateQuizResultsCollection.affectedCount,
+      getData: (data) => data.updateQuizResults?.affected_rows ?? 0,
     );
     if (affectedCount == 0) throw const NoDataException();
   }
@@ -61,11 +56,8 @@ class LoveStyleDataSource({required final GQLClient _client}) {
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.manualEntriesCollection.edges,
-    );
-    final node = edges.firstOrNull?.node;
+    final rows = validateResponseData(response, getData: (data) => data.manualEntries);
+    final node = rows.firstOrNull;
 
     return node == null ? null : (id: node.id, value: node.value);
   }
@@ -77,10 +69,7 @@ class LoveStyleDataSource({required final GQLClient _client}) {
       ),
     );
 
-    validateResponseData(
-      response,
-      getData: (data) => data.insertIntoManualEntriesCollection?.records.firstOrNull,
-    );
+    validateResponseData(response, getData: (data) => data.insertManualEntriesOne);
   }
 
   Future<void> updateManualEntry({required String id, required String value}) async {
@@ -91,7 +80,7 @@ class LoveStyleDataSource({required final GQLClient _client}) {
     );
     final affectedCount = validateResponseData(
       response,
-      getData: (data) => data.updateManualEntriesCollection.affectedCount,
+      getData: (data) => data.updateManualEntries?.affected_rows ?? 0,
     );
     if (affectedCount == 0) throw const NoDataException();
   }
@@ -101,7 +90,8 @@ class LoveStyleDataSource({required final GQLClient _client}) {
     final response = await _client.mutate(
       OptionsMutationShareLoveStyle(variables: VariablesMutationShareLoveStyle(body: body)),
     );
-    return validateResponseData(response, getData: (data) => data.sendPartnerMessage?.id);
+
+    return validateResponseData(response, getData: (data) => data.insertPartnerMessagesOne?.id);
   }
 
   /// Whether the sender still has a message with [id], so a stored share can be trusted.
@@ -117,27 +107,17 @@ class LoveStyleDataSource({required final GQLClient _client}) {
     return response.parsedData?.partnerMessagesByPk != null;
   }
 
-  /// Deletes one of the person's own notes through the sender-only RPC.
+  /// Deletes one of the person's own notes.
   ///
   /// Returns `false` when the row was already gone.
   Future<bool> revokeShare(String id) async {
-    final document = parseString(r'''
-      mutation RevokeLoveStyleShare($messageId: UUID!) {
-        deletePartnerMessage(messageId: $messageId)
-      }
-    ''');
     final response = await _client.mutate(
-      MutationOptions<Map<String, dynamic>>(
-        document: document,
-        operationName: 'RevokeLoveStyleShare',
-        variables: {'messageId': id},
-        parserFn: (data) => data,
-      ),
+      OptionsMutationRevokeLoveStyleShare(variables: VariablesMutationRevokeLoveStyleShare(id: id)),
     );
 
-    return validateResponseData<Map<String, dynamic>, bool>(
+    return validateResponseData<MutationRevokeLoveStyleShare, bool>(
       response,
-      getData: (data) => data['deletePartnerMessage'] as bool?,
+      getData: (data) => data.deletePartnerMessagesByPk != null,
     );
   }
 }

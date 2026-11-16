@@ -53,33 +53,31 @@ class VariablesMutationInsertLoveStyleManualEntry {
 
 class MutationInsertLoveStyleManualEntry {
   MutationInsertLoveStyleManualEntry({
-    this.insertIntoManualEntriesCollection,
-    this.$__typename = 'Mutation',
+    this.insertManualEntriesOne,
+    this.$__typename = 'mutation_root',
   });
 
   factory MutationInsertLoveStyleManualEntry.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoManualEntriesCollection = json['insertIntoManualEntriesCollection'];
+    final l$insertManualEntriesOne = json['insertManualEntriesOne'];
     final l$$__typename = json['__typename'];
     return MutationInsertLoveStyleManualEntry(
-      insertIntoManualEntriesCollection: l$insertIntoManualEntriesCollection == null
+      insertManualEntriesOne: l$insertManualEntriesOne == null
           ? null
-          : MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollection.fromJson(
-              (l$insertIntoManualEntriesCollection as Map<String, dynamic>),
+          : MutationInsertLoveStyleManualEntryinsertManualEntriesOne.fromJson(
+              (l$insertManualEntriesOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollection?
-  insertIntoManualEntriesCollection;
+  final MutationInsertLoveStyleManualEntryinsertManualEntriesOne? insertManualEntriesOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoManualEntriesCollection = insertIntoManualEntriesCollection;
-    _resultData['insertIntoManualEntriesCollection'] = l$insertIntoManualEntriesCollection
-        ?.toJson();
+    final l$insertManualEntriesOne = insertManualEntriesOne;
+    _resultData['insertManualEntriesOne'] = l$insertManualEntriesOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -87,9 +85,9 @@ class MutationInsertLoveStyleManualEntry {
 
   @override
   int get hashCode {
-    final l$insertIntoManualEntriesCollection = insertIntoManualEntriesCollection;
+    final l$insertManualEntriesOne = insertManualEntriesOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoManualEntriesCollection, l$$__typename]);
+    return Object.hashAll([l$insertManualEntriesOne, l$$__typename]);
   }
 
   @override
@@ -100,9 +98,9 @@ class MutationInsertLoveStyleManualEntry {
     if (other is! MutationInsertLoveStyleManualEntry || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoManualEntriesCollection = insertIntoManualEntriesCollection;
-    final lOther$insertIntoManualEntriesCollection = other.insertIntoManualEntriesCollection;
-    if (l$insertIntoManualEntriesCollection != lOther$insertIntoManualEntriesCollection) {
+    final l$insertManualEntriesOne = insertManualEntriesOne;
+    final lOther$insertManualEntriesOne = other.insertManualEntriesOne;
+    if (l$insertManualEntriesOne != lOther$insertManualEntriesOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -131,28 +129,24 @@ const documentNodeMutationInsertLoveStyleManualEntry = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoManualEntriesCollection'),
+            name: NameNode(value: 'insertManualEntriesOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'key'),
-                          value: StringValueNode(value: 'loved', isBlock: false),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'value'),
-                          value: VariableNode(name: NameNode(value: 'value')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'shared'),
-                          value: BooleanValueNode(value: false),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'key'),
+                      value: StringValueNode(value: 'loved', isBlock: false),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'value'),
+                      value: VariableNode(name: NameNode(value: 'value')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'shared'),
+                      value: BooleanValueNode(value: false),
                     ),
                   ],
                 ),
@@ -162,35 +156,18 @@ const documentNodeMutationInsertLoveStyleManualEntry = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'records'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'value'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'value'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -310,94 +287,20 @@ extension ClientExtensionMutationInsertLoveStyleManualEntry on graphql.GraphQLCl
       this.watchMutation(options);
 }
 
-class MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollection {
-  MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollection({
-    required this.records,
-    this.$__typename = 'ManualEntriesInsertResponse',
-  });
-
-  factory MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollection(
-      records: (l$records as List<dynamic>)
-          .map(
-            (e) =>
-                MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollectionrecords.fromJson(
-                  (e as Map<String, dynamic>),
-                ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollectionrecords> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollectionrecords {
-  MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollectionrecords({
+class MutationInsertLoveStyleManualEntryinsertManualEntriesOne {
+  MutationInsertLoveStyleManualEntryinsertManualEntriesOne({
     required this.id,
     required this.value,
-    this.$__typename = 'ManualEntries',
+    this.$__typename = 'manualEntries',
   });
 
-  factory MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollectionrecords.fromJson(
+  factory MutationInsertLoveStyleManualEntryinsertManualEntriesOne.fromJson(
     Map<String, dynamic> json,
   ) {
     final l$id = json['id'];
     final l$value = json['value'];
     final l$$__typename = json['__typename'];
-    return MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollectionrecords(
+    return MutationInsertLoveStyleManualEntryinsertManualEntriesOne(
       id: (l$id as String),
       value: (l$value as String),
       $__typename: (l$$__typename as String),
@@ -434,7 +337,7 @@ class MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollectionrecords
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationInsertLoveStyleManualEntryinsertIntoManualEntriesCollectionrecords ||
+    if (other is! MutationInsertLoveStyleManualEntryinsertManualEntriesOne ||
         runtimeType != other.runtimeType) {
       return false;
     }

@@ -27,9 +27,9 @@ void main() {
     status: CardStatus.draft,
     weekStart: DateTime(2026, 11, 9),
     items: const [
-      CardItem(slipId: 'a', body: 'Um'),
-      CardItem(slipId: 'b', body: 'Dois'),
-      CardItem(slipId: 'c', body: 'Três'),
+      CardItem(id: 'a', body: 'Um'),
+      CardItem(id: 'b', body: 'Dois'),
+      CardItem(id: 'c', body: 'Três'),
     ],
   );
 
@@ -83,7 +83,7 @@ void main() {
       ..startEditing()
       ..removeItem(0);
 
-    expect(cubit.state.draft!.items.map((item) => item.slipId), ['b', 'c']);
+    expect(cubit.state.draft!.items.map((item) => item.id), ['b', 'c']);
     expect((cubit.state.card as Success<SundayCard>).value.items, hasLength(3));
 
     cubit.cancelEditing();
@@ -111,10 +111,10 @@ void main() {
       ..moveItem(0, -1)
       ..moveItem(0, 1);
 
-    expect(cubit.state.draft!.items.map((item) => item.slipId), ['b', 'a', 'c']);
+    expect(cubit.state.draft!.items.map((item) => item.id), ['b', 'a', 'c']);
 
     cubit.moveItem(2, 1);
-    expect(cubit.state.draft!.items.map((item) => item.slipId), ['b', 'a', 'c']);
+    expect(cubit.state.draft!.items.map((item) => item.id), ['b', 'a', 'c']);
   });
 
   test('the closing note is capped', () async {
@@ -127,7 +127,12 @@ void main() {
 
   test('save sends the edited card and leaves edit mode', () async {
     final saved = card.copyWith(items: [card.items[1]], note: 'Obrigada');
-    when(() => cards.saveDraft(any())).thenAnswer((_) async => saved);
+    List<String>? removed;
+    when(() => cards.saveDraft(any(), removedItemIds: any(named: 'removedItemIds')))
+        .thenAnswer((invocation) async {
+          removed = invocation.namedArguments[#removedItemIds] as List<String>?;
+          return saved;
+        });
     final cubit = await loaded()
       ..startEditing()
       ..removeItem(0)
@@ -135,13 +140,15 @@ void main() {
       ..onNoteChanged('Obrigada');
     await cubit.save();
 
-    verify(() => cards.saveDraft(any())).called(1);
+    verify(() => cards.saveDraft(any(), removedItemIds: any(named: 'removedItemIds'))).called(1);
+    expect(removed, ['a', 'c']);
     expect(cubit.state.card, Success(saved));
     expect(cubit.state.isEditing, isFalse);
   });
 
   test('a failed save keeps the edits so nothing is lost', () async {
-    when(() => cards.saveDraft(any())).thenAnswer((_) async => throw Exception());
+    when(() => cards.saveDraft(any(), removedItemIds: any(named: 'removedItemIds')))
+        .thenAnswer((_) async => throw Exception());
     final cubit = await loaded()
       ..startEditing()
       ..removeItem(0);

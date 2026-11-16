@@ -1,4 +1,5 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import '../../fragments/generated/GameSessionFragment.graphql.dart';
 
 import 'dart:async';
@@ -7,22 +8,24 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationInviteToGame {
-  factory VariablesMutationInviteToGame({required String game, List<String?>? itemSlugs}) =>
-      VariablesMutationInviteToGame._({
-        r'game': game,
-        if (itemSlugs != null) r'itemSlugs': itemSlugs,
-      });
+  factory VariablesMutationInviteToGame({
+    required EnumGameKind_enum game,
+    List<String>? itemSlugs,
+  }) => VariablesMutationInviteToGame._({
+    r'game': game,
+    if (itemSlugs != null) r'itemSlugs': itemSlugs,
+  });
 
   VariablesMutationInviteToGame._(this._$data);
 
   factory VariablesMutationInviteToGame.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$game = data['game'];
-    result$data['game'] = (l$game as String);
+    result$data['game'] = fromJsonEnumGameKind_enum((l$game as String));
     if (data.containsKey('itemSlugs')) {
       final l$itemSlugs = data['itemSlugs'];
       result$data['itemSlugs'] = (l$itemSlugs as List<dynamic>?)
-          ?.map((e) => (e as String?))
+          ?.map((e) => (e as String))
           .toList();
     }
     return VariablesMutationInviteToGame._(result$data);
@@ -30,14 +33,14 @@ class VariablesMutationInviteToGame {
 
   Map<String, dynamic> _$data;
 
-  String get game => (_$data['game'] as String);
+  EnumGameKind_enum get game => (_$data['game'] as EnumGameKind_enum);
 
-  List<String?>? get itemSlugs => (_$data['itemSlugs'] as List<String?>?);
+  List<String>? get itemSlugs => (_$data['itemSlugs'] as List<String>?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$game = game;
-    result$data['game'] = l$game;
+    result$data['game'] = toJsonEnumGameKind_enum(l$game);
     if (_$data.containsKey('itemSlugs')) {
       final l$itemSlugs = itemSlugs;
       result$data['itemSlugs'] = l$itemSlugs?.map((e) => e).toList();
@@ -96,27 +99,27 @@ class VariablesMutationInviteToGame {
 }
 
 class MutationInviteToGame {
-  MutationInviteToGame({this.inviteToGame, this.$__typename = 'Mutation'});
+  MutationInviteToGame({this.insertGameSessionsOne, this.$__typename = 'mutation_root'});
 
   factory MutationInviteToGame.fromJson(Map<String, dynamic> json) {
-    final l$inviteToGame = json['inviteToGame'];
+    final l$insertGameSessionsOne = json['insertGameSessionsOne'];
     final l$$__typename = json['__typename'];
     return MutationInviteToGame(
-      inviteToGame: l$inviteToGame == null
+      insertGameSessionsOne: l$insertGameSessionsOne == null
           ? null
-          : FragmentGameSessionFragment.fromJson((l$inviteToGame as Map<String, dynamic>)),
+          : FragmentGameSessionFragment.fromJson((l$insertGameSessionsOne as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final FragmentGameSessionFragment? inviteToGame;
+  final FragmentGameSessionFragment? insertGameSessionsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$inviteToGame = inviteToGame;
-    _resultData['inviteToGame'] = l$inviteToGame?.toJson();
+    final l$insertGameSessionsOne = insertGameSessionsOne;
+    _resultData['insertGameSessionsOne'] = l$insertGameSessionsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -124,9 +127,9 @@ class MutationInviteToGame {
 
   @override
   int get hashCode {
-    final l$inviteToGame = inviteToGame;
+    final l$insertGameSessionsOne = insertGameSessionsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$inviteToGame, l$$__typename]);
+    return Object.hashAll([l$insertGameSessionsOne, l$$__typename]);
   }
 
   @override
@@ -137,9 +140,9 @@ class MutationInviteToGame {
     if (other is! MutationInviteToGame || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$inviteToGame = inviteToGame;
-    final lOther$inviteToGame = other.inviteToGame;
-    if (l$inviteToGame != lOther$inviteToGame) {
+    final l$insertGameSessionsOne = insertGameSessionsOne;
+    final lOther$insertGameSessionsOne = other.insertGameSessionsOne;
+    if (l$insertGameSessionsOne != lOther$insertGameSessionsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -159,14 +162,14 @@ const documentNodeMutationInviteToGame = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'game')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'GameKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'itemSlugs')),
           type: ListTypeNode(
-            type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+            type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
             isNonNull: false,
           ),
           defaultValue: DefaultValueNode(value: null),
@@ -177,16 +180,23 @@ const documentNodeMutationInviteToGame = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'inviteToGame'),
+            name: NameNode(value: 'insertGameSessionsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'game'),
-                value: VariableNode(name: NameNode(value: 'game')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'itemSlugs'),
-                value: VariableNode(name: NameNode(value: 'itemSlugs')),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'game'),
+                      value: VariableNode(name: NameNode(value: 'game')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'itemSlugs'),
+                      value: VariableNode(name: NameNode(value: 'itemSlugs')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],

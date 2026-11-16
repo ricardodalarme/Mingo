@@ -1,5 +1,6 @@
-mutation SetSlipInJar($id: UUID!, $inJar: Boolean!) {
-  setSlipDetails(id: $id, inJar: $inJar) {
+mutation SetSlipInJar($id: uuid!, $inJar: Boolean!) {
+  updateSlipsByPk(pk_columns: { id: $id }, _set: { inJar: $inJar }) {
     id
+    inJar
   }
 }

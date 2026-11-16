@@ -116,30 +116,29 @@ class VariablesMutationAddDateIdea {
 }
 
 class MutationAddDateIdea {
-  MutationAddDateIdea({this.insertIntoSavedDateIdeasCollection, this.$__typename = 'Mutation'});
+  MutationAddDateIdea({this.insertSavedDateIdeasOne, this.$__typename = 'mutation_root'});
 
   factory MutationAddDateIdea.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoSavedDateIdeasCollection = json['insertIntoSavedDateIdeasCollection'];
+    final l$insertSavedDateIdeasOne = json['insertSavedDateIdeasOne'];
     final l$$__typename = json['__typename'];
     return MutationAddDateIdea(
-      insertIntoSavedDateIdeasCollection: l$insertIntoSavedDateIdeasCollection == null
+      insertSavedDateIdeasOne: l$insertSavedDateIdeasOne == null
           ? null
-          : MutationAddDateIdeainsertIntoSavedDateIdeasCollection.fromJson(
-              (l$insertIntoSavedDateIdeasCollection as Map<String, dynamic>),
+          : MutationAddDateIdeainsertSavedDateIdeasOne.fromJson(
+              (l$insertSavedDateIdeasOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddDateIdeainsertIntoSavedDateIdeasCollection? insertIntoSavedDateIdeasCollection;
+  final MutationAddDateIdeainsertSavedDateIdeasOne? insertSavedDateIdeasOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoSavedDateIdeasCollection = insertIntoSavedDateIdeasCollection;
-    _resultData['insertIntoSavedDateIdeasCollection'] = l$insertIntoSavedDateIdeasCollection
-        ?.toJson();
+    final l$insertSavedDateIdeasOne = insertSavedDateIdeasOne;
+    _resultData['insertSavedDateIdeasOne'] = l$insertSavedDateIdeasOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -147,9 +146,9 @@ class MutationAddDateIdea {
 
   @override
   int get hashCode {
-    final l$insertIntoSavedDateIdeasCollection = insertIntoSavedDateIdeasCollection;
+    final l$insertSavedDateIdeasOne = insertSavedDateIdeasOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoSavedDateIdeasCollection, l$$__typename]);
+    return Object.hashAll([l$insertSavedDateIdeasOne, l$$__typename]);
   }
 
   @override
@@ -160,9 +159,9 @@ class MutationAddDateIdea {
     if (other is! MutationAddDateIdea || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoSavedDateIdeasCollection = insertIntoSavedDateIdeasCollection;
-    final lOther$insertIntoSavedDateIdeasCollection = other.insertIntoSavedDateIdeasCollection;
-    if (l$insertIntoSavedDateIdeasCollection != lOther$insertIntoSavedDateIdeasCollection) {
+    final l$insertSavedDateIdeasOne = insertSavedDateIdeasOne;
+    final lOther$insertSavedDateIdeasOne = other.insertSavedDateIdeasOne;
+    if (l$insertSavedDateIdeasOne != lOther$insertSavedDateIdeasOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -182,7 +181,7 @@ const documentNodeMutationAddDateIdea = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -200,7 +199,7 @@ const documentNodeMutationAddDateIdea = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -209,32 +208,28 @@ const documentNodeMutationAddDateIdea = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoSavedDateIdeasCollection'),
+            name: NameNode(value: 'insertSavedDateIdeasOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'id'),
-                          value: VariableNode(name: NameNode(value: 'id')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'title'),
-                          value: VariableNode(name: NameNode(value: 'title')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'contentSlug'),
-                          value: VariableNode(name: NameNode(value: 'slug')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'coupleId'),
-                          value: VariableNode(name: NameNode(value: 'coupleId')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'title'),
+                      value: VariableNode(name: NameNode(value: 'title')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'contentSlug'),
+                      value: VariableNode(name: NameNode(value: 'slug')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'coupleId'),
+                      value: VariableNode(name: NameNode(value: 'coupleId')),
                     ),
                   ],
                 ),
@@ -244,7 +239,7 @@ const documentNodeMutationAddDateIdea = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -363,31 +358,29 @@ extension ClientExtensionMutationAddDateIdea on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationAddDateIdeainsertIntoSavedDateIdeasCollection {
-  MutationAddDateIdeainsertIntoSavedDateIdeasCollection({
-    required this.affectedCount,
-    this.$__typename = 'SavedDateIdeasInsertResponse',
+class MutationAddDateIdeainsertSavedDateIdeasOne {
+  MutationAddDateIdeainsertSavedDateIdeasOne({
+    required this.id,
+    this.$__typename = 'savedDateIdeas',
   });
 
-  factory MutationAddDateIdeainsertIntoSavedDateIdeasCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationAddDateIdeainsertSavedDateIdeasOne.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationAddDateIdeainsertIntoSavedDateIdeasCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationAddDateIdeainsertSavedDateIdeasOne(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -395,9 +388,9 @@ class MutationAddDateIdeainsertIntoSavedDateIdeasCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -405,13 +398,12 @@ class MutationAddDateIdeainsertIntoSavedDateIdeasCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationAddDateIdeainsertIntoSavedDateIdeasCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationAddDateIdeainsertSavedDateIdeasOne || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

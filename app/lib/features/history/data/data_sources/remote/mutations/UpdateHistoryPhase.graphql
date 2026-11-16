@@ -1,9 +1,5 @@
-mutation UpdateHistoryPhase($profileId: UUID!, $phase: RelationshipPhase!) {
-  updateProfileSettingsCollection(
-    set: { phase: $phase }
-    filter: { profileId: { eq: $profileId } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation UpdateHistoryPhase($profileId: uuid!, $phase: RelationshipPhase_enum!) {
+  updateUserSettings(where: { userId: { _eq: $profileId } }, _set: { phase: $phase }) {
+    affected_rows
   }
 }

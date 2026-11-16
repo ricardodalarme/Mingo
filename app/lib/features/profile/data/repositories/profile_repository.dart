@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveIntroAnswers.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveProfileSetup.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
@@ -27,41 +28,45 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:logger/logger.dart';
 
-class ProfileRepository({required final ProfileDataSource _profileDataSource}) {
+class ProfileRepository({
+  required final ProfileDataSource _profileDataSource,
+  required final AuthenticationRepository _authenticationRepository,
+}) {
   final Logger _logger = Logger('ProfileRepository');
   final StreamController<void> _changes = StreamController<void>.broadcast();
 
   /// Emits when a saved profile or relationship field changes.
   Stream<void> get onChanged => _changes.stream;
 
+  String get _userId {
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) throw const LocalizedException(l10nKey: 'UNAUTHENTICATED');
+
+    return userId;
+  }
+
   Future<Profile> getMyProfile() async {
     try {
-      return (await _profileDataSource.getMyProfile()).toModel();
+      return (await _profileDataSource.getMyProfile(_userId)).toModel();
     } catch (e, stack) {
       _logger.error('Failed to load the profile', error: e, stackTrace: stack);
       rethrow;
     }
   }
 
-  /// Creates the profile row for a newly signed-in user, or returns the existing one.
-  Future<Profile> ensureProfile() async {
-    try {
-      return (await _profileDataSource.ensureProfile()).toModel();
-    } catch (e, stack) {
-      _logger.error('Failed to ensure the profile', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
+  /// The profile row the backend keeps for the signed-in user.
+  Future<Profile> ensureProfile() => getMyProfile();
 
   Future<ProfileDetails> getProfileDetails() async {
     try {
-      final profile = await _profileDataSource.getMyProfile();
-      final settings = await _profileDataSource.getMySettings();
+      final userId = _userId;
+      final profile = await _profileDataSource.getMyProfile(userId);
+      final settings = await _profileDataSource.getMySettings(userId);
       return ProfileDetails(
         profileId: profile.id,
         displayName: profile.displayName ?? '',
         pronouns: profile.pronouns,
-        timeZone: settings.timeZone,
+        timeZone: settings.profile.timeZone,
         theme: settings.theme.toVariant(),
       );
     } catch (e, stack) {
@@ -72,9 +77,9 @@ class ProfileRepository({required final ProfileDataSource _profileDataSource}) {
 
   Future<RelationshipDetails> getRelationshipDetails() async {
     try {
-      final settings = await _profileDataSource.getMySettings();
+      final settings = await _profileDataSource.getMySettings(_userId);
       return RelationshipDetails(
-        profileId: settings.profileId,
+        profileId: settings.userId,
         phase: settings.phase?.toModel(),
         togetherSince: settings.togetherSince,
         relationshipStatus: settings.relationshipStatus.toModel(),
@@ -195,7 +200,7 @@ class ProfileRepository({required final ProfileDataSource _profileDataSource}) {
 
   Future<AccountSettings> getMySettings() async {
     try {
-      return (await _profileDataSource.getMySettings()).toModel();
+      return (await _profileDataSource.getMySettings(_userId)).toModel();
     } catch (e, stack) {
       _logger.error('Failed to load the settings', error: e, stackTrace: stack);
       rethrow;

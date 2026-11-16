@@ -1,5 +1,5 @@
-mutation DeleteDateIdea($id: UUID!) {
-  deleteFromSavedDateIdeasCollection(filter: { id: { eq: $id } }, atMost: 1) {
-    affectedCount
+mutation DeleteDateIdea($id: uuid!) {
+  deleteSavedDateIdeas(where: { id: { _eq: $id } }) {
+    affected_rows
   }
 }

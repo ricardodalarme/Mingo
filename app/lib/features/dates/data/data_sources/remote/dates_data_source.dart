@@ -10,27 +10,23 @@ import 'package:app/features/dates/data/data_sources/remote/queries/generated/Im
 import 'package:network/network.dart';
 
 class DatesDataSource({required final GQLClient _client}) {
-  Future<List<QueryImportantDatesimportantDatesCollectionedgesnode>> getDates() async {
+  Future<List<QueryImportantDatesimportantDates>> getDates() async {
     final response = await _client.query(
       OptionsQueryImportantDates(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.importantDatesCollection.edges,
-    );
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.importantDates);
   }
 
   Future<void> addDate({
     required String id,
     required String title,
-    required EnumImportantDateKind kind,
+    required EnumImportantDateKind_enum kind,
     required int month,
     required int day,
     required bool yearly,
     required List<int> remindDays,
-    required EnumImportantDateOrigin origin,
+    required EnumImportantDateOrigin_enum origin,
     int? year,
     String? holidayKey,
     String? coupleId,
@@ -64,13 +60,12 @@ class DatesDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<List<QueryGiftIdeasgiftIdeasCollectionedgesnode>> getGiftIdeas() async {
+  Future<List<QueryGiftIdeasgiftIdeas>> getGiftIdeas() async {
     final response = await _client.query(
       OptionsQueryGiftIdeas(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(response, getData: (data) => data.giftIdeasCollection.edges);
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.giftIdeas);
   }
 
   Future<void> addGiftIdea({required String id, required String title}) async {
@@ -83,7 +78,10 @@ class DatesDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<void> setGiftIdeaStatus({required String id, required EnumGiftIdeaStatus status}) async {
+  Future<void> setGiftIdeaStatus({
+    required String id,
+    required EnumGiftIdeaStatus_enum status,
+  }) async {
     final response = await _client.mutate(
       OptionsMutationSetGiftIdeaStatus(
         variables: VariablesMutationSetGiftIdeaStatus(id: id, status: status),
@@ -101,15 +99,11 @@ class DatesDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<List<QueryHolidayscontentItemsCollectionedgesnode>> getHolidays(String locale) async {
+  Future<List<QueryHolidayscontentItems>> getHolidays(String locale) async {
     final response = await _client.query(
       OptionsQueryHolidays(variables: VariablesQueryHolidays(locale: locale)),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.contentItemsCollection.edges,
-    );
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.contentItems);
   }
 }

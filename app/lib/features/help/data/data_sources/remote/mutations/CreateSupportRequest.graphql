@@ -1,13 +1,12 @@
 mutation CreateSupportRequest(
-  $topic: String!
+  $topic: SupportTopic_enum!
   $message: String!
   $replyEmail: String
   $appVersion: String
 ) {
-  createSupportRequest(
-    topic: $topic
-    message: $message
-    replyEmail: $replyEmail
-    appVersion: $appVersion
-  )
+  insertSupportRequests(
+    objects: [{ topic: $topic, message: $message, replyEmail: $replyEmail, appVersion: $appVersion }]
+  ) {
+    affected_rows
+  }
 }

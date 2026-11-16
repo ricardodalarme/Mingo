@@ -13,9 +13,9 @@ void main() {
     final MoodRecord record = (
       id: 'm1',
       day: day,
-      mood: EnumMood.tired,
-      need: EnumMoodNeed.hug,
-      share: EnumMoodShare.mood_need,
+      mood: EnumMood_enum.tired,
+      need: EnumMoodNeed_enum.hug,
+      share: EnumMoodShare_enum.mood_need,
     );
 
     final entry = record.toEntry();
@@ -31,9 +31,9 @@ void main() {
     final MoodRecord record = (
       id: 'm1',
       day: day,
-      mood: EnumMood.happy,
+      mood: EnumMood_enum.happy,
       need: null,
-      share: EnumMoodShare.none,
+      share: EnumMoodShare_enum.none,
     );
 
     expect(record.toEntry().need, isNull);
@@ -43,16 +43,20 @@ void main() {
     final MoodRecord record = (
       id: 'm1',
       day: day,
-      mood: EnumMood.$unknown,
+      mood: EnumMood_enum.$unknown,
       need: null,
-      share: EnumMoodShare.none,
+      share: EnumMoodShare_enum.none,
     );
 
     expect(record.toEntry().mood, isNull);
   });
 
   test('maps the partner mood and need', () {
-    final PartnerMoodRecord record = (day: day, mood: EnumMood.stressed, need: EnumMoodNeed.space);
+    final PartnerMoodRecord record = (
+      day: day,
+      mood: EnumMood_enum.stressed,
+      need: EnumMoodNeed_enum.space,
+    );
 
     final partnerMood = record.toPartnerMood();
 
@@ -63,7 +67,7 @@ void main() {
   });
 
   test('a partner mood this version does not know stays hidden', () {
-    final PartnerMoodRecord record = (day: day, mood: EnumMood.$unknown, need: null);
+    final PartnerMoodRecord record = (day: day, mood: EnumMood_enum.$unknown, need: null);
 
     expect(record.toPartnerMood().isVisible, isFalse);
   });

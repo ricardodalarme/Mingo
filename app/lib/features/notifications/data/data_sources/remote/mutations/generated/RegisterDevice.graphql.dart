@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -7,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationRegisterDevice {
   factory VariablesMutationRegisterDevice({
     required String token,
-    required String platform,
+    required EnumDevicePlatform_enum platform,
     String? label,
   }) => VariablesMutationRegisterDevice._({
     r'token': token,
@@ -22,7 +24,7 @@ class VariablesMutationRegisterDevice {
     final l$token = data['token'];
     result$data['token'] = (l$token as String);
     final l$platform = data['platform'];
-    result$data['platform'] = (l$platform as String);
+    result$data['platform'] = fromJsonEnumDevicePlatform_enum((l$platform as String));
     if (data.containsKey('label')) {
       final l$label = data['label'];
       result$data['label'] = (l$label as String?);
@@ -34,7 +36,7 @@ class VariablesMutationRegisterDevice {
 
   String get token => (_$data['token'] as String);
 
-  String get platform => (_$data['platform'] as String);
+  EnumDevicePlatform_enum get platform => (_$data['platform'] as EnumDevicePlatform_enum);
 
   String? get label => (_$data['label'] as String?);
 
@@ -43,7 +45,7 @@ class VariablesMutationRegisterDevice {
     final l$token = token;
     result$data['token'] = l$token;
     final l$platform = platform;
-    result$data['platform'] = l$platform;
+    result$data['platform'] = toJsonEnumDevicePlatform_enum(l$platform);
     if (_$data.containsKey('label')) {
       final l$label = label;
       result$data['label'] = l$label;
@@ -90,25 +92,29 @@ class VariablesMutationRegisterDevice {
 }
 
 class MutationRegisterDevice {
-  MutationRegisterDevice({this.registerDevice, this.$__typename = 'Mutation'});
+  MutationRegisterDevice({this.insertDevicesOne, this.$__typename = 'mutation_root'});
 
   factory MutationRegisterDevice.fromJson(Map<String, dynamic> json) {
-    final l$registerDevice = json['registerDevice'];
+    final l$insertDevicesOne = json['insertDevicesOne'];
     final l$$__typename = json['__typename'];
     return MutationRegisterDevice(
-      registerDevice: (l$registerDevice as bool?),
+      insertDevicesOne: l$insertDevicesOne == null
+          ? null
+          : MutationRegisterDeviceinsertDevicesOne.fromJson(
+              (l$insertDevicesOne as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? registerDevice;
+  final MutationRegisterDeviceinsertDevicesOne? insertDevicesOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$registerDevice = registerDevice;
-    _resultData['registerDevice'] = l$registerDevice;
+    final l$insertDevicesOne = insertDevicesOne;
+    _resultData['insertDevicesOne'] = l$insertDevicesOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -116,9 +122,9 @@ class MutationRegisterDevice {
 
   @override
   int get hashCode {
-    final l$registerDevice = registerDevice;
+    final l$insertDevicesOne = insertDevicesOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$registerDevice, l$$__typename]);
+    return Object.hashAll([l$insertDevicesOne, l$$__typename]);
   }
 
   @override
@@ -129,9 +135,9 @@ class MutationRegisterDevice {
     if (other is! MutationRegisterDevice || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$registerDevice = registerDevice;
-    final lOther$registerDevice = other.registerDevice;
-    if (l$registerDevice != lOther$registerDevice) {
+    final l$insertDevicesOne = insertDevicesOne;
+    final lOther$insertDevicesOne = other.insertDevicesOne;
+    if (l$insertDevicesOne != lOther$insertDevicesOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -157,7 +163,7 @@ const documentNodeMutationRegisterDevice = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'platform')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'DevicePlatform_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -172,24 +178,48 @@ const documentNodeMutationRegisterDevice = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'registerDevice'),
+            name: NameNode(value: 'insertDevicesOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'token'),
-                value: VariableNode(name: NameNode(value: 'token')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'platform'),
-                value: VariableNode(name: NameNode(value: 'platform')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'label'),
-                value: VariableNode(name: NameNode(value: 'label')),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'token'),
+                      value: VariableNode(name: NameNode(value: 'token')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'platform'),
+                      value: VariableNode(name: NameNode(value: 'platform')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'label'),
+                      value: VariableNode(name: NameNode(value: 'label')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -292,4 +322,58 @@ extension ClientExtensionMutationRegisterDevice on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationRegisterDevice> watchMutationRegisterDevice(
     WatchOptionsMutationRegisterDevice options,
   ) => this.watchMutation(options);
+}
+
+class MutationRegisterDeviceinsertDevicesOne {
+  MutationRegisterDeviceinsertDevicesOne({required this.id, this.$__typename = 'devices'});
+
+  factory MutationRegisterDeviceinsertDevicesOne.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return MutationRegisterDeviceinsertDevicesOne(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationRegisterDeviceinsertDevicesOne || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
 }

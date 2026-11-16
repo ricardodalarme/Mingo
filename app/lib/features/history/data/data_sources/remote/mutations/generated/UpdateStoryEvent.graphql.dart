@@ -10,10 +10,10 @@ class VariablesMutationUpdateStoryEvent {
   factory VariablesMutationUpdateStoryEvent({
     required String id,
     String? coupleId,
-    required EnumStoryEventKind kind,
+    required EnumStoryEventKind_enum kind,
     String? title,
     required DateTime happenedOn,
-    required EnumDatePrecision datePrecision,
+    required EnumDatePrecision_enum datePrecision,
   }) => VariablesMutationUpdateStoryEvent._({
     r'id': id,
     if (coupleId != null) r'coupleId': coupleId,
@@ -34,7 +34,7 @@ class VariablesMutationUpdateStoryEvent {
       result$data['coupleId'] = (l$coupleId as String?);
     }
     final l$kind = data['kind'];
-    result$data['kind'] = fromJsonEnumStoryEventKind((l$kind as String));
+    result$data['kind'] = fromJsonEnumStoryEventKind_enum((l$kind as String));
     if (data.containsKey('title')) {
       final l$title = data['title'];
       result$data['title'] = (l$title as String?);
@@ -42,7 +42,7 @@ class VariablesMutationUpdateStoryEvent {
     final l$happenedOn = data['happenedOn'];
     result$data['happenedOn'] = DateTime.parse((l$happenedOn as String));
     final l$datePrecision = data['datePrecision'];
-    result$data['datePrecision'] = fromJsonEnumDatePrecision((l$datePrecision as String));
+    result$data['datePrecision'] = fromJsonEnumDatePrecision_enum((l$datePrecision as String));
     return VariablesMutationUpdateStoryEvent._(result$data);
   }
 
@@ -52,13 +52,13 @@ class VariablesMutationUpdateStoryEvent {
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
-  EnumStoryEventKind get kind => (_$data['kind'] as EnumStoryEventKind);
+  EnumStoryEventKind_enum get kind => (_$data['kind'] as EnumStoryEventKind_enum);
 
   String? get title => (_$data['title'] as String?);
 
   DateTime get happenedOn => (_$data['happenedOn'] as DateTime);
 
-  EnumDatePrecision get datePrecision => (_$data['datePrecision'] as EnumDatePrecision);
+  EnumDatePrecision_enum get datePrecision => (_$data['datePrecision'] as EnumDatePrecision_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -69,7 +69,7 @@ class VariablesMutationUpdateStoryEvent {
       result$data['coupleId'] = l$coupleId;
     }
     final l$kind = kind;
-    result$data['kind'] = toJsonEnumStoryEventKind(l$kind);
+    result$data['kind'] = toJsonEnumStoryEventKind_enum(l$kind);
     if (_$data.containsKey('title')) {
       final l$title = title;
       result$data['title'] = l$title;
@@ -77,7 +77,7 @@ class VariablesMutationUpdateStoryEvent {
     final l$happenedOn = happenedOn;
     result$data['happenedOn'] = ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     final l$datePrecision = datePrecision;
-    result$data['datePrecision'] = toJsonEnumDatePrecision(l$datePrecision);
+    result$data['datePrecision'] = toJsonEnumDatePrecision_enum(l$datePrecision);
     return result$data;
   }
 
@@ -148,30 +148,29 @@ class VariablesMutationUpdateStoryEvent {
 }
 
 class MutationUpdateStoryEvent {
-  MutationUpdateStoryEvent({
-    required this.updateStoryEventsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateStoryEvent({this.updateStoryEvents, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateStoryEvent.fromJson(Map<String, dynamic> json) {
-    final l$updateStoryEventsCollection = json['updateStoryEventsCollection'];
+    final l$updateStoryEvents = json['updateStoryEvents'];
     final l$$__typename = json['__typename'];
     return MutationUpdateStoryEvent(
-      updateStoryEventsCollection: MutationUpdateStoryEventupdateStoryEventsCollection.fromJson(
-        (l$updateStoryEventsCollection as Map<String, dynamic>),
-      ),
+      updateStoryEvents: l$updateStoryEvents == null
+          ? null
+          : MutationUpdateStoryEventupdateStoryEvents.fromJson(
+              (l$updateStoryEvents as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateStoryEventupdateStoryEventsCollection updateStoryEventsCollection;
+  final MutationUpdateStoryEventupdateStoryEvents? updateStoryEvents;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateStoryEventsCollection = updateStoryEventsCollection;
-    _resultData['updateStoryEventsCollection'] = l$updateStoryEventsCollection.toJson();
+    final l$updateStoryEvents = updateStoryEvents;
+    _resultData['updateStoryEvents'] = l$updateStoryEvents?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -179,9 +178,9 @@ class MutationUpdateStoryEvent {
 
   @override
   int get hashCode {
-    final l$updateStoryEventsCollection = updateStoryEventsCollection;
+    final l$updateStoryEvents = updateStoryEvents;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateStoryEventsCollection, l$$__typename]);
+    return Object.hashAll([l$updateStoryEvents, l$$__typename]);
   }
 
   @override
@@ -192,9 +191,9 @@ class MutationUpdateStoryEvent {
     if (other is! MutationUpdateStoryEvent || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateStoryEventsCollection = updateStoryEventsCollection;
-    final lOther$updateStoryEventsCollection = other.updateStoryEventsCollection;
-    if (l$updateStoryEventsCollection != lOther$updateStoryEventsCollection) {
+    final l$updateStoryEvents = updateStoryEvents;
+    final lOther$updateStoryEvents = other.updateStoryEvents;
+    if (l$updateStoryEvents != lOther$updateStoryEvents) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -214,19 +213,19 @@ const documentNodeMutationUpdateStoryEvent = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'StoryEventKind'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'StoryEventKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -238,13 +237,13 @@ const documentNodeMutationUpdateStoryEvent = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'happenedOn')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'datePrecision')),
-          type: NamedTypeNode(name: NameNode(value: 'DatePrecision'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'DatePrecision_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -253,11 +252,29 @@ const documentNodeMutationUpdateStoryEvent = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateStoryEventsCollection'),
+            name: NameNode(value: 'updateStoryEvents'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'id')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -283,34 +300,12 @@ const documentNodeMutationUpdateStoryEvent = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -430,29 +425,29 @@ extension ClientExtensionMutationUpdateStoryEvent on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateStoryEventupdateStoryEventsCollection {
-  MutationUpdateStoryEventupdateStoryEventsCollection({
-    required this.affectedCount,
-    this.$__typename = 'StoryEventsUpdateResponse',
+class MutationUpdateStoryEventupdateStoryEvents {
+  MutationUpdateStoryEventupdateStoryEvents({
+    required this.affected_rows,
+    this.$__typename = 'storyEvents_mutation_response',
   });
 
-  factory MutationUpdateStoryEventupdateStoryEventsCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateStoryEventupdateStoryEvents.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateStoryEventupdateStoryEventsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateStoryEventupdateStoryEvents(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -460,9 +455,9 @@ class MutationUpdateStoryEventupdateStoryEventsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -470,13 +465,12 @@ class MutationUpdateStoryEventupdateStoryEventsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateStoryEventupdateStoryEventsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationUpdateStoryEventupdateStoryEvents || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

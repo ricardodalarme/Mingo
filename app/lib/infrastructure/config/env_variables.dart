@@ -1,10 +1,9 @@
 abstract interface class EnvVariables() {
   static const bool debugSignIn = bool.fromEnvironment('DEBUG_SIGN_IN');
   static const String serverUrl = String.fromEnvironment('SERVER_URL');
-  static const String serverApiKey = String.fromEnvironment('SERVER_API_KEY');
-  static const String restServerUrl = String.fromEnvironment('REST_SERVER_URL');
-  static const String supabaseUrl = String.fromEnvironment('SUPABASE_URL');
-  static const String supabaseAnonKey = String.fromEnvironment('SUPABASE_ANON_KEY');
+  static const String authUrl = String.fromEnvironment('AUTH_URL');
+  static const String storageUrl = String.fromEnvironment('STORAGE_URL');
+  static const String functionsUrl = String.fromEnvironment('FUNCTIONS_URL');
   static const String revenueCatIosApiKey = String.fromEnvironment('REVENUECAT_IOS_API_KEY');
   static const String revenueCatAndroidApiKey = String.fromEnvironment(
     'REVENUECAT_ANDROID_API_KEY',

@@ -9,9 +9,9 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationSaveIntroAnswers {
   factory VariablesMutationSaveIntroAnswers({
     required String profileId,
-    EnumRelationshipPhase? phase,
-    EnumRelationshipGoal? goal,
-    List<String?>? goals,
+    EnumRelationshipPhase_enum? phase,
+    EnumRelationshipGoal_enum? goal,
+    List<String>? goals,
   }) => VariablesMutationSaveIntroAnswers._({
     r'profileId': profileId,
     if (phase != null) r'phase': phase,
@@ -29,17 +29,17 @@ class VariablesMutationSaveIntroAnswers {
       final l$phase = data['phase'];
       result$data['phase'] = l$phase == null
           ? null
-          : fromJsonEnumRelationshipPhase((l$phase as String));
+          : fromJsonEnumRelationshipPhase_enum((l$phase as String));
     }
     if (data.containsKey('goal')) {
       final l$goal = data['goal'];
       result$data['goal'] = l$goal == null
           ? null
-          : fromJsonEnumRelationshipGoal((l$goal as String));
+          : fromJsonEnumRelationshipGoal_enum((l$goal as String));
     }
     if (data.containsKey('goals')) {
       final l$goals = data['goals'];
-      result$data['goals'] = (l$goals as List<dynamic>?)?.map((e) => (e as String?)).toList();
+      result$data['goals'] = (l$goals as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
     return VariablesMutationSaveIntroAnswers._(result$data);
   }
@@ -48,11 +48,11 @@ class VariablesMutationSaveIntroAnswers {
 
   String get profileId => (_$data['profileId'] as String);
 
-  EnumRelationshipPhase? get phase => (_$data['phase'] as EnumRelationshipPhase?);
+  EnumRelationshipPhase_enum? get phase => (_$data['phase'] as EnumRelationshipPhase_enum?);
 
-  EnumRelationshipGoal? get goal => (_$data['goal'] as EnumRelationshipGoal?);
+  EnumRelationshipGoal_enum? get goal => (_$data['goal'] as EnumRelationshipGoal_enum?);
 
-  List<String?>? get goals => (_$data['goals'] as List<String?>?);
+  List<String>? get goals => (_$data['goals'] as List<String>?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -60,11 +60,11 @@ class VariablesMutationSaveIntroAnswers {
     result$data['profileId'] = l$profileId;
     if (_$data.containsKey('phase')) {
       final l$phase = phase;
-      result$data['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase(l$phase);
+      result$data['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase_enum(l$phase);
     }
     if (_$data.containsKey('goal')) {
       final l$goal = goal;
-      result$data['goal'] = l$goal == null ? null : toJsonEnumRelationshipGoal(l$goal);
+      result$data['goal'] = l$goal == null ? null : toJsonEnumRelationshipGoal_enum(l$goal);
     }
     if (_$data.containsKey('goals')) {
       final l$goals = goals;
@@ -144,31 +144,29 @@ class VariablesMutationSaveIntroAnswers {
 }
 
 class MutationSaveIntroAnswers {
-  MutationSaveIntroAnswers({
-    required this.updateProfileSettingsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationSaveIntroAnswers({this.updateUserSettings, this.$__typename = 'mutation_root'});
 
   factory MutationSaveIntroAnswers.fromJson(Map<String, dynamic> json) {
-    final l$updateProfileSettingsCollection = json['updateProfileSettingsCollection'];
+    final l$updateUserSettings = json['updateUserSettings'];
     final l$$__typename = json['__typename'];
     return MutationSaveIntroAnswers(
-      updateProfileSettingsCollection:
-          MutationSaveIntroAnswersupdateProfileSettingsCollection.fromJson(
-            (l$updateProfileSettingsCollection as Map<String, dynamic>),
-          ),
+      updateUserSettings: l$updateUserSettings == null
+          ? null
+          : MutationSaveIntroAnswersupdateUserSettings.fromJson(
+              (l$updateUserSettings as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSaveIntroAnswersupdateProfileSettingsCollection updateProfileSettingsCollection;
+  final MutationSaveIntroAnswersupdateUserSettings? updateUserSettings;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    _resultData['updateProfileSettingsCollection'] = l$updateProfileSettingsCollection.toJson();
+    final l$updateUserSettings = updateUserSettings;
+    _resultData['updateUserSettings'] = l$updateUserSettings?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -176,9 +174,9 @@ class MutationSaveIntroAnswers {
 
   @override
   int get hashCode {
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
+    final l$updateUserSettings = updateUserSettings;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateProfileSettingsCollection, l$$__typename]);
+    return Object.hashAll([l$updateUserSettings, l$$__typename]);
   }
 
   @override
@@ -189,9 +187,9 @@ class MutationSaveIntroAnswers {
     if (other is! MutationSaveIntroAnswers || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    final lOther$updateProfileSettingsCollection = other.updateProfileSettingsCollection;
-    if (l$updateProfileSettingsCollection != lOther$updateProfileSettingsCollection) {
+    final l$updateUserSettings = updateUserSettings;
+    final lOther$updateUserSettings = other.updateUserSettings;
+    if (l$updateUserSettings != lOther$updateUserSettings) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -211,26 +209,26 @@ const documentNodeMutationSaveIntroAnswers = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'profileId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'phase')),
-          type: NamedTypeNode(name: NameNode(value: 'RelationshipPhase'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'RelationshipPhase_enum'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'goal')),
-          type: NamedTypeNode(name: NameNode(value: 'RelationshipGoal'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'RelationshipGoal_enum'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'goals')),
           type: ListTypeNode(
-            type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+            type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
             isNonNull: false,
           ),
           defaultValue: DefaultValueNode(value: null),
@@ -241,11 +239,29 @@ const documentNodeMutationSaveIntroAnswers = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProfileSettingsCollection'),
+            name: NameNode(value: 'updateUserSettings'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'userId'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'profileId')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -263,30 +279,12 @@ const documentNodeMutationSaveIntroAnswers = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'profileId'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'profileId')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -406,31 +404,29 @@ extension ClientExtensionMutationSaveIntroAnswers on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSaveIntroAnswersupdateProfileSettingsCollection {
-  MutationSaveIntroAnswersupdateProfileSettingsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProfileSettingsUpdateResponse',
+class MutationSaveIntroAnswersupdateUserSettings {
+  MutationSaveIntroAnswersupdateUserSettings({
+    required this.affected_rows,
+    this.$__typename = 'userSettings_mutation_response',
   });
 
-  factory MutationSaveIntroAnswersupdateProfileSettingsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationSaveIntroAnswersupdateUserSettings.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationSaveIntroAnswersupdateProfileSettingsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationSaveIntroAnswersupdateUserSettings(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -438,9 +434,9 @@ class MutationSaveIntroAnswersupdateProfileSettingsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -448,13 +444,12 @@ class MutationSaveIntroAnswersupdateProfileSettingsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSaveIntroAnswersupdateProfileSettingsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationSaveIntroAnswersupdateUserSettings || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

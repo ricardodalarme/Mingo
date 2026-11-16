@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/features/_shared/data/data_sources/local/device_marker_store.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/notifications/data/data_sources/local/notifications_local_data_source.dart';
 import 'package:app/features/notifications/data/data_sources/remote/notifications_data_source.dart';
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
@@ -22,6 +23,8 @@ class _MockPermissionService() extends Mock implements PermissionService;
 class _MockDeviceInfoService() extends Mock implements DeviceInfoService;
 
 class _MockDeviceMarkerStore() extends Mock implements DeviceMarkerStore;
+
+class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
 void main() {
   late _MockNotificationsDataSource dataSource;
@@ -47,6 +50,7 @@ void main() {
       permissionService: permissionService,
       deviceInfoService: deviceInfoService,
       markerStore: markerStore,
+      authenticationRepository: _MockAuthenticationRepository(),
     );
 
     when(() => notificationService.onRegistered).thenAnswer((_) => registration.stream);

@@ -16,7 +16,7 @@ void main() {
     }
   });
   test('an unknown budget is left out and an unknown status is an idea', () {
-    expect(EnumGiftBudget.$unknown.toModel(), isNull);
-    expect(EnumGiftIdeaStatus.$unknown.toModel(), GiftIdeaStatus.idea);
+    expect(EnumGiftBudget_enum.$unknown.toModel(), isNull);
+    expect(EnumGiftIdeaStatus_enum.$unknown.toModel(), GiftIdeaStatus.idea);
   });
 }

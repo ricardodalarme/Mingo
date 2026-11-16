@@ -55,7 +55,7 @@ class VariablesQueryListDetail {
 }
 
 class QueryListDetail {
-  QueryListDetail({this.listsByPk, this.$__typename = 'Query'});
+  QueryListDetail({this.listsByPk, this.$__typename = 'query_root'});
 
   factory QueryListDetail.fromJson(Map<String, dynamic> json) {
     final l$listsByPk = json['listsByPk'];
@@ -118,7 +118,7 @@ const documentNodeQueryListDetail = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -143,18 +143,18 @@ const documentNodeQueryListDetail = DocumentNode(
                   directives: [],
                 ),
                 FieldNode(
-                  name: NameNode(value: 'listItemsCollection'),
+                  name: NameNode(value: 'items'),
                   alias: null,
                   arguments: [
                     ArgumentNode(
-                      name: NameNode(value: 'orderBy'),
+                      name: NameNode(value: 'order_by'),
                       value: ListValueNode(
                         values: [
                           ObjectValueNode(
                             fields: [
                               ObjectFieldNode(
                                 name: NameNode(value: 'position'),
-                                value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
+                                value: EnumValueNode(name: NameNode(value: 'asc_nulls_last')),
                               ),
                             ],
                           ),
@@ -162,7 +162,7 @@ const documentNodeQueryListDetail = DocumentNode(
                             fields: [
                               ObjectFieldNode(
                                 name: NameNode(value: 'createdAt'),
-                                value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
+                                value: EnumValueNode(name: NameNode(value: 'asc_nulls_last')),
                               ),
                             ],
                           ),
@@ -170,50 +170,16 @@ const documentNodeQueryListDetail = DocumentNode(
                       ),
                     ),
                     ArgumentNode(
-                      name: NameNode(value: 'first'),
+                      name: NameNode(value: 'limit'),
                       value: IntValueNode(value: '500'),
                     ),
                   ],
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
-                      FieldNode(
-                        name: NameNode(value: 'edges'),
-                        alias: null,
-                        arguments: [],
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'ListItemFragment'),
                         directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'node'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: SelectionSetNode(
-                                selections: [
-                                  FragmentSpreadNode(
-                                    name: NameNode(value: 'ListItemFragment'),
-                                    directives: [],
-                                  ),
-                                  FieldNode(
-                                    name: NameNode(value: '__typename'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: null,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
                       ),
                       FieldNode(
                         name: NameNode(value: '__typename'),
@@ -382,32 +348,30 @@ class QueryListDetaillistsByPk implements FragmentListFragment {
     required this.id,
     required this.title,
     required this.kind,
-    this.isMine,
-    this.isShared,
-    this.$__typename = 'Lists',
-    this.listItemsCollection,
+    required this.authorId,
+    this.coupleId,
+    this.$__typename = 'lists',
+    required this.items,
   });
 
   factory QueryListDetaillistsByPk.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$kind = json['kind'];
-    final l$isMine = json['isMine'];
-    final l$isShared = json['isShared'];
+    final l$authorId = json['authorId'];
+    final l$coupleId = json['coupleId'];
     final l$$__typename = json['__typename'];
-    final l$listItemsCollection = json['listItemsCollection'];
+    final l$items = json['items'];
     return QueryListDetaillistsByPk(
       id: (l$id as String),
       title: (l$title as String),
-      kind: fromJsonEnumListKind((l$kind as String)),
-      isMine: (l$isMine as bool?),
-      isShared: (l$isShared as bool?),
+      kind: fromJsonEnumListKind_enum((l$kind as String)),
+      authorId: (l$authorId as String),
+      coupleId: (l$coupleId as String?),
       $__typename: (l$$__typename as String),
-      listItemsCollection: l$listItemsCollection == null
-          ? null
-          : QueryListDetaillistsByPklistItemsCollection.fromJson(
-              (l$listItemsCollection as Map<String, dynamic>),
-            ),
+      items: (l$items as List<dynamic>)
+          .map((e) => FragmentListItemFragment.fromJson((e as Map<String, dynamic>)))
+          .toList(),
     );
   }
 
@@ -415,15 +379,15 @@ class QueryListDetaillistsByPk implements FragmentListFragment {
 
   final String title;
 
-  final EnumListKind kind;
+  final EnumListKind_enum kind;
 
-  final bool? isMine;
+  final String authorId;
 
-  final bool? isShared;
+  final String? coupleId;
 
   final String $__typename;
 
-  final QueryListDetaillistsByPklistItemsCollection? listItemsCollection;
+  final List<FragmentListItemFragment> items;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -432,15 +396,15 @@ class QueryListDetaillistsByPk implements FragmentListFragment {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$kind = kind;
-    _resultData['kind'] = toJsonEnumListKind(l$kind);
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
-    final l$isShared = isShared;
-    _resultData['isShared'] = l$isShared;
+    _resultData['kind'] = toJsonEnumListKind_enum(l$kind);
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
-    final l$listItemsCollection = listItemsCollection;
-    _resultData['listItemsCollection'] = l$listItemsCollection?.toJson();
+    final l$items = items;
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     return _resultData;
   }
 
@@ -449,18 +413,18 @@ class QueryListDetaillistsByPk implements FragmentListFragment {
     final l$id = id;
     final l$title = title;
     final l$kind = kind;
-    final l$isMine = isMine;
-    final l$isShared = isShared;
+    final l$authorId = authorId;
+    final l$coupleId = coupleId;
     final l$$__typename = $__typename;
-    final l$listItemsCollection = listItemsCollection;
+    final l$items = items;
     return Object.hashAll([
       l$id,
       l$title,
       l$kind,
-      l$isMine,
-      l$isShared,
+      l$authorId,
+      l$coupleId,
       l$$__typename,
-      l$listItemsCollection,
+      Object.hashAll(l$items.map((v) => v)),
     ]);
   }
 
@@ -487,14 +451,14 @@ class QueryListDetaillistsByPk implements FragmentListFragment {
     if (l$kind != lOther$kind) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
-    final l$isShared = isShared;
-    final lOther$isShared = other.isShared;
-    if (l$isShared != lOther$isShared) {
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -502,138 +466,17 @@ class QueryListDetaillistsByPk implements FragmentListFragment {
     if (l$$__typename != lOther$$__typename) {
       return false;
     }
-    final l$listItemsCollection = listItemsCollection;
-    final lOther$listItemsCollection = other.listItemsCollection;
-    if (l$listItemsCollection != lOther$listItemsCollection) {
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) {
       return false;
     }
-    return true;
-  }
-}
-
-class QueryListDetaillistsByPklistItemsCollection {
-  QueryListDetaillistsByPklistItemsCollection({
-    required this.edges,
-    this.$__typename = 'ListItemsConnection',
-  });
-
-  factory QueryListDetaillistsByPklistItemsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryListDetaillistsByPklistItemsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryListDetaillistsByPklistItemsCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryListDetaillistsByPklistItemsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryListDetaillistsByPklistItemsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
         return false;
       }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryListDetaillistsByPklistItemsCollectionedges {
-  QueryListDetaillistsByPklistItemsCollectionedges({
-    required this.node,
-    this.$__typename = 'ListItemsEdge',
-  });
-
-  factory QueryListDetaillistsByPklistItemsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryListDetaillistsByPklistItemsCollectionedges(
-      node: FragmentListItemFragment.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final FragmentListItemFragment node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryListDetaillistsByPklistItemsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
     }
     return true;
   }

@@ -52,33 +52,29 @@ class VariablesMutationDeleteImportantDate {
 }
 
 class MutationDeleteImportantDate {
-  MutationDeleteImportantDate({
-    required this.deleteFromImportantDatesCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteImportantDate({this.deleteImportantDates, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteImportantDate.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromImportantDatesCollection = json['deleteFromImportantDatesCollection'];
+    final l$deleteImportantDates = json['deleteImportantDates'];
     final l$$__typename = json['__typename'];
     return MutationDeleteImportantDate(
-      deleteFromImportantDatesCollection:
-          MutationDeleteImportantDatedeleteFromImportantDatesCollection.fromJson(
-            (l$deleteFromImportantDatesCollection as Map<String, dynamic>),
-          ),
+      deleteImportantDates: l$deleteImportantDates == null
+          ? null
+          : MutationDeleteImportantDatedeleteImportantDates.fromJson(
+              (l$deleteImportantDates as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteImportantDatedeleteFromImportantDatesCollection
-  deleteFromImportantDatesCollection;
+  final MutationDeleteImportantDatedeleteImportantDates? deleteImportantDates;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromImportantDatesCollection = deleteFromImportantDatesCollection;
-    _resultData['deleteFromImportantDatesCollection'] = l$deleteFromImportantDatesCollection
-        .toJson();
+    final l$deleteImportantDates = deleteImportantDates;
+    _resultData['deleteImportantDates'] = l$deleteImportantDates?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -86,9 +82,9 @@ class MutationDeleteImportantDate {
 
   @override
   int get hashCode {
-    final l$deleteFromImportantDatesCollection = deleteFromImportantDatesCollection;
+    final l$deleteImportantDates = deleteImportantDates;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromImportantDatesCollection, l$$__typename]);
+    return Object.hashAll([l$deleteImportantDates, l$$__typename]);
   }
 
   @override
@@ -99,9 +95,9 @@ class MutationDeleteImportantDate {
     if (other is! MutationDeleteImportantDate || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromImportantDatesCollection = deleteFromImportantDatesCollection;
-    final lOther$deleteFromImportantDatesCollection = other.deleteFromImportantDatesCollection;
-    if (l$deleteFromImportantDatesCollection != lOther$deleteFromImportantDatesCollection) {
+    final l$deleteImportantDates = deleteImportantDates;
+    final lOther$deleteImportantDates = other.deleteImportantDates;
+    if (l$deleteImportantDates != lOther$deleteImportantDates) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -121,7 +117,7 @@ const documentNodeMutationDeleteImportantDate = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -130,11 +126,11 @@ const documentNodeMutationDeleteImportantDate = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromImportantDatesCollection'),
+            name: NameNode(value: 'deleteImportantDates'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -142,7 +138,7 @@ const documentNodeMutationDeleteImportantDate = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'id')),
                           ),
                         ],
@@ -151,16 +147,12 @@ const documentNodeMutationDeleteImportantDate = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -283,31 +275,29 @@ extension ClientExtensionMutationDeleteImportantDate on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteImportantDatedeleteFromImportantDatesCollection {
-  MutationDeleteImportantDatedeleteFromImportantDatesCollection({
-    required this.affectedCount,
-    this.$__typename = 'ImportantDatesDeleteResponse',
+class MutationDeleteImportantDatedeleteImportantDates {
+  MutationDeleteImportantDatedeleteImportantDates({
+    required this.affected_rows,
+    this.$__typename = 'importantDates_mutation_response',
   });
 
-  factory MutationDeleteImportantDatedeleteFromImportantDatesCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteImportantDatedeleteImportantDates.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteImportantDatedeleteFromImportantDatesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteImportantDatedeleteImportantDates(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -315,9 +305,9 @@ class MutationDeleteImportantDatedeleteFromImportantDatesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -325,13 +315,13 @@ class MutationDeleteImportantDatedeleteFromImportantDatesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteImportantDatedeleteFromImportantDatesCollection ||
+    if (other is! MutationDeleteImportantDatedeleteImportantDates ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

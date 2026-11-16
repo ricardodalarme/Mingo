@@ -1,3 +1,5 @@
 mutation UnregisterDevice($token: String!) {
-  unregisterDevice(token: $token)
+  deleteDevices(where: { token: { _eq: $token } }) {
+    affected_rows
+  }
 }

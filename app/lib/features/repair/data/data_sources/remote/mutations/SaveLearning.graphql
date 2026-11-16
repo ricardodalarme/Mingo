@@ -1,7 +1,12 @@
-mutation SaveLearning($id: UUID!, $sessionId: UUID, $kind: RepairLearningKind!, $note: String!) {
-  insertIntoRepairLearningsCollection(
+mutation SaveLearning(
+  $id: uuid!
+  $sessionId: uuid
+  $kind: RepairLearningKind_enum!
+  $note: String!
+) {
+  insertRepairLearnings(
     objects: [{ id: $id, repairSessionId: $sessionId, kind: $kind, note: $note }]
   ) {
-    affectedCount
+    affected_rows
   }
 }

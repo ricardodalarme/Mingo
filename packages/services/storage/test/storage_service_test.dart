@@ -1,73 +1,81 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:storage_service/storage_service.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-class _MockStorage() extends Mock implements SupabaseStorageClient;
-
-class _MockBucket() extends Mock implements StorageFileApi;
 
 void main() {
-  late SupabaseStorageClient storage;
-  late StorageFileApi bucket;
+  const base = 'https://storage.test/v1';
 
-  setUpAll(() {
-    registerFallbackValue(const FileOptions());
-    registerFallbackValue(Uint8List(0));
-  });
+  test('upload sends the bucket and returns the file id', () async {
+    final client = MockClient((request) async {
+      expect(request.method, 'POST');
+      expect(request.url.toString(), '$base/files');
+      expect(request.headers['authorization'], 'Bearer access');
 
-  setUp(() {
-    storage = _MockStorage();
-    bucket = _MockBucket();
-    when(() => storage.from('messages')).thenReturn(bucket);
-  });
+      return http.Response(
+        jsonEncode({
+          'processedFiles': [
+            {'id': 'file-1', 'bucketId': 'avatars'},
+          ],
+        }),
+        201,
+      );
+    });
 
-  test('upload sends the bytes with their type', () async {
-    when(() => bucket.uploadBinary(any(), any(), fileOptions: any(named: 'fileOptions')))
-        .thenAnswer((_) async => 'messages/u/d.png');
+    final id = await StorageService(
+      baseUrl: base,
+      tokenCallback: () async => 'access',
+      httpClient: client,
+    ).upload(bucket: 'avatars', bytes: Uint8List.fromList([1, 2, 3]), contentType: 'image/png');
 
-    await StorageService(storage: storage).upload(
-      bucket: 'messages',
-      path: 'u/d.png',
-      bytes: Uint8List.fromList([1, 2, 3]),
-      contentType: 'image/png',
-    );
-
-    verify(() => bucket.uploadBinary('u/d.png', any(), fileOptions: any(named: 'fileOptions')))
-        .called(1);
+    expect(id, 'file-1');
   });
 
   test('a failed upload is a FileStorageException', () {
-    when(() => bucket.uploadBinary(any(), any(), fileOptions: any(named: 'fileOptions')))
-        .thenThrow(Exception('offline'));
+    final client = MockClient((_) async => http.Response(jsonEncode({'message': 'nope'}), 500));
 
     expect(
       StorageService(
-        storage: storage,
-      ).upload(bucket: 'messages', path: 'u/d.png', bytes: Uint8List(1), contentType: 'image/png'),
+        baseUrl: base,
+        httpClient: client,
+      ).upload(bucket: 'avatars', bytes: Uint8List(1), contentType: 'image/png'),
       throwsA(isA<FileStorageException>()),
     );
   });
 
-  test('signedUrl returns a short-lived url', () async {
-    when(() => bucket.createSignedUrl('u/d.png', 300)).thenAnswer((_) async => 'https://x/y');
+  test('signedUrl returns the presigned url', () async {
+    final client = MockClient((request) async {
+      expect(request.url.toString(), '$base/files/file-1/presignedurl');
+      expect(request.headers['authorization'], 'Bearer access');
+
+      return http.Response(jsonEncode({'url': 'https://x/y'}), 200);
+    });
 
     expect(
-      await StorageService(storage: storage).signedUrl(bucket: 'messages', path: 'u/d.png'),
+      await StorageService(
+        baseUrl: base,
+        tokenCallback: () async => 'access',
+        httpClient: client,
+      ).signedUrl(fileId: 'file-1'),
       'https://x/y',
     );
   });
 
-  test('remove deletes the file', () async {
-    when(() => bucket.remove(['u/d.png'])).thenAnswer((_) async => <FileObject>[]);
+  test('remove deletes the file and treats a missing file as done', () async {
+    var calls = 0;
+    final client = MockClient((request) async {
+      calls++;
+      expect(request.method, 'DELETE');
+      expect(request.url.toString(), '$base/files/file-1');
 
-    await StorageService(storage: storage).remove(bucket: 'messages', path: 'u/d.png');
+      return http.Response('', 404);
+    });
 
-    verify(() => bucket.remove(['u/d.png'])).called(1);
+    await StorageService(baseUrl: base, httpClient: client).remove(fileId: 'file-1');
+    expect(calls, 1);
   });
 
   test('download returns the bytes behind an absolute url', () async {
@@ -77,9 +85,7 @@ void main() {
       return http.Response.bytes([1, 2, 3], 200);
     });
 
-    final bytes = await StorageService(httpClient: client).download('https://x/y');
-
-    expect(bytes, [1, 2, 3]);
+    expect(await StorageService(httpClient: client).download('https://x/y'), [1, 2, 3]);
   });
 
   test('a download outside 2xx is a FileStorageException', () {

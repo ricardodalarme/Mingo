@@ -29,9 +29,9 @@ void main() {
     share: MoodShare.moodNeed,
   );
   MoodRecord record({
-    EnumMood mood = EnumMood.tired,
-    EnumMoodNeed? need = EnumMoodNeed.hug,
-    EnumMoodShare share = EnumMoodShare.mood_need,
+    EnumMood_enum mood = EnumMood_enum.tired,
+    EnumMoodNeed_enum? need = EnumMoodNeed_enum.hug,
+    EnumMoodShare_enum share = EnumMoodShare_enum.mood_need,
   }) => (id: 'm1', day: day, mood: mood, need: need, share: share);
   MoodTodayRecord today({
     MoodRecord? mood,
@@ -41,9 +41,9 @@ void main() {
 
   setUpAll(() {
     registerFallbackValue('');
-    registerFallbackValue(EnumMood.happy);
-    registerFallbackValue(EnumMoodNeed.hug);
-    registerFallbackValue(EnumMoodShare.none);
+    registerFallbackValue(EnumMood_enum.happy);
+    registerFallbackValue(EnumMoodNeed_enum.hug);
+    registerFallbackValue(EnumMoodShare_enum.none);
     registerFallbackValue(DateTime(2026));
     registerFallbackValue(cachedEntry);
   });
@@ -71,8 +71,9 @@ void main() {
 
   test("maps the partner's shared mood and need", () async {
     when(() => dataSource.getTodayMood()).thenAnswer(
-      (_) async =>
-          today(partnerMood: (day: day, mood: EnumMood.stressed, need: EnumMoodNeed.space)),
+      (_) async => today(
+        partnerMood: (day: day, mood: EnumMood_enum.stressed, need: EnumMoodNeed_enum.space),
+      ),
     );
 
     final result = await repository.getTodayMood();
@@ -102,9 +103,9 @@ void main() {
     when(() => dataSource.getTodayMood()).thenAnswer(
       (_) async => today(
         mood: record(
-          mood: EnumMood.$unknown,
-          need: EnumMoodNeed.$unknown,
-          share: EnumMoodShare.$unknown,
+          mood: EnumMood_enum.$unknown,
+          need: EnumMoodNeed_enum.$unknown,
+          share: EnumMoodShare_enum.$unknown,
         ),
       ),
     );
@@ -116,16 +117,15 @@ void main() {
     expect(result.entry?.share, MoodShare.none);
   });
 
-  test('saving an existing row updates today and sends the server day', () async {
+  test('saving an existing row updates today', () async {
     when(
       () => dataSource.updateMood(
         id: any(named: 'id'),
         mood: any(named: 'mood'),
         need: any(named: 'need'),
         share: any(named: 'share'),
-        day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(mood: EnumMood.happy, share: EnumMoodShare.mood));
+    ).thenAnswer((_) async => record(mood: EnumMood_enum.happy, share: EnumMoodShare_enum.mood));
 
     final entry = await repository.saveMood(
       mood: MoodKind.happy,
@@ -138,10 +138,9 @@ void main() {
     verify(
       () => dataSource.updateMood(
         id: 'm1',
-        mood: EnumMood.happy,
-        need: EnumMoodNeed.hug,
-        share: EnumMoodShare.mood,
-        day: day,
+        mood: EnumMood_enum.happy,
+        need: EnumMoodNeed_enum.hug,
+        share: EnumMoodShare_enum.mood,
       ),
     ).called(1);
     verifyNever(
@@ -161,16 +160,15 @@ void main() {
         mood: any(named: 'mood'),
         need: any(named: 'need'),
         share: any(named: 'share'),
-        day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(mood: EnumMood.sad, share: EnumMoodShare.none));
+    ).thenAnswer((_) async => record(mood: EnumMood_enum.sad, share: EnumMoodShare_enum.none));
 
     await repository.saveMood(mood: MoodKind.sad, share: MoodShare.none);
 
     verify(() => localDataSource.write(any())).called(1);
   });
 
-  test('a midnight save re-reads the server day before updating', () async {
+  test('a midnight save re-reads the current row before updating', () async {
     when(() => dataSource.getTodayMood()).thenAnswer((_) async => today(mood: record()));
     when(
       () => dataSource.updateMood(
@@ -178,19 +176,17 @@ void main() {
         mood: any(named: 'mood'),
         need: any(named: 'need'),
         share: any(named: 'share'),
-        day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(need: null, share: EnumMoodShare.none));
+    ).thenAnswer((_) async => record(need: null, share: EnumMoodShare_enum.none));
 
     await repository.saveMood(mood: MoodKind.sad, share: MoodShare.none);
 
     verify(
       () => dataSource.updateMood(
         id: 'm1',
-        mood: EnumMood.sad,
+        mood: EnumMood_enum.sad,
         need: null,
-        share: EnumMoodShare.none,
-        day: day,
+        share: EnumMoodShare_enum.none,
       ),
     ).called(1);
   });
@@ -202,9 +198,8 @@ void main() {
         mood: any(named: 'mood'),
         need: any(named: 'need'),
         share: any(named: 'share'),
-        day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(need: null, share: EnumMoodShare.mood));
+    ).thenAnswer((_) async => record(need: null, share: EnumMoodShare_enum.mood));
 
     final entry = await repository.saveMood(mood: MoodKind.happy, share: MoodShare.mood);
 
@@ -212,10 +207,9 @@ void main() {
     verify(
       () => dataSource.updateMood(
         id: 'm1',
-        mood: EnumMood.happy,
+        mood: EnumMood_enum.happy,
         need: null,
-        share: EnumMoodShare.mood,
-        day: day,
+        share: EnumMoodShare_enum.mood,
       ),
     ).called(1);
   });
@@ -229,15 +223,17 @@ void main() {
         share: any(named: 'share'),
         day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(mood: EnumMood.sad, need: null, share: EnumMoodShare.none));
+    ).thenAnswer(
+      (_) async => record(mood: EnumMood_enum.sad, need: null, share: EnumMoodShare_enum.none),
+    );
 
     await repository.saveMood(mood: MoodKind.sad, share: MoodShare.none);
 
     verify(
       () => dataSource.insertMood(
-        mood: EnumMood.sad,
+        mood: EnumMood_enum.sad,
         need: null,
-        share: EnumMoodShare.none,
+        share: EnumMoodShare_enum.none,
         day: day,
       ),
     ).called(1);
@@ -248,7 +244,7 @@ void main() {
     when(() => dataSource.getTodayMood()).thenAnswer((_) async {
       reads++;
 
-      return reads == 1 ? today() : today(mood: record(share: EnumMoodShare.none));
+      return reads == 1 ? today() : today(mood: record(share: EnumMoodShare_enum.none));
     });
     when(
       () => dataSource.insertMood(
@@ -264,28 +260,28 @@ void main() {
         mood: any(named: 'mood'),
         need: any(named: 'need'),
         share: any(named: 'share'),
-        day: any(named: 'day'),
       ),
-    ).thenAnswer((_) async => record(mood: EnumMood.sad, need: null, share: EnumMoodShare.none));
+    ).thenAnswer(
+      (_) async => record(mood: EnumMood_enum.sad, need: null, share: EnumMoodShare_enum.none),
+    );
 
     final entry = await repository.saveMood(mood: MoodKind.sad, share: MoodShare.none);
 
     expect(entry.mood, MoodKind.sad);
     verify(
       () => dataSource.insertMood(
-        mood: EnumMood.sad,
+        mood: EnumMood_enum.sad,
         need: null,
-        share: EnumMoodShare.none,
+        share: EnumMoodShare_enum.none,
         day: day,
       ),
     ).called(1);
     verify(
       () => dataSource.updateMood(
         id: 'm1',
-        mood: EnumMood.sad,
+        mood: EnumMood_enum.sad,
         need: null,
-        share: EnumMoodShare.none,
-        day: day,
+        share: EnumMoodShare_enum.none,
       ),
     ).called(1);
   });

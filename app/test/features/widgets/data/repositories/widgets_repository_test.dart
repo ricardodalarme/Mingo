@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
 import 'package:app/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
 import 'package:app/features/widgets/data/data_sources/remote/widgets_data_source.dart';
@@ -19,44 +20,51 @@ class _MockWidgetDataService() extends Mock implements WidgetDataService;
 
 class _MockCouplePhotoRepository() extends Mock implements CouplePhotoRepository;
 
+class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
+
 void main() {
   late WidgetsDataSource dataSource;
   late WidgetsLocalDataSource localDataSource;
   late WidgetDataService widgetDataService;
   late CouplePhotoRepository couplePhotoRepository;
+  late AuthenticationRepository authenticationRepository;
   late WidgetsRepository repository;
   late List<WidgetPayload> writes;
   WidgetPayload? cached;
 
   final now = DateTime.utc(2026, 11, 11, 12);
-  QueryWidgetOverview response() => QueryWidgetOverview.fromJson(<String, dynamic>{
-    'widget': <String, dynamic>{
-      'nodeId': 'widget-1',
-      'isPaired': true,
-      'partnerName': 'Marina',
-      'nextDateTitle': 'Aniversário',
-      'nextDateOn': '2026-12-01',
-      'unopenedCards': 0,
-      '__typename': 'WidgetState',
-    },
-    'today': <String, dynamic>{
-      'nodeId': 'today-1',
-      'isPaired': true,
-      'hasPlus': true,
-      '__typename': 'TodayState',
-    },
-    'mySettings': <String, dynamic>{
-      'nodeId': 'settings-1',
-      'profileId': 'profile-1',
-      'widgetAllowPartnerNotes': true,
-      'widgetOnLockScreen': false,
-      'widgetShowNames': true,
-      '__typename': 'ProfileSettings',
-    },
-    'ritualsCollection': <String, dynamic>{'edges': <dynamic>[], '__typename': 'RitualsConnection'},
-    'moodsCollection': <String, dynamic>{'edges': <dynamic>[], '__typename': 'MoodsConnection'},
-    '__typename': 'Query',
-  });
+
+  WidgetOverviewResponse response({bool paired = true}) => (
+    cardStatus: 'sent',
+    overview: QueryWidgetOverview.fromJson(<String, dynamic>{
+      'today': <dynamic>[
+        <String, dynamic>{
+          'userId': 'profile-1',
+          'coupleId': paired ? 'couple-1' : null,
+          'partnerId': 'profile-2',
+          'partnerName': 'Marina',
+          'unopenedCards': 0,
+          '__typename': 'Today',
+        },
+      ],
+      'settings': <String, dynamic>{
+        'userId': 'profile-1',
+        'widgetAllowPartnerNotes': true,
+        'widgetOnLockScreen': false,
+        'widgetShowNames': true,
+        '__typename': 'UserSettings',
+      },
+      'plusStates': <dynamic>[
+        <String, dynamic>{'hasPlus': true, '__typename': 'PlusStates'},
+      ],
+      'partnerNote': <dynamic>[],
+      'partnerMood': <dynamic>[],
+      'myMood': <dynamic>[],
+      'rituals': <dynamic>[],
+      'idea': <dynamic>[],
+      '__typename': 'Query',
+    }),
+  );
 
   setUpAll(() {
     registerFallbackValue(WidgetPayload.signedOut());
@@ -69,15 +77,18 @@ void main() {
     localDataSource = _MockWidgetsLocalDataSource();
     widgetDataService = _MockWidgetDataService();
     couplePhotoRepository = _MockCouplePhotoRepository();
+    authenticationRepository = _MockAuthenticationRepository();
     repository = WidgetsRepository(
       dataSource: dataSource,
       localDataSource: localDataSource,
       widgetDataService: widgetDataService,
       couplePhotoRepository: couplePhotoRepository,
+      authenticationRepository: authenticationRepository,
     );
     writes = <WidgetPayload>[];
     cached = WidgetPayload.fake();
 
+    when(() => authenticationRepository.currentUserId).thenReturn('profile-1');
     when(() => localDataSource.contentSource).thenReturn(WidgetContentSource.favorites);
     when(() => localDataSource.rotationCadence).thenReturn(WidgetRotationCadence.daily);
     when(() => localDataSource.readCachedPayload()).thenAnswer((_) => cached);
@@ -115,8 +126,8 @@ void main() {
   });
 
   test('a delayed sync cannot overwrite a newer sign-out payload', () async {
-    final delayed = Completer<QueryWidgetOverview>();
-    when(() => dataSource.getOverview()).thenAnswer((_) => delayed.future);
+    final delayed = Completer<WidgetOverviewResponse>();
+    when(() => dataSource.getOverview(any())).thenAnswer((_) => delayed.future);
 
     final sync = repository.loadAndSync(now: now);
     await repository.clearOnSignOut(now: now);
@@ -128,7 +139,7 @@ void main() {
   });
 
   test('loadAndSync reads the couple photo row and exposes it on the overview', () async {
-    when(() => dataSource.getOverview()).thenAnswer((_) async => response());
+    when(() => dataSource.getOverview(any())).thenAnswer((_) async => response());
     when(() => couplePhotoRepository.syncWidgetCache(cacheAllowed: any(named: 'cacheAllowed')))
         .thenAnswer((_) async => true);
     when(() => widgetDataService.readCachedPhotoPath(hasPlus: any(named: 'hasPlus')))
@@ -142,16 +153,7 @@ void main() {
   });
 
   test('loadAndSync clears the photo cache when the couple is unpaired', () async {
-    when(() => dataSource.getOverview()).thenAnswer((_) async {
-      final json = response();
-      return QueryWidgetOverview.fromJson(<String, dynamic>{
-        ...json.toJson(),
-        'widget': <String, dynamic>{
-          ...(json.toJson()['widget'] as Map<String, dynamic>),
-          'isPaired': false,
-        },
-      });
-    });
+    when(() => dataSource.getOverview(any())).thenAnswer((_) async => response(paired: false));
 
     final overview = await repository.loadAndSync(now: now);
 

@@ -10,9 +10,6 @@ final class AuthenticationInitializer() extends Initializer {
   Future<void> initialize() async {
     _logger.info('Initializing Authentication Service');
 
-    await AppInjector.instance.get<AuthenticationService>().initialize(
-      url: EnvVariables.supabaseUrl,
-      anonKey: EnvVariables.supabaseAnonKey,
-    );
+    await AppInjector.instance.get<AuthenticationService>().initialize(url: EnvVariables.authUrl);
   }
 }

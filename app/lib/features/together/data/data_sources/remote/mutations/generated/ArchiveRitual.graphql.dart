@@ -64,27 +64,29 @@ class VariablesMutationArchiveRitual {
 }
 
 class MutationArchiveRitual {
-  MutationArchiveRitual({required this.updateRitualsCollection, this.$__typename = 'Mutation'});
+  MutationArchiveRitual({this.updateRitualsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationArchiveRitual.fromJson(Map<String, dynamic> json) {
-    final l$updateRitualsCollection = json['updateRitualsCollection'];
+    final l$updateRitualsByPk = json['updateRitualsByPk'];
     final l$$__typename = json['__typename'];
     return MutationArchiveRitual(
-      updateRitualsCollection: MutationArchiveRitualupdateRitualsCollection.fromJson(
-        (l$updateRitualsCollection as Map<String, dynamic>),
-      ),
+      updateRitualsByPk: l$updateRitualsByPk == null
+          ? null
+          : MutationArchiveRitualupdateRitualsByPk.fromJson(
+              (l$updateRitualsByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationArchiveRitualupdateRitualsCollection updateRitualsCollection;
+  final MutationArchiveRitualupdateRitualsByPk? updateRitualsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateRitualsCollection = updateRitualsCollection;
-    _resultData['updateRitualsCollection'] = l$updateRitualsCollection.toJson();
+    final l$updateRitualsByPk = updateRitualsByPk;
+    _resultData['updateRitualsByPk'] = l$updateRitualsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -92,9 +94,9 @@ class MutationArchiveRitual {
 
   @override
   int get hashCode {
-    final l$updateRitualsCollection = updateRitualsCollection;
+    final l$updateRitualsByPk = updateRitualsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateRitualsCollection, l$$__typename]);
+    return Object.hashAll([l$updateRitualsByPk, l$$__typename]);
   }
 
   @override
@@ -105,9 +107,9 @@ class MutationArchiveRitual {
     if (other is! MutationArchiveRitual || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateRitualsCollection = updateRitualsCollection;
-    final lOther$updateRitualsCollection = other.updateRitualsCollection;
-    if (l$updateRitualsCollection != lOther$updateRitualsCollection) {
+    final l$updateRitualsByPk = updateRitualsByPk;
+    final lOther$updateRitualsByPk = other.updateRitualsByPk;
+    if (l$updateRitualsByPk != lOther$updateRitualsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -127,13 +129,13 @@ const documentNodeMutationArchiveRitual = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'archivedAt')),
-          type: NamedTypeNode(name: NameNode(value: 'Datetime'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'timestamptz'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -142,11 +144,22 @@ const documentNodeMutationArchiveRitual = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateRitualsCollection'),
+            name: NameNode(value: 'updateRitualsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -156,34 +169,12 @@ const documentNodeMutationArchiveRitual = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -302,29 +293,26 @@ extension ClientExtensionMutationArchiveRitual on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationArchiveRitualupdateRitualsCollection {
-  MutationArchiveRitualupdateRitualsCollection({
-    required this.affectedCount,
-    this.$__typename = 'RitualsUpdateResponse',
-  });
+class MutationArchiveRitualupdateRitualsByPk {
+  MutationArchiveRitualupdateRitualsByPk({required this.id, this.$__typename = 'rituals'});
 
-  factory MutationArchiveRitualupdateRitualsCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationArchiveRitualupdateRitualsByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationArchiveRitualupdateRitualsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationArchiveRitualupdateRitualsByPk(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -332,9 +320,9 @@ class MutationArchiveRitualupdateRitualsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -342,13 +330,12 @@ class MutationArchiveRitualupdateRitualsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationArchiveRitualupdateRitualsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationArchiveRitualupdateRitualsByPk || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

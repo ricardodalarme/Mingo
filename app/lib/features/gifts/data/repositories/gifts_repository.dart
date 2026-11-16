@@ -15,13 +15,15 @@ class GiftsRepository({
   /// The id of the couple the person is in, or null when they are on their own.
   Future<String?> getCoupleId() => _togetherRepository.getCoupleId();
 
-  Future<List<GiftIdea>> getGiftIdeas() => _run(
-    'read gift wishes',
-    () async => [
+  Future<List<GiftIdea>> getGiftIdeas() => _run('read gift wishes', () async {
+    final currentUserId = await _togetherRepository.getCurrentUserId();
+
+    return [
       for (final node in await _dataSource.getGiftIdeas())
-        if (node.isMine == true || node.isShared == true) node.toModel(),
-    ],
-  );
+        if (node.authorId == currentUserId || node.coupleId != null)
+          node.toModel(currentUserId: currentUserId),
+    ];
+  });
 
   /// Adds the wish and returns it as the server stored it.
   Future<GiftIdea> addGiftWish({
@@ -30,39 +32,43 @@ class GiftsRepository({
     String? note,
     GiftBudget? budget,
     String? coupleId,
-  }) => _run(
-    'add a gift wish',
-    () async => (await _dataSource.addGiftWish(
+  }) => _run('add a gift wish', () async {
+    final saved = await _dataSource.addGiftWish(
       id: id,
       title: title.trim(),
       note: _clean(note),
       budget: budget?.toRemote(),
       coupleId: coupleId,
-    )).toModel(),
-  );
+    );
+
+    return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
+  });
 
   Future<GiftIdea> updateGiftWish({
     required String id,
     required String title,
     String? note,
     GiftBudget? budget,
-  }) => _run(
-    'update a gift wish',
-    () async => (await _dataSource.updateGiftWish(
+  }) => _run('update a gift wish', () async {
+    final saved = await _dataSource.updateGiftWish(
       id: id,
       title: title.trim(),
       note: _clean(note),
       budget: budget?.toRemote(),
-    )).toModel(),
-  );
+    );
+
+    return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
+  });
 
   Future<void> deleteGiftWish(String id) =>
       _run('delete a gift wish', () => _dataSource.deleteGiftWish(id));
 
-  Future<GiftIdea> setGiftWishVisibility({required String id, String? coupleId}) => _run(
-    'change a gift wish visibility',
-    () async => (await _dataSource.setGiftWishVisibility(id: id, coupleId: coupleId)).toModel(),
-  );
+  Future<GiftIdea> setGiftWishVisibility({required String id, String? coupleId}) =>
+      _run('change a gift wish visibility', () async {
+        final saved = await _dataSource.setGiftWishVisibility(id: id, coupleId: coupleId);
+
+        return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
+      });
 
   String? _clean(String? value) {
     final trimmed = value?.trim();

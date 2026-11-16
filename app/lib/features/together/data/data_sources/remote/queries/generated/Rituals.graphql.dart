@@ -7,27 +7,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryRituals {
-  QueryRituals({required this.ritualsCollection, this.$__typename = 'Query'});
+  QueryRituals({required this.rituals, this.$__typename = 'query_root'});
 
   factory QueryRituals.fromJson(Map<String, dynamic> json) {
-    final l$ritualsCollection = json['ritualsCollection'];
+    final l$rituals = json['rituals'];
     final l$$__typename = json['__typename'];
     return QueryRituals(
-      ritualsCollection: QueryRitualsritualsCollection.fromJson(
-        (l$ritualsCollection as Map<String, dynamic>),
-      ),
+      rituals: (l$rituals as List<dynamic>)
+          .map((e) => QueryRitualsrituals.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryRitualsritualsCollection ritualsCollection;
+  final List<QueryRitualsrituals> rituals;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$ritualsCollection = ritualsCollection;
-    _resultData['ritualsCollection'] = l$ritualsCollection.toJson();
+    final l$rituals = rituals;
+    _resultData['rituals'] = l$rituals.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +35,9 @@ class QueryRituals {
 
   @override
   int get hashCode {
-    final l$ritualsCollection = ritualsCollection;
+    final l$rituals = rituals;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$ritualsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$rituals.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -48,10 +48,17 @@ class QueryRituals {
     if (other is! QueryRituals || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$ritualsCollection = ritualsCollection;
-    final lOther$ritualsCollection = other.ritualsCollection;
-    if (l$ritualsCollection != lOther$ritualsCollection) {
+    final l$rituals = rituals;
+    final lOther$rituals = other.rituals;
+    if (l$rituals.length != lOther$rituals.length) {
       return false;
+    }
+    for (int i = 0; i < l$rituals.length; i++) {
+      final l$rituals$entry = l$rituals[i];
+      final lOther$rituals$entry = lOther$rituals[i];
+      if (l$rituals$entry != lOther$rituals$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -72,11 +79,11 @@ const documentNodeQueryRituals = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'ritualsCollection'),
+            name: NameNode(value: 'rituals'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -84,8 +91,8 @@ const documentNodeQueryRituals = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'is'),
-                            value: EnumValueNode(name: NameNode(value: 'NULL')),
+                            name: NameNode(value: '_is_null'),
+                            value: BooleanValueNode(value: true),
                           ),
                         ],
                       ),
@@ -94,14 +101,14 @@ const documentNodeQueryRituals = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -109,7 +116,7 @@ const documentNodeQueryRituals = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '100'),
               ),
             ],
@@ -117,150 +124,80 @@ const documentNodeQueryRituals = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'cadence'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'weekday'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'atTime'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'reminder'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'logs'),
+                  alias: null,
+                  arguments: [
+                    ArgumentNode(
+                      name: NameNode(value: 'order_by'),
+                      value: ListValueNode(
+                        values: [
+                          ObjectValueNode(
+                            fields: [
+                              ObjectFieldNode(
+                                name: NameNode(value: 'doneOn'),
+                                value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    ArgumentNode(
+                      name: NameNode(value: 'limit'),
+                      value: IntValueNode(value: '1'),
+                    ),
+                  ],
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
                       FieldNode(
-                        name: NameNode(value: 'node'),
+                        name: NameNode(value: 'doneOn'),
                         alias: null,
                         arguments: [],
                         directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'cadence'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'weekday'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'atTime'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'reminder'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'ritualLogsCollection'),
-                              alias: null,
-                              arguments: [
-                                ArgumentNode(
-                                  name: NameNode(value: 'orderBy'),
-                                  value: ListValueNode(
-                                    values: [
-                                      ObjectValueNode(
-                                        fields: [
-                                          ObjectFieldNode(
-                                            name: NameNode(value: 'doneOn'),
-                                            value: EnumValueNode(
-                                              name: NameNode(value: 'DescNullsLast'),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                ArgumentNode(
-                                  name: NameNode(value: 'first'),
-                                  value: IntValueNode(value: '1'),
-                                ),
-                              ],
-                              directives: [],
-                              selectionSet: SelectionSetNode(
-                                selections: [
-                                  FieldNode(
-                                    name: NameNode(value: 'edges'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: SelectionSetNode(
-                                      selections: [
-                                        FieldNode(
-                                          name: NameNode(value: 'node'),
-                                          alias: null,
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: SelectionSetNode(
-                                            selections: [
-                                              FieldNode(
-                                                name: NameNode(value: 'doneOn'),
-                                                alias: null,
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: null,
-                                              ),
-                                              FieldNode(
-                                                name: NameNode(value: '__typename'),
-                                                alias: null,
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: null,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        FieldNode(
-                                          name: NameNode(value: '__typename'),
-                                          alias: null,
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: null,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  FieldNode(
-                                    name: NameNode(value: '__typename'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: null,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
+                        selectionSet: null,
                       ),
                       FieldNode(
                         name: NameNode(value: '__typename'),
@@ -393,156 +330,37 @@ extension ClientExtensionQueryRituals on graphql.GraphQLClient {
   }
 }
 
-class QueryRitualsritualsCollection {
-  QueryRitualsritualsCollection({required this.edges, this.$__typename = 'RitualsConnection'});
-
-  factory QueryRitualsritualsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryRitualsritualsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryRitualsritualsCollectionedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryRitualsritualsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryRitualsritualsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryRitualsritualsCollectionedges {
-  QueryRitualsritualsCollectionedges({required this.node, this.$__typename = 'RitualsEdge'});
-
-  factory QueryRitualsritualsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryRitualsritualsCollectionedges(
-      node: QueryRitualsritualsCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryRitualsritualsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryRitualsritualsCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryRitualsritualsCollectionedgesnode {
-  QueryRitualsritualsCollectionedgesnode({
+class QueryRitualsrituals {
+  QueryRitualsrituals({
     required this.id,
     required this.title,
     required this.cadence,
     this.weekday,
     this.atTime,
     required this.reminder,
-    this.ritualLogsCollection,
-    this.$__typename = 'Rituals',
+    required this.logs,
+    this.$__typename = 'rituals',
   });
 
-  factory QueryRitualsritualsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryRitualsrituals.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$cadence = json['cadence'];
     final l$weekday = json['weekday'];
     final l$atTime = json['atTime'];
     final l$reminder = json['reminder'];
-    final l$ritualLogsCollection = json['ritualLogsCollection'];
+    final l$logs = json['logs'];
     final l$$__typename = json['__typename'];
-    return QueryRitualsritualsCollectionedgesnode(
+    return QueryRitualsrituals(
       id: (l$id as String),
       title: (l$title as String),
-      cadence: fromJsonEnumRitualCadence((l$cadence as String)),
+      cadence: fromJsonEnumRitualCadence_enum((l$cadence as String)),
       weekday: (l$weekday as int?),
       atTime: (l$atTime as String?),
       reminder: (l$reminder as bool),
-      ritualLogsCollection: l$ritualLogsCollection == null
-          ? null
-          : QueryRitualsritualsCollectionedgesnoderitualLogsCollection.fromJson(
-              (l$ritualLogsCollection as Map<String, dynamic>),
-            ),
+      logs: (l$logs as List<dynamic>)
+          .map((e) => QueryRitualsritualslogs.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
@@ -551,7 +369,7 @@ class QueryRitualsritualsCollectionedgesnode {
 
   final String title;
 
-  final EnumRitualCadence cadence;
+  final EnumRitualCadence_enum cadence;
 
   final int? weekday;
 
@@ -559,7 +377,7 @@ class QueryRitualsritualsCollectionedgesnode {
 
   final bool reminder;
 
-  final QueryRitualsritualsCollectionedgesnoderitualLogsCollection? ritualLogsCollection;
+  final List<QueryRitualsritualslogs> logs;
 
   final String $__typename;
 
@@ -570,15 +388,15 @@ class QueryRitualsritualsCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$cadence = cadence;
-    _resultData['cadence'] = toJsonEnumRitualCadence(l$cadence);
+    _resultData['cadence'] = toJsonEnumRitualCadence_enum(l$cadence);
     final l$weekday = weekday;
     _resultData['weekday'] = l$weekday;
     final l$atTime = atTime;
     _resultData['atTime'] = l$atTime;
     final l$reminder = reminder;
     _resultData['reminder'] = l$reminder;
-    final l$ritualLogsCollection = ritualLogsCollection;
-    _resultData['ritualLogsCollection'] = l$ritualLogsCollection?.toJson();
+    final l$logs = logs;
+    _resultData['logs'] = l$logs.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -592,7 +410,7 @@ class QueryRitualsritualsCollectionedgesnode {
     final l$weekday = weekday;
     final l$atTime = atTime;
     final l$reminder = reminder;
-    final l$ritualLogsCollection = ritualLogsCollection;
+    final l$logs = logs;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -601,7 +419,7 @@ class QueryRitualsritualsCollectionedgesnode {
       l$weekday,
       l$atTime,
       l$reminder,
-      l$ritualLogsCollection,
+      Object.hashAll(l$logs.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -611,7 +429,7 @@ class QueryRitualsritualsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryRitualsritualsCollectionedgesnode || runtimeType != other.runtimeType) {
+    if (other is! QueryRitualsrituals || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -644,81 +462,15 @@ class QueryRitualsritualsCollectionedgesnode {
     if (l$reminder != lOther$reminder) {
       return false;
     }
-    final l$ritualLogsCollection = ritualLogsCollection;
-    final lOther$ritualLogsCollection = other.ritualLogsCollection;
-    if (l$ritualLogsCollection != lOther$ritualLogsCollection) {
+    final l$logs = logs;
+    final lOther$logs = other.logs;
+    if (l$logs.length != lOther$logs.length) {
       return false;
     }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryRitualsritualsCollectionedgesnoderitualLogsCollection {
-  QueryRitualsritualsCollectionedgesnoderitualLogsCollection({
-    required this.edges,
-    this.$__typename = 'RitualLogsConnection',
-  });
-
-  factory QueryRitualsritualsCollectionedgesnoderitualLogsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryRitualsritualsCollectionedgesnoderitualLogsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryRitualsritualsCollectionedgesnoderitualLogsCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
+    for (int i = 0; i < l$logs.length; i++) {
+      final l$logs$entry = l$logs[i];
+      final lOther$logs$entry = lOther$logs[i];
+      if (l$logs$entry != lOther$logs$entry) {
         return false;
       }
     }
@@ -731,80 +483,13 @@ class QueryRitualsritualsCollectionedgesnoderitualLogsCollection {
   }
 }
 
-class QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedges {
-  QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedges({
-    required this.node,
-    this.$__typename = 'RitualLogsEdge',
-  });
+class QueryRitualsritualslogs {
+  QueryRitualsritualslogs({required this.doneOn, this.$__typename = 'ritualLogs'});
 
-  factory QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedges.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedges(
-      node: QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedgesnode {
-  QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedgesnode({
-    required this.doneOn,
-    this.$__typename = 'RitualLogs',
-  });
-
-  factory QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedgesnode.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QueryRitualsritualslogs.fromJson(Map<String, dynamic> json) {
     final l$doneOn = json['doneOn'];
     final l$$__typename = json['__typename'];
-    return QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedgesnode(
+    return QueryRitualsritualslogs(
       doneOn: DateTime.parse((l$doneOn as String)),
       $__typename: (l$$__typename as String),
     );
@@ -835,8 +520,7 @@ class QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryRitualsritualsCollectionedgesnoderitualLogsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryRitualsritualslogs || runtimeType != other.runtimeType) {
       return false;
     }
     final l$doneOn = doneOn;

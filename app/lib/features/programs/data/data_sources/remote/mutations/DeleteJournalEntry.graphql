@@ -1,5 +1,5 @@
-mutation DeleteJournalEntry($id: UUID!) {
-  deleteFromJournalEntriesCollection(filter: { id: { eq: $id } }, atMost: 1) {
-    affectedCount
+mutation DeleteJournalEntry($id: uuid!) {
+  deleteJournalEntries(where: { id: { _eq: $id } }) {
+    affected_rows
   }
 }

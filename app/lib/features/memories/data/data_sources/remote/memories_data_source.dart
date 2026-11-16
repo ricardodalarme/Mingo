@@ -1,17 +1,16 @@
 import 'package:app/features/memories/data/data_sources/remote/mutations/generated/AddMemory.graphql.dart';
 import 'package:app/features/memories/data/data_sources/remote/mutations/generated/DeleteMemory.graphql.dart';
-import 'package:app/features/memories/data/data_sources/remote/mutations/generated/DrawFromJar.graphql.dart';
+import 'package:app/features/memories/data/data_sources/remote/queries/generated/JarSlips.graphql.dart';
 import 'package:app/features/memories/data/data_sources/remote/queries/generated/Memories.graphql.dart';
 import 'package:network/network.dart';
 
 class MemoriesDataSource({required final GQLClient _client}) {
-  Future<List<QueryMemoriesmemoriesCollectionedgesnode>> getMemories() async {
+  Future<List<QueryMemoriesmemories>> getMemories() async {
     final response = await _client.query(
       OptionsQueryMemories(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(response, getData: (data) => data.memoriesCollection.edges);
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.memories);
   }
 
   Future<void> addMemory({
@@ -46,11 +45,12 @@ class MemoriesDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  /// One random slip the person put in the jar, or null when the jar is empty.
-  Future<MutationDrawFromJardrawFromJar?> drawFromJar() async {
-    final response = await _client.mutate(OptionsMutationDrawFromJar());
-    validateResponse(response);
+  /// The slips the person put in the jar, newest first.
+  Future<List<QueryJarSlipsslips>> getJarSlips() async {
+    final response = await _client.query(
+      OptionsQueryJarSlips(fetchPolicy: FetchPolicy.networkOnly),
+    );
 
-    return response.parsedData?.drawFromJar;
+    return validateResponseData(response, getData: (data) => data.slips);
   }
 }

@@ -25,7 +25,7 @@ void main() {
     dataSource = FightStyleDataSource(client: client);
   });
 
-  QueryResult<MutationUpdateFightStyleResult> response(int affectedCount) {
+  QueryResult<MutationUpdateFightStyleResult> response(int affectedRows) {
     final options = OptionsMutationUpdateFightStyleResult(
       variables: VariablesMutationUpdateFightStyleResult(id: 'q1', ranked: ranked),
     );
@@ -34,9 +34,9 @@ void main() {
       options: options,
       source: QueryResultSource.network,
       data: {
-        'updateQuizResultsCollection': {
-          '__typename': 'QuizResultsUpdateResponse',
-          'affectedCount': affectedCount,
+        'updateQuizResults': {
+          '__typename': 'quizResults_mutation_response',
+          'affected_rows': affectedRows,
         },
         '__typename': 'Mutation',
       },

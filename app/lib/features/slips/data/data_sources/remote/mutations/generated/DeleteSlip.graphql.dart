@@ -52,25 +52,27 @@ class VariablesMutationDeleteSlip {
 }
 
 class MutationDeleteSlip {
-  MutationDeleteSlip({this.deleteSlip, this.$__typename = 'Mutation'});
+  MutationDeleteSlip({this.deleteSlipsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteSlip.fromJson(Map<String, dynamic> json) {
-    final l$deleteSlip = json['deleteSlip'];
+    final l$deleteSlipsByPk = json['deleteSlipsByPk'];
     final l$$__typename = json['__typename'];
     return MutationDeleteSlip(
-      deleteSlip: (l$deleteSlip as bool?),
+      deleteSlipsByPk: l$deleteSlipsByPk == null
+          ? null
+          : MutationDeleteSlipdeleteSlipsByPk.fromJson((l$deleteSlipsByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? deleteSlip;
+  final MutationDeleteSlipdeleteSlipsByPk? deleteSlipsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteSlip = deleteSlip;
-    _resultData['deleteSlip'] = l$deleteSlip;
+    final l$deleteSlipsByPk = deleteSlipsByPk;
+    _resultData['deleteSlipsByPk'] = l$deleteSlipsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -78,9 +80,9 @@ class MutationDeleteSlip {
 
   @override
   int get hashCode {
-    final l$deleteSlip = deleteSlip;
+    final l$deleteSlipsByPk = deleteSlipsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteSlip, l$$__typename]);
+    return Object.hashAll([l$deleteSlipsByPk, l$$__typename]);
   }
 
   @override
@@ -91,9 +93,9 @@ class MutationDeleteSlip {
     if (other is! MutationDeleteSlip || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteSlip = deleteSlip;
-    final lOther$deleteSlip = other.deleteSlip;
-    if (l$deleteSlip != lOther$deleteSlip) {
+    final l$deleteSlipsByPk = deleteSlipsByPk;
+    final lOther$deleteSlipsByPk = other.deleteSlipsByPk;
+    if (l$deleteSlipsByPk != lOther$deleteSlipsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -113,7 +115,7 @@ const documentNodeMutationDeleteSlip = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -122,7 +124,7 @@ const documentNodeMutationDeleteSlip = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteSlip'),
+            name: NameNode(value: 'deleteSlipsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -131,7 +133,24 @@ const documentNodeMutationDeleteSlip = DocumentNode(
               ),
             ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -233,4 +252,58 @@ extension ClientExtensionMutationDeleteSlip on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationDeleteSlip> watchMutationDeleteSlip(
     WatchOptionsMutationDeleteSlip options,
   ) => this.watchMutation(options);
+}
+
+class MutationDeleteSlipdeleteSlipsByPk {
+  MutationDeleteSlipdeleteSlipsByPk({required this.id, this.$__typename = 'slips'});
+
+  factory MutationDeleteSlipdeleteSlipsByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return MutationDeleteSlipdeleteSlipsByPk(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationDeleteSlipdeleteSlipsByPk || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
 }

@@ -1,0 +1,5 @@
+query WidgetCardStatus($cardId: uuid!) {
+  cardsByPk(id: $cardId) {
+    status
+  }
+}

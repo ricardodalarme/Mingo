@@ -4,13 +4,12 @@ import 'package:app/features/capsules/data/data_sources/remote/queries/generated
 import 'package:network/network.dart';
 
 class CapsulesDataSource({required final GQLClient _client}) {
-  Future<List<QueryCapsulescapsulesCollectionedgesnode>> getCapsules() async {
+  Future<List<QueryCapsulescapsules>> getCapsules() async {
     final response = await _client.query(
       OptionsQueryCapsules(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(response, getData: (data) => data.capsulesCollection.edges);
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.capsules);
   }
 
   Future<void> add({

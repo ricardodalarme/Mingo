@@ -3,11 +3,15 @@ import 'package:network/network.dart';
 
 class DistanceDataSource({required final GQLClient _client}) {
   /// The partner's IANA time zone, or null when there is no partner.
-  Future<String?> getPartnerTimeZone() async {
+  Future<String?> getPartnerTimeZone(String userId) async {
     final response = await _client.query(
-      OptionsQueryPartnerTimeZone(fetchPolicy: FetchPolicy.networkOnly),
+      OptionsQueryPartnerTimeZone(
+        variables: VariablesQueryPartnerTimeZone(userId: userId),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
     );
+    final couples = validateResponseData(response, getData: (data) => data.couples);
 
-    return validateResponseData(response, getData: (data) => data.partnerTimeZone);
+    return couples.firstOrNull?.members.firstOrNull?.profile.timeZone;
   }
 }

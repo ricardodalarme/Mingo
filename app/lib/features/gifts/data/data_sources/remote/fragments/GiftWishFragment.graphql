@@ -1,9 +1,9 @@
-fragment GiftWishFragment on GiftIdeas {
+fragment GiftWishFragment on giftIdeas {
   id
   title
   note
   budget
   status
-  isMine
-  isShared
+  authorId
+  coupleId
 }

@@ -7,10 +7,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('maps settings to the account model', () {
-    final settings = QueryMySettingsmySettings.fromJson({
-      'profileId': 'p1',
+    final settings = QueryMySettingsuserSettingsByPk.fromJson({
+      'userId': 'p1',
       'theme': 'azul',
-      'timeZone': 'America/Sao_Paulo',
       'partnerName': 'Rui',
       'togetherSince': '2024-05-01',
       'relationshipStatus': 'together',
@@ -19,7 +18,8 @@ void main() {
       'phase': 'married',
       'goals': ['keep_romance'],
       'locale': 'pt-BR',
-      '__typename': 'ProfileSettings',
+      'profile': {'timeZone': 'America/Sao_Paulo', '__typename': 'profiles'},
+      '__typename': 'userSettings',
     });
 
     expect(

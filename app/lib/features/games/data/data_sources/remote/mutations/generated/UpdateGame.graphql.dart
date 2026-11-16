@@ -96,27 +96,27 @@ class VariablesMutationUpdateGame {
 }
 
 class MutationUpdateGame {
-  MutationUpdateGame({this.updateGame, this.$__typename = 'Mutation'});
+  MutationUpdateGame({required this.updateGame, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateGame.fromJson(Map<String, dynamic> json) {
     final l$updateGame = json['updateGame'];
     final l$$__typename = json['__typename'];
     return MutationUpdateGame(
-      updateGame: l$updateGame == null
-          ? null
-          : FragmentGameSessionFragment.fromJson((l$updateGame as Map<String, dynamic>)),
+      updateGame: (l$updateGame as List<dynamic>)
+          .map((e) => FragmentGameSessionFragment.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final FragmentGameSessionFragment? updateGame;
+  final List<FragmentGameSessionFragment> updateGame;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$updateGame = updateGame;
-    _resultData['updateGame'] = l$updateGame?.toJson();
+    _resultData['updateGame'] = l$updateGame.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -126,7 +126,7 @@ class MutationUpdateGame {
   int get hashCode {
     final l$updateGame = updateGame;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateGame, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$updateGame.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -139,8 +139,15 @@ class MutationUpdateGame {
     }
     final l$updateGame = updateGame;
     final lOther$updateGame = other.updateGame;
-    if (l$updateGame != lOther$updateGame) {
+    if (l$updateGame.length != lOther$updateGame.length) {
       return false;
+    }
+    for (int i = 0; i < l$updateGame.length; i++) {
+      final l$updateGame$entry = l$updateGame[i];
+      final lOther$updateGame$entry = lOther$updateGame[i];
+      if (l$updateGame$entry != lOther$updateGame$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -159,7 +166,7 @@ const documentNodeMutationUpdateGame = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'sessionId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -184,16 +191,23 @@ const documentNodeMutationUpdateGame = DocumentNode(
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'sessionId'),
-                value: VariableNode(name: NameNode(value: 'sessionId')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'action'),
-                value: VariableNode(name: NameNode(value: 'action')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'outcome'),
-                value: VariableNode(name: NameNode(value: 'outcome')),
+                name: NameNode(value: 'args'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'sessionId'),
+                      value: VariableNode(name: NameNode(value: 'sessionId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'action'),
+                      value: VariableNode(name: NameNode(value: 'action')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'outcome'),
+                      value: VariableNode(name: NameNode(value: 'outcome')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],

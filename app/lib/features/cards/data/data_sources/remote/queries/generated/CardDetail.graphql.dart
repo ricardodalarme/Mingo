@@ -54,7 +54,7 @@ class VariablesQueryCardDetail {
 }
 
 class QueryCardDetail {
-  QueryCardDetail({this.cardsByPk, this.$__typename = 'Query'});
+  QueryCardDetail({this.cardsByPk, this.$__typename = 'query_root'});
 
   factory QueryCardDetail.fromJson(Map<String, dynamic> json) {
     final l$cardsByPk = json['cardsByPk'];
@@ -117,7 +117,7 @@ const documentNodeQueryCardDetail = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -142,7 +142,7 @@ const documentNodeQueryCardDetail = DocumentNode(
                   directives: [],
                 ),
                 FieldNode(
-                  name: NameNode(value: 'isMine'),
+                  name: NameNode(value: 'authorId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -385,10 +385,10 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
     this.note,
     required this.weekStart,
     this.sentAt,
-    this.items,
-    this.$__typename = 'Cards',
-    this.isMine,
-    this.author,
+    required this.items,
+    this.$__typename = 'cards',
+    required this.authorId,
+    required this.author,
     this.recipient,
     this.reaction,
   });
@@ -401,24 +401,22 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
     final l$sentAt = json['sentAt'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
-    final l$isMine = json['isMine'];
+    final l$authorId = json['authorId'];
     final l$author = json['author'];
     final l$recipient = json['recipient'];
     final l$reaction = json['reaction'];
     return QueryCardDetailcardsByPk(
       id: (l$id as String),
-      status: fromJsonEnumCardStatus((l$status as String)),
+      status: fromJsonEnumCardStatus_enum((l$status as String)),
       note: (l$note as String?),
       weekStart: DateTime.parse((l$weekStart as String)),
       sentAt: l$sentAt == null ? null : DateTime.parse((l$sentAt as String)),
-      items: l$items == null
-          ? null
-          : QueryCardDetailcardsByPkitems.fromJson((l$items as Map<String, dynamic>)),
+      items: (l$items as List<dynamic>)
+          .map((e) => QueryCardDetailcardsByPkitems.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
-      isMine: (l$isMine as bool?),
-      author: l$author == null
-          ? null
-          : QueryCardDetailcardsByPkauthor.fromJson((l$author as Map<String, dynamic>)),
+      authorId: (l$authorId as String),
+      author: QueryCardDetailcardsByPkauthor.fromJson((l$author as Map<String, dynamic>)),
       recipient: l$recipient == null
           ? null
           : QueryCardDetailcardsByPkrecipient.fromJson((l$recipient as Map<String, dynamic>)),
@@ -430,7 +428,7 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
 
   final String id;
 
-  final EnumCardStatus status;
+  final EnumCardStatus_enum status;
 
   final String? note;
 
@@ -438,13 +436,13 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
 
   final DateTime? sentAt;
 
-  final QueryCardDetailcardsByPkitems? items;
+  final List<QueryCardDetailcardsByPkitems> items;
 
   final String $__typename;
 
-  final bool? isMine;
+  final String authorId;
 
-  final QueryCardDetailcardsByPkauthor? author;
+  final QueryCardDetailcardsByPkauthor author;
 
   final QueryCardDetailcardsByPkrecipient? recipient;
 
@@ -455,7 +453,7 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$status = status;
-    _resultData['status'] = toJsonEnumCardStatus(l$status);
+    _resultData['status'] = toJsonEnumCardStatus_enum(l$status);
     final l$note = note;
     _resultData['note'] = l$note;
     final l$weekStart = weekStart;
@@ -465,13 +463,13 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
         ? null
         : ((v) => v.toUtc().toIso8601String())(l$sentAt);
     final l$items = items;
-    _resultData['items'] = l$items?.toJson();
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
     final l$author = author;
-    _resultData['author'] = l$author?.toJson();
+    _resultData['author'] = l$author.toJson();
     final l$recipient = recipient;
     _resultData['recipient'] = l$recipient?.toJson();
     final l$reaction = reaction;
@@ -488,7 +486,7 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
     final l$sentAt = sentAt;
     final l$items = items;
     final l$$__typename = $__typename;
-    final l$isMine = isMine;
+    final l$authorId = authorId;
     final l$author = author;
     final l$recipient = recipient;
     final l$reaction = reaction;
@@ -498,9 +496,9 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
       l$note,
       l$weekStart,
       l$sentAt,
-      l$items,
+      Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
-      l$isMine,
+      l$authorId,
       l$author,
       l$recipient,
       l$reaction,
@@ -542,17 +540,24 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
     }
     final l$items = items;
     final lOther$items = other.items;
-    if (l$items != lOther$items) {
+    if (l$items.length != lOther$items.length) {
       return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
     final l$author = author;
@@ -575,147 +580,35 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
 }
 
 class QueryCardDetailcardsByPkitems implements FragmentCardFragmentitems {
-  QueryCardDetailcardsByPkitems({required this.edges, this.$__typename = 'CardItemsConnection'});
-
-  factory QueryCardDetailcardsByPkitems.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryCardDetailcardsByPkitems(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryCardDetailcardsByPkitemsedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryCardDetailcardsByPkitemsedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryCardDetailcardsByPkitems || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryCardDetailcardsByPkitemsedges implements FragmentCardFragmentitemsedges {
-  QueryCardDetailcardsByPkitemsedges({required this.node, this.$__typename = 'CardItemsEdge'});
-
-  factory QueryCardDetailcardsByPkitemsedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryCardDetailcardsByPkitemsedges(
-      node: QueryCardDetailcardsByPkitemsedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryCardDetailcardsByPkitemsedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryCardDetailcardsByPkitemsedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryCardDetailcardsByPkitemsedgesnode implements FragmentCardFragmentitemsedgesnode {
-  QueryCardDetailcardsByPkitemsedgesnode({
+  QueryCardDetailcardsByPkitems({
+    required this.id,
     this.slipId,
     required this.body,
     required this.position,
     this.slip,
-    this.$__typename = 'CardItems',
+    this.$__typename = 'cardItems',
   });
 
-  factory QueryCardDetailcardsByPkitemsedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryCardDetailcardsByPkitems.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$slipId = json['slipId'];
     final l$body = json['body'];
     final l$position = json['position'];
     final l$slip = json['slip'];
     final l$$__typename = json['__typename'];
-    return QueryCardDetailcardsByPkitemsedgesnode(
+    return QueryCardDetailcardsByPkitems(
+      id: (l$id as String),
       slipId: (l$slipId as String?),
       body: (l$body as String),
       position: (l$position as int),
       slip: l$slip == null
           ? null
-          : QueryCardDetailcardsByPkitemsedgesnodeslip.fromJson((l$slip as Map<String, dynamic>)),
+          : QueryCardDetailcardsByPkitemsslip.fromJson((l$slip as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
+
+  final String id;
 
   final String? slipId;
 
@@ -723,12 +616,14 @@ class QueryCardDetailcardsByPkitemsedgesnode implements FragmentCardFragmentitem
 
   final int position;
 
-  final QueryCardDetailcardsByPkitemsedgesnodeslip? slip;
+  final QueryCardDetailcardsByPkitemsslip? slip;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$slipId = slipId;
     _resultData['slipId'] = l$slipId;
     final l$body = body;
@@ -744,12 +639,13 @@ class QueryCardDetailcardsByPkitemsedgesnode implements FragmentCardFragmentitem
 
   @override
   int get hashCode {
+    final l$id = id;
     final l$slipId = slipId;
     final l$body = body;
     final l$position = position;
     final l$slip = slip;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$slipId, l$body, l$position, l$slip, l$$__typename]);
+    return Object.hashAll([l$id, l$slipId, l$body, l$position, l$slip, l$$__typename]);
   }
 
   @override
@@ -757,7 +653,12 @@ class QueryCardDetailcardsByPkitemsedgesnode implements FragmentCardFragmentitem
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryCardDetailcardsByPkitemsedgesnode || runtimeType != other.runtimeType) {
+    if (other is! QueryCardDetailcardsByPkitems || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$slipId = slipId;
@@ -789,25 +690,25 @@ class QueryCardDetailcardsByPkitemsedgesnode implements FragmentCardFragmentitem
   }
 }
 
-class QueryCardDetailcardsByPkitemsedgesnodeslip implements FragmentCardFragmentitemsedgesnodeslip {
-  QueryCardDetailcardsByPkitemsedgesnodeslip({
+class QueryCardDetailcardsByPkitemsslip implements FragmentCardFragmentitemsslip {
+  QueryCardDetailcardsByPkitemsslip({
     this.category,
     required this.createdAt,
-    this.$__typename = 'Slips',
+    this.$__typename = 'slips',
   });
 
-  factory QueryCardDetailcardsByPkitemsedgesnodeslip.fromJson(Map<String, dynamic> json) {
+  factory QueryCardDetailcardsByPkitemsslip.fromJson(Map<String, dynamic> json) {
     final l$category = json['category'];
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
-    return QueryCardDetailcardsByPkitemsedgesnodeslip(
-      category: l$category == null ? null : fromJsonEnumSlipCategory((l$category as String)),
+    return QueryCardDetailcardsByPkitemsslip(
+      category: l$category == null ? null : fromJsonEnumSlipCategory_enum((l$category as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final EnumSlipCategory? category;
+  final EnumSlipCategory_enum? category;
 
   final DateTime createdAt;
 
@@ -816,7 +717,7 @@ class QueryCardDetailcardsByPkitemsedgesnodeslip implements FragmentCardFragment
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$category = category;
-    _resultData['category'] = l$category == null ? null : toJsonEnumSlipCategory(l$category);
+    _resultData['category'] = l$category == null ? null : toJsonEnumSlipCategory_enum(l$category);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;
@@ -837,7 +738,7 @@ class QueryCardDetailcardsByPkitemsedgesnodeslip implements FragmentCardFragment
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryCardDetailcardsByPkitemsedgesnodeslip || runtimeType != other.runtimeType) {
+    if (other is! QueryCardDetailcardsByPkitemsslip || runtimeType != other.runtimeType) {
       return false;
     }
     final l$category = category;
@@ -860,7 +761,7 @@ class QueryCardDetailcardsByPkitemsedgesnodeslip implements FragmentCardFragment
 }
 
 class QueryCardDetailcardsByPkauthor {
-  QueryCardDetailcardsByPkauthor({this.displayName, this.$__typename = 'Profiles'});
+  QueryCardDetailcardsByPkauthor({this.displayName, this.$__typename = 'profiles'});
 
   factory QueryCardDetailcardsByPkauthor.fromJson(Map<String, dynamic> json) {
     final l$displayName = json['displayName'];
@@ -914,7 +815,7 @@ class QueryCardDetailcardsByPkauthor {
 }
 
 class QueryCardDetailcardsByPkrecipient {
-  QueryCardDetailcardsByPkrecipient({this.displayName, this.$__typename = 'Profiles'});
+  QueryCardDetailcardsByPkrecipient({this.displayName, this.$__typename = 'profiles'});
 
   factory QueryCardDetailcardsByPkrecipient.fromJson(Map<String, dynamic> json) {
     final l$displayName = json['displayName'];
@@ -968,7 +869,7 @@ class QueryCardDetailcardsByPkrecipient {
 }
 
 class QueryCardDetailcardsByPkreaction {
-  QueryCardDetailcardsByPkreaction({this.reaction, this.reply, this.$__typename = 'CardReactions'});
+  QueryCardDetailcardsByPkreaction({this.reaction, this.reply, this.$__typename = 'cardReactions'});
 
   factory QueryCardDetailcardsByPkreaction.fromJson(Map<String, dynamic> json) {
     final l$reaction = json['reaction'];

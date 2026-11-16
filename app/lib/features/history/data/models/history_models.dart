@@ -151,7 +151,7 @@ final class const StoryDatesSummary({
   List<Object?> get props => [met, dating, engaged, married, selfStartDate, partnerStartDate];
 }
 
-/// Descriptive annual activity counts from `my_year`.
+/// Descriptive annual activity counts for one year.
 final class const HistoryYearRecap({
   required final int year,
   final int memories = 0,

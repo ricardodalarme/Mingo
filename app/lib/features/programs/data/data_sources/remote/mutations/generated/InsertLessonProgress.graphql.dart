@@ -10,7 +10,7 @@ class VariablesMutationInsertLessonProgress {
   factory VariablesMutationInsertLessonProgress({
     required String programSlug,
     required int lessonDay,
-    required EnumLessonStatus status,
+    required EnumLessonStatus_enum status,
   }) => VariablesMutationInsertLessonProgress._({
     r'programSlug': programSlug,
     r'lessonDay': lessonDay,
@@ -26,7 +26,7 @@ class VariablesMutationInsertLessonProgress {
     final l$lessonDay = data['lessonDay'];
     result$data['lessonDay'] = (l$lessonDay as int);
     final l$status = data['status'];
-    result$data['status'] = fromJsonEnumLessonStatus((l$status as String));
+    result$data['status'] = fromJsonEnumLessonStatus_enum((l$status as String));
     return VariablesMutationInsertLessonProgress._(result$data);
   }
 
@@ -36,7 +36,7 @@ class VariablesMutationInsertLessonProgress {
 
   int get lessonDay => (_$data['lessonDay'] as int);
 
-  EnumLessonStatus get status => (_$data['status'] as EnumLessonStatus);
+  EnumLessonStatus_enum get status => (_$data['status'] as EnumLessonStatus_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -45,7 +45,7 @@ class VariablesMutationInsertLessonProgress {
     final l$lessonDay = lessonDay;
     result$data['lessonDay'] = l$lessonDay;
     final l$status = status;
-    result$data['status'] = toJsonEnumLessonStatus(l$status);
+    result$data['status'] = toJsonEnumLessonStatus_enum(l$status);
     return result$data;
   }
 
@@ -85,34 +85,29 @@ class VariablesMutationInsertLessonProgress {
 }
 
 class MutationInsertLessonProgress {
-  MutationInsertLessonProgress({
-    this.insertIntoLessonProgressCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationInsertLessonProgress({this.insertLessonProgress, this.$__typename = 'mutation_root'});
 
   factory MutationInsertLessonProgress.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoLessonProgressCollection = json['insertIntoLessonProgressCollection'];
+    final l$insertLessonProgress = json['insertLessonProgress'];
     final l$$__typename = json['__typename'];
     return MutationInsertLessonProgress(
-      insertIntoLessonProgressCollection: l$insertIntoLessonProgressCollection == null
+      insertLessonProgress: l$insertLessonProgress == null
           ? null
-          : MutationInsertLessonProgressinsertIntoLessonProgressCollection.fromJson(
-              (l$insertIntoLessonProgressCollection as Map<String, dynamic>),
+          : MutationInsertLessonProgressinsertLessonProgress.fromJson(
+              (l$insertLessonProgress as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationInsertLessonProgressinsertIntoLessonProgressCollection?
-  insertIntoLessonProgressCollection;
+  final MutationInsertLessonProgressinsertLessonProgress? insertLessonProgress;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoLessonProgressCollection = insertIntoLessonProgressCollection;
-    _resultData['insertIntoLessonProgressCollection'] = l$insertIntoLessonProgressCollection
-        ?.toJson();
+    final l$insertLessonProgress = insertLessonProgress;
+    _resultData['insertLessonProgress'] = l$insertLessonProgress?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -120,9 +115,9 @@ class MutationInsertLessonProgress {
 
   @override
   int get hashCode {
-    final l$insertIntoLessonProgressCollection = insertIntoLessonProgressCollection;
+    final l$insertLessonProgress = insertLessonProgress;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoLessonProgressCollection, l$$__typename]);
+    return Object.hashAll([l$insertLessonProgress, l$$__typename]);
   }
 
   @override
@@ -133,9 +128,9 @@ class MutationInsertLessonProgress {
     if (other is! MutationInsertLessonProgress || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoLessonProgressCollection = insertIntoLessonProgressCollection;
-    final lOther$insertIntoLessonProgressCollection = other.insertIntoLessonProgressCollection;
-    if (l$insertIntoLessonProgressCollection != lOther$insertIntoLessonProgressCollection) {
+    final l$insertLessonProgress = insertLessonProgress;
+    final lOther$insertLessonProgress = other.insertLessonProgress;
+    if (l$insertLessonProgress != lOther$insertLessonProgress) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -161,13 +156,13 @@ const documentNodeMutationInsertLessonProgress = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'lessonDay')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'status')),
-          type: NamedTypeNode(name: NameNode(value: 'LessonStatus'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'LessonStatus_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -176,7 +171,7 @@ const documentNodeMutationInsertLessonProgress = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoLessonProgressCollection'),
+            name: NameNode(value: 'insertLessonProgress'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -207,7 +202,7 @@ const documentNodeMutationInsertLessonProgress = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -330,31 +325,29 @@ extension ClientExtensionMutationInsertLessonProgress on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationInsertLessonProgressinsertIntoLessonProgressCollection {
-  MutationInsertLessonProgressinsertIntoLessonProgressCollection({
-    required this.affectedCount,
-    this.$__typename = 'LessonProgressInsertResponse',
+class MutationInsertLessonProgressinsertLessonProgress {
+  MutationInsertLessonProgressinsertLessonProgress({
+    required this.affected_rows,
+    this.$__typename = 'lessonProgress_mutation_response',
   });
 
-  factory MutationInsertLessonProgressinsertIntoLessonProgressCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationInsertLessonProgressinsertLessonProgress.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationInsertLessonProgressinsertIntoLessonProgressCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationInsertLessonProgressinsertLessonProgress(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -362,9 +355,9 @@ class MutationInsertLessonProgressinsertIntoLessonProgressCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -372,13 +365,13 @@ class MutationInsertLessonProgressinsertIntoLessonProgressCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationInsertLessonProgressinsertIntoLessonProgressCollection ||
+    if (other is! MutationInsertLessonProgressinsertLessonProgress ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

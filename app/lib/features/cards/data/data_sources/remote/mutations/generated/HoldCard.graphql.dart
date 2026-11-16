@@ -54,27 +54,27 @@ class VariablesMutationHoldCard {
 }
 
 class MutationHoldCard {
-  MutationHoldCard({this.holdCard, this.$__typename = 'Mutation'});
+  MutationHoldCard({this.updateCardsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationHoldCard.fromJson(Map<String, dynamic> json) {
-    final l$holdCard = json['holdCard'];
+    final l$updateCardsByPk = json['updateCardsByPk'];
     final l$$__typename = json['__typename'];
     return MutationHoldCard(
-      holdCard: l$holdCard == null
+      updateCardsByPk: l$updateCardsByPk == null
           ? null
-          : FragmentCardFragment.fromJson((l$holdCard as Map<String, dynamic>)),
+          : FragmentCardFragment.fromJson((l$updateCardsByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final FragmentCardFragment? holdCard;
+  final FragmentCardFragment? updateCardsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$holdCard = holdCard;
-    _resultData['holdCard'] = l$holdCard?.toJson();
+    final l$updateCardsByPk = updateCardsByPk;
+    _resultData['updateCardsByPk'] = l$updateCardsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -82,9 +82,9 @@ class MutationHoldCard {
 
   @override
   int get hashCode {
-    final l$holdCard = holdCard;
+    final l$updateCardsByPk = updateCardsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$holdCard, l$$__typename]);
+    return Object.hashAll([l$updateCardsByPk, l$$__typename]);
   }
 
   @override
@@ -95,9 +95,9 @@ class MutationHoldCard {
     if (other is! MutationHoldCard || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$holdCard = holdCard;
-    final lOther$holdCard = other.holdCard;
-    if (l$holdCard != lOther$holdCard) {
+    final l$updateCardsByPk = updateCardsByPk;
+    final lOther$updateCardsByPk = other.updateCardsByPk;
+    if (l$updateCardsByPk != lOther$updateCardsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -117,7 +117,7 @@ const documentNodeMutationHoldCard = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'cardId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -126,12 +126,30 @@ const documentNodeMutationHoldCard = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'holdCard'),
+            name: NameNode(value: 'updateCardsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'cardId'),
-                value: VariableNode(name: NameNode(value: 'cardId')),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'cardId')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'status'),
+                      value: EnumValueNode(name: NameNode(value: 'held')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],

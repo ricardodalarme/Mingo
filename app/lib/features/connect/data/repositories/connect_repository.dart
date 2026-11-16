@@ -25,7 +25,10 @@ class ConnectRepository({
   /// Whether touch topics are on for both; true when the person has no couple, since nothing is shared.
   Future<bool> getTouchTopicsEnabled() async {
     try {
-      return await _dataSource.getTouchTopicsEnabled() ?? true;
+      final settings = await _profileRepository.getMySettings();
+      final couple = await _dataSource.getTouchSetting(settings.profileId);
+
+      return couple?.touchTopicsEnabled ?? true;
     } catch (e, stack) {
       _logger.error('Failed to read touch topics', error: e, stackTrace: stack);
       rethrow;
@@ -34,7 +37,11 @@ class ConnectRepository({
 
   Future<void> setTouchTopicsEnabled({required bool enabled}) async {
     try {
-      await _dataSource.setTouchTopics(enabled: enabled);
+      final settings = await _profileRepository.getMySettings();
+      final couple = await _dataSource.getTouchSetting(settings.profileId);
+      if (couple == null) return;
+
+      await _dataSource.setTouchTopics(coupleId: couple.coupleId, enabled: enabled);
     } catch (e, stack) {
       _logger.error('Failed to change touch topics', error: e, stackTrace: stack);
       rethrow;

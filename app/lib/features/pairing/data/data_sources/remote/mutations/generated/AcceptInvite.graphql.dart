@@ -52,27 +52,27 @@ class VariablesMutationAcceptInvite {
 }
 
 class MutationAcceptInvite {
-  MutationAcceptInvite({this.acceptInvite, this.$__typename = 'Mutation'});
+  MutationAcceptInvite({required this.acceptInvite, this.$__typename = 'mutation_root'});
 
   factory MutationAcceptInvite.fromJson(Map<String, dynamic> json) {
     final l$acceptInvite = json['acceptInvite'];
     final l$$__typename = json['__typename'];
     return MutationAcceptInvite(
-      acceptInvite: l$acceptInvite == null
-          ? null
-          : MutationAcceptInviteacceptInvite.fromJson((l$acceptInvite as Map<String, dynamic>)),
+      acceptInvite: (l$acceptInvite as List<dynamic>)
+          .map((e) => MutationAcceptInviteacceptInvite.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAcceptInviteacceptInvite? acceptInvite;
+  final List<MutationAcceptInviteacceptInvite> acceptInvite;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$acceptInvite = acceptInvite;
-    _resultData['acceptInvite'] = l$acceptInvite?.toJson();
+    _resultData['acceptInvite'] = l$acceptInvite.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -82,7 +82,7 @@ class MutationAcceptInvite {
   int get hashCode {
     final l$acceptInvite = acceptInvite;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$acceptInvite, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$acceptInvite.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -95,8 +95,15 @@ class MutationAcceptInvite {
     }
     final l$acceptInvite = acceptInvite;
     final lOther$acceptInvite = other.acceptInvite;
-    if (l$acceptInvite != lOther$acceptInvite) {
+    if (l$acceptInvite.length != lOther$acceptInvite.length) {
       return false;
+    }
+    for (int i = 0; i < l$acceptInvite.length; i++) {
+      final l$acceptInvite$entry = l$acceptInvite[i];
+      final lOther$acceptInvite$entry = lOther$acceptInvite[i];
+      if (l$acceptInvite$entry != lOther$acceptInvite$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -128,8 +135,15 @@ const documentNodeMutationAcceptInvite = DocumentNode(
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'code'),
-                value: VariableNode(name: NameNode(value: 'code')),
+                name: NameNode(value: 'args'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'code'),
+                      value: VariableNode(name: NameNode(value: 'code')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -256,7 +270,7 @@ extension ClientExtensionMutationAcceptInvite on graphql.GraphQLClient {
 }
 
 class MutationAcceptInviteacceptInvite {
-  MutationAcceptInviteacceptInvite({required this.id, this.$__typename = 'Couples'});
+  MutationAcceptInviteacceptInvite({required this.id, this.$__typename = 'profiles'});
 
   factory MutationAcceptInviteacceptInvite.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];

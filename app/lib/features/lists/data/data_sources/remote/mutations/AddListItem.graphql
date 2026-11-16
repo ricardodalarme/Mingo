@@ -1,9 +1,7 @@
-mutation AddListItem($id: UUID!, $listId: UUID!, $title: String!, $position: Int!) {
-  insertIntoListItemsCollection(
-    objects: [{ id: $id, listId: $listId, title: $title, position: $position, status: dream }]
+mutation AddListItem($id: uuid!, $listId: uuid!, $title: String!, $position: Int!) {
+  insertListItemsOne(
+    object: { id: $id, listId: $listId, title: $title, position: $position, status: dream }
   ) {
-    records {
-      ...ListItemFragment
-    }
+    ...ListItemFragment
   }
 }

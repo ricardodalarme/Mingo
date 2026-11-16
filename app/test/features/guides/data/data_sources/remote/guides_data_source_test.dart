@@ -17,7 +17,7 @@ void main() {
       OptionsMutationInsertConversationPrep(
         variables: VariablesMutationInsertConversationPrep(
           id: 'p1',
-          guide: EnumConversationGuide.money,
+          guide: EnumConversationGuide_enum.money,
           topic: 'Dinheiro',
         ),
       ),
@@ -26,7 +26,7 @@ void main() {
       OptionsMutationUpdateConversationPrep(
         variables: VariablesMutationUpdateConversationPrep(
           id: 'p1',
-          guide: EnumConversationGuide.money,
+          guide: EnumConversationGuide_enum.money,
           topic: 'Dinheiro',
         ),
       ),
@@ -44,17 +44,12 @@ void main() {
         options: OptionsMutationInsertConversationPrep(
           variables: VariablesMutationInsertConversationPrep(
             id: 'p1',
-            guide: EnumConversationGuide.money,
+            guide: EnumConversationGuide_enum.money,
             topic: 'Dinheiro',
           ),
         ),
         data: {
-          'insertIntoConversationPrepsCollection': {
-            'records': [
-              {'id': 'p1', '__typename': 'ConversationPreps'},
-            ],
-            '__typename': 'ConversationPrepsInsertResponse',
-          },
+          'insertConversationPrepsOne': {'id': 'p1', '__typename': 'ConversationPreps'},
           '__typename': 'Mutation',
         },
       ),
@@ -62,7 +57,7 @@ void main() {
 
     final id = await dataSource.insertPrep(
       id: 'p1',
-      guide: EnumConversationGuide.money,
+      guide: EnumConversationGuide_enum.money,
       topic: 'Dinheiro',
       notes: 'Uma nota',
       draft: null,
@@ -77,24 +72,18 @@ void main() {
         options: OptionsMutationUpdateConversationPrep(
           variables: VariablesMutationUpdateConversationPrep(
             id: 'p1',
-            guide: EnumConversationGuide.money,
+            guide: EnumConversationGuide_enum.money,
             topic: 'Dinheiro',
           ),
         ),
-        data: {
-          'updateConversationPrepsCollection': {
-            'affectedCount': 0,
-            '__typename': 'ConversationPrepsUpdateResponse',
-          },
-          '__typename': 'Mutation',
-        },
+        data: {'updateConversationPrepsByPk': null, '__typename': 'Mutation'},
       ),
     );
 
     await expectLater(
       dataSource.updatePrep(
         id: 'p1',
-        guide: EnumConversationGuide.money,
+        guide: EnumConversationGuide_enum.money,
         topic: 'Dinheiro',
         notes: 'Uma nota',
         draft: null,

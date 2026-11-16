@@ -1,24 +1,29 @@
 query TodayHome {
   today {
-    isPaired
-    partnerName
     localDate
-    cardStatus
+    weekStart
+    partnerId
+    partnerName
+    togetherSince
     unopenedCards
     slipsThisWeek
     slipsTotal
-    hasPendingInvite
-    togetherSince
-    hasPlus
-    unseenSignals
     slipDays
+    hasPendingInvite
+    unseenSignals
+    card {
+      status
+    }
+    plus {
+      hasPlus
+    }
   }
-  question: dailyContent(kind: "question") {
+  question: dailyContent(args: { kind: "question" }) {
     slug
     title
     tags
   }
-  idea: dailyContent(kind: "daily_idea") {
+  idea: dailyContent(args: { kind: "daily_idea" }) {
     slug
     title
     body

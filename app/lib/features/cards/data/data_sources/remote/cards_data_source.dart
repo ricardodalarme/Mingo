@@ -1,3 +1,4 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/fragments/generated/CardFragment.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/HoldCard.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/MarkCardRead.graphql.dart';
@@ -9,23 +10,27 @@ import 'package:app/features/cards/data/data_sources/remote/queries/generated/Ca
 import 'package:app/features/cards/data/data_sources/remote/queries/generated/MyCards.graphql.dart';
 import 'package:network/network.dart';
 
+/// One card item and the place it takes on the card.
+typedef CardItemPosition = ({String id, int position});
+
 class CardsDataSource({required final GQLClient _client}) {
   /// Builds this week's draft from the week's slips, or returns the one that already exists.
-  Future<FragmentCardFragment> prepareCard() async {
+  Future<MutationPrepareCardprepareCard> prepareCard() async {
     final response = await _client.mutate(OptionsMutationPrepareCard());
 
-    return validateResponseData(response, getData: (data) => data.prepareCard);
+    return validateResponseData(response, getData: (data) => data.prepareCard.firstOrNull);
   }
 
-  Future<QueryMyCardscardsCollection> getCards({required int first, String? after}) async {
+  /// Reads one page of the sent and received cards, newest first.
+  Future<List<QueryMyCardscards>> getCards({required int limit, required int offset}) async {
     final response = await _client.query(
       OptionsQueryMyCards(
         fetchPolicy: FetchPolicy.networkOnly,
-        variables: VariablesQueryMyCards(first: first, after: after),
+        variables: VariablesQueryMyCards(limit: limit, offset: offset),
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data.cardsCollection);
+    return validateResponseData(response, getData: (data) => data.cards);
   }
 
   /// The card with [id], or `null` when it is gone or not visible to the person.
@@ -41,6 +46,7 @@ class CardsDataSource({required final GQLClient _client}) {
     return response.parsedData?.cardsByPk;
   }
 
+  /// Records that the recipient opened the card; opening it again changes nothing.
   Future<void> markRead(String cardId) async {
     final response = await _client.mutate(
       OptionsMutationMarkCardRead(variables: VariablesMutationMarkCardRead(cardId: cardId)),
@@ -48,6 +54,7 @@ class CardsDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
+  /// Replaces the recipient's reaction to the card.
   Future<String?> react({required String cardId, required String reaction, String? reply}) async {
     final response = await _client.mutate(
       OptionsMutationReactToCard(
@@ -55,36 +62,51 @@ class CardsDataSource({required final GQLClient _client}) {
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data.reactToCard).reaction;
+    return validateResponseData(response, getData: (data) => data.insertCardReactionsOne).reaction;
   }
 
+  /// Sends the card; fails with `NoDataException` when the server sends nothing.
   Future<FragmentCardFragment> sendCard(String cardId) async {
     final response = await _client.mutate(
       OptionsMutationSendCard(variables: VariablesMutationSendCard(cardId: cardId)),
     );
 
-    return validateResponseData(response, getData: (data) => data.sendCard);
+    return validateResponseData(response, getData: (data) => data.sendCard.firstOrNull);
   }
 
+  /// Keeps the card for later, still unsent.
   Future<FragmentCardFragment> holdCard(String cardId) async {
     final response = await _client.mutate(
       OptionsMutationHoldCard(variables: VariablesMutationHoldCard(cardId: cardId)),
     );
 
-    return validateResponseData(response, getData: (data) => data.holdCard);
+    return validateResponseData(response, getData: (data) => data.updateCardsByPk);
   }
 
+  /// Saves the note, the order of the items and the items taken off the card.
   Future<FragmentCardFragment> updateDraft({
     required String cardId,
-    required List<String> slipIds,
+    required List<CardItemPosition> items,
+    required List<String> removedItemIds,
     String? note,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateCardDraft(
-        variables: VariablesMutationUpdateCardDraft(cardId: cardId, slipIds: slipIds, note: note),
+        variables: VariablesMutationUpdateCardDraft(
+          cardId: cardId,
+          note: note,
+          items: [
+            for (final item in items)
+              InputcardItems_updates(
+                $_set: InputcardItems_set_input(position: item.position),
+                where: InputcardItems_bool_exp(id: Inputuuid_comparison_exp($_eq: item.id)),
+              ),
+          ],
+          removedItemIds: removedItemIds,
+        ),
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data.updateCardDraft);
+    return validateResponseData(response, getData: (data) => data.updateCardsByPk);
   }
 }

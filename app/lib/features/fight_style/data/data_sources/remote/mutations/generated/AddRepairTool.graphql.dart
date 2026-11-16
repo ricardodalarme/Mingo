@@ -64,31 +64,29 @@ class VariablesMutationAddRepairTool {
 }
 
 class MutationAddRepairTool {
-  MutationAddRepairTool({this.insertIntoRepairLearningsCollection, this.$__typename = 'Mutation'});
+  MutationAddRepairTool({this.insertRepairLearnings, this.$__typename = 'mutation_root'});
 
   factory MutationAddRepairTool.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoRepairLearningsCollection = json['insertIntoRepairLearningsCollection'];
+    final l$insertRepairLearnings = json['insertRepairLearnings'];
     final l$$__typename = json['__typename'];
     return MutationAddRepairTool(
-      insertIntoRepairLearningsCollection: l$insertIntoRepairLearningsCollection == null
+      insertRepairLearnings: l$insertRepairLearnings == null
           ? null
-          : MutationAddRepairToolinsertIntoRepairLearningsCollection.fromJson(
-              (l$insertIntoRepairLearningsCollection as Map<String, dynamic>),
+          : MutationAddRepairToolinsertRepairLearnings.fromJson(
+              (l$insertRepairLearnings as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddRepairToolinsertIntoRepairLearningsCollection?
-  insertIntoRepairLearningsCollection;
+  final MutationAddRepairToolinsertRepairLearnings? insertRepairLearnings;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoRepairLearningsCollection = insertIntoRepairLearningsCollection;
-    _resultData['insertIntoRepairLearningsCollection'] = l$insertIntoRepairLearningsCollection
-        ?.toJson();
+    final l$insertRepairLearnings = insertRepairLearnings;
+    _resultData['insertRepairLearnings'] = l$insertRepairLearnings?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -96,9 +94,9 @@ class MutationAddRepairTool {
 
   @override
   int get hashCode {
-    final l$insertIntoRepairLearningsCollection = insertIntoRepairLearningsCollection;
+    final l$insertRepairLearnings = insertRepairLearnings;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoRepairLearningsCollection, l$$__typename]);
+    return Object.hashAll([l$insertRepairLearnings, l$$__typename]);
   }
 
   @override
@@ -109,9 +107,9 @@ class MutationAddRepairTool {
     if (other is! MutationAddRepairTool || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoRepairLearningsCollection = insertIntoRepairLearningsCollection;
-    final lOther$insertIntoRepairLearningsCollection = other.insertIntoRepairLearningsCollection;
-    if (l$insertIntoRepairLearningsCollection != lOther$insertIntoRepairLearningsCollection) {
+    final l$insertRepairLearnings = insertRepairLearnings;
+    final lOther$insertRepairLearnings = other.insertRepairLearnings;
+    if (l$insertRepairLearnings != lOther$insertRepairLearnings) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -131,7 +129,7 @@ const documentNodeMutationAddRepairTool = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -146,7 +144,7 @@ const documentNodeMutationAddRepairTool = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoRepairLearningsCollection'),
+            name: NameNode(value: 'insertRepairLearnings'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -177,7 +175,7 @@ const documentNodeMutationAddRepairTool = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -296,31 +294,29 @@ extension ClientExtensionMutationAddRepairTool on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationAddRepairToolinsertIntoRepairLearningsCollection {
-  MutationAddRepairToolinsertIntoRepairLearningsCollection({
-    required this.affectedCount,
-    this.$__typename = 'RepairLearningsInsertResponse',
+class MutationAddRepairToolinsertRepairLearnings {
+  MutationAddRepairToolinsertRepairLearnings({
+    required this.affected_rows,
+    this.$__typename = 'repairLearnings_mutation_response',
   });
 
-  factory MutationAddRepairToolinsertIntoRepairLearningsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationAddRepairToolinsertRepairLearnings.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationAddRepairToolinsertIntoRepairLearningsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationAddRepairToolinsertRepairLearnings(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -328,9 +324,9 @@ class MutationAddRepairToolinsertIntoRepairLearningsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -338,13 +334,12 @@ class MutationAddRepairToolinsertIntoRepairLearningsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationAddRepairToolinsertIntoRepairLearningsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationAddRepairToolinsertRepairLearnings || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

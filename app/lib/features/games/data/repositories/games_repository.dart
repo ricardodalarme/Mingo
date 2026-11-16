@@ -65,7 +65,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
         final items = await _items(kind, locale, session.itemSlugs);
         final answers = session.status == GameStatus.invited
             ? const <GameAnswerRecord>[]
-            : await _dataSource.getAnswers(session.id);
+            : await _dataSource.getAnswers(sessionId: session.id, selfId: record.selfId);
 
         return GamePlay(
           kind: kind,
@@ -89,7 +89,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
   Future<GameSession> invite(GamePlay play) => _run('invite to a game', () async {
     final slugs = play.startSlugs();
     if (slugs.isEmpty) throw const NoDataException();
-    final record = await _dataSource.invite(game: play.kind.key, itemSlugs: slugs);
+    final record = await _dataSource.invite(game: play.kind.toRemote(), itemSlugs: slugs);
 
     return _session(record)!;
   });
@@ -132,7 +132,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
     final records = await _dataSource.getItems(
       kind: contentKind.toRemote(),
       locale: locale,
-      first: kind.itemCount,
+      limit: kind.itemCount,
     );
 
     return [for (final record in records) _item(record)];

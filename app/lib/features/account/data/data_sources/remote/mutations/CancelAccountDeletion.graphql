@@ -1,3 +1,5 @@
-mutation CancelAccountDeletion {
-  cancelAccountDeletion
+mutation CancelAccountDeletion($userId: uuid!) {
+  deleteDeletionRequestsByPk(userId: $userId) {
+    userId
+  }
 }

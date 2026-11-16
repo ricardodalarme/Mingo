@@ -1,12 +1,8 @@
 query DateIdeas {
-  savedDateIdeasCollection(orderBy: [{ createdAt: DescNullsLast }], first: 50) {
-    edges {
-      node {
-        id
-        title
-        status
-        plannedFor
-      }
-    }
+  savedDateIdeas(order_by: [{ createdAt: desc_nulls_last }], limit: 50) {
+    id
+    title
+    status
+    plannedFor
   }
 }

@@ -5,27 +5,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryLoveStyleResult {
-  QueryLoveStyleResult({required this.quizResultsCollection, this.$__typename = 'Query'});
+  QueryLoveStyleResult({required this.quizResults, this.$__typename = 'query_root'});
 
   factory QueryLoveStyleResult.fromJson(Map<String, dynamic> json) {
-    final l$quizResultsCollection = json['quizResultsCollection'];
+    final l$quizResults = json['quizResults'];
     final l$$__typename = json['__typename'];
     return QueryLoveStyleResult(
-      quizResultsCollection: QueryLoveStyleResultquizResultsCollection.fromJson(
-        (l$quizResultsCollection as Map<String, dynamic>),
-      ),
+      quizResults: (l$quizResults as List<dynamic>)
+          .map((e) => QueryLoveStyleResultquizResults.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryLoveStyleResultquizResultsCollection quizResultsCollection;
+  final List<QueryLoveStyleResultquizResults> quizResults;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$quizResultsCollection = quizResultsCollection;
-    _resultData['quizResultsCollection'] = l$quizResultsCollection.toJson();
+    final l$quizResults = quizResults;
+    _resultData['quizResults'] = l$quizResults.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33,9 +33,9 @@ class QueryLoveStyleResult {
 
   @override
   int get hashCode {
-    final l$quizResultsCollection = quizResultsCollection;
+    final l$quizResults = quizResults;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$quizResultsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$quizResults.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -46,10 +46,17 @@ class QueryLoveStyleResult {
     if (other is! QueryLoveStyleResult || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$quizResultsCollection = quizResultsCollection;
-    final lOther$quizResultsCollection = other.quizResultsCollection;
-    if (l$quizResultsCollection != lOther$quizResultsCollection) {
+    final l$quizResults = quizResults;
+    final lOther$quizResults = other.quizResults;
+    if (l$quizResults.length != lOther$quizResults.length) {
       return false;
+    }
+    for (int i = 0; i < l$quizResults.length; i++) {
+      final l$quizResults$entry = l$quizResults[i];
+      final lOther$quizResults$entry = lOther$quizResults[i];
+      if (l$quizResults$entry != lOther$quizResults$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -70,11 +77,11 @@ const documentNodeQueryLoveStyleResult = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'quizResultsCollection'),
+            name: NameNode(value: 'quizResults'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -82,7 +89,7 @@ const documentNodeQueryLoveStyleResult = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: EnumValueNode(name: NameNode(value: 'loved')),
                           ),
                         ],
@@ -92,7 +99,7 @@ const documentNodeQueryLoveStyleResult = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '1'),
               ),
             ],
@@ -100,52 +107,18 @@ const documentNodeQueryLoveStyleResult = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'ranked'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'ranked'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -276,157 +249,27 @@ extension ClientExtensionQueryLoveStyleResult on graphql.GraphQLClient {
   }
 }
 
-class QueryLoveStyleResultquizResultsCollection {
-  QueryLoveStyleResultquizResultsCollection({
-    required this.edges,
-    this.$__typename = 'QuizResultsConnection',
-  });
-
-  factory QueryLoveStyleResultquizResultsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryLoveStyleResultquizResultsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryLoveStyleResultquizResultsCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryLoveStyleResultquizResultsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryLoveStyleResultquizResultsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryLoveStyleResultquizResultsCollectionedges {
-  QueryLoveStyleResultquizResultsCollectionedges({
-    required this.node,
-    this.$__typename = 'QuizResultsEdge',
-  });
-
-  factory QueryLoveStyleResultquizResultsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryLoveStyleResultquizResultsCollectionedges(
-      node: QueryLoveStyleResultquizResultsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryLoveStyleResultquizResultsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryLoveStyleResultquizResultsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryLoveStyleResultquizResultsCollectionedgesnode {
-  QueryLoveStyleResultquizResultsCollectionedgesnode({
+class QueryLoveStyleResultquizResults {
+  QueryLoveStyleResultquizResults({
     required this.id,
     required this.ranked,
-    this.$__typename = 'QuizResults',
+    this.$__typename = 'quizResults',
   });
 
-  factory QueryLoveStyleResultquizResultsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryLoveStyleResultquizResults.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$ranked = json['ranked'];
     final l$$__typename = json['__typename'];
-    return QueryLoveStyleResultquizResultsCollectionedgesnode(
+    return QueryLoveStyleResultquizResults(
       id: (l$id as String),
-      ranked: (l$ranked as List<dynamic>).map((e) => (e as String?)).toList(),
+      ranked: (l$ranked as List<dynamic>).map((e) => (e as String)).toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
 
-  final List<String?> ranked;
+  final List<String> ranked;
 
   final String $__typename;
 
@@ -454,8 +297,7 @@ class QueryLoveStyleResultquizResultsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryLoveStyleResultquizResultsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryLoveStyleResultquizResults || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

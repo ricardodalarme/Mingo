@@ -26,13 +26,14 @@ void main() {
     togetherRepository = _MockTogetherRepository();
     repository = ListsRepository(dataSource: dataSource, togetherRepository: togetherRepository);
     when(togetherRepository.getCoupleId).thenAnswer((_) async => null);
+    when(togetherRepository.getCurrentUserId).thenAnswer((_) async => 'user-1');
   });
 
   FragmentListItemFragment item({
     String id = 'i1',
     String listId = 'l1',
     String title = 'Lisboa',
-    EnumListItemStatus status = EnumListItemStatus.dream,
+    EnumListItemStatus_enum status = EnumListItemStatus_enum.dream,
     int position = 0,
   }) => FragmentListItemFragment(
     id: id,
@@ -45,33 +46,35 @@ void main() {
   FragmentListFragment list({
     String id = 'l1',
     String title = 'Viagens',
-    EnumListKind kind = EnumListKind.travel,
-    bool isMine = true,
-    bool isShared = false,
-  }) => FragmentListFragment(id: id, title: title, kind: kind, isMine: isMine, isShared: isShared);
+    EnumListKind_enum kind = EnumListKind_enum.travel,
+    String authorId = 'user-1',
+    String? coupleId,
+  }) => FragmentListFragment(
+    id: id,
+    title: title,
+    kind: kind,
+    authorId: authorId,
+    coupleId: coupleId,
+  );
 
   QueryListDetaillistsByPk detail({
-    bool isMine = true,
-    bool isShared = true,
+    String authorId = 'user-1',
+    String? coupleId = 'couple-1',
     List<FragmentListItemFragment> items = const [],
   }) => QueryListDetaillistsByPk(
     id: 'l1',
     title: 'Viagens',
-    kind: EnumListKind.travel,
-    isMine: isMine,
-    isShared: isShared,
-    listItemsCollection: QueryListDetaillistsByPklistItemsCollection(
-      edges: [
-        for (final node in items) QueryListDetaillistsByPklistItemsCollectionedges(node: node),
-      ],
-    ),
+    kind: EnumListKind_enum.travel,
+    authorId: authorId,
+    coupleId: coupleId,
+    items: items,
   );
 
-  test('maps lists with the sharing and authorship the server computed', () async {
+  test('maps lists with the sharing and authorship the server stored', () async {
     when(dataSource.getLists).thenAnswer(
       (_) async => [
-        list(isShared: true),
-        list(id: 'l2', title: 'Filmes', kind: EnumListKind.movies, isMine: false),
+        list(coupleId: 'couple-1'),
+        list(id: 'l2', title: 'Filmes', kind: EnumListKind_enum.movies, authorId: 'user-2'),
       ],
     );
 
@@ -95,9 +98,17 @@ void main() {
     verifyNever(togetherRepository.getCoupleId);
   });
 
-  test('a missing computed flag reads as false', () async {
+  test('a list without a couple or another author is neither shared nor mine', () async {
     when(dataSource.getLists).thenAnswer(
-      (_) async => [FragmentListFragment(id: 'l1', title: 'Viagens', kind: EnumListKind.travel)],
+      (_) async => [
+        FragmentListFragment(
+          id: 'l1',
+          title: 'Viagens',
+          kind: EnumListKind_enum.travel,
+          authorId: 'user-2',
+          coupleId: null,
+        ),
+      ],
     );
 
     final lists = await repository.getLists();
@@ -111,8 +122,8 @@ void main() {
     when(() => dataSource.getList(any())).thenAnswer(
       (_) async => detail(
         items: [
-          item(id: 'i1', title: 'Lisboa', status: EnumListItemStatus.planned, position: 0),
-          item(id: 'i2', title: 'Chapada', status: EnumListItemStatus.dream, position: 1),
+          item(id: 'i1', title: 'Lisboa', status: EnumListItemStatus_enum.planned, position: 0),
+          item(id: 'i2', title: 'Chapada', status: EnumListItemStatus_enum.dream, position: 1),
         ],
       ),
     );
@@ -150,7 +161,7 @@ void main() {
         kind: any(named: 'kind'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer((_) async => list(isShared: true));
+    ).thenAnswer((_) async => list(coupleId: 'couple-1'));
 
     final saved = await repository.createList(
       id: 'l1',
@@ -164,7 +175,7 @@ void main() {
       () => dataSource.createList(
         id: 'l1',
         title: 'Viagens',
-        kind: EnumListKind.travel,
+        kind: EnumListKind_enum.travel,
         coupleId: 'couple-1',
       ),
     ).called(1);
@@ -186,7 +197,7 @@ void main() {
       () => dataSource.createList(
         id: 'l1',
         title: 'Viagens',
-        kind: EnumListKind.travel,
+        kind: EnumListKind_enum.travel,
         coupleId: null,
       ),
     ).called(1);
@@ -217,7 +228,7 @@ void main() {
         id: any(named: 'id'),
         coupleId: any(named: 'coupleId'),
       ),
-    ).thenAnswer((_) async => list(isShared: true));
+    ).thenAnswer((_) async => list(coupleId: 'couple-1'));
 
     final shared = await repository.setListVisibility(id: 'l1', coupleId: 'couple-1');
     await repository.setListVisibility(id: 'l1');
@@ -241,7 +252,7 @@ void main() {
         id: any(named: 'id'),
         status: any(named: 'status'),
       ),
-    ).thenAnswer((_) async => item(status: EnumListItemStatus.done));
+    ).thenAnswer((_) async => item(status: EnumListItemStatus_enum.done));
     when(() => dataSource.deleteItem(any())).thenAnswer((_) async {
       return;
     });
@@ -254,7 +265,8 @@ void main() {
     expect(changed.status, ListItemStatus.done);
     verify(() => dataSource.addItem(id: 'i1', listId: 'l1', title: 'Lisboa', position: 2))
         .called(1);
-    verify(() => dataSource.setItemStatus(id: 'i1', status: EnumListItemStatus.done)).called(1);
+    verify(() => dataSource.setItemStatus(id: 'i1', status: EnumListItemStatus_enum.done))
+        .called(1);
     verify(() => dataSource.deleteItem('i1')).called(1);
   });
 

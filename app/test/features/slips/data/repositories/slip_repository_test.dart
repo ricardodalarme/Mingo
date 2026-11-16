@@ -1,3 +1,4 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/models/pending_slip.dart';
@@ -23,6 +24,10 @@ void main() {
   setUpAll(() {
     registerFallbackValue(<PendingSlip>[]);
     registerFallbackValue(SlipDraft(text: '', savedAt: DateTime(2026)));
+    registerFallbackValue(EnumSlipKind_enum.quick);
+    registerFallbackValue(EnumSlipPolarity_enum.liked);
+    registerFallbackValue(EnumSlipCategory_enum.did);
+    registerFallbackValue(EnumWorkArea_enum.other);
   });
 
   setUp(() {
@@ -38,14 +43,13 @@ void main() {
         id: any(named: 'id'),
         body: any(named: 'body'),
         createdAt: any(named: 'createdAt'),
-      ),
-    ).thenAnswer((_) async {
-      return;
-    });
-    when(
-      () => remote.setCategory(
-        id: any(named: 'id'),
+        kind: any(named: 'kind'),
+        feeling: any(named: 'feeling'),
+        planNote: any(named: 'planNote'),
+        polarity: any(named: 'polarity'),
+        request: any(named: 'request'),
         category: any(named: 'category'),
+        workArea: any(named: 'workArea'),
       ),
     ).thenAnswer((_) async {
       return;
@@ -53,7 +57,7 @@ void main() {
   });
 
   group('saveQuick', () {
-    test('sends the slip and its category and reports synced', () async {
+    test('sends the slip with its category and reports synced', () async {
       final outcome = await repository.saveQuick(
         id: 's1',
         body: 'Fez café',
@@ -62,22 +66,23 @@ void main() {
       );
 
       expect(outcome, SlipSaveOutcome.synced);
-      verify(() => remote.saveSlip(id: 's1', body: 'Fez café', createdAt: createdAt)).called(1);
-      verify(() => remote.setCategory(id: 's1', category: 'did')).called(1);
+      verify(
+        () => remote.saveSlip(
+          id: 's1',
+          body: 'Fez café',
+          createdAt: createdAt,
+          kind: EnumSlipKind_enum.quick,
+          feeling: null,
+          planNote: null,
+          polarity: EnumSlipPolarity_enum.liked,
+          request: null,
+          category: EnumSlipCategory_enum.did,
+          workArea: null,
+        ),
+      ).called(1);
     });
 
     test('sends a bothered slip with its polarity', () async {
-      when(
-        () => remote.saveSlip(
-          id: any(named: 'id'),
-          body: any(named: 'body'),
-          createdAt: any(named: 'createdAt'),
-          polarity: any(named: 'polarity'),
-        ),
-      ).thenAnswer((_) async {
-        return;
-      });
-
       await repository.saveQuick(
         id: 's1',
         body: 'Chegou tarde sem avisar',
@@ -90,24 +95,18 @@ void main() {
           id: 's1',
           body: 'Chegou tarde sem avisar',
           createdAt: createdAt,
-          polarity: 'bothered',
+          kind: EnumSlipKind_enum.quick,
+          feeling: null,
+          planNote: null,
+          polarity: EnumSlipPolarity_enum.bothered,
+          request: null,
+          category: null,
+          workArea: null,
         ),
       ).called(1);
     });
 
     test('trims the gentle request and sends it with the slip', () async {
-      when(
-        () => remote.saveSlip(
-          id: any(named: 'id'),
-          body: any(named: 'body'),
-          createdAt: any(named: 'createdAt'),
-          polarity: any(named: 'polarity'),
-          request: any(named: 'request'),
-        ),
-      ).thenAnswer((_) async {
-        return;
-      });
-
       await repository.saveQuick(
         id: 's1',
         body: 'Chegou tarde sem avisar',
@@ -121,25 +120,18 @@ void main() {
           id: 's1',
           body: 'Chegou tarde sem avisar',
           createdAt: createdAt,
-          polarity: 'bothered',
+          kind: EnumSlipKind_enum.quick,
+          feeling: null,
+          planNote: null,
+          polarity: EnumSlipPolarity_enum.bothered,
           request: 'Poderia me avisar antes?',
+          category: null,
+          workArea: null,
         ),
       ).called(1);
     });
 
     test('a blank request is sent as null', () async {
-      when(
-        () => remote.saveSlip(
-          id: any(named: 'id'),
-          body: any(named: 'body'),
-          createdAt: any(named: 'createdAt'),
-          polarity: any(named: 'polarity'),
-          request: any(named: 'request'),
-        ),
-      ).thenAnswer((_) async {
-        return;
-      });
-
       await repository.saveQuick(
         id: 's1',
         body: 'Chegou tarde sem avisar',
@@ -153,8 +145,13 @@ void main() {
           id: 's1',
           body: 'Chegou tarde sem avisar',
           createdAt: createdAt,
-          polarity: 'bothered',
+          kind: EnumSlipKind_enum.quick,
+          feeling: null,
+          planNote: null,
+          polarity: EnumSlipPolarity_enum.bothered,
           request: null,
+          category: null,
+          workArea: null,
         ),
       ).called(1);
     });
@@ -165,6 +162,13 @@ void main() {
           id: any(named: 'id'),
           body: any(named: 'body'),
           createdAt: any(named: 'createdAt'),
+          kind: any(named: 'kind'),
+          feeling: any(named: 'feeling'),
+          planNote: any(named: 'planNote'),
+          polarity: any(named: 'polarity'),
+          request: any(named: 'request'),
+          category: any(named: 'category'),
+          workArea: any(named: 'workArea'),
         ),
       ).thenAnswer((_) async => throw const LocalizedException(l10nKey: networkErrorCode));
 
@@ -181,6 +185,13 @@ void main() {
           id: any(named: 'id'),
           body: any(named: 'body'),
           createdAt: any(named: 'createdAt'),
+          kind: any(named: 'kind'),
+          feeling: any(named: 'feeling'),
+          planNote: any(named: 'planNote'),
+          polarity: any(named: 'polarity'),
+          request: any(named: 'request'),
+          category: any(named: 'category'),
+          workArea: any(named: 'workArea'),
         ),
       ).thenAnswer((_) async => throw const LocalizedException(l10nKey: 'FREE_LIMIT_REACHED'));
 
@@ -223,48 +234,51 @@ void main() {
 
       await repository.flushPending();
 
-      verify(() => remote.saveSlip(id: 's1', body: 'x', createdAt: createdAt)).called(1);
+      verify(
+        () => remote.saveSlip(
+          id: 's1',
+          body: 'x',
+          createdAt: createdAt,
+          kind: EnumSlipKind_enum.quick,
+          feeling: null,
+          planNote: null,
+          polarity: EnumSlipPolarity_enum.liked,
+          request: null,
+          category: null,
+          workArea: null,
+        ),
+      ).called(1);
       verify(() => local.writePending(const [])).called(1);
     });
   });
 
   group('sendHug', () {
     test('sends the one-tap hug signal to the partner', () async {
-      when(() => remote.sendSignal(kind: any(named: 'kind'))).thenAnswer((_) async {});
+      when(() => remote.sendHug()).thenAnswer((_) async {});
 
       await repository.sendHug();
 
-      verify(() => remote.sendSignal(kind: 'hug')).called(1);
+      verify(() => remote.sendHug()).called(1);
     });
   });
 
   group('askToTalk', () {
     test('sends the talk need to the partner', () async {
-      when(
-        () => remote.sendSignal(
-          kind: any(named: 'kind'),
-          value: any(named: 'value'),
-        ),
-      ).thenAnswer((_) async {});
+      when(() => remote.sendNeed(value: any(named: 'value'))).thenAnswer((_) async {});
 
       await repository.askToTalk();
 
-      verify(() => remote.sendSignal(kind: 'need', value: 'talk')).called(1);
+      verify(() => remote.sendNeed(value: 'talk')).called(1);
     });
   });
 
   group('sendSweetMessage', () {
     test('sends the message as the body of a hug', () async {
-      when(
-        () => remote.sendSignal(
-          kind: any(named: 'kind'),
-          body: any(named: 'body'),
-        ),
-      ).thenAnswer((_) async {});
+      when(() => remote.sendHug(body: any(named: 'body'))).thenAnswer((_) async {});
 
       await repository.sendSweetMessage('Sem pressa. Estou por aqui.');
 
-      verify(() => remote.sendSignal(kind: 'hug', body: 'Sem pressa. Estou por aqui.')).called(1);
+      verify(() => remote.sendHug(body: 'Sem pressa. Estou por aqui.')).called(1);
     });
   });
 

@@ -54,27 +54,27 @@ class VariablesMutationSendCard {
 }
 
 class MutationSendCard {
-  MutationSendCard({this.sendCard, this.$__typename = 'Mutation'});
+  MutationSendCard({required this.sendCard, this.$__typename = 'mutation_root'});
 
   factory MutationSendCard.fromJson(Map<String, dynamic> json) {
     final l$sendCard = json['sendCard'];
     final l$$__typename = json['__typename'];
     return MutationSendCard(
-      sendCard: l$sendCard == null
-          ? null
-          : FragmentCardFragment.fromJson((l$sendCard as Map<String, dynamic>)),
+      sendCard: (l$sendCard as List<dynamic>)
+          .map((e) => FragmentCardFragment.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final FragmentCardFragment? sendCard;
+  final List<FragmentCardFragment> sendCard;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$sendCard = sendCard;
-    _resultData['sendCard'] = l$sendCard?.toJson();
+    _resultData['sendCard'] = l$sendCard.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -84,7 +84,7 @@ class MutationSendCard {
   int get hashCode {
     final l$sendCard = sendCard;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$sendCard, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$sendCard.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -97,8 +97,15 @@ class MutationSendCard {
     }
     final l$sendCard = sendCard;
     final lOther$sendCard = other.sendCard;
-    if (l$sendCard != lOther$sendCard) {
+    if (l$sendCard.length != lOther$sendCard.length) {
       return false;
+    }
+    for (int i = 0; i < l$sendCard.length; i++) {
+      final l$sendCard$entry = l$sendCard[i];
+      final lOther$sendCard$entry = lOther$sendCard[i];
+      if (l$sendCard$entry != lOther$sendCard$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -117,7 +124,7 @@ const documentNodeMutationSendCard = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'cardId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -130,8 +137,15 @@ const documentNodeMutationSendCard = DocumentNode(
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'cardId'),
-                value: VariableNode(name: NameNode(value: 'cardId')),
+                name: NameNode(value: 'args'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'cardId'),
+                      value: VariableNode(name: NameNode(value: 'cardId')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],

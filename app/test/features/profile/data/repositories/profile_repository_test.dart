@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/profile_data_source.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockProfileDataSource() extends Mock implements ProfileDataSource;
+
+class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
 void main() {
   late ProfileDataSource dataSource;
@@ -19,7 +22,12 @@ void main() {
 
   setUp(() {
     dataSource = _MockProfileDataSource();
-    repository = ProfileRepository(profileDataSource: dataSource);
+    final authenticationRepository = _MockAuthenticationRepository();
+    when(() => authenticationRepository.currentUserId).thenReturn('p1');
+    repository = ProfileRepository(
+      profileDataSource: dataSource,
+      authenticationRepository: authenticationRepository,
+    );
   });
 
   test('a mutation that updates zero rows fails', () async {

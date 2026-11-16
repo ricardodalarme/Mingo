@@ -9,24 +9,24 @@ class FragmentListFragment {
     required this.id,
     required this.title,
     required this.kind,
-    this.isMine,
-    this.isShared,
-    this.$__typename = 'Lists',
+    required this.authorId,
+    this.coupleId,
+    this.$__typename = 'lists',
   });
 
   factory FragmentListFragment.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$kind = json['kind'];
-    final l$isMine = json['isMine'];
-    final l$isShared = json['isShared'];
+    final l$authorId = json['authorId'];
+    final l$coupleId = json['coupleId'];
     final l$$__typename = json['__typename'];
     return FragmentListFragment(
       id: (l$id as String),
       title: (l$title as String),
-      kind: fromJsonEnumListKind((l$kind as String)),
-      isMine: (l$isMine as bool?),
-      isShared: (l$isShared as bool?),
+      kind: fromJsonEnumListKind_enum((l$kind as String)),
+      authorId: (l$authorId as String),
+      coupleId: (l$coupleId as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -35,11 +35,11 @@ class FragmentListFragment {
 
   final String title;
 
-  final EnumListKind kind;
+  final EnumListKind_enum kind;
 
-  final bool? isMine;
+  final String authorId;
 
-  final bool? isShared;
+  final String? coupleId;
 
   final String $__typename;
 
@@ -50,11 +50,11 @@ class FragmentListFragment {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$kind = kind;
-    _resultData['kind'] = toJsonEnumListKind(l$kind);
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
-    final l$isShared = isShared;
-    _resultData['isShared'] = l$isShared;
+    _resultData['kind'] = toJsonEnumListKind_enum(l$kind);
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -65,10 +65,10 @@ class FragmentListFragment {
     final l$id = id;
     final l$title = title;
     final l$kind = kind;
-    final l$isMine = isMine;
-    final l$isShared = isShared;
+    final l$authorId = authorId;
+    final l$coupleId = coupleId;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$title, l$kind, l$isMine, l$isShared, l$$__typename]);
+    return Object.hashAll([l$id, l$title, l$kind, l$authorId, l$coupleId, l$$__typename]);
   }
 
   @override
@@ -94,14 +94,14 @@ class FragmentListFragment {
     if (l$kind != lOther$kind) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
-    final l$isShared = isShared;
-    final lOther$isShared = other.isShared;
-    if (l$isShared != lOther$isShared) {
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -116,7 +116,7 @@ class FragmentListFragment {
 const fragmentDefinitionListFragment = FragmentDefinitionNode(
   name: NameNode(value: 'ListFragment'),
   typeCondition: TypeConditionNode(
-    on: NamedTypeNode(name: NameNode(value: 'Lists'), isNonNull: false),
+    on: NamedTypeNode(name: NameNode(value: 'lists'), isNonNull: false),
   ),
   directives: [],
   selectionSet: SelectionSetNode(
@@ -143,14 +143,14 @@ const fragmentDefinitionListFragment = FragmentDefinitionNode(
         selectionSet: null,
       ),
       FieldNode(
-        name: NameNode(value: 'isMine'),
+        name: NameNode(value: 'authorId'),
         alias: null,
         arguments: [],
         directives: [],
         selectionSet: null,
       ),
       FieldNode(
-        name: NameNode(value: 'isShared'),
+        name: NameNode(value: 'coupleId'),
         alias: null,
         arguments: [],
         directives: [],

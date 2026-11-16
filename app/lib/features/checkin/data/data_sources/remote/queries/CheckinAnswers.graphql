@@ -1,17 +1,14 @@
-query CheckinAnswers($weekStart: Date!, $coupleId: UUID!) {
-  checkinAnswersCollection(
-    filter: { weekStart: { eq: $weekStart }, coupleId: { eq: $coupleId } }
-    orderBy: [{ question: AscNullsLast }]
-    first: 50
+query CheckinAnswers($weekStart: date!, $coupleId: uuid!) {
+  checkins(
+    where: { weekStart: { _eq: $weekStart }, coupleId: { _eq: $coupleId } }
+    limit: 10
   ) {
-    edges {
-      node {
-        id
-        isMine
-        weekStart
-        question
-        body
-      }
-    }
+    id
+    authorId
+    weekStart
+    answer1
+    answer2
+    answer3
+    answer4
   }
 }

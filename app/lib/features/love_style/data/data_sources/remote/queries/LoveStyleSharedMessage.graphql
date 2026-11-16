@@ -1,4 +1,4 @@
-query LoveStyleSharedMessage($id: UUID!) {
+query LoveStyleSharedMessage($id: uuid!) {
   partnerMessagesByPk(id: $id) {
     id
   }

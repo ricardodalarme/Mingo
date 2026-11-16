@@ -1,9 +1,8 @@
-mutation CompleteRepairSession($id: UUID!, $feeling: RepairFeeling, $completedAt: Datetime!) {
-  updateRepairSessionsCollection(
-    set: { feelingAfter: $feeling, completedAt: $completedAt }
-    filter: { id: { eq: $id } }
-    atMost: 1
+mutation CompleteRepairSession($id: uuid!, $feeling: RepairFeeling_enum, $completedAt: timestamptz!) {
+  updateRepairSessions(
+    where: { id: { _eq: $id } }
+    _set: { feelingAfter: $feeling, completedAt: $completedAt }
   ) {
-    affectedCount
+    affected_rows
   }
 }

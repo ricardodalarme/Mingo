@@ -24,10 +24,11 @@ void main() {
     dataSource = _MockDataSource();
     profileRepository = _MockProfileRepository();
     datesRepository = _MockDatesRepository();
-    when(
-      () => profileRepository.getMySettings(),
-    ).thenAnswer((_) async => const AccountSettings(theme: .rose, timeZone: 'America/Sao_Paulo'));
-    when(() => dataSource.getPartnerTimeZone()).thenAnswer((_) async => 'Europe/Lisbon');
+    when(() => profileRepository.getMySettings()).thenAnswer(
+      (_) async =>
+          const AccountSettings(theme: .rose, profileId: 'me', timeZone: 'America/Sao_Paulo'),
+    );
+    when(() => dataSource.getPartnerTimeZone('me')).thenAnswer((_) async => 'Europe/Lisbon');
     when(() => datesRepository.getDates()).thenAnswer((_) async => const []);
   });
 
@@ -123,7 +124,7 @@ void main() {
   });
 
   test('without a partner there is only one clock', () async {
-    when(() => dataSource.getPartnerTimeZone()).thenAnswer((_) async => null);
+    when(() => dataSource.getPartnerTimeZone('me')).thenAnswer((_) async => null);
 
     final info = await build().getDistance();
 

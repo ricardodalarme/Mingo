@@ -1,7 +1,5 @@
-mutation AddCapsule($id: UUID!, $body: String!, $opensOn: Date!, $coupleId: UUID) {
-  insertIntoCapsulesCollection(
-    objects: [{ id: $id, body: $body, opensOn: $opensOn, coupleId: $coupleId }]
-  ) {
-    affectedCount
+mutation AddCapsule($id: uuid!, $body: String!, $opensOn: date!, $coupleId: uuid) {
+  insertCapsules(objects: [{ id: $id, body: $body, opensOn: $opensOn, coupleId: $coupleId }]) {
+    affected_rows
   }
 }

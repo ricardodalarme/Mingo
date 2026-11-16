@@ -6,6 +6,7 @@ import 'package:app/features/repair/data/models/guided_session.dart';
 import 'package:app/features/repair/data/models/received_signal.dart';
 import 'package:app/features/repair/data/models/repair_path.dart';
 import 'package:app/features/repair/data/models/signal_answer.dart';
+import 'package:clock/clock.dart';
 import 'package:logger/logger.dart';
 
 class RepairRepository({required final RepairDataSource _dataSource}) {
@@ -141,7 +142,8 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
     try {
       final node = await _dataSource.respondToSignal(
         signalId: signalId,
-        response: response?.toRpc(),
+        at: clock.now(),
+        response: response?.toRemote(),
       );
 
       return SignalAnswer(

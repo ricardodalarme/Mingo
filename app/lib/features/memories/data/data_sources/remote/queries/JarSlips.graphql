@@ -1,0 +1,6 @@
+query JarSlips {
+  slips(where: { inJar: { _eq: true } }, order_by: { createdAt: desc }, limit: 50) {
+    id
+    body
+  }
+}

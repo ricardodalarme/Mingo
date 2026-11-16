@@ -1,7 +1,7 @@
-mutation AddLogisticItem($id: UUID!, $title: String!, $assigneeId: UUID, $coupleId: UUID) {
-  insertIntoLogisticItemsCollection(
-    objects: [{ id: $id, title: $title, assigneeId: $assigneeId, coupleId: $coupleId }]
+mutation AddLogisticItem($id: uuid!, $title: String!, $assigneeId: uuid, $coupleId: uuid) {
+  insertLogisticItemsOne(
+    object: { id: $id, title: $title, assigneeId: $assigneeId, coupleId: $coupleId }
   ) {
-    affectedCount
+    id
   }
 }

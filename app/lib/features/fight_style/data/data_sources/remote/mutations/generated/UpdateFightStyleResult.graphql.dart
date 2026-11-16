@@ -7,7 +7,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationUpdateFightStyleResult {
   factory VariablesMutationUpdateFightStyleResult({
     required String id,
-    required List<String?> ranked,
+    required List<String> ranked,
   }) => VariablesMutationUpdateFightStyleResult._({r'id': id, r'ranked': ranked});
 
   VariablesMutationUpdateFightStyleResult._(this._$data);
@@ -17,7 +17,7 @@ class VariablesMutationUpdateFightStyleResult {
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
     final l$ranked = data['ranked'];
-    result$data['ranked'] = (l$ranked as List<dynamic>).map((e) => (e as String?)).toList();
+    result$data['ranked'] = (l$ranked as List<dynamic>).map((e) => (e as String)).toList();
     return VariablesMutationUpdateFightStyleResult._(result$data);
   }
 
@@ -25,7 +25,7 @@ class VariablesMutationUpdateFightStyleResult {
 
   String get id => (_$data['id'] as String);
 
-  List<String?> get ranked => (_$data['ranked'] as List<String?>);
+  List<String> get ranked => (_$data['ranked'] as List<String>);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -73,31 +73,29 @@ class VariablesMutationUpdateFightStyleResult {
 }
 
 class MutationUpdateFightStyleResult {
-  MutationUpdateFightStyleResult({
-    required this.updateQuizResultsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateFightStyleResult({this.updateQuizResults, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateFightStyleResult.fromJson(Map<String, dynamic> json) {
-    final l$updateQuizResultsCollection = json['updateQuizResultsCollection'];
+    final l$updateQuizResults = json['updateQuizResults'];
     final l$$__typename = json['__typename'];
     return MutationUpdateFightStyleResult(
-      updateQuizResultsCollection:
-          MutationUpdateFightStyleResultupdateQuizResultsCollection.fromJson(
-            (l$updateQuizResultsCollection as Map<String, dynamic>),
-          ),
+      updateQuizResults: l$updateQuizResults == null
+          ? null
+          : MutationUpdateFightStyleResultupdateQuizResults.fromJson(
+              (l$updateQuizResults as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateFightStyleResultupdateQuizResultsCollection updateQuizResultsCollection;
+  final MutationUpdateFightStyleResultupdateQuizResults? updateQuizResults;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateQuizResultsCollection = updateQuizResultsCollection;
-    _resultData['updateQuizResultsCollection'] = l$updateQuizResultsCollection.toJson();
+    final l$updateQuizResults = updateQuizResults;
+    _resultData['updateQuizResults'] = l$updateQuizResults?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -105,9 +103,9 @@ class MutationUpdateFightStyleResult {
 
   @override
   int get hashCode {
-    final l$updateQuizResultsCollection = updateQuizResultsCollection;
+    final l$updateQuizResults = updateQuizResults;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateQuizResultsCollection, l$$__typename]);
+    return Object.hashAll([l$updateQuizResults, l$$__typename]);
   }
 
   @override
@@ -118,9 +116,9 @@ class MutationUpdateFightStyleResult {
     if (other is! MutationUpdateFightStyleResult || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateQuizResultsCollection = updateQuizResultsCollection;
-    final lOther$updateQuizResultsCollection = other.updateQuizResultsCollection;
-    if (l$updateQuizResultsCollection != lOther$updateQuizResultsCollection) {
+    final l$updateQuizResults = updateQuizResults;
+    final lOther$updateQuizResults = other.updateQuizResults;
+    if (l$updateQuizResults != lOther$updateQuizResults) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -140,14 +138,14 @@ const documentNodeMutationUpdateFightStyleResult = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'ranked')),
           type: ListTypeNode(
-            type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+            type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
             isNonNull: true,
           ),
           defaultValue: DefaultValueNode(value: null),
@@ -158,11 +156,29 @@ const documentNodeMutationUpdateFightStyleResult = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateQuizResultsCollection'),
+            name: NameNode(value: 'updateQuizResults'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'id')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -172,30 +188,12 @@ const documentNodeMutationUpdateFightStyleResult = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -318,31 +316,29 @@ extension ClientExtensionMutationUpdateFightStyleResult on graphql.GraphQLClient
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateFightStyleResultupdateQuizResultsCollection {
-  MutationUpdateFightStyleResultupdateQuizResultsCollection({
-    required this.affectedCount,
-    this.$__typename = 'QuizResultsUpdateResponse',
+class MutationUpdateFightStyleResultupdateQuizResults {
+  MutationUpdateFightStyleResultupdateQuizResults({
+    required this.affected_rows,
+    this.$__typename = 'quizResults_mutation_response',
   });
 
-  factory MutationUpdateFightStyleResultupdateQuizResultsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateFightStyleResultupdateQuizResults.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateFightStyleResultupdateQuizResultsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateFightStyleResultupdateQuizResults(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -350,9 +346,9 @@ class MutationUpdateFightStyleResultupdateQuizResultsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -360,13 +356,13 @@ class MutationUpdateFightStyleResultupdateQuizResultsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateFightStyleResultupdateQuizResultsCollection ||
+    if (other is! MutationUpdateFightStyleResultupdateQuizResults ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

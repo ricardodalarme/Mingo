@@ -12,37 +12,31 @@ class FightStyleDataSource({required final GQLClient _client}) {
     final response = await _client.query(
       OptionsQueryFightStyleResult(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.quizResultsCollection.edges,
-    );
-    final node = edges.firstOrNull?.node;
+    final rows = validateResponseData(response, getData: (data) => data.quizResults);
+    final node = rows.firstOrNull;
 
-    return node == null ? null : (id: node.id, ranked: node.ranked.whereType<String>().toList());
+    return node == null ? null : (id: node.id, ranked: node.ranked);
   }
 
   Future<void> insertResult(List<String> ranked) async {
     final response = await _client.mutate(
       OptionsMutationInsertFightStyleResult(
-        variables: VariablesMutationInsertFightStyleResult(ranked: ranked.cast<String?>()),
+        variables: VariablesMutationInsertFightStyleResult(ranked: ranked),
       ),
     );
 
-    validateResponseData(
-      response,
-      getData: (data) => data.insertIntoQuizResultsCollection?.records.firstOrNull,
-    );
+    validateResponseData(response, getData: (data) => data.insertQuizResultsOne);
   }
 
   Future<void> updateResult({required String id, required List<String> ranked}) async {
     final response = await _client.mutate(
       OptionsMutationUpdateFightStyleResult(
-        variables: VariablesMutationUpdateFightStyleResult(id: id, ranked: ranked.cast<String?>()),
+        variables: VariablesMutationUpdateFightStyleResult(id: id, ranked: ranked),
       ),
     );
     final affectedCount = validateResponseData(
       response,
-      getData: (data) => data.updateQuizResultsCollection.affectedCount,
+      getData: (data) => data.updateQuizResults?.affected_rows ?? 0,
     );
     if (affectedCount == 0) throw const NoDataException();
   }

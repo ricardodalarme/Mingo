@@ -6,28 +6,75 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
+class VariablesQueryMyProfile {
+  factory VariablesQueryMyProfile({required String userId}) =>
+      VariablesQueryMyProfile._({r'userId': userId});
+
+  VariablesQueryMyProfile._(this._$data);
+
+  factory VariablesQueryMyProfile.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
+    return VariablesQueryMyProfile._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get userId => (_$data['userId'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! VariablesQueryMyProfile || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    return Object.hashAll([l$userId]);
+  }
+}
+
 class QueryMyProfile {
-  QueryMyProfile({this.myProfile, this.$__typename = 'Query'});
+  QueryMyProfile({this.profilesByPk, this.$__typename = 'query_root'});
 
   factory QueryMyProfile.fromJson(Map<String, dynamic> json) {
-    final l$myProfile = json['myProfile'];
+    final l$profilesByPk = json['profilesByPk'];
     final l$$__typename = json['__typename'];
     return QueryMyProfile(
-      myProfile: l$myProfile == null
+      profilesByPk: l$profilesByPk == null
           ? null
-          : FragmentProfileFragment.fromJson((l$myProfile as Map<String, dynamic>)),
+          : FragmentProfileFragment.fromJson((l$profilesByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final FragmentProfileFragment? myProfile;
+  final FragmentProfileFragment? profilesByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$myProfile = myProfile;
-    _resultData['myProfile'] = l$myProfile?.toJson();
+    final l$profilesByPk = profilesByPk;
+    _resultData['profilesByPk'] = l$profilesByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +82,9 @@ class QueryMyProfile {
 
   @override
   int get hashCode {
-    final l$myProfile = myProfile;
+    final l$profilesByPk = profilesByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$myProfile, l$$__typename]);
+    return Object.hashAll([l$profilesByPk, l$$__typename]);
   }
 
   @override
@@ -48,9 +95,9 @@ class QueryMyProfile {
     if (other is! QueryMyProfile || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$myProfile = myProfile;
-    final lOther$myProfile = other.myProfile;
-    if (l$myProfile != lOther$myProfile) {
+    final l$profilesByPk = profilesByPk;
+    final lOther$profilesByPk = other.profilesByPk;
+    if (l$profilesByPk != lOther$profilesByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -67,14 +114,26 @@ const documentNodeQueryMyProfile = DocumentNode(
     OperationDefinitionNode(
       type: OperationType.query,
       name: NameNode(value: 'MyProfile'),
-      variableDefinitions: [],
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'userId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'myProfile'),
+            name: NameNode(value: 'profilesByPk'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'id'),
+                value: VariableNode(name: NameNode(value: 'userId')),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
@@ -114,6 +173,7 @@ typedef OnQueryCompleteQueryMyProfile = FutureOr<void> Function(
 class OptionsQueryMyProfile extends graphql.QueryOptions<QueryMyProfile> {
   OptionsQueryMyProfile({
     String? operationName,
+    required VariablesQueryMyProfile variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -125,6 +185,7 @@ class OptionsQueryMyProfile extends graphql.QueryOptions<QueryMyProfile> {
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'MyProfile',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -154,6 +215,7 @@ class OptionsQueryMyProfile extends graphql.QueryOptions<QueryMyProfile> {
 class WatchOptionsQueryMyProfile extends graphql.WatchQueryOptions<QueryMyProfile> {
   WatchOptionsQueryMyProfile({
     String? operationName,
+    required VariablesQueryMyProfile variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -165,6 +227,7 @@ class WatchOptionsQueryMyProfile extends graphql.WatchQueryOptions<QueryMyProfil
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'MyProfile',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -181,29 +244,45 @@ class WatchOptionsQueryMyProfile extends graphql.WatchQueryOptions<QueryMyProfil
 }
 
 class FetchMoreOptionsQueryMyProfile extends graphql.FetchMoreOptions {
-  FetchMoreOptionsQueryMyProfile({required graphql.UpdateQuery updateQuery})
-    : super(updateQuery: updateQuery, document: documentNodeQueryMyProfile);
+  FetchMoreOptionsQueryMyProfile({
+    required graphql.UpdateQuery updateQuery,
+    required VariablesQueryMyProfile variables,
+  }) : super(
+         updateQuery: updateQuery,
+         variables: variables.toJson(),
+         document: documentNodeQueryMyProfile,
+       );
 }
 
 extension ClientExtensionQueryMyProfile on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QueryMyProfile>> queryMyProfile([
-    OptionsQueryMyProfile? options,
-  ]) async => await this.query(options ?? OptionsQueryMyProfile());
+  Future<graphql.QueryResult<QueryMyProfile>> queryMyProfile(OptionsQueryMyProfile options) async =>
+      await this.query(options);
 
-  graphql.ObservableQuery<QueryMyProfile> watchQueryMyProfile([
-    WatchOptionsQueryMyProfile? options,
-  ]) => this.watchQuery(options ?? WatchOptionsQueryMyProfile());
+  graphql.ObservableQuery<QueryMyProfile> watchQueryMyProfile(WatchOptionsQueryMyProfile options) =>
+      this.watchQuery(options);
 
-  void writeQueryMyProfile({required QueryMyProfile data, bool broadcast = true}) =>
-      this.writeQuery(
-        graphql.Request(operation: graphql.Operation(document: documentNodeQueryMyProfile)),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
+  void writeQueryMyProfile({
+    required QueryMyProfile data,
+    required VariablesQueryMyProfile variables,
+    bool broadcast = true,
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(document: documentNodeQueryMyProfile),
+      variables: variables.toJson(),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
 
-  QueryMyProfile? readQueryMyProfile({bool optimistic = true}) {
+  QueryMyProfile? readQueryMyProfile({
+    required VariablesQueryMyProfile variables,
+    bool optimistic = true,
+  }) {
     final result = this.readQuery(
-      graphql.Request(operation: graphql.Operation(document: documentNodeQueryMyProfile)),
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryMyProfile),
+        variables: variables.toJson(),
+      ),
       optimistic: optimistic,
     );
     return result == null ? null : QueryMyProfile.fromJson(result);

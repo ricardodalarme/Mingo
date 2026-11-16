@@ -153,29 +153,27 @@ class VariablesMutationAddMemory {
 }
 
 class MutationAddMemory {
-  MutationAddMemory({this.insertIntoMemoriesCollection, this.$__typename = 'Mutation'});
+  MutationAddMemory({this.insertMemories, this.$__typename = 'mutation_root'});
 
   factory MutationAddMemory.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoMemoriesCollection = json['insertIntoMemoriesCollection'];
+    final l$insertMemories = json['insertMemories'];
     final l$$__typename = json['__typename'];
     return MutationAddMemory(
-      insertIntoMemoriesCollection: l$insertIntoMemoriesCollection == null
+      insertMemories: l$insertMemories == null
           ? null
-          : MutationAddMemoryinsertIntoMemoriesCollection.fromJson(
-              (l$insertIntoMemoriesCollection as Map<String, dynamic>),
-            ),
+          : MutationAddMemoryinsertMemories.fromJson((l$insertMemories as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddMemoryinsertIntoMemoriesCollection? insertIntoMemoriesCollection;
+  final MutationAddMemoryinsertMemories? insertMemories;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoMemoriesCollection = insertIntoMemoriesCollection;
-    _resultData['insertIntoMemoriesCollection'] = l$insertIntoMemoriesCollection?.toJson();
+    final l$insertMemories = insertMemories;
+    _resultData['insertMemories'] = l$insertMemories?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -183,9 +181,9 @@ class MutationAddMemory {
 
   @override
   int get hashCode {
-    final l$insertIntoMemoriesCollection = insertIntoMemoriesCollection;
+    final l$insertMemories = insertMemories;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoMemoriesCollection, l$$__typename]);
+    return Object.hashAll([l$insertMemories, l$$__typename]);
   }
 
   @override
@@ -196,9 +194,9 @@ class MutationAddMemory {
     if (other is! MutationAddMemory || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoMemoriesCollection = insertIntoMemoriesCollection;
-    final lOther$insertIntoMemoriesCollection = other.insertIntoMemoriesCollection;
-    if (l$insertIntoMemoriesCollection != lOther$insertIntoMemoriesCollection) {
+    final l$insertMemories = insertMemories;
+    final lOther$insertMemories = other.insertMemories;
+    if (l$insertMemories != lOther$insertMemories) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -218,7 +216,7 @@ const documentNodeMutationAddMemory = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -236,7 +234,7 @@ const documentNodeMutationAddMemory = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'happenedOn')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -248,7 +246,7 @@ const documentNodeMutationAddMemory = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -257,7 +255,7 @@ const documentNodeMutationAddMemory = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoMemoriesCollection'),
+            name: NameNode(value: 'insertMemories'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -300,7 +298,7 @@ const documentNodeMutationAddMemory = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -418,29 +416,29 @@ extension ClientExtensionMutationAddMemory on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationAddMemoryinsertIntoMemoriesCollection {
-  MutationAddMemoryinsertIntoMemoriesCollection({
-    required this.affectedCount,
-    this.$__typename = 'MemoriesInsertResponse',
+class MutationAddMemoryinsertMemories {
+  MutationAddMemoryinsertMemories({
+    required this.affected_rows,
+    this.$__typename = 'memories_mutation_response',
   });
 
-  factory MutationAddMemoryinsertIntoMemoriesCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationAddMemoryinsertMemories.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationAddMemoryinsertIntoMemoriesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationAddMemoryinsertMemories(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -448,9 +446,9 @@ class MutationAddMemoryinsertIntoMemoriesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -458,13 +456,12 @@ class MutationAddMemoryinsertIntoMemoriesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationAddMemoryinsertIntoMemoriesCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationAddMemoryinsertMemories || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

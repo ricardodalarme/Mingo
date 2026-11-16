@@ -1,7 +1,5 @@
-mutation SetGiftWishVisibility($id: UUID!, $coupleId: UUID) {
-  updateGiftIdeasCollection(set: { coupleId: $coupleId }, filter: { id: { eq: $id } }, atMost: 1) {
-    records {
-      ...GiftWishFragment
-    }
+mutation SetGiftWishVisibility($id: uuid!, $coupleId: uuid) {
+  updateGiftIdeasByPk(pk_columns: { id: $id }, _set: { coupleId: $coupleId }) {
+    ...GiftWishFragment
   }
 }

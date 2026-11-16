@@ -7,27 +7,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryImportantDates {
-  QueryImportantDates({required this.importantDatesCollection, this.$__typename = 'Query'});
+  QueryImportantDates({required this.importantDates, this.$__typename = 'query_root'});
 
   factory QueryImportantDates.fromJson(Map<String, dynamic> json) {
-    final l$importantDatesCollection = json['importantDatesCollection'];
+    final l$importantDates = json['importantDates'];
     final l$$__typename = json['__typename'];
     return QueryImportantDates(
-      importantDatesCollection: QueryImportantDatesimportantDatesCollection.fromJson(
-        (l$importantDatesCollection as Map<String, dynamic>),
-      ),
+      importantDates: (l$importantDates as List<dynamic>)
+          .map((e) => QueryImportantDatesimportantDates.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryImportantDatesimportantDatesCollection importantDatesCollection;
+  final List<QueryImportantDatesimportantDates> importantDates;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$importantDatesCollection = importantDatesCollection;
-    _resultData['importantDatesCollection'] = l$importantDatesCollection.toJson();
+    final l$importantDates = importantDates;
+    _resultData['importantDates'] = l$importantDates.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +35,9 @@ class QueryImportantDates {
 
   @override
   int get hashCode {
-    final l$importantDatesCollection = importantDatesCollection;
+    final l$importantDates = importantDates;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$importantDatesCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$importantDates.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -48,10 +48,17 @@ class QueryImportantDates {
     if (other is! QueryImportantDates || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$importantDatesCollection = importantDatesCollection;
-    final lOther$importantDatesCollection = other.importantDatesCollection;
-    if (l$importantDatesCollection != lOther$importantDatesCollection) {
+    final l$importantDates = importantDates;
+    final lOther$importantDates = other.importantDates;
+    if (l$importantDates.length != lOther$importantDates.length) {
       return false;
+    }
+    for (int i = 0; i < l$importantDates.length; i++) {
+      final l$importantDates$entry = l$importantDates[i];
+      final lOther$importantDates$entry = lOther$importantDates[i];
+      if (l$importantDates$entry != lOther$importantDates$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -72,11 +79,11 @@ const documentNodeQueryImportantDates = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'importantDatesCollection'),
+            name: NameNode(value: 'importantDates'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -84,7 +91,7 @@ const documentNodeQueryImportantDates = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: BooleanValueNode(value: false),
                           ),
                         ],
@@ -94,14 +101,14 @@ const documentNodeQueryImportantDates = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'month'),
-                          value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'asc_nulls_last')),
                         ),
                       ],
                     ),
@@ -109,7 +116,7 @@ const documentNodeQueryImportantDates = DocumentNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'day'),
-                          value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'asc_nulls_last')),
                         ),
                       ],
                     ),
@@ -117,7 +124,7 @@ const documentNodeQueryImportantDates = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '200'),
               ),
             ],
@@ -125,87 +132,53 @@ const documentNodeQueryImportantDates = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'kind'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'month'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'day'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'year'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'yearly'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'kind'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'month'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'day'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'year'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'yearly'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -335,138 +308,8 @@ extension ClientExtensionQueryImportantDates on graphql.GraphQLClient {
   }
 }
 
-class QueryImportantDatesimportantDatesCollection {
-  QueryImportantDatesimportantDatesCollection({
-    required this.edges,
-    this.$__typename = 'ImportantDatesConnection',
-  });
-
-  factory QueryImportantDatesimportantDatesCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryImportantDatesimportantDatesCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryImportantDatesimportantDatesCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryImportantDatesimportantDatesCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryImportantDatesimportantDatesCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryImportantDatesimportantDatesCollectionedges {
-  QueryImportantDatesimportantDatesCollectionedges({
-    required this.node,
-    this.$__typename = 'ImportantDatesEdge',
-  });
-
-  factory QueryImportantDatesimportantDatesCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryImportantDatesimportantDatesCollectionedges(
-      node: QueryImportantDatesimportantDatesCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryImportantDatesimportantDatesCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryImportantDatesimportantDatesCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryImportantDatesimportantDatesCollectionedgesnode {
-  QueryImportantDatesimportantDatesCollectionedgesnode({
+class QueryImportantDatesimportantDates {
+  QueryImportantDatesimportantDates({
     required this.id,
     required this.title,
     required this.kind,
@@ -474,10 +317,10 @@ class QueryImportantDatesimportantDatesCollectionedgesnode {
     required this.day,
     this.year,
     required this.yearly,
-    this.$__typename = 'ImportantDates',
+    this.$__typename = 'importantDates',
   });
 
-  factory QueryImportantDatesimportantDatesCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryImportantDatesimportantDates.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$kind = json['kind'];
@@ -486,10 +329,10 @@ class QueryImportantDatesimportantDatesCollectionedgesnode {
     final l$year = json['year'];
     final l$yearly = json['yearly'];
     final l$$__typename = json['__typename'];
-    return QueryImportantDatesimportantDatesCollectionedgesnode(
+    return QueryImportantDatesimportantDates(
       id: (l$id as String),
       title: (l$title as String),
-      kind: fromJsonEnumImportantDateKind((l$kind as String)),
+      kind: fromJsonEnumImportantDateKind_enum((l$kind as String)),
       month: (l$month as int),
       day: (l$day as int),
       year: (l$year as int?),
@@ -502,7 +345,7 @@ class QueryImportantDatesimportantDatesCollectionedgesnode {
 
   final String title;
 
-  final EnumImportantDateKind kind;
+  final EnumImportantDateKind_enum kind;
 
   final int month;
 
@@ -521,7 +364,7 @@ class QueryImportantDatesimportantDatesCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$kind = kind;
-    _resultData['kind'] = toJsonEnumImportantDateKind(l$kind);
+    _resultData['kind'] = toJsonEnumImportantDateKind_enum(l$kind);
     final l$month = month;
     _resultData['month'] = l$month;
     final l$day = day;
@@ -553,8 +396,7 @@ class QueryImportantDatesimportantDatesCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryImportantDatesimportantDatesCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryImportantDatesimportantDates || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

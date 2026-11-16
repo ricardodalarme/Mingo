@@ -11,6 +11,6 @@ void main() {
   });
 
   test('an unknown server kind fails loudly', () {
-    expect(EnumConsentKind.$unknown.toModel, throwsArgumentError);
+    expect(EnumConsentKind_enum.$unknown.toModel, throwsArgumentError);
   });
 }

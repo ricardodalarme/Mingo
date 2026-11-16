@@ -15,10 +15,10 @@ import 'package:app/features/history/data/data_sources/remote/queries/generated/
 import 'package:network/network.dart';
 
 class HistoryDataSource({required final GQLClient _client}) {
-  Future<QueryHistoryOverview> getOverview({required int year}) async {
+  Future<QueryHistoryOverview> getOverview({required String userId, required int year}) async {
     final response = await _client.query(
       OptionsQueryHistoryOverview(
-        variables: VariablesQueryHistoryOverview(year: year),
+        variables: VariablesQueryHistoryOverview(userId: userId, year: year),
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
@@ -28,9 +28,9 @@ class HistoryDataSource({required final GQLClient _client}) {
 
   Future<void> insertStoryEvent({
     required String id,
-    required EnumStoryEventKind kind,
+    required EnumStoryEventKind_enum kind,
     required DateTime happenedOn,
-    required EnumDatePrecision datePrecision,
+    required EnumDatePrecision_enum datePrecision,
     String? title,
     String? coupleId,
   }) async {
@@ -52,9 +52,9 @@ class HistoryDataSource({required final GQLClient _client}) {
 
   Future<void> updateStoryEvent({
     required String id,
-    required EnumStoryEventKind kind,
+    required EnumStoryEventKind_enum kind,
     required DateTime happenedOn,
-    required EnumDatePrecision datePrecision,
+    required EnumDatePrecision_enum datePrecision,
     String? title,
     String? coupleId,
   }) async {
@@ -86,8 +86,8 @@ class HistoryDataSource({required final GQLClient _client}) {
     required String id,
     required String title,
     required DateTime happenedOn,
-    required EnumDatePrecision datePrecision,
-    required EnumMemoryOrigin origin,
+    required EnumDatePrecision_enum datePrecision,
+    required EnumMemoryOrigin_enum origin,
     String? body,
     String? place,
     String? coupleId,
@@ -114,8 +114,7 @@ class HistoryDataSource({required final GQLClient _client}) {
     required String id,
     required String title,
     required DateTime happenedOn,
-    required EnumDatePrecision datePrecision,
-    required EnumMemoryOrigin origin,
+    required EnumDatePrecision_enum datePrecision,
     String? body,
     String? place,
     String? coupleId,
@@ -130,7 +129,6 @@ class HistoryDataSource({required final GQLClient _client}) {
           happenedOn: happenedOn,
           datePrecision: datePrecision,
           place: place,
-          origin: origin,
         ),
       ),
     );
@@ -149,7 +147,7 @@ class HistoryDataSource({required final GQLClient _client}) {
   Future<void> insertImportantDate({
     required String id,
     required String title,
-    required EnumImportantDateKind kind,
+    required EnumImportantDateKind_enum kind,
     required int month,
     required int day,
     required bool yearly,
@@ -177,7 +175,7 @@ class HistoryDataSource({required final GQLClient _client}) {
   Future<void> updateImportantDate({
     required String id,
     required String title,
-    required EnumImportantDateKind kind,
+    required EnumImportantDateKind_enum kind,
     required int month,
     required int day,
     required bool yearly,
@@ -212,7 +210,7 @@ class HistoryDataSource({required final GQLClient _client}) {
 
   Future<void> updateAvatarKind({
     required String profileId,
-    required EnumAvatarKind avatarKind,
+    required EnumAvatarKind_enum avatarKind,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateAvatarKind(
@@ -238,7 +236,7 @@ class HistoryDataSource({required final GQLClient _client}) {
 
   Future<void> updatePhase({
     required String profileId,
-    required EnumRelationshipPhase phase,
+    required EnumRelationshipPhase_enum phase,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateHistoryPhase(

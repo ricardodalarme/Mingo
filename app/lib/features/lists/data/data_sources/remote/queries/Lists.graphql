@@ -1,9 +1,5 @@
 query Lists {
-  listsCollection(orderBy: [{ createdAt: DescNullsLast }], first: 100) {
-    edges {
-      node {
-        ...ListFragment
-      }
-    }
+  lists(order_by: [{ createdAt: desc_nulls_last }], limit: 100) {
+    ...ListFragment
   }
 }

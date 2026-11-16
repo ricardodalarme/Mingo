@@ -5,15 +5,8 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationUpsertCouplePhoto {
-  factory VariablesMutationUpsertCouplePhoto({
-    required String coupleId,
-    required String storagePath,
-    required String uploadedBy,
-  }) => VariablesMutationUpsertCouplePhoto._({
-    r'coupleId': coupleId,
-    r'storagePath': storagePath,
-    r'uploadedBy': uploadedBy,
-  });
+  factory VariablesMutationUpsertCouplePhoto({required String coupleId, required String fileId}) =>
+      VariablesMutationUpsertCouplePhoto._({r'coupleId': coupleId, r'fileId': fileId});
 
   VariablesMutationUpsertCouplePhoto._(this._$data);
 
@@ -21,10 +14,8 @@ class VariablesMutationUpsertCouplePhoto {
     final result$data = <String, dynamic>{};
     final l$coupleId = data['coupleId'];
     result$data['coupleId'] = (l$coupleId as String);
-    final l$storagePath = data['storagePath'];
-    result$data['storagePath'] = (l$storagePath as String);
-    final l$uploadedBy = data['uploadedBy'];
-    result$data['uploadedBy'] = (l$uploadedBy as String);
+    final l$fileId = data['fileId'];
+    result$data['fileId'] = (l$fileId as String);
     return VariablesMutationUpsertCouplePhoto._(result$data);
   }
 
@@ -32,18 +23,14 @@ class VariablesMutationUpsertCouplePhoto {
 
   String get coupleId => (_$data['coupleId'] as String);
 
-  String get storagePath => (_$data['storagePath'] as String);
-
-  String get uploadedBy => (_$data['uploadedBy'] as String);
+  String get fileId => (_$data['fileId'] as String);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$coupleId = coupleId;
     result$data['coupleId'] = l$coupleId;
-    final l$storagePath = storagePath;
-    result$data['storagePath'] = l$storagePath;
-    final l$uploadedBy = uploadedBy;
-    result$data['uploadedBy'] = l$uploadedBy;
+    final l$fileId = fileId;
+    result$data['fileId'] = l$fileId;
     return result$data;
   }
 
@@ -60,14 +47,9 @@ class VariablesMutationUpsertCouplePhoto {
     if (l$coupleId != lOther$coupleId) {
       return false;
     }
-    final l$storagePath = storagePath;
-    final lOther$storagePath = other.storagePath;
-    if (l$storagePath != lOther$storagePath) {
-      return false;
-    }
-    final l$uploadedBy = uploadedBy;
-    final lOther$uploadedBy = other.uploadedBy;
-    if (l$uploadedBy != lOther$uploadedBy) {
+    final l$fileId = fileId;
+    final lOther$fileId = other.fileId;
+    if (l$fileId != lOther$fileId) {
       return false;
     }
     return true;
@@ -76,37 +58,35 @@ class VariablesMutationUpsertCouplePhoto {
   @override
   int get hashCode {
     final l$coupleId = coupleId;
-    final l$storagePath = storagePath;
-    final l$uploadedBy = uploadedBy;
-    return Object.hashAll([l$coupleId, l$storagePath, l$uploadedBy]);
+    final l$fileId = fileId;
+    return Object.hashAll([l$coupleId, l$fileId]);
   }
 }
 
 class MutationUpsertCouplePhoto {
-  MutationUpsertCouplePhoto({
-    required this.updateCouplePhotosCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpsertCouplePhoto({this.updateCouplePhotos, this.$__typename = 'mutation_root'});
 
   factory MutationUpsertCouplePhoto.fromJson(Map<String, dynamic> json) {
-    final l$updateCouplePhotosCollection = json['updateCouplePhotosCollection'];
+    final l$updateCouplePhotos = json['updateCouplePhotos'];
     final l$$__typename = json['__typename'];
     return MutationUpsertCouplePhoto(
-      updateCouplePhotosCollection: MutationUpsertCouplePhotoupdateCouplePhotosCollection.fromJson(
-        (l$updateCouplePhotosCollection as Map<String, dynamic>),
-      ),
+      updateCouplePhotos: l$updateCouplePhotos == null
+          ? null
+          : MutationUpsertCouplePhotoupdateCouplePhotos.fromJson(
+              (l$updateCouplePhotos as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpsertCouplePhotoupdateCouplePhotosCollection updateCouplePhotosCollection;
+  final MutationUpsertCouplePhotoupdateCouplePhotos? updateCouplePhotos;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateCouplePhotosCollection = updateCouplePhotosCollection;
-    _resultData['updateCouplePhotosCollection'] = l$updateCouplePhotosCollection.toJson();
+    final l$updateCouplePhotos = updateCouplePhotos;
+    _resultData['updateCouplePhotos'] = l$updateCouplePhotos?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -114,9 +94,9 @@ class MutationUpsertCouplePhoto {
 
   @override
   int get hashCode {
-    final l$updateCouplePhotosCollection = updateCouplePhotosCollection;
+    final l$updateCouplePhotos = updateCouplePhotos;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateCouplePhotosCollection, l$$__typename]);
+    return Object.hashAll([l$updateCouplePhotos, l$$__typename]);
   }
 
   @override
@@ -127,9 +107,9 @@ class MutationUpsertCouplePhoto {
     if (other is! MutationUpsertCouplePhoto || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateCouplePhotosCollection = updateCouplePhotosCollection;
-    final lOther$updateCouplePhotosCollection = other.updateCouplePhotosCollection;
-    if (l$updateCouplePhotosCollection != lOther$updateCouplePhotosCollection) {
+    final l$updateCouplePhotos = updateCouplePhotos;
+    final lOther$updateCouplePhotos = other.updateCouplePhotos;
+    if (l$updateCouplePhotos != lOther$updateCouplePhotos) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -149,19 +129,13 @@ const documentNodeMutationUpsertCouplePhoto = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'storagePath')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'uploadedBy')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          variable: VariableNode(name: NameNode(value: 'fileId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -170,26 +144,11 @@ const documentNodeMutationUpsertCouplePhoto = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateCouplePhotosCollection'),
+            name: NameNode(value: 'updateCouplePhotos'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'storagePath'),
-                      value: VariableNode(name: NameNode(value: 'storagePath')),
-                    ),
-                    ObjectFieldNode(
-                      name: NameNode(value: 'uploadedBy'),
-                      value: VariableNode(name: NameNode(value: 'uploadedBy')),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -197,7 +156,7 @@ const documentNodeMutationUpsertCouplePhoto = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'coupleId')),
                           ),
                         ],
@@ -207,15 +166,22 @@ const documentNodeMutationUpsertCouplePhoto = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'fileId'),
+                      value: VariableNode(name: NameNode(value: 'fileId')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -337,31 +303,29 @@ extension ClientExtensionMutationUpsertCouplePhoto on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpsertCouplePhotoupdateCouplePhotosCollection {
-  MutationUpsertCouplePhotoupdateCouplePhotosCollection({
-    required this.affectedCount,
-    this.$__typename = 'CouplePhotosUpdateResponse',
+class MutationUpsertCouplePhotoupdateCouplePhotos {
+  MutationUpsertCouplePhotoupdateCouplePhotos({
+    required this.affected_rows,
+    this.$__typename = 'couplePhotos_mutation_response',
   });
 
-  factory MutationUpsertCouplePhotoupdateCouplePhotosCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpsertCouplePhotoupdateCouplePhotos.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpsertCouplePhotoupdateCouplePhotosCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpsertCouplePhotoupdateCouplePhotos(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -369,9 +333,9 @@ class MutationUpsertCouplePhotoupdateCouplePhotosCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -379,13 +343,12 @@ class MutationUpsertCouplePhotoupdateCouplePhotosCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpsertCouplePhotoupdateCouplePhotosCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationUpsertCouplePhotoupdateCouplePhotos || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

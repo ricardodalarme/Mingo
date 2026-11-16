@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -8,23 +10,27 @@ class VariablesMutationSaveSlip {
   factory VariablesMutationSaveSlip({
     required String id,
     required String body,
-    String? kind,
+    required EnumSlipKind_enum kind,
     String? feeling,
     String? planNote,
     bool? forCard,
     DateTime? createdAt,
-    String? polarity,
+    required EnumSlipPolarity_enum polarity,
     String? request,
+    EnumSlipCategory_enum? category,
+    EnumWorkArea_enum? workArea,
   }) => VariablesMutationSaveSlip._({
     r'id': id,
     r'body': body,
-    if (kind != null) r'kind': kind,
+    r'kind': kind,
     if (feeling != null) r'feeling': feeling,
     if (planNote != null) r'planNote': planNote,
     if (forCard != null) r'forCard': forCard,
     if (createdAt != null) r'createdAt': createdAt,
-    if (polarity != null) r'polarity': polarity,
+    r'polarity': polarity,
     if (request != null) r'request': request,
+    if (category != null) r'category': category,
+    if (workArea != null) r'workArea': workArea,
   });
 
   VariablesMutationSaveSlip._(this._$data);
@@ -35,10 +41,8 @@ class VariablesMutationSaveSlip {
     result$data['id'] = (l$id as String);
     final l$body = data['body'];
     result$data['body'] = (l$body as String);
-    if (data.containsKey('kind')) {
-      final l$kind = data['kind'];
-      result$data['kind'] = (l$kind as String?);
-    }
+    final l$kind = data['kind'];
+    result$data['kind'] = fromJsonEnumSlipKind_enum((l$kind as String));
     if (data.containsKey('feeling')) {
       final l$feeling = data['feeling'];
       result$data['feeling'] = (l$feeling as String?);
@@ -57,13 +61,23 @@ class VariablesMutationSaveSlip {
           ? null
           : DateTime.parse((l$createdAt as String));
     }
-    if (data.containsKey('polarity')) {
-      final l$polarity = data['polarity'];
-      result$data['polarity'] = (l$polarity as String?);
-    }
+    final l$polarity = data['polarity'];
+    result$data['polarity'] = fromJsonEnumSlipPolarity_enum((l$polarity as String));
     if (data.containsKey('request')) {
       final l$request = data['request'];
       result$data['request'] = (l$request as String?);
+    }
+    if (data.containsKey('category')) {
+      final l$category = data['category'];
+      result$data['category'] = l$category == null
+          ? null
+          : fromJsonEnumSlipCategory_enum((l$category as String));
+    }
+    if (data.containsKey('workArea')) {
+      final l$workArea = data['workArea'];
+      result$data['workArea'] = l$workArea == null
+          ? null
+          : fromJsonEnumWorkArea_enum((l$workArea as String));
     }
     return VariablesMutationSaveSlip._(result$data);
   }
@@ -74,7 +88,7 @@ class VariablesMutationSaveSlip {
 
   String get body => (_$data['body'] as String);
 
-  String? get kind => (_$data['kind'] as String?);
+  EnumSlipKind_enum get kind => (_$data['kind'] as EnumSlipKind_enum);
 
   String? get feeling => (_$data['feeling'] as String?);
 
@@ -84,9 +98,13 @@ class VariablesMutationSaveSlip {
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
-  String? get polarity => (_$data['polarity'] as String?);
+  EnumSlipPolarity_enum get polarity => (_$data['polarity'] as EnumSlipPolarity_enum);
 
   String? get request => (_$data['request'] as String?);
+
+  EnumSlipCategory_enum? get category => (_$data['category'] as EnumSlipCategory_enum?);
+
+  EnumWorkArea_enum? get workArea => (_$data['workArea'] as EnumWorkArea_enum?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -94,10 +112,8 @@ class VariablesMutationSaveSlip {
     result$data['id'] = l$id;
     final l$body = body;
     result$data['body'] = l$body;
-    if (_$data.containsKey('kind')) {
-      final l$kind = kind;
-      result$data['kind'] = l$kind;
-    }
+    final l$kind = kind;
+    result$data['kind'] = toJsonEnumSlipKind_enum(l$kind);
     if (_$data.containsKey('feeling')) {
       final l$feeling = feeling;
       result$data['feeling'] = l$feeling;
@@ -116,13 +132,19 @@ class VariablesMutationSaveSlip {
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$createdAt);
     }
-    if (_$data.containsKey('polarity')) {
-      final l$polarity = polarity;
-      result$data['polarity'] = l$polarity;
-    }
+    final l$polarity = polarity;
+    result$data['polarity'] = toJsonEnumSlipPolarity_enum(l$polarity);
     if (_$data.containsKey('request')) {
       final l$request = request;
       result$data['request'] = l$request;
+    }
+    if (_$data.containsKey('category')) {
+      final l$category = category;
+      result$data['category'] = l$category == null ? null : toJsonEnumSlipCategory_enum(l$category);
+    }
+    if (_$data.containsKey('workArea')) {
+      final l$workArea = workArea;
+      result$data['workArea'] = l$workArea == null ? null : toJsonEnumWorkArea_enum(l$workArea);
     }
     return result$data;
   }
@@ -147,9 +169,6 @@ class VariablesMutationSaveSlip {
     }
     final l$kind = kind;
     final lOther$kind = other.kind;
-    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
-      return false;
-    }
     if (l$kind != lOther$kind) {
       return false;
     }
@@ -187,9 +206,6 @@ class VariablesMutationSaveSlip {
     }
     final l$polarity = polarity;
     final lOther$polarity = other.polarity;
-    if (_$data.containsKey('polarity') != other._$data.containsKey('polarity')) {
-      return false;
-    }
     if (l$polarity != lOther$polarity) {
       return false;
     }
@@ -199,6 +215,22 @@ class VariablesMutationSaveSlip {
       return false;
     }
     if (l$request != lOther$request) {
+      return false;
+    }
+    final l$category = category;
+    final lOther$category = other.category;
+    if (_$data.containsKey('category') != other._$data.containsKey('category')) {
+      return false;
+    }
+    if (l$category != lOther$category) {
+      return false;
+    }
+    final l$workArea = workArea;
+    final lOther$workArea = other.workArea;
+    if (_$data.containsKey('workArea') != other._$data.containsKey('workArea')) {
+      return false;
+    }
+    if (l$workArea != lOther$workArea) {
       return false;
     }
     return true;
@@ -215,42 +247,46 @@ class VariablesMutationSaveSlip {
     final l$createdAt = createdAt;
     final l$polarity = polarity;
     final l$request = request;
+    final l$category = category;
+    final l$workArea = workArea;
     return Object.hashAll([
       l$id,
       l$body,
-      _$data.containsKey('kind') ? l$kind : const {},
+      l$kind,
       _$data.containsKey('feeling') ? l$feeling : const {},
       _$data.containsKey('planNote') ? l$planNote : const {},
       _$data.containsKey('forCard') ? l$forCard : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
-      _$data.containsKey('polarity') ? l$polarity : const {},
+      l$polarity,
       _$data.containsKey('request') ? l$request : const {},
+      _$data.containsKey('category') ? l$category : const {},
+      _$data.containsKey('workArea') ? l$workArea : const {},
     ]);
   }
 }
 
 class MutationSaveSlip {
-  MutationSaveSlip({this.saveSlip, this.$__typename = 'Mutation'});
+  MutationSaveSlip({this.insertSlipsOne, this.$__typename = 'mutation_root'});
 
   factory MutationSaveSlip.fromJson(Map<String, dynamic> json) {
-    final l$saveSlip = json['saveSlip'];
+    final l$insertSlipsOne = json['insertSlipsOne'];
     final l$$__typename = json['__typename'];
     return MutationSaveSlip(
-      saveSlip: l$saveSlip == null
+      insertSlipsOne: l$insertSlipsOne == null
           ? null
-          : MutationSaveSlipsaveSlip.fromJson((l$saveSlip as Map<String, dynamic>)),
+          : MutationSaveSlipinsertSlipsOne.fromJson((l$insertSlipsOne as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSaveSlipsaveSlip? saveSlip;
+  final MutationSaveSlipinsertSlipsOne? insertSlipsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$saveSlip = saveSlip;
-    _resultData['saveSlip'] = l$saveSlip?.toJson();
+    final l$insertSlipsOne = insertSlipsOne;
+    _resultData['insertSlipsOne'] = l$insertSlipsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -258,9 +294,9 @@ class MutationSaveSlip {
 
   @override
   int get hashCode {
-    final l$saveSlip = saveSlip;
+    final l$insertSlipsOne = insertSlipsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$saveSlip, l$$__typename]);
+    return Object.hashAll([l$insertSlipsOne, l$$__typename]);
   }
 
   @override
@@ -271,9 +307,9 @@ class MutationSaveSlip {
     if (other is! MutationSaveSlip || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$saveSlip = saveSlip;
-    final lOther$saveSlip = other.saveSlip;
-    if (l$saveSlip != lOther$saveSlip) {
+    final l$insertSlipsOne = insertSlipsOne;
+    final lOther$insertSlipsOne = other.insertSlipsOne;
+    if (l$insertSlipsOne != lOther$insertSlipsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -293,7 +329,7 @@ const documentNodeMutationSaveSlip = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -305,7 +341,7 @@ const documentNodeMutationSaveSlip = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'SlipKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -329,13 +365,13 @@ const documentNodeMutationSaveSlip = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'createdAt')),
-          type: NamedTypeNode(name: NameNode(value: 'Datetime'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'timestamptz'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'polarity')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'SlipPolarity_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -345,49 +381,103 @@ const documentNodeMutationSaveSlip = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'category')),
+          type: NamedTypeNode(name: NameNode(value: 'SlipCategory_enum'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'workArea')),
+          type: NamedTypeNode(name: NameNode(value: 'WorkArea_enum'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'saveSlip'),
+            name: NameNode(value: 'insertSlipsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'id'),
-                value: VariableNode(name: NameNode(value: 'id')),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'body'),
+                      value: VariableNode(name: NameNode(value: 'body')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: VariableNode(name: NameNode(value: 'kind')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'feeling'),
+                      value: VariableNode(name: NameNode(value: 'feeling')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'planNote'),
+                      value: VariableNode(name: NameNode(value: 'planNote')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'forCard'),
+                      value: VariableNode(name: NameNode(value: 'forCard')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'createdAt'),
+                      value: VariableNode(name: NameNode(value: 'createdAt')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'polarity'),
+                      value: VariableNode(name: NameNode(value: 'polarity')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'request'),
+                      value: VariableNode(name: NameNode(value: 'request')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'category'),
+                      value: VariableNode(name: NameNode(value: 'category')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'workArea'),
+                      value: VariableNode(name: NameNode(value: 'workArea')),
+                    ),
+                  ],
+                ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'body'),
-                value: VariableNode(name: NameNode(value: 'body')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'kind'),
-                value: VariableNode(name: NameNode(value: 'kind')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'feeling'),
-                value: VariableNode(name: NameNode(value: 'feeling')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'planNote'),
-                value: VariableNode(name: NameNode(value: 'planNote')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'forCard'),
-                value: VariableNode(name: NameNode(value: 'forCard')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'createdAt'),
-                value: VariableNode(name: NameNode(value: 'createdAt')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'polarity'),
-                value: VariableNode(name: NameNode(value: 'polarity')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'request'),
-                value: VariableNode(name: NameNode(value: 'request')),
+                name: NameNode(value: 'on_conflict'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'constraint'),
+                      value: EnumValueNode(name: NameNode(value: 'slips_pkey')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'update_columns'),
+                      value: ListValueNode(
+                        values: [
+                          EnumValueNode(name: NameNode(value: 'body')),
+                          EnumValueNode(name: NameNode(value: 'kind')),
+                          EnumValueNode(name: NameNode(value: 'feeling')),
+                          EnumValueNode(name: NameNode(value: 'planNote')),
+                          EnumValueNode(name: NameNode(value: 'forCard')),
+                          EnumValueNode(name: NameNode(value: 'polarity')),
+                          EnumValueNode(name: NameNode(value: 'request')),
+                          EnumValueNode(name: NameNode(value: 'category')),
+                          EnumValueNode(name: NameNode(value: 'workArea')),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -512,13 +602,16 @@ extension ClientExtensionMutationSaveSlip on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSaveSlipsaveSlip {
-  MutationSaveSlipsaveSlip({required this.id, this.$__typename = 'Slips'});
+class MutationSaveSlipinsertSlipsOne {
+  MutationSaveSlipinsertSlipsOne({required this.id, this.$__typename = 'slips'});
 
-  factory MutationSaveSlipsaveSlip.fromJson(Map<String, dynamic> json) {
+  factory MutationSaveSlipinsertSlipsOne.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationSaveSlipsaveSlip(id: (l$id as String), $__typename: (l$$__typename as String));
+    return MutationSaveSlipinsertSlipsOne(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
   }
 
   final String id;
@@ -546,7 +639,7 @@ class MutationSaveSlipsaveSlip {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSaveSlipsaveSlip || runtimeType != other.runtimeType) {
+    if (other is! MutationSaveSlipinsertSlipsOne || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

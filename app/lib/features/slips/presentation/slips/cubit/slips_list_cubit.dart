@@ -34,7 +34,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
           slips: Success(page.items),
           scope: state.scope,
           hasNext: page.hasNext,
-          cursor: page.cursor,
+          offset: page.offset,
           isSearching: state.isSearching,
           query: state.query,
         ),
@@ -66,7 +66,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
     emit(state.copyWith(isLoadingMore: true));
     try {
       final page = await _slipRepository.getSlips(
-        after: state.cursor,
+        offset: state.offset,
         since: _since(state.scope, clock.now()),
         archived: state.scope == SlipsScope.archived,
       );
@@ -79,7 +79,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
           ]),
           scope: state.scope,
           hasNext: page.hasNext,
-          cursor: page.cursor,
+          offset: page.offset,
           isSearching: state.isSearching,
           query: state.query,
         ),

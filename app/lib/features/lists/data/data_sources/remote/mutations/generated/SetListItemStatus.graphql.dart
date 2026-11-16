@@ -10,7 +10,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationSetListItemStatus {
   factory VariablesMutationSetListItemStatus({
     required String id,
-    required EnumListItemStatus status,
+    required EnumListItemStatus_enum status,
   }) => VariablesMutationSetListItemStatus._({r'id': id, r'status': status});
 
   VariablesMutationSetListItemStatus._(this._$data);
@@ -20,7 +20,7 @@ class VariablesMutationSetListItemStatus {
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
     final l$status = data['status'];
-    result$data['status'] = fromJsonEnumListItemStatus((l$status as String));
+    result$data['status'] = fromJsonEnumListItemStatus_enum((l$status as String));
     return VariablesMutationSetListItemStatus._(result$data);
   }
 
@@ -28,14 +28,14 @@ class VariablesMutationSetListItemStatus {
 
   String get id => (_$data['id'] as String);
 
-  EnumListItemStatus get status => (_$data['status'] as EnumListItemStatus);
+  EnumListItemStatus_enum get status => (_$data['status'] as EnumListItemStatus_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
     result$data['id'] = l$id;
     final l$status = status;
-    result$data['status'] = toJsonEnumListItemStatus(l$status);
+    result$data['status'] = toJsonEnumListItemStatus_enum(l$status);
     return result$data;
   }
 
@@ -69,30 +69,27 @@ class VariablesMutationSetListItemStatus {
 }
 
 class MutationSetListItemStatus {
-  MutationSetListItemStatus({
-    required this.updateListItemsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationSetListItemStatus({this.updateListItemsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationSetListItemStatus.fromJson(Map<String, dynamic> json) {
-    final l$updateListItemsCollection = json['updateListItemsCollection'];
+    final l$updateListItemsByPk = json['updateListItemsByPk'];
     final l$$__typename = json['__typename'];
     return MutationSetListItemStatus(
-      updateListItemsCollection: MutationSetListItemStatusupdateListItemsCollection.fromJson(
-        (l$updateListItemsCollection as Map<String, dynamic>),
-      ),
+      updateListItemsByPk: l$updateListItemsByPk == null
+          ? null
+          : FragmentListItemFragment.fromJson((l$updateListItemsByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSetListItemStatusupdateListItemsCollection updateListItemsCollection;
+  final FragmentListItemFragment? updateListItemsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateListItemsCollection = updateListItemsCollection;
-    _resultData['updateListItemsCollection'] = l$updateListItemsCollection.toJson();
+    final l$updateListItemsByPk = updateListItemsByPk;
+    _resultData['updateListItemsByPk'] = l$updateListItemsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -100,9 +97,9 @@ class MutationSetListItemStatus {
 
   @override
   int get hashCode {
-    final l$updateListItemsCollection = updateListItemsCollection;
+    final l$updateListItemsByPk = updateListItemsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateListItemsCollection, l$$__typename]);
+    return Object.hashAll([l$updateListItemsByPk, l$$__typename]);
   }
 
   @override
@@ -113,9 +110,9 @@ class MutationSetListItemStatus {
     if (other is! MutationSetListItemStatus || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateListItemsCollection = updateListItemsCollection;
-    final lOther$updateListItemsCollection = other.updateListItemsCollection;
-    if (l$updateListItemsCollection != lOther$updateListItemsCollection) {
+    final l$updateListItemsByPk = updateListItemsByPk;
+    final lOther$updateListItemsByPk = other.updateListItemsByPk;
+    if (l$updateListItemsByPk != lOther$updateListItemsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -135,13 +132,13 @@ const documentNodeMutationSetListItemStatus = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'status')),
-          type: NamedTypeNode(name: NameNode(value: 'ListItemStatus'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ListItemStatus_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -150,11 +147,22 @@ const documentNodeMutationSetListItemStatus = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateListItemsCollection'),
+            name: NameNode(value: 'updateListItemsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -164,52 +172,13 @@ const documentNodeMutationSetListItemStatus = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'records'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'ListItemFragment'),
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'ListItemFragment'),
-                        directives: [],
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -326,71 +295,4 @@ extension ClientExtensionMutationSetListItemStatus on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationSetListItemStatus> watchMutationSetListItemStatus(
     WatchOptionsMutationSetListItemStatus options,
   ) => this.watchMutation(options);
-}
-
-class MutationSetListItemStatusupdateListItemsCollection {
-  MutationSetListItemStatusupdateListItemsCollection({
-    required this.records,
-    this.$__typename = 'ListItemsUpdateResponse',
-  });
-
-  factory MutationSetListItemStatusupdateListItemsCollection.fromJson(Map<String, dynamic> json) {
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationSetListItemStatusupdateListItemsCollection(
-      records: (l$records as List<dynamic>)
-          .map((e) => FragmentListItemFragment.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<FragmentListItemFragment> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationSetListItemStatusupdateListItemsCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
 }

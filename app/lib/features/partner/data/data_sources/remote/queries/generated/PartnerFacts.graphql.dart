@@ -7,27 +7,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryPartnerFacts {
-  QueryPartnerFacts({required this.partnerFactsCollection, this.$__typename = 'Query'});
+  QueryPartnerFacts({required this.partnerFacts, this.$__typename = 'query_root'});
 
   factory QueryPartnerFacts.fromJson(Map<String, dynamic> json) {
-    final l$partnerFactsCollection = json['partnerFactsCollection'];
+    final l$partnerFacts = json['partnerFacts'];
     final l$$__typename = json['__typename'];
     return QueryPartnerFacts(
-      partnerFactsCollection: QueryPartnerFactspartnerFactsCollection.fromJson(
-        (l$partnerFactsCollection as Map<String, dynamic>),
-      ),
+      partnerFacts: (l$partnerFacts as List<dynamic>)
+          .map((e) => QueryPartnerFactspartnerFacts.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryPartnerFactspartnerFactsCollection partnerFactsCollection;
+  final List<QueryPartnerFactspartnerFacts> partnerFacts;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$partnerFactsCollection = partnerFactsCollection;
-    _resultData['partnerFactsCollection'] = l$partnerFactsCollection.toJson();
+    final l$partnerFacts = partnerFacts;
+    _resultData['partnerFacts'] = l$partnerFacts.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +35,9 @@ class QueryPartnerFacts {
 
   @override
   int get hashCode {
-    final l$partnerFactsCollection = partnerFactsCollection;
+    final l$partnerFacts = partnerFacts;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$partnerFactsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$partnerFacts.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -48,10 +48,17 @@ class QueryPartnerFacts {
     if (other is! QueryPartnerFacts || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$partnerFactsCollection = partnerFactsCollection;
-    final lOther$partnerFactsCollection = other.partnerFactsCollection;
-    if (l$partnerFactsCollection != lOther$partnerFactsCollection) {
+    final l$partnerFacts = partnerFacts;
+    final lOther$partnerFacts = other.partnerFacts;
+    if (l$partnerFacts.length != lOther$partnerFacts.length) {
       return false;
+    }
+    for (int i = 0; i < l$partnerFacts.length; i++) {
+      final l$partnerFacts$entry = l$partnerFacts[i];
+      final lOther$partnerFacts$entry = lOther$partnerFacts[i];
+      if (l$partnerFacts$entry != lOther$partnerFacts$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -72,18 +79,18 @@ const documentNodeQueryPartnerFacts = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'partnerFactsCollection'),
+            name: NameNode(value: 'partnerFacts'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -91,7 +98,7 @@ const documentNodeQueryPartnerFacts = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '200'),
               ),
             ],
@@ -99,66 +106,32 @@ const documentNodeQueryPartnerFacts = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'label'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'value'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'category'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'label'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'value'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'category'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -288,155 +261,28 @@ extension ClientExtensionQueryPartnerFacts on graphql.GraphQLClient {
   }
 }
 
-class QueryPartnerFactspartnerFactsCollection {
-  QueryPartnerFactspartnerFactsCollection({
-    required this.edges,
-    this.$__typename = 'PartnerFactsConnection',
-  });
-
-  factory QueryPartnerFactspartnerFactsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryPartnerFactspartnerFactsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) =>
-                QueryPartnerFactspartnerFactsCollectionedges.fromJson((e as Map<String, dynamic>)),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryPartnerFactspartnerFactsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryPartnerFactspartnerFactsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryPartnerFactspartnerFactsCollectionedges {
-  QueryPartnerFactspartnerFactsCollectionedges({
-    required this.node,
-    this.$__typename = 'PartnerFactsEdge',
-  });
-
-  factory QueryPartnerFactspartnerFactsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryPartnerFactspartnerFactsCollectionedges(
-      node: QueryPartnerFactspartnerFactsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryPartnerFactspartnerFactsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryPartnerFactspartnerFactsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryPartnerFactspartnerFactsCollectionedgesnode {
-  QueryPartnerFactspartnerFactsCollectionedgesnode({
+class QueryPartnerFactspartnerFacts {
+  QueryPartnerFactspartnerFacts({
     required this.id,
     required this.label,
     required this.value,
     this.category,
-    this.$__typename = 'PartnerFacts',
+    this.$__typename = 'partnerFacts',
   });
 
-  factory QueryPartnerFactspartnerFactsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryPartnerFactspartnerFacts.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$label = json['label'];
     final l$value = json['value'];
     final l$category = json['category'];
     final l$$__typename = json['__typename'];
-    return QueryPartnerFactspartnerFactsCollectionedgesnode(
+    return QueryPartnerFactspartnerFacts(
       id: (l$id as String),
       label: (l$label as String),
       value: (l$value as String),
-      category: l$category == null ? null : fromJsonEnumPartnerFactCategory((l$category as String)),
+      category: l$category == null
+          ? null
+          : fromJsonEnumPartnerFactCategory_enum((l$category as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -447,7 +293,7 @@ class QueryPartnerFactspartnerFactsCollectionedgesnode {
 
   final String value;
 
-  final EnumPartnerFactCategory? category;
+  final EnumPartnerFactCategory_enum? category;
 
   final String $__typename;
 
@@ -460,7 +306,9 @@ class QueryPartnerFactspartnerFactsCollectionedgesnode {
     final l$value = value;
     _resultData['value'] = l$value;
     final l$category = category;
-    _resultData['category'] = l$category == null ? null : toJsonEnumPartnerFactCategory(l$category);
+    _resultData['category'] = l$category == null
+        ? null
+        : toJsonEnumPartnerFactCategory_enum(l$category);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -481,8 +329,7 @@ class QueryPartnerFactspartnerFactsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryPartnerFactspartnerFactsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryPartnerFactspartnerFacts || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

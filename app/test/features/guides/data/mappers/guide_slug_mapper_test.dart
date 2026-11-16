@@ -4,14 +4,14 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('guides with their own kind keep it', () {
-    expect('transition'.toConversationGuide(), EnumConversationGuide.transition);
-    expect('money'.toConversationGuide(), EnumConversationGuide.money);
-    expect('apology'.toConversationGuide(), EnumConversationGuide.apology);
-    expect('difficult'.toConversationGuide(), EnumConversationGuide.difficult);
+    expect('transition'.toConversationGuide(), EnumConversationGuide_enum.transition);
+    expect('money'.toConversationGuide(), EnumConversationGuide_enum.money);
+    expect('apology'.toConversationGuide(), EnumConversationGuide_enum.apology);
+    expect('difficult'.toConversationGuide(), EnumConversationGuide_enum.difficult);
   });
 
   test('any other guide is a free prep', () {
-    expect('family'.toConversationGuide(), EnumConversationGuide.free);
-    expect('chores'.toConversationGuide(), EnumConversationGuide.free);
+    expect('family'.toConversationGuide(), EnumConversationGuide_enum.free);
+    expect('chores'.toConversationGuide(), EnumConversationGuide_enum.free);
   });
 }

@@ -7,7 +7,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationUpdateLoveStyleResult {
   factory VariablesMutationUpdateLoveStyleResult({
     required String id,
-    required List<String?> ranked,
+    required List<String> ranked,
   }) => VariablesMutationUpdateLoveStyleResult._({r'id': id, r'ranked': ranked});
 
   VariablesMutationUpdateLoveStyleResult._(this._$data);
@@ -17,7 +17,7 @@ class VariablesMutationUpdateLoveStyleResult {
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
     final l$ranked = data['ranked'];
-    result$data['ranked'] = (l$ranked as List<dynamic>).map((e) => (e as String?)).toList();
+    result$data['ranked'] = (l$ranked as List<dynamic>).map((e) => (e as String)).toList();
     return VariablesMutationUpdateLoveStyleResult._(result$data);
   }
 
@@ -25,7 +25,7 @@ class VariablesMutationUpdateLoveStyleResult {
 
   String get id => (_$data['id'] as String);
 
-  List<String?> get ranked => (_$data['ranked'] as List<String?>);
+  List<String> get ranked => (_$data['ranked'] as List<String>);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -73,31 +73,29 @@ class VariablesMutationUpdateLoveStyleResult {
 }
 
 class MutationUpdateLoveStyleResult {
-  MutationUpdateLoveStyleResult({
-    required this.updateQuizResultsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateLoveStyleResult({this.updateQuizResults, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateLoveStyleResult.fromJson(Map<String, dynamic> json) {
-    final l$updateQuizResultsCollection = json['updateQuizResultsCollection'];
+    final l$updateQuizResults = json['updateQuizResults'];
     final l$$__typename = json['__typename'];
     return MutationUpdateLoveStyleResult(
-      updateQuizResultsCollection:
-          MutationUpdateLoveStyleResultupdateQuizResultsCollection.fromJson(
-            (l$updateQuizResultsCollection as Map<String, dynamic>),
-          ),
+      updateQuizResults: l$updateQuizResults == null
+          ? null
+          : MutationUpdateLoveStyleResultupdateQuizResults.fromJson(
+              (l$updateQuizResults as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateLoveStyleResultupdateQuizResultsCollection updateQuizResultsCollection;
+  final MutationUpdateLoveStyleResultupdateQuizResults? updateQuizResults;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateQuizResultsCollection = updateQuizResultsCollection;
-    _resultData['updateQuizResultsCollection'] = l$updateQuizResultsCollection.toJson();
+    final l$updateQuizResults = updateQuizResults;
+    _resultData['updateQuizResults'] = l$updateQuizResults?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -105,9 +103,9 @@ class MutationUpdateLoveStyleResult {
 
   @override
   int get hashCode {
-    final l$updateQuizResultsCollection = updateQuizResultsCollection;
+    final l$updateQuizResults = updateQuizResults;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateQuizResultsCollection, l$$__typename]);
+    return Object.hashAll([l$updateQuizResults, l$$__typename]);
   }
 
   @override
@@ -118,9 +116,9 @@ class MutationUpdateLoveStyleResult {
     if (other is! MutationUpdateLoveStyleResult || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateQuizResultsCollection = updateQuizResultsCollection;
-    final lOther$updateQuizResultsCollection = other.updateQuizResultsCollection;
-    if (l$updateQuizResultsCollection != lOther$updateQuizResultsCollection) {
+    final l$updateQuizResults = updateQuizResults;
+    final lOther$updateQuizResults = other.updateQuizResults;
+    if (l$updateQuizResults != lOther$updateQuizResults) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -140,14 +138,14 @@ const documentNodeMutationUpdateLoveStyleResult = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'ranked')),
           type: ListTypeNode(
-            type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+            type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
             isNonNull: true,
           ),
           defaultValue: DefaultValueNode(value: null),
@@ -158,11 +156,29 @@ const documentNodeMutationUpdateLoveStyleResult = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateQuizResultsCollection'),
+            name: NameNode(value: 'updateQuizResults'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'id')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -172,30 +188,12 @@ const documentNodeMutationUpdateLoveStyleResult = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -318,31 +316,29 @@ extension ClientExtensionMutationUpdateLoveStyleResult on graphql.GraphQLClient 
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateLoveStyleResultupdateQuizResultsCollection {
-  MutationUpdateLoveStyleResultupdateQuizResultsCollection({
-    required this.affectedCount,
-    this.$__typename = 'QuizResultsUpdateResponse',
+class MutationUpdateLoveStyleResultupdateQuizResults {
+  MutationUpdateLoveStyleResultupdateQuizResults({
+    required this.affected_rows,
+    this.$__typename = 'quizResults_mutation_response',
   });
 
-  factory MutationUpdateLoveStyleResultupdateQuizResultsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateLoveStyleResultupdateQuizResults.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateLoveStyleResultupdateQuizResultsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateLoveStyleResultupdateQuizResults(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -350,9 +346,9 @@ class MutationUpdateLoveStyleResultupdateQuizResultsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -360,13 +356,13 @@ class MutationUpdateLoveStyleResultupdateQuizResultsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateLoveStyleResultupdateQuizResultsCollection ||
+    if (other is! MutationUpdateLoveStyleResultupdateQuizResults ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

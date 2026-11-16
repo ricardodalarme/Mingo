@@ -4,13 +4,14 @@ import 'package:equatable/equatable.dart';
 
 /// One slip on a card.
 final class const CardItem({
-  required final String slipId,
+  required final String id,
   required final String body,
+  final String? slipId,
   final SlipCategory? category,
   final DateTime? writtenAt,
 }) with Equatable {
   @override
-  List<Object?> get props => [slipId, body, category, writtenAt];
+  List<Object?> get props => [id, body, slipId, category, writtenAt];
 }
 
 /// The weekly card, in any state from draft to sent.

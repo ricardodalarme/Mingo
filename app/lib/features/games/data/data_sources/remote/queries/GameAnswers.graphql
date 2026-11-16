@@ -1,11 +1,7 @@
-query GameAnswers($sessionId: UUID!) {
-  gameAnswersCollection(filter: { sessionId: { eq: $sessionId } }, first: 120) {
-    edges {
-      node {
-        isMine
-        idx
-        answer
-      }
-    }
+query GameAnswers($sessionId: uuid!) {
+  gameAnswers(where: { sessionId: { _eq: $sessionId } }, limit: 120) {
+    authorId
+    idx
+    answer
   }
 }

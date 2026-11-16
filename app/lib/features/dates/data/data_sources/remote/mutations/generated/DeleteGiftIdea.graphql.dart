@@ -52,30 +52,29 @@ class VariablesMutationDeleteGiftIdea {
 }
 
 class MutationDeleteGiftIdea {
-  MutationDeleteGiftIdea({
-    required this.deleteFromGiftIdeasCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteGiftIdea({this.deleteGiftIdeas, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteGiftIdea.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromGiftIdeasCollection = json['deleteFromGiftIdeasCollection'];
+    final l$deleteGiftIdeas = json['deleteGiftIdeas'];
     final l$$__typename = json['__typename'];
     return MutationDeleteGiftIdea(
-      deleteFromGiftIdeasCollection: MutationDeleteGiftIdeadeleteFromGiftIdeasCollection.fromJson(
-        (l$deleteFromGiftIdeasCollection as Map<String, dynamic>),
-      ),
+      deleteGiftIdeas: l$deleteGiftIdeas == null
+          ? null
+          : MutationDeleteGiftIdeadeleteGiftIdeas.fromJson(
+              (l$deleteGiftIdeas as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteGiftIdeadeleteFromGiftIdeasCollection deleteFromGiftIdeasCollection;
+  final MutationDeleteGiftIdeadeleteGiftIdeas? deleteGiftIdeas;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromGiftIdeasCollection = deleteFromGiftIdeasCollection;
-    _resultData['deleteFromGiftIdeasCollection'] = l$deleteFromGiftIdeasCollection.toJson();
+    final l$deleteGiftIdeas = deleteGiftIdeas;
+    _resultData['deleteGiftIdeas'] = l$deleteGiftIdeas?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -83,9 +82,9 @@ class MutationDeleteGiftIdea {
 
   @override
   int get hashCode {
-    final l$deleteFromGiftIdeasCollection = deleteFromGiftIdeasCollection;
+    final l$deleteGiftIdeas = deleteGiftIdeas;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromGiftIdeasCollection, l$$__typename]);
+    return Object.hashAll([l$deleteGiftIdeas, l$$__typename]);
   }
 
   @override
@@ -96,9 +95,9 @@ class MutationDeleteGiftIdea {
     if (other is! MutationDeleteGiftIdea || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromGiftIdeasCollection = deleteFromGiftIdeasCollection;
-    final lOther$deleteFromGiftIdeasCollection = other.deleteFromGiftIdeasCollection;
-    if (l$deleteFromGiftIdeasCollection != lOther$deleteFromGiftIdeasCollection) {
+    final l$deleteGiftIdeas = deleteGiftIdeas;
+    final lOther$deleteGiftIdeas = other.deleteGiftIdeas;
+    if (l$deleteGiftIdeas != lOther$deleteGiftIdeas) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -118,7 +117,7 @@ const documentNodeMutationDeleteGiftIdea = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -127,11 +126,11 @@ const documentNodeMutationDeleteGiftIdea = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromGiftIdeasCollection'),
+            name: NameNode(value: 'deleteGiftIdeas'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -139,7 +138,7 @@ const documentNodeMutationDeleteGiftIdea = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'id')),
                           ),
                         ],
@@ -148,16 +147,12 @@ const documentNodeMutationDeleteGiftIdea = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -276,29 +271,29 @@ extension ClientExtensionMutationDeleteGiftIdea on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteGiftIdeadeleteFromGiftIdeasCollection {
-  MutationDeleteGiftIdeadeleteFromGiftIdeasCollection({
-    required this.affectedCount,
-    this.$__typename = 'GiftIdeasDeleteResponse',
+class MutationDeleteGiftIdeadeleteGiftIdeas {
+  MutationDeleteGiftIdeadeleteGiftIdeas({
+    required this.affected_rows,
+    this.$__typename = 'giftIdeas_mutation_response',
   });
 
-  factory MutationDeleteGiftIdeadeleteFromGiftIdeasCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteGiftIdeadeleteGiftIdeas.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteGiftIdeadeleteFromGiftIdeasCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteGiftIdeadeleteGiftIdeas(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -306,9 +301,9 @@ class MutationDeleteGiftIdeadeleteFromGiftIdeasCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -316,13 +311,12 @@ class MutationDeleteGiftIdeadeleteFromGiftIdeasCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteGiftIdeadeleteFromGiftIdeasCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationDeleteGiftIdeadeleteGiftIdeas || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

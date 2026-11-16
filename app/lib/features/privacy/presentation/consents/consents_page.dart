@@ -75,7 +75,6 @@ class const ConsentsPage({super.key}) extends StatelessWidget implements AutoRou
   }
 
   String _label(Translations$privacy$pt l10n, ConsentKind kind) => switch (kind) {
-    ConsentKind.sensitiveData => l10n.sensitiveData,
     ConsentKind.analytics => l10n.analytics,
     ConsentKind.marketing => l10n.marketing,
     ConsentKind.ai => l10n.ai,

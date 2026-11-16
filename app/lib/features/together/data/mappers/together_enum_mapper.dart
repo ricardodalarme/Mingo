@@ -2,38 +2,38 @@ import 'package:app/features/_shared/data/data_sources/remote/generated/schema.g
 import 'package:app/features/together/data/models/date_idea_status.dart';
 import 'package:app/features/together/data/models/ritual_cadence.dart';
 
-extension EnumRitualCadenceMapper on EnumRitualCadence {
+extension EnumRitualCadenceMapper on EnumRitualCadence_enum {
   RitualCadence toModel() => switch (this) {
-    EnumRitualCadence.daily => RitualCadence.daily,
-    EnumRitualCadence.weekly => RitualCadence.weekly,
-    EnumRitualCadence.biweekly => RitualCadence.biweekly,
-    EnumRitualCadence.monthly => RitualCadence.monthly,
-    EnumRitualCadence.$unknown => throw const FormatException('Unknown ritual cadence'),
+    EnumRitualCadence_enum.daily => RitualCadence.daily,
+    EnumRitualCadence_enum.weekly => RitualCadence.weekly,
+    EnumRitualCadence_enum.biweekly => RitualCadence.biweekly,
+    EnumRitualCadence_enum.monthly => RitualCadence.monthly,
+    EnumRitualCadence_enum.$unknown => throw const FormatException('Unknown ritual cadence'),
   };
 }
 
 extension RitualCadenceMapper on RitualCadence {
-  EnumRitualCadence toRemote() => switch (this) {
-    RitualCadence.daily => EnumRitualCadence.daily,
-    RitualCadence.weekly => EnumRitualCadence.weekly,
-    RitualCadence.biweekly => EnumRitualCadence.biweekly,
-    RitualCadence.monthly => EnumRitualCadence.monthly,
+  EnumRitualCadence_enum toRemote() => switch (this) {
+    RitualCadence.daily => EnumRitualCadence_enum.daily,
+    RitualCadence.weekly => EnumRitualCadence_enum.weekly,
+    RitualCadence.biweekly => EnumRitualCadence_enum.biweekly,
+    RitualCadence.monthly => EnumRitualCadence_enum.monthly,
   };
 }
 
-extension EnumDateIdeaStatusMapper on EnumDateIdeaStatus {
+extension EnumDateIdeaStatusMapper on EnumDateIdeaStatus_enum {
   DateIdeaStatus toModel() => switch (this) {
-    EnumDateIdeaStatus.saved => DateIdeaStatus.saved,
-    EnumDateIdeaStatus.planned => DateIdeaStatus.planned,
-    EnumDateIdeaStatus.done => DateIdeaStatus.done,
-    EnumDateIdeaStatus.$unknown => throw const FormatException('Unknown date idea status'),
+    EnumDateIdeaStatus_enum.saved => DateIdeaStatus.saved,
+    EnumDateIdeaStatus_enum.planned => DateIdeaStatus.planned,
+    EnumDateIdeaStatus_enum.done => DateIdeaStatus.done,
+    EnumDateIdeaStatus_enum.$unknown => throw const FormatException('Unknown date idea status'),
   };
 }
 
 extension DateIdeaStatusMapper on DateIdeaStatus {
-  EnumDateIdeaStatus toRemote() => switch (this) {
-    DateIdeaStatus.saved => EnumDateIdeaStatus.saved,
-    DateIdeaStatus.planned => EnumDateIdeaStatus.planned,
-    DateIdeaStatus.done => EnumDateIdeaStatus.done,
+  EnumDateIdeaStatus_enum toRemote() => switch (this) {
+    DateIdeaStatus.saved => EnumDateIdeaStatus_enum.saved,
+    DateIdeaStatus.planned => EnumDateIdeaStatus_enum.planned,
+    DateIdeaStatus.done => EnumDateIdeaStatus_enum.done,
   };
 }

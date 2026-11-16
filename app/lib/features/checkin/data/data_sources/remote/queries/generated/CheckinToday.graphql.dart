@@ -5,43 +5,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryCheckinToday {
-  QueryCheckinToday({this.today, this.myProfile, this.myCouple, this.$__typename = 'Query'});
+  QueryCheckinToday({required this.today, this.$__typename = 'query_root'});
 
   factory QueryCheckinToday.fromJson(Map<String, dynamic> json) {
     final l$today = json['today'];
-    final l$myProfile = json['myProfile'];
-    final l$myCouple = json['myCouple'];
     final l$$__typename = json['__typename'];
     return QueryCheckinToday(
-      today: l$today == null
-          ? null
-          : QueryCheckinTodaytoday.fromJson((l$today as Map<String, dynamic>)),
-      myProfile: l$myProfile == null
-          ? null
-          : QueryCheckinTodaymyProfile.fromJson((l$myProfile as Map<String, dynamic>)),
-      myCouple: l$myCouple == null
-          ? null
-          : QueryCheckinTodaymyCouple.fromJson((l$myCouple as Map<String, dynamic>)),
+      today: (l$today as List<dynamic>)
+          .map((e) => QueryCheckinTodaytoday.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryCheckinTodaytoday? today;
-
-  final QueryCheckinTodaymyProfile? myProfile;
-
-  final QueryCheckinTodaymyCouple? myCouple;
+  final List<QueryCheckinTodaytoday> today;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$today = today;
-    _resultData['today'] = l$today?.toJson();
-    final l$myProfile = myProfile;
-    _resultData['myProfile'] = l$myProfile?.toJson();
-    final l$myCouple = myCouple;
-    _resultData['myCouple'] = l$myCouple?.toJson();
+    _resultData['today'] = l$today.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -50,10 +34,8 @@ class QueryCheckinToday {
   @override
   int get hashCode {
     final l$today = today;
-    final l$myProfile = myProfile;
-    final l$myCouple = myCouple;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$today, l$myProfile, l$myCouple, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$today.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -66,18 +48,15 @@ class QueryCheckinToday {
     }
     final l$today = today;
     final lOther$today = other.today;
-    if (l$today != lOther$today) {
+    if (l$today.length != lOther$today.length) {
       return false;
     }
-    final l$myProfile = myProfile;
-    final lOther$myProfile = other.myProfile;
-    if (l$myProfile != lOther$myProfile) {
-      return false;
-    }
-    final l$myCouple = myCouple;
-    final lOther$myCouple = other.myCouple;
-    if (l$myCouple != lOther$myCouple) {
-      return false;
+    for (int i = 0; i < l$today.length; i++) {
+      final l$today$entry = l$today[i];
+      final lOther$today$entry = lOther$today[i];
+      if (l$today$entry != lOther$today$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -119,55 +98,14 @@ const documentNodeQueryCheckinToday = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'isPaired'),
+                  name: NameNode(value: 'userId'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
-            name: NameNode(value: 'myProfile'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
-            name: NameNode(value: 'myCouple'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'id'),
+                  name: NameNode(value: 'coupleId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -305,19 +243,22 @@ class QueryCheckinTodaytoday {
   QueryCheckinTodaytoday({
     this.localDate,
     this.partnerName,
-    this.isPaired,
-    this.$__typename = 'TodayState',
+    this.userId,
+    this.coupleId,
+    this.$__typename = 'today',
   });
 
   factory QueryCheckinTodaytoday.fromJson(Map<String, dynamic> json) {
     final l$localDate = json['localDate'];
     final l$partnerName = json['partnerName'];
-    final l$isPaired = json['isPaired'];
+    final l$userId = json['userId'];
+    final l$coupleId = json['coupleId'];
     final l$$__typename = json['__typename'];
     return QueryCheckinTodaytoday(
       localDate: l$localDate == null ? null : DateTime.parse((l$localDate as String)),
       partnerName: (l$partnerName as String?),
-      isPaired: (l$isPaired as bool?),
+      userId: (l$userId as String?),
+      coupleId: (l$coupleId as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -326,7 +267,9 @@ class QueryCheckinTodaytoday {
 
   final String? partnerName;
 
-  final bool? isPaired;
+  final String? userId;
+
+  final String? coupleId;
 
   final String $__typename;
 
@@ -338,8 +281,10 @@ class QueryCheckinTodaytoday {
         : ((v) => v.toIso8601String().substring(0, 10))(l$localDate);
     final l$partnerName = partnerName;
     _resultData['partnerName'] = l$partnerName;
-    final l$isPaired = isPaired;
-    _resultData['isPaired'] = l$isPaired;
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -349,9 +294,10 @@ class QueryCheckinTodaytoday {
   int get hashCode {
     final l$localDate = localDate;
     final l$partnerName = partnerName;
-    final l$isPaired = isPaired;
+    final l$userId = userId;
+    final l$coupleId = coupleId;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$localDate, l$partnerName, l$isPaired, l$$__typename]);
+    return Object.hashAll([l$localDate, l$partnerName, l$userId, l$coupleId, l$$__typename]);
   }
 
   @override
@@ -372,111 +318,14 @@ class QueryCheckinTodaytoday {
     if (l$partnerName != lOther$partnerName) {
       return false;
     }
-    final l$isPaired = isPaired;
-    final lOther$isPaired = other.isPaired;
-    if (l$isPaired != lOther$isPaired) {
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
       return false;
     }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryCheckinTodaymyProfile {
-  QueryCheckinTodaymyProfile({required this.id, this.$__typename = 'Profiles'});
-
-  factory QueryCheckinTodaymyProfile.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$$__typename = json['__typename'];
-    return QueryCheckinTodaymyProfile(id: (l$id as String), $__typename: (l$$__typename as String));
-  }
-
-  final String id;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryCheckinTodaymyProfile || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryCheckinTodaymyCouple {
-  QueryCheckinTodaymyCouple({required this.id, this.$__typename = 'Couples'});
-
-  factory QueryCheckinTodaymyCouple.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$$__typename = json['__typename'];
-    return QueryCheckinTodaymyCouple(id: (l$id as String), $__typename: (l$$__typename as String));
-  }
-
-  final String id;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryCheckinTodaymyCouple || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
       return false;
     }
     final l$$__typename = $__typename;

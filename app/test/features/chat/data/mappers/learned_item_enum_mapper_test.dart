@@ -15,11 +15,11 @@ void main() {
     }
   });
   test('a multi-word target keeps its stored spelling', () {
-    expect(LearnedTarget.partnerFact.toRemote(), EnumLearnedItemTarget.partner_fact);
+    expect(LearnedTarget.partnerFact.toRemote(), EnumLearnedItemTarget_enum.partner_fact);
   });
 
   test('an unknown value is an error, not a guess', () {
-    expect(EnumLearnedItemTarget.$unknown.toModel, throwsFormatException);
-    expect(EnumLearnedItemStatus.$unknown.toModel, throwsFormatException);
+    expect(EnumLearnedItemTarget_enum.$unknown.toModel, throwsFormatException);
+    expect(EnumLearnedItemStatus_enum.$unknown.toModel, throwsFormatException);
   });
 }

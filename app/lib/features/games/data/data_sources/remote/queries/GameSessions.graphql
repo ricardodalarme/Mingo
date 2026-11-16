@@ -1,18 +1,10 @@
 query GameSessions {
-  myProfile {
-    id
-  }
-  myCouple {
-    id
-  }
   today {
+    userId
+    coupleId
     partnerName
   }
-  gameSessionsCollection(first: 40, orderBy: [{ createdAt: DescNullsLast }]) {
-    edges {
-      node {
-        ...GameSessionFragment
-      }
-    }
+  gameSessions(limit: 40, order_by: [{ createdAt: desc_nulls_last }]) {
+    ...GameSessionFragment
   }
 }

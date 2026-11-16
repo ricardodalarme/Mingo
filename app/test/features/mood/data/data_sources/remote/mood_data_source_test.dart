@@ -14,12 +14,10 @@ void main() {
   setUpAll(() {
     registerFallbackValue(
       OptionsMutationUpdateMood(
-        variables: VariablesMutationUpdateMood(
-          id: 'x',
-          mood: EnumMood.happy,
-          share: EnumMoodShare.none,
-          day: DateTime(2026),
-        ),
+        variables: VariablesMutationUpdateMood.fromJson({
+          'id': 'x',
+          'changes': {'mood': 'happy', 'share': 'none'},
+        }),
       ),
     );
   });
@@ -32,19 +30,13 @@ void main() {
         options: invocation.positionalArguments.first as MutationOptions<MutationUpdateMood>,
         source: QueryResultSource.network,
         data: {
-          'updateMoodsCollection': {
-            'affectedCount': 1,
-            'records': [
-              {
-                'id': 'm1',
-                'day': '2026-11-11',
-                'mood': 'happy',
-                'need': null,
-                'share': 'none',
-                '__typename': 'Moods',
-              },
-            ],
-            '__typename': 'MoodsUpdateResponse',
+          'updateMoodsByPk': {
+            'id': 'm1',
+            'day': '2026-11-11',
+            'mood': 'happy',
+            'need': null,
+            'share': 'none',
+            '__typename': 'Moods',
           },
           '__typename': 'Mutation',
         },
@@ -59,29 +51,29 @@ void main() {
   test('clearing the need sends it as null in the update', () async {
     await dataSource.updateMood(
       id: 'm1',
-      mood: EnumMood.happy,
+      mood: EnumMood_enum.happy,
       need: null,
-      share: EnumMoodShare.none,
-      day: DateTime(2026, 11, 11),
+      share: EnumMoodShare_enum.none,
     );
 
     final variables = sent().variables;
-    expect(variables.containsKey('need'), isTrue);
-    expect(variables['need'], isNull);
+    final changes = variables['changes'] as Map<String, dynamic>;
+    expect(changes.containsKey('need'), isTrue);
+    expect(changes['need'], isNull);
   });
 
-  test('the update sends the need and the server day', () async {
+  test('the update sends the need and the mood', () async {
     await dataSource.updateMood(
       id: 'm1',
-      mood: EnumMood.happy,
-      need: EnumMoodNeed.hug,
-      share: EnumMoodShare.mood_need,
-      day: DateTime(2026, 11, 11),
+      mood: EnumMood_enum.happy,
+      need: EnumMoodNeed_enum.hug,
+      share: EnumMoodShare_enum.mood_need,
     );
 
     final variables = sent().variables;
-    expect(variables['need'], 'hug');
-    expect(variables['share'], 'mood_need');
-    expect(variables['day'], '2026-11-11');
+    final changes = variables['changes'] as Map<String, dynamic>;
+    expect(changes['need'], 'hug');
+    expect(changes['share'], 'mood_need');
+    expect(variables['id'], 'm1');
   });
 }

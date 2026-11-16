@@ -1,5 +1,5 @@
-mutation DeleteMemory($id: UUID!) {
-  deleteFromMemoriesCollection(filter: { id: { eq: $id } }, atMost: 1) {
-    affectedCount
+mutation DeleteMemory($id: uuid!) {
+  deleteMemories(where: { id: { _eq: $id } }) {
+    affected_rows
   }
 }

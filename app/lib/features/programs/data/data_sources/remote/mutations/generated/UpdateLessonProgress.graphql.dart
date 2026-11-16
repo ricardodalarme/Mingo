@@ -10,7 +10,7 @@ class VariablesMutationUpdateLessonProgress {
   factory VariablesMutationUpdateLessonProgress({
     required String programSlug,
     required int lessonDay,
-    required EnumLessonStatus status,
+    required EnumLessonStatus_enum status,
   }) => VariablesMutationUpdateLessonProgress._({
     r'programSlug': programSlug,
     r'lessonDay': lessonDay,
@@ -26,7 +26,7 @@ class VariablesMutationUpdateLessonProgress {
     final l$lessonDay = data['lessonDay'];
     result$data['lessonDay'] = (l$lessonDay as int);
     final l$status = data['status'];
-    result$data['status'] = fromJsonEnumLessonStatus((l$status as String));
+    result$data['status'] = fromJsonEnumLessonStatus_enum((l$status as String));
     return VariablesMutationUpdateLessonProgress._(result$data);
   }
 
@@ -36,7 +36,7 @@ class VariablesMutationUpdateLessonProgress {
 
   int get lessonDay => (_$data['lessonDay'] as int);
 
-  EnumLessonStatus get status => (_$data['status'] as EnumLessonStatus);
+  EnumLessonStatus_enum get status => (_$data['status'] as EnumLessonStatus_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -45,7 +45,7 @@ class VariablesMutationUpdateLessonProgress {
     final l$lessonDay = lessonDay;
     result$data['lessonDay'] = l$lessonDay;
     final l$status = status;
-    result$data['status'] = toJsonEnumLessonStatus(l$status);
+    result$data['status'] = toJsonEnumLessonStatus_enum(l$status);
     return result$data;
   }
 
@@ -85,31 +85,29 @@ class VariablesMutationUpdateLessonProgress {
 }
 
 class MutationUpdateLessonProgress {
-  MutationUpdateLessonProgress({
-    required this.updateLessonProgressCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateLessonProgress({this.updateLessonProgress, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateLessonProgress.fromJson(Map<String, dynamic> json) {
-    final l$updateLessonProgressCollection = json['updateLessonProgressCollection'];
+    final l$updateLessonProgress = json['updateLessonProgress'];
     final l$$__typename = json['__typename'];
     return MutationUpdateLessonProgress(
-      updateLessonProgressCollection:
-          MutationUpdateLessonProgressupdateLessonProgressCollection.fromJson(
-            (l$updateLessonProgressCollection as Map<String, dynamic>),
-          ),
+      updateLessonProgress: l$updateLessonProgress == null
+          ? null
+          : MutationUpdateLessonProgressupdateLessonProgress.fromJson(
+              (l$updateLessonProgress as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateLessonProgressupdateLessonProgressCollection updateLessonProgressCollection;
+  final MutationUpdateLessonProgressupdateLessonProgress? updateLessonProgress;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateLessonProgressCollection = updateLessonProgressCollection;
-    _resultData['updateLessonProgressCollection'] = l$updateLessonProgressCollection.toJson();
+    final l$updateLessonProgress = updateLessonProgress;
+    _resultData['updateLessonProgress'] = l$updateLessonProgress?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -117,9 +115,9 @@ class MutationUpdateLessonProgress {
 
   @override
   int get hashCode {
-    final l$updateLessonProgressCollection = updateLessonProgressCollection;
+    final l$updateLessonProgress = updateLessonProgress;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateLessonProgressCollection, l$$__typename]);
+    return Object.hashAll([l$updateLessonProgress, l$$__typename]);
   }
 
   @override
@@ -130,9 +128,9 @@ class MutationUpdateLessonProgress {
     if (other is! MutationUpdateLessonProgress || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateLessonProgressCollection = updateLessonProgressCollection;
-    final lOther$updateLessonProgressCollection = other.updateLessonProgressCollection;
-    if (l$updateLessonProgressCollection != lOther$updateLessonProgressCollection) {
+    final l$updateLessonProgress = updateLessonProgress;
+    final lOther$updateLessonProgress = other.updateLessonProgress;
+    if (l$updateLessonProgress != lOther$updateLessonProgress) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -158,13 +156,13 @@ const documentNodeMutationUpdateLessonProgress = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'lessonDay')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'status')),
-          type: NamedTypeNode(name: NameNode(value: 'LessonStatus'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'LessonStatus_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -173,22 +171,11 @@ const documentNodeMutationUpdateLessonProgress = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateLessonProgressCollection'),
+            name: NameNode(value: 'updateLessonProgress'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'status'),
-                      value: VariableNode(name: NameNode(value: 'status')),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -196,7 +183,7 @@ const documentNodeMutationUpdateLessonProgress = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'programSlug')),
                           ),
                         ],
@@ -207,7 +194,7 @@ const documentNodeMutationUpdateLessonProgress = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'lessonDay')),
                           ),
                         ],
@@ -217,15 +204,22 @@ const documentNodeMutationUpdateLessonProgress = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'status'),
+                      value: VariableNode(name: NameNode(value: 'status')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -348,31 +342,29 @@ extension ClientExtensionMutationUpdateLessonProgress on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateLessonProgressupdateLessonProgressCollection {
-  MutationUpdateLessonProgressupdateLessonProgressCollection({
-    required this.affectedCount,
-    this.$__typename = 'LessonProgressUpdateResponse',
+class MutationUpdateLessonProgressupdateLessonProgress {
+  MutationUpdateLessonProgressupdateLessonProgress({
+    required this.affected_rows,
+    this.$__typename = 'lessonProgress_mutation_response',
   });
 
-  factory MutationUpdateLessonProgressupdateLessonProgressCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateLessonProgressupdateLessonProgress.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateLessonProgressupdateLessonProgressCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateLessonProgressupdateLessonProgress(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -380,9 +372,9 @@ class MutationUpdateLessonProgressupdateLessonProgressCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -390,13 +382,13 @@ class MutationUpdateLessonProgressupdateLessonProgressCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateLessonProgressupdateLessonProgressCollection ||
+    if (other is! MutationUpdateLessonProgressupdateLessonProgress ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

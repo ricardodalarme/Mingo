@@ -1,5 +1,5 @@
-mutation InviteToGame($game: String!, $itemSlugs: [String]) {
-  inviteToGame(game: $game, itemSlugs: $itemSlugs) {
+mutation InviteToGame($game: GameKind_enum!, $itemSlugs: [String!]) {
+  insertGameSessionsOne(object: { game: $game, itemSlugs: $itemSlugs }) {
     ...GameSessionFragment
   }
 }

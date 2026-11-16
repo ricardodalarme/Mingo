@@ -1,67 +1,59 @@
-query WidgetOverview {
-  widget {
-    nodeId
-    profileId
-    isPaired
-    togetherSince
+query WidgetOverview($userId: uuid!) {
+  today(limit: 1) {
+    userId
+    coupleId
     partnerName
-    nextDateTitle
-    nextDateOn
-    unopenedCards
-    partnerNote
-    partnerNoteMedia
-    partnerNoteAt
-    partnerMood
-  }
-  today {
-    nodeId
-    isPaired
-    localDate
+    togetherSince
     cardId
-    cardStatus
     unopenedCards
     slipsThisWeek
     slipsTotal
-    suggestionKey
-    togetherSince
-    hasPlus
+    nextDateOn
+    nextDate {
+      title
+    }
   }
-  mySettings {
-    nodeId
-    profileId
+  settings: userSettingsByPk(userId: $userId) {
+    userId
     phase
     togetherSince
     widgetAllowPartnerNotes
     widgetOnLockScreen
     widgetShowNames
   }
-  idea: dailyContent(kind: "daily_idea") {
+  plusStates(where: { userId: { _eq: $userId } }, limit: 1) {
+    hasPlus
+  }
+  partnerNote: partnerMessages(
+    where: { forWidget: { _eq: true }, senderId: { _neq: $userId }, recipientId: { _eq: $userId } }
+    order_by: [{ createdAt: desc_nulls_last }]
+    limit: 1
+  ) {
+    body
+    kind
+    mediaFileId
+    createdAt
+  }
+  partnerMood: sharedMoods(where: { userId: { _neq: $userId } }, limit: 1) {
+    mood
+  }
+  myMood: moods(where: { authorId: { _eq: $userId } }, order_by: [{ day: desc_nulls_last }], limit: 1) {
+    mood
+  }
+  rituals(
+    where: { archivedAt: { _is_null: true } }
+    order_by: [{ createdAt: desc_nulls_last }]
+    limit: 1
+  ) {
+    id
+    title
+    cadence
+    weekday
+    atTime
+  }
+  idea: dailyContent(args: { kind: "daily_idea" }, limit: 1) {
     slug
     title
     body
-  }
-  ritualsCollection(
-    filter: { archivedAt: { is: NULL } }
-    orderBy: [{ createdAt: DescNullsLast }]
-    first: 1
-  ) {
-    edges {
-      node {
-        id
-        title
-        cadence
-        weekday
-        atTime
-      }
-    }
-  }
-  moodsCollection(first: 1, orderBy: [{ day: DescNullsLast }]) {
-    edges {
-      node {
-        id
-        day
-        mood
-      }
-    }
   }
 }

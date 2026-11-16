@@ -64,29 +64,29 @@ class VariablesMutationCompleteRitual {
 }
 
 class MutationCompleteRitual {
-  MutationCompleteRitual({this.insertIntoRitualLogsCollection, this.$__typename = 'Mutation'});
+  MutationCompleteRitual({this.insertRitualLogsOne, this.$__typename = 'mutation_root'});
 
   factory MutationCompleteRitual.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoRitualLogsCollection = json['insertIntoRitualLogsCollection'];
+    final l$insertRitualLogsOne = json['insertRitualLogsOne'];
     final l$$__typename = json['__typename'];
     return MutationCompleteRitual(
-      insertIntoRitualLogsCollection: l$insertIntoRitualLogsCollection == null
+      insertRitualLogsOne: l$insertRitualLogsOne == null
           ? null
-          : MutationCompleteRitualinsertIntoRitualLogsCollection.fromJson(
-              (l$insertIntoRitualLogsCollection as Map<String, dynamic>),
+          : MutationCompleteRitualinsertRitualLogsOne.fromJson(
+              (l$insertRitualLogsOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationCompleteRitualinsertIntoRitualLogsCollection? insertIntoRitualLogsCollection;
+  final MutationCompleteRitualinsertRitualLogsOne? insertRitualLogsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoRitualLogsCollection = insertIntoRitualLogsCollection;
-    _resultData['insertIntoRitualLogsCollection'] = l$insertIntoRitualLogsCollection?.toJson();
+    final l$insertRitualLogsOne = insertRitualLogsOne;
+    _resultData['insertRitualLogsOne'] = l$insertRitualLogsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -94,9 +94,9 @@ class MutationCompleteRitual {
 
   @override
   int get hashCode {
-    final l$insertIntoRitualLogsCollection = insertIntoRitualLogsCollection;
+    final l$insertRitualLogsOne = insertRitualLogsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoRitualLogsCollection, l$$__typename]);
+    return Object.hashAll([l$insertRitualLogsOne, l$$__typename]);
   }
 
   @override
@@ -107,9 +107,9 @@ class MutationCompleteRitual {
     if (other is! MutationCompleteRitual || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoRitualLogsCollection = insertIntoRitualLogsCollection;
-    final lOther$insertIntoRitualLogsCollection = other.insertIntoRitualLogsCollection;
-    if (l$insertIntoRitualLogsCollection != lOther$insertIntoRitualLogsCollection) {
+    final l$insertRitualLogsOne = insertRitualLogsOne;
+    final lOther$insertRitualLogsOne = other.insertRitualLogsOne;
+    if (l$insertRitualLogsOne != lOther$insertRitualLogsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -129,13 +129,13 @@ const documentNodeMutationCompleteRitual = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'ritualId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'doneOn')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -144,24 +144,20 @@ const documentNodeMutationCompleteRitual = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoRitualLogsCollection'),
+            name: NameNode(value: 'insertRitualLogsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'ritualId'),
-                          value: VariableNode(name: NameNode(value: 'ritualId')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'doneOn'),
-                          value: VariableNode(name: NameNode(value: 'doneOn')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'ritualId'),
+                      value: VariableNode(name: NameNode(value: 'ritualId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'doneOn'),
+                      value: VariableNode(name: NameNode(value: 'doneOn')),
                     ),
                   ],
                 ),
@@ -171,7 +167,7 @@ const documentNodeMutationCompleteRitual = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -290,29 +286,26 @@ extension ClientExtensionMutationCompleteRitual on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationCompleteRitualinsertIntoRitualLogsCollection {
-  MutationCompleteRitualinsertIntoRitualLogsCollection({
-    required this.affectedCount,
-    this.$__typename = 'RitualLogsInsertResponse',
-  });
+class MutationCompleteRitualinsertRitualLogsOne {
+  MutationCompleteRitualinsertRitualLogsOne({required this.id, this.$__typename = 'ritualLogs'});
 
-  factory MutationCompleteRitualinsertIntoRitualLogsCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationCompleteRitualinsertRitualLogsOne.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationCompleteRitualinsertIntoRitualLogsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationCompleteRitualinsertRitualLogsOne(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -320,9 +313,9 @@ class MutationCompleteRitualinsertIntoRitualLogsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -330,13 +323,12 @@ class MutationCompleteRitualinsertIntoRitualLogsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationCompleteRitualinsertIntoRitualLogsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationCompleteRitualinsertRitualLogsOne || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

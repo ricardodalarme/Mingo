@@ -28,20 +28,14 @@ void main() {
     }
   });
   test('an unknown category, area, kind or polarity is left out', () {
-    expect(EnumSlipCategory.$unknown.toModel(), isNull);
-    expect(EnumWorkArea.$unknown.toModel(), isNull);
-    expect(EnumSlipKind.$unknown.toModel(), isNull);
-    expect(EnumSlipPolarity.$unknown.toModel(), isNull);
-  });
-
-  test('the function argument is the stored text', () {
-    expect(SlipCategory.noticed.toRpc(), 'noticed');
-    expect(SlipWorkArea.finances.toRpc(), 'finances');
-    expect(SlipKind.quick.toRpc(), 'quick');
-    expect(SlipPolarity.bothered.toRpc(), 'bothered');
+    expect(EnumSlipCategory_enum.$unknown.toModel(), isNull);
+    expect(EnumWorkArea_enum.$unknown.toModel(), isNull);
+    expect(EnumSlipKind_enum.$unknown.toModel(), isNull);
+    expect(EnumSlipPolarity_enum.$unknown.toModel(), isNull);
   });
 
   test('the two-word kind is sent with the stored spelling', () {
-    expect(SlipKind.ifThen.toRpc(), 'if_then');
+    expect(EnumSlipKind_enum.if_then.toJson(), 'if_then');
+    expect(SlipKind.ifThen.toRemote(), EnumSlipKind_enum.if_then);
   });
 }

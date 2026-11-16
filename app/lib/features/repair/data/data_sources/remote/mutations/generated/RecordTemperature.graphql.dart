@@ -7,7 +7,7 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationRecordTemperature {
-  factory VariablesMutationRecordTemperature({required EnumTemperatureLevel level}) =>
+  factory VariablesMutationRecordTemperature({required EnumTemperatureLevel_enum level}) =>
       VariablesMutationRecordTemperature._({r'level': level});
 
   VariablesMutationRecordTemperature._(this._$data);
@@ -15,18 +15,18 @@ class VariablesMutationRecordTemperature {
   factory VariablesMutationRecordTemperature.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$level = data['level'];
-    result$data['level'] = fromJsonEnumTemperatureLevel((l$level as String));
+    result$data['level'] = fromJsonEnumTemperatureLevel_enum((l$level as String));
     return VariablesMutationRecordTemperature._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  EnumTemperatureLevel get level => (_$data['level'] as EnumTemperatureLevel);
+  EnumTemperatureLevel_enum get level => (_$data['level'] as EnumTemperatureLevel_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$level = level;
-    result$data['level'] = toJsonEnumTemperatureLevel(l$level);
+    result$data['level'] = toJsonEnumTemperatureLevel_enum(l$level);
     return result$data;
   }
 
@@ -54,34 +54,29 @@ class VariablesMutationRecordTemperature {
 }
 
 class MutationRecordTemperature {
-  MutationRecordTemperature({
-    this.insertIntoTemperatureChecksCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationRecordTemperature({this.insertTemperatureChecks, this.$__typename = 'mutation_root'});
 
   factory MutationRecordTemperature.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoTemperatureChecksCollection = json['insertIntoTemperatureChecksCollection'];
+    final l$insertTemperatureChecks = json['insertTemperatureChecks'];
     final l$$__typename = json['__typename'];
     return MutationRecordTemperature(
-      insertIntoTemperatureChecksCollection: l$insertIntoTemperatureChecksCollection == null
+      insertTemperatureChecks: l$insertTemperatureChecks == null
           ? null
-          : MutationRecordTemperatureinsertIntoTemperatureChecksCollection.fromJson(
-              (l$insertIntoTemperatureChecksCollection as Map<String, dynamic>),
+          : MutationRecordTemperatureinsertTemperatureChecks.fromJson(
+              (l$insertTemperatureChecks as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationRecordTemperatureinsertIntoTemperatureChecksCollection?
-  insertIntoTemperatureChecksCollection;
+  final MutationRecordTemperatureinsertTemperatureChecks? insertTemperatureChecks;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoTemperatureChecksCollection = insertIntoTemperatureChecksCollection;
-    _resultData['insertIntoTemperatureChecksCollection'] = l$insertIntoTemperatureChecksCollection
-        ?.toJson();
+    final l$insertTemperatureChecks = insertTemperatureChecks;
+    _resultData['insertTemperatureChecks'] = l$insertTemperatureChecks?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -89,9 +84,9 @@ class MutationRecordTemperature {
 
   @override
   int get hashCode {
-    final l$insertIntoTemperatureChecksCollection = insertIntoTemperatureChecksCollection;
+    final l$insertTemperatureChecks = insertTemperatureChecks;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoTemperatureChecksCollection, l$$__typename]);
+    return Object.hashAll([l$insertTemperatureChecks, l$$__typename]);
   }
 
   @override
@@ -102,10 +97,9 @@ class MutationRecordTemperature {
     if (other is! MutationRecordTemperature || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoTemperatureChecksCollection = insertIntoTemperatureChecksCollection;
-    final lOther$insertIntoTemperatureChecksCollection =
-        other.insertIntoTemperatureChecksCollection;
-    if (l$insertIntoTemperatureChecksCollection != lOther$insertIntoTemperatureChecksCollection) {
+    final l$insertTemperatureChecks = insertTemperatureChecks;
+    final lOther$insertTemperatureChecks = other.insertTemperatureChecks;
+    if (l$insertTemperatureChecks != lOther$insertTemperatureChecks) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -125,7 +119,7 @@ const documentNodeMutationRecordTemperature = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'level')),
-          type: NamedTypeNode(name: NameNode(value: 'TemperatureLevel'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'TemperatureLevel_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -134,7 +128,7 @@ const documentNodeMutationRecordTemperature = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoTemperatureChecksCollection'),
+            name: NameNode(value: 'insertTemperatureChecks'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -157,7 +151,7 @@ const documentNodeMutationRecordTemperature = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -279,31 +273,29 @@ extension ClientExtensionMutationRecordTemperature on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationRecordTemperatureinsertIntoTemperatureChecksCollection {
-  MutationRecordTemperatureinsertIntoTemperatureChecksCollection({
-    required this.affectedCount,
-    this.$__typename = 'TemperatureChecksInsertResponse',
+class MutationRecordTemperatureinsertTemperatureChecks {
+  MutationRecordTemperatureinsertTemperatureChecks({
+    required this.affected_rows,
+    this.$__typename = 'temperatureChecks_mutation_response',
   });
 
-  factory MutationRecordTemperatureinsertIntoTemperatureChecksCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationRecordTemperatureinsertTemperatureChecks.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationRecordTemperatureinsertIntoTemperatureChecksCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationRecordTemperatureinsertTemperatureChecks(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -311,9 +303,9 @@ class MutationRecordTemperatureinsertIntoTemperatureChecksCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -321,13 +313,13 @@ class MutationRecordTemperatureinsertIntoTemperatureChecksCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationRecordTemperatureinsertIntoTemperatureChecksCollection ||
+    if (other is! MutationRecordTemperatureinsertTemperatureChecks ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

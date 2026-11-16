@@ -1,0 +1,5 @@
+mutation RevokeLoveStyleShare($id: uuid!) {
+  deletePartnerMessagesByPk(id: $id) {
+    id
+  }
+}

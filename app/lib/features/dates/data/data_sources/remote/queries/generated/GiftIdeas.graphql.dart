@@ -7,27 +7,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryGiftIdeas {
-  QueryGiftIdeas({required this.giftIdeasCollection, this.$__typename = 'Query'});
+  QueryGiftIdeas({required this.giftIdeas, this.$__typename = 'query_root'});
 
   factory QueryGiftIdeas.fromJson(Map<String, dynamic> json) {
-    final l$giftIdeasCollection = json['giftIdeasCollection'];
+    final l$giftIdeas = json['giftIdeas'];
     final l$$__typename = json['__typename'];
     return QueryGiftIdeas(
-      giftIdeasCollection: QueryGiftIdeasgiftIdeasCollection.fromJson(
-        (l$giftIdeasCollection as Map<String, dynamic>),
-      ),
+      giftIdeas: (l$giftIdeas as List<dynamic>)
+          .map((e) => QueryGiftIdeasgiftIdeas.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryGiftIdeasgiftIdeasCollection giftIdeasCollection;
+  final List<QueryGiftIdeasgiftIdeas> giftIdeas;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$giftIdeasCollection = giftIdeasCollection;
-    _resultData['giftIdeasCollection'] = l$giftIdeasCollection.toJson();
+    final l$giftIdeas = giftIdeas;
+    _resultData['giftIdeas'] = l$giftIdeas.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +35,9 @@ class QueryGiftIdeas {
 
   @override
   int get hashCode {
-    final l$giftIdeasCollection = giftIdeasCollection;
+    final l$giftIdeas = giftIdeas;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$giftIdeasCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$giftIdeas.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -48,10 +48,17 @@ class QueryGiftIdeas {
     if (other is! QueryGiftIdeas || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$giftIdeasCollection = giftIdeasCollection;
-    final lOther$giftIdeasCollection = other.giftIdeasCollection;
-    if (l$giftIdeasCollection != lOther$giftIdeasCollection) {
+    final l$giftIdeas = giftIdeas;
+    final lOther$giftIdeas = other.giftIdeas;
+    if (l$giftIdeas.length != lOther$giftIdeas.length) {
       return false;
+    }
+    for (int i = 0; i < l$giftIdeas.length; i++) {
+      final l$giftIdeas$entry = l$giftIdeas[i];
+      final lOther$giftIdeas$entry = lOther$giftIdeas[i];
+      if (l$giftIdeas$entry != lOther$giftIdeas$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -72,11 +79,11 @@ const documentNodeQueryGiftIdeas = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'giftIdeasCollection'),
+            name: NameNode(value: 'giftIdeas'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -84,7 +91,7 @@ const documentNodeQueryGiftIdeas = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: EnumValueNode(name: NameNode(value: 'idea')),
                           ),
                         ],
@@ -94,14 +101,14 @@ const documentNodeQueryGiftIdeas = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -109,7 +116,7 @@ const documentNodeQueryGiftIdeas = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '200'),
               ),
             ],
@@ -117,66 +124,32 @@ const documentNodeQueryGiftIdeas = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'status'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isMine'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'status'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'authorId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -305,146 +278,26 @@ extension ClientExtensionQueryGiftIdeas on graphql.GraphQLClient {
   }
 }
 
-class QueryGiftIdeasgiftIdeasCollection {
-  QueryGiftIdeasgiftIdeasCollection({
-    required this.edges,
-    this.$__typename = 'GiftIdeasConnection',
-  });
-
-  factory QueryGiftIdeasgiftIdeasCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryGiftIdeasgiftIdeasCollection(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryGiftIdeasgiftIdeasCollectionedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryGiftIdeasgiftIdeasCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGiftIdeasgiftIdeasCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGiftIdeasgiftIdeasCollectionedges {
-  QueryGiftIdeasgiftIdeasCollectionedges({required this.node, this.$__typename = 'GiftIdeasEdge'});
-
-  factory QueryGiftIdeasgiftIdeasCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryGiftIdeasgiftIdeasCollectionedges(
-      node: QueryGiftIdeasgiftIdeasCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryGiftIdeasgiftIdeasCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGiftIdeasgiftIdeasCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGiftIdeasgiftIdeasCollectionedgesnode {
-  QueryGiftIdeasgiftIdeasCollectionedgesnode({
+class QueryGiftIdeasgiftIdeas {
+  QueryGiftIdeasgiftIdeas({
     required this.id,
     required this.title,
     required this.status,
-    this.isMine,
-    this.$__typename = 'GiftIdeas',
+    required this.authorId,
+    this.$__typename = 'giftIdeas',
   });
 
-  factory QueryGiftIdeasgiftIdeasCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryGiftIdeasgiftIdeas.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$status = json['status'];
-    final l$isMine = json['isMine'];
+    final l$authorId = json['authorId'];
     final l$$__typename = json['__typename'];
-    return QueryGiftIdeasgiftIdeasCollectionedgesnode(
+    return QueryGiftIdeasgiftIdeas(
       id: (l$id as String),
       title: (l$title as String),
-      status: fromJsonEnumGiftIdeaStatus((l$status as String)),
-      isMine: (l$isMine as bool?),
+      status: fromJsonEnumGiftIdeaStatus_enum((l$status as String)),
+      authorId: (l$authorId as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -453,9 +306,9 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
 
   final String title;
 
-  final EnumGiftIdeaStatus status;
+  final EnumGiftIdeaStatus_enum status;
 
-  final bool? isMine;
+  final String authorId;
 
   final String $__typename;
 
@@ -466,9 +319,9 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$status = status;
-    _resultData['status'] = toJsonEnumGiftIdeaStatus(l$status);
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
+    _resultData['status'] = toJsonEnumGiftIdeaStatus_enum(l$status);
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -479,9 +332,9 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     final l$id = id;
     final l$title = title;
     final l$status = status;
-    final l$isMine = isMine;
+    final l$authorId = authorId;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$title, l$status, l$isMine, l$$__typename]);
+    return Object.hashAll([l$id, l$title, l$status, l$authorId, l$$__typename]);
   }
 
   @override
@@ -489,7 +342,7 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryGiftIdeasgiftIdeasCollectionedgesnode || runtimeType != other.runtimeType) {
+    if (other is! QueryGiftIdeasgiftIdeas || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -507,9 +360,9 @@ class QueryGiftIdeasgiftIdeasCollectionedgesnode {
     if (l$status != lOther$status) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
     final l$$__typename = $__typename;

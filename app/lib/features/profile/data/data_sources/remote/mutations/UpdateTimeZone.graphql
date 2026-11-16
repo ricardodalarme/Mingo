@@ -1,9 +1,5 @@
-mutation UpdateTimeZone($profileId: UUID!, $timeZone: String!) {
-  updateProfileSettingsCollection(
-    set: { timeZone: $timeZone }
-    filter: { profileId: { eq: $profileId } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation UpdateTimeZone($profileId: uuid!, $timeZone: String!) {
+  updateProfiles(where: { id: { _eq: $profileId } }, _set: { timeZone: $timeZone }) {
+    affected_rows
   }
 }

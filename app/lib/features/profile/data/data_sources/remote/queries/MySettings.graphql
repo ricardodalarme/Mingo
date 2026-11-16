@@ -1,8 +1,7 @@
-query MySettings {
-  mySettings {
-    profileId
+query MySettings($userId: uuid!) {
+  userSettingsByPk(userId: $userId) {
+    userId
     theme
-    timeZone
     partnerName
     togetherSince
     relationshipStatus
@@ -11,5 +10,8 @@ query MySettings {
     phase
     goals
     locale
+    profile {
+      timeZone
+    }
   }
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:app/features/_shared/data/data_sources/local/device_marker_store.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/devices/data/models/device_platform.dart';
 import 'package:app/features/notifications/data/data_sources/local/notifications_local_data_source.dart';
 import 'package:app/features/notifications/data/data_sources/remote/notifications_data_source.dart';
 import 'package:app/features/notifications/data/models/notification_preferences.dart';
@@ -24,9 +26,17 @@ class NotificationsRepository({
   required final PermissionService _permissionService,
   required final DeviceInfoService _deviceInfoService,
   required final DeviceMarkerStore _markerStore,
+  required final AuthenticationRepository _authenticationRepository,
 }) {
   final Logger _logger = Logger('NotificationsRepository');
   String? _sessionToken;
+
+  String get _userId {
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) throw const LocalizedException(l10nKey: 'UNAUTHENTICATED');
+
+    return userId;
+  }
 
   /// Upper bound for the push token wait, so a silent platform never stalls registration.
   static const registrationTimeout = Duration(seconds: 8);
@@ -94,11 +104,11 @@ class NotificationsRepository({
   /// Reads the notification choices kept on the server.
   Future<NotificationPreferences> getPreferences() async {
     try {
-      final settings = await _dataSource.getSettings();
+      final settings = await _dataSource.getSettings(_userId);
 
       return NotificationPreferences(
-        isEnabled: settings.enabled,
-        mutedTypes: {...settings.mutedTypes.whereType<String>()},
+        isEnabled: settings.isEnabled,
+        mutedTypes: settings.mutedTypes,
         cardDay: settings.cardDay,
         cardHour: settings.cardHour,
       );
@@ -112,6 +122,7 @@ class NotificationsRepository({
   Future<void> savePreferences(NotificationPreferences preferences) async {
     try {
       await _dataSource.updateSettings(
+        userId: _userId,
         enabled: preferences.isEnabled,
         mutedTypes: preferences.mutedTypes.toList(),
         cardDay: preferences.cardDay,
@@ -135,11 +146,12 @@ class NotificationsRepository({
     try {
       return (await _deviceInfoService.getDeviceInfo()).deviceModel;
     } on Object {
-      return _platform == 'ios' ? 'iPhone' : 'Android';
+      return _platform == DevicePlatform.ios ? 'iPhone' : 'Android';
     }
   }
 
-  String get _platform => defaultTargetPlatform == TargetPlatform.iOS ? 'ios' : 'android';
+  DevicePlatform get _platform =>
+      defaultTargetPlatform == TargetPlatform.iOS ? DevicePlatform.ios : DevicePlatform.android;
 
   NotificationAccess _toAccess(PermissionStatus status) =>
       status == PermissionStatus.granted || status == PermissionStatus.provisional

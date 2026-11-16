@@ -32,16 +32,14 @@ void main() {
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const ConsentsPage()));
     await tester.pumpAndSettle();
 
-    expect(find.text('Obrigatório'), findsNWidgets(2));
-    expect(find.byType(BaseSwitch), findsNWidgets(ConsentKind.values.length - 2));
-    expect(find.text('Dados sensíveis e Termos são obrigatórios para usar o app.'), findsOneWidget);
+    expect(find.text('Obrigatório'), findsOneWidget);
+    expect(find.byType(BaseSwitch), findsNWidgets(ConsentKind.values.length - 1));
+    expect(find.text('Aceitar os Termos é obrigatório para usar o app.'), findsOneWidget);
 
     await tester.tap(find.text('Marketing'));
     await tester.pumpAndSettle();
 
     verify(() => repository.setConsent(ConsentKind.marketing, granted: true)).called(1);
-    verifyNever(
-      () => repository.setConsent(ConsentKind.sensitiveData, granted: any(named: 'granted')),
-    );
+    verifyNever(() => repository.setConsent(ConsentKind.terms, granted: any(named: 'granted')));
   });
 }

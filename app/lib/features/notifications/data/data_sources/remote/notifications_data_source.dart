@@ -1,20 +1,43 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/devices/data/mappers/device_platform_mapper.dart';
+import 'package:app/features/devices/data/models/device_platform.dart';
 import 'package:app/features/notifications/data/data_sources/remote/mutations/generated/RegisterDevice.graphql.dart';
 import 'package:app/features/notifications/data/data_sources/remote/mutations/generated/UnregisterDevice.graphql.dart';
 import 'package:app/features/notifications/data/data_sources/remote/mutations/generated/UpdateNotificationSettings.graphql.dart';
 import 'package:app/features/notifications/data/data_sources/remote/queries/generated/MyNotificationSettings.graphql.dart';
 import 'package:network/network.dart';
 
+/// The notification choices kept on the server, with the muted types as their wire names.
+typedef NotificationSettingsRow = ({
+  bool isEnabled,
+  Set<String> mutedTypes,
+  int cardDay,
+  int cardHour,
+});
+
 class NotificationsDataSource({required final GQLClient _client}) {
-  Future<QueryMyNotificationSettingsmyNotificationSettings> getSettings() async {
+  Future<NotificationSettingsRow> getSettings(String userId) async {
     final response = await _client.query(
-      OptionsQueryMyNotificationSettings(fetchPolicy: FetchPolicy.networkOnly),
+      OptionsQueryMyNotificationSettings(
+        variables: VariablesQueryMyNotificationSettings(userId: userId),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
     );
 
-    return validateResponseData(response, getData: (data) => data.myNotificationSettings);
+    final data = validateResponseData(response, getData: (data) => data);
+    final settings = data.notificationSettingsByPk;
+    if (settings == null) throw const NoDataException();
+
+    return (
+      isEnabled: settings.enabled,
+      mutedTypes: {for (final mute in data.notificationMutes) mute.type.toJson()},
+      cardDay: settings.cardDay,
+      cardHour: settings.cardHour,
+    );
   }
 
   Future<void> updateSettings({
+    required String userId,
     required bool enabled,
     required List<String> mutedTypes,
     required int cardDay,
@@ -23,12 +46,14 @@ class NotificationsDataSource({required final GQLClient _client}) {
     final response = await _client.mutate(
       OptionsMutationUpdateNotificationSettings(
         variables: VariablesMutationUpdateNotificationSettings(
-          $set: InputNotificationSettingsUpdateInput(
-            enabled: enabled,
-            mutedTypes: mutedTypes,
-            cardDay: cardDay,
-            cardHour: cardHour,
-          ),
+          userId: userId,
+          enabled: enabled,
+          cardDay: cardDay,
+          cardHour: cardHour,
+          mutes: [
+            for (final type in mutedTypes)
+              InputnotificationMutes_insert_input(type: EnumNotificationType_enum.fromJson(type)),
+          ],
         ),
       ),
     );
@@ -39,16 +64,20 @@ class NotificationsDataSource({required final GQLClient _client}) {
   /// Returns whether the backend accepted this installation for the caller.
   Future<bool> registerDevice({
     required String token,
-    required String platform,
+    required DevicePlatform platform,
     String? label,
   }) async {
     final response = await _client.mutate(
       OptionsMutationRegisterDevice(
-        variables: VariablesMutationRegisterDevice(token: token, platform: platform, label: label),
+        variables: VariablesMutationRegisterDevice(
+          token: token,
+          platform: platform.toRemote(),
+          label: label,
+        ),
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data.registerDevice ?? false);
+    return validateResponseData(response, getData: (data) => data.insertDevicesOne != null);
   }
 
   Future<void> unregisterDevice(String token) async {

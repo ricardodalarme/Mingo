@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/capsules/data/data_sources/remote/capsules_data_source.dart';
 import 'package:app/features/capsules/data/models/capsule.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
@@ -7,6 +8,7 @@ import 'package:logger/logger.dart';
 class CapsulesRepository({
   required final CapsulesDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
+  required final AuthenticationRepository _authenticationRepository,
 }) {
   final Logger _logger = Logger('CapsulesRepository');
 
@@ -15,14 +17,15 @@ class CapsulesRepository({
     try {
       final moment = now ?? clock.now();
       final today = DateTime(moment.year, moment.month, moment.day);
+      final userId = _authenticationRepository.currentUserId;
 
       return [
         for (final node in await _dataSource.getCapsules())
           Capsule(
             id: node.id,
             opensOn: node.opensOn,
-            isMine: node.isMine ?? false,
-            isShared: node.isShared ?? false,
+            isMine: node.authorId == userId,
+            isShared: node.coupleId != null,
             body: DateTime(node.opensOn.year, node.opensOn.month, node.opensOn.day).isAfter(today)
                 ? null
                 : node.body,

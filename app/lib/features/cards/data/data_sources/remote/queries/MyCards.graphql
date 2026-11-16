@@ -1,34 +1,23 @@
-query MyCards($first: Int, $after: Cursor) {
-  cardsCollection(
-    first: $first
-    after: $after
-    filter: { status: { eq: sent } }
-    orderBy: [{ sentAt: DescNullsLast }]
+query MyCards($limit: Int, $offset: Int) {
+  cards(
+    limit: $limit
+    offset: $offset
+    where: { status: { _eq: sent } }
+    order_by: [{ sentAt: desc }]
   ) {
-    edges {
-      node {
-        id
-        isMine
-        sentAt
-        weekStart
-        items {
-          edges {
-            node {
-              slipId
-            }
-          }
-        }
-        reaction {
-          reaction
-          reply
-        }
-        open {
-          openedAt
-        }
-      }
+    id
+    authorId
+    sentAt
+    weekStart
+    items {
+      id
     }
-    pageInfo {
-      ...PageInfoFragment
+    reaction {
+      reaction
+      reply
+    }
+    open {
+      openedAt
     }
   }
 }

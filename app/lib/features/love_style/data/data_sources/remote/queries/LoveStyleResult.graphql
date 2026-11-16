@@ -1,10 +1,6 @@
 query LoveStyleResult {
-  quizResultsCollection(filter: { quizKey: { eq: loved } }, first: 1) {
-    edges {
-      node {
-        id
-        ranked
-      }
-    }
+  quizResults(where: { quizKey: { _eq: loved } }, limit: 1) {
+    id
+    ranked
   }
 }

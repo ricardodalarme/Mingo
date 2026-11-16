@@ -5,13 +5,15 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationSetTouchTopics {
-  factory VariablesMutationSetTouchTopics({required bool enabled}) =>
-      VariablesMutationSetTouchTopics._({r'enabled': enabled});
+  factory VariablesMutationSetTouchTopics({required String coupleId, required bool enabled}) =>
+      VariablesMutationSetTouchTopics._({r'coupleId': coupleId, r'enabled': enabled});
 
   VariablesMutationSetTouchTopics._(this._$data);
 
   factory VariablesMutationSetTouchTopics.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    final l$coupleId = data['coupleId'];
+    result$data['coupleId'] = (l$coupleId as String);
     final l$enabled = data['enabled'];
     result$data['enabled'] = (l$enabled as bool);
     return VariablesMutationSetTouchTopics._(result$data);
@@ -19,10 +21,14 @@ class VariablesMutationSetTouchTopics {
 
   Map<String, dynamic> _$data;
 
+  String get coupleId => (_$data['coupleId'] as String);
+
   bool get enabled => (_$data['enabled'] as bool);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    final l$coupleId = coupleId;
+    result$data['coupleId'] = l$coupleId;
     final l$enabled = enabled;
     result$data['enabled'] = l$enabled;
     return result$data;
@@ -36,6 +42,11 @@ class VariablesMutationSetTouchTopics {
     if (other is! VariablesMutationSetTouchTopics || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
     final l$enabled = enabled;
     final lOther$enabled = other.enabled;
     if (l$enabled != lOther$enabled) {
@@ -46,31 +57,36 @@ class VariablesMutationSetTouchTopics {
 
   @override
   int get hashCode {
+    final l$coupleId = coupleId;
     final l$enabled = enabled;
-    return Object.hashAll([l$enabled]);
+    return Object.hashAll([l$coupleId, l$enabled]);
   }
 }
 
 class MutationSetTouchTopics {
-  MutationSetTouchTopics({this.setTouchTopics, this.$__typename = 'Mutation'});
+  MutationSetTouchTopics({this.updateCouplesByPk, this.$__typename = 'mutation_root'});
 
   factory MutationSetTouchTopics.fromJson(Map<String, dynamic> json) {
-    final l$setTouchTopics = json['setTouchTopics'];
+    final l$updateCouplesByPk = json['updateCouplesByPk'];
     final l$$__typename = json['__typename'];
     return MutationSetTouchTopics(
-      setTouchTopics: (l$setTouchTopics as bool?),
+      updateCouplesByPk: l$updateCouplesByPk == null
+          ? null
+          : MutationSetTouchTopicsupdateCouplesByPk.fromJson(
+              (l$updateCouplesByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? setTouchTopics;
+  final MutationSetTouchTopicsupdateCouplesByPk? updateCouplesByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$setTouchTopics = setTouchTopics;
-    _resultData['setTouchTopics'] = l$setTouchTopics;
+    final l$updateCouplesByPk = updateCouplesByPk;
+    _resultData['updateCouplesByPk'] = l$updateCouplesByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -78,9 +94,9 @@ class MutationSetTouchTopics {
 
   @override
   int get hashCode {
-    final l$setTouchTopics = setTouchTopics;
+    final l$updateCouplesByPk = updateCouplesByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$setTouchTopics, l$$__typename]);
+    return Object.hashAll([l$updateCouplesByPk, l$$__typename]);
   }
 
   @override
@@ -91,9 +107,9 @@ class MutationSetTouchTopics {
     if (other is! MutationSetTouchTopics || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$setTouchTopics = setTouchTopics;
-    final lOther$setTouchTopics = other.setTouchTopics;
-    if (l$setTouchTopics != lOther$setTouchTopics) {
+    final l$updateCouplesByPk = updateCouplesByPk;
+    final lOther$updateCouplesByPk = other.updateCouplesByPk;
+    if (l$updateCouplesByPk != lOther$updateCouplesByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -112,6 +128,12 @@ const documentNodeMutationSetTouchTopics = DocumentNode(
       name: NameNode(value: 'SetTouchTopics'),
       variableDefinitions: [
         VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'coupleId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'enabled')),
           type: NamedTypeNode(name: NameNode(value: 'Boolean'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
@@ -122,16 +144,51 @@ const documentNodeMutationSetTouchTopics = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'setTouchTopics'),
+            name: NameNode(value: 'updateCouplesByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'enabled'),
-                value: VariableNode(name: NameNode(value: 'enabled')),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'coupleId')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'touchTopicsEnabled'),
+                      value: VariableNode(name: NameNode(value: 'enabled')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -234,4 +291,58 @@ extension ClientExtensionMutationSetTouchTopics on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationSetTouchTopics> watchMutationSetTouchTopics(
     WatchOptionsMutationSetTouchTopics options,
   ) => this.watchMutation(options);
+}
+
+class MutationSetTouchTopicsupdateCouplesByPk {
+  MutationSetTouchTopicsupdateCouplesByPk({required this.id, this.$__typename = 'couples'});
+
+  factory MutationSetTouchTopicsupdateCouplesByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return MutationSetTouchTopicsupdateCouplesByPk(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationSetTouchTopicsupdateCouplesByPk || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
 }

@@ -99,29 +99,27 @@ class VariablesMutationAddListItem {
 }
 
 class MutationAddListItem {
-  MutationAddListItem({this.insertIntoListItemsCollection, this.$__typename = 'Mutation'});
+  MutationAddListItem({this.insertListItemsOne, this.$__typename = 'mutation_root'});
 
   factory MutationAddListItem.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoListItemsCollection = json['insertIntoListItemsCollection'];
+    final l$insertListItemsOne = json['insertListItemsOne'];
     final l$$__typename = json['__typename'];
     return MutationAddListItem(
-      insertIntoListItemsCollection: l$insertIntoListItemsCollection == null
+      insertListItemsOne: l$insertListItemsOne == null
           ? null
-          : MutationAddListIteminsertIntoListItemsCollection.fromJson(
-              (l$insertIntoListItemsCollection as Map<String, dynamic>),
-            ),
+          : FragmentListItemFragment.fromJson((l$insertListItemsOne as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddListIteminsertIntoListItemsCollection? insertIntoListItemsCollection;
+  final FragmentListItemFragment? insertListItemsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoListItemsCollection = insertIntoListItemsCollection;
-    _resultData['insertIntoListItemsCollection'] = l$insertIntoListItemsCollection?.toJson();
+    final l$insertListItemsOne = insertListItemsOne;
+    _resultData['insertListItemsOne'] = l$insertListItemsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -129,9 +127,9 @@ class MutationAddListItem {
 
   @override
   int get hashCode {
-    final l$insertIntoListItemsCollection = insertIntoListItemsCollection;
+    final l$insertListItemsOne = insertListItemsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoListItemsCollection, l$$__typename]);
+    return Object.hashAll([l$insertListItemsOne, l$$__typename]);
   }
 
   @override
@@ -142,9 +140,9 @@ class MutationAddListItem {
     if (other is! MutationAddListItem || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoListItemsCollection = insertIntoListItemsCollection;
-    final lOther$insertIntoListItemsCollection = other.insertIntoListItemsCollection;
-    if (l$insertIntoListItemsCollection != lOther$insertIntoListItemsCollection) {
+    final l$insertListItemsOne = insertListItemsOne;
+    final lOther$insertListItemsOne = other.insertListItemsOne;
+    if (l$insertListItemsOne != lOther$insertListItemsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -164,13 +162,13 @@ const documentNodeMutationAddListItem = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'listId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -191,36 +189,32 @@ const documentNodeMutationAddListItem = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoListItemsCollection'),
+            name: NameNode(value: 'insertListItemsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'id'),
-                          value: VariableNode(name: NameNode(value: 'id')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'listId'),
-                          value: VariableNode(name: NameNode(value: 'listId')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'title'),
-                          value: VariableNode(name: NameNode(value: 'title')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'position'),
-                          value: VariableNode(name: NameNode(value: 'position')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'status'),
-                          value: EnumValueNode(name: NameNode(value: 'dream')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'listId'),
+                      value: VariableNode(name: NameNode(value: 'listId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'title'),
+                      value: VariableNode(name: NameNode(value: 'title')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'position'),
+                      value: VariableNode(name: NameNode(value: 'position')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'status'),
+                      value: EnumValueNode(name: NameNode(value: 'dream')),
                     ),
                   ],
                 ),
@@ -229,26 +223,9 @@ const documentNodeMutationAddListItem = DocumentNode(
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'records'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'ListItemFragment'),
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'ListItemFragment'),
-                        directives: [],
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -362,71 +339,4 @@ extension ClientExtensionMutationAddListItem on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationAddListItem> watchMutationAddListItem(
     WatchOptionsMutationAddListItem options,
   ) => this.watchMutation(options);
-}
-
-class MutationAddListIteminsertIntoListItemsCollection {
-  MutationAddListIteminsertIntoListItemsCollection({
-    required this.records,
-    this.$__typename = 'ListItemsInsertResponse',
-  });
-
-  factory MutationAddListIteminsertIntoListItemsCollection.fromJson(Map<String, dynamic> json) {
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationAddListIteminsertIntoListItemsCollection(
-      records: (l$records as List<dynamic>)
-          .map((e) => FragmentListItemFragment.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<FragmentListItemFragment> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationAddListIteminsertIntoListItemsCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
 }

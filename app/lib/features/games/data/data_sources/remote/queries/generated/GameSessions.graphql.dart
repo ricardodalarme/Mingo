@@ -8,56 +8,38 @@ import 'package:graphql/client.dart' as graphql;
 
 class QueryGameSessions {
   QueryGameSessions({
-    this.myProfile,
-    this.myCouple,
-    this.today,
-    required this.gameSessionsCollection,
-    this.$__typename = 'Query',
+    required this.today,
+    required this.gameSessions,
+    this.$__typename = 'query_root',
   });
 
   factory QueryGameSessions.fromJson(Map<String, dynamic> json) {
-    final l$myProfile = json['myProfile'];
-    final l$myCouple = json['myCouple'];
     final l$today = json['today'];
-    final l$gameSessionsCollection = json['gameSessionsCollection'];
+    final l$gameSessions = json['gameSessions'];
     final l$$__typename = json['__typename'];
     return QueryGameSessions(
-      myProfile: l$myProfile == null
-          ? null
-          : QueryGameSessionsmyProfile.fromJson((l$myProfile as Map<String, dynamic>)),
-      myCouple: l$myCouple == null
-          ? null
-          : QueryGameSessionsmyCouple.fromJson((l$myCouple as Map<String, dynamic>)),
-      today: l$today == null
-          ? null
-          : QueryGameSessionstoday.fromJson((l$today as Map<String, dynamic>)),
-      gameSessionsCollection: QueryGameSessionsgameSessionsCollection.fromJson(
-        (l$gameSessionsCollection as Map<String, dynamic>),
-      ),
+      today: (l$today as List<dynamic>)
+          .map((e) => QueryGameSessionstoday.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      gameSessions: (l$gameSessions as List<dynamic>)
+          .map((e) => FragmentGameSessionFragment.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryGameSessionsmyProfile? myProfile;
+  final List<QueryGameSessionstoday> today;
 
-  final QueryGameSessionsmyCouple? myCouple;
-
-  final QueryGameSessionstoday? today;
-
-  final QueryGameSessionsgameSessionsCollection gameSessionsCollection;
+  final List<FragmentGameSessionFragment> gameSessions;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$myProfile = myProfile;
-    _resultData['myProfile'] = l$myProfile?.toJson();
-    final l$myCouple = myCouple;
-    _resultData['myCouple'] = l$myCouple?.toJson();
     final l$today = today;
-    _resultData['today'] = l$today?.toJson();
-    final l$gameSessionsCollection = gameSessionsCollection;
-    _resultData['gameSessionsCollection'] = l$gameSessionsCollection.toJson();
+    _resultData['today'] = l$today.map((e) => e.toJson()).toList();
+    final l$gameSessions = gameSessions;
+    _resultData['gameSessions'] = l$gameSessions.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -65,16 +47,12 @@ class QueryGameSessions {
 
   @override
   int get hashCode {
-    final l$myProfile = myProfile;
-    final l$myCouple = myCouple;
     final l$today = today;
-    final l$gameSessionsCollection = gameSessionsCollection;
+    final l$gameSessions = gameSessions;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$myProfile,
-      l$myCouple,
-      l$today,
-      l$gameSessionsCollection,
+      Object.hashAll(l$today.map((v) => v)),
+      Object.hashAll(l$gameSessions.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -87,25 +65,29 @@ class QueryGameSessions {
     if (other is! QueryGameSessions || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$myProfile = myProfile;
-    final lOther$myProfile = other.myProfile;
-    if (l$myProfile != lOther$myProfile) {
-      return false;
-    }
-    final l$myCouple = myCouple;
-    final lOther$myCouple = other.myCouple;
-    if (l$myCouple != lOther$myCouple) {
-      return false;
-    }
     final l$today = today;
     final lOther$today = other.today;
-    if (l$today != lOther$today) {
+    if (l$today.length != lOther$today.length) {
       return false;
     }
-    final l$gameSessionsCollection = gameSessionsCollection;
-    final lOther$gameSessionsCollection = other.gameSessionsCollection;
-    if (l$gameSessionsCollection != lOther$gameSessionsCollection) {
+    for (int i = 0; i < l$today.length; i++) {
+      final l$today$entry = l$today[i];
+      final lOther$today$entry = lOther$today[i];
+      if (l$today$entry != lOther$today$entry) {
+        return false;
+      }
+    }
+    final l$gameSessions = gameSessions;
+    final lOther$gameSessions = other.gameSessions;
+    if (l$gameSessions.length != lOther$gameSessions.length) {
       return false;
+    }
+    for (int i = 0; i < l$gameSessions.length; i++) {
+      final l$gameSessions$entry = l$gameSessions[i];
+      final lOther$gameSessions$entry = lOther$gameSessions[i];
+      if (l$gameSessions$entry != lOther$gameSessions$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -126,60 +108,26 @@ const documentNodeQueryGameSessions = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'myProfile'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
-            name: NameNode(value: 'myCouple'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
             name: NameNode(value: 'today'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
+                FieldNode(
+                  name: NameNode(value: 'userId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'coupleId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
                 FieldNode(
                   name: NameNode(value: 'partnerName'),
                   alias: null,
@@ -198,22 +146,22 @@ const documentNodeQueryGameSessions = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'gameSessionsCollection'),
+            name: NameNode(value: 'gameSessions'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '40'),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -224,43 +172,9 @@ const documentNodeQueryGameSessions = DocumentNode(
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'edges'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'GameSessionFragment'),
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FragmentSpreadNode(
-                              name: NameNode(value: 'GameSessionFragment'),
-                              directives: [],
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -391,119 +305,30 @@ extension ClientExtensionQueryGameSessions on graphql.GraphQLClient {
   }
 }
 
-class QueryGameSessionsmyProfile {
-  QueryGameSessionsmyProfile({required this.id, this.$__typename = 'Profiles'});
-
-  factory QueryGameSessionsmyProfile.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$$__typename = json['__typename'];
-    return QueryGameSessionsmyProfile(id: (l$id as String), $__typename: (l$$__typename as String));
-  }
-
-  final String id;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGameSessionsmyProfile || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGameSessionsmyCouple {
-  QueryGameSessionsmyCouple({required this.id, this.$__typename = 'Couples'});
-
-  factory QueryGameSessionsmyCouple.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$$__typename = json['__typename'];
-    return QueryGameSessionsmyCouple(id: (l$id as String), $__typename: (l$$__typename as String));
-  }
-
-  final String id;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGameSessionsmyCouple || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
 class QueryGameSessionstoday {
-  QueryGameSessionstoday({this.partnerName, this.$__typename = 'TodayState'});
+  QueryGameSessionstoday({
+    this.userId,
+    this.coupleId,
+    this.partnerName,
+    this.$__typename = 'today',
+  });
 
   factory QueryGameSessionstoday.fromJson(Map<String, dynamic> json) {
+    final l$userId = json['userId'];
+    final l$coupleId = json['coupleId'];
     final l$partnerName = json['partnerName'];
     final l$$__typename = json['__typename'];
     return QueryGameSessionstoday(
+      userId: (l$userId as String?),
+      coupleId: (l$coupleId as String?),
       partnerName: (l$partnerName as String?),
       $__typename: (l$$__typename as String),
     );
   }
+
+  final String? userId;
+
+  final String? coupleId;
 
   final String? partnerName;
 
@@ -511,6 +336,10 @@ class QueryGameSessionstoday {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
     final l$partnerName = partnerName;
     _resultData['partnerName'] = l$partnerName;
     final l$$__typename = $__typename;
@@ -520,9 +349,11 @@ class QueryGameSessionstoday {
 
   @override
   int get hashCode {
+    final l$userId = userId;
+    final l$coupleId = coupleId;
     final l$partnerName = partnerName;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$partnerName, l$$__typename]);
+    return Object.hashAll([l$userId, l$coupleId, l$partnerName, l$$__typename]);
   }
 
   @override
@@ -533,136 +364,19 @@ class QueryGameSessionstoday {
     if (other is! QueryGameSessionstoday || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
     final l$partnerName = partnerName;
     final lOther$partnerName = other.partnerName;
     if (l$partnerName != lOther$partnerName) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGameSessionsgameSessionsCollection {
-  QueryGameSessionsgameSessionsCollection({
-    required this.edges,
-    this.$__typename = 'GameSessionsConnection',
-  });
-
-  factory QueryGameSessionsgameSessionsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryGameSessionsgameSessionsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) =>
-                QueryGameSessionsgameSessionsCollectionedges.fromJson((e as Map<String, dynamic>)),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryGameSessionsgameSessionsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGameSessionsgameSessionsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGameSessionsgameSessionsCollectionedges {
-  QueryGameSessionsgameSessionsCollectionedges({
-    required this.node,
-    this.$__typename = 'GameSessionsEdge',
-  });
-
-  factory QueryGameSessionsgameSessionsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryGameSessionsgameSessionsCollectionedges(
-      node: FragmentGameSessionFragment.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final FragmentGameSessionFragment node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGameSessionsgameSessionsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
       return false;
     }
     final l$$__typename = $__typename;

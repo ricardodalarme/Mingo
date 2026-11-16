@@ -1,17 +1,17 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/programs/data/models/program.dart';
 
-extension EnumLessonStatusMapper on EnumLessonStatus {
+extension EnumLessonStatusMapper on EnumLessonStatus_enum {
   LessonStatus toModel() => switch (this) {
-    EnumLessonStatus.done => LessonStatus.done,
-    EnumLessonStatus.saved => LessonStatus.saved,
-    EnumLessonStatus.$unknown => throw const FormatException('Unknown lesson status'),
+    EnumLessonStatus_enum.done => LessonStatus.done,
+    EnumLessonStatus_enum.saved => LessonStatus.saved,
+    EnumLessonStatus_enum.$unknown => throw const FormatException('Unknown lesson status'),
   };
 }
 
 extension LessonStatusMapper on LessonStatus {
-  EnumLessonStatus toRemote() => switch (this) {
-    LessonStatus.done => EnumLessonStatus.done,
-    LessonStatus.saved => EnumLessonStatus.saved,
+  EnumLessonStatus_enum toRemote() => switch (this) {
+    LessonStatus.done => EnumLessonStatus_enum.done,
+    LessonStatus.saved => EnumLessonStatus_enum.saved,
   };
 }

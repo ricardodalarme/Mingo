@@ -1,42 +1,34 @@
 query ProgramDetail($slug: String!, $locale: String!) {
-  program: contentItemsCollection(
-    filter: {
-      kind: { eq: program }
-      slug: { eq: $slug }
-      locale: { eq: $locale }
-      published: { eq: true }
+  program: contentItems(
+    where: {
+      kind: { _eq: program }
+      slug: { _eq: $slug }
+      locale: { _eq: $locale }
+      published: { _eq: true }
     }
-    first: 1
+    limit: 1
   ) {
-    edges {
-      node {
-        slug
-        title
-        body
-        position
-        plusOnly
-      }
-    }
+    slug
+    title
+    body
+    position
+    plusOnly
   }
-  lessons: contentItemsCollection(
-    filter: {
-      kind: { eq: lesson }
-      parentSlug: { eq: $slug }
-      locale: { eq: $locale }
-      published: { eq: true }
+  lessons: contentItems(
+    where: {
+      kind: { _eq: lesson }
+      parentSlug: { _eq: $slug }
+      locale: { _eq: $locale }
+      published: { _eq: true }
     }
-    orderBy: [{ position: AscNullsLast }]
-    first: 100
+    order_by: [{ position: asc_nulls_last }]
+    limit: 100
   ) {
-    edges {
-      node {
-        slug
-        title
-        body
-        parentSlug
-        position
-        plusOnly
-      }
-    }
+    slug
+    title
+    body
+    parentSlug
+    position
+    plusOnly
   }
 }

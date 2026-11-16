@@ -1,4 +1,3 @@
-import 'package:app/features/checkin/data/data_sources/remote/mutations/generated/DeleteCheckinAnswer.graphql.dart';
 import 'package:app/features/checkin/data/data_sources/remote/mutations/generated/InsertCheckinAnswer.graphql.dart';
 import 'package:app/features/checkin/data/data_sources/remote/mutations/generated/UpdateCheckinAnswer.graphql.dart';
 import 'package:app/features/checkin/data/data_sources/remote/queries/generated/CheckinAnswers.graphql.dart';
@@ -9,10 +8,14 @@ typedef CheckinAnswerRecord = ({String id, bool isMine, int question, String bod
 
 typedef CheckinAnswerWriteRecord = ({String id, int question, String body});
 
-/// The server's local day, the person's couple and the partner's display name.
+/// The person's own check-in row and the answers both people can see.
+typedef CheckinAnswersRecord = ({String? ownRowId, List<CheckinAnswerRecord> answers});
+
+/// The server's local day, the person, their couple and the partner's display name.
 typedef CheckinTodayRecord = ({
   DateTime localDate,
   String? partnerName,
+  String selfId,
   String? coupleId,
   bool isPaired,
 });
@@ -23,20 +26,26 @@ class CheckinDataSource({required final GQLClient _client}) {
       OptionsQueryCheckinToday(fetchPolicy: FetchPolicy.networkOnly),
     );
     final data = validateResponseData<QueryCheckinToday, QueryCheckinToday>(response);
-    final localDate = data.today?.localDate;
-    if (localDate == null || data.myProfile == null) throw const NoDataException();
+    final today = data.today.firstOrNull;
+    final localDate = today?.localDate;
+    final selfId = today?.userId;
+    if (today == null || localDate == null || selfId == null) {
+      throw const NoDataException();
+    }
 
     return (
       localDate: localDate,
-      partnerName: data.today?.partnerName,
-      coupleId: data.myCouple?.id,
-      isPaired: data.today?.isPaired ?? false,
+      partnerName: today.partnerName,
+      selfId: selfId,
+      coupleId: today.coupleId,
+      isPaired: today.coupleId != null,
     );
   }
 
-  Future<List<CheckinAnswerRecord>> getAnswers({
+  Future<CheckinAnswersRecord> getAnswers({
     required DateTime weekStart,
     required String coupleId,
+    required String selfId,
   }) async {
     final response = await _client.query(
       OptionsQueryCheckinAnswers(
@@ -44,79 +53,80 @@ class CheckinDataSource({required final GQLClient _client}) {
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.checkinAnswersCollection.edges,
-    );
+    final rows = validateResponseData(response, getData: (data) => data.checkins);
 
-    return [
-      for (final edge in edges)
-        (
-          id: edge.node.id,
-          isMine: edge.node.isMine ?? false,
-          question: edge.node.question,
-          body: edge.node.body,
-        ),
-    ];
+    return (
+      ownRowId: rows.where((row) => row.authorId == selfId).firstOrNull?.id,
+      answers: [
+        for (final row in rows)
+          for (final question in const [1, 2, 3, 4])
+            if (row.answerFor(question) case final body?)
+              (id: row.id, isMine: row.authorId == selfId, question: question, body: body),
+      ],
+    );
   }
 
   Future<CheckinAnswerWriteRecord> saveAnswer({
     required String? id,
-    required String coupleId,
-    required DateTime weekStart,
     required int question,
     required String body,
   }) {
-    if (id == null) {
-      return _insert(coupleId: coupleId, weekStart: weekStart, question: question, body: body);
-    }
+    if (id == null) return _insert(question: question, body: body);
 
-    return _update(id: id, body: body);
+    return _update(id: id, question: question, body: body);
   }
 
-  Future<CheckinAnswerWriteRecord> _insert({
-    required String coupleId,
-    required DateTime weekStart,
+  Future<CheckinAnswerWriteRecord> _insert({required int question, required String body}) async {
+    final response = await _client.mutate(
+      OptionsMutationInsertCheckinAnswer(
+        variables: VariablesMutationInsertCheckinAnswer.fromJson({
+          'answers': {'answer$question': body},
+        }),
+      ),
+    );
+    final node = validateResponseData(response, getData: (data) => data.insertCheckinsOne);
+
+    return (id: node.id, question: question, body: body);
+  }
+
+  Future<CheckinAnswerWriteRecord> _update({
+    required String id,
     required int question,
     required String body,
   }) async {
     final response = await _client.mutate(
-      OptionsMutationInsertCheckinAnswer(
-        variables: VariablesMutationInsertCheckinAnswer(
-          coupleId: coupleId,
-          weekStart: weekStart,
-          question: question,
-          body: body,
-        ),
+      OptionsMutationUpdateCheckinAnswer(
+        variables: VariablesMutationUpdateCheckinAnswer.fromJson({
+          'id': id,
+          'answers': {'answer$question': body},
+        }),
       ),
     );
-    final node = validateResponseData(
-      response,
-      getData: (data) => data.insertIntoCheckinAnswersCollection?.records.firstOrNull,
-    );
+    final node = validateResponseData(response, getData: (data) => data.updateCheckinsByPk);
 
-    return (id: node.id, question: node.question, body: node.body);
+    return (id: node.id, question: question, body: body);
   }
 
-  Future<CheckinAnswerWriteRecord> _update({required String id, required String body}) async {
+  Future<void> deleteAnswer({required String id, required int question}) async {
     final response = await _client.mutate(
       OptionsMutationUpdateCheckinAnswer(
-        variables: VariablesMutationUpdateCheckinAnswer(id: id, body: body),
+        variables: VariablesMutationUpdateCheckinAnswer.fromJson({
+          'id': id,
+          'answers': {'answer$question': null},
+        }),
       ),
-    );
-    final node = validateResponseData(
-      response,
-      getData: (data) => data.updateCheckinAnswersCollection.records.firstOrNull,
-    );
-
-    return (id: node.id, question: node.question, body: node.body);
-  }
-
-  Future<void> deleteAnswer(String id) async {
-    final response = await _client.mutate(
-      OptionsMutationDeleteCheckinAnswer(variables: VariablesMutationDeleteCheckinAnswer(id: id)),
     );
 
     validateResponse(response);
   }
+}
+
+extension on QueryCheckinAnswerscheckins {
+  String? answerFor(int question) => switch (question) {
+    1 => answer1,
+    2 => answer2,
+    3 => answer3,
+    4 => answer4,
+    _ => null,
+  };
 }

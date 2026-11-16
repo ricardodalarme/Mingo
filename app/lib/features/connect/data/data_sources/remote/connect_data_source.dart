@@ -3,21 +3,28 @@ import 'package:app/features/connect/data/data_sources/remote/mutations/generate
 import 'package:app/features/connect/data/data_sources/remote/queries/generated/CoupleTouchSetting.graphql.dart';
 import 'package:network/network.dart';
 
+/// The couple and whether touch topics are on for both.
+typedef CoupleTouchRecord = ({String coupleId, bool touchTopicsEnabled});
+
 class ConnectDataSource({required final GQLClient _client}) {
-  /// Whether touch topics are on for the couple; null when the person is not in a couple.
-  Future<bool?> getTouchTopicsEnabled() async {
+  /// The person's couple; null when they are not in one.
+  Future<CoupleTouchRecord?> getTouchSetting(String userId) async {
     final response = await _client.query(
-      OptionsQueryCoupleTouchSetting(fetchPolicy: FetchPolicy.networkOnly),
+      OptionsQueryCoupleTouchSetting(
+        variables: VariablesQueryCoupleTouchSetting(userId: userId),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
     );
+    final couple = validateResponseData(response, getData: (data) => data.couples.firstOrNull);
 
-    validateResponse(response);
-
-    return response.parsedData?.myCouple?.touchTopicsEnabled;
+    return (coupleId: couple.id, touchTopicsEnabled: couple.touchTopicsEnabled);
   }
 
-  Future<void> setTouchTopics({required bool enabled}) async {
+  Future<void> setTouchTopics({required String coupleId, required bool enabled}) async {
     final response = await _client.mutate(
-      OptionsMutationSetTouchTopics(variables: VariablesMutationSetTouchTopics(enabled: enabled)),
+      OptionsMutationSetTouchTopics(
+        variables: VariablesMutationSetTouchTopics(coupleId: coupleId, enabled: enabled),
+      ),
     );
 
     validateResponse(response);

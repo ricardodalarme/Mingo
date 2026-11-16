@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/spice/data/data_sources/remote/spice_data_source.dart';
@@ -17,6 +18,7 @@ class SpiceInjectionModule() implements InjectionModule {
         dataSource: injector.get<SpiceDataSource>(),
         profileRepository: injector.get<ProfileRepository>(),
         plusRepository: injector.get<PlusRepository>(),
+        authenticationRepository: injector.get<AuthenticationRepository>(),
       ),
     )
     ..registerFactory<SpiceCubit>(

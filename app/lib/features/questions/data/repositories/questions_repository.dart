@@ -25,7 +25,7 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
   /// Reads the question and the answer rows the server allows this person to see.
   Future<QuestionThread> getThread() => _run('read the weekly question and answers', () async {
     final prompt = await getPrompt();
-    final answers = await _dataSource.getAnswers(prompt.slug);
+    final answers = await _dataSource.getAnswers(questionSlug: prompt.slug, selfId: prompt.selfId);
     QuestionAnswer? own;
     QuestionAnswer? partner;
 
@@ -68,11 +68,7 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
 
   Future<void> _restore(QuestionPrompt prompt, String body) async {
     try {
-      await _dataSource.insertAnswer(
-        questionSlug: prompt.slug,
-        body: body,
-        coupleId: prompt.coupleId,
-      );
+      await _dataSource.insertAnswer(questionSlug: prompt.slug, body: body);
     } catch (exception) {
       _logger.error('Failed to restore the previous weekly answer (${exception.runtimeType})');
     }
@@ -80,11 +76,7 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
 
   Future<QuestionAnswer> _insert(QuestionPrompt prompt, String text) async {
     try {
-      final record = await _dataSource.insertAnswer(
-        questionSlug: prompt.slug,
-        body: text,
-        coupleId: prompt.coupleId,
-      );
+      final record = await _dataSource.insertAnswer(questionSlug: prompt.slug, body: text);
 
       return QuestionAnswer(id: record.id, body: record.body);
     } on LocalizedException catch (exception) {
@@ -93,11 +85,7 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
       final row = fresh.ownAnswer;
       if (row == null) rethrow;
       await _dataSource.deleteAnswer(row.id);
-      final record = await _dataSource.insertAnswer(
-        questionSlug: prompt.slug,
-        body: text,
-        coupleId: prompt.coupleId,
-      );
+      final record = await _dataSource.insertAnswer(questionSlug: prompt.slug, body: text);
 
       return QuestionAnswer(id: record.id, body: record.body);
     }

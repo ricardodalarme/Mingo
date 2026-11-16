@@ -22,26 +22,26 @@ import 'package:network/network.dart';
 
 class TogetherDataSource({required final GQLClient _client}) {
   /// The id of the couple the person is in, or null when they are on their own.
-  Future<String?> getCoupleId() async {
+  Future<String?> getCoupleId() async => (await _identity())?.coupleId;
+
+  /// The id of the signed-in person, or null when they are signed out.
+  Future<String?> getCurrentUserId() async => (await _identity())?.userId;
+
+  Future<QueryMyCoupletoday?> _identity() async {
     final response = await _client.query(
       OptionsQueryMyCouple(fetchPolicy: FetchPolicy.networkOnly),
     );
-
     validateResponse(response);
 
-    return response.parsedData?.myCouple?.id;
+    return response.parsedData?.today.firstOrNull;
   }
 
-  Future<List<QueryLogisticItemslogisticItemsCollectionedgesnode>> getLogisticItems() async {
+  Future<List<QueryLogisticItemslogisticItems>> getLogisticItems() async {
     final response = await _client.query(
       OptionsQueryLogisticItems(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.logisticItemsCollection.edges,
-    );
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.logisticItems);
   }
 
   Future<void> addLogisticItem({
@@ -93,17 +93,16 @@ class TogetherDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<List<QueryRitualsritualsCollectionedgesnode>> getRituals() async {
+  Future<List<QueryRitualsrituals>> getRituals() async {
     final response = await _client.query(OptionsQueryRituals(fetchPolicy: FetchPolicy.networkOnly));
-    final edges = validateResponseData(response, getData: (data) => data.ritualsCollection.edges);
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.rituals);
   }
 
   Future<void> addRitual({
     required String id,
     required String title,
-    required EnumRitualCadence cadence,
+    required EnumRitualCadence_enum cadence,
     required bool reminder,
     int? weekday,
     String? atTime,
@@ -129,7 +128,7 @@ class TogetherDataSource({required final GQLClient _client}) {
   Future<void> updateRitual({
     required String id,
     required String title,
-    required EnumRitualCadence cadence,
+    required EnumRitualCadence_enum cadence,
     required bool reminder,
     int? weekday,
     String? atTime,
@@ -171,30 +170,20 @@ class TogetherDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<List<QueryDateIdeassavedDateIdeasCollectionedgesnode>> getDateIdeas() async {
+  Future<List<QueryDateIdeassavedDateIdeas>> getDateIdeas() async {
     final response = await _client.query(
       OptionsQueryDateIdeas(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.savedDateIdeasCollection.edges,
-    );
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.savedDateIdeas);
   }
 
-  Future<List<QueryDateIdeaSuggestionscontentItemsCollectionedgesnode>> getDateIdeaSuggestions(
-    String locale,
-  ) async {
+  Future<List<QueryDateIdeaSuggestionscontentItems>> getDateIdeaSuggestions(String locale) async {
     final response = await _client.query(
       OptionsQueryDateIdeaSuggestions(variables: VariablesQueryDateIdeaSuggestions(locale: locale)),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.contentItemsCollection.edges,
-    );
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.contentItems);
   }
 
   Future<void> addDateIdea({
@@ -227,7 +216,10 @@ class TogetherDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<void> setDateIdeaStatus({required String id, required EnumDateIdeaStatus status}) async {
+  Future<void> setDateIdeaStatus({
+    required String id,
+    required EnumDateIdeaStatus_enum status,
+  }) async {
     final response = await _client.mutate(
       OptionsMutationSetDateIdeaStatus(
         variables: VariablesMutationSetDateIdeaStatus(id: id, status: status),
@@ -266,8 +258,8 @@ class TogetherDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<List<QueryHelpContentcontentItemsCollectionedgesnode>> getHelpContent({
-    required EnumContentKind kind,
+  Future<List<QueryHelpContentcontentItems>> getHelpContent({
+    required EnumContentKind_enum kind,
     required String locale,
   }) async {
     final response = await _client.query(
@@ -275,12 +267,8 @@ class TogetherDataSource({required final GQLClient _client}) {
         variables: VariablesQueryHelpContent(kind: kind, locale: locale),
       ),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.contentItemsCollection.edges,
-    );
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.contentItems);
   }
 
   Future<void> deleteLogisticItem(String id) async {

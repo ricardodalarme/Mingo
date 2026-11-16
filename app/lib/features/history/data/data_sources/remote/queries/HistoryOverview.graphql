@@ -1,84 +1,67 @@
-query HistoryOverview($year: Int!) {
-  myProfile {
+query HistoryOverview($userId: uuid!, $year: Int!) {
+  profile: profilesByPk(id: $userId) {
     id
     displayName
-    avatarPath
+    avatarFileId
     avatarKind
   }
-  myPartner {
-    id
-    displayName
-    avatarPath
-    avatarKind
+  member: coupleMembersByPk(userId: $userId) {
+    couple {
+      id
+      members {
+        userId
+        profile {
+          id
+          displayName
+          avatarFileId
+          avatarKind
+        }
+      }
+    }
   }
-  mySettings {
-    profileId
+  settings: userSettingsByPk(userId: $userId) {
+    userId
     phase
     togetherSince
     partnerName
     relationshipStatus
   }
-  myCouple {
+  storyEvents(order_by: [{ happenedOn: desc_nulls_last }], limit: 51) {
     id
+    authorId
+    coupleId
+    kind
+    title
+    happenedOn
+    datePrecision
   }
-  storyEventsCollection(orderBy: [{ happenedOn: DescNullsLast }], first: 50) {
-    edges {
-      node {
-        id
-        isMine
-        isShared
-        kind
-        title
-        happenedOn
-        datePrecision
-      }
-    }
-    pageInfo {
-      ...PageInfoFragment
-    }
+  memories(order_by: [{ happenedOn: desc_nulls_last }], limit: 51) {
+    id
+    authorId
+    coupleId
+    title
+    body
+    happenedOn
+    datePrecision
+    place
+    origin
   }
-  memoriesCollection(orderBy: [{ happenedOn: DescNullsLast }], first: 50) {
-    edges {
-      node {
-        id
-        isMine
-        isShared
-        title
-        body
-        happenedOn
-        datePrecision
-        place
-        photoPath
-        origin
-      }
-    }
-    pageInfo {
-      ...PageInfoFragment
-    }
-  }
-  importantDatesCollection(
-    orderBy: [{ year: DescNullsLast }, { month: DescNullsLast }, { day: DescNullsLast }]
-    first: 50
+  importantDates(
+    order_by: [{ year: desc_nulls_last }, { month: desc_nulls_last }, { day: desc_nulls_last }]
+    limit: 51
   ) {
-    edges {
-      node {
-        id
-        isMine
-        isShared
-        title
-        kind
-        month
-        day
-        year
-        yearly
-        hidden
-      }
-    }
-    pageInfo {
-      ...PageInfoFragment
-    }
+    id
+    authorId
+    coupleId
+    title
+    kind
+    month
+    day
+    year
+    yearly
+    hidden
   }
-  myYear(year: $year) {
+  yearRecaps(where: { year: { _eq: $year } }, limit: 1) {
     year
     slips
     cardsSent

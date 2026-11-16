@@ -1,12 +1,8 @@
 query MyLearnings {
-  repairLearningsCollection(orderBy: [{ createdAt: DescNullsLast }], first: 50) {
-    edges {
-      node {
-        id
-        kind
-        note
-        createdAt
-      }
-    }
+  repairLearnings(order_by: { createdAt: desc }, limit: 50) {
+    id
+    kind
+    note
+    createdAt
   }
 }

@@ -1,5 +1,5 @@
-mutation RespondToSignal($signalId: UUID!, $response: String) {
-  respondToSignal(signalId: $signalId, response: $response) {
+mutation RespondToSignal($signalId: uuid!, $response: SignalResponse_enum, $seenAt: timestamptz!) {
+  updateSignalsByPk(pk_columns: { id: $signalId }, _set: { response: $response, seenAt: $seenAt }) {
     id
     response
     respondedAt

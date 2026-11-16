@@ -1,9 +1,5 @@
-mutation SetChatEnabled($profileId: UUID!, $enabled: Boolean!) {
-  updateProfileSettingsCollection(
-    set: { chatEnabled: $enabled }
-    filter: { profileId: { eq: $profileId } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation SetChatEnabled($userId: uuid!, $enabled: Boolean!) {
+  updateUserSettingsByPk(pk_columns: { userId: $userId }, _set: { chatEnabled: $enabled }) {
+    userId
   }
 }

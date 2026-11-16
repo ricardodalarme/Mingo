@@ -1,9 +1,5 @@
-mutation UpdateRelationshipStatus($profileId: UUID!, $status: RelationshipStatus!) {
-  updateProfileSettingsCollection(
-    set: { relationshipStatus: $status }
-    filter: { profileId: { eq: $profileId } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation UpdateRelationshipStatus($profileId: uuid!, $status: RelationshipStatus_enum!) {
+  updateUserSettings(where: { userId: { _eq: $profileId } }, _set: { relationshipStatus: $status }) {
+    affected_rows
   }
 }

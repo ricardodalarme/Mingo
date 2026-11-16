@@ -9,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationUpdateAvatarKind {
   factory VariablesMutationUpdateAvatarKind({
     required String profileId,
-    required EnumAvatarKind avatarKind,
+    required EnumAvatarKind_enum avatarKind,
   }) => VariablesMutationUpdateAvatarKind._({r'profileId': profileId, r'avatarKind': avatarKind});
 
   VariablesMutationUpdateAvatarKind._(this._$data);
@@ -19,7 +19,7 @@ class VariablesMutationUpdateAvatarKind {
     final l$profileId = data['profileId'];
     result$data['profileId'] = (l$profileId as String);
     final l$avatarKind = data['avatarKind'];
-    result$data['avatarKind'] = fromJsonEnumAvatarKind((l$avatarKind as String));
+    result$data['avatarKind'] = fromJsonEnumAvatarKind_enum((l$avatarKind as String));
     return VariablesMutationUpdateAvatarKind._(result$data);
   }
 
@@ -27,14 +27,14 @@ class VariablesMutationUpdateAvatarKind {
 
   String get profileId => (_$data['profileId'] as String);
 
-  EnumAvatarKind get avatarKind => (_$data['avatarKind'] as EnumAvatarKind);
+  EnumAvatarKind_enum get avatarKind => (_$data['avatarKind'] as EnumAvatarKind_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$profileId = profileId;
     result$data['profileId'] = l$profileId;
     final l$avatarKind = avatarKind;
-    result$data['avatarKind'] = toJsonEnumAvatarKind(l$avatarKind);
+    result$data['avatarKind'] = toJsonEnumAvatarKind_enum(l$avatarKind);
     return result$data;
   }
 
@@ -68,27 +68,29 @@ class VariablesMutationUpdateAvatarKind {
 }
 
 class MutationUpdateAvatarKind {
-  MutationUpdateAvatarKind({required this.updateProfilesCollection, this.$__typename = 'Mutation'});
+  MutationUpdateAvatarKind({this.updateProfiles, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateAvatarKind.fromJson(Map<String, dynamic> json) {
-    final l$updateProfilesCollection = json['updateProfilesCollection'];
+    final l$updateProfiles = json['updateProfiles'];
     final l$$__typename = json['__typename'];
     return MutationUpdateAvatarKind(
-      updateProfilesCollection: MutationUpdateAvatarKindupdateProfilesCollection.fromJson(
-        (l$updateProfilesCollection as Map<String, dynamic>),
-      ),
+      updateProfiles: l$updateProfiles == null
+          ? null
+          : MutationUpdateAvatarKindupdateProfiles.fromJson(
+              (l$updateProfiles as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateAvatarKindupdateProfilesCollection updateProfilesCollection;
+  final MutationUpdateAvatarKindupdateProfiles? updateProfiles;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProfilesCollection = updateProfilesCollection;
-    _resultData['updateProfilesCollection'] = l$updateProfilesCollection.toJson();
+    final l$updateProfiles = updateProfiles;
+    _resultData['updateProfiles'] = l$updateProfiles?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -96,9 +98,9 @@ class MutationUpdateAvatarKind {
 
   @override
   int get hashCode {
-    final l$updateProfilesCollection = updateProfilesCollection;
+    final l$updateProfiles = updateProfiles;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateProfilesCollection, l$$__typename]);
+    return Object.hashAll([l$updateProfiles, l$$__typename]);
   }
 
   @override
@@ -109,9 +111,9 @@ class MutationUpdateAvatarKind {
     if (other is! MutationUpdateAvatarKind || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProfilesCollection = updateProfilesCollection;
-    final lOther$updateProfilesCollection = other.updateProfilesCollection;
-    if (l$updateProfilesCollection != lOther$updateProfilesCollection) {
+    final l$updateProfiles = updateProfiles;
+    final lOther$updateProfiles = other.updateProfiles;
+    if (l$updateProfiles != lOther$updateProfiles) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -131,13 +133,13 @@ const documentNodeMutationUpdateAvatarKind = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'profileId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'avatarKind')),
-          type: NamedTypeNode(name: NameNode(value: 'AvatarKind'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'AvatarKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -146,22 +148,11 @@ const documentNodeMutationUpdateAvatarKind = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProfilesCollection'),
+            name: NameNode(value: 'updateProfiles'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'avatarKind'),
-                      value: VariableNode(name: NameNode(value: 'avatarKind')),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -169,7 +160,7 @@ const documentNodeMutationUpdateAvatarKind = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'profileId')),
                           ),
                         ],
@@ -179,15 +170,22 @@ const documentNodeMutationUpdateAvatarKind = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'avatarKind'),
+                      value: VariableNode(name: NameNode(value: 'avatarKind')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -307,29 +305,29 @@ extension ClientExtensionMutationUpdateAvatarKind on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateAvatarKindupdateProfilesCollection {
-  MutationUpdateAvatarKindupdateProfilesCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProfilesUpdateResponse',
+class MutationUpdateAvatarKindupdateProfiles {
+  MutationUpdateAvatarKindupdateProfiles({
+    required this.affected_rows,
+    this.$__typename = 'profiles_mutation_response',
   });
 
-  factory MutationUpdateAvatarKindupdateProfilesCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateAvatarKindupdateProfiles.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateAvatarKindupdateProfilesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateAvatarKindupdateProfiles(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -337,9 +335,9 @@ class MutationUpdateAvatarKindupdateProfilesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -347,13 +345,12 @@ class MutationUpdateAvatarKindupdateProfilesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateAvatarKindupdateProfilesCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationUpdateAvatarKindupdateProfiles || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

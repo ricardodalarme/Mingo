@@ -1,3 +1,5 @@
-mutation DeleteSlip($id: UUID!) {
-  deleteSlip(id: $id)
+mutation DeleteSlip($id: uuid!) {
+  deleteSlipsByPk(id: $id) {
+    id
+  }
 }

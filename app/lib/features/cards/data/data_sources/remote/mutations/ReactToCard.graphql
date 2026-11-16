@@ -1,5 +1,8 @@
-mutation ReactToCard($cardId: UUID!, $reaction: String, $reply: String) {
-  reactToCard(cardId: $cardId, reaction: $reaction, reply: $reply) {
+mutation ReactToCard($cardId: uuid!, $reaction: String, $reply: String) {
+  insertCardReactionsOne(
+    object: { cardId: $cardId, reaction: $reaction, reply: $reply }
+    on_conflict: { constraint: card_reactions_pkey, update_columns: [reaction, reply] }
+  ) {
     reaction
     reply
   }

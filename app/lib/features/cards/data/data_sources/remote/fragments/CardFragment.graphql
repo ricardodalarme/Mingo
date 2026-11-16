@@ -1,20 +1,17 @@
-fragment CardFragment on Cards {
+fragment CardFragment on cards {
   id
   status
   note
   weekStart
   sentAt
-  items(orderBy: [{ position: AscNullsLast }]) {
-    edges {
-      node {
-        slipId
-        body
-        position
-        slip {
-          category
-          createdAt
-        }
-      }
+  items(order_by: [{ position: asc }]) {
+    id
+    slipId
+    body
+    position
+    slip {
+      category
+      createdAt
     }
   }
 }

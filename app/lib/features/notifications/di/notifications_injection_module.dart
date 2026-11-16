@@ -1,4 +1,5 @@
 import 'package:app/features/_shared/data/data_sources/local/device_marker_store.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/notifications/data/data_sources/local/notifications_local_data_source.dart';
 import 'package:app/features/notifications/data/data_sources/remote/notifications_data_source.dart';
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
@@ -31,6 +32,7 @@ class NotificationsInjectionModule() implements InjectionModule {
         permissionService: injector.get<PermissionService>(),
         deviceInfoService: injector.get<DeviceInfoService>(),
         markerStore: injector.get<DeviceMarkerStore>(),
+        authenticationRepository: injector.get<AuthenticationRepository>(),
       ),
     )
     ..registerFactory<NotificationPermissionCubit>(

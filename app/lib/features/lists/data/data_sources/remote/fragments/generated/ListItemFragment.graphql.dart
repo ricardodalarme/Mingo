@@ -11,7 +11,7 @@ class FragmentListItemFragment {
     required this.title,
     required this.status,
     required this.position,
-    this.$__typename = 'ListItems',
+    this.$__typename = 'listItems',
   });
 
   factory FragmentListItemFragment.fromJson(Map<String, dynamic> json) {
@@ -25,7 +25,7 @@ class FragmentListItemFragment {
       id: (l$id as String),
       listId: (l$listId as String),
       title: (l$title as String),
-      status: fromJsonEnumListItemStatus((l$status as String)),
+      status: fromJsonEnumListItemStatus_enum((l$status as String)),
       position: (l$position as int),
       $__typename: (l$$__typename as String),
     );
@@ -37,7 +37,7 @@ class FragmentListItemFragment {
 
   final String title;
 
-  final EnumListItemStatus status;
+  final EnumListItemStatus_enum status;
 
   final int position;
 
@@ -52,7 +52,7 @@ class FragmentListItemFragment {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$status = status;
-    _resultData['status'] = toJsonEnumListItemStatus(l$status);
+    _resultData['status'] = toJsonEnumListItemStatus_enum(l$status);
     final l$position = position;
     _resultData['position'] = l$position;
     final l$$__typename = $__typename;
@@ -116,7 +116,7 @@ class FragmentListItemFragment {
 const fragmentDefinitionListItemFragment = FragmentDefinitionNode(
   name: NameNode(value: 'ListItemFragment'),
   typeCondition: TypeConditionNode(
-    on: NamedTypeNode(name: NameNode(value: 'ListItems'), isNonNull: false),
+    on: NamedTypeNode(name: NameNode(value: 'listItems'), isNonNull: false),
   ),
   directives: [],
   selectionSet: SelectionSetNode(

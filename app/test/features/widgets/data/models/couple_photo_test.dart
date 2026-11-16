@@ -7,7 +7,7 @@ void main() {
       final photo = CouplePhoto.fake();
 
       expect(photo.coupleId, isNotEmpty);
-      expect(photo.storagePath, endsWith('.jpg'));
+      expect(photo.fileId, isNotEmpty);
       expect(photo.url, isNull);
     });
 
@@ -16,7 +16,7 @@ void main() {
       final withUrl = photo.copyWith(url: 'https://example.test/photo.jpg');
 
       expect(withUrl.coupleId, photo.coupleId);
-      expect(withUrl.storagePath, photo.storagePath);
+      expect(withUrl.fileId, photo.fileId);
       expect(withUrl.url, 'https://example.test/photo.jpg');
     });
   });

@@ -1,9 +1,5 @@
-mutation UpdateAvatarKind($profileId: UUID!, $avatarKind: AvatarKind!) {
-  updateProfilesCollection(
-    set: { avatarKind: $avatarKind }
-    filter: { id: { eq: $profileId } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation UpdateAvatarKind($profileId: uuid!, $avatarKind: AvatarKind_enum!) {
+  updateProfiles(where: { id: { _eq: $profileId } }, _set: { avatarKind: $avatarKind }) {
+    affected_rows
   }
 }

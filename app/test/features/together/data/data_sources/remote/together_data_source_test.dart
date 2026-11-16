@@ -36,8 +36,14 @@ void main() {
   );
 
   test('a person without a couple gets no id', () async {
-    when(() => client.query<QueryMyCouple>(any()))
-        .thenAnswer((_) async => response({'myCouple': null, '__typename': 'Query'}));
+    when(() => client.query<QueryMyCouple>(any())).thenAnswer(
+      (_) async => response({
+        'today': [
+          {'userId': 'user-1', 'coupleId': null, '__typename': 'today'},
+        ],
+        '__typename': 'Query',
+      }),
+    );
 
     expect(await dataSource.getCoupleId(), isNull);
   });
@@ -45,7 +51,9 @@ void main() {
   test('a paired person gets the couple id', () async {
     when(() => client.query<QueryMyCouple>(any())).thenAnswer(
       (_) async => response({
-        'myCouple': {'id': 'couple-1', '__typename': 'Couples'},
+        'today': [
+          {'userId': 'user-1', 'coupleId': 'couple-1', '__typename': 'today'},
+        ],
         '__typename': 'Query',
       }),
     );
@@ -53,11 +61,21 @@ void main() {
     expect(await dataSource.getCoupleId(), 'couple-1');
   });
 
+  test('a signed-in person gets their own id', () async {
+    when(() => client.query<QueryMyCouple>(any())).thenAnswer(
+      (_) async => response({
+        'today': [
+          {'userId': 'user-1', 'coupleId': 'couple-1', '__typename': 'today'},
+        ],
+        '__typename': 'Query',
+      }),
+    );
+
+    expect(await dataSource.getCurrentUserId(), 'user-1');
+  });
+
   Map<String, dynamic> updated() => {
-    'updateLogisticItemsCollection': {
-      'affectedCount': 1,
-      '__typename': 'LogisticItemsUpdateResponse',
-    },
+    'updateLogisticItemsByPk': {'id': 'i1', '__typename': 'logisticItems'},
     '__typename': 'Mutation',
   };
 

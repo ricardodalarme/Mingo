@@ -11,6 +11,6 @@ void main() {
   });
 
   test('an unknown status is treated as together', () {
-    expect(EnumRelationshipStatus.$unknown.toModel(), RelationshipStatus.together);
+    expect(EnumRelationshipStatus_enum.$unknown.toModel(), RelationshipStatus.together);
   });
 }

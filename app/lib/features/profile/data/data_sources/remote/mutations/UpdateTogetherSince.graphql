@@ -1,9 +1,5 @@
-mutation UpdateTogetherSince($profileId: UUID!, $togetherSince: Date) {
-  updateProfileSettingsCollection(
-    set: { togetherSince: $togetherSince }
-    filter: { profileId: { eq: $profileId } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation UpdateTogetherSince($profileId: uuid!, $togetherSince: date) {
+  updateUserSettings(where: { userId: { _eq: $profileId } }, _set: { togetherSince: $togetherSince }) {
+    affected_rows
   }
 }

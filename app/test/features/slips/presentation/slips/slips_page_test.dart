@@ -53,7 +53,7 @@ void main() {
   void stubPage(List<SlipEntry> items) {
     when(
       () => repository.getSlips(
-        after: any(named: 'after'),
+        offset: any(named: 'offset'),
         since: any(named: 'since'),
         archived: any(named: 'archived'),
         pageSize: any(named: 'pageSize'),

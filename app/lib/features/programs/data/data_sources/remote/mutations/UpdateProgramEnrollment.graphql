@@ -1,9 +1,5 @@
-mutation UpdateProgramEnrollment($programSlug: String!, $currentDay: Int!) {
-  updateProgramEnrollmentsCollection(
-    set: { currentDay: $currentDay }
-    filter: { programSlug: { eq: $programSlug } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation UpdateProgramEnrollment($programSlug: String!, $currentDay: smallint!) {
+  updateProgramEnrollments(where: { programSlug: { _eq: $programSlug } }, _set: { currentDay: $currentDay }) {
+    affected_rows
   }
 }

@@ -9,11 +9,11 @@ void main() {
     final fragment = FragmentProfileFragment.fromJson({
       'id': 'p1',
       'displayName': 'Marina',
-      'avatarPath': null,
+      'avatarFileId': null,
       'avatarKind': 'initial',
       'city': 'Curitiba',
       'pronouns': null,
-      '__typename': 'Profiles',
+      '__typename': 'profiles',
     });
 
     expect(

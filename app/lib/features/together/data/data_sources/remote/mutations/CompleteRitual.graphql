@@ -1,5 +1,5 @@
-mutation CompleteRitual($ritualId: UUID!, $doneOn: Date!) {
-  insertIntoRitualLogsCollection(objects: [{ ritualId: $ritualId, doneOn: $doneOn }]) {
-    affectedCount
+mutation CompleteRitual($ritualId: uuid!, $doneOn: date!) {
+  insertRitualLogsOne(object: { ritualId: $ritualId, doneOn: $doneOn }) {
+    id
   }
 }

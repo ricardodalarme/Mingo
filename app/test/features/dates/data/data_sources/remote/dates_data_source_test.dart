@@ -12,10 +12,7 @@ class _CapturingGQLClient() implements GQLClient {
 
     return QueryResult.loading(
       options: options,
-      data: const {
-        'giftIdeasCollection': {'edges': <Object?>[], '__typename': 'GiftIdeasConnection'},
-        '__typename': 'Query',
-      },
+      data: const {'giftIdeas': <Object?>[], '__typename': 'Query'},
     );
   }
 
@@ -26,10 +23,7 @@ class _CapturingGQLClient() implements GQLClient {
     return QueryResult.loading(
       options: options,
       data: const {
-        'insertIntoGiftIdeasCollection': {
-          'affectedCount': 1,
-          '__typename': 'GiftIdeasInsertResponse',
-        },
+        'insertGiftIdeasOne': {'id': 'g1', '__typename': 'giftIdeas'},
         '__typename': 'Mutation',
       },
     );
@@ -47,8 +41,8 @@ void main() {
     await dataSource.getGiftIdeas();
 
     final operation = client.queries.single;
-    expect(printNode(operation.document), contains('kind: {eq: idea}'));
-    expect(printNode(operation.document), contains('isMine'));
+    expect(printNode(operation.document), contains('kind: {_eq: idea}'));
+    expect(printNode(operation.document), contains('authorId'));
     expect(operation.variables, <String, dynamic>{});
   });
 

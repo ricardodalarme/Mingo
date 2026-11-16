@@ -1,5 +1,16 @@
-mutation UpdateCardDraft($cardId: UUID!, $slipIds: [UUID]!, $note: String) {
-  updateCardDraft(cardId: $cardId, slipIds: $slipIds, note: $note) {
+mutation UpdateCardDraft(
+  $cardId: uuid!
+  $note: String
+  $items: [cardItems_updates!]!
+  $removedItemIds: [uuid!]!
+) {
+  updateCardItemsMany(updates: $items) {
+    affected_rows
+  }
+  deleteCardItems(where: { id: { _in: $removedItemIds } }) {
+    affected_rows
+  }
+  updateCardsByPk(pk_columns: { id: $cardId }, _set: { note: $note }) {
     ...CardFragment
   }
 }

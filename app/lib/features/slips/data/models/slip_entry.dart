@@ -26,8 +26,8 @@ final class const SlipEntry({
 final class const SlipPage({
   required final List<SlipEntry> items,
   required final bool hasNext,
-  final String? cursor,
+  final int offset = 0,
 }) with Equatable {
   @override
-  List<Object?> get props => [items, hasNext, cursor];
+  List<Object?> get props => [items, hasNext, offset];
 }

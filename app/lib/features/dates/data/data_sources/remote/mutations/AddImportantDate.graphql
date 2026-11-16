@@ -1,33 +1,31 @@
 mutation AddImportantDate(
-  $id: UUID!
+  $id: uuid!
   $title: String!
-  $kind: ImportantDateKind!
-  $month: Int!
-  $day: Int!
-  $year: Int
+  $kind: ImportantDateKind_enum!
+  $month: smallint!
+  $day: smallint!
+  $year: smallint
   $yearly: Boolean!
-  $remindDays: [Int]!
-  $origin: ImportantDateOrigin!
+  $remindDays: [smallint!]!
+  $origin: ImportantDateOrigin_enum!
   $holidayKey: String
-  $coupleId: UUID
+  $coupleId: uuid
 ) {
-  insertIntoImportantDatesCollection(
-    objects: [
-      {
-        id: $id
-        title: $title
-        kind: $kind
-        month: $month
-        day: $day
-        year: $year
-        yearly: $yearly
-        remindDays: $remindDays
-        origin: $origin
-        holidayKey: $holidayKey
-        coupleId: $coupleId
-      }
-    ]
+  insertImportantDatesOne(
+    object: {
+      id: $id
+      title: $title
+      kind: $kind
+      month: $month
+      day: $day
+      year: $year
+      yearly: $yearly
+      remindDays: $remindDays
+      origin: $origin
+      holidayKey: $holidayKey
+      coupleId: $coupleId
+    }
   ) {
-    affectedCount
+    id
   }
 }

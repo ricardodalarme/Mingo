@@ -5,22 +5,22 @@ import 'package:app/features/profile/data/mappers/relationship_phase_mapper.dart
 import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:design_system/design_system.dart';
 
-extension MySettingsMapper on QueryMySettingsmySettings {
+extension MySettingsMapper on QueryMySettingsuserSettingsByPk {
   AccountSettings toModel() => AccountSettings(
     theme: theme.toVariant(),
-    profileId: profileId,
-    timeZone: timeZone,
+    profileId: userId,
+    timeZone: profile.timeZone,
     partnerName: partnerName,
     togetherSince: togetherSince,
     onboardedAt: onboardedAt,
     shareReadReceipts: shareReadReceipts,
     phase: phase?.toModel(),
-    goals: [for (final goal in goals) ?goal?.toRelationshipGoal()],
+    goals: [for (final goal in goals) ?goal.toRelationshipGoal()],
     locale: locale,
   );
 }
 
-extension EnumAppThemeMapper on EnumAppTheme {
+extension EnumAppThemeMapper on EnumAppTheme_enum {
   AppThemeVariant toVariant() => switch (this) {
     .azul => AppThemeVariant.blue,
     .neutro => AppThemeVariant.neutral,
@@ -29,9 +29,9 @@ extension EnumAppThemeMapper on EnumAppTheme {
 }
 
 extension AppThemeVariantMapper on AppThemeVariant {
-  EnumAppTheme toServerTheme() => switch (this) {
-    .blue => EnumAppTheme.azul,
-    .neutral => EnumAppTheme.neutro,
-    .rose => EnumAppTheme.rosa,
+  EnumAppTheme_enum toServerTheme() => switch (this) {
+    .blue => EnumAppTheme_enum.azul,
+    .neutral => EnumAppTheme_enum.neutro,
+    .rose => EnumAppTheme_enum.rosa,
   };
 }

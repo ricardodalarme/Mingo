@@ -1,11 +1,5 @@
-mutation InsertLessonProgress(
-  $programSlug: String!
-  $lessonDay: Int!
-  $status: LessonStatus!
-) {
-  insertIntoLessonProgressCollection(
-    objects: [{ programSlug: $programSlug, lessonDay: $lessonDay, status: $status }]
-  ) {
-    affectedCount
+mutation InsertLessonProgress($programSlug: String!, $lessonDay: smallint!, $status: LessonStatus_enum!) {
+  insertLessonProgress(objects: [{ programSlug: $programSlug, lessonDay: $lessonDay, status: $status }]) {
+    affected_rows
   }
 }

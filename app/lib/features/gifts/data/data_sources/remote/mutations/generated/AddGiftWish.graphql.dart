@@ -12,7 +12,7 @@ class VariablesMutationAddGiftWish {
     required String id,
     required String title,
     String? note,
-    EnumGiftBudget? budget,
+    EnumGiftBudget_enum? budget,
     String? coupleId,
   }) => VariablesMutationAddGiftWish._({
     r'id': id,
@@ -38,7 +38,7 @@ class VariablesMutationAddGiftWish {
       final l$budget = data['budget'];
       result$data['budget'] = l$budget == null
           ? null
-          : fromJsonEnumGiftBudget((l$budget as String));
+          : fromJsonEnumGiftBudget_enum((l$budget as String));
     }
     if (data.containsKey('coupleId')) {
       final l$coupleId = data['coupleId'];
@@ -55,7 +55,7 @@ class VariablesMutationAddGiftWish {
 
   String? get note => (_$data['note'] as String?);
 
-  EnumGiftBudget? get budget => (_$data['budget'] as EnumGiftBudget?);
+  EnumGiftBudget_enum? get budget => (_$data['budget'] as EnumGiftBudget_enum?);
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
@@ -71,7 +71,7 @@ class VariablesMutationAddGiftWish {
     }
     if (_$data.containsKey('budget')) {
       final l$budget = budget;
-      result$data['budget'] = l$budget == null ? null : toJsonEnumGiftBudget(l$budget);
+      result$data['budget'] = l$budget == null ? null : toJsonEnumGiftBudget_enum(l$budget);
     }
     if (_$data.containsKey('coupleId')) {
       final l$coupleId = coupleId;
@@ -143,29 +143,27 @@ class VariablesMutationAddGiftWish {
 }
 
 class MutationAddGiftWish {
-  MutationAddGiftWish({this.insertIntoGiftIdeasCollection, this.$__typename = 'Mutation'});
+  MutationAddGiftWish({this.insertGiftIdeasOne, this.$__typename = 'mutation_root'});
 
   factory MutationAddGiftWish.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoGiftIdeasCollection = json['insertIntoGiftIdeasCollection'];
+    final l$insertGiftIdeasOne = json['insertGiftIdeasOne'];
     final l$$__typename = json['__typename'];
     return MutationAddGiftWish(
-      insertIntoGiftIdeasCollection: l$insertIntoGiftIdeasCollection == null
+      insertGiftIdeasOne: l$insertGiftIdeasOne == null
           ? null
-          : MutationAddGiftWishinsertIntoGiftIdeasCollection.fromJson(
-              (l$insertIntoGiftIdeasCollection as Map<String, dynamic>),
-            ),
+          : FragmentGiftWishFragment.fromJson((l$insertGiftIdeasOne as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddGiftWishinsertIntoGiftIdeasCollection? insertIntoGiftIdeasCollection;
+  final FragmentGiftWishFragment? insertGiftIdeasOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoGiftIdeasCollection = insertIntoGiftIdeasCollection;
-    _resultData['insertIntoGiftIdeasCollection'] = l$insertIntoGiftIdeasCollection?.toJson();
+    final l$insertGiftIdeasOne = insertGiftIdeasOne;
+    _resultData['insertGiftIdeasOne'] = l$insertGiftIdeasOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -173,9 +171,9 @@ class MutationAddGiftWish {
 
   @override
   int get hashCode {
-    final l$insertIntoGiftIdeasCollection = insertIntoGiftIdeasCollection;
+    final l$insertGiftIdeasOne = insertGiftIdeasOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoGiftIdeasCollection, l$$__typename]);
+    return Object.hashAll([l$insertGiftIdeasOne, l$$__typename]);
   }
 
   @override
@@ -186,9 +184,9 @@ class MutationAddGiftWish {
     if (other is! MutationAddGiftWish || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoGiftIdeasCollection = insertIntoGiftIdeasCollection;
-    final lOther$insertIntoGiftIdeasCollection = other.insertIntoGiftIdeasCollection;
-    if (l$insertIntoGiftIdeasCollection != lOther$insertIntoGiftIdeasCollection) {
+    final l$insertGiftIdeasOne = insertGiftIdeasOne;
+    final lOther$insertGiftIdeasOne = other.insertGiftIdeasOne;
+    if (l$insertGiftIdeasOne != lOther$insertGiftIdeasOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -208,7 +206,7 @@ const documentNodeMutationAddGiftWish = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -226,13 +224,13 @@ const documentNodeMutationAddGiftWish = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'budget')),
-          type: NamedTypeNode(name: NameNode(value: 'GiftBudget'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'GiftBudget_enum'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -241,40 +239,36 @@ const documentNodeMutationAddGiftWish = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoGiftIdeasCollection'),
+            name: NameNode(value: 'insertGiftIdeasOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'id'),
-                          value: VariableNode(name: NameNode(value: 'id')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'title'),
-                          value: VariableNode(name: NameNode(value: 'title')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'note'),
-                          value: VariableNode(name: NameNode(value: 'note')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'budget'),
-                          value: VariableNode(name: NameNode(value: 'budget')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'coupleId'),
-                          value: VariableNode(name: NameNode(value: 'coupleId')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'kind'),
-                          value: EnumValueNode(name: NameNode(value: 'wish')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'title'),
+                      value: VariableNode(name: NameNode(value: 'title')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'note'),
+                      value: VariableNode(name: NameNode(value: 'note')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'budget'),
+                      value: VariableNode(name: NameNode(value: 'budget')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'coupleId'),
+                      value: VariableNode(name: NameNode(value: 'coupleId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: EnumValueNode(name: NameNode(value: 'wish')),
                     ),
                   ],
                 ),
@@ -283,26 +277,9 @@ const documentNodeMutationAddGiftWish = DocumentNode(
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'records'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'GiftWishFragment'),
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'GiftWishFragment'),
-                        directives: [],
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -416,71 +393,4 @@ extension ClientExtensionMutationAddGiftWish on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationAddGiftWish> watchMutationAddGiftWish(
     WatchOptionsMutationAddGiftWish options,
   ) => this.watchMutation(options);
-}
-
-class MutationAddGiftWishinsertIntoGiftIdeasCollection {
-  MutationAddGiftWishinsertIntoGiftIdeasCollection({
-    required this.records,
-    this.$__typename = 'GiftIdeasInsertResponse',
-  });
-
-  factory MutationAddGiftWishinsertIntoGiftIdeasCollection.fromJson(Map<String, dynamic> json) {
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationAddGiftWishinsertIntoGiftIdeasCollection(
-      records: (l$records as List<dynamic>)
-          .map((e) => FragmentGiftWishFragment.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<FragmentGiftWishFragment> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationAddGiftWishinsertIntoGiftIdeasCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
 }

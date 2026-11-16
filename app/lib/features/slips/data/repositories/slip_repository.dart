@@ -85,8 +85,9 @@ class SlipRepository({
   /// Reads one slip; returns null when it is deleted or not the person's.
   Future<SlipDetail?> getSlip(String id) async {
     try {
-      final node = await _slipDataSource.getSlip(id);
-      if (node == null) return null;
+      final row = await _slipDataSource.getSlip(id);
+      if (row == null) return null;
+      final node = row.slip;
 
       return SlipDetail(
         id: node.id,
@@ -102,7 +103,7 @@ class SlipRepository({
         request: node.request,
         isArchived: node.archivedAt != null,
         isInJar: node.inJar,
-        wasInCard: node.cardItemsCollection?.edges.isNotEmpty ?? false,
+        wasInCard: row.wasInCard,
       );
     } catch (e, stack) {
       _logger.error('Failed to load a slip', error: e, stackTrace: stack);
@@ -117,12 +118,14 @@ class SlipRepository({
         id: slip.id,
         body: slip.body.trim(),
         createdAt: slip.createdAt,
-        kind: slip.kind.toRpc(),
+        kind: slip.kind.toRemote(),
         feeling: slip.feeling,
         planNote: slip.planNote,
         forCard: slip.forCard && slip.canGoInCard,
-        polarity: slip.polarity.toRpc(),
+        polarity: slip.polarity.toRemote(),
         request: slip.request,
+        category: slip.category?.toRemote(),
+        workArea: slip.workArea?.toRemote(),
       );
       _changes.add(null);
     } catch (e, stack) {
@@ -164,7 +167,7 @@ class SlipRepository({
   /// Tells the partner something gentle, such as a need; throws when there is no partner.
   Future<void> sendNeed(String need) async {
     try {
-      await _slipDataSource.sendSignal(kind: 'need', value: need);
+      await _slipDataSource.sendNeed(value: need);
     } catch (e, stack) {
       _logger.error('Failed to send a need', error: e, stackTrace: stack);
       rethrow;
@@ -174,7 +177,7 @@ class SlipRepository({
   /// Sends the partner a one-tap hug, the reaction to a good shared mood.
   Future<void> sendHug() async {
     try {
-      await _slipDataSource.sendSignal(kind: 'hug');
+      await _slipDataSource.sendHug();
     } catch (e, stack) {
       _logger.error('Failed to send a hug', error: e, stackTrace: stack);
       rethrow;
@@ -184,7 +187,7 @@ class SlipRepository({
   /// Asks the partner if they want to talk, arriving as the need they can answer.
   Future<void> askToTalk() async {
     try {
-      await _slipDataSource.sendSignal(kind: 'need', value: 'talk');
+      await _slipDataSource.sendNeed(value: 'talk');
     } catch (e, stack) {
       _logger.error('Failed to ask the partner to talk', error: e, stackTrace: stack);
       rethrow;
@@ -194,7 +197,7 @@ class SlipRepository({
   /// Sends the partner a hug carrying [body], a short message of a line or two.
   Future<void> sendSweetMessage(String body) async {
     try {
-      await _slipDataSource.sendSignal(kind: 'hug', body: body);
+      await _slipDataSource.sendHug(body: body);
     } catch (e, stack) {
       _logger.error('Failed to send a sweet message', error: e, stackTrace: stack);
       rethrow;
@@ -205,33 +208,33 @@ class SlipRepository({
   ///
   /// [archived] reads the slips taken out of the timeline instead.
   Future<SlipPage> getSlips({
-    String? after,
+    int offset = 0,
     DateTime? since,
     bool archived = false,
     int pageSize = slipPageSize,
   }) async {
     try {
-      final result = await _slipDataSource.getSlips(
-        first: pageSize,
-        after: after,
+      final rows = await _slipDataSource.getSlips(
+        limit: pageSize,
+        offset: offset,
         since: since,
         archived: archived,
       );
 
       return SlipPage(
         items: [
-          for (final edge in result.edges)
+          for (final row in rows)
             SlipEntry(
-              id: edge.node.id,
-              body: edge.node.body,
-              kind: edge.node.kind.toModel() ?? SlipKind.quick,
-              category: edge.node.category?.toModel(),
-              polarity: edge.node.polarity.toModel() ?? SlipPolarity.liked,
-              createdAt: edge.node.createdAt,
+              id: row.id,
+              body: row.body,
+              kind: row.kind.toModel() ?? SlipKind.quick,
+              category: row.category?.toModel(),
+              polarity: row.polarity.toModel() ?? SlipPolarity.liked,
+              createdAt: row.createdAt,
             ),
         ],
-        hasNext: result.pageInfo.hasNextPage,
-        cursor: result.pageInfo.endCursor,
+        hasNext: rows.length == pageSize,
+        offset: offset + rows.length,
       );
     } catch (e, stack) {
       _logger.error('Failed to load slips', error: e, stackTrace: stack);
@@ -318,18 +321,14 @@ class SlipRepository({
       id: slip.id,
       body: slip.body,
       createdAt: slip.createdAt,
-      kind: slip.kind.toRpc(),
+      kind: slip.kind.toRemote(),
       feeling: slip.feeling,
       planNote: slip.planNote,
-      polarity: slip.polarity.toRpc(),
+      polarity: slip.polarity.toRemote(),
       request: slip.request,
+      category: slip.category?.toRemote(),
+      workArea: slip.workArea?.toRemote(),
     );
-    if (slip.category != null) {
-      await _slipDataSource.setCategory(id: slip.id, category: slip.category?.toRpc());
-    }
-    if (slip.workArea != null) {
-      await _slipDataSource.setWorkArea(id: slip.id, workArea: slip.workArea!.toRpc());
-    }
   }
 
   Future<void> _enqueue(PendingSlip slip) async {

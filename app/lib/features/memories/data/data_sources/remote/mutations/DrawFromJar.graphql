@@ -1,6 +1,0 @@
-mutation DrawFromJar {
-  drawFromJar {
-    id
-    body
-  }
-}

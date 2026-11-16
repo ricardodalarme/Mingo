@@ -26,8 +26,7 @@ class ChatInjectionModule() implements InjectionModule {
       () => ChatDataSource(
         client: injector.get<GQLClient>(),
         restClient: injector.get<RestClient>(),
-        functionUrl: '${EnvVariables.supabaseUrl}/functions/v1/chat',
-        apiKey: EnvVariables.supabaseAnonKey,
+        functionUrl: '${EnvVariables.functionsUrl}/chat',
       ),
     )
     ..registerLazySingleton<LearnedItemsDataSource>(

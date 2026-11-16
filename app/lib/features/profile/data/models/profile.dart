@@ -5,7 +5,7 @@ final class const Profile({
   required final String id,
   required final AvatarKind avatarKind,
   final String? displayName,
-  final String? avatarPath,
+  final String? avatarFileId,
   final String? city,
   final String? pronouns,
 }) with Equatable {
@@ -13,5 +13,5 @@ final class const Profile({
     : this(id: 'fake', avatarKind: AvatarKind.initials, displayName: 'Nome Sobrenome');
 
   @override
-  List<Object?> get props => [id, avatarKind, displayName, avatarPath, city, pronouns];
+  List<Object?> get props => [id, avatarKind, displayName, avatarFileId, city, pronouns];
 }

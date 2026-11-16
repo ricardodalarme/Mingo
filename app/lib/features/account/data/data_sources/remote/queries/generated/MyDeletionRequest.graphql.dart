@@ -4,28 +4,77 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
+class VariablesQueryMyDeletionRequest {
+  factory VariablesQueryMyDeletionRequest({required String userId}) =>
+      VariablesQueryMyDeletionRequest._({r'userId': userId});
+
+  VariablesQueryMyDeletionRequest._(this._$data);
+
+  factory VariablesQueryMyDeletionRequest.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
+    return VariablesQueryMyDeletionRequest._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get userId => (_$data['userId'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! VariablesQueryMyDeletionRequest || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    return Object.hashAll([l$userId]);
+  }
+}
+
 class QueryMyDeletionRequest {
-  QueryMyDeletionRequest({required this.deletionRequestsCollection, this.$__typename = 'Query'});
+  QueryMyDeletionRequest({this.deletionRequestsByPk, this.$__typename = 'query_root'});
 
   factory QueryMyDeletionRequest.fromJson(Map<String, dynamic> json) {
-    final l$deletionRequestsCollection = json['deletionRequestsCollection'];
+    final l$deletionRequestsByPk = json['deletionRequestsByPk'];
     final l$$__typename = json['__typename'];
     return QueryMyDeletionRequest(
-      deletionRequestsCollection: QueryMyDeletionRequestdeletionRequestsCollection.fromJson(
-        (l$deletionRequestsCollection as Map<String, dynamic>),
-      ),
+      deletionRequestsByPk: l$deletionRequestsByPk == null
+          ? null
+          : QueryMyDeletionRequestdeletionRequestsByPk.fromJson(
+              (l$deletionRequestsByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryMyDeletionRequestdeletionRequestsCollection deletionRequestsCollection;
+  final QueryMyDeletionRequestdeletionRequestsByPk? deletionRequestsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deletionRequestsCollection = deletionRequestsCollection;
-    _resultData['deletionRequestsCollection'] = l$deletionRequestsCollection.toJson();
+    final l$deletionRequestsByPk = deletionRequestsByPk;
+    _resultData['deletionRequestsByPk'] = l$deletionRequestsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33,9 +82,9 @@ class QueryMyDeletionRequest {
 
   @override
   int get hashCode {
-    final l$deletionRequestsCollection = deletionRequestsCollection;
+    final l$deletionRequestsByPk = deletionRequestsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deletionRequestsCollection, l$$__typename]);
+    return Object.hashAll([l$deletionRequestsByPk, l$$__typename]);
   }
 
   @override
@@ -46,9 +95,9 @@ class QueryMyDeletionRequest {
     if (other is! QueryMyDeletionRequest || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deletionRequestsCollection = deletionRequestsCollection;
-    final lOther$deletionRequestsCollection = other.deletionRequestsCollection;
-    if (l$deletionRequestsCollection != lOther$deletionRequestsCollection) {
+    final l$deletionRequestsByPk = deletionRequestsByPk;
+    final lOther$deletionRequestsByPk = other.deletionRequestsByPk;
+    if (l$deletionRequestsByPk != lOther$deletionRequestsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -65,69 +114,42 @@ const documentNodeQueryMyDeletionRequest = DocumentNode(
     OperationDefinitionNode(
       type: OperationType.query,
       name: NameNode(value: 'MyDeletionRequest'),
-      variableDefinitions: [],
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'userId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deletionRequestsCollection'),
+            name: NameNode(value: 'deletionRequestsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: 'userId'),
+                value: VariableNode(name: NameNode(value: 'userId')),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'requestedAt'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'requestedAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'purgeAfter'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'purgeAfter'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -161,6 +183,7 @@ typedef OnQueryCompleteQueryMyDeletionRequest = FutureOr<void> Function(
 class OptionsQueryMyDeletionRequest extends graphql.QueryOptions<QueryMyDeletionRequest> {
   OptionsQueryMyDeletionRequest({
     String? operationName,
+    required VariablesQueryMyDeletionRequest variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -172,6 +195,7 @@ class OptionsQueryMyDeletionRequest extends graphql.QueryOptions<QueryMyDeletion
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'MyDeletionRequest',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -202,6 +226,7 @@ class OptionsQueryMyDeletionRequest extends graphql.QueryOptions<QueryMyDeletion
 class WatchOptionsQueryMyDeletionRequest extends graphql.WatchQueryOptions<QueryMyDeletionRequest> {
   WatchOptionsQueryMyDeletionRequest({
     String? operationName,
+    required VariablesQueryMyDeletionRequest variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -213,6 +238,7 @@ class WatchOptionsQueryMyDeletionRequest extends graphql.WatchQueryOptions<Query
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'MyDeletionRequest',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -229,182 +255,65 @@ class WatchOptionsQueryMyDeletionRequest extends graphql.WatchQueryOptions<Query
 }
 
 class FetchMoreOptionsQueryMyDeletionRequest extends graphql.FetchMoreOptions {
-  FetchMoreOptionsQueryMyDeletionRequest({required graphql.UpdateQuery updateQuery})
-    : super(updateQuery: updateQuery, document: documentNodeQueryMyDeletionRequest);
+  FetchMoreOptionsQueryMyDeletionRequest({
+    required graphql.UpdateQuery updateQuery,
+    required VariablesQueryMyDeletionRequest variables,
+  }) : super(
+         updateQuery: updateQuery,
+         variables: variables.toJson(),
+         document: documentNodeQueryMyDeletionRequest,
+       );
 }
 
 extension ClientExtensionQueryMyDeletionRequest on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QueryMyDeletionRequest>> queryMyDeletionRequest([
-    OptionsQueryMyDeletionRequest? options,
-  ]) async => await this.query(options ?? OptionsQueryMyDeletionRequest());
+  Future<graphql.QueryResult<QueryMyDeletionRequest>> queryMyDeletionRequest(
+    OptionsQueryMyDeletionRequest options,
+  ) async => await this.query(options);
 
-  graphql.ObservableQuery<QueryMyDeletionRequest> watchQueryMyDeletionRequest([
-    WatchOptionsQueryMyDeletionRequest? options,
-  ]) => this.watchQuery(options ?? WatchOptionsQueryMyDeletionRequest());
+  graphql.ObservableQuery<QueryMyDeletionRequest> watchQueryMyDeletionRequest(
+    WatchOptionsQueryMyDeletionRequest options,
+  ) => this.watchQuery(options);
 
-  void writeQueryMyDeletionRequest({required QueryMyDeletionRequest data, bool broadcast = true}) =>
-      this.writeQuery(
-        graphql.Request(operation: graphql.Operation(document: documentNodeQueryMyDeletionRequest)),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
+  void writeQueryMyDeletionRequest({
+    required QueryMyDeletionRequest data,
+    required VariablesQueryMyDeletionRequest variables,
+    bool broadcast = true,
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(document: documentNodeQueryMyDeletionRequest),
+      variables: variables.toJson(),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
 
-  QueryMyDeletionRequest? readQueryMyDeletionRequest({bool optimistic = true}) {
+  QueryMyDeletionRequest? readQueryMyDeletionRequest({
+    required VariablesQueryMyDeletionRequest variables,
+    bool optimistic = true,
+  }) {
     final result = this.readQuery(
-      graphql.Request(operation: graphql.Operation(document: documentNodeQueryMyDeletionRequest)),
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryMyDeletionRequest),
+        variables: variables.toJson(),
+      ),
       optimistic: optimistic,
     );
     return result == null ? null : QueryMyDeletionRequest.fromJson(result);
   }
 }
 
-class QueryMyDeletionRequestdeletionRequestsCollection {
-  QueryMyDeletionRequestdeletionRequestsCollection({
-    required this.edges,
-    this.$__typename = 'DeletionRequestsConnection',
-  });
-
-  factory QueryMyDeletionRequestdeletionRequestsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryMyDeletionRequestdeletionRequestsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryMyDeletionRequestdeletionRequestsCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryMyDeletionRequestdeletionRequestsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMyDeletionRequestdeletionRequestsCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMyDeletionRequestdeletionRequestsCollectionedges {
-  QueryMyDeletionRequestdeletionRequestsCollectionedges({
-    required this.node,
-    this.$__typename = 'DeletionRequestsEdge',
-  });
-
-  factory QueryMyDeletionRequestdeletionRequestsCollectionedges.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryMyDeletionRequestdeletionRequestsCollectionedges(
-      node: QueryMyDeletionRequestdeletionRequestsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryMyDeletionRequestdeletionRequestsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMyDeletionRequestdeletionRequestsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMyDeletionRequestdeletionRequestsCollectionedgesnode {
-  QueryMyDeletionRequestdeletionRequestsCollectionedgesnode({
+class QueryMyDeletionRequestdeletionRequestsByPk {
+  QueryMyDeletionRequestdeletionRequestsByPk({
     required this.requestedAt,
     required this.purgeAfter,
-    this.$__typename = 'DeletionRequests',
+    this.$__typename = 'deletionRequests',
   });
 
-  factory QueryMyDeletionRequestdeletionRequestsCollectionedgesnode.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QueryMyDeletionRequestdeletionRequestsByPk.fromJson(Map<String, dynamic> json) {
     final l$requestedAt = json['requestedAt'];
     final l$purgeAfter = json['purgeAfter'];
     final l$$__typename = json['__typename'];
-    return QueryMyDeletionRequestdeletionRequestsCollectionedgesnode(
+    return QueryMyDeletionRequestdeletionRequestsByPk(
       requestedAt: DateTime.parse((l$requestedAt as String)),
       purgeAfter: DateTime.parse((l$purgeAfter as String)),
       $__typename: (l$$__typename as String),
@@ -441,8 +350,7 @@ class QueryMyDeletionRequestdeletionRequestsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMyDeletionRequestdeletionRequestsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryMyDeletionRequestdeletionRequestsByPk || runtimeType != other.runtimeType) {
       return false;
     }
     final l$requestedAt = requestedAt;

@@ -13,9 +13,7 @@ void main() {
   late ChatDataSource dataSource;
 
   setUpAll(() {
-    registerFallbackValue(
-      OptionsQueryChatStatus(variables: VariablesQueryChatStatus(profileId: 'x')),
-    );
+    registerFallbackValue(OptionsQueryChatStatus(variables: VariablesQueryChatStatus(userId: 'x')));
   });
 
   setUp(() {
@@ -24,7 +22,6 @@ void main() {
       client: client,
       restClient: _MockRestClient(),
       functionUrl: 'https://example.test/chat',
-      apiKey: 'key',
     );
   });
 
@@ -44,14 +41,12 @@ void main() {
     'reads the per-day limits from the two config rows and the switch from the settings',
     () async {
       answerWith({
-        'chatMessagesLeft': 7,
+        'plusStates': [
+          {'chatMessagesLeftToday': 7, '__typename': 'PlusStates'},
+        ],
         'plusLimit': config('30'),
         'freeLimit': config('5'),
-        'profileSettingsByPk': {
-          'profileId': 'p1',
-          'chatEnabled': true,
-          '__typename': 'ProfileSettings',
-        },
+        'userSettingsByPk': {'userId': 'p1', 'chatEnabled': true, '__typename': 'UserSettings'},
       });
 
       final status = await dataSource.getStatus('p1');
@@ -65,10 +60,10 @@ void main() {
 
   test('a missing config row or an unreadable value reads as 0', () async {
     answerWith({
-      'chatMessagesLeft': null,
+      'plusStates': <Object?>[],
       'plusLimit': null,
       'freeLimit': config('many'),
-      'profileSettingsByPk': null,
+      'userSettingsByPk': null,
     });
 
     final status = await dataSource.getStatus('p1');
@@ -80,10 +75,12 @@ void main() {
 
   test('a missing settings row reads as off', () async {
     answerWith({
-      'chatMessagesLeft': 1,
+      'plusStates': [
+        {'chatMessagesLeftToday': 1, '__typename': 'PlusStates'},
+      ],
       'plusLimit': config('30'),
       'freeLimit': config('5'),
-      'profileSettingsByPk': null,
+      'userSettingsByPk': null,
     });
 
     expect((await dataSource.getStatus('p1')).isEnabled, isFalse);

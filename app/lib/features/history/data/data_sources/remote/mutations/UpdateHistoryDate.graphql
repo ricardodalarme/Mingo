@@ -1,15 +1,16 @@
 mutation UpdateHistoryDate(
-  $id: UUID!
-  $coupleId: UUID
+  $id: uuid!
+  $coupleId: uuid
   $title: String!
-  $kind: ImportantDateKind!
-  $month: Int!
-  $day: Int!
-  $year: Int
+  $kind: ImportantDateKind_enum!
+  $month: smallint!
+  $day: smallint!
+  $year: smallint
   $yearly: Boolean!
 ) {
-  updateImportantDatesCollection(
-    set: {
+  updateImportantDates(
+    where: { id: { _eq: $id } }
+    _set: {
       coupleId: $coupleId
       title: $title
       kind: $kind
@@ -18,9 +19,7 @@ mutation UpdateHistoryDate(
       year: $year
       yearly: $yearly
     }
-    filter: { id: { eq: $id } }
-    atMost: 1
   ) {
-    affectedCount
+    affected_rows
   }
 }

@@ -24,8 +24,7 @@ class CardsListCubit({required final CardsRepository _cardsRepository})
         state.copyWith(
           cards: Success(page.items),
           hasNext: page.hasNext,
-          cursor: page.cursor,
-          clearCursor: page.cursor == null,
+          offset: page.offset,
           isLoadingMore: false,
         ),
       );
@@ -45,7 +44,7 @@ class CardsListCubit({required final CardsRepository _cardsRepository})
     final generation = _generation;
     emit(state.copyWith(isLoadingMore: true));
     try {
-      final page = await _cardsRepository.getHistory(after: state.cursor);
+      final page = await _cardsRepository.getHistory(offset: state.offset);
       if (generation != _generation) return;
       final latest = state.cards;
       if (latest is! Success<List<CardSummary>>) return;
@@ -57,8 +56,7 @@ class CardsListCubit({required final CardsRepository _cardsRepository})
             ...page.items.where((card) => !known.contains(card.id)),
           ]),
           hasNext: page.hasNext,
-          cursor: page.cursor,
-          clearCursor: page.cursor == null,
+          offset: page.offset,
           isLoadingMore: false,
         ),
       );

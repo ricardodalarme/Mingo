@@ -17,21 +17,21 @@ class ListsRepository({
   /// The id of the couple the person is in, or null when they are on their own.
   Future<String?> getCoupleId() => _togetherRepository.getCoupleId();
 
-  Future<List<CoupleList>> getLists() => _run(
-    'read lists',
-    () async => [for (final node in await _dataSource.getLists()) node.toModel()],
-  );
+  Future<List<CoupleList>> getLists() => _run('read lists', () async {
+    final currentUserId = await _togetherRepository.getCurrentUserId();
+
+    return [
+      for (final node in await _dataSource.getLists()) node.toModel(currentUserId: currentUserId),
+    ];
+  });
 
   Future<ListDetail> getList(String id) => _run('read a list', () async {
     final node = await _dataSource.getList(id);
     if (node == null) throw const LocalizedException(l10nKey: listNotFoundCode);
 
     return ListDetail(
-      list: node.toModel(),
-      items: [
-        if (node.listItemsCollection case final items?)
-          for (final edge in items.edges) edge.node.toModel(),
-      ],
+      list: node.toModel(currentUserId: await _togetherRepository.getCurrentUserId()),
+      items: [for (final item in node.items) item.toModel()],
       currentCoupleId: await _togetherRepository.getCoupleId(),
     );
   });
@@ -42,27 +42,32 @@ class ListsRepository({
     required String title,
     required ListKind kind,
     String? coupleId,
-  }) => _run(
-    'create a list',
-    () async => (await _dataSource.createList(
+  }) => _run('create a list', () async {
+    final saved = await _dataSource.createList(
       id: id,
       title: title.trim(),
       kind: kind.toRemote(),
       coupleId: coupleId,
-    )).toModel(),
-  );
+    );
 
-  Future<CoupleList> renameList({required String id, required String title}) => _run(
-    'rename a list',
-    () async => (await _dataSource.renameList(id: id, title: title.trim())).toModel(),
-  );
+    return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
+  });
+
+  Future<CoupleList> renameList({required String id, required String title}) =>
+      _run('rename a list', () async {
+        final saved = await _dataSource.renameList(id: id, title: title.trim());
+
+        return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
+      });
 
   Future<void> deleteList(String id) => _run('delete a list', () => _dataSource.deleteList(id));
 
-  Future<CoupleList> setListVisibility({required String id, String? coupleId}) => _run(
-    'change a list visibility',
-    () async => (await _dataSource.setListVisibility(id: id, coupleId: coupleId)).toModel(),
-  );
+  Future<CoupleList> setListVisibility({required String id, String? coupleId}) =>
+      _run('change a list visibility', () async {
+        final saved = await _dataSource.setListVisibility(id: id, coupleId: coupleId);
+
+        return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
+      });
 
   Future<ListItem> addItem({
     required String id,

@@ -14,7 +14,10 @@ class ProfileInjectionModule() implements InjectionModule {
       () => ProfileDataSource(client: injector.get<GQLClient>()),
     )
     ..registerLazySingleton<ProfileRepository>(
-      () => ProfileRepository(profileDataSource: injector.get<ProfileDataSource>()),
+      () => ProfileRepository(
+        profileDataSource: injector.get<ProfileDataSource>(),
+        authenticationRepository: injector.get<AuthenticationRepository>(),
+      ),
     )
     ..registerFactory<ProfileSetupCubit>(
       () => ProfileSetupCubit(

@@ -52,29 +52,29 @@ class VariablesMutationShareLoveStyle {
 }
 
 class MutationShareLoveStyle {
-  MutationShareLoveStyle({this.sendPartnerMessage, this.$__typename = 'Mutation'});
+  MutationShareLoveStyle({this.insertPartnerMessagesOne, this.$__typename = 'mutation_root'});
 
   factory MutationShareLoveStyle.fromJson(Map<String, dynamic> json) {
-    final l$sendPartnerMessage = json['sendPartnerMessage'];
+    final l$insertPartnerMessagesOne = json['insertPartnerMessagesOne'];
     final l$$__typename = json['__typename'];
     return MutationShareLoveStyle(
-      sendPartnerMessage: l$sendPartnerMessage == null
+      insertPartnerMessagesOne: l$insertPartnerMessagesOne == null
           ? null
-          : MutationShareLoveStylesendPartnerMessage.fromJson(
-              (l$sendPartnerMessage as Map<String, dynamic>),
+          : MutationShareLoveStyleinsertPartnerMessagesOne.fromJson(
+              (l$insertPartnerMessagesOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationShareLoveStylesendPartnerMessage? sendPartnerMessage;
+  final MutationShareLoveStyleinsertPartnerMessagesOne? insertPartnerMessagesOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$sendPartnerMessage = sendPartnerMessage;
-    _resultData['sendPartnerMessage'] = l$sendPartnerMessage?.toJson();
+    final l$insertPartnerMessagesOne = insertPartnerMessagesOne;
+    _resultData['insertPartnerMessagesOne'] = l$insertPartnerMessagesOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -82,9 +82,9 @@ class MutationShareLoveStyle {
 
   @override
   int get hashCode {
-    final l$sendPartnerMessage = sendPartnerMessage;
+    final l$insertPartnerMessagesOne = insertPartnerMessagesOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$sendPartnerMessage, l$$__typename]);
+    return Object.hashAll([l$insertPartnerMessagesOne, l$$__typename]);
   }
 
   @override
@@ -95,9 +95,9 @@ class MutationShareLoveStyle {
     if (other is! MutationShareLoveStyle || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$sendPartnerMessage = sendPartnerMessage;
-    final lOther$sendPartnerMessage = other.sendPartnerMessage;
-    if (l$sendPartnerMessage != lOther$sendPartnerMessage) {
+    final l$insertPartnerMessagesOne = insertPartnerMessagesOne;
+    final lOther$insertPartnerMessagesOne = other.insertPartnerMessagesOne;
+    if (l$insertPartnerMessagesOne != lOther$insertPartnerMessagesOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -126,20 +126,27 @@ const documentNodeMutationShareLoveStyle = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'sendPartnerMessage'),
+            name: NameNode(value: 'insertPartnerMessagesOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'kind'),
-                value: StringValueNode(value: 'note', isBlock: false),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'body'),
-                value: VariableNode(name: NameNode(value: 'body')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'forWidget'),
-                value: BooleanValueNode(value: true),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: EnumValueNode(name: NameNode(value: 'note')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'body'),
+                      value: VariableNode(name: NameNode(value: 'body')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'forWidget'),
+                      value: BooleanValueNode(value: true),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -265,16 +272,16 @@ extension ClientExtensionMutationShareLoveStyle on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationShareLoveStylesendPartnerMessage {
-  MutationShareLoveStylesendPartnerMessage({
+class MutationShareLoveStyleinsertPartnerMessagesOne {
+  MutationShareLoveStyleinsertPartnerMessagesOne({
     required this.id,
-    this.$__typename = 'PartnerMessages',
+    this.$__typename = 'partnerMessages',
   });
 
-  factory MutationShareLoveStylesendPartnerMessage.fromJson(Map<String, dynamic> json) {
+  factory MutationShareLoveStyleinsertPartnerMessagesOne.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationShareLoveStylesendPartnerMessage(
+    return MutationShareLoveStyleinsertPartnerMessagesOne(
       id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
@@ -305,7 +312,8 @@ class MutationShareLoveStylesendPartnerMessage {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationShareLoveStylesendPartnerMessage || runtimeType != other.runtimeType) {
+    if (other is! MutationShareLoveStyleinsertPartnerMessagesOne ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

@@ -52,27 +52,27 @@ class VariablesQueryHolidays {
 }
 
 class QueryHolidays {
-  QueryHolidays({required this.contentItemsCollection, this.$__typename = 'Query'});
+  QueryHolidays({required this.contentItems, this.$__typename = 'query_root'});
 
   factory QueryHolidays.fromJson(Map<String, dynamic> json) {
-    final l$contentItemsCollection = json['contentItemsCollection'];
+    final l$contentItems = json['contentItems'];
     final l$$__typename = json['__typename'];
     return QueryHolidays(
-      contentItemsCollection: QueryHolidayscontentItemsCollection.fromJson(
-        (l$contentItemsCollection as Map<String, dynamic>),
-      ),
+      contentItems: (l$contentItems as List<dynamic>)
+          .map((e) => QueryHolidayscontentItems.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryHolidayscontentItemsCollection contentItemsCollection;
+  final List<QueryHolidayscontentItems> contentItems;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$contentItemsCollection = contentItemsCollection;
-    _resultData['contentItemsCollection'] = l$contentItemsCollection.toJson();
+    final l$contentItems = contentItems;
+    _resultData['contentItems'] = l$contentItems.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -80,9 +80,9 @@ class QueryHolidays {
 
   @override
   int get hashCode {
-    final l$contentItemsCollection = contentItemsCollection;
+    final l$contentItems = contentItems;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$contentItemsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$contentItems.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -93,10 +93,17 @@ class QueryHolidays {
     if (other is! QueryHolidays || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$contentItemsCollection = contentItemsCollection;
-    final lOther$contentItemsCollection = other.contentItemsCollection;
-    if (l$contentItemsCollection != lOther$contentItemsCollection) {
+    final l$contentItems = contentItems;
+    final lOther$contentItems = other.contentItems;
+    if (l$contentItems.length != lOther$contentItems.length) {
       return false;
+    }
+    for (int i = 0; i < l$contentItems.length; i++) {
+      final l$contentItems$entry = l$contentItems[i];
+      final lOther$contentItems$entry = lOther$contentItems[i];
+      if (l$contentItems$entry != lOther$contentItems$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -124,15 +131,15 @@ const documentNodeQueryHolidays = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'contentItemsCollection'),
+            name: NameNode(value: 'contentItems'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '50'),
               ),
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -140,7 +147,7 @@ const documentNodeQueryHolidays = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: EnumValueNode(name: NameNode(value: 'holiday')),
                           ),
                         ],
@@ -151,7 +158,7 @@ const documentNodeQueryHolidays = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'locale')),
                           ),
                         ],
@@ -162,7 +169,7 @@ const documentNodeQueryHolidays = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: BooleanValueNode(value: true),
                           ),
                         ],
@@ -172,14 +179,14 @@ const documentNodeQueryHolidays = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'month'),
-                          value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'asc_nulls_last')),
                         ),
                       ],
                     ),
@@ -187,7 +194,7 @@ const documentNodeQueryHolidays = DocumentNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'day'),
-                          value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'asc_nulls_last')),
                         ),
                       ],
                     ),
@@ -199,66 +206,32 @@ const documentNodeQueryHolidays = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'slug'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'slug'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'month'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'day'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'month'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'day'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -407,147 +380,22 @@ extension ClientExtensionQueryHolidays on graphql.GraphQLClient {
   }
 }
 
-class QueryHolidayscontentItemsCollection {
-  QueryHolidayscontentItemsCollection({
-    required this.edges,
-    this.$__typename = 'ContentItemsConnection',
-  });
-
-  factory QueryHolidayscontentItemsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryHolidayscontentItemsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryHolidayscontentItemsCollectionedges.fromJson((e as Map<String, dynamic>)),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryHolidayscontentItemsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHolidayscontentItemsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryHolidayscontentItemsCollectionedges {
-  QueryHolidayscontentItemsCollectionedges({
-    required this.node,
-    this.$__typename = 'ContentItemsEdge',
-  });
-
-  factory QueryHolidayscontentItemsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryHolidayscontentItemsCollectionedges(
-      node: QueryHolidayscontentItemsCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryHolidayscontentItemsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHolidayscontentItemsCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryHolidayscontentItemsCollectionedgesnode {
-  QueryHolidayscontentItemsCollectionedgesnode({
+class QueryHolidayscontentItems {
+  QueryHolidayscontentItems({
     required this.slug,
     required this.title,
     this.month,
     this.day,
-    this.$__typename = 'ContentItems',
+    this.$__typename = 'contentItems',
   });
 
-  factory QueryHolidayscontentItemsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryHolidayscontentItems.fromJson(Map<String, dynamic> json) {
     final l$slug = json['slug'];
     final l$title = json['title'];
     final l$month = json['month'];
     final l$day = json['day'];
     final l$$__typename = json['__typename'];
-    return QueryHolidayscontentItemsCollectionedgesnode(
+    return QueryHolidayscontentItems(
       slug: (l$slug as String),
       title: (l$title as String),
       month: (l$month as int?),
@@ -596,8 +444,7 @@ class QueryHolidayscontentItemsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryHolidayscontentItemsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryHolidayscontentItems || runtimeType != other.runtimeType) {
       return false;
     }
     final l$slug = slug;

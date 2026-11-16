@@ -40,7 +40,7 @@ void main() {
           detail: _detail(
             isMine: false,
             note: 'Obrigada por cada café.',
-            items: const [CardItem(slipId: 's1', body: 'Fez café')],
+            items: const [CardItem(id: 's1', body: 'Fez café')],
           ),
         ),
       ),
@@ -62,8 +62,8 @@ void main() {
           detail: _detail(
             isMine: false,
             items: const [
-              CardItem(slipId: 's1', body: 'Fez café'),
-              CardItem(slipId: 's2', body: 'Me ouviu'),
+              CardItem(id: 's1', body: 'Fez café'),
+              CardItem(id: 's2', body: 'Me ouviu'),
             ],
           ),
         ),
@@ -80,7 +80,7 @@ void main() {
           detail: _detail(
             isMine: true,
             note: 'Uma semana boa.',
-            items: const [CardItem(slipId: 's1', body: 'Fez café')],
+            items: const [CardItem(id: 's1', body: 'Fez café')],
           ),
         ),
       ),

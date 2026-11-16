@@ -64,30 +64,29 @@ class VariablesMutationPlanDateIdea {
 }
 
 class MutationPlanDateIdea {
-  MutationPlanDateIdea({
-    required this.updateSavedDateIdeasCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationPlanDateIdea({this.updateSavedDateIdeasByPk, this.$__typename = 'mutation_root'});
 
   factory MutationPlanDateIdea.fromJson(Map<String, dynamic> json) {
-    final l$updateSavedDateIdeasCollection = json['updateSavedDateIdeasCollection'];
+    final l$updateSavedDateIdeasByPk = json['updateSavedDateIdeasByPk'];
     final l$$__typename = json['__typename'];
     return MutationPlanDateIdea(
-      updateSavedDateIdeasCollection: MutationPlanDateIdeaupdateSavedDateIdeasCollection.fromJson(
-        (l$updateSavedDateIdeasCollection as Map<String, dynamic>),
-      ),
+      updateSavedDateIdeasByPk: l$updateSavedDateIdeasByPk == null
+          ? null
+          : MutationPlanDateIdeaupdateSavedDateIdeasByPk.fromJson(
+              (l$updateSavedDateIdeasByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationPlanDateIdeaupdateSavedDateIdeasCollection updateSavedDateIdeasCollection;
+  final MutationPlanDateIdeaupdateSavedDateIdeasByPk? updateSavedDateIdeasByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateSavedDateIdeasCollection = updateSavedDateIdeasCollection;
-    _resultData['updateSavedDateIdeasCollection'] = l$updateSavedDateIdeasCollection.toJson();
+    final l$updateSavedDateIdeasByPk = updateSavedDateIdeasByPk;
+    _resultData['updateSavedDateIdeasByPk'] = l$updateSavedDateIdeasByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -95,9 +94,9 @@ class MutationPlanDateIdea {
 
   @override
   int get hashCode {
-    final l$updateSavedDateIdeasCollection = updateSavedDateIdeasCollection;
+    final l$updateSavedDateIdeasByPk = updateSavedDateIdeasByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateSavedDateIdeasCollection, l$$__typename]);
+    return Object.hashAll([l$updateSavedDateIdeasByPk, l$$__typename]);
   }
 
   @override
@@ -108,9 +107,9 @@ class MutationPlanDateIdea {
     if (other is! MutationPlanDateIdea || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateSavedDateIdeasCollection = updateSavedDateIdeasCollection;
-    final lOther$updateSavedDateIdeasCollection = other.updateSavedDateIdeasCollection;
-    if (l$updateSavedDateIdeasCollection != lOther$updateSavedDateIdeasCollection) {
+    final l$updateSavedDateIdeasByPk = updateSavedDateIdeasByPk;
+    final lOther$updateSavedDateIdeasByPk = other.updateSavedDateIdeasByPk;
+    if (l$updateSavedDateIdeasByPk != lOther$updateSavedDateIdeasByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -130,13 +129,13 @@ const documentNodeMutationPlanDateIdea = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'day')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -145,11 +144,22 @@ const documentNodeMutationPlanDateIdea = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateSavedDateIdeasCollection'),
+            name: NameNode(value: 'updateSavedDateIdeasByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -163,34 +173,12 @@ const documentNodeMutationPlanDateIdea = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -309,29 +297,29 @@ extension ClientExtensionMutationPlanDateIdea on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationPlanDateIdeaupdateSavedDateIdeasCollection {
-  MutationPlanDateIdeaupdateSavedDateIdeasCollection({
-    required this.affectedCount,
-    this.$__typename = 'SavedDateIdeasUpdateResponse',
+class MutationPlanDateIdeaupdateSavedDateIdeasByPk {
+  MutationPlanDateIdeaupdateSavedDateIdeasByPk({
+    required this.id,
+    this.$__typename = 'savedDateIdeas',
   });
 
-  factory MutationPlanDateIdeaupdateSavedDateIdeasCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationPlanDateIdeaupdateSavedDateIdeasByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationPlanDateIdeaupdateSavedDateIdeasCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationPlanDateIdeaupdateSavedDateIdeasByPk(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -339,9 +327,9 @@ class MutationPlanDateIdeaupdateSavedDateIdeasCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -349,13 +337,13 @@ class MutationPlanDateIdeaupdateSavedDateIdeasCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationPlanDateIdeaupdateSavedDateIdeasCollection ||
+    if (other is! MutationPlanDateIdeaupdateSavedDateIdeasByPk ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

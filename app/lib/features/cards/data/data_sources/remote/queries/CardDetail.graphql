@@ -1,7 +1,7 @@
-query CardDetail($id: UUID!) {
+query CardDetail($id: uuid!) {
   cardsByPk(id: $id) {
     ...CardFragment
-    isMine
+    authorId
     author {
       displayName
     }

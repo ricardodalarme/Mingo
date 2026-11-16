@@ -7,27 +7,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryDateIdeas {
-  QueryDateIdeas({required this.savedDateIdeasCollection, this.$__typename = 'Query'});
+  QueryDateIdeas({required this.savedDateIdeas, this.$__typename = 'query_root'});
 
   factory QueryDateIdeas.fromJson(Map<String, dynamic> json) {
-    final l$savedDateIdeasCollection = json['savedDateIdeasCollection'];
+    final l$savedDateIdeas = json['savedDateIdeas'];
     final l$$__typename = json['__typename'];
     return QueryDateIdeas(
-      savedDateIdeasCollection: QueryDateIdeassavedDateIdeasCollection.fromJson(
-        (l$savedDateIdeasCollection as Map<String, dynamic>),
-      ),
+      savedDateIdeas: (l$savedDateIdeas as List<dynamic>)
+          .map((e) => QueryDateIdeassavedDateIdeas.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryDateIdeassavedDateIdeasCollection savedDateIdeasCollection;
+  final List<QueryDateIdeassavedDateIdeas> savedDateIdeas;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$savedDateIdeasCollection = savedDateIdeasCollection;
-    _resultData['savedDateIdeasCollection'] = l$savedDateIdeasCollection.toJson();
+    final l$savedDateIdeas = savedDateIdeas;
+    _resultData['savedDateIdeas'] = l$savedDateIdeas.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +35,9 @@ class QueryDateIdeas {
 
   @override
   int get hashCode {
-    final l$savedDateIdeasCollection = savedDateIdeasCollection;
+    final l$savedDateIdeas = savedDateIdeas;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$savedDateIdeasCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$savedDateIdeas.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -48,10 +48,17 @@ class QueryDateIdeas {
     if (other is! QueryDateIdeas || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$savedDateIdeasCollection = savedDateIdeasCollection;
-    final lOther$savedDateIdeasCollection = other.savedDateIdeasCollection;
-    if (l$savedDateIdeasCollection != lOther$savedDateIdeasCollection) {
+    final l$savedDateIdeas = savedDateIdeas;
+    final lOther$savedDateIdeas = other.savedDateIdeas;
+    if (l$savedDateIdeas.length != lOther$savedDateIdeas.length) {
       return false;
+    }
+    for (int i = 0; i < l$savedDateIdeas.length; i++) {
+      final l$savedDateIdeas$entry = l$savedDateIdeas[i];
+      final lOther$savedDateIdeas$entry = lOther$savedDateIdeas[i];
+      if (l$savedDateIdeas$entry != lOther$savedDateIdeas$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -72,18 +79,18 @@ const documentNodeQueryDateIdeas = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'savedDateIdeasCollection'),
+            name: NameNode(value: 'savedDateIdeas'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -91,7 +98,7 @@ const documentNodeQueryDateIdeas = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '50'),
               ),
             ],
@@ -99,66 +106,32 @@ const documentNodeQueryDateIdeas = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'status'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'plannedFor'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'status'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'plannedFor'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -287,153 +260,25 @@ extension ClientExtensionQueryDateIdeas on graphql.GraphQLClient {
   }
 }
 
-class QueryDateIdeassavedDateIdeasCollection {
-  QueryDateIdeassavedDateIdeasCollection({
-    required this.edges,
-    this.$__typename = 'SavedDateIdeasConnection',
-  });
-
-  factory QueryDateIdeassavedDateIdeasCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryDateIdeassavedDateIdeasCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) =>
-                QueryDateIdeassavedDateIdeasCollectionedges.fromJson((e as Map<String, dynamic>)),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryDateIdeassavedDateIdeasCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryDateIdeassavedDateIdeasCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryDateIdeassavedDateIdeasCollectionedges {
-  QueryDateIdeassavedDateIdeasCollectionedges({
-    required this.node,
-    this.$__typename = 'SavedDateIdeasEdge',
-  });
-
-  factory QueryDateIdeassavedDateIdeasCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryDateIdeassavedDateIdeasCollectionedges(
-      node: QueryDateIdeassavedDateIdeasCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryDateIdeassavedDateIdeasCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryDateIdeassavedDateIdeasCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryDateIdeassavedDateIdeasCollectionedgesnode {
-  QueryDateIdeassavedDateIdeasCollectionedgesnode({
+class QueryDateIdeassavedDateIdeas {
+  QueryDateIdeassavedDateIdeas({
     required this.id,
     required this.title,
     required this.status,
     this.plannedFor,
-    this.$__typename = 'SavedDateIdeas',
+    this.$__typename = 'savedDateIdeas',
   });
 
-  factory QueryDateIdeassavedDateIdeasCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryDateIdeassavedDateIdeas.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$status = json['status'];
     final l$plannedFor = json['plannedFor'];
     final l$$__typename = json['__typename'];
-    return QueryDateIdeassavedDateIdeasCollectionedgesnode(
+    return QueryDateIdeassavedDateIdeas(
       id: (l$id as String),
       title: (l$title as String),
-      status: fromJsonEnumDateIdeaStatus((l$status as String)),
+      status: fromJsonEnumDateIdeaStatus_enum((l$status as String)),
       plannedFor: l$plannedFor == null ? null : DateTime.parse((l$plannedFor as String)),
       $__typename: (l$$__typename as String),
     );
@@ -443,7 +288,7 @@ class QueryDateIdeassavedDateIdeasCollectionedgesnode {
 
   final String title;
 
-  final EnumDateIdeaStatus status;
+  final EnumDateIdeaStatus_enum status;
 
   final DateTime? plannedFor;
 
@@ -456,7 +301,7 @@ class QueryDateIdeassavedDateIdeasCollectionedgesnode {
     final l$title = title;
     _resultData['title'] = l$title;
     final l$status = status;
-    _resultData['status'] = toJsonEnumDateIdeaStatus(l$status);
+    _resultData['status'] = toJsonEnumDateIdeaStatus_enum(l$status);
     final l$plannedFor = plannedFor;
     _resultData['plannedFor'] = l$plannedFor == null
         ? null
@@ -481,8 +326,7 @@ class QueryDateIdeassavedDateIdeasCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryDateIdeassavedDateIdeasCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryDateIdeassavedDateIdeas || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

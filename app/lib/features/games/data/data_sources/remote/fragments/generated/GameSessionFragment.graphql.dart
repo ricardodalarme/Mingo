@@ -12,7 +12,7 @@ class FragmentGameSessionFragment {
     required this.invitedBy,
     required this.itemSlugs,
     required this.createdAt,
-    this.$__typename = 'GameSessions',
+    this.$__typename = 'gameSessions',
   });
 
   factory FragmentGameSessionFragment.fromJson(Map<String, dynamic> json) {
@@ -25,10 +25,10 @@ class FragmentGameSessionFragment {
     final l$$__typename = json['__typename'];
     return FragmentGameSessionFragment(
       id: (l$id as String),
-      game: fromJsonEnumGameKind((l$game as String)),
-      status: fromJsonEnumGameStatus((l$status as String)),
+      game: fromJsonEnumGameKind_enum((l$game as String)),
+      status: fromJsonEnumGameStatus_enum((l$status as String)),
       invitedBy: (l$invitedBy as String),
-      itemSlugs: (l$itemSlugs as List<dynamic>).map((e) => (e as String?)).toList(),
+      itemSlugs: (l$itemSlugs as List<dynamic>).map((e) => (e as String)).toList(),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
     );
@@ -36,13 +36,13 @@ class FragmentGameSessionFragment {
 
   final String id;
 
-  final EnumGameKind game;
+  final EnumGameKind_enum game;
 
-  final EnumGameStatus status;
+  final EnumGameStatus_enum status;
 
   final String invitedBy;
 
-  final List<String?> itemSlugs;
+  final List<String> itemSlugs;
 
   final DateTime createdAt;
 
@@ -53,9 +53,9 @@ class FragmentGameSessionFragment {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$game = game;
-    _resultData['game'] = toJsonEnumGameKind(l$game);
+    _resultData['game'] = toJsonEnumGameKind_enum(l$game);
     final l$status = status;
-    _resultData['status'] = toJsonEnumGameStatus(l$status);
+    _resultData['status'] = toJsonEnumGameStatus_enum(l$status);
     final l$invitedBy = invitedBy;
     _resultData['invitedBy'] = l$invitedBy;
     final l$itemSlugs = itemSlugs;
@@ -144,7 +144,7 @@ class FragmentGameSessionFragment {
 const fragmentDefinitionGameSessionFragment = FragmentDefinitionNode(
   name: NameNode(value: 'GameSessionFragment'),
   typeCondition: TypeConditionNode(
-    on: NamedTypeNode(name: NameNode(value: 'GameSessions'), isNonNull: false),
+    on: NamedTypeNode(name: NameNode(value: 'gameSessions'), isNonNull: false),
   ),
   directives: [],
   selectionSet: SelectionSetNode(

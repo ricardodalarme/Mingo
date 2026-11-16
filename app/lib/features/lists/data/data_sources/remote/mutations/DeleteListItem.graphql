@@ -1,5 +1,5 @@
-mutation DeleteListItem($id: UUID!) {
-  deleteFromListItemsCollection(filter: { id: { eq: $id } }, atMost: 1) {
-    affectedCount
+mutation DeleteListItem($id: uuid!) {
+  deleteListItems(where: { id: { _eq: $id } }) {
+    affected_rows
   }
 }

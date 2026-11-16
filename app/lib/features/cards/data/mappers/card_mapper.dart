@@ -1,4 +1,5 @@
 import 'package:app/features/cards/data/data_sources/remote/fragments/generated/CardFragment.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/mutations/generated/PrepareCard.graphql.dart';
 import 'package:app/features/cards/data/mappers/card_enum_mapper.dart';
 import 'package:app/features/cards/data/models/card_status.dart';
 import 'package:app/features/cards/data/models/sunday_card.dart';
@@ -12,13 +13,27 @@ extension CardFragmentMapper on FragmentCardFragment {
     note: note,
     sentAt: sentAt,
     items: [
-      for (final edge in items?.edges ?? const <FragmentCardFragmentitemsedges>[])
+      for (final item in items)
         CardItem(
-          slipId: edge.node.slipId ?? '',
-          body: edge.node.body,
-          category: edge.node.slip?.category?.toModel(),
-          writtenAt: edge.node.slip?.createdAt,
+          id: item.id,
+          body: item.body,
+          slipId: item.slipId,
+          category: item.slip?.category?.toModel(),
+          writtenAt: item.slip?.createdAt,
         ),
+    ],
+  );
+}
+
+extension PreparedCardMapper on MutationPrepareCardprepareCard {
+  SundayCard toModel() => SundayCard(
+    id: cardId,
+    status: status.toModel() ?? CardStatus.draft,
+    weekStart: weekStart,
+    note: note,
+    items: [
+      for (final item in (items as List<dynamic>? ?? const []).cast<Map<String, dynamic>>())
+        CardItem(id: item['id'] as String, body: item['body'] as String),
     ],
   );
 }

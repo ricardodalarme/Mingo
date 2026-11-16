@@ -1,14 +1,14 @@
 mutation InsertHistoryDate(
-  $id: UUID!
-  $coupleId: UUID
+  $id: uuid!
+  $coupleId: uuid
   $title: String!
-  $kind: ImportantDateKind!
-  $month: Int!
-  $day: Int!
-  $year: Int
+  $kind: ImportantDateKind_enum!
+  $month: smallint!
+  $day: smallint!
+  $year: smallint
   $yearly: Boolean!
 ) {
-  insertIntoImportantDatesCollection(
+  insertImportantDates(
     objects: [
       {
         id: $id
@@ -23,6 +23,6 @@ mutation InsertHistoryDate(
       }
     ]
   ) {
-    affectedCount
+    affected_rows
   }
 }

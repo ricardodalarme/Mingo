@@ -9,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationUpdateRelationshipStatus {
   factory VariablesMutationUpdateRelationshipStatus({
     required String profileId,
-    required EnumRelationshipStatus status,
+    required EnumRelationshipStatus_enum status,
   }) => VariablesMutationUpdateRelationshipStatus._({r'profileId': profileId, r'status': status});
 
   VariablesMutationUpdateRelationshipStatus._(this._$data);
@@ -19,7 +19,7 @@ class VariablesMutationUpdateRelationshipStatus {
     final l$profileId = data['profileId'];
     result$data['profileId'] = (l$profileId as String);
     final l$status = data['status'];
-    result$data['status'] = fromJsonEnumRelationshipStatus((l$status as String));
+    result$data['status'] = fromJsonEnumRelationshipStatus_enum((l$status as String));
     return VariablesMutationUpdateRelationshipStatus._(result$data);
   }
 
@@ -27,14 +27,14 @@ class VariablesMutationUpdateRelationshipStatus {
 
   String get profileId => (_$data['profileId'] as String);
 
-  EnumRelationshipStatus get status => (_$data['status'] as EnumRelationshipStatus);
+  EnumRelationshipStatus_enum get status => (_$data['status'] as EnumRelationshipStatus_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$profileId = profileId;
     result$data['profileId'] = l$profileId;
     final l$status = status;
-    result$data['status'] = toJsonEnumRelationshipStatus(l$status);
+    result$data['status'] = toJsonEnumRelationshipStatus_enum(l$status);
     return result$data;
   }
 
@@ -68,32 +68,29 @@ class VariablesMutationUpdateRelationshipStatus {
 }
 
 class MutationUpdateRelationshipStatus {
-  MutationUpdateRelationshipStatus({
-    required this.updateProfileSettingsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateRelationshipStatus({this.updateUserSettings, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateRelationshipStatus.fromJson(Map<String, dynamic> json) {
-    final l$updateProfileSettingsCollection = json['updateProfileSettingsCollection'];
+    final l$updateUserSettings = json['updateUserSettings'];
     final l$$__typename = json['__typename'];
     return MutationUpdateRelationshipStatus(
-      updateProfileSettingsCollection:
-          MutationUpdateRelationshipStatusupdateProfileSettingsCollection.fromJson(
-            (l$updateProfileSettingsCollection as Map<String, dynamic>),
-          ),
+      updateUserSettings: l$updateUserSettings == null
+          ? null
+          : MutationUpdateRelationshipStatusupdateUserSettings.fromJson(
+              (l$updateUserSettings as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateRelationshipStatusupdateProfileSettingsCollection
-  updateProfileSettingsCollection;
+  final MutationUpdateRelationshipStatusupdateUserSettings? updateUserSettings;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    _resultData['updateProfileSettingsCollection'] = l$updateProfileSettingsCollection.toJson();
+    final l$updateUserSettings = updateUserSettings;
+    _resultData['updateUserSettings'] = l$updateUserSettings?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -101,9 +98,9 @@ class MutationUpdateRelationshipStatus {
 
   @override
   int get hashCode {
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
+    final l$updateUserSettings = updateUserSettings;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateProfileSettingsCollection, l$$__typename]);
+    return Object.hashAll([l$updateUserSettings, l$$__typename]);
   }
 
   @override
@@ -114,9 +111,9 @@ class MutationUpdateRelationshipStatus {
     if (other is! MutationUpdateRelationshipStatus || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    final lOther$updateProfileSettingsCollection = other.updateProfileSettingsCollection;
-    if (l$updateProfileSettingsCollection != lOther$updateProfileSettingsCollection) {
+    final l$updateUserSettings = updateUserSettings;
+    final lOther$updateUserSettings = other.updateUserSettings;
+    if (l$updateUserSettings != lOther$updateUserSettings) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -136,13 +133,13 @@ const documentNodeMutationUpdateRelationshipStatus = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'profileId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'status')),
-          type: NamedTypeNode(name: NameNode(value: 'RelationshipStatus'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'RelationshipStatus_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -151,30 +148,19 @@ const documentNodeMutationUpdateRelationshipStatus = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProfileSettingsCollection'),
+            name: NameNode(value: 'updateUserSettings'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
-                      name: NameNode(value: 'relationshipStatus'),
-                      value: VariableNode(name: NameNode(value: 'status')),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'profileId'),
+                      name: NameNode(value: 'userId'),
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'profileId')),
                           ),
                         ],
@@ -184,15 +170,22 @@ const documentNodeMutationUpdateRelationshipStatus = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'relationshipStatus'),
+                      value: VariableNode(name: NameNode(value: 'status')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -316,31 +309,29 @@ extension ClientExtensionMutationUpdateRelationshipStatus on graphql.GraphQLClie
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateRelationshipStatusupdateProfileSettingsCollection {
-  MutationUpdateRelationshipStatusupdateProfileSettingsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProfileSettingsUpdateResponse',
+class MutationUpdateRelationshipStatusupdateUserSettings {
+  MutationUpdateRelationshipStatusupdateUserSettings({
+    required this.affected_rows,
+    this.$__typename = 'userSettings_mutation_response',
   });
 
-  factory MutationUpdateRelationshipStatusupdateProfileSettingsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateRelationshipStatusupdateUserSettings.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateRelationshipStatusupdateProfileSettingsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateRelationshipStatusupdateUserSettings(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -348,9 +339,9 @@ class MutationUpdateRelationshipStatusupdateProfileSettingsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -358,13 +349,13 @@ class MutationUpdateRelationshipStatusupdateProfileSettingsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateRelationshipStatusupdateProfileSettingsCollection ||
+    if (other is! MutationUpdateRelationshipStatusupdateUserSettings ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

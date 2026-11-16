@@ -1,12 +1,12 @@
 mutation InsertStoryEvent(
-  $id: UUID!
-  $coupleId: UUID
-  $kind: StoryEventKind!
+  $id: uuid!
+  $coupleId: uuid
+  $kind: StoryEventKind_enum!
   $title: String
-  $happenedOn: Date!
-  $datePrecision: DatePrecision!
+  $happenedOn: date!
+  $datePrecision: DatePrecision_enum!
 ) {
-  insertIntoStoryEventsCollection(
+  insertStoryEvents(
     objects: [
       {
         id: $id
@@ -18,6 +18,6 @@ mutation InsertStoryEvent(
       }
     ]
   ) {
-    affectedCount
+    affected_rows
   }
 }

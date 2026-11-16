@@ -25,11 +25,15 @@ class CheckinRepository({
       );
     }
 
-    final rows = await _dataSource.getAnswers(weekStart: weekStart, coupleId: coupleId);
+    final result = await _dataSource.getAnswers(
+      weekStart: weekStart,
+      coupleId: coupleId,
+      selfId: today.selfId,
+    );
     final ownAnswers = <int, CheckinAnswer>{};
     final partnerAnswers = <int, CheckinAnswer>{};
 
-    for (final row in rows) {
+    for (final row in result.answers) {
       final answer = CheckinAnswer(id: row.id, question: row.question, body: row.body);
       if (row.isMine) {
         ownAnswers[answer.question] = answer;
@@ -43,12 +47,13 @@ class CheckinRepository({
       coupleId: coupleId,
       isPaired: today.isPaired,
       partnerName: today.partnerName,
+      ownRowId: result.ownRowId,
       ownAnswers: ownAnswers,
       partnerAnswers: partnerAnswers,
     );
   });
 
-  /// Inserts a new answer or updates the existing row before the reveal.
+  /// Inserts the row for this week or updates the answer before the reveal.
   Future<CheckinAnswer> saveAnswer({
     required CheckinWeek week,
     required int question,
@@ -57,38 +62,32 @@ class CheckinRepository({
     final coupleId = week.coupleId;
     if (coupleId == null) throw const LocalizedException(l10nKey: 'NO_COUPLE');
 
-    final existing = week.answerFor(question);
     final text = body.trim();
     try {
-      final record = await _dataSource.saveAnswer(
-        id: existing?.id,
-        coupleId: coupleId,
-        weekStart: week.weekStart,
-        question: question,
-        body: text,
-      );
-
-      return CheckinAnswer(id: record.id, question: record.question, body: record.body);
+      return await _write(week: week, question: question, body: text);
     } on LocalizedException catch (exception) {
-      if (existing != null || !_isUniqueViolation(exception)) rethrow;
+      if (week.ownRowId != null || !_isUniqueViolation(exception)) rethrow;
       final fresh = await getWeek();
-      final row = fresh.answerFor(question);
-      if (row == null) rethrow;
-      final record = await _dataSource.saveAnswer(
-        id: row.id,
-        coupleId: coupleId,
-        weekStart: week.weekStart,
-        question: question,
-        body: text,
-      );
+      final rowId = fresh.ownRowId;
+      if (rowId == null) rethrow;
 
-      return CheckinAnswer(id: record.id, question: record.question, body: record.body);
+      return _write(week: fresh, question: question, body: text);
     }
   });
 
-  /// Removes an answer so a cleared or skipped question returns to being blank.
-  Future<void> deleteAnswer(String id) =>
-      _run('delete a check-in answer', () => _dataSource.deleteAnswer(id));
+  Future<CheckinAnswer> _write({
+    required CheckinWeek week,
+    required int question,
+    required String body,
+  }) async {
+    final record = await _dataSource.saveAnswer(id: week.ownRowId, question: question, body: body);
+
+    return CheckinAnswer(id: record.id, question: record.question, body: record.body);
+  }
+
+  /// Clears one answer so a skipped question returns to being blank.
+  Future<void> deleteAnswer({required String id, required int question}) =>
+      _run('delete a check-in answer', () => _dataSource.deleteAnswer(id: id, question: question));
 
   /// Records that this week's check-in was dismissed locally.
   Future<void> dismissWeek(DateTime weekStart) => _localDataSource.writeDismissedWeek(weekStart);

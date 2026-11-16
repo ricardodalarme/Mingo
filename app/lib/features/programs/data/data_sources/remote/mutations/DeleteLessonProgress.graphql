@@ -1,5 +1,5 @@
 mutation DeleteLessonProgress($programSlug: String!) {
-  deleteFromLessonProgressCollection(filter: { programSlug: { eq: $programSlug } }) {
-    affectedCount
+  deleteLessonProgress(where: { programSlug: { _eq: $programSlug } }) {
+    affected_rows
   }
 }

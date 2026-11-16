@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
 import 'package:app/features/widgets/data/data_sources/remote/widgets_data_source.dart';
 import 'package:app/features/widgets/data/mappers/widgets_mapper.dart';
@@ -17,6 +18,7 @@ class WidgetsRepository({
   required final WidgetsLocalDataSource _localDataSource,
   required final WidgetDataService _widgetDataService,
   required final CouplePhotoRepository _couplePhotoRepository,
+  required final AuthenticationRepository _authenticationRepository,
 }) {
   final Logger _logger = Logger('WidgetsRepository');
   Future<void> _writeQueue = Future<void>.value();
@@ -31,9 +33,12 @@ class WidgetsRepository({
     final rotationCadence = _localDataSource.rotationCadence;
 
     try {
-      final response = await _dataSource.getOverview();
-      final isPaired = response.widget?.isPaired ?? response.today?.isPaired ?? false;
-      final hasPlus = response.today?.hasPlus ?? false;
+      final userId = _authenticationRepository.currentUserId;
+      if (userId == null) throw StateError('The widget overview needs a signed-in person');
+      final response = await _dataSource.getOverview(userId);
+      final today = response.overview.today.firstOrNull;
+      final isPaired = today?.coupleId != null;
+      final hasPlus = response.overview.plusStates.firstOrNull?.hasPlus ?? false;
 
       var hasPhoto = false;
       if (generation == _generation && isPaired) {
@@ -48,9 +53,10 @@ class WidgetsRepository({
 
       final cachedPhotoPath = await _widgetDataService.readCachedPhotoPath(hasPlus: hasPlus);
 
-      final overview = response.toModel(
+      final overview = response.overview.toModel(
         contentSource: contentSource,
         rotationCadence: rotationCadence,
+        cardStatus: response.cardStatus,
         cachedPhotoPath: cachedPhotoPath,
         hasPhoto: hasPhoto,
         now: now,

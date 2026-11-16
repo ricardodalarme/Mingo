@@ -5,7 +5,7 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryMinAppVersion {
-  QueryMinAppVersion({this.appConfigByPk, this.$__typename = 'Query'});
+  QueryMinAppVersion({this.appConfigByPk, this.$__typename = 'query_root'});
 
   factory QueryMinAppVersion.fromJson(Map<String, dynamic> json) {
     final l$appConfigByPk = json['appConfigByPk'];
@@ -217,7 +217,7 @@ extension ClientExtensionQueryMinAppVersion on graphql.GraphQLClient {
 }
 
 class QueryMinAppVersionappConfigByPk {
-  QueryMinAppVersionappConfigByPk({required this.value, this.$__typename = 'AppConfig'});
+  QueryMinAppVersionappConfigByPk({required this.value, this.$__typename = 'appConfig'});
 
   factory QueryMinAppVersionappConfigByPk.fromJson(Map<String, dynamic> json) {
     final l$value = json['value'];

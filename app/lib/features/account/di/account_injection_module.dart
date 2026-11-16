@@ -22,7 +22,10 @@ class AccountInjectionModule() implements InjectionModule {
       () => AccountDataSource(client: injector.get<GQLClient>()),
     )
     ..registerLazySingleton<AccountRepository>(
-      () => AccountRepository(dataSource: injector.get<AccountDataSource>()),
+      () => AccountRepository(
+        dataSource: injector.get<AccountDataSource>(),
+        authenticationRepository: injector.get<AuthenticationRepository>(),
+      ),
     )
     ..registerFactory<DeleteAccountCubit>(
       () => DeleteAccountCubit(

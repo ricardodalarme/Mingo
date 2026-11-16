@@ -22,11 +22,11 @@ void main() {
     }
   });
   test('an unknown mood or need stays hidden', () {
-    expect(EnumMood.$unknown.toModel(), isNull);
-    expect(EnumMoodNeed.$unknown.toModel(), isNull);
+    expect(EnumMood_enum.$unknown.toModel(), isNull);
+    expect(EnumMoodNeed_enum.$unknown.toModel(), isNull);
   });
 
   test('an unknown audience is private', () {
-    expect(EnumMoodShare.$unknown.toModel(), MoodShare.none);
+    expect(EnumMoodShare_enum.$unknown.toModel(), MoodShare.none);
   });
 }

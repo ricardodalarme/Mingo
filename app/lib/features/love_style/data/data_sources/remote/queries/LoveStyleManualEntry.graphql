@@ -1,13 +1,6 @@
-query LoveStyleManualEntry($authorId: UUID!) {
-  manualEntriesCollection(
-    filter: { key: { eq: "loved" }, authorId: { eq: $authorId } }
-    first: 1
-  ) {
-    edges {
-      node {
-        id
-        value
-      }
-    }
+query LoveStyleManualEntry($authorId: uuid!) {
+  manualEntries(where: { key: { _eq: "loved" }, authorId: { _eq: $authorId } }, limit: 1) {
+    id
+    value
   }
 }

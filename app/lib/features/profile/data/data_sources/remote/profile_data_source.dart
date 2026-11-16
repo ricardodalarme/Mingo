@@ -1,5 +1,4 @@
 import 'package:app/features/profile/data/data_sources/remote/fragments/generated/ProfileFragment.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/EnsureProfile.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveIntroAnswers.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveProfileSetup.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
@@ -14,26 +13,26 @@ import 'package:app/features/profile/data/data_sources/remote/queries/generated/
 import 'package:network/network.dart';
 
 class ProfileDataSource({required final GQLClient _client}) {
-  Future<FragmentProfileFragment> getMyProfile() async {
+  Future<FragmentProfileFragment> getMyProfile(String userId) async {
     final response = await _client.query(
-      OptionsQueryMyProfile(fetchPolicy: FetchPolicy.networkOnly),
+      OptionsQueryMyProfile(
+        variables: VariablesQueryMyProfile(userId: userId),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
     );
 
-    return validateResponseData(response, getData: (data) => data.myProfile);
+    return validateResponseData(response, getData: (data) => data.profilesByPk);
   }
 
-  Future<FragmentProfileFragment> ensureProfile() async {
-    final response = await _client.mutate(OptionsMutationEnsureProfile());
-
-    return validateResponseData(response, getData: (data) => data.ensureProfile);
-  }
-
-  Future<QueryMySettingsmySettings> getMySettings() async {
+  Future<QueryMySettingsuserSettingsByPk> getMySettings(String userId) async {
     final response = await _client.query(
-      OptionsQueryMySettings(fetchPolicy: FetchPolicy.networkOnly),
+      OptionsQueryMySettings(
+        variables: VariablesQueryMySettings(userId: userId),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
     );
 
-    return validateResponseData(response, getData: (data) => data.mySettings);
+    return validateResponseData(response, getData: (data) => data.userSettingsByPk);
   }
 
   Future<void> saveIntroAnswers(VariablesMutationSaveIntroAnswers variables) async {
@@ -53,7 +52,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfilesCollection.affectedCount,
+      getData: (data) => data.updateProfiles?.affected_rows ?? 0,
     );
   }
 
@@ -62,7 +61,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfilesCollection.affectedCount,
+      getData: (data) => data.updateProfiles?.affected_rows ?? 0,
     );
   }
 
@@ -71,7 +70,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
+      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
     );
   }
 
@@ -80,7 +79,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
+      getData: (data) => data.updateProfiles?.affected_rows ?? 0,
     );
   }
 
@@ -91,7 +90,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
+      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
     );
   }
 
@@ -102,7 +101,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
+      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
     );
   }
 
@@ -111,7 +110,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfileSettingsCollection.affectedCount,
+      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
     );
   }
 }

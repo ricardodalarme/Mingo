@@ -98,27 +98,29 @@ class VariablesMutationReactToCard {
 }
 
 class MutationReactToCard {
-  MutationReactToCard({this.reactToCard, this.$__typename = 'Mutation'});
+  MutationReactToCard({this.insertCardReactionsOne, this.$__typename = 'mutation_root'});
 
   factory MutationReactToCard.fromJson(Map<String, dynamic> json) {
-    final l$reactToCard = json['reactToCard'];
+    final l$insertCardReactionsOne = json['insertCardReactionsOne'];
     final l$$__typename = json['__typename'];
     return MutationReactToCard(
-      reactToCard: l$reactToCard == null
+      insertCardReactionsOne: l$insertCardReactionsOne == null
           ? null
-          : MutationReactToCardreactToCard.fromJson((l$reactToCard as Map<String, dynamic>)),
+          : MutationReactToCardinsertCardReactionsOne.fromJson(
+              (l$insertCardReactionsOne as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationReactToCardreactToCard? reactToCard;
+  final MutationReactToCardinsertCardReactionsOne? insertCardReactionsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$reactToCard = reactToCard;
-    _resultData['reactToCard'] = l$reactToCard?.toJson();
+    final l$insertCardReactionsOne = insertCardReactionsOne;
+    _resultData['insertCardReactionsOne'] = l$insertCardReactionsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -126,9 +128,9 @@ class MutationReactToCard {
 
   @override
   int get hashCode {
-    final l$reactToCard = reactToCard;
+    final l$insertCardReactionsOne = insertCardReactionsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$reactToCard, l$$__typename]);
+    return Object.hashAll([l$insertCardReactionsOne, l$$__typename]);
   }
 
   @override
@@ -139,9 +141,9 @@ class MutationReactToCard {
     if (other is! MutationReactToCard || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$reactToCard = reactToCard;
-    final lOther$reactToCard = other.reactToCard;
-    if (l$reactToCard != lOther$reactToCard) {
+    final l$insertCardReactionsOne = insertCardReactionsOne;
+    final lOther$insertCardReactionsOne = other.insertCardReactionsOne;
+    if (l$insertCardReactionsOne != lOther$insertCardReactionsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -161,7 +163,7 @@ const documentNodeMutationReactToCard = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'cardId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -182,20 +184,47 @@ const documentNodeMutationReactToCard = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'reactToCard'),
+            name: NameNode(value: 'insertCardReactionsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'cardId'),
-                value: VariableNode(name: NameNode(value: 'cardId')),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'cardId'),
+                      value: VariableNode(name: NameNode(value: 'cardId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'reaction'),
+                      value: VariableNode(name: NameNode(value: 'reaction')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'reply'),
+                      value: VariableNode(name: NameNode(value: 'reply')),
+                    ),
+                  ],
+                ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'reaction'),
-                value: VariableNode(name: NameNode(value: 'reaction')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'reply'),
-                value: VariableNode(name: NameNode(value: 'reply')),
+                name: NameNode(value: 'on_conflict'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'constraint'),
+                      value: EnumValueNode(name: NameNode(value: 'card_reactions_pkey')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'update_columns'),
+                      value: ListValueNode(
+                        values: [
+                          EnumValueNode(name: NameNode(value: 'reaction')),
+                          EnumValueNode(name: NameNode(value: 'reply')),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -328,14 +357,18 @@ extension ClientExtensionMutationReactToCard on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationReactToCardreactToCard {
-  MutationReactToCardreactToCard({this.reaction, this.reply, this.$__typename = 'CardReactions'});
+class MutationReactToCardinsertCardReactionsOne {
+  MutationReactToCardinsertCardReactionsOne({
+    this.reaction,
+    this.reply,
+    this.$__typename = 'cardReactions',
+  });
 
-  factory MutationReactToCardreactToCard.fromJson(Map<String, dynamic> json) {
+  factory MutationReactToCardinsertCardReactionsOne.fromJson(Map<String, dynamic> json) {
     final l$reaction = json['reaction'];
     final l$reply = json['reply'];
     final l$$__typename = json['__typename'];
-    return MutationReactToCardreactToCard(
+    return MutationReactToCardinsertCardReactionsOne(
       reaction: (l$reaction as String?),
       reply: (l$reply as String?),
       $__typename: (l$$__typename as String),
@@ -372,7 +405,7 @@ class MutationReactToCardreactToCard {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationReactToCardreactToCard || runtimeType != other.runtimeType) {
+    if (other is! MutationReactToCardinsertCardReactionsOne || runtimeType != other.runtimeType) {
       return false;
     }
     final l$reaction = reaction;

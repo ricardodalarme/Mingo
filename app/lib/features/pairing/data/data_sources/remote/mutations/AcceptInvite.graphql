@@ -1,5 +1,5 @@
 mutation AcceptInvite($code: String!) {
-  acceptInvite(code: $code) {
+  acceptInvite(args: { code: $code }) {
     id
   }
 }

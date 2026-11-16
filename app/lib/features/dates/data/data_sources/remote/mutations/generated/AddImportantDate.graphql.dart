@@ -10,13 +10,13 @@ class VariablesMutationAddImportantDate {
   factory VariablesMutationAddImportantDate({
     required String id,
     required String title,
-    required EnumImportantDateKind kind,
+    required EnumImportantDateKind_enum kind,
     required int month,
     required int day,
     int? year,
     required bool yearly,
-    required List<int?> remindDays,
-    required EnumImportantDateOrigin origin,
+    required List<int> remindDays,
+    required EnumImportantDateOrigin_enum origin,
     String? holidayKey,
     String? coupleId,
   }) => VariablesMutationAddImportantDate._({
@@ -42,7 +42,7 @@ class VariablesMutationAddImportantDate {
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
     final l$kind = data['kind'];
-    result$data['kind'] = fromJsonEnumImportantDateKind((l$kind as String));
+    result$data['kind'] = fromJsonEnumImportantDateKind_enum((l$kind as String));
     final l$month = data['month'];
     result$data['month'] = (l$month as int);
     final l$day = data['day'];
@@ -54,9 +54,9 @@ class VariablesMutationAddImportantDate {
     final l$yearly = data['yearly'];
     result$data['yearly'] = (l$yearly as bool);
     final l$remindDays = data['remindDays'];
-    result$data['remindDays'] = (l$remindDays as List<dynamic>).map((e) => (e as int?)).toList();
+    result$data['remindDays'] = (l$remindDays as List<dynamic>).map((e) => (e as int)).toList();
     final l$origin = data['origin'];
-    result$data['origin'] = fromJsonEnumImportantDateOrigin((l$origin as String));
+    result$data['origin'] = fromJsonEnumImportantDateOrigin_enum((l$origin as String));
     if (data.containsKey('holidayKey')) {
       final l$holidayKey = data['holidayKey'];
       result$data['holidayKey'] = (l$holidayKey as String?);
@@ -74,7 +74,7 @@ class VariablesMutationAddImportantDate {
 
   String get title => (_$data['title'] as String);
 
-  EnumImportantDateKind get kind => (_$data['kind'] as EnumImportantDateKind);
+  EnumImportantDateKind_enum get kind => (_$data['kind'] as EnumImportantDateKind_enum);
 
   int get month => (_$data['month'] as int);
 
@@ -84,9 +84,9 @@ class VariablesMutationAddImportantDate {
 
   bool get yearly => (_$data['yearly'] as bool);
 
-  List<int?> get remindDays => (_$data['remindDays'] as List<int?>);
+  List<int> get remindDays => (_$data['remindDays'] as List<int>);
 
-  EnumImportantDateOrigin get origin => (_$data['origin'] as EnumImportantDateOrigin);
+  EnumImportantDateOrigin_enum get origin => (_$data['origin'] as EnumImportantDateOrigin_enum);
 
   String? get holidayKey => (_$data['holidayKey'] as String?);
 
@@ -99,7 +99,7 @@ class VariablesMutationAddImportantDate {
     final l$title = title;
     result$data['title'] = l$title;
     final l$kind = kind;
-    result$data['kind'] = toJsonEnumImportantDateKind(l$kind);
+    result$data['kind'] = toJsonEnumImportantDateKind_enum(l$kind);
     final l$month = month;
     result$data['month'] = l$month;
     final l$day = day;
@@ -113,7 +113,7 @@ class VariablesMutationAddImportantDate {
     final l$remindDays = remindDays;
     result$data['remindDays'] = l$remindDays.map((e) => e).toList();
     final l$origin = origin;
-    result$data['origin'] = toJsonEnumImportantDateOrigin(l$origin);
+    result$data['origin'] = toJsonEnumImportantDateOrigin_enum(l$origin);
     if (_$data.containsKey('holidayKey')) {
       final l$holidayKey = holidayKey;
       result$data['holidayKey'] = l$holidayKey;
@@ -237,34 +237,29 @@ class VariablesMutationAddImportantDate {
 }
 
 class MutationAddImportantDate {
-  MutationAddImportantDate({
-    this.insertIntoImportantDatesCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationAddImportantDate({this.insertImportantDatesOne, this.$__typename = 'mutation_root'});
 
   factory MutationAddImportantDate.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoImportantDatesCollection = json['insertIntoImportantDatesCollection'];
+    final l$insertImportantDatesOne = json['insertImportantDatesOne'];
     final l$$__typename = json['__typename'];
     return MutationAddImportantDate(
-      insertIntoImportantDatesCollection: l$insertIntoImportantDatesCollection == null
+      insertImportantDatesOne: l$insertImportantDatesOne == null
           ? null
-          : MutationAddImportantDateinsertIntoImportantDatesCollection.fromJson(
-              (l$insertIntoImportantDatesCollection as Map<String, dynamic>),
+          : MutationAddImportantDateinsertImportantDatesOne.fromJson(
+              (l$insertImportantDatesOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddImportantDateinsertIntoImportantDatesCollection?
-  insertIntoImportantDatesCollection;
+  final MutationAddImportantDateinsertImportantDatesOne? insertImportantDatesOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoImportantDatesCollection = insertIntoImportantDatesCollection;
-    _resultData['insertIntoImportantDatesCollection'] = l$insertIntoImportantDatesCollection
-        ?.toJson();
+    final l$insertImportantDatesOne = insertImportantDatesOne;
+    _resultData['insertImportantDatesOne'] = l$insertImportantDatesOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -272,9 +267,9 @@ class MutationAddImportantDate {
 
   @override
   int get hashCode {
-    final l$insertIntoImportantDatesCollection = insertIntoImportantDatesCollection;
+    final l$insertImportantDatesOne = insertImportantDatesOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoImportantDatesCollection, l$$__typename]);
+    return Object.hashAll([l$insertImportantDatesOne, l$$__typename]);
   }
 
   @override
@@ -285,9 +280,9 @@ class MutationAddImportantDate {
     if (other is! MutationAddImportantDate || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoImportantDatesCollection = insertIntoImportantDatesCollection;
-    final lOther$insertIntoImportantDatesCollection = other.insertIntoImportantDatesCollection;
-    if (l$insertIntoImportantDatesCollection != lOther$insertIntoImportantDatesCollection) {
+    final l$insertImportantDatesOne = insertImportantDatesOne;
+    final lOther$insertImportantDatesOne = other.insertImportantDatesOne;
+    if (l$insertImportantDatesOne != lOther$insertImportantDatesOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -307,7 +302,7 @@ const documentNodeMutationAddImportantDate = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -319,25 +314,25 @@ const documentNodeMutationAddImportantDate = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'ImportantDateKind'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ImportantDateKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'month')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'day')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'year')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -350,7 +345,7 @@ const documentNodeMutationAddImportantDate = DocumentNode(
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'remindDays')),
           type: ListTypeNode(
-            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+            type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
             isNonNull: true,
           ),
           defaultValue: DefaultValueNode(value: null),
@@ -358,7 +353,7 @@ const documentNodeMutationAddImportantDate = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'origin')),
-          type: NamedTypeNode(name: NameNode(value: 'ImportantDateOrigin'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ImportantDateOrigin_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -370,7 +365,7 @@ const documentNodeMutationAddImportantDate = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -379,60 +374,56 @@ const documentNodeMutationAddImportantDate = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoImportantDatesCollection'),
+            name: NameNode(value: 'insertImportantDatesOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'id'),
-                          value: VariableNode(name: NameNode(value: 'id')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'title'),
-                          value: VariableNode(name: NameNode(value: 'title')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'kind'),
-                          value: VariableNode(name: NameNode(value: 'kind')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'month'),
-                          value: VariableNode(name: NameNode(value: 'month')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'day'),
-                          value: VariableNode(name: NameNode(value: 'day')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'year'),
-                          value: VariableNode(name: NameNode(value: 'year')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'yearly'),
-                          value: VariableNode(name: NameNode(value: 'yearly')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'remindDays'),
-                          value: VariableNode(name: NameNode(value: 'remindDays')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'origin'),
-                          value: VariableNode(name: NameNode(value: 'origin')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'holidayKey'),
-                          value: VariableNode(name: NameNode(value: 'holidayKey')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'coupleId'),
-                          value: VariableNode(name: NameNode(value: 'coupleId')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'title'),
+                      value: VariableNode(name: NameNode(value: 'title')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: VariableNode(name: NameNode(value: 'kind')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'month'),
+                      value: VariableNode(name: NameNode(value: 'month')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'day'),
+                      value: VariableNode(name: NameNode(value: 'day')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'year'),
+                      value: VariableNode(name: NameNode(value: 'year')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'yearly'),
+                      value: VariableNode(name: NameNode(value: 'yearly')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'remindDays'),
+                      value: VariableNode(name: NameNode(value: 'remindDays')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'origin'),
+                      value: VariableNode(name: NameNode(value: 'origin')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'holidayKey'),
+                      value: VariableNode(name: NameNode(value: 'holidayKey')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'coupleId'),
+                      value: VariableNode(name: NameNode(value: 'coupleId')),
                     ),
                   ],
                 ),
@@ -442,7 +433,7 @@ const documentNodeMutationAddImportantDate = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -562,31 +553,29 @@ extension ClientExtensionMutationAddImportantDate on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationAddImportantDateinsertIntoImportantDatesCollection {
-  MutationAddImportantDateinsertIntoImportantDatesCollection({
-    required this.affectedCount,
-    this.$__typename = 'ImportantDatesInsertResponse',
+class MutationAddImportantDateinsertImportantDatesOne {
+  MutationAddImportantDateinsertImportantDatesOne({
+    required this.id,
+    this.$__typename = 'importantDates',
   });
 
-  factory MutationAddImportantDateinsertIntoImportantDatesCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationAddImportantDateinsertImportantDatesOne.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationAddImportantDateinsertIntoImportantDatesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationAddImportantDateinsertImportantDatesOne(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -594,9 +583,9 @@ class MutationAddImportantDateinsertIntoImportantDatesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -604,13 +593,13 @@ class MutationAddImportantDateinsertIntoImportantDatesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationAddImportantDateinsertIntoImportantDatesCollection ||
+    if (other is! MutationAddImportantDateinsertImportantDatesOne ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

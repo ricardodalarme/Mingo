@@ -12,16 +12,17 @@ class GiftsDataSource({required final GQLClient _client}) {
     final response = await _client.query(
       OptionsQueryGiftPage(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(response, getData: (data) => data.giftIdeasCollection.edges);
 
-    return [for (final edge in edges) edge.node];
+    return List<FragmentGiftWishFragment>.of(
+      validateResponseData(response, getData: (data) => data.giftIdeas),
+    );
   }
 
   Future<FragmentGiftWishFragment> addGiftWish({
     required String id,
     required String title,
     String? note,
-    EnumGiftBudget? budget,
+    EnumGiftBudget_enum? budget,
     String? coupleId,
   }) async {
     final response = await _client.mutate(
@@ -36,10 +37,7 @@ class GiftsDataSource({required final GQLClient _client}) {
       ),
     );
 
-    return validateResponseData(
-      response,
-      getData: (data) => data.insertIntoGiftIdeasCollection?.records.firstOrNull,
-    );
+    return validateResponseData(response, getData: (data) => data.insertGiftIdeasOne);
   }
 
   /// Saves the details in one request. A null [note] or [budget] clears the value.
@@ -47,7 +45,7 @@ class GiftsDataSource({required final GQLClient _client}) {
     required String id,
     required String title,
     String? note,
-    EnumGiftBudget? budget,
+    EnumGiftBudget_enum? budget,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateGiftWish(
@@ -62,10 +60,7 @@ class GiftsDataSource({required final GQLClient _client}) {
       ),
     );
 
-    return validateResponseData(
-      response,
-      getData: (data) => data.updateGiftIdeasCollection.records.firstOrNull,
-    );
+    return validateResponseData(response, getData: (data) => data.updateGiftIdeasByPk);
   }
 
   Future<void> deleteGiftWish(String id) async {
@@ -74,7 +69,7 @@ class GiftsDataSource({required final GQLClient _client}) {
     );
     final affected = validateResponseData(
       response,
-      getData: (data) => data.deleteFromGiftIdeasCollection.affectedCount,
+      getData: (data) => data.deleteGiftIdeas?.affected_rows,
     );
     if (affected == 0) throw const NoDataException();
   }
@@ -93,9 +88,6 @@ class GiftsDataSource({required final GQLClient _client}) {
       ),
     );
 
-    return validateResponseData(
-      response,
-      getData: (data) => data.updateGiftIdeasCollection.records.firstOrNull,
-    );
+    return validateResponseData(response, getData: (data) => data.updateGiftIdeasByPk);
   }
 }

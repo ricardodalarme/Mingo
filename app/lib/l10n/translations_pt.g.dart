@@ -4651,9 +4651,6 @@ class Translations$privacy$pt {
   /// pt: 'Consentimentos'
   String get consents => 'Consentimentos';
 
-  /// pt: 'Dados sensíveis'
-  String get sensitiveData => 'Dados sensíveis';
-
   /// pt: 'Análises'
   String get analytics => 'Análises';
 
@@ -4669,8 +4666,8 @@ class Translations$privacy$pt {
   /// pt: 'Obrigatório'
   String get required => 'Obrigatório';
 
-  /// pt: 'Dados sensíveis e Termos são obrigatórios para usar o app.'
-  String get requiredNote => 'Dados sensíveis e Termos são obrigatórios para usar o app.';
+  /// pt: 'Aceitar os Termos é obrigatório para usar o app.'
+  String get requiredNote => 'Aceitar os Termos é obrigatório para usar o app.';
 
   /// pt: 'Mudanças valem agora.'
   String get consentsNote => 'Mudanças valem agora.';
@@ -11185,13 +11182,12 @@ extension on Translations {
           'privacy.ourAnalytics' => 'Análises: só contagens.',
           'privacy.ourPlain' => 'Página em linguagem simples.',
           'privacy.consents' => 'Consentimentos',
-          'privacy.sensitiveData' => 'Dados sensíveis',
           'privacy.analytics' => 'Análises',
           'privacy.marketing' => 'Marketing',
           'privacy.ai' => 'IA (quando disponível)',
           'privacy.terms' => 'Termos',
           'privacy.required' => 'Obrigatório',
-          'privacy.requiredNote' => 'Dados sensíveis e Termos são obrigatórios para usar o app.',
+          'privacy.requiredNote' => 'Aceitar os Termos é obrigatório para usar o app.',
           'privacy.consentsNote' => 'Mudanças valem agora.',
           'privacy.saveError' => 'Não deu para salvar agora. Tente de novo.',
           'privacy.errorTitle' => 'Não deu para carregar os consentimentos',
@@ -11504,10 +11500,10 @@ extension on Translations {
           'relationshipChanged.optionTogether' => 'Está tudo bem',
           'relationshipChanged.continueLabel' => 'Continuar',
           'relationshipChanged.saved' => 'Salvo',
+          'relationshipChanged.errors.NETWORK' => 'Sem conexão. Tente de novo.',
           _ => null,
         } ??
         switch (path) {
-          'relationshipChanged.errors.NETWORK' => 'Sem conexão. Tente de novo.',
           'relationshipChanged.errors.other' => 'Não deu para salvar agora. Tente de novo.',
           'relationshipSettings.title' => 'Relacionamento',
           'relationshipSettings.phaseLabel' => 'Fase',
@@ -12092,10 +12088,10 @@ extension on Translations {
                   one: '1 lista, privada',
                   other: '${count} listas, privadas',
                 ),
+          'tabs.soloNote' => 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.',
           _ => null,
         } ??
         switch (path) {
-          'tabs.soloNote' => 'Quando seu par entrar, as coisas compartilhadas aparecem aqui.',
           'tabs.ritualsLabel' => 'ROTINA',
           'tabs.ritualsTitle' => 'Rituais',
           'tabs.ritualsText' => 'Pequenos hábitos que vocês querem proteger.',

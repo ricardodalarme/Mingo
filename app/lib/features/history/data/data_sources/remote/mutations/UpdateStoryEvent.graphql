@@ -1,22 +1,21 @@
 mutation UpdateStoryEvent(
-  $id: UUID!
-  $coupleId: UUID
-  $kind: StoryEventKind!
+  $id: uuid!
+  $coupleId: uuid
+  $kind: StoryEventKind_enum!
   $title: String
-  $happenedOn: Date!
-  $datePrecision: DatePrecision!
+  $happenedOn: date!
+  $datePrecision: DatePrecision_enum!
 ) {
-  updateStoryEventsCollection(
-    set: {
+  updateStoryEvents(
+    where: { id: { _eq: $id } }
+    _set: {
       coupleId: $coupleId
       kind: $kind
       title: $title
       happenedOn: $happenedOn
       datePrecision: $datePrecision
     }
-    filter: { id: { eq: $id } }
-    atMost: 1
   ) {
-    affectedCount
+    affected_rows
   }
 }

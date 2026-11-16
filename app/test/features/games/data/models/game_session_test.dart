@@ -17,11 +17,11 @@ void main() {
       );
 
   test('maps every server status and treats unknown values as cancelled', () {
-    expect(EnumGameStatus.invited.toModel(), GameStatus.invited);
-    expect(EnumGameStatus.active.toModel(), GameStatus.active);
-    expect(EnumGameStatus.finished.toModel(), GameStatus.finished);
-    expect(EnumGameStatus.cancelled.toModel(), GameStatus.cancelled);
-    expect(EnumGameStatus.$unknown.toModel(), GameStatus.cancelled);
+    expect(EnumGameStatus_enum.invited.toModel(), GameStatus.invited);
+    expect(EnumGameStatus_enum.active.toModel(), GameStatus.active);
+    expect(EnumGameStatus_enum.finished.toModel(), GameStatus.finished);
+    expect(EnumGameStatus_enum.cancelled.toModel(), GameStatus.cancelled);
+    expect(EnumGameStatus_enum.$unknown.toModel(), GameStatus.cancelled);
   });
 
   test('maps server game keys and ignores games the app has no screens for', () {

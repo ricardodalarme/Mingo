@@ -1,10 +1,6 @@
 query FightStyleResult {
-  quizResultsCollection(filter: { quizKey: { eq: conflict_style } }, first: 1) {
-    edges {
-      node {
-        id
-        ranked
-      }
-    }
+  quizResults(where: { quizKey: { _eq: conflict_style } }, limit: 1) {
+    id
+    ranked
   }
 }

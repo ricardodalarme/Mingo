@@ -4,12 +4,12 @@ import 'package:app/features/lists/data/mappers/list_enum_mapper.dart';
 import 'package:app/features/lists/data/models/list_models.dart';
 
 extension ListFragmentMapper on FragmentListFragment {
-  CoupleList toModel() => CoupleList(
+  CoupleList toModel({required String? currentUserId}) => CoupleList(
     id: id,
     title: title,
     kind: kind.toModel(),
-    isMine: isMine ?? false,
-    isShared: isShared ?? false,
+    isMine: authorId == currentUserId,
+    isShared: coupleId != null,
   );
 }
 

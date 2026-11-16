@@ -52,25 +52,32 @@ class VariablesMutationDeletePartnerMessage {
 }
 
 class MutationDeletePartnerMessage {
-  MutationDeletePartnerMessage({this.deletePartnerMessage, this.$__typename = 'Mutation'});
+  MutationDeletePartnerMessage({
+    this.deletePartnerMessagesByPk,
+    this.$__typename = 'mutation_root',
+  });
 
   factory MutationDeletePartnerMessage.fromJson(Map<String, dynamic> json) {
-    final l$deletePartnerMessage = json['deletePartnerMessage'];
+    final l$deletePartnerMessagesByPk = json['deletePartnerMessagesByPk'];
     final l$$__typename = json['__typename'];
     return MutationDeletePartnerMessage(
-      deletePartnerMessage: (l$deletePartnerMessage as bool?),
+      deletePartnerMessagesByPk: l$deletePartnerMessagesByPk == null
+          ? null
+          : MutationDeletePartnerMessagedeletePartnerMessagesByPk.fromJson(
+              (l$deletePartnerMessagesByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? deletePartnerMessage;
+  final MutationDeletePartnerMessagedeletePartnerMessagesByPk? deletePartnerMessagesByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deletePartnerMessage = deletePartnerMessage;
-    _resultData['deletePartnerMessage'] = l$deletePartnerMessage;
+    final l$deletePartnerMessagesByPk = deletePartnerMessagesByPk;
+    _resultData['deletePartnerMessagesByPk'] = l$deletePartnerMessagesByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -78,9 +85,9 @@ class MutationDeletePartnerMessage {
 
   @override
   int get hashCode {
-    final l$deletePartnerMessage = deletePartnerMessage;
+    final l$deletePartnerMessagesByPk = deletePartnerMessagesByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deletePartnerMessage, l$$__typename]);
+    return Object.hashAll([l$deletePartnerMessagesByPk, l$$__typename]);
   }
 
   @override
@@ -91,9 +98,9 @@ class MutationDeletePartnerMessage {
     if (other is! MutationDeletePartnerMessage || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deletePartnerMessage = deletePartnerMessage;
-    final lOther$deletePartnerMessage = other.deletePartnerMessage;
-    if (l$deletePartnerMessage != lOther$deletePartnerMessage) {
+    final l$deletePartnerMessagesByPk = deletePartnerMessagesByPk;
+    final lOther$deletePartnerMessagesByPk = other.deletePartnerMessagesByPk;
+    if (l$deletePartnerMessagesByPk != lOther$deletePartnerMessagesByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -113,7 +120,7 @@ const documentNodeMutationDeletePartnerMessage = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'messageId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -122,16 +129,33 @@ const documentNodeMutationDeletePartnerMessage = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deletePartnerMessage'),
+            name: NameNode(value: 'deletePartnerMessagesByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'messageId'),
+                name: NameNode(value: 'id'),
                 value: VariableNode(name: NameNode(value: 'messageId')),
               ),
             ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -238,4 +262,64 @@ extension ClientExtensionMutationDeletePartnerMessage on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationDeletePartnerMessage> watchMutationDeletePartnerMessage(
     WatchOptionsMutationDeletePartnerMessage options,
   ) => this.watchMutation(options);
+}
+
+class MutationDeletePartnerMessagedeletePartnerMessagesByPk {
+  MutationDeletePartnerMessagedeletePartnerMessagesByPk({
+    required this.id,
+    this.$__typename = 'partnerMessages',
+  });
+
+  factory MutationDeletePartnerMessagedeletePartnerMessagesByPk.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return MutationDeletePartnerMessagedeletePartnerMessagesByPk(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationDeletePartnerMessagedeletePartnerMessagesByPk ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
 }

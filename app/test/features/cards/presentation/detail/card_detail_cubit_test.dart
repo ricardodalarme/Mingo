@@ -17,7 +17,7 @@ void main() {
     id: 'c1',
     status: CardStatus.sent,
     weekStart: DateTime(2026, 11, 9),
-    items: const [CardItem(slipId: 's1', body: 'Uma coisa boa')],
+    items: const [CardItem(id: 's1', body: 'Uma coisa boa')],
   );
   final incoming = CardDetail(card: card, isMine: false, authorName: 'Rui', recipientName: 'Ana');
   final mine = CardDetail(card: card, isMine: true, authorName: 'Ana', recipientName: 'Rui');

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/pairing/data/data_sources/local/pairing_local_data_source.dart';
 import 'package:app/features/pairing/data/data_sources/remote/pairing_data_source.dart';
 import 'package:app/features/pairing/data/mappers/partner_profile_mapper.dart';
@@ -10,6 +11,7 @@ import 'package:logger/logger.dart';
 class PairingRepository({
   required final PairingDataSource _pairingDataSource,
   required final PairingLocalDataSource _localDataSource,
+  required final AuthenticationRepository _authenticationRepository,
 }) {
   final Logger _logger = Logger('PairingRepository');
   final StreamController<void> _changes = StreamController<void>.broadcast();
@@ -39,11 +41,7 @@ class PairingRepository({
   Future<ActiveInvite> createInvite() async {
     try {
       final created = await _pairingDataSource.createInvite();
-      final invite = ActiveInvite(
-        id: created.id!,
-        code: created.code!,
-        expiresAt: created.expiresAt!,
-      );
+      final invite = ActiveInvite(id: created.id, code: created.code, expiresAt: created.expiresAt);
       await _localDataSource.write(invite);
       return invite;
     } catch (e, stack) {
@@ -70,7 +68,10 @@ class PairingRepository({
   /// The connected partner, or `null` when the person is not paired.
   Future<Profile?> getPartner() async {
     try {
-      return (await _pairingDataSource.getMyPartner())?.toModel();
+      final userId = _authenticationRepository.currentUserId;
+      if (userId == null) return null;
+
+      return (await _pairingDataSource.getPartner(userId))?.toModel();
     } catch (e, stack) {
       _logger.error('Failed to load the partner', error: e, stackTrace: stack);
       rethrow;

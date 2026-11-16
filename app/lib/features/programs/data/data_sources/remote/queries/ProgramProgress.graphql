@@ -1,28 +1,20 @@
 query ProgramProgress($slug: String!) {
-  programEnrollmentsCollection(
-    filter: { programSlug: { eq: $slug } }
-    orderBy: [{ createdAt: AscNullsLast }]
-    first: 1
+  programEnrollments(
+    where: { programSlug: { _eq: $slug } }
+    order_by: [{ createdAt: asc_nulls_last }]
+    limit: 1
   ) {
-    edges {
-      node {
-        programSlug
-        currentDay
-        completedAt
-      }
-    }
+    programSlug
+    currentDay
+    completedAt
   }
-  lessonProgressCollection(
-    filter: { programSlug: { eq: $slug } }
-    orderBy: [{ lessonDay: AscNullsLast }]
-    first: 100
+  lessonProgress(
+    where: { programSlug: { _eq: $slug } }
+    order_by: [{ lessonDay: asc_nulls_last }]
+    limit: 100
   ) {
-    edges {
-      node {
-        programSlug
-        lessonDay
-        status
-      }
-    }
+    programSlug
+    lessonDay
+    status
   }
 }

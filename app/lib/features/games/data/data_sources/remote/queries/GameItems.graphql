@@ -1,20 +1,16 @@
-query GameItems($kind: ContentKind!, $locale: String!, $first: Int!) {
-  contentItemsCollection(
-    first: $first
-    filter: {
-      kind: { eq: $kind }
-      locale: { eq: $locale }
-      plusOnly: { eq: false }
-      published: { eq: true }
+query GameItems($kind: ContentKind_enum!, $locale: String!, $limit: Int!) {
+  contentItems(
+    limit: $limit
+    where: {
+      kind: { _eq: $kind }
+      locale: { _eq: $locale }
+      plusOnly: { _eq: false }
+      published: { _eq: true }
     }
-    orderBy: [{ position: AscNullsLast }]
+    order_by: [{ position: asc_nulls_last }]
   ) {
-    edges {
-      node {
-        slug
-        title
-        body
-      }
-    }
+    slug
+    title
+    body
   }
 }

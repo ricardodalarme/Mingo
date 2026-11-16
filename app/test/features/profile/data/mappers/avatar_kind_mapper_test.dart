@@ -10,6 +10,6 @@ void main() {
     }
   });
   test('an unknown avatar is shown as initials', () {
-    expect(EnumAvatarKind.$unknown.toModel(), AvatarKind.initials);
+    expect(EnumAvatarKind_enum.$unknown.toModel(), AvatarKind.initials);
   });
 }

@@ -116,30 +116,29 @@ class VariablesMutationAddLogisticItem {
 }
 
 class MutationAddLogisticItem {
-  MutationAddLogisticItem({this.insertIntoLogisticItemsCollection, this.$__typename = 'Mutation'});
+  MutationAddLogisticItem({this.insertLogisticItemsOne, this.$__typename = 'mutation_root'});
 
   factory MutationAddLogisticItem.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoLogisticItemsCollection = json['insertIntoLogisticItemsCollection'];
+    final l$insertLogisticItemsOne = json['insertLogisticItemsOne'];
     final l$$__typename = json['__typename'];
     return MutationAddLogisticItem(
-      insertIntoLogisticItemsCollection: l$insertIntoLogisticItemsCollection == null
+      insertLogisticItemsOne: l$insertLogisticItemsOne == null
           ? null
-          : MutationAddLogisticIteminsertIntoLogisticItemsCollection.fromJson(
-              (l$insertIntoLogisticItemsCollection as Map<String, dynamic>),
+          : MutationAddLogisticIteminsertLogisticItemsOne.fromJson(
+              (l$insertLogisticItemsOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddLogisticIteminsertIntoLogisticItemsCollection? insertIntoLogisticItemsCollection;
+  final MutationAddLogisticIteminsertLogisticItemsOne? insertLogisticItemsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoLogisticItemsCollection = insertIntoLogisticItemsCollection;
-    _resultData['insertIntoLogisticItemsCollection'] = l$insertIntoLogisticItemsCollection
-        ?.toJson();
+    final l$insertLogisticItemsOne = insertLogisticItemsOne;
+    _resultData['insertLogisticItemsOne'] = l$insertLogisticItemsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -147,9 +146,9 @@ class MutationAddLogisticItem {
 
   @override
   int get hashCode {
-    final l$insertIntoLogisticItemsCollection = insertIntoLogisticItemsCollection;
+    final l$insertLogisticItemsOne = insertLogisticItemsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoLogisticItemsCollection, l$$__typename]);
+    return Object.hashAll([l$insertLogisticItemsOne, l$$__typename]);
   }
 
   @override
@@ -160,9 +159,9 @@ class MutationAddLogisticItem {
     if (other is! MutationAddLogisticItem || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoLogisticItemsCollection = insertIntoLogisticItemsCollection;
-    final lOther$insertIntoLogisticItemsCollection = other.insertIntoLogisticItemsCollection;
-    if (l$insertIntoLogisticItemsCollection != lOther$insertIntoLogisticItemsCollection) {
+    final l$insertLogisticItemsOne = insertLogisticItemsOne;
+    final lOther$insertLogisticItemsOne = other.insertLogisticItemsOne;
+    if (l$insertLogisticItemsOne != lOther$insertLogisticItemsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -182,7 +181,7 @@ const documentNodeMutationAddLogisticItem = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -194,13 +193,13 @@ const documentNodeMutationAddLogisticItem = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'assigneeId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -209,32 +208,28 @@ const documentNodeMutationAddLogisticItem = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoLogisticItemsCollection'),
+            name: NameNode(value: 'insertLogisticItemsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'id'),
-                          value: VariableNode(name: NameNode(value: 'id')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'title'),
-                          value: VariableNode(name: NameNode(value: 'title')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'assigneeId'),
-                          value: VariableNode(name: NameNode(value: 'assigneeId')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'coupleId'),
-                          value: VariableNode(name: NameNode(value: 'coupleId')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'title'),
+                      value: VariableNode(name: NameNode(value: 'title')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'assigneeId'),
+                      value: VariableNode(name: NameNode(value: 'assigneeId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'coupleId'),
+                      value: VariableNode(name: NameNode(value: 'coupleId')),
                     ),
                   ],
                 ),
@@ -244,7 +239,7 @@ const documentNodeMutationAddLogisticItem = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -364,31 +359,29 @@ extension ClientExtensionMutationAddLogisticItem on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationAddLogisticIteminsertIntoLogisticItemsCollection {
-  MutationAddLogisticIteminsertIntoLogisticItemsCollection({
-    required this.affectedCount,
-    this.$__typename = 'LogisticItemsInsertResponse',
+class MutationAddLogisticIteminsertLogisticItemsOne {
+  MutationAddLogisticIteminsertLogisticItemsOne({
+    required this.id,
+    this.$__typename = 'logisticItems',
   });
 
-  factory MutationAddLogisticIteminsertIntoLogisticItemsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationAddLogisticIteminsertLogisticItemsOne.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationAddLogisticIteminsertIntoLogisticItemsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationAddLogisticIteminsertLogisticItemsOne(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -396,9 +389,9 @@ class MutationAddLogisticIteminsertIntoLogisticItemsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -406,13 +399,13 @@ class MutationAddLogisticIteminsertIntoLogisticItemsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationAddLogisticIteminsertIntoLogisticItemsCollection ||
+    if (other is! MutationAddLogisticIteminsertLogisticItemsOne ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

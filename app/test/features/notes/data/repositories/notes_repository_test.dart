@@ -22,7 +22,7 @@ void main() {
     kind: MessageKind.drawing,
     createdAt: DateTime(2026),
     forWidget: false,
-    mediaPath: 'u1/drawing.png',
+    mediaFileId: 'f1',
   );
 
   setUp(() {
@@ -30,12 +30,7 @@ void main() {
     storageService = _MockStorageService();
     authenticationRepository = _MockAuthenticationRepository();
     when(() => authenticationRepository.currentUserId).thenReturn('u1');
-    when(
-      () => storageService.remove(
-        bucket: any(named: 'bucket'),
-        path: any(named: 'path'),
-      ),
-    ).thenAnswer((_) async {});
+    when(() => storageService.remove(fileId: any(named: 'fileId'))).thenAnswer((_) async {});
   });
 
   NotesRepository build() => NotesRepository(
@@ -44,13 +39,13 @@ void main() {
     authenticationRepository: authenticationRepository,
   );
 
-  test('deleting goes through the RPC and removes the drawing file', () async {
+  test('deleting goes through the server and removes the drawing file', () async {
     when(() => dataSource.delete('m1')).thenAnswer((_) async => true);
 
     await build().delete(message);
 
     verify(() => dataSource.delete('m1')).called(1);
-    verify(() => storageService.remove(bucket: 'messages', path: 'u1/drawing.png')).called(1);
+    verify(() => storageService.remove(fileId: 'f1')).called(1);
   });
 
   test('a row that was already gone still removes the drawing file', () async {
@@ -58,6 +53,6 @@ void main() {
 
     await build().delete(message);
 
-    verify(() => storageService.remove(bucket: 'messages', path: 'u1/drawing.png')).called(1);
+    verify(() => storageService.remove(fileId: 'f1')).called(1);
   });
 }

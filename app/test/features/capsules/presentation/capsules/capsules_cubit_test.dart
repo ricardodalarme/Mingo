@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/capsules/data/data_sources/remote/capsules_data_source.dart';
 import 'package:app/features/capsules/data/data_sources/remote/queries/generated/Capsules.graphql.dart';
 import 'package:app/features/capsules/data/models/capsule.dart';
@@ -15,6 +16,8 @@ class _MockCapsulesRepository() extends Mock implements CapsulesRepository;
 class _MockDataSource() extends Mock implements CapsulesDataSource;
 
 class _MockTogether() extends Mock implements TogetherRepository;
+
+class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
 void main() {
   final today = DateTime(2026, 11, 11);
@@ -139,6 +142,13 @@ void main() {
   });
 
   group('CapsulesRepository', () {
+    late AuthenticationRepository authenticationRepository;
+
+    setUp(() {
+      authenticationRepository = _MockAuthenticationRepository();
+      when(() => authenticationRepository.currentUserId).thenReturn('u1');
+    });
+
     test('the text of a closed capsule is never kept', () async {
       final dataSource = _MockDataSource();
       when(dataSource.getCapsules).thenAnswer(
@@ -150,6 +160,7 @@ void main() {
       final repository = CapsulesRepository(
         dataSource: dataSource,
         togetherRepository: _MockTogether(),
+        authenticationRepository: authenticationRepository,
       );
 
       final capsules = await repository.getCapsules(now: DateTime(2026, 11, 11, 18));
@@ -159,20 +170,21 @@ void main() {
       expect(capsules.last.body, 'aberta');
     });
 
-    test('ownership and sharing come from the server flags', () async {
+    test('ownership and sharing come from the author and the couple', () async {
       final dataSource = _MockDataSource();
       when(dataSource.getCapsules).thenAnswer(
         (_) async => [
-          QueryCapsulescapsulesCollectionedgesnode(
+          QueryCapsulescapsules(
             id: 'a',
-            isMine: false,
-            isShared: true,
+            authorId: 'u2',
+            coupleId: 'c1',
             body: 'do parceiro',
             opensOn: DateTime(2026, 11, 1),
           ),
-          QueryCapsulescapsulesCollectionedgesnode(
+          QueryCapsulescapsules(
             id: 'b',
-            body: 'sem flags',
+            authorId: 'u1',
+            body: 'minha e só minha',
             opensOn: DateTime(2026, 11, 1),
           ),
         ],
@@ -180,23 +192,18 @@ void main() {
       final repository = CapsulesRepository(
         dataSource: dataSource,
         togetherRepository: _MockTogether(),
+        authenticationRepository: authenticationRepository,
       );
 
       final capsules = await repository.getCapsules(now: DateTime(2026, 11, 11));
 
       expect(capsules.first.isMine, isFalse);
       expect(capsules.first.isShared, isTrue);
-      expect(capsules.last.isMine, isFalse);
+      expect(capsules.last.isMine, isTrue);
       expect(capsules.last.isShared, isFalse);
     });
   });
 }
 
-QueryCapsulescapsulesCollectionedgesnode _node(String id, DateTime opensOn, String body) =>
-    QueryCapsulescapsulesCollectionedgesnode(
-      id: id,
-      isMine: true,
-      isShared: false,
-      body: body,
-      opensOn: opensOn,
-    );
+QueryCapsulescapsules _node(String id, DateTime opensOn, String body) =>
+    QueryCapsulescapsules(id: id, authorId: 'u1', body: body, opensOn: opensOn);

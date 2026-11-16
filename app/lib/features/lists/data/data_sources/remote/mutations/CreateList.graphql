@@ -1,7 +1,5 @@
-mutation CreateList($id: UUID!, $title: String!, $kind: ListKind!, $coupleId: UUID) {
-  insertIntoListsCollection(objects: [{ id: $id, title: $title, kind: $kind, coupleId: $coupleId }]) {
-    records {
-      ...ListFragment
-    }
+mutation CreateList($id: uuid!, $title: String!, $kind: ListKind_enum!, $coupleId: uuid) {
+  insertListsOne(object: { id: $id, title: $title, kind: $kind, coupleId: $coupleId }) {
+    ...ListFragment
   }
 }

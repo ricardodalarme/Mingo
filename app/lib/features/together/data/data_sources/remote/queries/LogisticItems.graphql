@@ -1,12 +1,8 @@
 query LogisticItems {
-  logisticItemsCollection(orderBy: [{ createdAt: DescNullsLast }], first: 200) {
-    edges {
-      node {
-        id
-        title
-        assigneeId
-        doneAt
-      }
-    }
+  logisticItems(order_by: [{ createdAt: desc_nulls_last }], limit: 200) {
+    id
+    title
+    assigneeId
+    doneAt
   }
 }

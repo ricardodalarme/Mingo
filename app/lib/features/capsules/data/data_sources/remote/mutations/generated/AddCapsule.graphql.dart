@@ -109,29 +109,27 @@ class VariablesMutationAddCapsule {
 }
 
 class MutationAddCapsule {
-  MutationAddCapsule({this.insertIntoCapsulesCollection, this.$__typename = 'Mutation'});
+  MutationAddCapsule({this.insertCapsules, this.$__typename = 'mutation_root'});
 
   factory MutationAddCapsule.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoCapsulesCollection = json['insertIntoCapsulesCollection'];
+    final l$insertCapsules = json['insertCapsules'];
     final l$$__typename = json['__typename'];
     return MutationAddCapsule(
-      insertIntoCapsulesCollection: l$insertIntoCapsulesCollection == null
+      insertCapsules: l$insertCapsules == null
           ? null
-          : MutationAddCapsuleinsertIntoCapsulesCollection.fromJson(
-              (l$insertIntoCapsulesCollection as Map<String, dynamic>),
-            ),
+          : MutationAddCapsuleinsertCapsules.fromJson((l$insertCapsules as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddCapsuleinsertIntoCapsulesCollection? insertIntoCapsulesCollection;
+  final MutationAddCapsuleinsertCapsules? insertCapsules;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoCapsulesCollection = insertIntoCapsulesCollection;
-    _resultData['insertIntoCapsulesCollection'] = l$insertIntoCapsulesCollection?.toJson();
+    final l$insertCapsules = insertCapsules;
+    _resultData['insertCapsules'] = l$insertCapsules?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -139,9 +137,9 @@ class MutationAddCapsule {
 
   @override
   int get hashCode {
-    final l$insertIntoCapsulesCollection = insertIntoCapsulesCollection;
+    final l$insertCapsules = insertCapsules;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoCapsulesCollection, l$$__typename]);
+    return Object.hashAll([l$insertCapsules, l$$__typename]);
   }
 
   @override
@@ -152,9 +150,9 @@ class MutationAddCapsule {
     if (other is! MutationAddCapsule || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoCapsulesCollection = insertIntoCapsulesCollection;
-    final lOther$insertIntoCapsulesCollection = other.insertIntoCapsulesCollection;
-    if (l$insertIntoCapsulesCollection != lOther$insertIntoCapsulesCollection) {
+    final l$insertCapsules = insertCapsules;
+    final lOther$insertCapsules = other.insertCapsules;
+    if (l$insertCapsules != lOther$insertCapsules) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -174,7 +172,7 @@ const documentNodeMutationAddCapsule = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -186,13 +184,13 @@ const documentNodeMutationAddCapsule = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'opensOn')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -201,7 +199,7 @@ const documentNodeMutationAddCapsule = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoCapsulesCollection'),
+            name: NameNode(value: 'insertCapsules'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -236,7 +234,7 @@ const documentNodeMutationAddCapsule = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -354,29 +352,29 @@ extension ClientExtensionMutationAddCapsule on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationAddCapsuleinsertIntoCapsulesCollection {
-  MutationAddCapsuleinsertIntoCapsulesCollection({
-    required this.affectedCount,
-    this.$__typename = 'CapsulesInsertResponse',
+class MutationAddCapsuleinsertCapsules {
+  MutationAddCapsuleinsertCapsules({
+    required this.affected_rows,
+    this.$__typename = 'capsules_mutation_response',
   });
 
-  factory MutationAddCapsuleinsertIntoCapsulesCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationAddCapsuleinsertCapsules.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationAddCapsuleinsertIntoCapsulesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationAddCapsuleinsertCapsules(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -384,9 +382,9 @@ class MutationAddCapsuleinsertIntoCapsulesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -394,13 +392,12 @@ class MutationAddCapsuleinsertIntoCapsulesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationAddCapsuleinsertIntoCapsulesCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationAddCapsuleinsertCapsules || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

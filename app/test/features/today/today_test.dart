@@ -28,7 +28,8 @@ class _MockPairingRepository() extends Mock implements PairingRepository;
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
 
-QueryTodayHome _query({QueryTodayHometoday? today}) => QueryTodayHome(today: today);
+QueryTodayHome _query({QueryTodayHometoday? today}) =>
+    QueryTodayHome(today: today == null ? const [] : [today], question: const [], idea: const []);
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -132,7 +133,9 @@ void main() {
 
     test('a paired read remembers the partner name', () async {
       when(() => remote.getHome()).thenAnswer(
-        (_) async => _query(today: QueryTodayHometoday(isPaired: true, partnerName: 'Rui')),
+        (_) async => _query(
+          today: QueryTodayHometoday(partnerId: 'p1', partnerName: 'Rui'),
+        ),
       );
       when(() => local.read()).thenReturn(home);
 
@@ -142,8 +145,7 @@ void main() {
     });
 
     test('an unpair reports the stored partner name once', () async {
-      when(() => remote.getHome())
-          .thenAnswer((_) async => _query(today: QueryTodayHometoday(isPaired: false)));
+      when(() => remote.getHome()).thenAnswer((_) async => _query(today: QueryTodayHometoday()));
       when(() => local.readRelationship()).thenReturn((wasPaired: true, partnerName: 'Rui'));
 
       final result = await repository.getToday();
@@ -159,8 +161,7 @@ void main() {
     });
 
     test('an unpair already acknowledged is not reported again', () async {
-      when(() => remote.getHome())
-          .thenAnswer((_) async => _query(today: QueryTodayHometoday(isPaired: false)));
+      when(() => remote.getHome()).thenAnswer((_) async => _query(today: QueryTodayHometoday()));
 
       final result = await repository.getToday();
 

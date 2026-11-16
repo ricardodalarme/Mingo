@@ -1,9 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:app/features/profile/data/models/avatar_kind.dart';
-import 'package:app/features/profile/data/models/profile.dart';
-import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/widgets/data/data_sources/remote/couple_photo_data_source.dart';
 import 'package:app/features/widgets/data/models/couple_photo.dart';
 import 'package:app/features/widgets/data/repositories/couple_photo_repository.dart';
@@ -17,8 +14,6 @@ class _MockCouplePhotoDataSource() extends Mock implements CouplePhotoDataSource
 
 class _MockStorageService() extends Mock implements StorageService;
 
-class _MockProfileRepository() extends Mock implements ProfileRepository;
-
 class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
 class _MockWidgetDataService() extends Mock implements WidgetDataService;
@@ -26,7 +21,6 @@ class _MockWidgetDataService() extends Mock implements WidgetDataService;
 void main() {
   late CouplePhotoDataSource dataSource;
   late StorageService storageService;
-  late ProfileRepository profileRepository;
   late AuthenticationRepository authenticationRepository;
   late WidgetDataService widgetDataService;
   late CouplePhotoRepository repository;
@@ -34,7 +28,7 @@ void main() {
   final bytes = Uint8List.fromList([1, 2, 3]);
   final existing = CouplePhoto(
     coupleId: 'couple-1',
-    storagePath: 'couple-1/old.jpg',
+    fileId: 'file-old',
     uploadedBy: 'profile-1',
     updatedAt: DateTime.utc(2026, 11, 11),
   );
@@ -48,14 +42,12 @@ void main() {
   setUp(() {
     dataSource = _MockCouplePhotoDataSource();
     storageService = _MockStorageService();
-    profileRepository = _MockProfileRepository();
     authenticationRepository = _MockAuthenticationRepository();
     widgetDataService = _MockWidgetDataService();
 
     repository = CouplePhotoRepository(
       dataSource: dataSource,
       storageService: storageService,
-      profileRepository: profileRepository,
       authenticationRepository: authenticationRepository,
       widgetDataService: widgetDataService,
       resizePhoto: (bytes) async => bytes,
@@ -63,22 +55,17 @@ void main() {
     );
 
     when(() => authenticationRepository.currentUserId).thenReturn('profile-1');
-    when(() => profileRepository.getMyProfile())
-        .thenAnswer((_) async => const Profile(id: 'profile-1', avatarKind: AvatarKind.initials));
     when(
       () => storageService.upload(
         bucket: any(named: 'bucket'),
-        path: any(named: 'path'),
         bytes: any(named: 'bytes'),
         contentType: any(named: 'contentType'),
+        name: any(named: 'name'),
       ),
-    ).thenAnswer((_) async {});
-    when(
-      () => storageService.remove(
-        bucket: any(named: 'bucket'),
-        path: any(named: 'path'),
-      ),
-    ).thenAnswer((_) async {});
+    ).thenAnswer((_) async => 'file-new');
+    when(() => storageService.remove(fileId: any(named: 'fileId'))).thenAnswer((_) async {
+      return;
+    });
     when(() => widgetDataService.cacheCouplePhoto(any(), any(), updatedAt: any(named: 'updatedAt')))
         .thenAnswer((_) async => '/tmp/mingo_widget_photo.png');
     when(() => widgetDataService.readCachedPhotoPath(hasPlus: any(named: 'hasPlus')))
@@ -87,112 +74,64 @@ void main() {
     when(() => widgetDataService.clearCouplePhoto()).thenAnswer((_) async {
       return;
     });
-    when(() => dataSource.getPhoto())
+    when(() => dataSource.getPhoto(any()))
         .thenAnswer((_) async => (coupleId: 'couple-1', photo: existing));
     when(
       () => dataSource.update(
         coupleId: any(named: 'coupleId'),
-        storagePath: any(named: 'storagePath'),
-        uploadedBy: any(named: 'uploadedBy'),
+        fileId: any(named: 'fileId'),
       ),
     ).thenAnswer((_) async => 1);
     when(
       () => dataSource.insert(
         coupleId: any(named: 'coupleId'),
-        storagePath: any(named: 'storagePath'),
-        uploadedBy: any(named: 'uploadedBy'),
+        fileId: any(named: 'fileId'),
       ),
     ).thenAnswer((_) async => 1);
     when(() => dataSource.delete(any())).thenAnswer((_) async => 1);
   });
 
   group('upload', () {
-    test('stores the file under the couple folder, upserts the row, and caches', () async {
-      String? uploadedPath;
-      when(
-        () => dataSource.update(
-          coupleId: any(named: 'coupleId'),
-          storagePath: any(named: 'storagePath'),
-          uploadedBy: any(named: 'uploadedBy'),
-        ),
-      ).thenAnswer((invocation) async {
-        uploadedPath = invocation.namedArguments[#storagePath] as String;
-        return 1;
-      });
-
+    test('stores the file, upserts the row, and caches', () async {
       await repository.upload(bytes: bytes, contentType: 'image/jpeg');
 
-      expect(uploadedPath, startsWith('couple-1/'));
-      expect(uploadedPath, endsWith('.jpg'));
       verify(
         () => storageService.upload(
           bucket: 'couple_photos',
-          path: uploadedPath!,
           bytes: bytes,
           contentType: 'image/jpeg',
+          name: 'couple.jpg',
         ),
       ).called(1);
-      verify(
-        () => dataSource.update(
-          coupleId: 'couple-1',
-          storagePath: uploadedPath!,
-          uploadedBy: 'profile-1',
-        ),
-      ).called(1);
+      verify(() => dataSource.update(coupleId: 'couple-1', fileId: 'file-new')).called(1);
       verify(() => widgetDataService.cacheCouplePhoto(bytes, 'png', updatedAt: existing.updatedAt))
           .called(1);
     });
 
-    test('deletes the previous file when the photo is replaced', () async {
-      String? uploadedPath;
-      when(
-        () => dataSource.update(
-          coupleId: any(named: 'coupleId'),
-          storagePath: any(named: 'storagePath'),
-          uploadedBy: any(named: 'uploadedBy'),
-        ),
-      ).thenAnswer((invocation) async {
-        uploadedPath = invocation.namedArguments[#storagePath] as String;
-        return 1;
-      });
-
+    test('leaves the replaced file to the row change', () async {
       await repository.upload(bytes: bytes, contentType: 'image/png');
 
-      verify(() => storageService.remove(bucket: 'couple_photos', path: 'couple-1/old.jpg'))
-          .called(1);
-      expect(uploadedPath, endsWith('.png'));
+      verifyNever(() => storageService.remove(fileId: any(named: 'fileId')));
     });
 
     test('inserts the row when the couple has none yet', () async {
-      when(() => dataSource.getPhoto())
+      when(() => dataSource.getPhoto(any()))
           .thenAnswer((_) async => (coupleId: 'couple-1', photo: null));
       when(
         () => dataSource.update(
           coupleId: any(named: 'coupleId'),
-          storagePath: any(named: 'storagePath'),
-          uploadedBy: any(named: 'uploadedBy'),
+          fileId: any(named: 'fileId'),
         ),
       ).thenAnswer((_) async => 0);
 
       await repository.upload(bytes: bytes, contentType: 'image/jpeg');
 
-      verify(
-        () => dataSource.insert(
-          coupleId: 'couple-1',
-          storagePath: any(named: 'storagePath'),
-          uploadedBy: 'profile-1',
-        ),
-      ).called(1);
-      verifyNever(
-        () => storageService.remove(
-          bucket: any(named: 'bucket'),
-          path: any(named: 'path'),
-        ),
-      );
+      verify(() => dataSource.insert(coupleId: 'couple-1', fileId: 'file-new')).called(1);
+      verifyNever(() => storageService.remove(fileId: any(named: 'fileId')));
     });
 
     test('fails before writing when the person is not paired', () async {
-      when(() => dataSource.getPhoto()).thenAnswer((_) async => (coupleId: null, photo: null));
+      when(() => dataSource.getPhoto(any())).thenAnswer((_) async => (coupleId: null, photo: null));
 
       await expectLater(
         repository.upload(bytes: bytes, contentType: 'image/jpeg'),
@@ -202,9 +141,9 @@ void main() {
       verifyNever(
         () => storageService.upload(
           bucket: any(named: 'bucket'),
-          path: any(named: 'path'),
           bytes: any(named: 'bytes'),
           contentType: any(named: 'contentType'),
+          name: any(named: 'name'),
         ),
       );
     });
@@ -215,14 +154,20 @@ void main() {
         throwsA(isA<LocalizedException>()),
       );
 
-      verifyNever(() => profileRepository.getMyProfile());
+      verifyNever(
+        () => storageService.upload(
+          bucket: any(named: 'bucket'),
+          bytes: any(named: 'bytes'),
+          contentType: any(named: 'contentType'),
+          name: any(named: 'name'),
+        ),
+      );
     });
 
     test('rejects bytes that cannot be decoded as an image', () async {
       repository = CouplePhotoRepository(
         dataSource: dataSource,
         storageService: storageService,
-        profileRepository: profileRepository,
         authenticationRepository: authenticationRepository,
         widgetDataService: widgetDataService,
         resizePhoto: (_) async => null,
@@ -236,9 +181,9 @@ void main() {
       verifyNever(
         () => storageService.upload(
           bucket: any(named: 'bucket'),
-          path: any(named: 'path'),
           bytes: any(named: 'bytes'),
           contentType: any(named: 'contentType'),
+          name: any(named: 'name'),
         ),
       );
     });
@@ -247,8 +192,7 @@ void main() {
       when(
         () => dataSource.update(
           coupleId: any(named: 'coupleId'),
-          storagePath: any(named: 'storagePath'),
-          uploadedBy: any(named: 'uploadedBy'),
+          fileId: any(named: 'fileId'),
         ),
       ).thenThrow(Exception('row failed'));
 
@@ -257,12 +201,8 @@ void main() {
         throwsA(isA<LocalizedException>()),
       );
 
-      verify(
-        () => storageService.remove(
-          bucket: 'couple_photos',
-          path: any(named: 'path'),
-        ),
-      ).called(1);
+      verify(() => storageService.remove(fileId: 'file-new')).called(1);
+      verifyNever(() => storageService.remove(fileId: 'file-old'));
     });
   });
 
@@ -270,8 +210,7 @@ void main() {
     setUp(() {
       when(
         () => storageService.signedUrl(
-          bucket: any(named: 'bucket'),
-          path: any(named: 'path'),
+          fileId: any(named: 'fileId'),
           seconds: any(named: 'seconds'),
         ),
       ).thenAnswer((_) async => 'https://example.test/photo.jpg');
@@ -282,7 +221,6 @@ void main() {
       repository = CouplePhotoRepository(
         dataSource: dataSource,
         storageService: storageService,
-        profileRepository: profileRepository,
         authenticationRepository: authenticationRepository,
         widgetDataService: widgetDataService,
         resizePhoto: (bytes) async => bytes,
@@ -311,8 +249,7 @@ void main() {
       expect(hasPhoto, isTrue);
       verifyNever(
         () => storageService.signedUrl(
-          bucket: any(named: 'bucket'),
-          path: any(named: 'path'),
+          fileId: any(named: 'fileId'),
           seconds: any(named: 'seconds'),
         ),
       );
@@ -330,8 +267,7 @@ void main() {
       final hasPhoto = await repository.syncWidgetCache(cacheAllowed: true);
 
       expect(hasPhoto, isTrue);
-      verify(() => storageService.signedUrl(bucket: 'couple_photos', path: 'couple-1/old.jpg'))
-          .called(1);
+      verify(() => storageService.signedUrl(fileId: 'file-old')).called(1);
       verify(() => widgetDataService.cacheCouplePhoto(bytes, 'png', updatedAt: existing.updatedAt))
           .called(1);
     });
@@ -343,8 +279,7 @@ void main() {
           .thenAnswer((_) async => DateTime.utc(2026, 11, 10).toIso8601String());
       when(
         () => storageService.signedUrl(
-          bucket: any(named: 'bucket'),
-          path: any(named: 'path'),
+          fileId: any(named: 'fileId'),
           seconds: any(named: 'seconds'),
         ),
       ).thenThrow(FileStorageException(Exception('signed url failed')));
@@ -364,8 +299,7 @@ void main() {
       verify(() => widgetDataService.clearCouplePhoto()).called(1);
       verifyNever(
         () => storageService.signedUrl(
-          bucket: any(named: 'bucket'),
-          path: any(named: 'path'),
+          fileId: any(named: 'fileId'),
           seconds: any(named: 'seconds'),
         ),
       );
@@ -377,8 +311,7 @@ void main() {
       await repository.remove();
 
       verify(() => dataSource.delete('couple-1')).called(1);
-      verify(() => storageService.remove(bucket: 'couple_photos', path: 'couple-1/old.jpg'))
-          .called(1);
+      verify(() => storageService.remove(fileId: 'file-old')).called(1);
       verify(() => widgetDataService.clearCouplePhoto()).called(1);
     });
 
@@ -394,30 +327,28 @@ void main() {
     test('adds a short-lived signed URL to the row', () async {
       when(
         () => storageService.signedUrl(
-          bucket: any(named: 'bucket'),
-          path: any(named: 'path'),
+          fileId: any(named: 'fileId'),
           seconds: any(named: 'seconds'),
         ),
       ).thenAnswer((_) async => 'https://example.test/photo.jpg');
 
       final photo = await repository.getPhoto();
 
-      expect(photo?.storagePath, 'couple-1/old.jpg');
+      expect(photo?.fileId, 'file-old');
       expect(photo?.url, 'https://example.test/photo.jpg');
     });
 
     test('keeps the row when the signed URL fails', () async {
       when(
         () => storageService.signedUrl(
-          bucket: any(named: 'bucket'),
-          path: any(named: 'path'),
+          fileId: any(named: 'fileId'),
           seconds: any(named: 'seconds'),
         ),
       ).thenThrow(FileStorageException(Exception('signed url failed')));
 
       final photo = await repository.getPhoto();
 
-      expect(photo?.storagePath, 'couple-1/old.jpg');
+      expect(photo?.fileId, 'file-old');
       expect(photo?.url, isNull);
     });
   });

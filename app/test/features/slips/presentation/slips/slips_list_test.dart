@@ -26,9 +26,9 @@ void main() {
 
   SlipsListCubit build() => SlipsListCubit(slipRepository: repository);
 
-  void stubPage(SlipPage page, {String? after}) => when(
+  void stubPage(SlipPage page, {int offset = 0}) => when(
     () => repository.getSlips(
-      after: after,
+      offset: offset,
       since: any(named: 'since'),
       archived: any(named: 'archived'),
       pageSize: any(named: 'pageSize'),
@@ -51,14 +51,14 @@ void main() {
 
   group('SlipsListCubit', () {
     test('load shows the first page', () async {
-      stubPage(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: true, cursor: 'c1'));
+      stubPage(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: true, offset: 1));
       final cubit = build();
 
       await cubit.load();
 
       expect(cubit.state.slips, isA<Success<List<SlipEntry>>>());
       expect(cubit.state.hasNext, isTrue);
-      expect(cubit.state.cursor, 'c1');
+      expect(cubit.state.offset, 1);
     });
 
     test('an empty page is a success with no items, never an error', () async {
@@ -71,7 +71,7 @@ void main() {
     });
 
     test('loadMore appends the next page without duplicates', () async {
-      stubPage(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: true, cursor: 'c1'));
+      stubPage(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: true, offset: 1));
       final cubit = build();
       await cubit.load();
 
@@ -79,15 +79,16 @@ void main() {
         SlipPage(
           items: [_slip('a', DateTime(2026, 11, 9)), _slip('b', DateTime(2026, 11, 2))],
           hasNext: false,
-          cursor: 'c2',
+          offset: 3,
         ),
-        after: 'c1',
+        offset: 1,
       );
       await cubit.loadMore();
 
       final items = (cubit.state.slips as Success<List<SlipEntry>>).value;
       expect(items.map((slip) => slip.id), ['a', 'b']);
       expect(cubit.state.hasNext, isFalse);
+      expect(cubit.state.offset, 3);
     });
 
     test('loadMore does nothing when there is no next page', () async {
@@ -98,7 +99,7 @@ void main() {
 
       verify(
         () => repository.getSlips(
-          after: any(named: 'after'),
+          offset: any(named: 'offset'),
           since: any(named: 'since'),
           archived: any(named: 'archived'),
           pageSize: any(named: 'pageSize'),
@@ -115,7 +116,12 @@ void main() {
 
       expect(cubit.state.scope, SlipsScope.all);
       verify(
-        () => repository.getSlips(since: null, archived: false, pageSize: any(named: 'pageSize')),
+        () => repository.getSlips(
+          offset: 0,
+          since: null,
+          archived: false,
+          pageSize: any(named: 'pageSize'),
+        ),
       ).called(1);
     });
 
@@ -127,14 +133,19 @@ void main() {
       await cubit.changeScope(SlipsScope.archived);
 
       verify(
-        () => repository.getSlips(since: null, archived: true, pageSize: any(named: 'pageSize')),
+        () => repository.getSlips(
+          offset: 0,
+          since: null,
+          archived: true,
+          pageSize: any(named: 'pageSize'),
+        ),
       ).called(1);
     });
 
     test('a failed first load shows a failure', () async {
       when(
         () => repository.getSlips(
-          after: any(named: 'after'),
+          offset: any(named: 'offset'),
           since: any(named: 'since'),
           archived: any(named: 'archived'),
           pageSize: any(named: 'pageSize'),
@@ -157,7 +168,7 @@ void main() {
 
       verify(
         () => repository.getSlips(
-          after: any(named: 'after'),
+          offset: any(named: 'offset'),
           since: any(named: 'since'),
           archived: any(named: 'archived'),
           pageSize: any(named: 'pageSize'),

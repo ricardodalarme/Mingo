@@ -13,9 +13,8 @@ class VariablesMutationUpdateHistoryMemory {
     required String title,
     String? body,
     required DateTime happenedOn,
-    required EnumDatePrecision datePrecision,
+    required EnumDatePrecision_enum datePrecision,
     String? place,
-    required EnumMemoryOrigin origin,
   }) => VariablesMutationUpdateHistoryMemory._({
     r'id': id,
     if (coupleId != null) r'coupleId': coupleId,
@@ -24,7 +23,6 @@ class VariablesMutationUpdateHistoryMemory {
     r'happenedOn': happenedOn,
     r'datePrecision': datePrecision,
     if (place != null) r'place': place,
-    r'origin': origin,
   });
 
   VariablesMutationUpdateHistoryMemory._(this._$data);
@@ -46,13 +44,11 @@ class VariablesMutationUpdateHistoryMemory {
     final l$happenedOn = data['happenedOn'];
     result$data['happenedOn'] = DateTime.parse((l$happenedOn as String));
     final l$datePrecision = data['datePrecision'];
-    result$data['datePrecision'] = fromJsonEnumDatePrecision((l$datePrecision as String));
+    result$data['datePrecision'] = fromJsonEnumDatePrecision_enum((l$datePrecision as String));
     if (data.containsKey('place')) {
       final l$place = data['place'];
       result$data['place'] = (l$place as String?);
     }
-    final l$origin = data['origin'];
-    result$data['origin'] = fromJsonEnumMemoryOrigin((l$origin as String));
     return VariablesMutationUpdateHistoryMemory._(result$data);
   }
 
@@ -68,11 +64,9 @@ class VariablesMutationUpdateHistoryMemory {
 
   DateTime get happenedOn => (_$data['happenedOn'] as DateTime);
 
-  EnumDatePrecision get datePrecision => (_$data['datePrecision'] as EnumDatePrecision);
+  EnumDatePrecision_enum get datePrecision => (_$data['datePrecision'] as EnumDatePrecision_enum);
 
   String? get place => (_$data['place'] as String?);
-
-  EnumMemoryOrigin get origin => (_$data['origin'] as EnumMemoryOrigin);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -91,13 +85,11 @@ class VariablesMutationUpdateHistoryMemory {
     final l$happenedOn = happenedOn;
     result$data['happenedOn'] = ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     final l$datePrecision = datePrecision;
-    result$data['datePrecision'] = toJsonEnumDatePrecision(l$datePrecision);
+    result$data['datePrecision'] = toJsonEnumDatePrecision_enum(l$datePrecision);
     if (_$data.containsKey('place')) {
       final l$place = place;
       result$data['place'] = l$place;
     }
-    final l$origin = origin;
-    result$data['origin'] = toJsonEnumMemoryOrigin(l$origin);
     return result$data;
   }
 
@@ -153,11 +145,6 @@ class VariablesMutationUpdateHistoryMemory {
     if (l$place != lOther$place) {
       return false;
     }
-    final l$origin = origin;
-    final lOther$origin = other.origin;
-    if (l$origin != lOther$origin) {
-      return false;
-    }
     return true;
   }
 
@@ -170,7 +157,6 @@ class VariablesMutationUpdateHistoryMemory {
     final l$happenedOn = happenedOn;
     final l$datePrecision = datePrecision;
     final l$place = place;
-    final l$origin = origin;
     return Object.hashAll([
       l$id,
       _$data.containsKey('coupleId') ? l$coupleId : const {},
@@ -179,36 +165,34 @@ class VariablesMutationUpdateHistoryMemory {
       l$happenedOn,
       l$datePrecision,
       _$data.containsKey('place') ? l$place : const {},
-      l$origin,
     ]);
   }
 }
 
 class MutationUpdateHistoryMemory {
-  MutationUpdateHistoryMemory({
-    required this.updateMemoriesCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateHistoryMemory({this.updateMemories, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateHistoryMemory.fromJson(Map<String, dynamic> json) {
-    final l$updateMemoriesCollection = json['updateMemoriesCollection'];
+    final l$updateMemories = json['updateMemories'];
     final l$$__typename = json['__typename'];
     return MutationUpdateHistoryMemory(
-      updateMemoriesCollection: MutationUpdateHistoryMemoryupdateMemoriesCollection.fromJson(
-        (l$updateMemoriesCollection as Map<String, dynamic>),
-      ),
+      updateMemories: l$updateMemories == null
+          ? null
+          : MutationUpdateHistoryMemoryupdateMemories.fromJson(
+              (l$updateMemories as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateHistoryMemoryupdateMemoriesCollection updateMemoriesCollection;
+  final MutationUpdateHistoryMemoryupdateMemories? updateMemories;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateMemoriesCollection = updateMemoriesCollection;
-    _resultData['updateMemoriesCollection'] = l$updateMemoriesCollection.toJson();
+    final l$updateMemories = updateMemories;
+    _resultData['updateMemories'] = l$updateMemories?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -216,9 +200,9 @@ class MutationUpdateHistoryMemory {
 
   @override
   int get hashCode {
-    final l$updateMemoriesCollection = updateMemoriesCollection;
+    final l$updateMemories = updateMemories;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateMemoriesCollection, l$$__typename]);
+    return Object.hashAll([l$updateMemories, l$$__typename]);
   }
 
   @override
@@ -229,9 +213,9 @@ class MutationUpdateHistoryMemory {
     if (other is! MutationUpdateHistoryMemory || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateMemoriesCollection = updateMemoriesCollection;
-    final lOther$updateMemoriesCollection = other.updateMemoriesCollection;
-    if (l$updateMemoriesCollection != lOther$updateMemoriesCollection) {
+    final l$updateMemories = updateMemories;
+    final lOther$updateMemories = other.updateMemories;
+    if (l$updateMemories != lOther$updateMemories) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -251,13 +235,13 @@ const documentNodeMutationUpdateHistoryMemory = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -275,13 +259,13 @@ const documentNodeMutationUpdateHistoryMemory = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'happenedOn')),
-          type: NamedTypeNode(name: NameNode(value: 'Date'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'date'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'datePrecision')),
-          type: NamedTypeNode(name: NameNode(value: 'DatePrecision'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'DatePrecision_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -291,22 +275,34 @@ const documentNodeMutationUpdateHistoryMemory = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'origin')),
-          type: NamedTypeNode(name: NameNode(value: 'MemoryOrigin'), isNonNull: true),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateMemoriesCollection'),
+            name: NameNode(value: 'updateMemories'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'id')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -333,41 +329,15 @@ const documentNodeMutationUpdateHistoryMemory = DocumentNode(
                       name: NameNode(value: 'place'),
                       value: VariableNode(name: NameNode(value: 'place')),
                     ),
-                    ObjectFieldNode(
-                      name: NameNode(value: 'origin'),
-                      value: VariableNode(name: NameNode(value: 'origin')),
-                    ),
                   ],
                 ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -490,29 +460,29 @@ extension ClientExtensionMutationUpdateHistoryMemory on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateHistoryMemoryupdateMemoriesCollection {
-  MutationUpdateHistoryMemoryupdateMemoriesCollection({
-    required this.affectedCount,
-    this.$__typename = 'MemoriesUpdateResponse',
+class MutationUpdateHistoryMemoryupdateMemories {
+  MutationUpdateHistoryMemoryupdateMemories({
+    required this.affected_rows,
+    this.$__typename = 'memories_mutation_response',
   });
 
-  factory MutationUpdateHistoryMemoryupdateMemoriesCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateHistoryMemoryupdateMemories.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateHistoryMemoryupdateMemoriesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateHistoryMemoryupdateMemories(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -520,9 +490,9 @@ class MutationUpdateHistoryMemoryupdateMemoriesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -530,13 +500,12 @@ class MutationUpdateHistoryMemoryupdateMemoriesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateHistoryMemoryupdateMemoriesCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationUpdateHistoryMemoryupdateMemories || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

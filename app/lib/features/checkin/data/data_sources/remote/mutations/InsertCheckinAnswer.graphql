@@ -1,19 +1,10 @@
-mutation InsertCheckinAnswer(
-  $coupleId: UUID!
-  $weekStart: Date!
-  $question: Int!
-  $body: String!
-) {
-  insertIntoCheckinAnswersCollection(
-    objects: [
-      { coupleId: $coupleId, weekStart: $weekStart, question: $question, body: $body }
-    ]
-  ) {
-    records {
-      id
-      weekStart
-      question
-      body
-    }
+mutation InsertCheckinAnswer($answers: checkins_insert_input!) {
+  insertCheckinsOne(object: $answers) {
+    id
+    weekStart
+    answer1
+    answer2
+    answer3
+    answer4
   }
 }

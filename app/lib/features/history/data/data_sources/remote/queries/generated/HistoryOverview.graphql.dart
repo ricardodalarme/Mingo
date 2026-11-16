@@ -1,5 +1,4 @@
 // dart format width=100
-import '../../../../../../_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
 import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
 
 import 'dart:async';
@@ -8,13 +7,15 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesQueryHistoryOverview {
-  factory VariablesQueryHistoryOverview({required int year}) =>
-      VariablesQueryHistoryOverview._({r'year': year});
+  factory VariablesQueryHistoryOverview({required String userId, required int year}) =>
+      VariablesQueryHistoryOverview._({r'userId': userId, r'year': year});
 
   VariablesQueryHistoryOverview._(this._$data);
 
   factory VariablesQueryHistoryOverview.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
     final l$year = data['year'];
     result$data['year'] = (l$year as int);
     return VariablesQueryHistoryOverview._(result$data);
@@ -22,10 +23,14 @@ class VariablesQueryHistoryOverview {
 
   Map<String, dynamic> _$data;
 
+  String get userId => (_$data['userId'] as String);
+
   int get year => (_$data['year'] as int);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
     final l$year = year;
     result$data['year'] = l$year;
     return result$data;
@@ -39,6 +44,11 @@ class VariablesQueryHistoryOverview {
     if (other is! VariablesQueryHistoryOverview || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
     final l$year = year;
     final lOther$year = other.year;
     if (l$year != lOther$year) {
@@ -49,99 +59,91 @@ class VariablesQueryHistoryOverview {
 
   @override
   int get hashCode {
+    final l$userId = userId;
     final l$year = year;
-    return Object.hashAll([l$year]);
+    return Object.hashAll([l$userId, l$year]);
   }
 }
 
 class QueryHistoryOverview {
   QueryHistoryOverview({
-    this.myProfile,
-    this.myPartner,
-    this.mySettings,
-    this.myCouple,
-    required this.storyEventsCollection,
-    required this.memoriesCollection,
-    required this.importantDatesCollection,
-    this.myYear,
-    this.$__typename = 'Query',
+    this.profile,
+    this.member,
+    this.settings,
+    required this.storyEvents,
+    required this.memories,
+    required this.importantDates,
+    required this.yearRecaps,
+    this.$__typename = 'query_root',
   });
 
   factory QueryHistoryOverview.fromJson(Map<String, dynamic> json) {
-    final l$myProfile = json['myProfile'];
-    final l$myPartner = json['myPartner'];
-    final l$mySettings = json['mySettings'];
-    final l$myCouple = json['myCouple'];
-    final l$storyEventsCollection = json['storyEventsCollection'];
-    final l$memoriesCollection = json['memoriesCollection'];
-    final l$importantDatesCollection = json['importantDatesCollection'];
-    final l$myYear = json['myYear'];
+    final l$profile = json['profile'];
+    final l$member = json['member'];
+    final l$settings = json['settings'];
+    final l$storyEvents = json['storyEvents'];
+    final l$memories = json['memories'];
+    final l$importantDates = json['importantDates'];
+    final l$yearRecaps = json['yearRecaps'];
     final l$$__typename = json['__typename'];
     return QueryHistoryOverview(
-      myProfile: l$myProfile == null
+      profile: l$profile == null
           ? null
-          : QueryHistoryOverviewmyProfile.fromJson((l$myProfile as Map<String, dynamic>)),
-      myPartner: l$myPartner == null
+          : QueryHistoryOverviewprofile.fromJson((l$profile as Map<String, dynamic>)),
+      member: l$member == null
           ? null
-          : QueryHistoryOverviewmyPartner.fromJson((l$myPartner as Map<String, dynamic>)),
-      mySettings: l$mySettings == null
+          : QueryHistoryOverviewmember.fromJson((l$member as Map<String, dynamic>)),
+      settings: l$settings == null
           ? null
-          : QueryHistoryOverviewmySettings.fromJson((l$mySettings as Map<String, dynamic>)),
-      myCouple: l$myCouple == null
-          ? null
-          : QueryHistoryOverviewmyCouple.fromJson((l$myCouple as Map<String, dynamic>)),
-      storyEventsCollection: QueryHistoryOverviewstoryEventsCollection.fromJson(
-        (l$storyEventsCollection as Map<String, dynamic>),
-      ),
-      memoriesCollection: QueryHistoryOverviewmemoriesCollection.fromJson(
-        (l$memoriesCollection as Map<String, dynamic>),
-      ),
-      importantDatesCollection: QueryHistoryOverviewimportantDatesCollection.fromJson(
-        (l$importantDatesCollection as Map<String, dynamic>),
-      ),
-      myYear: l$myYear == null
-          ? null
-          : QueryHistoryOverviewmyYear.fromJson((l$myYear as Map<String, dynamic>)),
+          : QueryHistoryOverviewsettings.fromJson((l$settings as Map<String, dynamic>)),
+      storyEvents: (l$storyEvents as List<dynamic>)
+          .map((e) => QueryHistoryOverviewstoryEvents.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      memories: (l$memories as List<dynamic>)
+          .map((e) => QueryHistoryOverviewmemories.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      importantDates: (l$importantDates as List<dynamic>)
+          .map((e) => QueryHistoryOverviewimportantDates.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      yearRecaps: (l$yearRecaps as List<dynamic>)
+          .map((e) => QueryHistoryOverviewyearRecaps.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryHistoryOverviewmyProfile? myProfile;
+  final QueryHistoryOverviewprofile? profile;
 
-  final QueryHistoryOverviewmyPartner? myPartner;
+  final QueryHistoryOverviewmember? member;
 
-  final QueryHistoryOverviewmySettings? mySettings;
+  final QueryHistoryOverviewsettings? settings;
 
-  final QueryHistoryOverviewmyCouple? myCouple;
+  final List<QueryHistoryOverviewstoryEvents> storyEvents;
 
-  final QueryHistoryOverviewstoryEventsCollection storyEventsCollection;
+  final List<QueryHistoryOverviewmemories> memories;
 
-  final QueryHistoryOverviewmemoriesCollection memoriesCollection;
+  final List<QueryHistoryOverviewimportantDates> importantDates;
 
-  final QueryHistoryOverviewimportantDatesCollection importantDatesCollection;
-
-  final QueryHistoryOverviewmyYear? myYear;
+  final List<QueryHistoryOverviewyearRecaps> yearRecaps;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$myProfile = myProfile;
-    _resultData['myProfile'] = l$myProfile?.toJson();
-    final l$myPartner = myPartner;
-    _resultData['myPartner'] = l$myPartner?.toJson();
-    final l$mySettings = mySettings;
-    _resultData['mySettings'] = l$mySettings?.toJson();
-    final l$myCouple = myCouple;
-    _resultData['myCouple'] = l$myCouple?.toJson();
-    final l$storyEventsCollection = storyEventsCollection;
-    _resultData['storyEventsCollection'] = l$storyEventsCollection.toJson();
-    final l$memoriesCollection = memoriesCollection;
-    _resultData['memoriesCollection'] = l$memoriesCollection.toJson();
-    final l$importantDatesCollection = importantDatesCollection;
-    _resultData['importantDatesCollection'] = l$importantDatesCollection.toJson();
-    final l$myYear = myYear;
-    _resultData['myYear'] = l$myYear?.toJson();
+    final l$profile = profile;
+    _resultData['profile'] = l$profile?.toJson();
+    final l$member = member;
+    _resultData['member'] = l$member?.toJson();
+    final l$settings = settings;
+    _resultData['settings'] = l$settings?.toJson();
+    final l$storyEvents = storyEvents;
+    _resultData['storyEvents'] = l$storyEvents.map((e) => e.toJson()).toList();
+    final l$memories = memories;
+    _resultData['memories'] = l$memories.map((e) => e.toJson()).toList();
+    final l$importantDates = importantDates;
+    _resultData['importantDates'] = l$importantDates.map((e) => e.toJson()).toList();
+    final l$yearRecaps = yearRecaps;
+    _resultData['yearRecaps'] = l$yearRecaps.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -149,24 +151,22 @@ class QueryHistoryOverview {
 
   @override
   int get hashCode {
-    final l$myProfile = myProfile;
-    final l$myPartner = myPartner;
-    final l$mySettings = mySettings;
-    final l$myCouple = myCouple;
-    final l$storyEventsCollection = storyEventsCollection;
-    final l$memoriesCollection = memoriesCollection;
-    final l$importantDatesCollection = importantDatesCollection;
-    final l$myYear = myYear;
+    final l$profile = profile;
+    final l$member = member;
+    final l$settings = settings;
+    final l$storyEvents = storyEvents;
+    final l$memories = memories;
+    final l$importantDates = importantDates;
+    final l$yearRecaps = yearRecaps;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$myProfile,
-      l$myPartner,
-      l$mySettings,
-      l$myCouple,
-      l$storyEventsCollection,
-      l$memoriesCollection,
-      l$importantDatesCollection,
-      l$myYear,
+      l$profile,
+      l$member,
+      l$settings,
+      Object.hashAll(l$storyEvents.map((v) => v)),
+      Object.hashAll(l$memories.map((v) => v)),
+      Object.hashAll(l$importantDates.map((v) => v)),
+      Object.hashAll(l$yearRecaps.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -179,45 +179,68 @@ class QueryHistoryOverview {
     if (other is! QueryHistoryOverview || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$myProfile = myProfile;
-    final lOther$myProfile = other.myProfile;
-    if (l$myProfile != lOther$myProfile) {
+    final l$profile = profile;
+    final lOther$profile = other.profile;
+    if (l$profile != lOther$profile) {
       return false;
     }
-    final l$myPartner = myPartner;
-    final lOther$myPartner = other.myPartner;
-    if (l$myPartner != lOther$myPartner) {
+    final l$member = member;
+    final lOther$member = other.member;
+    if (l$member != lOther$member) {
       return false;
     }
-    final l$mySettings = mySettings;
-    final lOther$mySettings = other.mySettings;
-    if (l$mySettings != lOther$mySettings) {
+    final l$settings = settings;
+    final lOther$settings = other.settings;
+    if (l$settings != lOther$settings) {
       return false;
     }
-    final l$myCouple = myCouple;
-    final lOther$myCouple = other.myCouple;
-    if (l$myCouple != lOther$myCouple) {
+    final l$storyEvents = storyEvents;
+    final lOther$storyEvents = other.storyEvents;
+    if (l$storyEvents.length != lOther$storyEvents.length) {
       return false;
     }
-    final l$storyEventsCollection = storyEventsCollection;
-    final lOther$storyEventsCollection = other.storyEventsCollection;
-    if (l$storyEventsCollection != lOther$storyEventsCollection) {
+    for (int i = 0; i < l$storyEvents.length; i++) {
+      final l$storyEvents$entry = l$storyEvents[i];
+      final lOther$storyEvents$entry = lOther$storyEvents[i];
+      if (l$storyEvents$entry != lOther$storyEvents$entry) {
+        return false;
+      }
+    }
+    final l$memories = memories;
+    final lOther$memories = other.memories;
+    if (l$memories.length != lOther$memories.length) {
       return false;
     }
-    final l$memoriesCollection = memoriesCollection;
-    final lOther$memoriesCollection = other.memoriesCollection;
-    if (l$memoriesCollection != lOther$memoriesCollection) {
+    for (int i = 0; i < l$memories.length; i++) {
+      final l$memories$entry = l$memories[i];
+      final lOther$memories$entry = lOther$memories[i];
+      if (l$memories$entry != lOther$memories$entry) {
+        return false;
+      }
+    }
+    final l$importantDates = importantDates;
+    final lOther$importantDates = other.importantDates;
+    if (l$importantDates.length != lOther$importantDates.length) {
       return false;
     }
-    final l$importantDatesCollection = importantDatesCollection;
-    final lOther$importantDatesCollection = other.importantDatesCollection;
-    if (l$importantDatesCollection != lOther$importantDatesCollection) {
+    for (int i = 0; i < l$importantDates.length; i++) {
+      final l$importantDates$entry = l$importantDates[i];
+      final lOther$importantDates$entry = lOther$importantDates[i];
+      if (l$importantDates$entry != lOther$importantDates$entry) {
+        return false;
+      }
+    }
+    final l$yearRecaps = yearRecaps;
+    final lOther$yearRecaps = other.yearRecaps;
+    if (l$yearRecaps.length != lOther$yearRecaps.length) {
       return false;
     }
-    final l$myYear = myYear;
-    final lOther$myYear = other.myYear;
-    if (l$myYear != lOther$myYear) {
-      return false;
+    for (int i = 0; i < l$yearRecaps.length; i++) {
+      final l$yearRecaps$entry = l$yearRecaps[i];
+      final lOther$yearRecaps$entry = lOther$yearRecaps[i];
+      if (l$yearRecaps$entry != lOther$yearRecaps$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -235,6 +258,12 @@ const documentNodeQueryHistoryOverview = DocumentNode(
       name: NameNode(value: 'HistoryOverview'),
       variableDefinitions: [
         VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'userId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'year')),
           type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
@@ -245,9 +274,14 @@ const documentNodeQueryHistoryOverview = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'myProfile'),
-            alias: null,
-            arguments: [],
+            name: NameNode(value: 'profilesByPk'),
+            alias: NameNode(value: 'profile'),
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'id'),
+                value: VariableNode(name: NameNode(value: 'userId')),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
@@ -266,7 +300,7 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'avatarPath'),
+                  name: NameNode(value: 'avatarFileId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -290,39 +324,109 @@ const documentNodeQueryHistoryOverview = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'myPartner'),
-            alias: null,
-            arguments: [],
+            name: NameNode(value: 'coupleMembersByPk'),
+            alias: NameNode(value: 'member'),
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'userId'),
+                value: VariableNode(name: NameNode(value: 'userId')),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'id'),
+                  name: NameNode(value: 'couple'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'displayName'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'avatarPath'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'avatarKind'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'members'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(
+                          selections: [
+                            FieldNode(
+                              name: NameNode(value: 'userId'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: 'profile'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: SelectionSetNode(
+                                selections: [
+                                  FieldNode(
+                                    name: NameNode(value: 'id'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null,
+                                  ),
+                                  FieldNode(
+                                    name: NameNode(value: 'displayName'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null,
+                                  ),
+                                  FieldNode(
+                                    name: NameNode(value: 'avatarFileId'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null,
+                                  ),
+                                  FieldNode(
+                                    name: NameNode(value: 'avatarKind'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null,
+                                  ),
+                                  FieldNode(
+                                    name: NameNode(value: '__typename'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                          ],
+                        ),
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -335,14 +439,19 @@ const documentNodeQueryHistoryOverview = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'mySettings'),
-            alias: null,
-            arguments: [],
+            name: NameNode(value: 'userSettingsByPk'),
+            alias: NameNode(value: 'settings'),
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'userId'),
+                value: VariableNode(name: NameNode(value: 'userId')),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'profileId'),
+                  name: NameNode(value: 'userId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -387,9 +496,29 @@ const documentNodeQueryHistoryOverview = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'myCouple'),
+            name: NameNode(value: 'storyEvents'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'order_by'),
+                value: ListValueNode(
+                  values: [
+                    ObjectValueNode(
+                      fields: [
+                        ObjectFieldNode(
+                          name: NameNode(value: 'happenedOn'),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '51'),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
@@ -401,6 +530,48 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'authorId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'coupleId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'kind'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'happenedOn'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'datePrecision'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: '__typename'),
                   alias: null,
                   arguments: [],
@@ -411,18 +582,18 @@ const documentNodeQueryHistoryOverview = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'storyEventsCollection'),
+            name: NameNode(value: 'memories'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'happenedOn'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -430,116 +601,75 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '50'),
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '51'),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isMine'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isShared'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'kind'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'happenedOn'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'datePrecision'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'pageInfo'),
+                  name: NameNode(value: 'authorId'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'PageInfoFragment'),
-                        directives: [],
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'coupleId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'happenedOn'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'datePrecision'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'place'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'origin'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -552,180 +682,18 @@ const documentNodeQueryHistoryOverview = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'memoriesCollection'),
+            name: NameNode(value: 'importantDates'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'happenedOn'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '50'),
-              ),
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'edges'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isMine'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isShared'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'body'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'happenedOn'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'datePrecision'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'place'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'photoPath'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'origin'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
-                ),
-                FieldNode(
-                  name: NameNode(value: 'pageInfo'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'PageInfoFragment'),
-                        directives: [],
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
-            name: NameNode(value: 'importantDatesCollection'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'year'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -733,7 +701,7 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'month'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -741,7 +709,7 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'day'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -749,137 +717,82 @@ const documentNodeQueryHistoryOverview = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: IntValueNode(value: '50'),
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '51'),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isMine'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isShared'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'kind'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'month'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'day'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'year'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'yearly'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'hidden'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'pageInfo'),
+                  name: NameNode(value: 'authorId'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'PageInfoFragment'),
-                        directives: [],
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'coupleId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'kind'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'month'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'day'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'year'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'yearly'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'hidden'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -892,12 +805,30 @@ const documentNodeQueryHistoryOverview = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'myYear'),
+            name: NameNode(value: 'yearRecaps'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'year'),
-                value: VariableNode(name: NameNode(value: 'year')),
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'year'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'year')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
               ),
             ],
             directives: [],
@@ -972,7 +903,6 @@ const documentNodeQueryHistoryOverview = DocumentNode(
         ],
       ),
     ),
-    fragmentDefinitionPageInfoFragment,
   ],
 );
 QueryHistoryOverview _parserFnQueryHistoryOverview(Map<String, dynamic> data) =>
@@ -1104,26 +1034,26 @@ extension ClientExtensionQueryHistoryOverview on graphql.GraphQLClient {
   }
 }
 
-class QueryHistoryOverviewmyProfile {
-  QueryHistoryOverviewmyProfile({
+class QueryHistoryOverviewprofile {
+  QueryHistoryOverviewprofile({
     required this.id,
     this.displayName,
-    this.avatarPath,
+    this.avatarFileId,
     required this.avatarKind,
-    this.$__typename = 'Profiles',
+    this.$__typename = 'profiles',
   });
 
-  factory QueryHistoryOverviewmyProfile.fromJson(Map<String, dynamic> json) {
+  factory QueryHistoryOverviewprofile.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$displayName = json['displayName'];
-    final l$avatarPath = json['avatarPath'];
+    final l$avatarFileId = json['avatarFileId'];
     final l$avatarKind = json['avatarKind'];
     final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewmyProfile(
+    return QueryHistoryOverviewprofile(
       id: (l$id as String),
       displayName: (l$displayName as String?),
-      avatarPath: (l$avatarPath as String?),
-      avatarKind: fromJsonEnumAvatarKind((l$avatarKind as String)),
+      avatarFileId: (l$avatarFileId as String?),
+      avatarKind: fromJsonEnumAvatarKind_enum((l$avatarKind as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1132,9 +1062,9 @@ class QueryHistoryOverviewmyProfile {
 
   final String? displayName;
 
-  final String? avatarPath;
+  final String? avatarFileId;
 
-  final EnumAvatarKind avatarKind;
+  final EnumAvatarKind_enum avatarKind;
 
   final String $__typename;
 
@@ -1144,10 +1074,10 @@ class QueryHistoryOverviewmyProfile {
     _resultData['id'] = l$id;
     final l$displayName = displayName;
     _resultData['displayName'] = l$displayName;
-    final l$avatarPath = avatarPath;
-    _resultData['avatarPath'] = l$avatarPath;
+    final l$avatarFileId = avatarFileId;
+    _resultData['avatarFileId'] = l$avatarFileId;
     final l$avatarKind = avatarKind;
-    _resultData['avatarKind'] = toJsonEnumAvatarKind(l$avatarKind);
+    _resultData['avatarKind'] = toJsonEnumAvatarKind_enum(l$avatarKind);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1157,10 +1087,10 @@ class QueryHistoryOverviewmyProfile {
   int get hashCode {
     final l$id = id;
     final l$displayName = displayName;
-    final l$avatarPath = avatarPath;
+    final l$avatarFileId = avatarFileId;
     final l$avatarKind = avatarKind;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$displayName, l$avatarPath, l$avatarKind, l$$__typename]);
+    return Object.hashAll([l$id, l$displayName, l$avatarFileId, l$avatarKind, l$$__typename]);
   }
 
   @override
@@ -1168,7 +1098,7 @@ class QueryHistoryOverviewmyProfile {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryHistoryOverviewmyProfile || runtimeType != other.runtimeType) {
+    if (other is! QueryHistoryOverviewprofile || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -1181,9 +1111,9 @@ class QueryHistoryOverviewmyProfile {
     if (l$displayName != lOther$displayName) {
       return false;
     }
-    final l$avatarPath = avatarPath;
-    final lOther$avatarPath = other.avatarPath;
-    if (l$avatarPath != lOther$avatarPath) {
+    final l$avatarFileId = avatarFileId;
+    final lOther$avatarFileId = other.avatarFileId;
+    if (l$avatarFileId != lOther$avatarFileId) {
       return false;
     }
     final l$avatarKind = avatarKind;
@@ -1200,26 +1130,231 @@ class QueryHistoryOverviewmyProfile {
   }
 }
 
-class QueryHistoryOverviewmyPartner {
-  QueryHistoryOverviewmyPartner({
+class QueryHistoryOverviewmember {
+  QueryHistoryOverviewmember({required this.couple, this.$__typename = 'coupleMembers'});
+
+  factory QueryHistoryOverviewmember.fromJson(Map<String, dynamic> json) {
+    final l$couple = json['couple'];
+    final l$$__typename = json['__typename'];
+    return QueryHistoryOverviewmember(
+      couple: QueryHistoryOverviewmembercouple.fromJson((l$couple as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final QueryHistoryOverviewmembercouple couple;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$couple = couple;
+    _resultData['couple'] = l$couple.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$couple = couple;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$couple, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryHistoryOverviewmember || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$couple = couple;
+    final lOther$couple = other.couple;
+    if (l$couple != lOther$couple) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryHistoryOverviewmembercouple {
+  QueryHistoryOverviewmembercouple({
     required this.id,
-    this.displayName,
-    this.avatarPath,
-    required this.avatarKind,
-    this.$__typename = 'Profiles',
+    required this.members,
+    this.$__typename = 'couples',
   });
 
-  factory QueryHistoryOverviewmyPartner.fromJson(Map<String, dynamic> json) {
+  factory QueryHistoryOverviewmembercouple.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$members = json['members'];
+    final l$$__typename = json['__typename'];
+    return QueryHistoryOverviewmembercouple(
+      id: (l$id as String),
+      members: (l$members as List<dynamic>)
+          .map((e) => QueryHistoryOverviewmembercouplemembers.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final List<QueryHistoryOverviewmembercouplemembers> members;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$members = members;
+    _resultData['members'] = l$members.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$members = members;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, Object.hashAll(l$members.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryHistoryOverviewmembercouple || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$members = members;
+    final lOther$members = other.members;
+    if (l$members.length != lOther$members.length) {
+      return false;
+    }
+    for (int i = 0; i < l$members.length; i++) {
+      final l$members$entry = l$members[i];
+      final lOther$members$entry = lOther$members[i];
+      if (l$members$entry != lOther$members$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryHistoryOverviewmembercouplemembers {
+  QueryHistoryOverviewmembercouplemembers({
+    required this.userId,
+    required this.profile,
+    this.$__typename = 'coupleMembers',
+  });
+
+  factory QueryHistoryOverviewmembercouplemembers.fromJson(Map<String, dynamic> json) {
+    final l$userId = json['userId'];
+    final l$profile = json['profile'];
+    final l$$__typename = json['__typename'];
+    return QueryHistoryOverviewmembercouplemembers(
+      userId: (l$userId as String),
+      profile: QueryHistoryOverviewmembercouplemembersprofile.fromJson(
+        (l$profile as Map<String, dynamic>),
+      ),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String userId;
+
+  final QueryHistoryOverviewmembercouplemembersprofile profile;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
+    final l$profile = profile;
+    _resultData['profile'] = l$profile.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    final l$profile = profile;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$userId, l$profile, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryHistoryOverviewmembercouplemembers || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$profile = profile;
+    final lOther$profile = other.profile;
+    if (l$profile != lOther$profile) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryHistoryOverviewmembercouplemembersprofile {
+  QueryHistoryOverviewmembercouplemembersprofile({
+    required this.id,
+    this.displayName,
+    this.avatarFileId,
+    required this.avatarKind,
+    this.$__typename = 'profiles',
+  });
+
+  factory QueryHistoryOverviewmembercouplemembersprofile.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$displayName = json['displayName'];
-    final l$avatarPath = json['avatarPath'];
+    final l$avatarFileId = json['avatarFileId'];
     final l$avatarKind = json['avatarKind'];
     final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewmyPartner(
+    return QueryHistoryOverviewmembercouplemembersprofile(
       id: (l$id as String),
       displayName: (l$displayName as String?),
-      avatarPath: (l$avatarPath as String?),
-      avatarKind: fromJsonEnumAvatarKind((l$avatarKind as String)),
+      avatarFileId: (l$avatarFileId as String?),
+      avatarKind: fromJsonEnumAvatarKind_enum((l$avatarKind as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1228,9 +1363,9 @@ class QueryHistoryOverviewmyPartner {
 
   final String? displayName;
 
-  final String? avatarPath;
+  final String? avatarFileId;
 
-  final EnumAvatarKind avatarKind;
+  final EnumAvatarKind_enum avatarKind;
 
   final String $__typename;
 
@@ -1240,10 +1375,10 @@ class QueryHistoryOverviewmyPartner {
     _resultData['id'] = l$id;
     final l$displayName = displayName;
     _resultData['displayName'] = l$displayName;
-    final l$avatarPath = avatarPath;
-    _resultData['avatarPath'] = l$avatarPath;
+    final l$avatarFileId = avatarFileId;
+    _resultData['avatarFileId'] = l$avatarFileId;
     final l$avatarKind = avatarKind;
-    _resultData['avatarKind'] = toJsonEnumAvatarKind(l$avatarKind);
+    _resultData['avatarKind'] = toJsonEnumAvatarKind_enum(l$avatarKind);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1253,10 +1388,10 @@ class QueryHistoryOverviewmyPartner {
   int get hashCode {
     final l$id = id;
     final l$displayName = displayName;
-    final l$avatarPath = avatarPath;
+    final l$avatarFileId = avatarFileId;
     final l$avatarKind = avatarKind;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$displayName, l$avatarPath, l$avatarKind, l$$__typename]);
+    return Object.hashAll([l$id, l$displayName, l$avatarFileId, l$avatarKind, l$$__typename]);
   }
 
   @override
@@ -1264,7 +1399,8 @@ class QueryHistoryOverviewmyPartner {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryHistoryOverviewmyPartner || runtimeType != other.runtimeType) {
+    if (other is! QueryHistoryOverviewmembercouplemembersprofile ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -1277,9 +1413,9 @@ class QueryHistoryOverviewmyPartner {
     if (l$displayName != lOther$displayName) {
       return false;
     }
-    final l$avatarPath = avatarPath;
-    final lOther$avatarPath = other.avatarPath;
-    if (l$avatarPath != lOther$avatarPath) {
+    final l$avatarFileId = avatarFileId;
+    final lOther$avatarFileId = other.avatarFileId;
+    if (l$avatarFileId != lOther$avatarFileId) {
       return false;
     }
     final l$avatarKind = avatarKind;
@@ -1296,51 +1432,51 @@ class QueryHistoryOverviewmyPartner {
   }
 }
 
-class QueryHistoryOverviewmySettings {
-  QueryHistoryOverviewmySettings({
-    required this.profileId,
+class QueryHistoryOverviewsettings {
+  QueryHistoryOverviewsettings({
+    required this.userId,
     this.phase,
     this.togetherSince,
     this.partnerName,
     required this.relationshipStatus,
-    this.$__typename = 'ProfileSettings',
+    this.$__typename = 'userSettings',
   });
 
-  factory QueryHistoryOverviewmySettings.fromJson(Map<String, dynamic> json) {
-    final l$profileId = json['profileId'];
+  factory QueryHistoryOverviewsettings.fromJson(Map<String, dynamic> json) {
+    final l$userId = json['userId'];
     final l$phase = json['phase'];
     final l$togetherSince = json['togetherSince'];
     final l$partnerName = json['partnerName'];
     final l$relationshipStatus = json['relationshipStatus'];
     final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewmySettings(
-      profileId: (l$profileId as String),
-      phase: l$phase == null ? null : fromJsonEnumRelationshipPhase((l$phase as String)),
+    return QueryHistoryOverviewsettings(
+      userId: (l$userId as String),
+      phase: l$phase == null ? null : fromJsonEnumRelationshipPhase_enum((l$phase as String)),
       togetherSince: l$togetherSince == null ? null : DateTime.parse((l$togetherSince as String)),
       partnerName: (l$partnerName as String?),
-      relationshipStatus: fromJsonEnumRelationshipStatus((l$relationshipStatus as String)),
+      relationshipStatus: fromJsonEnumRelationshipStatus_enum((l$relationshipStatus as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String profileId;
+  final String userId;
 
-  final EnumRelationshipPhase? phase;
+  final EnumRelationshipPhase_enum? phase;
 
   final DateTime? togetherSince;
 
   final String? partnerName;
 
-  final EnumRelationshipStatus relationshipStatus;
+  final EnumRelationshipStatus_enum relationshipStatus;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$profileId = profileId;
-    _resultData['profileId'] = l$profileId;
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
     final l$phase = phase;
-    _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase(l$phase);
+    _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase_enum(l$phase);
     final l$togetherSince = togetherSince;
     _resultData['togetherSince'] = l$togetherSince == null
         ? null
@@ -1348,7 +1484,7 @@ class QueryHistoryOverviewmySettings {
     final l$partnerName = partnerName;
     _resultData['partnerName'] = l$partnerName;
     final l$relationshipStatus = relationshipStatus;
-    _resultData['relationshipStatus'] = toJsonEnumRelationshipStatus(l$relationshipStatus);
+    _resultData['relationshipStatus'] = toJsonEnumRelationshipStatus_enum(l$relationshipStatus);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1356,14 +1492,14 @@ class QueryHistoryOverviewmySettings {
 
   @override
   int get hashCode {
-    final l$profileId = profileId;
+    final l$userId = userId;
     final l$phase = phase;
     final l$togetherSince = togetherSince;
     final l$partnerName = partnerName;
     final l$relationshipStatus = relationshipStatus;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$profileId,
+      l$userId,
       l$phase,
       l$togetherSince,
       l$partnerName,
@@ -1377,12 +1513,12 @@ class QueryHistoryOverviewmySettings {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryHistoryOverviewmySettings || runtimeType != other.runtimeType) {
+    if (other is! QueryHistoryOverviewsettings || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$profileId = profileId;
-    final lOther$profileId = other.profileId;
-    if (l$profileId != lOther$profileId) {
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
       return false;
     }
     final l$phase = phase;
@@ -1414,249 +1550,52 @@ class QueryHistoryOverviewmySettings {
   }
 }
 
-class QueryHistoryOverviewmyCouple {
-  QueryHistoryOverviewmyCouple({required this.id, this.$__typename = 'Couples'});
-
-  factory QueryHistoryOverviewmyCouple.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewmyCouple(
-      id: (l$id as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHistoryOverviewmyCouple || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryHistoryOverviewstoryEventsCollection {
-  QueryHistoryOverviewstoryEventsCollection({
-    required this.edges,
-    required this.pageInfo,
-    this.$__typename = 'StoryEventsConnection',
-  });
-
-  factory QueryHistoryOverviewstoryEventsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$pageInfo = json['pageInfo'];
-    final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewstoryEventsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryHistoryOverviewstoryEventsCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      pageInfo: FragmentPageInfoFragment.fromJson((l$pageInfo as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryHistoryOverviewstoryEventsCollectionedges> edges;
-
-  final FragmentPageInfoFragment pageInfo;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$pageInfo = pageInfo;
-    _resultData['pageInfo'] = l$pageInfo.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$pageInfo = pageInfo;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$pageInfo, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHistoryOverviewstoryEventsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$pageInfo = pageInfo;
-    final lOther$pageInfo = other.pageInfo;
-    if (l$pageInfo != lOther$pageInfo) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryHistoryOverviewstoryEventsCollectionedges {
-  QueryHistoryOverviewstoryEventsCollectionedges({
-    required this.node,
-    this.$__typename = 'StoryEventsEdge',
-  });
-
-  factory QueryHistoryOverviewstoryEventsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewstoryEventsCollectionedges(
-      node: QueryHistoryOverviewstoryEventsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryHistoryOverviewstoryEventsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHistoryOverviewstoryEventsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryHistoryOverviewstoryEventsCollectionedgesnode {
-  QueryHistoryOverviewstoryEventsCollectionedgesnode({
+class QueryHistoryOverviewstoryEvents {
+  QueryHistoryOverviewstoryEvents({
     required this.id,
-    this.isMine,
-    this.isShared,
+    required this.authorId,
+    this.coupleId,
     required this.kind,
     this.title,
     required this.happenedOn,
     required this.datePrecision,
-    this.$__typename = 'StoryEvents',
+    this.$__typename = 'storyEvents',
   });
 
-  factory QueryHistoryOverviewstoryEventsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryHistoryOverviewstoryEvents.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$isMine = json['isMine'];
-    final l$isShared = json['isShared'];
+    final l$authorId = json['authorId'];
+    final l$coupleId = json['coupleId'];
     final l$kind = json['kind'];
     final l$title = json['title'];
     final l$happenedOn = json['happenedOn'];
     final l$datePrecision = json['datePrecision'];
     final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewstoryEventsCollectionedgesnode(
+    return QueryHistoryOverviewstoryEvents(
       id: (l$id as String),
-      isMine: (l$isMine as bool?),
-      isShared: (l$isShared as bool?),
-      kind: fromJsonEnumStoryEventKind((l$kind as String)),
+      authorId: (l$authorId as String),
+      coupleId: (l$coupleId as String?),
+      kind: fromJsonEnumStoryEventKind_enum((l$kind as String)),
       title: (l$title as String?),
       happenedOn: DateTime.parse((l$happenedOn as String)),
-      datePrecision: fromJsonEnumDatePrecision((l$datePrecision as String)),
+      datePrecision: fromJsonEnumDatePrecision_enum((l$datePrecision as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
 
-  final bool? isMine;
+  final String authorId;
 
-  final bool? isShared;
+  final String? coupleId;
 
-  final EnumStoryEventKind kind;
+  final EnumStoryEventKind_enum kind;
 
   final String? title;
 
   final DateTime happenedOn;
 
-  final EnumDatePrecision datePrecision;
+  final EnumDatePrecision_enum datePrecision;
 
   final String $__typename;
 
@@ -1664,18 +1603,18 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
-    final l$isShared = isShared;
-    _resultData['isShared'] = l$isShared;
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
     final l$kind = kind;
-    _resultData['kind'] = toJsonEnumStoryEventKind(l$kind);
+    _resultData['kind'] = toJsonEnumStoryEventKind_enum(l$kind);
     final l$title = title;
     _resultData['title'] = l$title;
     final l$happenedOn = happenedOn;
     _resultData['happenedOn'] = ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     final l$datePrecision = datePrecision;
-    _resultData['datePrecision'] = toJsonEnumDatePrecision(l$datePrecision);
+    _resultData['datePrecision'] = toJsonEnumDatePrecision_enum(l$datePrecision);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1684,8 +1623,8 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$isMine = isMine;
-    final l$isShared = isShared;
+    final l$authorId = authorId;
+    final l$coupleId = coupleId;
     final l$kind = kind;
     final l$title = title;
     final l$happenedOn = happenedOn;
@@ -1693,8 +1632,8 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$isMine,
-      l$isShared,
+      l$authorId,
+      l$coupleId,
       l$kind,
       l$title,
       l$happenedOn,
@@ -1708,8 +1647,7 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryHistoryOverviewstoryEventsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryHistoryOverviewstoryEvents || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -1717,14 +1655,14 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
-    final l$isShared = isShared;
-    final lOther$isShared = other.isShared;
-    if (l$isShared != lOther$isShared) {
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
       return false;
     }
     final l$kind = kind;
@@ -1756,194 +1694,50 @@ class QueryHistoryOverviewstoryEventsCollectionedgesnode {
   }
 }
 
-class QueryHistoryOverviewmemoriesCollection {
-  QueryHistoryOverviewmemoriesCollection({
-    required this.edges,
-    required this.pageInfo,
-    this.$__typename = 'MemoriesConnection',
-  });
-
-  factory QueryHistoryOverviewmemoriesCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$pageInfo = json['pageInfo'];
-    final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewmemoriesCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) =>
-                QueryHistoryOverviewmemoriesCollectionedges.fromJson((e as Map<String, dynamic>)),
-          )
-          .toList(),
-      pageInfo: FragmentPageInfoFragment.fromJson((l$pageInfo as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryHistoryOverviewmemoriesCollectionedges> edges;
-
-  final FragmentPageInfoFragment pageInfo;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$pageInfo = pageInfo;
-    _resultData['pageInfo'] = l$pageInfo.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$pageInfo = pageInfo;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$pageInfo, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHistoryOverviewmemoriesCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$pageInfo = pageInfo;
-    final lOther$pageInfo = other.pageInfo;
-    if (l$pageInfo != lOther$pageInfo) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryHistoryOverviewmemoriesCollectionedges {
-  QueryHistoryOverviewmemoriesCollectionedges({
-    required this.node,
-    this.$__typename = 'MemoriesEdge',
-  });
-
-  factory QueryHistoryOverviewmemoriesCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewmemoriesCollectionedges(
-      node: QueryHistoryOverviewmemoriesCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryHistoryOverviewmemoriesCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHistoryOverviewmemoriesCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryHistoryOverviewmemoriesCollectionedgesnode {
-  QueryHistoryOverviewmemoriesCollectionedgesnode({
+class QueryHistoryOverviewmemories {
+  QueryHistoryOverviewmemories({
     required this.id,
-    this.isMine,
-    this.isShared,
+    required this.authorId,
+    this.coupleId,
     required this.title,
     this.body,
     required this.happenedOn,
     required this.datePrecision,
     this.place,
-    this.photoPath,
     required this.origin,
-    this.$__typename = 'Memories',
+    this.$__typename = 'memories',
   });
 
-  factory QueryHistoryOverviewmemoriesCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryHistoryOverviewmemories.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$isMine = json['isMine'];
-    final l$isShared = json['isShared'];
+    final l$authorId = json['authorId'];
+    final l$coupleId = json['coupleId'];
     final l$title = json['title'];
     final l$body = json['body'];
     final l$happenedOn = json['happenedOn'];
     final l$datePrecision = json['datePrecision'];
     final l$place = json['place'];
-    final l$photoPath = json['photoPath'];
     final l$origin = json['origin'];
     final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewmemoriesCollectionedgesnode(
+    return QueryHistoryOverviewmemories(
       id: (l$id as String),
-      isMine: (l$isMine as bool?),
-      isShared: (l$isShared as bool?),
+      authorId: (l$authorId as String),
+      coupleId: (l$coupleId as String?),
       title: (l$title as String),
       body: (l$body as String?),
       happenedOn: DateTime.parse((l$happenedOn as String)),
-      datePrecision: fromJsonEnumDatePrecision((l$datePrecision as String)),
+      datePrecision: fromJsonEnumDatePrecision_enum((l$datePrecision as String)),
       place: (l$place as String?),
-      photoPath: (l$photoPath as String?),
-      origin: fromJsonEnumMemoryOrigin((l$origin as String)),
+      origin: fromJsonEnumMemoryOrigin_enum((l$origin as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
 
-  final bool? isMine;
+  final String authorId;
 
-  final bool? isShared;
+  final String? coupleId;
 
   final String title;
 
@@ -1951,13 +1745,11 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
 
   final DateTime happenedOn;
 
-  final EnumDatePrecision datePrecision;
+  final EnumDatePrecision_enum datePrecision;
 
   final String? place;
 
-  final String? photoPath;
-
-  final EnumMemoryOrigin origin;
+  final EnumMemoryOrigin_enum origin;
 
   final String $__typename;
 
@@ -1965,10 +1757,10 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
-    final l$isShared = isShared;
-    _resultData['isShared'] = l$isShared;
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
     final l$title = title;
     _resultData['title'] = l$title;
     final l$body = body;
@@ -1976,13 +1768,11 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
     final l$happenedOn = happenedOn;
     _resultData['happenedOn'] = ((v) => v.toIso8601String().substring(0, 10))(l$happenedOn);
     final l$datePrecision = datePrecision;
-    _resultData['datePrecision'] = toJsonEnumDatePrecision(l$datePrecision);
+    _resultData['datePrecision'] = toJsonEnumDatePrecision_enum(l$datePrecision);
     final l$place = place;
     _resultData['place'] = l$place;
-    final l$photoPath = photoPath;
-    _resultData['photoPath'] = l$photoPath;
     final l$origin = origin;
-    _resultData['origin'] = toJsonEnumMemoryOrigin(l$origin);
+    _resultData['origin'] = toJsonEnumMemoryOrigin_enum(l$origin);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1991,26 +1781,24 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$isMine = isMine;
-    final l$isShared = isShared;
+    final l$authorId = authorId;
+    final l$coupleId = coupleId;
     final l$title = title;
     final l$body = body;
     final l$happenedOn = happenedOn;
     final l$datePrecision = datePrecision;
     final l$place = place;
-    final l$photoPath = photoPath;
     final l$origin = origin;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$isMine,
-      l$isShared,
+      l$authorId,
+      l$coupleId,
       l$title,
       l$body,
       l$happenedOn,
       l$datePrecision,
       l$place,
-      l$photoPath,
       l$origin,
       l$$__typename,
     ]);
@@ -2021,8 +1809,7 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryHistoryOverviewmemoriesCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryHistoryOverviewmemories || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -2030,14 +1817,14 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
-    final l$isShared = isShared;
-    final lOther$isShared = other.isShared;
-    if (l$isShared != lOther$isShared) {
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
       return false;
     }
     final l$title = title;
@@ -2065,11 +1852,6 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
     if (l$place != lOther$place) {
       return false;
     }
-    final l$photoPath = photoPath;
-    final lOther$photoPath = other.photoPath;
-    if (l$photoPath != lOther$photoPath) {
-      return false;
-    }
     final l$origin = origin;
     final lOther$origin = other.origin;
     if (l$origin != lOther$origin) {
@@ -2084,155 +1866,11 @@ class QueryHistoryOverviewmemoriesCollectionedgesnode {
   }
 }
 
-class QueryHistoryOverviewimportantDatesCollection {
-  QueryHistoryOverviewimportantDatesCollection({
-    required this.edges,
-    required this.pageInfo,
-    this.$__typename = 'ImportantDatesConnection',
-  });
-
-  factory QueryHistoryOverviewimportantDatesCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$pageInfo = json['pageInfo'];
-    final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewimportantDatesCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryHistoryOverviewimportantDatesCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      pageInfo: FragmentPageInfoFragment.fromJson((l$pageInfo as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryHistoryOverviewimportantDatesCollectionedges> edges;
-
-  final FragmentPageInfoFragment pageInfo;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$pageInfo = pageInfo;
-    _resultData['pageInfo'] = l$pageInfo.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$pageInfo = pageInfo;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$pageInfo, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHistoryOverviewimportantDatesCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$pageInfo = pageInfo;
-    final lOther$pageInfo = other.pageInfo;
-    if (l$pageInfo != lOther$pageInfo) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryHistoryOverviewimportantDatesCollectionedges {
-  QueryHistoryOverviewimportantDatesCollectionedges({
-    required this.node,
-    this.$__typename = 'ImportantDatesEdge',
-  });
-
-  factory QueryHistoryOverviewimportantDatesCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewimportantDatesCollectionedges(
-      node: QueryHistoryOverviewimportantDatesCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryHistoryOverviewimportantDatesCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryHistoryOverviewimportantDatesCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryHistoryOverviewimportantDatesCollectionedgesnode {
-  QueryHistoryOverviewimportantDatesCollectionedgesnode({
+class QueryHistoryOverviewimportantDates {
+  QueryHistoryOverviewimportantDates({
     required this.id,
-    this.isMine,
-    this.isShared,
+    required this.authorId,
+    this.coupleId,
     required this.title,
     required this.kind,
     required this.month,
@@ -2240,15 +1878,13 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     this.year,
     required this.yearly,
     required this.hidden,
-    this.$__typename = 'ImportantDates',
+    this.$__typename = 'importantDates',
   });
 
-  factory QueryHistoryOverviewimportantDatesCollectionedgesnode.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QueryHistoryOverviewimportantDates.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$isMine = json['isMine'];
-    final l$isShared = json['isShared'];
+    final l$authorId = json['authorId'];
+    final l$coupleId = json['coupleId'];
     final l$title = json['title'];
     final l$kind = json['kind'];
     final l$month = json['month'];
@@ -2257,12 +1893,12 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     final l$yearly = json['yearly'];
     final l$hidden = json['hidden'];
     final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewimportantDatesCollectionedgesnode(
+    return QueryHistoryOverviewimportantDates(
       id: (l$id as String),
-      isMine: (l$isMine as bool?),
-      isShared: (l$isShared as bool?),
+      authorId: (l$authorId as String),
+      coupleId: (l$coupleId as String?),
       title: (l$title as String),
-      kind: fromJsonEnumImportantDateKind((l$kind as String)),
+      kind: fromJsonEnumImportantDateKind_enum((l$kind as String)),
       month: (l$month as int),
       day: (l$day as int),
       year: (l$year as int?),
@@ -2274,13 +1910,13 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
 
   final String id;
 
-  final bool? isMine;
+  final String authorId;
 
-  final bool? isShared;
+  final String? coupleId;
 
   final String title;
 
-  final EnumImportantDateKind kind;
+  final EnumImportantDateKind_enum kind;
 
   final int month;
 
@@ -2298,14 +1934,14 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
-    final l$isShared = isShared;
-    _resultData['isShared'] = l$isShared;
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
     final l$title = title;
     _resultData['title'] = l$title;
     final l$kind = kind;
-    _resultData['kind'] = toJsonEnumImportantDateKind(l$kind);
+    _resultData['kind'] = toJsonEnumImportantDateKind_enum(l$kind);
     final l$month = month;
     _resultData['month'] = l$month;
     final l$day = day;
@@ -2324,8 +1960,8 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$isMine = isMine;
-    final l$isShared = isShared;
+    final l$authorId = authorId;
+    final l$coupleId = coupleId;
     final l$title = title;
     final l$kind = kind;
     final l$month = month;
@@ -2336,8 +1972,8 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$isMine,
-      l$isShared,
+      l$authorId,
+      l$coupleId,
       l$title,
       l$kind,
       l$month,
@@ -2354,8 +1990,7 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryHistoryOverviewimportantDatesCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryHistoryOverviewimportantDates || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -2363,14 +1998,14 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
-    final l$isShared = isShared;
-    final lOther$isShared = other.isShared;
-    if (l$isShared != lOther$isShared) {
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
       return false;
     }
     final l$title = title;
@@ -2417,8 +2052,8 @@ class QueryHistoryOverviewimportantDatesCollectionedgesnode {
   }
 }
 
-class QueryHistoryOverviewmyYear {
-  QueryHistoryOverviewmyYear({
+class QueryHistoryOverviewyearRecaps {
+  QueryHistoryOverviewyearRecaps({
     this.year,
     this.slips,
     this.cardsSent,
@@ -2426,10 +2061,10 @@ class QueryHistoryOverviewmyYear {
     this.memories,
     this.firsts,
     this.ritualsDone,
-    this.$__typename = 'YearRecap',
+    this.$__typename = 'yearRecaps',
   });
 
-  factory QueryHistoryOverviewmyYear.fromJson(Map<String, dynamic> json) {
+  factory QueryHistoryOverviewyearRecaps.fromJson(Map<String, dynamic> json) {
     final l$year = json['year'];
     final l$slips = json['slips'];
     final l$cardsSent = json['cardsSent'];
@@ -2438,7 +2073,7 @@ class QueryHistoryOverviewmyYear {
     final l$firsts = json['firsts'];
     final l$ritualsDone = json['ritualsDone'];
     final l$$__typename = json['__typename'];
-    return QueryHistoryOverviewmyYear(
+    return QueryHistoryOverviewyearRecaps(
       year: (l$year as int?),
       slips: (l$slips as int?),
       cardsSent: (l$cardsSent as int?),
@@ -2514,7 +2149,7 @@ class QueryHistoryOverviewmyYear {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryHistoryOverviewmyYear || runtimeType != other.runtimeType) {
+    if (other is! QueryHistoryOverviewyearRecaps || runtimeType != other.runtimeType) {
       return false;
     }
     final l$year = year;

@@ -8,12 +8,7 @@ class VariablesMutationInsertQuestionAnswer {
   factory VariablesMutationInsertQuestionAnswer({
     required String questionSlug,
     required String body,
-    String? coupleId,
-  }) => VariablesMutationInsertQuestionAnswer._({
-    r'questionSlug': questionSlug,
-    r'body': body,
-    if (coupleId != null) r'coupleId': coupleId,
-  });
+  }) => VariablesMutationInsertQuestionAnswer._({r'questionSlug': questionSlug, r'body': body});
 
   VariablesMutationInsertQuestionAnswer._(this._$data);
 
@@ -23,10 +18,6 @@ class VariablesMutationInsertQuestionAnswer {
     result$data['questionSlug'] = (l$questionSlug as String);
     final l$body = data['body'];
     result$data['body'] = (l$body as String);
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = (l$coupleId as String?);
-    }
     return VariablesMutationInsertQuestionAnswer._(result$data);
   }
 
@@ -36,18 +27,12 @@ class VariablesMutationInsertQuestionAnswer {
 
   String get body => (_$data['body'] as String);
 
-  String? get coupleId => (_$data['coupleId'] as String?);
-
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$questionSlug = questionSlug;
     result$data['questionSlug'] = l$questionSlug;
     final l$body = body;
     result$data['body'] = l$body;
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId;
-    }
     return result$data;
   }
 
@@ -69,14 +54,6 @@ class VariablesMutationInsertQuestionAnswer {
     if (l$body != lOther$body) {
       return false;
     }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
     return true;
   }
 
@@ -84,44 +61,34 @@ class VariablesMutationInsertQuestionAnswer {
   int get hashCode {
     final l$questionSlug = questionSlug;
     final l$body = body;
-    final l$coupleId = coupleId;
-    return Object.hashAll([
-      l$questionSlug,
-      l$body,
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-    ]);
+    return Object.hashAll([l$questionSlug, l$body]);
   }
 }
 
 class MutationInsertQuestionAnswer {
-  MutationInsertQuestionAnswer({
-    this.insertIntoQuestionAnswersCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationInsertQuestionAnswer({this.insertQuestionAnswersOne, this.$__typename = 'mutation_root'});
 
   factory MutationInsertQuestionAnswer.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoQuestionAnswersCollection = json['insertIntoQuestionAnswersCollection'];
+    final l$insertQuestionAnswersOne = json['insertQuestionAnswersOne'];
     final l$$__typename = json['__typename'];
     return MutationInsertQuestionAnswer(
-      insertIntoQuestionAnswersCollection: l$insertIntoQuestionAnswersCollection == null
+      insertQuestionAnswersOne: l$insertQuestionAnswersOne == null
           ? null
-          : MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollection.fromJson(
-              (l$insertIntoQuestionAnswersCollection as Map<String, dynamic>),
+          : MutationInsertQuestionAnswerinsertQuestionAnswersOne.fromJson(
+              (l$insertQuestionAnswersOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollection?
-  insertIntoQuestionAnswersCollection;
+  final MutationInsertQuestionAnswerinsertQuestionAnswersOne? insertQuestionAnswersOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoQuestionAnswersCollection = insertIntoQuestionAnswersCollection;
-    _resultData['insertIntoQuestionAnswersCollection'] = l$insertIntoQuestionAnswersCollection
-        ?.toJson();
+    final l$insertQuestionAnswersOne = insertQuestionAnswersOne;
+    _resultData['insertQuestionAnswersOne'] = l$insertQuestionAnswersOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -129,9 +96,9 @@ class MutationInsertQuestionAnswer {
 
   @override
   int get hashCode {
-    final l$insertIntoQuestionAnswersCollection = insertIntoQuestionAnswersCollection;
+    final l$insertQuestionAnswersOne = insertQuestionAnswersOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoQuestionAnswersCollection, l$$__typename]);
+    return Object.hashAll([l$insertQuestionAnswersOne, l$$__typename]);
   }
 
   @override
@@ -142,9 +109,9 @@ class MutationInsertQuestionAnswer {
     if (other is! MutationInsertQuestionAnswer || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoQuestionAnswersCollection = insertIntoQuestionAnswersCollection;
-    final lOther$insertIntoQuestionAnswersCollection = other.insertIntoQuestionAnswersCollection;
-    if (l$insertIntoQuestionAnswersCollection != lOther$insertIntoQuestionAnswersCollection) {
+    final l$insertQuestionAnswersOne = insertQuestionAnswersOne;
+    final lOther$insertQuestionAnswersOne = other.insertQuestionAnswersOne;
+    if (l$insertQuestionAnswersOne != lOther$insertQuestionAnswersOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -174,39 +141,25 @@ const documentNodeMutationInsertQuestionAnswer = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoQuestionAnswersCollection'),
+            name: NameNode(value: 'insertQuestionAnswersOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'questionSlug'),
-                          value: VariableNode(name: NameNode(value: 'questionSlug')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'body'),
-                          value: VariableNode(name: NameNode(value: 'body')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'coupleId'),
-                          value: VariableNode(name: NameNode(value: 'coupleId')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'questionSlug'),
+                      value: VariableNode(name: NameNode(value: 'questionSlug')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'body'),
+                      value: VariableNode(name: NameNode(value: 'body')),
                     ),
                   ],
                 ),
@@ -216,49 +169,32 @@ const documentNodeMutationInsertQuestionAnswer = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'records'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'coupleId'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'questionSlug'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'body'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'coupleId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'questionSlug'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -377,97 +313,22 @@ extension ClientExtensionMutationInsertQuestionAnswer on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollection {
-  MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollection({
-    required this.records,
-    this.$__typename = 'QuestionAnswersInsertResponse',
-  });
-
-  factory MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollection(
-      records: (l$records as List<dynamic>)
-          .map(
-            (e) => MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords {
-  MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords({
+class MutationInsertQuestionAnswerinsertQuestionAnswersOne {
+  MutationInsertQuestionAnswerinsertQuestionAnswersOne({
     required this.id,
     this.coupleId,
     required this.questionSlug,
     required this.body,
-    this.$__typename = 'QuestionAnswers',
+    this.$__typename = 'questionAnswers',
   });
 
-  factory MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory MutationInsertQuestionAnswerinsertQuestionAnswersOne.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$coupleId = json['coupleId'];
     final l$questionSlug = json['questionSlug'];
     final l$body = json['body'];
     final l$$__typename = json['__typename'];
-    return MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords(
+    return MutationInsertQuestionAnswerinsertQuestionAnswersOne(
       id: (l$id as String),
       coupleId: (l$coupleId as String?),
       questionSlug: (l$questionSlug as String),
@@ -516,7 +377,7 @@ class MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationInsertQuestionAnswerinsertIntoQuestionAnswersCollectionrecords ||
+    if (other is! MutationInsertQuestionAnswerinsertQuestionAnswersOne ||
         runtimeType != other.runtimeType) {
       return false;
     }

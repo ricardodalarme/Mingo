@@ -7,27 +7,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryGiftPage {
-  QueryGiftPage({required this.giftIdeasCollection, this.$__typename = 'Query'});
+  QueryGiftPage({required this.giftIdeas, this.$__typename = 'query_root'});
 
   factory QueryGiftPage.fromJson(Map<String, dynamic> json) {
-    final l$giftIdeasCollection = json['giftIdeasCollection'];
+    final l$giftIdeas = json['giftIdeas'];
     final l$$__typename = json['__typename'];
     return QueryGiftPage(
-      giftIdeasCollection: QueryGiftPagegiftIdeasCollection.fromJson(
-        (l$giftIdeasCollection as Map<String, dynamic>),
-      ),
+      giftIdeas: (l$giftIdeas as List<dynamic>)
+          .map((e) => FragmentGiftWishFragment.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryGiftPagegiftIdeasCollection giftIdeasCollection;
+  final List<FragmentGiftWishFragment> giftIdeas;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$giftIdeasCollection = giftIdeasCollection;
-    _resultData['giftIdeasCollection'] = l$giftIdeasCollection.toJson();
+    final l$giftIdeas = giftIdeas;
+    _resultData['giftIdeas'] = l$giftIdeas.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +35,9 @@ class QueryGiftPage {
 
   @override
   int get hashCode {
-    final l$giftIdeasCollection = giftIdeasCollection;
+    final l$giftIdeas = giftIdeas;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$giftIdeasCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$giftIdeas.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -48,10 +48,17 @@ class QueryGiftPage {
     if (other is! QueryGiftPage || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$giftIdeasCollection = giftIdeasCollection;
-    final lOther$giftIdeasCollection = other.giftIdeasCollection;
-    if (l$giftIdeasCollection != lOther$giftIdeasCollection) {
+    final l$giftIdeas = giftIdeas;
+    final lOther$giftIdeas = other.giftIdeas;
+    if (l$giftIdeas.length != lOther$giftIdeas.length) {
       return false;
+    }
+    for (int i = 0; i < l$giftIdeas.length; i++) {
+      final l$giftIdeas$entry = l$giftIdeas[i];
+      final lOther$giftIdeas$entry = lOther$giftIdeas[i];
+      if (l$giftIdeas$entry != lOther$giftIdeas$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -72,11 +79,11 @@ const documentNodeQueryGiftPage = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'giftIdeasCollection'),
+            name: NameNode(value: 'giftIdeas'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -84,7 +91,7 @@ const documentNodeQueryGiftPage = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: EnumValueNode(name: NameNode(value: 'wish')),
                           ),
                         ],
@@ -94,14 +101,14 @@ const documentNodeQueryGiftPage = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -109,50 +116,16 @@ const documentNodeQueryGiftPage = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '200'),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'edges'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'GiftWishFragment'),
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FragmentSpreadNode(
-                              name: NameNode(value: 'GiftWishFragment'),
-                              directives: [],
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -276,122 +249,5 @@ extension ClientExtensionQueryGiftPage on graphql.GraphQLClient {
       optimistic: optimistic,
     );
     return result == null ? null : QueryGiftPage.fromJson(result);
-  }
-}
-
-class QueryGiftPagegiftIdeasCollection {
-  QueryGiftPagegiftIdeasCollection({required this.edges, this.$__typename = 'GiftIdeasConnection'});
-
-  factory QueryGiftPagegiftIdeasCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryGiftPagegiftIdeasCollection(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryGiftPagegiftIdeasCollectionedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryGiftPagegiftIdeasCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGiftPagegiftIdeasCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGiftPagegiftIdeasCollectionedges {
-  QueryGiftPagegiftIdeasCollectionedges({required this.node, this.$__typename = 'GiftIdeasEdge'});
-
-  factory QueryGiftPagegiftIdeasCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryGiftPagegiftIdeasCollectionedges(
-      node: FragmentGiftWishFragment.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final FragmentGiftWishFragment node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGiftPagegiftIdeasCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
   }
 }

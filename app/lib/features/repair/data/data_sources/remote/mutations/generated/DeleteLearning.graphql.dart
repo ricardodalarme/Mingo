@@ -52,33 +52,29 @@ class VariablesMutationDeleteLearning {
 }
 
 class MutationDeleteLearning {
-  MutationDeleteLearning({
-    required this.deleteFromRepairLearningsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteLearning({this.deleteRepairLearnings, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteLearning.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromRepairLearningsCollection = json['deleteFromRepairLearningsCollection'];
+    final l$deleteRepairLearnings = json['deleteRepairLearnings'];
     final l$$__typename = json['__typename'];
     return MutationDeleteLearning(
-      deleteFromRepairLearningsCollection:
-          MutationDeleteLearningdeleteFromRepairLearningsCollection.fromJson(
-            (l$deleteFromRepairLearningsCollection as Map<String, dynamic>),
-          ),
+      deleteRepairLearnings: l$deleteRepairLearnings == null
+          ? null
+          : MutationDeleteLearningdeleteRepairLearnings.fromJson(
+              (l$deleteRepairLearnings as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteLearningdeleteFromRepairLearningsCollection
-  deleteFromRepairLearningsCollection;
+  final MutationDeleteLearningdeleteRepairLearnings? deleteRepairLearnings;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromRepairLearningsCollection = deleteFromRepairLearningsCollection;
-    _resultData['deleteFromRepairLearningsCollection'] = l$deleteFromRepairLearningsCollection
-        .toJson();
+    final l$deleteRepairLearnings = deleteRepairLearnings;
+    _resultData['deleteRepairLearnings'] = l$deleteRepairLearnings?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -86,9 +82,9 @@ class MutationDeleteLearning {
 
   @override
   int get hashCode {
-    final l$deleteFromRepairLearningsCollection = deleteFromRepairLearningsCollection;
+    final l$deleteRepairLearnings = deleteRepairLearnings;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromRepairLearningsCollection, l$$__typename]);
+    return Object.hashAll([l$deleteRepairLearnings, l$$__typename]);
   }
 
   @override
@@ -99,9 +95,9 @@ class MutationDeleteLearning {
     if (other is! MutationDeleteLearning || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromRepairLearningsCollection = deleteFromRepairLearningsCollection;
-    final lOther$deleteFromRepairLearningsCollection = other.deleteFromRepairLearningsCollection;
-    if (l$deleteFromRepairLearningsCollection != lOther$deleteFromRepairLearningsCollection) {
+    final l$deleteRepairLearnings = deleteRepairLearnings;
+    final lOther$deleteRepairLearnings = other.deleteRepairLearnings;
+    if (l$deleteRepairLearnings != lOther$deleteRepairLearnings) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -121,7 +117,7 @@ const documentNodeMutationDeleteLearning = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -130,11 +126,11 @@ const documentNodeMutationDeleteLearning = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromRepairLearningsCollection'),
+            name: NameNode(value: 'deleteRepairLearnings'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -142,7 +138,7 @@ const documentNodeMutationDeleteLearning = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'id')),
                           ),
                         ],
@@ -151,16 +147,12 @@ const documentNodeMutationDeleteLearning = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -279,31 +271,29 @@ extension ClientExtensionMutationDeleteLearning on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteLearningdeleteFromRepairLearningsCollection {
-  MutationDeleteLearningdeleteFromRepairLearningsCollection({
-    required this.affectedCount,
-    this.$__typename = 'RepairLearningsDeleteResponse',
+class MutationDeleteLearningdeleteRepairLearnings {
+  MutationDeleteLearningdeleteRepairLearnings({
+    required this.affected_rows,
+    this.$__typename = 'repairLearnings_mutation_response',
   });
 
-  factory MutationDeleteLearningdeleteFromRepairLearningsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteLearningdeleteRepairLearnings.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteLearningdeleteFromRepairLearningsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteLearningdeleteRepairLearnings(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -311,9 +301,9 @@ class MutationDeleteLearningdeleteFromRepairLearningsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -321,13 +311,12 @@ class MutationDeleteLearningdeleteFromRepairLearningsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteLearningdeleteFromRepairLearningsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationDeleteLearningdeleteRepairLearnings || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

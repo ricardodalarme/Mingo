@@ -10,41 +10,39 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
   WidgetOverview toModel({
     required WidgetContentSource contentSource,
     required WidgetRotationCadence rotationCadence,
+    String? cardStatus,
     String? cachedPhotoPath,
     bool hasPhoto = false,
     String? localeCode,
     DateTime? now,
   }) {
-    final widgetState = widget;
-    final todayState = today;
-    final settings = mySettings;
+    final todayState = today.firstOrNull;
+    final settingsState = settings;
     final resolvedLocale = localeCode ?? LocaleSettings.currentLocale.languageCode;
 
-    final profileId = settings?.profileId ?? widgetState?.profileId ?? '';
-    final showNames = settings?.widgetShowNames ?? false;
-    final allowPartnerNotes = settings?.widgetAllowPartnerNotes ?? false;
-    final onLockScreen = settings?.widgetOnLockScreen ?? false;
-    final isPaired = widgetState?.isPaired ?? todayState?.isPaired ?? false;
-    final hasPlus = todayState?.hasPlus ?? false;
+    final profileId = settingsState?.userId ?? todayState?.userId ?? '';
+    final showNames = settingsState?.widgetShowNames ?? false;
+    final allowPartnerNotes = settingsState?.widgetAllowPartnerNotes ?? false;
+    final onLockScreen = settingsState?.widgetOnLockScreen ?? false;
+    final isPaired = todayState?.coupleId != null;
+    final hasPlus = plusStates.firstOrNull?.hasPlus ?? false;
 
-    final togetherSinceDate =
-        widgetState?.togetherSince ?? todayState?.togetherSince ?? settings?.togetherSince;
+    final togetherSinceDate = todayState?.togetherSince ?? settingsState?.togetherSince;
     final togetherSince = togetherSinceDate != null ? _formatDateOnly(togetherSinceDate) : null;
 
-    final nextDate = widgetState?.nextDateOn;
+    final nextDate = todayState?.nextDateOn;
     final nextDateOn = nextDate != null ? _formatDateOnly(nextDate) : null;
-    final nextDateTitle = widgetState?.nextDateTitle;
+    final nextDateTitle = todayState?.nextDate?.title;
 
-    final unopenedCards = widgetState?.unopenedCards ?? todayState?.unopenedCards ?? 0;
-    final rawCardStatus = todayState?.cardStatus;
-    final cardState = switch ((unopenedCards > 0, rawCardStatus)) {
+    final unopenedCards = todayState?.unopenedCards ?? 0;
+    final cardState = switch ((unopenedCards > 0, cardStatus)) {
       (true, _) => 'ready',
       (false, 'sent') => 'sent',
-      (false, 'ready' || 'draft') => 'ready',
+      (false, 'draft' || 'held') => 'ready',
       _ => 'none',
     };
 
-    final ritualNode = ritualsCollection.edges.firstOrNull?.node;
+    final ritualNode = rituals.firstOrNull;
     final ritualSchedule = ritualNode != null
         ? _formatRitualSchedule(
             weekday: ritualNode.weekday,
@@ -53,7 +51,8 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
           )
         : null;
 
-    final moodNode = moodsCollection.edges.firstOrNull?.node;
+    final moodNode = myMood.firstOrNull;
+    final partnerNoteNode = partnerNote.firstOrNull;
     final referenceNow = now ?? clock.now();
 
     final rawPayload = WidgetPayload(
@@ -65,22 +64,21 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
       onLockScreen: onLockScreen,
       isOffline: false,
       togetherSince: togetherSince,
-      relationshipPhase: settings?.phase?.toModel(),
-      partnerName: widgetState?.partnerName,
+      relationshipPhase: settingsState?.phase?.toModel(),
+      partnerName: todayState?.partnerName,
       nextDateTitle: nextDateTitle,
       nextDateOn: nextDateOn,
       unopenedCards: unopenedCards,
       cardState: cardState,
-      partnerNote: widgetState?.partnerNote,
-      partnerNoteMedia: widgetState?.partnerNoteMedia,
-      partnerNoteAt: widgetState?.partnerNoteAt?.toUtc().toIso8601String(),
-      partnerMood: widgetState?.partnerMood,
+      partnerNote: partnerNoteNode?.body,
+      partnerNoteMedia: partnerNoteNode?.mediaFileId,
+      partnerNoteAt: partnerNoteNode?.createdAt.toUtc().toIso8601String(),
+      partnerMood: partnerMood.firstOrNull?.mood.toModel()?.name,
       myMood: moodNode?.mood.toModel()?.name,
       ritualTitle: ritualNode?.title,
       ritualSchedule: ritualSchedule,
-      dailyIdeaTitle: idea?.title,
+      dailyIdeaTitle: idea.firstOrNull?.title,
       slipsCount: todayState?.slipsTotal ?? todayState?.slipsThisWeek ?? 0,
-      suggestionKey: todayState?.suggestionKey,
       cachedPhotoPath: cachedPhotoPath,
       updatedAt: referenceNow.toUtc().toIso8601String(),
     ).sanitized(referenceNow: referenceNow);

@@ -118,7 +118,7 @@ class CheckinCubit({required final CheckinRepository _repository}) extends Cubit
 
     emit(state.copyWith(saveAction: const Loading()));
     try {
-      await _repository.deleteAnswer(existing.id);
+      await _repository.deleteAnswer(id: existing.id, question: existing.question);
       if (isClosed) return;
       final updated = week.withoutAnswer(existing.question);
       emit(state.copyWith(week: Success(updated), draft: '', saveAction: const Success(null)));

@@ -8,40 +8,40 @@ import 'package:graphql/client.dart' as graphql;
 
 class VariablesQueryGameItems {
   factory VariablesQueryGameItems({
-    required EnumContentKind kind,
+    required EnumContentKind_enum kind,
     required String locale,
-    required int first,
-  }) => VariablesQueryGameItems._({r'kind': kind, r'locale': locale, r'first': first});
+    required int limit,
+  }) => VariablesQueryGameItems._({r'kind': kind, r'locale': locale, r'limit': limit});
 
   VariablesQueryGameItems._(this._$data);
 
   factory VariablesQueryGameItems.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$kind = data['kind'];
-    result$data['kind'] = fromJsonEnumContentKind((l$kind as String));
+    result$data['kind'] = fromJsonEnumContentKind_enum((l$kind as String));
     final l$locale = data['locale'];
     result$data['locale'] = (l$locale as String);
-    final l$first = data['first'];
-    result$data['first'] = (l$first as int);
+    final l$limit = data['limit'];
+    result$data['limit'] = (l$limit as int);
     return VariablesQueryGameItems._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  EnumContentKind get kind => (_$data['kind'] as EnumContentKind);
+  EnumContentKind_enum get kind => (_$data['kind'] as EnumContentKind_enum);
 
   String get locale => (_$data['locale'] as String);
 
-  int get first => (_$data['first'] as int);
+  int get limit => (_$data['limit'] as int);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$kind = kind;
-    result$data['kind'] = toJsonEnumContentKind(l$kind);
+    result$data['kind'] = toJsonEnumContentKind_enum(l$kind);
     final l$locale = locale;
     result$data['locale'] = l$locale;
-    final l$first = first;
-    result$data['first'] = l$first;
+    final l$limit = limit;
+    result$data['limit'] = l$limit;
     return result$data;
   }
 
@@ -63,9 +63,9 @@ class VariablesQueryGameItems {
     if (l$locale != lOther$locale) {
       return false;
     }
-    final l$first = first;
-    final lOther$first = other.first;
-    if (l$first != lOther$first) {
+    final l$limit = limit;
+    final lOther$limit = other.limit;
+    if (l$limit != lOther$limit) {
       return false;
     }
     return true;
@@ -75,33 +75,33 @@ class VariablesQueryGameItems {
   int get hashCode {
     final l$kind = kind;
     final l$locale = locale;
-    final l$first = first;
-    return Object.hashAll([l$kind, l$locale, l$first]);
+    final l$limit = limit;
+    return Object.hashAll([l$kind, l$locale, l$limit]);
   }
 }
 
 class QueryGameItems {
-  QueryGameItems({required this.contentItemsCollection, this.$__typename = 'Query'});
+  QueryGameItems({required this.contentItems, this.$__typename = 'query_root'});
 
   factory QueryGameItems.fromJson(Map<String, dynamic> json) {
-    final l$contentItemsCollection = json['contentItemsCollection'];
+    final l$contentItems = json['contentItems'];
     final l$$__typename = json['__typename'];
     return QueryGameItems(
-      contentItemsCollection: QueryGameItemscontentItemsCollection.fromJson(
-        (l$contentItemsCollection as Map<String, dynamic>),
-      ),
+      contentItems: (l$contentItems as List<dynamic>)
+          .map((e) => QueryGameItemscontentItems.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryGameItemscontentItemsCollection contentItemsCollection;
+  final List<QueryGameItemscontentItems> contentItems;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$contentItemsCollection = contentItemsCollection;
-    _resultData['contentItemsCollection'] = l$contentItemsCollection.toJson();
+    final l$contentItems = contentItems;
+    _resultData['contentItems'] = l$contentItems.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -109,9 +109,9 @@ class QueryGameItems {
 
   @override
   int get hashCode {
-    final l$contentItemsCollection = contentItemsCollection;
+    final l$contentItems = contentItems;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$contentItemsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$contentItems.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -122,10 +122,17 @@ class QueryGameItems {
     if (other is! QueryGameItems || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$contentItemsCollection = contentItemsCollection;
-    final lOther$contentItemsCollection = other.contentItemsCollection;
-    if (l$contentItemsCollection != lOther$contentItemsCollection) {
+    final l$contentItems = contentItems;
+    final lOther$contentItems = other.contentItems;
+    if (l$contentItems.length != lOther$contentItems.length) {
       return false;
+    }
+    for (int i = 0; i < l$contentItems.length; i++) {
+      final l$contentItems$entry = l$contentItems[i];
+      final lOther$contentItems$entry = lOther$contentItems[i];
+      if (l$contentItems$entry != lOther$contentItems$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -144,7 +151,7 @@ const documentNodeQueryGameItems = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'ContentKind'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ContentKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -155,7 +162,7 @@ const documentNodeQueryGameItems = DocumentNode(
           directives: [],
         ),
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'first')),
+          variable: VariableNode(name: NameNode(value: 'limit')),
           type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
@@ -165,15 +172,15 @@ const documentNodeQueryGameItems = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'contentItemsCollection'),
+            name: NameNode(value: 'contentItems'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: VariableNode(name: NameNode(value: 'first')),
+                name: NameNode(value: 'limit'),
+                value: VariableNode(name: NameNode(value: 'limit')),
               ),
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -181,7 +188,7 @@ const documentNodeQueryGameItems = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'kind')),
                           ),
                         ],
@@ -192,7 +199,7 @@ const documentNodeQueryGameItems = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'locale')),
                           ),
                         ],
@@ -203,7 +210,7 @@ const documentNodeQueryGameItems = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: BooleanValueNode(value: false),
                           ),
                         ],
@@ -214,7 +221,7 @@ const documentNodeQueryGameItems = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: BooleanValueNode(value: true),
                           ),
                         ],
@@ -224,14 +231,14 @@ const documentNodeQueryGameItems = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'position'),
-                          value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'asc_nulls_last')),
                         ),
                       ],
                     ),
@@ -243,59 +250,25 @@ const documentNodeQueryGameItems = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'slug'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'slug'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'body'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -444,147 +417,20 @@ extension ClientExtensionQueryGameItems on graphql.GraphQLClient {
   }
 }
 
-class QueryGameItemscontentItemsCollection {
-  QueryGameItemscontentItemsCollection({
-    required this.edges,
-    this.$__typename = 'ContentItemsConnection',
-  });
-
-  factory QueryGameItemscontentItemsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryGameItemscontentItemsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryGameItemscontentItemsCollectionedges.fromJson((e as Map<String, dynamic>)),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryGameItemscontentItemsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGameItemscontentItemsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGameItemscontentItemsCollectionedges {
-  QueryGameItemscontentItemsCollectionedges({
-    required this.node,
-    this.$__typename = 'ContentItemsEdge',
-  });
-
-  factory QueryGameItemscontentItemsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryGameItemscontentItemsCollectionedges(
-      node: QueryGameItemscontentItemsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryGameItemscontentItemsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryGameItemscontentItemsCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryGameItemscontentItemsCollectionedgesnode {
-  QueryGameItemscontentItemsCollectionedgesnode({
+class QueryGameItemscontentItems {
+  QueryGameItemscontentItems({
     required this.slug,
     required this.title,
     this.body,
-    this.$__typename = 'ContentItems',
+    this.$__typename = 'contentItems',
   });
 
-  factory QueryGameItemscontentItemsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryGameItemscontentItems.fromJson(Map<String, dynamic> json) {
     final l$slug = json['slug'];
     final l$title = json['title'];
     final l$body = json['body'];
     final l$$__typename = json['__typename'];
-    return QueryGameItemscontentItemsCollectionedgesnode(
+    return QueryGameItemscontentItems(
       slug: (l$slug as String),
       title: (l$title as String),
       body: (l$body as String?),
@@ -627,8 +473,7 @@ class QueryGameItemscontentItemsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryGameItemscontentItemsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryGameItemscontentItems || runtimeType != other.runtimeType) {
       return false;
     }
     final l$slug = slug;

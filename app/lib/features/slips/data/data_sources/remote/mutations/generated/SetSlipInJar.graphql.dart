@@ -64,27 +64,29 @@ class VariablesMutationSetSlipInJar {
 }
 
 class MutationSetSlipInJar {
-  MutationSetSlipInJar({this.setSlipDetails, this.$__typename = 'Mutation'});
+  MutationSetSlipInJar({this.updateSlipsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationSetSlipInJar.fromJson(Map<String, dynamic> json) {
-    final l$setSlipDetails = json['setSlipDetails'];
+    final l$updateSlipsByPk = json['updateSlipsByPk'];
     final l$$__typename = json['__typename'];
     return MutationSetSlipInJar(
-      setSlipDetails: l$setSlipDetails == null
+      updateSlipsByPk: l$updateSlipsByPk == null
           ? null
-          : MutationSetSlipInJarsetSlipDetails.fromJson((l$setSlipDetails as Map<String, dynamic>)),
+          : MutationSetSlipInJarupdateSlipsByPk.fromJson(
+              (l$updateSlipsByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSetSlipInJarsetSlipDetails? setSlipDetails;
+  final MutationSetSlipInJarupdateSlipsByPk? updateSlipsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$setSlipDetails = setSlipDetails;
-    _resultData['setSlipDetails'] = l$setSlipDetails?.toJson();
+    final l$updateSlipsByPk = updateSlipsByPk;
+    _resultData['updateSlipsByPk'] = l$updateSlipsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -92,9 +94,9 @@ class MutationSetSlipInJar {
 
   @override
   int get hashCode {
-    final l$setSlipDetails = setSlipDetails;
+    final l$updateSlipsByPk = updateSlipsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$setSlipDetails, l$$__typename]);
+    return Object.hashAll([l$updateSlipsByPk, l$$__typename]);
   }
 
   @override
@@ -105,9 +107,9 @@ class MutationSetSlipInJar {
     if (other is! MutationSetSlipInJar || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$setSlipDetails = setSlipDetails;
-    final lOther$setSlipDetails = other.setSlipDetails;
-    if (l$setSlipDetails != lOther$setSlipDetails) {
+    final l$updateSlipsByPk = updateSlipsByPk;
+    final lOther$updateSlipsByPk = other.updateSlipsByPk;
+    if (l$updateSlipsByPk != lOther$updateSlipsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -127,7 +129,7 @@ const documentNodeMutationSetSlipInJar = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -142,16 +144,30 @@ const documentNodeMutationSetSlipInJar = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'setSlipDetails'),
+            name: NameNode(value: 'updateSlipsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'id'),
-                value: VariableNode(name: NameNode(value: 'id')),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'inJar'),
-                value: VariableNode(name: NameNode(value: 'inJar')),
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'inJar'),
+                      value: VariableNode(name: NameNode(value: 'inJar')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -159,6 +175,13 @@ const documentNodeMutationSetSlipInJar = DocumentNode(
               selections: [
                 FieldNode(
                   name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'inJar'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -277,19 +300,27 @@ extension ClientExtensionMutationSetSlipInJar on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSetSlipInJarsetSlipDetails {
-  MutationSetSlipInJarsetSlipDetails({required this.id, this.$__typename = 'Slips'});
+class MutationSetSlipInJarupdateSlipsByPk {
+  MutationSetSlipInJarupdateSlipsByPk({
+    required this.id,
+    required this.inJar,
+    this.$__typename = 'slips',
+  });
 
-  factory MutationSetSlipInJarsetSlipDetails.fromJson(Map<String, dynamic> json) {
+  factory MutationSetSlipInJarupdateSlipsByPk.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
+    final l$inJar = json['inJar'];
     final l$$__typename = json['__typename'];
-    return MutationSetSlipInJarsetSlipDetails(
+    return MutationSetSlipInJarupdateSlipsByPk(
       id: (l$id as String),
+      inJar: (l$inJar as bool),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
+
+  final bool inJar;
 
   final String $__typename;
 
@@ -297,6 +328,8 @@ class MutationSetSlipInJarsetSlipDetails {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
+    final l$inJar = inJar;
+    _resultData['inJar'] = l$inJar;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -305,8 +338,9 @@ class MutationSetSlipInJarsetSlipDetails {
   @override
   int get hashCode {
     final l$id = id;
+    final l$inJar = inJar;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$$__typename]);
+    return Object.hashAll([l$id, l$inJar, l$$__typename]);
   }
 
   @override
@@ -314,12 +348,17 @@ class MutationSetSlipInJarsetSlipDetails {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSetSlipInJarsetSlipDetails || runtimeType != other.runtimeType) {
+    if (other is! MutationSetSlipInJarupdateSlipsByPk || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
+      return false;
+    }
+    final l$inJar = inJar;
+    final lOther$inJar = other.inJar;
+    if (l$inJar != lOther$inJar) {
       return false;
     }
     final l$$__typename = $__typename;

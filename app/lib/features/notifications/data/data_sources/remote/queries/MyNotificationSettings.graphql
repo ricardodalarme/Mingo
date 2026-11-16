@@ -1,8 +1,10 @@
-query MyNotificationSettings {
-  myNotificationSettings {
+query MyNotificationSettings($userId: uuid!) {
+  notificationSettingsByPk(userId: $userId) {
     enabled
     cardDay
     cardHour
-    mutedTypes
+  }
+  notificationMutes(where: { userId: { _eq: $userId } }) {
+    type
   }
 }

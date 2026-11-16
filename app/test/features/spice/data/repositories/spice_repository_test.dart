@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/plus/data/models/plus_state.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
@@ -14,10 +15,13 @@ class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 class _MockPlusRepository() extends Mock implements PlusRepository;
 
+class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
+
 void main() {
   late SpiceDataSource dataSource;
   late ProfileRepository profile;
   late PlusRepository plus;
+  late AuthenticationRepository authenticationRepository;
   late SpiceRepository repository;
 
   setUpAll(() => registerFallbackValue(''));
@@ -26,16 +30,18 @@ void main() {
     dataSource = _MockSpiceDataSource();
     profile = _MockProfileRepository();
     plus = _MockPlusRepository();
+    authenticationRepository = _MockAuthenticationRepository();
     repository = SpiceRepository(
       dataSource: dataSource,
       profileRepository: profile,
       plusRepository: plus,
+      authenticationRepository: authenticationRepository,
     );
 
+    when(() => authenticationRepository.currentUserId).thenReturn('u1');
     when(() => plus.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: true));
-    when(profile.getMySettings).thenAnswer(
-      (_) async => const AccountSettings(theme: .rose, profileId: 'p1', locale: 'pt-BR'),
-    );
+    when(profile.getMySettings)
+        .thenAnswer((_) async => const AccountSettings(theme: .rose, locale: 'pt-BR'));
   });
 
   test('a free person gets the Plus entry without reading cards', () async {
@@ -49,7 +55,7 @@ void main() {
   });
 
   test('a person who has not opted in sees the off stage without cards', () async {
-    when(() => dataSource.getEnabled('p1')).thenAnswer((_) async => false);
+    when(() => dataSource.getEnabled('u1')).thenAnswer((_) async => false);
 
     final view = await repository.getView();
 
@@ -58,7 +64,7 @@ void main() {
   });
 
   test('opted in without cards stays waiting', () async {
-    when(() => dataSource.getEnabled('p1')).thenAnswer((_) async => true);
+    when(() => dataSource.getEnabled('u1')).thenAnswer((_) async => true);
     when(() => dataSource.getCards('pt-BR')).thenAnswer((_) async => []);
 
     final view = await repository.getView();
@@ -68,7 +74,7 @@ void main() {
   });
 
   test('both opted in with cards is ready', () async {
-    when(() => dataSource.getEnabled('p1')).thenAnswer((_) async => true);
+    when(() => dataSource.getEnabled('u1')).thenAnswer((_) async => true);
     when(() => dataSource.getCards('pt-BR')).thenAnswer((_) async => ['Uma carta']);
 
     final view = await repository.getView();
@@ -80,7 +86,7 @@ void main() {
   test('a change that matched no row is a failure', () async {
     when(
       () => dataSource.setEnabled(
-        profileId: any(named: 'profileId'),
+        userId: any(named: 'userId'),
         enabled: any(named: 'enabled'),
       ),
     ).thenAnswer((_) async => 0);
@@ -100,13 +106,13 @@ void main() {
   test('a change that matched the saved row succeeds', () async {
     when(
       () => dataSource.setEnabled(
-        profileId: any(named: 'profileId'),
+        userId: any(named: 'userId'),
         enabled: any(named: 'enabled'),
       ),
     ).thenAnswer((_) async => 1);
 
     await repository.setEnabled(enabled: true);
 
-    verify(() => dataSource.setEnabled(profileId: 'p1', enabled: true)).called(1);
+    verify(() => dataSource.setEnabled(userId: 'u1', enabled: true)).called(1);
   });
 }

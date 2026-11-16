@@ -7,14 +7,14 @@ import 'package:app/features/lists/data/models/list_kind.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('maps a list with the flags the server computed', () {
+  test('maps a list with the authorship and visibility the server stored', () {
     final list = FragmentListFragment(
       id: 'l1',
       title: 'Viagens',
-      kind: EnumListKind.travel,
-      isMine: true,
-      isShared: true,
-    ).toModel();
+      kind: EnumListKind_enum.travel,
+      authorId: 'user-1',
+      coupleId: 'couple-1',
+    ).toModel(currentUserId: 'user-1');
 
     expect(list.id, 'l1');
     expect(list.title, 'Viagens');
@@ -23,12 +23,14 @@ void main() {
     expect(list.isShared, isTrue);
   });
 
-  test('a flag the server did not return is false', () {
+  test('a list without a couple is private and a partner list is not mine', () {
     final list = FragmentListFragment(
       id: 'l1',
       title: 'Viagens',
-      kind: EnumListKind.travel,
-    ).toModel();
+      kind: EnumListKind_enum.travel,
+      authorId: 'user-2',
+      coupleId: null,
+    ).toModel(currentUserId: 'user-1');
 
     expect(list.isMine, isFalse);
     expect(list.isShared, isFalse);
@@ -39,7 +41,7 @@ void main() {
       id: 'i1',
       listId: 'l1',
       title: 'Lisboa',
-      status: EnumListItemStatus.planned,
+      status: EnumListItemStatus_enum.planned,
       position: 2,
     ).toModel();
 

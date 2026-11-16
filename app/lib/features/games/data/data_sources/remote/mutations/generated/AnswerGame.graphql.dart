@@ -79,25 +79,29 @@ class VariablesMutationAnswerGame {
 }
 
 class MutationAnswerGame {
-  MutationAnswerGame({this.answerGame, this.$__typename = 'Mutation'});
+  MutationAnswerGame({this.insertGameAnswersOne, this.$__typename = 'mutation_root'});
 
   factory MutationAnswerGame.fromJson(Map<String, dynamic> json) {
-    final l$answerGame = json['answerGame'];
+    final l$insertGameAnswersOne = json['insertGameAnswersOne'];
     final l$$__typename = json['__typename'];
     return MutationAnswerGame(
-      answerGame: (l$answerGame as bool?),
+      insertGameAnswersOne: l$insertGameAnswersOne == null
+          ? null
+          : MutationAnswerGameinsertGameAnswersOne.fromJson(
+              (l$insertGameAnswersOne as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? answerGame;
+  final MutationAnswerGameinsertGameAnswersOne? insertGameAnswersOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$answerGame = answerGame;
-    _resultData['answerGame'] = l$answerGame;
+    final l$insertGameAnswersOne = insertGameAnswersOne;
+    _resultData['insertGameAnswersOne'] = l$insertGameAnswersOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -105,9 +109,9 @@ class MutationAnswerGame {
 
   @override
   int get hashCode {
-    final l$answerGame = answerGame;
+    final l$insertGameAnswersOne = insertGameAnswersOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$answerGame, l$$__typename]);
+    return Object.hashAll([l$insertGameAnswersOne, l$$__typename]);
   }
 
   @override
@@ -118,9 +122,9 @@ class MutationAnswerGame {
     if (other is! MutationAnswerGame || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$answerGame = answerGame;
-    final lOther$answerGame = other.answerGame;
-    if (l$answerGame != lOther$answerGame) {
+    final l$insertGameAnswersOne = insertGameAnswersOne;
+    final lOther$insertGameAnswersOne = other.insertGameAnswersOne;
+    if (l$insertGameAnswersOne != lOther$insertGameAnswersOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -140,13 +144,13 @@ const documentNodeMutationAnswerGame = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'sessionId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'idx')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -161,24 +165,65 @@ const documentNodeMutationAnswerGame = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'answerGame'),
+            name: NameNode(value: 'insertGameAnswersOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'sessionId'),
-                value: VariableNode(name: NameNode(value: 'sessionId')),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'sessionId'),
+                      value: VariableNode(name: NameNode(value: 'sessionId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'idx'),
+                      value: VariableNode(name: NameNode(value: 'idx')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'answer'),
+                      value: VariableNode(name: NameNode(value: 'answer')),
+                    ),
+                  ],
+                ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'idx'),
-                value: VariableNode(name: NameNode(value: 'idx')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'answer'),
-                value: VariableNode(name: NameNode(value: 'answer')),
+                name: NameNode(value: 'on_conflict'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'constraint'),
+                      value: EnumValueNode(name: NameNode(value: 'game_answers_once')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'update_columns'),
+                      value: ListValueNode(
+                        values: [EnumValueNode(name: NameNode(value: 'answer'))],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -280,4 +325,58 @@ extension ClientExtensionMutationAnswerGame on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationAnswerGame> watchMutationAnswerGame(
     WatchOptionsMutationAnswerGame options,
   ) => this.watchMutation(options);
+}
+
+class MutationAnswerGameinsertGameAnswersOne {
+  MutationAnswerGameinsertGameAnswersOne({required this.id, this.$__typename = 'gameAnswers'});
+
+  factory MutationAnswerGameinsertGameAnswersOne.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return MutationAnswerGameinsertGameAnswersOne(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationAnswerGameinsertGameAnswersOne || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
 }

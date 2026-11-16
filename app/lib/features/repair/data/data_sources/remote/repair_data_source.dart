@@ -13,7 +13,7 @@ import 'package:app/features/repair/data/data_sources/remote/queries/generated/R
 import 'package:network/network.dart';
 
 class RepairDataSource({required final GQLClient _client}) {
-  Future<void> recordTemperature(EnumTemperatureLevel level) async {
+  Future<void> recordTemperature(EnumTemperatureLevel_enum level) async {
     final response = await _client.mutate(
       OptionsMutationRecordTemperature(variables: VariablesMutationRecordTemperature(level: level)),
     );
@@ -32,16 +32,13 @@ class RepairDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<QueryOpenGuidedSessionrepairSessionsCollectionedgesnode?> openGuidedSession() async {
+  Future<QueryOpenGuidedSessionrepairSessions?> openGuidedSession() async {
     final response = await _client.query(
       OptionsQueryOpenGuidedSession(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.repairSessionsCollection.edges,
-    );
+    final sessions = validateResponseData(response, getData: (data) => data.repairSessions);
 
-    return edges.isEmpty ? null : edges.first.node;
+    return sessions.firstOrNull;
   }
 
   Future<void> saveProgress({required String id, required int step, String? draft}) async {
@@ -57,7 +54,7 @@ class RepairDataSource({required final GQLClient _client}) {
   Future<void> completeSession({
     required String id,
     required DateTime completedAt,
-    EnumRepairFeeling? feeling,
+    EnumRepairFeeling_enum? feeling,
   }) async {
     final response = await _client.mutate(
       OptionsMutationCompleteRepairSession(
@@ -72,21 +69,17 @@ class RepairDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<List<QueryMyLearningsrepairLearningsCollectionedgesnode>> getLearnings() async {
+  Future<List<QueryMyLearningsrepairLearnings>> getLearnings() async {
     final response = await _client.query(
       OptionsQueryMyLearnings(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.repairLearningsCollection.edges,
-    );
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.repairLearnings);
   }
 
   Future<void> saveLearning({
     required String id,
-    required EnumRepairLearningKind kind,
+    required EnumRepairLearningKind_enum kind,
     required String note,
     String? sessionId,
   }) async {
@@ -112,37 +105,39 @@ class RepairDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<List<QueryReceivedSignalssignalsCollectionedgesnode>> getReceivedSignals(
-    String recipientId,
-  ) async {
+  Future<List<QueryReceivedSignalssignals>> getReceivedSignals(String recipientId) async {
     final response = await _client.query(
       OptionsQueryReceivedSignals(
         fetchPolicy: FetchPolicy.networkOnly,
         variables: VariablesQueryReceivedSignals(recipientId: recipientId),
       ),
     );
-    final edges = validateResponseData(response, getData: (data) => data.signalsCollection.edges);
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.signals);
   }
 
   /// Marks the signal seen and stores the answer, when there is one.
-  Future<MutationRespondToSignalrespondToSignal> respondToSignal({
+  Future<MutationRespondToSignalupdateSignalsByPk> respondToSignal({
     required String signalId,
-    String? response,
+    required DateTime at,
+    EnumSignalResponse_enum? response,
   }) async {
     final result = await _client.mutate(
       OptionsMutationRespondToSignal(
-        variables: VariablesMutationRespondToSignal(signalId: signalId, response: response),
+        variables: VariablesMutationRespondToSignal(
+          signalId: signalId,
+          response: response,
+          seenAt: at,
+        ),
       ),
     );
 
-    return validateResponseData(result, getData: (data) => data.respondToSignal);
+    return validateResponseData(result, getData: (data) => data.updateSignalsByPk);
   }
 
   Future<void> startSession({
     required String id,
-    required EnumRepairPath path,
+    required EnumRepairPath_enum path,
     int? intensity,
   }) async {
     final response = await _client.mutate(

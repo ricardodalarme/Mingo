@@ -8,7 +8,7 @@ import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationGrantConsent {
   factory VariablesMutationGrantConsent({
-    required EnumConsentKind kind,
+    required EnumConsentKind_enum kind,
     required bool granted,
     required String version,
   }) => VariablesMutationGrantConsent._({r'kind': kind, r'granted': granted, r'version': version});
@@ -18,7 +18,7 @@ class VariablesMutationGrantConsent {
   factory VariablesMutationGrantConsent.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$kind = data['kind'];
-    result$data['kind'] = fromJsonEnumConsentKind((l$kind as String));
+    result$data['kind'] = fromJsonEnumConsentKind_enum((l$kind as String));
     final l$granted = data['granted'];
     result$data['granted'] = (l$granted as bool);
     final l$version = data['version'];
@@ -28,7 +28,7 @@ class VariablesMutationGrantConsent {
 
   Map<String, dynamic> _$data;
 
-  EnumConsentKind get kind => (_$data['kind'] as EnumConsentKind);
+  EnumConsentKind_enum get kind => (_$data['kind'] as EnumConsentKind_enum);
 
   bool get granted => (_$data['granted'] as bool);
 
@@ -37,7 +37,7 @@ class VariablesMutationGrantConsent {
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$kind = kind;
-    result$data['kind'] = toJsonEnumConsentKind(l$kind);
+    result$data['kind'] = toJsonEnumConsentKind_enum(l$kind);
     final l$granted = granted;
     result$data['granted'] = l$granted;
     final l$version = version;
@@ -81,29 +81,27 @@ class VariablesMutationGrantConsent {
 }
 
 class MutationGrantConsent {
-  MutationGrantConsent({this.insertIntoConsentsCollection, this.$__typename = 'Mutation'});
+  MutationGrantConsent({this.insertConsents, this.$__typename = 'mutation_root'});
 
   factory MutationGrantConsent.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoConsentsCollection = json['insertIntoConsentsCollection'];
+    final l$insertConsents = json['insertConsents'];
     final l$$__typename = json['__typename'];
     return MutationGrantConsent(
-      insertIntoConsentsCollection: l$insertIntoConsentsCollection == null
+      insertConsents: l$insertConsents == null
           ? null
-          : MutationGrantConsentinsertIntoConsentsCollection.fromJson(
-              (l$insertIntoConsentsCollection as Map<String, dynamic>),
-            ),
+          : MutationGrantConsentinsertConsents.fromJson((l$insertConsents as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationGrantConsentinsertIntoConsentsCollection? insertIntoConsentsCollection;
+  final MutationGrantConsentinsertConsents? insertConsents;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoConsentsCollection = insertIntoConsentsCollection;
-    _resultData['insertIntoConsentsCollection'] = l$insertIntoConsentsCollection?.toJson();
+    final l$insertConsents = insertConsents;
+    _resultData['insertConsents'] = l$insertConsents?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -111,9 +109,9 @@ class MutationGrantConsent {
 
   @override
   int get hashCode {
-    final l$insertIntoConsentsCollection = insertIntoConsentsCollection;
+    final l$insertConsents = insertConsents;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoConsentsCollection, l$$__typename]);
+    return Object.hashAll([l$insertConsents, l$$__typename]);
   }
 
   @override
@@ -124,9 +122,9 @@ class MutationGrantConsent {
     if (other is! MutationGrantConsent || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoConsentsCollection = insertIntoConsentsCollection;
-    final lOther$insertIntoConsentsCollection = other.insertIntoConsentsCollection;
-    if (l$insertIntoConsentsCollection != lOther$insertIntoConsentsCollection) {
+    final l$insertConsents = insertConsents;
+    final lOther$insertConsents = other.insertConsents;
+    if (l$insertConsents != lOther$insertConsents) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -146,7 +144,7 @@ const documentNodeMutationGrantConsent = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'ConsentKind'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ConsentKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -167,7 +165,7 @@ const documentNodeMutationGrantConsent = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoConsentsCollection'),
+            name: NameNode(value: 'insertConsents'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -198,7 +196,7 @@ const documentNodeMutationGrantConsent = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -317,29 +315,29 @@ extension ClientExtensionMutationGrantConsent on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationGrantConsentinsertIntoConsentsCollection {
-  MutationGrantConsentinsertIntoConsentsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ConsentsInsertResponse',
+class MutationGrantConsentinsertConsents {
+  MutationGrantConsentinsertConsents({
+    required this.affected_rows,
+    this.$__typename = 'consents_mutation_response',
   });
 
-  factory MutationGrantConsentinsertIntoConsentsCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationGrantConsentinsertConsents.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationGrantConsentinsertIntoConsentsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationGrantConsentinsertConsents(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -347,9 +345,9 @@ class MutationGrantConsentinsertIntoConsentsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -357,13 +355,12 @@ class MutationGrantConsentinsertIntoConsentsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationGrantConsentinsertIntoConsentsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationGrantConsentinsertConsents || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

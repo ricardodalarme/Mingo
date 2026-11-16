@@ -52,25 +52,29 @@ class VariablesMutationRevokeDevice {
 }
 
 class MutationRevokeDevice {
-  MutationRevokeDevice({this.revokeDevice, this.$__typename = 'Mutation'});
+  MutationRevokeDevice({this.deleteDevicesByPk, this.$__typename = 'mutation_root'});
 
   factory MutationRevokeDevice.fromJson(Map<String, dynamic> json) {
-    final l$revokeDevice = json['revokeDevice'];
+    final l$deleteDevicesByPk = json['deleteDevicesByPk'];
     final l$$__typename = json['__typename'];
     return MutationRevokeDevice(
-      revokeDevice: (l$revokeDevice as bool?),
+      deleteDevicesByPk: l$deleteDevicesByPk == null
+          ? null
+          : MutationRevokeDevicedeleteDevicesByPk.fromJson(
+              (l$deleteDevicesByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool? revokeDevice;
+  final MutationRevokeDevicedeleteDevicesByPk? deleteDevicesByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$revokeDevice = revokeDevice;
-    _resultData['revokeDevice'] = l$revokeDevice;
+    final l$deleteDevicesByPk = deleteDevicesByPk;
+    _resultData['deleteDevicesByPk'] = l$deleteDevicesByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -78,9 +82,9 @@ class MutationRevokeDevice {
 
   @override
   int get hashCode {
-    final l$revokeDevice = revokeDevice;
+    final l$deleteDevicesByPk = deleteDevicesByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$revokeDevice, l$$__typename]);
+    return Object.hashAll([l$deleteDevicesByPk, l$$__typename]);
   }
 
   @override
@@ -91,9 +95,9 @@ class MutationRevokeDevice {
     if (other is! MutationRevokeDevice || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$revokeDevice = revokeDevice;
-    final lOther$revokeDevice = other.revokeDevice;
-    if (l$revokeDevice != lOther$revokeDevice) {
+    final l$deleteDevicesByPk = deleteDevicesByPk;
+    final lOther$deleteDevicesByPk = other.deleteDevicesByPk;
+    if (l$deleteDevicesByPk != lOther$deleteDevicesByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -113,7 +117,7 @@ const documentNodeMutationRevokeDevice = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'deviceId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -122,16 +126,33 @@ const documentNodeMutationRevokeDevice = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'revokeDevice'),
+            name: NameNode(value: 'deleteDevicesByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'deviceId'),
+                name: NameNode(value: 'id'),
                 value: VariableNode(name: NameNode(value: 'deviceId')),
               ),
             ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -234,4 +255,58 @@ extension ClientExtensionMutationRevokeDevice on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationRevokeDevice> watchMutationRevokeDevice(
     WatchOptionsMutationRevokeDevice options,
   ) => this.watchMutation(options);
+}
+
+class MutationRevokeDevicedeleteDevicesByPk {
+  MutationRevokeDevicedeleteDevicesByPk({required this.id, this.$__typename = 'devices'});
+
+  factory MutationRevokeDevicedeleteDevicesByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return MutationRevokeDevicedeleteDevicesByPk(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationRevokeDevicedeleteDevicesByPk || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
 }

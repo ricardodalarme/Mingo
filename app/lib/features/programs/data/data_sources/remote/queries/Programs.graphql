@@ -1,33 +1,25 @@
 query Programs($locale: String!) {
-  programs: contentItemsCollection(
-    filter: { kind: { eq: program }, locale: { eq: $locale }, published: { eq: true } }
-    orderBy: [{ position: AscNullsLast }]
-    first: 100
+  programs: contentItems(
+    where: { kind: { _eq: program }, locale: { _eq: $locale }, published: { _eq: true } }
+    order_by: [{ position: asc_nulls_last }]
+    limit: 100
   ) {
-    edges {
-      node {
-        slug
-        title
-        body
-        position
-        plusOnly
-      }
-    }
+    slug
+    title
+    body
+    position
+    plusOnly
   }
-  lessons: contentItemsCollection(
-    filter: { kind: { eq: lesson }, locale: { eq: $locale }, published: { eq: true } }
-    orderBy: [{ position: AscNullsLast }]
-    first: 500
+  lessons: contentItems(
+    where: { kind: { _eq: lesson }, locale: { _eq: $locale }, published: { _eq: true } }
+    order_by: [{ position: asc_nulls_last }]
+    limit: 500
   ) {
-    edges {
-      node {
-        slug
-        title
-        body
-        parentSlug
-        position
-        plusOnly
-      }
-    }
+    slug
+    title
+    body
+    parentSlug
+    position
+    plusOnly
   }
 }

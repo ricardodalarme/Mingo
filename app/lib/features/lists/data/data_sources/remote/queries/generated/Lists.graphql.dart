@@ -7,27 +7,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryLists {
-  QueryLists({required this.listsCollection, this.$__typename = 'Query'});
+  QueryLists({required this.lists, this.$__typename = 'query_root'});
 
   factory QueryLists.fromJson(Map<String, dynamic> json) {
-    final l$listsCollection = json['listsCollection'];
+    final l$lists = json['lists'];
     final l$$__typename = json['__typename'];
     return QueryLists(
-      listsCollection: QueryListslistsCollection.fromJson(
-        (l$listsCollection as Map<String, dynamic>),
-      ),
+      lists: (l$lists as List<dynamic>)
+          .map((e) => FragmentListFragment.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryListslistsCollection listsCollection;
+  final List<FragmentListFragment> lists;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$listsCollection = listsCollection;
-    _resultData['listsCollection'] = l$listsCollection.toJson();
+    final l$lists = lists;
+    _resultData['lists'] = l$lists.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +35,9 @@ class QueryLists {
 
   @override
   int get hashCode {
-    final l$listsCollection = listsCollection;
+    final l$lists = lists;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$listsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$lists.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -48,10 +48,17 @@ class QueryLists {
     if (other is! QueryLists || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$listsCollection = listsCollection;
-    final lOther$listsCollection = other.listsCollection;
-    if (l$listsCollection != lOther$listsCollection) {
+    final l$lists = lists;
+    final lOther$lists = other.lists;
+    if (l$lists.length != lOther$lists.length) {
       return false;
+    }
+    for (int i = 0; i < l$lists.length; i++) {
+      final l$lists$entry = l$lists[i];
+      final lOther$lists$entry = lOther$lists[i];
+      if (l$lists$entry != lOther$lists$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -72,18 +79,18 @@ const documentNodeQueryLists = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'listsCollection'),
+            name: NameNode(value: 'lists'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -91,50 +98,16 @@ const documentNodeQueryLists = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '100'),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'edges'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'ListFragment'),
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FragmentSpreadNode(
-                              name: NameNode(value: 'ListFragment'),
-                              directives: [],
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -255,122 +228,5 @@ extension ClientExtensionQueryLists on graphql.GraphQLClient {
       optimistic: optimistic,
     );
     return result == null ? null : QueryLists.fromJson(result);
-  }
-}
-
-class QueryListslistsCollection {
-  QueryListslistsCollection({required this.edges, this.$__typename = 'ListsConnection'});
-
-  factory QueryListslistsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryListslistsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryListslistsCollectionedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryListslistsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryListslistsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryListslistsCollectionedges {
-  QueryListslistsCollectionedges({required this.node, this.$__typename = 'ListsEdge'});
-
-  factory QueryListslistsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryListslistsCollectionedges(
-      node: FragmentListFragment.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final FragmentListFragment node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryListslistsCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
   }
 }

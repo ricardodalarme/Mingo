@@ -11,9 +11,9 @@ class FragmentGiftWishFragment {
     this.note,
     this.budget,
     required this.status,
-    this.isMine,
-    this.isShared,
-    this.$__typename = 'GiftIdeas',
+    required this.authorId,
+    this.coupleId,
+    this.$__typename = 'giftIdeas',
   });
 
   factory FragmentGiftWishFragment.fromJson(Map<String, dynamic> json) {
@@ -22,17 +22,17 @@ class FragmentGiftWishFragment {
     final l$note = json['note'];
     final l$budget = json['budget'];
     final l$status = json['status'];
-    final l$isMine = json['isMine'];
-    final l$isShared = json['isShared'];
+    final l$authorId = json['authorId'];
+    final l$coupleId = json['coupleId'];
     final l$$__typename = json['__typename'];
     return FragmentGiftWishFragment(
       id: (l$id as String),
       title: (l$title as String),
       note: (l$note as String?),
-      budget: l$budget == null ? null : fromJsonEnumGiftBudget((l$budget as String)),
-      status: fromJsonEnumGiftIdeaStatus((l$status as String)),
-      isMine: (l$isMine as bool?),
-      isShared: (l$isShared as bool?),
+      budget: l$budget == null ? null : fromJsonEnumGiftBudget_enum((l$budget as String)),
+      status: fromJsonEnumGiftIdeaStatus_enum((l$status as String)),
+      authorId: (l$authorId as String),
+      coupleId: (l$coupleId as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -43,13 +43,13 @@ class FragmentGiftWishFragment {
 
   final String? note;
 
-  final EnumGiftBudget? budget;
+  final EnumGiftBudget_enum? budget;
 
-  final EnumGiftIdeaStatus status;
+  final EnumGiftIdeaStatus_enum status;
 
-  final bool? isMine;
+  final String authorId;
 
-  final bool? isShared;
+  final String? coupleId;
 
   final String $__typename;
 
@@ -62,13 +62,13 @@ class FragmentGiftWishFragment {
     final l$note = note;
     _resultData['note'] = l$note;
     final l$budget = budget;
-    _resultData['budget'] = l$budget == null ? null : toJsonEnumGiftBudget(l$budget);
+    _resultData['budget'] = l$budget == null ? null : toJsonEnumGiftBudget_enum(l$budget);
     final l$status = status;
-    _resultData['status'] = toJsonEnumGiftIdeaStatus(l$status);
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
-    final l$isShared = isShared;
-    _resultData['isShared'] = l$isShared;
+    _resultData['status'] = toJsonEnumGiftIdeaStatus_enum(l$status);
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -81,8 +81,8 @@ class FragmentGiftWishFragment {
     final l$note = note;
     final l$budget = budget;
     final l$status = status;
-    final l$isMine = isMine;
-    final l$isShared = isShared;
+    final l$authorId = authorId;
+    final l$coupleId = coupleId;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -90,8 +90,8 @@ class FragmentGiftWishFragment {
       l$note,
       l$budget,
       l$status,
-      l$isMine,
-      l$isShared,
+      l$authorId,
+      l$coupleId,
       l$$__typename,
     ]);
   }
@@ -129,14 +129,14 @@ class FragmentGiftWishFragment {
     if (l$status != lOther$status) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
-    final l$isShared = isShared;
-    final lOther$isShared = other.isShared;
-    if (l$isShared != lOther$isShared) {
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -151,7 +151,7 @@ class FragmentGiftWishFragment {
 const fragmentDefinitionGiftWishFragment = FragmentDefinitionNode(
   name: NameNode(value: 'GiftWishFragment'),
   typeCondition: TypeConditionNode(
-    on: NamedTypeNode(name: NameNode(value: 'GiftIdeas'), isNonNull: false),
+    on: NamedTypeNode(name: NameNode(value: 'giftIdeas'), isNonNull: false),
   ),
   directives: [],
   selectionSet: SelectionSetNode(
@@ -192,14 +192,14 @@ const fragmentDefinitionGiftWishFragment = FragmentDefinitionNode(
         selectionSet: null,
       ),
       FieldNode(
-        name: NameNode(value: 'isMine'),
+        name: NameNode(value: 'authorId'),
         alias: null,
         arguments: [],
         directives: [],
         selectionSet: null,
       ),
       FieldNode(
-        name: NameNode(value: 'isShared'),
+        name: NameNode(value: 'coupleId'),
         alias: null,
         arguments: [],
         directives: [],

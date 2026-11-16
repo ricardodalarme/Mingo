@@ -118,8 +118,8 @@ void main() {
     );
     when(() => dataSource.getLessonProgress('gratitude-7')).thenAnswer(
       (_) async => [
-        (programSlug: 'gratitude-7', lessonDay: 1, status: EnumLessonStatus.done),
-        (programSlug: 'gratitude-7', lessonDay: 2, status: EnumLessonStatus.saved),
+        (programSlug: 'gratitude-7', lessonDay: 1, status: EnumLessonStatus_enum.done),
+        (programSlug: 'gratitude-7', lessonDay: 2, status: EnumLessonStatus_enum.saved),
       ],
     );
 
@@ -250,14 +250,14 @@ void main() {
       () => dataSource.setLessonStatus(
         programSlug: 'gratitude-7',
         lessonDay: 1,
-        status: EnumLessonStatus.done,
+        status: EnumLessonStatus_enum.done,
       ),
     ).called(1);
     verify(
       () => dataSource.setLessonStatus(
         programSlug: 'gratitude-7',
         lessonDay: 2,
-        status: EnumLessonStatus.saved,
+        status: EnumLessonStatus_enum.saved,
       ),
     ).called(1);
   });

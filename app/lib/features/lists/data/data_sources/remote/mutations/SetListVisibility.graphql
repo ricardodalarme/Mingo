@@ -1,7 +1,5 @@
-mutation SetListVisibility($id: UUID!, $coupleId: UUID) {
-  updateListsCollection(set: { coupleId: $coupleId }, filter: { id: { eq: $id } }, atMost: 1) {
-    records {
-      ...ListFragment
-    }
+mutation SetListVisibility($id: uuid!, $coupleId: uuid) {
+  updateListsByPk(pk_columns: { id: $id }, _set: { coupleId: $coupleId }) {
+    ...ListFragment
   }
 }

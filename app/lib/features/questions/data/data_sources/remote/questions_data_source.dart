@@ -28,64 +28,54 @@ class QuestionsDataSource({required final GQLClient _client}) {
       OptionsQueryQuestionOfTheWeek(fetchPolicy: FetchPolicy.networkOnly),
     );
     final data = validateResponseData<QueryQuestionOfTheWeek, QueryQuestionOfTheWeek>(response);
-    final question = data.question;
-    final selfId = data.myProfile?.id;
-    if (question == null || selfId == null) throw const NoDataException();
+    final question = data.question.firstOrNull;
+    final today = data.today.firstOrNull;
+    final selfId = today?.userId;
+    if (question == null || today == null || selfId == null) throw const NoDataException();
 
     return (
       slug: question.slug,
       title: question.title,
       body: question.body,
       tags: question.tags.whereType<String>().toList(),
-      isPaired: data.today?.isPaired ?? false,
-      partnerName: data.today?.partnerName,
-      coupleId: data.myCouple?.id,
+      isPaired: today.coupleId != null,
+      partnerName: today.partnerName,
+      coupleId: today.coupleId,
       selfId: selfId,
     );
   }
 
-  Future<QuestionAnswersRecord> getAnswers(String questionSlug) async {
+  Future<QuestionAnswersRecord> getAnswers({
+    required String questionSlug,
+    required String selfId,
+  }) async {
     final response = await _client.query(
       OptionsQueryQuestionAnswers(
         variables: VariablesQueryQuestionAnswers(questionSlug: questionSlug),
         fetchPolicy: FetchPolicy.networkOnly,
       ),
     );
-    final data = validateResponseData<QueryQuestionAnswers, QueryQuestionAnswers>(response);
-    final edges = data.questionAnswersCollection.edges;
+    final rows = validateResponseData(response, getData: (data) => data.questionAnswers);
 
     return (
       rows: [
-        for (final edge in edges)
-          (
-            id: edge.node.id,
-            isMine: edge.node.isMine ?? false,
-            coupleId: edge.node.coupleId,
-            body: edge.node.body,
-          ),
+        for (final row in rows)
+          (id: row.id, isMine: row.authorId == selfId, coupleId: row.coupleId, body: row.body),
       ],
-      partnerAnswered: data.partnerAnswered ?? false,
+      partnerAnswered: rows.any((row) => row.authorId != selfId),
     );
   }
 
   Future<QuestionAnswerWriteRecord> insertAnswer({
     required String questionSlug,
     required String body,
-    String? coupleId,
   }) async {
     final response = await _client.mutate(
       OptionsMutationInsertQuestionAnswer(
-        variables: VariablesMutationInsertQuestionAnswer(
-          questionSlug: questionSlug,
-          body: body,
-          coupleId: coupleId,
-        ),
+        variables: VariablesMutationInsertQuestionAnswer(questionSlug: questionSlug, body: body),
       ),
     );
-    final node = validateResponseData(
-      response,
-      getData: (data) => data.insertIntoQuestionAnswersCollection?.records.firstOrNull,
-    );
+    final node = validateResponseData(response, getData: (data) => data.insertQuestionAnswersOne);
 
     return (id: node.id, coupleId: node.coupleId, body: node.body);
   }

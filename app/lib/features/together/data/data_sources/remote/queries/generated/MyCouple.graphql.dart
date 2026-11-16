@@ -5,27 +5,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryMyCouple {
-  QueryMyCouple({this.myCouple, this.$__typename = 'Query'});
+  QueryMyCouple({required this.today, this.$__typename = 'query_root'});
 
   factory QueryMyCouple.fromJson(Map<String, dynamic> json) {
-    final l$myCouple = json['myCouple'];
+    final l$today = json['today'];
     final l$$__typename = json['__typename'];
     return QueryMyCouple(
-      myCouple: l$myCouple == null
-          ? null
-          : QueryMyCouplemyCouple.fromJson((l$myCouple as Map<String, dynamic>)),
+      today: (l$today as List<dynamic>)
+          .map((e) => QueryMyCoupletoday.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryMyCouplemyCouple? myCouple;
+  final List<QueryMyCoupletoday> today;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$myCouple = myCouple;
-    _resultData['myCouple'] = l$myCouple?.toJson();
+    final l$today = today;
+    _resultData['today'] = l$today.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33,9 +33,9 @@ class QueryMyCouple {
 
   @override
   int get hashCode {
-    final l$myCouple = myCouple;
+    final l$today = today;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$myCouple, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$today.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -46,10 +46,17 @@ class QueryMyCouple {
     if (other is! QueryMyCouple || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$myCouple = myCouple;
-    final lOther$myCouple = other.myCouple;
-    if (l$myCouple != lOther$myCouple) {
+    final l$today = today;
+    final lOther$today = other.today;
+    if (l$today.length != lOther$today.length) {
       return false;
+    }
+    for (int i = 0; i < l$today.length; i++) {
+      final l$today$entry = l$today[i];
+      final lOther$today$entry = lOther$today[i];
+      if (l$today$entry != lOther$today$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -70,14 +77,26 @@ const documentNodeQueryMyCouple = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'myCouple'),
+            name: NameNode(value: 'today'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
+              ),
+            ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'id'),
+                  name: NameNode(value: 'userId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'coupleId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -207,23 +226,32 @@ extension ClientExtensionQueryMyCouple on graphql.GraphQLClient {
   }
 }
 
-class QueryMyCouplemyCouple {
-  QueryMyCouplemyCouple({required this.id, this.$__typename = 'Couples'});
+class QueryMyCoupletoday {
+  QueryMyCoupletoday({this.userId, this.coupleId, this.$__typename = 'today'});
 
-  factory QueryMyCouplemyCouple.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
+  factory QueryMyCoupletoday.fromJson(Map<String, dynamic> json) {
+    final l$userId = json['userId'];
+    final l$coupleId = json['coupleId'];
     final l$$__typename = json['__typename'];
-    return QueryMyCouplemyCouple(id: (l$id as String), $__typename: (l$$__typename as String));
+    return QueryMyCoupletoday(
+      userId: (l$userId as String?),
+      coupleId: (l$coupleId as String?),
+      $__typename: (l$$__typename as String),
+    );
   }
 
-  final String id;
+  final String? userId;
+
+  final String? coupleId;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -231,9 +259,10 @@ class QueryMyCouplemyCouple {
 
   @override
   int get hashCode {
-    final l$id = id;
+    final l$userId = userId;
+    final l$coupleId = coupleId;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$$__typename]);
+    return Object.hashAll([l$userId, l$coupleId, l$$__typename]);
   }
 
   @override
@@ -241,12 +270,17 @@ class QueryMyCouplemyCouple {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMyCouplemyCouple || runtimeType != other.runtimeType) {
+    if (other is! QueryMyCoupletoday || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
       return false;
     }
     final l$$__typename = $__typename;

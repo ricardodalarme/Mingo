@@ -1,22 +1,21 @@
 mutation UpdateRitual(
-  $id: UUID!
+  $id: uuid!
   $title: String!
-  $cadence: RitualCadence!
-  $weekday: Int
-  $atTime: Time
+  $cadence: RitualCadence_enum!
+  $weekday: smallint
+  $atTime: time
   $reminder: Boolean!
 ) {
-  updateRitualsCollection(
-    set: {
+  updateRitualsByPk(
+    pk_columns: { id: $id }
+    _set: {
       title: $title
       cadence: $cadence
       weekday: $weekday
       atTime: $atTime
       reminder: $reminder
     }
-    filter: { id: { eq: $id } }
-    atMost: 1
   ) {
-    affectedCount
+    id
   }
 }

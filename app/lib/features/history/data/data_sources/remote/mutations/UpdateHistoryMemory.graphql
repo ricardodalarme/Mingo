@@ -1,26 +1,23 @@
 mutation UpdateHistoryMemory(
-  $id: UUID!
-  $coupleId: UUID
+  $id: uuid!
+  $coupleId: uuid
   $title: String!
   $body: String
-  $happenedOn: Date!
-  $datePrecision: DatePrecision!
+  $happenedOn: date!
+  $datePrecision: DatePrecision_enum!
   $place: String
-  $origin: MemoryOrigin!
 ) {
-  updateMemoriesCollection(
-    set: {
+  updateMemories(
+    where: { id: { _eq: $id } }
+    _set: {
       coupleId: $coupleId
       title: $title
       body: $body
       happenedOn: $happenedOn
       datePrecision: $datePrecision
       place: $place
-      origin: $origin
     }
-    filter: { id: { eq: $id } }
-    atMost: 1
   ) {
-    affectedCount
+    affected_rows
   }
 }

@@ -1,9 +1,5 @@
-mutation SetSpiceEnabled($profileId: UUID!, $enabled: Boolean!) {
-  updateProfileSettingsCollection(
-    set: { spiceEnabled: $enabled }
-    filter: { profileId: { eq: $profileId } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation SetSpiceEnabled($userId: uuid!, $enabled: Boolean!) {
+  updateUserSettings(where: { userId: { _eq: $userId } }, _set: { spiceEnabled: $enabled }) {
+    affected_rows
   }
 }

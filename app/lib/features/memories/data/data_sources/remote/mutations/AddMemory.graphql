@@ -1,12 +1,12 @@
 mutation AddMemory(
-  $id: UUID!
+  $id: uuid!
   $title: String!
   $body: String
-  $happenedOn: Date!
+  $happenedOn: date!
   $place: String
-  $coupleId: UUID
+  $coupleId: uuid
 ) {
-  insertIntoMemoriesCollection(
+  insertMemories(
     objects: [
       {
         id: $id
@@ -18,6 +18,6 @@ mutation AddMemory(
       }
     ]
   ) {
-    affectedCount
+    affected_rows
   }
 }

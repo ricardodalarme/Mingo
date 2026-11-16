@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/dates/data/mappers/important_date_enum_mapper.dart';
 import 'package:app/features/history/data/data_sources/remote/history_data_source.dart';
 import 'package:app/features/history/data/mappers/history_enum_mapper.dart';
@@ -15,12 +16,18 @@ import 'package:logger/logger.dart';
 
 const String notOwnerCode = 'NOT_OWNER';
 
-class HistoryRepository({required final HistoryDataSource _dataSource}) {
+class HistoryRepository({
+  required final HistoryDataSource _dataSource,
+  required final AuthenticationRepository _authenticationRepository,
+}) {
   final Logger _logger = Logger('HistoryRepository');
 
   Future<HistoryOverview> getOverview({DateTime? now}) => _run('load history overview', () async {
     final currentNow = now ?? clock.now();
-    final raw = await _dataSource.getOverview(year: currentNow.year);
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) throw StateError('The history overview needs a signed-in person');
+    final raw = await _dataSource.getOverview(userId: userId, year: currentNow.year);
+
     return raw.toModel(now: currentNow);
   });
 
@@ -89,8 +96,6 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
         (existing?.source == MilestoneSource.memory);
 
     if (hasMemoryFields) {
-      final origin = (kind == MilestoneKind.first ? MemoryOrigin.first : MemoryOrigin.manual)
-          .toRemote();
       if (existing != null && existing.source == MilestoneSource.memory) {
         await _dataSource.updateMemory(
           id: existing.id,
@@ -100,9 +105,10 @@ class HistoryRepository({required final HistoryDataSource _dataSource}) {
           place: trimmedPlace,
           happenedOn: resolvedDate,
           datePrecision: precision.toRemote(),
-          origin: origin,
         );
       } else {
+        final origin = (kind == MilestoneKind.first ? MemoryOrigin.first : MemoryOrigin.manual)
+            .toRemote();
         await _dataSource.insertMemory(
           id: id,
           coupleId: targetCoupleId,

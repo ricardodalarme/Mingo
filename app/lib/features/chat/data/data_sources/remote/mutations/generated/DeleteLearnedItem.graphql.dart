@@ -52,31 +52,29 @@ class VariablesMutationDeleteLearnedItem {
 }
 
 class MutationDeleteLearnedItem {
-  MutationDeleteLearnedItem({
-    required this.deleteFromLearnedItemsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteLearnedItem({this.deleteLearnedItemsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteLearnedItem.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromLearnedItemsCollection = json['deleteFromLearnedItemsCollection'];
+    final l$deleteLearnedItemsByPk = json['deleteLearnedItemsByPk'];
     final l$$__typename = json['__typename'];
     return MutationDeleteLearnedItem(
-      deleteFromLearnedItemsCollection:
-          MutationDeleteLearnedItemdeleteFromLearnedItemsCollection.fromJson(
-            (l$deleteFromLearnedItemsCollection as Map<String, dynamic>),
-          ),
+      deleteLearnedItemsByPk: l$deleteLearnedItemsByPk == null
+          ? null
+          : MutationDeleteLearnedItemdeleteLearnedItemsByPk.fromJson(
+              (l$deleteLearnedItemsByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteLearnedItemdeleteFromLearnedItemsCollection deleteFromLearnedItemsCollection;
+  final MutationDeleteLearnedItemdeleteLearnedItemsByPk? deleteLearnedItemsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromLearnedItemsCollection = deleteFromLearnedItemsCollection;
-    _resultData['deleteFromLearnedItemsCollection'] = l$deleteFromLearnedItemsCollection.toJson();
+    final l$deleteLearnedItemsByPk = deleteLearnedItemsByPk;
+    _resultData['deleteLearnedItemsByPk'] = l$deleteLearnedItemsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -84,9 +82,9 @@ class MutationDeleteLearnedItem {
 
   @override
   int get hashCode {
-    final l$deleteFromLearnedItemsCollection = deleteFromLearnedItemsCollection;
+    final l$deleteLearnedItemsByPk = deleteLearnedItemsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromLearnedItemsCollection, l$$__typename]);
+    return Object.hashAll([l$deleteLearnedItemsByPk, l$$__typename]);
   }
 
   @override
@@ -97,9 +95,9 @@ class MutationDeleteLearnedItem {
     if (other is! MutationDeleteLearnedItem || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromLearnedItemsCollection = deleteFromLearnedItemsCollection;
-    final lOther$deleteFromLearnedItemsCollection = other.deleteFromLearnedItemsCollection;
-    if (l$deleteFromLearnedItemsCollection != lOther$deleteFromLearnedItemsCollection) {
+    final l$deleteLearnedItemsByPk = deleteLearnedItemsByPk;
+    final lOther$deleteLearnedItemsByPk = other.deleteLearnedItemsByPk;
+    if (l$deleteLearnedItemsByPk != lOther$deleteLearnedItemsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -119,7 +117,7 @@ const documentNodeMutationDeleteLearnedItem = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -128,33 +126,19 @@ const documentNodeMutationDeleteLearnedItem = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromLearnedItemsCollection'),
+            name: NameNode(value: 'deleteLearnedItemsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                name: NameNode(value: 'id'),
+                value: VariableNode(name: NameNode(value: 'id')),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -276,31 +260,29 @@ extension ClientExtensionMutationDeleteLearnedItem on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteLearnedItemdeleteFromLearnedItemsCollection {
-  MutationDeleteLearnedItemdeleteFromLearnedItemsCollection({
-    required this.affectedCount,
-    this.$__typename = 'LearnedItemsDeleteResponse',
+class MutationDeleteLearnedItemdeleteLearnedItemsByPk {
+  MutationDeleteLearnedItemdeleteLearnedItemsByPk({
+    required this.id,
+    this.$__typename = 'learnedItems',
   });
 
-  factory MutationDeleteLearnedItemdeleteFromLearnedItemsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteLearnedItemdeleteLearnedItemsByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteLearnedItemdeleteFromLearnedItemsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteLearnedItemdeleteLearnedItemsByPk(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -308,9 +290,9 @@ class MutationDeleteLearnedItemdeleteFromLearnedItemsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -318,13 +300,13 @@ class MutationDeleteLearnedItemdeleteFromLearnedItemsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteLearnedItemdeleteFromLearnedItemsCollection ||
+    if (other is! MutationDeleteLearnedItemdeleteLearnedItemsByPk ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

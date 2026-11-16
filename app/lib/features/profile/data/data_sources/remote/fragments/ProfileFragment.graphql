@@ -1,7 +1,7 @@
-fragment ProfileFragment on Profiles {
+fragment ProfileFragment on profiles {
   id
   displayName
-  avatarPath
+  avatarFileId
   avatarKind
   city
   pronouns

@@ -64,29 +64,29 @@ class VariablesMutationAddGiftIdea {
 }
 
 class MutationAddGiftIdea {
-  MutationAddGiftIdea({this.insertIntoGiftIdeasCollection, this.$__typename = 'Mutation'});
+  MutationAddGiftIdea({this.insertGiftIdeasOne, this.$__typename = 'mutation_root'});
 
   factory MutationAddGiftIdea.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoGiftIdeasCollection = json['insertIntoGiftIdeasCollection'];
+    final l$insertGiftIdeasOne = json['insertGiftIdeasOne'];
     final l$$__typename = json['__typename'];
     return MutationAddGiftIdea(
-      insertIntoGiftIdeasCollection: l$insertIntoGiftIdeasCollection == null
+      insertGiftIdeasOne: l$insertGiftIdeasOne == null
           ? null
-          : MutationAddGiftIdeainsertIntoGiftIdeasCollection.fromJson(
-              (l$insertIntoGiftIdeasCollection as Map<String, dynamic>),
+          : MutationAddGiftIdeainsertGiftIdeasOne.fromJson(
+              (l$insertGiftIdeasOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddGiftIdeainsertIntoGiftIdeasCollection? insertIntoGiftIdeasCollection;
+  final MutationAddGiftIdeainsertGiftIdeasOne? insertGiftIdeasOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoGiftIdeasCollection = insertIntoGiftIdeasCollection;
-    _resultData['insertIntoGiftIdeasCollection'] = l$insertIntoGiftIdeasCollection?.toJson();
+    final l$insertGiftIdeasOne = insertGiftIdeasOne;
+    _resultData['insertGiftIdeasOne'] = l$insertGiftIdeasOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -94,9 +94,9 @@ class MutationAddGiftIdea {
 
   @override
   int get hashCode {
-    final l$insertIntoGiftIdeasCollection = insertIntoGiftIdeasCollection;
+    final l$insertGiftIdeasOne = insertGiftIdeasOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoGiftIdeasCollection, l$$__typename]);
+    return Object.hashAll([l$insertGiftIdeasOne, l$$__typename]);
   }
 
   @override
@@ -107,9 +107,9 @@ class MutationAddGiftIdea {
     if (other is! MutationAddGiftIdea || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoGiftIdeasCollection = insertIntoGiftIdeasCollection;
-    final lOther$insertIntoGiftIdeasCollection = other.insertIntoGiftIdeasCollection;
-    if (l$insertIntoGiftIdeasCollection != lOther$insertIntoGiftIdeasCollection) {
+    final l$insertGiftIdeasOne = insertGiftIdeasOne;
+    final lOther$insertGiftIdeasOne = other.insertGiftIdeasOne;
+    if (l$insertGiftIdeasOne != lOther$insertGiftIdeasOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -129,7 +129,7 @@ const documentNodeMutationAddGiftIdea = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -144,28 +144,24 @@ const documentNodeMutationAddGiftIdea = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoGiftIdeasCollection'),
+            name: NameNode(value: 'insertGiftIdeasOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'id'),
-                          value: VariableNode(name: NameNode(value: 'id')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'title'),
-                          value: VariableNode(name: NameNode(value: 'title')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'kind'),
-                          value: EnumValueNode(name: NameNode(value: 'idea')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'title'),
+                      value: VariableNode(name: NameNode(value: 'title')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: EnumValueNode(name: NameNode(value: 'idea')),
                     ),
                   ],
                 ),
@@ -175,7 +171,7 @@ const documentNodeMutationAddGiftIdea = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -294,29 +290,26 @@ extension ClientExtensionMutationAddGiftIdea on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationAddGiftIdeainsertIntoGiftIdeasCollection {
-  MutationAddGiftIdeainsertIntoGiftIdeasCollection({
-    required this.affectedCount,
-    this.$__typename = 'GiftIdeasInsertResponse',
-  });
+class MutationAddGiftIdeainsertGiftIdeasOne {
+  MutationAddGiftIdeainsertGiftIdeasOne({required this.id, this.$__typename = 'giftIdeas'});
 
-  factory MutationAddGiftIdeainsertIntoGiftIdeasCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationAddGiftIdeainsertGiftIdeasOne.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationAddGiftIdeainsertIntoGiftIdeasCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationAddGiftIdeainsertGiftIdeasOne(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -324,9 +317,9 @@ class MutationAddGiftIdeainsertIntoGiftIdeasCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -334,13 +327,12 @@ class MutationAddGiftIdeainsertIntoGiftIdeasCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationAddGiftIdeainsertIntoGiftIdeasCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationAddGiftIdeainsertGiftIdeasOne || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

@@ -21,8 +21,8 @@ final class const CardSummary({
 final class const CardSummaryPage({
   required final List<CardSummary> items,
   required final bool hasNext,
-  final String? cursor,
+  final int offset = 0,
 }) with Equatable {
   @override
-  List<Object?> get props => [items, hasNext, cursor];
+  List<Object?> get props => [items, hasNext, offset];
 }

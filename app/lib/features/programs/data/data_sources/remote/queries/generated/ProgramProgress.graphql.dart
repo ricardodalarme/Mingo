@@ -55,38 +55,38 @@ class VariablesQueryProgramProgress {
 
 class QueryProgramProgress {
   QueryProgramProgress({
-    required this.programEnrollmentsCollection,
-    required this.lessonProgressCollection,
-    this.$__typename = 'Query',
+    required this.programEnrollments,
+    required this.lessonProgress,
+    this.$__typename = 'query_root',
   });
 
   factory QueryProgramProgress.fromJson(Map<String, dynamic> json) {
-    final l$programEnrollmentsCollection = json['programEnrollmentsCollection'];
-    final l$lessonProgressCollection = json['lessonProgressCollection'];
+    final l$programEnrollments = json['programEnrollments'];
+    final l$lessonProgress = json['lessonProgress'];
     final l$$__typename = json['__typename'];
     return QueryProgramProgress(
-      programEnrollmentsCollection: QueryProgramProgressprogramEnrollmentsCollection.fromJson(
-        (l$programEnrollmentsCollection as Map<String, dynamic>),
-      ),
-      lessonProgressCollection: QueryProgramProgresslessonProgressCollection.fromJson(
-        (l$lessonProgressCollection as Map<String, dynamic>),
-      ),
+      programEnrollments: (l$programEnrollments as List<dynamic>)
+          .map((e) => QueryProgramProgressprogramEnrollments.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      lessonProgress: (l$lessonProgress as List<dynamic>)
+          .map((e) => QueryProgramProgresslessonProgress.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryProgramProgressprogramEnrollmentsCollection programEnrollmentsCollection;
+  final List<QueryProgramProgressprogramEnrollments> programEnrollments;
 
-  final QueryProgramProgresslessonProgressCollection lessonProgressCollection;
+  final List<QueryProgramProgresslessonProgress> lessonProgress;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$programEnrollmentsCollection = programEnrollmentsCollection;
-    _resultData['programEnrollmentsCollection'] = l$programEnrollmentsCollection.toJson();
-    final l$lessonProgressCollection = lessonProgressCollection;
-    _resultData['lessonProgressCollection'] = l$lessonProgressCollection.toJson();
+    final l$programEnrollments = programEnrollments;
+    _resultData['programEnrollments'] = l$programEnrollments.map((e) => e.toJson()).toList();
+    final l$lessonProgress = lessonProgress;
+    _resultData['lessonProgress'] = l$lessonProgress.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -94,12 +94,12 @@ class QueryProgramProgress {
 
   @override
   int get hashCode {
-    final l$programEnrollmentsCollection = programEnrollmentsCollection;
-    final l$lessonProgressCollection = lessonProgressCollection;
+    final l$programEnrollments = programEnrollments;
+    final l$lessonProgress = lessonProgress;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$programEnrollmentsCollection,
-      l$lessonProgressCollection,
+      Object.hashAll(l$programEnrollments.map((v) => v)),
+      Object.hashAll(l$lessonProgress.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -112,15 +112,29 @@ class QueryProgramProgress {
     if (other is! QueryProgramProgress || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$programEnrollmentsCollection = programEnrollmentsCollection;
-    final lOther$programEnrollmentsCollection = other.programEnrollmentsCollection;
-    if (l$programEnrollmentsCollection != lOther$programEnrollmentsCollection) {
+    final l$programEnrollments = programEnrollments;
+    final lOther$programEnrollments = other.programEnrollments;
+    if (l$programEnrollments.length != lOther$programEnrollments.length) {
       return false;
     }
-    final l$lessonProgressCollection = lessonProgressCollection;
-    final lOther$lessonProgressCollection = other.lessonProgressCollection;
-    if (l$lessonProgressCollection != lOther$lessonProgressCollection) {
+    for (int i = 0; i < l$programEnrollments.length; i++) {
+      final l$programEnrollments$entry = l$programEnrollments[i];
+      final lOther$programEnrollments$entry = lOther$programEnrollments[i];
+      if (l$programEnrollments$entry != lOther$programEnrollments$entry) {
+        return false;
+      }
+    }
+    final l$lessonProgress = lessonProgress;
+    final lOther$lessonProgress = other.lessonProgress;
+    if (l$lessonProgress.length != lOther$lessonProgress.length) {
       return false;
+    }
+    for (int i = 0; i < l$lessonProgress.length; i++) {
+      final l$lessonProgress$entry = l$lessonProgress[i];
+      final lOther$lessonProgress$entry = lOther$lessonProgress[i];
+      if (l$lessonProgress$entry != lOther$lessonProgress$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -148,11 +162,11 @@ const documentNodeQueryProgramProgress = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'programEnrollmentsCollection'),
+            name: NameNode(value: 'programEnrollments'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -160,7 +174,7 @@ const documentNodeQueryProgramProgress = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'slug')),
                           ),
                         ],
@@ -170,14 +184,14 @@ const documentNodeQueryProgramProgress = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'asc_nulls_last')),
                         ),
                       ],
                     ),
@@ -185,7 +199,7 @@ const documentNodeQueryProgramProgress = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '1'),
               ),
             ],
@@ -193,59 +207,25 @@ const documentNodeQueryProgramProgress = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'programSlug'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'programSlug'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'currentDay'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'completedAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'currentDay'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'completedAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -258,11 +238,11 @@ const documentNodeQueryProgramProgress = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'lessonProgressCollection'),
+            name: NameNode(value: 'lessonProgress'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -270,7 +250,7 @@ const documentNodeQueryProgramProgress = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'slug')),
                           ),
                         ],
@@ -280,14 +260,14 @@ const documentNodeQueryProgramProgress = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'lessonDay'),
-                          value: EnumValueNode(name: NameNode(value: 'AscNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'asc_nulls_last')),
                         ),
                       ],
                     ),
@@ -295,7 +275,7 @@ const documentNodeQueryProgramProgress = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '100'),
               ),
             ],
@@ -303,59 +283,25 @@ const documentNodeQueryProgramProgress = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'programSlug'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'programSlug'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'lessonDay'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'status'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'lessonDay'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'status'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -508,155 +454,20 @@ extension ClientExtensionQueryProgramProgress on graphql.GraphQLClient {
   }
 }
 
-class QueryProgramProgressprogramEnrollmentsCollection {
-  QueryProgramProgressprogramEnrollmentsCollection({
-    required this.edges,
-    this.$__typename = 'ProgramEnrollmentsConnection',
-  });
-
-  factory QueryProgramProgressprogramEnrollmentsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryProgramProgressprogramEnrollmentsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryProgramProgressprogramEnrollmentsCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryProgramProgressprogramEnrollmentsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryProgramProgressprogramEnrollmentsCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryProgramProgressprogramEnrollmentsCollectionedges {
-  QueryProgramProgressprogramEnrollmentsCollectionedges({
-    required this.node,
-    this.$__typename = 'ProgramEnrollmentsEdge',
-  });
-
-  factory QueryProgramProgressprogramEnrollmentsCollectionedges.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryProgramProgressprogramEnrollmentsCollectionedges(
-      node: QueryProgramProgressprogramEnrollmentsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryProgramProgressprogramEnrollmentsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryProgramProgressprogramEnrollmentsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryProgramProgressprogramEnrollmentsCollectionedgesnode {
-  QueryProgramProgressprogramEnrollmentsCollectionedgesnode({
+class QueryProgramProgressprogramEnrollments {
+  QueryProgramProgressprogramEnrollments({
     required this.programSlug,
     required this.currentDay,
     this.completedAt,
-    this.$__typename = 'ProgramEnrollments',
+    this.$__typename = 'programEnrollments',
   });
 
-  factory QueryProgramProgressprogramEnrollmentsCollectionedgesnode.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QueryProgramProgressprogramEnrollments.fromJson(Map<String, dynamic> json) {
     final l$programSlug = json['programSlug'];
     final l$currentDay = json['currentDay'];
     final l$completedAt = json['completedAt'];
     final l$$__typename = json['__typename'];
-    return QueryProgramProgressprogramEnrollmentsCollectionedgesnode(
+    return QueryProgramProgressprogramEnrollments(
       programSlug: (l$programSlug as String),
       currentDay: (l$currentDay as int),
       completedAt: l$completedAt == null ? null : DateTime.parse((l$completedAt as String)),
@@ -701,8 +512,7 @@ class QueryProgramProgressprogramEnrollmentsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryProgramProgressprogramEnrollmentsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryProgramProgressprogramEnrollments || runtimeType != other.runtimeType) {
       return false;
     }
     final l$programSlug = programSlug;
@@ -729,156 +539,23 @@ class QueryProgramProgressprogramEnrollmentsCollectionedgesnode {
   }
 }
 
-class QueryProgramProgresslessonProgressCollection {
-  QueryProgramProgresslessonProgressCollection({
-    required this.edges,
-    this.$__typename = 'LessonProgressConnection',
-  });
-
-  factory QueryProgramProgresslessonProgressCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryProgramProgresslessonProgressCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryProgramProgresslessonProgressCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryProgramProgresslessonProgressCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryProgramProgresslessonProgressCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryProgramProgresslessonProgressCollectionedges {
-  QueryProgramProgresslessonProgressCollectionedges({
-    required this.node,
-    this.$__typename = 'LessonProgressEdge',
-  });
-
-  factory QueryProgramProgresslessonProgressCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryProgramProgresslessonProgressCollectionedges(
-      node: QueryProgramProgresslessonProgressCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryProgramProgresslessonProgressCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryProgramProgresslessonProgressCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryProgramProgresslessonProgressCollectionedgesnode {
-  QueryProgramProgresslessonProgressCollectionedgesnode({
+class QueryProgramProgresslessonProgress {
+  QueryProgramProgresslessonProgress({
     required this.programSlug,
     required this.lessonDay,
     required this.status,
-    this.$__typename = 'LessonProgress',
+    this.$__typename = 'lessonProgress',
   });
 
-  factory QueryProgramProgresslessonProgressCollectionedgesnode.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QueryProgramProgresslessonProgress.fromJson(Map<String, dynamic> json) {
     final l$programSlug = json['programSlug'];
     final l$lessonDay = json['lessonDay'];
     final l$status = json['status'];
     final l$$__typename = json['__typename'];
-    return QueryProgramProgresslessonProgressCollectionedgesnode(
+    return QueryProgramProgresslessonProgress(
       programSlug: (l$programSlug as String),
       lessonDay: (l$lessonDay as int),
-      status: fromJsonEnumLessonStatus((l$status as String)),
+      status: fromJsonEnumLessonStatus_enum((l$status as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -887,7 +564,7 @@ class QueryProgramProgresslessonProgressCollectionedgesnode {
 
   final int lessonDay;
 
-  final EnumLessonStatus status;
+  final EnumLessonStatus_enum status;
 
   final String $__typename;
 
@@ -898,7 +575,7 @@ class QueryProgramProgresslessonProgressCollectionedgesnode {
     final l$lessonDay = lessonDay;
     _resultData['lessonDay'] = l$lessonDay;
     final l$status = status;
-    _resultData['status'] = toJsonEnumLessonStatus(l$status);
+    _resultData['status'] = toJsonEnumLessonStatus_enum(l$status);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -918,8 +595,7 @@ class QueryProgramProgresslessonProgressCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryProgramProgresslessonProgressCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryProgramProgresslessonProgress || runtimeType != other.runtimeType) {
       return false;
     }
     final l$programSlug = programSlug;

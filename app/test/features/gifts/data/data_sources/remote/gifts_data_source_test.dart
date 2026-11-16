@@ -41,36 +41,22 @@ const Map<String, dynamic> _wish = {
   'id': 'g1',
   'title': 'Livro',
   'status': 'idea',
-  'isMine': true,
-  'isShared': false,
-  '__typename': 'GiftIdeas',
+  'authorId': 'user-1',
+  'coupleId': null,
+  '__typename': 'giftIdeas',
 };
 
 const Map<String, dynamic> _mutationData = {
-  'insertIntoGiftIdeasCollection': {
-    'records': [_wish],
-    '__typename': 'GiftIdeasInsertResponse',
-  },
-  'updateGiftIdeasCollection': {
-    'records': [_wish],
-    '__typename': 'GiftIdeasUpdateResponse',
-  },
-  'deleteFromGiftIdeasCollection': {'affectedCount': 1, '__typename': 'GiftIdeasDeleteResponse'},
+  'insertGiftIdeasOne': _wish,
+  'updateGiftIdeasByPk': _wish,
+  'deleteGiftIdeas': {'affected_rows': 1, '__typename': 'giftIdeas_mutation_response'},
   '__typename': 'Mutation',
 };
 
-const Map<String, dynamic> _queryData = {
-  'giftIdeasCollection': {'edges': <Object?>[], '__typename': 'GiftIdeasConnection'},
-  '__typename': 'Query',
-};
+const Map<String, dynamic> _queryData = {'giftIdeas': <Object?>[], '__typename': 'Query'};
 
 QueryResult<T> _result<T>(MutationOptions<T> options, Map<String, dynamic> data) =>
     QueryResult.loading(options: options, data: data);
-
-Map<String, dynamic> _noRows(String field, String type) => {
-  field: {'records': <Object?>[], '__typename': type},
-  '__typename': 'Mutation',
-};
 
 void main() {
   test('adding a wish that stores no row fails', () {
@@ -79,7 +65,7 @@ void main() {
     );
     final dataSource = GiftsDataSource(
       client: _StubGQLClient(
-        _result(options, _noRows('insertIntoGiftIdeasCollection', 'GiftIdeasInsertResponse')),
+        _result(options, {'insertGiftIdeasOne': null, '__typename': 'Mutation'}),
       ),
     );
 
@@ -92,7 +78,7 @@ void main() {
     );
     final dataSource = GiftsDataSource(
       client: _StubGQLClient(
-        _result(options, _noRows('updateGiftIdeasCollection', 'GiftIdeasUpdateResponse')),
+        _result(options, {'updateGiftIdeasByPk': null, '__typename': 'Mutation'}),
       ),
     );
 
@@ -106,10 +92,7 @@ void main() {
     final dataSource = GiftsDataSource(
       client: _StubGQLClient(
         _result(options, {
-          'deleteFromGiftIdeasCollection': {
-            'affectedCount': 0,
-            '__typename': 'GiftIdeasDeleteResponse',
-          },
+          'deleteGiftIdeas': {'affected_rows': 0, '__typename': 'giftIdeas_mutation_response'},
           '__typename': 'Mutation',
         }),
       ),
@@ -124,7 +107,7 @@ void main() {
     );
     final dataSource = GiftsDataSource(
       client: _StubGQLClient(
-        _result(options, _noRows('updateGiftIdeasCollection', 'GiftIdeasUpdateResponse')),
+        _result(options, {'updateGiftIdeasByPk': null, '__typename': 'Mutation'}),
       ),
     );
 
@@ -138,7 +121,7 @@ void main() {
     final saved = await dataSource.updateGiftWish(id: 'g1', title: 'Livro');
 
     expect(saved.id, 'g1');
-    expect(saved.isMine, isTrue);
+    expect(saved.authorId, 'user-1');
   });
 
   test('unsharing a wish sends coupleId as null in one request', () async {
@@ -191,6 +174,6 @@ void main() {
     await dataSource.getGiftIdeas();
 
     final operation = client.queries.single;
-    expect(printNode(operation.document), contains('kind: {eq: wish}'));
+    expect(printNode(operation.document), contains('_eq: wish'));
   });
 }

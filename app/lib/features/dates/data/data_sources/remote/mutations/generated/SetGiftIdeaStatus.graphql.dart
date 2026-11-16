@@ -9,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationSetGiftIdeaStatus {
   factory VariablesMutationSetGiftIdeaStatus({
     required String id,
-    required EnumGiftIdeaStatus status,
+    required EnumGiftIdeaStatus_enum status,
   }) => VariablesMutationSetGiftIdeaStatus._({r'id': id, r'status': status});
 
   VariablesMutationSetGiftIdeaStatus._(this._$data);
@@ -19,7 +19,7 @@ class VariablesMutationSetGiftIdeaStatus {
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
     final l$status = data['status'];
-    result$data['status'] = fromJsonEnumGiftIdeaStatus((l$status as String));
+    result$data['status'] = fromJsonEnumGiftIdeaStatus_enum((l$status as String));
     return VariablesMutationSetGiftIdeaStatus._(result$data);
   }
 
@@ -27,14 +27,14 @@ class VariablesMutationSetGiftIdeaStatus {
 
   String get id => (_$data['id'] as String);
 
-  EnumGiftIdeaStatus get status => (_$data['status'] as EnumGiftIdeaStatus);
+  EnumGiftIdeaStatus_enum get status => (_$data['status'] as EnumGiftIdeaStatus_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
     result$data['id'] = l$id;
     final l$status = status;
-    result$data['status'] = toJsonEnumGiftIdeaStatus(l$status);
+    result$data['status'] = toJsonEnumGiftIdeaStatus_enum(l$status);
     return result$data;
   }
 
@@ -68,30 +68,29 @@ class VariablesMutationSetGiftIdeaStatus {
 }
 
 class MutationSetGiftIdeaStatus {
-  MutationSetGiftIdeaStatus({
-    required this.updateGiftIdeasCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationSetGiftIdeaStatus({this.updateGiftIdeasByPk, this.$__typename = 'mutation_root'});
 
   factory MutationSetGiftIdeaStatus.fromJson(Map<String, dynamic> json) {
-    final l$updateGiftIdeasCollection = json['updateGiftIdeasCollection'];
+    final l$updateGiftIdeasByPk = json['updateGiftIdeasByPk'];
     final l$$__typename = json['__typename'];
     return MutationSetGiftIdeaStatus(
-      updateGiftIdeasCollection: MutationSetGiftIdeaStatusupdateGiftIdeasCollection.fromJson(
-        (l$updateGiftIdeasCollection as Map<String, dynamic>),
-      ),
+      updateGiftIdeasByPk: l$updateGiftIdeasByPk == null
+          ? null
+          : MutationSetGiftIdeaStatusupdateGiftIdeasByPk.fromJson(
+              (l$updateGiftIdeasByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSetGiftIdeaStatusupdateGiftIdeasCollection updateGiftIdeasCollection;
+  final MutationSetGiftIdeaStatusupdateGiftIdeasByPk? updateGiftIdeasByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateGiftIdeasCollection = updateGiftIdeasCollection;
-    _resultData['updateGiftIdeasCollection'] = l$updateGiftIdeasCollection.toJson();
+    final l$updateGiftIdeasByPk = updateGiftIdeasByPk;
+    _resultData['updateGiftIdeasByPk'] = l$updateGiftIdeasByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -99,9 +98,9 @@ class MutationSetGiftIdeaStatus {
 
   @override
   int get hashCode {
-    final l$updateGiftIdeasCollection = updateGiftIdeasCollection;
+    final l$updateGiftIdeasByPk = updateGiftIdeasByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateGiftIdeasCollection, l$$__typename]);
+    return Object.hashAll([l$updateGiftIdeasByPk, l$$__typename]);
   }
 
   @override
@@ -112,9 +111,9 @@ class MutationSetGiftIdeaStatus {
     if (other is! MutationSetGiftIdeaStatus || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateGiftIdeasCollection = updateGiftIdeasCollection;
-    final lOther$updateGiftIdeasCollection = other.updateGiftIdeasCollection;
-    if (l$updateGiftIdeasCollection != lOther$updateGiftIdeasCollection) {
+    final l$updateGiftIdeasByPk = updateGiftIdeasByPk;
+    final lOther$updateGiftIdeasByPk = other.updateGiftIdeasByPk;
+    if (l$updateGiftIdeasByPk != lOther$updateGiftIdeasByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -134,13 +133,13 @@ const documentNodeMutationSetGiftIdeaStatus = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'status')),
-          type: NamedTypeNode(name: NameNode(value: 'GiftIdeaStatus'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'GiftIdeaStatus_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -149,11 +148,22 @@ const documentNodeMutationSetGiftIdeaStatus = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateGiftIdeasCollection'),
+            name: NameNode(value: 'updateGiftIdeasByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -163,34 +173,12 @@ const documentNodeMutationSetGiftIdeaStatus = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -312,29 +300,26 @@ extension ClientExtensionMutationSetGiftIdeaStatus on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSetGiftIdeaStatusupdateGiftIdeasCollection {
-  MutationSetGiftIdeaStatusupdateGiftIdeasCollection({
-    required this.affectedCount,
-    this.$__typename = 'GiftIdeasUpdateResponse',
-  });
+class MutationSetGiftIdeaStatusupdateGiftIdeasByPk {
+  MutationSetGiftIdeaStatusupdateGiftIdeasByPk({required this.id, this.$__typename = 'giftIdeas'});
 
-  factory MutationSetGiftIdeaStatusupdateGiftIdeasCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationSetGiftIdeaStatusupdateGiftIdeasByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationSetGiftIdeaStatusupdateGiftIdeasCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationSetGiftIdeaStatusupdateGiftIdeasByPk(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -342,9 +327,9 @@ class MutationSetGiftIdeaStatusupdateGiftIdeasCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -352,13 +337,13 @@ class MutationSetGiftIdeaStatusupdateGiftIdeasCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSetGiftIdeaStatusupdateGiftIdeasCollection ||
+    if (other is! MutationSetGiftIdeaStatusupdateGiftIdeasByPk ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

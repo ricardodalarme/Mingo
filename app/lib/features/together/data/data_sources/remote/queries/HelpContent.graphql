@@ -1,20 +1,16 @@
-query HelpContent($kind: ContentKind!, $locale: String!) {
-  contentItemsCollection(
-    first: 20
-    filter: {
-      kind: { eq: $kind }
-      locale: { eq: $locale }
-      plusOnly: { eq: false }
-      published: { eq: true }
+query HelpContent($kind: ContentKind_enum!, $locale: String!) {
+  contentItems(
+    limit: 20
+    where: {
+      kind: { _eq: $kind }
+      locale: { _eq: $locale }
+      plusOnly: { _eq: false }
+      published: { _eq: true }
     }
-    orderBy: [{ position: AscNullsLast }]
+    order_by: [{ position: asc_nulls_last }]
   ) {
-    edges {
-      node {
-        slug
-        title
-        body
-      }
-    }
+    slug
+    title
+    body
   }
 }

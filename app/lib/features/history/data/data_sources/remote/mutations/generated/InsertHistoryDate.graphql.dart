@@ -11,7 +11,7 @@ class VariablesMutationInsertHistoryDate {
     required String id,
     String? coupleId,
     required String title,
-    required EnumImportantDateKind kind,
+    required EnumImportantDateKind_enum kind,
     required int month,
     required int day,
     int? year,
@@ -40,7 +40,7 @@ class VariablesMutationInsertHistoryDate {
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
     final l$kind = data['kind'];
-    result$data['kind'] = fromJsonEnumImportantDateKind((l$kind as String));
+    result$data['kind'] = fromJsonEnumImportantDateKind_enum((l$kind as String));
     final l$month = data['month'];
     result$data['month'] = (l$month as int);
     final l$day = data['day'];
@@ -62,7 +62,7 @@ class VariablesMutationInsertHistoryDate {
 
   String get title => (_$data['title'] as String);
 
-  EnumImportantDateKind get kind => (_$data['kind'] as EnumImportantDateKind);
+  EnumImportantDateKind_enum get kind => (_$data['kind'] as EnumImportantDateKind_enum);
 
   int get month => (_$data['month'] as int);
 
@@ -83,7 +83,7 @@ class VariablesMutationInsertHistoryDate {
     final l$title = title;
     result$data['title'] = l$title;
     final l$kind = kind;
-    result$data['kind'] = toJsonEnumImportantDateKind(l$kind);
+    result$data['kind'] = toJsonEnumImportantDateKind_enum(l$kind);
     final l$month = month;
     result$data['month'] = l$month;
     final l$day = day;
@@ -178,34 +178,29 @@ class VariablesMutationInsertHistoryDate {
 }
 
 class MutationInsertHistoryDate {
-  MutationInsertHistoryDate({
-    this.insertIntoImportantDatesCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationInsertHistoryDate({this.insertImportantDates, this.$__typename = 'mutation_root'});
 
   factory MutationInsertHistoryDate.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoImportantDatesCollection = json['insertIntoImportantDatesCollection'];
+    final l$insertImportantDates = json['insertImportantDates'];
     final l$$__typename = json['__typename'];
     return MutationInsertHistoryDate(
-      insertIntoImportantDatesCollection: l$insertIntoImportantDatesCollection == null
+      insertImportantDates: l$insertImportantDates == null
           ? null
-          : MutationInsertHistoryDateinsertIntoImportantDatesCollection.fromJson(
-              (l$insertIntoImportantDatesCollection as Map<String, dynamic>),
+          : MutationInsertHistoryDateinsertImportantDates.fromJson(
+              (l$insertImportantDates as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationInsertHistoryDateinsertIntoImportantDatesCollection?
-  insertIntoImportantDatesCollection;
+  final MutationInsertHistoryDateinsertImportantDates? insertImportantDates;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoImportantDatesCollection = insertIntoImportantDatesCollection;
-    _resultData['insertIntoImportantDatesCollection'] = l$insertIntoImportantDatesCollection
-        ?.toJson();
+    final l$insertImportantDates = insertImportantDates;
+    _resultData['insertImportantDates'] = l$insertImportantDates?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -213,9 +208,9 @@ class MutationInsertHistoryDate {
 
   @override
   int get hashCode {
-    final l$insertIntoImportantDatesCollection = insertIntoImportantDatesCollection;
+    final l$insertImportantDates = insertImportantDates;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoImportantDatesCollection, l$$__typename]);
+    return Object.hashAll([l$insertImportantDates, l$$__typename]);
   }
 
   @override
@@ -226,9 +221,9 @@ class MutationInsertHistoryDate {
     if (other is! MutationInsertHistoryDate || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoImportantDatesCollection = insertIntoImportantDatesCollection;
-    final lOther$insertIntoImportantDatesCollection = other.insertIntoImportantDatesCollection;
-    if (l$insertIntoImportantDatesCollection != lOther$insertIntoImportantDatesCollection) {
+    final l$insertImportantDates = insertImportantDates;
+    final lOther$insertImportantDates = other.insertImportantDates;
+    if (l$insertImportantDates != lOther$insertImportantDates) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -248,13 +243,13 @@ const documentNodeMutationInsertHistoryDate = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -266,25 +261,25 @@ const documentNodeMutationInsertHistoryDate = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'ImportantDateKind'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ImportantDateKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'month')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'day')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'year')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -299,7 +294,7 @@ const documentNodeMutationInsertHistoryDate = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoImportantDatesCollection'),
+            name: NameNode(value: 'insertImportantDates'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -354,7 +349,7 @@ const documentNodeMutationInsertHistoryDate = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -476,31 +471,29 @@ extension ClientExtensionMutationInsertHistoryDate on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationInsertHistoryDateinsertIntoImportantDatesCollection {
-  MutationInsertHistoryDateinsertIntoImportantDatesCollection({
-    required this.affectedCount,
-    this.$__typename = 'ImportantDatesInsertResponse',
+class MutationInsertHistoryDateinsertImportantDates {
+  MutationInsertHistoryDateinsertImportantDates({
+    required this.affected_rows,
+    this.$__typename = 'importantDates_mutation_response',
   });
 
-  factory MutationInsertHistoryDateinsertIntoImportantDatesCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationInsertHistoryDateinsertImportantDates.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationInsertHistoryDateinsertIntoImportantDatesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationInsertHistoryDateinsertImportantDates(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -508,9 +501,9 @@ class MutationInsertHistoryDateinsertIntoImportantDatesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -518,13 +511,13 @@ class MutationInsertHistoryDateinsertIntoImportantDatesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationInsertHistoryDateinsertIntoImportantDatesCollection ||
+    if (other is! MutationInsertHistoryDateinsertImportantDates ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

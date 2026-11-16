@@ -1,18 +1,14 @@
-query SentPartnerMessages($senderId: UUID!) {
-  partnerMessagesCollection(
-    filter: { senderId: { eq: $senderId } }
-    orderBy: [{ createdAt: DescNullsLast }]
-    first: 30
+query SentPartnerMessages($senderId: uuid!) {
+  partnerMessages(
+    where: { senderId: { _eq: $senderId } }
+    order_by: [{ createdAt: desc_nulls_last }]
+    limit: 30
   ) {
-    edges {
-      node {
-        id
-        kind
-        body
-        mediaPath
-        forWidget
-        createdAt
-      }
-    }
+    id
+    kind
+    body
+    mediaFileId
+    forWidget
+    createdAt
   }
 }

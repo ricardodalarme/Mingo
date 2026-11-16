@@ -3,9 +3,9 @@ import 'package:app/features/widgets/data/mappers/couple_photo_mapper.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final node = QueryCouplePhotocouplePhotosCollectionedgesnode(
+  final node = QueryCouplePhotocoupleMembersByPkcouplephoto(
     coupleId: 'c1',
-    storagePath: 'c1/photo.jpg',
+    fileId: 'file-1',
     uploadedBy: 'u1',
     updatedAt: DateTime.utc(2026, 11, 9, 12),
   );
@@ -14,7 +14,7 @@ void main() {
     final photo = node.toModel();
 
     expect(photo.coupleId, 'c1');
-    expect(photo.storagePath, 'c1/photo.jpg');
+    expect(photo.fileId, 'file-1');
     expect(photo.uploadedBy, 'u1');
     expect(photo.updatedAt, DateTime.utc(2026, 11, 9, 12));
     expect(photo.url, isNull);

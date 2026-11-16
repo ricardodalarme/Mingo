@@ -1,23 +1,23 @@
 mutation SaveProfileSetup(
-  $profileId: UUID!
+  $profileId: uuid!
   $displayName: String!
-  $theme: AppTheme!
+  $theme: AppTheme_enum!
   $partnerName: String
-  $togetherSince: Date
-  $onboardedAt: Datetime!
+  $togetherSince: date
+  $onboardedAt: timestamptz!
 ) {
-  updateProfilesCollection(set: { displayName: $displayName }, filter: { id: { eq: $profileId } }) {
-    affectedCount
+  updateProfiles(where: { id: { _eq: $profileId } }, _set: { displayName: $displayName }) {
+    affected_rows
   }
-  updateProfileSettingsCollection(
-    set: {
+  updateUserSettings(
+    where: { userId: { _eq: $profileId } }
+    _set: {
       theme: $theme
       partnerName: $partnerName
       togetherSince: $togetherSince
       onboardedAt: $onboardedAt
     }
-    filter: { profileId: { eq: $profileId } }
   ) {
-    affectedCount
+    affected_rows
   }
 }

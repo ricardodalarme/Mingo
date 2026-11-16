@@ -4,37 +4,27 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
-class VariablesMutationSetSlipCategory {
-  factory VariablesMutationSetSlipCategory({required String id, String? category}) =>
-      VariablesMutationSetSlipCategory._({r'id': id, if (category != null) r'category': category});
+class VariablesMutationRevokeLoveStyleShare {
+  factory VariablesMutationRevokeLoveStyleShare({required String id}) =>
+      VariablesMutationRevokeLoveStyleShare._({r'id': id});
 
-  VariablesMutationSetSlipCategory._(this._$data);
+  VariablesMutationRevokeLoveStyleShare._(this._$data);
 
-  factory VariablesMutationSetSlipCategory.fromJson(Map<String, dynamic> data) {
+  factory VariablesMutationRevokeLoveStyleShare.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
-    if (data.containsKey('category')) {
-      final l$category = data['category'];
-      result$data['category'] = (l$category as String?);
-    }
-    return VariablesMutationSetSlipCategory._(result$data);
+    return VariablesMutationRevokeLoveStyleShare._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
   String get id => (_$data['id'] as String);
 
-  String? get category => (_$data['category'] as String?);
-
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
     result$data['id'] = l$id;
-    if (_$data.containsKey('category')) {
-      final l$category = category;
-      result$data['category'] = l$category;
-    }
     return result$data;
   }
 
@@ -43,20 +33,12 @@ class VariablesMutationSetSlipCategory {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! VariablesMutationSetSlipCategory || runtimeType != other.runtimeType) {
+    if (other is! VariablesMutationRevokeLoveStyleShare || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
-      return false;
-    }
-    final l$category = category;
-    final lOther$category = other.category;
-    if (_$data.containsKey('category') != other._$data.containsKey('category')) {
-      return false;
-    }
-    if (l$category != lOther$category) {
       return false;
     }
     return true;
@@ -65,35 +47,37 @@ class VariablesMutationSetSlipCategory {
   @override
   int get hashCode {
     final l$id = id;
-    final l$category = category;
-    return Object.hashAll([l$id, _$data.containsKey('category') ? l$category : const {}]);
+    return Object.hashAll([l$id]);
   }
 }
 
-class MutationSetSlipCategory {
-  MutationSetSlipCategory({this.setSlipDetails, this.$__typename = 'Mutation'});
+class MutationRevokeLoveStyleShare {
+  MutationRevokeLoveStyleShare({
+    this.deletePartnerMessagesByPk,
+    this.$__typename = 'mutation_root',
+  });
 
-  factory MutationSetSlipCategory.fromJson(Map<String, dynamic> json) {
-    final l$setSlipDetails = json['setSlipDetails'];
+  factory MutationRevokeLoveStyleShare.fromJson(Map<String, dynamic> json) {
+    final l$deletePartnerMessagesByPk = json['deletePartnerMessagesByPk'];
     final l$$__typename = json['__typename'];
-    return MutationSetSlipCategory(
-      setSlipDetails: l$setSlipDetails == null
+    return MutationRevokeLoveStyleShare(
+      deletePartnerMessagesByPk: l$deletePartnerMessagesByPk == null
           ? null
-          : MutationSetSlipCategorysetSlipDetails.fromJson(
-              (l$setSlipDetails as Map<String, dynamic>),
+          : MutationRevokeLoveStyleSharedeletePartnerMessagesByPk.fromJson(
+              (l$deletePartnerMessagesByPk as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSetSlipCategorysetSlipDetails? setSlipDetails;
+  final MutationRevokeLoveStyleSharedeletePartnerMessagesByPk? deletePartnerMessagesByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$setSlipDetails = setSlipDetails;
-    _resultData['setSlipDetails'] = l$setSlipDetails?.toJson();
+    final l$deletePartnerMessagesByPk = deletePartnerMessagesByPk;
+    _resultData['deletePartnerMessagesByPk'] = l$deletePartnerMessagesByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -101,9 +85,9 @@ class MutationSetSlipCategory {
 
   @override
   int get hashCode {
-    final l$setSlipDetails = setSlipDetails;
+    final l$deletePartnerMessagesByPk = deletePartnerMessagesByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$setSlipDetails, l$$__typename]);
+    return Object.hashAll([l$deletePartnerMessagesByPk, l$$__typename]);
   }
 
   @override
@@ -111,12 +95,12 @@ class MutationSetSlipCategory {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSetSlipCategory || runtimeType != other.runtimeType) {
+    if (other is! MutationRevokeLoveStyleShare || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$setSlipDetails = setSlipDetails;
-    final lOther$setSlipDetails = other.setSlipDetails;
-    if (l$setSlipDetails != lOther$setSlipDetails) {
+    final l$deletePartnerMessagesByPk = deletePartnerMessagesByPk;
+    final lOther$deletePartnerMessagesByPk = other.deletePartnerMessagesByPk;
+    if (l$deletePartnerMessagesByPk != lOther$deletePartnerMessagesByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -128,21 +112,15 @@ class MutationSetSlipCategory {
   }
 }
 
-const documentNodeMutationSetSlipCategory = DocumentNode(
+const documentNodeMutationRevokeLoveStyleShare = DocumentNode(
   definitions: [
     OperationDefinitionNode(
       type: OperationType.mutation,
-      name: NameNode(value: 'SetSlipCategory'),
+      name: NameNode(value: 'RevokeLoveStyleShare'),
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'category')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -151,16 +129,12 @@ const documentNodeMutationSetSlipCategory = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'setSlipDetails'),
+            name: NameNode(value: 'deletePartnerMessagesByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
                 name: NameNode(value: 'id'),
                 value: VariableNode(name: NameNode(value: 'id')),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'category'),
-                value: VariableNode(name: NameNode(value: 'category')),
               ),
             ],
             directives: [],
@@ -195,30 +169,31 @@ const documentNodeMutationSetSlipCategory = DocumentNode(
     ),
   ],
 );
-MutationSetSlipCategory _parserFnMutationSetSlipCategory(Map<String, dynamic> data) =>
-    MutationSetSlipCategory.fromJson(data);
-typedef OnMutationCompletedMutationSetSlipCategory = FutureOr<void> Function(
+MutationRevokeLoveStyleShare _parserFnMutationRevokeLoveStyleShare(Map<String, dynamic> data) =>
+    MutationRevokeLoveStyleShare.fromJson(data);
+typedef OnMutationCompletedMutationRevokeLoveStyleShare = FutureOr<void> Function(
   Map<String, dynamic>?,
-  MutationSetSlipCategory?,
+  MutationRevokeLoveStyleShare?,
 );
 
-class OptionsMutationSetSlipCategory extends graphql.MutationOptions<MutationSetSlipCategory> {
-  OptionsMutationSetSlipCategory({
+class OptionsMutationRevokeLoveStyleShare
+    extends graphql.MutationOptions<MutationRevokeLoveStyleShare> {
+  OptionsMutationRevokeLoveStyleShare({
     String? operationName,
-    required VariablesMutationSetSlipCategory variables,
+    required VariablesMutationRevokeLoveStyleShare variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    MutationSetSlipCategory? typedOptimisticResult,
+    MutationRevokeLoveStyleShare? typedOptimisticResult,
     graphql.Context? context,
-    OnMutationCompletedMutationSetSlipCategory? onCompleted,
-    graphql.OnMutationUpdate<MutationSetSlipCategory>? update,
+    OnMutationCompletedMutationRevokeLoveStyleShare? onCompleted,
+    graphql.OnMutationUpdate<MutationRevokeLoveStyleShare>? update,
     graphql.OnError? onError,
   }) : onCompletedWithParsed = onCompleted,
        super(
          variables: variables.toJson(),
-         operationName: operationName ?? 'SetSlipCategory',
+         operationName: operationName ?? 'RevokeLoveStyleShare',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -226,15 +201,17 @@ class OptionsMutationSetSlipCategory extends graphql.MutationOptions<MutationSet
          context: context,
          onCompleted: onCompleted == null
              ? null
-             : (data) =>
-                   onCompleted(data, data == null ? null : _parserFnMutationSetSlipCategory(data)),
+             : (data) => onCompleted(
+                 data,
+                 data == null ? null : _parserFnMutationRevokeLoveStyleShare(data),
+               ),
          update: update,
          onError: onError,
-         document: documentNodeMutationSetSlipCategory,
-         parserFn: _parserFnMutationSetSlipCategory,
+         document: documentNodeMutationRevokeLoveStyleShare,
+         parserFn: _parserFnMutationRevokeLoveStyleShare,
        );
 
-  final OnMutationCompletedMutationSetSlipCategory? onCompletedWithParsed;
+  final OnMutationCompletedMutationRevokeLoveStyleShare? onCompletedWithParsed;
 
   @override
   List<Object?> get properties => [
@@ -245,16 +222,16 @@ class OptionsMutationSetSlipCategory extends graphql.MutationOptions<MutationSet
   ];
 }
 
-class WatchOptionsMutationSetSlipCategory
-    extends graphql.WatchQueryOptions<MutationSetSlipCategory> {
-  WatchOptionsMutationSetSlipCategory({
+class WatchOptionsMutationRevokeLoveStyleShare
+    extends graphql.WatchQueryOptions<MutationRevokeLoveStyleShare> {
+  WatchOptionsMutationRevokeLoveStyleShare({
     String? operationName,
-    required VariablesMutationSetSlipCategory variables,
+    required VariablesMutationRevokeLoveStyleShare variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    MutationSetSlipCategory? typedOptimisticResult,
+    MutationRevokeLoveStyleShare? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -262,38 +239,43 @@ class WatchOptionsMutationSetSlipCategory
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName ?? 'SetSlipCategory',
+         operationName: operationName ?? 'RevokeLoveStyleShare',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
          context: context,
-         document: documentNodeMutationSetSlipCategory,
+         document: documentNodeMutationRevokeLoveStyleShare,
          pollInterval: pollInterval,
          eagerlyFetchResults: eagerlyFetchResults,
          carryForwardDataOnException: carryForwardDataOnException,
          fetchResults: fetchResults,
-         parserFn: _parserFnMutationSetSlipCategory,
+         parserFn: _parserFnMutationRevokeLoveStyleShare,
        );
 }
 
-extension ClientExtensionMutationSetSlipCategory on graphql.GraphQLClient {
-  Future<graphql.QueryResult<MutationSetSlipCategory>> mutateSetSlipCategory(
-    OptionsMutationSetSlipCategory options,
+extension ClientExtensionMutationRevokeLoveStyleShare on graphql.GraphQLClient {
+  Future<graphql.QueryResult<MutationRevokeLoveStyleShare>> mutateRevokeLoveStyleShare(
+    OptionsMutationRevokeLoveStyleShare options,
   ) async => await this.mutate(options);
 
-  graphql.ObservableQuery<MutationSetSlipCategory> watchMutationSetSlipCategory(
-    WatchOptionsMutationSetSlipCategory options,
+  graphql.ObservableQuery<MutationRevokeLoveStyleShare> watchMutationRevokeLoveStyleShare(
+    WatchOptionsMutationRevokeLoveStyleShare options,
   ) => this.watchMutation(options);
 }
 
-class MutationSetSlipCategorysetSlipDetails {
-  MutationSetSlipCategorysetSlipDetails({required this.id, this.$__typename = 'Slips'});
+class MutationRevokeLoveStyleSharedeletePartnerMessagesByPk {
+  MutationRevokeLoveStyleSharedeletePartnerMessagesByPk({
+    required this.id,
+    this.$__typename = 'partnerMessages',
+  });
 
-  factory MutationSetSlipCategorysetSlipDetails.fromJson(Map<String, dynamic> json) {
+  factory MutationRevokeLoveStyleSharedeletePartnerMessagesByPk.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationSetSlipCategorysetSlipDetails(
+    return MutationRevokeLoveStyleSharedeletePartnerMessagesByPk(
       id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
@@ -324,7 +306,8 @@ class MutationSetSlipCategorysetSlipDetails {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSetSlipCategorysetSlipDetails || runtimeType != other.runtimeType) {
+    if (other is! MutationRevokeLoveStyleSharedeletePartnerMessagesByPk ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

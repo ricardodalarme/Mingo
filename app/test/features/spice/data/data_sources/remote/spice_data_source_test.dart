@@ -14,14 +14,14 @@ void main() {
 
   setUpAll(() {
     registerFallbackValue(
-      OptionsQueryMySpiceSetting(variables: VariablesQueryMySpiceSetting(profileId: 'p1')),
+      OptionsQueryMySpiceSetting(variables: VariablesQueryMySpiceSetting(userId: 'u1')),
     );
     registerFallbackValue(
       OptionsQuerySpiceCards(variables: VariablesQuerySpiceCards(locale: 'pt-BR')),
     );
     registerFallbackValue(
       OptionsMutationSetSpiceEnabled(
-        variables: VariablesMutationSetSpiceEnabled(profileId: 'p1', enabled: true),
+        variables: VariablesMutationSetSpiceEnabled(userId: 'u1', enabled: true),
       ),
     );
   });
@@ -33,33 +33,30 @@ void main() {
 
   QueryResult<QueryMySpiceSetting> settingsResponse(Map<String, dynamic>? row) {
     return QueryResult<QueryMySpiceSetting>(
-      options: OptionsQueryMySpiceSetting(variables: VariablesQueryMySpiceSetting(profileId: 'p1')),
+      options: OptionsQueryMySpiceSetting(variables: VariablesQueryMySpiceSetting(userId: 'u1')),
       source: QueryResultSource.network,
-      data: {'profileSettingsByPk': row, '__typename': 'Query'},
+      data: {'userSettingsByPk': row, '__typename': 'Query'},
     );
   }
 
-  QueryResult<QuerySpiceCards> cardsResponse(List<Map<String, dynamic>> edges) {
+  QueryResult<QuerySpiceCards> cardsResponse(List<Map<String, dynamic>> cards) {
     return QueryResult<QuerySpiceCards>(
       options: OptionsQuerySpiceCards(variables: VariablesQuerySpiceCards(locale: 'pt-BR')),
       source: QueryResultSource.network,
-      data: {
-        'contentItemsCollection': {'__typename': 'ContentItemsConnection', 'edges': edges},
-        '__typename': 'Query',
-      },
+      data: {'contentItems': cards, '__typename': 'Query'},
     );
   }
 
-  QueryResult<MutationSetSpiceEnabled> mutationResponse(int affectedCount) {
+  QueryResult<MutationSetSpiceEnabled> mutationResponse(int affectedRows) {
     return QueryResult<MutationSetSpiceEnabled>(
       options: OptionsMutationSetSpiceEnabled(
-        variables: VariablesMutationSetSpiceEnabled(profileId: 'p1', enabled: true),
+        variables: VariablesMutationSetSpiceEnabled(userId: 'u1', enabled: true),
       ),
       source: QueryResultSource.network,
       data: {
-        'updateProfileSettingsCollection': {
-          '__typename': 'ProfileSettingsUpdateResponse',
-          'affectedCount': affectedCount,
+        'updateUserSettings': {
+          '__typename': 'userSettings_mutation_response',
+          'affected_rows': affectedRows,
         },
         '__typename': 'Mutation',
       },
@@ -70,32 +67,23 @@ void main() {
     when(() => client.query<QueryMySpiceSetting>(any()))
         .thenAnswer((_) async => settingsResponse(null));
 
-    expect(await dataSource.getEnabled('p1'), isFalse);
+    expect(await dataSource.getEnabled('u1'), isFalse);
   });
 
   test('the settings row carries the saved switch', () async {
     when(() => client.query<QueryMySpiceSetting>(any())).thenAnswer(
-      (_) async => settingsResponse({
-        '__typename': 'ProfileSettings',
-        'profileId': 'p1',
-        'spiceEnabled': true,
-      }),
+      (_) async =>
+          settingsResponse({'__typename': 'userSettings', 'userId': 'u1', 'spiceEnabled': true}),
     );
 
-    expect(await dataSource.getEnabled('p1'), isTrue);
+    expect(await dataSource.getEnabled('u1'), isTrue);
   });
 
   test('cards keep the server order', () async {
     when(() => client.query<QuerySpiceCards>(any())).thenAnswer(
       (_) async => cardsResponse([
-        {
-          '__typename': 'ContentItemsEdge',
-          'node': {'__typename': 'ContentItems', 'slug': 'a', 'title': 'Primeira'},
-        },
-        {
-          '__typename': 'ContentItemsEdge',
-          'node': {'__typename': 'ContentItems', 'slug': 'b', 'title': 'Segunda'},
-        },
+        {'__typename': 'contentItems', 'slug': 'a', 'title': 'Primeira'},
+        {'__typename': 'contentItems', 'slug': 'b', 'title': 'Segunda'},
       ]),
     );
 
@@ -106,13 +94,13 @@ void main() {
     when(() => client.mutate<MutationSetSpiceEnabled>(any()))
         .thenAnswer((_) async => mutationResponse(1));
 
-    expect(await dataSource.setEnabled(profileId: 'p1', enabled: true), 1);
+    expect(await dataSource.setEnabled(userId: 'u1', enabled: true), 1);
   });
 
   test('the mutation reports zero when no row matched', () async {
     when(() => client.mutate<MutationSetSpiceEnabled>(any()))
         .thenAnswer((_) async => mutationResponse(0));
 
-    expect(await dataSource.setEnabled(profileId: 'p1', enabled: true), 0);
+    expect(await dataSource.setEnabled(userId: 'u1', enabled: true), 0);
   });
 }

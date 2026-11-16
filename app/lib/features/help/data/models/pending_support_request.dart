@@ -25,7 +25,7 @@ final class const PendingSupportRequest({
   Map<String, dynamic> toMap() => <String, dynamic>{
     'id': id,
     'authorId': authorId,
-    'topic': topic.toRemote(),
+    'topic': topic.name,
     'message': message,
     'createdAt': createdAt.toUtc().toIso8601String(),
     'replyEmail': replyEmail,

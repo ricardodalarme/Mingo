@@ -99,33 +99,31 @@ class VariablesMutationInsertProgramEnrollment {
 
 class MutationInsertProgramEnrollment {
   MutationInsertProgramEnrollment({
-    this.insertIntoProgramEnrollmentsCollection,
-    this.$__typename = 'Mutation',
+    this.insertProgramEnrollments,
+    this.$__typename = 'mutation_root',
   });
 
   factory MutationInsertProgramEnrollment.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoProgramEnrollmentsCollection = json['insertIntoProgramEnrollmentsCollection'];
+    final l$insertProgramEnrollments = json['insertProgramEnrollments'];
     final l$$__typename = json['__typename'];
     return MutationInsertProgramEnrollment(
-      insertIntoProgramEnrollmentsCollection: l$insertIntoProgramEnrollmentsCollection == null
+      insertProgramEnrollments: l$insertProgramEnrollments == null
           ? null
-          : MutationInsertProgramEnrollmentinsertIntoProgramEnrollmentsCollection.fromJson(
-              (l$insertIntoProgramEnrollmentsCollection as Map<String, dynamic>),
+          : MutationInsertProgramEnrollmentinsertProgramEnrollments.fromJson(
+              (l$insertProgramEnrollments as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationInsertProgramEnrollmentinsertIntoProgramEnrollmentsCollection?
-  insertIntoProgramEnrollmentsCollection;
+  final MutationInsertProgramEnrollmentinsertProgramEnrollments? insertProgramEnrollments;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoProgramEnrollmentsCollection = insertIntoProgramEnrollmentsCollection;
-    _resultData['insertIntoProgramEnrollmentsCollection'] = l$insertIntoProgramEnrollmentsCollection
-        ?.toJson();
+    final l$insertProgramEnrollments = insertProgramEnrollments;
+    _resultData['insertProgramEnrollments'] = l$insertProgramEnrollments?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -133,9 +131,9 @@ class MutationInsertProgramEnrollment {
 
   @override
   int get hashCode {
-    final l$insertIntoProgramEnrollmentsCollection = insertIntoProgramEnrollmentsCollection;
+    final l$insertProgramEnrollments = insertProgramEnrollments;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoProgramEnrollmentsCollection, l$$__typename]);
+    return Object.hashAll([l$insertProgramEnrollments, l$$__typename]);
   }
 
   @override
@@ -146,10 +144,9 @@ class MutationInsertProgramEnrollment {
     if (other is! MutationInsertProgramEnrollment || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoProgramEnrollmentsCollection = insertIntoProgramEnrollmentsCollection;
-    final lOther$insertIntoProgramEnrollmentsCollection =
-        other.insertIntoProgramEnrollmentsCollection;
-    if (l$insertIntoProgramEnrollmentsCollection != lOther$insertIntoProgramEnrollmentsCollection) {
+    final l$insertProgramEnrollments = insertProgramEnrollments;
+    final lOther$insertProgramEnrollments = other.insertProgramEnrollments;
+    if (l$insertProgramEnrollments != lOther$insertProgramEnrollments) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -175,13 +172,13 @@ const documentNodeMutationInsertProgramEnrollment = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'currentDay')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'completedAt')),
-          type: NamedTypeNode(name: NameNode(value: 'Datetime'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'timestamptz'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -190,7 +187,7 @@ const documentNodeMutationInsertProgramEnrollment = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoProgramEnrollmentsCollection'),
+            name: NameNode(value: 'insertProgramEnrollments'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -221,7 +218,7 @@ const documentNodeMutationInsertProgramEnrollment = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -345,31 +342,31 @@ extension ClientExtensionMutationInsertProgramEnrollment on graphql.GraphQLClien
   ) => this.watchMutation(options);
 }
 
-class MutationInsertProgramEnrollmentinsertIntoProgramEnrollmentsCollection {
-  MutationInsertProgramEnrollmentinsertIntoProgramEnrollmentsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProgramEnrollmentsInsertResponse',
+class MutationInsertProgramEnrollmentinsertProgramEnrollments {
+  MutationInsertProgramEnrollmentinsertProgramEnrollments({
+    required this.affected_rows,
+    this.$__typename = 'programEnrollments_mutation_response',
   });
 
-  factory MutationInsertProgramEnrollmentinsertIntoProgramEnrollmentsCollection.fromJson(
+  factory MutationInsertProgramEnrollmentinsertProgramEnrollments.fromJson(
     Map<String, dynamic> json,
   ) {
-    final l$affectedCount = json['affectedCount'];
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationInsertProgramEnrollmentinsertIntoProgramEnrollmentsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationInsertProgramEnrollmentinsertProgramEnrollments(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -377,9 +374,9 @@ class MutationInsertProgramEnrollmentinsertIntoProgramEnrollmentsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -387,13 +384,13 @@ class MutationInsertProgramEnrollmentinsertIntoProgramEnrollmentsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationInsertProgramEnrollmentinsertIntoProgramEnrollmentsCollection ||
+    if (other is! MutationInsertProgramEnrollmentinsertProgramEnrollments ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

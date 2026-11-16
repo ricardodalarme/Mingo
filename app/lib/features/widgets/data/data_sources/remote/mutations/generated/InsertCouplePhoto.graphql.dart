@@ -5,15 +5,8 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationInsertCouplePhoto {
-  factory VariablesMutationInsertCouplePhoto({
-    required String coupleId,
-    required String storagePath,
-    required String uploadedBy,
-  }) => VariablesMutationInsertCouplePhoto._({
-    r'coupleId': coupleId,
-    r'storagePath': storagePath,
-    r'uploadedBy': uploadedBy,
-  });
+  factory VariablesMutationInsertCouplePhoto({required String coupleId, required String fileId}) =>
+      VariablesMutationInsertCouplePhoto._({r'coupleId': coupleId, r'fileId': fileId});
 
   VariablesMutationInsertCouplePhoto._(this._$data);
 
@@ -21,10 +14,8 @@ class VariablesMutationInsertCouplePhoto {
     final result$data = <String, dynamic>{};
     final l$coupleId = data['coupleId'];
     result$data['coupleId'] = (l$coupleId as String);
-    final l$storagePath = data['storagePath'];
-    result$data['storagePath'] = (l$storagePath as String);
-    final l$uploadedBy = data['uploadedBy'];
-    result$data['uploadedBy'] = (l$uploadedBy as String);
+    final l$fileId = data['fileId'];
+    result$data['fileId'] = (l$fileId as String);
     return VariablesMutationInsertCouplePhoto._(result$data);
   }
 
@@ -32,18 +23,14 @@ class VariablesMutationInsertCouplePhoto {
 
   String get coupleId => (_$data['coupleId'] as String);
 
-  String get storagePath => (_$data['storagePath'] as String);
-
-  String get uploadedBy => (_$data['uploadedBy'] as String);
+  String get fileId => (_$data['fileId'] as String);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$coupleId = coupleId;
     result$data['coupleId'] = l$coupleId;
-    final l$storagePath = storagePath;
-    result$data['storagePath'] = l$storagePath;
-    final l$uploadedBy = uploadedBy;
-    result$data['uploadedBy'] = l$uploadedBy;
+    final l$fileId = fileId;
+    result$data['fileId'] = l$fileId;
     return result$data;
   }
 
@@ -60,14 +47,9 @@ class VariablesMutationInsertCouplePhoto {
     if (l$coupleId != lOther$coupleId) {
       return false;
     }
-    final l$storagePath = storagePath;
-    final lOther$storagePath = other.storagePath;
-    if (l$storagePath != lOther$storagePath) {
-      return false;
-    }
-    final l$uploadedBy = uploadedBy;
-    final lOther$uploadedBy = other.uploadedBy;
-    if (l$uploadedBy != lOther$uploadedBy) {
+    final l$fileId = fileId;
+    final lOther$fileId = other.fileId;
+    if (l$fileId != lOther$fileId) {
       return false;
     }
     return true;
@@ -76,36 +58,35 @@ class VariablesMutationInsertCouplePhoto {
   @override
   int get hashCode {
     final l$coupleId = coupleId;
-    final l$storagePath = storagePath;
-    final l$uploadedBy = uploadedBy;
-    return Object.hashAll([l$coupleId, l$storagePath, l$uploadedBy]);
+    final l$fileId = fileId;
+    return Object.hashAll([l$coupleId, l$fileId]);
   }
 }
 
 class MutationInsertCouplePhoto {
-  MutationInsertCouplePhoto({this.insertIntoCouplePhotosCollection, this.$__typename = 'Mutation'});
+  MutationInsertCouplePhoto({this.insertCouplePhotos, this.$__typename = 'mutation_root'});
 
   factory MutationInsertCouplePhoto.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoCouplePhotosCollection = json['insertIntoCouplePhotosCollection'];
+    final l$insertCouplePhotos = json['insertCouplePhotos'];
     final l$$__typename = json['__typename'];
     return MutationInsertCouplePhoto(
-      insertIntoCouplePhotosCollection: l$insertIntoCouplePhotosCollection == null
+      insertCouplePhotos: l$insertCouplePhotos == null
           ? null
-          : MutationInsertCouplePhotoinsertIntoCouplePhotosCollection.fromJson(
-              (l$insertIntoCouplePhotosCollection as Map<String, dynamic>),
+          : MutationInsertCouplePhotoinsertCouplePhotos.fromJson(
+              (l$insertCouplePhotos as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationInsertCouplePhotoinsertIntoCouplePhotosCollection? insertIntoCouplePhotosCollection;
+  final MutationInsertCouplePhotoinsertCouplePhotos? insertCouplePhotos;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoCouplePhotosCollection = insertIntoCouplePhotosCollection;
-    _resultData['insertIntoCouplePhotosCollection'] = l$insertIntoCouplePhotosCollection?.toJson();
+    final l$insertCouplePhotos = insertCouplePhotos;
+    _resultData['insertCouplePhotos'] = l$insertCouplePhotos?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -113,9 +94,9 @@ class MutationInsertCouplePhoto {
 
   @override
   int get hashCode {
-    final l$insertIntoCouplePhotosCollection = insertIntoCouplePhotosCollection;
+    final l$insertCouplePhotos = insertCouplePhotos;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoCouplePhotosCollection, l$$__typename]);
+    return Object.hashAll([l$insertCouplePhotos, l$$__typename]);
   }
 
   @override
@@ -126,9 +107,9 @@ class MutationInsertCouplePhoto {
     if (other is! MutationInsertCouplePhoto || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoCouplePhotosCollection = insertIntoCouplePhotosCollection;
-    final lOther$insertIntoCouplePhotosCollection = other.insertIntoCouplePhotosCollection;
-    if (l$insertIntoCouplePhotosCollection != lOther$insertIntoCouplePhotosCollection) {
+    final l$insertCouplePhotos = insertCouplePhotos;
+    final lOther$insertCouplePhotos = other.insertCouplePhotos;
+    if (l$insertCouplePhotos != lOther$insertCouplePhotos) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -148,19 +129,13 @@ const documentNodeMutationInsertCouplePhoto = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'storagePath')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'uploadedBy')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          variable: VariableNode(name: NameNode(value: 'fileId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -169,7 +144,7 @@ const documentNodeMutationInsertCouplePhoto = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoCouplePhotosCollection'),
+            name: NameNode(value: 'insertCouplePhotos'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -183,12 +158,8 @@ const documentNodeMutationInsertCouplePhoto = DocumentNode(
                           value: VariableNode(name: NameNode(value: 'coupleId')),
                         ),
                         ObjectFieldNode(
-                          name: NameNode(value: 'storagePath'),
-                          value: VariableNode(name: NameNode(value: 'storagePath')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'uploadedBy'),
-                          value: VariableNode(name: NameNode(value: 'uploadedBy')),
+                          name: NameNode(value: 'fileId'),
+                          value: VariableNode(name: NameNode(value: 'fileId')),
                         ),
                       ],
                     ),
@@ -200,7 +171,7 @@ const documentNodeMutationInsertCouplePhoto = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -322,31 +293,29 @@ extension ClientExtensionMutationInsertCouplePhoto on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationInsertCouplePhotoinsertIntoCouplePhotosCollection {
-  MutationInsertCouplePhotoinsertIntoCouplePhotosCollection({
-    required this.affectedCount,
-    this.$__typename = 'CouplePhotosInsertResponse',
+class MutationInsertCouplePhotoinsertCouplePhotos {
+  MutationInsertCouplePhotoinsertCouplePhotos({
+    required this.affected_rows,
+    this.$__typename = 'couplePhotos_mutation_response',
   });
 
-  factory MutationInsertCouplePhotoinsertIntoCouplePhotosCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationInsertCouplePhotoinsertCouplePhotos.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationInsertCouplePhotoinsertIntoCouplePhotosCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationInsertCouplePhotoinsertCouplePhotos(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -354,9 +323,9 @@ class MutationInsertCouplePhotoinsertIntoCouplePhotosCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -364,13 +333,12 @@ class MutationInsertCouplePhotoinsertIntoCouplePhotosCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationInsertCouplePhotoinsertIntoCouplePhotosCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationInsertCouplePhotoinsertCouplePhotos || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

@@ -16,7 +16,7 @@ void main() {
     }
   });
   test('an unknown value is an error, not a guess', () {
-    expect(EnumListKind.$unknown.toModel, throwsFormatException);
-    expect(EnumListItemStatus.$unknown.toModel, throwsFormatException);
+    expect(EnumListKind_enum.$unknown.toModel, throwsFormatException);
+    expect(EnumListItemStatus_enum.$unknown.toModel, throwsFormatException);
   });
 }

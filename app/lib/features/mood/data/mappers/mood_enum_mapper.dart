@@ -3,74 +3,74 @@ import 'package:app/features/mood/data/models/mood_kind.dart';
 import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/data/models/need_kind.dart';
 
-extension EnumMoodMapper on EnumMood {
+extension EnumMoodMapper on EnumMood_enum {
   /// Null for a mood this version does not know, so it stays hidden.
   MoodKind? toModel() => switch (this) {
-    EnumMood.happy => MoodKind.happy,
-    EnumMood.tired => MoodKind.tired,
-    EnumMood.sad => MoodKind.sad,
-    EnumMood.stressed => MoodKind.stressed,
-    EnumMood.loving => MoodKind.loving,
-    EnumMood.playful => MoodKind.playful,
-    EnumMood.$unknown => null,
+    EnumMood_enum.happy => MoodKind.happy,
+    EnumMood_enum.tired => MoodKind.tired,
+    EnumMood_enum.sad => MoodKind.sad,
+    EnumMood_enum.stressed => MoodKind.stressed,
+    EnumMood_enum.loving => MoodKind.loving,
+    EnumMood_enum.playful => MoodKind.playful,
+    EnumMood_enum.$unknown => null,
   };
 }
 
 extension MoodKindMapper on MoodKind {
-  EnumMood toRemote() => switch (this) {
-    MoodKind.happy => EnumMood.happy,
-    MoodKind.tired => EnumMood.tired,
-    MoodKind.sad => EnumMood.sad,
-    MoodKind.stressed => EnumMood.stressed,
-    MoodKind.loving => EnumMood.loving,
-    MoodKind.playful => EnumMood.playful,
+  EnumMood_enum toRemote() => switch (this) {
+    MoodKind.happy => EnumMood_enum.happy,
+    MoodKind.tired => EnumMood_enum.tired,
+    MoodKind.sad => EnumMood_enum.sad,
+    MoodKind.stressed => EnumMood_enum.stressed,
+    MoodKind.loving => EnumMood_enum.loving,
+    MoodKind.playful => EnumMood_enum.playful,
   };
 }
 
-extension EnumMoodNeedMapper on EnumMoodNeed {
+extension EnumMoodNeedMapper on EnumMoodNeed_enum {
   /// Null for a need this version does not know.
   NeedKind? toModel() => switch (this) {
-    EnumMoodNeed.listen => NeedKind.listen,
-    EnumMoodNeed.opinion => NeedKind.opinion,
-    EnumMoodNeed.hug => NeedKind.hug,
-    EnumMoodNeed.space => NeedKind.space,
-    EnumMoodNeed.chocolate => NeedKind.chocolate,
-    EnumMoodNeed.cute_message => NeedKind.cuteMessage,
-    EnumMoodNeed.forehead_kiss => NeedKind.foreheadKiss,
-    EnumMoodNeed.company => NeedKind.company,
-    EnumMoodNeed.rest => NeedKind.rest,
-    EnumMoodNeed.$unknown => null,
+    EnumMoodNeed_enum.listen => NeedKind.listen,
+    EnumMoodNeed_enum.opinion => NeedKind.opinion,
+    EnumMoodNeed_enum.hug => NeedKind.hug,
+    EnumMoodNeed_enum.space => NeedKind.space,
+    EnumMoodNeed_enum.chocolate => NeedKind.chocolate,
+    EnumMoodNeed_enum.cute_message => NeedKind.cuteMessage,
+    EnumMoodNeed_enum.forehead_kiss => NeedKind.foreheadKiss,
+    EnumMoodNeed_enum.company => NeedKind.company,
+    EnumMoodNeed_enum.rest => NeedKind.rest,
+    EnumMoodNeed_enum.$unknown => null,
   };
 }
 
 extension NeedKindMapper on NeedKind {
-  EnumMoodNeed toRemote() => switch (this) {
-    NeedKind.listen => EnumMoodNeed.listen,
-    NeedKind.opinion => EnumMoodNeed.opinion,
-    NeedKind.hug => EnumMoodNeed.hug,
-    NeedKind.space => EnumMoodNeed.space,
-    NeedKind.chocolate => EnumMoodNeed.chocolate,
-    NeedKind.cuteMessage => EnumMoodNeed.cute_message,
-    NeedKind.foreheadKiss => EnumMoodNeed.forehead_kiss,
-    NeedKind.company => EnumMoodNeed.company,
-    NeedKind.rest => EnumMoodNeed.rest,
+  EnumMoodNeed_enum toRemote() => switch (this) {
+    NeedKind.listen => EnumMoodNeed_enum.listen,
+    NeedKind.opinion => EnumMoodNeed_enum.opinion,
+    NeedKind.hug => EnumMoodNeed_enum.hug,
+    NeedKind.space => EnumMoodNeed_enum.space,
+    NeedKind.chocolate => EnumMoodNeed_enum.chocolate,
+    NeedKind.cuteMessage => EnumMoodNeed_enum.cute_message,
+    NeedKind.foreheadKiss => EnumMoodNeed_enum.forehead_kiss,
+    NeedKind.company => EnumMoodNeed_enum.company,
+    NeedKind.rest => EnumMoodNeed_enum.rest,
   };
 }
 
-extension EnumMoodShareMapper on EnumMoodShare {
+extension EnumMoodShareMapper on EnumMoodShare_enum {
   /// An unknown audience is treated as private.
   MoodShare toModel() => switch (this) {
-    EnumMoodShare.none => MoodShare.none,
-    EnumMoodShare.mood => MoodShare.mood,
-    EnumMoodShare.mood_need => MoodShare.moodNeed,
-    EnumMoodShare.$unknown => MoodShare.none,
+    EnumMoodShare_enum.none => MoodShare.none,
+    EnumMoodShare_enum.mood => MoodShare.mood,
+    EnumMoodShare_enum.mood_need => MoodShare.moodNeed,
+    EnumMoodShare_enum.$unknown => MoodShare.none,
   };
 }
 
 extension MoodShareMapper on MoodShare {
-  EnumMoodShare toRemote() => switch (this) {
-    MoodShare.none => EnumMoodShare.none,
-    MoodShare.mood => EnumMoodShare.mood,
-    MoodShare.moodNeed => EnumMoodShare.mood_need,
+  EnumMoodShare_enum toRemote() => switch (this) {
+    MoodShare.none => EnumMoodShare_enum.none,
+    MoodShare.mood => EnumMoodShare_enum.mood,
+    MoodShare.moodNeed => EnumMoodShare_enum.mood_need,
   };
 }

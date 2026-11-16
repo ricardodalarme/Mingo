@@ -7,8 +7,10 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationUpdateTheme {
-  factory VariablesMutationUpdateTheme({required String profileId, required EnumAppTheme theme}) =>
-      VariablesMutationUpdateTheme._({r'profileId': profileId, r'theme': theme});
+  factory VariablesMutationUpdateTheme({
+    required String profileId,
+    required EnumAppTheme_enum theme,
+  }) => VariablesMutationUpdateTheme._({r'profileId': profileId, r'theme': theme});
 
   VariablesMutationUpdateTheme._(this._$data);
 
@@ -17,7 +19,7 @@ class VariablesMutationUpdateTheme {
     final l$profileId = data['profileId'];
     result$data['profileId'] = (l$profileId as String);
     final l$theme = data['theme'];
-    result$data['theme'] = fromJsonEnumAppTheme((l$theme as String));
+    result$data['theme'] = fromJsonEnumAppTheme_enum((l$theme as String));
     return VariablesMutationUpdateTheme._(result$data);
   }
 
@@ -25,14 +27,14 @@ class VariablesMutationUpdateTheme {
 
   String get profileId => (_$data['profileId'] as String);
 
-  EnumAppTheme get theme => (_$data['theme'] as EnumAppTheme);
+  EnumAppTheme_enum get theme => (_$data['theme'] as EnumAppTheme_enum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$profileId = profileId;
     result$data['profileId'] = l$profileId;
     final l$theme = theme;
-    result$data['theme'] = toJsonEnumAppTheme(l$theme);
+    result$data['theme'] = toJsonEnumAppTheme_enum(l$theme);
     return result$data;
   }
 
@@ -66,30 +68,29 @@ class VariablesMutationUpdateTheme {
 }
 
 class MutationUpdateTheme {
-  MutationUpdateTheme({
-    required this.updateProfileSettingsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationUpdateTheme({this.updateUserSettings, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateTheme.fromJson(Map<String, dynamic> json) {
-    final l$updateProfileSettingsCollection = json['updateProfileSettingsCollection'];
+    final l$updateUserSettings = json['updateUserSettings'];
     final l$$__typename = json['__typename'];
     return MutationUpdateTheme(
-      updateProfileSettingsCollection: MutationUpdateThemeupdateProfileSettingsCollection.fromJson(
-        (l$updateProfileSettingsCollection as Map<String, dynamic>),
-      ),
+      updateUserSettings: l$updateUserSettings == null
+          ? null
+          : MutationUpdateThemeupdateUserSettings.fromJson(
+              (l$updateUserSettings as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateThemeupdateProfileSettingsCollection updateProfileSettingsCollection;
+  final MutationUpdateThemeupdateUserSettings? updateUserSettings;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    _resultData['updateProfileSettingsCollection'] = l$updateProfileSettingsCollection.toJson();
+    final l$updateUserSettings = updateUserSettings;
+    _resultData['updateUserSettings'] = l$updateUserSettings?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -97,9 +98,9 @@ class MutationUpdateTheme {
 
   @override
   int get hashCode {
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
+    final l$updateUserSettings = updateUserSettings;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateProfileSettingsCollection, l$$__typename]);
+    return Object.hashAll([l$updateUserSettings, l$$__typename]);
   }
 
   @override
@@ -110,9 +111,9 @@ class MutationUpdateTheme {
     if (other is! MutationUpdateTheme || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProfileSettingsCollection = updateProfileSettingsCollection;
-    final lOther$updateProfileSettingsCollection = other.updateProfileSettingsCollection;
-    if (l$updateProfileSettingsCollection != lOther$updateProfileSettingsCollection) {
+    final l$updateUserSettings = updateUserSettings;
+    final lOther$updateUserSettings = other.updateUserSettings;
+    if (l$updateUserSettings != lOther$updateUserSettings) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -132,13 +133,13 @@ const documentNodeMutationUpdateTheme = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'profileId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'theme')),
-          type: NamedTypeNode(name: NameNode(value: 'AppTheme'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'AppTheme_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -147,30 +148,19 @@ const documentNodeMutationUpdateTheme = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProfileSettingsCollection'),
+            name: NameNode(value: 'updateUserSettings'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
-                      name: NameNode(value: 'theme'),
-                      value: VariableNode(name: NameNode(value: 'theme')),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'profileId'),
+                      name: NameNode(value: 'userId'),
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'profileId')),
                           ),
                         ],
@@ -180,15 +170,22 @@ const documentNodeMutationUpdateTheme = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'theme'),
+                      value: VariableNode(name: NameNode(value: 'theme')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -307,29 +304,29 @@ extension ClientExtensionMutationUpdateTheme on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateThemeupdateProfileSettingsCollection {
-  MutationUpdateThemeupdateProfileSettingsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ProfileSettingsUpdateResponse',
+class MutationUpdateThemeupdateUserSettings {
+  MutationUpdateThemeupdateUserSettings({
+    required this.affected_rows,
+    this.$__typename = 'userSettings_mutation_response',
   });
 
-  factory MutationUpdateThemeupdateProfileSettingsCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationUpdateThemeupdateUserSettings.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateThemeupdateProfileSettingsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateThemeupdateUserSettings(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -337,9 +334,9 @@ class MutationUpdateThemeupdateProfileSettingsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -347,13 +344,12 @@ class MutationUpdateThemeupdateProfileSettingsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateThemeupdateProfileSettingsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationUpdateThemeupdateUserSettings || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

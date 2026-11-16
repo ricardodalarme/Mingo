@@ -1,13 +1,12 @@
 mutation CompleteProgramEnrollment(
   $programSlug: String!
-  $currentDay: Int!
-  $completedAt: Datetime!
+  $currentDay: smallint!
+  $completedAt: timestamptz!
 ) {
-  updateProgramEnrollmentsCollection(
-    set: { currentDay: $currentDay, completedAt: $completedAt }
-    filter: { programSlug: { eq: $programSlug } }
-    atMost: 1
+  updateProgramEnrollments(
+    where: { programSlug: { _eq: $programSlug } }
+    _set: { currentDay: $currentDay, completedAt: $completedAt }
   ) {
-    affectedCount
+    affected_rows
   }
 }

@@ -5,27 +5,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryMemories {
-  QueryMemories({required this.memoriesCollection, this.$__typename = 'Query'});
+  QueryMemories({required this.memories, this.$__typename = 'query_root'});
 
   factory QueryMemories.fromJson(Map<String, dynamic> json) {
-    final l$memoriesCollection = json['memoriesCollection'];
+    final l$memories = json['memories'];
     final l$$__typename = json['__typename'];
     return QueryMemories(
-      memoriesCollection: QueryMemoriesmemoriesCollection.fromJson(
-        (l$memoriesCollection as Map<String, dynamic>),
-      ),
+      memories: (l$memories as List<dynamic>)
+          .map((e) => QueryMemoriesmemories.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryMemoriesmemoriesCollection memoriesCollection;
+  final List<QueryMemoriesmemories> memories;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$memoriesCollection = memoriesCollection;
-    _resultData['memoriesCollection'] = l$memoriesCollection.toJson();
+    final l$memories = memories;
+    _resultData['memories'] = l$memories.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33,9 +33,9 @@ class QueryMemories {
 
   @override
   int get hashCode {
-    final l$memoriesCollection = memoriesCollection;
+    final l$memories = memories;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$memoriesCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$memories.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -46,10 +46,17 @@ class QueryMemories {
     if (other is! QueryMemories || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$memoriesCollection = memoriesCollection;
-    final lOther$memoriesCollection = other.memoriesCollection;
-    if (l$memoriesCollection != lOther$memoriesCollection) {
+    final l$memories = memories;
+    final lOther$memories = other.memories;
+    if (l$memories.length != lOther$memories.length) {
       return false;
+    }
+    for (int i = 0; i < l$memories.length; i++) {
+      final l$memories$entry = l$memories[i];
+      final lOther$memories$entry = lOther$memories[i];
+      if (l$memories$entry != lOther$memories$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -70,26 +77,22 @@ const documentNodeQueryMemories = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'memoriesCollection'),
+            name: NameNode(value: 'memories'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'happenedOn'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
-                        ),
-                      ],
+                name: NameNode(value: 'order_by'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'happenedOn'),
+                      value: EnumValueNode(name: NameNode(value: 'desc')),
                     ),
                   ],
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '200'),
               ),
             ],
@@ -97,73 +100,39 @@ const documentNodeQueryMemories = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'body'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'happenedOn'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'place'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'happenedOn'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'place'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -289,141 +258,24 @@ extension ClientExtensionQueryMemories on graphql.GraphQLClient {
   }
 }
 
-class QueryMemoriesmemoriesCollection {
-  QueryMemoriesmemoriesCollection({required this.edges, this.$__typename = 'MemoriesConnection'});
-
-  factory QueryMemoriesmemoriesCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryMemoriesmemoriesCollection(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryMemoriesmemoriesCollectionedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryMemoriesmemoriesCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMemoriesmemoriesCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMemoriesmemoriesCollectionedges {
-  QueryMemoriesmemoriesCollectionedges({required this.node, this.$__typename = 'MemoriesEdge'});
-
-  factory QueryMemoriesmemoriesCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryMemoriesmemoriesCollectionedges(
-      node: QueryMemoriesmemoriesCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryMemoriesmemoriesCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMemoriesmemoriesCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMemoriesmemoriesCollectionedgesnode {
-  QueryMemoriesmemoriesCollectionedgesnode({
+class QueryMemoriesmemories {
+  QueryMemoriesmemories({
     required this.id,
     required this.title,
     this.body,
     required this.happenedOn,
     this.place,
-    this.$__typename = 'Memories',
+    this.$__typename = 'memories',
   });
 
-  factory QueryMemoriesmemoriesCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryMemoriesmemories.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$body = json['body'];
     final l$happenedOn = json['happenedOn'];
     final l$place = json['place'];
     final l$$__typename = json['__typename'];
-    return QueryMemoriesmemoriesCollectionedgesnode(
+    return QueryMemoriesmemories(
       id: (l$id as String),
       title: (l$title as String),
       body: (l$body as String?),
@@ -478,7 +330,7 @@ class QueryMemoriesmemoriesCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMemoriesmemoriesCollectionedgesnode || runtimeType != other.runtimeType) {
+    if (other is! QueryMemoriesmemories || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

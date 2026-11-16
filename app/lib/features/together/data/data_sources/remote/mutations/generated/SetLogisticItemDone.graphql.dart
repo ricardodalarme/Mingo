@@ -73,31 +73,29 @@ class VariablesMutationSetLogisticItemDone {
 }
 
 class MutationSetLogisticItemDone {
-  MutationSetLogisticItemDone({
-    required this.updateLogisticItemsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationSetLogisticItemDone({this.updateLogisticItemsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationSetLogisticItemDone.fromJson(Map<String, dynamic> json) {
-    final l$updateLogisticItemsCollection = json['updateLogisticItemsCollection'];
+    final l$updateLogisticItemsByPk = json['updateLogisticItemsByPk'];
     final l$$__typename = json['__typename'];
     return MutationSetLogisticItemDone(
-      updateLogisticItemsCollection:
-          MutationSetLogisticItemDoneupdateLogisticItemsCollection.fromJson(
-            (l$updateLogisticItemsCollection as Map<String, dynamic>),
-          ),
+      updateLogisticItemsByPk: l$updateLogisticItemsByPk == null
+          ? null
+          : MutationSetLogisticItemDoneupdateLogisticItemsByPk.fromJson(
+              (l$updateLogisticItemsByPk as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSetLogisticItemDoneupdateLogisticItemsCollection updateLogisticItemsCollection;
+  final MutationSetLogisticItemDoneupdateLogisticItemsByPk? updateLogisticItemsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateLogisticItemsCollection = updateLogisticItemsCollection;
-    _resultData['updateLogisticItemsCollection'] = l$updateLogisticItemsCollection.toJson();
+    final l$updateLogisticItemsByPk = updateLogisticItemsByPk;
+    _resultData['updateLogisticItemsByPk'] = l$updateLogisticItemsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -105,9 +103,9 @@ class MutationSetLogisticItemDone {
 
   @override
   int get hashCode {
-    final l$updateLogisticItemsCollection = updateLogisticItemsCollection;
+    final l$updateLogisticItemsByPk = updateLogisticItemsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateLogisticItemsCollection, l$$__typename]);
+    return Object.hashAll([l$updateLogisticItemsByPk, l$$__typename]);
   }
 
   @override
@@ -118,9 +116,9 @@ class MutationSetLogisticItemDone {
     if (other is! MutationSetLogisticItemDone || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateLogisticItemsCollection = updateLogisticItemsCollection;
-    final lOther$updateLogisticItemsCollection = other.updateLogisticItemsCollection;
-    if (l$updateLogisticItemsCollection != lOther$updateLogisticItemsCollection) {
+    final l$updateLogisticItemsByPk = updateLogisticItemsByPk;
+    final lOther$updateLogisticItemsByPk = other.updateLogisticItemsByPk;
+    if (l$updateLogisticItemsByPk != lOther$updateLogisticItemsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -140,13 +138,13 @@ const documentNodeMutationSetLogisticItemDone = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'doneAt')),
-          type: NamedTypeNode(name: NameNode(value: 'Datetime'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'timestamptz'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -155,11 +153,22 @@ const documentNodeMutationSetLogisticItemDone = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateLogisticItemsCollection'),
+            name: NameNode(value: 'updateLogisticItemsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -169,34 +178,12 @@ const documentNodeMutationSetLogisticItemDone = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -319,31 +306,29 @@ extension ClientExtensionMutationSetLogisticItemDone on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSetLogisticItemDoneupdateLogisticItemsCollection {
-  MutationSetLogisticItemDoneupdateLogisticItemsCollection({
-    required this.affectedCount,
-    this.$__typename = 'LogisticItemsUpdateResponse',
+class MutationSetLogisticItemDoneupdateLogisticItemsByPk {
+  MutationSetLogisticItemDoneupdateLogisticItemsByPk({
+    required this.id,
+    this.$__typename = 'logisticItems',
   });
 
-  factory MutationSetLogisticItemDoneupdateLogisticItemsCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationSetLogisticItemDoneupdateLogisticItemsByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationSetLogisticItemDoneupdateLogisticItemsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationSetLogisticItemDoneupdateLogisticItemsByPk(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -351,9 +336,9 @@ class MutationSetLogisticItemDoneupdateLogisticItemsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -361,13 +346,13 @@ class MutationSetLogisticItemDoneupdateLogisticItemsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSetLogisticItemDoneupdateLogisticItemsCollection ||
+    if (other is! MutationSetLogisticItemDoneupdateLogisticItemsByPk ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

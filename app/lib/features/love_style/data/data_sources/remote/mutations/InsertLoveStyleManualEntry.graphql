@@ -1,10 +1,6 @@
 mutation InsertLoveStyleManualEntry($value: String!) {
-  insertIntoManualEntriesCollection(
-    objects: [{ key: "loved", value: $value, shared: false }]
-  ) {
-    records {
-      id
-      value
-    }
+  insertManualEntriesOne(object: { key: "loved", value: $value, shared: false }) {
+    id
+    value
   }
 }

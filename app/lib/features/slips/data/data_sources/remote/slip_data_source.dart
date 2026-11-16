@@ -3,25 +3,28 @@ import 'package:app/features/slips/data/data_sources/remote/mutations/generated/
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/DeleteSlip.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SaveSlip.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SendSignal.graphql.dart';
-import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SetSlipCategory.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SetSlipInJar.graphql.dart';
-import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SetSlipWorkArea.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/SlipDetail.graphql.dart';
 import 'package:network/network.dart';
 
+/// One slip and whether it already belongs to a card.
+typedef SlipRow = ({QuerySlipDetailslipsByPk slip, bool wasInCard});
+
 class SlipDataSource({required final GQLClient _client}) {
-  /// Upserts a slip; the same [id] can be sent again safely.
+  /// Writes the slip; sending the same [id] again updates it instead of failing.
   Future<void> saveSlip({
     required String id,
     required String body,
     required DateTime createdAt,
-    String kind = 'quick',
+    EnumSlipKind_enum kind = EnumSlipKind_enum.quick,
     String? feeling,
     String? planNote,
-    bool? forCard,
-    String polarity = 'liked',
+    bool forCard = true,
+    EnumSlipPolarity_enum polarity = EnumSlipPolarity_enum.liked,
     String? request,
+    EnumSlipCategory_enum? category,
+    EnumWorkArea_enum? workArea,
   }) async {
     final response = await _client.mutate(
       OptionsMutationSaveSlip(
@@ -35,6 +38,8 @@ class SlipDataSource({required final GQLClient _client}) {
           forCard: forCard,
           polarity: polarity,
           request: request,
+          category: category,
+          workArea: workArea,
         ),
       ),
     );
@@ -42,18 +47,8 @@ class SlipDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<void> setWorkArea({required String id, required String workArea}) async {
-    final response = await _client.mutate(
-      OptionsMutationSetSlipWorkArea(
-        variables: VariablesMutationSetSlipWorkArea(id: id, workArea: workArea),
-      ),
-    );
-
-    validateResponse(response);
-  }
-
   /// Sends a gentle signal to the partner; fails with `NOT_PAIRED` when there is none.
-  Future<void> sendSignal({required String kind, String? value, String? body}) async {
+  Future<void> sendSignal({required EnumSignalKind_enum kind, String? value, String? body}) async {
     final response = await _client.mutate(
       OptionsMutationSendSignal(
         variables: VariablesMutationSendSignal(kind: kind, value: value, body: body),
@@ -63,12 +58,19 @@ class SlipDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  /// Reads one page of the person's own slips, newest first, without deleted ones.
+  /// Tells the partner what the person needs, such as a hug or someone to listen.
+  Future<void> sendNeed({required String value}) =>
+      sendSignal(kind: EnumSignalKind_enum.need, value: value);
+
+  /// Sends the partner a hug, optionally carrying a short [body].
+  Future<void> sendHug({String? body}) => sendSignal(kind: EnumSignalKind_enum.hug, body: body);
+
+  /// Reads one page of the person's own slips, newest first.
   ///
   /// When [archived] is true it reads only the slips taken out of the timeline.
-  Future<QueryMySlipsslipsCollection> getSlips({
-    required int first,
-    String? after,
+  Future<List<QueryMySlipsslips>> getSlips({
+    required int limit,
+    required int offset,
     DateTime? since,
     bool archived = false,
   }) async {
@@ -76,24 +78,23 @@ class SlipDataSource({required final GQLClient _client}) {
       OptionsQueryMySlips(
         fetchPolicy: FetchPolicy.networkOnly,
         variables: VariablesQueryMySlips(
-          first: first,
-          after: after,
-          filter: InputSlipsFilter(
-            deletedAt: InputDatetimeFilter($is: EnumFilterIs.NULL),
-            archivedAt: InputDatetimeFilter(
-              $is: archived ? EnumFilterIs.NOT_NULL : EnumFilterIs.NULL,
-            ),
-            createdAt: since == null || archived ? null : InputDatetimeFilter(gte: since),
+          limit: limit,
+          offset: offset,
+          where: Inputslips_bool_exp(
+            archivedAt: Inputtimestamptz_comparison_exp($_is_null: !archived),
+            createdAt: since == null || archived
+                ? null
+                : Inputtimestamptz_comparison_exp($_gte: since),
           ),
         ),
       ),
     );
 
-    return validateResponseData(response, getData: (data) => data.slipsCollection);
+    return validateResponseData(response, getData: (data) => data.slips);
   }
 
   /// Reads one slip of the person, or null when it is gone or not theirs.
-  Future<QuerySlipDetailslipsByPk?> getSlip(String id) async {
+  Future<SlipRow?> getSlip(String id) async {
     final response = await _client.query(
       OptionsQuerySlipDetail(
         fetchPolicy: FetchPolicy.networkOnly,
@@ -101,9 +102,11 @@ class SlipDataSource({required final GQLClient _client}) {
       ),
     );
     validateResponse(response);
-    final slip = response.parsedData?.slipsByPk;
+    final data = response.parsedData;
+    final slip = data?.slipsByPk;
+    if (data == null || slip == null) return null;
 
-    return slip == null || slip.deletedAt != null ? null : slip;
+    return (slip: slip, wasInCard: data.cardItems.isNotEmpty);
   }
 
   Future<void> setInJar({required String id, required bool inJar}) async {
@@ -116,20 +119,14 @@ class SlipDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
+  /// Marks the slip as archived, or takes it back to the timeline.
   Future<void> archiveSlip({required String id, required bool archived}) async {
     final response = await _client.mutate(
       OptionsMutationArchiveSlip(
-        variables: VariablesMutationArchiveSlip(id: id, archived: archived),
-      ),
-    );
-
-    validateResponse(response);
-  }
-
-  Future<void> setCategory({required String id, String? category}) async {
-    final response = await _client.mutate(
-      OptionsMutationSetSlipCategory(
-        variables: VariablesMutationSetSlipCategory(id: id, category: category),
+        variables: VariablesMutationArchiveSlip(
+          id: id,
+          archivedAt: archived ? DateTime.now().toUtc() : null,
+        ),
       ),
     );
 

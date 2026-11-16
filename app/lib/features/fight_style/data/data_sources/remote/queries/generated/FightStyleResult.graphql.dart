@@ -5,27 +5,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryFightStyleResult {
-  QueryFightStyleResult({required this.quizResultsCollection, this.$__typename = 'Query'});
+  QueryFightStyleResult({required this.quizResults, this.$__typename = 'query_root'});
 
   factory QueryFightStyleResult.fromJson(Map<String, dynamic> json) {
-    final l$quizResultsCollection = json['quizResultsCollection'];
+    final l$quizResults = json['quizResults'];
     final l$$__typename = json['__typename'];
     return QueryFightStyleResult(
-      quizResultsCollection: QueryFightStyleResultquizResultsCollection.fromJson(
-        (l$quizResultsCollection as Map<String, dynamic>),
-      ),
+      quizResults: (l$quizResults as List<dynamic>)
+          .map((e) => QueryFightStyleResultquizResults.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryFightStyleResultquizResultsCollection quizResultsCollection;
+  final List<QueryFightStyleResultquizResults> quizResults;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$quizResultsCollection = quizResultsCollection;
-    _resultData['quizResultsCollection'] = l$quizResultsCollection.toJson();
+    final l$quizResults = quizResults;
+    _resultData['quizResults'] = l$quizResults.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33,9 +33,9 @@ class QueryFightStyleResult {
 
   @override
   int get hashCode {
-    final l$quizResultsCollection = quizResultsCollection;
+    final l$quizResults = quizResults;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$quizResultsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$quizResults.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -46,10 +46,17 @@ class QueryFightStyleResult {
     if (other is! QueryFightStyleResult || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$quizResultsCollection = quizResultsCollection;
-    final lOther$quizResultsCollection = other.quizResultsCollection;
-    if (l$quizResultsCollection != lOther$quizResultsCollection) {
+    final l$quizResults = quizResults;
+    final lOther$quizResults = other.quizResults;
+    if (l$quizResults.length != lOther$quizResults.length) {
       return false;
+    }
+    for (int i = 0; i < l$quizResults.length; i++) {
+      final l$quizResults$entry = l$quizResults[i];
+      final lOther$quizResults$entry = lOther$quizResults[i];
+      if (l$quizResults$entry != lOther$quizResults$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -70,11 +77,11 @@ const documentNodeQueryFightStyleResult = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'quizResultsCollection'),
+            name: NameNode(value: 'quizResults'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -82,7 +89,7 @@ const documentNodeQueryFightStyleResult = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: EnumValueNode(name: NameNode(value: 'conflict_style')),
                           ),
                         ],
@@ -92,7 +99,7 @@ const documentNodeQueryFightStyleResult = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '1'),
               ),
             ],
@@ -100,52 +107,18 @@ const documentNodeQueryFightStyleResult = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'ranked'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'ranked'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -276,157 +249,27 @@ extension ClientExtensionQueryFightStyleResult on graphql.GraphQLClient {
   }
 }
 
-class QueryFightStyleResultquizResultsCollection {
-  QueryFightStyleResultquizResultsCollection({
-    required this.edges,
-    this.$__typename = 'QuizResultsConnection',
-  });
-
-  factory QueryFightStyleResultquizResultsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryFightStyleResultquizResultsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryFightStyleResultquizResultsCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryFightStyleResultquizResultsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryFightStyleResultquizResultsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryFightStyleResultquizResultsCollectionedges {
-  QueryFightStyleResultquizResultsCollectionedges({
-    required this.node,
-    this.$__typename = 'QuizResultsEdge',
-  });
-
-  factory QueryFightStyleResultquizResultsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryFightStyleResultquizResultsCollectionedges(
-      node: QueryFightStyleResultquizResultsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryFightStyleResultquizResultsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryFightStyleResultquizResultsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryFightStyleResultquizResultsCollectionedgesnode {
-  QueryFightStyleResultquizResultsCollectionedgesnode({
+class QueryFightStyleResultquizResults {
+  QueryFightStyleResultquizResults({
     required this.id,
     required this.ranked,
-    this.$__typename = 'QuizResults',
+    this.$__typename = 'quizResults',
   });
 
-  factory QueryFightStyleResultquizResultsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryFightStyleResultquizResults.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$ranked = json['ranked'];
     final l$$__typename = json['__typename'];
-    return QueryFightStyleResultquizResultsCollectionedgesnode(
+    return QueryFightStyleResultquizResults(
       id: (l$id as String),
-      ranked: (l$ranked as List<dynamic>).map((e) => (e as String?)).toList(),
+      ranked: (l$ranked as List<dynamic>).map((e) => (e as String)).toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
 
-  final List<String?> ranked;
+  final List<String> ranked;
 
   final String $__typename;
 
@@ -454,8 +297,7 @@ class QueryFightStyleResultquizResultsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryFightStyleResultquizResultsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryFightStyleResultquizResults || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

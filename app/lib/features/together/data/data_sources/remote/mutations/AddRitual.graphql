@@ -1,25 +1,23 @@
 mutation AddRitual(
-  $id: UUID!
+  $id: uuid!
   $title: String!
-  $cadence: RitualCadence!
-  $weekday: Int
-  $atTime: Time
+  $cadence: RitualCadence_enum!
+  $weekday: smallint
+  $atTime: time
   $reminder: Boolean!
-  $coupleId: UUID
+  $coupleId: uuid
 ) {
-  insertIntoRitualsCollection(
-    objects: [
-      {
-        id: $id
-        title: $title
-        cadence: $cadence
-        weekday: $weekday
-        atTime: $atTime
-        reminder: $reminder
-        coupleId: $coupleId
-      }
-    ]
+  insertRitualsOne(
+    object: {
+      id: $id
+      title: $title
+      cadence: $cadence
+      weekday: $weekday
+      atTime: $atTime
+      reminder: $reminder
+      coupleId: $coupleId
+    }
   ) {
-    affectedCount
+    id
   }
 }

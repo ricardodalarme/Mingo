@@ -7,27 +7,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryMyConsents {
-  QueryMyConsents({required this.consentsCollection, this.$__typename = 'Query'});
+  QueryMyConsents({required this.consents, this.$__typename = 'query_root'});
 
   factory QueryMyConsents.fromJson(Map<String, dynamic> json) {
-    final l$consentsCollection = json['consentsCollection'];
+    final l$consents = json['consents'];
     final l$$__typename = json['__typename'];
     return QueryMyConsents(
-      consentsCollection: QueryMyConsentsconsentsCollection.fromJson(
-        (l$consentsCollection as Map<String, dynamic>),
-      ),
+      consents: (l$consents as List<dynamic>)
+          .map((e) => QueryMyConsentsconsents.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryMyConsentsconsentsCollection consentsCollection;
+  final List<QueryMyConsentsconsents> consents;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$consentsCollection = consentsCollection;
-    _resultData['consentsCollection'] = l$consentsCollection.toJson();
+    final l$consents = consents;
+    _resultData['consents'] = l$consents.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -35,9 +35,9 @@ class QueryMyConsents {
 
   @override
   int get hashCode {
-    final l$consentsCollection = consentsCollection;
+    final l$consents = consents;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$consentsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$consents.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -48,10 +48,17 @@ class QueryMyConsents {
     if (other is! QueryMyConsents || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$consentsCollection = consentsCollection;
-    final lOther$consentsCollection = other.consentsCollection;
-    if (l$consentsCollection != lOther$consentsCollection) {
+    final l$consents = consents;
+    final lOther$consents = other.consents;
+    if (l$consents.length != lOther$consents.length) {
       return false;
+    }
+    for (int i = 0; i < l$consents.length; i++) {
+      final l$consents$entry = l$consents[i];
+      final lOther$consents$entry = lOther$consents[i];
+      if (l$consents$entry != lOther$consents$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -72,18 +79,18 @@ const documentNodeQueryMyConsents = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'consentsCollection'),
+            name: NameNode(value: 'consents'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -95,66 +102,32 @@ const documentNodeQueryMyConsents = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'kind'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'kind'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'granted'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'version'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'createdAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'granted'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'version'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'createdAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -284,140 +257,23 @@ extension ClientExtensionQueryMyConsents on graphql.GraphQLClient {
   }
 }
 
-class QueryMyConsentsconsentsCollection {
-  QueryMyConsentsconsentsCollection({required this.edges, this.$__typename = 'ConsentsConnection'});
-
-  factory QueryMyConsentsconsentsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryMyConsentsconsentsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryMyConsentsconsentsCollectionedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryMyConsentsconsentsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMyConsentsconsentsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMyConsentsconsentsCollectionedges {
-  QueryMyConsentsconsentsCollectionedges({required this.node, this.$__typename = 'ConsentsEdge'});
-
-  factory QueryMyConsentsconsentsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryMyConsentsconsentsCollectionedges(
-      node: QueryMyConsentsconsentsCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryMyConsentsconsentsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMyConsentsconsentsCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMyConsentsconsentsCollectionedgesnode {
-  QueryMyConsentsconsentsCollectionedgesnode({
+class QueryMyConsentsconsents {
+  QueryMyConsentsconsents({
     required this.kind,
     required this.granted,
     required this.version,
     required this.createdAt,
-    this.$__typename = 'Consents',
+    this.$__typename = 'consents',
   });
 
-  factory QueryMyConsentsconsentsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryMyConsentsconsents.fromJson(Map<String, dynamic> json) {
     final l$kind = json['kind'];
     final l$granted = json['granted'];
     final l$version = json['version'];
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
-    return QueryMyConsentsconsentsCollectionedgesnode(
-      kind: fromJsonEnumConsentKind((l$kind as String)),
+    return QueryMyConsentsconsents(
+      kind: fromJsonEnumConsentKind_enum((l$kind as String)),
       granted: (l$granted as bool),
       version: (l$version as String),
       createdAt: DateTime.parse((l$createdAt as String)),
@@ -425,7 +281,7 @@ class QueryMyConsentsconsentsCollectionedgesnode {
     );
   }
 
-  final EnumConsentKind kind;
+  final EnumConsentKind_enum kind;
 
   final bool granted;
 
@@ -438,7 +294,7 @@ class QueryMyConsentsconsentsCollectionedgesnode {
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$kind = kind;
-    _resultData['kind'] = toJsonEnumConsentKind(l$kind);
+    _resultData['kind'] = toJsonEnumConsentKind_enum(l$kind);
     final l$granted = granted;
     _resultData['granted'] = l$granted;
     final l$version = version;
@@ -465,7 +321,7 @@ class QueryMyConsentsconsentsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMyConsentsconsentsCollectionedgesnode || runtimeType != other.runtimeType) {
+    if (other is! QueryMyConsentsconsents || runtimeType != other.runtimeType) {
       return false;
     }
     final l$kind = kind;

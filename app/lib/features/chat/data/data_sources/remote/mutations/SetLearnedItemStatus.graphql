@@ -1,5 +1,5 @@
-mutation SetLearnedItemStatus($id: UUID!, $status: LearnedItemStatus!) {
-  updateLearnedItemsCollection(set: { status: $status }, filter: { id: { eq: $id } }) {
-    affectedCount
+mutation SetLearnedItemStatus($id: uuid!, $status: LearnedItemStatus_enum!) {
+  updateLearnedItemsByPk(pk_columns: { id: $id }, _set: { status: $status }) {
+    id
   }
 }

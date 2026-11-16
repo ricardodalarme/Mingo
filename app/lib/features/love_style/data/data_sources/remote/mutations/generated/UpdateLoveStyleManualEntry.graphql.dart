@@ -67,31 +67,31 @@ class VariablesMutationUpdateLoveStyleManualEntry {
 
 class MutationUpdateLoveStyleManualEntry {
   MutationUpdateLoveStyleManualEntry({
-    required this.updateManualEntriesCollection,
-    this.$__typename = 'Mutation',
+    this.updateManualEntries,
+    this.$__typename = 'mutation_root',
   });
 
   factory MutationUpdateLoveStyleManualEntry.fromJson(Map<String, dynamic> json) {
-    final l$updateManualEntriesCollection = json['updateManualEntriesCollection'];
+    final l$updateManualEntries = json['updateManualEntries'];
     final l$$__typename = json['__typename'];
     return MutationUpdateLoveStyleManualEntry(
-      updateManualEntriesCollection:
-          MutationUpdateLoveStyleManualEntryupdateManualEntriesCollection.fromJson(
-            (l$updateManualEntriesCollection as Map<String, dynamic>),
-          ),
+      updateManualEntries: l$updateManualEntries == null
+          ? null
+          : MutationUpdateLoveStyleManualEntryupdateManualEntries.fromJson(
+              (l$updateManualEntries as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateLoveStyleManualEntryupdateManualEntriesCollection
-  updateManualEntriesCollection;
+  final MutationUpdateLoveStyleManualEntryupdateManualEntries? updateManualEntries;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateManualEntriesCollection = updateManualEntriesCollection;
-    _resultData['updateManualEntriesCollection'] = l$updateManualEntriesCollection.toJson();
+    final l$updateManualEntries = updateManualEntries;
+    _resultData['updateManualEntries'] = l$updateManualEntries?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -99,9 +99,9 @@ class MutationUpdateLoveStyleManualEntry {
 
   @override
   int get hashCode {
-    final l$updateManualEntriesCollection = updateManualEntriesCollection;
+    final l$updateManualEntries = updateManualEntries;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateManualEntriesCollection, l$$__typename]);
+    return Object.hashAll([l$updateManualEntries, l$$__typename]);
   }
 
   @override
@@ -112,9 +112,9 @@ class MutationUpdateLoveStyleManualEntry {
     if (other is! MutationUpdateLoveStyleManualEntry || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateManualEntriesCollection = updateManualEntriesCollection;
-    final lOther$updateManualEntriesCollection = other.updateManualEntriesCollection;
-    if (l$updateManualEntriesCollection != lOther$updateManualEntriesCollection) {
+    final l$updateManualEntries = updateManualEntries;
+    final lOther$updateManualEntries = other.updateManualEntries;
+    if (l$updateManualEntries != lOther$updateManualEntries) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -134,7 +134,7 @@ const documentNodeMutationUpdateLoveStyleManualEntry = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -149,22 +149,11 @@ const documentNodeMutationUpdateLoveStyleManualEntry = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateManualEntriesCollection'),
+            name: NameNode(value: 'updateManualEntries'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'value'),
-                      value: VariableNode(name: NameNode(value: 'value')),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -172,7 +161,7 @@ const documentNodeMutationUpdateLoveStyleManualEntry = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'id')),
                           ),
                         ],
@@ -182,15 +171,22 @@ const documentNodeMutationUpdateLoveStyleManualEntry = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'value'),
+                      value: VariableNode(name: NameNode(value: 'value')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -314,31 +310,31 @@ extension ClientExtensionMutationUpdateLoveStyleManualEntry on graphql.GraphQLCl
       this.watchMutation(options);
 }
 
-class MutationUpdateLoveStyleManualEntryupdateManualEntriesCollection {
-  MutationUpdateLoveStyleManualEntryupdateManualEntriesCollection({
-    required this.affectedCount,
-    this.$__typename = 'ManualEntriesUpdateResponse',
+class MutationUpdateLoveStyleManualEntryupdateManualEntries {
+  MutationUpdateLoveStyleManualEntryupdateManualEntries({
+    required this.affected_rows,
+    this.$__typename = 'manualEntries_mutation_response',
   });
 
-  factory MutationUpdateLoveStyleManualEntryupdateManualEntriesCollection.fromJson(
+  factory MutationUpdateLoveStyleManualEntryupdateManualEntries.fromJson(
     Map<String, dynamic> json,
   ) {
-    final l$affectedCount = json['affectedCount'];
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateLoveStyleManualEntryupdateManualEntriesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationUpdateLoveStyleManualEntryupdateManualEntries(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -346,9 +342,9 @@ class MutationUpdateLoveStyleManualEntryupdateManualEntriesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -356,13 +352,13 @@ class MutationUpdateLoveStyleManualEntryupdateManualEntriesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateLoveStyleManualEntryupdateManualEntriesCollection ||
+    if (other is! MutationUpdateLoveStyleManualEntryupdateManualEntries ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

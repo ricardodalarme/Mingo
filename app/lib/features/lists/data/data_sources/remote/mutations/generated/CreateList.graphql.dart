@@ -11,7 +11,7 @@ class VariablesMutationCreateList {
   factory VariablesMutationCreateList({
     required String id,
     required String title,
-    required EnumListKind kind,
+    required EnumListKind_enum kind,
     String? coupleId,
   }) => VariablesMutationCreateList._({
     r'id': id,
@@ -29,7 +29,7 @@ class VariablesMutationCreateList {
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
     final l$kind = data['kind'];
-    result$data['kind'] = fromJsonEnumListKind((l$kind as String));
+    result$data['kind'] = fromJsonEnumListKind_enum((l$kind as String));
     if (data.containsKey('coupleId')) {
       final l$coupleId = data['coupleId'];
       result$data['coupleId'] = (l$coupleId as String?);
@@ -43,7 +43,7 @@ class VariablesMutationCreateList {
 
   String get title => (_$data['title'] as String);
 
-  EnumListKind get kind => (_$data['kind'] as EnumListKind);
+  EnumListKind_enum get kind => (_$data['kind'] as EnumListKind_enum);
 
   String? get coupleId => (_$data['coupleId'] as String?);
 
@@ -54,7 +54,7 @@ class VariablesMutationCreateList {
     final l$title = title;
     result$data['title'] = l$title;
     final l$kind = kind;
-    result$data['kind'] = toJsonEnumListKind(l$kind);
+    result$data['kind'] = toJsonEnumListKind_enum(l$kind);
     if (_$data.containsKey('coupleId')) {
       final l$coupleId = coupleId;
       result$data['coupleId'] = l$coupleId;
@@ -112,29 +112,27 @@ class VariablesMutationCreateList {
 }
 
 class MutationCreateList {
-  MutationCreateList({this.insertIntoListsCollection, this.$__typename = 'Mutation'});
+  MutationCreateList({this.insertListsOne, this.$__typename = 'mutation_root'});
 
   factory MutationCreateList.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoListsCollection = json['insertIntoListsCollection'];
+    final l$insertListsOne = json['insertListsOne'];
     final l$$__typename = json['__typename'];
     return MutationCreateList(
-      insertIntoListsCollection: l$insertIntoListsCollection == null
+      insertListsOne: l$insertListsOne == null
           ? null
-          : MutationCreateListinsertIntoListsCollection.fromJson(
-              (l$insertIntoListsCollection as Map<String, dynamic>),
-            ),
+          : FragmentListFragment.fromJson((l$insertListsOne as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationCreateListinsertIntoListsCollection? insertIntoListsCollection;
+  final FragmentListFragment? insertListsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoListsCollection = insertIntoListsCollection;
-    _resultData['insertIntoListsCollection'] = l$insertIntoListsCollection?.toJson();
+    final l$insertListsOne = insertListsOne;
+    _resultData['insertListsOne'] = l$insertListsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -142,9 +140,9 @@ class MutationCreateList {
 
   @override
   int get hashCode {
-    final l$insertIntoListsCollection = insertIntoListsCollection;
+    final l$insertListsOne = insertListsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoListsCollection, l$$__typename]);
+    return Object.hashAll([l$insertListsOne, l$$__typename]);
   }
 
   @override
@@ -155,9 +153,9 @@ class MutationCreateList {
     if (other is! MutationCreateList || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoListsCollection = insertIntoListsCollection;
-    final lOther$insertIntoListsCollection = other.insertIntoListsCollection;
-    if (l$insertIntoListsCollection != lOther$insertIntoListsCollection) {
+    final l$insertListsOne = insertListsOne;
+    final lOther$insertListsOne = other.insertListsOne;
+    if (l$insertListsOne != lOther$insertListsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -177,7 +175,7 @@ const documentNodeMutationCreateList = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -189,13 +187,13 @@ const documentNodeMutationCreateList = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'kind')),
-          type: NamedTypeNode(name: NameNode(value: 'ListKind'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'ListKind_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -204,32 +202,28 @@ const documentNodeMutationCreateList = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoListsCollection'),
+            name: NameNode(value: 'insertListsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'id'),
-                          value: VariableNode(name: NameNode(value: 'id')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'title'),
-                          value: VariableNode(name: NameNode(value: 'title')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'kind'),
-                          value: VariableNode(name: NameNode(value: 'kind')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'coupleId'),
-                          value: VariableNode(name: NameNode(value: 'coupleId')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'title'),
+                      value: VariableNode(name: NameNode(value: 'title')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: VariableNode(name: NameNode(value: 'kind')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'coupleId'),
+                      value: VariableNode(name: NameNode(value: 'coupleId')),
                     ),
                   ],
                 ),
@@ -238,26 +232,9 @@ const documentNodeMutationCreateList = DocumentNode(
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'records'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'ListFragment'),
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'ListFragment'),
-                        directives: [],
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -370,70 +347,4 @@ extension ClientExtensionMutationCreateList on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationCreateList> watchMutationCreateList(
     WatchOptionsMutationCreateList options,
   ) => this.watchMutation(options);
-}
-
-class MutationCreateListinsertIntoListsCollection {
-  MutationCreateListinsertIntoListsCollection({
-    required this.records,
-    this.$__typename = 'ListsInsertResponse',
-  });
-
-  factory MutationCreateListinsertIntoListsCollection.fromJson(Map<String, dynamic> json) {
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationCreateListinsertIntoListsCollection(
-      records: (l$records as List<dynamic>)
-          .map((e) => FragmentListFragment.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<FragmentListFragment> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationCreateListinsertIntoListsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
 }

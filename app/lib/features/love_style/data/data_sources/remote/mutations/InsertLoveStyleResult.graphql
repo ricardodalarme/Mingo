@@ -1,8 +1,6 @@
-mutation InsertLoveStyleResult($ranked: [String]!) {
-  insertIntoQuizResultsCollection(objects: [{ quizKey: loved, ranked: $ranked }]) {
-    records {
-      id
-      ranked
-    }
+mutation InsertLoveStyleResult($ranked: [String!]!) {
+  insertQuizResultsOne(object: { quizKey: loved, ranked: $ranked }) {
+    id
+    ranked
   }
 }

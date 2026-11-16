@@ -20,9 +20,9 @@ void main() {
   });
 
   test('only three goals have a main goal on the account', () {
-    expect(RelationshipGoal.reconnect.toPrimaryRemote(), EnumRelationshipGoal.reconnect);
-    expect(RelationshipGoal.fightLess.toPrimaryRemote(), EnumRelationshipGoal.after_fight);
-    expect(RelationshipGoal.keepRomance.toPrimaryRemote(), EnumRelationshipGoal.keep);
+    expect(RelationshipGoal.reconnect.toPrimaryRemote(), EnumRelationshipGoal_enum.reconnect);
+    expect(RelationshipGoal.fightLess.toPrimaryRemote(), EnumRelationshipGoal_enum.after_fight);
+    expect(RelationshipGoal.keepRomance.toPrimaryRemote(), EnumRelationshipGoal_enum.keep);
     expect(RelationshipGoal.justRecord.toPrimaryRemote(), isNull);
   });
 }

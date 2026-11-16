@@ -52,33 +52,29 @@ class VariablesMutationDeleteJournalEntry {
 }
 
 class MutationDeleteJournalEntry {
-  MutationDeleteJournalEntry({
-    required this.deleteFromJournalEntriesCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteJournalEntry({this.deleteJournalEntries, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteJournalEntry.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromJournalEntriesCollection = json['deleteFromJournalEntriesCollection'];
+    final l$deleteJournalEntries = json['deleteJournalEntries'];
     final l$$__typename = json['__typename'];
     return MutationDeleteJournalEntry(
-      deleteFromJournalEntriesCollection:
-          MutationDeleteJournalEntrydeleteFromJournalEntriesCollection.fromJson(
-            (l$deleteFromJournalEntriesCollection as Map<String, dynamic>),
-          ),
+      deleteJournalEntries: l$deleteJournalEntries == null
+          ? null
+          : MutationDeleteJournalEntrydeleteJournalEntries.fromJson(
+              (l$deleteJournalEntries as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteJournalEntrydeleteFromJournalEntriesCollection
-  deleteFromJournalEntriesCollection;
+  final MutationDeleteJournalEntrydeleteJournalEntries? deleteJournalEntries;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromJournalEntriesCollection = deleteFromJournalEntriesCollection;
-    _resultData['deleteFromJournalEntriesCollection'] = l$deleteFromJournalEntriesCollection
-        .toJson();
+    final l$deleteJournalEntries = deleteJournalEntries;
+    _resultData['deleteJournalEntries'] = l$deleteJournalEntries?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -86,9 +82,9 @@ class MutationDeleteJournalEntry {
 
   @override
   int get hashCode {
-    final l$deleteFromJournalEntriesCollection = deleteFromJournalEntriesCollection;
+    final l$deleteJournalEntries = deleteJournalEntries;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromJournalEntriesCollection, l$$__typename]);
+    return Object.hashAll([l$deleteJournalEntries, l$$__typename]);
   }
 
   @override
@@ -99,9 +95,9 @@ class MutationDeleteJournalEntry {
     if (other is! MutationDeleteJournalEntry || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromJournalEntriesCollection = deleteFromJournalEntriesCollection;
-    final lOther$deleteFromJournalEntriesCollection = other.deleteFromJournalEntriesCollection;
-    if (l$deleteFromJournalEntriesCollection != lOther$deleteFromJournalEntriesCollection) {
+    final l$deleteJournalEntries = deleteJournalEntries;
+    final lOther$deleteJournalEntries = other.deleteJournalEntries;
+    if (l$deleteJournalEntries != lOther$deleteJournalEntries) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -121,7 +117,7 @@ const documentNodeMutationDeleteJournalEntry = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -130,11 +126,11 @@ const documentNodeMutationDeleteJournalEntry = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromJournalEntriesCollection'),
+            name: NameNode(value: 'deleteJournalEntries'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -142,7 +138,7 @@ const documentNodeMutationDeleteJournalEntry = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'id')),
                           ),
                         ],
@@ -151,16 +147,12 @@ const documentNodeMutationDeleteJournalEntry = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -283,31 +275,29 @@ extension ClientExtensionMutationDeleteJournalEntry on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteJournalEntrydeleteFromJournalEntriesCollection {
-  MutationDeleteJournalEntrydeleteFromJournalEntriesCollection({
-    required this.affectedCount,
-    this.$__typename = 'JournalEntriesDeleteResponse',
+class MutationDeleteJournalEntrydeleteJournalEntries {
+  MutationDeleteJournalEntrydeleteJournalEntries({
+    required this.affected_rows,
+    this.$__typename = 'journalEntries_mutation_response',
   });
 
-  factory MutationDeleteJournalEntrydeleteFromJournalEntriesCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteJournalEntrydeleteJournalEntries.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteJournalEntrydeleteFromJournalEntriesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteJournalEntrydeleteJournalEntries(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -315,9 +305,9 @@ class MutationDeleteJournalEntrydeleteFromJournalEntriesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -325,13 +315,13 @@ class MutationDeleteJournalEntrydeleteFromJournalEntriesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteJournalEntrydeleteFromJournalEntriesCollection ||
+    if (other is! MutationDeleteJournalEntrydeleteJournalEntries ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

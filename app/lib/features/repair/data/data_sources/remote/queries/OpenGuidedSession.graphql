@@ -1,15 +1,11 @@
 query OpenGuidedSession {
-  repairSessionsCollection(
-    filter: { path: { eq: guided }, completedAt: { is: NULL } }
-    orderBy: [{ createdAt: DescNullsLast }]
-    first: 1
+  repairSessions(
+    where: { path: { _eq: guided }, completedAt: { _is_null: true } }
+    order_by: { createdAt: desc }
+    limit: 1
   ) {
-    edges {
-      node {
-        id
-        step
-        draft
-      }
-    }
+    id
+    step
+    draft
   }
 }

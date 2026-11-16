@@ -1,5 +1,5 @@
-mutation UpdateLearnedItem($id: UUID!, $text: String!) {
-  updateLearnedItemsCollection(set: { text: $text }, filter: { id: { eq: $id } }) {
-    affectedCount
+mutation UpdateLearnedItem($id: uuid!, $text: String!) {
+  updateLearnedItemsByPk(pk_columns: { id: $id }, _set: { text: $text }) {
+    id
   }
 }

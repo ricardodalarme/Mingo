@@ -5,11 +5,17 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('maps each platform', () {
-    expect(EnumDevicePlatform.ios.toModel(), DevicePlatform.ios);
-    expect(EnumDevicePlatform.android.toModel(), DevicePlatform.android);
+    expect(EnumDevicePlatform_enum.ios.toModel(), DevicePlatform.ios);
+    expect(EnumDevicePlatform_enum.android.toModel(), DevicePlatform.android);
+  });
+
+  test('a platform survives a trip to the remote enum and back', () {
+    for (final value in DevicePlatform.values) {
+      expect(value.toRemote().toModel(), value);
+    }
   });
 
   test('an unknown platform is shown as android', () {
-    expect(EnumDevicePlatform.$unknown.toModel(), DevicePlatform.android);
+    expect(EnumDevicePlatform_enum.$unknown.toModel(), DevicePlatform.android);
   });
 }

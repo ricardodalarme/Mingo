@@ -1,9 +1,5 @@
-mutation UpsertCouplePhoto($coupleId: UUID!, $storagePath: String!, $uploadedBy: UUID!) {
-  updateCouplePhotosCollection(
-    set: { storagePath: $storagePath, uploadedBy: $uploadedBy }
-    filter: { coupleId: { eq: $coupleId } }
-    atMost: 1
-  ) {
-    affectedCount
+mutation UpsertCouplePhoto($coupleId: uuid!, $fileId: uuid!) {
+  updateCouplePhotos(where: { coupleId: { _eq: $coupleId } }, _set: { fileId: $fileId }) {
+    affected_rows
   }
 }

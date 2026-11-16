@@ -4,75 +4,75 @@ import 'package:app/features/history/data/models/history_models.dart';
 import 'package:app/features/history/data/models/memory_origin.dart';
 import 'package:app/features/history/data/models/story_event_kind.dart';
 
-extension EnumDatePrecisionMapper on EnumDatePrecision {
+extension EnumDatePrecisionMapper on EnumDatePrecision_enum {
   /// An unknown precision is read as a whole day.
   MilestoneDatePrecision toModel() => switch (this) {
-    EnumDatePrecision.day || EnumDatePrecision.$unknown => MilestoneDatePrecision.day,
-    EnumDatePrecision.month => MilestoneDatePrecision.month,
-    EnumDatePrecision.year => MilestoneDatePrecision.year,
+    EnumDatePrecision_enum.day || EnumDatePrecision_enum.$unknown => MilestoneDatePrecision.day,
+    EnumDatePrecision_enum.month => MilestoneDatePrecision.month,
+    EnumDatePrecision_enum.year => MilestoneDatePrecision.year,
   };
 }
 
 extension MilestoneDatePrecisionMapper on MilestoneDatePrecision {
   /// A milestone with an unknown date is stored as an important date, which has no precision.
-  EnumDatePrecision toRemote() => switch (this) {
-    MilestoneDatePrecision.day || MilestoneDatePrecision.unknown => EnumDatePrecision.day,
-    MilestoneDatePrecision.month => EnumDatePrecision.month,
-    MilestoneDatePrecision.year => EnumDatePrecision.year,
+  EnumDatePrecision_enum toRemote() => switch (this) {
+    MilestoneDatePrecision.day || MilestoneDatePrecision.unknown => EnumDatePrecision_enum.day,
+    MilestoneDatePrecision.month => EnumDatePrecision_enum.month,
+    MilestoneDatePrecision.year => EnumDatePrecision_enum.year,
   };
 }
 
-extension EnumStoryEventKindMapper on EnumStoryEventKind {
+extension EnumStoryEventKindMapper on EnumStoryEventKind_enum {
   MilestoneKind toMilestoneKind() => switch (this) {
-    EnumStoryEventKind.met => MilestoneKind.met,
-    EnumStoryEventKind.dating => MilestoneKind.dating,
-    EnumStoryEventKind.engaged => MilestoneKind.engaged,
-    EnumStoryEventKind.married => MilestoneKind.married,
-    EnumStoryEventKind.custom || EnumStoryEventKind.$unknown => MilestoneKind.custom,
+    EnumStoryEventKind_enum.met => MilestoneKind.met,
+    EnumStoryEventKind_enum.dating => MilestoneKind.dating,
+    EnumStoryEventKind_enum.engaged => MilestoneKind.engaged,
+    EnumStoryEventKind_enum.married => MilestoneKind.married,
+    EnumStoryEventKind_enum.custom || EnumStoryEventKind_enum.$unknown => MilestoneKind.custom,
   };
 }
 
 extension StoryEventKindMapper on StoryEventKind {
-  EnumStoryEventKind toRemote() => switch (this) {
-    StoryEventKind.met => EnumStoryEventKind.met,
-    StoryEventKind.dating => EnumStoryEventKind.dating,
-    StoryEventKind.engaged => EnumStoryEventKind.engaged,
-    StoryEventKind.married => EnumStoryEventKind.married,
-    StoryEventKind.custom => EnumStoryEventKind.custom,
+  EnumStoryEventKind_enum toRemote() => switch (this) {
+    StoryEventKind.met => EnumStoryEventKind_enum.met,
+    StoryEventKind.dating => EnumStoryEventKind_enum.dating,
+    StoryEventKind.engaged => EnumStoryEventKind_enum.engaged,
+    StoryEventKind.married => EnumStoryEventKind_enum.married,
+    StoryEventKind.custom => EnumStoryEventKind_enum.custom,
   };
 }
 
-extension EnumImportantDateKindMilestoneMapper on EnumImportantDateKind {
+extension EnumImportantDateKindMilestoneMapper on EnumImportantDateKind_enum {
   MilestoneKind toMilestoneKind() => switch (this) {
-    EnumImportantDateKind.first => MilestoneKind.first,
-    EnumImportantDateKind.trip => MilestoneKind.trip,
+    EnumImportantDateKind_enum.first => MilestoneKind.first,
+    EnumImportantDateKind_enum.trip => MilestoneKind.trip,
     _ => MilestoneKind.custom,
   };
 }
 
-extension EnumMemoryOriginMapper on EnumMemoryOrigin {
+extension EnumMemoryOriginMapper on EnumMemoryOrigin_enum {
   /// A plain memory with a place reads as a trip.
   MilestoneKind toMilestoneKind({String? place}) {
     final hasPlace = place != null && place.trim().isNotEmpty;
     return switch (this) {
-      EnumMemoryOrigin.manual when hasPlace => MilestoneKind.trip,
-      EnumMemoryOrigin.first => MilestoneKind.first,
+      EnumMemoryOrigin_enum.manual when hasPlace => MilestoneKind.trip,
+      EnumMemoryOrigin_enum.first => MilestoneKind.first,
       _ => MilestoneKind.custom,
     };
   }
 }
 
 extension MemoryOriginMapper on MemoryOrigin {
-  EnumMemoryOrigin toRemote() => switch (this) {
-    MemoryOrigin.manual => EnumMemoryOrigin.manual,
-    MemoryOrigin.slip => EnumMemoryOrigin.slip,
-    MemoryOrigin.card => EnumMemoryOrigin.card,
-    MemoryOrigin.question => EnumMemoryOrigin.question,
-    MemoryOrigin.game => EnumMemoryOrigin.game,
-    MemoryOrigin.mission => EnumMemoryOrigin.mission,
-    MemoryOrigin.share => EnumMemoryOrigin.share,
-    MemoryOrigin.chat => EnumMemoryOrigin.chat,
-    MemoryOrigin.first => EnumMemoryOrigin.first,
+  EnumMemoryOrigin_enum toRemote() => switch (this) {
+    MemoryOrigin.manual => EnumMemoryOrigin_enum.manual,
+    MemoryOrigin.slip => EnumMemoryOrigin_enum.slip,
+    MemoryOrigin.card => EnumMemoryOrigin_enum.card,
+    MemoryOrigin.question => EnumMemoryOrigin_enum.question,
+    MemoryOrigin.game => EnumMemoryOrigin_enum.game,
+    MemoryOrigin.mission => EnumMemoryOrigin_enum.mission,
+    MemoryOrigin.share => EnumMemoryOrigin_enum.share,
+    MemoryOrigin.chat => EnumMemoryOrigin_enum.chat,
+    MemoryOrigin.first => EnumMemoryOrigin_enum.first,
   };
 }
 

@@ -1,24 +1,34 @@
 mutation SaveSlip(
-  $id: UUID!
+  $id: uuid!
   $body: String!
-  $kind: String
+  $kind: SlipKind_enum!
   $feeling: String
   $planNote: String
   $forCard: Boolean
-  $createdAt: Datetime
-  $polarity: String
+  $createdAt: timestamptz
+  $polarity: SlipPolarity_enum!
   $request: String
+  $category: SlipCategory_enum
+  $workArea: WorkArea_enum
 ) {
-  saveSlip(
-    id: $id
-    body: $body
-    kind: $kind
-    feeling: $feeling
-    planNote: $planNote
-    forCard: $forCard
-    createdAt: $createdAt
-    polarity: $polarity
-    request: $request
+  insertSlipsOne(
+    object: {
+      id: $id
+      body: $body
+      kind: $kind
+      feeling: $feeling
+      planNote: $planNote
+      forCard: $forCard
+      createdAt: $createdAt
+      polarity: $polarity
+      request: $request
+      category: $category
+      workArea: $workArea
+    }
+    on_conflict: {
+      constraint: slips_pkey
+      update_columns: [body, kind, feeling, planNote, forCard, polarity, request, category, workArea]
+    }
   ) {
     id
   }

@@ -1,47 +1,45 @@
 // dart format width=100
-import '../../../../../../_shared/data/data_sources/remote/fragments/generated/PageInfoFragment.graphql.dart';
-
 import 'dart:async';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesQueryMyCards {
-  factory VariablesQueryMyCards({int? first, String? after}) => VariablesQueryMyCards._({
-    if (first != null) r'first': first,
-    if (after != null) r'after': after,
+  factory VariablesQueryMyCards({int? limit, int? offset}) => VariablesQueryMyCards._({
+    if (limit != null) r'limit': limit,
+    if (offset != null) r'offset': offset,
   });
 
   VariablesQueryMyCards._(this._$data);
 
   factory VariablesQueryMyCards.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('first')) {
-      final l$first = data['first'];
-      result$data['first'] = (l$first as int?);
+    if (data.containsKey('limit')) {
+      final l$limit = data['limit'];
+      result$data['limit'] = (l$limit as int?);
     }
-    if (data.containsKey('after')) {
-      final l$after = data['after'];
-      result$data['after'] = (l$after as String?);
+    if (data.containsKey('offset')) {
+      final l$offset = data['offset'];
+      result$data['offset'] = (l$offset as int?);
     }
     return VariablesQueryMyCards._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  int? get first => (_$data['first'] as int?);
+  int? get limit => (_$data['limit'] as int?);
 
-  String? get after => (_$data['after'] as String?);
+  int? get offset => (_$data['offset'] as int?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('first')) {
-      final l$first = first;
-      result$data['first'] = l$first;
+    if (_$data.containsKey('limit')) {
+      final l$limit = limit;
+      result$data['limit'] = l$limit;
     }
-    if (_$data.containsKey('after')) {
-      final l$after = after;
-      result$data['after'] = l$after;
+    if (_$data.containsKey('offset')) {
+      final l$offset = offset;
+      result$data['offset'] = l$offset;
     }
     return result$data;
   }
@@ -54,20 +52,20 @@ class VariablesQueryMyCards {
     if (other is! VariablesQueryMyCards || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$first = first;
-    final lOther$first = other.first;
-    if (_$data.containsKey('first') != other._$data.containsKey('first')) {
+    final l$limit = limit;
+    final lOther$limit = other.limit;
+    if (_$data.containsKey('limit') != other._$data.containsKey('limit')) {
       return false;
     }
-    if (l$first != lOther$first) {
+    if (l$limit != lOther$limit) {
       return false;
     }
-    final l$after = after;
-    final lOther$after = other.after;
-    if (_$data.containsKey('after') != other._$data.containsKey('after')) {
+    final l$offset = offset;
+    final lOther$offset = other.offset;
+    if (_$data.containsKey('offset') != other._$data.containsKey('offset')) {
       return false;
     }
-    if (l$after != lOther$after) {
+    if (l$offset != lOther$offset) {
       return false;
     }
     return true;
@@ -75,37 +73,37 @@ class VariablesQueryMyCards {
 
   @override
   int get hashCode {
-    final l$first = first;
-    final l$after = after;
+    final l$limit = limit;
+    final l$offset = offset;
     return Object.hashAll([
-      _$data.containsKey('first') ? l$first : const {},
-      _$data.containsKey('after') ? l$after : const {},
+      _$data.containsKey('limit') ? l$limit : const {},
+      _$data.containsKey('offset') ? l$offset : const {},
     ]);
   }
 }
 
 class QueryMyCards {
-  QueryMyCards({required this.cardsCollection, this.$__typename = 'Query'});
+  QueryMyCards({required this.cards, this.$__typename = 'query_root'});
 
   factory QueryMyCards.fromJson(Map<String, dynamic> json) {
-    final l$cardsCollection = json['cardsCollection'];
+    final l$cards = json['cards'];
     final l$$__typename = json['__typename'];
     return QueryMyCards(
-      cardsCollection: QueryMyCardscardsCollection.fromJson(
-        (l$cardsCollection as Map<String, dynamic>),
-      ),
+      cards: (l$cards as List<dynamic>)
+          .map((e) => QueryMyCardscards.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryMyCardscardsCollection cardsCollection;
+  final List<QueryMyCardscards> cards;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$cardsCollection = cardsCollection;
-    _resultData['cardsCollection'] = l$cardsCollection.toJson();
+    final l$cards = cards;
+    _resultData['cards'] = l$cards.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -113,9 +111,9 @@ class QueryMyCards {
 
   @override
   int get hashCode {
-    final l$cardsCollection = cardsCollection;
+    final l$cards = cards;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$cardsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$cards.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -126,10 +124,17 @@ class QueryMyCards {
     if (other is! QueryMyCards || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$cardsCollection = cardsCollection;
-    final lOther$cardsCollection = other.cardsCollection;
-    if (l$cardsCollection != lOther$cardsCollection) {
+    final l$cards = cards;
+    final lOther$cards = other.cards;
+    if (l$cards.length != lOther$cards.length) {
       return false;
+    }
+    for (int i = 0; i < l$cards.length; i++) {
+      final l$cards$entry = l$cards[i];
+      final lOther$cards$entry = lOther$cards[i];
+      if (l$cards$entry != lOther$cards$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -147,14 +152,14 @@ const documentNodeQueryMyCards = DocumentNode(
       name: NameNode(value: 'MyCards'),
       variableDefinitions: [
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'first')),
+          variable: VariableNode(name: NameNode(value: 'limit')),
           type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'after')),
-          type: NamedTypeNode(name: NameNode(value: 'Cursor'), isNonNull: false),
+          variable: VariableNode(name: NameNode(value: 'offset')),
+          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -163,19 +168,19 @@ const documentNodeQueryMyCards = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'cardsCollection'),
+            name: NameNode(value: 'cards'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'first'),
-                value: VariableNode(name: NameNode(value: 'first')),
+                name: NameNode(value: 'limit'),
+                value: VariableNode(name: NameNode(value: 'limit')),
               ),
               ArgumentNode(
-                name: NameNode(value: 'after'),
-                value: VariableNode(name: NameNode(value: 'after')),
+                name: NameNode(value: 'offset'),
+                value: VariableNode(name: NameNode(value: 'offset')),
               ),
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -183,7 +188,7 @@ const documentNodeQueryMyCards = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: EnumValueNode(name: NameNode(value: 'sent')),
                           ),
                         ],
@@ -193,14 +198,14 @@ const documentNodeQueryMyCards = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'sentAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc')),
                         ),
                       ],
                     ),
@@ -212,169 +217,46 @@ const documentNodeQueryMyCards = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'authorId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'sentAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'weekStart'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'items'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
                       FieldNode(
-                        name: NameNode(value: 'node'),
+                        name: NameNode(value: 'id'),
                         alias: null,
                         arguments: [],
                         directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'isMine'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'sentAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'weekStart'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'items'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: SelectionSetNode(
-                                selections: [
-                                  FieldNode(
-                                    name: NameNode(value: 'edges'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: SelectionSetNode(
-                                      selections: [
-                                        FieldNode(
-                                          name: NameNode(value: 'node'),
-                                          alias: null,
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: SelectionSetNode(
-                                            selections: [
-                                              FieldNode(
-                                                name: NameNode(value: 'slipId'),
-                                                alias: null,
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: null,
-                                              ),
-                                              FieldNode(
-                                                name: NameNode(value: '__typename'),
-                                                alias: null,
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: null,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        FieldNode(
-                                          name: NameNode(value: '__typename'),
-                                          alias: null,
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: null,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  FieldNode(
-                                    name: NameNode(value: '__typename'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: null,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'reaction'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: SelectionSetNode(
-                                selections: [
-                                  FieldNode(
-                                    name: NameNode(value: 'reaction'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: null,
-                                  ),
-                                  FieldNode(
-                                    name: NameNode(value: 'reply'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: null,
-                                  ),
-                                  FieldNode(
-                                    name: NameNode(value: '__typename'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: null,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'open'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: SelectionSetNode(
-                                selections: [
-                                  FieldNode(
-                                    name: NameNode(value: 'openedAt'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: null,
-                                  ),
-                                  FieldNode(
-                                    name: NameNode(value: '__typename'),
-                                    alias: null,
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: null,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
+                        selectionSet: null,
                       ),
                       FieldNode(
                         name: NameNode(value: '__typename'),
@@ -387,15 +269,49 @@ const documentNodeQueryMyCards = DocumentNode(
                   ),
                 ),
                 FieldNode(
-                  name: NameNode(value: 'pageInfo'),
+                  name: NameNode(value: 'reaction'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: SelectionSetNode(
                     selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'PageInfoFragment'),
+                      FieldNode(
+                        name: NameNode(value: 'reaction'),
+                        alias: null,
+                        arguments: [],
                         directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'reply'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
+                ),
+                FieldNode(
+                  name: NameNode(value: 'open'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FieldNode(
+                        name: NameNode(value: 'openedAt'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
                       ),
                       FieldNode(
                         name: NameNode(value: '__typename'),
@@ -427,7 +343,6 @@ const documentNodeQueryMyCards = DocumentNode(
         ],
       ),
     ),
-    fragmentDefinitionPageInfoFragment,
   ],
 );
 QueryMyCards _parserFnQueryMyCards(Map<String, dynamic> data) => QueryMyCards.fromJson(data);
@@ -549,193 +464,58 @@ extension ClientExtensionQueryMyCards on graphql.GraphQLClient {
   }
 }
 
-class QueryMyCardscardsCollection {
-  QueryMyCardscardsCollection({
-    required this.edges,
-    required this.pageInfo,
-    this.$__typename = 'CardsConnection',
-  });
-
-  factory QueryMyCardscardsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$pageInfo = json['pageInfo'];
-    final l$$__typename = json['__typename'];
-    return QueryMyCardscardsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map((e) => QueryMyCardscardsCollectionedges.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      pageInfo: FragmentPageInfoFragment.fromJson((l$pageInfo as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryMyCardscardsCollectionedges> edges;
-
-  final FragmentPageInfoFragment pageInfo;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$pageInfo = pageInfo;
-    _resultData['pageInfo'] = l$pageInfo.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$pageInfo = pageInfo;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$pageInfo, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMyCardscardsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$pageInfo = pageInfo;
-    final lOther$pageInfo = other.pageInfo;
-    if (l$pageInfo != lOther$pageInfo) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMyCardscardsCollectionedges {
-  QueryMyCardscardsCollectionedges({required this.node, this.$__typename = 'CardsEdge'});
-
-  factory QueryMyCardscardsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryMyCardscardsCollectionedges(
-      node: QueryMyCardscardsCollectionedgesnode.fromJson((l$node as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryMyCardscardsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMyCardscardsCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMyCardscardsCollectionedgesnode {
-  QueryMyCardscardsCollectionedgesnode({
+class QueryMyCardscards {
+  QueryMyCardscards({
     required this.id,
-    this.isMine,
+    required this.authorId,
     this.sentAt,
     required this.weekStart,
-    this.items,
+    required this.items,
     this.reaction,
     this.open,
-    this.$__typename = 'Cards',
+    this.$__typename = 'cards',
   });
 
-  factory QueryMyCardscardsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryMyCardscards.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$isMine = json['isMine'];
+    final l$authorId = json['authorId'];
     final l$sentAt = json['sentAt'];
     final l$weekStart = json['weekStart'];
     final l$items = json['items'];
     final l$reaction = json['reaction'];
     final l$open = json['open'];
     final l$$__typename = json['__typename'];
-    return QueryMyCardscardsCollectionedgesnode(
+    return QueryMyCardscards(
       id: (l$id as String),
-      isMine: (l$isMine as bool?),
+      authorId: (l$authorId as String),
       sentAt: l$sentAt == null ? null : DateTime.parse((l$sentAt as String)),
       weekStart: DateTime.parse((l$weekStart as String)),
-      items: l$items == null
-          ? null
-          : QueryMyCardscardsCollectionedgesnodeitems.fromJson((l$items as Map<String, dynamic>)),
+      items: (l$items as List<dynamic>)
+          .map((e) => QueryMyCardscardsitems.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       reaction: l$reaction == null
           ? null
-          : QueryMyCardscardsCollectionedgesnodereaction.fromJson(
-              (l$reaction as Map<String, dynamic>),
-            ),
+          : QueryMyCardscardsreaction.fromJson((l$reaction as Map<String, dynamic>)),
       open: l$open == null
           ? null
-          : QueryMyCardscardsCollectionedgesnodeopen.fromJson((l$open as Map<String, dynamic>)),
+          : QueryMyCardscardsopen.fromJson((l$open as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
 
-  final bool? isMine;
+  final String authorId;
 
   final DateTime? sentAt;
 
   final DateTime weekStart;
 
-  final QueryMyCardscardsCollectionedgesnodeitems? items;
+  final List<QueryMyCardscardsitems> items;
 
-  final QueryMyCardscardsCollectionedgesnodereaction? reaction;
+  final QueryMyCardscardsreaction? reaction;
 
-  final QueryMyCardscardsCollectionedgesnodeopen? open;
+  final QueryMyCardscardsopen? open;
 
   final String $__typename;
 
@@ -743,8 +523,8 @@ class QueryMyCardscardsCollectionedgesnode {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$isMine = isMine;
-    _resultData['isMine'] = l$isMine;
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
     final l$sentAt = sentAt;
     _resultData['sentAt'] = l$sentAt == null
         ? null
@@ -752,7 +532,7 @@ class QueryMyCardscardsCollectionedgesnode {
     final l$weekStart = weekStart;
     _resultData['weekStart'] = ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
     final l$items = items;
-    _resultData['items'] = l$items?.toJson();
+    _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$reaction = reaction;
     _resultData['reaction'] = l$reaction?.toJson();
     final l$open = open;
@@ -765,7 +545,7 @@ class QueryMyCardscardsCollectionedgesnode {
   @override
   int get hashCode {
     final l$id = id;
-    final l$isMine = isMine;
+    final l$authorId = authorId;
     final l$sentAt = sentAt;
     final l$weekStart = weekStart;
     final l$items = items;
@@ -774,10 +554,10 @@ class QueryMyCardscardsCollectionedgesnode {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$isMine,
+      l$authorId,
       l$sentAt,
       l$weekStart,
-      l$items,
+      Object.hashAll(l$items.map((v) => v)),
       l$reaction,
       l$open,
       l$$__typename,
@@ -789,7 +569,7 @@ class QueryMyCardscardsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMyCardscardsCollectionedgesnode || runtimeType != other.runtimeType) {
+    if (other is! QueryMyCardscards || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -797,9 +577,9 @@ class QueryMyCardscardsCollectionedgesnode {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$isMine = isMine;
-    final lOther$isMine = other.isMine;
-    if (l$isMine != lOther$isMine) {
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
       return false;
     }
     final l$sentAt = sentAt;
@@ -814,8 +594,15 @@ class QueryMyCardscardsCollectionedgesnode {
     }
     final l$items = items;
     final lOther$items = other.items;
-    if (l$items != lOther$items) {
+    if (l$items.length != lOther$items.length) {
       return false;
+    }
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) {
+        return false;
+      }
     }
     final l$reaction = reaction;
     final lOther$reaction = other.reaction;
@@ -836,35 +623,23 @@ class QueryMyCardscardsCollectionedgesnode {
   }
 }
 
-class QueryMyCardscardsCollectionedgesnodeitems {
-  QueryMyCardscardsCollectionedgesnodeitems({
-    required this.edges,
-    this.$__typename = 'CardItemsConnection',
-  });
+class QueryMyCardscardsitems {
+  QueryMyCardscardsitems({required this.id, this.$__typename = 'cardItems'});
 
-  factory QueryMyCardscardsCollectionedgesnodeitems.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
+  factory QueryMyCardscardsitems.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return QueryMyCardscardsCollectionedgesnodeitems(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryMyCardscardsCollectionedgesnodeitemsedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
+    return QueryMyCardscardsitems(id: (l$id as String), $__typename: (l$$__typename as String));
   }
 
-  final List<QueryMyCardscardsCollectionedgesnodeitemsedges> edges;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -872,9 +647,9 @@ class QueryMyCardscardsCollectionedgesnodeitems {
 
   @override
   int get hashCode {
-    final l$edges = edges;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -882,79 +657,12 @@ class QueryMyCardscardsCollectionedgesnodeitems {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMyCardscardsCollectionedgesnodeitems || runtimeType != other.runtimeType) {
+    if (other is! QueryMyCardscardsitems || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMyCardscardsCollectionedgesnodeitemsedges {
-  QueryMyCardscardsCollectionedgesnodeitemsedges({
-    required this.node,
-    this.$__typename = 'CardItemsEdge',
-  });
-
-  factory QueryMyCardscardsCollectionedgesnodeitemsedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryMyCardscardsCollectionedgesnodeitemsedges(
-      node: QueryMyCardscardsCollectionedgesnodeitemsedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryMyCardscardsCollectionedgesnodeitemsedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMyCardscardsCollectionedgesnodeitemsedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -966,73 +674,14 @@ class QueryMyCardscardsCollectionedgesnodeitemsedges {
   }
 }
 
-class QueryMyCardscardsCollectionedgesnodeitemsedgesnode {
-  QueryMyCardscardsCollectionedgesnodeitemsedgesnode({this.slipId, this.$__typename = 'CardItems'});
+class QueryMyCardscardsreaction {
+  QueryMyCardscardsreaction({this.reaction, this.reply, this.$__typename = 'cardReactions'});
 
-  factory QueryMyCardscardsCollectionedgesnodeitemsedgesnode.fromJson(Map<String, dynamic> json) {
-    final l$slipId = json['slipId'];
-    final l$$__typename = json['__typename'];
-    return QueryMyCardscardsCollectionedgesnodeitemsedgesnode(
-      slipId: (l$slipId as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String? slipId;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$slipId = slipId;
-    _resultData['slipId'] = l$slipId;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$slipId = slipId;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$slipId, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryMyCardscardsCollectionedgesnodeitemsedgesnode ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$slipId = slipId;
-    final lOther$slipId = other.slipId;
-    if (l$slipId != lOther$slipId) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryMyCardscardsCollectionedgesnodereaction {
-  QueryMyCardscardsCollectionedgesnodereaction({
-    this.reaction,
-    this.reply,
-    this.$__typename = 'CardReactions',
-  });
-
-  factory QueryMyCardscardsCollectionedgesnodereaction.fromJson(Map<String, dynamic> json) {
+  factory QueryMyCardscardsreaction.fromJson(Map<String, dynamic> json) {
     final l$reaction = json['reaction'];
     final l$reply = json['reply'];
     final l$$__typename = json['__typename'];
-    return QueryMyCardscardsCollectionedgesnodereaction(
+    return QueryMyCardscardsreaction(
       reaction: (l$reaction as String?),
       reply: (l$reply as String?),
       $__typename: (l$$__typename as String),
@@ -1069,8 +718,7 @@ class QueryMyCardscardsCollectionedgesnodereaction {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMyCardscardsCollectionedgesnodereaction ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryMyCardscardsreaction || runtimeType != other.runtimeType) {
       return false;
     }
     final l$reaction = reaction;
@@ -1092,16 +740,13 @@ class QueryMyCardscardsCollectionedgesnodereaction {
   }
 }
 
-class QueryMyCardscardsCollectionedgesnodeopen {
-  QueryMyCardscardsCollectionedgesnodeopen({
-    required this.openedAt,
-    this.$__typename = 'CardOpens',
-  });
+class QueryMyCardscardsopen {
+  QueryMyCardscardsopen({required this.openedAt, this.$__typename = 'cardOpens'});
 
-  factory QueryMyCardscardsCollectionedgesnodeopen.fromJson(Map<String, dynamic> json) {
+  factory QueryMyCardscardsopen.fromJson(Map<String, dynamic> json) {
     final l$openedAt = json['openedAt'];
     final l$$__typename = json['__typename'];
-    return QueryMyCardscardsCollectionedgesnodeopen(
+    return QueryMyCardscardsopen(
       openedAt: DateTime.parse((l$openedAt as String)),
       $__typename: (l$$__typename as String),
     );
@@ -1132,7 +777,7 @@ class QueryMyCardscardsCollectionedgesnodeopen {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMyCardscardsCollectionedgesnodeopen || runtimeType != other.runtimeType) {
+    if (other is! QueryMyCardscardsopen || runtimeType != other.runtimeType) {
       return false;
     }
     final l$openedAt = openedAt;

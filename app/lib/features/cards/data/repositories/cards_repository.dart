@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/cards/data/data_sources/remote/cards_data_source.dart';
 import 'package:app/features/cards/data/mappers/card_mapper.dart';
 import 'package:app/features/cards/data/models/card_detail.dart';
@@ -14,6 +15,7 @@ const int cardPageSize = 20;
 
 class CardsRepository({
   required final CardsDataSource _dataSource,
+  required final AuthenticationRepository _authenticationRepository,
   final WidgetsRepository? _widgetsRepository,
 }) {
   final Logger _logger = Logger('CardsRepository');
@@ -21,11 +23,6 @@ class CardsRepository({
   /// This week's card, creating the draft from the week's slips when there is none yet.
   Future<SundayCard> getDraft() async {
     try {
-      final card = (await _dataSource.prepareCard()).toModel();
-      if (card.items.isNotEmpty || !card.isDraft) return card;
-
-      // The call that creates the draft answers before its items are readable; asking again
-      // returns them.
       return (await _dataSource.prepareCard()).toModel();
     } catch (e, stack) {
       _logger.error('Failed to load the card draft', error: e, stackTrace: stack);
@@ -34,25 +31,26 @@ class CardsRepository({
   }
 
   /// One page of the sent and received cards, newest first.
-  Future<CardSummaryPage> getHistory({String? after}) async {
+  Future<CardSummaryPage> getHistory({int offset = 0}) async {
     try {
-      final result = await _dataSource.getCards(first: cardPageSize, after: after);
+      final rows = await _dataSource.getCards(limit: cardPageSize, offset: offset);
+      final userId = _authenticationRepository.currentUserId;
 
       return CardSummaryPage(
         items: [
-          for (final edge in result.edges)
+          for (final row in rows)
             CardSummary(
-              id: edge.node.id,
-              isMine: edge.node.isMine ?? false,
-              sentAt: edge.node.sentAt ?? edge.node.weekStart,
-              itemCount: edge.node.items?.edges.length ?? 0,
-              reaction: edge.node.reaction?.reaction,
-              hasReply: (edge.node.reaction?.reply ?? '').isNotEmpty,
-              isOpened: edge.node.open != null,
+              id: row.id,
+              isMine: row.authorId == userId,
+              sentAt: row.sentAt ?? row.weekStart,
+              itemCount: row.items.length,
+              reaction: row.reaction?.reaction,
+              hasReply: (row.reaction?.reply ?? '').isNotEmpty,
+              isOpened: row.open != null,
             ),
         ],
-        hasNext: result.pageInfo.hasNextPage,
-        cursor: result.pageInfo.endCursor,
+        hasNext: rows.length == cardPageSize,
+        offset: offset + rows.length,
       );
     } catch (e, stack) {
       _logger.error('Failed to load the card history', error: e, stackTrace: stack);
@@ -68,8 +66,8 @@ class CardsRepository({
 
       return CardDetail(
         card: node.toModel(),
-        isMine: node.isMine ?? false,
-        authorName: node.author?.displayName,
+        isMine: node.authorId == _authenticationRepository.currentUserId,
+        authorName: node.author.displayName,
         recipientName: node.recipient?.displayName,
         reaction: node.reaction?.reaction,
         reply: node.reaction?.reply,
@@ -103,8 +101,8 @@ class CardsRepository({
     }
   }
 
-  /// Sends the card to the connected partner. Sending a card that was already sent is safe:
-  /// the server rejects it and the caller reads the card again.
+  /// Sends the card to the connected partner. A card that cannot go any more answers with a
+  /// failure, and the caller reads the card again.
   Future<SundayCard> send(String cardId) async {
     try {
       final model = (await _dataSource.sendCard(cardId)).toModel();
@@ -128,13 +126,17 @@ class CardsRepository({
     }
   }
 
-  /// Saves which slips the card holds, in order, and its closing note.
-  Future<SundayCard> saveDraft(SundayCard card) async {
+  /// Saves the card's closing note, the order of its items and the items taken off it.
+  Future<SundayCard> saveDraft(SundayCard card, {List<String> removedItemIds = const []}) async {
     try {
       return (await _dataSource.updateDraft(
         cardId: card.id,
-        slipIds: [for (final item in card.items) item.slipId],
         note: card.note,
+        items: [
+          for (var index = 0; index < card.items.length; index++)
+            (id: card.items[index].id, position: index),
+        ],
+        removedItemIds: removedItemIds,
       )).toModel();
     } catch (e, stack) {
       _logger.error('Failed to save the card draft', error: e, stackTrace: stack);

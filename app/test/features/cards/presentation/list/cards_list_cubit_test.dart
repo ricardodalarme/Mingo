@@ -21,8 +21,8 @@ void main() {
 
   CardsListCubit build() => CardsListCubit(cardsRepository: cards);
 
-  void stub(CardSummaryPage page, {String? after}) =>
-      when(() => cards.getHistory(after: after)).thenAnswer((_) async => page);
+  void stub(CardSummaryPage page, {int offset = 0}) =>
+      when(() => cards.getHistory(offset: offset)).thenAnswer((_) async => page);
 
   test('load shows sent and received cards in the order the server gave', () async {
     stub(CardSummaryPage(items: [_card('a'), _card('b', mine: false)], hasNext: false));
@@ -45,21 +45,22 @@ void main() {
   });
 
   test('loadMore appends the next page without duplicates', () async {
-    stub(CardSummaryPage(items: [_card('a')], hasNext: true, cursor: 'c1'));
+    stub(CardSummaryPage(items: [_card('a')], hasNext: true, offset: 1));
     final cubit = build();
     await cubit.load();
 
-    stub(CardSummaryPage(items: [_card('a'), _card('b')], hasNext: false), after: 'c1');
+    stub(CardSummaryPage(items: [_card('a'), _card('b')], hasNext: false, offset: 3), offset: 1);
     await cubit.loadMore();
 
     expect((cubit.state.cards as Success<List<CardSummary>>).value.map((card) => card.id), [
       'a',
       'b',
     ]);
+    expect(cubit.state.offset, 3);
   });
 
   test('a failed first load shows a failure', () async {
-    when(() => cards.getHistory(after: any(named: 'after')))
+    when(() => cards.getHistory(offset: any(named: 'offset')))
         .thenAnswer((_) async => throw Exception());
     final cubit = build();
 
@@ -73,7 +74,7 @@ void main() {
     final cubit = build();
     await cubit.load();
 
-    when(() => cards.getHistory(after: any(named: 'after')))
+    when(() => cards.getHistory(offset: any(named: 'offset')))
         .thenAnswer((_) async => throw Exception());
     await cubit.load();
 
@@ -81,12 +82,12 @@ void main() {
   });
 
   test('a refresh discards a page that was already in flight', () async {
-    stub(CardSummaryPage(items: [_card('a')], hasNext: true, cursor: 'c1'));
+    stub(CardSummaryPage(items: [_card('a')], hasNext: true, offset: 1));
     final cubit = build();
     await cubit.load();
 
     final page = Completer<CardSummaryPage>();
-    when(() => cards.getHistory(after: 'c1')).thenAnswer((_) => page.future);
+    when(() => cards.getHistory(offset: 1)).thenAnswer((_) => page.future);
     final more = cubit.loadMore();
 
     stub(CardSummaryPage(items: [_card('fresh')], hasNext: false));

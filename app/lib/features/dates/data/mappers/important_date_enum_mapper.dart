@@ -1,35 +1,35 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/dates/data/models/important_date_kind.dart';
 
-extension EnumImportantDateKindMapper on EnumImportantDateKind {
+extension EnumImportantDateKindMapper on EnumImportantDateKind_enum {
   ImportantDateKind toModel() => switch (this) {
-    EnumImportantDateKind.relationship => ImportantDateKind.relationship,
-    EnumImportantDateKind.birthday => ImportantDateKind.birthday,
-    EnumImportantDateKind.first => ImportantDateKind.first,
-    EnumImportantDateKind.holiday => ImportantDateKind.holiday,
-    EnumImportantDateKind.trip => ImportantDateKind.trip,
-    EnumImportantDateKind.reunion => ImportantDateKind.reunion,
-    EnumImportantDateKind.custom => ImportantDateKind.custom,
-    EnumImportantDateKind.$unknown => ImportantDateKind.custom,
+    EnumImportantDateKind_enum.relationship => ImportantDateKind.relationship,
+    EnumImportantDateKind_enum.birthday => ImportantDateKind.birthday,
+    EnumImportantDateKind_enum.first => ImportantDateKind.first,
+    EnumImportantDateKind_enum.holiday => ImportantDateKind.holiday,
+    EnumImportantDateKind_enum.trip => ImportantDateKind.trip,
+    EnumImportantDateKind_enum.reunion => ImportantDateKind.reunion,
+    EnumImportantDateKind_enum.custom => ImportantDateKind.custom,
+    EnumImportantDateKind_enum.$unknown => ImportantDateKind.custom,
   };
 }
 
 extension ImportantDateKindMapper on ImportantDateKind {
-  EnumImportantDateKind toRemote() => switch (this) {
-    ImportantDateKind.relationship => EnumImportantDateKind.relationship,
-    ImportantDateKind.birthday => EnumImportantDateKind.birthday,
-    ImportantDateKind.first => EnumImportantDateKind.first,
-    ImportantDateKind.holiday => EnumImportantDateKind.holiday,
-    ImportantDateKind.trip => EnumImportantDateKind.trip,
-    ImportantDateKind.reunion => EnumImportantDateKind.reunion,
-    ImportantDateKind.custom => EnumImportantDateKind.custom,
+  EnumImportantDateKind_enum toRemote() => switch (this) {
+    ImportantDateKind.relationship => EnumImportantDateKind_enum.relationship,
+    ImportantDateKind.birthday => EnumImportantDateKind_enum.birthday,
+    ImportantDateKind.first => EnumImportantDateKind_enum.first,
+    ImportantDateKind.holiday => EnumImportantDateKind_enum.holiday,
+    ImportantDateKind.trip => EnumImportantDateKind_enum.trip,
+    ImportantDateKind.reunion => EnumImportantDateKind_enum.reunion,
+    ImportantDateKind.custom => EnumImportantDateKind_enum.custom,
   };
 }
 
 extension ImportantDateOriginMapper on ImportantDateOrigin {
-  EnumImportantDateOrigin toRemote() => switch (this) {
-    ImportantDateOrigin.manual => EnumImportantDateOrigin.manual,
-    ImportantDateOrigin.auto => EnumImportantDateOrigin.auto,
-    ImportantDateOrigin.chat => EnumImportantDateOrigin.chat,
+  EnumImportantDateOrigin_enum toRemote() => switch (this) {
+    ImportantDateOrigin.manual => EnumImportantDateOrigin_enum.manual,
+    ImportantDateOrigin.auto => EnumImportantDateOrigin_enum.auto,
+    ImportantDateOrigin.chat => EnumImportantDateOrigin_enum.chat,
   };
 }

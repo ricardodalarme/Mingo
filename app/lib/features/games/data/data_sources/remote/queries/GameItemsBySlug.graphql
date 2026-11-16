@@ -1,19 +1,15 @@
-query GameItemsBySlug($kind: ContentKind!, $locale: String!, $slugs: [String!]!) {
-  contentItemsCollection(
-    first: 60
-    filter: {
-      kind: { eq: $kind }
-      locale: { eq: $locale }
-      slug: { in: $slugs }
-      published: { eq: true }
+query GameItemsBySlug($kind: ContentKind_enum!, $locale: String!, $slugs: [String!]!) {
+  contentItems(
+    limit: 60
+    where: {
+      kind: { _eq: $kind }
+      locale: { _eq: $locale }
+      slug: { _in: $slugs }
+      published: { _eq: true }
     }
   ) {
-    edges {
-      node {
-        slug
-        title
-        body
-      }
-    }
+    slug
+    title
+    body
   }
 }

@@ -5,26 +5,26 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesQueryChatStatus {
-  factory VariablesQueryChatStatus({required String profileId}) =>
-      VariablesQueryChatStatus._({r'profileId': profileId});
+  factory VariablesQueryChatStatus({required String userId}) =>
+      VariablesQueryChatStatus._({r'userId': userId});
 
   VariablesQueryChatStatus._(this._$data);
 
   factory VariablesQueryChatStatus.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$profileId = data['profileId'];
-    result$data['profileId'] = (l$profileId as String);
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
     return VariablesQueryChatStatus._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String get profileId => (_$data['profileId'] as String);
+  String get userId => (_$data['userId'] as String);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$profileId = profileId;
-    result$data['profileId'] = l$profileId;
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
     return result$data;
   }
 
@@ -36,9 +36,9 @@ class VariablesQueryChatStatus {
     if (other is! VariablesQueryChatStatus || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$profileId = profileId;
-    final lOther$profileId = other.profileId;
-    if (l$profileId != lOther$profileId) {
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
       return false;
     }
     return true;
@@ -46,63 +46,63 @@ class VariablesQueryChatStatus {
 
   @override
   int get hashCode {
-    final l$profileId = profileId;
-    return Object.hashAll([l$profileId]);
+    final l$userId = userId;
+    return Object.hashAll([l$userId]);
   }
 }
 
 class QueryChatStatus {
   QueryChatStatus({
-    this.chatMessagesLeft,
+    required this.plusStates,
     this.plusLimit,
     this.freeLimit,
-    this.profileSettingsByPk,
-    this.$__typename = 'Query',
+    this.userSettingsByPk,
+    this.$__typename = 'query_root',
   });
 
   factory QueryChatStatus.fromJson(Map<String, dynamic> json) {
-    final l$chatMessagesLeft = json['chatMessagesLeft'];
+    final l$plusStates = json['plusStates'];
     final l$plusLimit = json['plusLimit'];
     final l$freeLimit = json['freeLimit'];
-    final l$profileSettingsByPk = json['profileSettingsByPk'];
+    final l$userSettingsByPk = json['userSettingsByPk'];
     final l$$__typename = json['__typename'];
     return QueryChatStatus(
-      chatMessagesLeft: (l$chatMessagesLeft as int?),
+      plusStates: (l$plusStates as List<dynamic>)
+          .map((e) => QueryChatStatusplusStates.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       plusLimit: l$plusLimit == null
           ? null
           : QueryChatStatusplusLimit.fromJson((l$plusLimit as Map<String, dynamic>)),
       freeLimit: l$freeLimit == null
           ? null
           : QueryChatStatusfreeLimit.fromJson((l$freeLimit as Map<String, dynamic>)),
-      profileSettingsByPk: l$profileSettingsByPk == null
+      userSettingsByPk: l$userSettingsByPk == null
           ? null
-          : QueryChatStatusprofileSettingsByPk.fromJson(
-              (l$profileSettingsByPk as Map<String, dynamic>),
-            ),
+          : QueryChatStatususerSettingsByPk.fromJson((l$userSettingsByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int? chatMessagesLeft;
+  final List<QueryChatStatusplusStates> plusStates;
 
   final QueryChatStatusplusLimit? plusLimit;
 
   final QueryChatStatusfreeLimit? freeLimit;
 
-  final QueryChatStatusprofileSettingsByPk? profileSettingsByPk;
+  final QueryChatStatususerSettingsByPk? userSettingsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$chatMessagesLeft = chatMessagesLeft;
-    _resultData['chatMessagesLeft'] = l$chatMessagesLeft;
+    final l$plusStates = plusStates;
+    _resultData['plusStates'] = l$plusStates.map((e) => e.toJson()).toList();
     final l$plusLimit = plusLimit;
     _resultData['plusLimit'] = l$plusLimit?.toJson();
     final l$freeLimit = freeLimit;
     _resultData['freeLimit'] = l$freeLimit?.toJson();
-    final l$profileSettingsByPk = profileSettingsByPk;
-    _resultData['profileSettingsByPk'] = l$profileSettingsByPk?.toJson();
+    final l$userSettingsByPk = userSettingsByPk;
+    _resultData['userSettingsByPk'] = l$userSettingsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -110,16 +110,16 @@ class QueryChatStatus {
 
   @override
   int get hashCode {
-    final l$chatMessagesLeft = chatMessagesLeft;
+    final l$plusStates = plusStates;
     final l$plusLimit = plusLimit;
     final l$freeLimit = freeLimit;
-    final l$profileSettingsByPk = profileSettingsByPk;
+    final l$userSettingsByPk = userSettingsByPk;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$chatMessagesLeft,
+      Object.hashAll(l$plusStates.map((v) => v)),
       l$plusLimit,
       l$freeLimit,
-      l$profileSettingsByPk,
+      l$userSettingsByPk,
       l$$__typename,
     ]);
   }
@@ -132,10 +132,17 @@ class QueryChatStatus {
     if (other is! QueryChatStatus || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$chatMessagesLeft = chatMessagesLeft;
-    final lOther$chatMessagesLeft = other.chatMessagesLeft;
-    if (l$chatMessagesLeft != lOther$chatMessagesLeft) {
+    final l$plusStates = plusStates;
+    final lOther$plusStates = other.plusStates;
+    if (l$plusStates.length != lOther$plusStates.length) {
       return false;
+    }
+    for (int i = 0; i < l$plusStates.length; i++) {
+      final l$plusStates$entry = l$plusStates[i];
+      final lOther$plusStates$entry = lOther$plusStates[i];
+      if (l$plusStates$entry != lOther$plusStates$entry) {
+        return false;
+      }
     }
     final l$plusLimit = plusLimit;
     final lOther$plusLimit = other.plusLimit;
@@ -147,9 +154,9 @@ class QueryChatStatus {
     if (l$freeLimit != lOther$freeLimit) {
       return false;
     }
-    final l$profileSettingsByPk = profileSettingsByPk;
-    final lOther$profileSettingsByPk = other.profileSettingsByPk;
-    if (l$profileSettingsByPk != lOther$profileSettingsByPk) {
+    final l$userSettingsByPk = userSettingsByPk;
+    final lOther$userSettingsByPk = other.userSettingsByPk;
+    if (l$userSettingsByPk != lOther$userSettingsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -168,8 +175,8 @@ const documentNodeQueryChatStatus = DocumentNode(
       name: NameNode(value: 'ChatStatus'),
       variableDefinitions: [
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'profileId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          variable: VariableNode(name: NameNode(value: 'userId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -178,11 +185,51 @@ const documentNodeQueryChatStatus = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'chatMessagesLeft'),
+            name: NameNode(value: 'plusStates'),
             alias: null,
-            arguments: [],
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'where'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'userId'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_eq'),
+                            value: VariableNode(name: NameNode(value: 'userId')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '1'),
+              ),
+            ],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'chatMessagesLeftToday'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
           ),
           FieldNode(
             name: NameNode(value: 'appConfigByPk'),
@@ -243,19 +290,19 @@ const documentNodeQueryChatStatus = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'profileSettingsByPk'),
+            name: NameNode(value: 'userSettingsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'profileId'),
-                value: VariableNode(name: NameNode(value: 'profileId')),
+                name: NameNode(value: 'userId'),
+                value: VariableNode(name: NameNode(value: 'userId')),
               ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'profileId'),
+                  name: NameNode(value: 'userId'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -418,8 +465,62 @@ extension ClientExtensionQueryChatStatus on graphql.GraphQLClient {
   }
 }
 
+class QueryChatStatusplusStates {
+  QueryChatStatusplusStates({this.chatMessagesLeftToday, this.$__typename = 'plusStates'});
+
+  factory QueryChatStatusplusStates.fromJson(Map<String, dynamic> json) {
+    final l$chatMessagesLeftToday = json['chatMessagesLeftToday'];
+    final l$$__typename = json['__typename'];
+    return QueryChatStatusplusStates(
+      chatMessagesLeftToday: (l$chatMessagesLeftToday as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? chatMessagesLeftToday;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$chatMessagesLeftToday = chatMessagesLeftToday;
+    _resultData['chatMessagesLeftToday'] = l$chatMessagesLeftToday;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$chatMessagesLeftToday = chatMessagesLeftToday;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$chatMessagesLeftToday, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryChatStatusplusStates || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$chatMessagesLeftToday = chatMessagesLeftToday;
+    final lOther$chatMessagesLeftToday = other.chatMessagesLeftToday;
+    if (l$chatMessagesLeftToday != lOther$chatMessagesLeftToday) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
 class QueryChatStatusplusLimit {
-  QueryChatStatusplusLimit({required this.value, this.$__typename = 'AppConfig'});
+  QueryChatStatusplusLimit({required this.value, this.$__typename = 'appConfig'});
 
   factory QueryChatStatusplusLimit.fromJson(Map<String, dynamic> json) {
     final l$value = json['value'];
@@ -473,7 +574,7 @@ class QueryChatStatusplusLimit {
 }
 
 class QueryChatStatusfreeLimit {
-  QueryChatStatusfreeLimit({required this.value, this.$__typename = 'AppConfig'});
+  QueryChatStatusfreeLimit({required this.value, this.$__typename = 'appConfig'});
 
   factory QueryChatStatusfreeLimit.fromJson(Map<String, dynamic> json) {
     final l$value = json['value'];
@@ -526,25 +627,25 @@ class QueryChatStatusfreeLimit {
   }
 }
 
-class QueryChatStatusprofileSettingsByPk {
-  QueryChatStatusprofileSettingsByPk({
-    required this.profileId,
+class QueryChatStatususerSettingsByPk {
+  QueryChatStatususerSettingsByPk({
+    required this.userId,
     required this.chatEnabled,
-    this.$__typename = 'ProfileSettings',
+    this.$__typename = 'userSettings',
   });
 
-  factory QueryChatStatusprofileSettingsByPk.fromJson(Map<String, dynamic> json) {
-    final l$profileId = json['profileId'];
+  factory QueryChatStatususerSettingsByPk.fromJson(Map<String, dynamic> json) {
+    final l$userId = json['userId'];
     final l$chatEnabled = json['chatEnabled'];
     final l$$__typename = json['__typename'];
-    return QueryChatStatusprofileSettingsByPk(
-      profileId: (l$profileId as String),
+    return QueryChatStatususerSettingsByPk(
+      userId: (l$userId as String),
       chatEnabled: (l$chatEnabled as bool),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String profileId;
+  final String userId;
 
   final bool chatEnabled;
 
@@ -552,8 +653,8 @@ class QueryChatStatusprofileSettingsByPk {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$profileId = profileId;
-    _resultData['profileId'] = l$profileId;
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
     final l$chatEnabled = chatEnabled;
     _resultData['chatEnabled'] = l$chatEnabled;
     final l$$__typename = $__typename;
@@ -563,10 +664,10 @@ class QueryChatStatusprofileSettingsByPk {
 
   @override
   int get hashCode {
-    final l$profileId = profileId;
+    final l$userId = userId;
     final l$chatEnabled = chatEnabled;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$profileId, l$chatEnabled, l$$__typename]);
+    return Object.hashAll([l$userId, l$chatEnabled, l$$__typename]);
   }
 
   @override
@@ -574,12 +675,12 @@ class QueryChatStatusprofileSettingsByPk {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryChatStatusprofileSettingsByPk || runtimeType != other.runtimeType) {
+    if (other is! QueryChatStatususerSettingsByPk || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$profileId = profileId;
-    final lOther$profileId = other.profileId;
-    if (l$profileId != lOther$profileId) {
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
       return false;
     }
     final l$chatEnabled = chatEnabled;

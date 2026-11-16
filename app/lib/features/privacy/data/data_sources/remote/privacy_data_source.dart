@@ -5,17 +5,16 @@ import 'package:network/network.dart';
 
 class PrivacyDataSource({required final GQLClient _client}) {
   /// Every consent row, newest first.
-  Future<List<QueryMyConsentsconsentsCollectionedgesnode>> getConsents() async {
+  Future<List<QueryMyConsentsconsents>> getConsents() async {
     final response = await _client.query(
       OptionsQueryMyConsents(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final data = validateResponseData(response, getData: (data) => data.consentsCollection);
 
-    return [for (final edge in data.edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.consents);
   }
 
   Future<void> grant({
-    required EnumConsentKind kind,
+    required EnumConsentKind_enum kind,
     required bool granted,
     required String version,
   }) async {

@@ -124,30 +124,29 @@ class VariablesMutationAddSharedDate {
 }
 
 class MutationAddSharedDate {
-  MutationAddSharedDate({this.insertIntoImportantDatesCollection, this.$__typename = 'Mutation'});
+  MutationAddSharedDate({this.insertImportantDatesOne, this.$__typename = 'mutation_root'});
 
   factory MutationAddSharedDate.fromJson(Map<String, dynamic> json) {
-    final l$insertIntoImportantDatesCollection = json['insertIntoImportantDatesCollection'];
+    final l$insertImportantDatesOne = json['insertImportantDatesOne'];
     final l$$__typename = json['__typename'];
     return MutationAddSharedDate(
-      insertIntoImportantDatesCollection: l$insertIntoImportantDatesCollection == null
+      insertImportantDatesOne: l$insertImportantDatesOne == null
           ? null
-          : MutationAddSharedDateinsertIntoImportantDatesCollection.fromJson(
-              (l$insertIntoImportantDatesCollection as Map<String, dynamic>),
+          : MutationAddSharedDateinsertImportantDatesOne.fromJson(
+              (l$insertImportantDatesOne as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationAddSharedDateinsertIntoImportantDatesCollection? insertIntoImportantDatesCollection;
+  final MutationAddSharedDateinsertImportantDatesOne? insertImportantDatesOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$insertIntoImportantDatesCollection = insertIntoImportantDatesCollection;
-    _resultData['insertIntoImportantDatesCollection'] = l$insertIntoImportantDatesCollection
-        ?.toJson();
+    final l$insertImportantDatesOne = insertImportantDatesOne;
+    _resultData['insertImportantDatesOne'] = l$insertImportantDatesOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -155,9 +154,9 @@ class MutationAddSharedDate {
 
   @override
   int get hashCode {
-    final l$insertIntoImportantDatesCollection = insertIntoImportantDatesCollection;
+    final l$insertImportantDatesOne = insertImportantDatesOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$insertIntoImportantDatesCollection, l$$__typename]);
+    return Object.hashAll([l$insertImportantDatesOne, l$$__typename]);
   }
 
   @override
@@ -168,9 +167,9 @@ class MutationAddSharedDate {
     if (other is! MutationAddSharedDate || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$insertIntoImportantDatesCollection = insertIntoImportantDatesCollection;
-    final lOther$insertIntoImportantDatesCollection = other.insertIntoImportantDatesCollection;
-    if (l$insertIntoImportantDatesCollection != lOther$insertIntoImportantDatesCollection) {
+    final l$insertImportantDatesOne = insertImportantDatesOne;
+    final lOther$insertImportantDatesOne = other.insertImportantDatesOne;
+    if (l$insertImportantDatesOne != lOther$insertImportantDatesOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -196,25 +195,25 @@ const documentNodeMutationAddSharedDate = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'month')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'day')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'year')),
-          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -223,48 +222,44 @@ const documentNodeMutationAddSharedDate = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'insertIntoImportantDatesCollection'),
+            name: NameNode(value: 'insertImportantDatesOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'title'),
-                          value: VariableNode(name: NameNode(value: 'title')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'kind'),
-                          value: EnumValueNode(name: NameNode(value: 'custom')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'month'),
-                          value: VariableNode(name: NameNode(value: 'month')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'day'),
-                          value: VariableNode(name: NameNode(value: 'day')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'year'),
-                          value: VariableNode(name: NameNode(value: 'year')),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'yearly'),
-                          value: BooleanValueNode(value: false),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'remindDays'),
-                          value: ListValueNode(values: [IntValueNode(value: '1')]),
-                        ),
-                        ObjectFieldNode(
-                          name: NameNode(value: 'coupleId'),
-                          value: VariableNode(name: NameNode(value: 'coupleId')),
-                        ),
-                      ],
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'title'),
+                      value: VariableNode(name: NameNode(value: 'title')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: EnumValueNode(name: NameNode(value: 'custom')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'month'),
+                      value: VariableNode(name: NameNode(value: 'month')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'day'),
+                      value: VariableNode(name: NameNode(value: 'day')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'year'),
+                      value: VariableNode(name: NameNode(value: 'year')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'yearly'),
+                      value: BooleanValueNode(value: false),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'remindDays'),
+                      value: ListValueNode(values: [IntValueNode(value: '1')]),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'coupleId'),
+                      value: VariableNode(name: NameNode(value: 'coupleId')),
                     ),
                   ],
                 ),
@@ -274,7 +269,7 @@ const documentNodeMutationAddSharedDate = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -393,31 +388,29 @@ extension ClientExtensionMutationAddSharedDate on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationAddSharedDateinsertIntoImportantDatesCollection {
-  MutationAddSharedDateinsertIntoImportantDatesCollection({
-    required this.affectedCount,
-    this.$__typename = 'ImportantDatesInsertResponse',
+class MutationAddSharedDateinsertImportantDatesOne {
+  MutationAddSharedDateinsertImportantDatesOne({
+    required this.id,
+    this.$__typename = 'importantDates',
   });
 
-  factory MutationAddSharedDateinsertIntoImportantDatesCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationAddSharedDateinsertImportantDatesOne.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationAddSharedDateinsertIntoImportantDatesCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationAddSharedDateinsertImportantDatesOne(
+      id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final String id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -425,9 +418,9 @@ class MutationAddSharedDateinsertIntoImportantDatesCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$id = id;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$id, l$$__typename]);
   }
 
   @override
@@ -435,13 +428,13 @@ class MutationAddSharedDateinsertIntoImportantDatesCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationAddSharedDateinsertIntoImportantDatesCollection ||
+    if (other is! MutationAddSharedDateinsertImportantDatesOne ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;

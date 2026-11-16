@@ -1,7 +1,5 @@
-mutation SetListItemStatus($id: UUID!, $status: ListItemStatus!) {
-  updateListItemsCollection(set: { status: $status }, filter: { id: { eq: $id } }, atMost: 1) {
-    records {
-      ...ListItemFragment
-    }
+mutation SetListItemStatus($id: uuid!, $status: ListItemStatus_enum!) {
+  updateListItemsByPk(pk_columns: { id: $id }, _set: { status: $status }) {
+    ...ListItemFragment
   }
 }

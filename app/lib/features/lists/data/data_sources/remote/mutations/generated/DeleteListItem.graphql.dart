@@ -52,30 +52,29 @@ class VariablesMutationDeleteListItem {
 }
 
 class MutationDeleteListItem {
-  MutationDeleteListItem({
-    required this.deleteFromListItemsCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationDeleteListItem({this.deleteListItems, this.$__typename = 'mutation_root'});
 
   factory MutationDeleteListItem.fromJson(Map<String, dynamic> json) {
-    final l$deleteFromListItemsCollection = json['deleteFromListItemsCollection'];
+    final l$deleteListItems = json['deleteListItems'];
     final l$$__typename = json['__typename'];
     return MutationDeleteListItem(
-      deleteFromListItemsCollection: MutationDeleteListItemdeleteFromListItemsCollection.fromJson(
-        (l$deleteFromListItemsCollection as Map<String, dynamic>),
-      ),
+      deleteListItems: l$deleteListItems == null
+          ? null
+          : MutationDeleteListItemdeleteListItems.fromJson(
+              (l$deleteListItems as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationDeleteListItemdeleteFromListItemsCollection deleteFromListItemsCollection;
+  final MutationDeleteListItemdeleteListItems? deleteListItems;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$deleteFromListItemsCollection = deleteFromListItemsCollection;
-    _resultData['deleteFromListItemsCollection'] = l$deleteFromListItemsCollection.toJson();
+    final l$deleteListItems = deleteListItems;
+    _resultData['deleteListItems'] = l$deleteListItems?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -83,9 +82,9 @@ class MutationDeleteListItem {
 
   @override
   int get hashCode {
-    final l$deleteFromListItemsCollection = deleteFromListItemsCollection;
+    final l$deleteListItems = deleteListItems;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$deleteFromListItemsCollection, l$$__typename]);
+    return Object.hashAll([l$deleteListItems, l$$__typename]);
   }
 
   @override
@@ -96,9 +95,9 @@ class MutationDeleteListItem {
     if (other is! MutationDeleteListItem || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$deleteFromListItemsCollection = deleteFromListItemsCollection;
-    final lOther$deleteFromListItemsCollection = other.deleteFromListItemsCollection;
-    if (l$deleteFromListItemsCollection != lOther$deleteFromListItemsCollection) {
+    final l$deleteListItems = deleteListItems;
+    final lOther$deleteListItems = other.deleteListItems;
+    if (l$deleteListItems != lOther$deleteListItems) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -118,7 +117,7 @@ const documentNodeMutationDeleteListItem = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -127,11 +126,11 @@ const documentNodeMutationDeleteListItem = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'deleteFromListItemsCollection'),
+            name: NameNode(value: 'deleteListItems'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -139,7 +138,7 @@ const documentNodeMutationDeleteListItem = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'id')),
                           ),
                         ],
@@ -148,16 +147,12 @@ const documentNodeMutationDeleteListItem = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affectedCount'),
+                  name: NameNode(value: 'affected_rows'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -276,29 +271,29 @@ extension ClientExtensionMutationDeleteListItem on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationDeleteListItemdeleteFromListItemsCollection {
-  MutationDeleteListItemdeleteFromListItemsCollection({
-    required this.affectedCount,
-    this.$__typename = 'ListItemsDeleteResponse',
+class MutationDeleteListItemdeleteListItems {
+  MutationDeleteListItemdeleteListItems({
+    required this.affected_rows,
+    this.$__typename = 'listItems_mutation_response',
   });
 
-  factory MutationDeleteListItemdeleteFromListItemsCollection.fromJson(Map<String, dynamic> json) {
-    final l$affectedCount = json['affectedCount'];
+  factory MutationDeleteListItemdeleteListItems.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationDeleteListItemdeleteFromListItemsCollection(
-      affectedCount: (l$affectedCount as int),
+    return MutationDeleteListItemdeleteListItems(
+      affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affectedCount;
+  final int affected_rows;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affectedCount = affectedCount;
-    _resultData['affectedCount'] = l$affectedCount;
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -306,9 +301,9 @@ class MutationDeleteListItemdeleteFromListItemsCollection {
 
   @override
   int get hashCode {
-    final l$affectedCount = affectedCount;
+    final l$affected_rows = affected_rows;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affectedCount, l$$__typename]);
+    return Object.hashAll([l$affected_rows, l$$__typename]);
   }
 
   @override
@@ -316,13 +311,12 @@ class MutationDeleteListItemdeleteFromListItemsCollection {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationDeleteListItemdeleteFromListItemsCollection ||
-        runtimeType != other.runtimeType) {
+    if (other is! MutationDeleteListItemdeleteListItems || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affectedCount = affectedCount;
-    final lOther$affectedCount = other.affectedCount;
-    if (l$affectedCount != lOther$affectedCount) {
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
       return false;
     }
     final l$$__typename = $__typename;

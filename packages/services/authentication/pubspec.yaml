@@ -9,7 +9,9 @@ dependencies:
   equatable: ^2.1.0
   flutter:
     sdk: flutter
-  supabase_flutter: ^2.18.3
+  http: ^1.6.0
+  secure_storage_service:
+    path: ../secure_storage
 
 dev_dependencies:
   flutter_test:

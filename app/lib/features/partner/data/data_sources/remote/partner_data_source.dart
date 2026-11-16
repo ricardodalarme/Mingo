@@ -5,23 +5,19 @@ import 'package:app/features/partner/data/data_sources/remote/queries/generated/
 import 'package:network/network.dart';
 
 class PartnerDataSource({required final GQLClient _client}) {
-  Future<List<QueryPartnerFactspartnerFactsCollectionedgesnode>> getFacts() async {
+  Future<List<QueryPartnerFactspartnerFacts>> getFacts() async {
     final response = await _client.query(
       OptionsQueryPartnerFacts(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final edges = validateResponseData(
-      response,
-      getData: (data) => data.partnerFactsCollection.edges,
-    );
 
-    return [for (final edge in edges) edge.node];
+    return validateResponseData(response, getData: (data) => data.partnerFacts);
   }
 
   Future<void> addFact({
     required String id,
     required String label,
     required String value,
-    EnumPartnerFactCategory? category,
+    EnumPartnerFactCategory_enum? category,
   }) async {
     final response = await _client.mutate(
       OptionsMutationAddPartnerFact(

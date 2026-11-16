@@ -1,3 +1,5 @@
 mutation Unpair {
-  unpair
+  unpair {
+    id
+  }
 }

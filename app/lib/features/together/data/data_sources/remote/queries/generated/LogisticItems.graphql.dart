@@ -5,27 +5,27 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class QueryLogisticItems {
-  QueryLogisticItems({required this.logisticItemsCollection, this.$__typename = 'Query'});
+  QueryLogisticItems({required this.logisticItems, this.$__typename = 'query_root'});
 
   factory QueryLogisticItems.fromJson(Map<String, dynamic> json) {
-    final l$logisticItemsCollection = json['logisticItemsCollection'];
+    final l$logisticItems = json['logisticItems'];
     final l$$__typename = json['__typename'];
     return QueryLogisticItems(
-      logisticItemsCollection: QueryLogisticItemslogisticItemsCollection.fromJson(
-        (l$logisticItemsCollection as Map<String, dynamic>),
-      ),
+      logisticItems: (l$logisticItems as List<dynamic>)
+          .map((e) => QueryLogisticItemslogisticItems.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryLogisticItemslogisticItemsCollection logisticItemsCollection;
+  final List<QueryLogisticItemslogisticItems> logisticItems;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$logisticItemsCollection = logisticItemsCollection;
-    _resultData['logisticItemsCollection'] = l$logisticItemsCollection.toJson();
+    final l$logisticItems = logisticItems;
+    _resultData['logisticItems'] = l$logisticItems.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33,9 +33,9 @@ class QueryLogisticItems {
 
   @override
   int get hashCode {
-    final l$logisticItemsCollection = logisticItemsCollection;
+    final l$logisticItems = logisticItems;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$logisticItemsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$logisticItems.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -46,10 +46,17 @@ class QueryLogisticItems {
     if (other is! QueryLogisticItems || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$logisticItemsCollection = logisticItemsCollection;
-    final lOther$logisticItemsCollection = other.logisticItemsCollection;
-    if (l$logisticItemsCollection != lOther$logisticItemsCollection) {
+    final l$logisticItems = logisticItems;
+    final lOther$logisticItems = other.logisticItems;
+    if (l$logisticItems.length != lOther$logisticItems.length) {
       return false;
+    }
+    for (int i = 0; i < l$logisticItems.length; i++) {
+      final l$logisticItems$entry = l$logisticItems[i];
+      final lOther$logisticItems$entry = lOther$logisticItems[i];
+      if (l$logisticItems$entry != lOther$logisticItems$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -70,18 +77,18 @@ const documentNodeQueryLogisticItems = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'logisticItemsCollection'),
+            name: NameNode(value: 'logisticItems'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
+                name: NameNode(value: 'order_by'),
                 value: ListValueNode(
                   values: [
                     ObjectValueNode(
                       fields: [
                         ObjectFieldNode(
                           name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
+                          value: EnumValueNode(name: NameNode(value: 'desc_nulls_last')),
                         ),
                       ],
                     ),
@@ -89,7 +96,7 @@ const documentNodeQueryLogisticItems = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '200'),
               ),
             ],
@@ -97,66 +104,32 @@ const documentNodeQueryLogisticItems = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'title'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'assigneeId'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'doneAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'assigneeId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'doneAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -286,152 +259,22 @@ extension ClientExtensionQueryLogisticItems on graphql.GraphQLClient {
   }
 }
 
-class QueryLogisticItemslogisticItemsCollection {
-  QueryLogisticItemslogisticItemsCollection({
-    required this.edges,
-    this.$__typename = 'LogisticItemsConnection',
-  });
-
-  factory QueryLogisticItemslogisticItemsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryLogisticItemslogisticItemsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryLogisticItemslogisticItemsCollectionedges.fromJson(
-              (e as Map<String, dynamic>),
-            ),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryLogisticItemslogisticItemsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryLogisticItemslogisticItemsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryLogisticItemslogisticItemsCollectionedges {
-  QueryLogisticItemslogisticItemsCollectionedges({
-    required this.node,
-    this.$__typename = 'LogisticItemsEdge',
-  });
-
-  factory QueryLogisticItemslogisticItemsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryLogisticItemslogisticItemsCollectionedges(
-      node: QueryLogisticItemslogisticItemsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryLogisticItemslogisticItemsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryLogisticItemslogisticItemsCollectionedges ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryLogisticItemslogisticItemsCollectionedgesnode {
-  QueryLogisticItemslogisticItemsCollectionedgesnode({
+class QueryLogisticItemslogisticItems {
+  QueryLogisticItemslogisticItems({
     required this.id,
     required this.title,
     this.assigneeId,
     this.doneAt,
-    this.$__typename = 'LogisticItems',
+    this.$__typename = 'logisticItems',
   });
 
-  factory QueryLogisticItemslogisticItemsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryLogisticItemslogisticItems.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$assigneeId = json['assigneeId'];
     final l$doneAt = json['doneAt'];
     final l$$__typename = json['__typename'];
-    return QueryLogisticItemslogisticItemsCollectionedgesnode(
+    return QueryLogisticItemslogisticItems(
       id: (l$id as String),
       title: (l$title as String),
       assigneeId: (l$assigneeId as String?),
@@ -482,8 +325,7 @@ class QueryLogisticItemslogisticItemsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryLogisticItemslogisticItemsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryLogisticItemslogisticItems || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

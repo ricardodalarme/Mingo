@@ -1,5 +1,5 @@
-mutation DeleteCouplePhoto($coupleId: UUID!) {
-  deleteFromCouplePhotosCollection(filter: { coupleId: { eq: $coupleId } }, atMost: 1) {
-    affectedCount
+mutation DeleteCouplePhoto($coupleId: uuid!) {
+  deleteCouplePhotos(where: { coupleId: { _eq: $coupleId } }) {
+    affected_rows
   }
 }

@@ -3,22 +3,21 @@ part of 'cards_list_cubit.dart';
 final class const CardsListState({
   final Resource<List<CardSummary>> cards = const Loading(),
   final bool hasNext = false,
-  final String? cursor,
+  final int offset = 0,
   final bool isLoadingMore = false,
 }) with Equatable {
   CardsListState copyWith({
     Resource<List<CardSummary>>? cards,
     bool? hasNext,
-    String? cursor,
-    bool clearCursor = false,
+    int? offset,
     bool? isLoadingMore,
   }) => CardsListState(
     cards: cards ?? this.cards,
     hasNext: hasNext ?? this.hasNext,
-    cursor: clearCursor ? null : cursor ?? this.cursor,
+    offset: offset ?? this.offset,
     isLoadingMore: isLoadingMore ?? this.isLoadingMore,
   );
 
   @override
-  List<Object?> get props => [cards, hasNext, cursor, isLoadingMore];
+  List<Object?> get props => [cards, hasNext, offset, isLoadingMore];
 }

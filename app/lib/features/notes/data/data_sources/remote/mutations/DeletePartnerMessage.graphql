@@ -1,3 +1,5 @@
-mutation DeletePartnerMessage($messageId: UUID!) {
-  deletePartnerMessage(messageId: $messageId)
+mutation DeletePartnerMessage($messageId: uuid!) {
+  deletePartnerMessagesByPk(id: $messageId) {
+    id
+  }
 }

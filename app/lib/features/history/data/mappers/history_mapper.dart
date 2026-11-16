@@ -11,53 +11,59 @@ import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:app/features/profile/data/models/relationship_status.dart';
 import 'package:clock/clock.dart';
 
+/// Rows shown per list.
+const int _pageSize = 50;
+
 extension HistoryOverviewMapper on QueryHistoryOverview {
   HistoryOverview toModel({DateTime? now}) {
     final currentNow = now ?? clock.now();
-    final selfProfile = myProfile;
-    final partnerProfile = myPartner;
-    final settings = mySettings;
-    final selfId = selfProfile?.id ?? settings?.profileId ?? '';
+    final selfProfile = profile;
+    final settingsNode = settings;
+    final selfId = selfProfile?.id ?? settingsNode?.userId ?? '';
     final selfName = (selfProfile?.displayName ?? '').trim();
-    final partnerNameRaw = (partnerProfile?.displayName ?? settings?.partnerName ?? '').trim();
+    final couple = member?.couple;
+    final coupleId = couple?.id;
+    final partnerProfile = couple?.members
+        .where((coupleMember) => coupleMember.userId != selfId)
+        .firstOrNull
+        ?.profile;
+    final partnerNameRaw = (partnerProfile?.displayName ?? settingsNode?.partnerName ?? '').trim();
     final partnerName = partnerNameRaw.isEmpty ? null : partnerNameRaw;
-    final coupleId = myCouple?.id;
-    final isPaired = coupleId != null || partnerProfile != null;
+    final isPaired = coupleId != null;
 
     final selfInitials = _initials(selfName, fallback: 'V');
     final partnerInitials = partnerName != null ? _initials(partnerName, fallback: '+') : null;
     final avatarKind = selfProfile?.avatarKind.toModel() ?? AvatarKind.initials;
-    final phase = settings?.phase?.toModel() ?? RelationshipPhase.dating;
+    final phase = settingsNode?.phase?.toModel() ?? RelationshipPhase.dating;
     final relationshipStatus =
-        settings?.relationshipStatus.toModel() ?? RelationshipStatus.together;
+        settingsNode?.relationshipStatus.toModel() ?? RelationshipStatus.together;
 
-    final storyNodes = [for (final edge in storyEventsCollection.edges) edge.node];
-    final memoryNodes = [for (final edge in memoriesCollection.edges) edge.node];
+    final storyNodes = storyEvents.take(_pageSize).toList();
+    final memoryNodes = memories.take(_pageSize).toList();
     final dateNodes = [
-      for (final edge in importantDatesCollection.edges)
-        if (!edge.node.hidden) edge.node,
+      for (final node in importantDates.take(_pageSize))
+        if (!node.hidden) node,
     ];
 
     final storyDates = _buildStoryDates(
       storyNodes: storyNodes,
+      selfId: selfId,
       partnerName: partnerName,
-      settingsTogetherSince: settings?.togetherSince,
+      settingsTogetherSince: settingsNode?.togetherSince,
     );
 
-    final hasMoreMemories = memoriesCollection.pageInfo.hasNextPage;
+    final hasMoreMemories = memories.length > _pageSize;
     final hasMoreHistory =
-        storyEventsCollection.pageInfo.hasNextPage ||
-        hasMoreMemories ||
-        importantDatesCollection.pageInfo.hasNextPage;
+        storyEvents.length > _pageSize || hasMoreMemories || importantDates.length > _pageSize;
 
     final effectiveTogetherSince =
-        settings?.togetherSince ?? storyDates.dating.date ?? storyDates.met.date;
+        settingsNode?.togetherSince ?? storyDates.dating.date ?? storyDates.met.date;
 
     final milestones = <HistoryMilestone>[];
     final places = <String>[];
 
     for (final node in storyNodes) {
-      final isMine = node.isMine ?? false;
+      final isMine = node.authorId == selfId;
       milestones.add(
         HistoryMilestone(
           id: node.id,
@@ -68,7 +74,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
               : _defaultStoryEventTitle(node.kind.toMilestoneKind()),
           date: node.happenedOn,
           precision: node.datePrecision.toModel(),
-          isShared: node.isShared ?? false,
+          isShared: node.coupleId != null,
           isMine: isMine,
           authorName: isMine ? null : partnerName,
         ),
@@ -76,7 +82,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
     }
 
     for (final node in memoryNodes) {
-      final isMine = node.isMine ?? false;
+      final isMine = node.authorId == selfId;
       final place = node.place?.trim();
       if (place != null && place.isNotEmpty) {
         places.add(place);
@@ -91,7 +97,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
           place: (place == null || place.isEmpty) ? null : place,
           date: node.happenedOn,
           precision: node.datePrecision.toModel(),
-          isShared: node.isShared ?? false,
+          isShared: node.coupleId != null,
           isMine: isMine,
           authorName: isMine ? null : partnerName,
         ),
@@ -102,15 +108,15 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
     final todayUtc = DateTime.utc(currentNow.year, currentNow.month, currentNow.day);
 
     for (final node in dateNodes) {
-      if (node.kind == EnumImportantDateKind.birthday ||
-          node.kind == EnumImportantDateKind.holiday) {
+      if (node.kind == EnumImportantDateKind_enum.birthday ||
+          node.kind == EnumImportantDateKind_enum.holiday) {
         continue;
       }
-      final isMine = node.isMine ?? false;
+      final isMine = node.authorId == selfId;
       final year = node.year;
       final resolvedDate = year == null ? null : DateTime(year, node.month, node.day);
 
-      if (node.kind == EnumImportantDateKind.reunion && resolvedDate != null) {
+      if (node.kind == EnumImportantDateKind_enum.reunion && resolvedDate != null) {
         final reunionUtc = DateTime.utc(resolvedDate.year, resolvedDate.month, resolvedDate.day);
         if (!reunionUtc.isBefore(todayUtc) &&
             (nextReunionDate == null || reunionUtc.isBefore(nextReunionDate))) {
@@ -126,7 +132,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
           title: node.title,
           date: resolvedDate,
           precision: year == null ? MilestoneDatePrecision.unknown : MilestoneDatePrecision.day,
-          isShared: node.isShared ?? false,
+          isShared: node.coupleId != null,
           isMine: isMine,
           authorName: isMine ? null : partnerName,
         ),
@@ -135,7 +141,7 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
 
     milestones.sort(_compareMilestones);
 
-    final recapNode = myYear;
+    final recapNode = yearRecaps.firstOrNull;
     final yearRecap = recapNode == null
         ? null
         : HistoryYearRecap(
@@ -178,28 +184,29 @@ extension HistoryOverviewMapper on QueryHistoryOverview {
 }
 
 StoryDatesSummary _buildStoryDates({
-  required List<QueryHistoryOverviewstoryEventsCollectionedgesnode> storyNodes,
+  required List<QueryHistoryOverviewstoryEvents> storyNodes,
+  required String selfId,
   required String? partnerName,
   required DateTime? settingsTogetherSince,
 }) {
   StoryDateEntry entryFor(StoryEventKind kind) {
-    QueryHistoryOverviewstoryEventsCollectionedgesnode? match;
+    QueryHistoryOverviewstoryEvents? match;
     for (final node in storyNodes) {
       if (node.kind != kind.toRemote()) continue;
-      if (node.isMine == true) {
+      if (node.authorId == selfId) {
         match = node;
         break;
       }
       match ??= node;
     }
     if (match == null) return StoryDateEntry(kind: kind);
-    final isMine = match.isMine ?? false;
+    final isMine = match.authorId == selfId;
     return StoryDateEntry(
       id: match.id,
       kind: kind,
       date: match.happenedOn,
       precision: match.datePrecision.toModel(),
-      isShared: match.isShared ?? false,
+      isShared: match.coupleId != null,
       isMine: isMine,
       authorName: isMine ? null : partnerName,
     );
@@ -209,8 +216,8 @@ StoryDatesSummary _buildStoryDates({
   DateTime? partnerStart;
 
   for (final node in storyNodes) {
-    if (node.kind == EnumStoryEventKind.dating || node.kind == EnumStoryEventKind.met) {
-      if (node.isMine == true) {
+    if (node.kind == EnumStoryEventKind_enum.dating || node.kind == EnumStoryEventKind_enum.met) {
+      if (node.authorId == selfId) {
         selfStart ??= node.happenedOn;
       } else {
         partnerStart ??= node.happenedOn;

@@ -1,3 +1,5 @@
-mutation RegisterDevice($token: String!, $platform: String!, $label: String) {
-  registerDevice(token: $token, platform: $platform, label: $label)
+mutation RegisterDevice($token: String!, $platform: DevicePlatform_enum!, $label: String) {
+  insertDevicesOne(object: { token: $token, platform: $platform, label: $label }) {
+    id
+  }
 }

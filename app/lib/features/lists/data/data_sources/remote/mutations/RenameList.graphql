@@ -1,7 +1,5 @@
-mutation RenameList($id: UUID!, $title: String!) {
-  updateListsCollection(set: { title: $title }, filter: { id: { eq: $id } }, atMost: 1) {
-    records {
-      ...ListFragment
-    }
+mutation RenameList($id: uuid!, $title: String!) {
+  updateListsByPk(pk_columns: { id: $id }, _set: { title: $title }) {
+    ...ListFragment
   }
 }

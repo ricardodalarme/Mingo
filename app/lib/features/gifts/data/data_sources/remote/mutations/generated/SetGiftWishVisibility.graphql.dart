@@ -76,30 +76,27 @@ class VariablesMutationSetGiftWishVisibility {
 }
 
 class MutationSetGiftWishVisibility {
-  MutationSetGiftWishVisibility({
-    required this.updateGiftIdeasCollection,
-    this.$__typename = 'Mutation',
-  });
+  MutationSetGiftWishVisibility({this.updateGiftIdeasByPk, this.$__typename = 'mutation_root'});
 
   factory MutationSetGiftWishVisibility.fromJson(Map<String, dynamic> json) {
-    final l$updateGiftIdeasCollection = json['updateGiftIdeasCollection'];
+    final l$updateGiftIdeasByPk = json['updateGiftIdeasByPk'];
     final l$$__typename = json['__typename'];
     return MutationSetGiftWishVisibility(
-      updateGiftIdeasCollection: MutationSetGiftWishVisibilityupdateGiftIdeasCollection.fromJson(
-        (l$updateGiftIdeasCollection as Map<String, dynamic>),
-      ),
+      updateGiftIdeasByPk: l$updateGiftIdeasByPk == null
+          ? null
+          : FragmentGiftWishFragment.fromJson((l$updateGiftIdeasByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSetGiftWishVisibilityupdateGiftIdeasCollection updateGiftIdeasCollection;
+  final FragmentGiftWishFragment? updateGiftIdeasByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateGiftIdeasCollection = updateGiftIdeasCollection;
-    _resultData['updateGiftIdeasCollection'] = l$updateGiftIdeasCollection.toJson();
+    final l$updateGiftIdeasByPk = updateGiftIdeasByPk;
+    _resultData['updateGiftIdeasByPk'] = l$updateGiftIdeasByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -107,9 +104,9 @@ class MutationSetGiftWishVisibility {
 
   @override
   int get hashCode {
-    final l$updateGiftIdeasCollection = updateGiftIdeasCollection;
+    final l$updateGiftIdeasByPk = updateGiftIdeasByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateGiftIdeasCollection, l$$__typename]);
+    return Object.hashAll([l$updateGiftIdeasByPk, l$$__typename]);
   }
 
   @override
@@ -120,9 +117,9 @@ class MutationSetGiftWishVisibility {
     if (other is! MutationSetGiftWishVisibility || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateGiftIdeasCollection = updateGiftIdeasCollection;
-    final lOther$updateGiftIdeasCollection = other.updateGiftIdeasCollection;
-    if (l$updateGiftIdeasCollection != lOther$updateGiftIdeasCollection) {
+    final l$updateGiftIdeasByPk = updateGiftIdeasByPk;
+    final lOther$updateGiftIdeasByPk = other.updateGiftIdeasByPk;
+    if (l$updateGiftIdeasByPk != lOther$updateGiftIdeasByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -142,13 +139,13 @@ const documentNodeMutationSetGiftWishVisibility = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'id')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: false),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -157,11 +154,22 @@ const documentNodeMutationSetGiftWishVisibility = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateGiftIdeasCollection'),
+            name: NameNode(value: 'updateGiftIdeasByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'set'),
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'id'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -171,52 +179,13 @@ const documentNodeMutationSetGiftWishVisibility = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: 'filter'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
-                            value: VariableNode(name: NameNode(value: 'id')),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ArgumentNode(
-                name: NameNode(value: 'atMost'),
-                value: IntValueNode(value: '1'),
-              ),
             ],
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'records'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'GiftWishFragment'),
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FragmentSpreadNode(
-                        name: NameNode(value: 'GiftWishFragment'),
-                        directives: [],
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -334,73 +303,4 @@ extension ClientExtensionMutationSetGiftWishVisibility on graphql.GraphQLClient 
   graphql.ObservableQuery<MutationSetGiftWishVisibility> watchMutationSetGiftWishVisibility(
     WatchOptionsMutationSetGiftWishVisibility options,
   ) => this.watchMutation(options);
-}
-
-class MutationSetGiftWishVisibilityupdateGiftIdeasCollection {
-  MutationSetGiftWishVisibilityupdateGiftIdeasCollection({
-    required this.records,
-    this.$__typename = 'GiftIdeasUpdateResponse',
-  });
-
-  factory MutationSetGiftWishVisibilityupdateGiftIdeasCollection.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$records = json['records'];
-    final l$$__typename = json['__typename'];
-    return MutationSetGiftWishVisibilityupdateGiftIdeasCollection(
-      records: (l$records as List<dynamic>)
-          .map((e) => FragmentGiftWishFragment.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<FragmentGiftWishFragment> records;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$records = records;
-    _resultData['records'] = l$records.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$records = records;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$records.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationSetGiftWishVisibilityupdateGiftIdeasCollection ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$records = records;
-    final lOther$records = other.records;
-    if (l$records.length != lOther$records.length) {
-      return false;
-    }
-    for (int i = 0; i < l$records.length; i++) {
-      final l$records$entry = l$records[i];
-      final lOther$records$entry = lOther$records[i];
-      if (l$records$entry != lOther$records$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
 }

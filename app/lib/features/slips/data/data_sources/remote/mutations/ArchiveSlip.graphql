@@ -1,5 +1,6 @@
-mutation ArchiveSlip($id: UUID!, $archived: Boolean) {
-  archiveSlip(id: $id, archived: $archived) {
+mutation ArchiveSlip($id: uuid!, $archivedAt: timestamptz) {
+  updateSlipsByPk(pk_columns: { id: $id }, _set: { archivedAt: $archivedAt }) {
     id
+    archivedAt
   }
 }

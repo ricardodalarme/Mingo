@@ -5,27 +5,29 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class MutationSendMissUs {
-  MutationSendMissUs({this.sendSignal, this.$__typename = 'Mutation'});
+  MutationSendMissUs({this.insertSignalsOne, this.$__typename = 'mutation_root'});
 
   factory MutationSendMissUs.fromJson(Map<String, dynamic> json) {
-    final l$sendSignal = json['sendSignal'];
+    final l$insertSignalsOne = json['insertSignalsOne'];
     final l$$__typename = json['__typename'];
     return MutationSendMissUs(
-      sendSignal: l$sendSignal == null
+      insertSignalsOne: l$insertSignalsOne == null
           ? null
-          : MutationSendMissUssendSignal.fromJson((l$sendSignal as Map<String, dynamic>)),
+          : MutationSendMissUsinsertSignalsOne.fromJson(
+              (l$insertSignalsOne as Map<String, dynamic>),
+            ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSendMissUssendSignal? sendSignal;
+  final MutationSendMissUsinsertSignalsOne? insertSignalsOne;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$sendSignal = sendSignal;
-    _resultData['sendSignal'] = l$sendSignal?.toJson();
+    final l$insertSignalsOne = insertSignalsOne;
+    _resultData['insertSignalsOne'] = l$insertSignalsOne?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33,9 +35,9 @@ class MutationSendMissUs {
 
   @override
   int get hashCode {
-    final l$sendSignal = sendSignal;
+    final l$insertSignalsOne = insertSignalsOne;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$sendSignal, l$$__typename]);
+    return Object.hashAll([l$insertSignalsOne, l$$__typename]);
   }
 
   @override
@@ -46,9 +48,9 @@ class MutationSendMissUs {
     if (other is! MutationSendMissUs || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$sendSignal = sendSignal;
-    final lOther$sendSignal = other.sendSignal;
-    if (l$sendSignal != lOther$sendSignal) {
+    final l$insertSignalsOne = insertSignalsOne;
+    final lOther$insertSignalsOne = other.insertSignalsOne;
+    if (l$insertSignalsOne != lOther$insertSignalsOne) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -70,12 +72,19 @@ const documentNodeMutationSendMissUs = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'sendSignal'),
+            name: NameNode(value: 'insertSignalsOne'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'kind'),
-                value: StringValueNode(value: 'miss_us', isBlock: false),
+                name: NameNode(value: 'object'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'kind'),
+                      value: EnumValueNode(name: NameNode(value: 'miss_us')),
+                    ),
+                  ],
+                ),
               ),
             ],
             directives: [],
@@ -196,13 +205,13 @@ extension ClientExtensionMutationSendMissUs on graphql.GraphQLClient {
   ]) => this.watchMutation(options ?? WatchOptionsMutationSendMissUs());
 }
 
-class MutationSendMissUssendSignal {
-  MutationSendMissUssendSignal({required this.id, this.$__typename = 'Signals'});
+class MutationSendMissUsinsertSignalsOne {
+  MutationSendMissUsinsertSignalsOne({required this.id, this.$__typename = 'signals'});
 
-  factory MutationSendMissUssendSignal.fromJson(Map<String, dynamic> json) {
+  factory MutationSendMissUsinsertSignalsOne.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return MutationSendMissUssendSignal(
+    return MutationSendMissUsinsertSignalsOne(
       id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
@@ -233,7 +242,7 @@ class MutationSendMissUssendSignal {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSendMissUssendSignal || runtimeType != other.runtimeType) {
+    if (other is! MutationSendMissUsinsertSignalsOne || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

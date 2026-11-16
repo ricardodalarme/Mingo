@@ -7,7 +7,7 @@ class GuidesDataSource({required final GQLClient _client}) {
   /// Inserts a private preparation and returns the row id.
   Future<String> insertPrep({
     required String id,
-    required EnumConversationGuide guide,
+    required EnumConversationGuide_enum guide,
     required String topic,
     required String? notes,
     required String? draft,
@@ -25,7 +25,7 @@ class GuidesDataSource({required final GQLClient _client}) {
     );
     final record = validateResponseData(
       response,
-      getData: (data) => data.insertIntoConversationPrepsCollection?.records.firstOrNull,
+      getData: (data) => data.insertConversationPrepsOne,
     );
 
     return record.id;
@@ -33,7 +33,7 @@ class GuidesDataSource({required final GQLClient _client}) {
 
   Future<void> updatePrep({
     required String id,
-    required EnumConversationGuide guide,
+    required EnumConversationGuide_enum guide,
     required String topic,
     required String? notes,
     required String? draft,
@@ -49,10 +49,6 @@ class GuidesDataSource({required final GQLClient _client}) {
         ),
       ),
     );
-    final affectedCount = validateResponseData(
-      response,
-      getData: (data) => data.updateConversationPrepsCollection.affectedCount,
-    );
-    if (affectedCount == 0) throw const NoDataException();
+    validateResponseData(response, getData: (data) => data.updateConversationPrepsByPk?.id);
   }
 }

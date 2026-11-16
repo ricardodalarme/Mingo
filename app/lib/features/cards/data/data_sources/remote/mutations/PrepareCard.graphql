@@ -1,5 +1,10 @@
 mutation PrepareCard {
   prepareCard {
-    ...CardFragment
+    cardId
+    kind
+    status
+    weekStart
+    note
+    items
   }
 }

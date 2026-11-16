@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/plus/data/data_sources/remote/plus_data_source.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/plus/presentation/manage/cubit/manage_plus_cubit.dart';
@@ -15,6 +16,7 @@ class PlusInjectionModule() implements InjectionModule {
       () => PlusRepository(
         dataSource: injector.get<PlusDataSource>(),
         purchaseService: injector.get<PurchaseService>(),
+        authenticationRepository: injector.get<AuthenticationRepository>(),
       ),
     )
     ..registerFactory<PlansCubit>(() => PlansCubit(plusRepository: injector.get<PlusRepository>()))

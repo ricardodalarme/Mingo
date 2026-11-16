@@ -1,18 +1,13 @@
 query QuestionOfTheWeek {
-  question: dailyContent(kind: "question") {
+  question: dailyContent(args: { kind: "question" }, limit: 1) {
     slug
     title
     body
     tags
   }
   today {
-    isPaired
+    userId
+    coupleId
     partnerName
-  }
-  myProfile {
-    id
-  }
-  myCouple {
-    id
   }
 }

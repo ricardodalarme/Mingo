@@ -23,24 +23,18 @@ void main() {
   test('adding a learning that the server does not return fails', () {
     final options = OptionsMutationAddLearnedItem(
       variables: VariablesMutationAddLearnedItem(
-        target: EnumLearnedItemTarget.date,
+        target: EnumLearnedItemTarget_enum.date,
         text: 'Jantar',
       ),
     );
     final dataSource = LearnedItemsDataSource(
       client: _StubGQLClient(
-        _result(options, {
-          'insertIntoLearnedItemsCollection': {
-            'records': <Object?>[],
-            '__typename': 'LearnedItemsInsertResponse',
-          },
-          '__typename': 'Mutation',
-        }),
+        _result(options, {'insertLearnedItemsOne': null, '__typename': 'Mutation'}),
       ),
     );
 
     expect(
-      dataSource.add(target: EnumLearnedItemTarget.date, text: 'Jantar'),
+      dataSource.add(target: EnumLearnedItemTarget_enum.date, text: 'Jantar'),
       throwsA(isA<NoDataException>()),
     );
   });
@@ -51,13 +45,7 @@ void main() {
     );
     final dataSource = LearnedItemsDataSource(
       client: _StubGQLClient(
-        _result(options, {
-          'updateLearnedItemsCollection': {
-            'affectedCount': 0,
-            '__typename': 'LearnedItemsUpdateResponse',
-          },
-          '__typename': 'Mutation',
-        }),
+        _result(options, {'updateLearnedItemsByPk': null, '__typename': 'Mutation'}),
       ),
     );
 
@@ -68,23 +56,17 @@ void main() {
     final options = OptionsMutationSetLearnedItemStatus(
       variables: VariablesMutationSetLearnedItemStatus(
         id: 'l1',
-        status: EnumLearnedItemStatus.confirmed,
+        status: EnumLearnedItemStatus_enum.confirmed,
       ),
     );
     final dataSource = LearnedItemsDataSource(
       client: _StubGQLClient(
-        _result(options, {
-          'updateLearnedItemsCollection': {
-            'affectedCount': 0,
-            '__typename': 'LearnedItemsUpdateResponse',
-          },
-          '__typename': 'Mutation',
-        }),
+        _result(options, {'updateLearnedItemsByPk': null, '__typename': 'Mutation'}),
       ),
     );
 
     expect(
-      dataSource.setStatus(id: 'l1', status: EnumLearnedItemStatus.confirmed),
+      dataSource.setStatus(id: 'l1', status: EnumLearnedItemStatus_enum.confirmed),
       throwsA(isA<NoDataException>()),
     );
   });
@@ -95,13 +77,7 @@ void main() {
     );
     final dataSource = LearnedItemsDataSource(
       client: _StubGQLClient(
-        _result(options, {
-          'deleteFromLearnedItemsCollection': {
-            'affectedCount': 0,
-            '__typename': 'LearnedItemsDeleteResponse',
-          },
-          '__typename': 'Mutation',
-        }),
+        _result(options, {'deleteLearnedItemsByPk': null, '__typename': 'Mutation'}),
       ),
     );
 
@@ -115,10 +91,7 @@ void main() {
     final dataSource = LearnedItemsDataSource(
       client: _StubGQLClient(
         _result(options, {
-          'updateLearnedItemsCollection': {
-            'affectedCount': 1,
-            '__typename': 'LearnedItemsUpdateResponse',
-          },
+          'updateLearnedItemsByPk': {'id': 'l1', '__typename': 'LearnedItems'},
           '__typename': 'Mutation',
         }),
       ),
