@@ -3864,7 +3864,7 @@ class _Translations$profileDetails$en extends Translations$profileDetails$pt {
   @override
   String get nameLabel => 'Your name';
   @override
-  String get nameHint => 'Marina';
+  String get nameHint => 'Your first name';
   @override
   Map<String, String> get nameErrors => {
     'empty': 'Your name cannot be empty.',
@@ -3935,7 +3935,7 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   @override
   String get nameLabel => 'Your name';
   @override
-  String get nameHint => 'Marina';
+  String get nameHint => 'Your first name';
   @override
   Map<String, String> get nameErrors => {
     'empty': 'Your name cannot be empty.',
@@ -3944,7 +3944,7 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   @override
   String get partnerNameLabel => 'Partner\'s name';
   @override
-  String get partnerNameHint => 'Ricardo';
+  String get partnerNameHint => 'Their first name';
   @override
   Map<String, String> get partnerNameErrors => {'tooLong': 'Use at most 30 characters.'};
   @override
@@ -9512,7 +9512,7 @@ extension on TranslationsEn {
           'privacy.errorText' => 'Try again in a moment.',
           'profileDetails.title' => 'Profile',
           'profileDetails.nameLabel' => 'Your name',
-          'profileDetails.nameHint' => 'Marina',
+          'profileDetails.nameHint' => 'Your first name',
           'profileDetails.nameErrors.empty' => 'Your name cannot be empty.',
           'profileDetails.nameErrors.tooLong' => 'Use at most 30 characters.',
           'profileDetails.pronounsLabel' => 'Pronouns',
@@ -9549,11 +9549,11 @@ extension on TranslationsEn {
           'profileSetup.subtitle' =>
             'Used for the words in the app and for the first date of your story.',
           'profileSetup.nameLabel' => 'Your name',
-          'profileSetup.nameHint' => 'Marina',
+          'profileSetup.nameHint' => 'Your first name',
           'profileSetup.nameErrors.empty' => 'Your name cannot be empty.',
           'profileSetup.nameErrors.tooLong' => 'Use at most 30 characters.',
           'profileSetup.partnerNameLabel' => 'Partner\'s name',
-          'profileSetup.partnerNameHint' => 'Ricardo',
+          'profileSetup.partnerNameHint' => 'Their first name',
           'profileSetup.partnerNameErrors.tooLong' => 'Use at most 30 characters.',
           'profileSetup.dateLabel' => 'When did you start?',
           'profileSetup.dateHint' => 'Pick a date',

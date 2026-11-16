@@ -4746,8 +4746,8 @@ class Translations$profileDetails$pt {
   /// pt: 'Seu nome'
   String get nameLabel => 'Seu nome';
 
-  /// pt: 'Marina'
-  String get nameHint => 'Marina';
+  /// pt: 'Seu primeiro nome'
+  String get nameHint => 'Seu primeiro nome';
 
   Map<String, String> get nameErrors => {
     'empty': 'Seu nome não pode ficar vazio.',
@@ -4833,8 +4833,8 @@ class Translations$profileSetup$pt {
   /// pt: 'Seu nome'
   String get nameLabel => 'Seu nome';
 
-  /// pt: 'Marina'
-  String get nameHint => 'Marina';
+  /// pt: 'Seu primeiro nome'
+  String get nameHint => 'Seu primeiro nome';
 
   Map<String, String> get nameErrors => {
     'empty': 'Seu nome não pode ficar vazio.',
@@ -4844,8 +4844,8 @@ class Translations$profileSetup$pt {
   /// pt: 'Nome do parceiro'
   String get partnerNameLabel => 'Nome do parceiro';
 
-  /// pt: 'Ricardo'
-  String get partnerNameHint => 'Ricardo';
+  /// pt: 'O primeiro nome dele ou dela'
+  String get partnerNameHint => 'O primeiro nome dele ou dela';
 
   Map<String, String> get partnerNameErrors => {'tooLong': 'Use no máximo 30 caracteres.'};
 
@@ -11292,7 +11292,7 @@ extension on Translations {
           'privacy.errorText' => 'Tente de novo em instantes.',
           'profileDetails.title' => 'Perfil',
           'profileDetails.nameLabel' => 'Seu nome',
-          'profileDetails.nameHint' => 'Marina',
+          'profileDetails.nameHint' => 'Seu primeiro nome',
           'profileDetails.nameErrors.empty' => 'Seu nome não pode ficar vazio.',
           'profileDetails.nameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileDetails.pronounsLabel' => 'Pronomes',
@@ -11329,11 +11329,11 @@ extension on Translations {
           'profileSetup.subtitle' =>
             'Usado para as palavras do app e para a primeira data da sua história.',
           'profileSetup.nameLabel' => 'Seu nome',
-          'profileSetup.nameHint' => 'Marina',
+          'profileSetup.nameHint' => 'Seu primeiro nome',
           'profileSetup.nameErrors.empty' => 'Seu nome não pode ficar vazio.',
           'profileSetup.nameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileSetup.partnerNameLabel' => 'Nome do parceiro',
-          'profileSetup.partnerNameHint' => 'Ricardo',
+          'profileSetup.partnerNameHint' => 'O primeiro nome dele ou dela',
           'profileSetup.partnerNameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileSetup.dateLabel' => 'Quando começaram?',
           'profileSetup.dateHint' => 'Escolha uma data',

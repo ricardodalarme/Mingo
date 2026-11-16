@@ -3,13 +3,13 @@
   "titleHighlight": "basics",
   "subtitle": "Used for the words in the app and for the first date of your story.",
   "nameLabel": "Your name",
-  "nameHint": "Marina",
+  "nameHint": "Your first name",
   "nameErrors(map)": {
     "empty": "Your name cannot be empty.",
     "tooLong": "Use at most 30 characters."
   },
   "partnerNameLabel": "Partner's name",
-  "partnerNameHint": "Ricardo",
+  "partnerNameHint": "Their first name",
   "partnerNameErrors(map)": {
     "tooLong": "Use at most 30 characters."
   },

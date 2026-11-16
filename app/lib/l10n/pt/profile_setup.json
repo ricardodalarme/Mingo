@@ -3,13 +3,13 @@
   "titleHighlight": "básico",
   "subtitle": "Usado para as palavras do app e para a primeira data da sua história.",
   "nameLabel": "Seu nome",
-  "nameHint": "Marina",
+  "nameHint": "Seu primeiro nome",
   "nameErrors(map)": {
     "empty": "Seu nome não pode ficar vazio.",
     "tooLong": "Use no máximo 30 caracteres."
   },
   "partnerNameLabel": "Nome do parceiro",
-  "partnerNameHint": "Ricardo",
+  "partnerNameHint": "O primeiro nome dele ou dela",
   "partnerNameErrors(map)": {
     "tooLong": "Use no máximo 30 caracteres."
   },

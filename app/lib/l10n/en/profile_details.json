@@ -1,7 +1,7 @@
 {
   "title": "Profile",
   "nameLabel": "Your name",
-  "nameHint": "Marina",
+  "nameHint": "Your first name",
   "nameErrors(map)": {
     "empty": "Your name cannot be empty.",
     "tooLong": "Use at most 30 characters."
