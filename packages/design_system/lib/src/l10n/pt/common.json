@@ -1,4 +1,8 @@
 {
   "loading": "Carregando",
-  "cancel": "Cancelar"
+  "cancel": "Cancelar",
+  "tryAgain": "Tentar de novo",
+  "typing": "Digitando",
+  "youSaid": "Você disse",
+  "send": "Enviar"
 }

@@ -7,7 +7,6 @@ abstract final class AppMotion() {
   static const Duration slow = Duration(milliseconds: 360);
   static const Duration reduced = Duration(milliseconds: 150);
   static const Duration stagger = Duration(milliseconds: 80);
-  static const Duration squiggleDraw = Duration(milliseconds: 400);
 
   static const Curve baseCurve = Cubic(.2, 0, 0, 1);
   static const Curve fastCurve = Cubic(.16, 1, .3, 1);

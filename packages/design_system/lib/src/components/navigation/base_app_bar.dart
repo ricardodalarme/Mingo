@@ -1,13 +1,25 @@
 import 'package:design_system/design_system.dart';
+import 'package:flutter/rendering.dart' show OverflowBoxFit;
 import 'package:material_ui/material_ui.dart';
 
-const double _barHeight = AppIconSize.touch;
+const double _barHeight = 40;
+const double _touchOverflow = (AppIconSize.touch - _barHeight) / 2;
 const double _scrolledSurfaceOpacity = .94;
 
 /// The page app bar with leading, centre title and trailing slots.
 ///
+/// The bar is 40 high; the round buttons keep a 44 point touch target by overflowing the bar by 2 points
+/// on each side.
+///
+/// The flow and detail forms centre the [title] between a back or close button and [trailing]. The root
+/// form ([isRoot]) is for the tab screens: a free [leading] slot (home passes an avatar pair), a left
+/// aligned `titleXl` for sections and free [trailing] slots (home passes a chip). Only a root bar carries a
+/// large title.
+///
 /// When [hasScrolled] it gains a translucent surface and a bottom hairline.
 class const BaseAppBar({
+  final Widget? leading,
+  final bool isRoot = false,
   final String? title,
   final Widget? titleWidget,
   final String? subtitle,
@@ -25,46 +37,74 @@ class const BaseAppBar({
     final defaultOnBack = onClose == null ? _pageBack(context) : null;
     final resolvedOnBack = onBack ?? defaultOnBack;
 
-    final Widget leading;
-    if (resolvedOnBack != null) {
-      leading = BaseRoundButton(
+    final Widget resolvedLeading;
+    if (leading != null) {
+      resolvedLeading = leading!;
+    } else if (isRoot) {
+      resolvedLeading = const SizedBox.shrink();
+    } else if (resolvedOnBack != null) {
+      resolvedLeading = BaseRoundButton(
         icon: AppIcons.chevron_left,
         onPressed: resolvedOnBack,
         semanticLabel: localizations?.backButtonTooltip,
       );
     } else if (onClose != null) {
-      leading = BaseRoundButton(
+      resolvedLeading = BaseRoundButton(
         icon: AppIcons.close,
         onPressed: onClose,
         semanticLabel: localizations?.closeButtonTooltip,
       );
     } else {
-      leading = const SizedBox(width: AppIconSize.touch);
+      resolvedLeading = const SizedBox(width: AppIconSize.touch);
     }
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: AppSpace.s8),
-      child: AnimatedContainer(
-        duration: context.motionDuration(AppMotion.base),
-        constraints: const BoxConstraints(minHeight: _barHeight),
-        decoration: BoxDecoration(
-          color: hasScrolled ? colors.bgScreen.withValues(alpha: _scrolledSurfaceOpacity) : null,
-          border: hasScrolled ? Border(bottom: BorderSide(color: colors.borderDefault)) : null,
-        ),
-        child: Row(
-          children: [
-            leading,
-            Expanded(
-              child: _Centre(
-                title: title,
-                titleWidget: titleWidget,
-                subtitle: subtitle,
-                stepIndicator: stepIndicator,
-              ),
+    return HitSlop(
+      slop: const EdgeInsets.only(top: _touchOverflow),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: AppSpace.s8),
+        child: HitSlop(
+          slop: const EdgeInsets.only(bottom: _touchOverflow),
+          child: AnimatedContainer(
+            duration: context.motionDuration(AppMotion.base),
+            constraints: const BoxConstraints(minHeight: _barHeight),
+            decoration: BoxDecoration(
+              color: hasScrolled
+                  ? colors.bgScreen.withValues(alpha: _scrolledSurfaceOpacity)
+                  : null,
+              border: hasScrolled ? Border(bottom: BorderSide(color: colors.borderDefault)) : null,
             ),
-            trailing ?? const SizedBox(width: AppIconSize.touch),
-          ],
+            child: Row(
+              children: [
+                _slot(resolvedLeading),
+                Expanded(
+                  child: isRoot
+                      ? _RootTitle(title: title, titleWidget: titleWidget)
+                      : _Centre(
+                          title: title,
+                          titleWidget: titleWidget,
+                          subtitle: subtitle,
+                          stepIndicator: stepIndicator,
+                        ),
+                ),
+                if (trailing != null)
+                  _slot(trailing!)
+                else if (!isRoot)
+                  const SizedBox(width: AppIconSize.touch),
+              ],
+            ),
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _slot(Widget child) {
+    return SizedBox(
+      height: _barHeight,
+      child: OverflowBox(
+        maxHeight: AppIconSize.touch,
+        fit: OverflowBoxFit.deferToChild,
+        child: child,
       ),
     );
   }
@@ -81,6 +121,32 @@ class const BaseAppBar({
     }
 
     return null;
+  }
+}
+
+class const _RootTitle({required final String? title, required final Widget? titleWidget})
+    extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppSpace.s4),
+        child:
+            titleWidget ??
+            (title == null
+                ? const SizedBox.shrink()
+                : Semantics(
+                    header: true,
+                    child: Text(
+                      title!,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: context.text.titleXl.copyWith(color: context.colors.textPrimary),
+                    ),
+                  )),
+      ),
+    );
   }
 }
 

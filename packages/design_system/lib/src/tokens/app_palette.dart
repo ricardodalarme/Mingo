@@ -24,6 +24,7 @@ abstract final class AppPalette() {
 
   static const Color partnerAvatarSurface = Color(0xFFECE8E6);
   static const Color partnerAvatarInk = Color(0xFF5B524E);
+  static const Color avatarWarm = Color(0xFFF2A38F);
 
   static const Color ideaLabel = Color(0xFFAE5219);
   static const Color ideaWash = Color(0xE6FDE5D0);
@@ -33,6 +34,7 @@ abstract final class AppPalette() {
   static const Color inviteWash = Color(0xE6D6EEE0);
 
   static const Color errorInk = Color(0xFFB3261E);
+  static const Color errorInkPressed = Color(0xFF8E1F19);
   static const Color errorSurface = Color(0xFFFDECEA);
   static const Color warningInk = Color(0xFF8A5A00);
   static const Color warningSurface = Color(0xFFFFF4DC);
@@ -47,5 +49,4 @@ abstract final class AppPalette() {
   static const Color shadowPaper = Color(0x38000000);
   static const Color shadowSelected = Color(0x4D000000);
   static const Color shadowKnob = Color(0x29000000);
-  static const Color drawingInk = Color(0xFF2A2627);
 }

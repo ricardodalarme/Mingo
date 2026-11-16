@@ -11,18 +11,14 @@ final WidgetbookNode tooltipExample = WidgetbookComponent(
         title: 'Tooltip',
         children: [
           GallerySection(
-            title: 'Wraps any control',
+            title: 'Tap an info icon, long press a control',
             children: [
               GalleryRow(
                 children: [
                   BaseTooltip(
-                    message: 'Notifications',
+                    message: 'Counts the days in a row you both opened the app.',
                     trigger: BaseTooltipTrigger.tap,
-                    child: BaseRoundButton(
-                      icon: AppIcons.bell,
-                      semanticLabel: 'Notifications',
-                      onPressed: _noop,
-                    ),
+                    child: AppIcon(icon: AppIcons.info, size: AppIconSize.lg),
                   ),
                   BaseTooltip(
                     message: 'Settings',

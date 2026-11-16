@@ -1,11 +1,9 @@
 // SVG markup is split across lines so each path stays readable.
 // ignore_for_file: missing_whitespace_between_adjacent_strings
-import 'package:design_system/src/tokens/tokens.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:design_system/design_system.dart';
 
 /// The envelope with a heart that opens a received card.
-class const AppEnvelope({
+class const Envelope({
   final double width = 48,
   final double height = 40,
   final Color? color,

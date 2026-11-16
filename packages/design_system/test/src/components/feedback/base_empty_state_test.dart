@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart' show Scaffold;
 
 import '../../../helpers/widget_host.dart';
 
@@ -49,6 +50,7 @@ void main() {
     const text =
         'This is a longer consent explanation that must not be cut off before the person can read it.';
 
+    setSurface(tester, height: 1600);
     await tester.pumpWidget(
       scaffoldHost(
         const BaseEmptyState(title: 'A private trail', text: text, textMaxLines: null),
@@ -63,5 +65,27 @@ void main() {
     expect(tester.takeException(), isNull);
 
     await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('empty state has no container and starts 80 from the top', (tester) async {
+    setSurface(tester);
+    await tester.pumpWidget(
+      appFor(
+        variant: AppThemeVariant.rose,
+        home: const Scaffold(
+          body: Align(
+            alignment: Alignment.topCenter,
+            child: BaseEmptyState(
+              title: 'No slips yet',
+              text: 'One good thing.',
+              actionText: 'Write',
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(tester.getTopLeft(find.byType(BaseFace)).dy, 80);
+    expect(tester.getSize(find.byType(BaseFace)).width, 64);
   });
 }

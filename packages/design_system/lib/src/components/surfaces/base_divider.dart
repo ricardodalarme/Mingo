@@ -3,7 +3,6 @@ import 'dart:math' as math;
 import 'package:design_system/design_system.dart';
 
 const double _inset = AppSpace.s16;
-const double _dash = 4;
 const double _labelGap = AppSpace.s12;
 const double _labelWidthFactor = .5;
 
@@ -63,9 +62,10 @@ class const BaseDivider({
       return Container(height: AppBorder.hair, color: colors.borderDefault);
     }
 
-    return SizedBox(
-      height: AppBorder.hair,
-      child: CustomPaint(painter: _DashedLinePainter(color: colors.borderDefault)),
+    return const SizedBox(
+      height: AppBorder.dashed,
+      width: double.infinity,
+      child: CustomPaint(painter: _DashedLinePainter(color: AppPalette.neutral300)),
     );
   }
 }
@@ -75,17 +75,18 @@ class const _DashedLinePainter({required final Color color}) extends CustomPaint
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = color
-      ..strokeWidth = AppBorder.hair
+      ..strokeWidth = AppBorder.dashed
       ..strokeCap = StrokeCap.round;
 
+    const dash = 4.0;
     var x = 0.0;
     while (x < size.width) {
       canvas.drawLine(
         Offset(x, size.height / 2),
-        Offset(math.min(x + _dash, size.width), size.height / 2),
+        Offset(math.min(x + dash, size.width), size.height / 2),
         paint,
       );
-      x += _dash * 2;
+      x += dash * 2;
     }
   }
 

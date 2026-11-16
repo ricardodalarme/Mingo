@@ -1,3 +1,4 @@
+import 'package:app/features/cards/presentation/shared/widgets/paper_slip.dart';
 import 'package:design_system/design_system.dart';
 
 const int _dayCount = 7;
@@ -117,7 +118,7 @@ class const _Day({
     final colors = context.colors;
 
     if (count > 0) {
-      final slip = AppPaperSlip(
+      final slip = PaperSlip(
         fill: colors.accentSoft,
         ink: colors.accentLabel,
         rotation: tilt,

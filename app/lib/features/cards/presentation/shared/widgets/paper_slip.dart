@@ -1,8 +1,7 @@
-import 'package:design_system/src/tokens/tokens.dart';
-import 'package:flutter/widgets.dart';
+import 'package:design_system/design_system.dart';
 
 /// A small paper slip with a folded top-right corner.
-class const AppPaperSlip({
+class const PaperSlip({
   required final Color fill,
   required final Color ink,
   final double width = 30,
@@ -94,7 +93,7 @@ class const _FoldPainter({required final Color color}) extends CustomPainter {
 }
 
 /// The strip of tape across the top of a paper note.
-class const AppTape({
+class const PaperTape({
   required final Color color,
   final double width = 44,
   final double height = 16,
@@ -114,45 +113,4 @@ class const AppTape({
       ),
     );
   }
-}
-
-/// Paints a dashed rounded outline.
-class const DashedRoundedPainter({
-  required final Color color,
-  final double radius = AppRadius.md,
-  final double strokeWidth = AppBorder.dashed,
-  final double dash = 4,
-  final double gap = 3,
-}) extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth
-      ..strokeCap = StrokeCap.round;
-
-    final path = Path()
-      ..addRRect(
-        RRect.fromRectAndRadius(
-          Offset.zero & size,
-          Radius.circular(radius),
-        ).deflate(strokeWidth / 2),
-      );
-
-    for (final metric in path.computeMetrics()) {
-      var distance = 0.0;
-      while (distance < metric.length) {
-        final next = distance + dash;
-        canvas.drawPath(metric.extractPath(distance, next), paint);
-        distance = next + gap;
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(DashedRoundedPainter oldDelegate) =>
-      oldDelegate.color != color ||
-      oldDelegate.radius != radius ||
-      oldDelegate.strokeWidth != strokeWidth;
 }

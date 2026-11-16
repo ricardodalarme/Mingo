@@ -15,6 +15,9 @@ enum BaseButtonVariant() {
   /// A quiet action that removes or destroys something.
   destructive,
 
+  /// The filled error action that confirms a destructive choice in a dialog or confirm sheet.
+  danger,
+
   /// A small dark action inside a card or banner.
   compact,
 }
@@ -114,6 +117,26 @@ class const BaseButton({
          key: key,
        );
 
+  /// The filled error action that confirms a destructive choice. Full width by default.
+  const new danger({
+    required String text,
+    required VoidCallback? onPressed,
+    bool isLoading = false,
+    bool isEnabled = true,
+    IconData? icon,
+    bool isFullWidth = true,
+    Key? key,
+  }) : this(
+         text: text,
+         onPressed: onPressed,
+         variant: .danger,
+         isLoading: isLoading,
+         isEnabled: isEnabled,
+         icon: icon,
+         isFullWidth: isFullWidth,
+         key: key,
+       );
+
   /// A small dark action inside a card or banner. Sizes to its content.
   const new compact({
     required String text,
@@ -206,14 +229,14 @@ class _BaseButtonState() extends State<BaseButton> {
   }
 
   double get _sidePadding => switch (widget.variant) {
-    .primary => AppSpace.s24,
+    .primary || .danger => AppSpace.s24,
     .secondary => AppSpace.s20,
     .text || .destructive => AppSpace.s12,
     .compact => AppSpace.s18,
   };
 
   Color _foreground(AppColors colors) => switch (widget.variant) {
-    .primary || .compact => colors.textOnAction,
+    .primary || .compact || .danger => colors.textOnAction,
     .secondary || .text => colors.textPrimary,
     .destructive => AppPalette.errorInk,
   };
@@ -222,12 +245,14 @@ class _BaseButtonState() extends State<BaseButton> {
     if (_isPressed) {
       return switch (widget.variant) {
         .primary || .compact => colors.actionPrimaryPressed,
+        .danger => AppPalette.errorInkPressed,
         .secondary || .text || .destructive => AppPalette.safetySurface,
       };
     }
 
     return switch (widget.variant) {
       .primary || .compact => colors.actionPrimary,
+      .danger => AppPalette.errorInk,
       .secondary => colors.bgSurface,
       .text || .destructive => Colors.transparent,
     };

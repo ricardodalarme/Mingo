@@ -32,6 +32,16 @@
       "November",
       "December"
     ],
-    "weekdays": ["S", "M", "T", "W", "T", "F", "S"]
-  }
+    "weekdays": [
+      "S",
+      "M",
+      "T",
+      "W",
+      "T",
+      "F",
+      "S"
+    ],
+    "hasEntry": "Has an entry"
+  },
+  "codeLabel": "Code, {length} characters"
 }

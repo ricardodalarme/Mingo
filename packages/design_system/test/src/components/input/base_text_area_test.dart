@@ -99,4 +99,16 @@ void main() {
     expect(tester.widget<TextField>(find.byType(TextField)).controller?.text, 'hello');
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('the error message carries a warning icon like the text field', (tester) async {
+    await tester.pumpWidget(
+      inputHost(
+        const BaseTextArea(hint: 'Write', errorText: 'Write a little more'),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+
+    expect(find.text('Write a little more'), findsOneWidget);
+    expect(find.byIcon(AppIcons.warning), findsOneWidget);
+  });
 }

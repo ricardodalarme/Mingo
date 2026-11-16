@@ -1,4 +1,6 @@
 import 'package:design_system/design_system.dart';
+import 'package:design_system/src/components/input/field_localizations.dart';
+import 'package:design_system/src/components/input/field_message.dart';
 import 'package:material_ui/material_ui.dart';
 
 const double _minHeight = 150;
@@ -88,7 +90,7 @@ class _BaseTextAreaState() extends State<BaseTextArea> {
               // Owns its Material ancestor so the field works outside a Scaffold.
               child: Material(
                 type: MaterialType.transparency,
-                child: _FieldLocalizations(
+                child: FieldLocalizations(
                   child: TextField(
                     controller: _controller,
                     enabled: widget.isEnabled,
@@ -144,28 +146,9 @@ class _BaseTextAreaState() extends State<BaseTextArea> {
         AppCardRing(child: field),
         Padding(
           padding: const EdgeInsets.only(top: AppSpace.s8, left: AppSpace.s4, right: AppSpace.s4),
-          child: Text(widget.errorText!, style: text.caption.copyWith(color: AppPalette.errorInk)),
+          child: FieldMessage(text: widget.errorText!, isError: true),
         ),
       ],
-    );
-  }
-}
-
-/// Supplies English material localizations when the host provides none.
-class const _FieldLocalizations({required final Widget child}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    if (Localizations.of<MaterialLocalizations>(context, MaterialLocalizations) != null) {
-      return child;
-    }
-
-    return Localizations(
-      locale: Localizations.maybeLocaleOf(context) ?? const Locale('en', 'US'),
-      delegates: const [
-        DefaultWidgetsLocalizations.delegate,
-        DefaultMaterialLocalizations.delegate,
-      ],
-      child: child,
     );
   }
 }

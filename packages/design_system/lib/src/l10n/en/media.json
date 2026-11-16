@@ -1,0 +1,20 @@
+{
+  "takePhoto": "Take a photo",
+  "chooseFromLibrary": "Choose from library",
+  "useInitial": "Use initial and color",
+  "removePhoto": "Remove photo",
+  "usePhoto": "Use this photo",
+  "chooseAnother": "Choose another",
+  "cropHint": "Drag and pinch to adjust the photo",
+  "zoomIn": "Zoom in",
+  "zoomOut": "Zoom out",
+  "moveLeft": "Move left",
+  "moveRight": "Move right",
+  "moveUp": "Move up",
+  "moveDown": "Move down",
+  "record": "Record",
+  "stop": "Stop",
+  "reRecord": "Record again",
+  "play": "Play",
+  "pause": "Pause"
+}

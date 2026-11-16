@@ -120,13 +120,14 @@ class const _FocusRingPainter({required final Color color, required final double
     extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final rect = Rect.fromLTWH(-2, -2, size.width + 4, size.height + 4);
+    const offset = AppBorder.focusOffset;
+    final rect = Rect.fromLTWH(-offset, -offset, size.width + offset * 2, size.height + offset * 2);
     canvas.drawRRect(
-      RRect.fromRectAndRadius(rect, Radius.circular(radius + 2)),
+      RRect.fromRectAndRadius(rect, Radius.circular(radius + offset)),
       Paint()
         ..color = color
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 2,
+        ..strokeWidth = AppBorder.focus,
     );
   }
 

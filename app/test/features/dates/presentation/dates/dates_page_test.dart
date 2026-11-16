@@ -69,9 +69,7 @@ void main() {
     expect(find.text('Apagar esta data?'), findsOneWidget);
     verifyNever(() => repository.deleteDate(any()));
 
-    await tester.tap(
-      find.descendant(of: find.byType(BaseConfirmSheet), matching: find.text('Apagar')),
-    );
+    await tester.tap(find.descendant(of: find.byType(BaseSheet), matching: find.text('Apagar')));
     await tester.pumpAndSettle();
 
     verify(() => repository.deleteDate('d1')).called(1);

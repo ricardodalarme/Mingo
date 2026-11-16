@@ -38,7 +38,7 @@ class const HistoryHeroSection({
         const SizedBox(height: AppSpace.s6),
         Center(
           child: BaseAvatarPair(
-            size: 64,
+            size: .large,
             selfInitials: overview.selfInitials,
             partnerInitials: overview.partnerInitials,
             onTap: onAvatarTap,

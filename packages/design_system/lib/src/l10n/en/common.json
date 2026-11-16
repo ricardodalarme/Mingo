@@ -1,4 +1,8 @@
 {
   "loading": "Loading",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "tryAgain": "Try again",
+  "typing": "Typing",
+  "youSaid": "You said",
+  "send": "Send"
 }

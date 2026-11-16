@@ -7,10 +7,10 @@ final WidgetbookNode checkboxExample = WidgetbookComponent(
   useCases: [
     WidgetbookUseCase(
       name: 'Off, on, mixed and inside a row',
-      builder: (context) => GalleryPage(
+      builder: (context) => const GalleryPage(
         title: 'Checkbox',
         children: [
-          const GallerySection(
+          GallerySection(
             title: 'States',
             children: [
               GalleryRow(
@@ -25,25 +25,9 @@ final WidgetbookNode checkboxExample = WidgetbookComponent(
           GallerySection(
             title: 'Inside a row',
             children: [
-              Row(
-                children: [
-                  const BaseCheckbox(value: true, label: 'Accept the terms'),
-                  const SizedBox(width: AppSpace.s12),
-                  Text('Accept the terms', style: context.text.body),
-                ],
-              ),
-              const SizedBox(height: AppSpace.s12),
-              Row(
-                children: [
-                  const BaseCheckbox(
-                    value: true,
-                    isIndeterminate: true,
-                    semanticLabel: 'Some reminders selected',
-                  ),
-                  const SizedBox(width: AppSpace.s10),
-                  Text('Some reminders selected', style: context.text.body),
-                ],
-              ),
+              BaseCheckbox(value: true, label: 'Accept the terms'),
+              SizedBox(height: AppSpace.s12),
+              BaseCheckbox(value: true, isIndeterminate: true, label: 'Some reminders selected'),
             ],
           ),
         ],

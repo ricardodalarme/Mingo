@@ -25,4 +25,20 @@ void main() {
       });
     }
   }
+
+  testWidgets('the badge hugs its text and is 22 high', (tester) async {
+    await tester.pumpWidget(
+      galleryHost(
+        const Align(
+          alignment: Alignment.topLeft,
+          child: BasePlusBadge(text: 'Plus'),
+        ),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+
+    final size = tester.getSize(find.byType(BasePlusBadge));
+    expect(size.height, 22);
+    expect(size.width, lessThan(80));
+  });
 }

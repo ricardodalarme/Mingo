@@ -10,71 +10,84 @@ final WidgetbookNode avatarExample = WidgetbookComponent(
       builder: (context) => GalleryPage(
         title: 'Avatar',
         children: <Widget>[
-          const GallerySection(
-            title: 'Own · 24, 40 and 64',
+          GallerySection(
+            title: 'Own · 24, 40, 64 and 104',
             children: <Widget>[
               GalleryRow(
                 children: <Widget>[
-                  GalleryItem(
-                    label: '24',
-                    child: BaseAvatar(initials: 'R', size: 24, semanticLabel: 'You'),
-                  ),
-                  GalleryItem(
-                    label: '40',
-                    child: BaseAvatar(initials: 'R', semanticLabel: 'You'),
-                  ),
-                  GalleryItem(
-                    label: '64',
-                    child: BaseAvatar(initials: 'R', size: 64, semanticLabel: 'You'),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const GallerySection(
-            title: 'Partner',
-            children: <Widget>[
-              GalleryRow(
-                children: <Widget>[
-                  GalleryItem(
-                    label: '24',
-                    child: BaseAvatar(
-                      initials: 'M',
-                      size: 24,
-                      isPartner: true,
-                      semanticLabel: 'Marina',
+                  for (final size in BaseAvatarSize.values)
+                    GalleryItem(
+                      label: '${size.diameter.round()}',
+                      child: BaseAvatar(initials: 'R', size: size, semanticLabel: 'You'),
                     ),
-                  ),
-                  GalleryItem(
-                    label: '40',
-                    child: BaseAvatar(initials: 'M', isPartner: true, semanticLabel: 'Marina'),
-                  ),
-                  GalleryItem(
-                    label: '64',
-                    child: BaseAvatar(
-                      initials: 'M',
-                      size: 64,
-                      isPartner: true,
-                      semanticLabel: 'Marina',
-                    ),
-                  ),
                 ],
               ),
             ],
           ),
           GallerySection(
-            title: 'Empty · dashed outline with a plus',
+            title: 'Partner',
+            children: <Widget>[
+              GalleryRow(
+                children: <Widget>[
+                  for (final size in BaseAvatarSize.values)
+                    GalleryItem(
+                      label: '${size.diameter.round()}',
+                      child: BaseAvatar(
+                        initials: 'M',
+                        size: size,
+                        isPartner: true,
+                        semanticLabel: 'Marina',
+                      ),
+                    ),
+                ],
+              ),
+            ],
+          ),
+          GallerySection(
+            title: 'Empty and tappable',
             children: <Widget>[
               GalleryRow(
                 children: <Widget>[
                   BaseAvatar(isEmpty: true, onTap: () {}, semanticLabel: 'Add a photo'),
-                  const BaseAvatar(isEmpty: true, size: 64),
+                  const BaseAvatar(isEmpty: true, size: BaseAvatarSize.large),
+                  const BaseAvatar(isEmpty: true, size: BaseAvatarSize.xl),
                 ],
               ),
             ],
           ),
         ],
       ),
+    ),
+    WidgetbookUseCase(
+      name: 'XL with edit badge and states',
+      builder: (context) {
+        final isUploading = context.knobs.boolean(label: 'Uploading');
+        final hasFailed = context.knobs.boolean(label: 'Failed');
+
+        return GalleryPage(
+          title: 'Avatar xl',
+          children: <Widget>[
+            GallerySection(
+              title: 'With edit badge',
+              children: <Widget>[
+                GalleryRow(
+                  children: <Widget>[
+                    BaseAvatar(
+                      initials: 'R',
+                      size: BaseAvatarSize.xl,
+                      onEdit: () => BaseToast.show(context, 'Open the photo picker'),
+                      isUploading: isUploading,
+                      hasFailed: hasFailed,
+                    ),
+                    const BaseAvatar(initials: 'R', size: BaseAvatarSize.xl),
+                    const BaseAvatar(initials: 'M', size: BaseAvatarSize.xl, isPartner: true),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        );
+      },
     ),
   ],
 );

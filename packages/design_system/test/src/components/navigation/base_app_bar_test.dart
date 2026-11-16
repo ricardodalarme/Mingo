@@ -44,8 +44,8 @@ void main() {
       final decoration = bar.decoration! as BoxDecoration;
       expect(decoration.color, colors.bgScreen.withValues(alpha: .94));
       expect((decoration.border! as Border).bottom.color, colors.borderDefault);
-      // 44pt round button plus the 1pt scrolled bottom border.
-      expect(tester.getSize(find.byType(AnimatedContainer).first).height, 45);
+      // A title with a subtitle is 42 high plus the 1pt scrolled bottom border.
+      expect(tester.getSize(find.byType(AnimatedContainer).first).height, 43);
 
       await tester.pumpWidget(
         appFor(variant: variant, home: const _AppBarGallery(hasScrolled: false)),

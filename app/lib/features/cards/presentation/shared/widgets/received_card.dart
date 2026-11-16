@@ -1,3 +1,4 @@
+import 'package:app/features/cards/presentation/shared/widgets/envelope.dart';
 import 'package:design_system/design_system.dart';
 
 /// A framed card with the heart envelope, a title and one compact action.
@@ -24,7 +25,7 @@ class const ReceivedCard({
           ),
           child: Row(
             children: [
-              AppEnvelope(color: colors.accentHighlight),
+              Envelope(color: colors.accentHighlight),
               const SizedBox(width: AppSpace.s16),
               Expanded(child: Text(title, style: context.text.titleSm)),
               const SizedBox(width: AppSpace.s12),

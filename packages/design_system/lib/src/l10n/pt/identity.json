@@ -1,0 +1,16 @@
+{
+  "editPhoto": "Sua foto, alterar",
+  "mapOffline": "O mapa precisa de conexão",
+  "mapLocationDenied": "Permita a localização para ver o mapa",
+  "mapAllowLocation": "Permitir localização",
+  "faces(map)": {
+    "good": "Bem",
+    "affectionate": "Carinhoso",
+    "tired": "Cansado",
+    "tense": "Tenso",
+    "sad": "Triste",
+    "thinking": "Pensativo",
+    "smile": "Sorrindo",
+    "other": "Rosto"
+  }
+}

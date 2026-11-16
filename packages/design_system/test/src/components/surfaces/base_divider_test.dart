@@ -32,4 +32,16 @@ void main() {
       });
     }
   }
+
+  testWidgets('a dashed divider spans the available width', (tester) async {
+    await tester.pumpWidget(
+      galleryHost(const BaseDivider(isDashed: true), variant: AppThemeVariant.rose, width: 300),
+    );
+
+    final paint = find
+        .descendant(of: find.byType(BaseDivider), matching: find.byType(CustomPaint))
+        .first;
+    expect(tester.getSize(paint).width, 260);
+    expect(tester.getSize(paint).height, 1.5);
+  });
 }

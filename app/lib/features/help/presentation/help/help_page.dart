@@ -36,7 +36,7 @@ class const HelpPage({super.key}) extends StatelessWidget implements AutoRouteWr
               children: [
                 BaseListTile(
                   title: l10n.contactTitle,
-                  icon: AppIcons.chat,
+                  icon: AppIcons.message,
                   showsChevron: true,
                   onTap: () => _openSupport(context),
                 ),

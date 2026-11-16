@@ -1,3 +1,5 @@
 {
-  "stepOf": "Step {current} of {total}"
+  "stepOf": "Step {current} of {total}",
+  "partOf": "Part {current} of {total}",
+  "cardOf": "Card {current} of {total}"
 }

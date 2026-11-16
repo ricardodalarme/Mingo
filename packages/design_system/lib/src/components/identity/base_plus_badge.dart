@@ -12,17 +12,23 @@ class const BasePlusBadge({required final String text, final String? semanticLab
     final badge = Container(
       constraints: const BoxConstraints(minHeight: _height),
       padding: const EdgeInsets.symmetric(horizontal: AppSpace.s8),
-      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: colors.accentSoft,
         borderRadius: BorderRadius.circular(AppRadius.pill),
         border: Border.all(color: colors.accentHighlight),
       ),
-      child: Text(
-        text,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: context.text.micro.copyWith(fontWeight: FontWeight.w600, color: colors.accentOnSoft),
+      child: Center(
+        widthFactor: 1,
+        heightFactor: 1,
+        child: Text(
+          text,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: context.text.micro.copyWith(
+            fontWeight: FontWeight.w600,
+            color: colors.accentOnSoft,
+          ),
+        ),
       ),
     );
 

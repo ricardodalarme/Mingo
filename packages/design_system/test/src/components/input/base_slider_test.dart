@@ -73,4 +73,19 @@ void main() {
 
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('the end labels sit at the two ends of the track', (tester) async {
+    await tester.pumpWidget(
+      inputHost(
+        BaseSlider(value: .4, onChanged: (_) {}, startLabel: 'Less', endLabel: 'More'),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+
+    final start = tester.getTopLeft(find.text('Less')).dx;
+    final end = tester.getTopRight(find.text('More')).dx;
+    final track = tester.getRect(find.byType(BaseSlider));
+    expect(start, closeTo(track.left, 1));
+    expect(end, closeTo(track.right, 1));
+  });
 }

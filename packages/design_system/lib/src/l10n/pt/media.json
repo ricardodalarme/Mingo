@@ -1,0 +1,20 @@
+{
+  "takePhoto": "Tirar uma foto",
+  "chooseFromLibrary": "Escolher da galeria",
+  "useInitial": "Usar inicial e cor",
+  "removePhoto": "Remover foto",
+  "usePhoto": "Usar esta foto",
+  "chooseAnother": "Escolher outra",
+  "cropHint": "Arraste e use o gesto de pinça para ajustar a foto",
+  "zoomIn": "Aproximar",
+  "zoomOut": "Afastar",
+  "moveLeft": "Mover para a esquerda",
+  "moveRight": "Mover para a direita",
+  "moveUp": "Mover para cima",
+  "moveDown": "Mover para baixo",
+  "record": "Gravar",
+  "stop": "Parar",
+  "reRecord": "Gravar de novo",
+  "play": "Tocar",
+  "pause": "Pausar"
+}

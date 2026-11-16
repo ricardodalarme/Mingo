@@ -2,8 +2,11 @@ import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/banner
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/confirm_sheet_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/dialog_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/empty_state_example.dart';
+import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/illustrated_banner_example.dart';
+import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/legal_note_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/list_group_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/loading_dots_example.dart';
+import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/meter_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/note_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/refresh_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/section_header_example.dart';
@@ -29,5 +32,8 @@ final WidgetbookNode feedbackExamples = WidgetbookFolder(
     dialogExample,
     sectionHeaderExample,
     listGroupAndTileExample,
+    meterExample,
+    illustratedBannerExample,
+    legalNoteExample,
   ],
 );

@@ -1,8 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:material_ui/material_ui.dart';
 
-const double _primaryHeight = 50;
-
 /// A centred decision that never closes on an outside tap.
 ///
 /// When [isDestructive] is true the primary action uses the error colour.
@@ -65,7 +63,7 @@ class const BaseDialog({
                 ),
               const SizedBox(height: AppSpace.s18),
               if (isDestructive)
-                _DestructivePrimary(text: primaryText, onPressed: onPrimary)
+                BaseButton.danger(text: primaryText, onPressed: onPrimary)
               else
                 BaseButton.primary(text: primaryText, onPressed: onPrimary),
               if (secondary != null) ...[
@@ -200,40 +198,6 @@ class _BaseDialogRoute<T>({
           end: 1,
         ).chain(CurveTween(curve: AppMotion.baseCurve)).animate(animation),
         child: child,
-      ),
-    );
-  }
-}
-
-class const _DestructivePrimary({
-  required final String text,
-  required final VoidCallback? onPressed,
-}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-
-    return AppPressable(
-      onTap: onPressed,
-      borderRadius: BorderRadius.circular(AppRadius.pill),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: AppPalette.errorInk,
-          borderRadius: BorderRadius.circular(AppRadius.pill),
-        ),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: _primaryHeight),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpace.s20),
-            child: Center(
-              child: Text(
-                text,
-                textAlign: TextAlign.center,
-                style: context.text.body.copyWith(color: colors.textOnAction),
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }

@@ -28,7 +28,18 @@ class const AppHighlightedText({
     }
 
     final before = text.substring(0, index);
-    final after = text.substring(index + highlight.length);
+    final rest = text.substring(index + highlight.length);
+    // Punctuation right after the word travels with it: a line may break after an inline widget.
+    final tailLength = rest.indexOf(RegExp(r'\s'));
+    final tail = tailLength < 0 ? rest : rest.substring(0, tailLength);
+    final after = rest.substring(tail.length);
+    final tailWidth = tail.isEmpty
+        ? 0.0
+        : (TextPainter(
+            text: TextSpan(text: tail, style: style),
+            textDirection: Directionality.of(context),
+            textScaler: MediaQuery.textScalerOf(context),
+          )..layout()).width;
 
     return Text.rich(
       TextSpan(
@@ -41,10 +52,21 @@ class const AppHighlightedText({
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                Text(highlight, style: style.copyWith(color: colors.accentHighlight)),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: highlight,
+                        style: TextStyle(color: colors.accentHighlight),
+                      ),
+                      if (tail.isNotEmpty) TextSpan(text: tail),
+                    ],
+                  ),
+                  style: style,
+                ),
                 Positioned(
                   left: -2,
-                  right: -2,
+                  right: tailWidth - 2,
                   bottom: -7,
                   height: 9,
                   child: CustomPaint(painter: SquigglePainter(color: colors.accentHighlight)),

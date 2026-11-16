@@ -2,7 +2,7 @@ import 'package:app/features/dev_menu/storybook/helpers/widgets/gallery_widgets.
 import 'package:design_system/design_system.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-const _navigationIcons = <(String, IconData)>[
+const _group0 = <(String, IconData)>[
   ('chevron_right', AppIcons.chevron_right),
   ('chevron_left', AppIcons.chevron_left),
   ('chevron_up', AppIcons.chevron_up),
@@ -15,7 +15,7 @@ const _navigationIcons = <(String, IconData)>[
   ('sort', AppIcons.sort),
 ];
 
-const _actionIcons = <(String, IconData)>[
+const _group1 = <(String, IconData)>[
   ('plus', AppIcons.plus),
   ('check', AppIcons.check),
   ('pencil', AppIcons.pencil),
@@ -34,9 +34,10 @@ const _actionIcons = <(String, IconData)>[
   ('play', AppIcons.play),
   ('pause', AppIcons.pause),
   ('settings', AppIcons.settings),
+  ('square_minus', AppIcons.square_minus),
 ];
 
-const _statusIcons = <(String, IconData)>[
+const _group2 = <(String, IconData)>[
   ('info', AppIcons.info),
   ('help', AppIcons.help),
   ('warning', AppIcons.warning),
@@ -49,9 +50,10 @@ const _statusIcons = <(String, IconData)>[
   ('loader', AppIcons.loader),
   ('bell', AppIcons.bell),
   ('bell_off', AppIcons.bell_off),
+  ('prohibit', AppIcons.prohibit),
 ];
 
-const _contentIcons = <(String, IconData)>[
+const _group3 = <(String, IconData)>[
   ('mail', AppIcons.mail),
   ('mail_filled', AppIcons.mail_filled),
   ('chat', AppIcons.chat),
@@ -64,9 +66,15 @@ const _contentIcons = <(String, IconData)>[
   ('rings', AppIcons.rings),
   ('gift', AppIcons.gift),
   ('star', AppIcons.star),
+  ('message', AppIcons.message),
+  ('gamepad', AppIcons.gamepad),
+  ('sliders_vertical', AppIcons.sliders_vertical),
+  ('jar', AppIcons.jar),
+  ('notebook', AppIcons.notebook),
+  ('trending_up', AppIcons.trending_up),
 ];
 
-const _natureIcons = <(String, IconData)>[
+const _group4 = <(String, IconData)>[
   ('calendar', AppIcons.calendar),
   ('calendar_filled', AppIcons.calendar_filled),
   ('clock', AppIcons.clock),
@@ -78,9 +86,11 @@ const _natureIcons = <(String, IconData)>[
   ('sunrise', AppIcons.sunrise),
   ('cloud', AppIcons.cloud),
   ('plant', AppIcons.plant),
+  ('flame', AppIcons.flame),
+  ('history', AppIcons.history),
 ];
 
-const _peopleIcons = <(String, IconData)>[
+const _group5 = <(String, IconData)>[
   ('heart', AppIcons.heart),
   ('heart_filled', AppIcons.heart_filled),
   ('user', AppIcons.user),
@@ -90,23 +100,67 @@ const _peopleIcons = <(String, IconData)>[
   ('lightbulb', AppIcons.lightbulb),
   ('lightbulb_filled', AppIcons.lightbulb_filled),
   ('cart', AppIcons.cart),
+  ('initial', AppIcons.initial),
 ];
 
 final WidgetbookNode iconsExample = WidgetbookComponent(
   name: 'Icons',
   useCases: <WidgetbookUseCase>[
     WidgetbookUseCase(
-      name: 'All icons',
+      name: 'Catalog (83)',
       builder: (context) {
         return GalleryPage(
           title: 'Icons',
           children: <Widget>[
-            _iconSection(title: 'Navigation', icons: _navigationIcons),
-            _iconSection(title: 'Actions', icons: _actionIcons),
-            _iconSection(title: 'Status and safety', icons: _statusIcons),
-            _iconSection(title: 'Content and communication', icons: _contentIcons),
-            _iconSection(title: 'Time, place and nature', icons: _natureIcons),
-            _iconSection(title: 'People and feeling', icons: _peopleIcons),
+            _iconSection(title: 'Navigation', icons: _group0),
+            _iconSection(title: 'Actions', icons: _group1),
+            _iconSection(title: 'Status and safety', icons: _group2),
+            _iconSection(title: 'Content and communication', icons: _group3),
+            _iconSection(title: 'Time, place and nature', icons: _group4),
+            _iconSection(title: 'People and feeling', icons: _group5),
+          ],
+        );
+      },
+    ),
+    WidgetbookUseCase(
+      name: 'Sizes and tints',
+      builder: (context) {
+        final colors = context.colors;
+
+        return GalleryPage(
+          title: 'Icon sizes',
+          children: <Widget>[
+            GallerySection(
+              title: 'xs 14, sm 18, md 20, lg 22, xl 26',
+              children: <Widget>[
+                Row(
+                  spacing: AppSpace.s20,
+                  children: <Widget>[
+                    for (final size in <double>[
+                      AppIconSize.xs,
+                      AppIconSize.sm,
+                      AppIconSize.md,
+                      AppIconSize.lg,
+                      AppIconSize.xl,
+                    ])
+                      AppIcon(icon: AppIcons.heart_filled, size: size, color: colors.accentLabel),
+                  ],
+                ),
+              ],
+            ),
+            GallerySection(
+              title: 'Default and muted',
+              children: <Widget>[
+                Row(
+                  spacing: AppSpace.s20,
+                  children: <Widget>[
+                    const AppIcon(icon: AppIcons.lock),
+                    AppIcon(icon: AppIcons.lock, color: colors.iconMuted),
+                    AppIcon(icon: AppIcons.lock, color: colors.accentLabel),
+                  ],
+                ),
+              ],
+            ),
           ],
         );
       },
@@ -116,7 +170,7 @@ final WidgetbookNode iconsExample = WidgetbookComponent(
 
 Widget _iconSection({required String title, required List<(String, IconData)> icons}) {
   return GallerySection(
-    title: title,
+    title: '$title · ${icons.length}',
     children: <Widget>[
       Wrap(
         spacing: AppSpace.s16,

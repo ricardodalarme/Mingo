@@ -282,11 +282,12 @@ class _BaseSliderState() extends State<BaseSlider> {
         if (widget.startLabel != null || widget.endLabel != null) ...[
           const SizedBox(height: _endLabelGap),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               if (widget.startLabel case final label?)
                 Text(label, style: context.text.micro.copyWith(color: colors.textSecondary))
               else
-                const Spacer(),
+                const SizedBox.shrink(),
               if (widget.endLabel case final label?)
                 Text(label, style: context.text.micro.copyWith(color: colors.textSecondary)),
             ],

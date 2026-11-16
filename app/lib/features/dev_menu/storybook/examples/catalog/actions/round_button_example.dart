@@ -6,7 +6,7 @@ final WidgetbookNode roundButtonExample = WidgetbookComponent(
   name: 'BaseRoundButton',
   useCases: <WidgetbookUseCase>[
     WidgetbookUseCase(
-      name: 'Back, close, add and disabled',
+      name: 'Standard · back, close, add and disabled',
       builder: (context) => GalleryPage(
         title: 'Round button',
         children: <Widget>[
@@ -25,6 +25,44 @@ final WidgetbookNode roundButtonExample = WidgetbookComponent(
           ),
         ],
       ),
+    ),
+    WidgetbookUseCase(
+      name: 'Primary · normal, loading and disabled',
+      builder: (context) {
+        final isLoading = context.knobs.boolean(label: 'Loading');
+
+        return GalleryPage(
+          title: 'Round button, primary',
+          children: <Widget>[
+            GalleryRow(
+              children: <Widget>[
+                BaseRoundButton.primary(
+                  icon: AppIcons.send,
+                  onPressed: () {},
+                  isLoading: isLoading,
+                  semanticLabel: 'Send',
+                ),
+                BaseRoundButton.primary(
+                  icon: AppIcons.plus,
+                  onPressed: () {},
+                  semanticLabel: 'Add',
+                ),
+                const BaseRoundButton.primary(
+                  icon: AppIcons.send,
+                  onPressed: null,
+                  semanticLabel: 'Send',
+                ),
+                const BaseRoundButton.primary(
+                  icon: AppIcons.send,
+                  onPressed: null,
+                  isLoading: true,
+                  semanticLabel: 'Send',
+                ),
+              ],
+            ),
+          ],
+        );
+      },
     ),
   ],
 );

@@ -32,7 +32,7 @@ extension GameKindL10n on GameKind {
   IconData get icon => switch (this) {
     GameKind.meOrYou => AppIcons.users,
     GameKind.howWell => AppIcons.star,
-    GameKind.twentyQuestions => AppIcons.chat,
+    GameKind.twentyQuestions => AppIcons.message,
     GameKind.neverHaveWe => AppIcons.heart,
     GameKind.mission => AppIcons.calendar,
   };

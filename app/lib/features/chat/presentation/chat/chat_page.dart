@@ -367,7 +367,7 @@ class const _Message({required final ChatMessage message}) extends StatelessWidg
     return Align(
       alignment: Alignment.centerLeft,
       child: BaseBubble(
-        variant: message.isInterrupted ? BaseBubbleVariant.failure : BaseBubbleVariant.other,
+        isFailed: message.isInterrupted,
         text: message.text.isEmpty ? l10n.interrupted : message.text,
         action: message.isInterrupted
             ? BaseTextLink(text: l10n.retry, onPressed: () => cubit.retry(message))

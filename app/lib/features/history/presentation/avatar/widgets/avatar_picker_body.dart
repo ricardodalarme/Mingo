@@ -20,7 +20,7 @@ class const AvatarPickerBody({required final HistoryOverview overview, super.key
         const SizedBox(height: AppSpace.s28),
         Center(
           child: BaseAvatarPair(
-            size: 64,
+            size: .large,
             selfInitials: overview.selfInitials,
             partnerInitials: overview.partnerInitials,
           ),

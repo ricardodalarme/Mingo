@@ -16,7 +16,7 @@ class const AcceptInviteConnected({super.key}) extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           BaseAvatarPair(
-            size: 64,
+            size: .large,
             selfInitials: _initial(selfName),
             partnerInitials: _initial(partnerName),
           ),

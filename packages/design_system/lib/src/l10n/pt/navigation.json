@@ -1,3 +1,5 @@
 {
-  "stepOf": "Etapa {current} de {total}"
+  "stepOf": "Etapa {current} de {total}",
+  "partOf": "Parte {current} de {total}",
+  "cardOf": "Cartão {current} de {total}"
 }

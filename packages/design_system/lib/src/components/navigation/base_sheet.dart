@@ -136,6 +136,9 @@ class const BaseSheet({
   }
 
   /// Shows a [BaseSheet] and resolves with its result.
+  ///
+  /// A dismissible sheet closes on the scrim and by dragging; [hasCloseButton] false hides the round close
+  /// button for short decisions such as a confirmation.
   static Future<T?> show<T>({
     required BuildContext context,
     required Widget child,
@@ -143,6 +146,7 @@ class const BaseSheet({
     String? subtitle,
     Widget? primaryAction,
     bool isDismissible = true,
+    bool hasCloseButton = true,
   }) {
     final colors = context.colors;
     final localizations = Localizations.of<MaterialLocalizations>(context, MaterialLocalizations);
@@ -167,7 +171,9 @@ class const BaseSheet({
                   title: title,
                   subtitle: subtitle,
                   primaryAction: primaryAction,
-                  onClose: isDismissible ? () => Navigator.of(sheetContext).maybePop() : null,
+                  onClose: isDismissible && hasCloseButton
+                      ? () => Navigator.of(sheetContext).maybePop()
+                      : null,
                   closeSemanticLabel: localizations?.closeButtonTooltip,
                   child: child,
                 ),

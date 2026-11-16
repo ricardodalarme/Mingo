@@ -219,9 +219,7 @@ void main() {
     expect(find.text('Apagar esta memória?'), findsOneWidget);
     verifyNever(() => repository.deleteMemory(any()));
 
-    await tester.tap(
-      find.descendant(of: find.byType(BaseConfirmSheet), matching: find.text('Apagar')),
-    );
+    await tester.tap(find.descendant(of: find.byType(BaseSheet), matching: find.text('Apagar')));
     await tester.pumpAndSettle();
 
     verify(() => repository.deleteMemory('m1')).called(1);

@@ -54,7 +54,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
   // Translations
   late final Translations$common$en common = Translations$common$en.internal(_root);
+  late final Translations$identity$en identity = Translations$identity$en.internal(_root);
   late final Translations$input$en input = Translations$input$en.internal(_root);
+  late final Translations$media$en media = Translations$media$en.internal(_root);
   late final Translations$navigation$en navigation = Translations$navigation$en.internal(_root);
 }
 
@@ -71,6 +73,50 @@ class Translations$common$en {
 
   /// en: 'Cancel'
   String get cancel => 'Cancel';
+
+  /// en: 'Try again'
+  String get tryAgain => 'Try again';
+
+  /// en: 'Typing'
+  String get typing => 'Typing';
+
+  /// en: 'You said'
+  String get youSaid => 'You said';
+
+  /// en: 'Send'
+  String get send => 'Send';
+}
+
+// Path: identity
+class Translations$identity$en {
+  Translations$identity$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Your photo, change'
+  String get editPhoto => 'Your photo, change';
+
+  /// en: 'The map needs a connection'
+  String get mapOffline => 'The map needs a connection';
+
+  /// en: 'Allow location to see the map'
+  String get mapLocationDenied => 'Allow location to see the map';
+
+  /// en: 'Allow location'
+  String get mapAllowLocation => 'Allow location';
+
+  Map<String, String> get faces => {
+    'good': 'Good',
+    'affectionate': 'Affectionate',
+    'tired': 'Tired',
+    'tense': 'Tense',
+    'sad': 'Sad',
+    'thinking': 'Thinking',
+    'smile': 'Smile',
+    'other': 'Face',
+  };
 }
 
 // Path: input
@@ -120,6 +166,72 @@ class Translations$input$en {
   late final Translations$input$calendar$en calendar = Translations$input$calendar$en.internal(
     _root,
   );
+
+  /// en: 'Code, {length} characters'
+  String codeLabel({required Object length}) => 'Code, ${length} characters';
+}
+
+// Path: media
+class Translations$media$en {
+  Translations$media$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Take a photo'
+  String get takePhoto => 'Take a photo';
+
+  /// en: 'Choose from library'
+  String get chooseFromLibrary => 'Choose from library';
+
+  /// en: 'Use initial and color'
+  String get useInitial => 'Use initial and color';
+
+  /// en: 'Remove photo'
+  String get removePhoto => 'Remove photo';
+
+  /// en: 'Use this photo'
+  String get usePhoto => 'Use this photo';
+
+  /// en: 'Choose another'
+  String get chooseAnother => 'Choose another';
+
+  /// en: 'Drag and pinch to adjust the photo'
+  String get cropHint => 'Drag and pinch to adjust the photo';
+
+  /// en: 'Zoom in'
+  String get zoomIn => 'Zoom in';
+
+  /// en: 'Zoom out'
+  String get zoomOut => 'Zoom out';
+
+  /// en: 'Move left'
+  String get moveLeft => 'Move left';
+
+  /// en: 'Move right'
+  String get moveRight => 'Move right';
+
+  /// en: 'Move up'
+  String get moveUp => 'Move up';
+
+  /// en: 'Move down'
+  String get moveDown => 'Move down';
+
+  /// en: 'Record'
+  String get record => 'Record';
+
+  /// en: 'Stop'
+  String get stop => 'Stop';
+
+  /// en: 'Record again'
+  String get reRecord => 'Record again';
+
+  /// en: 'Play'
+  String get play => 'Play';
+
+  /// en: 'Pause'
+  String get pause => 'Pause';
 }
 
 // Path: navigation
@@ -132,6 +244,12 @@ class Translations$navigation$en {
 
   /// en: 'Step {current} of {total}'
   String stepOf({required Object current, required Object total}) => 'Step ${current} of ${total}';
+
+  /// en: 'Part {current} of {total}'
+  String partOf({required Object current, required Object total}) => 'Part ${current} of ${total}';
+
+  /// en: 'Card {current} of {total}'
+  String cardOf({required Object current, required Object total}) => 'Card ${current} of ${total}';
 }
 
 // Path: input.calendar
@@ -176,6 +294,9 @@ class Translations$input$calendar$en {
     'December',
   ];
   List<String> get weekdays => ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+
+  /// en: 'Has an entry'
+  String get hasEntry => 'Has an entry';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -188,6 +309,22 @@ extension on Translations {
     return switch (path) {
       'common.loading' => 'Loading',
       'common.cancel' => 'Cancel',
+      'common.tryAgain' => 'Try again',
+      'common.typing' => 'Typing',
+      'common.youSaid' => 'You said',
+      'common.send' => 'Send',
+      'identity.editPhoto' => 'Your photo, change',
+      'identity.mapOffline' => 'The map needs a connection',
+      'identity.mapLocationDenied' => 'Allow location to see the map',
+      'identity.mapAllowLocation' => 'Allow location',
+      'identity.faces.good' => 'Good',
+      'identity.faces.affectionate' => 'Affectionate',
+      'identity.faces.tired' => 'Tired',
+      'identity.faces.tense' => 'Tense',
+      'identity.faces.sad' => 'Sad',
+      'identity.faces.thinking' => 'Thinking',
+      'identity.faces.smile' => 'Smile',
+      'identity.faces.other' => 'Face',
       'input.showPassword' => 'Show password',
       'input.hidePassword' => 'Hide password',
       'input.search' => 'Search',
@@ -232,10 +369,38 @@ extension on Translations {
       'input.calendar.weekdays.4' => 'T',
       'input.calendar.weekdays.5' => 'F',
       'input.calendar.weekdays.6' => 'S',
+      'input.calendar.hasEntry' => 'Has an entry',
+      'input.codeLabel' => ({required Object length}) => 'Code, ${length} characters',
+      'media.takePhoto' => 'Take a photo',
+      'media.chooseFromLibrary' => 'Choose from library',
+      'media.useInitial' => 'Use initial and color',
+      'media.removePhoto' => 'Remove photo',
+      'media.usePhoto' => 'Use this photo',
+      'media.chooseAnother' => 'Choose another',
+      'media.cropHint' => 'Drag and pinch to adjust the photo',
+      'media.zoomIn' => 'Zoom in',
+      'media.zoomOut' => 'Zoom out',
+      'media.moveLeft' => 'Move left',
+      'media.moveRight' => 'Move right',
+      'media.moveUp' => 'Move up',
+      'media.moveDown' => 'Move down',
+      'media.record' => 'Record',
+      'media.stop' => 'Stop',
+      'media.reRecord' => 'Record again',
+      'media.play' => 'Play',
+      'media.pause' => 'Pause',
       'navigation.stepOf' => ({
         required Object current,
         required Object total,
       }) => 'Step ${current} of ${total}',
+      'navigation.partOf' => ({
+        required Object current,
+        required Object total,
+      }) => 'Part ${current} of ${total}',
+      'navigation.cardOf' => ({
+        required Object current,
+        required Object total,
+      }) => 'Card ${current} of ${total}',
       _ => null,
     };
   }

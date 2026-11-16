@@ -4,14 +4,13 @@ import 'package:flutter/widgets.dart';
 /// Border widths and dash rhythm.
 abstract final class AppBorder() {
   static const double hair = 1;
-  static const double inner = 1;
   static const double selected = 1.5;
   static const double dashed = 1.5;
   static const double focus = 2;
   static const double focusOffset = 2;
   static const double error = 1.5;
 
-  static const List<double> dashPattern = [4, 3];
+  static const List<double> dashPattern = [4, 4];
 }
 
 /// Border descriptions shared by cards, chips and secondary buttons.

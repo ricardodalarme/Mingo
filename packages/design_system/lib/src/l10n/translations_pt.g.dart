@@ -54,7 +54,11 @@ class TranslationsPt extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$common$pt common = _Translations$common$pt._(_root);
   @override
+  late final _Translations$identity$pt identity = _Translations$identity$pt._(_root);
+  @override
   late final _Translations$input$pt input = _Translations$input$pt._(_root);
+  @override
+  late final _Translations$media$pt media = _Translations$media$pt._(_root);
   @override
   late final _Translations$navigation$pt navigation = _Translations$navigation$pt._(_root);
 }
@@ -70,6 +74,42 @@ class _Translations$common$pt extends Translations$common$en {
   String get loading => 'Carregando';
   @override
   String get cancel => 'Cancelar';
+  @override
+  String get tryAgain => 'Tentar de novo';
+  @override
+  String get typing => 'Digitando';
+  @override
+  String get youSaid => 'Você disse';
+  @override
+  String get send => 'Enviar';
+}
+
+// Path: identity
+class _Translations$identity$pt extends Translations$identity$en {
+  _Translations$identity$pt._(TranslationsPt root) : this._root = root, super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get editPhoto => 'Sua foto, alterar';
+  @override
+  String get mapOffline => 'O mapa precisa de conexão';
+  @override
+  String get mapLocationDenied => 'Permita a localização para ver o mapa';
+  @override
+  String get mapAllowLocation => 'Permitir localização';
+  @override
+  Map<String, String> get faces => {
+    'good': 'Bem',
+    'affectionate': 'Carinhoso',
+    'tired': 'Cansado',
+    'tense': 'Tenso',
+    'sad': 'Triste',
+    'thinking': 'Pensativo',
+    'smile': 'Sorrindo',
+    'other': 'Rosto',
+  };
 }
 
 // Path: input
@@ -105,6 +145,53 @@ class _Translations$input$pt extends Translations$input$en {
   String get decrease => 'Diminuir';
   @override
   late final _Translations$input$calendar$pt calendar = _Translations$input$calendar$pt._(_root);
+  @override
+  String codeLabel({required Object length}) => 'Código, ${length} caracteres';
+}
+
+// Path: media
+class _Translations$media$pt extends Translations$media$en {
+  _Translations$media$pt._(TranslationsPt root) : this._root = root, super.internal(root);
+
+  final TranslationsPt _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get takePhoto => 'Tirar uma foto';
+  @override
+  String get chooseFromLibrary => 'Escolher da galeria';
+  @override
+  String get useInitial => 'Usar inicial e cor';
+  @override
+  String get removePhoto => 'Remover foto';
+  @override
+  String get usePhoto => 'Usar esta foto';
+  @override
+  String get chooseAnother => 'Escolher outra';
+  @override
+  String get cropHint => 'Arraste e use o gesto de pinça para ajustar a foto';
+  @override
+  String get zoomIn => 'Aproximar';
+  @override
+  String get zoomOut => 'Afastar';
+  @override
+  String get moveLeft => 'Mover para a esquerda';
+  @override
+  String get moveRight => 'Mover para a direita';
+  @override
+  String get moveUp => 'Mover para cima';
+  @override
+  String get moveDown => 'Mover para baixo';
+  @override
+  String get record => 'Gravar';
+  @override
+  String get stop => 'Parar';
+  @override
+  String get reRecord => 'Gravar de novo';
+  @override
+  String get play => 'Tocar';
+  @override
+  String get pause => 'Pausar';
 }
 
 // Path: navigation
@@ -116,6 +203,11 @@ class _Translations$navigation$pt extends Translations$navigation$en {
   // Translations
   @override
   String stepOf({required Object current, required Object total}) => 'Etapa ${current} de ${total}';
+  @override
+  String partOf({required Object current, required Object total}) => 'Parte ${current} de ${total}';
+  @override
+  String cardOf({required Object current, required Object total}) =>
+      'Cartão ${current} de ${total}';
 }
 
 // Path: input.calendar
@@ -155,6 +247,8 @@ class _Translations$input$calendar$pt extends Translations$input$calendar$en {
   ];
   @override
   List<String> get weekdays => ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+  @override
+  String get hasEntry => 'Tem registro';
 }
 
 /// The flat map containing all translations for locale <pt>.
@@ -167,6 +261,22 @@ extension on TranslationsPt {
     return switch (path) {
       'common.loading' => 'Carregando',
       'common.cancel' => 'Cancelar',
+      'common.tryAgain' => 'Tentar de novo',
+      'common.typing' => 'Digitando',
+      'common.youSaid' => 'Você disse',
+      'common.send' => 'Enviar',
+      'identity.editPhoto' => 'Sua foto, alterar',
+      'identity.mapOffline' => 'O mapa precisa de conexão',
+      'identity.mapLocationDenied' => 'Permita a localização para ver o mapa',
+      'identity.mapAllowLocation' => 'Permitir localização',
+      'identity.faces.good' => 'Bem',
+      'identity.faces.affectionate' => 'Carinhoso',
+      'identity.faces.tired' => 'Cansado',
+      'identity.faces.tense' => 'Tenso',
+      'identity.faces.sad' => 'Triste',
+      'identity.faces.thinking' => 'Pensativo',
+      'identity.faces.smile' => 'Sorrindo',
+      'identity.faces.other' => 'Rosto',
       'input.showPassword' => 'Mostrar senha',
       'input.hidePassword' => 'Ocultar senha',
       'input.search' => 'Buscar',
@@ -211,10 +321,38 @@ extension on TranslationsPt {
       'input.calendar.weekdays.4' => 'Q',
       'input.calendar.weekdays.5' => 'S',
       'input.calendar.weekdays.6' => 'S',
+      'input.calendar.hasEntry' => 'Tem registro',
+      'input.codeLabel' => ({required Object length}) => 'Código, ${length} caracteres',
+      'media.takePhoto' => 'Tirar uma foto',
+      'media.chooseFromLibrary' => 'Escolher da galeria',
+      'media.useInitial' => 'Usar inicial e cor',
+      'media.removePhoto' => 'Remover foto',
+      'media.usePhoto' => 'Usar esta foto',
+      'media.chooseAnother' => 'Escolher outra',
+      'media.cropHint' => 'Arraste e use o gesto de pinça para ajustar a foto',
+      'media.zoomIn' => 'Aproximar',
+      'media.zoomOut' => 'Afastar',
+      'media.moveLeft' => 'Mover para a esquerda',
+      'media.moveRight' => 'Mover para a direita',
+      'media.moveUp' => 'Mover para cima',
+      'media.moveDown' => 'Mover para baixo',
+      'media.record' => 'Gravar',
+      'media.stop' => 'Parar',
+      'media.reRecord' => 'Gravar de novo',
+      'media.play' => 'Tocar',
+      'media.pause' => 'Pausar',
       'navigation.stepOf' => ({
         required Object current,
         required Object total,
       }) => 'Etapa ${current} de ${total}',
+      'navigation.partOf' => ({
+        required Object current,
+        required Object total,
+      }) => 'Parte ${current} de ${total}',
+      'navigation.cardOf' => ({
+        required Object current,
+        required Object total,
+      }) => 'Cartão ${current} de ${total}',
       _ => null,
     };
   }

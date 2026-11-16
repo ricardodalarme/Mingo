@@ -118,9 +118,7 @@ void main() {
 
     expect(find.text('Confirmar este aprendizado?'), findsOneWidget);
 
-    await tester.tap(
-      find.descendant(of: find.byType(BaseConfirmSheet), matching: find.text('Confirmar')),
-    );
+    await tester.tap(find.descendant(of: find.byType(BaseSheet), matching: find.text('Confirmar')));
     await tester.pumpAndSettle();
 
     verify(() => learnedItemsRepository.setStatus('l1', LearnedStatus.confirmed)).called(1);

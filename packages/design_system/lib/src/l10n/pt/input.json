@@ -32,6 +32,16 @@
       "novembro",
       "dezembro"
     ],
-    "weekdays": ["D", "S", "T", "Q", "Q", "S", "S"]
-  }
+    "weekdays": [
+      "D",
+      "S",
+      "T",
+      "Q",
+      "Q",
+      "S",
+      "S"
+    ],
+    "hasEntry": "Tem registro"
+  },
+  "codeLabel": "Código, {length} caracteres"
 }

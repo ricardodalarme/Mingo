@@ -141,7 +141,7 @@ class const _ToolsSection({
             onTap: () => _openCheckin(context),
           ),
         _row(
-          icon: AppIcons.chat,
+          icon: AppIcons.message,
           title: entry.title,
           subtitle: l10n.questionMeta,
           onTap: () => context.pushRoute(const QuestionsRoute()),
@@ -335,7 +335,7 @@ class const _PrivateMoreSection() extends StatelessWidget {
       footer: l10n.forMeFooter,
       children: [
         _row(
-          icon: AppIcons.chat,
+          icon: AppIcons.message,
           title: l10n.chatTitle,
           subtitle: l10n.chatMeta,
           onTap: () => context.pushRoute(ChatRoute()),

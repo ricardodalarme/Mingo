@@ -1,6 +1,5 @@
 import 'package:design_system/design_system.dart';
 
-const double _largeSize = 64;
 const double _overlap = 8;
 const double _largeOverlap = 12;
 
@@ -12,19 +11,20 @@ class const BaseAvatarPair({
   final String? partnerInitials,
   final String? selfImageUrl,
   final String? partnerImageUrl,
-  final double size = 40,
+  final BaseAvatarSize size = .medium,
   final VoidCallback? onTap,
   final String? semanticLabel,
   super.key,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final overlap = size >= _largeSize ? _largeOverlap : _overlap;
+    final diameter = size.diameter;
+    final overlap = size.hasWideRing ? _largeOverlap : _overlap;
     final hasPartner = partnerInitials != null || partnerImageUrl != null;
 
     final pair = SizedBox(
-      width: size * 2 - overlap,
-      height: size,
+      width: diameter * 2 - overlap,
+      height: diameter,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -38,7 +38,7 @@ class const BaseAvatarPair({
             ),
           ),
           Positioned(
-            left: size - overlap,
+            left: diameter - overlap,
             child: BaseAvatar(
               initials: partnerInitials,
               imageUrl: partnerImageUrl,
@@ -54,7 +54,7 @@ class const BaseAvatarPair({
     if (onTap != null) {
       return AppPressable(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(size),
+        borderRadius: BorderRadius.circular(diameter),
         semanticLabel: semanticLabel,
         enforceMinTapTarget: true,
         child: pair,

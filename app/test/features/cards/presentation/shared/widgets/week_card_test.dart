@@ -1,3 +1,4 @@
+import 'package:app/features/cards/presentation/shared/widgets/paper_slip.dart';
 import 'package:app/features/cards/presentation/shared/widgets/week_card.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,7 +19,7 @@ void main() {
       ),
     );
 
-    expect(find.byType(AppPaperSlip), findsNWidgets(3));
+    expect(find.byType(PaperSlip), findsNWidgets(3));
     expect(find.text('seg'), findsOneWidget);
     expect(find.text('dom'), findsOneWidget);
     expect(find.text('2'), findsOneWidget);
@@ -36,7 +37,7 @@ void main() {
       ),
     );
 
-    expect(find.byType(AppPaperSlip), findsOneWidget);
+    expect(find.byType(PaperSlip), findsOneWidget);
     expect(find.byIcon(AppIcons.mail_filled), findsNothing);
     expect(find.text('qua'), findsOneWidget);
   });
@@ -52,7 +53,7 @@ void main() {
       ),
     );
 
-    expect(find.byType(AppPaperSlip), findsNothing);
+    expect(find.byType(PaperSlip), findsNothing);
     expect(find.text('Nenhum slip'), findsOneWidget);
     expect(find.text('sem pressa'), findsOneWidget);
     for (final label in _labels) {

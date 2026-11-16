@@ -1,5 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:design_system/design_system_l10n.dart';
+import 'package:design_system/src/components/input/field_localizations.dart';
+import 'package:design_system/src/components/input/field_message.dart';
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -9,8 +11,6 @@ const double _fieldPadding = 18;
 const double _fieldGap = 10;
 const double _labelGap = 6;
 const double _messageGap = 6;
-const double _messageIconSize = 16;
-const double _messageIconGap = 6;
 const double _labelInset = 4;
 const double _disabledOpacity = .4;
 
@@ -142,7 +142,6 @@ class _BaseTextFieldState() extends State<BaseTextField> {
         : colors.borderDefault;
     final borderWidth = hasError || _focusNode.hasFocus ? AppBorder.selected : AppBorder.hair;
     final message = widget.errorText ?? widget.helpText;
-    final messageColor = hasError ? AppPalette.errorInk : colors.textSecondary;
     final trailing = _trailing;
 
     final fieldContent = AnimatedContainer(
@@ -162,7 +161,7 @@ class _BaseTextFieldState() extends State<BaseTextField> {
           Expanded(
             child: Material(
               type: MaterialType.transparency,
-              child: _FieldLocalizations(
+              child: FieldLocalizations(
                 child: Semantics(
                   label: widget.semanticLabel,
                   child: TextField(
@@ -221,47 +220,9 @@ class _BaseTextFieldState() extends State<BaseTextField> {
         if (message != null)
           Padding(
             padding: const EdgeInsets.only(top: _messageGap, left: _labelInset, right: _labelInset),
-            child: Semantics(
-              liveRegion: hasError,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: _messageIconGap,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 1),
-                    child: AppIcon(
-                      icon: hasError ? AppIcons.warning : AppIcons.info,
-                      size: _messageIconSize,
-                      color: messageColor,
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(message, style: text.caption.copyWith(color: messageColor)),
-                  ),
-                ],
-              ),
-            ),
+            child: FieldMessage(text: message, isError: hasError),
           ),
       ],
-    );
-  }
-}
-
-/// Supplies English material localizations when the host provides none.
-class const _FieldLocalizations({required final Widget child}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    if (Localizations.of<MaterialLocalizations>(context, MaterialLocalizations) != null) {
-      return child;
-    }
-
-    return Localizations(
-      locale: Localizations.maybeLocaleOf(context) ?? const Locale('en', 'US'),
-      delegates: const [
-        DefaultWidgetsLocalizations.delegate,
-        DefaultMaterialLocalizations.delegate,
-      ],
-      child: child,
     );
   }
 }

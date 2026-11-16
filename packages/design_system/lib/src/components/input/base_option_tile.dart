@@ -6,15 +6,22 @@ const double _tileHorizontalPadding = 16;
 const double _tileVerticalPadding = 14;
 const double _tileGap = 12;
 const double _supportGap = 2;
+const double _previewRadius = 26;
+const double _previewTileGap = 14;
+const double _previewWidth = 74;
+const double _previewHeight = 86;
+const double _previewInnerRadius = 16;
 
 /// A selectable row with a title, optional support text and a leading visual.
 ///
 /// The trailing control is a radio or checkbox; selection reports through
-/// [onTap].
+/// [onTap]. A [preview] takes the place of [leading] with a 74 × 86 rounded slot, for choices that are
+/// better seen than described; the tile then uses the roomier radius 26 and is decorative to readers.
 class const BaseOptionTile({
   required final String title,
   final String? support,
   final Widget? leading,
+  final Widget? preview,
   final bool isSelected = false,
   final VoidCallback? onTap,
   final BaseOptionTileControl control = BaseOptionTileControl.radio,
@@ -25,16 +32,25 @@ class const BaseOptionTile({
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final hasPreview = preview != null;
+    final tileRadius = hasPreview ? _previewRadius : _tileRadius;
 
     final card = Container(
       constraints: const BoxConstraints(minHeight: _tileMinHeight),
-      padding: const EdgeInsets.symmetric(
-        horizontal: _tileHorizontalPadding,
-        vertical: _tileVerticalPadding,
-      ),
+      padding: hasPreview
+          ? const EdgeInsets.fromLTRB(
+              AppSpace.s12,
+              AppSpace.s12,
+              _tileHorizontalPadding,
+              AppSpace.s12,
+            )
+          : const EdgeInsets.symmetric(
+              horizontal: _tileHorizontalPadding,
+              vertical: _tileVerticalPadding,
+            ),
       decoration: BoxDecoration(
         color: colors.bgSurface,
-        borderRadius: BorderRadius.circular(_tileRadius),
+        borderRadius: BorderRadius.circular(tileRadius),
         border: Border.all(
           color: isSelected ? colors.borderSelected : colors.borderDefault,
           width: isSelected ? AppBorder.selected : AppBorder.hair,
@@ -42,9 +58,17 @@ class const BaseOptionTile({
         boxShadow: isSelected ? AppShadows.selected : null,
       ),
       child: Row(
-        spacing: _tileGap,
+        spacing: hasPreview ? _previewTileGap : _tileGap,
         children: [
-          ?leading,
+          if (hasPreview)
+            ExcludeSemantics(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(_previewInnerRadius),
+                child: SizedBox(width: _previewWidth, height: _previewHeight, child: preview),
+              ),
+            )
+          else
+            ?leading,
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -53,7 +77,8 @@ class const BaseOptionTile({
                 Text(
                   title,
                   style: context.text.body.copyWith(
-                    fontWeight: FontWeight.w500,
+                    fontWeight: hasPreview ? FontWeight.w600 : FontWeight.w500,
+                    fontSize: hasPreview ? 16.5 : null,
                     color: colors.textPrimary,
                   ),
                 ),
@@ -90,7 +115,7 @@ class const BaseOptionTile({
       child: AppPressable(
         onTap: onTap,
         isEnabled: isEnabled,
-        borderRadius: BorderRadius.circular(_tileRadius),
+        borderRadius: BorderRadius.circular(tileRadius),
         isSelected: isSelected,
         enforceMinTapTarget: true,
         child: ExcludeSemantics(child: card),

@@ -172,9 +172,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Excluir este desejo?'), findsOneWidget);
 
-    await tester.tap(
-      find.descendant(of: find.byType(BaseConfirmSheet), matching: find.text('Excluir')),
-    );
+    await tester.tap(find.descendant(of: find.byType(BaseSheet), matching: find.text('Excluir')));
     await tester.pumpAndSettle();
 
     verify(() => repository.deleteGiftWish('g1')).called(1);

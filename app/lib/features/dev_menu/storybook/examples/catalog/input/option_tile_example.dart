@@ -54,5 +54,50 @@ final WidgetbookNode optionTileExample = WidgetbookComponent(
         ],
       ),
     ),
+    WidgetbookUseCase(
+      name: 'With preview',
+      builder: (context) {
+        final selected = context.knobs.int.slider(label: 'Selected', max: 1);
+
+        return GalleryPage(
+          title: 'Option tile, with preview',
+          children: [
+            GallerySurface(
+              child: Column(
+                spacing: AppSpace.s10,
+                children: [
+                  BaseOptionTile(
+                    title: 'Rosa suave',
+                    support: 'Quente e delicado',
+                    preview: const ColoredBox(
+                      color: AppHue.roseSoft,
+                      child: Center(child: AppIcon(icon: AppIcons.heart_filled)),
+                    ),
+                    isSelected: selected == 0,
+                    onTap: () {},
+                  ),
+                  BaseOptionTile(
+                    title: 'Azul suave',
+                    support: 'Calmo e leve',
+                    preview: const ColoredBox(
+                      color: AppHue.blueSoft,
+                      child: Center(child: AppIcon(icon: AppIcons.cloud)),
+                    ),
+                    isSelected: selected == 1,
+                    onTap: () {},
+                  ),
+                  const BaseOptionTile(
+                    title: 'Indisponível',
+                    support: 'Em breve',
+                    preview: ColoredBox(color: AppPalette.neutral100),
+                    isEnabled: false,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    ),
   ],
 );
