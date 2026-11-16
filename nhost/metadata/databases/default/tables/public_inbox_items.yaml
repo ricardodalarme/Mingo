@@ -1,0 +1,60 @@
+table:
+  name: inbox_items
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    id:
+      custom_name: id
+    read_at:
+      custom_name: readAt
+    ref_id:
+      custom_name: refId
+    type:
+      custom_name: type
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    created_at: createdAt
+    id: id
+    read_at: readAt
+    ref_id: refId
+    type: type
+    user_id: userId
+  custom_name: inboxItems
+  custom_root_fields:
+    delete: deleteInboxItems
+    delete_by_pk: deleteInboxItemsByPk
+    insert: insertInboxItems
+    insert_one: insertInboxItemsOne
+    select: inboxItems
+    select_aggregate: inboxItemsAggregate
+    select_by_pk: inboxItemsByPk
+    select_stream: inboxItemsStream
+    update: updateInboxItems
+    update_by_pk: updateInboxItemsByPk
+    update_many: updateInboxItemsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - id
+        - read_at
+        - ref_id
+        - type
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - read_at
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null

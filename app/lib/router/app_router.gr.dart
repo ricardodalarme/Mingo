@@ -908,6 +908,22 @@ class IdeaDetailRouteArgs {
 }
 
 /// generated route for
+/// [InboxPage]
+class InboxRoute extends PageRouteInfo<void> {
+  const InboxRoute({List<PageRouteInfo>? children})
+    : super(InboxRoute.name, initialChildren: children);
+
+  static const String name = 'InboxRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const InboxPage());
+    },
+  );
+}
+
+/// generated route for
 /// [IntroGoalsPage]
 class IntroGoalsRoute extends PageRouteInfo<void> {
   const IntroGoalsRoute({List<PageRouteInfo>? children})

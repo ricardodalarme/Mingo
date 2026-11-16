@@ -129,8 +129,8 @@ Never write the old separate form (`const SlipCard({required this.slip});` in th
 - **Backend changes come first.** A feature that needs a new table, query or mutation adds a migration under
   `nhost/migrations/default/` and a permission entry in `nhost/tools/metadata-spec.mjs`; ask before inventing one. New tables need explicit
   permissions and relationships.
-- **Notifications are created by the backend.** Clients read and update only `notificationSettings` and `notificationMutes`, register a
-  push token through `insertDevicesOne`, and never read tokens or the notification queue.
+- **Notifications are created by the backend.** Clients read and update only `notificationSettings` and `notificationMutes`, read and mark read
+  their own `inboxItems`, register a push token through `insertDevicesOne`, and never read tokens or the notification queue.
 - **Secrets.** Never put the admin secret, webhook secret or any provider key in the app. The app authenticates with the user's JWT.
 
 ## Design system

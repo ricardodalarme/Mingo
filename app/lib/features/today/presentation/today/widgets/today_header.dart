@@ -1,3 +1,4 @@
+import 'package:app/features/notifications/presentation/bell/widgets/inbox_bell_button.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/widgets/open_invite.dart';
 import 'package:app/l10n/translations.g.dart';
@@ -55,10 +56,17 @@ class const TodayHeader({
                 onTap: () => openInvite(context),
                 semanticLabel: l10n.invitePerson,
               ),
-            BaseRoundButton(
-              icon: AppIcons.settings,
-              semanticLabel: context.l10n.settingsHome.title,
-              onPressed: () => context.pushRoute(const SettingsHomeRoute()),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              spacing: AppSpace.s8,
+              children: [
+                const InboxBellButton(),
+                BaseRoundButton(
+                  icon: AppIcons.settings,
+                  semanticLabel: context.l10n.settingsHome.title,
+                  onPressed: () => context.pushRoute(const SettingsHomeRoute()),
+                ),
+              ],
             ),
           ],
         ),

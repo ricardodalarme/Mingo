@@ -1,0 +1,8 @@
+query MyInbox($limit: Int!) {
+  inboxItems(order_by: { createdAt: desc }, limit: $limit) {
+    id
+    type
+    createdAt
+    readAt
+  }
+}

@@ -1,11 +1,16 @@
 import 'package:app/features/_shared/data/data_sources/local/device_marker_store.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/notifications/data/data_sources/local/notifications_local_data_source.dart';
+import 'package:app/features/notifications/data/data_sources/remote/inbox_data_source.dart';
 import 'package:app/features/notifications/data/data_sources/remote/notifications_data_source.dart';
+import 'package:app/features/notifications/data/repositories/inbox_repository.dart';
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:app/features/notifications/presentation/bell/cubit/inbox_badge_cubit.dart';
+import 'package:app/features/notifications/presentation/inbox/cubit/inbox_cubit.dart';
 import 'package:app/features/notifications/presentation/off_banner/cubit/notifications_off_cubit.dart';
 import 'package:app/features/notifications/presentation/permission/cubit/notification_permission_cubit.dart';
 import 'package:app/features/notifications/presentation/preferences/cubit/notification_preferences_cubit.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/reminders/data/repositories/reminders_repository.dart';
 import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:core/core.dart';
@@ -34,6 +39,21 @@ class NotificationsInjectionModule() implements InjectionModule {
         markerStore: injector.get<DeviceMarkerStore>(),
         authenticationRepository: injector.get<AuthenticationRepository>(),
       ),
+    )
+    ..registerLazySingleton<InboxDataSource>(
+      () => InboxDataSource(client: injector.get<GQLClient>()),
+    )
+    ..registerLazySingleton<InboxRepository>(
+      () => InboxRepository(dataSource: injector.get<InboxDataSource>()),
+    )
+    ..registerFactory<InboxCubit>(
+      () => InboxCubit(
+        inboxRepository: injector.get<InboxRepository>(),
+        profileRepository: injector.get<ProfileRepository>(),
+      ),
+    )
+    ..registerFactory<InboxBadgeCubit>(
+      () => InboxBadgeCubit(inboxRepository: injector.get<InboxRepository>()),
     )
     ..registerFactory<NotificationPermissionCubit>(
       () => NotificationPermissionCubit(repository: injector.get<NotificationsRepository>()),

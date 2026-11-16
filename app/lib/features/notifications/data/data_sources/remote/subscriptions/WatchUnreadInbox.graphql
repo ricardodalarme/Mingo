@@ -1,0 +1,7 @@
+subscription WatchUnreadInbox {
+  inboxItemsAggregate(where: { readAt: { _is_null: true } }) {
+    aggregate {
+      count
+    }
+  }
+}

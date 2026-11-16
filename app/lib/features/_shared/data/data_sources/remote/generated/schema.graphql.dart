@@ -44766,6 +44766,892 @@ class InputimportantDates_updates {
   }
 }
 
+class InputinboxItems_bool_exp {
+  factory InputinboxItems_bool_exp({
+    List<InputinboxItems_bool_exp>? $_and,
+    InputinboxItems_bool_exp? $_not,
+    List<InputinboxItems_bool_exp>? $_or,
+    Inputtimestamptz_comparison_exp? createdAt,
+    Inputuuid_comparison_exp? id,
+    Inputtimestamptz_comparison_exp? readAt,
+    Inputuuid_comparison_exp? refId,
+    InputNotificationType_enum_comparison_exp? type,
+    Inputuuid_comparison_exp? userId,
+  }) => InputinboxItems_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (id != null) r'id': id,
+    if (readAt != null) r'readAt': readAt,
+    if (refId != null) r'refId': refId,
+    if (type != null) r'type': type,
+    if (userId != null) r'userId': userId,
+  });
+
+  InputinboxItems_bool_exp._(this._$data);
+
+  factory InputinboxItems_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputinboxItems_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputinboxItems_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputinboxItems_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$id as Map<String, dynamic>));
+    }
+    if (data.containsKey('readAt')) {
+      final l$readAt = data['readAt'];
+      result$data['readAt'] = l$readAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$readAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('refId')) {
+      final l$refId = data['refId'];
+      result$data['refId'] = l$refId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$refId as Map<String, dynamic>));
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = l$type == null
+          ? null
+          : InputNotificationType_enum_comparison_exp.fromJson((l$type as Map<String, dynamic>));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$userId as Map<String, dynamic>));
+    }
+    return InputinboxItems_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputinboxItems_bool_exp>? get $_and => (_$data['_and'] as List<InputinboxItems_bool_exp>?);
+
+  InputinboxItems_bool_exp? get $_not => (_$data['_not'] as InputinboxItems_bool_exp?);
+
+  List<InputinboxItems_bool_exp>? get $_or => (_$data['_or'] as List<InputinboxItems_bool_exp>?);
+
+  Inputtimestamptz_comparison_exp? get createdAt =>
+      (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get readAt =>
+      (_$data['readAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_comparison_exp? get refId => (_$data['refId'] as Inputuuid_comparison_exp?);
+
+  InputNotificationType_enum_comparison_exp? get type =>
+      (_$data['type'] as InputNotificationType_enum_comparison_exp?);
+
+  Inputuuid_comparison_exp? get userId => (_$data['userId'] as Inputuuid_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('readAt')) {
+      final l$readAt = readAt;
+      result$data['readAt'] = l$readAt?.toJson();
+    }
+    if (_$data.containsKey('refId')) {
+      final l$refId = refId;
+      result$data['refId'] = l$refId?.toJson();
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type?.toJson();
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinboxItems_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$readAt = readAt;
+    final lOther$readAt = other.readAt;
+    if (_$data.containsKey('readAt') != other._$data.containsKey('readAt')) {
+      return false;
+    }
+    if (l$readAt != lOther$readAt) {
+      return false;
+    }
+    final l$refId = refId;
+    final lOther$refId = other.refId;
+    if (_$data.containsKey('refId') != other._$data.containsKey('refId')) {
+      return false;
+    }
+    if (l$refId != lOther$refId) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
+    if (l$type != lOther$type) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$createdAt = createdAt;
+    final l$id = id;
+    final l$readAt = readAt;
+    final l$refId = refId;
+    final l$type = type;
+    final l$userId = userId;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('readAt') ? l$readAt : const {},
+      _$data.containsKey('refId') ? l$refId : const {},
+      _$data.containsKey('type') ? l$type : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+    ]);
+  }
+}
+
+class InputinboxItems_order_by {
+  factory InputinboxItems_order_by({
+    Enumorder_by? createdAt,
+    Enumorder_by? id,
+    Enumorder_by? readAt,
+    Enumorder_by? refId,
+    Enumorder_by? type,
+    Enumorder_by? userId,
+  }) => InputinboxItems_order_by._({
+    if (createdAt != null) r'createdAt': createdAt,
+    if (id != null) r'id': id,
+    if (readAt != null) r'readAt': readAt,
+    if (refId != null) r'refId': refId,
+    if (type != null) r'type': type,
+    if (userId != null) r'userId': userId,
+  });
+
+  InputinboxItems_order_by._(this._$data);
+
+  factory InputinboxItems_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null ? null : fromJsonEnumorder_by((l$id as String));
+    }
+    if (data.containsKey('readAt')) {
+      final l$readAt = data['readAt'];
+      result$data['readAt'] = l$readAt == null ? null : fromJsonEnumorder_by((l$readAt as String));
+    }
+    if (data.containsKey('refId')) {
+      final l$refId = data['refId'];
+      result$data['refId'] = l$refId == null ? null : fromJsonEnumorder_by((l$refId as String));
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = l$type == null ? null : fromJsonEnumorder_by((l$type as String));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null ? null : fromJsonEnumorder_by((l$userId as String));
+    }
+    return InputinboxItems_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
+
+  Enumorder_by? get readAt => (_$data['readAt'] as Enumorder_by?);
+
+  Enumorder_by? get refId => (_$data['refId'] as Enumorder_by?);
+
+  Enumorder_by? get type => (_$data['type'] as Enumorder_by?);
+
+  Enumorder_by? get userId => (_$data['userId'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJsonEnumorder_by(l$id);
+    }
+    if (_$data.containsKey('readAt')) {
+      final l$readAt = readAt;
+      result$data['readAt'] = l$readAt == null ? null : toJsonEnumorder_by(l$readAt);
+    }
+    if (_$data.containsKey('refId')) {
+      final l$refId = refId;
+      result$data['refId'] = l$refId == null ? null : toJsonEnumorder_by(l$refId);
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type == null ? null : toJsonEnumorder_by(l$type);
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId == null ? null : toJsonEnumorder_by(l$userId);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinboxItems_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$readAt = readAt;
+    final lOther$readAt = other.readAt;
+    if (_$data.containsKey('readAt') != other._$data.containsKey('readAt')) {
+      return false;
+    }
+    if (l$readAt != lOther$readAt) {
+      return false;
+    }
+    final l$refId = refId;
+    final lOther$refId = other.refId;
+    if (_$data.containsKey('refId') != other._$data.containsKey('refId')) {
+      return false;
+    }
+    if (l$refId != lOther$refId) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
+    if (l$type != lOther$type) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$id = id;
+    final l$readAt = readAt;
+    final l$refId = refId;
+    final l$type = type;
+    final l$userId = userId;
+    return Object.hashAll([
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('readAt') ? l$readAt : const {},
+      _$data.containsKey('refId') ? l$refId : const {},
+      _$data.containsKey('type') ? l$type : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+    ]);
+  }
+}
+
+class InputinboxItems_pk_columns_input {
+  factory InputinboxItems_pk_columns_input({required String id}) =>
+      InputinboxItems_pk_columns_input._({r'id': id});
+
+  InputinboxItems_pk_columns_input._(this._$data);
+
+  factory InputinboxItems_pk_columns_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    return InputinboxItems_pk_columns_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinboxItems_pk_columns_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    return Object.hashAll([l$id]);
+  }
+}
+
+class InputinboxItems_set_input {
+  factory InputinboxItems_set_input({DateTime? readAt}) =>
+      InputinboxItems_set_input._({if (readAt != null) r'readAt': readAt});
+
+  InputinboxItems_set_input._(this._$data);
+
+  factory InputinboxItems_set_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('readAt')) {
+      final l$readAt = data['readAt'];
+      result$data['readAt'] = l$readAt == null ? null : DateTime.parse((l$readAt as String));
+    }
+    return InputinboxItems_set_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get readAt => (_$data['readAt'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('readAt')) {
+      final l$readAt = readAt;
+      result$data['readAt'] = l$readAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$readAt);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinboxItems_set_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$readAt = readAt;
+    final lOther$readAt = other.readAt;
+    if (_$data.containsKey('readAt') != other._$data.containsKey('readAt')) {
+      return false;
+    }
+    if (l$readAt != lOther$readAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$readAt = readAt;
+    return Object.hashAll([_$data.containsKey('readAt') ? l$readAt : const {}]);
+  }
+}
+
+class InputinboxItems_stream_cursor_input {
+  factory InputinboxItems_stream_cursor_input({
+    required InputinboxItems_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputinboxItems_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputinboxItems_stream_cursor_input._(this._$data);
+
+  factory InputinboxItems_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputinboxItems_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputinboxItems_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputinboxItems_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputinboxItems_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinboxItems_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputinboxItems_stream_cursor_value_input {
+  factory InputinboxItems_stream_cursor_value_input({
+    DateTime? createdAt,
+    String? id,
+    DateTime? readAt,
+    String? refId,
+    EnumNotificationType_enum? type,
+    String? userId,
+  }) => InputinboxItems_stream_cursor_value_input._({
+    if (createdAt != null) r'createdAt': createdAt,
+    if (id != null) r'id': id,
+    if (readAt != null) r'readAt': readAt,
+    if (refId != null) r'refId': refId,
+    if (type != null) r'type': type,
+    if (userId != null) r'userId': userId,
+  });
+
+  InputinboxItems_stream_cursor_value_input._(this._$data);
+
+  factory InputinboxItems_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('readAt')) {
+      final l$readAt = data['readAt'];
+      result$data['readAt'] = l$readAt == null ? null : DateTime.parse((l$readAt as String));
+    }
+    if (data.containsKey('refId')) {
+      final l$refId = data['refId'];
+      result$data['refId'] = (l$refId as String?);
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = l$type == null
+          ? null
+          : fromJsonEnumNotificationType_enum((l$type as String));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = (l$userId as String?);
+    }
+    return InputinboxItems_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
+
+  String? get id => (_$data['id'] as String?);
+
+  DateTime? get readAt => (_$data['readAt'] as DateTime?);
+
+  String? get refId => (_$data['refId'] as String?);
+
+  EnumNotificationType_enum? get type => (_$data['type'] as EnumNotificationType_enum?);
+
+  String? get userId => (_$data['userId'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('readAt')) {
+      final l$readAt = readAt;
+      result$data['readAt'] = l$readAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$readAt);
+    }
+    if (_$data.containsKey('refId')) {
+      final l$refId = refId;
+      result$data['refId'] = l$refId;
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type == null ? null : toJsonEnumNotificationType_enum(l$type);
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinboxItems_stream_cursor_value_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$readAt = readAt;
+    final lOther$readAt = other.readAt;
+    if (_$data.containsKey('readAt') != other._$data.containsKey('readAt')) {
+      return false;
+    }
+    if (l$readAt != lOther$readAt) {
+      return false;
+    }
+    final l$refId = refId;
+    final lOther$refId = other.refId;
+    if (_$data.containsKey('refId') != other._$data.containsKey('refId')) {
+      return false;
+    }
+    if (l$refId != lOther$refId) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
+    if (l$type != lOther$type) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$id = id;
+    final l$readAt = readAt;
+    final l$refId = refId;
+    final l$type = type;
+    final l$userId = userId;
+    return Object.hashAll([
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('readAt') ? l$readAt : const {},
+      _$data.containsKey('refId') ? l$refId : const {},
+      _$data.containsKey('type') ? l$type : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+    ]);
+  }
+}
+
+class InputinboxItems_updates {
+  factory InputinboxItems_updates({
+    InputinboxItems_set_input? $_set,
+    required InputinboxItems_bool_exp where,
+  }) => InputinboxItems_updates._({if ($_set != null) r'_set': $_set, r'where': where});
+
+  InputinboxItems_updates._(this._$data);
+
+  factory InputinboxItems_updates.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_set')) {
+      final l$$_set = data['_set'];
+      result$data['_set'] = l$$_set == null
+          ? null
+          : InputinboxItems_set_input.fromJson((l$$_set as Map<String, dynamic>));
+    }
+    final l$where = data['where'];
+    result$data['where'] = InputinboxItems_bool_exp.fromJson((l$where as Map<String, dynamic>));
+    return InputinboxItems_updates._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputinboxItems_set_input? get $_set => (_$data['_set'] as InputinboxItems_set_input?);
+
+  InputinboxItems_bool_exp get where => (_$data['where'] as InputinboxItems_bool_exp);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_set')) {
+      final l$$_set = $_set;
+      result$data['_set'] = l$$_set?.toJson();
+    }
+    final l$where = where;
+    result$data['where'] = l$where.toJson();
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinboxItems_updates || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_set = $_set;
+    final lOther$$_set = other.$_set;
+    if (_$data.containsKey('_set') != other._$data.containsKey('_set')) {
+      return false;
+    }
+    if (l$$_set != lOther$$_set) {
+      return false;
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_set = $_set;
+    final l$where = where;
+    return Object.hashAll([_$data.containsKey('_set') ? l$$_set : const {}, l$where]);
+  }
+}
+
 class InputinvitePreview_args {
   factory InputinvitePreview_args({String? code}) =>
       InputinvitePreview_args._({if (code != null) r'code': code});
@@ -107489,6 +108375,59 @@ EnumimportantDates_update_column fromJsonEnumimportantDates_update_column(String
       return EnumimportantDates_update_column.yearly;
     default:
       return EnumimportantDates_update_column.$unknown;
+  }
+}
+
+enum EnuminboxItems_select_column {
+  createdAt,
+  id,
+  readAt,
+  refId,
+  type,
+  userId,
+  $unknown;
+
+  factory EnuminboxItems_select_column.fromJson(String value) =>
+      fromJsonEnuminboxItems_select_column(value);
+
+  String toJson() => toJsonEnuminboxItems_select_column(this);
+}
+
+String toJsonEnuminboxItems_select_column(EnuminboxItems_select_column e) {
+  switch (e) {
+    case EnuminboxItems_select_column.createdAt:
+      return r'createdAt';
+    case EnuminboxItems_select_column.id:
+      return r'id';
+    case EnuminboxItems_select_column.readAt:
+      return r'readAt';
+    case EnuminboxItems_select_column.refId:
+      return r'refId';
+    case EnuminboxItems_select_column.type:
+      return r'type';
+    case EnuminboxItems_select_column.userId:
+      return r'userId';
+    case EnuminboxItems_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnuminboxItems_select_column fromJsonEnuminboxItems_select_column(String value) {
+  switch (value) {
+    case r'createdAt':
+      return EnuminboxItems_select_column.createdAt;
+    case r'id':
+      return EnuminboxItems_select_column.id;
+    case r'readAt':
+      return EnuminboxItems_select_column.readAt;
+    case r'refId':
+      return EnuminboxItems_select_column.refId;
+    case r'type':
+      return EnuminboxItems_select_column.type;
+    case r'userId':
+      return EnuminboxItems_select_column.userId;
+    default:
+      return EnuminboxItems_select_column.$unknown;
   }
 }
 

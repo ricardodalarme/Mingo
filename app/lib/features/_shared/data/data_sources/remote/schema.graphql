@@ -1565,6 +1565,35 @@ enum importantDates_update_column {
   yearly
 }
 """
+select columns of table "inbox_items"
+"""
+enum inboxItems_select_column {
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  readAt
+  """
+  column name
+  """
+  refId
+  """
+  column name
+  """
+  type
+  """
+  column name
+  """
+  userId
+}
+"""
 select columns of table "invite_previews"
 """
 enum invitePreviews_select_column {
@@ -5132,6 +5161,65 @@ type importantDates_variance_fields {
   year: Float
 }
 """
+columns and relationships of "inbox_items"
+"""
+type inboxItems {
+  createdAt: timestamptz!
+  id: uuid!
+  readAt: timestamptz
+  refId: uuid
+  type: NotificationType_enum!
+  userId: uuid!
+}
+"""
+aggregated selection of "inbox_items"
+"""
+type inboxItems_aggregate {
+  aggregate: inboxItems_aggregate_fields
+  nodes: [inboxItems!]!
+}
+"""
+aggregate fields of "inbox_items"
+"""
+type inboxItems_aggregate_fields {
+  count(columns: [inboxItems_select_column!], distinct: Boolean): Int!
+  max: inboxItems_max_fields
+  min: inboxItems_min_fields
+}
+"""
+aggregate max on columns
+"""
+type inboxItems_max_fields {
+  createdAt: timestamptz
+  id: uuid
+  readAt: timestamptz
+  refId: uuid
+  userId: uuid
+}
+"""
+aggregate min on columns
+"""
+type inboxItems_min_fields {
+  createdAt: timestamptz
+  id: uuid
+  readAt: timestamptz
+  refId: uuid
+  userId: uuid
+}
+"""
+response of any mutation on the table "inbox_items"
+"""
+type inboxItems_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [inboxItems!]!
+}
+"""
 columns and relationships of "invite_previews"
 """
 type invitePreviews {
@@ -8248,6 +8336,38 @@ type mutation_root {
     updates: [importantDates_updates!]!
   ): [importantDates_mutation_response]
   """
+  update data of the table: "inbox_items"
+  """
+  updateInboxItems(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: inboxItems_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: inboxItems_bool_exp!
+  ): inboxItems_mutation_response
+  """
+  update single row of the table: "inbox_items"
+  """
+  updateInboxItemsByPk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: inboxItems_set_input
+  pk_columns: inboxItems_pk_columns_input!): inboxItems
+  """
+  update multiples rows of table: "inbox_items"
+  """
+  updateInboxItemsMany(
+    """
+    updates to execute, in order
+    """
+    updates: [inboxItems_updates!]!
+  ): [inboxItems_mutation_response]
+  """
   update data of the table: "invites"
   """
   updateInvites(
@@ -10424,6 +10544,68 @@ type query_root {
   fetch data from the table: "important_dates" using primary key columns
   """
   importantDatesByPk(id: uuid!): importantDates
+  """
+  fetch data from the table: "inbox_items"
+  """
+  inboxItems(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inboxItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inboxItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inboxItems_bool_exp
+  ): [inboxItems!]!
+  """
+  fetch aggregated fields from the table: "inbox_items"
+  """
+  inboxItemsAggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inboxItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inboxItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inboxItems_bool_exp
+  ): inboxItems_aggregate!
+  """
+  fetch data from the table: "inbox_items" using primary key columns
+  """
+  inboxItemsByPk(id: uuid!): inboxItems
   """
   execute function "invite_preview" which returns "invite_previews"
   """
@@ -14534,6 +14716,87 @@ type subscription_root {
     """
     where: importantDates_bool_exp
   ): [importantDates!]!
+  """
+  fetch data from the table: "inbox_items"
+  """
+  inboxItems(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inboxItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inboxItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inboxItems_bool_exp
+  ): [inboxItems!]!
+  """
+  fetch aggregated fields from the table: "inbox_items"
+  """
+  inboxItemsAggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inboxItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inboxItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inboxItems_bool_exp
+  ): inboxItems_aggregate!
+  """
+  fetch data from the table: "inbox_items" using primary key columns
+  """
+  inboxItemsByPk(id: uuid!): inboxItems
+  """
+  fetch data from the table in a streaming manner: "inbox_items"
+  """
+  inboxItemsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [inboxItems_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: inboxItems_bool_exp
+  ): [inboxItems!]!
   """
   execute function "invite_preview" which returns "invite_previews"
   """
@@ -20113,6 +20376,77 @@ input importantDates_updates {
   filter the rows which have to be updated
   """
   where: importantDates_bool_exp!
+}
+"""
+Boolean expression to filter rows from the table "inbox_items". All fields are combined with a logical 'AND'.
+"""
+input inboxItems_bool_exp {
+  _and: [inboxItems_bool_exp!]
+  _not: inboxItems_bool_exp
+  _or: [inboxItems_bool_exp!]
+  createdAt: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  readAt: timestamptz_comparison_exp
+  refId: uuid_comparison_exp
+  type: NotificationType_enum_comparison_exp
+  userId: uuid_comparison_exp
+}
+"""
+Ordering options when selecting data from "inbox_items".
+"""
+input inboxItems_order_by {
+  createdAt: order_by
+  id: order_by
+  readAt: order_by
+  refId: order_by
+  type: order_by
+  userId: order_by
+}
+"""
+primary key columns input for table: inbox_items
+"""
+input inboxItems_pk_columns_input {
+  id: uuid!
+}
+"""
+input type for updating data in table "inbox_items"
+"""
+input inboxItems_set_input {
+  readAt: timestamptz
+}
+"""
+Streaming cursor of the table "inboxItems"
+"""
+input inboxItems_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: inboxItems_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input inboxItems_stream_cursor_value_input {
+  createdAt: timestamptz
+  id: uuid
+  readAt: timestamptz
+  refId: uuid
+  type: NotificationType_enum
+  userId: uuid
+}
+input inboxItems_updates {
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: inboxItems_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: inboxItems_bool_exp!
 }
 input invitePreview_args {
   code: String

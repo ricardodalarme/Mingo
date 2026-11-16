@@ -259,6 +259,14 @@ export const tables = {
       },
     },
   },
+  inbox_items: {
+    roles: {
+      user: {
+        select: { columns: '*', filter: mine('user_id'), aggregate: true },
+        update: { columns: ['read_at'], filter: mine('user_id') },
+      },
+    },
+  },
   'private.notifications': {
     name: 'pushNotifications',
     eventTriggers: [

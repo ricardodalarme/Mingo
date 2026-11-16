@@ -6,7 +6,7 @@ final WidgetbookNode roundButtonExample = WidgetbookComponent(
   name: 'BaseRoundButton',
   useCases: <WidgetbookUseCase>[
     WidgetbookUseCase(
-      name: 'Standard · back, close, add and disabled',
+      name: 'Standard · back, close, add, disabled and badge',
       builder: (context) => GalleryPage(
         title: 'Round button',
         children: <Widget>[
@@ -20,6 +20,12 @@ final WidgetbookNode roundButtonExample = WidgetbookComponent(
                 onPressed: null,
                 isEnabled: false,
                 semanticLabel: 'Back',
+              ),
+              BaseRoundButton(
+                icon: AppIcons.bell,
+                onPressed: () {},
+                semanticLabel: 'Notifications, new',
+                hasBadge: true,
               ),
             ],
           ),

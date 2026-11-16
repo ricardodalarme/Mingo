@@ -1,6 +1,7 @@
 import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/dev_menu/dev_menu_page.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
+import 'package:app/features/notifications/presentation/bell/cubit/inbox_badge_cubit.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:app/features/today/presentation/today/widgets/partner_unpaired_notice.dart';
@@ -20,6 +21,7 @@ class const TodayPage({super.key}) extends StatelessWidget implements AutoRouteW
       providers: [
         BlocProvider(create: (_) => AppInjector.instance.get<TodayCubit>()..start()),
         BlocProvider(create: (_) => AppInjector.instance.get<MoodCubit>()..load()),
+        BlocProvider(create: (_) => AppInjector.instance.get<InboxBadgeCubit>()..start()),
       ],
       child: this,
     );

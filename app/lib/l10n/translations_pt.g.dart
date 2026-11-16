@@ -95,6 +95,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
   late final Translations$history$pt history = Translations$history$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
+  late final Translations$inbox$pt inbox = Translations$inbox$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
   late final Translations$invite$pt invite = Translations$invite$pt.internal(_root);
   late final Translations$language$pt language = Translations$language$pt.internal(_root);
@@ -2942,6 +2943,120 @@ class Translations$ideaDetail$pt {
 
   /// pt: 'Tente de novo em instantes.'
   String get errorText => 'Tente de novo em instantes.';
+}
+
+// Path: inbox
+class Translations$inbox$pt {
+  Translations$inbox$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Notificações'
+  String get title => 'Notificações';
+
+  /// pt: 'Notificações, há novidades'
+  String get bellUnread => 'Notificações, há novidades';
+
+  /// pt: 'Hoje'
+  String get todayTitle => 'Hoje';
+
+  /// pt: 'Esta semana'
+  String get earlierTitle => 'Esta semana';
+
+  /// pt: 'Marcar como lidas'
+  String get markAllRead => 'Marcar como lidas';
+
+  /// pt: 'Ajustes de notificação'
+  String get settingsAction => 'Ajustes de notificação';
+
+  /// pt: 'No máximo 2 avisos por dia chegam como notificação. O resto fica só aqui.'
+  String get footnote =>
+      'No máximo 2 avisos por dia chegam como notificação. O resto fica só aqui.';
+
+  /// pt: 'Nada novo por aqui'
+  String get emptyTitle => 'Nada novo por aqui';
+
+  /// pt: 'Quando alguém mandar um cartão ou responder, aparece aqui.'
+  String get emptyText => 'Quando alguém mandar um cartão ou responder, aparece aqui.';
+
+  /// pt: 'Não deu para carregar as notificações'
+  String get errorTitle => 'Não deu para carregar as notificações';
+
+  /// pt: 'Seu par'
+  String get partnerFallback => 'Seu par';
+
+  /// pt: 'Toque para ver'
+  String get tapToSee => 'Toque para ver';
+
+  /// pt: 'Seu cartão da semana está pronto'
+  String get cardReadyTitle => 'Seu cartão da semana está pronto';
+
+  /// pt: 'Abra para ver o rascunho'
+  String get cardReadyText => 'Abra para ver o rascunho';
+
+  /// pt: '{name} te mandou um cartão'
+  String cardReceivedTitle({required Object name}) => '${name} te mandou um cartão';
+
+  /// pt: '{name} reagiu ao seu cartão'
+  String cardReactionTitle({required Object name}) => '${name} reagiu ao seu cartão';
+
+  /// pt: '{name} entrou'
+  String partnerJoinedTitle({required Object name}) => '${name} entrou';
+
+  /// pt: 'Agora vocês estão conectados'
+  String get partnerJoinedText => 'Agora vocês estão conectados';
+
+  /// pt: 'A conexão terminou'
+  String get unpairedTitle => 'A conexão terminou';
+
+  /// pt: 'Seus dados continuam seus'
+  String get unpairedText => 'Seus dados continuam seus';
+
+  /// pt: '{name} mandou uma mensagem'
+  String partnerMessageTitle({required Object name}) => '${name} mandou uma mensagem';
+
+  /// pt: '{name} chamou você para jogar'
+  String gameInviteTitle({required Object name}) => '${name} chamou você para jogar';
+
+  /// pt: 'Escolha quando quiser'
+  String get gameInviteText => 'Escolha quando quiser';
+
+  /// pt: '{name} mandou um recado'
+  String signalTitle({required Object name}) => '${name} mandou um recado';
+
+  /// pt: 'Uma data está chegando'
+  String get dateComingTitle => 'Uma data está chegando';
+
+  /// pt: 'Veja ideias para vocês'
+  String get dateComingText => 'Veja ideias para vocês';
+
+  /// pt: 'Hora de um ritual de vocês'
+  String get ritualTitle => 'Hora de um ritual de vocês';
+
+  /// pt: 'Ideia do dia'
+  String get dailyIdeaTitle => 'Ideia do dia';
+
+  /// pt: 'Uma ideia pequena para hoje'
+  String get dailyIdeaText => 'Uma ideia pequena para hoje';
+
+  /// pt: 'Sentimos sua falta'
+  String get gentleReturnTitle => 'Sentimos sua falta';
+
+  /// pt: 'Quando quiser, é só voltar'
+  String get gentleReturnText => 'Quando quiser, é só voltar';
+
+  /// pt: 'Uma cápsula do tempo abriu'
+  String get capsuleOpenedTitle => 'Uma cápsula do tempo abriu';
+
+  /// pt: 'Veja o que vocês guardaram'
+  String get capsuleOpenedText => 'Veja o que vocês guardaram';
+
+  Map<String, String> get errors => {
+    'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
+    'other': 'Algo deu errado. Tente de novo.',
+  };
 }
 
 // Path: intro
@@ -10580,6 +10695,42 @@ extension on Translations {
           'ideaDetail.emptyText' => 'Volte mais tarde. Enquanto isso, anote um slip.',
           'ideaDetail.errorTitle' => 'Não deu para carregar a ideia',
           'ideaDetail.errorText' => 'Tente de novo em instantes.',
+          'inbox.title' => 'Notificações',
+          'inbox.bellUnread' => 'Notificações, há novidades',
+          'inbox.todayTitle' => 'Hoje',
+          'inbox.earlierTitle' => 'Esta semana',
+          'inbox.markAllRead' => 'Marcar como lidas',
+          'inbox.settingsAction' => 'Ajustes de notificação',
+          'inbox.footnote' =>
+            'No máximo 2 avisos por dia chegam como notificação. O resto fica só aqui.',
+          'inbox.emptyTitle' => 'Nada novo por aqui',
+          'inbox.emptyText' => 'Quando alguém mandar um cartão ou responder, aparece aqui.',
+          'inbox.errorTitle' => 'Não deu para carregar as notificações',
+          'inbox.partnerFallback' => 'Seu par',
+          'inbox.tapToSee' => 'Toque para ver',
+          'inbox.cardReadyTitle' => 'Seu cartão da semana está pronto',
+          'inbox.cardReadyText' => 'Abra para ver o rascunho',
+          'inbox.cardReceivedTitle' => ({required Object name}) => '${name} te mandou um cartão',
+          'inbox.cardReactionTitle' => ({required Object name}) => '${name} reagiu ao seu cartão',
+          'inbox.partnerJoinedTitle' => ({required Object name}) => '${name} entrou',
+          'inbox.partnerJoinedText' => 'Agora vocês estão conectados',
+          'inbox.unpairedTitle' => 'A conexão terminou',
+          'inbox.unpairedText' => 'Seus dados continuam seus',
+          'inbox.partnerMessageTitle' => ({required Object name}) => '${name} mandou uma mensagem',
+          'inbox.gameInviteTitle' => ({required Object name}) => '${name} chamou você para jogar',
+          'inbox.gameInviteText' => 'Escolha quando quiser',
+          'inbox.signalTitle' => ({required Object name}) => '${name} mandou um recado',
+          'inbox.dateComingTitle' => 'Uma data está chegando',
+          'inbox.dateComingText' => 'Veja ideias para vocês',
+          'inbox.ritualTitle' => 'Hora de um ritual de vocês',
+          'inbox.dailyIdeaTitle' => 'Ideia do dia',
+          'inbox.dailyIdeaText' => 'Uma ideia pequena para hoje',
+          'inbox.gentleReturnTitle' => 'Sentimos sua falta',
+          'inbox.gentleReturnText' => 'Quando quiser, é só voltar',
+          'inbox.capsuleOpenedTitle' => 'Uma cápsula do tempo abriu',
+          'inbox.capsuleOpenedText' => 'Veja o que vocês guardaram',
+          'inbox.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
+          'inbox.errors.other' => 'Algo deu errado. Tente de novo.',
           'intro.skip' => 'Pular',
           'intro.continueButton' => 'Continuar',
           'intro.phase.title' => 'Onde vocês estão agora?',
@@ -10999,6 +11150,9 @@ extension on Translations {
           'moodHelp.askToTalkSupport' => 'Uma pergunta aberta, sem pressa de resposta.',
           'moodHelp.careLabel' => 'Carinho',
           'moodHelp.sendLove' => 'Mandar um carinho',
+          _ => null,
+        } ??
+        switch (path) {
           'moodHelp.sendLoveSupport' => 'Um abraço chega como sinal no app.',
           'moodHelp.helpLabel' => 'Ajuda',
           'moodHelp.seeHowToHelp' => 'Ver como ajudar',
@@ -11034,9 +11188,6 @@ extension on Translations {
           'moodHelp.partnerNeedActions.rest' => 'Deixar descansar',
           'moodHelp.partnerNeedActions.other' => '',
           'moodHelp.partnerNeedSupports.listen' => 'Sem dar opinião nem tentar resolver.',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.partnerNeedSupports.opinion' => 'Uma opinião honesta, sem julgar.',
           'moodHelp.partnerNeedSupports.hug' => 'Chega como um sinal no app.',
           'moodHelp.partnerNeedSupports.space' => 'Um tempo sem cobrar resposta.',
@@ -11590,6 +11741,9 @@ extension on Translations {
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
           'quickSlip.botheredNote' => 'Fica só com você. Um slip assim nunca entra no cartão.',
           'quickSlip.requestLabel' => 'Um pedido, se quiser',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.requestHint' => 'Ex.: poderia me avisar antes?',
           'quickSlip.requestHelper' => 'Opcional. Fica só com você, não é enviado para ninguém.',
           'quickSlip.requestErrors.tooLong' => 'Use no máximo 140 caracteres',
@@ -11627,9 +11781,6 @@ extension on Translations {
           'received.responses.willDo' => 'Vou fazer',
           'received.responses.notNow' => 'Agora não',
           'received.responses.plan' => 'Planejar algo',
-          _ => null,
-        } ??
-        switch (path) {
           'received.responses.later' => 'Respondo depois',
           'received.responses.heart' => 'Mandar um coração',
           'received.responses.other' => '',
@@ -12161,6 +12312,9 @@ extension on Translations {
           'story.errorText' => 'Tente de novo em instantes.',
           'story.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
           'sundayCard.title' => 'Seu cartão',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.edit' => 'Editar',
           'sundayCard.save' => 'Salvar',
           'sundayCard.cancel' => 'Cancelar',
@@ -12203,9 +12357,6 @@ extension on Translations {
           'sundayCard.sent.title' => 'Enviado',
           'sundayCard.sent.text' => ({required Object name}) => 'O cartão foi para ${name}.',
           'sundayCard.sent.textNoName' => 'O cartão foi para sua pessoa.',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.sent.done' => 'Pronto',
           'tabs.today' => 'Hoje',
           'tabs.slips' => 'Slips',

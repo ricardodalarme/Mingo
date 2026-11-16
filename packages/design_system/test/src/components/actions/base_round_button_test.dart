@@ -40,4 +40,48 @@ void main() {
       expect(taps, 1);
     });
   }
+
+  testWidgets('the badge dot shows only when asked and stays out of the semantics', (tester) async {
+    setSurface(tester);
+
+    await tester.pumpWidget(
+      appFor(
+        variant: AppThemeVariant.rose,
+        home: Scaffold(
+          body: Center(
+            child: Column(
+              children: [
+                BaseRoundButton(icon: AppIcons.bell, onPressed: () {}, semanticLabel: 'Plain'),
+                BaseRoundButton(
+                  icon: AppIcons.bell,
+                  onPressed: () {},
+                  semanticLabel: 'Unread',
+                  hasBadge: true,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final plain = find.ancestor(
+      of: find.bySemanticsLabel('Plain'),
+      matching: find.byType(BaseRoundButton),
+    );
+    final unread = find.ancestor(
+      of: find.bySemanticsLabel('Unread'),
+      matching: find.byType(BaseRoundButton),
+    );
+
+    Finder dot(Finder button) => find.descendant(
+      of: button,
+      matching: find.byWidgetPredicate(
+        (widget) => widget is Container && widget.constraints?.maxWidth == 10,
+      ),
+    );
+
+    expect(dot(plain), findsNothing);
+    expect(dot(unread), findsOneWidget);
+  });
 }

@@ -115,6 +115,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$ideaDetail$en ideaDetail = _Translations$ideaDetail$en._(_root);
   @override
+  late final _Translations$inbox$en inbox = _Translations$inbox$en._(_root);
+  @override
   late final _Translations$intro$en intro = _Translations$intro$en._(_root);
   @override
   late final _Translations$invite$en invite = _Translations$invite$en._(_root);
@@ -2442,6 +2444,87 @@ class _Translations$ideaDetail$en extends Translations$ideaDetail$pt {
   String get errorTitle => 'Could not load the idea';
   @override
   String get errorText => 'Try again in a moment.';
+}
+
+// Path: inbox
+class _Translations$inbox$en extends Translations$inbox$pt {
+  _Translations$inbox$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Notifications';
+  @override
+  String get bellUnread => 'Notifications, something new';
+  @override
+  String get todayTitle => 'Today';
+  @override
+  String get earlierTitle => 'This week';
+  @override
+  String get markAllRead => 'Mark all as read';
+  @override
+  String get settingsAction => 'Notification settings';
+  @override
+  String get footnote =>
+      'At most 2 alerts a day arrive as a notification. The rest stay only here.';
+  @override
+  String get emptyTitle => 'Nothing new here';
+  @override
+  String get emptyText => 'When someone sends a card or replies, it shows up here.';
+  @override
+  String get errorTitle => 'We could not load your notifications';
+  @override
+  String get partnerFallback => 'Your partner';
+  @override
+  String get tapToSee => 'Tap to see';
+  @override
+  String get cardReadyTitle => 'Your weekly card is ready';
+  @override
+  String get cardReadyText => 'Open to see the draft';
+  @override
+  String cardReceivedTitle({required Object name}) => '${name} sent you a card';
+  @override
+  String cardReactionTitle({required Object name}) => '${name} reacted to your card';
+  @override
+  String partnerJoinedTitle({required Object name}) => '${name} joined';
+  @override
+  String get partnerJoinedText => 'You are connected now';
+  @override
+  String get unpairedTitle => 'The connection ended';
+  @override
+  String get unpairedText => 'Your data is still yours';
+  @override
+  String partnerMessageTitle({required Object name}) => '${name} sent a message';
+  @override
+  String gameInviteTitle({required Object name}) => '${name} invited you to play';
+  @override
+  String get gameInviteText => 'Pick a time when you like';
+  @override
+  String signalTitle({required Object name}) => '${name} sent a note';
+  @override
+  String get dateComingTitle => 'A date is coming up';
+  @override
+  String get dateComingText => 'See ideas for the two of you';
+  @override
+  String get ritualTitle => 'Time for one of your rituals';
+  @override
+  String get dailyIdeaTitle => 'Idea of the day';
+  @override
+  String get dailyIdeaText => 'A small idea for today';
+  @override
+  String get gentleReturnTitle => 'We miss you';
+  @override
+  String get gentleReturnText => 'Come back whenever you like';
+  @override
+  String get capsuleOpenedTitle => 'A time capsule opened';
+  @override
+  String get capsuleOpenedText => 'See what you kept';
+  @override
+  Map<String, String> get errors => {
+    'NETWORK': 'No connection. Check the internet and try again.',
+    'other': 'Something went wrong. Try again.',
+  };
 }
 
 // Path: intro
@@ -8785,6 +8868,42 @@ extension on TranslationsEn {
           'ideaDetail.emptyText' => 'Come back later. In the meantime, note a slip.',
           'ideaDetail.errorTitle' => 'Could not load the idea',
           'ideaDetail.errorText' => 'Try again in a moment.',
+          'inbox.title' => 'Notifications',
+          'inbox.bellUnread' => 'Notifications, something new',
+          'inbox.todayTitle' => 'Today',
+          'inbox.earlierTitle' => 'This week',
+          'inbox.markAllRead' => 'Mark all as read',
+          'inbox.settingsAction' => 'Notification settings',
+          'inbox.footnote' =>
+            'At most 2 alerts a day arrive as a notification. The rest stay only here.',
+          'inbox.emptyTitle' => 'Nothing new here',
+          'inbox.emptyText' => 'When someone sends a card or replies, it shows up here.',
+          'inbox.errorTitle' => 'We could not load your notifications',
+          'inbox.partnerFallback' => 'Your partner',
+          'inbox.tapToSee' => 'Tap to see',
+          'inbox.cardReadyTitle' => 'Your weekly card is ready',
+          'inbox.cardReadyText' => 'Open to see the draft',
+          'inbox.cardReceivedTitle' => ({required Object name}) => '${name} sent you a card',
+          'inbox.cardReactionTitle' => ({required Object name}) => '${name} reacted to your card',
+          'inbox.partnerJoinedTitle' => ({required Object name}) => '${name} joined',
+          'inbox.partnerJoinedText' => 'You are connected now',
+          'inbox.unpairedTitle' => 'The connection ended',
+          'inbox.unpairedText' => 'Your data is still yours',
+          'inbox.partnerMessageTitle' => ({required Object name}) => '${name} sent a message',
+          'inbox.gameInviteTitle' => ({required Object name}) => '${name} invited you to play',
+          'inbox.gameInviteText' => 'Pick a time when you like',
+          'inbox.signalTitle' => ({required Object name}) => '${name} sent a note',
+          'inbox.dateComingTitle' => 'A date is coming up',
+          'inbox.dateComingText' => 'See ideas for the two of you',
+          'inbox.ritualTitle' => 'Time for one of your rituals',
+          'inbox.dailyIdeaTitle' => 'Idea of the day',
+          'inbox.dailyIdeaText' => 'A small idea for today',
+          'inbox.gentleReturnTitle' => 'We miss you',
+          'inbox.gentleReturnText' => 'Come back whenever you like',
+          'inbox.capsuleOpenedTitle' => 'A time capsule opened',
+          'inbox.capsuleOpenedText' => 'See what you kept',
+          'inbox.errors.NETWORK' => 'No connection. Check the internet and try again.',
+          'inbox.errors.other' => 'Something went wrong. Try again.',
           'intro.skip' => 'Skip',
           'intro.continueButton' => 'Continue',
           'intro.phase.title' => 'Where are you two right now?',
@@ -9203,6 +9322,9 @@ extension on TranslationsEn {
           'moodHelp.askToTalkSupport' => 'An open question, with no rush for an answer.',
           'moodHelp.careLabel' => 'Care',
           'moodHelp.sendLove' => 'Send a little love',
+          _ => null,
+        } ??
+        switch (path) {
           'moodHelp.sendLoveSupport' => 'A hug arrives as a signal in the app.',
           'moodHelp.helpLabel' => 'Help',
           'moodHelp.seeHowToHelp' => 'See how to help',
@@ -9238,9 +9360,6 @@ extension on TranslationsEn {
           'moodHelp.partnerNeedActions.rest' => 'Let them rest',
           'moodHelp.partnerNeedActions.other' => '',
           'moodHelp.partnerNeedSupports.listen' => 'No advice, no fixing.',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.partnerNeedSupports.opinion' => 'An honest opinion, without judging.',
           'moodHelp.partnerNeedSupports.hug' => 'It arrives as a signal in the app.',
           'moodHelp.partnerNeedSupports.space' => 'Some time without asking for an answer.',
@@ -9793,6 +9912,9 @@ extension on TranslationsEn {
             'It stays private. On Sunday you choose what goes on the card.',
           'quickSlip.botheredNote' => 'Only you see it. A slip like this never goes on the card.',
           'quickSlip.requestLabel' => 'A request, if you want',
+          _ => null,
+        } ??
+        switch (path) {
           'quickSlip.requestHint' => 'E.g. could you let me know beforehand?',
           'quickSlip.requestHelper' => 'Optional. It stays with you and is not sent to anyone.',
           'quickSlip.requestErrors.tooLong' => 'Use at most 140 characters',
@@ -9830,9 +9952,6 @@ extension on TranslationsEn {
           'received.responses.willDo' => 'I\'ll do it',
           'received.responses.notNow' => 'Not now',
           'received.responses.plan' => 'Plan something',
-          _ => null,
-        } ??
-        switch (path) {
           'received.responses.later' => 'I\'ll answer later',
           'received.responses.heart' => 'Send a heart',
           'received.responses.other' => '',
@@ -10359,6 +10478,9 @@ extension on TranslationsEn {
           'story.errorText' => 'Try again in a moment.',
           'story.errors.other' => 'Couldn\'t share right now. Try again.',
           'sundayCard.title' => 'Your card',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.edit' => 'Edit',
           'sundayCard.save' => 'Save',
           'sundayCard.cancel' => 'Cancel',
@@ -10400,9 +10522,6 @@ extension on TranslationsEn {
           'sundayCard.sent.title' => 'Sent',
           'sundayCard.sent.text' => ({required Object name}) => 'The card went to ${name}.',
           'sundayCard.sent.textNoName' => 'The card went to your person.',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.sent.done' => 'Done',
           'tabs.today' => 'Today',
           'tabs.slips' => 'Slips',

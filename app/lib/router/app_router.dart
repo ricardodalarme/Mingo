@@ -47,6 +47,7 @@ import 'package:app/features/memories/presentation/memories/memories_page.dart';
 import 'package:app/features/mood/presentation/mood/mood_page.dart';
 import 'package:app/features/not_found/presentation/not_found/not_found_page.dart';
 import 'package:app/features/notes/presentation/compose/compose_page.dart';
+import 'package:app/features/notifications/presentation/inbox/inbox_page.dart';
 import 'package:app/features/notifications/presentation/permission/notification_permission_page.dart';
 import 'package:app/features/notifications/presentation/preferences/notification_preferences_page.dart';
 import 'package:app/features/onboarding/presentation/first_slip/first_slip_page.dart';
@@ -202,6 +203,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: GameRoute.page, path: '/games/:game'),
     AutoRoute(page: GuidesRoute.page, path: '/guides'),
     AutoRoute(page: GuideRoute.page, path: '/guide/:slug', fullscreenDialog: true),
+    AutoRoute(page: InboxRoute.page),
     AutoRoute(page: NotificationPreferencesRoute.page),
     AutoRoute(page: DevicesRoute.page),
     AutoRoute(page: SundayCardRoute.page),

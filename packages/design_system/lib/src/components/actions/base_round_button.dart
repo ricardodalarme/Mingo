@@ -12,6 +12,8 @@ enum BaseRoundButtonVariant() {
 const double _standardSide = 40;
 const double _primarySide = 50;
 const double _primaryIconSize = AppIconSize.lg;
+const double _badgeSize = 10;
+const double _badgeOffset = 8;
 
 /// A circular icon button.
 ///
@@ -24,6 +26,9 @@ class const BaseRoundButton({
   final BaseRoundButtonVariant variant = .standard,
   final bool isEnabled = true,
   final bool isLoading = false,
+
+  /// Whether a small dot on the corner tells that something new waits behind the button.
+  final bool hasBadge = false,
   super.key,
 }) extends StatefulWidget {
   /// The dark 50 point variant, for the one main icon action of a bar.
@@ -85,14 +90,34 @@ class _BaseRoundButtonState() extends State<BaseRoundButton> {
               border: isPrimary ? null : AppBorders.hair(colors.borderDefault),
               shape: BoxShape.circle,
             ),
-            child: Center(
-              child: widget.isLoading
-                  ? ExcludeSemantics(child: BaseLoadingDots(color: foreground))
-                  : AppIcon(
-                      icon: widget.icon,
-                      size: isPrimary ? _primaryIconSize : AppIconSize.md,
-                      color: foreground,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                if (widget.isLoading)
+                  ExcludeSemantics(child: BaseLoadingDots(color: foreground))
+                else
+                  AppIcon(
+                    icon: widget.icon,
+                    size: isPrimary ? _primaryIconSize : AppIconSize.md,
+                    color: foreground,
+                  ),
+                if (widget.hasBadge)
+                  Positioned(
+                    top: _badgeOffset,
+                    right: _badgeOffset,
+                    child: ExcludeSemantics(
+                      child: Container(
+                        width: _badgeSize,
+                        height: _badgeSize,
+                        decoration: BoxDecoration(
+                          color: colors.accentHighlight,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: colors.bgSurface, width: AppBorder.selected),
+                        ),
+                      ),
                     ),
+                  ),
+              ],
             ),
           ),
         ),

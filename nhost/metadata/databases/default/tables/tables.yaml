@@ -63,6 +63,7 @@
 - "!include public_important_date_kind.yaml"
 - "!include public_important_date_origin.yaml"
 - "!include public_important_dates.yaml"
+- "!include public_inbox_items.yaml"
 - "!include public_invite_previews.yaml"
 - "!include public_invites.yaml"
 - "!include public_journal_entries.yaml"

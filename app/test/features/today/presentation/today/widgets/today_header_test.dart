@@ -1,11 +1,26 @@
+import 'package:app/features/notifications/data/repositories/inbox_repository.dart';
+import 'package:app/features/notifications/presentation/bell/cubit/inbox_badge_cubit.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/widgets/today_header.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../../../../test_helpers/pump_app.dart';
+
+class _MockInboxRepository() extends Mock implements InboxRepository;
+
+Future<void> _pump(WidgetTester tester, Widget header, {int unread = 0}) async {
+  final inbox = _MockInboxRepository();
+  when(inbox.watchUnreadCount).thenAnswer((_) => Stream.value(unread));
+  final badge = InboxBadgeCubit(inboxRepository: inbox)..start();
+  addTearDown(badge.close);
+
+  await tester.pumpApp(BlocProvider.value(value: badge, child: header));
+}
 
 void main() {
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
@@ -31,7 +46,7 @@ void main() {
       };
       final timeIcon = now.hour >= 18 || now.hour < 6 ? AppIcons.moon : AppIcons.sun;
 
-      await tester.pumpApp(const TodayHeader(home: home, selfName: 'Ana'));
+      await _pump(tester, const TodayHeader(home: home, selfName: 'Ana'));
 
       final greetingText = tester.widget<Text>(find.text(greeting));
       expect(greetingText.style?.fontSize, AppTypography.system.titleLg.fontSize);
@@ -50,7 +65,7 @@ void main() {
         month: l10n.today.months[now.month - 1],
       );
 
-      await tester.pumpApp(const TodayHeader(home: home, selfName: 'Ana'));
+      await _pump(tester, const TodayHeader(home: home, selfName: 'Ana'));
 
       final date = tester.widget<Text>(find.text(dateLine));
       expect(date.style?.fontSize, AppTypography.system.bodySm.fontSize);
@@ -59,7 +74,8 @@ void main() {
 
   testWidgets('the header no longer shows how long the couple has been together', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
-      await tester.pumpApp(
+      await _pump(
+        tester,
         TodayHeader(
           home: TodayHome(
             isPaired: true,
@@ -81,7 +97,8 @@ void main() {
 
   testWidgets('on your own the header offers settings', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
-      await tester.pumpApp(
+      await _pump(
+        tester,
         const TodayHeader(
           home: TodayHome(
             isPaired: false,
@@ -106,9 +123,37 @@ void main() {
 
   testWidgets('with a partner the header still offers settings', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
-      await tester.pumpApp(const TodayHeader(home: home, selfName: 'Ana'));
+      await _pump(tester, const TodayHeader(home: home, selfName: 'Ana'));
 
       expect(find.byIcon(AppIcons.settings), findsOneWidget);
+    });
+  });
+
+  testWidgets('the bell shows a dot only while something is unread', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      await _pump(tester, const TodayHeader(home: home, selfName: 'Ana'), unread: 2);
+      await tester.pump();
+
+      expect(
+        tester
+            .widget<BaseRoundButton>(find.widgetWithIcon(BaseRoundButton, AppIcons.bell))
+            .hasBadge,
+        isTrue,
+      );
+    });
+  });
+
+  testWidgets('the bell shows no dot when everything is read', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      await _pump(tester, const TodayHeader(home: home, selfName: 'Ana'));
+      await tester.pump();
+
+      expect(
+        tester
+            .widget<BaseRoundButton>(find.widgetWithIcon(BaseRoundButton, AppIcons.bell))
+            .hasBadge,
+        isFalse,
+      );
     });
   });
 }
