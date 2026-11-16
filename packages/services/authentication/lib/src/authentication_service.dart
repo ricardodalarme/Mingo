@@ -91,6 +91,7 @@ class AuthenticationService({
       _authChanges.add(state == AuthenticationState.signedIn);
     });
     _auth.addTokenChangedCallback(() => unawaited(_persist()));
+    _auth.addSessionRefreshFailedCallback((_, _) => unawaited(_clear()));
 
     final stored = await _storage.read(key: _sessionKey);
     if (stored == null) return;
