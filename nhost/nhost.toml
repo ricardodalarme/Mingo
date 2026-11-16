@@ -20,6 +20,15 @@ value = '{{ secrets.CHAT_API_KEY }}'
 name = 'CHAT_MODEL'
 value = '{{ secrets.CHAT_MODEL }}'
 
+# OpenCode Go routes by session and answers without reasoning when it is disabled; neither value is secret.
+[[global.environment]]
+name = 'CHAT_EXTRA_HEADERS'
+value = '{"x-opencode-session":"{session}"}'
+
+[[global.environment]]
+name = 'CHAT_EXTRA_BODY'
+value = '{"thinking":{"type":"disabled"}}'
+
 [hasura]
 version = 'v2.48.10-ce'
 adminSecret = '{{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}'
