@@ -6876,6 +6876,8 @@ class Translations$sundayCard$pt {
   late final Translations$sundayCard$hold$pt hold = Translations$sundayCard$hold$pt.internal(_root);
   late final Translations$sundayCard$held$pt held = Translations$sundayCard$held$pt.internal(_root);
   late final Translations$sundayCard$sent$pt sent = Translations$sundayCard$sent$pt.internal(_root);
+  late final Translations$sundayCard$heldByRule$pt heldByRule =
+      Translations$sundayCard$heldByRule$pt.internal(_root);
 }
 
 // Path: tabs
@@ -9294,6 +9296,38 @@ class Translations$sundayCard$sent$pt {
 
   /// pt: 'Pronto'
   String get done => 'Pronto';
+}
+
+// Path: sundayCard.heldByRule
+class Translations$sundayCard$heldByRule$pt {
+  Translations$sundayCard$heldByRule$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Vale reler antes de enviar'
+  String get title => 'Vale reler antes de enviar';
+
+  /// pt: 'reler'
+  String get titleHighlight => 'reler';
+
+  Map<String, String> get reasons => {
+    'absolute': 'Palavras como “sempre” e “nunca” podem soar como acusação.',
+    'insult': 'Alguma palavra do cartão pode ferir.',
+    'blame': 'O texto soa como culpa em vez de gratidão.',
+    'contempt': 'O texto pode soar como desprezo.',
+    'other': 'O texto pode soar mais duro do que você quer.',
+  };
+
+  /// pt: 'Nada foi enviado e nada se perde.'
+  String get reassurance => 'Nada foi enviado e nada se perde.';
+
+  /// pt: 'Reescrever'
+  String get rewrite => 'Reescrever';
+
+  /// pt: 'Enviar mesmo assim'
+  String get sendAnyway => 'Enviar mesmo assim';
 }
 
 // Path: temperature.result
@@ -12816,6 +12850,17 @@ extension on Translations {
           'sundayCard.sent.text' => ({required Object name}) => 'O cartão foi para ${name}.',
           'sundayCard.sent.textNoName' => 'O cartão foi para sua pessoa.',
           'sundayCard.sent.done' => 'Pronto',
+          'sundayCard.heldByRule.title' => 'Vale reler antes de enviar',
+          'sundayCard.heldByRule.titleHighlight' => 'reler',
+          'sundayCard.heldByRule.reasons.absolute' =>
+            'Palavras como “sempre” e “nunca” podem soar como acusação.',
+          'sundayCard.heldByRule.reasons.insult' => 'Alguma palavra do cartão pode ferir.',
+          'sundayCard.heldByRule.reasons.blame' => 'O texto soa como culpa em vez de gratidão.',
+          'sundayCard.heldByRule.reasons.contempt' => 'O texto pode soar como desprezo.',
+          'sundayCard.heldByRule.reasons.other' => 'O texto pode soar mais duro do que você quer.',
+          'sundayCard.heldByRule.reassurance' => 'Nada foi enviado e nada se perde.',
+          'sundayCard.heldByRule.rewrite' => 'Reescrever',
+          'sundayCard.heldByRule.sendAnyway' => 'Enviar mesmo assim',
           'tabs.today' => 'Hoje',
           'tabs.slips' => 'Slips',
           'tabs.together' => 'Juntos',
@@ -13261,6 +13306,9 @@ extension on Translations {
           'widgets.errors.COUPLE_PHOTO_INVALID' =>
             'Escolha uma imagem JPG, PNG, WebP ou HEIC de até 8 MB.',
           'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Não foi possível ler o arquivo escolhido.',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Não foi possível abrir o seletor de fotos.',
           'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' =>
             'Entre na sua conta para escolher uma foto do casal.',

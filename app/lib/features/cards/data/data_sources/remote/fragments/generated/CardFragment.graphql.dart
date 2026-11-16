@@ -11,6 +11,7 @@ class FragmentCardFragment {
     this.note,
     required this.weekStart,
     this.sentAt,
+    this.heldReason,
     required this.items,
     this.$__typename = 'cards',
   });
@@ -21,6 +22,7 @@ class FragmentCardFragment {
     final l$note = json['note'];
     final l$weekStart = json['weekStart'];
     final l$sentAt = json['sentAt'];
+    final l$heldReason = json['heldReason'];
     final l$items = json['items'];
     final l$$__typename = json['__typename'];
     return FragmentCardFragment(
@@ -29,6 +31,7 @@ class FragmentCardFragment {
       note: (l$note as String?),
       weekStart: DateTime.parse((l$weekStart as String)),
       sentAt: l$sentAt == null ? null : DateTime.parse((l$sentAt as String)),
+      heldReason: (l$heldReason as String?),
       items: (l$items as List<dynamic>)
           .map((e) => FragmentCardFragmentitems.fromJson((e as Map<String, dynamic>)))
           .toList(),
@@ -45,6 +48,8 @@ class FragmentCardFragment {
   final DateTime weekStart;
 
   final DateTime? sentAt;
+
+  final String? heldReason;
 
   final List<FragmentCardFragmentitems> items;
 
@@ -64,6 +69,8 @@ class FragmentCardFragment {
     _resultData['sentAt'] = l$sentAt == null
         ? null
         : ((v) => v.toUtc().toIso8601String())(l$sentAt);
+    final l$heldReason = heldReason;
+    _resultData['heldReason'] = l$heldReason;
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -78,6 +85,7 @@ class FragmentCardFragment {
     final l$note = note;
     final l$weekStart = weekStart;
     final l$sentAt = sentAt;
+    final l$heldReason = heldReason;
     final l$items = items;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -86,6 +94,7 @@ class FragmentCardFragment {
       l$note,
       l$weekStart,
       l$sentAt,
+      l$heldReason,
       Object.hashAll(l$items.map((v) => v)),
       l$$__typename,
     ]);
@@ -122,6 +131,11 @@ class FragmentCardFragment {
     final l$sentAt = sentAt;
     final lOther$sentAt = other.sentAt;
     if (l$sentAt != lOther$sentAt) {
+      return false;
+    }
+    final l$heldReason = heldReason;
+    final lOther$heldReason = other.heldReason;
+    if (l$heldReason != lOther$heldReason) {
       return false;
     }
     final l$items = items;
@@ -183,6 +197,13 @@ const fragmentDefinitionCardFragment = FragmentDefinitionNode(
       ),
       FieldNode(
         name: NameNode(value: 'sentAt'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'heldReason'),
         alias: null,
         arguments: [],
         directives: [],

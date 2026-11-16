@@ -28,9 +28,9 @@ targets:
               type: String
             jsonb:
               type: dynamic
-              fromJsonFunctionName: jsonDecode
-              toJsonFunctionName: jsonEncode
-              import: dart:convert
+              fromJsonFunctionName: decodeJsonb
+              toJsonFunctionName: encodeJsonb
+              import: package:network/network.dart
             time:
               type: String
             smallint:

@@ -2,10 +2,10 @@
 import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
 
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
+import 'package:network/network.dart';
 
 class VariablesMutationUpdateNotificationSettings {
   factory VariablesMutationUpdateNotificationSettings({
@@ -35,7 +35,7 @@ class VariablesMutationUpdateNotificationSettings {
     final l$cardHour = data['cardHour'];
     result$data['cardHour'] = (l$cardHour as int);
     final l$mutes = data['mutes'];
-    result$data['mutes'] = jsonDecode(l$mutes);
+    result$data['mutes'] = decodeJsonb(l$mutes);
     return VariablesMutationUpdateNotificationSettings._(result$data);
   }
 
@@ -62,7 +62,7 @@ class VariablesMutationUpdateNotificationSettings {
     final l$cardHour = cardHour;
     result$data['cardHour'] = l$cardHour;
     final l$mutes = mutes;
-    result$data['mutes'] = jsonEncode(l$mutes);
+    result$data['mutes'] = encodeJsonb(l$mutes);
     return result$data;
   }
 

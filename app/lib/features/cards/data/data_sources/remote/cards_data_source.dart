@@ -4,6 +4,7 @@ import 'package:app/features/cards/data/data_sources/remote/mutations/generated/
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/MarkCardRead.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/PrepareCard.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/ReactToCard.graphql.dart';
+import 'package:app/features/cards/data/data_sources/remote/mutations/generated/ReopenCard.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/SendCard.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/UpdateCardDraft.graphql.dart';
 import 'package:app/features/cards/data/data_sources/remote/queries/generated/CardDetail.graphql.dart';
@@ -66,12 +67,23 @@ class CardsDataSource({required final GQLClient _client}) {
   }
 
   /// Sends the card; fails with `NoDataException` when the server sends nothing.
-  Future<FragmentCardFragment> sendCard(String cardId) async {
+  Future<FragmentCardFragment> sendCard(String cardId, {bool anyway = false}) async {
     final response = await _client.mutate(
-      OptionsMutationSendCard(variables: VariablesMutationSendCard(cardId: cardId)),
+      OptionsMutationSendCard(
+        variables: VariablesMutationSendCard(cardId: cardId, anyway: anyway),
+      ),
     );
 
     return validateResponseData(response, getData: (data) => data.sendCard.firstOrNull);
+  }
+
+  /// Takes a held card back to a draft, so its wording can be changed.
+  Future<FragmentCardFragment> reopenCard(String cardId) async {
+    final response = await _client.mutate(
+      OptionsMutationReopenCard(variables: VariablesMutationReopenCard(cardId: cardId)),
+    );
+
+    return validateResponseData(response, getData: (data) => data.updateCardsByPk);
   }
 
   /// Keeps the card for later, still unsent.

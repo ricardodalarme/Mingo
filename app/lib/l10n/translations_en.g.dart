@@ -5562,6 +5562,9 @@ class _Translations$sundayCard$en extends Translations$sundayCard$pt {
   late final _Translations$sundayCard$held$en held = _Translations$sundayCard$held$en._(_root);
   @override
   late final _Translations$sundayCard$sent$en sent = _Translations$sundayCard$sent$en._(_root);
+  @override
+  late final _Translations$sundayCard$heldByRule$en heldByRule =
+      _Translations$sundayCard$heldByRule$en._(_root);
 }
 
 // Path: tabs
@@ -7431,6 +7434,35 @@ class _Translations$sundayCard$sent$en extends Translations$sundayCard$sent$pt {
   String get textNoName => 'The card went to your person.';
   @override
   String get done => 'Done';
+}
+
+// Path: sundayCard.heldByRule
+class _Translations$sundayCard$heldByRule$en extends Translations$sundayCard$heldByRule$pt {
+  _Translations$sundayCard$heldByRule$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Worth rereading before you send';
+  @override
+  String get titleHighlight => 'rereading';
+  @override
+  Map<String, String> get reasons => {
+    'absolute': 'Words like “always” and “never” can sound like an accusation.',
+    'insult': 'A word on the card may hurt.',
+    'blame': 'The text sounds like blame instead of thanks.',
+    'contempt': 'The text may sound like contempt.',
+    'other': 'The text may sound harsher than you mean.',
+  };
+  @override
+  String get reassurance => 'Nothing was sent and nothing is lost.';
+  @override
+  String get rewrite => 'Rewrite';
+  @override
+  String get sendAnyway => 'Send anyway';
 }
 
 // Path: temperature.result
@@ -10918,6 +10950,17 @@ extension on TranslationsEn {
           'sundayCard.sent.text' => ({required Object name}) => 'The card went to ${name}.',
           'sundayCard.sent.textNoName' => 'The card went to your person.',
           'sundayCard.sent.done' => 'Done',
+          'sundayCard.heldByRule.title' => 'Worth rereading before you send',
+          'sundayCard.heldByRule.titleHighlight' => 'rereading',
+          'sundayCard.heldByRule.reasons.absolute' =>
+            'Words like “always” and “never” can sound like an accusation.',
+          'sundayCard.heldByRule.reasons.insult' => 'A word on the card may hurt.',
+          'sundayCard.heldByRule.reasons.blame' => 'The text sounds like blame instead of thanks.',
+          'sundayCard.heldByRule.reasons.contempt' => 'The text may sound like contempt.',
+          'sundayCard.heldByRule.reasons.other' => 'The text may sound harsher than you mean.',
+          'sundayCard.heldByRule.reassurance' => 'Nothing was sent and nothing is lost.',
+          'sundayCard.heldByRule.rewrite' => 'Rewrite',
+          'sundayCard.heldByRule.sendAnyway' => 'Send anyway',
           'tabs.today' => 'Today',
           'tabs.slips' => 'Slips',
           'tabs.together' => 'Together',
@@ -11359,6 +11402,9 @@ extension on TranslationsEn {
           'widgets.errors.COUPLE_PHOTO_INVALID' =>
             'Choose a JPG, PNG, WebP or HEIC image up to 8 MB.',
           'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Could not read the selected file.',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Could not open the photo picker.',
           'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' => 'Sign in to choose a couple photo.',
           'widgets.errors.COUPLE_PHOTO_NOT_PAIRED' =>

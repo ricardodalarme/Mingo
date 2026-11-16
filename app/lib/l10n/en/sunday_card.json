@@ -43,5 +43,19 @@
     "text": "The card went to {name}.",
     "textNoName": "The card went to your person.",
     "done": "Done"
+  },
+  "heldByRule": {
+    "title": "Worth rereading before you send",
+    "titleHighlight": "rereading",
+    "reasons(map)": {
+      "absolute": "Words like “always” and “never” can sound like an accusation.",
+      "insult": "A word on the card may hurt.",
+      "blame": "The text sounds like blame instead of thanks.",
+      "contempt": "The text may sound like contempt.",
+      "other": "The text may sound harsher than you mean."
+    },
+    "reassurance": "Nothing was sent and nothing is lost.",
+    "rewrite": "Rewrite",
+    "sendAnyway": "Send anyway"
   }
 }

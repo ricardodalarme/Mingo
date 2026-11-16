@@ -7,8 +7,8 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesMutationSendCard {
-  factory VariablesMutationSendCard({required String cardId}) =>
-      VariablesMutationSendCard._({r'cardId': cardId});
+  factory VariablesMutationSendCard({required String cardId, bool? anyway}) =>
+      VariablesMutationSendCard._({r'cardId': cardId, if (anyway != null) r'anyway': anyway});
 
   VariablesMutationSendCard._(this._$data);
 
@@ -16,6 +16,10 @@ class VariablesMutationSendCard {
     final result$data = <String, dynamic>{};
     final l$cardId = data['cardId'];
     result$data['cardId'] = (l$cardId as String);
+    if (data.containsKey('anyway')) {
+      final l$anyway = data['anyway'];
+      result$data['anyway'] = (l$anyway as bool?);
+    }
     return VariablesMutationSendCard._(result$data);
   }
 
@@ -23,10 +27,16 @@ class VariablesMutationSendCard {
 
   String get cardId => (_$data['cardId'] as String);
 
+  bool? get anyway => (_$data['anyway'] as bool?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$cardId = cardId;
     result$data['cardId'] = l$cardId;
+    if (_$data.containsKey('anyway')) {
+      final l$anyway = anyway;
+      result$data['anyway'] = l$anyway;
+    }
     return result$data;
   }
 
@@ -43,13 +53,22 @@ class VariablesMutationSendCard {
     if (l$cardId != lOther$cardId) {
       return false;
     }
+    final l$anyway = anyway;
+    final lOther$anyway = other.anyway;
+    if (_$data.containsKey('anyway') != other._$data.containsKey('anyway')) {
+      return false;
+    }
+    if (l$anyway != lOther$anyway) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$cardId = cardId;
-    return Object.hashAll([l$cardId]);
+    final l$anyway = anyway;
+    return Object.hashAll([l$cardId, _$data.containsKey('anyway') ? l$anyway : const {}]);
   }
 }
 
@@ -128,6 +147,12 @@ const documentNodeMutationSendCard = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'anyway')),
+          type: NamedTypeNode(name: NameNode(value: 'Boolean'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
@@ -143,6 +168,10 @@ const documentNodeMutationSendCard = DocumentNode(
                     ObjectFieldNode(
                       name: NameNode(value: 'cardId'),
                       value: VariableNode(name: NameNode(value: 'cardId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'anyway'),
+                      value: VariableNode(name: NameNode(value: 'anyway')),
                     ),
                   ],
                 ),

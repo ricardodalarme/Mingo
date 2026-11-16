@@ -43,5 +43,19 @@
     "text": "O cartão foi para {name}.",
     "textNoName": "O cartão foi para sua pessoa.",
     "done": "Pronto"
+  },
+  "heldByRule": {
+    "title": "Vale reler antes de enviar",
+    "titleHighlight": "reler",
+    "reasons(map)": {
+      "absolute": "Palavras como “sempre” e “nunca” podem soar como acusação.",
+      "insult": "Alguma palavra do cartão pode ferir.",
+      "blame": "O texto soa como culpa em vez de gratidão.",
+      "contempt": "O texto pode soar como desprezo.",
+      "other": "O texto pode soar mais duro do que você quer."
+    },
+    "reassurance": "Nada foi enviado e nada se perde.",
+    "rewrite": "Reescrever",
+    "sendAnyway": "Enviar mesmo assim"
   }
 }

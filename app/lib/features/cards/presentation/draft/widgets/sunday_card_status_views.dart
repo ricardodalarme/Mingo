@@ -1,4 +1,6 @@
+import 'package:app/features/cards/data/models/held_reason.dart';
 import 'package:app/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
+import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
@@ -45,7 +47,64 @@ class const SundayCardHeld({super.key}) extends StatelessWidget {
             text: l10n.sendAnyway,
             variant: .secondary,
             isLoading: isSending,
-            onPressed: () => confirmSend(context),
+            onPressed: () => confirmSend(context, anyway: true),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// A card held because its wording matched a rule. It explains why and never blocks.
+class const SundayCardHeldByRule({required final HeldReason reason, super.key})
+    extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.sundayCard.heldByRule;
+    final isBusy = context.select((SundayCardCubit cubit) => cubit.state.deliverAction.isLoading);
+
+    return BaseMomentContent(
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Semantics(
+            header: true,
+            liveRegion: true,
+            child: AppHighlightedText(
+              text: l10n.title,
+              highlight: l10n.titleHighlight,
+              style: context.text.display,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(height: AppSpace.s12),
+          Text(
+            l10n.reasons.selectOrFallback(reason.name),
+            textAlign: TextAlign.center,
+            style: context.text.body.copyWith(color: context.colors.textSecondary),
+          ),
+          const SizedBox(height: AppSpace.s8),
+          Text(
+            l10n.reassurance,
+            textAlign: TextAlign.center,
+            style: context.text.caption.copyWith(color: context.colors.textSecondary),
+          ),
+        ],
+      ),
+      footer: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          BaseButton(
+            text: l10n.rewrite,
+            isLoading: isBusy,
+            onPressed: context.read<SundayCardCubit>().reopen,
+          ),
+          const SizedBox(height: AppSpace.s10),
+          BaseButton(
+            text: l10n.sendAnyway,
+            variant: .secondary,
+            onPressed: () => confirmSend(context, anyway: true),
           ),
         ],
       ),
@@ -85,7 +144,7 @@ class const SundayCardSent({super.key}) extends StatelessWidget {
 }
 
 /// Asks before sending, since a sent card cannot be changed.
-Future<void> confirmSend(BuildContext context) async {
+Future<void> confirmSend(BuildContext context, {bool anyway = false}) async {
   final l10n = context.l10n.sundayCard.send;
   final cubit = context.read<SundayCardCubit>();
   final name = cubit.state.partnerName;
@@ -95,7 +154,7 @@ Future<void> confirmSend(BuildContext context) async {
     text: name == null ? l10n.textNoName : l10n.text(name: name),
     confirmText: l10n.confirm,
   );
-  if (confirmed) await cubit.send();
+  if (confirmed) await cubit.send(anyway: anyway);
 }
 
 /// Asks before holding the card back for the week.

@@ -1,4 +1,5 @@
 import 'package:app/features/cards/data/models/card_status.dart';
+import 'package:app/features/cards/data/models/held_reason.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:equatable/equatable.dart';
 
@@ -22,12 +23,16 @@ final class const SundayCard({
   required final List<CardItem> items,
   final String? note,
   final DateTime? sentAt,
+  final HeldReason? heldReason,
 }) with Equatable {
   /// Whether the person can still change the card.
   bool get isDraft => status == CardStatus.draft;
 
   /// Whether the person chose to keep the card for later.
   bool get isHeld => status == CardStatus.held;
+
+  /// Whether the wording matched a rule, as opposed to the person choosing to wait.
+  bool get isHeldByRule => isHeld && heldReason != null;
 
   /// Whether the card reached the partner.
   bool get isSent => status == CardStatus.sent;
@@ -39,8 +44,9 @@ final class const SundayCard({
     items: items ?? this.items,
     note: note ?? this.note,
     sentAt: sentAt,
+    heldReason: heldReason,
   );
 
   @override
-  List<Object?> get props => [id, status, weekStart, items, note, sentAt];
+  List<Object?> get props => [id, status, weekStart, items, note, sentAt, heldReason];
 }

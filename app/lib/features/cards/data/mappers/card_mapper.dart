@@ -2,6 +2,7 @@ import 'package:app/features/cards/data/data_sources/remote/fragments/generated/
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/PrepareCard.graphql.dart';
 import 'package:app/features/cards/data/mappers/card_enum_mapper.dart';
 import 'package:app/features/cards/data/models/card_status.dart';
+import 'package:app/features/cards/data/models/held_reason.dart';
 import 'package:app/features/cards/data/models/sunday_card.dart';
 import 'package:app/features/slips/data/mappers/slip_enum_mapper.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
@@ -13,6 +14,7 @@ extension CardFragmentMapper on FragmentCardFragment {
     weekStart: weekStart,
     note: note,
     sentAt: sentAt,
+    heldReason: heldReason?.toHeldReason(),
     items: [
       for (final item in items)
         CardItem(
@@ -46,3 +48,14 @@ extension PreparedCardMapper on MutationPrepareCardprepareCard {
 
 SlipCategory? _category(Object? value) =>
     value is String ? SlipCategory.values.where((kind) => kind.name == value).firstOrNull : null;
+
+extension HeldReasonNameMapper on String {
+  /// Null for a reason this version does not know.
+  HeldReason? toHeldReason() => switch (this) {
+    'absolute' => HeldReason.absolute,
+    'insult' => HeldReason.insult,
+    'blame' => HeldReason.blame,
+    'contempt' => HeldReason.contempt,
+    _ => null,
+  };
+}

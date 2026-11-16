@@ -1,0 +1,5 @@
+mutation ReopenCard($cardId: uuid!) {
+  updateCardsByPk(pk_columns: { id: $cardId }, _set: { status: draft }) {
+    ...CardFragment
+  }
+}

@@ -4,6 +4,7 @@ fragment CardFragment on cards {
   note
   weekStart
   sentAt
+  heldReason
   items(order_by: [{ position: asc }]) {
     id
     slipId

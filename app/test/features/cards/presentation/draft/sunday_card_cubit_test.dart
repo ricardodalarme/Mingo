@@ -1,4 +1,5 @@
 import 'package:app/features/cards/data/models/card_status.dart';
+import 'package:app/features/cards/data/models/held_reason.dart';
 import 'package:app/features/cards/data/models/sunday_card.dart';
 import 'package:app/features/cards/data/repositories/cards_repository.dart';
 import 'package:app/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
@@ -248,5 +249,57 @@ void main() {
     await cubit.send();
 
     verifyNever(() => cards.send(any()));
+  });
+
+  test('send anyway passes the choice on, for a card held for its wording', () async {
+    final sent = SundayCard(
+      id: 'c1',
+      status: CardStatus.sent,
+      weekStart: card.weekStart,
+      items: card.items,
+    );
+    when(() => cards.send('c1', anyway: true)).thenAnswer((_) async => sent);
+    final cubit = await loaded();
+
+    await cubit.send(anyway: true);
+
+    expect(cubit.state.card, Success(sent));
+  });
+
+  test('a card held for its wording says so, unlike one the person chose to hold', () {
+    final byRule = SundayCard(
+      id: 'c1',
+      status: CardStatus.held,
+      weekStart: card.weekStart,
+      items: card.items,
+      heldReason: HeldReason.blame,
+    );
+    final byChoice = SundayCard(
+      id: 'c1',
+      status: CardStatus.held,
+      weekStart: card.weekStart,
+      items: card.items,
+    );
+
+    expect(byRule.isHeldByRule, isTrue);
+    expect(byChoice.isHeldByRule, isFalse);
+  });
+
+  test('rewriting reopens the card as a draft and starts editing it', () async {
+    final held = SundayCard(
+      id: 'c1',
+      status: CardStatus.held,
+      weekStart: card.weekStart,
+      items: card.items,
+      heldReason: HeldReason.absolute,
+    );
+    when(() => cards.getDraft()).thenAnswer((_) async => held);
+    when(() => cards.reopen('c1')).thenAnswer((_) async => card);
+    final cubit = await loaded();
+
+    await cubit.reopen();
+
+    expect(cubit.state.isEditing, isTrue);
+    verify(() => cards.reopen('c1')).called(1);
   });
 }

@@ -1,5 +1,5 @@
-mutation SendCard($cardId: uuid!) {
-  sendCard(args: { cardId: $cardId }) {
+mutation SendCard($cardId: uuid!, $anyway: Boolean) {
+  sendCard(args: { cardId: $cardId, anyway: $anyway }) {
     ...CardFragment
   }
 }

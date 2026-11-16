@@ -1,9 +1,9 @@
 // dart format width=100
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
+import 'package:network/network.dart';
 
 class VariablesQueryPartnerAnswered {
   factory VariablesQueryPartnerAnswered({required dynamic slugs}) =>
@@ -14,7 +14,7 @@ class VariablesQueryPartnerAnswered {
   factory VariablesQueryPartnerAnswered.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$slugs = data['slugs'];
-    result$data['slugs'] = jsonDecode(l$slugs);
+    result$data['slugs'] = decodeJsonb(l$slugs);
     return VariablesQueryPartnerAnswered._(result$data);
   }
 
@@ -25,7 +25,7 @@ class VariablesQueryPartnerAnswered {
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$slugs = slugs;
-    result$data['slugs'] = jsonEncode(l$slugs);
+    result$data['slugs'] = encodeJsonb(l$slugs);
     return result$data;
   }
 

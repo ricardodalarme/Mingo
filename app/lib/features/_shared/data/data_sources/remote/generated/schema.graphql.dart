@@ -1,5 +1,5 @@
 // dart format width=100
-import 'dart:convert';
+import 'package:network/network.dart';
 
 class InputAppTheme_enum_comparison_exp {
   factory InputAppTheme_enum_comparison_exp({
@@ -38935,7 +38935,7 @@ class Inputfiles_insert_input {
     }
     if (data.containsKey('metadata')) {
       final l$metadata = data['metadata'];
-      result$data['metadata'] = l$metadata == null ? null : jsonDecode(l$metadata);
+      result$data['metadata'] = l$metadata == null ? null : decodeJsonb(l$metadata);
     }
     if (data.containsKey('mimeType')) {
       final l$mimeType = data['mimeType'];
@@ -39003,7 +39003,7 @@ class Inputfiles_insert_input {
     }
     if (_$data.containsKey('metadata')) {
       final l$metadata = metadata;
-      result$data['metadata'] = l$metadata == null ? null : jsonEncode(l$metadata);
+      result$data['metadata'] = l$metadata == null ? null : encodeJsonb(l$metadata);
     }
     if (_$data.containsKey('mimeType')) {
       final l$mimeType = mimeType;
@@ -39864,7 +39864,7 @@ class Inputfiles_stream_cursor_value_input {
     }
     if (data.containsKey('metadata')) {
       final l$metadata = data['metadata'];
-      result$data['metadata'] = l$metadata == null ? null : jsonDecode(l$metadata);
+      result$data['metadata'] = l$metadata == null ? null : decodeJsonb(l$metadata);
     }
     if (data.containsKey('mimeType')) {
       final l$mimeType = data['mimeType'];
@@ -39941,7 +39941,7 @@ class Inputfiles_stream_cursor_value_input {
     }
     if (_$data.containsKey('metadata')) {
       final l$metadata = metadata;
-      result$data['metadata'] = l$metadata == null ? null : jsonEncode(l$metadata);
+      result$data['metadata'] = l$metadata == null ? null : encodeJsonb(l$metadata);
     }
     if (_$data.containsKey('mimeType')) {
       final l$mimeType = mimeType;
@@ -56472,23 +56472,25 @@ class Inputjsonb_comparison_exp {
     }
     if (data.containsKey('_contained_in')) {
       final l$$_contained_in = data['_contained_in'];
-      result$data['_contained_in'] = l$$_contained_in == null ? null : jsonDecode(l$$_contained_in);
+      result$data['_contained_in'] = l$$_contained_in == null
+          ? null
+          : decodeJsonb(l$$_contained_in);
     }
     if (data.containsKey('_contains')) {
       final l$$_contains = data['_contains'];
-      result$data['_contains'] = l$$_contains == null ? null : jsonDecode(l$$_contains);
+      result$data['_contains'] = l$$_contains == null ? null : decodeJsonb(l$$_contains);
     }
     if (data.containsKey('_eq')) {
       final l$$_eq = data['_eq'];
-      result$data['_eq'] = l$$_eq == null ? null : jsonDecode(l$$_eq);
+      result$data['_eq'] = l$$_eq == null ? null : decodeJsonb(l$$_eq);
     }
     if (data.containsKey('_gt')) {
       final l$$_gt = data['_gt'];
-      result$data['_gt'] = l$$_gt == null ? null : jsonDecode(l$$_gt);
+      result$data['_gt'] = l$$_gt == null ? null : decodeJsonb(l$$_gt);
     }
     if (data.containsKey('_gte')) {
       final l$$_gte = data['_gte'];
-      result$data['_gte'] = l$$_gte == null ? null : jsonDecode(l$$_gte);
+      result$data['_gte'] = l$$_gte == null ? null : decodeJsonb(l$$_gte);
     }
     if (data.containsKey('_has_key')) {
       final l$$_has_key = data['_has_key'];
@@ -56508,7 +56510,7 @@ class Inputjsonb_comparison_exp {
     }
     if (data.containsKey('_in')) {
       final l$$_in = data['_in'];
-      result$data['_in'] = (l$$_in as List<dynamic>?)?.map((e) => jsonDecode(e)).toList();
+      result$data['_in'] = (l$$_in as List<dynamic>?)?.map((e) => decodeJsonb(e)).toList();
     }
     if (data.containsKey('_is_null')) {
       final l$$_is_null = data['_is_null'];
@@ -56516,19 +56518,19 @@ class Inputjsonb_comparison_exp {
     }
     if (data.containsKey('_lt')) {
       final l$$_lt = data['_lt'];
-      result$data['_lt'] = l$$_lt == null ? null : jsonDecode(l$$_lt);
+      result$data['_lt'] = l$$_lt == null ? null : decodeJsonb(l$$_lt);
     }
     if (data.containsKey('_lte')) {
       final l$$_lte = data['_lte'];
-      result$data['_lte'] = l$$_lte == null ? null : jsonDecode(l$$_lte);
+      result$data['_lte'] = l$$_lte == null ? null : decodeJsonb(l$$_lte);
     }
     if (data.containsKey('_neq')) {
       final l$$_neq = data['_neq'];
-      result$data['_neq'] = l$$_neq == null ? null : jsonDecode(l$$_neq);
+      result$data['_neq'] = l$$_neq == null ? null : decodeJsonb(l$$_neq);
     }
     if (data.containsKey('_nin')) {
       final l$$_nin = data['_nin'];
-      result$data['_nin'] = (l$$_nin as List<dynamic>?)?.map((e) => jsonDecode(e)).toList();
+      result$data['_nin'] = (l$$_nin as List<dynamic>?)?.map((e) => decodeJsonb(e)).toList();
     }
     return Inputjsonb_comparison_exp._(result$data);
   }
@@ -56573,23 +56575,25 @@ class Inputjsonb_comparison_exp {
     }
     if (_$data.containsKey('_contained_in')) {
       final l$$_contained_in = $_contained_in;
-      result$data['_contained_in'] = l$$_contained_in == null ? null : jsonEncode(l$$_contained_in);
+      result$data['_contained_in'] = l$$_contained_in == null
+          ? null
+          : encodeJsonb(l$$_contained_in);
     }
     if (_$data.containsKey('_contains')) {
       final l$$_contains = $_contains;
-      result$data['_contains'] = l$$_contains == null ? null : jsonEncode(l$$_contains);
+      result$data['_contains'] = l$$_contains == null ? null : encodeJsonb(l$$_contains);
     }
     if (_$data.containsKey('_eq')) {
       final l$$_eq = $_eq;
-      result$data['_eq'] = l$$_eq == null ? null : jsonEncode(l$$_eq);
+      result$data['_eq'] = l$$_eq == null ? null : encodeJsonb(l$$_eq);
     }
     if (_$data.containsKey('_gt')) {
       final l$$_gt = $_gt;
-      result$data['_gt'] = l$$_gt == null ? null : jsonEncode(l$$_gt);
+      result$data['_gt'] = l$$_gt == null ? null : encodeJsonb(l$$_gt);
     }
     if (_$data.containsKey('_gte')) {
       final l$$_gte = $_gte;
-      result$data['_gte'] = l$$_gte == null ? null : jsonEncode(l$$_gte);
+      result$data['_gte'] = l$$_gte == null ? null : encodeJsonb(l$$_gte);
     }
     if (_$data.containsKey('_has_key')) {
       final l$$_has_key = $_has_key;
@@ -56605,7 +56609,7 @@ class Inputjsonb_comparison_exp {
     }
     if (_$data.containsKey('_in')) {
       final l$$_in = $_in;
-      result$data['_in'] = l$$_in?.map((e) => jsonEncode(e)).toList();
+      result$data['_in'] = l$$_in?.map((e) => encodeJsonb(e)).toList();
     }
     if (_$data.containsKey('_is_null')) {
       final l$$_is_null = $_is_null;
@@ -56613,19 +56617,19 @@ class Inputjsonb_comparison_exp {
     }
     if (_$data.containsKey('_lt')) {
       final l$$_lt = $_lt;
-      result$data['_lt'] = l$$_lt == null ? null : jsonEncode(l$$_lt);
+      result$data['_lt'] = l$$_lt == null ? null : encodeJsonb(l$$_lt);
     }
     if (_$data.containsKey('_lte')) {
       final l$$_lte = $_lte;
-      result$data['_lte'] = l$$_lte == null ? null : jsonEncode(l$$_lte);
+      result$data['_lte'] = l$$_lte == null ? null : encodeJsonb(l$$_lte);
     }
     if (_$data.containsKey('_neq')) {
       final l$$_neq = $_neq;
-      result$data['_neq'] = l$$_neq == null ? null : jsonEncode(l$$_neq);
+      result$data['_neq'] = l$$_neq == null ? null : encodeJsonb(l$$_neq);
     }
     if (_$data.containsKey('_nin')) {
       final l$$_nin = $_nin;
-      result$data['_nin'] = l$$_nin?.map((e) => jsonEncode(e)).toList();
+      result$data['_nin'] = l$$_nin?.map((e) => encodeJsonb(e)).toList();
     }
     return result$data;
   }
@@ -78252,7 +78256,7 @@ class InputpartnerQuestionStates_args {
     final result$data = <String, dynamic>{};
     if (data.containsKey('questionSlugs')) {
       final l$questionSlugs = data['questionSlugs'];
-      result$data['questionSlugs'] = l$questionSlugs == null ? null : jsonDecode(l$questionSlugs);
+      result$data['questionSlugs'] = l$questionSlugs == null ? null : decodeJsonb(l$questionSlugs);
     }
     return InputpartnerQuestionStates_args._(result$data);
   }
@@ -78265,7 +78269,7 @@ class InputpartnerQuestionStates_args {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('questionSlugs')) {
       final l$questionSlugs = questionSlugs;
-      result$data['questionSlugs'] = l$questionSlugs == null ? null : jsonEncode(l$questionSlugs);
+      result$data['questionSlugs'] = l$questionSlugs == null ? null : encodeJsonb(l$questionSlugs);
     }
     return result$data;
   }
@@ -80587,7 +80591,7 @@ class InputpreparedCards_stream_cursor_value_input {
     }
     if (data.containsKey('items')) {
       final l$items = data['items'];
-      result$data['items'] = l$items == null ? null : jsonDecode(l$items);
+      result$data['items'] = l$items == null ? null : decodeJsonb(l$items);
     }
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
@@ -80634,7 +80638,7 @@ class InputpreparedCards_stream_cursor_value_input {
     }
     if (_$data.containsKey('items')) {
       final l$items = items;
-      result$data['items'] = l$items == null ? null : jsonEncode(l$items);
+      result$data['items'] = l$items == null ? null : encodeJsonb(l$items);
     }
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
@@ -98226,7 +98230,7 @@ class InputsetNotificationMutes_args {
     final result$data = <String, dynamic>{};
     if (data.containsKey('types')) {
       final l$types = data['types'];
-      result$data['types'] = l$types == null ? null : jsonDecode(l$types);
+      result$data['types'] = l$types == null ? null : decodeJsonb(l$types);
     }
     return InputsetNotificationMutes_args._(result$data);
   }
@@ -98239,7 +98243,7 @@ class InputsetNotificationMutes_args {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('types')) {
       final l$types = types;
-      result$data['types'] = l$types == null ? null : jsonEncode(l$types);
+      result$data['types'] = l$types == null ? null : encodeJsonb(l$types);
     }
     return result$data;
   }

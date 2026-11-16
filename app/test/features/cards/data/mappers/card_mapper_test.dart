@@ -3,6 +3,7 @@ import 'package:app/features/cards/data/data_sources/remote/fragments/generated/
 import 'package:app/features/cards/data/data_sources/remote/mutations/generated/PrepareCard.graphql.dart';
 import 'package:app/features/cards/data/mappers/card_mapper.dart';
 import 'package:app/features/cards/data/models/card_status.dart';
+import 'package:app/features/cards/data/models/held_reason.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -125,5 +126,22 @@ void main() {
 
     expect(card.items.single.category, SlipCategory.said);
     expect(card.items.single.writtenAt, DateTime.utc(2026, 1, 1, 10));
+  });
+
+  test('a held card keeps the reason its wording was held for', () {
+    final card = FragmentCardFragment(
+      id: 'c1',
+      status: EnumCardStatus_enum.held,
+      weekStart: weekStart,
+      heldReason: 'contempt',
+      items: const [],
+    ).toModel();
+
+    expect(card.heldReason, HeldReason.contempt);
+    expect(card.isHeldByRule, isTrue);
+  });
+
+  test('a reason this version does not know is left out', () {
+    expect('something_new'.toHeldReason(), isNull);
   });
 }

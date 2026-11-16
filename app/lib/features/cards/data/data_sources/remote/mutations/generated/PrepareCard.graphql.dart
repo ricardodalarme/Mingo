@@ -2,10 +2,10 @@
 import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
 
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
+import 'package:network/network.dart';
 
 class MutationPrepareCard {
   MutationPrepareCard({required this.prepareCard, this.$__typename = 'mutation_root'});
@@ -262,7 +262,7 @@ class MutationPrepareCardprepareCard {
       status: fromJsonEnumCardStatus_enum((l$status as String)),
       weekStart: DateTime.parse((l$weekStart as String)),
       note: (l$note as String?),
-      items: jsonDecode(l$items),
+      items: decodeJsonb(l$items),
       $__typename: (l$$__typename as String),
     );
   }
@@ -294,7 +294,7 @@ class MutationPrepareCardprepareCard {
     final l$note = note;
     _resultData['note'] = l$note;
     final l$items = items;
-    _resultData['items'] = jsonEncode(l$items);
+    _resultData['items'] = encodeJsonb(l$items);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;

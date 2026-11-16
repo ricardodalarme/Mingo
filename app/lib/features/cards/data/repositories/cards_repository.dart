@@ -104,13 +104,25 @@ class CardsRepository({
 
   /// Sends the card to the connected partner. A card that cannot go any more answers with a
   /// failure, and the caller reads the card again.
-  Future<SundayCard> send(String cardId) async {
+  ///
+  /// Wording that matches a rule holds the card with a reason; [anyway] sends it regardless.
+  Future<SundayCard> send(String cardId, {bool anyway = false}) async {
     try {
-      final model = (await _dataSource.sendCard(cardId)).toModel();
+      final model = (await _dataSource.sendCard(cardId, anyway: anyway)).toModel();
       unawaited(_widgetsRepository?.syncQuietly());
       return model;
     } catch (e, stack) {
       _logger.error('Failed to send the card', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Takes a held card back to a draft so the wording can be rewritten.
+  Future<SundayCard> reopen(String cardId) async {
+    try {
+      return (await _dataSource.reopenCard(cardId)).toModel();
+    } catch (e, stack) {
+      _logger.error('Failed to reopen the card', error: e, stackTrace: stack);
       rethrow;
     }
   }

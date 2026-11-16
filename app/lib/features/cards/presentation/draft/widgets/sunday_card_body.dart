@@ -24,6 +24,7 @@ class const SundayCardBody({required final SundayCard card, super.key}) extends 
     final cubit = context.read<SundayCardCubit>();
     final shown = draft ?? card;
 
+    if (card.isHeldByRule && draft == null) return SundayCardHeldByRule(reason: card.heldReason!);
     if (card.isHeld && draft == null) return const SundayCardHeld();
     if (card.isSent) return const SundayCardSent();
     if (shown.items.isEmpty && draft == null) {

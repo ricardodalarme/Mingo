@@ -106,7 +106,14 @@ class SundayCardCubit({
   }
 
   /// Sends the card to the connected partner. A double tap sends once.
-  Future<void> send() => _deliver((card) => _cardsRepository.send(card.id));
+  Future<void> send({bool anyway = false}) =>
+      _deliver((card) => _cardsRepository.send(card.id, anyway: anyway));
+
+  /// Takes a card held for its wording back to a draft and starts editing it.
+  Future<void> reopen() async {
+    await _deliver((card) => _cardsRepository.reopen(card.id));
+    startEditing();
+  }
 
   /// Keeps the card for later; it can still be sent until the week ends.
   Future<void> hold() => _deliver((card) => _cardsRepository.hold(card.id));
