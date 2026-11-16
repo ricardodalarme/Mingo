@@ -883,6 +883,8 @@ class _Translations$chat$en extends Translations$chat$pt {
   String get starterPlan => 'A date plan';
   @override
   String get menuLabel => 'More options';
+  @override
+  late final _Translations$chat$action$en action = _Translations$chat$action$en._(_root);
 }
 
 // Path: checkin
@@ -6491,6 +6493,64 @@ class _Translations$acceptInvite$unusable$en extends Translations$acceptInvite$u
   String get close => 'Close';
 }
 
+// Path: chat.action
+class _Translations$chat$action$en extends Translations$chat$action$pt {
+  _Translations$chat$action$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get privateHint => 'Stays only with you.';
+  @override
+  String get partnerHint => 'Nothing goes until you tap.';
+  @override
+  String moodText({required Object mood}) => 'Today: ${mood}';
+  @override
+  Map<String, String> get moods => {
+    'happy': 'happy',
+    'tired': 'tired',
+    'sad': 'sad',
+    'stressed': 'stressed',
+    'loving': 'loving',
+    'playful': 'playful',
+  };
+  @override
+  String get dismiss => 'Not now';
+  @override
+  String get running => 'One moment…';
+  @override
+  String get done => 'Done';
+  @override
+  String get dismissed => 'Set aside';
+  @override
+  String get failed => 'It did not work';
+  @override
+  String get retry => 'Try again';
+  @override
+  Map<String, String> get runLabels => {
+    'create_private_slip': 'Save',
+    'send_slip_to_partner': 'Send',
+    'log_mood': 'Log',
+    'share_mood': 'Share',
+    'save_learning': 'Keep',
+    'open_purchase': 'See Plus',
+    'other': 'Do it',
+  };
+  @override
+  Map<String, String> get tags => {
+    'create_private_slip': 'Suggestion · Write a slip',
+    'send_slip_to_partner': 'Suggestion · Send a slip',
+    'log_mood': 'Suggestion · Log mood',
+    'share_mood': 'Suggestion · Share mood',
+    'save_learning': 'Suggestion · Remember this',
+    'suggest_couple_question': 'A question to talk about',
+    'draft_note': 'Draft note',
+    'open_purchase': 'Plus',
+    'other': 'Suggestion',
+  };
+}
+
 // Path: games.hub
 class _Translations$games$hub$en extends Translations$games$hub$pt {
   _Translations$games$hub$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -8230,6 +8290,37 @@ extension on TranslationsEn {
           'chat.starterIdea' => 'An idea',
           'chat.starterPlan' => 'A date plan',
           'chat.menuLabel' => 'More options',
+          'chat.action.privateHint' => 'Stays only with you.',
+          'chat.action.partnerHint' => 'Nothing goes until you tap.',
+          'chat.action.moodText' => ({required Object mood}) => 'Today: ${mood}',
+          'chat.action.moods.happy' => 'happy',
+          'chat.action.moods.tired' => 'tired',
+          'chat.action.moods.sad' => 'sad',
+          'chat.action.moods.stressed' => 'stressed',
+          'chat.action.moods.loving' => 'loving',
+          'chat.action.moods.playful' => 'playful',
+          'chat.action.dismiss' => 'Not now',
+          'chat.action.running' => 'One moment…',
+          'chat.action.done' => 'Done',
+          'chat.action.dismissed' => 'Set aside',
+          'chat.action.failed' => 'It did not work',
+          'chat.action.retry' => 'Try again',
+          'chat.action.runLabels.create_private_slip' => 'Save',
+          'chat.action.runLabels.send_slip_to_partner' => 'Send',
+          'chat.action.runLabels.log_mood' => 'Log',
+          'chat.action.runLabels.share_mood' => 'Share',
+          'chat.action.runLabels.save_learning' => 'Keep',
+          'chat.action.runLabels.open_purchase' => 'See Plus',
+          'chat.action.runLabels.other' => 'Do it',
+          'chat.action.tags.create_private_slip' => 'Suggestion · Write a slip',
+          'chat.action.tags.send_slip_to_partner' => 'Suggestion · Send a slip',
+          'chat.action.tags.log_mood' => 'Suggestion · Log mood',
+          'chat.action.tags.share_mood' => 'Suggestion · Share mood',
+          'chat.action.tags.save_learning' => 'Suggestion · Remember this',
+          'chat.action.tags.suggest_couple_question' => 'A question to talk about',
+          'chat.action.tags.draft_note' => 'Draft note',
+          'chat.action.tags.open_purchase' => 'Plus',
+          'chat.action.tags.other' => 'Suggestion',
           'checkin.title' => 'Weekly check-in',
           'checkin.titleHighlight' => 'Weekly',
           'checkin.introSubtitle' => 'Ten minutes. Each of you answers privately first.',
@@ -8391,6 +8482,9 @@ extension on TranslationsEn {
           'dates.months.7' => 'August',
           'dates.months.8' => 'September',
           'dates.months.9' => 'October',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.months.10' => 'November',
           'dates.months.11' => 'December',
           'dates.monthsShort.0' => 'Jan',
@@ -8426,9 +8520,6 @@ extension on TranslationsEn {
           'dates.given' => 'Given',
           'dates.emptyGiftsTitle' => 'No ideas yet',
           'dates.emptyGiftsText' => 'Jot down gifts when you think of them.',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.emptyHolidaysTitle' => 'No holidays here',
           'dates.emptyHolidaysText' => 'The calendar has no holidays for you yet.',
           'dates.errorTitle' => 'Couldn\'t load',
@@ -9002,6 +9093,9 @@ extension on TranslationsEn {
           'helpSupport.replyEmailLabel' => 'Reply email',
           'helpSupport.replyEmailHint' => 'you@email.com',
           'helpSupport.replyEmailErrors.invalid' => 'Check the email address.',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.replyEmailErrors.tooLong' => 'This email is too long',
           'helpSupport.replyTime' => 'We reply within 2 business days.',
           'helpSupport.send' => 'Send',
@@ -9075,9 +9169,6 @@ extension on TranslationsEn {
                   one: 'weekend',
                   other: 'weekends',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'history.statChristmases' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
@@ -9687,6 +9778,9 @@ extension on TranslationsEn {
           'memories.jarAnother' => 'Another',
           'memories.jarClose' => 'Close',
           'memories.titleLabel' => 'A memory',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.titleHint' => 'E.g. our first dinner',
           'memories.titleErrors.empty' => 'Give this memory a title',
           'memories.titleErrors.tooLong' => 'The title is too long',
@@ -9722,9 +9816,6 @@ extension on TranslationsEn {
           'memories.emptyText' => 'Keep moments you want to look back on.',
           'memories.errorTitle' => 'Couldn\'t load',
           'memories.errorText' => 'Your memories are still saved. Try again.',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
           'memories.jarEmptyTitle' => 'The jar is empty',
@@ -10279,6 +10370,9 @@ extension on TranslationsEn {
           'programs.completeText' => ({required Object title}) => 'You completed ${title}.',
           'programs.completeHint' => 'Choose another whenever you want.',
           'programs.seePrograms' => 'See programs',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.diaryPrivacy' => 'Just me. Never shared.',
           'programs.diaryPrompt' => 'Today I felt...',
           'programs.diaryHint' => 'Write without hurry. Only you can see this.',
@@ -10314,9 +10408,6 @@ extension on TranslationsEn {
             required Object year,
           }) => '${month} ${day}, ${year}',
           'programs.moods.calm' => 'At peace',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.moods.tender' => 'Held',
           'programs.moods.tired' => 'Tired',
           'programs.moods.heavy' => 'Heavy',
@@ -10849,6 +10940,9 @@ extension on TranslationsEn {
           'slipDetail.categories.helped' => 'Helped me',
           'slipDetail.categories.other' => '',
           'slipDetail.visibility.title' => 'Who sees this slip?',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.visibility.subtitle' => 'Private is the default.',
           'slipDetail.visibility.onlyMe' => 'Only me',
           'slipDetail.visibility.onlyMeText' => 'Stays in your week',
@@ -10882,9 +10976,6 @@ extension on TranslationsEn {
           'slipKind.ifThen.thenHint' => 'E.g. I ask for 10 minutes alone',
           'slipKind.invisible.title' => 'Things nobody notices',
           'slipKind.invisible.titleHighlight' => 'nobody notices',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
           'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
           'slipKind.invisible.areaLabel' => 'What kind of work?',
@@ -11468,6 +11559,9 @@ extension on TranslationsEn {
           'widgets.unpairedBanner' => 'No partner connected: couple widgets show a neutral state.',
           'widgets.offlineBanner' => 'Showing the last saved data. Updates when back online.',
           'widgets.loadErrorTitle' => 'Could not load widgets',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.loadErrorBody' => 'Check your connection and try again.',
           'widgets.retryAction' => 'Try again',
           'widgets.themeLight' => 'Light',
@@ -11512,9 +11606,6 @@ extension on TranslationsEn {
             required Object months,
             required Object days,
           }) => '${months} months · ${days} days',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.counterStatusDating' => 'Dating',
           'widgets.counterStatusLivingTogether' => 'Living together',
           'widgets.counterStatusMarried' => 'Married',

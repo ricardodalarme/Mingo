@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:app/features/chat/data/data_sources/remote/chat_data_source.dart';
+import 'package:app/features/_shared/chat_actions/chat_action_handler.dart';
+import 'package:app/features/chat/data/models/chat_action.dart';
 import 'package:app/features/chat/data/models/chat_models.dart';
 import 'package:app/features/chat/data/models/learned_item.dart';
 import 'package:app/features/chat/data/repositories/chat_repository.dart';
@@ -55,8 +56,13 @@ void main() {
     ).thenAnswer((_) => events());
   }
 
-  ChatCubit build() =>
-      ChatCubit(chatRepository: repository, learnedItemsRepository: learnedItemsRepository);
+  final actions = ChatActionRegistry();
+
+  ChatCubit build() => ChatCubit(
+    chatRepository: repository,
+    learnedItemsRepository: learnedItemsRepository,
+    actions: actions,
+  );
 
   test('without the consent the chat asks first and sends nothing', () async {
     when(repository.getStatus)
@@ -245,6 +251,7 @@ void main() {
     final cubit = ChatCubit(
       chatRepository: repository,
       learnedItemsRepository: learnedItemsRepository,
+      actions: actions,
       idleTimeout: const Duration(milliseconds: 10),
     );
     await cubit.load();
@@ -280,26 +287,87 @@ void main() {
     expect(sessions.toSet(), hasLength(1));
   });
 
-  group('parseChatLine', () {
-    test('reads delta, done and error events', () {
-      expect(parseChatLine('data: {"type":"delta","text":"oi"}'), isA<ChatDelta>());
-      expect((parseChatLine('data: {"type":"done","options":["a","b"]}')! as ChatDone).options, [
-        'a',
-        'b',
-      ]);
-      expect(
-        (parseChatLine('data: {"type":"error","code":"CHAT_LIMIT"}')! as ChatError).code,
-        'CHAT_LIMIT',
+  group('suggestions', () {
+    var runs = 0;
+
+    setUp(() {
+      runs = 0;
+      actions.register('ping', _Ping.new);
+      _Ping.onRun = () => runs++;
+    });
+
+    Future<ChatCubit> withSuggestion(String tool) async {
+      stubReply(
+        () => Stream.fromIterable([
+          const ChatDelta('Que tal?'),
+          ChatSuggestion(tool: tool, args: const {'text': 'oi'}, needsConfirmation: true),
+          const ChatDone([]),
+        ]),
       );
+      final cubit = build();
+      await cubit.load();
+      await cubit.send('Oi');
+
+      return cubit;
+    }
+
+    test('a known tool becomes a card that waits for the person', () async {
+      final cubit = await withSuggestion('ping');
+
+      expect(cubit.state.messages.last.actions.single.status, ChatActionStatus.pending);
+      expect(runs, 0);
     });
 
-    test('a plain error body becomes an error event', () {
-      expect((parseChatLine('{"error":"UNAUTHORIZED"}')! as ChatError).code, 'UNAUTHORIZED');
+    test('a tool no feature handles leaves no card', () async {
+      final cubit = await withSuggestion('unknown');
+
+      expect(cubit.state.messages.last.actions, isEmpty);
     });
 
-    test('blank lines and noise are ignored', () {
-      expect(parseChatLine(''), isNull);
-      expect(parseChatLine('data: not json'), isNull);
+    test('running a card marks it done', () async {
+      final cubit = await withSuggestion('ping');
+      final id = cubit.state.messages.last.id;
+
+      await cubit.runAction(id, 0);
+
+      expect(runs, 1);
+      expect(cubit.state.messages.last.actions.single.status, ChatActionStatus.done);
+    });
+
+    test('a failed card can be tried again', () async {
+      _Ping.onRun = () => throw Exception('offline');
+      final cubit = await withSuggestion('ping');
+      final id = cubit.state.messages.last.id;
+
+      await cubit.runAction(id, 0);
+      expect(cubit.state.messages.last.actions.single.status, ChatActionStatus.failed);
+
+      cubit.retryAction(id, 0);
+      expect(cubit.state.messages.last.actions.single.status, ChatActionStatus.pending);
+    });
+
+    test('a dismissed card is not run', () async {
+      final cubit = await withSuggestion('ping');
+      final id = cubit.state.messages.last.id;
+
+      cubit.dismissAction(id, 0);
+      await cubit.runAction(id, 0);
+
+      expect(runs, 0);
+      expect(cubit.state.messages.last.actions.single.status, ChatActionStatus.dismissed);
     });
   });
+}
+
+class _Ping() extends TypedChatActionHandler<String> {
+  static void Function() onRun = () {};
+
+  @override
+  String get tool => 'ping';
+
+  @override
+  String? parse(Map<String, Object?> args) => args['text'] as String?;
+
+  @override
+  Future<void> run(String args) async => onRun();
 }

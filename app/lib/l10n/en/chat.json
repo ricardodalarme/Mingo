@@ -59,5 +59,44 @@
   "starterHard": "A hard moment",
   "starterIdea": "An idea",
   "starterPlan": "A date plan",
-  "menuLabel": "More options"
+  "menuLabel": "More options",
+  "action": {
+    "privateHint": "Stays only with you.",
+    "partnerHint": "Nothing goes until you tap.",
+    "moodText": "Today: {mood}",
+    "moods(map)": {
+      "happy": "happy",
+      "tired": "tired",
+      "sad": "sad",
+      "stressed": "stressed",
+      "loving": "loving",
+      "playful": "playful"
+    },
+    "dismiss": "Not now",
+    "running": "One moment…",
+    "done": "Done",
+    "dismissed": "Set aside",
+    "failed": "It did not work",
+    "retry": "Try again",
+    "runLabels(map)": {
+      "create_private_slip": "Save",
+      "send_slip_to_partner": "Send",
+      "log_mood": "Log",
+      "share_mood": "Share",
+      "save_learning": "Keep",
+      "open_purchase": "See Plus",
+      "other": "Do it"
+    },
+    "tags(map)": {
+      "create_private_slip": "Suggestion · Write a slip",
+      "send_slip_to_partner": "Suggestion · Send a slip",
+      "log_mood": "Suggestion · Log mood",
+      "share_mood": "Suggestion · Share mood",
+      "save_learning": "Suggestion · Remember this",
+      "suggest_couple_question": "A question to talk about",
+      "draft_note": "Draft note",
+      "open_purchase": "Plus",
+      "other": "Suggestion"
+    }
+  }
 }

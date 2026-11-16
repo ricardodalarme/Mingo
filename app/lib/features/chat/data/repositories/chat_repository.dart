@@ -1,5 +1,7 @@
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/chat/data/data_sources/remote/chat_data_source.dart';
+import 'package:app/features/chat/data/data_sources/remote/dtos/chat_request_dto.dart';
+import 'package:app/features/chat/data/mappers/chat_mapper.dart';
 import 'package:app/features/chat/data/models/chat_models.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
@@ -77,16 +79,24 @@ class ChatRepository({
       for (final item in history)
         if (item.text.trim().isNotEmpty) (role: item.role, text: item.text),
     ];
-    yield* _dataSource.send(
-      message: message,
-      history: turns.length > chatHistoryTurns
-          ? turns.sublist(turns.length - chatHistoryTurns)
-          : turns,
-      locale: locale,
-      mode: mode,
-      session: session,
+    final recent = turns.length > chatHistoryTurns
+        ? turns.sublist(turns.length - chatHistoryTurns)
+        : turns;
+    final events = _dataSource.send(
+      request: ChatRequestDto(
+        message: message,
+        locale: locale,
+        mode: mode.toRemote(),
+        session: session,
+        history: [
+          for (final turn in recent) ChatTurnDto(role: turn.role.toRemote(), text: turn.text),
+        ],
+      ),
       accessToken: _authenticationRepository.getAccessToken(),
     );
+    await for (final event in events) {
+      yield event.toModel();
+    }
   }
 
   /// Turns a reply into a slip, cut to the slip limit; a queued save is fine when offline.

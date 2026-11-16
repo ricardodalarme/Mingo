@@ -1,4 +1,6 @@
+import 'package:app/features/_shared/chat_actions/chat_action_handler.dart';
 import 'package:app/features/annoyances/data/repositories/annoyance_repository.dart';
+import 'package:app/features/slips/chat/slip_chat_handlers.dart';
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
@@ -14,34 +16,48 @@ import 'package:preferences_service/preferences_service.dart';
 
 class SlipsInjectionModule() implements InjectionModule {
   @override
-  void registerDependencies({required Injector injector}) => injector
-    ..registerLazySingleton<SlipDataSource>(() => SlipDataSource(client: injector.get<GQLClient>()))
-    ..registerLazySingleton<SlipLocalDataSource>(
-      () => SlipLocalDataSource(preferencesService: injector.get<PreferencesService>()),
-    )
-    ..registerLazySingleton<SlipRepository>(
-      () => SlipRepository(
-        slipDataSource: injector.get<SlipDataSource>(),
-        localDataSource: injector.get<SlipLocalDataSource>(),
-      ),
-    )
-    ..registerFactory<SlipsListCubit>(
-      () => SlipsListCubit(slipRepository: injector.get<SlipRepository>()),
-    )
-    ..registerFactory<SlipsSearchCubit>(
-      () => SlipsSearchCubit(slipRepository: injector.get<SlipRepository>()),
-    )
-    ..registerFactory<QuickSlipCubit>(
-      () => QuickSlipCubit(
-        slipRepository: injector.get<SlipRepository>(),
-        annoyanceRepository: injector.get<AnnoyanceRepository>(),
-      ),
-    )
-    ..registerFactory<SlipKindCubit>(
-      () => SlipKindCubit(slipRepository: injector.get<SlipRepository>()),
-    )
-    ..registerFactory<SlipDetailCubit>(
-      () => SlipDetailCubit(slipRepository: injector.get<SlipRepository>()),
-    )
-    ..registerFactory<NeedCubit>(() => NeedCubit(slipRepository: injector.get<SlipRepository>()));
+  void registerDependencies({required Injector injector}) {
+    injector
+      ..registerLazySingleton<SlipDataSource>(
+        () => SlipDataSource(client: injector.get<GQLClient>()),
+      )
+      ..registerLazySingleton<SlipLocalDataSource>(
+        () => SlipLocalDataSource(preferencesService: injector.get<PreferencesService>()),
+      )
+      ..registerLazySingleton<SlipRepository>(
+        () => SlipRepository(
+          slipDataSource: injector.get<SlipDataSource>(),
+          localDataSource: injector.get<SlipLocalDataSource>(),
+        ),
+      )
+      ..registerFactory<SlipsListCubit>(
+        () => SlipsListCubit(slipRepository: injector.get<SlipRepository>()),
+      )
+      ..registerFactory<SlipsSearchCubit>(
+        () => SlipsSearchCubit(slipRepository: injector.get<SlipRepository>()),
+      )
+      ..registerFactory<QuickSlipCubit>(
+        () => QuickSlipCubit(
+          slipRepository: injector.get<SlipRepository>(),
+          annoyanceRepository: injector.get<AnnoyanceRepository>(),
+        ),
+      )
+      ..registerFactory<SlipKindCubit>(
+        () => SlipKindCubit(slipRepository: injector.get<SlipRepository>()),
+      )
+      ..registerFactory<SlipDetailCubit>(
+        () => SlipDetailCubit(slipRepository: injector.get<SlipRepository>()),
+      )
+      ..registerFactory<NeedCubit>(() => NeedCubit(slipRepository: injector.get<SlipRepository>()));
+
+    injector.get<ChatActionRegistry>()
+      ..register(
+        'create_private_slip',
+        () => CreatePrivateSlipChatHandler(repository: injector.get<SlipRepository>()),
+      )
+      ..register(
+        'send_slip_to_partner',
+        () => SendSlipToPartnerChatHandler(repository: injector.get<SlipRepository>()),
+      );
+  }
 }

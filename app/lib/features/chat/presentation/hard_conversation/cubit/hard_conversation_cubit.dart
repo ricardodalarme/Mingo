@@ -214,7 +214,7 @@ class HardConversationCubit({
           case ChatDelta(:final text):
             buffer.write(text);
             emit(state.copyWith(message: FormInput(buffer.toString())));
-          case ChatDone():
+          case ChatDone() || ChatSuggestion():
             break;
           case ChatError(:final code):
             _onError(code);

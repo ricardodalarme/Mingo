@@ -1,8 +1,9 @@
 import 'dart:convert';
 
+import 'package:app/features/chat/data/data_sources/remote/dtos/chat_event_dto.dart';
+import 'package:app/features/chat/data/data_sources/remote/dtos/chat_request_dto.dart';
 import 'package:app/features/chat/data/data_sources/remote/mutations/generated/SetChatEnabled.graphql.dart';
 import 'package:app/features/chat/data/data_sources/remote/queries/generated/ChatStatus.graphql.dart';
-import 'package:app/features/chat/data/models/chat_models.dart';
 import 'package:network/network.dart';
 
 /// What the server knows before the first message.
@@ -42,26 +43,14 @@ class ChatDataSource({
     validateResponse(response);
   }
 
-  /// Sends [message] and streams the reply; the stream ends when the server closes it.
-  Stream<ChatEvent> send({
-    required String message,
-    required List<({ChatRole role, String text})> history,
-    required String locale,
-    required ChatMode mode,
-    required String session,
+  /// Sends [request] and streams the reply; the stream ends when the server closes it.
+  Stream<ChatEventDto> send({
+    required ChatRequestDto request,
     required String? accessToken,
   }) async* {
     final lines = _restClient.postLines(
       _functionUrl,
-      data: {
-        'message': message,
-        'locale': locale,
-        'mode': mode.wire,
-        'session': session,
-        'history': [
-          for (final turn in history) {'role': turn.role.wire, 'text': turn.text},
-        ],
-      },
+      data: request.toMap(),
       headers: {'authorization': 'Bearer $accessToken'},
     );
     await for (final line in lines) {
@@ -72,22 +61,14 @@ class ChatDataSource({
 }
 
 /// Reads one line of the stream: a `data:` event, or a plain JSON error body.
-ChatEvent? parseChatLine(String line) {
+ChatEventDto? parseChatLine(String line) {
   final text = line.trim();
   if (text.isEmpty) return null;
   final raw = text.startsWith('data:') ? text.substring(5).trim() : text;
   try {
     final json = jsonDecode(raw);
-    if (json is! Map<String, dynamic>) return null;
 
-    return switch (json['type']) {
-      'delta' => ChatDelta(json['text'] as String? ?? ''),
-      'done' => ChatDone([
-        for (final option in (json['options'] as List<dynamic>? ?? const [])) '$option',
-      ]),
-      'error' => ChatError(json['code'] as String? ?? 'UPSTREAM'),
-      _ => json['error'] is String ? ChatError(json['error'] as String) : null,
-    };
+    return json is Map<String, Object?> ? ChatEventDto.fromMap(json) : null;
   } on FormatException {
     return null;
   }

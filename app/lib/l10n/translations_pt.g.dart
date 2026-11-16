@@ -979,6 +979,8 @@ class Translations$chat$pt {
 
   /// pt: 'Mais opções'
   String get menuLabel => 'Mais opções';
+
+  late final Translations$chat$action$pt action = Translations$chat$action$pt.internal(_root);
 }
 
 // Path: checkin
@@ -8131,6 +8133,72 @@ class Translations$acceptInvite$unusable$pt {
   String get close => 'Fechar';
 }
 
+// Path: chat.action
+class Translations$chat$action$pt {
+  Translations$chat$action$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Fica só com você.'
+  String get privateHint => 'Fica só com você.';
+
+  /// pt: 'Só vai depois que você tocar.'
+  String get partnerHint => 'Só vai depois que você tocar.';
+
+  /// pt: 'Hoje: {mood}'
+  String moodText({required Object mood}) => 'Hoje: ${mood}';
+
+  Map<String, String> get moods => {
+    'happy': 'feliz',
+    'tired': 'cansado',
+    'sad': 'triste',
+    'stressed': 'estressado',
+    'loving': 'amoroso',
+    'playful': 'brincalhão',
+  };
+
+  /// pt: 'Agora não'
+  String get dismiss => 'Agora não';
+
+  /// pt: 'Um instante…'
+  String get running => 'Um instante…';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+
+  /// pt: 'Deixado de lado'
+  String get dismissed => 'Deixado de lado';
+
+  /// pt: 'Não deu certo'
+  String get failed => 'Não deu certo';
+
+  /// pt: 'Tentar de novo'
+  String get retry => 'Tentar de novo';
+
+  Map<String, String> get runLabels => {
+    'create_private_slip': 'Anotar',
+    'send_slip_to_partner': 'Enviar',
+    'log_mood': 'Registrar',
+    'share_mood': 'Compartilhar',
+    'save_learning': 'Guardar',
+    'open_purchase': 'Conhecer o Plus',
+    'other': 'Fazer',
+  };
+  Map<String, String> get tags => {
+    'create_private_slip': 'Sugestão · Anotar um slip',
+    'send_slip_to_partner': 'Sugestão · Enviar um slip',
+    'log_mood': 'Sugestão · Registrar humor',
+    'share_mood': 'Sugestão · Compartilhar humor',
+    'save_learning': 'Sugestão · Lembrar disto',
+    'suggest_couple_question': 'Pergunta para conversar',
+    'draft_note': 'Rascunho de recado',
+    'open_purchase': 'Plus',
+    'other': 'Sugestão',
+  };
+}
+
 // Path: games.hub
 class Translations$games$hub$pt {
   Translations$games$hub$pt.internal(this._root);
@@ -10140,6 +10208,37 @@ extension on Translations {
           'chat.starterIdea' => 'Uma ideia',
           'chat.starterPlan' => 'Um plano de encontro',
           'chat.menuLabel' => 'Mais opções',
+          'chat.action.privateHint' => 'Fica só com você.',
+          'chat.action.partnerHint' => 'Só vai depois que você tocar.',
+          'chat.action.moodText' => ({required Object mood}) => 'Hoje: ${mood}',
+          'chat.action.moods.happy' => 'feliz',
+          'chat.action.moods.tired' => 'cansado',
+          'chat.action.moods.sad' => 'triste',
+          'chat.action.moods.stressed' => 'estressado',
+          'chat.action.moods.loving' => 'amoroso',
+          'chat.action.moods.playful' => 'brincalhão',
+          'chat.action.dismiss' => 'Agora não',
+          'chat.action.running' => 'Um instante…',
+          'chat.action.done' => 'Pronto',
+          'chat.action.dismissed' => 'Deixado de lado',
+          'chat.action.failed' => 'Não deu certo',
+          'chat.action.retry' => 'Tentar de novo',
+          'chat.action.runLabels.create_private_slip' => 'Anotar',
+          'chat.action.runLabels.send_slip_to_partner' => 'Enviar',
+          'chat.action.runLabels.log_mood' => 'Registrar',
+          'chat.action.runLabels.share_mood' => 'Compartilhar',
+          'chat.action.runLabels.save_learning' => 'Guardar',
+          'chat.action.runLabels.open_purchase' => 'Conhecer o Plus',
+          'chat.action.runLabels.other' => 'Fazer',
+          'chat.action.tags.create_private_slip' => 'Sugestão · Anotar um slip',
+          'chat.action.tags.send_slip_to_partner' => 'Sugestão · Enviar um slip',
+          'chat.action.tags.log_mood' => 'Sugestão · Registrar humor',
+          'chat.action.tags.share_mood' => 'Sugestão · Compartilhar humor',
+          'chat.action.tags.save_learning' => 'Sugestão · Lembrar disto',
+          'chat.action.tags.suggest_couple_question' => 'Pergunta para conversar',
+          'chat.action.tags.draft_note' => 'Rascunho de recado',
+          'chat.action.tags.open_purchase' => 'Plus',
+          'chat.action.tags.other' => 'Sugestão',
           'checkin.title' => 'Check-in semanal',
           'checkin.titleHighlight' => 'semanal',
           'checkin.introSubtitle' => 'Dez minutos. Cada um responde em privado primeiro.',
@@ -10298,6 +10397,9 @@ extension on Translations {
           'dates.months.7' => 'agosto',
           'dates.months.8' => 'setembro',
           'dates.months.9' => 'outubro',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.months.10' => 'novembro',
           'dates.months.11' => 'dezembro',
           'dates.monthsShort.0' => 'jan',
@@ -10333,9 +10435,6 @@ extension on Translations {
           'dates.given' => 'Já dei',
           'dates.emptyGiftsTitle' => 'Nenhuma ideia ainda',
           'dates.emptyGiftsText' => 'Anote presentes quando pensar neles.',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.emptyHolidaysTitle' => 'Sem feriados por aqui',
           'dates.emptyHolidaysText' => 'O calendário ainda não tem feriados para você.',
           'dates.errorTitle' => 'Não deu para carregar',
@@ -10917,6 +11016,9 @@ extension on Translations {
           'helpSupport.replyEmailLabel' => 'E-mail para resposta',
           'helpSupport.replyEmailHint' => 'voce@email.com',
           'helpSupport.replyEmailErrors.invalid' => 'Confira o e-mail.',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.replyEmailErrors.tooLong' => 'Este e-mail é muito longo',
           'helpSupport.replyTime' => 'Respondemos em até 2 dias úteis.',
           'helpSupport.send' => 'Enviar',
@@ -10990,9 +11092,6 @@ extension on Translations {
                   one: 'fim de semana',
                   other: 'fins de semana',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'history.statChristmases' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
@@ -11598,6 +11697,9 @@ extension on Translations {
           'memories.jarAnother' => 'Outro',
           'memories.jarClose' => 'Fechar',
           'memories.titleLabel' => 'Uma memória',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.titleHint' => 'Ex.: nosso primeiro jantar',
           'memories.titleErrors.empty' => 'Dê um título a esta memória',
           'memories.titleErrors.tooLong' => 'O título está muito longo',
@@ -11633,9 +11735,6 @@ extension on Translations {
           'memories.emptyText' => 'Guarde momentos que vocês querem rever.',
           'memories.errorTitle' => 'Não deu para carregar',
           'memories.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
           'memories.jarEmptyTitle' => 'O potinho está vazio',
@@ -12196,6 +12295,9 @@ extension on Translations {
           'programs.completeText' => ({required Object title}) => 'Você concluiu ${title}.',
           'programs.completeHint' => 'Escolha outro quando quiser.',
           'programs.seePrograms' => 'Ver programas',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.diaryPrivacy' => 'Só eu. Nunca é compartilhado.',
           'programs.diaryPrompt' => 'Hoje eu me senti...',
           'programs.diaryHint' => 'Escreva sem pressa. Só você vê isto.',
@@ -12231,9 +12333,6 @@ extension on Translations {
             required Object year,
           }) => '${day} ${month} ${year}',
           'programs.moods.calm' => 'Em paz',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.moods.tender' => 'Acolhido(a)',
           'programs.moods.tired' => 'Cansado(a)',
           'programs.moods.heavy' => 'Pesado',
@@ -12771,6 +12870,9 @@ extension on Translations {
           'slipDetail.categories.helped' => 'Me ajudou',
           'slipDetail.categories.other' => '',
           'slipDetail.visibility.title' => 'Quem vê este slip?',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.visibility.subtitle' => 'O padrão é privado.',
           'slipDetail.visibility.onlyMe' => 'Só eu',
           'slipDetail.visibility.onlyMeText' => 'Fica na sua semana',
@@ -12804,9 +12906,6 @@ extension on Translations {
           'slipKind.ifThen.thenHint' => 'Ex.: peço um tempo de 10 minutos',
           'slipKind.invisible.title' => 'Coisas que ninguém percebe',
           'slipKind.invisible.titleHighlight' => 'ninguém percebe',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.invisible.subtitle' => 'Só para você. Isto nunca vai para o cartão.',
           'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
           'slipKind.invisible.areaLabel' => 'Que tipo de trabalho?',
@@ -13392,6 +13491,9 @@ extension on Translations {
           'widgets.offlineBanner' =>
             'Mostrando o último dado salvo. Atualiza quando voltar a internet.',
           'widgets.loadErrorTitle' => 'Não foi possível carregar os widgets',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.loadErrorBody' => 'Verifique sua conexão e tente novamente.',
           'widgets.retryAction' => 'Tentar novamente',
           'widgets.themeLight' => 'Claro',
@@ -13436,9 +13538,6 @@ extension on Translations {
             required Object months,
             required Object days,
           }) => '${months} meses · ${days} dias',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.counterStatusDating' => 'Namorando',
           'widgets.counterStatusLivingTogether' => 'Morando juntos',
           'widgets.counterStatusMarried' => 'Casados',

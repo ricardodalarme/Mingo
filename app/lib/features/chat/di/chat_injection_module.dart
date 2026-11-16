@@ -1,4 +1,6 @@
+import 'package:app/features/_shared/chat_actions/chat_action_handler.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/chat/chat_actions/chat_own_handlers.dart';
 import 'package:app/features/chat/data/data_sources/local/hard_conversation_local_data_source.dart';
 import 'package:app/features/chat/data/data_sources/remote/chat_data_source.dart';
 import 'package:app/features/chat/data/data_sources/remote/learned_items_data_source.dart';
@@ -21,59 +23,71 @@ import 'package:preferences_service/preferences_service.dart';
 
 class ChatInjectionModule() implements InjectionModule {
   @override
-  void registerDependencies({required Injector injector}) => injector
-    ..registerLazySingleton<ChatDataSource>(
-      () => ChatDataSource(
-        client: injector.get<GQLClient>(),
-        restClient: injector.get<RestClient>(),
-        functionUrl: '${EnvVariables.functionsUrl}/chat',
-      ),
-    )
-    ..registerLazySingleton<LearnedItemsDataSource>(
-      () => LearnedItemsDataSource(client: injector.get<GQLClient>()),
-    )
-    ..registerLazySingleton<LearnedItemsRepository>(
-      () => LearnedItemsRepository(dataSource: injector.get<LearnedItemsDataSource>()),
-    )
-    ..registerLazySingleton<HardConversationLocalDataSource>(
-      () => HardConversationLocalDataSource(preferencesService: injector.get<PreferencesService>()),
-    )
-    ..registerLazySingleton<ChatRepository>(
-      () => ChatRepository(
-        dataSource: injector.get<ChatDataSource>(),
-        profileRepository: injector.get<ProfileRepository>(),
-        authenticationRepository: injector.get<AuthenticationRepository>(),
-        slipRepository: injector.get<SlipRepository>(),
-        plusRepository: injector.get<PlusRepository>(),
-      ),
-    )
-    ..registerLazySingleton<HardConversationRepository>(
-      () => HardConversationRepository(
-        chatRepository: injector.get<ChatRepository>(),
-        notesRepository: injector.get<NotesRepository>(),
-        localDataSource: injector.get<HardConversationLocalDataSource>(),
-        authenticationRepository: injector.get<AuthenticationRepository>(),
-      ),
-    )
-    ..registerFactory<ChatCubit>(
-      () => ChatCubit(
-        chatRepository: injector.get<ChatRepository>(),
-        learnedItemsRepository: injector.get<LearnedItemsRepository>(),
-      ),
-    )
-    ..registerFactory<ChatSettingsCubit>(
-      () => ChatSettingsCubit(chatRepository: injector.get<ChatRepository>()),
-    )
-    ..registerFactory<HardConversationCubit>(
-      () => HardConversationCubit(
-        repository: injector.get<HardConversationRepository>(),
-        chatRepository: injector.get<ChatRepository>(),
-      ),
-    )
-    ..registerFactory<LearnedItemsCubit>(
-      () => LearnedItemsCubit(
-        learnedItemsRepository: injector.get<LearnedItemsRepository>(),
-        partnerRepository: injector.get<PartnerRepository>(),
-      ),
-    );
+  void registerDependencies({required Injector injector}) {
+    injector
+      ..registerLazySingleton<ChatDataSource>(
+        () => ChatDataSource(
+          client: injector.get<GQLClient>(),
+          restClient: injector.get<RestClient>(),
+          functionUrl: '${EnvVariables.functionsUrl}/chat',
+        ),
+      )
+      ..registerLazySingleton<LearnedItemsDataSource>(
+        () => LearnedItemsDataSource(client: injector.get<GQLClient>()),
+      )
+      ..registerLazySingleton<LearnedItemsRepository>(
+        () => LearnedItemsRepository(dataSource: injector.get<LearnedItemsDataSource>()),
+      )
+      ..registerLazySingleton<HardConversationLocalDataSource>(
+        () =>
+            HardConversationLocalDataSource(preferencesService: injector.get<PreferencesService>()),
+      )
+      ..registerLazySingleton<ChatRepository>(
+        () => ChatRepository(
+          dataSource: injector.get<ChatDataSource>(),
+          profileRepository: injector.get<ProfileRepository>(),
+          authenticationRepository: injector.get<AuthenticationRepository>(),
+          slipRepository: injector.get<SlipRepository>(),
+          plusRepository: injector.get<PlusRepository>(),
+        ),
+      )
+      ..registerLazySingleton<HardConversationRepository>(
+        () => HardConversationRepository(
+          chatRepository: injector.get<ChatRepository>(),
+          notesRepository: injector.get<NotesRepository>(),
+          localDataSource: injector.get<HardConversationLocalDataSource>(),
+          authenticationRepository: injector.get<AuthenticationRepository>(),
+        ),
+      )
+      ..registerFactory<ChatCubit>(
+        () => ChatCubit(
+          chatRepository: injector.get<ChatRepository>(),
+          learnedItemsRepository: injector.get<LearnedItemsRepository>(),
+          actions: injector.get<ChatActionRegistry>(),
+        ),
+      )
+      ..registerFactory<ChatSettingsCubit>(
+        () => ChatSettingsCubit(chatRepository: injector.get<ChatRepository>()),
+      )
+      ..registerFactory<HardConversationCubit>(
+        () => HardConversationCubit(
+          repository: injector.get<HardConversationRepository>(),
+          chatRepository: injector.get<ChatRepository>(),
+        ),
+      )
+      ..registerFactory<LearnedItemsCubit>(
+        () => LearnedItemsCubit(
+          learnedItemsRepository: injector.get<LearnedItemsRepository>(),
+          partnerRepository: injector.get<PartnerRepository>(),
+        ),
+      );
+
+    injector.get<ChatActionRegistry>()
+      ..register('suggest_couple_question', SuggestCoupleQuestionChatHandler.new)
+      ..register('draft_note', DraftNoteChatHandler.new)
+      ..register(
+        'save_learning',
+        () => SaveLearningChatHandler(repository: injector.get<LearnedItemsRepository>()),
+      );
+  }
 }

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/chat_actions/chat_action_handler.dart';
+import 'package:app/features/chat/data/models/chat_action.dart';
 import 'package:app/features/chat/data/models/chat_models.dart';
 import 'package:app/features/chat/data/models/learned_item.dart';
 import 'package:app/features/chat/data/repositories/chat_repository.dart';
@@ -16,6 +18,7 @@ part 'chat_state.dart';
 class ChatCubit({
   required final ChatRepository _chatRepository,
   required final LearnedItemsRepository _learnedItemsRepository,
+  required final ChatActionRegistry _actions,
   final Duration _idleTimeout = chatIdleTimeout,
 }) extends Cubit<ChatState> {
   this : super(const ChatState());
@@ -194,9 +197,70 @@ class ChatCubit({
             messagesLeft: state.messagesLeft > 0 ? state.messagesLeft - 1 : 0,
           ),
         );
+      case ChatSuggestion(:final tool, :final args, :final needsConfirmation):
+        final prepared = _actions.prepare(tool, args);
+        if (prepared == null) return;
+        final action = ChatAction(
+          tool: tool,
+          needsConfirmation: needsConfirmation,
+          prepared: prepared,
+        );
+        emit(
+          state.copyWith(
+            messages: _update(replyId, (m) => m.copyWith(actions: [...m.actions, action])),
+          ),
+        );
       case ChatError(:final code):
         _onError(replyId, code);
     }
+  }
+
+  /// Carries out the card at [index] of the message once the person taps it.
+  Future<void> runAction(String messageId, int index) async {
+    final action = _actionAt(messageId, index);
+    if (action == null || action.status != ChatActionStatus.pending) return;
+
+    _setStatus(messageId, index, ChatActionStatus.running);
+    try {
+      await action.prepared.run();
+      _setStatus(messageId, index, ChatActionStatus.done);
+    } catch (_) {
+      _setStatus(messageId, index, ChatActionStatus.failed);
+    }
+  }
+
+  /// Puts the card at [index] aside; nothing is done.
+  void dismissAction(String messageId, int index) {
+    if (_actionAt(messageId, index)?.status == ChatActionStatus.pending) {
+      _setStatus(messageId, index, ChatActionStatus.dismissed);
+    }
+  }
+
+  /// Lets a failed card be tried again.
+  void retryAction(String messageId, int index) {
+    if (_actionAt(messageId, index)?.status == ChatActionStatus.failed) {
+      _setStatus(messageId, index, ChatActionStatus.pending);
+    }
+  }
+
+  ChatAction? _actionAt(String messageId, int index) {
+    final message = state.messages.where((m) => m.id == messageId).firstOrNull;
+    if (message == null || index < 0 || index >= message.actions.length) return null;
+
+    return message.actions[index];
+  }
+
+  void _setStatus(String messageId, int index, ChatActionStatus status) {
+    emit(
+      state.copyWith(
+        messages: _update(messageId, (m) {
+          final actions = [...m.actions];
+          actions[index] = actions[index].copyWith(status: status);
+
+          return m.copyWith(actions: actions);
+        }),
+      ),
+    );
   }
 
   void _onError(String replyId, String code) {

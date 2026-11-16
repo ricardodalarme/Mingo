@@ -59,5 +59,44 @@
   "starterHard": "Um momento difícil",
   "starterIdea": "Uma ideia",
   "starterPlan": "Um plano de encontro",
-  "menuLabel": "Mais opções"
+  "menuLabel": "Mais opções",
+  "action": {
+    "privateHint": "Fica só com você.",
+    "partnerHint": "Só vai depois que você tocar.",
+    "moodText": "Hoje: {mood}",
+    "moods(map)": {
+      "happy": "feliz",
+      "tired": "cansado",
+      "sad": "triste",
+      "stressed": "estressado",
+      "loving": "amoroso",
+      "playful": "brincalhão"
+    },
+    "dismiss": "Agora não",
+    "running": "Um instante…",
+    "done": "Pronto",
+    "dismissed": "Deixado de lado",
+    "failed": "Não deu certo",
+    "retry": "Tentar de novo",
+    "runLabels(map)": {
+      "create_private_slip": "Anotar",
+      "send_slip_to_partner": "Enviar",
+      "log_mood": "Registrar",
+      "share_mood": "Compartilhar",
+      "save_learning": "Guardar",
+      "open_purchase": "Conhecer o Plus",
+      "other": "Fazer"
+    },
+    "tags(map)": {
+      "create_private_slip": "Sugestão · Anotar um slip",
+      "send_slip_to_partner": "Sugestão · Enviar um slip",
+      "log_mood": "Sugestão · Registrar humor",
+      "share_mood": "Sugestão · Compartilhar humor",
+      "save_learning": "Sugestão · Lembrar disto",
+      "suggest_couple_question": "Pergunta para conversar",
+      "draft_note": "Rascunho de recado",
+      "open_purchase": "Plus",
+      "other": "Sugestão"
+    }
+  }
 }

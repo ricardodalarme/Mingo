@@ -1,4 +1,5 @@
 import 'package:analytics_service/analytics_service.dart';
+import 'package:app/features/_shared/chat_actions/chat_action_handler.dart';
 import 'package:app/features/_shared/data/data_sources/local/device_marker_store.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/infrastructure/config/env_variables.dart';
@@ -41,6 +42,7 @@ class SharedInjectionModule() implements InjectionModule {
       ),
     )
     ..registerLazySingleton(PendingRoute.new)
+    ..registerLazySingleton(ChatActionRegistry.new)
     ..registerLazySingleton(LogRouterObserver.new)
     ..registerLazySingleton<AnalyticsRouterObserver>(
       () => AnalyticsRouterObserver(analyticsService: injector.get<AnalyticsService>()),

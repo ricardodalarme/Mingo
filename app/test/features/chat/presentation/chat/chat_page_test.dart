@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/chat_actions/chat_action_handler.dart';
 import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
 import 'package:app/features/chat/data/models/chat_models.dart';
 import 'package:app/features/chat/data/models/learned_item.dart';
@@ -63,6 +64,7 @@ void main() {
     final chatCubit = ChatCubit(
       chatRepository: chatRepository,
       learnedItemsRepository: learnedItemsRepository,
+      actions: ChatActionRegistry(),
     );
     addTearDown(chatCubit.close);
     await chatCubit.load();
