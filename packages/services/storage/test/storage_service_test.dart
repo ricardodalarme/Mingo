@@ -4,30 +4,45 @@ import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+import 'package:nhost_sdk/nhost_sdk.dart' show Session, UserSession;
 import 'package:storage_service/storage_service.dart';
 
 void main() {
   const base = 'https://storage.test/v1';
+  const accessToken =
+      'eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJ1c2VyLTEiLCJleHAiOjQxMDI0NDQ4MDAsImh0dHBzOi8vaGFzdXJhLmlvL2p3dC9jbGFpbXMiOnsieC1oYXN1cmEtdXNlci1pZCI6InVzZXItMSJ9fQ.';
+
+  UserSession session() =>
+      UserSession()..session = Session(accessToken: accessToken, refreshToken: 'refresh');
 
   test('upload sends the bucket and returns the file id', () async {
     final client = MockClient((request) async {
-      expect(request.method, 'POST');
+      expect(request.method, 'post');
       expect(request.url.toString(), '$base/files');
-      expect(request.headers['authorization'], 'Bearer access');
+      expect(request.headers['authorization'], 'Bearer $accessToken');
 
       return http.Response(
         jsonEncode({
           'processedFiles': [
-            {'id': 'file-1', 'bucketId': 'avatars'},
+            {
+              'id': 'file-1',
+              'name': 'file',
+              'size': 3,
+              'mimeType': 'image/png',
+              'etag': 'etag',
+              'createdAt': '2026-01-01T00:00:00Z',
+              'bucketId': 'avatars',
+            },
           ],
         }),
         201,
+        headers: {'content-type': 'application/json'},
       );
     });
 
     final id = await StorageService(
       baseUrl: base,
-      tokenCallback: () async => 'access',
+      session: session(),
       httpClient: client,
     ).upload(bucket: 'avatars', bytes: Uint8List.fromList([1, 2, 3]), contentType: 'image/png');
 
@@ -40,6 +55,7 @@ void main() {
     expect(
       StorageService(
         baseUrl: base,
+        session: session(),
         httpClient: client,
       ).upload(bucket: 'avatars', bytes: Uint8List(1), contentType: 'image/png'),
       throwsA(isA<FileStorageException>()),
@@ -49,32 +65,57 @@ void main() {
   test('signedUrl returns the presigned url', () async {
     final client = MockClient((request) async {
       expect(request.url.toString(), '$base/files/file-1/presignedurl');
-      expect(request.headers['authorization'], 'Bearer access');
+      expect(request.headers['authorization'], 'Bearer $accessToken');
 
-      return http.Response(jsonEncode({'url': 'https://x/y'}), 200);
+      return http.Response(
+        jsonEncode({'url': 'https://x/y', 'expiration': 300}),
+        200,
+        headers: {'content-type': 'application/json'},
+      );
     });
 
     expect(
       await StorageService(
         baseUrl: base,
-        tokenCallback: () async => 'access',
+        session: session(),
         httpClient: client,
       ).signedUrl(fileId: 'file-1'),
       'https://x/y',
     );
   });
 
+  test('a signed url is cached for the next read', () async {
+    var calls = 0;
+    final client = MockClient((_) async {
+      calls++;
+      return http.Response(
+        jsonEncode({'url': 'https://x/y', 'expiration': 300}),
+        200,
+        headers: {'content-type': 'application/json'},
+      );
+    });
+    final storage = StorageService(baseUrl: base, session: session(), httpClient: client);
+
+    expect(await storage.signedUrl(fileId: 'file-1'), 'https://x/y');
+    expect(await storage.signedUrl(fileId: 'file-1'), 'https://x/y');
+    expect(calls, 1);
+  });
+
   test('remove deletes the file and treats a missing file as done', () async {
     var calls = 0;
     final client = MockClient((request) async {
       calls++;
-      expect(request.method, 'DELETE');
+      expect(request.method, 'delete');
       expect(request.url.toString(), '$base/files/file-1');
 
       return http.Response('', 404);
     });
 
-    await StorageService(baseUrl: base, httpClient: client).remove(fileId: 'file-1');
+    await StorageService(
+      baseUrl: base,
+      session: session(),
+      httpClient: client,
+    ).remove(fileId: 'file-1');
     expect(calls, 1);
   });
 

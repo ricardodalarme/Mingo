@@ -4,6 +4,9 @@ import 'dart:convert';
 import 'package:authentication_service/src/current_user.dart';
 import 'package:authentication_service/src/exceptions.dart';
 import 'package:http/http.dart' as http;
+import 'package:nhost_auth_dart/nhost_auth_dart.dart';
+import 'package:nhost_sdk/nhost_sdk.dart'
+    show ApiException, AuthenticationState, NhostException, Session, UserSession;
 import 'package:secure_storage_service/secure_storage_service.dart';
 
 /// A signed-in person and the tokens that prove it.
@@ -44,73 +47,81 @@ class const AuthUser({
   Map<String, Object?> toJson() => {'id': id, 'email': email, 'displayName': displayName};
 }
 
-/// Talks to the Nhost Auth API and keeps the session in secure storage.
+/// Talks to Nhost Auth and keeps the session in secure storage.
 class AuthenticationService({
-  final http.Client? httpClient,
+  final NhostAuthClient? authClient,
   final SecureStorageService? secureStorage,
+  final http.Client? httpClient,
 }) {
   static const _sessionKey = 'auth.session';
 
-  late final http.Client _http = httpClient ?? http.Client();
   late final SecureStorageService _storage = secureStorage ?? SecureStorageService();
   final StreamController<bool> _authChanges = StreamController<bool>.broadcast();
 
-  AuthSession? _session;
-  String _baseUrl = '';
+  NhostAuthClient? _client;
 
-  AuthSession? get currentSession => _session;
+  NhostAuthClient get _auth => _client!;
+
+  UserSession get userSession => _auth.userSession;
+
+  AuthSession? get currentSession {
+    final session = _auth.userSession.session;
+    if (session == null) return null;
+
+    return _map(session);
+  }
 
   CurrentUser? get currentUser {
-    final user = _session?.user;
+    final user = _auth.currentUser;
     if (user == null) return null;
 
-    return CurrentUser(email: user.email, firstName: user.displayName, lastName: '');
+    return CurrentUser(email: user.email ?? '', firstName: user.displayName, lastName: '');
   }
 
-  String? get loginProvider {
-    if (_session == null) return null;
+  String? get loginProvider => currentSession == null ? null : 'email';
 
-    return 'email';
-  }
-
-  bool get isAuthenticated => _session != null;
+  bool get isAuthenticated => _auth.authenticationState == AuthenticationState.signedIn;
 
   Stream<bool> get authStateChanges => _authChanges.stream;
 
   Future<void> initialize({required String url}) async {
     if (url.isEmpty) throw AuthenticationException(code: 'invalid_configuration');
-    _baseUrl = url.endsWith('/') ? url.substring(0, url.length - 1) : url;
+    _client = authClient ?? NhostAuthClient(url: url, httpClient: httpClient);
+    _auth.addAuthStateChangedCallback((state) {
+      _authChanges.add(state == AuthenticationState.signedIn);
+    });
+    _auth.addTokenChangedCallback(() => unawaited(_persist()));
 
     final stored = await _storage.read(key: _sessionKey);
     if (stored == null) return;
     try {
-      _session = AuthSession.fromJson(jsonDecode(stored) as Map<String, Object?>);
-      _authChanges.add(isAuthenticated);
-    } on FormatException {
+      final session = Session.fromJson(jsonDecode(stored));
+      if (session.accessToken == null || session.refreshToken == null) {
+        throw const FormatException();
+      }
+      // Restoring the stored session is the documented use of this setter; the annotation is about tests.
+      // ignore: invalid_use_of_visible_for_testing_member
+      await _auth.setSession(session);
+    } on Object {
       await _storage.delete(key: _sessionKey);
     }
   }
 
-  Future<void> signInWithEmailAndPassword({required String email, required String password}) async {
-    await _persist(await _post('/signin/email-password', {'email': email, 'password': password}));
-  }
+  Future<void> signInWithEmailAndPassword({required String email, required String password}) =>
+      _guard(() async {
+        final response = await _auth.signInEmailPassword(email: email, password: password);
+        if (response.mfa != null) throw AuthenticationException(code: 'mfa_required');
+        await _persist();
+      });
 
-  Future<void> signUpWithEmailAndPassword({required String email, required String password}) async {
-    await _persist(
-      await _post('/signup/email-password', {
-        'email': email,
-        'password': password,
-        'options': {'redirectTo': 'mingo://auth'},
-      }),
-    );
-  }
+  Future<void> signUpWithEmailAndPassword({required String email, required String password}) =>
+      _guard(() async {
+        await _auth.signUp(email: email, password: password, redirectTo: 'mingo://auth');
+        await _persist();
+      });
 
-  Future<void> resetPasswordForEmail({required String email}) async {
-    await _send('/user/password/reset', {
-      'email': email,
-      'options': {'redirectTo': 'mingo://auth'},
-    });
-  }
+  Future<void> resetPasswordForEmail({required String email}) =>
+      _guard(() => _auth.resetPassword(email: email, redirectTo: 'mingo://auth'));
 
   Future<void> signInWithGoogle() =>
       Future.error(AuthenticationException(code: 'provider_not_configured'));
@@ -118,124 +129,88 @@ class AuthenticationService({
   Future<void> signInWithApple() =>
       Future.error(AuthenticationException(code: 'provider_not_configured'));
 
-  Future<void> changePassword({
-    required String currentPassword,
-    required String newPassword,
-  }) async {
-    final session = _session;
-    if (session == null) throw AuthenticationException(code: 'session_not_found');
+  Future<void> changePassword({required String currentPassword, required String newPassword}) =>
+      _guard(() async {
+        final email = _auth.currentUser?.email;
+        if (email == null || email.isEmpty) {
+          throw AuthenticationException(code: 'session_not_found');
+        }
 
-    await signInWithEmailAndPassword(email: session.user.email, password: currentPassword);
-    await _send('/user/password', {'newPassword': newPassword}, token: _session!.accessToken);
-    await _clear();
-  }
+        await _auth.signInEmailPassword(email: email, password: currentPassword);
+        await _auth.changePassword(newPassword: newPassword);
+        await _clear();
+      });
 
   Future<String?> getFreshAccessToken() async {
-    final session = _session;
-    if (session == null) return null;
-    if (!session.isExpired) return session.accessToken;
-    if (!await refreshSession()) return session.accessToken;
+    final token = _auth.accessToken;
+    if (token != null) return token;
+    if (!await refreshSession()) return null;
 
-    return _session?.accessToken;
+    return _auth.accessToken;
   }
 
   Future<bool> refreshSession() async {
-    final session = _session;
-    if (session == null) return false;
+    final refreshToken = _auth.userSession.session?.refreshToken;
+    if (refreshToken == null) return false;
 
     try {
-      final body = await _request('POST', '/token', {'refreshToken': session.refreshToken});
-      await _persist(_sessionFrom(body, fallback: session.user));
+      await _auth.signInWithRefreshToken(refreshToken);
+      await _persist();
       return true;
-    } on AuthenticationException {
+    } on Object {
       await _clear();
       return false;
     }
   }
 
+  void dispose() {
+    _auth.close();
+    unawaited(_authChanges.close());
+  }
+
   Future<void> signOut() async {
-    final session = _session;
     try {
-      if (session != null) {
-        await _request('POST', '/signout', {
-          'refreshToken': session.refreshToken,
-        }, token: session.accessToken);
-      }
-    } on AuthenticationException {
-      // The session is cleared even when the server cannot be told.
+      await _auth.signOut();
+    } on Object {
+      // The local session is cleared even when the server cannot be told.
     } finally {
       await _clear();
     }
   }
 
-  Future<AuthSession> _post(String path, Map<String, Object?> body) async {
-    final payload = await _request('POST', path, body);
-    final session = payload['session'];
-    if (session is! Map<String, Object?>) throw AuthenticationException(code: 'invalid_response');
+  AuthSession _map(Session session) => AuthSession(
+    accessToken: session.accessToken ?? '',
+    refreshToken: session.refreshToken ?? '',
+    expiresAt: DateTime.now().add(session.accessTokenExpiresIn ?? const Duration(minutes: 15)),
+    user: AuthUser(
+      id: session.user?.id ?? '',
+      email: session.user?.email ?? '',
+      displayName: session.user?.displayName ?? '',
+    ),
+  );
 
-    return _sessionFrom(session);
-  }
-
-  Future<void> _send(String path, Map<String, Object?> body, {String? token}) =>
-      _request('POST', path, body, token: token);
-
-  Future<Map<String, Object?>> _request(
-    String method,
-    String path,
-    Map<String, Object?> body, {
-    String? token,
-  }) async {
-    final headers = {'content-type': 'application/json'};
-    if (token != null) headers['authorization'] = 'Bearer $token';
-
-    late http.Response response;
-    try {
-      response = await _http.post(
-        Uri.parse('$_baseUrl$path'),
-        headers: headers,
-        body: jsonEncode(body),
-      );
-    } on Exception catch (error, stackTrace) {
-      Error.throwWithStackTrace(AuthenticationException(code: 'network_error'), stackTrace);
-    }
-
-    final decoded = response.body.isEmpty
-        ? <String, Object?>{}
-        : jsonDecode(response.body) as Map<String, Object?>;
-    if (response.statusCode < 200 || response.statusCode >= 300) {
-      throw AuthenticationException(code: (decoded['error'] as String?) ?? 'auth_error');
-    }
-
-    return decoded;
-  }
-
-  AuthSession _sessionFrom(Map<String, Object?> json, {AuthUser? fallback}) {
-    final user = json['user'] as Map<String, Object?>? ?? const {};
-    final expiresIn = (json['accessTokenExpiresIn'] as num?)?.toInt() ?? 900;
-
-    return AuthSession(
-      accessToken: json['accessToken']! as String,
-      refreshToken: json['refreshToken']! as String,
-      expiresAt: DateTime.now().add(Duration(seconds: expiresIn)),
-      user: (user['id'] as String?) == null
-          ? (fallback ?? const AuthUser(id: '', email: '', displayName: ''))
-          : AuthUser(
-              id: user['id']! as String,
-              email: (user['email'] as String?) ?? '',
-              displayName: (user['displayName'] as String?) ?? '',
-            ),
-    );
-  }
-
-  Future<void> _persist(AuthSession session) async {
-    _session = session;
+  Future<void> _persist() async {
+    final session = _auth.userSession.session;
+    if (session == null) return;
     await _storage.write(key: _sessionKey, value: jsonEncode(session.toJson()));
-    _authChanges.add(isAuthenticated);
   }
 
   Future<void> _clear() async {
-    _session = null;
     await _storage.delete(key: _sessionKey);
     _authChanges.add(false);
+  }
+
+  Future<void> _guard(Future<void> Function() action) async {
+    try {
+      await action();
+    } on AuthenticationException {
+      rethrow;
+    } on ApiException catch (error, stackTrace) {
+      final body = error.body;
+      final code = body is Map && body['error'] is String ? body['error'] as String : 'auth_error';
+      Error.throwWithStackTrace(AuthenticationException(code: code), stackTrace);
+    } on NhostException catch (error, stackTrace) {
+      Error.throwWithStackTrace(AuthenticationException(code: 'auth_error'), stackTrace);
+    }
   }
 }

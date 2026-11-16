@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^1.6.0
+  nhost_auth_dart: ^2.7.0
+  nhost_sdk: ^5.8.1
   secure_storage_service:
     path: ../secure_storage
 

@@ -1182,6 +1182,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
+  jwt_decoder:
+    dependency: transitive
+    description:
+      name: jwt_decoder
+      sha256: "54774aebf83f2923b99e6416b4ea915d47af3bde56884eb622de85feabbc559f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   lcov_parser:
     dependency: transitive
     description:
@@ -1382,6 +1390,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  nhost_auth_dart:
+    dependency: transitive
+    description:
+      name: nhost_auth_dart
+      sha256: "0d4a23894675c196ef1b33f69a95218f09e6993e78cca27430e0a6f999654086"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.0"
+  nhost_sdk:
+    dependency: transitive
+    description:
+      name: nhost_sdk
+      sha256: "996d3de531f1df474f174955be249eb55a2133e3990790a1d43f245a7cf3d20e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.8.1"
+  nhost_storage_dart:
+    dependency: transitive
+    description:
+      name: nhost_storage_dart
+      sha256: a828fc549c5997da5b4af64117f3cda7fabbc1e199d4b0835fa8e09dc790ffde
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
   nm:
     dependency: transitive
     description:

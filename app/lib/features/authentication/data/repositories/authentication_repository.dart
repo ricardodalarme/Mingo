@@ -5,6 +5,8 @@ import 'package:logger/logger.dart';
 class AuthenticationRepository({required final AuthenticationService _authenticationService}) {
   final Logger _logger = Logger('AuthRepository');
   bool get isAuthenticated => _authenticationService.isAuthenticated;
+
+  UserSession get userSession => _authenticationService.userSession;
   Stream<bool> get isAuthenticatedStream => _authenticationService.authStateChanges;
 
   String? getAccessToken() => _authenticationService.currentSession?.accessToken;

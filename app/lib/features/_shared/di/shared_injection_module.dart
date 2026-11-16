@@ -77,7 +77,7 @@ class SharedInjectionModule() implements InjectionModule {
     ..registerLazySingleton<StorageService>(
       () => StorageService(
         baseUrl: EnvVariables.storageUrl,
-        tokenCallback: injector.get<AuthenticationRepository>().getFreshAccessToken,
+        session: injector.get<AuthenticationRepository>().userSession,
       ),
     )
     ..registerLazySingleton<AppInfoService>(PackageAppInfoService.new)

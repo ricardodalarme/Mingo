@@ -1,27 +1,28 @@
-import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart';
+import 'package:nhost_sdk/nhost_sdk.dart' show ApiException, UserSession;
+import 'package:nhost_storage_dart/nhost_storage_dart.dart';
+
 import 'package:storage_service/src/file_storage_exception.dart';
 
 /// Stores private files in Nhost Storage and reads them back through short-lived URLs.
 class StorageService({
   final String? baseUrl,
-  final Future<String?> Function()? tokenCallback,
+  final UserSession? session,
   final http.Client? httpClient,
 }) {
-  final http.Client _client = httpClient ?? http.Client();
+  late final NhostStorageClient _client = NhostStorageClient(
+    url: _url,
+    session: session,
+    httpClient: httpClient,
+  );
 
-  String get _baseUrl {
+  final Map<String, ({String url, DateTime expiresAt})> _urls = {};
+
+  String get _url {
     final url = baseUrl ?? '';
     return url.endsWith('/') ? url.substring(0, url.length - 1) : url;
-  }
-
-  Future<Map<String, String>> _headers() async {
-    final token = await tokenCallback?.call();
-
-    return {if (token != null && token.isNotEmpty) 'authorization': 'Bearer $token'};
   }
 
   /// Uploads [bytes] to [bucket] and returns the id of the stored file.
@@ -32,43 +33,25 @@ class StorageService({
     String name = 'file',
   }) async {
     try {
-      final request = http.MultipartRequest('POST', Uri.parse('$_baseUrl/files'))
-        ..headers.addAll(await _headers())
-        ..fields['bucket-id'] = bucket
-        ..files.add(
-          http.MultipartFile.fromBytes(
-            'file[]',
-            bytes,
-            filename: name,
-            contentType: _mediaType(contentType),
-          ),
-        );
-      final response = await http.Response.fromStream(await _client.send(request));
-      final body = _decode(response);
-      if (response.statusCode < 200 || response.statusCode >= 300) {
-        throw StateError('${body['message'] ?? 'upload failed with ${response.statusCode}'}');
-      }
-      final files = body['processedFiles'] as List<dynamic>? ?? const [];
+      final files = await _client.uploadFiles(
+        files: [FileData(bytes, filename: name, contentType: contentType)],
+        bucketId: bucket,
+      );
 
-      return (files.first as Map<String, Object?>)['id']! as String;
+      return files.first.id;
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(FileStorageException(error), stackTrace);
     }
   }
 
-  /// A URL that lets the file with [fileId] be read for [seconds] seconds.
+  /// A URL that lets the file with [fileId] be read.
   Future<String> signedUrl({required String fileId, int seconds = 300}) async {
+    final cached = _urls[fileId];
+    if (cached != null && DateTime.now().isBefore(cached.expiresAt)) return cached.url;
     try {
-      final response = await _client.get(
-        Uri.parse('$_baseUrl/files/$fileId/presignedurl'),
-        headers: await _headers(),
-      );
-      final body = _decode(response);
-      if (response.statusCode < 200 || response.statusCode >= 300) {
-        throw StateError('${body['message'] ?? 'signed url failed with ${response.statusCode}'}');
-      }
-
-      return body['url']! as String;
+      final url = (await _client.getPresignedUrl(fileId)).url;
+      _urls[fileId] = (url: url, expiresAt: DateTime.now().add(const Duration(minutes: 4)));
+      return url;
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(FileStorageException(error), stackTrace);
     }
@@ -76,15 +59,12 @@ class StorageService({
 
   /// Removes the file with [fileId]; a file that is already gone is not an error.
   Future<void> remove({required String fileId}) async {
+    _urls.remove(fileId);
     try {
-      final response = await _client.delete(
-        Uri.parse('$_baseUrl/files/$fileId'),
-        headers: await _headers(),
-      );
-      if (response.statusCode == 404) return;
-      if (response.statusCode < 200 || response.statusCode >= 300) {
-        throw StateError('delete failed with ${response.statusCode}');
-      }
+      await _client.delete(fileId);
+    } on ApiException catch (error) {
+      if (error.statusCode == 404) return;
+      Error.throwWithStackTrace(FileStorageException(error), StackTrace.current);
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(FileStorageException(error), stackTrace);
     }
@@ -92,8 +72,9 @@ class StorageService({
 
   /// The bytes behind an absolute [url], such as a signed read URL.
   Future<Uint8List> download(String url) async {
+    final client = httpClient ?? http.Client();
     try {
-      final response = await _client.get(Uri.parse(url));
+      final response = await client.get(Uri.parse(url));
       if (response.statusCode < 200 || response.statusCode >= 300) {
         throw StateError('download failed with ${response.statusCode}');
       }
@@ -101,21 +82,8 @@ class StorageService({
       return response.bodyBytes;
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(FileStorageException(error), stackTrace);
+    } finally {
+      if (httpClient == null) client.close();
     }
-  }
-
-  Map<String, Object?> _decode(http.Response response) {
-    if (response.body.isEmpty) return const {};
-    final value = jsonDecode(response.body);
-    if (value is Map<String, Object?>) return value;
-    if (value is Map) return Map<String, Object?>.from(value);
-
-    return {'message': '$value'};
-  }
-
-  MediaType _mediaType(String value) {
-    final parts = value.split('/');
-
-    return MediaType(parts.first, parts.length > 1 ? parts[1] : 'octet-stream');
   }
 }
