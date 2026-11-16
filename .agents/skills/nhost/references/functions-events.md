@@ -33,8 +33,10 @@ Functions get these variables: `NHOST_ADMIN_SECRET`, `NHOST_WEBHOOK_SECRET`, `NH
 ## This backend
 
 - `events/push.ts`: claims a `private.notifications` row, sends a data-only FCM v1 message and settles it; `events/jobs.ts` runs the scheduled SQL jobs and
-  retries queued file deletions; `events/delete-file.ts` deletes the Storage object and clears the queue; `purchases.ts` applies RevenueCat events; `chat.ts`
-  streams the mascot reply as SSE. Shared helpers live in `functions/_lib/` and unit tests in `functions/_tests/`.
+  retries queued file deletions; `events/delete-file.ts` deletes the Storage object and clears the queue; `purchases/` applies RevenueCat events; `chat/`
+  streams the mascot reply as SSE; `export/` builds the data export. Each feature is a folder (`index.ts` is the route) with its helpers and tests under
+  underscore names (`_relay.ts`, `_tests/`), which the runtime never routes; a helper without the underscore would become an endpoint. Code shared by
+  several features lives in `functions/_lib/`.
 - Streams from Functions are not documented. SSE was verified on the local stack (first byte ~100 ms, deltas in step with the upstream, no buffering); if a
   future runtime buffers or times out, move the chat to a Run service and record the decision.
 

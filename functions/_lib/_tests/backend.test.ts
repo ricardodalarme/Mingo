@@ -1,6 +1,6 @@
 import { afterEach, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { isTrigger, safeEqual, type Req } from '../_lib/backend.ts';
+import { isTrigger, safeEqual, type Req } from '../backend.ts';
 
 const request = (headers: Record<string, string>): Req =>
   ({ method: 'POST', headers, body: {}, on: () => {} }) as unknown as Req;

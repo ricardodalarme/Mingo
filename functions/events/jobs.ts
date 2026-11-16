@@ -2,7 +2,7 @@
 // The database jobs run in `private.run_job`, which records each run; `sweep_files` retries the files the
 // `delete_file` trigger could not remove.
 import { asAdmin, isTrigger, log, type Req, type Res } from '../_lib/backend';
-import { removeFile } from '../_lib/files';
+import { removeFile } from './_files';
 
 const DATABASE_JOBS = ['weekly_cards', 'reminders', 'open_capsules', 'purge_accounts', 'prune', 'expire_annoyances'];
 

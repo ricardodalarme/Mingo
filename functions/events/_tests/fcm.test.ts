@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { generateKeyPairSync, verify } from 'node:crypto';
-import { accessToken, assertion, loadAccount, send, type Account, type Push } from '../_lib/fcm.ts';
+import { accessToken, assertion, loadAccount, send, type Account, type Push } from '../_fcm.ts';
 
 const { privateKey } = generateKeyPairSync('rsa', {
   modulusLength: 2048,

@@ -3,6 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "test": "node --test \"_tests/**/*.test.ts\""
+    "test": "node --test \"{_lib,chat,export,purchases,events}/**/*.test.ts\""
   }
 }

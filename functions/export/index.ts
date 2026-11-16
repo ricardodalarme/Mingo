@@ -2,7 +2,7 @@
 //   POST /export  -> 200 { url, expiresAt } | 401 UNAUTHORIZED | 429 EXPORT_LIMIT | 500 EXPORT_FAILED
 // The document is built by the database from the caller's own rows only, stored in the private `exports` bucket and
 // handed back as a presigned link that lasts five minutes. The file itself is removed by the daily prune after 24 hours.
-import { asAdmin, asCaller, header, log, type Req, type Res } from './_lib/backend';
+import { asAdmin, asCaller, header, log, type Req, type Res } from '../_lib/backend';
 
 type Presigned = { url: string; expiration: number };
 

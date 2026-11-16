@@ -3,7 +3,7 @@
 // The payload is generic: a type and a reference id, never names or content.
 // Outcomes: 200 = settled, or nothing to do; 500 = transient failure, the trigger retries (six tries in half an hour).
 import { asAdmin, isTrigger, log, type Req, type Res } from '../_lib/backend';
-import { accessToken, loadAccount, send } from '../_lib/fcm';
+import { accessToken, loadAccount, send } from './_fcm';
 
 type Device = { token: string };
 type Row = { id: string; type: string; ref_id: string | null };

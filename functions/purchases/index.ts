@@ -1,8 +1,8 @@
 // RevenueCat webhook: keeps the entitlement of a person in step with the stores.
 // The Authorization header must equal the secret REVENUECAT_WEBHOOK_AUTH. The app user id is the Nhost user id
 // (`Purchases.logIn(userId)` in the app). Idempotent by event id; an event older than the stored state is ignored in SQL.
-import { asAdmin, header, log, safeEqual, type Req, type Res } from './_lib/backend';
-import { toPurchaseEvent } from './_lib/purchases';
+import { asAdmin, header, log, safeEqual, type Req, type Res } from '../_lib/backend';
+import { toPurchaseEvent } from './_event';
 
 export default async (req: Req, res: Res) => {
   const secret = process.env.REVENUECAT_WEBHOOK_AUTH;

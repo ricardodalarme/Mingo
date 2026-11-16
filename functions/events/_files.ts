@@ -1,4 +1,4 @@
-import { asAdmin } from './backend';
+import { asAdmin } from '../_lib/backend';
 
 /** Removes a file from Storage and from the deletion queue. A file that is already gone counts as removed. */
 export async function removeFile(fileId: string): Promise<boolean> {

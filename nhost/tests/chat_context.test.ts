@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { adult, assert, ok, signUp, sql, urls, type Session } from './lib.ts';
-import { loadContext, type CallerQuery } from '../../functions/_lib/chat_context.ts';
+import { loadContext, type CallerQuery } from '../../functions/chat/_context.ts';
 
 const as = (s: Session): CallerQuery => async (query, variables = {}) => {
   const res = await fetch(urls.graphql, { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${s.token}` }, body: JSON.stringify({ query, variables }) });

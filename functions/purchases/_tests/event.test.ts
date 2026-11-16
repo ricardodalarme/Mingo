@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { toPurchaseEvent } from '../_lib/purchases.ts';
+import { toPurchaseEvent } from '../_event.ts';
 
 const USER = '0b7b1f1e-6f0a-4f4e-8a34-2f6a1c9d3b21';
 const NOW = 1794784036000;

@@ -11,10 +11,10 @@
 // Needs CHAT_API_URL (an OpenAI-compatible base, e.g. https://host/v1), CHAT_API_KEY and CHAT_MODEL;
 // CHAT_EXTRA_BODY and CHAT_EXTRA_HEADERS (JSON objects) are optional.
 import { randomUUID } from 'node:crypto';
-import { asAdmin, asCaller, header, log, type Req, type Res } from './_lib/backend';
-import { type ChatEvent, jsonEnv, relay, systemPrompt } from './_lib/chat';
-import { loadContext } from './_lib/chat_context';
-import { toolDefinitions, validateAction } from './_lib/chat_tools';
+import { asAdmin, asCaller, header, log, type Req, type Res } from '../_lib/backend';
+import { type ChatEvent, jsonEnv, relay, systemPrompt } from './_relay';
+import { loadContext } from './_context';
+import { toolDefinitions, validateAction } from './_tools';
 
 const MAX_MESSAGE = 1000;
 const MAX_HISTORY = 12;

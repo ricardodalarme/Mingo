@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { TOOLS, toolDefinitions, validateAction } from '../_lib/chat_tools.ts';
-import { relay, systemPrompt, type ChatEvent } from '../_lib/chat.ts';
+import { TOOLS, toolDefinitions, validateAction } from '../_tools.ts';
+import { relay, systemPrompt, type ChatEvent } from '../_relay.ts';
 
 const chunk = (text: string) => new TextEncoder().encode(text);
 const sse = (deltas: unknown[]) =>

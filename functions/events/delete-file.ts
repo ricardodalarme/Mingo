@@ -2,7 +2,7 @@
 // Idempotent: a file that is already gone is a success. 500 makes the trigger retry; what still fails stays queued
 // for the daily `sweep_files` job.
 import { isTrigger, log, type Req, type Res } from '../_lib/backend';
-import { removeFile } from '../_lib/files';
+import { removeFile } from './_files';
 
 export default async (req: Req, res: Res) => {
   if (!isTrigger(req)) return res.status(401).json({ error: 'UNAUTHORIZED' });
