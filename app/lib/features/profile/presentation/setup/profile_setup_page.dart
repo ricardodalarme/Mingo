@@ -60,8 +60,6 @@ class const ProfileSetupPage({super.key}) extends StatelessWidget implements Aut
               const _PronounsField(isPartner: true),
               const SizedBox(height: AppSpace.s14),
               const _DateField(),
-              const SizedBox(height: AppSpace.s14),
-              BaseNote(text: l10n.pronounsNote),
             ],
           ),
           footer: const _ContinueButton(),

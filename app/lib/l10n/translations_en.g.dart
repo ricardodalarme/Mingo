@@ -3980,9 +3980,6 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
     'other': 'Could not save right now. Try again.',
   };
   @override
-  String get pronounsNote =>
-      'How to refer to each of you in sentences. When the other person joins, their own choice applies.';
-  @override
   String get themeLabel => 'Your app colour';
   @override
   String get themeRose => 'Rose';
@@ -9580,7 +9577,6 @@ extension on TranslationsEn {
             'That date does not look right. Pick one between 1950 and today.',
           'profileSetup.errors.NETWORK' => 'No connection. Your answers are still here, try again.',
           'profileSetup.errors.other' => 'Could not save right now. Try again.',
-          'profileSetup.pronounsNote' => 'How to refer to each of you in sentences. When the other person joins, their own choice applies.',
           'profileSetup.themeLabel' => 'Your app colour',
           'profileSetup.themeRose' => 'Rose',
           'profileSetup.themeBlue' => 'Blue',
@@ -9806,10 +9802,10 @@ extension on TranslationsEn {
           'received.doneTitle' => 'All good',
           'received.doneText' => 'Thanks for reading it calmly.',
           'received.emptyTitle' => 'Nothing new',
+          'received.emptyText' => 'When your partner sends something, it shows up here.',
           _ => null,
         } ??
         switch (path) {
-          'received.emptyText' => 'When your partner sends something, it shows up here.',
           'received.close' => 'Close',
           'received.errorTitle' => 'Couldn\'t open this',
           'received.errorText' => 'Nothing was lost. Try again.',
@@ -10376,10 +10372,10 @@ extension on TranslationsEn {
           'tabs.capture' => 'New slip',
           'tabs.soonTitle' => 'Under construction',
           'tabs.soonText' => 'This part of the app is still being prepared.',
+          'tabs.segmentTogether' => 'Us',
           _ => null,
         } ??
         switch (path) {
-          'tabs.segmentTogether' => 'Us',
           'tabs.forMeFooter' => 'Private tools. Never shared.',
           'tabs.segmentForMe' => 'For me',
           'tabs.checkinLabel' => 'CHECK-IN',

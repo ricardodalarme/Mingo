@@ -4885,10 +4885,6 @@ class Translations$profileSetup$pt {
     'other': 'Não deu para salvar agora. Tente de novo.',
   };
 
-  /// pt: 'Como chamar cada um nas frases. Quando a outra pessoa entrar, vale a escolha dela.'
-  String get pronounsNote =>
-      'Como chamar cada um nas frases. Quando a outra pessoa entrar, vale a escolha dela.';
-
   /// pt: 'Cor do seu app'
   String get themeLabel => 'Cor do seu app';
 
@@ -11360,8 +11356,6 @@ extension on Translations {
             'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
           'profileSetup.errors.NETWORK' => 'Sem conexão. Seus dados continuam aqui, tente de novo.',
           'profileSetup.errors.other' => 'Não deu para salvar agora. Tente de novo.',
-          'profileSetup.pronounsNote' =>
-            'Como chamar cada um nas frases. Quando a outra pessoa entrar, vale a escolha dela.',
           'profileSetup.themeLabel' => 'Cor do seu app',
           'profileSetup.themeRose' => 'Rosa',
           'profileSetup.themeBlue' => 'Azul',
@@ -11586,10 +11580,10 @@ extension on Translations {
           'received.doneTitle' => 'Tudo certo',
           'received.doneText' => 'Que bom que você leu com calma.',
           'received.emptyTitle' => 'Nada novo',
+          'received.emptyText' => 'Quando seu par mandar algo, aparece aqui.',
           _ => null,
         } ??
         switch (path) {
-          'received.emptyText' => 'Quando seu par mandar algo, aparece aqui.',
           'received.close' => 'Fechar',
           'received.errorTitle' => 'Não deu para abrir',
           'received.errorText' => 'Nada se perdeu. Tente de novo.',
@@ -12162,10 +12156,10 @@ extension on Translations {
           'tabs.capture' => 'Novo slip',
           'tabs.soonTitle' => 'Em construção',
           'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
+          'tabs.segmentTogether' => 'Nós',
           _ => null,
         } ??
         switch (path) {
-          'tabs.segmentTogether' => 'Nós',
           'tabs.forMeFooter' => 'Ferramentas privadas. Nunca compartilhadas.',
           'tabs.segmentForMe' => 'Para mim',
           'tabs.checkinLabel' => 'CHECK-IN',
