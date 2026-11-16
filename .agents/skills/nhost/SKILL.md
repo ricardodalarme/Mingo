@@ -47,14 +47,14 @@ nhost/
   seeds/default/*.sql             # reference data, applied with `nhost up --apply-seeds`
   schema/<role>.graphqls          # per-role contract snapshots
   tests/                          # backend tests, see references/testing.md
-  tools/                          # up.sh, reset.sh, build-metadata.mjs, metadata-spec.mjs, dump-schemas.sh, schema-diff.sh
+  tools/                          # up.sh, reset.sh, build-metadata.mjs, metadata-spec.mjs + spec/<domain>.mjs, dump-schemas.sh, schema-diff.sh
   run/<service>.toml              # Nhost Run services, if any
 functions/                        # Nhost Functions (Node), one file = one endpoint
 .secrets                          # local secrets, never committed
 .nhost/                           # CLI state, never committed
 ```
 
-Keep `.secrets` and `.nhost/` in `.gitignore`. Secrets are referenced from `nhost.toml` as `{{ secrets.NAME }}`. The authorization model is generated: edit `nhost/tools/metadata-spec.mjs`, run `node nhost/tools/build-metadata.mjs`, then `nhost/tools/up.sh`. Never hand-edit `nhost/metadata/databases/default/{tables,functions}`.
+Keep `.secrets` and `.nhost/` in `.gitignore`. Secrets are referenced from `nhost.toml` as `{{ secrets.NAME }}`. The authorization model is generated: edit the domain file in `nhost/tools/spec/` (`<domain>.mjs` holds that domain's tables and tracked functions, `_shared.mjs` the helpers; `metadata-spec.mjs` only composes them), run `node nhost/tools/build-metadata.mjs`, then `nhost/tools/up.sh`. Never hand-edit `nhost/metadata/databases/default/{tables,functions}`.
 
 ## Daily commands
 
@@ -77,7 +77,7 @@ Local endpoints: Hasura `localhost:8080`, Auth `localhost:4000`, Storage `localh
 ## Workflow for any backend change
 
 1. Read the doc page for every Nhost feature you touch.
-2. Change it on the local stack, then capture it as files: SQL in `nhost/migrations`, metadata via `metadata-spec.mjs`, config in `nhost/nhost.toml`, code in `functions/`.
+2. Change it on the local stack, then capture it as files: SQL in `nhost/migrations`, metadata via `nhost/tools/spec/<domain>.mjs`, config in `nhost/nhost.toml`, code in `functions/`.
 3. Prove it from a clean state: `nhost/tools/reset.sh`, then the tests (`references/testing.md`).
 4. Re-dump the per-role schema snapshots and read the diff; a contract change is intentional or it is a bug.
 5. Cloud changes (config apply, deployments, secrets, projects) only after the local proof, and record exactly what changed.

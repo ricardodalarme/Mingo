@@ -1,4 +1,4 @@
-// Generates the Hasura metadata of the app's tables and functions from the spec in `metadata-spec.mjs`.
+// Generates the Hasura metadata of the app's tables and functions from the spec in `metadata-spec.mjs` (composed from `spec/<domain>.mjs`).
 // Column names come from the local database, so run it against a stack with every migration applied:
 //   node nhost/tools/build-metadata.mjs
 // It rewrites `nhost/metadata/databases/default/{tables,functions}`; the `auth_*` and `storage_*` files that Nhost

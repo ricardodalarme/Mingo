@@ -127,7 +127,7 @@ Never write the old separate form (`const SlipCard({required this.slip});` in th
 - **No invented server data.** `Model.fake` values exist only as skeleton placeholders behind `Skeletonizer`; never render them as
   real records. `nhost/seeds/default/` is development reference data.
 - **Backend changes come first.** A feature that needs a new table, query or mutation adds a migration under
-  `nhost/migrations/default/` and a permission entry in `nhost/tools/metadata-spec.mjs`; ask before inventing one. New tables need explicit
+  `nhost/migrations/default/` and a permission entry in the domain file under `nhost/tools/spec/`; ask before inventing one. New tables need explicit
   permissions and relationships.
 - **Notifications are created by the backend.** Clients read and update only `notificationSettings` and `notificationMutes`, read and mark read
   their own `inboxItems`, register a push token through `insertDevicesOne`, and never read tokens or the notification queue.
