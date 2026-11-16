@@ -57,6 +57,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$account$pt account = Translations$account$pt.internal(_root);
+  late final Translations$annoyanceCheck$pt annoyanceCheck =
+      Translations$annoyanceCheck$pt.internal(_root);
   late final Translations$authentication$pt authentication =
       Translations$authentication$pt.internal(_root);
   late final Translations$capsules$pt capsules = Translations$capsules$pt.internal(_root);
@@ -84,6 +86,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$gentleRequest$pt gentleRequest = Translations$gentleRequest$pt.internal(
     _root,
   );
+  late final Translations$gentleRequestDetail$pt gentleRequestDetail =
+      Translations$gentleRequestDetail$pt.internal(_root);
   late final Translations$gifts$pt gifts = Translations$gifts$pt.internal(_root);
   late final Translations$globalErrors$pt globalErrors = Translations$globalErrors$pt.internal(
     _root,
@@ -338,6 +342,76 @@ class Translations$account$pt {
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para concluir agora. Tente de novo.',
+  };
+}
+
+// Path: annoyanceCheck
+class Translations$annoyanceCheck$pt {
+  Translations$annoyanceCheck$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Isso ainda incomoda?'
+  String get title => 'Isso ainda incomoda?';
+
+  /// pt: 'incomoda'
+  String get titleHighlight => 'incomoda';
+
+  /// pt: 'Você anotou há {days} dias · some em {left} dias'
+  String age({required Object days, required Object left}) =>
+      'Você anotou há ${days} dias · some em ${left} dias';
+
+  /// pt: 'Conversar sobre isso'
+  String get talkTitle => 'Conversar sobre isso';
+
+  /// pt: 'Escrever um pedido gentil'
+  String get talkText => 'Escrever um pedido gentil';
+
+  /// pt: 'Falar com a Conversa'
+  String get chatTitle => 'Falar com a Conversa';
+
+  /// pt: 'Só você e o chat'
+  String get chatText => 'Só você e o chat';
+
+  /// pt: 'Deixar ir'
+  String get letGoTitle => 'Deixar ir';
+
+  /// pt: 'Apagar agora, sem aviso a ninguém'
+  String get letGoText => 'Apagar agora, sem aviso a ninguém';
+
+  /// pt: 'Coisas boas ficam para sempre. O que incomodou some sozinho, se você não fizer nada.'
+  String get note =>
+      'Coisas boas ficam para sempre. O que incomodou some sozinho, se você não fizer nada.';
+
+  /// pt: 'Deixar ir?'
+  String get letGoConfirmTitle => 'Deixar ir?';
+
+  /// pt: 'A anotação é apagada agora e ninguém é avisado.'
+  String get letGoConfirmText => 'A anotação é apagada agora e ninguém é avisado.';
+
+  /// pt: 'Apagar agora'
+  String get letGoConfirm => 'Apagar agora';
+
+  /// pt: 'Anotação apagada'
+  String get letGoDone => 'Anotação apagada';
+
+  /// pt: 'Essa anotação já saiu'
+  String get goneTitle => 'Essa anotação já saiu';
+
+  /// pt: 'Ela expirou, foi apagada ou virou um pedido.'
+  String get goneText => 'Ela expirou, foi apagada ou virou um pedido.';
+
+  /// pt: 'Fechar'
+  String get close => 'Fechar';
+
+  /// pt: 'Não deu para abrir a anotação'
+  String get errorTitle => 'Não deu para abrir a anotação';
+
+  Map<String, String> get errors => {
+    'NETWORK': 'Sem conexão. Tente de novo.',
+    'other': 'Algo deu errado. Tente de novo.',
   };
 }
 
@@ -1918,6 +1992,69 @@ class Translations$gentleRequest$pt {
   };
 }
 
+// Path: gentleRequestDetail
+class Translations$gentleRequestDetail$pt {
+  Translations$gentleRequestDetail$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'sua pessoa'
+  String get partnerFallback => 'sua pessoa';
+
+  /// pt: 'Você escreveu para {name}.'
+  String fromYou({required Object name}) => 'Você escreveu para ${name}.';
+
+  /// pt: '{name} escreveu para você.'
+  String toYou({required Object name}) => '${name} escreveu para você.';
+
+  /// pt: 'Como você quer responder?'
+  String get answerTitle => 'Como você quer responder?';
+
+  Map<String, String> get responses => {
+    'willDo': 'Vou providenciar',
+    'later': 'Mais tarde',
+    'notNow': 'Agora não',
+    'talk': 'Quero conversar',
+    'moreTime': 'Preciso de mais tempo',
+    'other': '',
+  };
+
+  /// pt: '{name} respondeu: {answer}'
+  String answeredBy({required Object name, required Object answer}) =>
+      '${name} respondeu: ${answer}';
+
+  /// pt: 'Você respondeu: {answer}'
+  String youAnswered({required Object answer}) => 'Você respondeu: ${answer}';
+
+  /// pt: 'Ainda sem resposta.'
+  String get waiting => 'Ainda sem resposta.';
+
+  /// pt: 'Agradecer'
+  String get thankAction => 'Agradecer';
+
+  /// pt: 'Você agradeceu. O agradecimento virou um slip seu.'
+  String get thanked => 'Você agradeceu. O agradecimento virou um slip seu.';
+
+  /// pt: '{name} cuidou disso: {wish}'
+  String thankBody({required Object name, required Object wish}) => '${name} cuidou disso: ${wish}';
+
+  /// pt: 'Esse pedido já saiu'
+  String get goneTitle => 'Esse pedido já saiu';
+
+  /// pt: 'Ele foi respondido há mais de 7 dias ou não existe mais.'
+  String get goneText => 'Ele foi respondido há mais de 7 dias ou não existe mais.';
+
+  /// pt: 'Não deu para abrir o pedido'
+  String get errorTitle => 'Não deu para abrir o pedido';
+
+  Map<String, String> get errors => {
+    'NETWORK': 'Sem conexão. Tente de novo.',
+    'other': 'Algo deu errado. Tente de novo.',
+  };
+}
+
 // Path: gifts
 class Translations$gifts$pt {
   Translations$gifts$pt.internal(this._root);
@@ -3135,6 +3272,57 @@ class Translations$inbox$pt {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'other': 'Algo deu errado. Tente de novo.',
   };
+
+  /// pt: '{name} escreveu um pedido gentil'
+  String gentleRequestTitle({required Object name}) => '${name} escreveu um pedido gentil';
+
+  /// pt: '{name} respondeu seu pedido'
+  String gentleRequestAnsweredTitle({required Object name}) => '${name} respondeu seu pedido';
+
+  /// pt: 'Isso ainda incomoda?'
+  String get annoyanceCheckTitle => 'Isso ainda incomoda?';
+
+  /// pt: 'Uma anotação sua some em breve'
+  String get annoyanceCheckText => 'Uma anotação sua some em breve';
+
+  /// pt: '{name} mostrou um quiz'
+  String quizSharedTitle({required Object name}) => '${name} mostrou um quiz';
+
+  /// pt: 'Um convite do Tempero'
+  String get spiceInviteTitle => 'Um convite do Tempero';
+
+  /// pt: 'Só aparece se vocês dois ligarem'
+  String get spiceInviteText => 'Só aparece se vocês dois ligarem';
+
+  /// pt: 'O Tempero foi desligado'
+  String get spiceOffTitle => 'O Tempero foi desligado';
+
+  /// pt: 'Nada do modo ficou guardado'
+  String get spiceOffText => 'Nada do modo ficou guardado';
+
+  /// pt: '{name} quer guardar uma memória com você'
+  String memoryProposedTitle({required Object name}) => '${name} quer guardar uma memória com você';
+
+  /// pt: '{name} aceitou a memória'
+  String memoryAcceptedTitle({required Object name}) => '${name} aceitou a memória';
+
+  /// pt: '{name} preferiu não guardar a memória'
+  String memoryDeclinedTitle({required Object name}) => '${name} preferiu não guardar a memória';
+
+  /// pt: 'Ela deixou de ser compartilhada'
+  String get memoryDeclinedText => 'Ela deixou de ser compartilhada';
+
+  /// pt: 'Há um problema com o pagamento do Plus'
+  String get plusBillingIssueTitle => 'Há um problema com o pagamento do Plus';
+
+  /// pt: 'Veja o que fazer para continuar'
+  String get plusBillingIssueText => 'Veja o que fazer para continuar';
+
+  /// pt: 'A cobertura do Plus terminou'
+  String get plusCoverageEndedTitle => 'A cobertura do Plus terminou';
+
+  /// pt: 'Você mantém tudo que já criou'
+  String get plusCoverageEndedText => 'Você mantém tudo que já criou';
 }
 
 // Path: intro
@@ -9422,6 +9610,30 @@ extension on Translations {
           'account.months.11' => 'dez',
           'account.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'account.errors.other' => 'Não deu para concluir agora. Tente de novo.',
+          'annoyanceCheck.title' => 'Isso ainda incomoda?',
+          'annoyanceCheck.titleHighlight' => 'incomoda',
+          'annoyanceCheck.age' => ({
+            required Object days,
+            required Object left,
+          }) => 'Você anotou há ${days} dias · some em ${left} dias',
+          'annoyanceCheck.talkTitle' => 'Conversar sobre isso',
+          'annoyanceCheck.talkText' => 'Escrever um pedido gentil',
+          'annoyanceCheck.chatTitle' => 'Falar com a Conversa',
+          'annoyanceCheck.chatText' => 'Só você e o chat',
+          'annoyanceCheck.letGoTitle' => 'Deixar ir',
+          'annoyanceCheck.letGoText' => 'Apagar agora, sem aviso a ninguém',
+          'annoyanceCheck.note' =>
+            'Coisas boas ficam para sempre. O que incomodou some sozinho, se você não fizer nada.',
+          'annoyanceCheck.letGoConfirmTitle' => 'Deixar ir?',
+          'annoyanceCheck.letGoConfirmText' => 'A anotação é apagada agora e ninguém é avisado.',
+          'annoyanceCheck.letGoConfirm' => 'Apagar agora',
+          'annoyanceCheck.letGoDone' => 'Anotação apagada',
+          'annoyanceCheck.goneTitle' => 'Essa anotação já saiu',
+          'annoyanceCheck.goneText' => 'Ela expirou, foi apagada ou virou um pedido.',
+          'annoyanceCheck.close' => 'Fechar',
+          'annoyanceCheck.errorTitle' => 'Não deu para abrir a anotação',
+          'annoyanceCheck.errors.NETWORK' => 'Sem conexão. Tente de novo.',
+          'annoyanceCheck.errors.other' => 'Algo deu errado. Tente de novo.',
           'authentication.signInTitle' => 'Entrar',
           'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
           'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
@@ -9934,6 +10146,9 @@ extension on Translations {
           'dates.given' => 'Já dei',
           'dates.emptyGiftsTitle' => 'Nenhuma ideia ainda',
           'dates.emptyGiftsText' => 'Anote presentes quando pensar neles.',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.emptyHolidaysTitle' => 'Sem feriados por aqui',
           'dates.emptyHolidaysText' => 'O calendário ainda não tem feriados para você.',
           'dates.errorTitle' => 'Não deu para carregar',
@@ -9958,9 +10173,6 @@ extension on Translations {
           'day.months.10' => 'novembro',
           'day.months.11' => 'dezembro',
           'day.previous' => 'Dia anterior',
-          _ => null,
-        } ??
-        switch (path) {
           'day.next' => 'Próximo dia',
           'day.planned' => 'Encontro planejado',
           'day.emptyTitle' => 'Nada marcado neste dia',
@@ -10286,6 +10498,38 @@ extension on Translations {
           'gentleRequest.errors.NOT_PAIRED' => 'Um pedido gentil precisa de uma pessoa conectada.',
           'gentleRequest.errors.NETWORK' => 'Sem conexão. Tente de novo.',
           'gentleRequest.errors.other' => 'Não deu para enviar agora. Tente de novo.',
+          'gentleRequestDetail.partnerFallback' => 'sua pessoa',
+          'gentleRequestDetail.fromYou' => ({
+            required Object name,
+          }) => 'Você escreveu para ${name}.',
+          'gentleRequestDetail.toYou' => ({required Object name}) => '${name} escreveu para você.',
+          'gentleRequestDetail.answerTitle' => 'Como você quer responder?',
+          'gentleRequestDetail.responses.willDo' => 'Vou providenciar',
+          'gentleRequestDetail.responses.later' => 'Mais tarde',
+          'gentleRequestDetail.responses.notNow' => 'Agora não',
+          'gentleRequestDetail.responses.talk' => 'Quero conversar',
+          'gentleRequestDetail.responses.moreTime' => 'Preciso de mais tempo',
+          'gentleRequestDetail.responses.other' => '',
+          'gentleRequestDetail.answeredBy' => ({
+            required Object name,
+            required Object answer,
+          }) => '${name} respondeu: ${answer}',
+          'gentleRequestDetail.youAnswered' => ({
+            required Object answer,
+          }) => 'Você respondeu: ${answer}',
+          'gentleRequestDetail.waiting' => 'Ainda sem resposta.',
+          'gentleRequestDetail.thankAction' => 'Agradecer',
+          'gentleRequestDetail.thanked' => 'Você agradeceu. O agradecimento virou um slip seu.',
+          'gentleRequestDetail.thankBody' => ({
+            required Object name,
+            required Object wish,
+          }) => '${name} cuidou disso: ${wish}',
+          'gentleRequestDetail.goneTitle' => 'Esse pedido já saiu',
+          'gentleRequestDetail.goneText' =>
+            'Ele foi respondido há mais de 7 dias ou não existe mais.',
+          'gentleRequestDetail.errorTitle' => 'Não deu para abrir o pedido',
+          'gentleRequestDetail.errors.NETWORK' => 'Sem conexão. Tente de novo.',
+          'gentleRequestDetail.errors.other' => 'Algo deu errado. Tente de novo.',
           'gifts.title' => 'Página de presentes',
           'gifts.subtitle' => 'Uma página que seu par vê no app. Você escolhe o que compartilhar.',
           'gifts.myTitle' => 'Meus desejos',
@@ -10559,6 +10803,9 @@ extension on Translations {
                   one: 'fim de semana',
                   other: 'fins de semana',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'history.statChristmases' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
@@ -10612,9 +10859,6 @@ extension on Translations {
           'history.monthsLong.7' => 'agosto',
           'history.monthsLong.8' => 'setembro',
           'history.monthsLong.9' => 'outubro',
-          _ => null,
-        } ??
-        switch (path) {
           'history.monthsLong.10' => 'novembro',
           'history.monthsLong.11' => 'dezembro',
           'history.fullDate' => ({
@@ -10848,6 +11092,31 @@ extension on Translations {
           'inbox.capsuleOpenedText' => 'Veja o que vocês guardaram',
           'inbox.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'inbox.errors.other' => 'Algo deu errado. Tente de novo.',
+          'inbox.gentleRequestTitle' => ({
+            required Object name,
+          }) => '${name} escreveu um pedido gentil',
+          'inbox.gentleRequestAnsweredTitle' => ({
+            required Object name,
+          }) => '${name} respondeu seu pedido',
+          'inbox.annoyanceCheckTitle' => 'Isso ainda incomoda?',
+          'inbox.annoyanceCheckText' => 'Uma anotação sua some em breve',
+          'inbox.quizSharedTitle' => ({required Object name}) => '${name} mostrou um quiz',
+          'inbox.spiceInviteTitle' => 'Um convite do Tempero',
+          'inbox.spiceInviteText' => 'Só aparece se vocês dois ligarem',
+          'inbox.spiceOffTitle' => 'O Tempero foi desligado',
+          'inbox.spiceOffText' => 'Nada do modo ficou guardado',
+          'inbox.memoryProposedTitle' => ({
+            required Object name,
+          }) => '${name} quer guardar uma memória com você',
+          'inbox.memoryAcceptedTitle' => ({required Object name}) => '${name} aceitou a memória',
+          'inbox.memoryDeclinedTitle' => ({
+            required Object name,
+          }) => '${name} preferiu não guardar a memória',
+          'inbox.memoryDeclinedText' => 'Ela deixou de ser compartilhada',
+          'inbox.plusBillingIssueTitle' => 'Há um problema com o pagamento do Plus',
+          'inbox.plusBillingIssueText' => 'Veja o que fazer para continuar',
+          'inbox.plusCoverageEndedTitle' => 'A cobertura do Plus terminou',
+          'inbox.plusCoverageEndedText' => 'Você mantém tudo que já criou',
           'intro.skip' => 'Pular',
           'intro.continueButton' => 'Continuar',
           'intro.phase.title' => 'Onde vocês estão agora?',
@@ -11177,6 +11446,9 @@ extension on Translations {
           'memories.emptyText' => 'Guarde momentos que vocês querem rever.',
           'memories.errorTitle' => 'Não deu para carregar',
           'memories.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
           'memories.jarEmptyTitle' => 'O potinho está vazio',
@@ -11244,9 +11516,6 @@ extension on Translations {
             required Object name,
           }) => '${name} está com vontade de brincar hoje',
           'mood.partnerNeedListen' => 'O que ajuda: só ouvir.',
-          _ => null,
-        } ??
-        switch (path) {
           'mood.partnerNeedOpinion' => 'O que ajuda: uma opinião.',
           'mood.partnerNeedHug' => 'O que ajuda: um abraço.',
           'mood.partnerNeedSpace' => 'O que ajuda: um pouco de espaço.',
@@ -11775,6 +12044,9 @@ extension on Translations {
           }) => '${day} ${month} ${year}',
           'programs.moods.calm' => 'Em paz',
           'programs.moods.tender' => 'Acolhido(a)',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.moods.tired' => 'Cansado(a)',
           'programs.moods.heavy' => 'Pesado',
           'programs.moods.other' => 'Como estou',
@@ -11839,9 +12111,6 @@ extension on Translations {
           'quickSlip.monthsShort.2' => 'mar',
           'quickSlip.monthsShort.3' => 'abr',
           'quickSlip.monthsShort.4' => 'mai',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.monthsShort.5' => 'jun',
           'quickSlip.monthsShort.6' => 'jul',
           'quickSlip.monthsShort.7' => 'ago',
@@ -12341,6 +12610,9 @@ extension on Translations {
           'slipKind.saved.added' => 'Registrado.',
           'slipKind.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
           'slipKind.saved.done' => 'Pronto',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.errors.FREE_LIMIT_REACHED' => 'Você chegou ao limite de slips do plano grátis.',
           'slipKind.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'slipKind.errors.other' =>
@@ -12409,9 +12681,6 @@ extension on Translations {
           'spice.offText' => 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.',
           'spice.turnOn' => 'Ligar',
           'spice.notNow' => 'Agora não',
-          _ => null,
-        } ??
-        switch (path) {
           'spice.waitingText' => 'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.',
           'spice.readyText' => 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.',
           'spice.drawCard' => 'Tirar uma carta',

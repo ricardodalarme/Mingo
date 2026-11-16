@@ -1,5 +1,6 @@
 import 'package:app/features/notifications/data/models/inbox_item.dart';
 import 'package:app/features/notifications/presentation/inbox/widgets/inbox_copy.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 
 /// A titled group of notifications; [timeLabel] formats the time shown on each row.
@@ -44,6 +45,7 @@ class const _InboxRow({
   @override
   Widget build(BuildContext context) {
     final copy = inboxCopyFor(context, item, partnerName);
+    final route = inboxRouteFor(item);
 
     return BaseListTile(
       leading: BaseIconTile(icon: copy.icon),
@@ -51,6 +53,8 @@ class const _InboxRow({
       subtitle: copy.subtitle,
       value: timeLabel,
       trailing: item.isRead ? null : const _UnreadDot(),
+      showsChevron: item.isRead && route != null,
+      onTap: route == null ? null : () => context.pushRoute(route),
       showsDivider: showsDivider,
     );
   }

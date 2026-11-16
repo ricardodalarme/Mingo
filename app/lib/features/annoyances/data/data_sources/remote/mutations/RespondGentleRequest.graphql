@@ -1,0 +1,5 @@
+mutation RespondGentleRequest($id: uuid!, $response: String!, $seenAt: timestamptz!) {
+  updateGentleRequestsByPk(pk_columns: { id: $id }, _set: { response: $response, seenAt: $seenAt }) {
+    id
+  }
+}

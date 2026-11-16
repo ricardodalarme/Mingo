@@ -20,7 +20,7 @@ final class const Annoyance({
 
   /// Whole days left before it disappears, at [now]; never below zero.
   int daysLeft(DateTime now) {
-    final left = expiresAt.difference(now).inDays;
+    final left = (expiresAt.difference(now).inHours / 24).ceil();
 
     return left < 0 ? 0 : left;
   }

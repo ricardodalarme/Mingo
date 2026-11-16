@@ -1,5 +1,8 @@
 import 'package:app/features/annoyances/data/data_sources/remote/annoyance_data_source.dart';
+import 'package:app/features/annoyances/data/mappers/gentle_response_mapper.dart';
 import 'package:app/features/annoyances/data/models/annoyance.dart';
+import 'package:app/features/annoyances/data/models/gentle_request.dart';
+import 'package:app/features/annoyances/data/models/gentle_response.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
@@ -68,6 +71,60 @@ class AnnoyanceRepository({required final AnnoyanceDataSource _dataSource}) {
       if (!sent) throw const LocalizedException(l10nKey: 'NOT_PAIRED');
     } catch (e, stack) {
       _logger.error('Failed to send a gentle request', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  Future<GentleRequest?> getGentleRequest(String id) async {
+    try {
+      final row = await _dataSource.getGentleRequest(id);
+      if (row == null) return null;
+
+      return GentleRequest(
+        id: row.id,
+        whenText: row.whenText,
+        feelText: row.feelText,
+        wishText: row.wishText,
+        senderId: row.senderId,
+        recipientId: row.recipientId,
+        createdAt: row.createdAt,
+        response: row.response?.toGentleResponse(),
+        seenAt: row.seenAt,
+        thankedAt: row.thankedAt,
+        senderName: row.sender.displayName,
+        recipientName: row.recipient.displayName,
+      );
+    } catch (e, stack) {
+      _logger.error('Failed to load a gentle request', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Answers a request that was sent to the person.
+  Future<void> respond({required String id, required GentleResponse response}) async {
+    try {
+      await _dataSource.respond(id: id, response: response.toRemote());
+    } catch (e, stack) {
+      _logger.error('Failed to answer a gentle request', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Notes that the recipient opened the request.
+  Future<void> markSeen(String id) async {
+    try {
+      await _dataSource.markSeen(id);
+    } catch (e, stack) {
+      _logger.error('Failed to mark a gentle request seen', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  Future<void> thank({required String requestId, required String body}) async {
+    try {
+      await _dataSource.thank(requestId: requestId, body: body.trim());
+    } catch (e, stack) {
+      _logger.error('Failed to thank for a gentle request', error: e, stackTrace: stack);
       rethrow;
     }
   }

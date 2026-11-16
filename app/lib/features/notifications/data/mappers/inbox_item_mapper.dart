@@ -8,6 +8,6 @@ extension InboxItemRowMapper on QueryMyInboxinboxItems {
     final kind = type.toModel();
     if (kind == null) return null;
 
-    return InboxItem(id: id, kind: kind, createdAt: createdAt, readAt: readAt);
+    return InboxItem(id: id, kind: kind, createdAt: createdAt, readAt: readAt, refId: refId);
   }
 }

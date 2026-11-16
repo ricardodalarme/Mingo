@@ -7,6 +7,7 @@ final class const InboxItem({
   required final NotificationKind kind,
   required final DateTime createdAt,
   final DateTime? readAt,
+  final String? refId,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() => InboxItem(
@@ -18,5 +19,5 @@ final class const InboxItem({
   bool get isRead => readAt != null;
 
   @override
-  List<Object?> get props => [id, kind, createdAt, readAt];
+  List<Object?> get props => [id, kind, createdAt, readAt, refId];
 }

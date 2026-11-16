@@ -1,0 +1,27 @@
+{
+  "partnerFallback": "sua pessoa",
+  "fromYou": "Você escreveu para {name}.",
+  "toYou": "{name} escreveu para você.",
+  "answerTitle": "Como você quer responder?",
+  "responses(map)": {
+    "willDo": "Vou providenciar",
+    "later": "Mais tarde",
+    "notNow": "Agora não",
+    "talk": "Quero conversar",
+    "moreTime": "Preciso de mais tempo",
+    "other": ""
+  },
+  "answeredBy": "{name} respondeu: {answer}",
+  "youAnswered": "Você respondeu: {answer}",
+  "waiting": "Ainda sem resposta.",
+  "thankAction": "Agradecer",
+  "thanked": "Você agradeceu. O agradecimento virou um slip seu.",
+  "thankBody": "{name} cuidou disso: {wish}",
+  "goneTitle": "Esse pedido já saiu",
+  "goneText": "Ele foi respondido há mais de 7 dias ou não existe mais.",
+  "errorTitle": "Não deu para abrir o pedido",
+  "errors(map)": {
+    "NETWORK": "Sem conexão. Tente de novo.",
+    "other": "Algo deu errado. Tente de novo."
+  }
+}

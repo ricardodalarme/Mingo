@@ -56,6 +56,10 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$account$en account = _Translations$account$en._(_root);
   @override
+  late final _Translations$annoyanceCheck$en annoyanceCheck = _Translations$annoyanceCheck$en._(
+    _root,
+  );
+  @override
   late final _Translations$authentication$en authentication = _Translations$authentication$en._(
     _root,
   );
@@ -97,6 +101,9 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$games$en games = _Translations$games$en._(_root);
   @override
   late final _Translations$gentleRequest$en gentleRequest = _Translations$gentleRequest$en._(_root);
+  @override
+  late final _Translations$gentleRequestDetail$en gentleRequestDetail =
+      _Translations$gentleRequestDetail$en._(_root);
   @override
   late final _Translations$gifts$en gifts = _Translations$gifts$en._(_root);
   @override
@@ -366,6 +373,58 @@ class _Translations$account$en extends Translations$account$pt {
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'Could not finish now. Try again.',
+  };
+}
+
+// Path: annoyanceCheck
+class _Translations$annoyanceCheck$en extends Translations$annoyanceCheck$pt {
+  _Translations$annoyanceCheck$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Does this still bother you?';
+  @override
+  String get titleHighlight => 'bother';
+  @override
+  String age({required Object days, required Object left}) =>
+      'You wrote it ${days} days ago · gone in ${left} days';
+  @override
+  String get talkTitle => 'Talk about it';
+  @override
+  String get talkText => 'Write a gentle request';
+  @override
+  String get chatTitle => 'Talk to the chat';
+  @override
+  String get chatText => 'Only you and the chat';
+  @override
+  String get letGoTitle => 'Let it go';
+  @override
+  String get letGoText => 'Delete now, without telling anyone';
+  @override
+  String get note =>
+      'Good things stay forever. What bothered you goes away on its own if you do nothing.';
+  @override
+  String get letGoConfirmTitle => 'Let it go?';
+  @override
+  String get letGoConfirmText => 'The note is deleted now and nobody is told.';
+  @override
+  String get letGoConfirm => 'Delete now';
+  @override
+  String get letGoDone => 'Note deleted';
+  @override
+  String get goneTitle => 'That note is gone';
+  @override
+  String get goneText => 'It expired, was deleted or became a request.';
+  @override
+  String get close => 'Close';
+  @override
+  String get errorTitle => 'We could not open the note';
+  @override
+  Map<String, String> get errors => {
+    'NETWORK': 'No connection. Try again.',
+    'other': 'Something went wrong. Try again.',
   };
 }
 
@@ -1660,6 +1719,59 @@ class _Translations$gentleRequest$en extends Translations$gentleRequest$pt {
   };
 }
 
+// Path: gentleRequestDetail
+class _Translations$gentleRequestDetail$en extends Translations$gentleRequestDetail$pt {
+  _Translations$gentleRequestDetail$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get partnerFallback => 'your person';
+  @override
+  String fromYou({required Object name}) => 'You wrote to ${name}.';
+  @override
+  String toYou({required Object name}) => '${name} wrote to you.';
+  @override
+  String get answerTitle => 'How do you want to answer?';
+  @override
+  Map<String, String> get responses => {
+    'willDo': 'I will take care of it',
+    'later': 'Later',
+    'notNow': 'Not now',
+    'talk': 'I want to talk',
+    'moreTime': 'I need more time',
+    'other': '',
+  };
+  @override
+  String answeredBy({required Object name, required Object answer}) =>
+      '${name} answered: ${answer}';
+  @override
+  String youAnswered({required Object answer}) => 'You answered: ${answer}';
+  @override
+  String get waiting => 'No answer yet.';
+  @override
+  String get thankAction => 'Say thanks';
+  @override
+  String get thanked => 'You said thanks. It became a slip of yours.';
+  @override
+  String thankBody({required Object name, required Object wish}) =>
+      '${name} took care of it: ${wish}';
+  @override
+  String get goneTitle => 'That request is gone';
+  @override
+  String get goneText => 'It was answered more than 7 days ago or no longer exists.';
+  @override
+  String get errorTitle => 'We could not open the request';
+  @override
+  Map<String, String> get errors => {
+    'NETWORK': 'No connection. Try again.',
+    'other': 'Something went wrong. Try again.',
+  };
+}
+
 // Path: gifts
 class _Translations$gifts$en extends Translations$gifts$pt {
   _Translations$gifts$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -2586,6 +2698,40 @@ class _Translations$inbox$en extends Translations$inbox$pt {
     'NETWORK': 'No connection. Check the internet and try again.',
     'other': 'Something went wrong. Try again.',
   };
+  @override
+  String gentleRequestTitle({required Object name}) => '${name} wrote a gentle request';
+  @override
+  String gentleRequestAnsweredTitle({required Object name}) => '${name} answered your request';
+  @override
+  String get annoyanceCheckTitle => 'Does this still bother you?';
+  @override
+  String get annoyanceCheckText => 'One of your notes goes away soon';
+  @override
+  String quizSharedTitle({required Object name}) => '${name} showed a quiz';
+  @override
+  String get spiceInviteTitle => 'An invite from Tempero';
+  @override
+  String get spiceInviteText => 'It only shows up if you both turn it on';
+  @override
+  String get spiceOffTitle => 'Tempero was turned off';
+  @override
+  String get spiceOffText => 'Nothing from the mode was kept';
+  @override
+  String memoryProposedTitle({required Object name}) => '${name} wants to keep a memory with you';
+  @override
+  String memoryAcceptedTitle({required Object name}) => '${name} accepted the memory';
+  @override
+  String memoryDeclinedTitle({required Object name}) => '${name} preferred not to keep the memory';
+  @override
+  String get memoryDeclinedText => 'It is no longer shared';
+  @override
+  String get plusBillingIssueTitle => 'There is a problem with the Plus payment';
+  @override
+  String get plusBillingIssueText => 'See what to do to keep it';
+  @override
+  String get plusCoverageEndedTitle => 'Plus coverage ended';
+  @override
+  String get plusCoverageEndedText => 'You keep everything you created';
 }
 
 // Path: intro
@@ -7591,6 +7737,30 @@ extension on TranslationsEn {
           'account.months.11' => 'Dec',
           'account.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'account.errors.other' => 'Could not finish now. Try again.',
+          'annoyanceCheck.title' => 'Does this still bother you?',
+          'annoyanceCheck.titleHighlight' => 'bother',
+          'annoyanceCheck.age' => ({
+            required Object days,
+            required Object left,
+          }) => 'You wrote it ${days} days ago · gone in ${left} days',
+          'annoyanceCheck.talkTitle' => 'Talk about it',
+          'annoyanceCheck.talkText' => 'Write a gentle request',
+          'annoyanceCheck.chatTitle' => 'Talk to the chat',
+          'annoyanceCheck.chatText' => 'Only you and the chat',
+          'annoyanceCheck.letGoTitle' => 'Let it go',
+          'annoyanceCheck.letGoText' => 'Delete now, without telling anyone',
+          'annoyanceCheck.note' =>
+            'Good things stay forever. What bothered you goes away on its own if you do nothing.',
+          'annoyanceCheck.letGoConfirmTitle' => 'Let it go?',
+          'annoyanceCheck.letGoConfirmText' => 'The note is deleted now and nobody is told.',
+          'annoyanceCheck.letGoConfirm' => 'Delete now',
+          'annoyanceCheck.letGoDone' => 'Note deleted',
+          'annoyanceCheck.goneTitle' => 'That note is gone',
+          'annoyanceCheck.goneText' => 'It expired, was deleted or became a request.',
+          'annoyanceCheck.close' => 'Close',
+          'annoyanceCheck.errorTitle' => 'We could not open the note',
+          'annoyanceCheck.errors.NETWORK' => 'No connection. Try again.',
+          'annoyanceCheck.errors.other' => 'Something went wrong. Try again.',
           'authentication.signInTitle' => 'Sign in',
           'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
           'authentication.signInNote' => 'Signing in takes you straight to your Today.',
@@ -8095,6 +8265,9 @@ extension on TranslationsEn {
           'dates.given' => 'Given',
           'dates.emptyGiftsTitle' => 'No ideas yet',
           'dates.emptyGiftsText' => 'Jot down gifts when you think of them.',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.emptyHolidaysTitle' => 'No holidays here',
           'dates.emptyHolidaysText' => 'The calendar has no holidays for you yet.',
           'dates.errorTitle' => 'Couldn\'t load',
@@ -8119,9 +8292,6 @@ extension on TranslationsEn {
           'day.months.10' => 'November',
           'day.months.11' => 'December',
           'day.previous' => 'Previous day',
-          _ => null,
-        } ??
-        switch (path) {
           'day.next' => 'Next day',
           'day.planned' => 'Planned date',
           'day.emptyTitle' => 'Nothing set for this day',
@@ -8448,6 +8618,36 @@ extension on TranslationsEn {
           'gentleRequest.errors.NOT_PAIRED' => 'A gentle request needs a connected person.',
           'gentleRequest.errors.NETWORK' => 'No connection. Try again.',
           'gentleRequest.errors.other' => 'We could not send it now. Try again.',
+          'gentleRequestDetail.partnerFallback' => 'your person',
+          'gentleRequestDetail.fromYou' => ({required Object name}) => 'You wrote to ${name}.',
+          'gentleRequestDetail.toYou' => ({required Object name}) => '${name} wrote to you.',
+          'gentleRequestDetail.answerTitle' => 'How do you want to answer?',
+          'gentleRequestDetail.responses.willDo' => 'I will take care of it',
+          'gentleRequestDetail.responses.later' => 'Later',
+          'gentleRequestDetail.responses.notNow' => 'Not now',
+          'gentleRequestDetail.responses.talk' => 'I want to talk',
+          'gentleRequestDetail.responses.moreTime' => 'I need more time',
+          'gentleRequestDetail.responses.other' => '',
+          'gentleRequestDetail.answeredBy' => ({
+            required Object name,
+            required Object answer,
+          }) => '${name} answered: ${answer}',
+          'gentleRequestDetail.youAnswered' => ({
+            required Object answer,
+          }) => 'You answered: ${answer}',
+          'gentleRequestDetail.waiting' => 'No answer yet.',
+          'gentleRequestDetail.thankAction' => 'Say thanks',
+          'gentleRequestDetail.thanked' => 'You said thanks. It became a slip of yours.',
+          'gentleRequestDetail.thankBody' => ({
+            required Object name,
+            required Object wish,
+          }) => '${name} took care of it: ${wish}',
+          'gentleRequestDetail.goneTitle' => 'That request is gone',
+          'gentleRequestDetail.goneText' =>
+            'It was answered more than 7 days ago or no longer exists.',
+          'gentleRequestDetail.errorTitle' => 'We could not open the request',
+          'gentleRequestDetail.errors.NETWORK' => 'No connection. Try again.',
+          'gentleRequestDetail.errors.other' => 'Something went wrong. Try again.',
           'gifts.title' => 'Gift page',
           'gifts.subtitle' => 'A page your partner can see in the app. You choose what to share.',
           'gifts.myTitle' => 'My wishes',
@@ -8714,6 +8914,9 @@ extension on TranslationsEn {
                   one: 'weekend',
                   other: 'weekends',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'history.statChristmases' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
@@ -8767,9 +8970,6 @@ extension on TranslationsEn {
           'history.monthsLong.7' => 'August',
           'history.monthsLong.8' => 'September',
           'history.monthsLong.9' => 'October',
-          _ => null,
-        } ??
-        switch (path) {
           'history.monthsLong.10' => 'November',
           'history.monthsLong.11' => 'December',
           'history.fullDate' => ({
@@ -9003,6 +9203,31 @@ extension on TranslationsEn {
           'inbox.capsuleOpenedText' => 'See what you kept',
           'inbox.errors.NETWORK' => 'No connection. Check the internet and try again.',
           'inbox.errors.other' => 'Something went wrong. Try again.',
+          'inbox.gentleRequestTitle' => ({
+            required Object name,
+          }) => '${name} wrote a gentle request',
+          'inbox.gentleRequestAnsweredTitle' => ({
+            required Object name,
+          }) => '${name} answered your request',
+          'inbox.annoyanceCheckTitle' => 'Does this still bother you?',
+          'inbox.annoyanceCheckText' => 'One of your notes goes away soon',
+          'inbox.quizSharedTitle' => ({required Object name}) => '${name} showed a quiz',
+          'inbox.spiceInviteTitle' => 'An invite from Tempero',
+          'inbox.spiceInviteText' => 'It only shows up if you both turn it on',
+          'inbox.spiceOffTitle' => 'Tempero was turned off',
+          'inbox.spiceOffText' => 'Nothing from the mode was kept',
+          'inbox.memoryProposedTitle' => ({
+            required Object name,
+          }) => '${name} wants to keep a memory with you',
+          'inbox.memoryAcceptedTitle' => ({required Object name}) => '${name} accepted the memory',
+          'inbox.memoryDeclinedTitle' => ({
+            required Object name,
+          }) => '${name} preferred not to keep the memory',
+          'inbox.memoryDeclinedText' => 'It is no longer shared',
+          'inbox.plusBillingIssueTitle' => 'There is a problem with the Plus payment',
+          'inbox.plusBillingIssueText' => 'See what to do to keep it',
+          'inbox.plusCoverageEndedTitle' => 'Plus coverage ended',
+          'inbox.plusCoverageEndedText' => 'You keep everything you created',
           'intro.skip' => 'Skip',
           'intro.continueButton' => 'Continue',
           'intro.phase.title' => 'Where are you two right now?',
@@ -9336,6 +9561,9 @@ extension on TranslationsEn {
           'memories.emptyText' => 'Keep moments you want to look back on.',
           'memories.errorTitle' => 'Couldn\'t load',
           'memories.errorText' => 'Your memories are still saved. Try again.',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
           'memories.jarEmptyTitle' => 'The jar is empty',
@@ -9398,9 +9626,6 @@ extension on TranslationsEn {
           'mood.partnerLoving' => ({required Object name}) => '${name} is feeling tender today',
           'mood.partnerPlayful' => ({required Object name}) => '${name} is in a playful mood today',
           'mood.partnerNeedListen' => 'What helps: just listening.',
-          _ => null,
-        } ??
-        switch (path) {
           'mood.partnerNeedOpinion' => 'What helps: an opinion.',
           'mood.partnerNeedHug' => 'What helps: a hug.',
           'mood.partnerNeedSpace' => 'What helps: some space.',
@@ -9928,6 +10153,9 @@ extension on TranslationsEn {
           }) => '${month} ${day}, ${year}',
           'programs.moods.calm' => 'At peace',
           'programs.moods.tender' => 'Held',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.moods.tired' => 'Tired',
           'programs.moods.heavy' => 'Heavy',
           'programs.moods.other' => 'How I am',
@@ -9993,9 +10221,6 @@ extension on TranslationsEn {
           'quickSlip.monthsShort.2' => 'Mar',
           'quickSlip.monthsShort.3' => 'Apr',
           'quickSlip.monthsShort.4' => 'May',
-          _ => null,
-        } ??
-        switch (path) {
           'quickSlip.monthsShort.5' => 'Jun',
           'quickSlip.monthsShort.6' => 'Jul',
           'quickSlip.monthsShort.7' => 'Aug',
@@ -10490,6 +10715,9 @@ extension on TranslationsEn {
           'slipKind.saved.queued' =>
             'Saved on this phone. We\'ll send it when the connection is back.',
           'slipKind.saved.done' => 'Done',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'slipKind.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'slipKind.errors.other' =>
@@ -10558,9 +10786,6 @@ extension on TranslationsEn {
           'spice.offText' => 'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.',
           'spice.turnOn' => 'Turn on',
           'spice.notNow' => 'Not now',
-          _ => null,
-        } ??
-        switch (path) {
           'spice.waitingText' => 'You both need to accept. Nothing is sent to your partner; when they turn it on too, the cards show up here.',
           'spice.readyText' => 'Light cards for the two of you. Do it or skip it, no pressure.',
           'spice.drawCard' => 'Draw a card',

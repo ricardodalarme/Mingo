@@ -169,6 +169,13 @@ const documentNodeQueryMyInbox = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'refId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'createdAt'),
                   alias: null,
                   arguments: [],
@@ -330,6 +337,7 @@ class QueryMyInboxinboxItems {
   QueryMyInboxinboxItems({
     required this.id,
     required this.type,
+    this.refId,
     required this.createdAt,
     this.readAt,
     this.$__typename = 'inboxItems',
@@ -338,12 +346,14 @@ class QueryMyInboxinboxItems {
   factory QueryMyInboxinboxItems.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$type = json['type'];
+    final l$refId = json['refId'];
     final l$createdAt = json['createdAt'];
     final l$readAt = json['readAt'];
     final l$$__typename = json['__typename'];
     return QueryMyInboxinboxItems(
       id: (l$id as String),
       type: fromJsonEnumNotificationType_enum((l$type as String)),
+      refId: (l$refId as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
       readAt: l$readAt == null ? null : DateTime.parse((l$readAt as String)),
       $__typename: (l$$__typename as String),
@@ -353,6 +363,8 @@ class QueryMyInboxinboxItems {
   final String id;
 
   final EnumNotificationType_enum type;
+
+  final String? refId;
 
   final DateTime createdAt;
 
@@ -366,6 +378,8 @@ class QueryMyInboxinboxItems {
     _resultData['id'] = l$id;
     final l$type = type;
     _resultData['type'] = toJsonEnumNotificationType_enum(l$type);
+    final l$refId = refId;
+    _resultData['refId'] = l$refId;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$readAt = readAt;
@@ -381,10 +395,11 @@ class QueryMyInboxinboxItems {
   int get hashCode {
     final l$id = id;
     final l$type = type;
+    final l$refId = refId;
     final l$createdAt = createdAt;
     final l$readAt = readAt;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$type, l$createdAt, l$readAt, l$$__typename]);
+    return Object.hashAll([l$id, l$type, l$refId, l$createdAt, l$readAt, l$$__typename]);
   }
 
   @override
@@ -403,6 +418,11 @@ class QueryMyInboxinboxItems {
     final l$type = type;
     final lOther$type = other.type;
     if (l$type != lOther$type) {
+      return false;
+    }
+    final l$refId = refId;
+    final lOther$refId = other.refId;
+    if (l$refId != lOther$refId) {
       return false;
     }
     final l$createdAt = createdAt;

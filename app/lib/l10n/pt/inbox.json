@@ -35,5 +35,22 @@
   "errors(map)": {
     "NETWORK": "Sem conexão. Confira a internet e tente de novo.",
     "other": "Algo deu errado. Tente de novo."
-  }
+  },
+  "gentleRequestTitle": "{name} escreveu um pedido gentil",
+  "gentleRequestAnsweredTitle": "{name} respondeu seu pedido",
+  "annoyanceCheckTitle": "Isso ainda incomoda?",
+  "annoyanceCheckText": "Uma anotação sua some em breve",
+  "quizSharedTitle": "{name} mostrou um quiz",
+  "spiceInviteTitle": "Um convite do Tempero",
+  "spiceInviteText": "Só aparece se vocês dois ligarem",
+  "spiceOffTitle": "O Tempero foi desligado",
+  "spiceOffText": "Nada do modo ficou guardado",
+  "memoryProposedTitle": "{name} quer guardar uma memória com você",
+  "memoryAcceptedTitle": "{name} aceitou a memória",
+  "memoryDeclinedTitle": "{name} preferiu não guardar a memória",
+  "memoryDeclinedText": "Ela deixou de ser compartilhada",
+  "plusBillingIssueTitle": "Há um problema com o pagamento do Plus",
+  "plusBillingIssueText": "Veja o que fazer para continuar",
+  "plusCoverageEndedTitle": "A cobertura do Plus terminou",
+  "plusCoverageEndedText": "Você mantém tudo que já criou"
 }

@@ -1,0 +1,5 @@
+mutation ThankGentleRequest($requestId: uuid!, $body: String!) {
+  thankGentleRequest(args: { requestId: $requestId, body: $body }) {
+    id
+  }
+}

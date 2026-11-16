@@ -1,6 +1,8 @@
 import 'package:app/features/notifications/data/models/inbox_item.dart';
 import 'package:app/features/notifications/data/models/notification_kind.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 
 /// The words and the icon one notification kind shows in the list.
@@ -81,5 +83,74 @@ InboxCopy inboxCopyFor(BuildContext context, InboxItem item, String? partnerName
       subtitle: l10n.capsuleOpenedText,
       icon: AppIcons.jar,
     ),
+    NotificationKind.gentleRequest => InboxCopy(
+      title: l10n.gentleRequestTitle(name: name),
+      subtitle: l10n.tapToSee,
+      icon: AppIcons.message,
+    ),
+    NotificationKind.gentleRequestAnswered => InboxCopy(
+      title: l10n.gentleRequestAnsweredTitle(name: name),
+      subtitle: l10n.tapToSee,
+      icon: AppIcons.message,
+    ),
+    NotificationKind.annoyanceCheck => InboxCopy(
+      title: l10n.annoyanceCheckTitle,
+      subtitle: l10n.annoyanceCheckText,
+      icon: AppIcons.note,
+    ),
+    NotificationKind.quizShared => InboxCopy(
+      title: l10n.quizSharedTitle(name: name),
+      subtitle: l10n.tapToSee,
+      icon: AppIcons.sparkle,
+    ),
+    NotificationKind.spiceInvite => InboxCopy(
+      title: l10n.spiceInviteTitle,
+      subtitle: l10n.spiceInviteText,
+      icon: AppIcons.flame,
+    ),
+    NotificationKind.spiceOff => InboxCopy(
+      title: l10n.spiceOffTitle,
+      subtitle: l10n.spiceOffText,
+      icon: AppIcons.flame,
+    ),
+    NotificationKind.memoryProposed => InboxCopy(
+      title: l10n.memoryProposedTitle(name: name),
+      subtitle: l10n.tapToSee,
+      icon: AppIcons.bookmark,
+    ),
+    NotificationKind.memoryAccepted => InboxCopy(
+      title: l10n.memoryAcceptedTitle(name: name),
+      subtitle: l10n.tapToSee,
+      icon: AppIcons.bookmark,
+    ),
+    NotificationKind.memoryDeclined => InboxCopy(
+      title: l10n.memoryDeclinedTitle(name: name),
+      subtitle: l10n.memoryDeclinedText,
+      icon: AppIcons.bookmark,
+    ),
+    NotificationKind.plusBillingIssue => InboxCopy(
+      title: l10n.plusBillingIssueTitle,
+      subtitle: l10n.plusBillingIssueText,
+      icon: AppIcons.star,
+    ),
+    NotificationKind.plusCoverageEnded => InboxCopy(
+      title: l10n.plusCoverageEndedTitle,
+      subtitle: l10n.plusCoverageEndedText,
+      icon: AppIcons.star,
+    ),
+  };
+}
+
+/// The screen an inbox [item] opens, or null while that kind has no screen of its own.
+PageRouteInfo<void>? inboxRouteFor(InboxItem item) {
+  final id = item.refId;
+
+  return switch (item.kind) {
+    NotificationKind.annoyanceCheck when id != null => AnnoyanceCheckRoute(id: id),
+    NotificationKind.gentleRequest ||
+    NotificationKind.gentleRequestAnswered when id != null => GentleRequestDetailRoute(id: id),
+    NotificationKind.cardReceived || NotificationKind.cardReaction => const CardsListRoute(),
+    NotificationKind.cardReady => const SundayCardRoute(),
+    _ => null,
   };
 }

@@ -1,0 +1,24 @@
+{
+  "title": "Does this still bother you?",
+  "titleHighlight": "bother",
+  "age": "You wrote it {days} days ago · gone in {left} days",
+  "talkTitle": "Talk about it",
+  "talkText": "Write a gentle request",
+  "chatTitle": "Talk to the chat",
+  "chatText": "Only you and the chat",
+  "letGoTitle": "Let it go",
+  "letGoText": "Delete now, without telling anyone",
+  "note": "Good things stay forever. What bothered you goes away on its own if you do nothing.",
+  "letGoConfirmTitle": "Let it go?",
+  "letGoConfirmText": "The note is deleted now and nobody is told.",
+  "letGoConfirm": "Delete now",
+  "letGoDone": "Note deleted",
+  "goneTitle": "That note is gone",
+  "goneText": "It expired, was deleted or became a request.",
+  "close": "Close",
+  "errorTitle": "We could not open the note",
+  "errors(map)": {
+    "NETWORK": "No connection. Try again.",
+    "other": "Something went wrong. Try again."
+  }
+}

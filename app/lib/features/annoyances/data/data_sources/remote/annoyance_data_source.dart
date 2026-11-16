@@ -1,6 +1,10 @@
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/DeleteAnnoyance.graphql.dart';
+import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/MarkGentleRequestSeen.graphql.dart';
+import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/RespondGentleRequest.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/SaveAnnoyance.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/SendGentleRequest.graphql.dart';
+import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/ThankGentleRequest.graphql.dart';
+import 'package:app/features/annoyances/data/data_sources/remote/queries/generated/GentleRequestById.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/queries/generated/MyAnnoyance.graphql.dart';
 import 'package:network/network.dart';
 
@@ -56,5 +60,53 @@ class AnnoyanceDataSource({required final GQLClient _client}) {
     validateResponse(response);
 
     return response.parsedData?.sendGentleRequest.isNotEmpty ?? false;
+  }
+
+  /// One gentle request the person sent or received, or null when it is gone.
+  Future<QueryGentleRequestByIdgentleRequestsByPk?> getGentleRequest(String id) async {
+    final response = await _client.query(
+      OptionsQueryGentleRequestById(
+        variables: VariablesQueryGentleRequestById(id: id),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
+    );
+    validateResponse(response);
+
+    return response.parsedData?.gentleRequestsByPk;
+  }
+
+  Future<void> respond({required String id, required String response}) async {
+    final result = await _client.mutate(
+      OptionsMutationRespondGentleRequest(
+        variables: VariablesMutationRespondGentleRequest(
+          id: id,
+          response: response,
+          seenAt: DateTime.now().toUtc(),
+        ),
+      ),
+    );
+
+    validateResponse(result);
+  }
+
+  Future<void> markSeen(String id) async {
+    final result = await _client.mutate(
+      OptionsMutationMarkGentleRequestSeen(
+        variables: VariablesMutationMarkGentleRequestSeen(id: id, seenAt: DateTime.now().toUtc()),
+      ),
+    );
+
+    validateResponse(result);
+  }
+
+  /// Thanks for a kept promise; the thanks becomes a good slip for the sender.
+  Future<void> thank({required String requestId, required String body}) async {
+    final result = await _client.mutate(
+      OptionsMutationThankGentleRequest(
+        variables: VariablesMutationThankGentleRequest(requestId: requestId, body: body),
+      ),
+    );
+
+    validateResponse(result);
   }
 }

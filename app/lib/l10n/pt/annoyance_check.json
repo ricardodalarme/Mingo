@@ -1,0 +1,24 @@
+{
+  "title": "Isso ainda incomoda?",
+  "titleHighlight": "incomoda",
+  "age": "Você anotou há {days} dias · some em {left} dias",
+  "talkTitle": "Conversar sobre isso",
+  "talkText": "Escrever um pedido gentil",
+  "chatTitle": "Falar com a Conversa",
+  "chatText": "Só você e o chat",
+  "letGoTitle": "Deixar ir",
+  "letGoText": "Apagar agora, sem aviso a ninguém",
+  "note": "Coisas boas ficam para sempre. O que incomodou some sozinho, se você não fizer nada.",
+  "letGoConfirmTitle": "Deixar ir?",
+  "letGoConfirmText": "A anotação é apagada agora e ninguém é avisado.",
+  "letGoConfirm": "Apagar agora",
+  "letGoDone": "Anotação apagada",
+  "goneTitle": "Essa anotação já saiu",
+  "goneText": "Ela expirou, foi apagada ou virou um pedido.",
+  "close": "Fechar",
+  "errorTitle": "Não deu para abrir a anotação",
+  "errors(map)": {
+    "NETWORK": "Sem conexão. Tente de novo.",
+    "other": "Algo deu errado. Tente de novo."
+  }
+}

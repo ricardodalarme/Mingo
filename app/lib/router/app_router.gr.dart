@@ -62,6 +62,55 @@ class AcceptInviteRouteArgs {
 }
 
 /// generated route for
+/// [AnnoyanceCheckPage]
+class AnnoyanceCheckRoute extends PageRouteInfo<AnnoyanceCheckRouteArgs> {
+  AnnoyanceCheckRoute({
+    required String id,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         AnnoyanceCheckRoute.name,
+         args: AnnoyanceCheckRouteArgs(id: id, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'AnnoyanceCheckRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AnnoyanceCheckRouteArgs>();
+      return WrappedRoute(
+        child: AnnoyanceCheckPage(id: args.id, key: args.key),
+      );
+    },
+  );
+}
+
+class AnnoyanceCheckRouteArgs {
+  const AnnoyanceCheckRouteArgs({required this.id, this.key});
+
+  final String id;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AnnoyanceCheckRouteArgs{id: $id, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! AnnoyanceCheckRouteArgs) return false;
+    return id == other.id && key == other.key;
+  }
+
+  @override
+  int get hashCode => id.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [BadDayPage]
 class BadDayRoute extends PageRouteInfo<void> {
   const BadDayRoute({List<PageRouteInfo>? children})
@@ -645,6 +694,56 @@ class GamesRoute extends PageRouteInfo<void> {
       return WrappedRoute(child: const GamesPage());
     },
   );
+}
+
+/// generated route for
+/// [GentleRequestDetailPage]
+class GentleRequestDetailRoute
+    extends PageRouteInfo<GentleRequestDetailRouteArgs> {
+  GentleRequestDetailRoute({
+    required String id,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         GentleRequestDetailRoute.name,
+         args: GentleRequestDetailRouteArgs(id: id, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'GentleRequestDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GentleRequestDetailRouteArgs>();
+      return WrappedRoute(
+        child: GentleRequestDetailPage(id: args.id, key: args.key),
+      );
+    },
+  );
+}
+
+class GentleRequestDetailRouteArgs {
+  const GentleRequestDetailRouteArgs({required this.id, this.key});
+
+  final String id;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'GentleRequestDetailRouteArgs{id: $id, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! GentleRequestDetailRouteArgs) return false;
+    return id == other.id && key == other.key;
+  }
+
+  @override
+  int get hashCode => id.hashCode ^ key.hashCode;
 }
 
 /// generated route for

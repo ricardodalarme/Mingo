@@ -35,5 +35,22 @@
   "errors(map)": {
     "NETWORK": "No connection. Check the internet and try again.",
     "other": "Something went wrong. Try again."
-  }
+  },
+  "gentleRequestTitle": "{name} wrote a gentle request",
+  "gentleRequestAnsweredTitle": "{name} answered your request",
+  "annoyanceCheckTitle": "Does this still bother you?",
+  "annoyanceCheckText": "One of your notes goes away soon",
+  "quizSharedTitle": "{name} showed a quiz",
+  "spiceInviteTitle": "An invite from Tempero",
+  "spiceInviteText": "It only shows up if you both turn it on",
+  "spiceOffTitle": "Tempero was turned off",
+  "spiceOffText": "Nothing from the mode was kept",
+  "memoryProposedTitle": "{name} wants to keep a memory with you",
+  "memoryAcceptedTitle": "{name} accepted the memory",
+  "memoryDeclinedTitle": "{name} preferred not to keep the memory",
+  "memoryDeclinedText": "It is no longer shared",
+  "plusBillingIssueTitle": "There is a problem with the Plus payment",
+  "plusBillingIssueText": "See what to do to keep it",
+  "plusCoverageEndedTitle": "Plus coverage ended",
+  "plusCoverageEndedText": "You keep everything you created"
 }

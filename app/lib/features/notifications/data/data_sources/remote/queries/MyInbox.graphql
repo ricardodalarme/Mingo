@@ -2,6 +2,7 @@ query MyInbox($limit: Int!) {
   inboxItems(order_by: { createdAt: desc }, limit: $limit) {
     id
     type
+    refId
     createdAt
     readAt
   }

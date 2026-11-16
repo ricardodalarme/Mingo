@@ -1,0 +1,5 @@
+mutation MarkGentleRequestSeen($id: uuid!, $seenAt: timestamptz!) {
+  updateGentleRequestsByPk(pk_columns: { id: $id }, _set: { seenAt: $seenAt }) {
+    id
+  }
+}

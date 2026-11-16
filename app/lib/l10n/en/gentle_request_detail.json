@@ -1,0 +1,27 @@
+{
+  "partnerFallback": "your person",
+  "fromYou": "You wrote to {name}.",
+  "toYou": "{name} wrote to you.",
+  "answerTitle": "How do you want to answer?",
+  "responses(map)": {
+    "willDo": "I will take care of it",
+    "later": "Later",
+    "notNow": "Not now",
+    "talk": "I want to talk",
+    "moreTime": "I need more time",
+    "other": ""
+  },
+  "answeredBy": "{name} answered: {answer}",
+  "youAnswered": "You answered: {answer}",
+  "waiting": "No answer yet.",
+  "thankAction": "Say thanks",
+  "thanked": "You said thanks. It became a slip of yours.",
+  "thankBody": "{name} took care of it: {wish}",
+  "goneTitle": "That request is gone",
+  "goneText": "It was answered more than 7 days ago or no longer exists.",
+  "errorTitle": "We could not open the request",
+  "errors(map)": {
+    "NETWORK": "No connection. Try again.",
+    "other": "Something went wrong. Try again."
+  }
+}
