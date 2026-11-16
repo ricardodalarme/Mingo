@@ -54,7 +54,7 @@ class const BaseFeatureCard({
                       child: BaseTag(text: tag),
                     ),
                   ),
-                  if (face != null) BaseFace(kind: face!),
+                  if (face != null) BaseFace(kind: face!, motion: .idle),
                 ],
               ),
               const SizedBox(height: AppSpace.s20),
