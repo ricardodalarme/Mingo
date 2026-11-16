@@ -2,6 +2,7 @@
 library;
 
 export 'base_bubble.dart';
+export 'base_carousel_card.dart';
 export 'base_category_label.dart';
 export 'base_divider.dart';
 export 'base_face.dart';

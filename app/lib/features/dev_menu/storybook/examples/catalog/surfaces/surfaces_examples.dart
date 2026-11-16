@@ -1,4 +1,5 @@
 import 'package:app/features/dev_menu/storybook/examples/catalog/surfaces/bubble_example.dart';
+import 'package:app/features/dev_menu/storybook/examples/catalog/surfaces/carousel_card_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/surfaces/category_label_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/surfaces/divider_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/surfaces/face_example.dart';
@@ -14,6 +15,7 @@ final WidgetbookNode surfacesExamples = WidgetbookFolder(
     featureCardExample,
     listCardExample,
     surfaceCardExample,
+    carouselCardExample,
     tagExample,
     categoryLabelExample,
     faceExample,
