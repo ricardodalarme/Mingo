@@ -5891,6 +5891,10 @@ class _Translations$tabs$en extends Translations$tabs$pt {
         one: 'day',
         other: 'days',
       );
+  @override
+  String get chat => 'Chat';
+  @override
+  String get couple => 'Us';
 }
 
 // Path: temperature
@@ -11380,6 +11384,8 @@ extension on TranslationsEn {
                   one: 'day',
                   other: 'days',
                 ),
+          'tabs.chat' => 'Chat',
+          'tabs.couple' => 'Us',
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',
@@ -11633,11 +11639,11 @@ extension on TranslationsEn {
           'widgets.ownIdeaHint' => 'Tap to open',
           'widgets.ownJarLabel' => 'BAD DAY JAR',
           'widgets.ownJarTitle' => 'Open a saved slip',
-          'widgets.ownJarPrivacy' => 'Private: only on your device',
-          'widgets.lockScreenLabel' => 'LOCK SCREEN',
           _ => null,
         } ??
         switch (path) {
+          'widgets.ownJarPrivacy' => 'Private: only on your device',
+          'widgets.lockScreenLabel' => 'LOCK SCREEN',
           'widgets.lockScreenDefault' => 'Calm reminder · No names',
           'widgets.coupleCounterLabel' => 'COUNTER',
           'widgets.coupleCounterUnset' => 'Set your relationship date to see days together',

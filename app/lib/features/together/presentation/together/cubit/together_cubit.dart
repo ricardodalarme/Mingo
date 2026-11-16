@@ -95,8 +95,6 @@ class TogetherCubit({
     );
   }
 
-  void onViewChanged(TogetherView view) => emit(state.copyWith(view: view));
-
   @override
   Future<void> close() async {
     await _profileChanges?.cancel();

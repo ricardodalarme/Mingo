@@ -144,5 +144,7 @@
   "unitDay(plural, param=count)": {
     "one": "dia",
     "other": "dias"
-  }
+  },
+  "chat": "Conversa",
+  "couple": "Nós"
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/couple/presentation/couple/cubit/couple_cubit.dart';
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/pairing/data/mappers/invite_code_mapper.dart';
 import 'package:app/router/app_router.dart';
@@ -43,17 +44,17 @@ List<PageRouteInfo<void>>? resolveWidgetDeepLinkUri(Uri? uri, {required AppState
       const HomeRoute(children: [TodayRoute()]),
     ],
     'together' || 'juntos' => [
-      const HomeRoute(children: [TogetherRoute()]),
+      HomeRoute(children: [CoupleRoute()]),
     ],
     'memories' || 'memorias' => [
-      const HomeRoute(children: [MemoriesRoute()]),
+      HomeRoute(children: [CoupleRoute(section: CoupleSection.memories)]),
     ],
     'card' || 'cards' => [
       const HomeRoute(children: [TodayRoute()]),
       const SundayCardRoute(),
     ],
     'dates' => [
-      const HomeRoute(children: [TogetherRoute()]),
+      HomeRoute(children: [CoupleRoute()]),
       const DatesRoute(),
     ],
     'capture' || 'slip' => [
@@ -65,7 +66,7 @@ List<PageRouteInfo<void>>? resolveWidgetDeepLinkUri(Uri? uri, {required AppState
       MoodRoute(),
     ],
     'rituals' => [
-      const HomeRoute(children: [TogetherRoute()]),
+      HomeRoute(children: [CoupleRoute()]),
       const RitualsRoute(),
     ],
     'jar' || 'slips' => [

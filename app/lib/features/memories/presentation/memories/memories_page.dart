@@ -16,7 +16,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// The couple's memories and the jar of good slips to open on a bad day.
 @RoutePage()
-class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
+class const MemoriesPage({final bool isEmbedded = false, super.key})
+    extends StatelessWidget
+    implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
@@ -31,41 +33,42 @@ class const MemoriesPage({super.key}) extends StatelessWidget implements AutoRou
     final view = context.select((MemoriesCubit cubit) => cubit.state.view);
     final cubit = context.read<MemoriesCubit>();
 
-    return BaseView(
-      appBar: null,
-      body: BlocListener<MemoriesCubit, MemoriesState>(
-        listenWhen: (previous, current) =>
-            previous.saveAction != current.saveAction || previous.jarAction != current.jarAction,
-        listener: (context, state) {
-          final failure = switch ((state.saveAction, state.jarAction)) {
-            (Failure(:final exception), _) || (_, Failure(:final exception)) => exception,
-            _ => null,
-          };
-          if (failure != null) {
-            BaseToast.show(context, l10n.errors.selectOrFallback(failure.l10nKey));
-          }
-        },
-        child: BaseRefreshable(
-          onRefresh: cubit.load,
-          child: BaseStackedContent(
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
+    final content = BlocListener<MemoriesCubit, MemoriesState>(
+      listenWhen: (previous, current) =>
+          previous.saveAction != current.saveAction || previous.jarAction != current.jarAction,
+      listener: (context, state) {
+        final failure = switch ((state.saveAction, state.jarAction)) {
+          (Failure(:final exception), _) || (_, Failure(:final exception)) => exception,
+          _ => null,
+        };
+        if (failure != null) {
+          BaseToast.show(context, l10n.errors.selectOrFallback(failure.l10nKey));
+        }
+      },
+      child: BaseRefreshable(
+        onRefresh: cubit.load,
+        child: BaseStackedContent(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (!isEmbedded) ...[
                 Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
                 const SizedBox(height: AppSpace.s16),
-                BaseSegmented(
-                  segments: [l10n.segmentTimeline, l10n.segmentJar],
-                  selectedIndex: view.index,
-                  onSelectionChanged: (index) => cubit.onViewChanged(MemoriesView.values[index]),
-                ),
-                const SizedBox(height: AppSpace.s16),
-                if (view == MemoriesView.jar) const _JarResult() else const _MemoriesTimeline(),
               ],
-            ),
+              BaseSegmented(
+                segments: [l10n.segmentTimeline, l10n.segmentJar],
+                selectedIndex: view.index,
+                onSelectionChanged: (index) => cubit.onViewChanged(MemoriesView.values[index]),
+              ),
+              const SizedBox(height: AppSpace.s16),
+              if (view == MemoriesView.jar) const _JarResult() else const _MemoriesTimeline(),
+            ],
           ),
         ),
       ),
     );
+
+    return isEmbedded ? content : BaseView(appBar: null, body: content);
   }
 }
 

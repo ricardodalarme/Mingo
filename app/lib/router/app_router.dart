@@ -14,12 +14,15 @@ import 'package:app/features/cards/presentation/draft/sunday_card_page.dart';
 import 'package:app/features/cards/presentation/list/cards_list_page.dart';
 import 'package:app/features/chat/data/models/chat_models.dart';
 import 'package:app/features/chat/presentation/chat/chat_page.dart';
+import 'package:app/features/chat/presentation/chat_tab/chat_tab_page.dart';
 import 'package:app/features/chat/presentation/hard_conversation/hard_conversation_page.dart';
 import 'package:app/features/chat/presentation/learned/learned_items_page.dart';
 import 'package:app/features/chat/presentation/settings/chat_settings_page.dart';
 import 'package:app/features/checkin/presentation/checkin/checkin_page.dart';
 import 'package:app/features/connect/presentation/touch/touch_page.dart';
 import 'package:app/features/connect/presentation/us/us_page.dart';
+import 'package:app/features/couple/presentation/couple/couple_page.dart';
+import 'package:app/features/couple/presentation/couple/cubit/couple_cubit.dart';
 import 'package:app/features/dates/presentation/dates/dates_page.dart';
 import 'package:app/features/dev_menu/debug_sign_in/debug_sign_in_page.dart';
 import 'package:app/features/devices/presentation/devices/devices_page.dart';
@@ -171,6 +174,8 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: RitualsRoute.page),
     AutoRoute(page: PartnerProfileRoute.page),
     AutoRoute(page: ChatRoute.page),
+    AutoRoute(page: TogetherRoute.page),
+    AutoRoute(page: MemoriesRoute.page),
     AutoRoute(page: ChatSettingsRoute.page),
     AutoRoute(page: HardConversationRoute.page),
     AutoRoute(page: LearnedItemsRoute.page),
@@ -248,8 +253,8 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
       children: [
         AutoRoute(page: TodayRoute.page, initial: true),
         AutoRoute(page: SlipsRoute.page),
-        AutoRoute(page: TogetherRoute.page),
-        AutoRoute(page: MemoriesRoute.page),
+        AutoRoute(page: ChatTabRoute.page),
+        AutoRoute(page: CoupleRoute.page),
       ],
     ),
     AutoRoute(path: '*', page: NotFoundRoute.page),

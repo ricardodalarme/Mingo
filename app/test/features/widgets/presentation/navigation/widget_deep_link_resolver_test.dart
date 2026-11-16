@@ -53,13 +53,13 @@ void main() {
       Uri.parse('mingo://together?homeWidget=1'),
       appState: AppState.authenticated,
     );
-    expect(togetherRoutes!.first.initialChildren?.first.routeName, TogetherRoute.name);
+    expect(togetherRoutes!.first.initialChildren?.first.routeName, CoupleRoute.name);
 
     final memoriesRoutes = resolveWidgetDeepLinkUri(
       Uri.parse('mingo://memories?homeWidget=1'),
       appState: AppState.authenticated,
     );
-    expect(memoriesRoutes!.first.initialChildren?.first.routeName, MemoriesRoute.name);
+    expect(memoriesRoutes!.first.initialChildren?.first.routeName, CoupleRoute.name);
 
     final inviteRoutes = resolveWidgetDeepLinkUri(
       Uri.parse('mingo://invite?homeWidget=1'),

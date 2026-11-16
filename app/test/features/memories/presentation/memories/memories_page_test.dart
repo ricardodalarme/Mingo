@@ -296,7 +296,7 @@ void main() {
         ),
       ),
     );
-    unawaited(router.push(const MemoriesRoute()));
+    unawaited(router.push(MemoriesRoute()));
     await tester.pump();
     await tester.pump();
 

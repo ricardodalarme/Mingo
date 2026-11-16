@@ -31,8 +31,8 @@ const List<IconData> homeTabIcons = [
   AppIcons.home,
   AppIcons.note,
   AppIcons.plus,
+  AppIcons.message,
   AppIcons.rings,
-  AppIcons.bookmark,
 ];
 
 @RoutePage()
@@ -48,7 +48,7 @@ class const HomePage({super.key}) extends StatelessWidget {
         duration: AppMotion.base,
         curve: AppMotion.fastCurve,
         transitionBuilder: homeTabTransition,
-        routes: const [TodayRoute(), SlipsRoute(), TogetherRoute(), MemoriesRoute()],
+        routes: [const TodayRoute(), const SlipsRoute(), const ChatTabRoute(), CoupleRoute()],
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
           final activeIndex = tabsRouter.activeIndex;
@@ -81,8 +81,8 @@ class const HomePage({super.key}) extends StatelessWidget {
                   BaseTabBarItem(icon: homeTabIcons[0], label: l10n.today),
                   BaseTabBarItem(icon: homeTabIcons[1], label: l10n.slips),
                   BaseTabBarItem(icon: homeTabIcons[2], label: l10n.capture, isPrimaryAction: true),
-                  BaseTabBarItem(icon: homeTabIcons[3], label: l10n.together),
-                  BaseTabBarItem(icon: homeTabIcons[4], label: l10n.memories),
+                  BaseTabBarItem(icon: homeTabIcons[3], label: l10n.chat),
+                  BaseTabBarItem(icon: homeTabIcons[4], label: l10n.couple),
                 ],
               ),
             ],

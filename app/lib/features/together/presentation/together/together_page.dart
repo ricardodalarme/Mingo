@@ -11,7 +11,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// The shared home: what to do together, and a view with only the person's own things.
 @RoutePage()
-class const TogetherPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
+class const TogetherPage({final bool isEmbedded = false, super.key})
+    extends StatelessWidget
+    implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
@@ -23,7 +25,6 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.tabs;
-    final view = context.select((TogetherCubit cubit) => cubit.state.view);
     final hasPartner = context.select((TogetherCubit cubit) => cubit.state.hasPartner);
     final showCheckin = context.select((TogetherCubit cubit) => cubit.state.showCheckin);
     final listCount = context.select((TogetherCubit cubit) => cubit.state.listCount);
@@ -32,61 +33,53 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
     final since = context.select((TogetherCubit cubit) => cubit.state.togetherSince);
     final cubit = context.read<TogetherCubit>();
 
-    return BaseView(
-      appBar: null,
-      body: BaseStackedContent(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
+    final content = BaseStackedContent(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (!isEmbedded)
             Semantics(header: true, child: Text(l10n.together, style: context.text.titleXl)),
-            if (since != null && hasPartner) ...[
-              const SizedBox(height: AppSpace.s4),
-              Text(
-                _duration(l10n, since, clock.now()),
-                style: context.text.body.copyWith(color: context.colors.textSecondary),
-              ),
-            ],
-            const SizedBox(height: AppSpace.s16),
-            BaseSegmented(
-              segments: [l10n.segmentTogether, l10n.segmentForMe],
-              selectedIndex: view.index,
-              onSelectionChanged: (index) => cubit.onViewChanged(TogetherView.values[index]),
+          if (since != null && hasPartner) ...[
+            if (!isEmbedded) const SizedBox(height: AppSpace.s4),
+            Text(
+              _duration(l10n, since, clock.now()),
+              style: context.text.body.copyWith(color: context.colors.textSecondary),
             ),
-            const SizedBox(height: AppSpace.s16),
-            if (view == TogetherView.together) ...[
-              if (!hasPartner) ...[
-                BaseNote(text: l10n.soloNote),
-                const SizedBox(height: AppSpace.s12),
-                BaseButton.secondary(
-                  text: context.l10n.acceptInvite.connectTitle,
-                  icon: AppIcons.link,
-                  isFullWidth: true,
-                  onPressed: () => _connectWithCode(context, cubit.load),
-                ),
-                const SizedBox(height: AppSpace.s12),
-              ],
-              _ForYouSection(hasPartner: hasPartner),
-              const SizedBox(height: AppSpace.s24),
-              _ToolsSection(
-                cubit: cubit,
-                showCheckin: showCheckin,
-                hasPartner: hasPartner,
-                listCount: listCount,
-                sharedGiftCount: sharedGiftCount,
-              ),
-              const SizedBox(height: AppSpace.s24),
-              _TogetherMoreSection(hasPartner: hasPartner, phase: phase),
-            ] else ...[
-              const _PrivateSection(),
-              const SizedBox(height: AppSpace.s24),
-              const _PatternsSection(),
-              const SizedBox(height: AppSpace.s24),
-              const _PrivateMoreSection(),
-            ],
           ],
-        ),
+          const SizedBox(height: AppSpace.s16),
+          if (!hasPartner) ...[
+            BaseNote(text: l10n.soloNote),
+            const SizedBox(height: AppSpace.s12),
+            BaseButton.secondary(
+              text: context.l10n.acceptInvite.connectTitle,
+              icon: AppIcons.link,
+              isFullWidth: true,
+              onPressed: () => _connectWithCode(context, cubit.load),
+            ),
+            const SizedBox(height: AppSpace.s12),
+          ],
+          _ForYouSection(hasPartner: hasPartner),
+          const SizedBox(height: AppSpace.s24),
+          _ToolsSection(
+            cubit: cubit,
+            showCheckin: showCheckin,
+            hasPartner: hasPartner,
+            listCount: listCount,
+            sharedGiftCount: sharedGiftCount,
+          ),
+          const SizedBox(height: AppSpace.s24),
+          _TogetherMoreSection(hasPartner: hasPartner, phase: phase),
+          const SizedBox(height: AppSpace.s24),
+          const _PrivateSection(),
+          const SizedBox(height: AppSpace.s24),
+          const _PatternsSection(),
+          const SizedBox(height: AppSpace.s24),
+          const _PrivateMoreSection(),
+        ],
       ),
     );
+
+    return isEmbedded ? content : BaseView(appBar: null, body: content);
   }
 }
 

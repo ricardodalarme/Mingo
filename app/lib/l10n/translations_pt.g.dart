@@ -7339,6 +7339,12 @@ class Translations$tabs$pt {
         one: 'dia',
         other: 'dias',
       );
+
+  /// pt: 'Conversa'
+  String get chat => 'Conversa';
+
+  /// pt: 'Nós'
+  String get couple => 'Nós';
 }
 
 // Path: temperature
@@ -13319,6 +13325,8 @@ extension on Translations {
                   one: 'dia',
                   other: 'dias',
                 ),
+          'tabs.chat' => 'Conversa',
+          'tabs.couple' => 'Nós',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
@@ -13573,11 +13581,11 @@ extension on Translations {
           'widgets.ownIdeaHint' => 'Toque para abrir',
           'widgets.ownJarLabel' => 'POTINHO DO DIA RUIM',
           'widgets.ownJarTitle' => 'Abrir um slip guardado',
-          'widgets.ownJarPrivacy' => 'Privado: só no seu aparelho',
-          'widgets.lockScreenLabel' => 'TELA DE BLOQUEIO',
           _ => null,
         } ??
         switch (path) {
+          'widgets.ownJarPrivacy' => 'Privado: só no seu aparelho',
+          'widgets.lockScreenLabel' => 'TELA DE BLOQUEIO',
           'widgets.lockScreenDefault' => 'Lembrete calmo · Sem nomes',
           'widgets.coupleCounterLabel' => 'CONTADOR',
           'widgets.coupleCounterUnset' => 'Defina a data do casal para ver os dias juntos',

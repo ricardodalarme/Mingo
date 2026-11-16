@@ -327,6 +327,22 @@ class ChatSettingsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ChatTabPage]
+class ChatTabRoute extends PageRouteInfo<void> {
+  const ChatTabRoute({List<PageRouteInfo>? children})
+    : super(ChatTabRoute.name, initialChildren: children);
+
+  static const String name = 'ChatTabRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ChatTabPage();
+    },
+  );
+}
+
+/// generated route for
 /// [CheckinPage]
 class CheckinRoute extends PageRouteInfo<void> {
   const CheckinRoute({List<PageRouteInfo>? children})
@@ -404,6 +420,57 @@ class CoupleCounterWidgetRoute extends PageRouteInfo<void> {
       return WrappedRoute(child: const CoupleCounterWidgetPage());
     },
   );
+}
+
+/// generated route for
+/// [CouplePage]
+class CoupleRoute extends PageRouteInfo<CoupleRouteArgs> {
+  CoupleRoute({
+    CoupleSection section = CoupleSection.together,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         CoupleRoute.name,
+         args: CoupleRouteArgs(section: section, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'CoupleRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CoupleRouteArgs>(
+        orElse: () => const CoupleRouteArgs(),
+      );
+      return WrappedRoute(
+        child: CouplePage(section: args.section, key: args.key),
+      );
+    },
+  );
+}
+
+class CoupleRouteArgs {
+  const CoupleRouteArgs({this.section = CoupleSection.together, this.key});
+
+  final CoupleSection section;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CoupleRouteArgs{section: $section, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CoupleRouteArgs) return false;
+    return section == other.section && key == other.key;
+  }
+
+  @override
+  int get hashCode => section.hashCode ^ key.hashCode;
 }
 
 /// generated route for
@@ -1414,18 +1481,53 @@ class ManagePlusRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [MemoriesPage]
-class MemoriesRoute extends PageRouteInfo<void> {
-  const MemoriesRoute({List<PageRouteInfo>? children})
-    : super(MemoriesRoute.name, initialChildren: children);
+class MemoriesRoute extends PageRouteInfo<MemoriesRouteArgs> {
+  MemoriesRoute({
+    bool isEmbedded = false,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         MemoriesRoute.name,
+         args: MemoriesRouteArgs(isEmbedded: isEmbedded, key: key),
+         initialChildren: children,
+       );
 
   static const String name = 'MemoriesRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const MemoriesPage());
+      final args = data.argsAs<MemoriesRouteArgs>(
+        orElse: () => const MemoriesRouteArgs(),
+      );
+      return WrappedRoute(
+        child: MemoriesPage(isEmbedded: args.isEmbedded, key: args.key),
+      );
     },
   );
+}
+
+class MemoriesRouteArgs {
+  const MemoriesRouteArgs({this.isEmbedded = false, this.key});
+
+  final bool isEmbedded;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MemoriesRouteArgs{isEmbedded: $isEmbedded, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! MemoriesRouteArgs) return false;
+    return isEmbedded == other.isEmbedded && key == other.key;
+  }
+
+  @override
+  int get hashCode => isEmbedded.hashCode ^ key.hashCode;
 }
 
 /// generated route for
@@ -2546,18 +2648,53 @@ class TodayRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [TogetherPage]
-class TogetherRoute extends PageRouteInfo<void> {
-  const TogetherRoute({List<PageRouteInfo>? children})
-    : super(TogetherRoute.name, initialChildren: children);
+class TogetherRoute extends PageRouteInfo<TogetherRouteArgs> {
+  TogetherRoute({
+    bool isEmbedded = false,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         TogetherRoute.name,
+         args: TogetherRouteArgs(isEmbedded: isEmbedded, key: key),
+         initialChildren: children,
+       );
 
   static const String name = 'TogetherRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const TogetherPage());
+      final args = data.argsAs<TogetherRouteArgs>(
+        orElse: () => const TogetherRouteArgs(),
+      );
+      return WrappedRoute(
+        child: TogetherPage(isEmbedded: args.isEmbedded, key: args.key),
+      );
     },
   );
+}
+
+class TogetherRouteArgs {
+  const TogetherRouteArgs({this.isEmbedded = false, this.key});
+
+  final bool isEmbedded;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'TogetherRouteArgs{isEmbedded: $isEmbedded, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TogetherRouteArgs) return false;
+    return isEmbedded == other.isEmbedded && key == other.key;
+  }
+
+  @override
+  int get hashCode => isEmbedded.hashCode ^ key.hashCode;
 }
 
 /// generated route for

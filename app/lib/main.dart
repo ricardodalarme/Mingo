@@ -9,6 +9,7 @@ import 'package:app/features/cards/di/cards_injection_module.dart';
 import 'package:app/features/chat/di/chat_injection_module.dart';
 import 'package:app/features/checkin/di/checkin_injection_module.dart';
 import 'package:app/features/connect/di/connect_injection_module.dart';
+import 'package:app/features/couple/di/couple_injection_module.dart';
 import 'package:app/features/dates/di/dates_injection_module.dart';
 import 'package:app/features/dev_menu/di/dev_menu_injection_module.dart';
 import 'package:app/features/devices/di/devices_injection_module.dart';
@@ -91,6 +92,7 @@ void _registerModules() {
     NotificationsInjectionModule(),
     OnboardingInjectionModule(),
     AnnoyancesInjectionModule(),
+    CoupleInjectionModule(),
     WeeklyReviewInjectionModule(),
     PairingInjectionModule(),
     DatesInjectionModule(),

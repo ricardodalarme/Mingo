@@ -1,13 +1,6 @@
 part of 'together_cubit.dart';
 
-/// The two views of Juntos.
-enum TogetherView() {
-  together,
-  forMe,
-}
-
 final class const TogetherState({
-  final TogetherView view = TogetherView.together,
   final bool hasPartner = true,
   final bool showCheckin = true,
   final int listCount = 0,
@@ -17,7 +10,6 @@ final class const TogetherState({
   final DateTime? togetherSince,
 }) with Equatable {
   TogetherState copyWith({
-    TogetherView? view,
     bool? hasPartner,
     bool? showCheckin,
     int? listCount,
@@ -27,7 +19,6 @@ final class const TogetherState({
     DateTime? togetherSince,
   }) {
     return TogetherState(
-      view: view ?? this.view,
       hasPartner: hasPartner ?? this.hasPartner,
       showCheckin: showCheckin ?? this.showCheckin,
       listCount: listCount ?? this.listCount,
@@ -40,7 +31,6 @@ final class const TogetherState({
 
   @override
   List<Object?> get props => [
-    view,
     hasPartner,
     showCheckin,
     listCount,

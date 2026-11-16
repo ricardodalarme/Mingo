@@ -29,12 +29,12 @@ void main() {
       AppIcons.home,
       AppIcons.note,
       AppIcons.plus,
+      AppIcons.message,
       AppIcons.rings,
-      AppIcons.bookmark,
     ]);
   });
 
-  test('slips, together and memories no longer share generic glyphs', () {
+  test('slips, chat and couple no longer share generic glyphs', () {
     expect(homeTabIcons, isNot(contains(AppIcons.heart)));
     expect(homeTabIcons, isNot(contains(AppIcons.users)));
     expect(homeTabIcons, isNot(contains(AppIcons.book)));
