@@ -15,7 +15,6 @@ const List<RelationshipPhase> introPhases = [
   RelationshipPhase.livingTogether,
   RelationshipPhase.engaged,
   RelationshipPhase.married,
-  RelationshipPhase.withKids,
   RelationshipPhase.longDistance,
   RelationshipPhase.restarting,
 ];

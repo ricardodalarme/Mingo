@@ -4497,7 +4497,6 @@ class _Translations$relationshipSettings$en extends Translations$relationshipSet
     'livingTogether': 'Living together',
     'engaged': 'Engaged',
     'married': 'Married',
-    'withKids': 'With kids',
     'longDistance': 'Long distance',
     'restarting': 'Starting over',
   };
@@ -6582,7 +6581,6 @@ class _Translations$intro$phase$en extends Translations$intro$phase$pt {
     'livingTogether': 'Living together',
     'engaged': 'Engaged',
     'married': 'Married',
-    'withKids': 'With kids',
     'longDistance': 'Long distance',
     'restarting': 'Starting over',
     'other': '',
@@ -8792,7 +8790,6 @@ extension on TranslationsEn {
           'intro.phase.options.livingTogether' => 'Living together',
           'intro.phase.options.engaged' => 'Engaged',
           'intro.phase.options.married' => 'Married',
-          'intro.phase.options.withKids' => 'With kids',
           'intro.phase.options.longDistance' => 'Long distance',
           'intro.phase.options.restarting' => 'Starting over',
           'intro.phase.options.other' => '',
@@ -9236,10 +9233,10 @@ extension on TranslationsEn {
           'moodHelp.partnerNeedActions.company' => 'Stay close',
           'moodHelp.partnerNeedActions.rest' => 'Let them rest',
           'moodHelp.partnerNeedActions.other' => '',
+          'moodHelp.partnerNeedSupports.listen' => 'No advice, no fixing.',
           _ => null,
         } ??
         switch (path) {
-          'moodHelp.partnerNeedSupports.listen' => 'No advice, no fixing.',
           'moodHelp.partnerNeedSupports.opinion' => 'An honest opinion, without judging.',
           'moodHelp.partnerNeedSupports.hug' => 'It arrives as a signal in the app.',
           'moodHelp.partnerNeedSupports.space' => 'Some time without asking for an answer.',
@@ -9828,10 +9825,10 @@ extension on TranslationsEn {
           'received.responses.moreTime' => 'I need a bit more time',
           'received.responses.willDo' => 'I\'ll do it',
           'received.responses.notNow' => 'Not now',
+          'received.responses.plan' => 'Plan something',
           _ => null,
         } ??
         switch (path) {
-          'received.responses.plan' => 'Plan something',
           'received.responses.later' => 'I\'ll answer later',
           'received.responses.heart' => 'Send a heart',
           'received.responses.other' => '',
@@ -9866,7 +9863,6 @@ extension on TranslationsEn {
           'relationshipSettings.phases.livingTogether' => 'Living together',
           'relationshipSettings.phases.engaged' => 'Engaged',
           'relationshipSettings.phases.married' => 'Married',
-          'relationshipSettings.phases.withKids' => 'With kids',
           'relationshipSettings.phases.longDistance' => 'Long distance',
           'relationshipSettings.phases.restarting' => 'Starting over',
           'relationshipSettings.dateLabel' => 'Together since',
@@ -10398,11 +10394,11 @@ extension on TranslationsEn {
           'sundayCard.held.keepHolding' => 'Keep holding',
           'sundayCard.held.sendAnyway' => 'Send anyway',
           'sundayCard.sent.title' => 'Sent',
+          'sundayCard.sent.text' => ({required Object name}) => 'The card went to ${name}.',
+          'sundayCard.sent.textNoName' => 'The card went to your person.',
           _ => null,
         } ??
         switch (path) {
-          'sundayCard.sent.text' => ({required Object name}) => 'The card went to ${name}.',
-          'sundayCard.sent.textNoName' => 'The card went to your person.',
           'sundayCard.sent.done' => 'Done',
           'tabs.today' => 'Today',
           'tabs.slips' => 'Slips',

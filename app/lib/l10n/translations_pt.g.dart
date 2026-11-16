@@ -5537,7 +5537,6 @@ class Translations$relationshipSettings$pt {
     'livingTogether': 'Moramos juntos',
     'engaged': 'Noivos',
     'married': 'Casados',
-    'withKids': 'Com filhos',
     'longDistance': 'Namoro à distância',
     'restarting': 'Recomeçando',
   };
@@ -8226,7 +8225,6 @@ class Translations$intro$phase$pt {
     'livingTogether': 'Moramos juntos',
     'engaged': 'Noivos',
     'married': 'Casados',
-    'withKids': 'Com filhos',
     'longDistance': 'Namoro à distância',
     'restarting': 'Recomeçando',
     'other': '',
@@ -10579,7 +10577,6 @@ extension on Translations {
           'intro.phase.options.livingTogether' => 'Moramos juntos',
           'intro.phase.options.engaged' => 'Noivos',
           'intro.phase.options.married' => 'Casados',
-          'intro.phase.options.withKids' => 'Com filhos',
           'intro.phase.options.longDistance' => 'Namoro à distância',
           'intro.phase.options.restarting' => 'Recomeçando',
           'intro.phase.options.other' => '',
@@ -11024,10 +11021,10 @@ extension on Translations {
           'moodHelp.partnerNeedActions.company' => 'Ficar por perto',
           'moodHelp.partnerNeedActions.rest' => 'Deixar descansar',
           'moodHelp.partnerNeedActions.other' => '',
+          'moodHelp.partnerNeedSupports.listen' => 'Sem dar opinião nem tentar resolver.',
           _ => null,
         } ??
         switch (path) {
-          'moodHelp.partnerNeedSupports.listen' => 'Sem dar opinião nem tentar resolver.',
           'moodHelp.partnerNeedSupports.opinion' => 'Uma opinião honesta, sem julgar.',
           'moodHelp.partnerNeedSupports.hug' => 'Chega como um sinal no app.',
           'moodHelp.partnerNeedSupports.space' => 'Um tempo sem cobrar resposta.',
@@ -11617,10 +11614,10 @@ extension on Translations {
           'received.responses.moreTime' => 'Preciso de mais um tempo',
           'received.responses.willDo' => 'Vou fazer',
           'received.responses.notNow' => 'Agora não',
+          'received.responses.plan' => 'Planejar algo',
           _ => null,
         } ??
         switch (path) {
-          'received.responses.plan' => 'Planejar algo',
           'received.responses.later' => 'Respondo depois',
           'received.responses.heart' => 'Mandar um coração',
           'received.responses.other' => '',
@@ -11655,7 +11652,6 @@ extension on Translations {
           'relationshipSettings.phases.livingTogether' => 'Moramos juntos',
           'relationshipSettings.phases.engaged' => 'Noivos',
           'relationshipSettings.phases.married' => 'Casados',
-          'relationshipSettings.phases.withKids' => 'Com filhos',
           'relationshipSettings.phases.longDistance' => 'Namoro à distância',
           'relationshipSettings.phases.restarting' => 'Recomeçando',
           'relationshipSettings.dateLabel' => 'Juntos desde',
@@ -12193,11 +12189,11 @@ extension on Translations {
           'sundayCard.held.keepHolding' => 'Continuar retendo',
           'sundayCard.held.sendAnyway' => 'Enviar mesmo assim',
           'sundayCard.sent.title' => 'Enviado',
+          'sundayCard.sent.text' => ({required Object name}) => 'O cartão foi para ${name}.',
+          'sundayCard.sent.textNoName' => 'O cartão foi para sua pessoa.',
           _ => null,
         } ??
         switch (path) {
-          'sundayCard.sent.text' => ({required Object name}) => 'O cartão foi para ${name}.',
-          'sundayCard.sent.textNoName' => 'O cartão foi para sua pessoa.',
           'sundayCard.sent.done' => 'Pronto',
           'tabs.today' => 'Hoje',
           'tabs.slips' => 'Slips',

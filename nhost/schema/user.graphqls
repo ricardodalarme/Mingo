@@ -271,7 +271,6 @@ enum RelationshipPhase_enum {
   long_distance
   married
   restarting
-  with_kids
 }
 enum RelationshipStatus_enum {
   bereaved

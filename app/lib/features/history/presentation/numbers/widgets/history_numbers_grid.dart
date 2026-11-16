@@ -16,7 +16,7 @@ class const HistoryNumbersGrid({required final HistoryOverview overview, super.k
 
     final phaseSuffix = switch (overview.phase) {
       .engaged => l10n.numbersSuffixEngaged,
-      .married || .withKids => l10n.numbersSuffixMarried,
+      .married => l10n.numbersSuffixMarried,
       .dating || .livingTogether => l10n.numbersSuffixDating,
       .beginning || .longDistance || .restarting => l10n.numbersSuffixTogether,
     };

@@ -86,9 +86,7 @@ class const CounterVariationsPage({super.key}) extends StatelessWidget implement
                     selfInitials: overview.selfInitials,
                     partnerInitials: partnerInitials,
                     label: l10n.variationMarried,
-                    isSelected:
-                        state.selectedPhase == RelationshipPhase.married ||
-                        state.selectedPhase == RelationshipPhase.withKids,
+                    isSelected: state.selectedPhase == RelationshipPhase.married,
                     onTap: () => cubit.selectPhase(RelationshipPhase.married),
                   ),
                   const SizedBox(height: AppSpace.s12),

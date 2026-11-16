@@ -5,7 +5,6 @@ enum RelationshipPhase() {
   livingTogether,
   engaged,
   married,
-  withKids,
   longDistance,
   restarting,
 }

@@ -12,7 +12,6 @@ void main() {
 
   test('multi-word phases keep their stored spelling', () {
     expect(RelationshipPhase.livingTogether.toRemote(), EnumRelationshipPhase_enum.living_together);
-    expect(RelationshipPhase.withKids.toRemote(), EnumRelationshipPhase_enum.with_kids);
     expect(RelationshipPhase.longDistance.toRemote(), EnumRelationshipPhase_enum.long_distance);
   });
 
