@@ -219,6 +219,34 @@ class Translations$acceptInvite$pt {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'other': 'Não deu para conectar agora. Tente de novo.',
   };
+
+  /// pt: 'Conectar com {name}'
+  String headline({required Object name}) => 'Conectar com ${name}';
+
+  /// pt: 'Conectar com sua pessoa'
+  String get headlineNoName => 'Conectar com sua pessoa';
+
+  /// pt: 'sua pessoa'
+  String get headlineNoNameHighlight => 'sua pessoa';
+
+  /// pt: 'Os dois já usam o app? Um convida e o outro digita o código.'
+  String get pageSubtitle => 'Os dois já usam o app? Um convida e o outro digita o código.';
+
+  /// pt: 'Tenho um código'
+  String get segmentHaveCode => 'Tenho um código';
+
+  /// pt: 'Quero convidar'
+  String get segmentInvite => 'Quero convidar';
+
+  /// pt: 'Conectar'
+  String get connectAction => 'Conectar';
+
+  /// pt: 'Seu código de convite'
+  String get ownCodeLabel => 'Seu código de convite';
+
+  /// pt: 'Envie esse código para sua pessoa. O que cada um anotou até agora continua privado.'
+  String get ownCodeNote =>
+      'Envie esse código para sua pessoa. O que cada um anotou até agora continua privado.';
 }
 
 // Path: account
@@ -2995,6 +3023,12 @@ class Translations$invite$pt {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'other': 'Algo deu errado. Tente de novo.',
   };
+
+  /// pt: 'Compartilhar convite'
+  String get shareTitle => 'Compartilhar convite';
+
+  /// pt: 'Esperando o parceiro'
+  String get waitingTitle => 'Esperando o parceiro';
 }
 
 // Path: language
@@ -9119,6 +9153,17 @@ extension on Translations {
             'Muitas tentativas seguidas. Espere um pouco e tente de novo.',
           'acceptInvite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'acceptInvite.errors.other' => 'Não deu para conectar agora. Tente de novo.',
+          'acceptInvite.headline' => ({required Object name}) => 'Conectar com ${name}',
+          'acceptInvite.headlineNoName' => 'Conectar com sua pessoa',
+          'acceptInvite.headlineNoNameHighlight' => 'sua pessoa',
+          'acceptInvite.pageSubtitle' =>
+            'Os dois já usam o app? Um convida e o outro digita o código.',
+          'acceptInvite.segmentHaveCode' => 'Tenho um código',
+          'acceptInvite.segmentInvite' => 'Quero convidar',
+          'acceptInvite.connectAction' => 'Conectar',
+          'acceptInvite.ownCodeLabel' => 'Seu código de convite',
+          'acceptInvite.ownCodeNote' =>
+            'Envie esse código para sua pessoa. O que cada um anotou até agora continua privado.',
           'account.deleteTitle' => 'Apagar conta',
           'account.deleteHighlight' => 'conta',
           'account.deleteText' =>
@@ -9700,6 +9745,9 @@ extension on Translations {
           'day.months.10' => 'novembro',
           'day.months.11' => 'dezembro',
           'day.previous' => 'Dia anterior',
+          _ => null,
+        } ??
+        switch (path) {
           'day.next' => 'Próximo dia',
           'day.planned' => 'Encontro planejado',
           'day.emptyTitle' => 'Nada marcado neste dia',
@@ -9709,9 +9757,6 @@ extension on Translations {
           'debugSignIn.title' => 'Entrar (debug)',
           'debugSignIn.signIn' => 'Entrar',
           'debugSignIn.createAccount' => 'Criar conta',
-          _ => null,
-        } ??
-        switch (path) {
           'debugSignIn.confirmEmail' =>
             'Conta criada. Confira seu e-mail para confirmar antes de entrar.',
           'devices.title' => 'Dispositivos de notificação',
@@ -10362,6 +10407,9 @@ extension on Translations {
           'history.kindTrip' => 'Viagem',
           'history.kindHome' => 'Moramos juntos',
           'history.kindCustom' => 'Marco',
+          _ => null,
+        } ??
+        switch (path) {
           'history.unknownDateToggle' => 'Data desconhecida',
           'history.precisionDay' => 'Dia exato',
           'history.precisionMonth' => 'Mês e ano',
@@ -10371,9 +10419,6 @@ extension on Translations {
           'history.addedByYou' => 'Você',
           'history.visibilityRowLabel' => 'Quem vê',
           'history.visibilityBoth' => 'Os dois',
-          _ => null,
-        } ??
-        switch (path) {
           'history.visibilityOnlyYou' => 'Só você',
           'history.deleteMilestone' => 'Apagar',
           'history.deleteMilestoneTitle' => 'Excluir este marco?',
@@ -10583,6 +10628,8 @@ extension on Translations {
           'invite.errors.RATE_LIMITED' => 'Você criou muitos convites hoje. Tente de novo amanhã.',
           'invite.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'invite.errors.other' => 'Algo deu errado. Tente de novo.',
+          'invite.shareTitle' => 'Compartilhar convite',
+          'invite.waitingTitle' => 'Esperando o parceiro',
           'language.language' => 'Idioma',
           'language.languagePortuguese' => 'Português (Brasil)',
           'language.languageEnglish' => 'Inglês',
@@ -10977,6 +11024,9 @@ extension on Translations {
           'moodHelp.partnerNeedActions.company' => 'Ficar por perto',
           'moodHelp.partnerNeedActions.rest' => 'Deixar descansar',
           'moodHelp.partnerNeedActions.other' => '',
+          _ => null,
+        } ??
+        switch (path) {
           'moodHelp.partnerNeedSupports.listen' => 'Sem dar opinião nem tentar resolver.',
           'moodHelp.partnerNeedSupports.opinion' => 'Uma opinião honesta, sem julgar.',
           'moodHelp.partnerNeedSupports.hug' => 'Chega como um sinal no app.',
@@ -10988,9 +11038,6 @@ extension on Translations {
           'moodHelp.partnerNeedSupports.rest' => 'Assumir o que der e deixar quieto.',
           'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'Vocês ainda não estão conectados.',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'moodHelp.errors.NETWORK' =>
             'Não deu para enviar agora. Verifique a conexão e tente de novo.',
@@ -11570,6 +11617,9 @@ extension on Translations {
           'received.responses.moreTime' => 'Preciso de mais um tempo',
           'received.responses.willDo' => 'Vou fazer',
           'received.responses.notNow' => 'Agora não',
+          _ => null,
+        } ??
+        switch (path) {
           'received.responses.plan' => 'Planejar algo',
           'received.responses.later' => 'Respondo depois',
           'received.responses.heart' => 'Mandar um coração',
@@ -11581,9 +11631,6 @@ extension on Translations {
           'received.doneText' => 'Que bom que você leu com calma.',
           'received.emptyTitle' => 'Nada novo',
           'received.emptyText' => 'Quando seu par mandar algo, aparece aqui.',
-          _ => null,
-        } ??
-        switch (path) {
           'received.close' => 'Fechar',
           'received.errorTitle' => 'Não deu para abrir',
           'received.errorText' => 'Nada se perdeu. Tente de novo.',
@@ -12146,6 +12193,9 @@ extension on Translations {
           'sundayCard.held.keepHolding' => 'Continuar retendo',
           'sundayCard.held.sendAnyway' => 'Enviar mesmo assim',
           'sundayCard.sent.title' => 'Enviado',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.sent.text' => ({required Object name}) => 'O cartão foi para ${name}.',
           'sundayCard.sent.textNoName' => 'O cartão foi para sua pessoa.',
           'sundayCard.sent.done' => 'Pronto',
@@ -12157,9 +12207,6 @@ extension on Translations {
           'tabs.soonTitle' => 'Em construção',
           'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
           'tabs.segmentTogether' => 'Nós',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.forMeFooter' => 'Ferramentas privadas. Nunca compartilhadas.',
           'tabs.segmentForMe' => 'Para mim',
           'tabs.checkinLabel' => 'CHECK-IN',

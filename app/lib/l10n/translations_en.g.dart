@@ -274,6 +274,25 @@ class _Translations$acceptInvite$en extends Translations$acceptInvite$pt {
     'NETWORK': 'No connection. Check your internet and try again.',
     'other': 'Could not connect right now. Try again.',
   };
+  @override
+  String headline({required Object name}) => 'Connect with ${name}';
+  @override
+  String get headlineNoName => 'Connect with your person';
+  @override
+  String get headlineNoNameHighlight => 'your person';
+  @override
+  String get pageSubtitle => 'Both already use the app? One invites and the other types the code.';
+  @override
+  String get segmentHaveCode => 'I have a code';
+  @override
+  String get segmentInvite => 'I want to invite';
+  @override
+  String get connectAction => 'Connect';
+  @override
+  String get ownCodeLabel => 'Your invite code';
+  @override
+  String get ownCodeNote =>
+      'Send this code to your person. What each of you has written so far stays private.';
 }
 
 // Path: account
@@ -2490,6 +2509,10 @@ class _Translations$invite$en extends Translations$invite$pt {
     'NETWORK': 'No connection. Check your internet and try again.',
     'other': 'Something went wrong. Try again.',
   };
+  @override
+  String get shareTitle => 'Share invite';
+  @override
+  String get waitingTitle => 'Waiting for your partner';
 }
 
 // Path: language
@@ -7358,6 +7381,17 @@ extension on TranslationsEn {
             'Too many tries in a row. Wait a bit and try again.',
           'acceptInvite.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'acceptInvite.errors.other' => 'Could not connect right now. Try again.',
+          'acceptInvite.headline' => ({required Object name}) => 'Connect with ${name}',
+          'acceptInvite.headlineNoName' => 'Connect with your person',
+          'acceptInvite.headlineNoNameHighlight' => 'your person',
+          'acceptInvite.pageSubtitle' =>
+            'Both already use the app? One invites and the other types the code.',
+          'acceptInvite.segmentHaveCode' => 'I have a code',
+          'acceptInvite.segmentInvite' => 'I want to invite',
+          'acceptInvite.connectAction' => 'Connect',
+          'acceptInvite.ownCodeLabel' => 'Your invite code',
+          'acceptInvite.ownCodeNote' =>
+            'Send this code to your person. What each of you has written so far stays private.',
           'account.deleteTitle' => 'Delete account',
           'account.deleteHighlight' => 'account',
           'account.deleteText' => 'Your data is erased after 14 days. This needs a fresh sign-in.',
@@ -7930,6 +7964,9 @@ extension on TranslationsEn {
           'day.months.10' => 'November',
           'day.months.11' => 'December',
           'day.previous' => 'Previous day',
+          _ => null,
+        } ??
+        switch (path) {
           'day.next' => 'Next day',
           'day.planned' => 'Planned date',
           'day.emptyTitle' => 'Nothing set for this day',
@@ -7939,9 +7976,6 @@ extension on TranslationsEn {
           'debugSignIn.title' => 'Sign in (debug)',
           'debugSignIn.signIn' => 'Sign in',
           'debugSignIn.createAccount' => 'Create account',
-          _ => null,
-        } ??
-        switch (path) {
           'debugSignIn.confirmEmail' =>
             'Account created. Check your email to confirm it before signing in.',
           'devices.title' => 'Notification devices',
@@ -8586,6 +8620,9 @@ extension on TranslationsEn {
           'history.kindTrip' => 'Trip',
           'history.kindHome' => 'Moved in together',
           'history.kindCustom' => 'Milestone',
+          _ => null,
+        } ??
+        switch (path) {
           'history.unknownDateToggle' => 'Unknown date',
           'history.precisionDay' => 'Exact day',
           'history.precisionMonth' => 'Month and year',
@@ -8595,9 +8632,6 @@ extension on TranslationsEn {
           'history.addedByYou' => 'You',
           'history.visibilityRowLabel' => 'Who sees it',
           'history.visibilityBoth' => 'Both',
-          _ => null,
-        } ??
-        switch (path) {
           'history.visibilityOnlyYou' => 'Only you',
           'history.deleteMilestone' => 'Delete',
           'history.deleteMilestoneTitle' => 'Delete this milestone?',
@@ -8808,6 +8842,8 @@ extension on TranslationsEn {
           'invite.errors.RATE_LIMITED' => 'You created too many invites today. Try again tomorrow.',
           'invite.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'invite.errors.other' => 'Something went wrong. Try again.',
+          'invite.shareTitle' => 'Share invite',
+          'invite.waitingTitle' => 'Waiting for your partner',
           'language.language' => 'Language',
           'language.languagePortuguese' => 'Portuguese (Brazil)',
           'language.languageEnglish' => 'English',
@@ -9200,6 +9236,9 @@ extension on TranslationsEn {
           'moodHelp.partnerNeedActions.company' => 'Stay close',
           'moodHelp.partnerNeedActions.rest' => 'Let them rest',
           'moodHelp.partnerNeedActions.other' => '',
+          _ => null,
+        } ??
+        switch (path) {
           'moodHelp.partnerNeedSupports.listen' => 'No advice, no fixing.',
           'moodHelp.partnerNeedSupports.opinion' => 'An honest opinion, without judging.',
           'moodHelp.partnerNeedSupports.hug' => 'It arrives as a signal in the app.',
@@ -9211,9 +9250,6 @@ extension on TranslationsEn {
           'moodHelp.partnerNeedSupports.rest' => 'Take what you can off their plate.',
           'moodHelp.partnerNeedSupports.other' => '',
           'moodHelp.errors.NOT_PAIRED' => 'You are not connected yet.',
-          _ => null,
-        } ??
-        switch (path) {
           'moodHelp.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'moodHelp.errors.NETWORK' =>
             'Couldn\'t send it now. Check your connection and try again.',
@@ -9792,6 +9828,9 @@ extension on TranslationsEn {
           'received.responses.moreTime' => 'I need a bit more time',
           'received.responses.willDo' => 'I\'ll do it',
           'received.responses.notNow' => 'Not now',
+          _ => null,
+        } ??
+        switch (path) {
           'received.responses.plan' => 'Plan something',
           'received.responses.later' => 'I\'ll answer later',
           'received.responses.heart' => 'Send a heart',
@@ -9803,9 +9842,6 @@ extension on TranslationsEn {
           'received.doneText' => 'Thanks for reading it calmly.',
           'received.emptyTitle' => 'Nothing new',
           'received.emptyText' => 'When your partner sends something, it shows up here.',
-          _ => null,
-        } ??
-        switch (path) {
           'received.close' => 'Close',
           'received.errorTitle' => 'Couldn\'t open this',
           'received.errorText' => 'Nothing was lost. Try again.',
@@ -10362,6 +10398,9 @@ extension on TranslationsEn {
           'sundayCard.held.keepHolding' => 'Keep holding',
           'sundayCard.held.sendAnyway' => 'Send anyway',
           'sundayCard.sent.title' => 'Sent',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.sent.text' => ({required Object name}) => 'The card went to ${name}.',
           'sundayCard.sent.textNoName' => 'The card went to your person.',
           'sundayCard.sent.done' => 'Done',
@@ -10373,9 +10412,6 @@ extension on TranslationsEn {
           'tabs.soonTitle' => 'Under construction',
           'tabs.soonText' => 'This part of the app is still being prepared.',
           'tabs.segmentTogether' => 'Us',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.forMeFooter' => 'Private tools. Never shared.',
           'tabs.segmentForMe' => 'For me',
           'tabs.checkinLabel' => 'CHECK-IN',

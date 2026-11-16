@@ -51,6 +51,16 @@ void main() {
     inviteCodes: inviteCodes,
   );
 
+  test('switching to inviting shows the own code and back again', () {
+    final cubit = build()..showInviting(isInviting: true);
+
+    expect(cubit.state.isInviting, isTrue);
+
+    cubit.showInviting(isInviting: false);
+
+    expect(cubit.state.isInviting, isFalse);
+  });
+
   test('start pre-fills the code kept from an invite link', () {
     inviteCodes.code = 'abcd2345';
     final cubit = build()..start();

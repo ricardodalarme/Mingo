@@ -35,5 +35,14 @@
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um pouco e tente de novo.",
     "NETWORK": "Sem conexão. Confira a internet e tente de novo.",
     "other": "Não deu para conectar agora. Tente de novo."
-  }
+  },
+  "headline": "Conectar com {name}",
+  "headlineNoName": "Conectar com sua pessoa",
+  "headlineNoNameHighlight": "sua pessoa",
+  "pageSubtitle": "Os dois já usam o app? Um convida e o outro digita o código.",
+  "segmentHaveCode": "Tenho um código",
+  "segmentInvite": "Quero convidar",
+  "connectAction": "Conectar",
+  "ownCodeLabel": "Seu código de convite",
+  "ownCodeNote": "Envie esse código para sua pessoa. O que cada um anotou até agora continua privado."
 }

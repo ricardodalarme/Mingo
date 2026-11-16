@@ -17,6 +17,12 @@ class InviteCubit({
 }) extends Cubit<InviteState> {
   this : super(const InviteState());
 
+  /// Starts once; later calls keep what is already loaded.
+  Future<void> ensureStarted() async {
+    if (state.invite is Success<ActiveInvite>) return;
+    await start();
+  }
+
   /// Loads the partner name and the invite to share, creating one when needed.
   Future<void> start() async {
     emit(state.copyWith(invite: const Loading()));

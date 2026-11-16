@@ -37,15 +37,14 @@ void main() {
     inviteCodes: inviteCodes,
   );
 
-  testWidgets('the invite hint reads as an example, not a prefilled code', (tester) async {
+  testWidgets('the code field starts empty', (tester) async {
     final cubit = build(_FakeInviteCodeStore());
     addTearDown(cubit.close);
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const AcceptInviteForm()));
     await tester.pumpAndSettle();
 
-    expect(tester.widget<BaseTextField>(find.byType(BaseTextField)).hint, 'Ex.: ABCD2345');
-    expect(tester.widget<BaseTextField>(find.byType(BaseTextField)).text, isEmpty);
+    expect(tester.widget<BaseCodeField>(find.byType(BaseCodeField)).text, isEmpty);
   });
 
   testWidgets('an invite link pre-fills the code from the kept invite', (tester) async {
@@ -55,7 +54,7 @@ void main() {
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const AcceptInviteForm()));
     await tester.pumpAndSettle();
 
-    expect(tester.widget<BaseTextField>(find.byType(BaseTextField)).text, 'ABCD2345');
+    expect(tester.widget<BaseCodeField>(find.byType(BaseCodeField)).text, 'ABCD2345');
   });
 
   testWidgets('the route code pre-fills the form', (tester) async {
@@ -65,6 +64,6 @@ void main() {
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const AcceptInviteForm()));
     await tester.pumpAndSettle();
 
-    expect(tester.widget<BaseTextField>(find.byType(BaseTextField)).text, 'ABCD2345');
+    expect(tester.widget<BaseCodeField>(find.byType(BaseCodeField)).text, 'ABCD2345');
   });
 }

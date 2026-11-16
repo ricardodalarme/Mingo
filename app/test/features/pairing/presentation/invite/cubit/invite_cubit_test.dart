@@ -51,6 +51,15 @@ void main() {
     expect(cubit.state.partnerName, isNull);
   });
 
+  test('ensureStarted creates the invite once', () async {
+    final cubit = build();
+    await cubit.ensureStarted();
+    await cubit.ensureStarted();
+
+    expect(cubit.state.invite, Success(invite));
+    verify(() => pairing.getOrCreateInvite(any())).called(1);
+  });
+
   test('a failing create shows a failure that can be retried', () async {
     when(() => pairing.getOrCreateInvite(any()))
         .thenAnswer((_) async => throw const LocalizedException(l10nKey: 'NETWORK'));

@@ -16,11 +16,9 @@ class const AcceptInviteCodeField({final String? errorText, super.key}) extends 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        BaseTextField(
-          type: BaseTextFieldType.inviteCode,
+        BaseCodeField(
           text: code.value,
-          label: l10n.codeLabel,
-          hint: l10n.codeHint,
+          semanticLabel: l10n.codeLabel,
           errorText: errorText ?? l10n.codeErrors.selectOrNull(code.errorName),
           onChanged: context.read<AcceptInviteCubit>().onCodeChanged,
         ),

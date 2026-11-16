@@ -25,7 +25,12 @@ class const InvitePage({super.key}) extends StatelessWidget implements AutoRoute
     final invite = context.select((InviteCubit cubit) => cubit.state.invite);
     final hasShared = context.select((InviteCubit cubit) => cubit.state.hasShared);
 
+    final title = invite is Success<ActiveInvite> && hasShared
+        ? l10n.waitingTitle
+        : l10n.shareTitle;
+
     return BaseView(
+      appBar: BaseAppBar(title: title, onBack: () => context.router.maybePop()),
       body: BlocListener<InviteCubit, InviteState>(
         listenWhen: (previous, current) => previous.revokeAction != current.revokeAction,
         listener: (context, state) {

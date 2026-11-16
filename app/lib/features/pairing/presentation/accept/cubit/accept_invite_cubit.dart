@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/pairing/data/mappers/invite_code_mapper.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
@@ -23,10 +25,23 @@ class AcceptInviteCubit({
 
   /// Pre-fills the code from [code] or from the one kept when the link was opened.
   void start({String? code}) {
+    unawaited(_loadPartnerHint());
     final pending = code ?? _inviteCodes.read();
     if (pending == null || pending.isEmpty) return;
 
     onCodeChanged(pending);
+  }
+
+  /// Switches between typing a code and showing the person's own code.
+  void showInviting({required bool isInviting}) => emit(state.copyWith(isInviting: isInviting));
+
+  Future<void> _loadPartnerHint() async {
+    try {
+      final name = (await _profileRepository.getMySettings()).partnerName;
+      if (!isClosed) emit(state.copyWith(partnerHint: name));
+    } on Object {
+      // The headline falls back to a generic wording.
+    }
   }
 
   /// Normalizes [value] and forgets the outcome of the previous attempt.
@@ -71,7 +86,7 @@ class AcceptInviteCubit({
   }
 
   /// Lets the person type another code after an unusable one.
-  void tryAgain() => emit(AcceptInviteState(code: state.code));
+  void tryAgain() => emit(AcceptInviteState(code: state.code, partnerHint: state.partnerHint));
 
   /// The code in [value], which may be a pasted invite link.
   String _code(String value) {

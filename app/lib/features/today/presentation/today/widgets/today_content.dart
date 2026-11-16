@@ -3,6 +3,7 @@ import 'package:app/features/cards/presentation/shared/widgets/week_card.dart';
 import 'package:app/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
+import 'package:app/features/today/presentation/today/widgets/open_invite.dart';
 import 'package:app/features/today/presentation/today/widgets/today_header.dart';
 import 'package:app/features/today/presentation/today/widgets/today_share_entry.dart';
 import 'package:app/l10n/translations.g.dart';
@@ -98,7 +99,7 @@ class const _HeroSection({
             categoryLabel: l10n.pendingInviteTitle,
             title: l10n.pendingInviteText,
             supportText: l10n.pendingInviteAction,
-            onTap: () => context.pushRoute(const InviteRoute()),
+            onTap: () => openInvite(context),
           ),
           const SizedBox(height: AppSpace.s12),
         ],
@@ -164,7 +165,7 @@ class const _MoreCardsSection({
                 ? l10n.inviteCardTitleNoName
                 : l10n.inviteCardTitle(name: partnerHint!),
             supportText: l10n.inviteCardText,
-            onTap: () => context.pushRoute(const InviteRoute()),
+            onTap: () => openInvite(context),
           ),
         ],
       ],

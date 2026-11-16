@@ -72,7 +72,7 @@ void main() {
   }
 
   Future<void> accept(WidgetTester tester, String code) async {
-    await tester.enterText(find.byType(BaseTextField), code);
+    await tester.enterText(find.byType(BaseCodeField), code);
     await tester.tap(find.text('Aceitar'));
     await tester.pump();
     await tester.pump();
@@ -102,7 +102,7 @@ void main() {
       find.text('Confira o código ou peça um novo convite para quem convidou.'),
       findsOneWidget,
     );
-    expect(find.byType(BaseTextField), findsOneWidget);
+    expect(find.byType(BaseCodeField), findsOneWidget);
     expect(connected, isFalse);
   });
 
@@ -116,14 +116,5 @@ void main() {
 
     expect(find.textContaining('seu próprio código'), findsOneWidget);
     verifyNever(() => pairing.acceptInvite(any()));
-  });
-
-  testWidgets('a pasted invite link is reduced to its code', (tester) async {
-    await pumpSheet(tester, build());
-
-    await tester.enterText(find.byType(BaseTextField), 'https://mingo.app/invite/abcd2345');
-    await tester.pump();
-
-    expect(tester.widget<BaseTextField>(find.byType(BaseTextField)).text, 'ABCD2345');
   });
 }

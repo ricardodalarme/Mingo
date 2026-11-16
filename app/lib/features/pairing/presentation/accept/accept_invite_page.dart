@@ -2,6 +2,7 @@ import 'package:app/features/pairing/presentation/accept/cubit/accept_invite_cub
 import 'package:app/features/pairing/presentation/accept/widgets/accept_invite_connected.dart';
 import 'package:app/features/pairing/presentation/accept/widgets/accept_invite_form.dart';
 import 'package:app/features/pairing/presentation/accept/widgets/accept_invite_unusable.dart';
+import 'package:app/features/pairing/presentation/invite/cubit/invite_cubit.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
@@ -15,8 +16,13 @@ class const AcceptInvitePage({@QueryParam('code') final String? code, super.key}
     implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppInjector.instance.get<AcceptInviteCubit>()..start(code: code),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => AppInjector.instance.get<AcceptInviteCubit>()..start(code: code),
+        ),
+        BlocProvider(create: (_) => AppInjector.instance.get<InviteCubit>()),
+      ],
       child: this,
     );
   }
@@ -28,7 +34,10 @@ class const AcceptInvitePage({@QueryParam('code') final String? code, super.key}
     return BaseView(
       appBar: action is Success<AcceptOutcome> && action.value == AcceptOutcome.connected
           ? null
-          : const BaseAppBar(),
+          : BaseAppBar(
+              title: context.l10n.acceptInvite.connectTitle,
+              onBack: () => context.router.maybePop(),
+            ),
       body: BlocListener<AcceptInviteCubit, AcceptInviteState>(
         listenWhen: (previous, current) => previous.acceptAction != current.acceptAction,
         listener: (context, state) {

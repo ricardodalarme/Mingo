@@ -18,5 +18,7 @@
     "RATE_LIMITED": "Você criou muitos convites hoje. Tente de novo amanhã.",
     "NETWORK": "Sem conexão. Confira a internet e tente de novo.",
     "other": "Algo deu errado. Tente de novo."
-  }
+  },
+  "shareTitle": "Compartilhar convite",
+  "waitingTitle": "Esperando o parceiro"
 }

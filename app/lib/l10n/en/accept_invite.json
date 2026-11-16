@@ -35,5 +35,14 @@
     "RATE_LIMITED": "Too many tries in a row. Wait a bit and try again.",
     "NETWORK": "No connection. Check your internet and try again.",
     "other": "Could not connect right now. Try again."
-  }
+  },
+  "headline": "Connect with {name}",
+  "headlineNoName": "Connect with your person",
+  "headlineNoNameHighlight": "your person",
+  "pageSubtitle": "Both already use the app? One invites and the other types the code.",
+  "segmentHaveCode": "I have a code",
+  "segmentInvite": "I want to invite",
+  "connectAction": "Connect",
+  "ownCodeLabel": "Your invite code",
+  "ownCodeNote": "Send this code to your person. What each of you has written so far stays private."
 }

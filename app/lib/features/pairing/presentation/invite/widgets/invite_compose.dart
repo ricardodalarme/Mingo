@@ -25,7 +25,7 @@ class const InviteCompose({required final ActiveInvite invite, super.key}) exten
             header: true,
             child: Text(
               name == null ? l10n.titleNoName : l10n.title(name: name),
-              style: context.text.display,
+              style: context.text.titleXl,
             ),
           ),
           const SizedBox(height: AppSpace.s20),

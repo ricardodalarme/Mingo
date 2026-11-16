@@ -1,4 +1,5 @@
 import 'package:app/features/today/data/models/today_home.dart';
+import 'package:app/features/today/presentation/today/widgets/open_invite.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
@@ -54,7 +55,7 @@ class const TodayHeader({
             else
               BaseAvatarPair(
                 selfInitials: _initial(name),
-                onTap: () => context.pushRoute(const InviteRoute()),
+                onTap: () => openInvite(context),
                 semanticLabel: l10n.invitePerson,
               ),
             Row(
