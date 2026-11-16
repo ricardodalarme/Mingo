@@ -68,14 +68,14 @@ class const _Footer() extends StatelessWidget {
       children: [
         BaseButton(
           text: context.l10n.intro.skip,
-          variant: .text,
+          variant: .secondary,
           isFullWidth: false,
           onPressed: () async {
             await cubit.skip();
             if (context.mounted) await context.pushRoute(const CreateAccountRoute());
           },
         ),
-        const SizedBox(width: AppSpace.s12),
+        const SizedBox(width: AppSpace.s10),
         Expanded(
           child: BaseButton(text: l10n.save, isLoading: isLoading, onPressed: cubit.save),
         ),

@@ -59,8 +59,8 @@ class const IntroFooter({
   Widget build(BuildContext context) {
     return Row(
       children: [
-        BaseButton(text: skipText, variant: .text, isFullWidth: false, onPressed: onSkip),
-        const SizedBox(width: AppSpace.s12),
+        BaseButton(text: skipText, variant: .secondary, isFullWidth: false, onPressed: onSkip),
+        const SizedBox(width: AppSpace.s10),
         Expanded(
           child: BaseButton(text: continueText, onPressed: onContinue),
         ),
