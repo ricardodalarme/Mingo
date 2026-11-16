@@ -3,7 +3,6 @@
   "consentText": "A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.",
   "consentPrivacy": "What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.",
   "consentTurnOn": "Turn on the chat",
-  "emptyHint": "Say how you are, or start with something small.",
   "inputHint": "Write here",
   "draftErrors(map)": {
     "empty": "Write something to send",
@@ -56,9 +55,6 @@
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't do that right now. Try again."
   },
-  "starterHard": "A hard moment",
-  "starterIdea": "An idea",
-  "starterPlan": "A date plan",
   "menuLabel": "More options",
   "action": {
     "privateHint": "Stays only with you.",
@@ -98,5 +94,17 @@
       "open_purchase": "Plus",
       "other": "Suggestion"
     }
-  }
+  },
+  "greeting(map)": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening"
+  },
+  "entryTitle": "What do you want to talk about?",
+  "entryHighlight": "talk",
+  "starterBothered": "Something bothered me",
+  "starterThanks": "I want to say thanks",
+  "starterDate": "A date idea",
+  "starterTalk": "Prepare a conversation",
+  "startHere": "Start here"
 }

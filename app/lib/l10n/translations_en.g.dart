@@ -777,8 +777,6 @@ class _Translations$chat$en extends Translations$chat$pt {
   @override
   String get consentTurnOn => 'Turn on the chat';
   @override
-  String get emptyHint => 'Say how you are, or start with something small.';
-  @override
   String get inputHint => 'Write here';
   @override
   Map<String, String> get draftErrors => {
@@ -876,15 +874,29 @@ class _Translations$chat$en extends Translations$chat$pt {
     'other': 'Couldn\'t do that right now. Try again.',
   };
   @override
-  String get starterHard => 'A hard moment';
-  @override
-  String get starterIdea => 'An idea';
-  @override
-  String get starterPlan => 'A date plan';
-  @override
   String get menuLabel => 'More options';
   @override
   late final _Translations$chat$action$en action = _Translations$chat$action$en._(_root);
+  @override
+  Map<String, String> get greeting => {
+    'morning': 'Good morning',
+    'afternoon': 'Good afternoon',
+    'evening': 'Good evening',
+  };
+  @override
+  String get entryTitle => 'What do you want to talk about?';
+  @override
+  String get entryHighlight => 'talk';
+  @override
+  String get starterBothered => 'Something bothered me';
+  @override
+  String get starterThanks => 'I want to say thanks';
+  @override
+  String get starterDate => 'A date idea';
+  @override
+  String get starterTalk => 'Prepare a conversation';
+  @override
+  String get startHere => 'Start here';
 }
 
 // Path: checkin
@@ -8233,7 +8245,6 @@ extension on TranslationsEn {
           'chat.consentText' => 'A calm conversation with the mascot, to sort out what you feel. It does not replace professional help and never takes sides.',
           'chat.consentPrivacy' => 'What you write is sent to an AI model only to produce the reply. Nothing from the conversation is kept, unless you turn a reply into a slip.',
           'chat.consentTurnOn' => 'Turn on the chat',
-          'chat.emptyHint' => 'Say how you are, or start with something small.',
           'chat.inputHint' => 'Write here',
           'chat.draftErrors.empty' => 'Write something to send',
           'chat.draftErrors.tooLong' => 'This message is too long',
@@ -8286,9 +8297,6 @@ extension on TranslationsEn {
           'chat.errorText' => 'Try again in a moment.',
           'chat.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'chat.errors.other' => 'Couldn\'t do that right now. Try again.',
-          'chat.starterHard' => 'A hard moment',
-          'chat.starterIdea' => 'An idea',
-          'chat.starterPlan' => 'A date plan',
           'chat.menuLabel' => 'More options',
           'chat.action.privateHint' => 'Stays only with you.',
           'chat.action.partnerHint' => 'Nothing goes until you tap.',
@@ -8321,6 +8329,16 @@ extension on TranslationsEn {
           'chat.action.tags.draft_note' => 'Draft note',
           'chat.action.tags.open_purchase' => 'Plus',
           'chat.action.tags.other' => 'Suggestion',
+          'chat.greeting.morning' => 'Good morning',
+          'chat.greeting.afternoon' => 'Good afternoon',
+          'chat.greeting.evening' => 'Good evening',
+          'chat.entryTitle' => 'What do you want to talk about?',
+          'chat.entryHighlight' => 'talk',
+          'chat.starterBothered' => 'Something bothered me',
+          'chat.starterThanks' => 'I want to say thanks',
+          'chat.starterDate' => 'A date idea',
+          'chat.starterTalk' => 'Prepare a conversation',
+          'chat.startHere' => 'Start here',
           'checkin.title' => 'Weekly check-in',
           'checkin.titleHighlight' => 'Weekly',
           'checkin.introSubtitle' => 'Ten minutes. Each of you answers privately first.',
@@ -8476,15 +8494,15 @@ extension on TranslationsEn {
           'dates.months.1' => 'February',
           'dates.months.2' => 'March',
           'dates.months.3' => 'April',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.months.4' => 'May',
           'dates.months.5' => 'June',
           'dates.months.6' => 'July',
           'dates.months.7' => 'August',
           'dates.months.8' => 'September',
           'dates.months.9' => 'October',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.months.10' => 'November',
           'dates.months.11' => 'December',
           'dates.monthsShort.0' => 'Jan',
@@ -9087,15 +9105,15 @@ extension on TranslationsEn {
           'helpSupport.topics.bug' => 'Bug',
           'helpSupport.topics.other' => 'Other',
           'helpSupport.messageLabel' => 'Message',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.messageHint' => 'Tell us what happened, with as much detail as you like.',
           'helpSupport.messageErrors.empty' => 'Write your message first',
           'helpSupport.messageErrors.tooLong' => 'The message is too long',
           'helpSupport.replyEmailLabel' => 'Reply email',
           'helpSupport.replyEmailHint' => 'you@email.com',
           'helpSupport.replyEmailErrors.invalid' => 'Check the email address.',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.replyEmailErrors.tooLong' => 'This email is too long',
           'helpSupport.replyTime' => 'We reply within 2 business days.',
           'helpSupport.send' => 'Send',
@@ -9772,15 +9790,15 @@ extension on TranslationsEn {
           'memories.placeHint' => 'E.g. Lisbon',
           'memories.placeAddressNote' =>
             'Prefer just the name of the place, with no address or number.',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.segmentTimeline' => 'Timeline',
           'memories.segmentJar' => 'Jar',
           'memories.jarEmpty' => 'When a slip feels good, keep it in the jar from its details.',
           'memories.jarAnother' => 'Another',
           'memories.jarClose' => 'Close',
           'memories.titleLabel' => 'A memory',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.titleHint' => 'E.g. our first dinner',
           'memories.titleErrors.empty' => 'Give this memory a title',
           'memories.titleErrors.tooLong' => 'The title is too long',
@@ -10364,15 +10382,15 @@ extension on TranslationsEn {
           'programs.saved' => 'Saved for later.',
           'programs.savedTag' => 'Saved',
           'programs.lockedTitle' => 'Plus lesson',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.lockedLessonText' => 'This lesson is part of Plus.',
           'programs.lockedProgramText' => 'This program is part of Plus.',
           'programs.completeTitle' => 'Well done',
           'programs.completeText' => ({required Object title}) => 'You completed ${title}.',
           'programs.completeHint' => 'Choose another whenever you want.',
           'programs.seePrograms' => 'See programs',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.diaryPrivacy' => 'Just me. Never shared.',
           'programs.diaryPrompt' => 'Today I felt...',
           'programs.diaryHint' => 'Write without hurry. Only you can see this.',
@@ -10934,15 +10952,15 @@ extension on TranslationsEn {
           'slipDetail.visibilitySent' => 'Sent',
           'slipDetail.yes' => 'Yes',
           'slipDetail.no' => 'No',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.categories.said' => 'Said something',
           'slipDetail.categories.did' => 'Did something',
           'slipDetail.categories.noticed' => 'Noticed me',
           'slipDetail.categories.helped' => 'Helped me',
           'slipDetail.categories.other' => '',
           'slipDetail.visibility.title' => 'Who sees this slip?',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.visibility.subtitle' => 'Private is the default.',
           'slipDetail.visibility.onlyMe' => 'Only me',
           'slipDetail.visibility.onlyMeText' => 'Stays in your week',
@@ -11553,15 +11571,15 @@ extension on TranslationsEn {
           'widgets.couplePhotosPrompt' => 'Choose a photo of you two',
           'widgets.couplePhotosPlusHint' => 'Available with Plus',
           'widgets.cardEncounterLabel' => 'CARD & DATE',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.cardStateReady' => 'A card arrived · Tap to open',
           'widgets.cardStateSent' => 'Card sent · Waiting for Sunday',
           'widgets.cardStateNone' => 'Sunday card in preparation',
           'widgets.unpairedBanner' => 'No partner connected: couple widgets show a neutral state.',
           'widgets.offlineBanner' => 'Showing the last saved data. Updates when back online.',
           'widgets.loadErrorTitle' => 'Could not load widgets',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.loadErrorBody' => 'Check your connection and try again.',
           'widgets.retryAction' => 'Try again',
           'widgets.themeLight' => 'Light',

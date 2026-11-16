@@ -831,9 +831,6 @@ class Translations$chat$pt {
   /// pt: 'Ligar a conversa'
   String get consentTurnOn => 'Ligar a conversa';
 
-  /// pt: 'Diga como você está, ou comece por uma coisa pequena.'
-  String get emptyHint => 'Diga como você está, ou comece por uma coisa pequena.';
-
   /// pt: 'Escreva aqui'
   String get inputHint => 'Escreva aqui';
 
@@ -968,19 +965,36 @@ class Translations$chat$pt {
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
 
-  /// pt: 'Um momento difícil'
-  String get starterHard => 'Um momento difícil';
-
-  /// pt: 'Uma ideia'
-  String get starterIdea => 'Uma ideia';
-
-  /// pt: 'Um plano de encontro'
-  String get starterPlan => 'Um plano de encontro';
-
   /// pt: 'Mais opções'
   String get menuLabel => 'Mais opções';
 
   late final Translations$chat$action$pt action = Translations$chat$action$pt.internal(_root);
+  Map<String, String> get greeting => {
+    'morning': 'Bom dia',
+    'afternoon': 'Boa tarde',
+    'evening': 'Boa noite',
+  };
+
+  /// pt: 'Sobre o que você quer falar?'
+  String get entryTitle => 'Sobre o que você quer falar?';
+
+  /// pt: 'falar'
+  String get entryHighlight => 'falar';
+
+  /// pt: 'Algo me incomodou'
+  String get starterBothered => 'Algo me incomodou';
+
+  /// pt: 'Quero agradecer'
+  String get starterThanks => 'Quero agradecer';
+
+  /// pt: 'Ideia de encontro'
+  String get starterDate => 'Ideia de encontro';
+
+  /// pt: 'Preparar uma conversa'
+  String get starterTalk => 'Preparar uma conversa';
+
+  /// pt: 'Começar por aqui'
+  String get startHere => 'Começar por aqui';
 }
 
 // Path: checkin
@@ -10151,7 +10165,6 @@ extension on Translations {
           'chat.consentText' => 'Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.',
           'chat.consentPrivacy' => 'O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.',
           'chat.consentTurnOn' => 'Ligar a conversa',
-          'chat.emptyHint' => 'Diga como você está, ou comece por uma coisa pequena.',
           'chat.inputHint' => 'Escreva aqui',
           'chat.draftErrors.empty' => 'Escreva algo para enviar',
           'chat.draftErrors.tooLong' => 'Esta mensagem está muito longa',
@@ -10204,9 +10217,6 @@ extension on Translations {
           'chat.errorText' => 'Tente de novo em instantes.',
           'chat.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'chat.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          'chat.starterHard' => 'Um momento difícil',
-          'chat.starterIdea' => 'Uma ideia',
-          'chat.starterPlan' => 'Um plano de encontro',
           'chat.menuLabel' => 'Mais opções',
           'chat.action.privateHint' => 'Fica só com você.',
           'chat.action.partnerHint' => 'Só vai depois que você tocar.',
@@ -10239,6 +10249,16 @@ extension on Translations {
           'chat.action.tags.draft_note' => 'Rascunho de recado',
           'chat.action.tags.open_purchase' => 'Plus',
           'chat.action.tags.other' => 'Sugestão',
+          'chat.greeting.morning' => 'Bom dia',
+          'chat.greeting.afternoon' => 'Boa tarde',
+          'chat.greeting.evening' => 'Boa noite',
+          'chat.entryTitle' => 'Sobre o que você quer falar?',
+          'chat.entryHighlight' => 'falar',
+          'chat.starterBothered' => 'Algo me incomodou',
+          'chat.starterThanks' => 'Quero agradecer',
+          'chat.starterDate' => 'Ideia de encontro',
+          'chat.starterTalk' => 'Preparar uma conversa',
+          'chat.startHere' => 'Começar por aqui',
           'checkin.title' => 'Check-in semanal',
           'checkin.titleHighlight' => 'semanal',
           'checkin.introSubtitle' => 'Dez minutos. Cada um responde em privado primeiro.',
@@ -10391,15 +10411,15 @@ extension on Translations {
           'dates.months.1' => 'fevereiro',
           'dates.months.2' => 'março',
           'dates.months.3' => 'abril',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.months.4' => 'maio',
           'dates.months.5' => 'junho',
           'dates.months.6' => 'julho',
           'dates.months.7' => 'agosto',
           'dates.months.8' => 'setembro',
           'dates.months.9' => 'outubro',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.months.10' => 'novembro',
           'dates.months.11' => 'dezembro',
           'dates.monthsShort.0' => 'jan',
@@ -11009,6 +11029,9 @@ extension on Translations {
           'helpSupport.topics.bug' => 'Erro',
           'helpSupport.topics.other' => 'Outro',
           'helpSupport.messageLabel' => 'Mensagem',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.messageHint' =>
             'Conte o que aconteceu, com o máximo de detalhes que quiser.',
           'helpSupport.messageErrors.empty' => 'Escreva sua mensagem primeiro',
@@ -11016,9 +11039,6 @@ extension on Translations {
           'helpSupport.replyEmailLabel' => 'E-mail para resposta',
           'helpSupport.replyEmailHint' => 'voce@email.com',
           'helpSupport.replyEmailErrors.invalid' => 'Confira o e-mail.',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.replyEmailErrors.tooLong' => 'Este e-mail é muito longo',
           'helpSupport.replyTime' => 'Respondemos em até 2 dias úteis.',
           'helpSupport.send' => 'Enviar',
@@ -11690,6 +11710,9 @@ extension on Translations {
           'memories.placeLabel' => 'Lugar (opcional)',
           'memories.placeHint' => 'Ex.: Paraty',
           'memories.placeAddressNote' => 'Prefira só o nome do lugar, sem endereço ou número.',
+          _ => null,
+        } ??
+        switch (path) {
           'memories.segmentTimeline' => 'Linha do tempo',
           'memories.segmentJar' => 'Potinho',
           'memories.jarEmpty' =>
@@ -11697,9 +11720,6 @@ extension on Translations {
           'memories.jarAnother' => 'Outro',
           'memories.jarClose' => 'Fechar',
           'memories.titleLabel' => 'Uma memória',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.titleHint' => 'Ex.: nosso primeiro jantar',
           'memories.titleErrors.empty' => 'Dê um título a esta memória',
           'memories.titleErrors.tooLong' => 'O título está muito longo',
@@ -12289,15 +12309,15 @@ extension on Translations {
           'programs.saved' => 'Guardado para depois.',
           'programs.savedTag' => 'Guardado',
           'programs.lockedTitle' => 'Lição do Plus',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.lockedLessonText' => 'Esta lição faz parte do Plus.',
           'programs.lockedProgramText' => 'Este programa faz parte do Plus.',
           'programs.completeTitle' => 'Muito bem',
           'programs.completeText' => ({required Object title}) => 'Você concluiu ${title}.',
           'programs.completeHint' => 'Escolha outro quando quiser.',
           'programs.seePrograms' => 'Ver programas',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.diaryPrivacy' => 'Só eu. Nunca é compartilhado.',
           'programs.diaryPrompt' => 'Hoje eu me senti...',
           'programs.diaryHint' => 'Escreva sem pressa. Só você vê isto.',
@@ -12864,15 +12884,15 @@ extension on Translations {
           'slipDetail.visibilitySent' => 'Enviado',
           'slipDetail.yes' => 'Sim',
           'slipDetail.no' => 'Não',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.categories.said' => 'Disse algo',
           'slipDetail.categories.did' => 'Fez algo',
           'slipDetail.categories.noticed' => 'Me notou',
           'slipDetail.categories.helped' => 'Me ajudou',
           'slipDetail.categories.other' => '',
           'slipDetail.visibility.title' => 'Quem vê este slip?',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.visibility.subtitle' => 'O padrão é privado.',
           'slipDetail.visibility.onlyMe' => 'Só eu',
           'slipDetail.visibility.onlyMeText' => 'Fica na sua semana',
@@ -13483,6 +13503,9 @@ extension on Translations {
           'widgets.couplePhotosPrompt' => 'Escolha uma foto de vocês dois',
           'widgets.couplePhotosPlusHint' => 'Disponível no plano Plus',
           'widgets.cardEncounterLabel' => 'CARTÃO E ENCONTRO',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.cardStateReady' => 'Chegou um cartão · Toque para abrir',
           'widgets.cardStateSent' => 'Cartão enviado · Aguardando domingo',
           'widgets.cardStateNone' => 'Cartão de domingo em preparação',
@@ -13491,9 +13514,6 @@ extension on Translations {
           'widgets.offlineBanner' =>
             'Mostrando o último dado salvo. Atualiza quando voltar a internet.',
           'widgets.loadErrorTitle' => 'Não foi possível carregar os widgets',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.loadErrorBody' => 'Verifique sua conexão e tente novamente.',
           'widgets.retryAction' => 'Tentar novamente',
           'widgets.themeLight' => 'Claro',

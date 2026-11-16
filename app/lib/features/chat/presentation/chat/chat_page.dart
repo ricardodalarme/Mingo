@@ -7,6 +7,7 @@ import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -221,13 +222,7 @@ class const _MessageList() extends StatelessWidget {
       children: [
         Expanded(
           child: messages.isEmpty
-              ? Align(
-                  alignment: Alignment.topLeft,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [BaseBubble(text: l10n.emptyHint)],
-                  ),
-                )
+              ? const _Entry()
               : ListView.separated(
                   reverse: true,
                   itemCount: messages.length,
@@ -238,11 +233,21 @@ class const _MessageList() extends StatelessWidget {
         ),
         if (messages.isEmpty && options.isEmpty) ...[
           const SizedBox(height: AppSpace.s8),
+          Text(
+            l10n.startHere,
+            style: context.text.caption.copyWith(color: context.colors.textSecondary),
+          ),
+          const SizedBox(height: AppSpace.s8),
           Wrap(
             spacing: AppSpace.s8,
             runSpacing: AppSpace.s8,
             children: [
-              for (final starter in [l10n.starterHard, l10n.starterIdea, l10n.starterPlan])
+              for (final starter in [
+                l10n.starterBothered,
+                l10n.starterThanks,
+                l10n.starterDate,
+                l10n.starterTalk,
+              ])
                 BaseChoiceChip(label: starter, onTap: () => cubit.send(starter)),
             ],
           ),
@@ -259,6 +264,49 @@ class const _MessageList() extends StatelessWidget {
           ),
         ],
       ],
+    );
+  }
+}
+
+class const _Entry() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.chat;
+    final hour = clock.now().hour;
+    final period = hour < 12
+        ? 'morning'
+        : hour < 18
+        ? 'afternoon'
+        : 'evening';
+
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox.square(
+            dimension: 56,
+            child: FittedBox(
+              child: BaseFace(kind: FaceKind.smile, size: FaceSize.small),
+            ),
+          ),
+          const SizedBox(height: AppSpace.s16),
+          Text(
+            l10n.greeting.selectOrFallback(period),
+            style: context.text.body.copyWith(color: context.colors.textSecondary),
+          ),
+          const SizedBox(height: AppSpace.s4),
+          Semantics(
+            header: true,
+            child: AppHighlightedText(
+              text: l10n.entryTitle,
+              highlight: l10n.entryHighlight,
+              style: context.text.titleXl,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

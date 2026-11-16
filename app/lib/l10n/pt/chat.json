@@ -3,7 +3,6 @@
   "consentText": "Uma conversa calma com a mascote, para organizar o que você sente. Ela não substitui ajuda profissional e nunca toma partido.",
   "consentPrivacy": "O que você escreve é enviado a um modelo de IA só para gerar a resposta. Nada da conversa é guardado, a menos que você transforme uma resposta em slip.",
   "consentTurnOn": "Ligar a conversa",
-  "emptyHint": "Diga como você está, ou comece por uma coisa pequena.",
   "inputHint": "Escreva aqui",
   "draftErrors(map)": {
     "empty": "Escreva algo para enviar",
@@ -56,9 +55,6 @@
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para fazer isso agora. Tente de novo."
   },
-  "starterHard": "Um momento difícil",
-  "starterIdea": "Uma ideia",
-  "starterPlan": "Um plano de encontro",
   "menuLabel": "Mais opções",
   "action": {
     "privateHint": "Fica só com você.",
@@ -98,5 +94,17 @@
       "open_purchase": "Plus",
       "other": "Sugestão"
     }
-  }
+  },
+  "greeting(map)": {
+    "morning": "Bom dia",
+    "afternoon": "Boa tarde",
+    "evening": "Boa noite"
+  },
+  "entryTitle": "Sobre o que você quer falar?",
+  "entryHighlight": "falar",
+  "starterBothered": "Algo me incomodou",
+  "starterThanks": "Quero agradecer",
+  "starterDate": "Ideia de encontro",
+  "starterTalk": "Preparar uma conversa",
+  "startHere": "Começar por aqui"
 }
