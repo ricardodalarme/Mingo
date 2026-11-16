@@ -4,6 +4,7 @@ import 'package:app/features/cards/data/mappers/card_enum_mapper.dart';
 import 'package:app/features/cards/data/models/card_status.dart';
 import 'package:app/features/cards/data/models/sunday_card.dart';
 import 'package:app/features/slips/data/mappers/slip_enum_mapper.dart';
+import 'package:app/features/slips/data/models/slip_category.dart';
 
 extension CardFragmentMapper on FragmentCardFragment {
   SundayCard toModel() => SundayCard(
@@ -33,7 +34,15 @@ extension PreparedCardMapper on MutationPrepareCardprepareCard {
     note: note,
     items: [
       for (final item in (items as List<dynamic>? ?? const []).cast<Map<String, dynamic>>())
-        CardItem(id: item['id'] as String, body: item['body'] as String),
+        CardItem(
+          id: item['id'] as String,
+          body: item['body'] as String,
+          category: _category(item['category']),
+          writtenAt: item['writtenAt'] == null ? null : DateTime.parse(item['writtenAt'] as String),
+        ),
     ],
   );
 }
+
+SlipCategory? _category(Object? value) =>
+    value is String ? SlipCategory.values.where((kind) => kind.name == value).firstOrNull : null;

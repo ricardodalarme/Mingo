@@ -106,4 +106,24 @@ void main() {
 
     expect(card.items, isEmpty);
   });
+
+  test('a prepared card item keeps the slip category and written time', () {
+    final card = MutationPrepareCardprepareCard(
+      cardId: 'c1',
+      kind: EnumCardKind_enum.weekly,
+      status: EnumCardStatus_enum.draft,
+      weekStart: weekStart,
+      items: <Object?>[
+        {
+          'id': 'i1',
+          'body': 'made coffee',
+          'category': 'said',
+          'writtenAt': '2026-01-01T10:00:00Z',
+        },
+      ],
+    ).toModel();
+
+    expect(card.items.single.category, SlipCategory.said);
+    expect(card.items.single.writtenAt, DateTime.utc(2026, 1, 1, 10));
+  });
 }
