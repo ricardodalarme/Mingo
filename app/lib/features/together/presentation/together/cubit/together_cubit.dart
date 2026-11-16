@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
 import 'package:app/features/lists/data/repositories/lists_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/relationship_phase.dart';
@@ -19,6 +20,7 @@ class TogetherCubit({
   required final QuestionsRepository _questionsRepository,
   required final ProfileRepository _profileRepository,
   required final GiftsRepository _giftsRepository,
+  required final HistoryRepository _historyRepository,
 }) extends Cubit<TogetherState> {
   this : super(const TogetherState()) {
     _profileChanges = _profileRepository.onChanged.listen((_) => load());
@@ -72,6 +74,13 @@ class TogetherCubit({
       // An unreadable count keeps the entry's neutral subtitle.
     }
 
+    DateTime? togetherSince;
+    try {
+      togetherSince = (await _historyRepository.getOverview()).togetherSince;
+    } on Object {
+      // Without the date the title shows no duration.
+    }
+
     if (isClosed) return;
     emit(
       state.copyWith(
@@ -81,6 +90,7 @@ class TogetherCubit({
         questionTitle: questionTitle,
         phase: phase,
         sharedGiftCount: sharedGiftCount,
+        togetherSince: togetherSince,
       ),
     );
   }

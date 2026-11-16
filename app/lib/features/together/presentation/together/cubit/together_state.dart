@@ -14,6 +14,7 @@ final class const TogetherState({
   final int sharedGiftCount = 0,
   final String? questionTitle,
   final RelationshipPhase? phase,
+  final DateTime? togetherSince,
 }) with Equatable {
   TogetherState copyWith({
     TogetherView? view,
@@ -23,6 +24,7 @@ final class const TogetherState({
     int? sharedGiftCount,
     String? questionTitle,
     RelationshipPhase? phase,
+    DateTime? togetherSince,
   }) {
     return TogetherState(
       view: view ?? this.view,
@@ -32,6 +34,7 @@ final class const TogetherState({
       sharedGiftCount: sharedGiftCount ?? this.sharedGiftCount,
       questionTitle: questionTitle ?? this.questionTitle,
       phase: phase ?? this.phase,
+      togetherSince: togetherSince ?? this.togetherSince,
     );
   }
 
@@ -44,5 +47,6 @@ final class const TogetherState({
     sharedGiftCount,
     questionTitle,
     phase,
+    togetherSince,
   ];
 }

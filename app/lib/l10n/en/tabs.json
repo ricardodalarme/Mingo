@@ -127,5 +127,22 @@
   "fightStyleMeta": "How you react",
   "loveStyleMeta": "How you feel loved",
   "chatMeta": "A calm conversation",
-  "listsNone": "None yet"
+  "listsNone": "None yet",
+  "needsBoth": "Needs both of you · Invite",
+  "durationYearsMonths": "{years} {yearsUnit} and {months} {monthsUnit}",
+  "durationYears": "{years} {yearsUnit}",
+  "durationMonths": "{months} {monthsUnit}",
+  "durationDays": "{days} {daysUnit}",
+  "unitYear(plural, param=count)": {
+    "one": "year",
+    "other": "years"
+  },
+  "unitMonth(plural, param=count)": {
+    "one": "month",
+    "other": "months"
+  },
+  "unitDay(plural, param=count)": {
+    "one": "day",
+    "other": "days"
+  }
 }

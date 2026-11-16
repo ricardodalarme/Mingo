@@ -6,6 +6,7 @@ import 'package:app/features/guides/data/data_sources/remote/guides_data_source.
 import 'package:app/features/guides/data/repositories/guides_repository.dart';
 import 'package:app/features/guides/presentation/hub/cubit/guides_cubit.dart';
 import 'package:app/features/guides/presentation/hub/guides_page.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
 import 'package:app/features/lists/data/repositories/lists_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/plus/data/models/plus_state.dart';
@@ -42,6 +43,8 @@ class _MockQuestionsRepository() extends Mock implements QuestionsRepository;
 class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 class _MockGiftsRepository() extends Mock implements GiftsRepository;
+
+class _MockHistoryRepository() extends Mock implements HistoryRepository;
 
 void main() {
   late GuidesCubit guidesCubit;
@@ -110,6 +113,8 @@ void main() {
     final questionsRepository = _MockQuestionsRepository();
     final profileRepository = _MockProfileRepository();
     final giftsRepository = _MockGiftsRepository();
+    final historyRepository = _MockHistoryRepository();
+    when(historyRepository.getOverview).thenThrow(Exception());
     when(() => profileRepository.onChanged).thenAnswer((_) => const Stream<void>.empty());
     when(profileRepository.getMySettings).thenThrow(Exception('none'));
     when(pairingRepository.getPartner).thenAnswer((_) async => null);
@@ -131,6 +136,7 @@ void main() {
       questionsRepository: questionsRepository,
       profileRepository: profileRepository,
       giftsRepository: giftsRepository,
+      historyRepository: historyRepository,
     );
     addTearDown(cubit.close);
     await cubit.load();

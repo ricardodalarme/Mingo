@@ -5853,6 +5853,44 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get chatMeta => 'A calm conversation';
   @override
   String get listsNone => 'None yet';
+  @override
+  String get needsBoth => 'Needs both of you · Invite';
+  @override
+  String durationYearsMonths({
+    required Object years,
+    required Object yearsUnit,
+    required Object months,
+    required Object monthsUnit,
+  }) => '${years} ${yearsUnit} and ${months} ${monthsUnit}';
+  @override
+  String durationYears({required Object years, required Object yearsUnit}) =>
+      '${years} ${yearsUnit}';
+  @override
+  String durationMonths({required Object months, required Object monthsUnit}) =>
+      '${months} ${monthsUnit}';
+  @override
+  String durationDays({required Object days, required Object daysUnit}) => '${days} ${daysUnit}';
+  @override
+  String unitYear({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'year',
+        other: 'years',
+      );
+  @override
+  String unitMonth({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'month',
+        other: 'months',
+      );
+  @override
+  String unitDay({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'day',
+        other: 'days',
+      );
 }
 
 // Path: temperature
@@ -11302,6 +11340,46 @@ extension on TranslationsEn {
           'tabs.loveStyleMeta' => 'How you feel loved',
           'tabs.chatMeta' => 'A calm conversation',
           'tabs.listsNone' => 'None yet',
+          'tabs.needsBoth' => 'Needs both of you · Invite',
+          'tabs.durationYearsMonths' => ({
+            required Object years,
+            required Object yearsUnit,
+            required Object months,
+            required Object monthsUnit,
+          }) => '${years} ${yearsUnit} and ${months} ${monthsUnit}',
+          'tabs.durationYears' => ({
+            required Object years,
+            required Object yearsUnit,
+          }) => '${years} ${yearsUnit}',
+          'tabs.durationMonths' => ({
+            required Object months,
+            required Object monthsUnit,
+          }) => '${months} ${monthsUnit}',
+          'tabs.durationDays' => ({
+            required Object days,
+            required Object daysUnit,
+          }) => '${days} ${daysUnit}',
+          'tabs.unitYear' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'year',
+                  other: 'years',
+                ),
+          'tabs.unitMonth' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'month',
+                  other: 'months',
+                ),
+          'tabs.unitDay' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'day',
+                  other: 'days',
+                ),
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',
@@ -11557,6 +11635,9 @@ extension on TranslationsEn {
           'widgets.ownJarTitle' => 'Open a saved slip',
           'widgets.ownJarPrivacy' => 'Private: only on your device',
           'widgets.lockScreenLabel' => 'LOCK SCREEN',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.lockScreenDefault' => 'Calm reminder · No names',
           'widgets.coupleCounterLabel' => 'COUNTER',
           'widgets.coupleCounterUnset' => 'Set your relationship date to see days together',
@@ -11571,9 +11652,6 @@ extension on TranslationsEn {
           'widgets.couplePhotosPrompt' => 'Choose a photo of you two',
           'widgets.couplePhotosPlusHint' => 'Available with Plus',
           'widgets.cardEncounterLabel' => 'CARD & DATE',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.cardStateReady' => 'A card arrived · Tap to open',
           'widgets.cardStateSent' => 'Card sent · Waiting for Sunday',
           'widgets.cardStateNone' => 'Sunday card in preparation',

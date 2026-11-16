@@ -4,6 +4,7 @@ import 'package:app/features/together/presentation/together/cubit/together_cubit
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +29,7 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
     final listCount = context.select((TogetherCubit cubit) => cubit.state.listCount);
     final sharedGiftCount = context.select((TogetherCubit cubit) => cubit.state.sharedGiftCount);
     final phase = context.select((TogetherCubit cubit) => cubit.state.phase);
+    final since = context.select((TogetherCubit cubit) => cubit.state.togetherSince);
     final cubit = context.read<TogetherCubit>();
 
     return BaseView(
@@ -37,6 +39,13 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Semantics(header: true, child: Text(l10n.together, style: context.text.titleXl)),
+            if (since != null && hasPartner) ...[
+              const SizedBox(height: AppSpace.s4),
+              Text(
+                _duration(l10n, since, clock.now()),
+                style: context.text.body.copyWith(color: context.colors.textSecondary),
+              ),
+            ],
             const SizedBox(height: AppSpace.s16),
             BaseSegmented(
               segments: [l10n.segmentTogether, l10n.segmentForMe],
@@ -56,7 +65,7 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
                 ),
                 const SizedBox(height: AppSpace.s12),
               ],
-              const _ForYouSection(),
+              _ForYouSection(hasPartner: hasPartner),
               const SizedBox(height: AppSpace.s24),
               _ToolsSection(
                 cubit: cubit,
@@ -81,7 +90,7 @@ class const TogetherPage({super.key}) extends StatelessWidget implements AutoRou
   }
 }
 
-class const _ForYouSection() extends StatelessWidget {
+class const _ForYouSection({required final bool hasPartner}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.tabs;
@@ -92,13 +101,13 @@ class const _ForYouSection() extends StatelessWidget {
         _row(
           icon: AppIcons.cart,
           title: l10n.logisticsTitle,
-          subtitle: l10n.logisticsMeta,
+          subtitle: hasPartner ? l10n.logisticsMeta : l10n.needsBoth,
           onTap: () => context.pushRoute(const LogisticsRoute()),
         ),
         _row(
           icon: AppIcons.rings,
           title: l10n.ritualsTitle,
-          subtitle: l10n.ritualsMeta,
+          subtitle: hasPartner ? l10n.ritualsMeta : l10n.needsBoth,
           onTap: () => context.pushRoute(const RitualsRoute()),
         ),
         _row(
@@ -137,7 +146,7 @@ class const _ToolsSection({
           _row(
             icon: AppIcons.check,
             title: l10n.checkinTitle,
-            subtitle: l10n.checkinMeta,
+            subtitle: hasPartner ? l10n.checkinMeta : l10n.needsBoth,
             onTap: () => _openCheckin(context),
           ),
         _row(
@@ -149,8 +158,7 @@ class const _ToolsSection({
         _row(
           icon: AppIcons.play,
           title: l10n.gamesTitle,
-          subtitle: l10n.gamesMeta,
-          trailing: hasPartner ? null : BaseTag(text: l10n.gamesLock),
+          subtitle: hasPartner ? l10n.gamesMeta : l10n.needsBoth,
           onTap: () => context.pushRoute(const GamesRoute()),
         ),
         _row(
@@ -395,5 +403,40 @@ Widget _row({
     trailing: trailing,
     showsChevron: true,
     onTap: onTap,
+  );
+}
+
+/// How long the couple has been together, in the two largest units that apply.
+String _duration(Translations$tabs$pt l10n, DateTime since, DateTime now) {
+  var months = (now.year - since.year) * 12 + now.month - since.month;
+  if (now.day < since.day) months--;
+  final years = months ~/ 12;
+  final rest = months % 12;
+  final t = l10n;
+  if (years > 0 && rest > 0) {
+    return t.durationYearsMonths(
+      years: years,
+      yearsUnit: t.unitYear(count: years),
+      months: rest,
+      monthsUnit: t.unitMonth(count: rest),
+    );
+  }
+  if (years > 0) {
+    return t.durationYears(
+      years: years,
+      yearsUnit: t.unitYear(count: years),
+    );
+  }
+  if (months > 0) {
+    return t.durationMonths(
+      months: months,
+      monthsUnit: t.unitMonth(count: months),
+    );
+  }
+  final days = now.difference(since).inDays.clamp(0, 31);
+
+  return t.durationDays(
+    days: days,
+    daysUnit: t.unitDay(count: days),
   );
 }

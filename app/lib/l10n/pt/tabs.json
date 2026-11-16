@@ -127,5 +127,22 @@
   "fightStyleMeta": "Como você reage",
   "loveStyleMeta": "Como você se sente amado",
   "chatMeta": "Uma conversa calma",
-  "listsNone": "Nenhuma ainda"
+  "listsNone": "Nenhuma ainda",
+  "needsBoth": "Precisa dos dois · Convidar",
+  "durationYearsMonths": "{years} {yearsUnit} e {months} {monthsUnit}",
+  "durationYears": "{years} {yearsUnit}",
+  "durationMonths": "{months} {monthsUnit}",
+  "durationDays": "{days} {daysUnit}",
+  "unitYear(plural, param=count)": {
+    "one": "ano",
+    "other": "anos"
+  },
+  "unitMonth(plural, param=count)": {
+    "one": "mês",
+    "other": "meses"
+  },
+  "unitDay(plural, param=count)": {
+    "one": "dia",
+    "other": "dias"
+  }
 }

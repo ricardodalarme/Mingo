@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:app/features/gifts/data/models/gift_idea.dart';
 import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
+import 'package:app/features/history/data/models/history_models.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
 import 'package:app/features/lists/data/models/list_kind.dart';
 import 'package:app/features/lists/data/models/list_models.dart';
 import 'package:app/features/lists/data/repositories/lists_repository.dart';
@@ -28,6 +30,8 @@ class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 class _MockGiftsRepository() extends Mock implements GiftsRepository;
 
+class _MockHistoryRepository() extends Mock implements HistoryRepository;
+
 void main() {
   late PairingRepository pairingRepository;
   late CheckinRepository checkinRepository;
@@ -35,6 +39,7 @@ void main() {
   late QuestionsRepository questionsRepository;
   late ProfileRepository profileRepository;
   late GiftsRepository giftsRepository;
+  late HistoryRepository historyRepository;
   late StreamController<void> profileChanges;
 
   setUp(() {
@@ -44,6 +49,8 @@ void main() {
     questionsRepository = _MockQuestionsRepository();
     profileRepository = _MockProfileRepository();
     giftsRepository = _MockGiftsRepository();
+    historyRepository = _MockHistoryRepository();
+    when(historyRepository.getOverview).thenThrow(Exception());
     profileChanges = StreamController<void>.broadcast();
     when(() => profileRepository.onChanged).thenAnswer((_) => profileChanges.stream);
     when(profileRepository.getMySettings).thenThrow(Exception('none'));
@@ -70,6 +77,7 @@ void main() {
     questionsRepository: questionsRepository,
     profileRepository: profileRepository,
     giftsRepository: giftsRepository,
+    historyRepository: historyRepository,
   );
 
   test('a dismissed week hides the check-in entry', () async {
@@ -112,6 +120,25 @@ void main() {
     await cubit.load();
 
     expect(cubit.state.listCount, 0);
+  });
+
+  test('the title keeps the date the couple has been together since', () async {
+    when(historyRepository.getOverview).thenAnswer((_) async => HistoryOverview.fake());
+    final cubit = build();
+    addTearDown(cubit.close);
+
+    await cubit.load();
+
+    expect(cubit.state.togetherSince, DateTime(2024, 3, 14));
+  });
+
+  test('without the date the title shows no duration', () async {
+    final cubit = build();
+    addTearDown(cubit.close);
+
+    await cubit.load();
+
+    expect(cubit.state.togetherSince, isNull);
   });
 
   test('the gifts entry counts the wishes shared with the partner', () async {

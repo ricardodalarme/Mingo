@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
+import 'package:app/features/history/data/repositories/history_repository.dart';
 import 'package:app/features/lists/data/repositories/lists_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
@@ -29,6 +30,8 @@ class _MockProfileRepository() extends Mock implements ProfileRepository;
 
 class _MockGiftsRepository() extends Mock implements GiftsRepository;
 
+class _MockHistoryRepository() extends Mock implements HistoryRepository;
+
 void main() {
   late PairingRepository pairingRepository;
   late ProfileRepository profileRepository;
@@ -43,6 +46,8 @@ void main() {
     final questionsRepository = _MockQuestionsRepository();
     profileRepository = _MockProfileRepository();
     final giftsRepository = _MockGiftsRepository();
+    final historyRepository = _MockHistoryRepository();
+    when(historyRepository.getOverview).thenThrow(Exception());
     profileChanges = StreamController<void>.broadcast();
     when(() => profileRepository.onChanged).thenAnswer((_) => profileChanges.stream);
     when(profileRepository.getMySettings).thenThrow(Exception('none'));
@@ -57,6 +62,7 @@ void main() {
       questionsRepository: questionsRepository,
       profileRepository: profileRepository,
       giftsRepository: giftsRepository,
+      historyRepository: historyRepository,
     );
   });
 

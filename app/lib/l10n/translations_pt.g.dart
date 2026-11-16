@@ -7293,6 +7293,52 @@ class Translations$tabs$pt {
 
   /// pt: 'Nenhuma ainda'
   String get listsNone => 'Nenhuma ainda';
+
+  /// pt: 'Precisa dos dois · Convidar'
+  String get needsBoth => 'Precisa dos dois · Convidar';
+
+  /// pt: '{years} {yearsUnit} e {months} {monthsUnit}'
+  String durationYearsMonths({
+    required Object years,
+    required Object yearsUnit,
+    required Object months,
+    required Object monthsUnit,
+  }) => '${years} ${yearsUnit} e ${months} ${monthsUnit}';
+
+  /// pt: '{years} {yearsUnit}'
+  String durationYears({required Object years, required Object yearsUnit}) =>
+      '${years} ${yearsUnit}';
+
+  /// pt: '{months} {monthsUnit}'
+  String durationMonths({required Object months, required Object monthsUnit}) =>
+      '${months} ${monthsUnit}';
+
+  /// pt: '{days} {daysUnit}'
+  String durationDays({required Object days, required Object daysUnit}) => '${days} ${daysUnit}';
+
+  /// pt: '(one) {ano} (other) {anos}'
+  String unitYear({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'ano',
+        other: 'anos',
+      );
+
+  /// pt: '(one) {mês} (other) {meses}'
+  String unitMonth({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'mês',
+        other: 'meses',
+      );
+
+  /// pt: '(one) {dia} (other) {dias}'
+  String unitDay({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'dia',
+        other: 'dias',
+      );
 }
 
 // Path: temperature
@@ -13233,6 +13279,46 @@ extension on Translations {
           'tabs.loveStyleMeta' => 'Como você se sente amado',
           'tabs.chatMeta' => 'Uma conversa calma',
           'tabs.listsNone' => 'Nenhuma ainda',
+          'tabs.needsBoth' => 'Precisa dos dois · Convidar',
+          'tabs.durationYearsMonths' => ({
+            required Object years,
+            required Object yearsUnit,
+            required Object months,
+            required Object monthsUnit,
+          }) => '${years} ${yearsUnit} e ${months} ${monthsUnit}',
+          'tabs.durationYears' => ({
+            required Object years,
+            required Object yearsUnit,
+          }) => '${years} ${yearsUnit}',
+          'tabs.durationMonths' => ({
+            required Object months,
+            required Object monthsUnit,
+          }) => '${months} ${monthsUnit}',
+          'tabs.durationDays' => ({
+            required Object days,
+            required Object daysUnit,
+          }) => '${days} ${daysUnit}',
+          'tabs.unitYear' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'ano',
+                  other: 'anos',
+                ),
+          'tabs.unitMonth' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'mês',
+                  other: 'meses',
+                ),
+          'tabs.unitDay' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'dia',
+                  other: 'dias',
+                ),
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
@@ -13489,6 +13575,9 @@ extension on Translations {
           'widgets.ownJarTitle' => 'Abrir um slip guardado',
           'widgets.ownJarPrivacy' => 'Privado: só no seu aparelho',
           'widgets.lockScreenLabel' => 'TELA DE BLOQUEIO',
+          _ => null,
+        } ??
+        switch (path) {
           'widgets.lockScreenDefault' => 'Lembrete calmo · Sem nomes',
           'widgets.coupleCounterLabel' => 'CONTADOR',
           'widgets.coupleCounterUnset' => 'Defina a data do casal para ver os dias juntos',
@@ -13503,9 +13592,6 @@ extension on Translations {
           'widgets.couplePhotosPrompt' => 'Escolha uma foto de vocês dois',
           'widgets.couplePhotosPlusHint' => 'Disponível no plano Plus',
           'widgets.cardEncounterLabel' => 'CARTÃO E ENCONTRO',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.cardStateReady' => 'Chegou um cartão · Toque para abrir',
           'widgets.cardStateSent' => 'Cartão enviado · Aguardando domingo',
           'widgets.cardStateNone' => 'Cartão de domingo em preparação',
