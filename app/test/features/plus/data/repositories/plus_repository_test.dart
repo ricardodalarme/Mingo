@@ -57,8 +57,9 @@ void main() {
       (_) async => QueryMyPlusplusStates(
         hasPlus: true,
         paidByPartner: true,
-        slipsLeftThisMonth: 2,
-        cardsLeftThisMonth: 1,
+        gamesLeftThisWeek: 2,
+        ritualsLeft: 1,
+        listsLeft: 3,
         entitlement: QueryMyPlusplusStatesentitlement(
           plan: EnumEntitlementPlan_enum.plus_annual,
           status: EnumEntitlementStatus_enum.active,
@@ -72,8 +73,9 @@ void main() {
     expect(plus.isPaidByPartner, isTrue);
     expect(plus.plan, PlusPlan.annual);
     expect(plus.status, PlusStatus.active);
-    expect(plus.slipsLeft, 2);
-    expect(plus.cardsLeft, 1);
+    expect(plus.gamesLeft, 2);
+    expect(plus.ritualsLeft, 1);
+    expect(plus.listsLeft, 3);
   });
 
   test('a restore that the server confirms unlocks Plus', () async {

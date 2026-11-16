@@ -2,8 +2,9 @@ query MyPlus($userId: uuid!) {
   plusStates(where: { userId: { _eq: $userId } }, limit: 1) {
     hasPlus
     paidByPartner
-    slipsLeftThisMonth
-    cardsLeftThisMonth
+    gamesLeftThisWeek
+    ritualsLeft
+    listsLeft
     entitlement {
       plan
       status

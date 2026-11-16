@@ -33,6 +33,7 @@ enum CardStatus_enum {
   sent
 }
 enum ConsentKind_enum {
+  adult
   ai
   analytics
   marketing
@@ -54,6 +55,8 @@ enum ContentKind_enum {
   repair_card
   ritual_idea
   spice_card
+  spice_challenge
+  spice_desire
   touch_card
 }
 enum ConversationGuide_enum {
@@ -209,6 +212,7 @@ enum Mood_enum {
   tired
 }
 enum NotificationType_enum {
+  annoyance_check
   capsule_opened
   card_reaction
   card_ready
@@ -216,11 +220,21 @@ enum NotificationType_enum {
   daily_idea
   date_coming
   game_invite
+  gentle_request
+  gentle_request_answered
   gentle_return
+  memory_accepted
+  memory_declined
+  memory_proposed
   partner_joined
   partner_message
+  plus_billing_issue
+  plus_coverage_ended
+  quiz_shared
   ritual
   signal
+  spice_invite
+  spice_off
   unpaired
 }
 enum PartnerFactCategory_enum {
@@ -362,6 +376,120 @@ enum WorkArea_enum {
   kitchen
   other
   planning
+}
+"""
+unique or primary key constraints on table "agreements"
+"""
+enum agreements_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  agreements_pkey
+}
+"""
+select columns of table "agreements"
+"""
+enum agreements_select_column {
+  """
+  column name
+  """
+  archivedAt
+  """
+  column name
+  """
+  authorId
+  """
+  column name
+  """
+  body
+  """
+  column name
+  """
+  confirmedAt
+  """
+  column name
+  """
+  confirmedBy
+  """
+  column name
+  """
+  coupleId
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  updatedAt
+}
+"""
+update columns of table "agreements"
+"""
+enum agreements_update_column {
+  """
+  column name
+  """
+  archivedAt
+  """
+  column name
+  """
+  body
+  """
+  column name
+  """
+  coupleId
+}
+"""
+unique or primary key constraints on table "annoyances"
+"""
+enum annoyances_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  annoyances_pkey
+}
+"""
+select columns of table "annoyances"
+"""
+enum annoyances_select_column {
+  """
+  column name
+  """
+  authorId
+  """
+  column name
+  """
+  body
+  """
+  column name
+  """
+  checkSentAt
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  expiresAt
+  """
+  column name
+  """
+  id
+}
+"""
+update columns of table "annoyances"
+"""
+enum annoyances_update_column {
+  """
+  column name
+  """
+  body
 }
 """
 select columns of table "app_config"
@@ -579,6 +707,10 @@ enum cards_select_column {
   """
   column name
   """
+  heldReason
+  """
+  column name
+  """
   id
   """
   column name
@@ -608,6 +740,71 @@ enum cards_select_column {
   column name
   """
   weekStart
+}
+"""
+select columns of table "catalog_items"
+"""
+enum catalogItems_select_column {
+  """
+  column name
+  """
+  body
+  """
+  column name
+  """
+  country
+  """
+  column name
+  """
+  day
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  kind
+  """
+  column name
+  """
+  locale
+  """
+  column name
+  """
+  locked
+  """
+  column name
+  """
+  month
+  """
+  column name
+  """
+  parentSlug
+  """
+  column name
+  """
+  plusOnly
+  """
+  column name
+  """
+  position
+  """
+  column name
+  """
+  sensitive
+  """
+  column name
+  """
+  slug
+  """
+  column name
+  """
+  tags
+  """
+  column name
+  """
+  title
 }
 """
 select columns of table "chat_turns"
@@ -785,6 +982,10 @@ enum contentItems_select_column {
   column name
   """
   kind
+  """
+  column name
+  """
+  level
   """
   column name
   """
@@ -972,7 +1173,40 @@ enum couples_select_column {
   """
   column name
   """
+  startDate
+  """
+  column name
+  """
+  startDateSetBy
+  """
+  column name
+  """
   touchTopicsEnabled
+}
+"""
+select columns of table "current_consents"
+"""
+enum currentConsents_select_column {
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  granted
+  """
+  column name
+  """
+  kind
+  """
+  column name
+  """
+  userId
+  """
+  column name
+  """
+  version
 }
 """
 ordering argument of a cursor
@@ -1062,6 +1296,10 @@ enum devices_select_column {
   """
   column name
   """
+  refreshTokenId
+  """
+  column name
+  """
   token
   """
   column name
@@ -1080,6 +1318,10 @@ enum devices_update_column {
   column name
   """
   platform
+  """
+  column name
+  """
+  refreshTokenId
 }
 """
 select columns of table "entitlements"
@@ -1298,6 +1540,59 @@ enum gameSessions_update_column {
   placeholder (do not use)
   """
   _PLACEHOLDER
+}
+"""
+select columns of table "gentle_requests"
+"""
+enum gentleRequests_select_column {
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  feelText
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  purgeAfter
+  """
+  column name
+  """
+  recipientId
+  """
+  column name
+  """
+  respondedAt
+  """
+  column name
+  """
+  response
+  """
+  column name
+  """
+  seenAt
+  """
+  column name
+  """
+  senderId
+  """
+  column name
+  """
+  thankedAt
+  """
+  column name
+  """
+  whenText
+  """
+  column name
+  """
+  wishText
 }
 """
 unique or primary key constraints on table "gift_ideas"
@@ -1575,6 +1870,10 @@ enum inboxItems_select_column {
   """
   column name
   """
+  dedupeKey
+  """
+  column name
+  """
   id
   """
   column name
@@ -1594,6 +1893,15 @@ enum inboxItems_select_column {
   userId
 }
 """
+select columns of table "invite_accept_results"
+"""
+enum inviteAcceptResults_select_column {
+  """
+  column name
+  """
+  state
+}
+"""
 select columns of table "invite_previews"
 """
 enum invitePreviews_select_column {
@@ -1605,6 +1913,23 @@ enum invitePreviews_select_column {
   column name
   """
   inviterName
+}
+"""
+select columns of table "invite_statuses"
+"""
+enum inviteStatuses_select_column {
+  """
+  column name
+  """
+  expiresAt
+  """
+  column name
+  """
+  inviterName
+  """
+  column name
+  """
+  state
 }
 """
 unique or primary key constraints on table "invites"
@@ -1984,6 +2309,14 @@ enum logisticItems_select_column {
   """
   column name
   """
+  confirmedAt
+  """
+  column name
+  """
+  confirmedBy
+  """
+  column name
+  """
   coupleId
   """
   column name
@@ -2130,6 +2463,10 @@ enum memories_select_column {
   """
   column name
   """
+  acceptedAt
+  """
+  column name
+  """
   authorId
   """
   column name
@@ -2147,6 +2484,10 @@ enum memories_select_column {
   column name
   """
   datePrecision
+  """
+  column name
+  """
+  declinedAt
   """
   column name
   """
@@ -2460,6 +2801,10 @@ enum partnerMessages_select_column {
   """
   column name
   """
+  durationMs
+  """
+  column name
+  """
   forWidget
   """
   column name
@@ -2510,7 +2855,11 @@ enum plusStates_select_column {
   """
   column name
   """
-  cardsLeftThisMonth
+  billingIssue
+  """
+  column name
+  """
+  bothPaid
   """
   column name
   """
@@ -2518,7 +2867,19 @@ enum plusStates_select_column {
   """
   column name
   """
+  chatMessagesLimit
+  """
+  column name
+  """
+  coveredByName
+  """
+  column name
+  """
   entitlementUserId
+  """
+  column name
+  """
+  gamesLeftThisWeek
   """
   column name
   """
@@ -2534,6 +2895,14 @@ enum plusStates_select_column {
   """
   column name
   """
+  listsLeft
+  """
+  column name
+  """
+  ownerStore
+  """
+  column name
+  """
   paidByPartner
   """
   column name
@@ -2542,11 +2911,15 @@ enum plusStates_select_column {
   """
   column name
   """
+  ritualsLeft
+  """
+  column name
+  """
   signalsLeftToday
   """
   column name
   """
-  slipsLeftThisMonth
+  spiceCardsLeftThisWeek
   """
   column name
   """
@@ -2592,7 +2965,15 @@ enum profiles_select_column {
   """
   column name
   """
+  avatarColor
+  """
+  column name
+  """
   avatarFileId
+  """
+  column name
+  """
+  avatarIllustration
   """
   column name
   """
@@ -2797,6 +3178,10 @@ enum quizResults_select_column {
   """
   column name
   """
+  sharedAt
+  """
+  column name
+  """
   updatedAt
 }
 """
@@ -2807,6 +3192,10 @@ enum quizResults_update_column {
   column name
   """
   ranked
+  """
+  column name
+  """
+  sharedAt
 }
 """
 unique or primary key constraints on table "repair_learnings"
@@ -3188,6 +3577,35 @@ enum savedDateIdeas_update_column {
   title
 }
 """
+select columns of table "session_rows"
+"""
+enum sessionRows_select_column {
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  deviceId
+  """
+  column name
+  """
+  deviceLabel
+  """
+  column name
+  """
+  expiresAt
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  platform
+}
+"""
 select columns of table "shared_moods"
 """
 enum sharedMoods_select_column {
@@ -3425,6 +3843,161 @@ enum slips_update_column {
   column name
   """
   workArea
+}
+"""
+select columns of table "spice_card_plays"
+"""
+enum spiceCardPlays_select_column {
+  """
+  column name
+  """
+  acceptedBy
+  """
+  column name
+  """
+  contentSlug
+  """
+  column name
+  """
+  coupleId
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  declinedAt
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  proposedBy
+}
+"""
+select columns of table "spice_challenges"
+"""
+enum spiceChallenges_select_column {
+  """
+  column name
+  """
+  acceptedBy
+  """
+  column name
+  """
+  contentSlug
+  """
+  column name
+  """
+  coupleId
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  doneBy
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  seenBy
+  """
+  column name
+  """
+  swaps
+  """
+  column name
+  """
+  weekStart
+}
+"""
+unique or primary key constraints on table "spice_desire_answers"
+"""
+enum spiceDesireAnswers_constraint {
+  """
+  unique or primary key constraint on columns "user_id", "content_slug"
+  """
+  spice_desire_answers_pkey
+}
+"""
+select columns of table "spice_desire_answers"
+"""
+enum spiceDesireAnswers_select_column {
+  """
+  column name
+  """
+  answer
+  """
+  column name
+  """
+  contentSlug
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  updatedAt
+  """
+  column name
+  """
+  userId
+}
+"""
+update columns of table "spice_desire_answers"
+"""
+enum spiceDesireAnswers_update_column {
+  """
+  column name
+  """
+  answer
+}
+"""
+select columns of table "spice_states"
+"""
+enum spiceStates_select_column {
+  """
+  column name
+  """
+  coupleLevel
+  """
+  column name
+  """
+  myLevel
+  """
+  column name
+  """
+  state
+}
+"""
+select columns of table "start_dates"
+"""
+enum startDates_select_column {
+  """
+  column name
+  """
+  couple
+  """
+  column name
+  """
+  matches
+  """
+  column name
+  """
+  mine
+  """
+  column name
+  """
+  partner
 }
 """
 unique or primary key constraints on table "story_events"
@@ -3707,6 +4280,10 @@ enum userSettings_select_column {
   """
   column name
   """
+  hasKids
+  """
+  column name
+  """
   holidayCountries
   """
   column name
@@ -3755,6 +4332,14 @@ enum userSettings_select_column {
   """
   column name
   """
+  spiceMaxLevel
+  """
+  column name
+  """
+  spiceNotifications
+  """
+  column name
+  """
   theme
   """
   column name
@@ -3780,6 +4365,67 @@ enum userSettings_select_column {
   column name
   """
   widgetShowNames
+}
+"""
+select columns of table "weekly_reviews"
+"""
+enum weeklyReviews_select_column {
+  """
+  column name
+  """
+  activeDays
+  """
+  column name
+  """
+  bothCheckinDone
+  """
+  column name
+  """
+  cardsReceived
+  """
+  column name
+  """
+  cardsSent
+  """
+  column name
+  """
+  checkinDone
+  """
+  column name
+  """
+  coupleRitualsDone
+  """
+  column name
+  """
+  lowData
+  """
+  column name
+  """
+  missing
+  """
+  column name
+  """
+  moodsLogged
+  """
+  column name
+  """
+  partnerCardsSent
+  """
+  column name
+  """
+  ritualsDone
+  """
+  column name
+  """
+  slips
+  """
+  column name
+  """
+  streakDays
+  """
+  column name
+  """
+  weekStart
 }
 """
 select columns of table "year_recaps"
@@ -3817,6 +4463,178 @@ enum yearRecaps_select_column {
   column name
   """
   year
+}
+"""
+columns and relationships of "agreements"
+"""
+type agreements {
+  archivedAt: timestamptz
+  """
+  An object relationship
+  """
+  author: profiles!
+  authorId: uuid!
+  body: String!
+  confirmedAt: timestamptz
+  confirmedBy: uuid
+  """
+  An object relationship
+  """
+  couple: couples
+  coupleId: uuid
+  """
+  An array relationship
+  """
+  coupleMembers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [coupleMembers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [coupleMembers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: coupleMembers_bool_exp
+  ): [coupleMembers!]!
+  createdAt: timestamptz!
+  id: uuid!
+  updatedAt: timestamptz!
+}
+"""
+aggregated selection of "agreements"
+"""
+type agreements_aggregate {
+  aggregate: agreements_aggregate_fields
+  nodes: [agreements!]!
+}
+"""
+aggregate fields of "agreements"
+"""
+type agreements_aggregate_fields {
+  count(columns: [agreements_select_column!], distinct: Boolean): Int!
+  max: agreements_max_fields
+  min: agreements_min_fields
+}
+"""
+aggregate max on columns
+"""
+type agreements_max_fields {
+  archivedAt: timestamptz
+  authorId: uuid
+  body: String
+  confirmedAt: timestamptz
+  confirmedBy: uuid
+  coupleId: uuid
+  createdAt: timestamptz
+  id: uuid
+  updatedAt: timestamptz
+}
+"""
+aggregate min on columns
+"""
+type agreements_min_fields {
+  archivedAt: timestamptz
+  authorId: uuid
+  body: String
+  confirmedAt: timestamptz
+  confirmedBy: uuid
+  coupleId: uuid
+  createdAt: timestamptz
+  id: uuid
+  updatedAt: timestamptz
+}
+"""
+response of any mutation on the table "agreements"
+"""
+type agreements_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [agreements!]!
+}
+"""
+columns and relationships of "annoyances"
+"""
+type annoyances {
+  """
+  An object relationship
+  """
+  author: profiles!
+  authorId: uuid!
+  body: String!
+  checkSentAt: timestamptz
+  createdAt: timestamptz!
+  expiresAt: timestamptz!
+  id: uuid!
+}
+"""
+aggregated selection of "annoyances"
+"""
+type annoyances_aggregate {
+  aggregate: annoyances_aggregate_fields
+  nodes: [annoyances!]!
+}
+"""
+aggregate fields of "annoyances"
+"""
+type annoyances_aggregate_fields {
+  count(columns: [annoyances_select_column!], distinct: Boolean): Int!
+  max: annoyances_max_fields
+  min: annoyances_min_fields
+}
+"""
+aggregate max on columns
+"""
+type annoyances_max_fields {
+  authorId: uuid
+  body: String
+  checkSentAt: timestamptz
+  createdAt: timestamptz
+  expiresAt: timestamptz
+  id: uuid
+}
+"""
+aggregate min on columns
+"""
+type annoyances_min_fields {
+  authorId: uuid
+  body: String
+  checkSentAt: timestamptz
+  createdAt: timestamptz
+  expiresAt: timestamptz
+  id: uuid
+}
+"""
+response of any mutation on the table "annoyances"
+"""
+type annoyances_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [annoyances!]!
 }
 """
 columns and relationships of "app_config"
@@ -4011,6 +4829,7 @@ type cards {
     """
     where: guestLinks_bool_exp
   ): [guestLinks!]!
+  heldReason: String
   id: uuid!
   """
   An array relationship
@@ -4083,6 +4902,7 @@ type cards_max_fields {
   authorId: uuid
   coupleId: uuid
   createdAt: timestamptz
+  heldReason: String
   id: uuid
   note: String
   recipientId: uuid
@@ -4097,6 +4917,7 @@ type cards_min_fields {
   authorId: uuid
   coupleId: uuid
   createdAt: timestamptz
+  heldReason: String
   id: uuid
   note: String
   recipientId: uuid
@@ -4116,6 +4937,26 @@ type cards_mutation_response {
   data from the rows affected by the mutation
   """
   returning: [cards!]!
+}
+"""
+columns and relationships of "catalog_items"
+"""
+type catalogItems {
+  body: String
+  country: String
+  day: smallint
+  id: uuid!
+  kind: String!
+  locale: String!
+  locked: Boolean!
+  month: smallint
+  parentSlug: String
+  plusOnly: Boolean!
+  position: Int!
+  sensitive: Boolean!
+  slug: String!
+  tags: [String!]!
+  title: String!
 }
 """
 columns and relationships of "chat_turns"
@@ -4254,6 +5095,7 @@ type contentItems {
   day: smallint
   id: uuid!
   kind: ContentKind_enum!
+  level: smallint
   locale: String!
   month: smallint
   parentSlug: String
@@ -4454,6 +5296,8 @@ type couples {
   An object relationship
   """
   photo: couplePhotos
+  startDate: date
+  startDateSetBy: uuid
   touchTopicsEnabled: Boolean!
 }
 """
@@ -4468,6 +5312,16 @@ type couples_mutation_response {
   data from the rows affected by the mutation
   """
   returning: [couples!]!
+}
+"""
+columns and relationships of "current_consents"
+"""
+type currentConsents {
+  createdAt: timestamptz
+  granted: Boolean
+  kind: String
+  userId: uuid
+  version: String
 }
 """
 columns and relationships of "deletion_requests"
@@ -4499,6 +5353,7 @@ type devices {
   label: String
   lastSeenAt: timestamptz!
   platform: DevicePlatform_enum!
+  refreshTokenId: uuid
   token: String!
   userId: uuid!
 }
@@ -4833,6 +5688,44 @@ type gameSessions_mutation_response {
   returning: [gameSessions!]!
 }
 """
+columns and relationships of "gentle_requests"
+"""
+type gentleRequests {
+  createdAt: timestamptz!
+  feelText: String!
+  id: uuid!
+  purgeAfter: timestamptz!
+  """
+  An object relationship
+  """
+  recipient: profiles!
+  recipientId: uuid!
+  respondedAt: timestamptz
+  response: String
+  seenAt: timestamptz
+  """
+  An object relationship
+  """
+  sender: profiles!
+  senderId: uuid!
+  thankedAt: timestamptz
+  whenText: String!
+  wishText: String!
+}
+"""
+response of any mutation on the table "gentle_requests"
+"""
+type gentleRequests_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [gentleRequests!]!
+}
+"""
 columns and relationships of "gift_ideas"
 """
 type giftIdeas {
@@ -5165,6 +6058,7 @@ columns and relationships of "inbox_items"
 """
 type inboxItems {
   createdAt: timestamptz!
+  dedupeKey: String
   id: uuid!
   readAt: timestamptz
   refId: uuid
@@ -5191,6 +6085,7 @@ aggregate max on columns
 """
 type inboxItems_max_fields {
   createdAt: timestamptz
+  dedupeKey: String
   id: uuid
   readAt: timestamptz
   refId: uuid
@@ -5201,6 +6096,7 @@ aggregate min on columns
 """
 type inboxItems_min_fields {
   createdAt: timestamptz
+  dedupeKey: String
   id: uuid
   readAt: timestamptz
   refId: uuid
@@ -5220,11 +6116,25 @@ type inboxItems_mutation_response {
   returning: [inboxItems!]!
 }
 """
+columns and relationships of "invite_accept_results"
+"""
+type inviteAcceptResults {
+  state: String!
+}
+"""
 columns and relationships of "invite_previews"
 """
 type invitePreviews {
   expiresAt: timestamptz!
   inviterName: String
+}
+"""
+columns and relationships of "invite_statuses"
+"""
+type inviteStatuses {
+  expiresAt: timestamptz
+  inviterName: String
+  state: String!
 }
 """
 columns and relationships of "invites"
@@ -5689,6 +6599,8 @@ type logisticItems {
   """
   author: profiles!
   authorId: uuid!
+  confirmedAt: timestamptz
+  confirmedBy: uuid
   """
   An object relationship
   """
@@ -5753,6 +6665,8 @@ aggregate max on columns
 type logisticItems_max_fields {
   assigneeId: uuid
   authorId: uuid
+  confirmedAt: timestamptz
+  confirmedBy: uuid
   coupleId: uuid
   createdAt: timestamptz
   doneAt: timestamptz
@@ -5768,6 +6682,8 @@ aggregate min on columns
 type logisticItems_min_fields {
   assigneeId: uuid
   authorId: uuid
+  confirmedAt: timestamptz
+  confirmedBy: uuid
   coupleId: uuid
   createdAt: timestamptz
   doneAt: timestamptz
@@ -5823,6 +6739,7 @@ type manualEntries_mutation_response {
 columns and relationships of "memories"
 """
 type memories {
+  acceptedAt: timestamptz
   """
   An object relationship
   """
@@ -5865,6 +6782,7 @@ type memories {
   ): [coupleMembers!]!
   createdAt: timestamptz!
   datePrecision: DatePrecision_enum!
+  declinedAt: timestamptz
   happenedOn: date!
   id: uuid!
   origin: MemoryOrigin_enum!
@@ -5897,10 +6815,12 @@ type memories_aggregate_fields {
 aggregate max on columns
 """
 type memories_max_fields {
+  acceptedAt: timestamptz
   authorId: uuid
   body: String
   coupleId: uuid
   createdAt: timestamptz
+  declinedAt: timestamptz
   happenedOn: date
   id: uuid
   photoFileId: uuid
@@ -5913,10 +6833,12 @@ type memories_max_fields {
 aggregate min on columns
 """
 type memories_min_fields {
+  acceptedAt: timestamptz
   authorId: uuid
   body: String
   coupleId: uuid
   createdAt: timestamptz
+  declinedAt: timestamptz
   happenedOn: date
   id: uuid
   photoFileId: uuid
@@ -6042,6 +6964,100 @@ type mutation_root {
     where: profiles_bool_exp
   ): [profiles!]!
   """
+  execute VOLATILE function "confirm_agreement" which returns "agreements"
+  """
+  confirmAgreement(
+    """
+    input parameters for function "confirmAgreement"
+    """
+    args: confirmAgreement_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [agreements_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [agreements_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): [agreements!]!
+  """
+  execute VOLATILE function "confirm_logistic_item" which returns "logistic_items"
+  """
+  confirmLogisticItem(
+    """
+    input parameters for function "confirmLogisticItem"
+    """
+    args: confirmLogisticItem_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [logisticItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [logisticItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: logisticItems_bool_exp
+  ): [logisticItems!]!
+  """
+  delete data from the table: "agreements"
+  """
+  deleteAgreements(
+    """
+    filter the rows which have to be deleted
+    """
+    where: agreements_bool_exp!
+  ): agreements_mutation_response
+  """
+  delete single row from the table: "agreements"
+  """
+  deleteAgreementsByPk(id: uuid!): agreements
+  """
+  delete data from the table: "annoyances"
+  """
+  deleteAnnoyances(
+    """
+    filter the rows which have to be deleted
+    """
+    where: annoyances_bool_exp!
+  ): annoyances_mutation_response
+  """
+  delete single row from the table: "annoyances"
+  """
+  deleteAnnoyancesByPk(id: uuid!): annoyances
+  """
   delete data from the table: "capsules"
   """
   deleteCapsules(
@@ -6067,6 +7083,19 @@ type mutation_root {
   delete single row from the table: "card_items"
   """
   deleteCardItemsByPk(id: uuid!): cardItems
+  """
+  delete data from the table: "card_reactions"
+  """
+  deleteCardReactions(
+    """
+    filter the rows which have to be deleted
+    """
+    where: cardReactions_bool_exp!
+  ): cardReactions_mutation_response
+  """
+  delete single row from the table: "card_reactions"
+  """
+  deleteCardReactionsByPk(cardId: uuid!): cardReactions
   """
   delete data from the table: "cards"
   """
@@ -6197,6 +7226,19 @@ type mutation_root {
   delete single row from the table: "important_dates"
   """
   deleteImportantDatesByPk(id: uuid!): importantDates
+  """
+  delete data from the table: "inbox_items"
+  """
+  deleteInboxItems(
+    """
+    filter the rows which have to be deleted
+    """
+    where: inboxItems_bool_exp!
+  ): inboxItems_mutation_response
+  """
+  delete single row from the table: "inbox_items"
+  """
+  deleteInboxItemsByPk(id: uuid!): inboxItems
   """
   delete data from the table: "journal_entries"
   """
@@ -6471,6 +7513,19 @@ type mutation_root {
   """
   deleteSlipsByPk(id: uuid!): slips
   """
+  delete data from the table: "spice_desire_answers"
+  """
+  deleteSpiceDesireAnswers(
+    """
+    filter the rows which have to be deleted
+    """
+    where: spiceDesireAnswers_bool_exp!
+  ): spiceDesireAnswers_mutation_response
+  """
+  delete single row from the table: "spice_desire_answers"
+  """
+  deleteSpiceDesireAnswersByPk(contentSlug: String!, userId: uuid!): spiceDesireAnswers
+  """
   delete data from the table: "story_events"
   """
   deleteStoryEvents(
@@ -6496,6 +7551,62 @@ type mutation_root {
   delete single row from the table: "temperature_checks"
   """
   deleteTemperatureChecksByPk(id: uuid!): temperatureChecks
+  """
+  insert data into the table: "agreements"
+  """
+  insertAgreements(
+    """
+    the rows to be inserted
+    """
+    objects: [agreements_insert_input!]!
+
+    """
+    upsert condition
+    """
+    on_conflict: agreements_on_conflict
+  ): agreements_mutation_response
+  """
+  insert a single row into the table: "agreements"
+  """
+  insertAgreementsOne(
+    """
+    the row to be inserted
+    """
+    object: agreements_insert_input!
+
+    """
+    upsert condition
+    """
+    on_conflict: agreements_on_conflict
+  ): agreements
+  """
+  insert data into the table: "annoyances"
+  """
+  insertAnnoyances(
+    """
+    the rows to be inserted
+    """
+    objects: [annoyances_insert_input!]!
+
+    """
+    upsert condition
+    """
+    on_conflict: annoyances_on_conflict
+  ): annoyances_mutation_response
+  """
+  insert a single row into the table: "annoyances"
+  """
+  insertAnnoyancesOne(
+    """
+    the row to be inserted
+    """
+    object: annoyances_insert_input!
+
+    """
+    upsert condition
+    """
+    on_conflict: annoyances_on_conflict
+  ): annoyances
   """
   insert data into the table: "capsules"
   """
@@ -7589,6 +8700,34 @@ type mutation_root {
     on_conflict: slips_on_conflict
   ): slips
   """
+  insert data into the table: "spice_desire_answers"
+  """
+  insertSpiceDesireAnswers(
+    """
+    the rows to be inserted
+    """
+    objects: [spiceDesireAnswers_insert_input!]!
+
+    """
+    upsert condition
+    """
+    on_conflict: spiceDesireAnswers_on_conflict
+  ): spiceDesireAnswers_mutation_response
+  """
+  insert a single row into the table: "spice_desire_answers"
+  """
+  insertSpiceDesireAnswersOne(
+    """
+    the row to be inserted
+    """
+    object: spiceDesireAnswers_insert_input!
+
+    """
+    upsert condition
+    """
+    on_conflict: spiceDesireAnswers_on_conflict
+  ): spiceDesireAnswers
+  """
   insert data into the table: "story_events"
   """
   insertStoryEvents(
@@ -7770,6 +8909,74 @@ type mutation_root {
     where: profiles_bool_exp
   ): [profiles!]!
   """
+  execute VOLATILE function "respond_memory" which returns "memories"
+  """
+  respondMemory(
+    """
+    input parameters for function "respondMemory"
+    """
+    args: respondMemory_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [memories_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [memories_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: memories_bool_exp
+  ): [memories!]!
+  """
+  execute VOLATILE function "revoke_session" which returns "session_rows"
+  """
+  revokeSession(
+    """
+    input parameters for function "revokeSession"
+    """
+    args: revokeSession_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [sessionRows_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [sessionRows_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: sessionRows_bool_exp
+  ): [sessionRows!]!
+  """
   execute VOLATILE function "send_card" which returns "cards"
   """
   sendCard(
@@ -7803,6 +9010,40 @@ type mutation_root {
     """
     where: cards_bool_exp
   ): [cards!]!
+  """
+  execute VOLATILE function "send_gentle_request" which returns "gentle_requests"
+  """
+  sendGentleRequest(
+    """
+    input parameters for function "sendGentleRequest"
+    """
+    args: sendGentleRequest_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [gentleRequests_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [gentleRequests_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: gentleRequests_bool_exp
+  ): [gentleRequests!]!
   """
   execute VOLATILE function "send_slip" which returns "cards"
   """
@@ -7838,6 +9079,40 @@ type mutation_root {
     where: cards_bool_exp
   ): [cards!]!
   """
+  execute VOLATILE function "set_couple_start_date" which returns "couples"
+  """
+  setCoupleStartDate(
+    """
+    input parameters for function "setCoupleStartDate"
+    """
+    args: setCoupleStartDate_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [couples_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [couples_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: couples_bool_exp
+  ): [couples!]!
+  """
   execute VOLATILE function "set_notification_mutes" which returns "notification_mutes"
   """
   setNotificationMutes(
@@ -7872,6 +9147,161 @@ type mutation_root {
     where: notificationMutes_bool_exp
   ): [notificationMutes!]!
   """
+  execute VOLATILE function "spice_challenge" which returns "spice_challenges"
+  """
+  spiceChallenge(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceChallenges_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceChallenges_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceChallenges_bool_exp
+  ): [spiceChallenges!]!
+  """
+  execute VOLATILE function "spice_challenge_act" which returns "spice_challenges"
+  """
+  spiceChallengeAct(
+    """
+    input parameters for function "spiceChallengeAct"
+    """
+    args: spiceChallengeAct_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceChallenges_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceChallenges_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceChallenges_bool_exp
+  ): [spiceChallenges!]!
+  """
+  execute VOLATILE function "spice_next_card" which returns "spice_card_plays"
+  """
+  spiceNextCard(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceCardPlays_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceCardPlays_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceCardPlays_bool_exp
+  ): [spiceCardPlays!]!
+  """
+  execute VOLATILE function "spice_off" which returns "user_settings"
+  """
+  spiceOff(
+    """
+    distinct select on columns
+    """
+    distinct_on: [userSettings_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [userSettings_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: userSettings_bool_exp
+  ): [userSettings!]!
+  """
+  execute VOLATILE function "spice_respond_card" which returns "spice_card_plays"
+  """
+  spiceRespondCard(
+    """
+    input parameters for function "spiceRespondCard"
+    """
+    args: spiceRespondCard_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceCardPlays_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceCardPlays_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceCardPlays_bool_exp
+  ): [spiceCardPlays!]!
+  """
   execute VOLATILE function "take_chat_turn" which returns "chat_turns"
   """
   takeChatTurn(
@@ -7901,6 +9331,74 @@ type mutation_root {
     where: chatTurns_bool_exp
   ): [chatTurns!]!
   """
+  execute VOLATILE function "thank_gentle_request" which returns "slips"
+  """
+  thankGentleRequest(
+    """
+    input parameters for function "thankGentleRequest"
+    """
+    args: thankGentleRequest_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [slips_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [slips_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: slips_bool_exp
+  ): [slips!]!
+  """
+  execute VOLATILE function "try_accept_invite" which returns "invite_accept_results"
+  """
+  tryAcceptInvite(
+    """
+    input parameters for function "tryAcceptInvite"
+    """
+    args: tryAcceptInvite_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteAcceptResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteAcceptResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteAcceptResults_bool_exp
+  ): [inviteAcceptResults!]!
+  """
   execute VOLATILE function "unpair" which returns "profiles"
   """
   unpair(
@@ -7929,6 +9427,70 @@ type mutation_root {
     """
     where: profiles_bool_exp
   ): [profiles!]!
+  """
+  update data of the table: "agreements"
+  """
+  updateAgreements(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: agreements_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: agreements_bool_exp!
+  ): agreements_mutation_response
+  """
+  update single row of the table: "agreements"
+  """
+  updateAgreementsByPk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: agreements_set_input
+  pk_columns: agreements_pk_columns_input!): agreements
+  """
+  update multiples rows of table: "agreements"
+  """
+  updateAgreementsMany(
+    """
+    updates to execute, in order
+    """
+    updates: [agreements_updates!]!
+  ): [agreements_mutation_response]
+  """
+  update data of the table: "annoyances"
+  """
+  updateAnnoyances(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: annoyances_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: annoyances_bool_exp!
+  ): annoyances_mutation_response
+  """
+  update single row of the table: "annoyances"
+  """
+  updateAnnoyancesByPk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: annoyances_set_input
+  pk_columns: annoyances_pk_columns_input!): annoyances
+  """
+  update multiples rows of table: "annoyances"
+  """
+  updateAnnoyancesMany(
+    """
+    updates to execute, in order
+    """
+    updates: [annoyances_updates!]!
+  ): [annoyances_mutation_response]
   """
   update data of the table: "card_items"
   """
@@ -8261,6 +9823,38 @@ type mutation_root {
     """
     updates: [gameAnswers_updates!]!
   ): [gameAnswers_mutation_response]
+  """
+  update data of the table: "gentle_requests"
+  """
+  updateGentleRequests(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: gentleRequests_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: gentleRequests_bool_exp!
+  ): gentleRequests_mutation_response
+  """
+  update single row of the table: "gentle_requests"
+  """
+  updateGentleRequestsByPk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: gentleRequests_set_input
+  pk_columns: gentleRequests_pk_columns_input!): gentleRequests
+  """
+  update multiples rows of table: "gentle_requests"
+  """
+  updateGentleRequestsMany(
+    """
+    updates to execute, in order
+    """
+    updates: [gentleRequests_updates!]!
+  ): [gentleRequests_mutation_response]
   """
   update data of the table: "gift_ideas"
   """
@@ -9154,6 +10748,38 @@ type mutation_root {
     updates: [slips_updates!]!
   ): [slips_mutation_response]
   """
+  update data of the table: "spice_desire_answers"
+  """
+  updateSpiceDesireAnswers(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: spiceDesireAnswers_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: spiceDesireAnswers_bool_exp!
+  ): spiceDesireAnswers_mutation_response
+  """
+  update single row of the table: "spice_desire_answers"
+  """
+  updateSpiceDesireAnswersByPk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: spiceDesireAnswers_set_input
+  pk_columns: spiceDesireAnswers_pk_columns_input!): spiceDesireAnswers
+  """
+  update multiples rows of table: "spice_desire_answers"
+  """
+  updateSpiceDesireAnswersMany(
+    """
+    updates to execute, in order
+    """
+    updates: [spiceDesireAnswers_updates!]!
+  ): [spiceDesireAnswers_mutation_response]
+  """
   update data of the table: "story_events"
   """
   updateStoryEvents(
@@ -9222,6 +10848,11 @@ type mutation_root {
   """
   updateUserSettings(
     """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: userSettings_inc_input
+
+    """
     sets the columns of the filtered rows to the given values
     """
     _set: userSettings_set_input
@@ -9235,6 +10866,11 @@ type mutation_root {
   update single row of the table: "user_settings"
   """
   updateUserSettingsByPk(
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: userSettings_inc_input
+
     """
     sets the columns of the filtered rows to the given values
     """
@@ -9367,6 +11003,7 @@ columns and relationships of "partner_messages"
 type partnerMessages {
   body: String
   createdAt: timestamptz!
+  durationMs: Int
   forWidget: Boolean!
   heartedAt: timestamptz
   id: uuid!
@@ -9405,20 +11042,27 @@ type partnerMessages_mutation_response {
 columns and relationships of "plus_states"
 """
 type plusStates {
-  cardsLeftThisMonth: Int
+  billingIssue: Boolean
+  bothPaid: Boolean
   chatMessagesLeftToday: Int
+  chatMessagesLimit: Int
+  coveredByName: String
   """
   An object relationship
   """
   entitlement: entitlements
   entitlementUserId: uuid
+  gamesLeftThisWeek: Int
   guestLinksLeftToday: Int
   hasPlus: Boolean
   invitesLeftToday: Int
+  listsLeft: Int
+  ownerStore: String
   paidByPartner: Boolean
   partnerMessagesLeftToday: Int
+  ritualsLeft: Int
   signalsLeftToday: Int
-  slipsLeftThisMonth: Int
+  spiceCardsLeftThisWeek: Int
   supportRequestsLeftToday: Int
   userId: uuid
 }
@@ -9442,11 +11086,13 @@ type preparedCards {
 columns and relationships of "profiles"
 """
 type profiles {
+  avatarColor: String
   """
   An object relationship
   """
   avatarFile: files
   avatarFileId: uuid
+  avatarIllustration: String
   avatarKind: AvatarKind_enum!
   city: String
   createdAt: timestamptz!
@@ -9606,6 +11252,130 @@ type programEnrollments_variance_fields {
   currentDay: Float
 }
 type query_root {
+  """
+  fetch data from the table: "agreements"
+  """
+  agreements(
+    """
+    distinct select on columns
+    """
+    distinct_on: [agreements_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [agreements_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): [agreements!]!
+  """
+  fetch aggregated fields from the table: "agreements"
+  """
+  agreementsAggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [agreements_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [agreements_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): agreements_aggregate!
+  """
+  fetch data from the table: "agreements" using primary key columns
+  """
+  agreementsByPk(id: uuid!): agreements
+  """
+  fetch data from the table: "annoyances"
+  """
+  annoyances(
+    """
+    distinct select on columns
+    """
+    distinct_on: [annoyances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [annoyances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: annoyances_bool_exp
+  ): [annoyances!]!
+  """
+  fetch aggregated fields from the table: "annoyances"
+  """
+  annoyancesAggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [annoyances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [annoyances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: annoyances_bool_exp
+  ): annoyances_aggregate!
+  """
+  fetch data from the table: "annoyances" using primary key columns
+  """
+  annoyancesByPk(id: uuid!): annoyances
   """
   fetch data from the table: "app_config"
   """
@@ -9834,6 +11604,39 @@ type query_root {
   """
   cardsByPk(id: uuid!): cards
   """
+  fetch data from the table: "catalog_items"
+  """
+  catalogItems(
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
+  """
+  fetch data from the table: "catalog_items" using primary key columns
+  """
+  catalogItemsByPk(id: uuid!): catalogItems
+  """
   fetch data from the table: "chat_turns"
   """
   chatTurns(
@@ -9961,6 +11764,40 @@ type query_root {
   fetch data from the table: "consents" using primary key columns
   """
   consentsByPk(id: uuid!): consents
+  """
+  execute function "content_catalog" which returns "catalog_items"
+  """
+  contentCatalog(
+    """
+    input parameters for function "contentCatalog"
+    """
+    args: contentCatalog_args
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
   """
   fetch data from the table: "content_items"
   """
@@ -10155,6 +11992,35 @@ type query_root {
   fetch data from the table: "couples" using primary key columns
   """
   couplesByPk(id: uuid!): couples
+  """
+  fetch data from the table: "current_consents"
+  """
+  currentConsents(
+    """
+    distinct select on columns
+    """
+    distinct_on: [currentConsents_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [currentConsents_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: currentConsents_bool_exp
+  ): [currentConsents!]!
   """
   execute function "daily_content" which returns "content_items"
   """
@@ -10388,6 +12254,39 @@ type query_root {
   """
   gameSessionsByPk(id: uuid!): gameSessions
   """
+  fetch data from the table: "gentle_requests"
+  """
+  gentleRequests(
+    """
+    distinct select on columns
+    """
+    distinct_on: [gentleRequests_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [gentleRequests_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: gentleRequests_bool_exp
+  ): [gentleRequests!]!
+  """
+  fetch data from the table: "gentle_requests" using primary key columns
+  """
+  gentleRequestsByPk(id: uuid!): gentleRequests
+  """
   fetch data from the table: "gift_ideas"
   """
   giftIdeas(
@@ -10607,6 +12506,35 @@ type query_root {
   """
   inboxItemsByPk(id: uuid!): inboxItems
   """
+  fetch data from the table: "invite_accept_results"
+  """
+  inviteAcceptResults(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteAcceptResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteAcceptResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteAcceptResults_bool_exp
+  ): [inviteAcceptResults!]!
+  """
   execute function "invite_preview" which returns "invite_previews"
   """
   invitePreview(
@@ -10673,6 +12601,69 @@ type query_root {
   fetch data from the table: "invite_previews" using primary key columns
   """
   invitePreviewsByPk(expiresAt: timestamptz!): invitePreviews
+  """
+  execute function "invite_status" which returns "invite_statuses"
+  """
+  inviteStatus(
+    """
+    input parameters for function "inviteStatus"
+    """
+    args: inviteStatus_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
+  """
+  fetch data from the table: "invite_statuses"
+  """
+  inviteStatuses(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
   """
   fetch data from the table: "invites"
   """
@@ -11206,6 +13197,35 @@ type query_root {
   fetch data from the table: "moods" using primary key columns
   """
   moodsByPk(id: uuid!): moods
+  """
+  execute function "my_sessions" which returns "session_rows"
+  """
+  mySessions(
+    """
+    distinct select on columns
+    """
+    distinct_on: [sessionRows_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [sessionRows_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: sessionRows_bool_exp
+  ): [sessionRows!]!
   """
   fetch data from the table: "notification_mutes"
   """
@@ -11997,6 +14017,35 @@ type query_root {
   """
   savedDateIdeasByPk(id: uuid!): savedDateIdeas
   """
+  fetch data from the table: "session_rows"
+  """
+  sessionRows(
+    """
+    distinct select on columns
+    """
+    distinct_on: [sessionRows_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [sessionRows_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: sessionRows_bool_exp
+  ): [sessionRows!]!
+  """
   fetch data from the table: "shared_moods"
   """
   sharedMoods(
@@ -12124,6 +14173,250 @@ type query_root {
   fetch data from the table: "slips" using primary key columns
   """
   slipsByPk(id: uuid!): slips
+  """
+  fetch data from the table: "spice_card_plays"
+  """
+  spiceCardPlays(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceCardPlays_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceCardPlays_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceCardPlays_bool_exp
+  ): [spiceCardPlays!]!
+  """
+  fetch data from the table: "spice_card_plays" using primary key columns
+  """
+  spiceCardPlaysByPk(id: uuid!): spiceCardPlays
+  """
+  fetch data from the table: "spice_challenges"
+  """
+  spiceChallenges(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceChallenges_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceChallenges_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceChallenges_bool_exp
+  ): [spiceChallenges!]!
+  """
+  fetch data from the table: "spice_challenges" using primary key columns
+  """
+  spiceChallengesByPk(id: uuid!): spiceChallenges
+  """
+  fetch data from the table: "spice_desire_answers"
+  """
+  spiceDesireAnswers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceDesireAnswers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceDesireAnswers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceDesireAnswers_bool_exp
+  ): [spiceDesireAnswers!]!
+  """
+  fetch data from the table: "spice_desire_answers" using primary key columns
+  """
+  spiceDesireAnswersByPk(contentSlug: String!, userId: uuid!): spiceDesireAnswers
+  """
+  execute function "spice_matches" which returns "catalog_items"
+  """
+  spiceMatches(
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
+  """
+  execute function "spice_state" which returns "spice_states"
+  """
+  spiceState(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceStates_bool_exp
+  ): [spiceStates!]!
+  """
+  fetch data from the table: "spice_states"
+  """
+  spiceStates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceStates_bool_exp
+  ): [spiceStates!]!
+  """
+  execute function "start_date_state" which returns "start_dates"
+  """
+  startDateState(
+    """
+    distinct select on columns
+    """
+    distinct_on: [startDates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [startDates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: startDates_bool_exp
+  ): [startDates!]!
+  """
+  fetch data from the table: "start_dates"
+  """
+  startDates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [startDates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [startDates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: startDates_bool_exp
+  ): [startDates!]!
   """
   fetch data from the table: "story_events"
   """
@@ -12344,6 +14637,69 @@ type query_root {
   """
   userSettingsByPk(userId: uuid!): userSettings
   """
+  execute function "weekly_review" which returns "weekly_reviews"
+  """
+  weeklyReview(
+    """
+    input parameters for function "weeklyReview"
+    """
+    args: weeklyReview_args
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [weeklyReviews_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [weeklyReviews_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: weeklyReviews_bool_exp
+  ): [weeklyReviews!]!
+  """
+  fetch data from the table: "weekly_reviews"
+  """
+  weeklyReviews(
+    """
+    distinct select on columns
+    """
+    distinct_on: [weeklyReviews_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [weeklyReviews_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: weeklyReviews_bool_exp
+  ): [weeklyReviews!]!
+  """
   fetch data from the table: "year_recaps"
   """
   yearRecaps(
@@ -12480,6 +14836,7 @@ type quizResults {
   id: uuid!
   quizKey: QuizKey_enum!
   ranked: [String!]!
+  sharedAt: timestamptz
   updatedAt: timestamptz!
 }
 """
@@ -12505,6 +14862,7 @@ type quizResults_max_fields {
   createdAt: timestamptz
   id: uuid
   ranked: [String!]
+  sharedAt: timestamptz
   updatedAt: timestamptz
 }
 """
@@ -12515,6 +14873,7 @@ type quizResults_min_fields {
   createdAt: timestamptz
   id: uuid
   ranked: [String!]
+  sharedAt: timestamptz
   updatedAt: timestamptz
 }
 """
@@ -13076,6 +15435,17 @@ type savedDateIdeas_mutation_response {
   returning: [savedDateIdeas!]!
 }
 """
+columns and relationships of "session_rows"
+"""
+type sessionRows {
+  createdAt: timestamptz!
+  deviceId: uuid
+  deviceLabel: String
+  expiresAt: timestamptz!
+  id: uuid!
+  platform: String
+}
+"""
 columns and relationships of "shared_moods"
 """
 type sharedMoods {
@@ -13219,6 +15589,130 @@ type slips_mutation_response {
   returning: [slips!]!
 }
 """
+columns and relationships of "spice_card_plays"
+"""
+type spiceCardPlays {
+  acceptedBy: uuid
+  contentSlug: String!
+  coupleId: uuid!
+  """
+  An array relationship
+  """
+  coupleMembers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [coupleMembers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [coupleMembers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: coupleMembers_bool_exp
+  ): [coupleMembers!]!
+  createdAt: timestamptz!
+  declinedAt: timestamptz
+  id: uuid!
+  proposedBy: uuid!
+}
+"""
+columns and relationships of "spice_challenges"
+"""
+type spiceChallenges {
+  acceptedBy: [uuid!]!
+  contentSlug: String!
+  coupleId: uuid!
+  """
+  An array relationship
+  """
+  coupleMembers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [coupleMembers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [coupleMembers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: coupleMembers_bool_exp
+  ): [coupleMembers!]!
+  createdAt: timestamptz!
+  doneBy: [uuid!]!
+  id: uuid!
+  seenBy: [uuid!]!
+  swaps: smallint!
+  weekStart: date!
+}
+"""
+columns and relationships of "spice_desire_answers"
+"""
+type spiceDesireAnswers {
+  answer: String!
+  contentSlug: String!
+  createdAt: timestamptz!
+  updatedAt: timestamptz!
+  userId: uuid!
+}
+"""
+response of any mutation on the table "spice_desire_answers"
+"""
+type spiceDesireAnswers_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [spiceDesireAnswers!]!
+}
+"""
+columns and relationships of "spice_states"
+"""
+type spiceStates {
+  coupleLevel: smallint
+  myLevel: smallint
+  state: String!
+}
+"""
+columns and relationships of "start_dates"
+"""
+type startDates {
+  couple: date
+  matches: Boolean!
+  mine: date
+  partner: date
+}
+"""
 columns and relationships of "story_events"
 """
 type storyEvents {
@@ -13322,6 +15816,168 @@ type storyEvents_mutation_response {
   returning: [storyEvents!]!
 }
 type subscription_root {
+  """
+  fetch data from the table: "agreements"
+  """
+  agreements(
+    """
+    distinct select on columns
+    """
+    distinct_on: [agreements_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [agreements_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): [agreements!]!
+  """
+  fetch aggregated fields from the table: "agreements"
+  """
+  agreementsAggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [agreements_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [agreements_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): agreements_aggregate!
+  """
+  fetch data from the table: "agreements" using primary key columns
+  """
+  agreementsByPk(id: uuid!): agreements
+  """
+  fetch data from the table in a streaming manner: "agreements"
+  """
+  agreementsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [agreements_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: agreements_bool_exp
+  ): [agreements!]!
+  """
+  fetch data from the table: "annoyances"
+  """
+  annoyances(
+    """
+    distinct select on columns
+    """
+    distinct_on: [annoyances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [annoyances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: annoyances_bool_exp
+  ): [annoyances!]!
+  """
+  fetch aggregated fields from the table: "annoyances"
+  """
+  annoyancesAggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [annoyances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [annoyances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: annoyances_bool_exp
+  ): annoyances_aggregate!
+  """
+  fetch data from the table: "annoyances" using primary key columns
+  """
+  annoyancesByPk(id: uuid!): annoyances
+  """
+  fetch data from the table in a streaming manner: "annoyances"
+  """
+  annoyancesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [annoyances_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: annoyances_bool_exp
+  ): [annoyances!]!
   """
   fetch data from the table: "app_config"
   """
@@ -13664,6 +16320,58 @@ type subscription_root {
     where: cards_bool_exp
   ): [cards!]!
   """
+  fetch data from the table: "catalog_items"
+  """
+  catalogItems(
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
+  """
+  fetch data from the table: "catalog_items" using primary key columns
+  """
+  catalogItemsByPk(id: uuid!): catalogItems
+  """
+  fetch data from the table in a streaming manner: "catalog_items"
+  """
+  catalogItemsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [catalogItems_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
+  """
   fetch data from the table: "chat_turns"
   """
   chatTurns(
@@ -13867,6 +16575,40 @@ type subscription_root {
     """
     where: consents_bool_exp
   ): [consents!]!
+  """
+  execute function "content_catalog" which returns "catalog_items"
+  """
+  contentCatalog(
+    """
+    input parameters for function "contentCatalog"
+    """
+    args: contentCatalog_args
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
   """
   fetch data from the table: "content_items"
   """
@@ -14156,6 +16898,54 @@ type subscription_root {
     """
     where: couples_bool_exp
   ): [couples!]!
+  """
+  fetch data from the table: "current_consents"
+  """
+  currentConsents(
+    """
+    distinct select on columns
+    """
+    distinct_on: [currentConsents_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [currentConsents_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: currentConsents_bool_exp
+  ): [currentConsents!]!
+  """
+  fetch data from the table in a streaming manner: "current_consents"
+  """
+  currentConsentsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [currentConsents_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: currentConsents_bool_exp
+  ): [currentConsents!]!
   """
   execute function "daily_content" which returns "content_items"
   """
@@ -14503,6 +17293,58 @@ type subscription_root {
     where: gameSessions_bool_exp
   ): [gameSessions!]!
   """
+  fetch data from the table: "gentle_requests"
+  """
+  gentleRequests(
+    """
+    distinct select on columns
+    """
+    distinct_on: [gentleRequests_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [gentleRequests_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: gentleRequests_bool_exp
+  ): [gentleRequests!]!
+  """
+  fetch data from the table: "gentle_requests" using primary key columns
+  """
+  gentleRequestsByPk(id: uuid!): gentleRequests
+  """
+  fetch data from the table in a streaming manner: "gentle_requests"
+  """
+  gentleRequestsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [gentleRequests_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: gentleRequests_bool_exp
+  ): [gentleRequests!]!
+  """
   fetch data from the table: "gift_ideas"
   """
   giftIdeas(
@@ -14798,6 +17640,54 @@ type subscription_root {
     where: inboxItems_bool_exp
   ): [inboxItems!]!
   """
+  fetch data from the table: "invite_accept_results"
+  """
+  inviteAcceptResults(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteAcceptResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteAcceptResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteAcceptResults_bool_exp
+  ): [inviteAcceptResults!]!
+  """
+  fetch data from the table in a streaming manner: "invite_accept_results"
+  """
+  inviteAcceptResultsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [inviteAcceptResults_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: inviteAcceptResults_bool_exp
+  ): [inviteAcceptResults!]!
+  """
   execute function "invite_preview" which returns "invite_previews"
   """
   invitePreview(
@@ -14883,6 +17773,88 @@ type subscription_root {
     """
     where: invitePreviews_bool_exp
   ): [invitePreviews!]!
+  """
+  execute function "invite_status" which returns "invite_statuses"
+  """
+  inviteStatus(
+    """
+    input parameters for function "inviteStatus"
+    """
+    args: inviteStatus_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
+  """
+  fetch data from the table: "invite_statuses"
+  """
+  inviteStatuses(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
+  """
+  fetch data from the table in a streaming manner: "invite_statuses"
+  """
+  inviteStatusesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [inviteStatuses_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
   """
   fetch data from the table: "invites"
   """
@@ -15606,6 +18578,35 @@ type subscription_root {
     """
     where: moods_bool_exp
   ): [moods!]!
+  """
+  execute function "my_sessions" which returns "session_rows"
+  """
+  mySessions(
+    """
+    distinct select on columns
+    """
+    distinct_on: [sessionRows_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [sessionRows_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: sessionRows_bool_exp
+  ): [sessionRows!]!
   """
   fetch data from the table: "notification_mutes"
   """
@@ -16701,6 +19702,54 @@ type subscription_root {
     where: savedDateIdeas_bool_exp
   ): [savedDateIdeas!]!
   """
+  fetch data from the table: "session_rows"
+  """
+  sessionRows(
+    """
+    distinct select on columns
+    """
+    distinct_on: [sessionRows_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [sessionRows_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: sessionRows_bool_exp
+  ): [sessionRows!]!
+  """
+  fetch data from the table in a streaming manner: "session_rows"
+  """
+  sessionRowsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [sessionRows_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: sessionRows_bool_exp
+  ): [sessionRows!]!
+  """
   fetch data from the table: "shared_moods"
   """
   sharedMoods(
@@ -16885,6 +19934,345 @@ type subscription_root {
     """
     where: slips_bool_exp
   ): [slips!]!
+  """
+  fetch data from the table: "spice_card_plays"
+  """
+  spiceCardPlays(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceCardPlays_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceCardPlays_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceCardPlays_bool_exp
+  ): [spiceCardPlays!]!
+  """
+  fetch data from the table: "spice_card_plays" using primary key columns
+  """
+  spiceCardPlaysByPk(id: uuid!): spiceCardPlays
+  """
+  fetch data from the table in a streaming manner: "spice_card_plays"
+  """
+  spiceCardPlaysStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [spiceCardPlays_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: spiceCardPlays_bool_exp
+  ): [spiceCardPlays!]!
+  """
+  fetch data from the table: "spice_challenges"
+  """
+  spiceChallenges(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceChallenges_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceChallenges_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceChallenges_bool_exp
+  ): [spiceChallenges!]!
+  """
+  fetch data from the table: "spice_challenges" using primary key columns
+  """
+  spiceChallengesByPk(id: uuid!): spiceChallenges
+  """
+  fetch data from the table in a streaming manner: "spice_challenges"
+  """
+  spiceChallengesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [spiceChallenges_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: spiceChallenges_bool_exp
+  ): [spiceChallenges!]!
+  """
+  fetch data from the table: "spice_desire_answers"
+  """
+  spiceDesireAnswers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceDesireAnswers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceDesireAnswers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceDesireAnswers_bool_exp
+  ): [spiceDesireAnswers!]!
+  """
+  fetch data from the table: "spice_desire_answers" using primary key columns
+  """
+  spiceDesireAnswersByPk(contentSlug: String!, userId: uuid!): spiceDesireAnswers
+  """
+  fetch data from the table in a streaming manner: "spice_desire_answers"
+  """
+  spiceDesireAnswersStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [spiceDesireAnswers_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: spiceDesireAnswers_bool_exp
+  ): [spiceDesireAnswers!]!
+  """
+  execute function "spice_matches" which returns "catalog_items"
+  """
+  spiceMatches(
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
+  """
+  execute function "spice_state" which returns "spice_states"
+  """
+  spiceState(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceStates_bool_exp
+  ): [spiceStates!]!
+  """
+  fetch data from the table: "spice_states"
+  """
+  spiceStates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [spiceStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [spiceStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: spiceStates_bool_exp
+  ): [spiceStates!]!
+  """
+  fetch data from the table in a streaming manner: "spice_states"
+  """
+  spiceStatesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [spiceStates_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: spiceStates_bool_exp
+  ): [spiceStates!]!
+  """
+  execute function "start_date_state" which returns "start_dates"
+  """
+  startDateState(
+    """
+    distinct select on columns
+    """
+    distinct_on: [startDates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [startDates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: startDates_bool_exp
+  ): [startDates!]!
+  """
+  fetch data from the table: "start_dates"
+  """
+  startDates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [startDates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [startDates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: startDates_bool_exp
+  ): [startDates!]!
+  """
+  fetch data from the table in a streaming manner: "start_dates"
+  """
+  startDatesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [startDates_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: startDates_bool_exp
+  ): [startDates!]!
   """
   fetch data from the table: "story_events"
   """
@@ -17200,6 +20588,88 @@ type subscription_root {
     where: userSettings_bool_exp
   ): [userSettings!]!
   """
+  execute function "weekly_review" which returns "weekly_reviews"
+  """
+  weeklyReview(
+    """
+    input parameters for function "weeklyReview"
+    """
+    args: weeklyReview_args
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [weeklyReviews_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [weeklyReviews_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: weeklyReviews_bool_exp
+  ): [weeklyReviews!]!
+  """
+  fetch data from the table: "weekly_reviews"
+  """
+  weeklyReviews(
+    """
+    distinct select on columns
+    """
+    distinct_on: [weeklyReviews_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [weeklyReviews_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: weeklyReviews_bool_exp
+  ): [weeklyReviews!]!
+  """
+  fetch data from the table in a streaming manner: "weekly_reviews"
+  """
+  weeklyReviewsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [weeklyReviews_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: weeklyReviews_bool_exp
+  ): [weeklyReviews!]!
+  """
   fetch data from the table: "year_recaps"
   """
   yearRecaps(
@@ -17384,6 +20854,7 @@ type userSettings {
   createdAt: timestamptz!
   goal: RelationshipGoal_enum
   goals: [String!]!
+  hasKids: Boolean!
   holidayCountries: [String!]!
   locale: String!
   lowStimulation: Boolean!
@@ -17400,6 +20871,8 @@ type userSettings {
   shareReadReceipts: Boolean!
   slipsDefaultForCard: Boolean!
   spiceEnabled: Boolean!
+  spiceMaxLevel: smallint!
+  spiceNotifications: Boolean!
   theme: AppTheme_enum!
   togetherSince: date
   updatedAt: timestamptz!
@@ -17420,6 +20893,25 @@ type userSettings_mutation_response {
   data from the rows affected by the mutation
   """
   returning: [userSettings!]!
+}
+"""
+columns and relationships of "weekly_reviews"
+"""
+type weeklyReviews {
+  activeDays: Int!
+  bothCheckinDone: Boolean
+  cardsReceived: Int!
+  cardsSent: Int!
+  checkinDone: Boolean!
+  coupleRitualsDone: Int
+  lowData: Boolean!
+  missing: [String!]!
+  moodsLogged: Int!
+  partnerCardsSent: Int
+  ritualsDone: Int!
+  slips: Int!
+  streakDays: Int!
+  weekStart: date!
 }
 """
 columns and relationships of "year_recaps"
@@ -18092,6 +21584,198 @@ input acceptInvite_args {
   code: String
 }
 """
+Boolean expression to filter rows from the table "agreements". All fields are combined with a logical 'AND'.
+"""
+input agreements_bool_exp {
+  _and: [agreements_bool_exp!]
+  _not: agreements_bool_exp
+  _or: [agreements_bool_exp!]
+  archivedAt: timestamptz_comparison_exp
+  author: profiles_bool_exp
+  authorId: uuid_comparison_exp
+  body: String_comparison_exp
+  confirmedAt: timestamptz_comparison_exp
+  confirmedBy: uuid_comparison_exp
+  couple: couples_bool_exp
+  coupleId: uuid_comparison_exp
+  coupleMembers: coupleMembers_bool_exp
+  createdAt: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  updatedAt: timestamptz_comparison_exp
+}
+"""
+input type for inserting data into table "agreements"
+"""
+input agreements_insert_input {
+  body: String
+  coupleId: uuid
+  id: uuid
+}
+"""
+on_conflict condition type for table "agreements"
+"""
+input agreements_on_conflict {
+  constraint: agreements_constraint!
+  update_columns: [agreements_update_column!]! = []
+  where: agreements_bool_exp
+}
+"""
+Ordering options when selecting data from "agreements".
+"""
+input agreements_order_by {
+  archivedAt: order_by
+  author: profiles_order_by
+  authorId: order_by
+  body: order_by
+  confirmedAt: order_by
+  confirmedBy: order_by
+  couple: couples_order_by
+  coupleId: order_by
+  coupleMembers_aggregate: coupleMembers_aggregate_order_by
+  createdAt: order_by
+  id: order_by
+  updatedAt: order_by
+}
+"""
+primary key columns input for table: agreements
+"""
+input agreements_pk_columns_input {
+  id: uuid!
+}
+"""
+input type for updating data in table "agreements"
+"""
+input agreements_set_input {
+  archivedAt: timestamptz
+  body: String
+  coupleId: uuid
+}
+"""
+Streaming cursor of the table "agreements"
+"""
+input agreements_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: agreements_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input agreements_stream_cursor_value_input {
+  archivedAt: timestamptz
+  authorId: uuid
+  body: String
+  confirmedAt: timestamptz
+  confirmedBy: uuid
+  coupleId: uuid
+  createdAt: timestamptz
+  id: uuid
+  updatedAt: timestamptz
+}
+input agreements_updates {
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: agreements_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: agreements_bool_exp!
+}
+"""
+Boolean expression to filter rows from the table "annoyances". All fields are combined with a logical 'AND'.
+"""
+input annoyances_bool_exp {
+  _and: [annoyances_bool_exp!]
+  _not: annoyances_bool_exp
+  _or: [annoyances_bool_exp!]
+  author: profiles_bool_exp
+  authorId: uuid_comparison_exp
+  body: String_comparison_exp
+  checkSentAt: timestamptz_comparison_exp
+  createdAt: timestamptz_comparison_exp
+  expiresAt: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+}
+"""
+input type for inserting data into table "annoyances"
+"""
+input annoyances_insert_input {
+  body: String
+  id: uuid
+}
+"""
+on_conflict condition type for table "annoyances"
+"""
+input annoyances_on_conflict {
+  constraint: annoyances_constraint!
+  update_columns: [annoyances_update_column!]! = []
+  where: annoyances_bool_exp
+}
+"""
+Ordering options when selecting data from "annoyances".
+"""
+input annoyances_order_by {
+  author: profiles_order_by
+  authorId: order_by
+  body: order_by
+  checkSentAt: order_by
+  createdAt: order_by
+  expiresAt: order_by
+  id: order_by
+}
+"""
+primary key columns input for table: annoyances
+"""
+input annoyances_pk_columns_input {
+  id: uuid!
+}
+"""
+input type for updating data in table "annoyances"
+"""
+input annoyances_set_input {
+  body: String
+}
+"""
+Streaming cursor of the table "annoyances"
+"""
+input annoyances_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: annoyances_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input annoyances_stream_cursor_value_input {
+  authorId: uuid
+  body: String
+  checkSentAt: timestamptz
+  createdAt: timestamptz
+  expiresAt: timestamptz
+  id: uuid
+}
+input annoyances_updates {
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: annoyances_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: annoyances_bool_exp!
+}
+"""
 Boolean expression to filter rows from the table "app_config". All fields are combined with a logical 'AND'.
 """
 input appConfig_bool_exp {
@@ -18547,6 +22231,7 @@ input cards_bool_exp {
   coupleId: uuid_comparison_exp
   createdAt: timestamptz_comparison_exp
   guestLinks: guestLinks_bool_exp
+  heldReason: String_comparison_exp
   id: uuid_comparison_exp
   items: cardItems_bool_exp
   kind: CardKind_enum_comparison_exp
@@ -18569,6 +22254,7 @@ input cards_order_by {
   coupleId: order_by
   createdAt: order_by
   guestLinks_aggregate: guestLinks_aggregate_order_by
+  heldReason: order_by
   id: order_by
   items_aggregate: cardItems_aggregate_order_by
   kind: order_by
@@ -18615,6 +22301,7 @@ input cards_stream_cursor_value_input {
   authorId: uuid
   coupleId: uuid
   createdAt: timestamptz
+  heldReason: String
   id: uuid
   kind: CardKind_enum
   note: String
@@ -18633,6 +22320,82 @@ input cards_updates {
   filter the rows which have to be updated
   """
   where: cards_bool_exp!
+}
+"""
+Boolean expression to filter rows from the table "catalog_items". All fields are combined with a logical 'AND'.
+"""
+input catalogItems_bool_exp {
+  _and: [catalogItems_bool_exp!]
+  _not: catalogItems_bool_exp
+  _or: [catalogItems_bool_exp!]
+  body: String_comparison_exp
+  country: String_comparison_exp
+  day: smallint_comparison_exp
+  id: uuid_comparison_exp
+  kind: String_comparison_exp
+  locale: String_comparison_exp
+  locked: Boolean_comparison_exp
+  month: smallint_comparison_exp
+  parentSlug: String_comparison_exp
+  plusOnly: Boolean_comparison_exp
+  position: Int_comparison_exp
+  sensitive: Boolean_comparison_exp
+  slug: String_comparison_exp
+  tags: String_array_comparison_exp
+  title: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "catalog_items".
+"""
+input catalogItems_order_by {
+  body: order_by
+  country: order_by
+  day: order_by
+  id: order_by
+  kind: order_by
+  locale: order_by
+  locked: order_by
+  month: order_by
+  parentSlug: order_by
+  plusOnly: order_by
+  position: order_by
+  sensitive: order_by
+  slug: order_by
+  tags: order_by
+  title: order_by
+}
+"""
+Streaming cursor of the table "catalogItems"
+"""
+input catalogItems_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: catalogItems_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input catalogItems_stream_cursor_value_input {
+  body: String
+  country: String
+  day: smallint
+  id: uuid
+  kind: String
+  locale: String
+  locked: Boolean
+  month: smallint
+  parentSlug: String
+  plusOnly: Boolean
+  position: Int
+  sensitive: Boolean
+  slug: String
+  tags: [String!]
+  title: String
 }
 """
 Boolean expression to filter rows from the table "chat_turns". All fields are combined with a logical 'AND'.
@@ -18867,6 +22630,12 @@ input checkins_updates {
   """
   where: checkins_bool_exp!
 }
+input confirmAgreement_args {
+  agreementId: uuid
+}
+input confirmLogisticItem_args {
+  itemId: uuid
+}
 """
 Boolean expression to filter rows from the table "consents". All fields are combined with a logical 'AND'.
 """
@@ -18932,6 +22701,10 @@ input consents_stream_cursor_value_input {
   userId: uuid
   version: String
 }
+input contentCatalog_args {
+  kind: String
+  locale: String
+}
 """
 Boolean expression to filter rows from the table "content_items". All fields are combined with a logical 'AND'.
 """
@@ -18944,6 +22717,7 @@ input contentItems_bool_exp {
   day: smallint_comparison_exp
   id: uuid_comparison_exp
   kind: ContentKind_enum_comparison_exp
+  level: smallint_comparison_exp
   locale: String_comparison_exp
   month: smallint_comparison_exp
   parentSlug: String_comparison_exp
@@ -18964,6 +22738,7 @@ input contentItems_order_by {
   day: order_by
   id: order_by
   kind: order_by
+  level: order_by
   locale: order_by
   month: order_by
   parentSlug: order_by
@@ -18997,6 +22772,7 @@ input contentItems_stream_cursor_value_input {
   day: smallint
   id: uuid
   kind: ContentKind_enum
+  level: smallint
   locale: String
   month: smallint
   parentSlug: String
@@ -19316,6 +23092,8 @@ input couples_bool_exp {
   id: uuid_comparison_exp
   members: coupleMembers_bool_exp
   photo: couplePhotos_bool_exp
+  startDate: date_comparison_exp
+  startDateSetBy: uuid_comparison_exp
   touchTopicsEnabled: Boolean_comparison_exp
 }
 """
@@ -19327,6 +23105,8 @@ input couples_order_by {
   id: order_by
   members_aggregate: coupleMembers_aggregate_order_by
   photo: couplePhotos_order_by
+  startDate: order_by
+  startDateSetBy: order_by
   touchTopicsEnabled: order_by
 }
 """
@@ -19361,6 +23141,8 @@ input couples_stream_cursor_value_input {
   createdAt: timestamptz
   endedAt: timestamptz
   id: uuid
+  startDate: date
+  startDateSetBy: uuid
   touchTopicsEnabled: Boolean
 }
 input couples_updates {
@@ -19372,6 +23154,52 @@ input couples_updates {
   filter the rows which have to be updated
   """
   where: couples_bool_exp!
+}
+"""
+Boolean expression to filter rows from the table "current_consents". All fields are combined with a logical 'AND'.
+"""
+input currentConsents_bool_exp {
+  _and: [currentConsents_bool_exp!]
+  _not: currentConsents_bool_exp
+  _or: [currentConsents_bool_exp!]
+  createdAt: timestamptz_comparison_exp
+  granted: Boolean_comparison_exp
+  kind: String_comparison_exp
+  userId: uuid_comparison_exp
+  version: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "current_consents".
+"""
+input currentConsents_order_by {
+  createdAt: order_by
+  granted: order_by
+  kind: order_by
+  userId: order_by
+  version: order_by
+}
+"""
+Streaming cursor of the table "currentConsents"
+"""
+input currentConsents_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: currentConsents_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input currentConsents_stream_cursor_value_input {
+  createdAt: timestamptz
+  granted: Boolean
+  kind: String
+  userId: uuid
+  version: String
 }
 input dailyContent_args {
   kind: String
@@ -19476,6 +23304,7 @@ input devices_bool_exp {
   label: String_comparison_exp
   lastSeenAt: timestamptz_comparison_exp
   platform: DevicePlatform_enum_comparison_exp
+  refreshTokenId: uuid_comparison_exp
   token: String_comparison_exp
   userId: uuid_comparison_exp
 }
@@ -19485,6 +23314,7 @@ input type for inserting data into table "devices"
 input devices_insert_input {
   label: String
   platform: DevicePlatform_enum
+  refreshTokenId: uuid
   token: String
 }
 """
@@ -19504,6 +23334,7 @@ input devices_order_by {
   label: order_by
   lastSeenAt: order_by
   platform: order_by
+  refreshTokenId: order_by
   token: order_by
   userId: order_by
 }
@@ -19519,6 +23350,7 @@ input type for updating data in table "devices"
 input devices_set_input {
   label: String
   platform: DevicePlatform_enum
+  refreshTokenId: uuid
 }
 """
 Streaming cursor of the table "devices"
@@ -19542,6 +23374,7 @@ input devices_stream_cursor_value_input {
   label: String
   lastSeenAt: timestamptz
   platform: DevicePlatform_enum
+  refreshTokenId: uuid
   token: String
   userId: uuid
 }
@@ -19998,6 +23831,100 @@ input gameSessions_stream_cursor_value_input {
   status: GameStatus_enum
 }
 """
+Boolean expression to filter rows from the table "gentle_requests". All fields are combined with a logical 'AND'.
+"""
+input gentleRequests_bool_exp {
+  _and: [gentleRequests_bool_exp!]
+  _not: gentleRequests_bool_exp
+  _or: [gentleRequests_bool_exp!]
+  createdAt: timestamptz_comparison_exp
+  feelText: String_comparison_exp
+  id: uuid_comparison_exp
+  purgeAfter: timestamptz_comparison_exp
+  recipient: profiles_bool_exp
+  recipientId: uuid_comparison_exp
+  respondedAt: timestamptz_comparison_exp
+  response: String_comparison_exp
+  seenAt: timestamptz_comparison_exp
+  sender: profiles_bool_exp
+  senderId: uuid_comparison_exp
+  thankedAt: timestamptz_comparison_exp
+  whenText: String_comparison_exp
+  wishText: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "gentle_requests".
+"""
+input gentleRequests_order_by {
+  createdAt: order_by
+  feelText: order_by
+  id: order_by
+  purgeAfter: order_by
+  recipient: profiles_order_by
+  recipientId: order_by
+  respondedAt: order_by
+  response: order_by
+  seenAt: order_by
+  sender: profiles_order_by
+  senderId: order_by
+  thankedAt: order_by
+  whenText: order_by
+  wishText: order_by
+}
+"""
+primary key columns input for table: gentle_requests
+"""
+input gentleRequests_pk_columns_input {
+  id: uuid!
+}
+"""
+input type for updating data in table "gentle_requests"
+"""
+input gentleRequests_set_input {
+  response: String
+  seenAt: timestamptz
+}
+"""
+Streaming cursor of the table "gentleRequests"
+"""
+input gentleRequests_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: gentleRequests_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input gentleRequests_stream_cursor_value_input {
+  createdAt: timestamptz
+  feelText: String
+  id: uuid
+  purgeAfter: timestamptz
+  recipientId: uuid
+  respondedAt: timestamptz
+  response: String
+  seenAt: timestamptz
+  senderId: uuid
+  thankedAt: timestamptz
+  whenText: String
+  wishText: String
+}
+input gentleRequests_updates {
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: gentleRequests_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: gentleRequests_bool_exp!
+}
+"""
 Boolean expression to filter rows from the table "gift_ideas". All fields are combined with a logical 'AND'.
 """
 input giftIdeas_bool_exp {
@@ -20385,6 +24312,7 @@ input inboxItems_bool_exp {
   _not: inboxItems_bool_exp
   _or: [inboxItems_bool_exp!]
   createdAt: timestamptz_comparison_exp
+  dedupeKey: String_comparison_exp
   id: uuid_comparison_exp
   readAt: timestamptz_comparison_exp
   refId: uuid_comparison_exp
@@ -20396,6 +24324,7 @@ Ordering options when selecting data from "inbox_items".
 """
 input inboxItems_order_by {
   createdAt: order_by
+  dedupeKey: order_by
   id: order_by
   readAt: order_by
   refId: order_by
@@ -20432,6 +24361,7 @@ Initial value of the column from where the streaming should start
 """
 input inboxItems_stream_cursor_value_input {
   createdAt: timestamptz
+  dedupeKey: String
   id: uuid
   readAt: timestamptz
   refId: uuid
@@ -20447,6 +24377,40 @@ input inboxItems_updates {
   filter the rows which have to be updated
   """
   where: inboxItems_bool_exp!
+}
+"""
+Boolean expression to filter rows from the table "invite_accept_results". All fields are combined with a logical 'AND'.
+"""
+input inviteAcceptResults_bool_exp {
+  _and: [inviteAcceptResults_bool_exp!]
+  _not: inviteAcceptResults_bool_exp
+  _or: [inviteAcceptResults_bool_exp!]
+  state: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "invite_accept_results".
+"""
+input inviteAcceptResults_order_by {
+  state: order_by
+}
+"""
+Streaming cursor of the table "inviteAcceptResults"
+"""
+input inviteAcceptResults_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: inviteAcceptResults_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input inviteAcceptResults_stream_cursor_value_input {
+  state: String
 }
 input invitePreview_args {
   code: String
@@ -20487,6 +24451,49 @@ Initial value of the column from where the streaming should start
 input invitePreviews_stream_cursor_value_input {
   expiresAt: timestamptz
   inviterName: String
+}
+input inviteStatus_args {
+  code: String
+}
+"""
+Boolean expression to filter rows from the table "invite_statuses". All fields are combined with a logical 'AND'.
+"""
+input inviteStatuses_bool_exp {
+  _and: [inviteStatuses_bool_exp!]
+  _not: inviteStatuses_bool_exp
+  _or: [inviteStatuses_bool_exp!]
+  expiresAt: timestamptz_comparison_exp
+  inviterName: String_comparison_exp
+  state: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "invite_statuses".
+"""
+input inviteStatuses_order_by {
+  expiresAt: order_by
+  inviterName: order_by
+  state: order_by
+}
+"""
+Streaming cursor of the table "inviteStatuses"
+"""
+input inviteStatuses_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: inviteStatuses_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input inviteStatuses_stream_cursor_value_input {
+  expiresAt: timestamptz
+  inviterName: String
+  state: String
 }
 """
 Boolean expression to filter rows from the table "invites". All fields are combined with a logical 'AND'.
@@ -21235,6 +25242,8 @@ input logisticItems_bool_exp {
   assigneeId: uuid_comparison_exp
   author: profiles_bool_exp
   authorId: uuid_comparison_exp
+  confirmedAt: timestamptz_comparison_exp
+  confirmedBy: uuid_comparison_exp
   couple: couples_bool_exp
   coupleId: uuid_comparison_exp
   coupleMembers: coupleMembers_bool_exp
@@ -21276,6 +25285,8 @@ input logisticItems_order_by {
   assigneeId: order_by
   author: profiles_order_by
   authorId: order_by
+  confirmedAt: order_by
+  confirmedBy: order_by
   couple: couples_order_by
   coupleId: order_by
   coupleMembers_aggregate: coupleMembers_aggregate_order_by
@@ -21325,6 +25336,8 @@ Initial value of the column from where the streaming should start
 input logisticItems_stream_cursor_value_input {
   assigneeId: uuid
   authorId: uuid
+  confirmedAt: timestamptz
+  confirmedBy: uuid
   coupleId: uuid
   createdAt: timestamptz
   doneAt: timestamptz
@@ -21474,6 +25487,7 @@ input memories_bool_exp {
   _and: [memories_bool_exp!]
   _not: memories_bool_exp
   _or: [memories_bool_exp!]
+  acceptedAt: timestamptz_comparison_exp
   author: profiles_bool_exp
   authorId: uuid_comparison_exp
   body: String_comparison_exp
@@ -21482,6 +25496,7 @@ input memories_bool_exp {
   coupleMembers: coupleMembers_bool_exp
   createdAt: timestamptz_comparison_exp
   datePrecision: DatePrecision_enum_comparison_exp
+  declinedAt: timestamptz_comparison_exp
   happenedOn: date_comparison_exp
   id: uuid_comparison_exp
   origin: MemoryOrigin_enum_comparison_exp
@@ -21512,10 +25527,12 @@ input memories_insert_input {
 order by max() on columns of table "memories"
 """
 input memories_max_order_by {
+  acceptedAt: order_by
   authorId: order_by
   body: order_by
   coupleId: order_by
   createdAt: order_by
+  declinedAt: order_by
   happenedOn: order_by
   id: order_by
   photoFileId: order_by
@@ -21528,10 +25545,12 @@ input memories_max_order_by {
 order by min() on columns of table "memories"
 """
 input memories_min_order_by {
+  acceptedAt: order_by
   authorId: order_by
   body: order_by
   coupleId: order_by
   createdAt: order_by
+  declinedAt: order_by
   happenedOn: order_by
   id: order_by
   photoFileId: order_by
@@ -21552,6 +25571,7 @@ input memories_on_conflict {
 Ordering options when selecting data from "memories".
 """
 input memories_order_by {
+  acceptedAt: order_by
   author: profiles_order_by
   authorId: order_by
   body: order_by
@@ -21560,6 +25580,7 @@ input memories_order_by {
   coupleMembers_aggregate: coupleMembers_aggregate_order_by
   createdAt: order_by
   datePrecision: order_by
+  declinedAt: order_by
   happenedOn: order_by
   id: order_by
   origin: order_by
@@ -21605,11 +25626,13 @@ input memories_stream_cursor_input {
 Initial value of the column from where the streaming should start
 """
 input memories_stream_cursor_value_input {
+  acceptedAt: timestamptz
   authorId: uuid
   body: String
   coupleId: uuid
   createdAt: timestamptz
   datePrecision: DatePrecision_enum
+  declinedAt: timestamptz
   happenedOn: date
   id: uuid
   origin: MemoryOrigin_enum
@@ -21973,9 +25996,17 @@ input partnerFacts_updates {
 order by aggregate values of table "partner_messages"
 """
 input partnerMessages_aggregate_order_by {
+  avg: partnerMessages_avg_order_by
   count: order_by
   max: partnerMessages_max_order_by
   min: partnerMessages_min_order_by
+  stddev: partnerMessages_stddev_order_by
+  stddev_pop: partnerMessages_stddev_pop_order_by
+  stddev_samp: partnerMessages_stddev_samp_order_by
+  sum: partnerMessages_sum_order_by
+  var_pop: partnerMessages_var_pop_order_by
+  var_samp: partnerMessages_var_samp_order_by
+  variance: partnerMessages_variance_order_by
 }
 """
 input type for inserting array relation for remote table "partner_messages"
@@ -21988,6 +26019,12 @@ input partnerMessages_arr_rel_insert_input {
   on_conflict: partnerMessages_on_conflict
 }
 """
+order by avg() on columns of table "partner_messages"
+"""
+input partnerMessages_avg_order_by {
+  durationMs: order_by
+}
+"""
 Boolean expression to filter rows from the table "partner_messages". All fields are combined with a logical 'AND'.
 """
 input partnerMessages_bool_exp {
@@ -21996,6 +26033,7 @@ input partnerMessages_bool_exp {
   _or: [partnerMessages_bool_exp!]
   body: String_comparison_exp
   createdAt: timestamptz_comparison_exp
+  durationMs: Int_comparison_exp
   forWidget: Boolean_comparison_exp
   heartedAt: timestamptz_comparison_exp
   id: uuid_comparison_exp
@@ -22013,6 +26051,7 @@ input type for inserting data into table "partner_messages"
 """
 input partnerMessages_insert_input {
   body: String
+  durationMs: Int
   forWidget: Boolean
   id: uuid
   kind: PartnerMessageKind_enum
@@ -22025,6 +26064,7 @@ order by max() on columns of table "partner_messages"
 input partnerMessages_max_order_by {
   body: order_by
   createdAt: order_by
+  durationMs: order_by
   heartedAt: order_by
   id: order_by
   mediaFileId: order_by
@@ -22038,6 +26078,7 @@ order by min() on columns of table "partner_messages"
 input partnerMessages_min_order_by {
   body: order_by
   createdAt: order_by
+  durationMs: order_by
   heartedAt: order_by
   id: order_by
   mediaFileId: order_by
@@ -22059,6 +26100,7 @@ Ordering options when selecting data from "partner_messages".
 input partnerMessages_order_by {
   body: order_by
   createdAt: order_by
+  durationMs: order_by
   forWidget: order_by
   heartedAt: order_by
   id: order_by
@@ -22085,6 +26127,24 @@ input partnerMessages_set_input {
   seenAt: timestamptz
 }
 """
+order by stddev() on columns of table "partner_messages"
+"""
+input partnerMessages_stddev_order_by {
+  durationMs: order_by
+}
+"""
+order by stddev_pop() on columns of table "partner_messages"
+"""
+input partnerMessages_stddev_pop_order_by {
+  durationMs: order_by
+}
+"""
+order by stddev_samp() on columns of table "partner_messages"
+"""
+input partnerMessages_stddev_samp_order_by {
+  durationMs: order_by
+}
+"""
 Streaming cursor of the table "partnerMessages"
 """
 input partnerMessages_stream_cursor_input {
@@ -22103,6 +26163,7 @@ Initial value of the column from where the streaming should start
 input partnerMessages_stream_cursor_value_input {
   body: String
   createdAt: timestamptz
+  durationMs: Int
   forWidget: Boolean
   heartedAt: timestamptz
   id: uuid
@@ -22111,6 +26172,12 @@ input partnerMessages_stream_cursor_value_input {
   recipientId: uuid
   seenAt: timestamptz
   senderId: uuid
+}
+"""
+order by sum() on columns of table "partner_messages"
+"""
+input partnerMessages_sum_order_by {
+  durationMs: order_by
 }
 input partnerMessages_updates {
   """
@@ -22122,6 +26189,24 @@ input partnerMessages_updates {
   """
   where: partnerMessages_bool_exp!
 }
+"""
+order by var_pop() on columns of table "partner_messages"
+"""
+input partnerMessages_var_pop_order_by {
+  durationMs: order_by
+}
+"""
+order by var_samp() on columns of table "partner_messages"
+"""
+input partnerMessages_var_samp_order_by {
+  durationMs: order_by
+}
+"""
+order by variance() on columns of table "partner_messages"
+"""
+input partnerMessages_variance_order_by {
+  durationMs: order_by
+}
 input partnerQuestionStates_args {
   questionSlugs: jsonb
 }
@@ -22132,17 +26217,24 @@ input plusStates_bool_exp {
   _and: [plusStates_bool_exp!]
   _not: plusStates_bool_exp
   _or: [plusStates_bool_exp!]
-  cardsLeftThisMonth: Int_comparison_exp
+  billingIssue: Boolean_comparison_exp
+  bothPaid: Boolean_comparison_exp
   chatMessagesLeftToday: Int_comparison_exp
+  chatMessagesLimit: Int_comparison_exp
+  coveredByName: String_comparison_exp
   entitlement: entitlements_bool_exp
   entitlementUserId: uuid_comparison_exp
+  gamesLeftThisWeek: Int_comparison_exp
   guestLinksLeftToday: Int_comparison_exp
   hasPlus: Boolean_comparison_exp
   invitesLeftToday: Int_comparison_exp
+  listsLeft: Int_comparison_exp
+  ownerStore: String_comparison_exp
   paidByPartner: Boolean_comparison_exp
   partnerMessagesLeftToday: Int_comparison_exp
+  ritualsLeft: Int_comparison_exp
   signalsLeftToday: Int_comparison_exp
-  slipsLeftThisMonth: Int_comparison_exp
+  spiceCardsLeftThisWeek: Int_comparison_exp
   supportRequestsLeftToday: Int_comparison_exp
   userId: uuid_comparison_exp
 }
@@ -22150,17 +26242,24 @@ input plusStates_bool_exp {
 Ordering options when selecting data from "plus_states".
 """
 input plusStates_order_by {
-  cardsLeftThisMonth: order_by
+  billingIssue: order_by
+  bothPaid: order_by
   chatMessagesLeftToday: order_by
+  chatMessagesLimit: order_by
+  coveredByName: order_by
   entitlement: entitlements_order_by
   entitlementUserId: order_by
+  gamesLeftThisWeek: order_by
   guestLinksLeftToday: order_by
   hasPlus: order_by
   invitesLeftToday: order_by
+  listsLeft: order_by
+  ownerStore: order_by
   paidByPartner: order_by
   partnerMessagesLeftToday: order_by
+  ritualsLeft: order_by
   signalsLeftToday: order_by
-  slipsLeftThisMonth: order_by
+  spiceCardsLeftThisWeek: order_by
   supportRequestsLeftToday: order_by
   userId: order_by
 }
@@ -22181,16 +26280,23 @@ input plusStates_stream_cursor_input {
 Initial value of the column from where the streaming should start
 """
 input plusStates_stream_cursor_value_input {
-  cardsLeftThisMonth: Int
+  billingIssue: Boolean
+  bothPaid: Boolean
   chatMessagesLeftToday: Int
+  chatMessagesLimit: Int
+  coveredByName: String
   entitlementUserId: uuid
+  gamesLeftThisWeek: Int
   guestLinksLeftToday: Int
   hasPlus: Boolean
   invitesLeftToday: Int
+  listsLeft: Int
+  ownerStore: String
   paidByPartner: Boolean
   partnerMessagesLeftToday: Int
+  ritualsLeft: Int
   signalsLeftToday: Int
-  slipsLeftThisMonth: Int
+  spiceCardsLeftThisWeek: Int
   supportRequestsLeftToday: Int
   userId: uuid
 }
@@ -22258,8 +26364,10 @@ input profiles_bool_exp {
   _and: [profiles_bool_exp!]
   _not: profiles_bool_exp
   _or: [profiles_bool_exp!]
+  avatarColor: String_comparison_exp
   avatarFile: files_bool_exp
   avatarFileId: uuid_comparison_exp
+  avatarIllustration: String_comparison_exp
   avatarKind: AvatarKind_enum_comparison_exp
   city: String_comparison_exp
   createdAt: timestamptz_comparison_exp
@@ -22276,7 +26384,9 @@ input profiles_bool_exp {
 order by max() on columns of table "profiles"
 """
 input profiles_max_order_by {
+  avatarColor: order_by
   avatarFileId: order_by
+  avatarIllustration: order_by
   city: order_by
   createdAt: order_by
   displayName: order_by
@@ -22288,7 +26398,9 @@ input profiles_max_order_by {
 order by min() on columns of table "profiles"
 """
 input profiles_min_order_by {
+  avatarColor: order_by
   avatarFileId: order_by
+  avatarIllustration: order_by
   city: order_by
   createdAt: order_by
   displayName: order_by
@@ -22300,8 +26412,10 @@ input profiles_min_order_by {
 Ordering options when selecting data from "profiles".
 """
 input profiles_order_by {
+  avatarColor: order_by
   avatarFile: files_order_by
   avatarFileId: order_by
+  avatarIllustration: order_by
   avatarKind: order_by
   city: order_by
   createdAt: order_by
@@ -22324,7 +26438,9 @@ input profiles_pk_columns_input {
 input type for updating data in table "profiles"
 """
 input profiles_set_input {
+  avatarColor: String
   avatarFileId: uuid
+  avatarIllustration: String
   avatarKind: AvatarKind_enum
   city: String
   displayName: String
@@ -22348,7 +26464,9 @@ input profiles_stream_cursor_input {
 Initial value of the column from where the streaming should start
 """
 input profiles_stream_cursor_value_input {
+  avatarColor: String
   avatarFileId: uuid
+  avatarIllustration: String
   avatarKind: AvatarKind_enum
   city: String
   createdAt: timestamptz
@@ -22639,6 +26757,7 @@ input quizResults_bool_exp {
   id: uuid_comparison_exp
   quizKey: QuizKey_enum_comparison_exp
   ranked: String_array_comparison_exp
+  sharedAt: timestamptz_comparison_exp
   updatedAt: timestamptz_comparison_exp
 }
 """
@@ -22667,6 +26786,7 @@ input quizResults_order_by {
   id: order_by
   quizKey: order_by
   ranked: order_by
+  sharedAt: order_by
   updatedAt: order_by
 }
 """
@@ -22680,6 +26800,7 @@ input type for updating data in table "quiz_results"
 """
 input quizResults_set_input {
   ranked: [String!]
+  sharedAt: timestamptz
 }
 """
 Streaming cursor of the table "quizResults"
@@ -22703,6 +26824,7 @@ input quizResults_stream_cursor_value_input {
   id: uuid
   quizKey: QuizKey_enum
   ranked: [String!]
+  sharedAt: timestamptz
   updatedAt: timestamptz
 }
 input quizResults_updates {
@@ -22945,6 +27067,13 @@ input repairSessions_updates {
 }
 input resolveSharedItems_args {
   keep: Boolean
+}
+input respondMemory_args {
+  accept: Boolean
+  memoryId: uuid
+}
+input revokeSession_args {
+  sessionId: uuid
 }
 """
 order by aggregate values of table "ritual_logs"
@@ -23343,11 +27472,71 @@ input savedDateIdeas_updates {
   where: savedDateIdeas_bool_exp!
 }
 input sendCard_args {
+  anyway: Boolean
   cardId: uuid
 }
+input sendGentleRequest_args {
+  annoyanceId: uuid
+  feelText: String
+  whenText: String
+  wishText: String
+}
 input sendSlip_args {
+  anyway: Boolean
   note: String
   slipId: uuid
+}
+"""
+Boolean expression to filter rows from the table "session_rows". All fields are combined with a logical 'AND'.
+"""
+input sessionRows_bool_exp {
+  _and: [sessionRows_bool_exp!]
+  _not: sessionRows_bool_exp
+  _or: [sessionRows_bool_exp!]
+  createdAt: timestamptz_comparison_exp
+  deviceId: uuid_comparison_exp
+  deviceLabel: String_comparison_exp
+  expiresAt: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  platform: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "session_rows".
+"""
+input sessionRows_order_by {
+  createdAt: order_by
+  deviceId: order_by
+  deviceLabel: order_by
+  expiresAt: order_by
+  id: order_by
+  platform: order_by
+}
+"""
+Streaming cursor of the table "sessionRows"
+"""
+input sessionRows_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: sessionRows_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input sessionRows_stream_cursor_value_input {
+  createdAt: timestamptz
+  deviceId: uuid
+  deviceLabel: String
+  expiresAt: timestamptz
+  id: uuid
+  platform: String
+}
+input setCoupleStartDate_args {
+  date: date
 }
 input setNotificationMutes_args {
   types: jsonb
@@ -23705,6 +27894,294 @@ input smallint_comparison_exp {
   _nin: [smallint!]
 }
 """
+Boolean expression to filter rows from the table "spice_card_plays". All fields are combined with a logical 'AND'.
+"""
+input spiceCardPlays_bool_exp {
+  _and: [spiceCardPlays_bool_exp!]
+  _not: spiceCardPlays_bool_exp
+  _or: [spiceCardPlays_bool_exp!]
+  acceptedBy: uuid_comparison_exp
+  contentSlug: String_comparison_exp
+  coupleId: uuid_comparison_exp
+  coupleMembers: coupleMembers_bool_exp
+  createdAt: timestamptz_comparison_exp
+  declinedAt: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  proposedBy: uuid_comparison_exp
+}
+"""
+Ordering options when selecting data from "spice_card_plays".
+"""
+input spiceCardPlays_order_by {
+  acceptedBy: order_by
+  contentSlug: order_by
+  coupleId: order_by
+  coupleMembers_aggregate: coupleMembers_aggregate_order_by
+  createdAt: order_by
+  declinedAt: order_by
+  id: order_by
+  proposedBy: order_by
+}
+"""
+Streaming cursor of the table "spiceCardPlays"
+"""
+input spiceCardPlays_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: spiceCardPlays_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input spiceCardPlays_stream_cursor_value_input {
+  acceptedBy: uuid
+  contentSlug: String
+  coupleId: uuid
+  createdAt: timestamptz
+  declinedAt: timestamptz
+  id: uuid
+  proposedBy: uuid
+}
+input spiceChallengeAct_args {
+  action: String
+}
+"""
+Boolean expression to filter rows from the table "spice_challenges". All fields are combined with a logical 'AND'.
+"""
+input spiceChallenges_bool_exp {
+  _and: [spiceChallenges_bool_exp!]
+  _not: spiceChallenges_bool_exp
+  _or: [spiceChallenges_bool_exp!]
+  acceptedBy: uuid_array_comparison_exp
+  contentSlug: String_comparison_exp
+  coupleId: uuid_comparison_exp
+  coupleMembers: coupleMembers_bool_exp
+  createdAt: timestamptz_comparison_exp
+  doneBy: uuid_array_comparison_exp
+  id: uuid_comparison_exp
+  seenBy: uuid_array_comparison_exp
+  swaps: smallint_comparison_exp
+  weekStart: date_comparison_exp
+}
+"""
+Ordering options when selecting data from "spice_challenges".
+"""
+input spiceChallenges_order_by {
+  acceptedBy: order_by
+  contentSlug: order_by
+  coupleId: order_by
+  coupleMembers_aggregate: coupleMembers_aggregate_order_by
+  createdAt: order_by
+  doneBy: order_by
+  id: order_by
+  seenBy: order_by
+  swaps: order_by
+  weekStart: order_by
+}
+"""
+Streaming cursor of the table "spiceChallenges"
+"""
+input spiceChallenges_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: spiceChallenges_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input spiceChallenges_stream_cursor_value_input {
+  acceptedBy: [uuid!]
+  contentSlug: String
+  coupleId: uuid
+  createdAt: timestamptz
+  doneBy: [uuid!]
+  id: uuid
+  seenBy: [uuid!]
+  swaps: smallint
+  weekStart: date
+}
+"""
+Boolean expression to filter rows from the table "spice_desire_answers". All fields are combined with a logical 'AND'.
+"""
+input spiceDesireAnswers_bool_exp {
+  _and: [spiceDesireAnswers_bool_exp!]
+  _not: spiceDesireAnswers_bool_exp
+  _or: [spiceDesireAnswers_bool_exp!]
+  answer: String_comparison_exp
+  contentSlug: String_comparison_exp
+  createdAt: timestamptz_comparison_exp
+  updatedAt: timestamptz_comparison_exp
+  userId: uuid_comparison_exp
+}
+"""
+input type for inserting data into table "spice_desire_answers"
+"""
+input spiceDesireAnswers_insert_input {
+  answer: String
+  contentSlug: String
+}
+"""
+on_conflict condition type for table "spice_desire_answers"
+"""
+input spiceDesireAnswers_on_conflict {
+  constraint: spiceDesireAnswers_constraint!
+  update_columns: [spiceDesireAnswers_update_column!]! = []
+  where: spiceDesireAnswers_bool_exp
+}
+"""
+Ordering options when selecting data from "spice_desire_answers".
+"""
+input spiceDesireAnswers_order_by {
+  answer: order_by
+  contentSlug: order_by
+  createdAt: order_by
+  updatedAt: order_by
+  userId: order_by
+}
+"""
+primary key columns input for table: spice_desire_answers
+"""
+input spiceDesireAnswers_pk_columns_input {
+  contentSlug: String!
+  userId: uuid!
+}
+"""
+input type for updating data in table "spice_desire_answers"
+"""
+input spiceDesireAnswers_set_input {
+  answer: String
+}
+"""
+Streaming cursor of the table "spiceDesireAnswers"
+"""
+input spiceDesireAnswers_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: spiceDesireAnswers_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input spiceDesireAnswers_stream_cursor_value_input {
+  answer: String
+  contentSlug: String
+  createdAt: timestamptz
+  updatedAt: timestamptz
+  userId: uuid
+}
+input spiceDesireAnswers_updates {
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: spiceDesireAnswers_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: spiceDesireAnswers_bool_exp!
+}
+input spiceRespondCard_args {
+  accept: Boolean
+  playId: uuid
+}
+"""
+Boolean expression to filter rows from the table "spice_states". All fields are combined with a logical 'AND'.
+"""
+input spiceStates_bool_exp {
+  _and: [spiceStates_bool_exp!]
+  _not: spiceStates_bool_exp
+  _or: [spiceStates_bool_exp!]
+  coupleLevel: smallint_comparison_exp
+  myLevel: smallint_comparison_exp
+  state: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "spice_states".
+"""
+input spiceStates_order_by {
+  coupleLevel: order_by
+  myLevel: order_by
+  state: order_by
+}
+"""
+Streaming cursor of the table "spiceStates"
+"""
+input spiceStates_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: spiceStates_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input spiceStates_stream_cursor_value_input {
+  coupleLevel: smallint
+  myLevel: smallint
+  state: String
+}
+"""
+Boolean expression to filter rows from the table "start_dates". All fields are combined with a logical 'AND'.
+"""
+input startDates_bool_exp {
+  _and: [startDates_bool_exp!]
+  _not: startDates_bool_exp
+  _or: [startDates_bool_exp!]
+  couple: date_comparison_exp
+  matches: Boolean_comparison_exp
+  mine: date_comparison_exp
+  partner: date_comparison_exp
+}
+"""
+Ordering options when selecting data from "start_dates".
+"""
+input startDates_order_by {
+  couple: order_by
+  matches: order_by
+  mine: order_by
+  partner: order_by
+}
+"""
+Streaming cursor of the table "startDates"
+"""
+input startDates_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: startDates_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input startDates_stream_cursor_value_input {
+  couple: date
+  matches: Boolean
+  mine: date
+  partner: date
+}
+"""
 Boolean expression to filter rows from the table "story_events". All fields are combined with a logical 'AND'.
 """
 input storyEvents_bool_exp {
@@ -23969,6 +28446,10 @@ input temperatureChecks_updates {
   """
   where: temperatureChecks_bool_exp!
 }
+input thankGentleRequest_args {
+  body: String
+  requestId: uuid
+}
 """
 Boolean expression to compare columns of type "time". All fields are combined with logical 'AND'.
 """
@@ -24087,6 +28568,9 @@ input today_stream_cursor_value_input {
   userId: uuid
   weekStart: date
 }
+input tryAcceptInvite_args {
+  code: String
+}
 input updateGame_args {
   action: String
   outcome: String
@@ -24106,6 +28590,7 @@ input userSettings_bool_exp {
   createdAt: timestamptz_comparison_exp
   goal: RelationshipGoal_enum_comparison_exp
   goals: String_array_comparison_exp
+  hasKids: Boolean_comparison_exp
   holidayCountries: String_array_comparison_exp
   locale: String_comparison_exp
   lowStimulation: Boolean_comparison_exp
@@ -24119,6 +28604,8 @@ input userSettings_bool_exp {
   shareReadReceipts: Boolean_comparison_exp
   slipsDefaultForCard: Boolean_comparison_exp
   spiceEnabled: Boolean_comparison_exp
+  spiceMaxLevel: smallint_comparison_exp
+  spiceNotifications: Boolean_comparison_exp
   theme: AppTheme_enum_comparison_exp
   togetherSince: date_comparison_exp
   updatedAt: timestamptz_comparison_exp
@@ -24126,6 +28613,12 @@ input userSettings_bool_exp {
   widgetAllowPartnerNotes: Boolean_comparison_exp
   widgetOnLockScreen: Boolean_comparison_exp
   widgetShowNames: Boolean_comparison_exp
+}
+"""
+input type for incrementing numeric columns in table "user_settings"
+"""
+input userSettings_inc_input {
+  spiceMaxLevel: smallint
 }
 """
 Ordering options when selecting data from "user_settings".
@@ -24138,6 +28631,7 @@ input userSettings_order_by {
   createdAt: order_by
   goal: order_by
   goals: order_by
+  hasKids: order_by
   holidayCountries: order_by
   locale: order_by
   lowStimulation: order_by
@@ -24151,6 +28645,8 @@ input userSettings_order_by {
   shareReadReceipts: order_by
   slipsDefaultForCard: order_by
   spiceEnabled: order_by
+  spiceMaxLevel: order_by
+  spiceNotifications: order_by
   theme: order_by
   togetherSince: order_by
   updatedAt: order_by
@@ -24175,6 +28671,7 @@ input userSettings_set_input {
   chatStoreFacts: Boolean
   goal: RelationshipGoal_enum
   goals: [String!]
+  hasKids: Boolean
   holidayCountries: [String!]
   locale: String
   lowStimulation: Boolean
@@ -24187,6 +28684,8 @@ input userSettings_set_input {
   shareReadReceipts: Boolean
   slipsDefaultForCard: Boolean
   spiceEnabled: Boolean
+  spiceMaxLevel: smallint
+  spiceNotifications: Boolean
   theme: AppTheme_enum
   togetherSince: date
   widgetAllowPartnerNotes: Boolean
@@ -24217,6 +28716,7 @@ input userSettings_stream_cursor_value_input {
   createdAt: timestamptz
   goal: RelationshipGoal_enum
   goals: [String!]
+  hasKids: Boolean
   holidayCountries: [String!]
   locale: String
   lowStimulation: Boolean
@@ -24229,6 +28729,8 @@ input userSettings_stream_cursor_value_input {
   shareReadReceipts: Boolean
   slipsDefaultForCard: Boolean
   spiceEnabled: Boolean
+  spiceMaxLevel: smallint
+  spiceNotifications: Boolean
   theme: AppTheme_enum
   togetherSince: date
   updatedAt: timestamptz
@@ -24239,6 +28741,10 @@ input userSettings_stream_cursor_value_input {
 }
 input userSettings_updates {
   """
+  increments the numeric columns with given value of the filtered values
+  """
+  _inc: userSettings_inc_input
+  """
   sets the columns of the filtered rows to the given values
   """
   _set: userSettings_set_input
@@ -24246,6 +28752,28 @@ input userSettings_updates {
   filter the rows which have to be updated
   """
   where: userSettings_bool_exp!
+}
+"""
+Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.
+"""
+input uuid_array_comparison_exp {
+  """
+  is the array contained in the given array value
+  """
+  _contained_in: [uuid!]
+  """
+  does the array contain the given value
+  """
+  _contains: [uuid!]
+  _eq: [uuid!]
+  _gt: [uuid!]
+  _gte: [uuid!]
+  _in: [[uuid!]!]
+  _is_null: Boolean
+  _lt: [uuid!]
+  _lte: [uuid!]
+  _neq: [uuid!]
+  _nin: [[uuid!]!]
 }
 """
 Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.
@@ -24260,6 +28788,82 @@ input uuid_comparison_exp {
   _lte: uuid
   _neq: uuid
   _nin: [uuid!]
+}
+input weeklyReview_args {
+  weekStart: date
+}
+"""
+Boolean expression to filter rows from the table "weekly_reviews". All fields are combined with a logical 'AND'.
+"""
+input weeklyReviews_bool_exp {
+  _and: [weeklyReviews_bool_exp!]
+  _not: weeklyReviews_bool_exp
+  _or: [weeklyReviews_bool_exp!]
+  activeDays: Int_comparison_exp
+  bothCheckinDone: Boolean_comparison_exp
+  cardsReceived: Int_comparison_exp
+  cardsSent: Int_comparison_exp
+  checkinDone: Boolean_comparison_exp
+  coupleRitualsDone: Int_comparison_exp
+  lowData: Boolean_comparison_exp
+  missing: String_array_comparison_exp
+  moodsLogged: Int_comparison_exp
+  partnerCardsSent: Int_comparison_exp
+  ritualsDone: Int_comparison_exp
+  slips: Int_comparison_exp
+  streakDays: Int_comparison_exp
+  weekStart: date_comparison_exp
+}
+"""
+Ordering options when selecting data from "weekly_reviews".
+"""
+input weeklyReviews_order_by {
+  activeDays: order_by
+  bothCheckinDone: order_by
+  cardsReceived: order_by
+  cardsSent: order_by
+  checkinDone: order_by
+  coupleRitualsDone: order_by
+  lowData: order_by
+  missing: order_by
+  moodsLogged: order_by
+  partnerCardsSent: order_by
+  ritualsDone: order_by
+  slips: order_by
+  streakDays: order_by
+  weekStart: order_by
+}
+"""
+Streaming cursor of the table "weeklyReviews"
+"""
+input weeklyReviews_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: weeklyReviews_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input weeklyReviews_stream_cursor_value_input {
+  activeDays: Int
+  bothCheckinDone: Boolean
+  cardsReceived: Int
+  cardsSent: Int
+  checkinDone: Boolean
+  coupleRitualsDone: Int
+  lowData: Boolean
+  missing: [String!]
+  moodsLogged: Int
+  partnerCardsSent: Int
+  ritualsDone: Int
+  slips: Int
+  streakDays: Int
+  weekStart: date
 }
 """
 Boolean expression to filter rows from the table "year_recaps". All fields are combined with a logical 'AND'.

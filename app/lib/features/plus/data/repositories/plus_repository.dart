@@ -58,8 +58,9 @@ class PlusRepository({
       return PlusState(
         hasPlus: plus.hasPlus ?? false,
         isPaidByPartner: plus.paidByPartner ?? false,
-        slipsLeft: plus.slipsLeftThisMonth ?? 0,
-        cardsLeft: plus.cardsLeftThisMonth ?? 0,
+        gamesLeft: plus.gamesLeftThisWeek ?? 0,
+        ritualsLeft: plus.ritualsLeft ?? 0,
+        listsLeft: plus.listsLeft ?? 0,
         plan: plus.entitlement?.plan.toModel(),
         status: plus.entitlement?.status.toModel(),
       );

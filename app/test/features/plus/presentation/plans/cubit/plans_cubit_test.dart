@@ -21,8 +21,9 @@ void main() {
   PlansCubit build() => PlansCubit(plusRepository: repository);
 
   test('without Plus the store prices are read too', () async {
-    when(() => repository.getPlus())
-        .thenAnswer((_) async => const PlusState(hasPlus: false, slipsLeft: 4, cardsLeft: 1));
+    when(() => repository.getPlus()).thenAnswer(
+      (_) async => const PlusState(hasPlus: false, gamesLeft: 2, ritualsLeft: 1, listsLeft: 3),
+    );
     when(() => repository.getPrices()).thenAnswer((_) async => prices);
     final cubit = build();
 

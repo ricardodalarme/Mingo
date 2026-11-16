@@ -4,19 +4,23 @@
   "activeTitle": "Você tem o Plus",
   "activeText": "Obrigado. Tudo está liberado para você e para seu par.",
   "paidByPartner": "Seu par tem o Plus e ele vale para vocês dois.",
-  "freeLeft": "No plano grátis, este mês: {slips} e {cards}.",
-  "slipCount(plural, param=count)": {
-    "one": "1 slip",
-    "other": "{count} slips"
+  "freeLeft": "No plano grátis, restam {games}, {rituals} e {lists}.",
+  "gameCount(plural, param=count)": {
+    "one": "1 jogo nesta semana",
+    "other": "{count} jogos nesta semana"
   },
-  "cardCount(plural, param=count)": {
-    "one": "1 cartão enviado",
-    "other": "{count} cartões enviados"
+  "ritualCount(plural, param=count)": {
+    "one": "1 ritual",
+    "other": "{count} rituais"
+  },
+  "listCount(plural, param=count)": {
+    "one": "1 lista",
+    "other": "{count} listas"
   },
   "freeName": "Grátis",
-  "freeFeatures": "Slips todo mês, um cartão enviado por mês, repair e tudo o que você já guardou.",
+  "freeFeatures": "Slips e cartões sem limite, repair, 3 jogos por semana, 3 rituais, 3 listas e tudo o que você já guardou.",
   "plusName": "Plus",
-  "plusFeatures": "Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.",
+  "plusFeatures": "Jogos, rituais e listas sem limite, mais conversas com a mascote e mais recursos para os dois, cobrindo você e seu par.",
   "monthly": "Mensal",
   "yearly": "Anual",
   "storeTitle": "Não deu para ver os preços",

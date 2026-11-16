@@ -68,8 +68,9 @@ class const PlansPage({super.key}) extends StatelessWidget implements AutoRouteW
                 if (!value.hasPlus) ...[
                   BaseNote(
                     text: l10n.freeLeft(
-                      slips: l10n.slipCount(count: value.slipsLeft),
-                      cards: l10n.cardCount(count: value.cardsLeft),
+                      games: l10n.gameCount(count: value.gamesLeft),
+                      rituals: l10n.ritualCount(count: value.ritualsLeft),
+                      lists: l10n.listCount(count: value.listsLeft),
                     ),
                   ),
                   const SizedBox(height: AppSpace.s16),

@@ -4609,39 +4609,47 @@ class Translations$plus$pt {
   /// pt: 'Seu par tem o Plus e ele vale para vocês dois.'
   String get paidByPartner => 'Seu par tem o Plus e ele vale para vocês dois.';
 
-  /// pt: 'No plano grátis, este mês: {slips} e {cards}.'
-  String freeLeft({required Object slips, required Object cards}) =>
-      'No plano grátis, este mês: ${slips} e ${cards}.';
+  /// pt: 'No plano grátis, restam {games}, {rituals} e {lists}.'
+  String freeLeft({required Object games, required Object rituals, required Object lists}) =>
+      'No plano grátis, restam ${games}, ${rituals} e ${lists}.';
 
-  /// pt: '(one) {1 slip} (other) {{count} slips}'
-  String slipCount({required num count}) =>
+  /// pt: '(one) {1 jogo nesta semana} (other) {{count} jogos nesta semana}'
+  String gameCount({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
         count,
-        one: '1 slip',
-        other: '${count} slips',
+        one: '1 jogo nesta semana',
+        other: '${count} jogos nesta semana',
       );
 
-  /// pt: '(one) {1 cartão enviado} (other) {{count} cartões enviados}'
-  String cardCount({required num count}) =>
+  /// pt: '(one) {1 ritual} (other) {{count} rituais}'
+  String ritualCount({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
         count,
-        one: '1 cartão enviado',
-        other: '${count} cartões enviados',
+        one: '1 ritual',
+        other: '${count} rituais',
+      );
+
+  /// pt: '(one) {1 lista} (other) {{count} listas}'
+  String listCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 lista',
+        other: '${count} listas',
       );
 
   /// pt: 'Grátis'
   String get freeName => 'Grátis';
 
-  /// pt: 'Slips todo mês, um cartão enviado por mês, repair e tudo o que você já guardou.'
+  /// pt: 'Slips e cartões sem limite, repair, 3 jogos por semana, 3 rituais, 3 listas e tudo o que você já guardou.'
   String get freeFeatures =>
-      'Slips todo mês, um cartão enviado por mês, repair e tudo o que você já guardou.';
+      'Slips e cartões sem limite, repair, 3 jogos por semana, 3 rituais, 3 listas e tudo o que você já guardou.';
 
   /// pt: 'Plus'
   String get plusName => 'Plus';
 
-  /// pt: 'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.'
+  /// pt: 'Jogos, rituais e listas sem limite, mais conversas com a mascote e mais recursos para os dois, cobrindo você e seu par.'
   String get plusFeatures =>
-      'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.';
+      'Jogos, rituais e listas sem limite, mais conversas com a mascote e mais recursos para os dois, cobrindo você e seu par.';
 
   /// pt: 'Mensal'
   String get monthly => 'Mensal';
@@ -11393,29 +11401,35 @@ extension on Translations {
           'plus.activeText' => 'Obrigado. Tudo está liberado para você e para seu par.',
           'plus.paidByPartner' => 'Seu par tem o Plus e ele vale para vocês dois.',
           'plus.freeLeft' => ({
-            required Object slips,
-            required Object cards,
-          }) => 'No plano grátis, este mês: ${slips} e ${cards}.',
-          'plus.slipCount' =>
+            required Object games,
+            required Object rituals,
+            required Object lists,
+          }) => 'No plano grátis, restam ${games}, ${rituals} e ${lists}.',
+          'plus.gameCount' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
                   count,
-                  one: '1 slip',
-                  other: '${count} slips',
+                  one: '1 jogo nesta semana',
+                  other: '${count} jogos nesta semana',
                 ),
-          'plus.cardCount' =>
+          'plus.ritualCount' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
                   count,
-                  one: '1 cartão enviado',
-                  other: '${count} cartões enviados',
+                  one: '1 ritual',
+                  other: '${count} rituais',
+                ),
+          'plus.listCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 lista',
+                  other: '${count} listas',
                 ),
           'plus.freeName' => 'Grátis',
-          'plus.freeFeatures' =>
-            'Slips todo mês, um cartão enviado por mês, repair e tudo o que você já guardou.',
+          'plus.freeFeatures' => 'Slips e cartões sem limite, repair, 3 jogos por semana, 3 rituais, 3 listas e tudo o que você já guardou.',
           'plus.plusName' => 'Plus',
-          'plus.plusFeatures' =>
-            'Mais slips e cartões por mês e mais recursos para os dois, cobrindo você e seu par.',
+          'plus.plusFeatures' => 'Jogos, rituais e listas sem limite, mais conversas com a mascote e mais recursos para os dois, cobrindo você e seu par.',
           'plus.monthly' => 'Mensal',
           'plus.yearly' => 'Anual',
           'plus.storeTitle' => 'Não deu para ver os preços',
@@ -11740,10 +11754,10 @@ extension on Translations {
           'quickSlip.privacyNote' =>
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
           'quickSlip.botheredNote' => 'Fica só com você. Um slip assim nunca entra no cartão.',
-          'quickSlip.requestLabel' => 'Um pedido, se quiser',
           _ => null,
         } ??
         switch (path) {
+          'quickSlip.requestLabel' => 'Um pedido, se quiser',
           'quickSlip.requestHint' => 'Ex.: poderia me avisar antes?',
           'quickSlip.requestHelper' => 'Opcional. Fica só com você, não é enviado para ninguém.',
           'quickSlip.requestErrors.tooLong' => 'Use no máximo 140 caracteres',
@@ -12311,10 +12325,10 @@ extension on Translations {
           'story.errorTitle' => 'Não deu para carregar',
           'story.errorText' => 'Tente de novo em instantes.',
           'story.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
-          'sundayCard.title' => 'Seu cartão',
           _ => null,
         } ??
         switch (path) {
+          'sundayCard.title' => 'Seu cartão',
           'sundayCard.edit' => 'Editar',
           'sundayCard.save' => 'Salvar',
           'sundayCard.cancel' => 'Cancelar',

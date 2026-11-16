@@ -177,14 +177,21 @@ const documentNodeQueryMyPlus = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'slipsLeftThisMonth'),
+                  name: NameNode(value: 'gamesLeftThisWeek'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'cardsLeftThisMonth'),
+                  name: NameNode(value: 'ritualsLeft'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'listsLeft'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -366,8 +373,9 @@ class QueryMyPlusplusStates {
   QueryMyPlusplusStates({
     this.hasPlus,
     this.paidByPartner,
-    this.slipsLeftThisMonth,
-    this.cardsLeftThisMonth,
+    this.gamesLeftThisWeek,
+    this.ritualsLeft,
+    this.listsLeft,
     this.entitlement,
     this.$__typename = 'plusStates',
   });
@@ -375,15 +383,17 @@ class QueryMyPlusplusStates {
   factory QueryMyPlusplusStates.fromJson(Map<String, dynamic> json) {
     final l$hasPlus = json['hasPlus'];
     final l$paidByPartner = json['paidByPartner'];
-    final l$slipsLeftThisMonth = json['slipsLeftThisMonth'];
-    final l$cardsLeftThisMonth = json['cardsLeftThisMonth'];
+    final l$gamesLeftThisWeek = json['gamesLeftThisWeek'];
+    final l$ritualsLeft = json['ritualsLeft'];
+    final l$listsLeft = json['listsLeft'];
     final l$entitlement = json['entitlement'];
     final l$$__typename = json['__typename'];
     return QueryMyPlusplusStates(
       hasPlus: (l$hasPlus as bool?),
       paidByPartner: (l$paidByPartner as bool?),
-      slipsLeftThisMonth: (l$slipsLeftThisMonth as int?),
-      cardsLeftThisMonth: (l$cardsLeftThisMonth as int?),
+      gamesLeftThisWeek: (l$gamesLeftThisWeek as int?),
+      ritualsLeft: (l$ritualsLeft as int?),
+      listsLeft: (l$listsLeft as int?),
       entitlement: l$entitlement == null
           ? null
           : QueryMyPlusplusStatesentitlement.fromJson((l$entitlement as Map<String, dynamic>)),
@@ -395,9 +405,11 @@ class QueryMyPlusplusStates {
 
   final bool? paidByPartner;
 
-  final int? slipsLeftThisMonth;
+  final int? gamesLeftThisWeek;
 
-  final int? cardsLeftThisMonth;
+  final int? ritualsLeft;
+
+  final int? listsLeft;
 
   final QueryMyPlusplusStatesentitlement? entitlement;
 
@@ -409,10 +421,12 @@ class QueryMyPlusplusStates {
     _resultData['hasPlus'] = l$hasPlus;
     final l$paidByPartner = paidByPartner;
     _resultData['paidByPartner'] = l$paidByPartner;
-    final l$slipsLeftThisMonth = slipsLeftThisMonth;
-    _resultData['slipsLeftThisMonth'] = l$slipsLeftThisMonth;
-    final l$cardsLeftThisMonth = cardsLeftThisMonth;
-    _resultData['cardsLeftThisMonth'] = l$cardsLeftThisMonth;
+    final l$gamesLeftThisWeek = gamesLeftThisWeek;
+    _resultData['gamesLeftThisWeek'] = l$gamesLeftThisWeek;
+    final l$ritualsLeft = ritualsLeft;
+    _resultData['ritualsLeft'] = l$ritualsLeft;
+    final l$listsLeft = listsLeft;
+    _resultData['listsLeft'] = l$listsLeft;
     final l$entitlement = entitlement;
     _resultData['entitlement'] = l$entitlement?.toJson();
     final l$$__typename = $__typename;
@@ -424,15 +438,17 @@ class QueryMyPlusplusStates {
   int get hashCode {
     final l$hasPlus = hasPlus;
     final l$paidByPartner = paidByPartner;
-    final l$slipsLeftThisMonth = slipsLeftThisMonth;
-    final l$cardsLeftThisMonth = cardsLeftThisMonth;
+    final l$gamesLeftThisWeek = gamesLeftThisWeek;
+    final l$ritualsLeft = ritualsLeft;
+    final l$listsLeft = listsLeft;
     final l$entitlement = entitlement;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$hasPlus,
       l$paidByPartner,
-      l$slipsLeftThisMonth,
-      l$cardsLeftThisMonth,
+      l$gamesLeftThisWeek,
+      l$ritualsLeft,
+      l$listsLeft,
       l$entitlement,
       l$$__typename,
     ]);
@@ -456,14 +472,19 @@ class QueryMyPlusplusStates {
     if (l$paidByPartner != lOther$paidByPartner) {
       return false;
     }
-    final l$slipsLeftThisMonth = slipsLeftThisMonth;
-    final lOther$slipsLeftThisMonth = other.slipsLeftThisMonth;
-    if (l$slipsLeftThisMonth != lOther$slipsLeftThisMonth) {
+    final l$gamesLeftThisWeek = gamesLeftThisWeek;
+    final lOther$gamesLeftThisWeek = other.gamesLeftThisWeek;
+    if (l$gamesLeftThisWeek != lOther$gamesLeftThisWeek) {
       return false;
     }
-    final l$cardsLeftThisMonth = cardsLeftThisMonth;
-    final lOther$cardsLeftThisMonth = other.cardsLeftThisMonth;
-    if (l$cardsLeftThisMonth != lOther$cardsLeftThisMonth) {
+    final l$ritualsLeft = ritualsLeft;
+    final lOther$ritualsLeft = other.ritualsLeft;
+    if (l$ritualsLeft != lOther$ritualsLeft) {
+      return false;
+    }
+    final l$listsLeft = listsLeft;
+    final lOther$listsLeft = other.listsLeft;
+    if (l$listsLeft != lOther$listsLeft) {
       return false;
     }
     final l$entitlement = entitlement;

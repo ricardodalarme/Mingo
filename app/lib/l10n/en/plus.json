@@ -4,19 +4,23 @@
   "activeTitle": "You have Plus",
   "activeText": "Thank you. Everything is unlocked for you and your partner.",
   "paidByPartner": "Your partner has Plus and it covers you both.",
-  "freeLeft": "Free plan, this month: {slips} and {cards}.",
-  "slipCount(plural, param=count)": {
-    "one": "1 slip",
-    "other": "{count} slips"
+  "freeLeft": "On the free plan you have {games}, {rituals} and {lists} left.",
+  "gameCount(plural, param=count)": {
+    "one": "1 game this week",
+    "other": "{count} games this week"
   },
-  "cardCount(plural, param=count)": {
-    "one": "1 sent card",
-    "other": "{count} sent cards"
+  "ritualCount(plural, param=count)": {
+    "one": "1 ritual",
+    "other": "{count} rituals"
+  },
+  "listCount(plural, param=count)": {
+    "one": "1 list",
+    "other": "{count} lists"
   },
   "freeName": "Free",
-  "freeFeatures": "Slips every month, one sent card a month, repair and everything you already saved.",
+  "freeFeatures": "Unlimited slips and cards, repair, 3 games a week, 3 rituals, 3 lists and everything you already saved.",
   "plusName": "Plus",
-  "plusFeatures": "More slips and cards each month and more for both of you, covering you and your partner.",
+  "plusFeatures": "Unlimited games, rituals and lists, more chats with the mascot and more for both of you, covering you and your partner.",
   "monthly": "Monthly",
   "yearly": "Yearly",
   "storeTitle": "Couldn't load the prices",

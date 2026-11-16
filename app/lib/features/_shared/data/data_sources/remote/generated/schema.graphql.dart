@@ -11662,6 +11662,2668 @@ class InputacceptInvite_args {
   }
 }
 
+class Inputagreements_bool_exp {
+  factory Inputagreements_bool_exp({
+    List<Inputagreements_bool_exp>? $_and,
+    Inputagreements_bool_exp? $_not,
+    List<Inputagreements_bool_exp>? $_or,
+    Inputtimestamptz_comparison_exp? archivedAt,
+    Inputprofiles_bool_exp? author,
+    Inputuuid_comparison_exp? authorId,
+    InputString_comparison_exp? body,
+    Inputtimestamptz_comparison_exp? confirmedAt,
+    Inputuuid_comparison_exp? confirmedBy,
+    Inputcouples_bool_exp? couple,
+    Inputuuid_comparison_exp? coupleId,
+    InputcoupleMembers_bool_exp? coupleMembers,
+    Inputtimestamptz_comparison_exp? createdAt,
+    Inputuuid_comparison_exp? id,
+    Inputtimestamptz_comparison_exp? updatedAt,
+  }) => Inputagreements_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (archivedAt != null) r'archivedAt': archivedAt,
+    if (author != null) r'author': author,
+    if (authorId != null) r'authorId': authorId,
+    if (body != null) r'body': body,
+    if (confirmedAt != null) r'confirmedAt': confirmedAt,
+    if (confirmedBy != null) r'confirmedBy': confirmedBy,
+    if (couple != null) r'couple': couple,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (coupleMembers != null) r'coupleMembers': coupleMembers,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (id != null) r'id': id,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+  });
+
+  Inputagreements_bool_exp._(this._$data);
+
+  factory Inputagreements_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => Inputagreements_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : Inputagreements_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => Inputagreements_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('archivedAt')) {
+      final l$archivedAt = data['archivedAt'];
+      result$data['archivedAt'] = l$archivedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$archivedAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('author')) {
+      final l$author = data['author'];
+      result$data['author'] = l$author == null
+          ? null
+          : Inputprofiles_bool_exp.fromJson((l$author as Map<String, dynamic>));
+    }
+    if (data.containsKey('authorId')) {
+      final l$authorId = data['authorId'];
+      result$data['authorId'] = l$authorId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$authorId as Map<String, dynamic>));
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = l$body == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$body as Map<String, dynamic>));
+    }
+    if (data.containsKey('confirmedAt')) {
+      final l$confirmedAt = data['confirmedAt'];
+      result$data['confirmedAt'] = l$confirmedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$confirmedAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('confirmedBy')) {
+      final l$confirmedBy = data['confirmedBy'];
+      result$data['confirmedBy'] = l$confirmedBy == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$confirmedBy as Map<String, dynamic>));
+    }
+    if (data.containsKey('couple')) {
+      final l$couple = data['couple'];
+      result$data['couple'] = l$couple == null
+          ? null
+          : Inputcouples_bool_exp.fromJson((l$couple as Map<String, dynamic>));
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$coupleId as Map<String, dynamic>));
+    }
+    if (data.containsKey('coupleMembers')) {
+      final l$coupleMembers = data['coupleMembers'];
+      result$data['coupleMembers'] = l$coupleMembers == null
+          ? null
+          : InputcoupleMembers_bool_exp.fromJson((l$coupleMembers as Map<String, dynamic>));
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$id as Map<String, dynamic>));
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$updatedAt as Map<String, dynamic>));
+    }
+    return Inputagreements_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Inputagreements_bool_exp>? get $_and => (_$data['_and'] as List<Inputagreements_bool_exp>?);
+
+  Inputagreements_bool_exp? get $_not => (_$data['_not'] as Inputagreements_bool_exp?);
+
+  List<Inputagreements_bool_exp>? get $_or => (_$data['_or'] as List<Inputagreements_bool_exp>?);
+
+  Inputtimestamptz_comparison_exp? get archivedAt =>
+      (_$data['archivedAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputprofiles_bool_exp? get author => (_$data['author'] as Inputprofiles_bool_exp?);
+
+  Inputuuid_comparison_exp? get authorId => (_$data['authorId'] as Inputuuid_comparison_exp?);
+
+  InputString_comparison_exp? get body => (_$data['body'] as InputString_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get confirmedAt =>
+      (_$data['confirmedAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_comparison_exp? get confirmedBy => (_$data['confirmedBy'] as Inputuuid_comparison_exp?);
+
+  Inputcouples_bool_exp? get couple => (_$data['couple'] as Inputcouples_bool_exp?);
+
+  Inputuuid_comparison_exp? get coupleId => (_$data['coupleId'] as Inputuuid_comparison_exp?);
+
+  InputcoupleMembers_bool_exp? get coupleMembers =>
+      (_$data['coupleMembers'] as InputcoupleMembers_bool_exp?);
+
+  Inputtimestamptz_comparison_exp? get createdAt =>
+      (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get updatedAt =>
+      (_$data['updatedAt'] as Inputtimestamptz_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('archivedAt')) {
+      final l$archivedAt = archivedAt;
+      result$data['archivedAt'] = l$archivedAt?.toJson();
+    }
+    if (_$data.containsKey('author')) {
+      final l$author = author;
+      result$data['author'] = l$author?.toJson();
+    }
+    if (_$data.containsKey('authorId')) {
+      final l$authorId = authorId;
+      result$data['authorId'] = l$authorId?.toJson();
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body?.toJson();
+    }
+    if (_$data.containsKey('confirmedAt')) {
+      final l$confirmedAt = confirmedAt;
+      result$data['confirmedAt'] = l$confirmedAt?.toJson();
+    }
+    if (_$data.containsKey('confirmedBy')) {
+      final l$confirmedBy = confirmedBy;
+      result$data['confirmedBy'] = l$confirmedBy?.toJson();
+    }
+    if (_$data.containsKey('couple')) {
+      final l$couple = couple;
+      result$data['couple'] = l$couple?.toJson();
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId?.toJson();
+    }
+    if (_$data.containsKey('coupleMembers')) {
+      final l$coupleMembers = coupleMembers;
+      result$data['coupleMembers'] = l$coupleMembers?.toJson();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputagreements_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$archivedAt = archivedAt;
+    final lOther$archivedAt = other.archivedAt;
+    if (_$data.containsKey('archivedAt') != other._$data.containsKey('archivedAt')) {
+      return false;
+    }
+    if (l$archivedAt != lOther$archivedAt) {
+      return false;
+    }
+    final l$author = author;
+    final lOther$author = other.author;
+    if (_$data.containsKey('author') != other._$data.containsKey('author')) {
+      return false;
+    }
+    if (l$author != lOther$author) {
+      return false;
+    }
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
+      return false;
+    }
+    if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$confirmedAt = confirmedAt;
+    final lOther$confirmedAt = other.confirmedAt;
+    if (_$data.containsKey('confirmedAt') != other._$data.containsKey('confirmedAt')) {
+      return false;
+    }
+    if (l$confirmedAt != lOther$confirmedAt) {
+      return false;
+    }
+    final l$confirmedBy = confirmedBy;
+    final lOther$confirmedBy = other.confirmedBy;
+    if (_$data.containsKey('confirmedBy') != other._$data.containsKey('confirmedBy')) {
+      return false;
+    }
+    if (l$confirmedBy != lOther$confirmedBy) {
+      return false;
+    }
+    final l$couple = couple;
+    final lOther$couple = other.couple;
+    if (_$data.containsKey('couple') != other._$data.containsKey('couple')) {
+      return false;
+    }
+    if (l$couple != lOther$couple) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$coupleMembers = coupleMembers;
+    final lOther$coupleMembers = other.coupleMembers;
+    if (_$data.containsKey('coupleMembers') != other._$data.containsKey('coupleMembers')) {
+      return false;
+    }
+    if (l$coupleMembers != lOther$coupleMembers) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$archivedAt = archivedAt;
+    final l$author = author;
+    final l$authorId = authorId;
+    final l$body = body;
+    final l$confirmedAt = confirmedAt;
+    final l$confirmedBy = confirmedBy;
+    final l$couple = couple;
+    final l$coupleId = coupleId;
+    final l$coupleMembers = coupleMembers;
+    final l$createdAt = createdAt;
+    final l$id = id;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('archivedAt') ? l$archivedAt : const {},
+      _$data.containsKey('author') ? l$author : const {},
+      _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('confirmedAt') ? l$confirmedAt : const {},
+      _$data.containsKey('confirmedBy') ? l$confirmedBy : const {},
+      _$data.containsKey('couple') ? l$couple : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('coupleMembers') ? l$coupleMembers : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
+class Inputagreements_insert_input {
+  factory Inputagreements_insert_input({String? body, String? coupleId, String? id}) =>
+      Inputagreements_insert_input._({
+        if (body != null) r'body': body,
+        if (coupleId != null) r'coupleId': coupleId,
+        if (id != null) r'id': id,
+      });
+
+  Inputagreements_insert_input._(this._$data);
+
+  factory Inputagreements_insert_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = (l$body as String?);
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    return Inputagreements_insert_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get body => (_$data['body'] as String?);
+
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  String? get id => (_$data['id'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body;
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputagreements_insert_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$body = body;
+    final l$coupleId = coupleId;
+    final l$id = id;
+    return Object.hashAll([
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('id') ? l$id : const {},
+    ]);
+  }
+}
+
+class Inputagreements_on_conflict {
+  factory Inputagreements_on_conflict({
+    required Enumagreements_constraint constraint,
+    List<Enumagreements_update_column>? update_columns,
+    Inputagreements_bool_exp? where,
+  }) => Inputagreements_on_conflict._({
+    r'constraint': constraint,
+    if (update_columns != null) r'update_columns': update_columns,
+    if (where != null) r'where': where,
+  });
+
+  Inputagreements_on_conflict._(this._$data);
+
+  factory Inputagreements_on_conflict.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$constraint = data['constraint'];
+    result$data['constraint'] = fromJsonEnumagreements_constraint((l$constraint as String));
+    if (data.containsKey('update_columns')) {
+      final l$update_columns = data['update_columns'];
+      result$data['update_columns'] = (l$update_columns as List<dynamic>)
+          .map((e) => fromJsonEnumagreements_update_column((e as String)))
+          .toList();
+    }
+    if (data.containsKey('where')) {
+      final l$where = data['where'];
+      result$data['where'] = l$where == null
+          ? null
+          : Inputagreements_bool_exp.fromJson((l$where as Map<String, dynamic>));
+    }
+    return Inputagreements_on_conflict._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumagreements_constraint get constraint => (_$data['constraint'] as Enumagreements_constraint);
+
+  List<Enumagreements_update_column>? get update_columns =>
+      (_$data['update_columns'] as List<Enumagreements_update_column>?);
+
+  Inputagreements_bool_exp? get where => (_$data['where'] as Inputagreements_bool_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$constraint = constraint;
+    result$data['constraint'] = toJsonEnumagreements_constraint(l$constraint);
+    if (_$data.containsKey('update_columns')) {
+      final l$update_columns = update_columns;
+      result$data['update_columns'] = (l$update_columns as List<Enumagreements_update_column>)
+          .map((e) => toJsonEnumagreements_update_column(e))
+          .toList();
+    }
+    if (_$data.containsKey('where')) {
+      final l$where = where;
+      result$data['where'] = l$where?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputagreements_on_conflict || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$constraint = constraint;
+    final lOther$constraint = other.constraint;
+    if (l$constraint != lOther$constraint) {
+      return false;
+    }
+    final l$update_columns = update_columns;
+    final lOther$update_columns = other.update_columns;
+    if (_$data.containsKey('update_columns') != other._$data.containsKey('update_columns')) {
+      return false;
+    }
+    if (l$update_columns != null && lOther$update_columns != null) {
+      if (l$update_columns.length != lOther$update_columns.length) {
+        return false;
+      }
+      for (int i = 0; i < l$update_columns.length; i++) {
+        final l$update_columns$entry = l$update_columns[i];
+        final lOther$update_columns$entry = lOther$update_columns[i];
+        if (l$update_columns$entry != lOther$update_columns$entry) {
+          return false;
+        }
+      }
+    } else if (l$update_columns != lOther$update_columns) {
+      return false;
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (_$data.containsKey('where') != other._$data.containsKey('where')) {
+      return false;
+    }
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$constraint = constraint;
+    final l$update_columns = update_columns;
+    final l$where = where;
+    return Object.hashAll([
+      l$constraint,
+      _$data.containsKey('update_columns')
+          ? l$update_columns == null
+                ? null
+                : Object.hashAll(l$update_columns.map((v) => v))
+          : const {},
+      _$data.containsKey('where') ? l$where : const {},
+    ]);
+  }
+}
+
+class Inputagreements_order_by {
+  factory Inputagreements_order_by({
+    Enumorder_by? archivedAt,
+    Inputprofiles_order_by? author,
+    Enumorder_by? authorId,
+    Enumorder_by? body,
+    Enumorder_by? confirmedAt,
+    Enumorder_by? confirmedBy,
+    Inputcouples_order_by? couple,
+    Enumorder_by? coupleId,
+    InputcoupleMembers_aggregate_order_by? coupleMembers_aggregate,
+    Enumorder_by? createdAt,
+    Enumorder_by? id,
+    Enumorder_by? updatedAt,
+  }) => Inputagreements_order_by._({
+    if (archivedAt != null) r'archivedAt': archivedAt,
+    if (author != null) r'author': author,
+    if (authorId != null) r'authorId': authorId,
+    if (body != null) r'body': body,
+    if (confirmedAt != null) r'confirmedAt': confirmedAt,
+    if (confirmedBy != null) r'confirmedBy': confirmedBy,
+    if (couple != null) r'couple': couple,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (coupleMembers_aggregate != null) r'coupleMembers_aggregate': coupleMembers_aggregate,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (id != null) r'id': id,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+  });
+
+  Inputagreements_order_by._(this._$data);
+
+  factory Inputagreements_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('archivedAt')) {
+      final l$archivedAt = data['archivedAt'];
+      result$data['archivedAt'] = l$archivedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$archivedAt as String));
+    }
+    if (data.containsKey('author')) {
+      final l$author = data['author'];
+      result$data['author'] = l$author == null
+          ? null
+          : Inputprofiles_order_by.fromJson((l$author as Map<String, dynamic>));
+    }
+    if (data.containsKey('authorId')) {
+      final l$authorId = data['authorId'];
+      result$data['authorId'] = l$authorId == null
+          ? null
+          : fromJsonEnumorder_by((l$authorId as String));
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = l$body == null ? null : fromJsonEnumorder_by((l$body as String));
+    }
+    if (data.containsKey('confirmedAt')) {
+      final l$confirmedAt = data['confirmedAt'];
+      result$data['confirmedAt'] = l$confirmedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$confirmedAt as String));
+    }
+    if (data.containsKey('confirmedBy')) {
+      final l$confirmedBy = data['confirmedBy'];
+      result$data['confirmedBy'] = l$confirmedBy == null
+          ? null
+          : fromJsonEnumorder_by((l$confirmedBy as String));
+    }
+    if (data.containsKey('couple')) {
+      final l$couple = data['couple'];
+      result$data['couple'] = l$couple == null
+          ? null
+          : Inputcouples_order_by.fromJson((l$couple as Map<String, dynamic>));
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : fromJsonEnumorder_by((l$coupleId as String));
+    }
+    if (data.containsKey('coupleMembers_aggregate')) {
+      final l$coupleMembers_aggregate = data['coupleMembers_aggregate'];
+      result$data['coupleMembers_aggregate'] = l$coupleMembers_aggregate == null
+          ? null
+          : InputcoupleMembers_aggregate_order_by.fromJson(
+              (l$coupleMembers_aggregate as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null ? null : fromJsonEnumorder_by((l$id as String));
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$updatedAt as String));
+    }
+    return Inputagreements_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get archivedAt => (_$data['archivedAt'] as Enumorder_by?);
+
+  Inputprofiles_order_by? get author => (_$data['author'] as Inputprofiles_order_by?);
+
+  Enumorder_by? get authorId => (_$data['authorId'] as Enumorder_by?);
+
+  Enumorder_by? get body => (_$data['body'] as Enumorder_by?);
+
+  Enumorder_by? get confirmedAt => (_$data['confirmedAt'] as Enumorder_by?);
+
+  Enumorder_by? get confirmedBy => (_$data['confirmedBy'] as Enumorder_by?);
+
+  Inputcouples_order_by? get couple => (_$data['couple'] as Inputcouples_order_by?);
+
+  Enumorder_by? get coupleId => (_$data['coupleId'] as Enumorder_by?);
+
+  InputcoupleMembers_aggregate_order_by? get coupleMembers_aggregate =>
+      (_$data['coupleMembers_aggregate'] as InputcoupleMembers_aggregate_order_by?);
+
+  Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
+
+  Enumorder_by? get updatedAt => (_$data['updatedAt'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('archivedAt')) {
+      final l$archivedAt = archivedAt;
+      result$data['archivedAt'] = l$archivedAt == null ? null : toJsonEnumorder_by(l$archivedAt);
+    }
+    if (_$data.containsKey('author')) {
+      final l$author = author;
+      result$data['author'] = l$author?.toJson();
+    }
+    if (_$data.containsKey('authorId')) {
+      final l$authorId = authorId;
+      result$data['authorId'] = l$authorId == null ? null : toJsonEnumorder_by(l$authorId);
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body == null ? null : toJsonEnumorder_by(l$body);
+    }
+    if (_$data.containsKey('confirmedAt')) {
+      final l$confirmedAt = confirmedAt;
+      result$data['confirmedAt'] = l$confirmedAt == null ? null : toJsonEnumorder_by(l$confirmedAt);
+    }
+    if (_$data.containsKey('confirmedBy')) {
+      final l$confirmedBy = confirmedBy;
+      result$data['confirmedBy'] = l$confirmedBy == null ? null : toJsonEnumorder_by(l$confirmedBy);
+    }
+    if (_$data.containsKey('couple')) {
+      final l$couple = couple;
+      result$data['couple'] = l$couple?.toJson();
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId == null ? null : toJsonEnumorder_by(l$coupleId);
+    }
+    if (_$data.containsKey('coupleMembers_aggregate')) {
+      final l$coupleMembers_aggregate = coupleMembers_aggregate;
+      result$data['coupleMembers_aggregate'] = l$coupleMembers_aggregate?.toJson();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJsonEnumorder_by(l$id);
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt == null ? null : toJsonEnumorder_by(l$updatedAt);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputagreements_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$archivedAt = archivedAt;
+    final lOther$archivedAt = other.archivedAt;
+    if (_$data.containsKey('archivedAt') != other._$data.containsKey('archivedAt')) {
+      return false;
+    }
+    if (l$archivedAt != lOther$archivedAt) {
+      return false;
+    }
+    final l$author = author;
+    final lOther$author = other.author;
+    if (_$data.containsKey('author') != other._$data.containsKey('author')) {
+      return false;
+    }
+    if (l$author != lOther$author) {
+      return false;
+    }
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
+      return false;
+    }
+    if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$confirmedAt = confirmedAt;
+    final lOther$confirmedAt = other.confirmedAt;
+    if (_$data.containsKey('confirmedAt') != other._$data.containsKey('confirmedAt')) {
+      return false;
+    }
+    if (l$confirmedAt != lOther$confirmedAt) {
+      return false;
+    }
+    final l$confirmedBy = confirmedBy;
+    final lOther$confirmedBy = other.confirmedBy;
+    if (_$data.containsKey('confirmedBy') != other._$data.containsKey('confirmedBy')) {
+      return false;
+    }
+    if (l$confirmedBy != lOther$confirmedBy) {
+      return false;
+    }
+    final l$couple = couple;
+    final lOther$couple = other.couple;
+    if (_$data.containsKey('couple') != other._$data.containsKey('couple')) {
+      return false;
+    }
+    if (l$couple != lOther$couple) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$coupleMembers_aggregate = coupleMembers_aggregate;
+    final lOther$coupleMembers_aggregate = other.coupleMembers_aggregate;
+    if (_$data.containsKey('coupleMembers_aggregate') !=
+        other._$data.containsKey('coupleMembers_aggregate')) {
+      return false;
+    }
+    if (l$coupleMembers_aggregate != lOther$coupleMembers_aggregate) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$archivedAt = archivedAt;
+    final l$author = author;
+    final l$authorId = authorId;
+    final l$body = body;
+    final l$confirmedAt = confirmedAt;
+    final l$confirmedBy = confirmedBy;
+    final l$couple = couple;
+    final l$coupleId = coupleId;
+    final l$coupleMembers_aggregate = coupleMembers_aggregate;
+    final l$createdAt = createdAt;
+    final l$id = id;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      _$data.containsKey('archivedAt') ? l$archivedAt : const {},
+      _$data.containsKey('author') ? l$author : const {},
+      _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('confirmedAt') ? l$confirmedAt : const {},
+      _$data.containsKey('confirmedBy') ? l$confirmedBy : const {},
+      _$data.containsKey('couple') ? l$couple : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('coupleMembers_aggregate') ? l$coupleMembers_aggregate : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
+class Inputagreements_pk_columns_input {
+  factory Inputagreements_pk_columns_input({required String id}) =>
+      Inputagreements_pk_columns_input._({r'id': id});
+
+  Inputagreements_pk_columns_input._(this._$data);
+
+  factory Inputagreements_pk_columns_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    return Inputagreements_pk_columns_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputagreements_pk_columns_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    return Object.hashAll([l$id]);
+  }
+}
+
+class Inputagreements_set_input {
+  factory Inputagreements_set_input({DateTime? archivedAt, String? body, String? coupleId}) =>
+      Inputagreements_set_input._({
+        if (archivedAt != null) r'archivedAt': archivedAt,
+        if (body != null) r'body': body,
+        if (coupleId != null) r'coupleId': coupleId,
+      });
+
+  Inputagreements_set_input._(this._$data);
+
+  factory Inputagreements_set_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('archivedAt')) {
+      final l$archivedAt = data['archivedAt'];
+      result$data['archivedAt'] = l$archivedAt == null
+          ? null
+          : DateTime.parse((l$archivedAt as String));
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = (l$body as String?);
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    return Inputagreements_set_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get archivedAt => (_$data['archivedAt'] as DateTime?);
+
+  String? get body => (_$data['body'] as String?);
+
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('archivedAt')) {
+      final l$archivedAt = archivedAt;
+      result$data['archivedAt'] = l$archivedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$archivedAt);
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body;
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputagreements_set_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$archivedAt = archivedAt;
+    final lOther$archivedAt = other.archivedAt;
+    if (_$data.containsKey('archivedAt') != other._$data.containsKey('archivedAt')) {
+      return false;
+    }
+    if (l$archivedAt != lOther$archivedAt) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$archivedAt = archivedAt;
+    final l$body = body;
+    final l$coupleId = coupleId;
+    return Object.hashAll([
+      _$data.containsKey('archivedAt') ? l$archivedAt : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+    ]);
+  }
+}
+
+class Inputagreements_stream_cursor_input {
+  factory Inputagreements_stream_cursor_input({
+    required Inputagreements_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => Inputagreements_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  Inputagreements_stream_cursor_input._(this._$data);
+
+  factory Inputagreements_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = Inputagreements_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return Inputagreements_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Inputagreements_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as Inputagreements_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputagreements_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class Inputagreements_stream_cursor_value_input {
+  factory Inputagreements_stream_cursor_value_input({
+    DateTime? archivedAt,
+    String? authorId,
+    String? body,
+    DateTime? confirmedAt,
+    String? confirmedBy,
+    String? coupleId,
+    DateTime? createdAt,
+    String? id,
+    DateTime? updatedAt,
+  }) => Inputagreements_stream_cursor_value_input._({
+    if (archivedAt != null) r'archivedAt': archivedAt,
+    if (authorId != null) r'authorId': authorId,
+    if (body != null) r'body': body,
+    if (confirmedAt != null) r'confirmedAt': confirmedAt,
+    if (confirmedBy != null) r'confirmedBy': confirmedBy,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (id != null) r'id': id,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+  });
+
+  Inputagreements_stream_cursor_value_input._(this._$data);
+
+  factory Inputagreements_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('archivedAt')) {
+      final l$archivedAt = data['archivedAt'];
+      result$data['archivedAt'] = l$archivedAt == null
+          ? null
+          : DateTime.parse((l$archivedAt as String));
+    }
+    if (data.containsKey('authorId')) {
+      final l$authorId = data['authorId'];
+      result$data['authorId'] = (l$authorId as String?);
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = (l$body as String?);
+    }
+    if (data.containsKey('confirmedAt')) {
+      final l$confirmedAt = data['confirmedAt'];
+      result$data['confirmedAt'] = l$confirmedAt == null
+          ? null
+          : DateTime.parse((l$confirmedAt as String));
+    }
+    if (data.containsKey('confirmedBy')) {
+      final l$confirmedBy = data['confirmedBy'];
+      result$data['confirmedBy'] = (l$confirmedBy as String?);
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : DateTime.parse((l$updatedAt as String));
+    }
+    return Inputagreements_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get archivedAt => (_$data['archivedAt'] as DateTime?);
+
+  String? get authorId => (_$data['authorId'] as String?);
+
+  String? get body => (_$data['body'] as String?);
+
+  DateTime? get confirmedAt => (_$data['confirmedAt'] as DateTime?);
+
+  String? get confirmedBy => (_$data['confirmedBy'] as String?);
+
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
+
+  String? get id => (_$data['id'] as String?);
+
+  DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('archivedAt')) {
+      final l$archivedAt = archivedAt;
+      result$data['archivedAt'] = l$archivedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$archivedAt);
+    }
+    if (_$data.containsKey('authorId')) {
+      final l$authorId = authorId;
+      result$data['authorId'] = l$authorId;
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body;
+    }
+    if (_$data.containsKey('confirmedAt')) {
+      final l$confirmedAt = confirmedAt;
+      result$data['confirmedAt'] = l$confirmedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$confirmedAt);
+    }
+    if (_$data.containsKey('confirmedBy')) {
+      final l$confirmedBy = confirmedBy;
+      result$data['confirmedBy'] = l$confirmedBy;
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputagreements_stream_cursor_value_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$archivedAt = archivedAt;
+    final lOther$archivedAt = other.archivedAt;
+    if (_$data.containsKey('archivedAt') != other._$data.containsKey('archivedAt')) {
+      return false;
+    }
+    if (l$archivedAt != lOther$archivedAt) {
+      return false;
+    }
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
+      return false;
+    }
+    if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$confirmedAt = confirmedAt;
+    final lOther$confirmedAt = other.confirmedAt;
+    if (_$data.containsKey('confirmedAt') != other._$data.containsKey('confirmedAt')) {
+      return false;
+    }
+    if (l$confirmedAt != lOther$confirmedAt) {
+      return false;
+    }
+    final l$confirmedBy = confirmedBy;
+    final lOther$confirmedBy = other.confirmedBy;
+    if (_$data.containsKey('confirmedBy') != other._$data.containsKey('confirmedBy')) {
+      return false;
+    }
+    if (l$confirmedBy != lOther$confirmedBy) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$archivedAt = archivedAt;
+    final l$authorId = authorId;
+    final l$body = body;
+    final l$confirmedAt = confirmedAt;
+    final l$confirmedBy = confirmedBy;
+    final l$coupleId = coupleId;
+    final l$createdAt = createdAt;
+    final l$id = id;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      _$data.containsKey('archivedAt') ? l$archivedAt : const {},
+      _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('confirmedAt') ? l$confirmedAt : const {},
+      _$data.containsKey('confirmedBy') ? l$confirmedBy : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+    ]);
+  }
+}
+
+class Inputagreements_updates {
+  factory Inputagreements_updates({
+    Inputagreements_set_input? $_set,
+    required Inputagreements_bool_exp where,
+  }) => Inputagreements_updates._({if ($_set != null) r'_set': $_set, r'where': where});
+
+  Inputagreements_updates._(this._$data);
+
+  factory Inputagreements_updates.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_set')) {
+      final l$$_set = data['_set'];
+      result$data['_set'] = l$$_set == null
+          ? null
+          : Inputagreements_set_input.fromJson((l$$_set as Map<String, dynamic>));
+    }
+    final l$where = data['where'];
+    result$data['where'] = Inputagreements_bool_exp.fromJson((l$where as Map<String, dynamic>));
+    return Inputagreements_updates._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Inputagreements_set_input? get $_set => (_$data['_set'] as Inputagreements_set_input?);
+
+  Inputagreements_bool_exp get where => (_$data['where'] as Inputagreements_bool_exp);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_set')) {
+      final l$$_set = $_set;
+      result$data['_set'] = l$$_set?.toJson();
+    }
+    final l$where = where;
+    result$data['where'] = l$where.toJson();
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputagreements_updates || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_set = $_set;
+    final lOther$$_set = other.$_set;
+    if (_$data.containsKey('_set') != other._$data.containsKey('_set')) {
+      return false;
+    }
+    if (l$$_set != lOther$$_set) {
+      return false;
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_set = $_set;
+    final l$where = where;
+    return Object.hashAll([_$data.containsKey('_set') ? l$$_set : const {}, l$where]);
+  }
+}
+
+class Inputannoyances_bool_exp {
+  factory Inputannoyances_bool_exp({
+    List<Inputannoyances_bool_exp>? $_and,
+    Inputannoyances_bool_exp? $_not,
+    List<Inputannoyances_bool_exp>? $_or,
+    Inputprofiles_bool_exp? author,
+    Inputuuid_comparison_exp? authorId,
+    InputString_comparison_exp? body,
+    Inputtimestamptz_comparison_exp? checkSentAt,
+    Inputtimestamptz_comparison_exp? createdAt,
+    Inputtimestamptz_comparison_exp? expiresAt,
+    Inputuuid_comparison_exp? id,
+  }) => Inputannoyances_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (author != null) r'author': author,
+    if (authorId != null) r'authorId': authorId,
+    if (body != null) r'body': body,
+    if (checkSentAt != null) r'checkSentAt': checkSentAt,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (expiresAt != null) r'expiresAt': expiresAt,
+    if (id != null) r'id': id,
+  });
+
+  Inputannoyances_bool_exp._(this._$data);
+
+  factory Inputannoyances_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => Inputannoyances_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : Inputannoyances_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => Inputannoyances_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('author')) {
+      final l$author = data['author'];
+      result$data['author'] = l$author == null
+          ? null
+          : Inputprofiles_bool_exp.fromJson((l$author as Map<String, dynamic>));
+    }
+    if (data.containsKey('authorId')) {
+      final l$authorId = data['authorId'];
+      result$data['authorId'] = l$authorId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$authorId as Map<String, dynamic>));
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = l$body == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$body as Map<String, dynamic>));
+    }
+    if (data.containsKey('checkSentAt')) {
+      final l$checkSentAt = data['checkSentAt'];
+      result$data['checkSentAt'] = l$checkSentAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$checkSentAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('expiresAt')) {
+      final l$expiresAt = data['expiresAt'];
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$expiresAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$id as Map<String, dynamic>));
+    }
+    return Inputannoyances_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Inputannoyances_bool_exp>? get $_and => (_$data['_and'] as List<Inputannoyances_bool_exp>?);
+
+  Inputannoyances_bool_exp? get $_not => (_$data['_not'] as Inputannoyances_bool_exp?);
+
+  List<Inputannoyances_bool_exp>? get $_or => (_$data['_or'] as List<Inputannoyances_bool_exp>?);
+
+  Inputprofiles_bool_exp? get author => (_$data['author'] as Inputprofiles_bool_exp?);
+
+  Inputuuid_comparison_exp? get authorId => (_$data['authorId'] as Inputuuid_comparison_exp?);
+
+  InputString_comparison_exp? get body => (_$data['body'] as InputString_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get checkSentAt =>
+      (_$data['checkSentAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get createdAt =>
+      (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get expiresAt =>
+      (_$data['expiresAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('author')) {
+      final l$author = author;
+      result$data['author'] = l$author?.toJson();
+    }
+    if (_$data.containsKey('authorId')) {
+      final l$authorId = authorId;
+      result$data['authorId'] = l$authorId?.toJson();
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body?.toJson();
+    }
+    if (_$data.containsKey('checkSentAt')) {
+      final l$checkSentAt = checkSentAt;
+      result$data['checkSentAt'] = l$checkSentAt?.toJson();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('expiresAt')) {
+      final l$expiresAt = expiresAt;
+      result$data['expiresAt'] = l$expiresAt?.toJson();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputannoyances_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$author = author;
+    final lOther$author = other.author;
+    if (_$data.containsKey('author') != other._$data.containsKey('author')) {
+      return false;
+    }
+    if (l$author != lOther$author) {
+      return false;
+    }
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
+      return false;
+    }
+    if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$checkSentAt = checkSentAt;
+    final lOther$checkSentAt = other.checkSentAt;
+    if (_$data.containsKey('checkSentAt') != other._$data.containsKey('checkSentAt')) {
+      return false;
+    }
+    if (l$checkSentAt != lOther$checkSentAt) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$expiresAt = expiresAt;
+    final lOther$expiresAt = other.expiresAt;
+    if (_$data.containsKey('expiresAt') != other._$data.containsKey('expiresAt')) {
+      return false;
+    }
+    if (l$expiresAt != lOther$expiresAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$author = author;
+    final l$authorId = authorId;
+    final l$body = body;
+    final l$checkSentAt = checkSentAt;
+    final l$createdAt = createdAt;
+    final l$expiresAt = expiresAt;
+    final l$id = id;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('author') ? l$author : const {},
+      _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('checkSentAt') ? l$checkSentAt : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('expiresAt') ? l$expiresAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+    ]);
+  }
+}
+
+class Inputannoyances_insert_input {
+  factory Inputannoyances_insert_input({String? body, String? id}) =>
+      Inputannoyances_insert_input._({if (body != null) r'body': body, if (id != null) r'id': id});
+
+  Inputannoyances_insert_input._(this._$data);
+
+  factory Inputannoyances_insert_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = (l$body as String?);
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    return Inputannoyances_insert_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get body => (_$data['body'] as String?);
+
+  String? get id => (_$data['id'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body;
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputannoyances_insert_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$body = body;
+    final l$id = id;
+    return Object.hashAll([
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('id') ? l$id : const {},
+    ]);
+  }
+}
+
+class Inputannoyances_on_conflict {
+  factory Inputannoyances_on_conflict({
+    required Enumannoyances_constraint constraint,
+    List<Enumannoyances_update_column>? update_columns,
+    Inputannoyances_bool_exp? where,
+  }) => Inputannoyances_on_conflict._({
+    r'constraint': constraint,
+    if (update_columns != null) r'update_columns': update_columns,
+    if (where != null) r'where': where,
+  });
+
+  Inputannoyances_on_conflict._(this._$data);
+
+  factory Inputannoyances_on_conflict.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$constraint = data['constraint'];
+    result$data['constraint'] = fromJsonEnumannoyances_constraint((l$constraint as String));
+    if (data.containsKey('update_columns')) {
+      final l$update_columns = data['update_columns'];
+      result$data['update_columns'] = (l$update_columns as List<dynamic>)
+          .map((e) => fromJsonEnumannoyances_update_column((e as String)))
+          .toList();
+    }
+    if (data.containsKey('where')) {
+      final l$where = data['where'];
+      result$data['where'] = l$where == null
+          ? null
+          : Inputannoyances_bool_exp.fromJson((l$where as Map<String, dynamic>));
+    }
+    return Inputannoyances_on_conflict._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumannoyances_constraint get constraint => (_$data['constraint'] as Enumannoyances_constraint);
+
+  List<Enumannoyances_update_column>? get update_columns =>
+      (_$data['update_columns'] as List<Enumannoyances_update_column>?);
+
+  Inputannoyances_bool_exp? get where => (_$data['where'] as Inputannoyances_bool_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$constraint = constraint;
+    result$data['constraint'] = toJsonEnumannoyances_constraint(l$constraint);
+    if (_$data.containsKey('update_columns')) {
+      final l$update_columns = update_columns;
+      result$data['update_columns'] = (l$update_columns as List<Enumannoyances_update_column>)
+          .map((e) => toJsonEnumannoyances_update_column(e))
+          .toList();
+    }
+    if (_$data.containsKey('where')) {
+      final l$where = where;
+      result$data['where'] = l$where?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputannoyances_on_conflict || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$constraint = constraint;
+    final lOther$constraint = other.constraint;
+    if (l$constraint != lOther$constraint) {
+      return false;
+    }
+    final l$update_columns = update_columns;
+    final lOther$update_columns = other.update_columns;
+    if (_$data.containsKey('update_columns') != other._$data.containsKey('update_columns')) {
+      return false;
+    }
+    if (l$update_columns != null && lOther$update_columns != null) {
+      if (l$update_columns.length != lOther$update_columns.length) {
+        return false;
+      }
+      for (int i = 0; i < l$update_columns.length; i++) {
+        final l$update_columns$entry = l$update_columns[i];
+        final lOther$update_columns$entry = lOther$update_columns[i];
+        if (l$update_columns$entry != lOther$update_columns$entry) {
+          return false;
+        }
+      }
+    } else if (l$update_columns != lOther$update_columns) {
+      return false;
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (_$data.containsKey('where') != other._$data.containsKey('where')) {
+      return false;
+    }
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$constraint = constraint;
+    final l$update_columns = update_columns;
+    final l$where = where;
+    return Object.hashAll([
+      l$constraint,
+      _$data.containsKey('update_columns')
+          ? l$update_columns == null
+                ? null
+                : Object.hashAll(l$update_columns.map((v) => v))
+          : const {},
+      _$data.containsKey('where') ? l$where : const {},
+    ]);
+  }
+}
+
+class Inputannoyances_order_by {
+  factory Inputannoyances_order_by({
+    Inputprofiles_order_by? author,
+    Enumorder_by? authorId,
+    Enumorder_by? body,
+    Enumorder_by? checkSentAt,
+    Enumorder_by? createdAt,
+    Enumorder_by? expiresAt,
+    Enumorder_by? id,
+  }) => Inputannoyances_order_by._({
+    if (author != null) r'author': author,
+    if (authorId != null) r'authorId': authorId,
+    if (body != null) r'body': body,
+    if (checkSentAt != null) r'checkSentAt': checkSentAt,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (expiresAt != null) r'expiresAt': expiresAt,
+    if (id != null) r'id': id,
+  });
+
+  Inputannoyances_order_by._(this._$data);
+
+  factory Inputannoyances_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('author')) {
+      final l$author = data['author'];
+      result$data['author'] = l$author == null
+          ? null
+          : Inputprofiles_order_by.fromJson((l$author as Map<String, dynamic>));
+    }
+    if (data.containsKey('authorId')) {
+      final l$authorId = data['authorId'];
+      result$data['authorId'] = l$authorId == null
+          ? null
+          : fromJsonEnumorder_by((l$authorId as String));
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = l$body == null ? null : fromJsonEnumorder_by((l$body as String));
+    }
+    if (data.containsKey('checkSentAt')) {
+      final l$checkSentAt = data['checkSentAt'];
+      result$data['checkSentAt'] = l$checkSentAt == null
+          ? null
+          : fromJsonEnumorder_by((l$checkSentAt as String));
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('expiresAt')) {
+      final l$expiresAt = data['expiresAt'];
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : fromJsonEnumorder_by((l$expiresAt as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null ? null : fromJsonEnumorder_by((l$id as String));
+    }
+    return Inputannoyances_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Inputprofiles_order_by? get author => (_$data['author'] as Inputprofiles_order_by?);
+
+  Enumorder_by? get authorId => (_$data['authorId'] as Enumorder_by?);
+
+  Enumorder_by? get body => (_$data['body'] as Enumorder_by?);
+
+  Enumorder_by? get checkSentAt => (_$data['checkSentAt'] as Enumorder_by?);
+
+  Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get expiresAt => (_$data['expiresAt'] as Enumorder_by?);
+
+  Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('author')) {
+      final l$author = author;
+      result$data['author'] = l$author?.toJson();
+    }
+    if (_$data.containsKey('authorId')) {
+      final l$authorId = authorId;
+      result$data['authorId'] = l$authorId == null ? null : toJsonEnumorder_by(l$authorId);
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body == null ? null : toJsonEnumorder_by(l$body);
+    }
+    if (_$data.containsKey('checkSentAt')) {
+      final l$checkSentAt = checkSentAt;
+      result$data['checkSentAt'] = l$checkSentAt == null ? null : toJsonEnumorder_by(l$checkSentAt);
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('expiresAt')) {
+      final l$expiresAt = expiresAt;
+      result$data['expiresAt'] = l$expiresAt == null ? null : toJsonEnumorder_by(l$expiresAt);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJsonEnumorder_by(l$id);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputannoyances_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$author = author;
+    final lOther$author = other.author;
+    if (_$data.containsKey('author') != other._$data.containsKey('author')) {
+      return false;
+    }
+    if (l$author != lOther$author) {
+      return false;
+    }
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
+      return false;
+    }
+    if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$checkSentAt = checkSentAt;
+    final lOther$checkSentAt = other.checkSentAt;
+    if (_$data.containsKey('checkSentAt') != other._$data.containsKey('checkSentAt')) {
+      return false;
+    }
+    if (l$checkSentAt != lOther$checkSentAt) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$expiresAt = expiresAt;
+    final lOther$expiresAt = other.expiresAt;
+    if (_$data.containsKey('expiresAt') != other._$data.containsKey('expiresAt')) {
+      return false;
+    }
+    if (l$expiresAt != lOther$expiresAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$author = author;
+    final l$authorId = authorId;
+    final l$body = body;
+    final l$checkSentAt = checkSentAt;
+    final l$createdAt = createdAt;
+    final l$expiresAt = expiresAt;
+    final l$id = id;
+    return Object.hashAll([
+      _$data.containsKey('author') ? l$author : const {},
+      _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('checkSentAt') ? l$checkSentAt : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('expiresAt') ? l$expiresAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+    ]);
+  }
+}
+
+class Inputannoyances_pk_columns_input {
+  factory Inputannoyances_pk_columns_input({required String id}) =>
+      Inputannoyances_pk_columns_input._({r'id': id});
+
+  Inputannoyances_pk_columns_input._(this._$data);
+
+  factory Inputannoyances_pk_columns_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    return Inputannoyances_pk_columns_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputannoyances_pk_columns_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    return Object.hashAll([l$id]);
+  }
+}
+
+class Inputannoyances_set_input {
+  factory Inputannoyances_set_input({String? body}) =>
+      Inputannoyances_set_input._({if (body != null) r'body': body});
+
+  Inputannoyances_set_input._(this._$data);
+
+  factory Inputannoyances_set_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = (l$body as String?);
+    }
+    return Inputannoyances_set_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get body => (_$data['body'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputannoyances_set_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$body = body;
+    return Object.hashAll([_$data.containsKey('body') ? l$body : const {}]);
+  }
+}
+
+class Inputannoyances_stream_cursor_input {
+  factory Inputannoyances_stream_cursor_input({
+    required Inputannoyances_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => Inputannoyances_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  Inputannoyances_stream_cursor_input._(this._$data);
+
+  factory Inputannoyances_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = Inputannoyances_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return Inputannoyances_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Inputannoyances_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as Inputannoyances_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputannoyances_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class Inputannoyances_stream_cursor_value_input {
+  factory Inputannoyances_stream_cursor_value_input({
+    String? authorId,
+    String? body,
+    DateTime? checkSentAt,
+    DateTime? createdAt,
+    DateTime? expiresAt,
+    String? id,
+  }) => Inputannoyances_stream_cursor_value_input._({
+    if (authorId != null) r'authorId': authorId,
+    if (body != null) r'body': body,
+    if (checkSentAt != null) r'checkSentAt': checkSentAt,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (expiresAt != null) r'expiresAt': expiresAt,
+    if (id != null) r'id': id,
+  });
+
+  Inputannoyances_stream_cursor_value_input._(this._$data);
+
+  factory Inputannoyances_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('authorId')) {
+      final l$authorId = data['authorId'];
+      result$data['authorId'] = (l$authorId as String?);
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = (l$body as String?);
+    }
+    if (data.containsKey('checkSentAt')) {
+      final l$checkSentAt = data['checkSentAt'];
+      result$data['checkSentAt'] = l$checkSentAt == null
+          ? null
+          : DateTime.parse((l$checkSentAt as String));
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('expiresAt')) {
+      final l$expiresAt = data['expiresAt'];
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : DateTime.parse((l$expiresAt as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    return Inputannoyances_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get authorId => (_$data['authorId'] as String?);
+
+  String? get body => (_$data['body'] as String?);
+
+  DateTime? get checkSentAt => (_$data['checkSentAt'] as DateTime?);
+
+  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
+
+  DateTime? get expiresAt => (_$data['expiresAt'] as DateTime?);
+
+  String? get id => (_$data['id'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('authorId')) {
+      final l$authorId = authorId;
+      result$data['authorId'] = l$authorId;
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body;
+    }
+    if (_$data.containsKey('checkSentAt')) {
+      final l$checkSentAt = checkSentAt;
+      result$data['checkSentAt'] = l$checkSentAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$checkSentAt);
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('expiresAt')) {
+      final l$expiresAt = expiresAt;
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$expiresAt);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputannoyances_stream_cursor_value_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
+      return false;
+    }
+    if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$checkSentAt = checkSentAt;
+    final lOther$checkSentAt = other.checkSentAt;
+    if (_$data.containsKey('checkSentAt') != other._$data.containsKey('checkSentAt')) {
+      return false;
+    }
+    if (l$checkSentAt != lOther$checkSentAt) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$expiresAt = expiresAt;
+    final lOther$expiresAt = other.expiresAt;
+    if (_$data.containsKey('expiresAt') != other._$data.containsKey('expiresAt')) {
+      return false;
+    }
+    if (l$expiresAt != lOther$expiresAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$authorId = authorId;
+    final l$body = body;
+    final l$checkSentAt = checkSentAt;
+    final l$createdAt = createdAt;
+    final l$expiresAt = expiresAt;
+    final l$id = id;
+    return Object.hashAll([
+      _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('checkSentAt') ? l$checkSentAt : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('expiresAt') ? l$expiresAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+    ]);
+  }
+}
+
+class Inputannoyances_updates {
+  factory Inputannoyances_updates({
+    Inputannoyances_set_input? $_set,
+    required Inputannoyances_bool_exp where,
+  }) => Inputannoyances_updates._({if ($_set != null) r'_set': $_set, r'where': where});
+
+  Inputannoyances_updates._(this._$data);
+
+  factory Inputannoyances_updates.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_set')) {
+      final l$$_set = data['_set'];
+      result$data['_set'] = l$$_set == null
+          ? null
+          : Inputannoyances_set_input.fromJson((l$$_set as Map<String, dynamic>));
+    }
+    final l$where = data['where'];
+    result$data['where'] = Inputannoyances_bool_exp.fromJson((l$where as Map<String, dynamic>));
+    return Inputannoyances_updates._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Inputannoyances_set_input? get $_set => (_$data['_set'] as Inputannoyances_set_input?);
+
+  Inputannoyances_bool_exp get where => (_$data['where'] as Inputannoyances_bool_exp);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_set')) {
+      final l$$_set = $_set;
+      result$data['_set'] = l$$_set?.toJson();
+    }
+    final l$where = where;
+    result$data['where'] = l$where.toJson();
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputannoyances_updates || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_set = $_set;
+    final lOther$$_set = other.$_set;
+    if (_$data.containsKey('_set') != other._$data.containsKey('_set')) {
+      return false;
+    }
+    if (l$$_set != lOther$$_set) {
+      return false;
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_set = $_set;
+    final l$where = where;
+    return Object.hashAll([_$data.containsKey('_set') ? l$$_set : const {}, l$where]);
+  }
+}
+
 class InputappConfig_bool_exp {
   factory InputappConfig_bool_exp({
     List<InputappConfig_bool_exp>? $_and,
@@ -17532,6 +20194,7 @@ class Inputcards_bool_exp {
     Inputuuid_comparison_exp? coupleId,
     Inputtimestamptz_comparison_exp? createdAt,
     InputguestLinks_bool_exp? guestLinks,
+    InputString_comparison_exp? heldReason,
     Inputuuid_comparison_exp? id,
     InputcardItems_bool_exp? items,
     InputCardKind_enum_comparison_exp? kind,
@@ -17553,6 +20216,7 @@ class Inputcards_bool_exp {
     if (coupleId != null) r'coupleId': coupleId,
     if (createdAt != null) r'createdAt': createdAt,
     if (guestLinks != null) r'guestLinks': guestLinks,
+    if (heldReason != null) r'heldReason': heldReason,
     if (id != null) r'id': id,
     if (items != null) r'items': items,
     if (kind != null) r'kind': kind,
@@ -17618,6 +20282,12 @@ class Inputcards_bool_exp {
       result$data['guestLinks'] = l$guestLinks == null
           ? null
           : InputguestLinks_bool_exp.fromJson((l$guestLinks as Map<String, dynamic>));
+    }
+    if (data.containsKey('heldReason')) {
+      final l$heldReason = data['heldReason'];
+      result$data['heldReason'] = l$heldReason == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$heldReason as Map<String, dynamic>));
     }
     if (data.containsKey('id')) {
       final l$id = data['id'];
@@ -17713,6 +20383,9 @@ class Inputcards_bool_exp {
 
   InputguestLinks_bool_exp? get guestLinks => (_$data['guestLinks'] as InputguestLinks_bool_exp?);
 
+  InputString_comparison_exp? get heldReason =>
+      (_$data['heldReason'] as InputString_comparison_exp?);
+
   Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
 
   InputcardItems_bool_exp? get items => (_$data['items'] as InputcardItems_bool_exp?);
@@ -17774,6 +20447,10 @@ class Inputcards_bool_exp {
     if (_$data.containsKey('guestLinks')) {
       final l$guestLinks = guestLinks;
       result$data['guestLinks'] = l$guestLinks?.toJson();
+    }
+    if (_$data.containsKey('heldReason')) {
+      final l$heldReason = heldReason;
+      result$data['heldReason'] = l$heldReason?.toJson();
     }
     if (_$data.containsKey('id')) {
       final l$id = id;
@@ -17920,6 +20597,14 @@ class Inputcards_bool_exp {
     if (l$guestLinks != lOther$guestLinks) {
       return false;
     }
+    final l$heldReason = heldReason;
+    final lOther$heldReason = other.heldReason;
+    if (_$data.containsKey('heldReason') != other._$data.containsKey('heldReason')) {
+      return false;
+    }
+    if (l$heldReason != lOther$heldReason) {
+      return false;
+    }
     final l$id = id;
     final lOther$id = other.id;
     if (_$data.containsKey('id') != other._$data.containsKey('id')) {
@@ -18029,6 +20714,7 @@ class Inputcards_bool_exp {
     final l$coupleId = coupleId;
     final l$createdAt = createdAt;
     final l$guestLinks = guestLinks;
+    final l$heldReason = heldReason;
     final l$id = id;
     final l$items = items;
     final l$kind = kind;
@@ -18058,6 +20744,7 @@ class Inputcards_bool_exp {
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('guestLinks') ? l$guestLinks : const {},
+      _$data.containsKey('heldReason') ? l$heldReason : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('items') ? l$items : const {},
       _$data.containsKey('kind') ? l$kind : const {},
@@ -18081,6 +20768,7 @@ class Inputcards_order_by {
     Enumorder_by? coupleId,
     Enumorder_by? createdAt,
     InputguestLinks_aggregate_order_by? guestLinks_aggregate,
+    Enumorder_by? heldReason,
     Enumorder_by? id,
     InputcardItems_aggregate_order_by? items_aggregate,
     Enumorder_by? kind,
@@ -18099,6 +20787,7 @@ class Inputcards_order_by {
     if (coupleId != null) r'coupleId': coupleId,
     if (createdAt != null) r'createdAt': createdAt,
     if (guestLinks_aggregate != null) r'guestLinks_aggregate': guestLinks_aggregate,
+    if (heldReason != null) r'heldReason': heldReason,
     if (id != null) r'id': id,
     if (items_aggregate != null) r'items_aggregate': items_aggregate,
     if (kind != null) r'kind': kind,
@@ -18148,6 +20837,12 @@ class Inputcards_order_by {
           : InputguestLinks_aggregate_order_by.fromJson(
               (l$guestLinks_aggregate as Map<String, dynamic>),
             );
+    }
+    if (data.containsKey('heldReason')) {
+      final l$heldReason = data['heldReason'];
+      result$data['heldReason'] = l$heldReason == null
+          ? null
+          : fromJsonEnumorder_by((l$heldReason as String));
     }
     if (data.containsKey('id')) {
       final l$id = data['id'];
@@ -18227,6 +20922,8 @@ class Inputcards_order_by {
   InputguestLinks_aggregate_order_by? get guestLinks_aggregate =>
       (_$data['guestLinks_aggregate'] as InputguestLinks_aggregate_order_by?);
 
+  Enumorder_by? get heldReason => (_$data['heldReason'] as Enumorder_by?);
+
   Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
 
   InputcardItems_aggregate_order_by? get items_aggregate =>
@@ -18273,6 +20970,10 @@ class Inputcards_order_by {
     if (_$data.containsKey('guestLinks_aggregate')) {
       final l$guestLinks_aggregate = guestLinks_aggregate;
       result$data['guestLinks_aggregate'] = l$guestLinks_aggregate?.toJson();
+    }
+    if (_$data.containsKey('heldReason')) {
+      final l$heldReason = heldReason;
+      result$data['heldReason'] = l$heldReason == null ? null : toJsonEnumorder_by(l$heldReason);
     }
     if (_$data.containsKey('id')) {
       final l$id = id;
@@ -18372,6 +21073,14 @@ class Inputcards_order_by {
       return false;
     }
     if (l$guestLinks_aggregate != lOther$guestLinks_aggregate) {
+      return false;
+    }
+    final l$heldReason = heldReason;
+    final lOther$heldReason = other.heldReason;
+    if (_$data.containsKey('heldReason') != other._$data.containsKey('heldReason')) {
+      return false;
+    }
+    if (l$heldReason != lOther$heldReason) {
       return false;
     }
     final l$id = id;
@@ -18480,6 +21189,7 @@ class Inputcards_order_by {
     final l$coupleId = coupleId;
     final l$createdAt = createdAt;
     final l$guestLinks_aggregate = guestLinks_aggregate;
+    final l$heldReason = heldReason;
     final l$id = id;
     final l$items_aggregate = items_aggregate;
     final l$kind = kind;
@@ -18498,6 +21208,7 @@ class Inputcards_order_by {
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('guestLinks_aggregate') ? l$guestLinks_aggregate : const {},
+      _$data.containsKey('heldReason') ? l$heldReason : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('items_aggregate') ? l$items_aggregate : const {},
       _$data.containsKey('kind') ? l$kind : const {},
@@ -18726,6 +21437,7 @@ class Inputcards_stream_cursor_value_input {
     String? authorId,
     String? coupleId,
     DateTime? createdAt,
+    String? heldReason,
     String? id,
     EnumCardKind_enum? kind,
     String? note,
@@ -18738,6 +21450,7 @@ class Inputcards_stream_cursor_value_input {
     if (authorId != null) r'authorId': authorId,
     if (coupleId != null) r'coupleId': coupleId,
     if (createdAt != null) r'createdAt': createdAt,
+    if (heldReason != null) r'heldReason': heldReason,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
     if (note != null) r'note': note,
@@ -18765,6 +21478,10 @@ class Inputcards_stream_cursor_value_input {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('heldReason')) {
+      final l$heldReason = data['heldReason'];
+      result$data['heldReason'] = (l$heldReason as String?);
     }
     if (data.containsKey('id')) {
       final l$id = data['id'];
@@ -18815,6 +21532,8 @@ class Inputcards_stream_cursor_value_input {
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
+  String? get heldReason => (_$data['heldReason'] as String?);
+
   String? get id => (_$data['id'] as String?);
 
   EnumCardKind_enum? get kind => (_$data['kind'] as EnumCardKind_enum?);
@@ -18846,6 +21565,10 @@ class Inputcards_stream_cursor_value_input {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('heldReason')) {
+      final l$heldReason = heldReason;
+      result$data['heldReason'] = l$heldReason;
     }
     if (_$data.containsKey('id')) {
       final l$id = id;
@@ -18920,6 +21643,14 @@ class Inputcards_stream_cursor_value_input {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
+    final l$heldReason = heldReason;
+    final lOther$heldReason = other.heldReason;
+    if (_$data.containsKey('heldReason') != other._$data.containsKey('heldReason')) {
+      return false;
+    }
+    if (l$heldReason != lOther$heldReason) {
+      return false;
+    }
     final l$id = id;
     final lOther$id = other.id;
     if (_$data.containsKey('id') != other._$data.containsKey('id')) {
@@ -18992,6 +21723,7 @@ class Inputcards_stream_cursor_value_input {
     final l$authorId = authorId;
     final l$coupleId = coupleId;
     final l$createdAt = createdAt;
+    final l$heldReason = heldReason;
     final l$id = id;
     final l$kind = kind;
     final l$note = note;
@@ -19004,6 +21736,7 @@ class Inputcards_stream_cursor_value_input {
       _$data.containsKey('authorId') ? l$authorId : const {},
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('heldReason') ? l$heldReason : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('note') ? l$note : const {},
@@ -19081,6 +21814,1348 @@ class Inputcards_updates {
     final l$$_set = $_set;
     final l$where = where;
     return Object.hashAll([_$data.containsKey('_set') ? l$$_set : const {}, l$where]);
+  }
+}
+
+class InputcatalogItems_bool_exp {
+  factory InputcatalogItems_bool_exp({
+    List<InputcatalogItems_bool_exp>? $_and,
+    InputcatalogItems_bool_exp? $_not,
+    List<InputcatalogItems_bool_exp>? $_or,
+    InputString_comparison_exp? body,
+    InputString_comparison_exp? country,
+    Inputsmallint_comparison_exp? day,
+    Inputuuid_comparison_exp? id,
+    InputString_comparison_exp? kind,
+    InputString_comparison_exp? locale,
+    InputBoolean_comparison_exp? locked,
+    Inputsmallint_comparison_exp? month,
+    InputString_comparison_exp? parentSlug,
+    InputBoolean_comparison_exp? plusOnly,
+    InputInt_comparison_exp? position,
+    InputBoolean_comparison_exp? sensitive,
+    InputString_comparison_exp? slug,
+    InputString_array_comparison_exp? tags,
+    InputString_comparison_exp? title,
+  }) => InputcatalogItems_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (body != null) r'body': body,
+    if (country != null) r'country': country,
+    if (day != null) r'day': day,
+    if (id != null) r'id': id,
+    if (kind != null) r'kind': kind,
+    if (locale != null) r'locale': locale,
+    if (locked != null) r'locked': locked,
+    if (month != null) r'month': month,
+    if (parentSlug != null) r'parentSlug': parentSlug,
+    if (plusOnly != null) r'plusOnly': plusOnly,
+    if (position != null) r'position': position,
+    if (sensitive != null) r'sensitive': sensitive,
+    if (slug != null) r'slug': slug,
+    if (tags != null) r'tags': tags,
+    if (title != null) r'title': title,
+  });
+
+  InputcatalogItems_bool_exp._(this._$data);
+
+  factory InputcatalogItems_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputcatalogItems_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputcatalogItems_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputcatalogItems_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = l$body == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$body as Map<String, dynamic>));
+    }
+    if (data.containsKey('country')) {
+      final l$country = data['country'];
+      result$data['country'] = l$country == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$country as Map<String, dynamic>));
+    }
+    if (data.containsKey('day')) {
+      final l$day = data['day'];
+      result$data['day'] = l$day == null
+          ? null
+          : Inputsmallint_comparison_exp.fromJson((l$day as Map<String, dynamic>));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$id as Map<String, dynamic>));
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = l$kind == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$kind as Map<String, dynamic>));
+    }
+    if (data.containsKey('locale')) {
+      final l$locale = data['locale'];
+      result$data['locale'] = l$locale == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$locale as Map<String, dynamic>));
+    }
+    if (data.containsKey('locked')) {
+      final l$locked = data['locked'];
+      result$data['locked'] = l$locked == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$locked as Map<String, dynamic>));
+    }
+    if (data.containsKey('month')) {
+      final l$month = data['month'];
+      result$data['month'] = l$month == null
+          ? null
+          : Inputsmallint_comparison_exp.fromJson((l$month as Map<String, dynamic>));
+    }
+    if (data.containsKey('parentSlug')) {
+      final l$parentSlug = data['parentSlug'];
+      result$data['parentSlug'] = l$parentSlug == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$parentSlug as Map<String, dynamic>));
+    }
+    if (data.containsKey('plusOnly')) {
+      final l$plusOnly = data['plusOnly'];
+      result$data['plusOnly'] = l$plusOnly == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$plusOnly as Map<String, dynamic>));
+    }
+    if (data.containsKey('position')) {
+      final l$position = data['position'];
+      result$data['position'] = l$position == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$position as Map<String, dynamic>));
+    }
+    if (data.containsKey('sensitive')) {
+      final l$sensitive = data['sensitive'];
+      result$data['sensitive'] = l$sensitive == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$sensitive as Map<String, dynamic>));
+    }
+    if (data.containsKey('slug')) {
+      final l$slug = data['slug'];
+      result$data['slug'] = l$slug == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$slug as Map<String, dynamic>));
+    }
+    if (data.containsKey('tags')) {
+      final l$tags = data['tags'];
+      result$data['tags'] = l$tags == null
+          ? null
+          : InputString_array_comparison_exp.fromJson((l$tags as Map<String, dynamic>));
+    }
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = l$title == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$title as Map<String, dynamic>));
+    }
+    return InputcatalogItems_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputcatalogItems_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputcatalogItems_bool_exp>?);
+
+  InputcatalogItems_bool_exp? get $_not => (_$data['_not'] as InputcatalogItems_bool_exp?);
+
+  List<InputcatalogItems_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputcatalogItems_bool_exp>?);
+
+  InputString_comparison_exp? get body => (_$data['body'] as InputString_comparison_exp?);
+
+  InputString_comparison_exp? get country => (_$data['country'] as InputString_comparison_exp?);
+
+  Inputsmallint_comparison_exp? get day => (_$data['day'] as Inputsmallint_comparison_exp?);
+
+  Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
+
+  InputString_comparison_exp? get kind => (_$data['kind'] as InputString_comparison_exp?);
+
+  InputString_comparison_exp? get locale => (_$data['locale'] as InputString_comparison_exp?);
+
+  InputBoolean_comparison_exp? get locked => (_$data['locked'] as InputBoolean_comparison_exp?);
+
+  Inputsmallint_comparison_exp? get month => (_$data['month'] as Inputsmallint_comparison_exp?);
+
+  InputString_comparison_exp? get parentSlug =>
+      (_$data['parentSlug'] as InputString_comparison_exp?);
+
+  InputBoolean_comparison_exp? get plusOnly => (_$data['plusOnly'] as InputBoolean_comparison_exp?);
+
+  InputInt_comparison_exp? get position => (_$data['position'] as InputInt_comparison_exp?);
+
+  InputBoolean_comparison_exp? get sensitive =>
+      (_$data['sensitive'] as InputBoolean_comparison_exp?);
+
+  InputString_comparison_exp? get slug => (_$data['slug'] as InputString_comparison_exp?);
+
+  InputString_array_comparison_exp? get tags =>
+      (_$data['tags'] as InputString_array_comparison_exp?);
+
+  InputString_comparison_exp? get title => (_$data['title'] as InputString_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body?.toJson();
+    }
+    if (_$data.containsKey('country')) {
+      final l$country = country;
+      result$data['country'] = l$country?.toJson();
+    }
+    if (_$data.containsKey('day')) {
+      final l$day = day;
+      result$data['day'] = l$day?.toJson();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind?.toJson();
+    }
+    if (_$data.containsKey('locale')) {
+      final l$locale = locale;
+      result$data['locale'] = l$locale?.toJson();
+    }
+    if (_$data.containsKey('locked')) {
+      final l$locked = locked;
+      result$data['locked'] = l$locked?.toJson();
+    }
+    if (_$data.containsKey('month')) {
+      final l$month = month;
+      result$data['month'] = l$month?.toJson();
+    }
+    if (_$data.containsKey('parentSlug')) {
+      final l$parentSlug = parentSlug;
+      result$data['parentSlug'] = l$parentSlug?.toJson();
+    }
+    if (_$data.containsKey('plusOnly')) {
+      final l$plusOnly = plusOnly;
+      result$data['plusOnly'] = l$plusOnly?.toJson();
+    }
+    if (_$data.containsKey('position')) {
+      final l$position = position;
+      result$data['position'] = l$position?.toJson();
+    }
+    if (_$data.containsKey('sensitive')) {
+      final l$sensitive = sensitive;
+      result$data['sensitive'] = l$sensitive?.toJson();
+    }
+    if (_$data.containsKey('slug')) {
+      final l$slug = slug;
+      result$data['slug'] = l$slug?.toJson();
+    }
+    if (_$data.containsKey('tags')) {
+      final l$tags = tags;
+      result$data['tags'] = l$tags?.toJson();
+    }
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcatalogItems_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$country = country;
+    final lOther$country = other.country;
+    if (_$data.containsKey('country') != other._$data.containsKey('country')) {
+      return false;
+    }
+    if (l$country != lOther$country) {
+      return false;
+    }
+    final l$day = day;
+    final lOther$day = other.day;
+    if (_$data.containsKey('day') != other._$data.containsKey('day')) {
+      return false;
+    }
+    if (l$day != lOther$day) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$locale = locale;
+    final lOther$locale = other.locale;
+    if (_$data.containsKey('locale') != other._$data.containsKey('locale')) {
+      return false;
+    }
+    if (l$locale != lOther$locale) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (_$data.containsKey('locked') != other._$data.containsKey('locked')) {
+      return false;
+    }
+    if (l$locked != lOther$locked) {
+      return false;
+    }
+    final l$month = month;
+    final lOther$month = other.month;
+    if (_$data.containsKey('month') != other._$data.containsKey('month')) {
+      return false;
+    }
+    if (l$month != lOther$month) {
+      return false;
+    }
+    final l$parentSlug = parentSlug;
+    final lOther$parentSlug = other.parentSlug;
+    if (_$data.containsKey('parentSlug') != other._$data.containsKey('parentSlug')) {
+      return false;
+    }
+    if (l$parentSlug != lOther$parentSlug) {
+      return false;
+    }
+    final l$plusOnly = plusOnly;
+    final lOther$plusOnly = other.plusOnly;
+    if (_$data.containsKey('plusOnly') != other._$data.containsKey('plusOnly')) {
+      return false;
+    }
+    if (l$plusOnly != lOther$plusOnly) {
+      return false;
+    }
+    final l$position = position;
+    final lOther$position = other.position;
+    if (_$data.containsKey('position') != other._$data.containsKey('position')) {
+      return false;
+    }
+    if (l$position != lOther$position) {
+      return false;
+    }
+    final l$sensitive = sensitive;
+    final lOther$sensitive = other.sensitive;
+    if (_$data.containsKey('sensitive') != other._$data.containsKey('sensitive')) {
+      return false;
+    }
+    if (l$sensitive != lOther$sensitive) {
+      return false;
+    }
+    final l$slug = slug;
+    final lOther$slug = other.slug;
+    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
+      return false;
+    }
+    if (l$slug != lOther$slug) {
+      return false;
+    }
+    final l$tags = tags;
+    final lOther$tags = other.tags;
+    if (_$data.containsKey('tags') != other._$data.containsKey('tags')) {
+      return false;
+    }
+    if (l$tags != lOther$tags) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$body = body;
+    final l$country = country;
+    final l$day = day;
+    final l$id = id;
+    final l$kind = kind;
+    final l$locale = locale;
+    final l$locked = locked;
+    final l$month = month;
+    final l$parentSlug = parentSlug;
+    final l$plusOnly = plusOnly;
+    final l$position = position;
+    final l$sensitive = sensitive;
+    final l$slug = slug;
+    final l$tags = tags;
+    final l$title = title;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('country') ? l$country : const {},
+      _$data.containsKey('day') ? l$day : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('locale') ? l$locale : const {},
+      _$data.containsKey('locked') ? l$locked : const {},
+      _$data.containsKey('month') ? l$month : const {},
+      _$data.containsKey('parentSlug') ? l$parentSlug : const {},
+      _$data.containsKey('plusOnly') ? l$plusOnly : const {},
+      _$data.containsKey('position') ? l$position : const {},
+      _$data.containsKey('sensitive') ? l$sensitive : const {},
+      _$data.containsKey('slug') ? l$slug : const {},
+      _$data.containsKey('tags') ? l$tags : const {},
+      _$data.containsKey('title') ? l$title : const {},
+    ]);
+  }
+}
+
+class InputcatalogItems_order_by {
+  factory InputcatalogItems_order_by({
+    Enumorder_by? body,
+    Enumorder_by? country,
+    Enumorder_by? day,
+    Enumorder_by? id,
+    Enumorder_by? kind,
+    Enumorder_by? locale,
+    Enumorder_by? locked,
+    Enumorder_by? month,
+    Enumorder_by? parentSlug,
+    Enumorder_by? plusOnly,
+    Enumorder_by? position,
+    Enumorder_by? sensitive,
+    Enumorder_by? slug,
+    Enumorder_by? tags,
+    Enumorder_by? title,
+  }) => InputcatalogItems_order_by._({
+    if (body != null) r'body': body,
+    if (country != null) r'country': country,
+    if (day != null) r'day': day,
+    if (id != null) r'id': id,
+    if (kind != null) r'kind': kind,
+    if (locale != null) r'locale': locale,
+    if (locked != null) r'locked': locked,
+    if (month != null) r'month': month,
+    if (parentSlug != null) r'parentSlug': parentSlug,
+    if (plusOnly != null) r'plusOnly': plusOnly,
+    if (position != null) r'position': position,
+    if (sensitive != null) r'sensitive': sensitive,
+    if (slug != null) r'slug': slug,
+    if (tags != null) r'tags': tags,
+    if (title != null) r'title': title,
+  });
+
+  InputcatalogItems_order_by._(this._$data);
+
+  factory InputcatalogItems_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = l$body == null ? null : fromJsonEnumorder_by((l$body as String));
+    }
+    if (data.containsKey('country')) {
+      final l$country = data['country'];
+      result$data['country'] = l$country == null
+          ? null
+          : fromJsonEnumorder_by((l$country as String));
+    }
+    if (data.containsKey('day')) {
+      final l$day = data['day'];
+      result$data['day'] = l$day == null ? null : fromJsonEnumorder_by((l$day as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null ? null : fromJsonEnumorder_by((l$id as String));
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumorder_by((l$kind as String));
+    }
+    if (data.containsKey('locale')) {
+      final l$locale = data['locale'];
+      result$data['locale'] = l$locale == null ? null : fromJsonEnumorder_by((l$locale as String));
+    }
+    if (data.containsKey('locked')) {
+      final l$locked = data['locked'];
+      result$data['locked'] = l$locked == null ? null : fromJsonEnumorder_by((l$locked as String));
+    }
+    if (data.containsKey('month')) {
+      final l$month = data['month'];
+      result$data['month'] = l$month == null ? null : fromJsonEnumorder_by((l$month as String));
+    }
+    if (data.containsKey('parentSlug')) {
+      final l$parentSlug = data['parentSlug'];
+      result$data['parentSlug'] = l$parentSlug == null
+          ? null
+          : fromJsonEnumorder_by((l$parentSlug as String));
+    }
+    if (data.containsKey('plusOnly')) {
+      final l$plusOnly = data['plusOnly'];
+      result$data['plusOnly'] = l$plusOnly == null
+          ? null
+          : fromJsonEnumorder_by((l$plusOnly as String));
+    }
+    if (data.containsKey('position')) {
+      final l$position = data['position'];
+      result$data['position'] = l$position == null
+          ? null
+          : fromJsonEnumorder_by((l$position as String));
+    }
+    if (data.containsKey('sensitive')) {
+      final l$sensitive = data['sensitive'];
+      result$data['sensitive'] = l$sensitive == null
+          ? null
+          : fromJsonEnumorder_by((l$sensitive as String));
+    }
+    if (data.containsKey('slug')) {
+      final l$slug = data['slug'];
+      result$data['slug'] = l$slug == null ? null : fromJsonEnumorder_by((l$slug as String));
+    }
+    if (data.containsKey('tags')) {
+      final l$tags = data['tags'];
+      result$data['tags'] = l$tags == null ? null : fromJsonEnumorder_by((l$tags as String));
+    }
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = l$title == null ? null : fromJsonEnumorder_by((l$title as String));
+    }
+    return InputcatalogItems_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get body => (_$data['body'] as Enumorder_by?);
+
+  Enumorder_by? get country => (_$data['country'] as Enumorder_by?);
+
+  Enumorder_by? get day => (_$data['day'] as Enumorder_by?);
+
+  Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
+
+  Enumorder_by? get kind => (_$data['kind'] as Enumorder_by?);
+
+  Enumorder_by? get locale => (_$data['locale'] as Enumorder_by?);
+
+  Enumorder_by? get locked => (_$data['locked'] as Enumorder_by?);
+
+  Enumorder_by? get month => (_$data['month'] as Enumorder_by?);
+
+  Enumorder_by? get parentSlug => (_$data['parentSlug'] as Enumorder_by?);
+
+  Enumorder_by? get plusOnly => (_$data['plusOnly'] as Enumorder_by?);
+
+  Enumorder_by? get position => (_$data['position'] as Enumorder_by?);
+
+  Enumorder_by? get sensitive => (_$data['sensitive'] as Enumorder_by?);
+
+  Enumorder_by? get slug => (_$data['slug'] as Enumorder_by?);
+
+  Enumorder_by? get tags => (_$data['tags'] as Enumorder_by?);
+
+  Enumorder_by? get title => (_$data['title'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body == null ? null : toJsonEnumorder_by(l$body);
+    }
+    if (_$data.containsKey('country')) {
+      final l$country = country;
+      result$data['country'] = l$country == null ? null : toJsonEnumorder_by(l$country);
+    }
+    if (_$data.containsKey('day')) {
+      final l$day = day;
+      result$data['day'] = l$day == null ? null : toJsonEnumorder_by(l$day);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJsonEnumorder_by(l$id);
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumorder_by(l$kind);
+    }
+    if (_$data.containsKey('locale')) {
+      final l$locale = locale;
+      result$data['locale'] = l$locale == null ? null : toJsonEnumorder_by(l$locale);
+    }
+    if (_$data.containsKey('locked')) {
+      final l$locked = locked;
+      result$data['locked'] = l$locked == null ? null : toJsonEnumorder_by(l$locked);
+    }
+    if (_$data.containsKey('month')) {
+      final l$month = month;
+      result$data['month'] = l$month == null ? null : toJsonEnumorder_by(l$month);
+    }
+    if (_$data.containsKey('parentSlug')) {
+      final l$parentSlug = parentSlug;
+      result$data['parentSlug'] = l$parentSlug == null ? null : toJsonEnumorder_by(l$parentSlug);
+    }
+    if (_$data.containsKey('plusOnly')) {
+      final l$plusOnly = plusOnly;
+      result$data['plusOnly'] = l$plusOnly == null ? null : toJsonEnumorder_by(l$plusOnly);
+    }
+    if (_$data.containsKey('position')) {
+      final l$position = position;
+      result$data['position'] = l$position == null ? null : toJsonEnumorder_by(l$position);
+    }
+    if (_$data.containsKey('sensitive')) {
+      final l$sensitive = sensitive;
+      result$data['sensitive'] = l$sensitive == null ? null : toJsonEnumorder_by(l$sensitive);
+    }
+    if (_$data.containsKey('slug')) {
+      final l$slug = slug;
+      result$data['slug'] = l$slug == null ? null : toJsonEnumorder_by(l$slug);
+    }
+    if (_$data.containsKey('tags')) {
+      final l$tags = tags;
+      result$data['tags'] = l$tags == null ? null : toJsonEnumorder_by(l$tags);
+    }
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title == null ? null : toJsonEnumorder_by(l$title);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcatalogItems_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$country = country;
+    final lOther$country = other.country;
+    if (_$data.containsKey('country') != other._$data.containsKey('country')) {
+      return false;
+    }
+    if (l$country != lOther$country) {
+      return false;
+    }
+    final l$day = day;
+    final lOther$day = other.day;
+    if (_$data.containsKey('day') != other._$data.containsKey('day')) {
+      return false;
+    }
+    if (l$day != lOther$day) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$locale = locale;
+    final lOther$locale = other.locale;
+    if (_$data.containsKey('locale') != other._$data.containsKey('locale')) {
+      return false;
+    }
+    if (l$locale != lOther$locale) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (_$data.containsKey('locked') != other._$data.containsKey('locked')) {
+      return false;
+    }
+    if (l$locked != lOther$locked) {
+      return false;
+    }
+    final l$month = month;
+    final lOther$month = other.month;
+    if (_$data.containsKey('month') != other._$data.containsKey('month')) {
+      return false;
+    }
+    if (l$month != lOther$month) {
+      return false;
+    }
+    final l$parentSlug = parentSlug;
+    final lOther$parentSlug = other.parentSlug;
+    if (_$data.containsKey('parentSlug') != other._$data.containsKey('parentSlug')) {
+      return false;
+    }
+    if (l$parentSlug != lOther$parentSlug) {
+      return false;
+    }
+    final l$plusOnly = plusOnly;
+    final lOther$plusOnly = other.plusOnly;
+    if (_$data.containsKey('plusOnly') != other._$data.containsKey('plusOnly')) {
+      return false;
+    }
+    if (l$plusOnly != lOther$plusOnly) {
+      return false;
+    }
+    final l$position = position;
+    final lOther$position = other.position;
+    if (_$data.containsKey('position') != other._$data.containsKey('position')) {
+      return false;
+    }
+    if (l$position != lOther$position) {
+      return false;
+    }
+    final l$sensitive = sensitive;
+    final lOther$sensitive = other.sensitive;
+    if (_$data.containsKey('sensitive') != other._$data.containsKey('sensitive')) {
+      return false;
+    }
+    if (l$sensitive != lOther$sensitive) {
+      return false;
+    }
+    final l$slug = slug;
+    final lOther$slug = other.slug;
+    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
+      return false;
+    }
+    if (l$slug != lOther$slug) {
+      return false;
+    }
+    final l$tags = tags;
+    final lOther$tags = other.tags;
+    if (_$data.containsKey('tags') != other._$data.containsKey('tags')) {
+      return false;
+    }
+    if (l$tags != lOther$tags) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$body = body;
+    final l$country = country;
+    final l$day = day;
+    final l$id = id;
+    final l$kind = kind;
+    final l$locale = locale;
+    final l$locked = locked;
+    final l$month = month;
+    final l$parentSlug = parentSlug;
+    final l$plusOnly = plusOnly;
+    final l$position = position;
+    final l$sensitive = sensitive;
+    final l$slug = slug;
+    final l$tags = tags;
+    final l$title = title;
+    return Object.hashAll([
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('country') ? l$country : const {},
+      _$data.containsKey('day') ? l$day : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('locale') ? l$locale : const {},
+      _$data.containsKey('locked') ? l$locked : const {},
+      _$data.containsKey('month') ? l$month : const {},
+      _$data.containsKey('parentSlug') ? l$parentSlug : const {},
+      _$data.containsKey('plusOnly') ? l$plusOnly : const {},
+      _$data.containsKey('position') ? l$position : const {},
+      _$data.containsKey('sensitive') ? l$sensitive : const {},
+      _$data.containsKey('slug') ? l$slug : const {},
+      _$data.containsKey('tags') ? l$tags : const {},
+      _$data.containsKey('title') ? l$title : const {},
+    ]);
+  }
+}
+
+class InputcatalogItems_stream_cursor_input {
+  factory InputcatalogItems_stream_cursor_input({
+    required InputcatalogItems_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputcatalogItems_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputcatalogItems_stream_cursor_input._(this._$data);
+
+  factory InputcatalogItems_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputcatalogItems_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputcatalogItems_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputcatalogItems_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputcatalogItems_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcatalogItems_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputcatalogItems_stream_cursor_value_input {
+  factory InputcatalogItems_stream_cursor_value_input({
+    String? body,
+    String? country,
+    int? day,
+    String? id,
+    String? kind,
+    String? locale,
+    bool? locked,
+    int? month,
+    String? parentSlug,
+    bool? plusOnly,
+    int? position,
+    bool? sensitive,
+    String? slug,
+    List<String>? tags,
+    String? title,
+  }) => InputcatalogItems_stream_cursor_value_input._({
+    if (body != null) r'body': body,
+    if (country != null) r'country': country,
+    if (day != null) r'day': day,
+    if (id != null) r'id': id,
+    if (kind != null) r'kind': kind,
+    if (locale != null) r'locale': locale,
+    if (locked != null) r'locked': locked,
+    if (month != null) r'month': month,
+    if (parentSlug != null) r'parentSlug': parentSlug,
+    if (plusOnly != null) r'plusOnly': plusOnly,
+    if (position != null) r'position': position,
+    if (sensitive != null) r'sensitive': sensitive,
+    if (slug != null) r'slug': slug,
+    if (tags != null) r'tags': tags,
+    if (title != null) r'title': title,
+  });
+
+  InputcatalogItems_stream_cursor_value_input._(this._$data);
+
+  factory InputcatalogItems_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = (l$body as String?);
+    }
+    if (data.containsKey('country')) {
+      final l$country = data['country'];
+      result$data['country'] = (l$country as String?);
+    }
+    if (data.containsKey('day')) {
+      final l$day = data['day'];
+      result$data['day'] = (l$day as int?);
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = (l$kind as String?);
+    }
+    if (data.containsKey('locale')) {
+      final l$locale = data['locale'];
+      result$data['locale'] = (l$locale as String?);
+    }
+    if (data.containsKey('locked')) {
+      final l$locked = data['locked'];
+      result$data['locked'] = (l$locked as bool?);
+    }
+    if (data.containsKey('month')) {
+      final l$month = data['month'];
+      result$data['month'] = (l$month as int?);
+    }
+    if (data.containsKey('parentSlug')) {
+      final l$parentSlug = data['parentSlug'];
+      result$data['parentSlug'] = (l$parentSlug as String?);
+    }
+    if (data.containsKey('plusOnly')) {
+      final l$plusOnly = data['plusOnly'];
+      result$data['plusOnly'] = (l$plusOnly as bool?);
+    }
+    if (data.containsKey('position')) {
+      final l$position = data['position'];
+      result$data['position'] = (l$position as int?);
+    }
+    if (data.containsKey('sensitive')) {
+      final l$sensitive = data['sensitive'];
+      result$data['sensitive'] = (l$sensitive as bool?);
+    }
+    if (data.containsKey('slug')) {
+      final l$slug = data['slug'];
+      result$data['slug'] = (l$slug as String?);
+    }
+    if (data.containsKey('tags')) {
+      final l$tags = data['tags'];
+      result$data['tags'] = (l$tags as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = (l$title as String?);
+    }
+    return InputcatalogItems_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get body => (_$data['body'] as String?);
+
+  String? get country => (_$data['country'] as String?);
+
+  int? get day => (_$data['day'] as int?);
+
+  String? get id => (_$data['id'] as String?);
+
+  String? get kind => (_$data['kind'] as String?);
+
+  String? get locale => (_$data['locale'] as String?);
+
+  bool? get locked => (_$data['locked'] as bool?);
+
+  int? get month => (_$data['month'] as int?);
+
+  String? get parentSlug => (_$data['parentSlug'] as String?);
+
+  bool? get plusOnly => (_$data['plusOnly'] as bool?);
+
+  int? get position => (_$data['position'] as int?);
+
+  bool? get sensitive => (_$data['sensitive'] as bool?);
+
+  String? get slug => (_$data['slug'] as String?);
+
+  List<String>? get tags => (_$data['tags'] as List<String>?);
+
+  String? get title => (_$data['title'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body;
+    }
+    if (_$data.containsKey('country')) {
+      final l$country = country;
+      result$data['country'] = l$country;
+    }
+    if (_$data.containsKey('day')) {
+      final l$day = day;
+      result$data['day'] = l$day;
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind;
+    }
+    if (_$data.containsKey('locale')) {
+      final l$locale = locale;
+      result$data['locale'] = l$locale;
+    }
+    if (_$data.containsKey('locked')) {
+      final l$locked = locked;
+      result$data['locked'] = l$locked;
+    }
+    if (_$data.containsKey('month')) {
+      final l$month = month;
+      result$data['month'] = l$month;
+    }
+    if (_$data.containsKey('parentSlug')) {
+      final l$parentSlug = parentSlug;
+      result$data['parentSlug'] = l$parentSlug;
+    }
+    if (_$data.containsKey('plusOnly')) {
+      final l$plusOnly = plusOnly;
+      result$data['plusOnly'] = l$plusOnly;
+    }
+    if (_$data.containsKey('position')) {
+      final l$position = position;
+      result$data['position'] = l$position;
+    }
+    if (_$data.containsKey('sensitive')) {
+      final l$sensitive = sensitive;
+      result$data['sensitive'] = l$sensitive;
+    }
+    if (_$data.containsKey('slug')) {
+      final l$slug = slug;
+      result$data['slug'] = l$slug;
+    }
+    if (_$data.containsKey('tags')) {
+      final l$tags = tags;
+      result$data['tags'] = l$tags?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcatalogItems_stream_cursor_value_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$country = country;
+    final lOther$country = other.country;
+    if (_$data.containsKey('country') != other._$data.containsKey('country')) {
+      return false;
+    }
+    if (l$country != lOther$country) {
+      return false;
+    }
+    final l$day = day;
+    final lOther$day = other.day;
+    if (_$data.containsKey('day') != other._$data.containsKey('day')) {
+      return false;
+    }
+    if (l$day != lOther$day) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$locale = locale;
+    final lOther$locale = other.locale;
+    if (_$data.containsKey('locale') != other._$data.containsKey('locale')) {
+      return false;
+    }
+    if (l$locale != lOther$locale) {
+      return false;
+    }
+    final l$locked = locked;
+    final lOther$locked = other.locked;
+    if (_$data.containsKey('locked') != other._$data.containsKey('locked')) {
+      return false;
+    }
+    if (l$locked != lOther$locked) {
+      return false;
+    }
+    final l$month = month;
+    final lOther$month = other.month;
+    if (_$data.containsKey('month') != other._$data.containsKey('month')) {
+      return false;
+    }
+    if (l$month != lOther$month) {
+      return false;
+    }
+    final l$parentSlug = parentSlug;
+    final lOther$parentSlug = other.parentSlug;
+    if (_$data.containsKey('parentSlug') != other._$data.containsKey('parentSlug')) {
+      return false;
+    }
+    if (l$parentSlug != lOther$parentSlug) {
+      return false;
+    }
+    final l$plusOnly = plusOnly;
+    final lOther$plusOnly = other.plusOnly;
+    if (_$data.containsKey('plusOnly') != other._$data.containsKey('plusOnly')) {
+      return false;
+    }
+    if (l$plusOnly != lOther$plusOnly) {
+      return false;
+    }
+    final l$position = position;
+    final lOther$position = other.position;
+    if (_$data.containsKey('position') != other._$data.containsKey('position')) {
+      return false;
+    }
+    if (l$position != lOther$position) {
+      return false;
+    }
+    final l$sensitive = sensitive;
+    final lOther$sensitive = other.sensitive;
+    if (_$data.containsKey('sensitive') != other._$data.containsKey('sensitive')) {
+      return false;
+    }
+    if (l$sensitive != lOther$sensitive) {
+      return false;
+    }
+    final l$slug = slug;
+    final lOther$slug = other.slug;
+    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
+      return false;
+    }
+    if (l$slug != lOther$slug) {
+      return false;
+    }
+    final l$tags = tags;
+    final lOther$tags = other.tags;
+    if (_$data.containsKey('tags') != other._$data.containsKey('tags')) {
+      return false;
+    }
+    if (l$tags != null && lOther$tags != null) {
+      if (l$tags.length != lOther$tags.length) {
+        return false;
+      }
+      for (int i = 0; i < l$tags.length; i++) {
+        final l$tags$entry = l$tags[i];
+        final lOther$tags$entry = lOther$tags[i];
+        if (l$tags$entry != lOther$tags$entry) {
+          return false;
+        }
+      }
+    } else if (l$tags != lOther$tags) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$body = body;
+    final l$country = country;
+    final l$day = day;
+    final l$id = id;
+    final l$kind = kind;
+    final l$locale = locale;
+    final l$locked = locked;
+    final l$month = month;
+    final l$parentSlug = parentSlug;
+    final l$plusOnly = plusOnly;
+    final l$position = position;
+    final l$sensitive = sensitive;
+    final l$slug = slug;
+    final l$tags = tags;
+    final l$title = title;
+    return Object.hashAll([
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('country') ? l$country : const {},
+      _$data.containsKey('day') ? l$day : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('locale') ? l$locale : const {},
+      _$data.containsKey('locked') ? l$locked : const {},
+      _$data.containsKey('month') ? l$month : const {},
+      _$data.containsKey('parentSlug') ? l$parentSlug : const {},
+      _$data.containsKey('plusOnly') ? l$plusOnly : const {},
+      _$data.containsKey('position') ? l$position : const {},
+      _$data.containsKey('sensitive') ? l$sensitive : const {},
+      _$data.containsKey('slug') ? l$slug : const {},
+      _$data.containsKey('tags')
+          ? l$tags == null
+                ? null
+                : Object.hashAll(l$tags.map((v) => v))
+          : const {},
+      _$data.containsKey('title') ? l$title : const {},
+    ]);
   }
 }
 
@@ -22380,6 +26455,114 @@ class Inputcheckins_updates {
   }
 }
 
+class InputconfirmAgreement_args {
+  factory InputconfirmAgreement_args({String? agreementId}) =>
+      InputconfirmAgreement_args._({if (agreementId != null) r'agreementId': agreementId});
+
+  InputconfirmAgreement_args._(this._$data);
+
+  factory InputconfirmAgreement_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('agreementId')) {
+      final l$agreementId = data['agreementId'];
+      result$data['agreementId'] = (l$agreementId as String?);
+    }
+    return InputconfirmAgreement_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get agreementId => (_$data['agreementId'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('agreementId')) {
+      final l$agreementId = agreementId;
+      result$data['agreementId'] = l$agreementId;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputconfirmAgreement_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$agreementId = agreementId;
+    final lOther$agreementId = other.agreementId;
+    if (_$data.containsKey('agreementId') != other._$data.containsKey('agreementId')) {
+      return false;
+    }
+    if (l$agreementId != lOther$agreementId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$agreementId = agreementId;
+    return Object.hashAll([_$data.containsKey('agreementId') ? l$agreementId : const {}]);
+  }
+}
+
+class InputconfirmLogisticItem_args {
+  factory InputconfirmLogisticItem_args({String? itemId}) =>
+      InputconfirmLogisticItem_args._({if (itemId != null) r'itemId': itemId});
+
+  InputconfirmLogisticItem_args._(this._$data);
+
+  factory InputconfirmLogisticItem_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('itemId')) {
+      final l$itemId = data['itemId'];
+      result$data['itemId'] = (l$itemId as String?);
+    }
+    return InputconfirmLogisticItem_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get itemId => (_$data['itemId'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('itemId')) {
+      final l$itemId = itemId;
+      result$data['itemId'] = l$itemId;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputconfirmLogisticItem_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$itemId = itemId;
+    final lOther$itemId = other.itemId;
+    if (_$data.containsKey('itemId') != other._$data.containsKey('itemId')) {
+      return false;
+    }
+    if (l$itemId != lOther$itemId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$itemId = itemId;
+    return Object.hashAll([_$data.containsKey('itemId') ? l$itemId : const {}]);
+  }
+}
+
 class Inputconsents_bool_exp {
   factory Inputconsents_bool_exp({
     List<Inputconsents_bool_exp>? $_and,
@@ -23317,6 +27500,84 @@ class Inputconsents_stream_cursor_value_input {
   }
 }
 
+class InputcontentCatalog_args {
+  factory InputcontentCatalog_args({String? kind, String? locale}) => InputcontentCatalog_args._({
+    if (kind != null) r'kind': kind,
+    if (locale != null) r'locale': locale,
+  });
+
+  InputcontentCatalog_args._(this._$data);
+
+  factory InputcontentCatalog_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = (l$kind as String?);
+    }
+    if (data.containsKey('locale')) {
+      final l$locale = data['locale'];
+      result$data['locale'] = (l$locale as String?);
+    }
+    return InputcontentCatalog_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get kind => (_$data['kind'] as String?);
+
+  String? get locale => (_$data['locale'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind;
+    }
+    if (_$data.containsKey('locale')) {
+      final l$locale = locale;
+      result$data['locale'] = l$locale;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcontentCatalog_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$locale = locale;
+    final lOther$locale = other.locale;
+    if (_$data.containsKey('locale') != other._$data.containsKey('locale')) {
+      return false;
+    }
+    if (l$locale != lOther$locale) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$kind = kind;
+    final l$locale = locale;
+    return Object.hashAll([
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('locale') ? l$locale : const {},
+    ]);
+  }
+}
+
 class InputcontentItems_bool_exp {
   factory InputcontentItems_bool_exp({
     List<InputcontentItems_bool_exp>? $_and,
@@ -23327,6 +27588,7 @@ class InputcontentItems_bool_exp {
     Inputsmallint_comparison_exp? day,
     Inputuuid_comparison_exp? id,
     InputContentKind_enum_comparison_exp? kind,
+    Inputsmallint_comparison_exp? level,
     InputString_comparison_exp? locale,
     Inputsmallint_comparison_exp? month,
     InputString_comparison_exp? parentSlug,
@@ -23346,6 +27608,7 @@ class InputcontentItems_bool_exp {
     if (day != null) r'day': day,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
+    if (level != null) r'level': level,
     if (locale != null) r'locale': locale,
     if (month != null) r'month': month,
     if (parentSlug != null) r'parentSlug': parentSlug,
@@ -23409,6 +27672,12 @@ class InputcontentItems_bool_exp {
       result$data['kind'] = l$kind == null
           ? null
           : InputContentKind_enum_comparison_exp.fromJson((l$kind as Map<String, dynamic>));
+    }
+    if (data.containsKey('level')) {
+      final l$level = data['level'];
+      result$data['level'] = l$level == null
+          ? null
+          : Inputsmallint_comparison_exp.fromJson((l$level as Map<String, dynamic>));
     }
     if (data.containsKey('locale')) {
       final l$locale = data['locale'];
@@ -23494,6 +27763,8 @@ class InputcontentItems_bool_exp {
   InputContentKind_enum_comparison_exp? get kind =>
       (_$data['kind'] as InputContentKind_enum_comparison_exp?);
 
+  Inputsmallint_comparison_exp? get level => (_$data['level'] as Inputsmallint_comparison_exp?);
+
   InputString_comparison_exp? get locale => (_$data['locale'] as InputString_comparison_exp?);
 
   Inputsmallint_comparison_exp? get month => (_$data['month'] as Inputsmallint_comparison_exp?);
@@ -23551,6 +27822,10 @@ class InputcontentItems_bool_exp {
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
       result$data['kind'] = l$kind?.toJson();
+    }
+    if (_$data.containsKey('level')) {
+      final l$level = level;
+      result$data['level'] = l$level?.toJson();
     }
     if (_$data.containsKey('locale')) {
       final l$locale = locale;
@@ -23689,6 +27964,14 @@ class InputcontentItems_bool_exp {
     if (l$kind != lOther$kind) {
       return false;
     }
+    final l$level = level;
+    final lOther$level = other.level;
+    if (_$data.containsKey('level') != other._$data.containsKey('level')) {
+      return false;
+    }
+    if (l$level != lOther$level) {
+      return false;
+    }
     final l$locale = locale;
     final lOther$locale = other.locale;
     if (_$data.containsKey('locale') != other._$data.containsKey('locale')) {
@@ -23782,6 +28065,7 @@ class InputcontentItems_bool_exp {
     final l$day = day;
     final l$id = id;
     final l$kind = kind;
+    final l$level = level;
     final l$locale = locale;
     final l$month = month;
     final l$parentSlug = parentSlug;
@@ -23809,6 +28093,7 @@ class InputcontentItems_bool_exp {
       _$data.containsKey('day') ? l$day : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('level') ? l$level : const {},
       _$data.containsKey('locale') ? l$locale : const {},
       _$data.containsKey('month') ? l$month : const {},
       _$data.containsKey('parentSlug') ? l$parentSlug : const {},
@@ -23830,6 +28115,7 @@ class InputcontentItems_order_by {
     Enumorder_by? day,
     Enumorder_by? id,
     Enumorder_by? kind,
+    Enumorder_by? level,
     Enumorder_by? locale,
     Enumorder_by? month,
     Enumorder_by? parentSlug,
@@ -23846,6 +28132,7 @@ class InputcontentItems_order_by {
     if (day != null) r'day': day,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
+    if (level != null) r'level': level,
     if (locale != null) r'locale': locale,
     if (month != null) r'month': month,
     if (parentSlug != null) r'parentSlug': parentSlug,
@@ -23883,6 +28170,10 @@ class InputcontentItems_order_by {
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null ? null : fromJsonEnumorder_by((l$kind as String));
+    }
+    if (data.containsKey('level')) {
+      final l$level = data['level'];
+      result$data['level'] = l$level == null ? null : fromJsonEnumorder_by((l$level as String));
     }
     if (data.containsKey('locale')) {
       final l$locale = data['locale'];
@@ -23949,6 +28240,8 @@ class InputcontentItems_order_by {
 
   Enumorder_by? get kind => (_$data['kind'] as Enumorder_by?);
 
+  Enumorder_by? get level => (_$data['level'] as Enumorder_by?);
+
   Enumorder_by? get locale => (_$data['locale'] as Enumorder_by?);
 
   Enumorder_by? get month => (_$data['month'] as Enumorder_by?);
@@ -23990,6 +28283,10 @@ class InputcontentItems_order_by {
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
       result$data['kind'] = l$kind == null ? null : toJsonEnumorder_by(l$kind);
+    }
+    if (_$data.containsKey('level')) {
+      final l$level = level;
+      result$data['level'] = l$level == null ? null : toJsonEnumorder_by(l$level);
     }
     if (_$data.containsKey('locale')) {
       final l$locale = locale;
@@ -24082,6 +28379,14 @@ class InputcontentItems_order_by {
     if (l$kind != lOther$kind) {
       return false;
     }
+    final l$level = level;
+    final lOther$level = other.level;
+    if (_$data.containsKey('level') != other._$data.containsKey('level')) {
+      return false;
+    }
+    if (l$level != lOther$level) {
+      return false;
+    }
     final l$locale = locale;
     final lOther$locale = other.locale;
     if (_$data.containsKey('locale') != other._$data.containsKey('locale')) {
@@ -24172,6 +28477,7 @@ class InputcontentItems_order_by {
     final l$day = day;
     final l$id = id;
     final l$kind = kind;
+    final l$level = level;
     final l$locale = locale;
     final l$month = month;
     final l$parentSlug = parentSlug;
@@ -24188,6 +28494,7 @@ class InputcontentItems_order_by {
       _$data.containsKey('day') ? l$day : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('level') ? l$level : const {},
       _$data.containsKey('locale') ? l$locale : const {},
       _$data.containsKey('month') ? l$month : const {},
       _$data.containsKey('parentSlug') ? l$parentSlug : const {},
@@ -24288,6 +28595,7 @@ class InputcontentItems_stream_cursor_value_input {
     int? day,
     String? id,
     EnumContentKind_enum? kind,
+    int? level,
     String? locale,
     int? month,
     String? parentSlug,
@@ -24304,6 +28612,7 @@ class InputcontentItems_stream_cursor_value_input {
     if (day != null) r'day': day,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
+    if (level != null) r'level': level,
     if (locale != null) r'locale': locale,
     if (month != null) r'month': month,
     if (parentSlug != null) r'parentSlug': parentSlug,
@@ -24341,6 +28650,10 @@ class InputcontentItems_stream_cursor_value_input {
       result$data['kind'] = l$kind == null
           ? null
           : fromJsonEnumContentKind_enum((l$kind as String));
+    }
+    if (data.containsKey('level')) {
+      final l$level = data['level'];
+      result$data['level'] = (l$level as int?);
     }
     if (data.containsKey('locale')) {
       final l$locale = data['locale'];
@@ -24397,6 +28710,8 @@ class InputcontentItems_stream_cursor_value_input {
 
   EnumContentKind_enum? get kind => (_$data['kind'] as EnumContentKind_enum?);
 
+  int? get level => (_$data['level'] as int?);
+
   String? get locale => (_$data['locale'] as String?);
 
   int? get month => (_$data['month'] as int?);
@@ -24438,6 +28753,10 @@ class InputcontentItems_stream_cursor_value_input {
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
       result$data['kind'] = l$kind == null ? null : toJsonEnumContentKind_enum(l$kind);
+    }
+    if (_$data.containsKey('level')) {
+      final l$level = level;
+      result$data['level'] = l$level;
     }
     if (_$data.containsKey('locale')) {
       final l$locale = locale;
@@ -24528,6 +28847,14 @@ class InputcontentItems_stream_cursor_value_input {
       return false;
     }
     if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$level = level;
+    final lOther$level = other.level;
+    if (_$data.containsKey('level') != other._$data.containsKey('level')) {
+      return false;
+    }
+    if (l$level != lOther$level) {
       return false;
     }
     final l$locale = locale;
@@ -24631,6 +28958,7 @@ class InputcontentItems_stream_cursor_value_input {
     final l$day = day;
     final l$id = id;
     final l$kind = kind;
+    final l$level = level;
     final l$locale = locale;
     final l$month = month;
     final l$parentSlug = parentSlug;
@@ -24647,6 +28975,7 @@ class InputcontentItems_stream_cursor_value_input {
       _$data.containsKey('day') ? l$day : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('level') ? l$level : const {},
       _$data.containsKey('locale') ? l$locale : const {},
       _$data.containsKey('month') ? l$month : const {},
       _$data.containsKey('parentSlug') ? l$parentSlug : const {},
@@ -28716,6 +33045,8 @@ class Inputcouples_bool_exp {
     Inputuuid_comparison_exp? id,
     InputcoupleMembers_bool_exp? members,
     InputcouplePhotos_bool_exp? photo,
+    Inputdate_comparison_exp? startDate,
+    Inputuuid_comparison_exp? startDateSetBy,
     InputBoolean_comparison_exp? touchTopicsEnabled,
   }) => Inputcouples_bool_exp._({
     if ($_and != null) r'_and': $_and,
@@ -28726,6 +33057,8 @@ class Inputcouples_bool_exp {
     if (id != null) r'id': id,
     if (members != null) r'members': members,
     if (photo != null) r'photo': photo,
+    if (startDate != null) r'startDate': startDate,
+    if (startDateSetBy != null) r'startDateSetBy': startDateSetBy,
     if (touchTopicsEnabled != null) r'touchTopicsEnabled': touchTopicsEnabled,
   });
 
@@ -28781,6 +33114,18 @@ class Inputcouples_bool_exp {
           ? null
           : InputcouplePhotos_bool_exp.fromJson((l$photo as Map<String, dynamic>));
     }
+    if (data.containsKey('startDate')) {
+      final l$startDate = data['startDate'];
+      result$data['startDate'] = l$startDate == null
+          ? null
+          : Inputdate_comparison_exp.fromJson((l$startDate as Map<String, dynamic>));
+    }
+    if (data.containsKey('startDateSetBy')) {
+      final l$startDateSetBy = data['startDateSetBy'];
+      result$data['startDateSetBy'] = l$startDateSetBy == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$startDateSetBy as Map<String, dynamic>));
+    }
     if (data.containsKey('touchTopicsEnabled')) {
       final l$touchTopicsEnabled = data['touchTopicsEnabled'];
       result$data['touchTopicsEnabled'] = l$touchTopicsEnabled == null
@@ -28809,6 +33154,11 @@ class Inputcouples_bool_exp {
   InputcoupleMembers_bool_exp? get members => (_$data['members'] as InputcoupleMembers_bool_exp?);
 
   InputcouplePhotos_bool_exp? get photo => (_$data['photo'] as InputcouplePhotos_bool_exp?);
+
+  Inputdate_comparison_exp? get startDate => (_$data['startDate'] as Inputdate_comparison_exp?);
+
+  Inputuuid_comparison_exp? get startDateSetBy =>
+      (_$data['startDateSetBy'] as Inputuuid_comparison_exp?);
 
   InputBoolean_comparison_exp? get touchTopicsEnabled =>
       (_$data['touchTopicsEnabled'] as InputBoolean_comparison_exp?);
@@ -28846,6 +33196,14 @@ class Inputcouples_bool_exp {
     if (_$data.containsKey('photo')) {
       final l$photo = photo;
       result$data['photo'] = l$photo?.toJson();
+    }
+    if (_$data.containsKey('startDate')) {
+      final l$startDate = startDate;
+      result$data['startDate'] = l$startDate?.toJson();
+    }
+    if (_$data.containsKey('startDateSetBy')) {
+      final l$startDateSetBy = startDateSetBy;
+      result$data['startDateSetBy'] = l$startDateSetBy?.toJson();
     }
     if (_$data.containsKey('touchTopicsEnabled')) {
       final l$touchTopicsEnabled = touchTopicsEnabled;
@@ -28948,6 +33306,22 @@ class Inputcouples_bool_exp {
     if (l$photo != lOther$photo) {
       return false;
     }
+    final l$startDate = startDate;
+    final lOther$startDate = other.startDate;
+    if (_$data.containsKey('startDate') != other._$data.containsKey('startDate')) {
+      return false;
+    }
+    if (l$startDate != lOther$startDate) {
+      return false;
+    }
+    final l$startDateSetBy = startDateSetBy;
+    final lOther$startDateSetBy = other.startDateSetBy;
+    if (_$data.containsKey('startDateSetBy') != other._$data.containsKey('startDateSetBy')) {
+      return false;
+    }
+    if (l$startDateSetBy != lOther$startDateSetBy) {
+      return false;
+    }
     final l$touchTopicsEnabled = touchTopicsEnabled;
     final lOther$touchTopicsEnabled = other.touchTopicsEnabled;
     if (_$data.containsKey('touchTopicsEnabled') !=
@@ -28970,6 +33344,8 @@ class Inputcouples_bool_exp {
     final l$id = id;
     final l$members = members;
     final l$photo = photo;
+    final l$startDate = startDate;
+    final l$startDateSetBy = startDateSetBy;
     final l$touchTopicsEnabled = touchTopicsEnabled;
     return Object.hashAll([
       _$data.containsKey('_and')
@@ -28988,6 +33364,8 @@ class Inputcouples_bool_exp {
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('members') ? l$members : const {},
       _$data.containsKey('photo') ? l$photo : const {},
+      _$data.containsKey('startDate') ? l$startDate : const {},
+      _$data.containsKey('startDateSetBy') ? l$startDateSetBy : const {},
       _$data.containsKey('touchTopicsEnabled') ? l$touchTopicsEnabled : const {},
     ]);
   }
@@ -29000,6 +33378,8 @@ class Inputcouples_order_by {
     Enumorder_by? id,
     InputcoupleMembers_aggregate_order_by? members_aggregate,
     InputcouplePhotos_order_by? photo,
+    Enumorder_by? startDate,
+    Enumorder_by? startDateSetBy,
     Enumorder_by? touchTopicsEnabled,
   }) => Inputcouples_order_by._({
     if (createdAt != null) r'createdAt': createdAt,
@@ -29007,6 +33387,8 @@ class Inputcouples_order_by {
     if (id != null) r'id': id,
     if (members_aggregate != null) r'members_aggregate': members_aggregate,
     if (photo != null) r'photo': photo,
+    if (startDate != null) r'startDate': startDate,
+    if (startDateSetBy != null) r'startDateSetBy': startDateSetBy,
     if (touchTopicsEnabled != null) r'touchTopicsEnabled': touchTopicsEnabled,
   });
 
@@ -29044,6 +33426,18 @@ class Inputcouples_order_by {
           ? null
           : InputcouplePhotos_order_by.fromJson((l$photo as Map<String, dynamic>));
     }
+    if (data.containsKey('startDate')) {
+      final l$startDate = data['startDate'];
+      result$data['startDate'] = l$startDate == null
+          ? null
+          : fromJsonEnumorder_by((l$startDate as String));
+    }
+    if (data.containsKey('startDateSetBy')) {
+      final l$startDateSetBy = data['startDateSetBy'];
+      result$data['startDateSetBy'] = l$startDateSetBy == null
+          ? null
+          : fromJsonEnumorder_by((l$startDateSetBy as String));
+    }
     if (data.containsKey('touchTopicsEnabled')) {
       final l$touchTopicsEnabled = data['touchTopicsEnabled'];
       result$data['touchTopicsEnabled'] = l$touchTopicsEnabled == null
@@ -29065,6 +33459,10 @@ class Inputcouples_order_by {
       (_$data['members_aggregate'] as InputcoupleMembers_aggregate_order_by?);
 
   InputcouplePhotos_order_by? get photo => (_$data['photo'] as InputcouplePhotos_order_by?);
+
+  Enumorder_by? get startDate => (_$data['startDate'] as Enumorder_by?);
+
+  Enumorder_by? get startDateSetBy => (_$data['startDateSetBy'] as Enumorder_by?);
 
   Enumorder_by? get touchTopicsEnabled => (_$data['touchTopicsEnabled'] as Enumorder_by?);
 
@@ -29089,6 +33487,16 @@ class Inputcouples_order_by {
     if (_$data.containsKey('photo')) {
       final l$photo = photo;
       result$data['photo'] = l$photo?.toJson();
+    }
+    if (_$data.containsKey('startDate')) {
+      final l$startDate = startDate;
+      result$data['startDate'] = l$startDate == null ? null : toJsonEnumorder_by(l$startDate);
+    }
+    if (_$data.containsKey('startDateSetBy')) {
+      final l$startDateSetBy = startDateSetBy;
+      result$data['startDateSetBy'] = l$startDateSetBy == null
+          ? null
+          : toJsonEnumorder_by(l$startDateSetBy);
     }
     if (_$data.containsKey('touchTopicsEnabled')) {
       final l$touchTopicsEnabled = touchTopicsEnabled;
@@ -29147,6 +33555,22 @@ class Inputcouples_order_by {
     if (l$photo != lOther$photo) {
       return false;
     }
+    final l$startDate = startDate;
+    final lOther$startDate = other.startDate;
+    if (_$data.containsKey('startDate') != other._$data.containsKey('startDate')) {
+      return false;
+    }
+    if (l$startDate != lOther$startDate) {
+      return false;
+    }
+    final l$startDateSetBy = startDateSetBy;
+    final lOther$startDateSetBy = other.startDateSetBy;
+    if (_$data.containsKey('startDateSetBy') != other._$data.containsKey('startDateSetBy')) {
+      return false;
+    }
+    if (l$startDateSetBy != lOther$startDateSetBy) {
+      return false;
+    }
     final l$touchTopicsEnabled = touchTopicsEnabled;
     final lOther$touchTopicsEnabled = other.touchTopicsEnabled;
     if (_$data.containsKey('touchTopicsEnabled') !=
@@ -29166,6 +33590,8 @@ class Inputcouples_order_by {
     final l$id = id;
     final l$members_aggregate = members_aggregate;
     final l$photo = photo;
+    final l$startDate = startDate;
+    final l$startDateSetBy = startDateSetBy;
     final l$touchTopicsEnabled = touchTopicsEnabled;
     return Object.hashAll([
       _$data.containsKey('createdAt') ? l$createdAt : const {},
@@ -29173,6 +33599,8 @@ class Inputcouples_order_by {
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('members_aggregate') ? l$members_aggregate : const {},
       _$data.containsKey('photo') ? l$photo : const {},
+      _$data.containsKey('startDate') ? l$startDate : const {},
+      _$data.containsKey('startDateSetBy') ? l$startDateSetBy : const {},
       _$data.containsKey('touchTopicsEnabled') ? l$touchTopicsEnabled : const {},
     ]);
   }
@@ -29367,11 +33795,15 @@ class Inputcouples_stream_cursor_value_input {
     DateTime? createdAt,
     DateTime? endedAt,
     String? id,
+    DateTime? startDate,
+    String? startDateSetBy,
     bool? touchTopicsEnabled,
   }) => Inputcouples_stream_cursor_value_input._({
     if (createdAt != null) r'createdAt': createdAt,
     if (endedAt != null) r'endedAt': endedAt,
     if (id != null) r'id': id,
+    if (startDate != null) r'startDate': startDate,
+    if (startDateSetBy != null) r'startDateSetBy': startDateSetBy,
     if (touchTopicsEnabled != null) r'touchTopicsEnabled': touchTopicsEnabled,
   });
 
@@ -29393,6 +33825,16 @@ class Inputcouples_stream_cursor_value_input {
       final l$id = data['id'];
       result$data['id'] = (l$id as String?);
     }
+    if (data.containsKey('startDate')) {
+      final l$startDate = data['startDate'];
+      result$data['startDate'] = l$startDate == null
+          ? null
+          : DateTime.parse((l$startDate as String));
+    }
+    if (data.containsKey('startDateSetBy')) {
+      final l$startDateSetBy = data['startDateSetBy'];
+      result$data['startDateSetBy'] = (l$startDateSetBy as String?);
+    }
     if (data.containsKey('touchTopicsEnabled')) {
       final l$touchTopicsEnabled = data['touchTopicsEnabled'];
       result$data['touchTopicsEnabled'] = (l$touchTopicsEnabled as bool?);
@@ -29407,6 +33849,10 @@ class Inputcouples_stream_cursor_value_input {
   DateTime? get endedAt => (_$data['endedAt'] as DateTime?);
 
   String? get id => (_$data['id'] as String?);
+
+  DateTime? get startDate => (_$data['startDate'] as DateTime?);
+
+  String? get startDateSetBy => (_$data['startDateSetBy'] as String?);
 
   bool? get touchTopicsEnabled => (_$data['touchTopicsEnabled'] as bool?);
 
@@ -29427,6 +33873,16 @@ class Inputcouples_stream_cursor_value_input {
     if (_$data.containsKey('id')) {
       final l$id = id;
       result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('startDate')) {
+      final l$startDate = startDate;
+      result$data['startDate'] = l$startDate == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$startDate);
+    }
+    if (_$data.containsKey('startDateSetBy')) {
+      final l$startDateSetBy = startDateSetBy;
+      result$data['startDateSetBy'] = l$startDateSetBy;
     }
     if (_$data.containsKey('touchTopicsEnabled')) {
       final l$touchTopicsEnabled = touchTopicsEnabled;
@@ -29467,6 +33923,22 @@ class Inputcouples_stream_cursor_value_input {
     if (l$id != lOther$id) {
       return false;
     }
+    final l$startDate = startDate;
+    final lOther$startDate = other.startDate;
+    if (_$data.containsKey('startDate') != other._$data.containsKey('startDate')) {
+      return false;
+    }
+    if (l$startDate != lOther$startDate) {
+      return false;
+    }
+    final l$startDateSetBy = startDateSetBy;
+    final lOther$startDateSetBy = other.startDateSetBy;
+    if (_$data.containsKey('startDateSetBy') != other._$data.containsKey('startDateSetBy')) {
+      return false;
+    }
+    if (l$startDateSetBy != lOther$startDateSetBy) {
+      return false;
+    }
     final l$touchTopicsEnabled = touchTopicsEnabled;
     final lOther$touchTopicsEnabled = other.touchTopicsEnabled;
     if (_$data.containsKey('touchTopicsEnabled') !=
@@ -29484,11 +33956,15 @@ class Inputcouples_stream_cursor_value_input {
     final l$createdAt = createdAt;
     final l$endedAt = endedAt;
     final l$id = id;
+    final l$startDate = startDate;
+    final l$startDateSetBy = startDateSetBy;
     final l$touchTopicsEnabled = touchTopicsEnabled;
     return Object.hashAll([
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('endedAt') ? l$endedAt : const {},
       _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('startDate') ? l$startDate : const {},
+      _$data.containsKey('startDateSetBy') ? l$startDateSetBy : const {},
       _$data.containsKey('touchTopicsEnabled') ? l$touchTopicsEnabled : const {},
     ]);
   }
@@ -29561,6 +34037,652 @@ class Inputcouples_updates {
     final l$$_set = $_set;
     final l$where = where;
     return Object.hashAll([_$data.containsKey('_set') ? l$$_set : const {}, l$where]);
+  }
+}
+
+class InputcurrentConsents_bool_exp {
+  factory InputcurrentConsents_bool_exp({
+    List<InputcurrentConsents_bool_exp>? $_and,
+    InputcurrentConsents_bool_exp? $_not,
+    List<InputcurrentConsents_bool_exp>? $_or,
+    Inputtimestamptz_comparison_exp? createdAt,
+    InputBoolean_comparison_exp? granted,
+    InputString_comparison_exp? kind,
+    Inputuuid_comparison_exp? userId,
+    InputString_comparison_exp? version,
+  }) => InputcurrentConsents_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (granted != null) r'granted': granted,
+    if (kind != null) r'kind': kind,
+    if (userId != null) r'userId': userId,
+    if (version != null) r'version': version,
+  });
+
+  InputcurrentConsents_bool_exp._(this._$data);
+
+  factory InputcurrentConsents_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputcurrentConsents_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputcurrentConsents_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputcurrentConsents_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('granted')) {
+      final l$granted = data['granted'];
+      result$data['granted'] = l$granted == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$granted as Map<String, dynamic>));
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = l$kind == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$kind as Map<String, dynamic>));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$userId as Map<String, dynamic>));
+    }
+    if (data.containsKey('version')) {
+      final l$version = data['version'];
+      result$data['version'] = l$version == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$version as Map<String, dynamic>));
+    }
+    return InputcurrentConsents_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputcurrentConsents_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputcurrentConsents_bool_exp>?);
+
+  InputcurrentConsents_bool_exp? get $_not => (_$data['_not'] as InputcurrentConsents_bool_exp?);
+
+  List<InputcurrentConsents_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputcurrentConsents_bool_exp>?);
+
+  Inputtimestamptz_comparison_exp? get createdAt =>
+      (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
+
+  InputBoolean_comparison_exp? get granted => (_$data['granted'] as InputBoolean_comparison_exp?);
+
+  InputString_comparison_exp? get kind => (_$data['kind'] as InputString_comparison_exp?);
+
+  Inputuuid_comparison_exp? get userId => (_$data['userId'] as Inputuuid_comparison_exp?);
+
+  InputString_comparison_exp? get version => (_$data['version'] as InputString_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('granted')) {
+      final l$granted = granted;
+      result$data['granted'] = l$granted?.toJson();
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind?.toJson();
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId?.toJson();
+    }
+    if (_$data.containsKey('version')) {
+      final l$version = version;
+      result$data['version'] = l$version?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcurrentConsents_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$granted = granted;
+    final lOther$granted = other.granted;
+    if (_$data.containsKey('granted') != other._$data.containsKey('granted')) {
+      return false;
+    }
+    if (l$granted != lOther$granted) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$version = version;
+    final lOther$version = other.version;
+    if (_$data.containsKey('version') != other._$data.containsKey('version')) {
+      return false;
+    }
+    if (l$version != lOther$version) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$createdAt = createdAt;
+    final l$granted = granted;
+    final l$kind = kind;
+    final l$userId = userId;
+    final l$version = version;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('granted') ? l$granted : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+      _$data.containsKey('version') ? l$version : const {},
+    ]);
+  }
+}
+
+class InputcurrentConsents_order_by {
+  factory InputcurrentConsents_order_by({
+    Enumorder_by? createdAt,
+    Enumorder_by? granted,
+    Enumorder_by? kind,
+    Enumorder_by? userId,
+    Enumorder_by? version,
+  }) => InputcurrentConsents_order_by._({
+    if (createdAt != null) r'createdAt': createdAt,
+    if (granted != null) r'granted': granted,
+    if (kind != null) r'kind': kind,
+    if (userId != null) r'userId': userId,
+    if (version != null) r'version': version,
+  });
+
+  InputcurrentConsents_order_by._(this._$data);
+
+  factory InputcurrentConsents_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('granted')) {
+      final l$granted = data['granted'];
+      result$data['granted'] = l$granted == null
+          ? null
+          : fromJsonEnumorder_by((l$granted as String));
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = l$kind == null ? null : fromJsonEnumorder_by((l$kind as String));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null ? null : fromJsonEnumorder_by((l$userId as String));
+    }
+    if (data.containsKey('version')) {
+      final l$version = data['version'];
+      result$data['version'] = l$version == null
+          ? null
+          : fromJsonEnumorder_by((l$version as String));
+    }
+    return InputcurrentConsents_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get granted => (_$data['granted'] as Enumorder_by?);
+
+  Enumorder_by? get kind => (_$data['kind'] as Enumorder_by?);
+
+  Enumorder_by? get userId => (_$data['userId'] as Enumorder_by?);
+
+  Enumorder_by? get version => (_$data['version'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('granted')) {
+      final l$granted = granted;
+      result$data['granted'] = l$granted == null ? null : toJsonEnumorder_by(l$granted);
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind == null ? null : toJsonEnumorder_by(l$kind);
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId == null ? null : toJsonEnumorder_by(l$userId);
+    }
+    if (_$data.containsKey('version')) {
+      final l$version = version;
+      result$data['version'] = l$version == null ? null : toJsonEnumorder_by(l$version);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcurrentConsents_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$granted = granted;
+    final lOther$granted = other.granted;
+    if (_$data.containsKey('granted') != other._$data.containsKey('granted')) {
+      return false;
+    }
+    if (l$granted != lOther$granted) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$version = version;
+    final lOther$version = other.version;
+    if (_$data.containsKey('version') != other._$data.containsKey('version')) {
+      return false;
+    }
+    if (l$version != lOther$version) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$granted = granted;
+    final l$kind = kind;
+    final l$userId = userId;
+    final l$version = version;
+    return Object.hashAll([
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('granted') ? l$granted : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+      _$data.containsKey('version') ? l$version : const {},
+    ]);
+  }
+}
+
+class InputcurrentConsents_stream_cursor_input {
+  factory InputcurrentConsents_stream_cursor_input({
+    required InputcurrentConsents_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputcurrentConsents_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputcurrentConsents_stream_cursor_input._(this._$data);
+
+  factory InputcurrentConsents_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputcurrentConsents_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputcurrentConsents_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputcurrentConsents_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputcurrentConsents_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcurrentConsents_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputcurrentConsents_stream_cursor_value_input {
+  factory InputcurrentConsents_stream_cursor_value_input({
+    DateTime? createdAt,
+    bool? granted,
+    String? kind,
+    String? userId,
+    String? version,
+  }) => InputcurrentConsents_stream_cursor_value_input._({
+    if (createdAt != null) r'createdAt': createdAt,
+    if (granted != null) r'granted': granted,
+    if (kind != null) r'kind': kind,
+    if (userId != null) r'userId': userId,
+    if (version != null) r'version': version,
+  });
+
+  InputcurrentConsents_stream_cursor_value_input._(this._$data);
+
+  factory InputcurrentConsents_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('granted')) {
+      final l$granted = data['granted'];
+      result$data['granted'] = (l$granted as bool?);
+    }
+    if (data.containsKey('kind')) {
+      final l$kind = data['kind'];
+      result$data['kind'] = (l$kind as String?);
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = (l$userId as String?);
+    }
+    if (data.containsKey('version')) {
+      final l$version = data['version'];
+      result$data['version'] = (l$version as String?);
+    }
+    return InputcurrentConsents_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
+
+  bool? get granted => (_$data['granted'] as bool?);
+
+  String? get kind => (_$data['kind'] as String?);
+
+  String? get userId => (_$data['userId'] as String?);
+
+  String? get version => (_$data['version'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('granted')) {
+      final l$granted = granted;
+      result$data['granted'] = l$granted;
+    }
+    if (_$data.containsKey('kind')) {
+      final l$kind = kind;
+      result$data['kind'] = l$kind;
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId;
+    }
+    if (_$data.containsKey('version')) {
+      final l$version = version;
+      result$data['version'] = l$version;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcurrentConsents_stream_cursor_value_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$granted = granted;
+    final lOther$granted = other.granted;
+    if (_$data.containsKey('granted') != other._$data.containsKey('granted')) {
+      return false;
+    }
+    if (l$granted != lOther$granted) {
+      return false;
+    }
+    final l$kind = kind;
+    final lOther$kind = other.kind;
+    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
+      return false;
+    }
+    if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$version = version;
+    final lOther$version = other.version;
+    if (_$data.containsKey('version') != other._$data.containsKey('version')) {
+      return false;
+    }
+    if (l$version != lOther$version) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$granted = granted;
+    final l$kind = kind;
+    final l$userId = userId;
+    final l$version = version;
+    return Object.hashAll([
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('granted') ? l$granted : const {},
+      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+      _$data.containsKey('version') ? l$version : const {},
+    ]);
   }
 }
 
@@ -31062,6 +36184,7 @@ class Inputdevices_bool_exp {
     InputString_comparison_exp? label,
     Inputtimestamptz_comparison_exp? lastSeenAt,
     InputDevicePlatform_enum_comparison_exp? platform,
+    Inputuuid_comparison_exp? refreshTokenId,
     InputString_comparison_exp? token,
     Inputuuid_comparison_exp? userId,
   }) => Inputdevices_bool_exp._({
@@ -31073,6 +36196,7 @@ class Inputdevices_bool_exp {
     if (label != null) r'label': label,
     if (lastSeenAt != null) r'lastSeenAt': lastSeenAt,
     if (platform != null) r'platform': platform,
+    if (refreshTokenId != null) r'refreshTokenId': refreshTokenId,
     if (token != null) r'token': token,
     if (userId != null) r'userId': userId,
   });
@@ -31129,6 +36253,12 @@ class Inputdevices_bool_exp {
           ? null
           : InputDevicePlatform_enum_comparison_exp.fromJson((l$platform as Map<String, dynamic>));
     }
+    if (data.containsKey('refreshTokenId')) {
+      final l$refreshTokenId = data['refreshTokenId'];
+      result$data['refreshTokenId'] = l$refreshTokenId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$refreshTokenId as Map<String, dynamic>));
+    }
     if (data.containsKey('token')) {
       final l$token = data['token'];
       result$data['token'] = l$token == null
@@ -31164,6 +36294,9 @@ class Inputdevices_bool_exp {
 
   InputDevicePlatform_enum_comparison_exp? get platform =>
       (_$data['platform'] as InputDevicePlatform_enum_comparison_exp?);
+
+  Inputuuid_comparison_exp? get refreshTokenId =>
+      (_$data['refreshTokenId'] as Inputuuid_comparison_exp?);
 
   InputString_comparison_exp? get token => (_$data['token'] as InputString_comparison_exp?);
 
@@ -31202,6 +36335,10 @@ class Inputdevices_bool_exp {
     if (_$data.containsKey('platform')) {
       final l$platform = platform;
       result$data['platform'] = l$platform?.toJson();
+    }
+    if (_$data.containsKey('refreshTokenId')) {
+      final l$refreshTokenId = refreshTokenId;
+      result$data['refreshTokenId'] = l$refreshTokenId?.toJson();
     }
     if (_$data.containsKey('token')) {
       final l$token = token;
@@ -31308,6 +36445,14 @@ class Inputdevices_bool_exp {
     if (l$platform != lOther$platform) {
       return false;
     }
+    final l$refreshTokenId = refreshTokenId;
+    final lOther$refreshTokenId = other.refreshTokenId;
+    if (_$data.containsKey('refreshTokenId') != other._$data.containsKey('refreshTokenId')) {
+      return false;
+    }
+    if (l$refreshTokenId != lOther$refreshTokenId) {
+      return false;
+    }
     final l$token = token;
     final lOther$token = other.token;
     if (_$data.containsKey('token') != other._$data.containsKey('token')) {
@@ -31337,6 +36482,7 @@ class Inputdevices_bool_exp {
     final l$label = label;
     final l$lastSeenAt = lastSeenAt;
     final l$platform = platform;
+    final l$refreshTokenId = refreshTokenId;
     final l$token = token;
     final l$userId = userId;
     return Object.hashAll([
@@ -31356,6 +36502,7 @@ class Inputdevices_bool_exp {
       _$data.containsKey('label') ? l$label : const {},
       _$data.containsKey('lastSeenAt') ? l$lastSeenAt : const {},
       _$data.containsKey('platform') ? l$platform : const {},
+      _$data.containsKey('refreshTokenId') ? l$refreshTokenId : const {},
       _$data.containsKey('token') ? l$token : const {},
       _$data.containsKey('userId') ? l$userId : const {},
     ]);
@@ -31366,10 +36513,12 @@ class Inputdevices_insert_input {
   factory Inputdevices_insert_input({
     String? label,
     EnumDevicePlatform_enum? platform,
+    String? refreshTokenId,
     String? token,
   }) => Inputdevices_insert_input._({
     if (label != null) r'label': label,
     if (platform != null) r'platform': platform,
+    if (refreshTokenId != null) r'refreshTokenId': refreshTokenId,
     if (token != null) r'token': token,
   });
 
@@ -31387,6 +36536,10 @@ class Inputdevices_insert_input {
           ? null
           : fromJsonEnumDevicePlatform_enum((l$platform as String));
     }
+    if (data.containsKey('refreshTokenId')) {
+      final l$refreshTokenId = data['refreshTokenId'];
+      result$data['refreshTokenId'] = (l$refreshTokenId as String?);
+    }
     if (data.containsKey('token')) {
       final l$token = data['token'];
       result$data['token'] = (l$token as String?);
@@ -31399,6 +36552,8 @@ class Inputdevices_insert_input {
   String? get label => (_$data['label'] as String?);
 
   EnumDevicePlatform_enum? get platform => (_$data['platform'] as EnumDevicePlatform_enum?);
+
+  String? get refreshTokenId => (_$data['refreshTokenId'] as String?);
 
   String? get token => (_$data['token'] as String?);
 
@@ -31413,6 +36568,10 @@ class Inputdevices_insert_input {
       result$data['platform'] = l$platform == null
           ? null
           : toJsonEnumDevicePlatform_enum(l$platform);
+    }
+    if (_$data.containsKey('refreshTokenId')) {
+      final l$refreshTokenId = refreshTokenId;
+      result$data['refreshTokenId'] = l$refreshTokenId;
     }
     if (_$data.containsKey('token')) {
       final l$token = token;
@@ -31445,6 +36604,14 @@ class Inputdevices_insert_input {
     if (l$platform != lOther$platform) {
       return false;
     }
+    final l$refreshTokenId = refreshTokenId;
+    final lOther$refreshTokenId = other.refreshTokenId;
+    if (_$data.containsKey('refreshTokenId') != other._$data.containsKey('refreshTokenId')) {
+      return false;
+    }
+    if (l$refreshTokenId != lOther$refreshTokenId) {
+      return false;
+    }
     final l$token = token;
     final lOther$token = other.token;
     if (_$data.containsKey('token') != other._$data.containsKey('token')) {
@@ -31460,10 +36627,12 @@ class Inputdevices_insert_input {
   int get hashCode {
     final l$label = label;
     final l$platform = platform;
+    final l$refreshTokenId = refreshTokenId;
     final l$token = token;
     return Object.hashAll([
       _$data.containsKey('label') ? l$label : const {},
       _$data.containsKey('platform') ? l$platform : const {},
+      _$data.containsKey('refreshTokenId') ? l$refreshTokenId : const {},
       _$data.containsKey('token') ? l$token : const {},
     ]);
   }
@@ -31594,6 +36763,7 @@ class Inputdevices_order_by {
     Enumorder_by? label,
     Enumorder_by? lastSeenAt,
     Enumorder_by? platform,
+    Enumorder_by? refreshTokenId,
     Enumorder_by? token,
     Enumorder_by? userId,
   }) => Inputdevices_order_by._({
@@ -31602,6 +36772,7 @@ class Inputdevices_order_by {
     if (label != null) r'label': label,
     if (lastSeenAt != null) r'lastSeenAt': lastSeenAt,
     if (platform != null) r'platform': platform,
+    if (refreshTokenId != null) r'refreshTokenId': refreshTokenId,
     if (token != null) r'token': token,
     if (userId != null) r'userId': userId,
   });
@@ -31636,6 +36807,12 @@ class Inputdevices_order_by {
           ? null
           : fromJsonEnumorder_by((l$platform as String));
     }
+    if (data.containsKey('refreshTokenId')) {
+      final l$refreshTokenId = data['refreshTokenId'];
+      result$data['refreshTokenId'] = l$refreshTokenId == null
+          ? null
+          : fromJsonEnumorder_by((l$refreshTokenId as String));
+    }
     if (data.containsKey('token')) {
       final l$token = data['token'];
       result$data['token'] = l$token == null ? null : fromJsonEnumorder_by((l$token as String));
@@ -31658,6 +36835,8 @@ class Inputdevices_order_by {
   Enumorder_by? get lastSeenAt => (_$data['lastSeenAt'] as Enumorder_by?);
 
   Enumorder_by? get platform => (_$data['platform'] as Enumorder_by?);
+
+  Enumorder_by? get refreshTokenId => (_$data['refreshTokenId'] as Enumorder_by?);
 
   Enumorder_by? get token => (_$data['token'] as Enumorder_by?);
 
@@ -31684,6 +36863,12 @@ class Inputdevices_order_by {
     if (_$data.containsKey('platform')) {
       final l$platform = platform;
       result$data['platform'] = l$platform == null ? null : toJsonEnumorder_by(l$platform);
+    }
+    if (_$data.containsKey('refreshTokenId')) {
+      final l$refreshTokenId = refreshTokenId;
+      result$data['refreshTokenId'] = l$refreshTokenId == null
+          ? null
+          : toJsonEnumorder_by(l$refreshTokenId);
     }
     if (_$data.containsKey('token')) {
       final l$token = token;
@@ -31744,6 +36929,14 @@ class Inputdevices_order_by {
     if (l$platform != lOther$platform) {
       return false;
     }
+    final l$refreshTokenId = refreshTokenId;
+    final lOther$refreshTokenId = other.refreshTokenId;
+    if (_$data.containsKey('refreshTokenId') != other._$data.containsKey('refreshTokenId')) {
+      return false;
+    }
+    if (l$refreshTokenId != lOther$refreshTokenId) {
+      return false;
+    }
     final l$token = token;
     final lOther$token = other.token;
     if (_$data.containsKey('token') != other._$data.containsKey('token')) {
@@ -31770,6 +36963,7 @@ class Inputdevices_order_by {
     final l$label = label;
     final l$lastSeenAt = lastSeenAt;
     final l$platform = platform;
+    final l$refreshTokenId = refreshTokenId;
     final l$token = token;
     final l$userId = userId;
     return Object.hashAll([
@@ -31778,6 +36972,7 @@ class Inputdevices_order_by {
       _$data.containsKey('label') ? l$label : const {},
       _$data.containsKey('lastSeenAt') ? l$lastSeenAt : const {},
       _$data.containsKey('platform') ? l$platform : const {},
+      _$data.containsKey('refreshTokenId') ? l$refreshTokenId : const {},
       _$data.containsKey('token') ? l$token : const {},
       _$data.containsKey('userId') ? l$userId : const {},
     ]);
@@ -31832,11 +37027,15 @@ class Inputdevices_pk_columns_input {
 }
 
 class Inputdevices_set_input {
-  factory Inputdevices_set_input({String? label, EnumDevicePlatform_enum? platform}) =>
-      Inputdevices_set_input._({
-        if (label != null) r'label': label,
-        if (platform != null) r'platform': platform,
-      });
+  factory Inputdevices_set_input({
+    String? label,
+    EnumDevicePlatform_enum? platform,
+    String? refreshTokenId,
+  }) => Inputdevices_set_input._({
+    if (label != null) r'label': label,
+    if (platform != null) r'platform': platform,
+    if (refreshTokenId != null) r'refreshTokenId': refreshTokenId,
+  });
 
   Inputdevices_set_input._(this._$data);
 
@@ -31852,6 +37051,10 @@ class Inputdevices_set_input {
           ? null
           : fromJsonEnumDevicePlatform_enum((l$platform as String));
     }
+    if (data.containsKey('refreshTokenId')) {
+      final l$refreshTokenId = data['refreshTokenId'];
+      result$data['refreshTokenId'] = (l$refreshTokenId as String?);
+    }
     return Inputdevices_set_input._(result$data);
   }
 
@@ -31860,6 +37063,8 @@ class Inputdevices_set_input {
   String? get label => (_$data['label'] as String?);
 
   EnumDevicePlatform_enum? get platform => (_$data['platform'] as EnumDevicePlatform_enum?);
+
+  String? get refreshTokenId => (_$data['refreshTokenId'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -31872,6 +37077,10 @@ class Inputdevices_set_input {
       result$data['platform'] = l$platform == null
           ? null
           : toJsonEnumDevicePlatform_enum(l$platform);
+    }
+    if (_$data.containsKey('refreshTokenId')) {
+      final l$refreshTokenId = refreshTokenId;
+      result$data['refreshTokenId'] = l$refreshTokenId;
     }
     return result$data;
   }
@@ -31900,6 +37109,14 @@ class Inputdevices_set_input {
     if (l$platform != lOther$platform) {
       return false;
     }
+    final l$refreshTokenId = refreshTokenId;
+    final lOther$refreshTokenId = other.refreshTokenId;
+    if (_$data.containsKey('refreshTokenId') != other._$data.containsKey('refreshTokenId')) {
+      return false;
+    }
+    if (l$refreshTokenId != lOther$refreshTokenId) {
+      return false;
+    }
     return true;
   }
 
@@ -31907,9 +37124,11 @@ class Inputdevices_set_input {
   int get hashCode {
     final l$label = label;
     final l$platform = platform;
+    final l$refreshTokenId = refreshTokenId;
     return Object.hashAll([
       _$data.containsKey('label') ? l$label : const {},
       _$data.containsKey('platform') ? l$platform : const {},
+      _$data.containsKey('refreshTokenId') ? l$refreshTokenId : const {},
     ]);
   }
 }
@@ -32000,6 +37219,7 @@ class Inputdevices_stream_cursor_value_input {
     String? label,
     DateTime? lastSeenAt,
     EnumDevicePlatform_enum? platform,
+    String? refreshTokenId,
     String? token,
     String? userId,
   }) => Inputdevices_stream_cursor_value_input._({
@@ -32008,6 +37228,7 @@ class Inputdevices_stream_cursor_value_input {
     if (label != null) r'label': label,
     if (lastSeenAt != null) r'lastSeenAt': lastSeenAt,
     if (platform != null) r'platform': platform,
+    if (refreshTokenId != null) r'refreshTokenId': refreshTokenId,
     if (token != null) r'token': token,
     if (userId != null) r'userId': userId,
   });
@@ -32042,6 +37263,10 @@ class Inputdevices_stream_cursor_value_input {
           ? null
           : fromJsonEnumDevicePlatform_enum((l$platform as String));
     }
+    if (data.containsKey('refreshTokenId')) {
+      final l$refreshTokenId = data['refreshTokenId'];
+      result$data['refreshTokenId'] = (l$refreshTokenId as String?);
+    }
     if (data.containsKey('token')) {
       final l$token = data['token'];
       result$data['token'] = (l$token as String?);
@@ -32064,6 +37289,8 @@ class Inputdevices_stream_cursor_value_input {
   DateTime? get lastSeenAt => (_$data['lastSeenAt'] as DateTime?);
 
   EnumDevicePlatform_enum? get platform => (_$data['platform'] as EnumDevicePlatform_enum?);
+
+  String? get refreshTokenId => (_$data['refreshTokenId'] as String?);
 
   String? get token => (_$data['token'] as String?);
 
@@ -32096,6 +37323,10 @@ class Inputdevices_stream_cursor_value_input {
       result$data['platform'] = l$platform == null
           ? null
           : toJsonEnumDevicePlatform_enum(l$platform);
+    }
+    if (_$data.containsKey('refreshTokenId')) {
+      final l$refreshTokenId = refreshTokenId;
+      result$data['refreshTokenId'] = l$refreshTokenId;
     }
     if (_$data.containsKey('token')) {
       final l$token = token;
@@ -32156,6 +37387,14 @@ class Inputdevices_stream_cursor_value_input {
     if (l$platform != lOther$platform) {
       return false;
     }
+    final l$refreshTokenId = refreshTokenId;
+    final lOther$refreshTokenId = other.refreshTokenId;
+    if (_$data.containsKey('refreshTokenId') != other._$data.containsKey('refreshTokenId')) {
+      return false;
+    }
+    if (l$refreshTokenId != lOther$refreshTokenId) {
+      return false;
+    }
     final l$token = token;
     final lOther$token = other.token;
     if (_$data.containsKey('token') != other._$data.containsKey('token')) {
@@ -32182,6 +37421,7 @@ class Inputdevices_stream_cursor_value_input {
     final l$label = label;
     final l$lastSeenAt = lastSeenAt;
     final l$platform = platform;
+    final l$refreshTokenId = refreshTokenId;
     final l$token = token;
     final l$userId = userId;
     return Object.hashAll([
@@ -32190,6 +37430,7 @@ class Inputdevices_stream_cursor_value_input {
       _$data.containsKey('label') ? l$label : const {},
       _$data.containsKey('lastSeenAt') ? l$lastSeenAt : const {},
       _$data.containsKey('platform') ? l$platform : const {},
+      _$data.containsKey('refreshTokenId') ? l$refreshTokenId : const {},
       _$data.containsKey('token') ? l$token : const {},
       _$data.containsKey('userId') ? l$userId : const {},
     ]);
@@ -38789,6 +44030,1454 @@ class InputgameSessions_stream_cursor_value_input {
   }
 }
 
+class InputgentleRequests_bool_exp {
+  factory InputgentleRequests_bool_exp({
+    List<InputgentleRequests_bool_exp>? $_and,
+    InputgentleRequests_bool_exp? $_not,
+    List<InputgentleRequests_bool_exp>? $_or,
+    Inputtimestamptz_comparison_exp? createdAt,
+    InputString_comparison_exp? feelText,
+    Inputuuid_comparison_exp? id,
+    Inputtimestamptz_comparison_exp? purgeAfter,
+    Inputprofiles_bool_exp? recipient,
+    Inputuuid_comparison_exp? recipientId,
+    Inputtimestamptz_comparison_exp? respondedAt,
+    InputString_comparison_exp? response,
+    Inputtimestamptz_comparison_exp? seenAt,
+    Inputprofiles_bool_exp? sender,
+    Inputuuid_comparison_exp? senderId,
+    Inputtimestamptz_comparison_exp? thankedAt,
+    InputString_comparison_exp? whenText,
+    InputString_comparison_exp? wishText,
+  }) => InputgentleRequests_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (feelText != null) r'feelText': feelText,
+    if (id != null) r'id': id,
+    if (purgeAfter != null) r'purgeAfter': purgeAfter,
+    if (recipient != null) r'recipient': recipient,
+    if (recipientId != null) r'recipientId': recipientId,
+    if (respondedAt != null) r'respondedAt': respondedAt,
+    if (response != null) r'response': response,
+    if (seenAt != null) r'seenAt': seenAt,
+    if (sender != null) r'sender': sender,
+    if (senderId != null) r'senderId': senderId,
+    if (thankedAt != null) r'thankedAt': thankedAt,
+    if (whenText != null) r'whenText': whenText,
+    if (wishText != null) r'wishText': wishText,
+  });
+
+  InputgentleRequests_bool_exp._(this._$data);
+
+  factory InputgentleRequests_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputgentleRequests_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputgentleRequests_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputgentleRequests_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('feelText')) {
+      final l$feelText = data['feelText'];
+      result$data['feelText'] = l$feelText == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$feelText as Map<String, dynamic>));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$id as Map<String, dynamic>));
+    }
+    if (data.containsKey('purgeAfter')) {
+      final l$purgeAfter = data['purgeAfter'];
+      result$data['purgeAfter'] = l$purgeAfter == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$purgeAfter as Map<String, dynamic>));
+    }
+    if (data.containsKey('recipient')) {
+      final l$recipient = data['recipient'];
+      result$data['recipient'] = l$recipient == null
+          ? null
+          : Inputprofiles_bool_exp.fromJson((l$recipient as Map<String, dynamic>));
+    }
+    if (data.containsKey('recipientId')) {
+      final l$recipientId = data['recipientId'];
+      result$data['recipientId'] = l$recipientId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$recipientId as Map<String, dynamic>));
+    }
+    if (data.containsKey('respondedAt')) {
+      final l$respondedAt = data['respondedAt'];
+      result$data['respondedAt'] = l$respondedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$respondedAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('response')) {
+      final l$response = data['response'];
+      result$data['response'] = l$response == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$response as Map<String, dynamic>));
+    }
+    if (data.containsKey('seenAt')) {
+      final l$seenAt = data['seenAt'];
+      result$data['seenAt'] = l$seenAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$seenAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('sender')) {
+      final l$sender = data['sender'];
+      result$data['sender'] = l$sender == null
+          ? null
+          : Inputprofiles_bool_exp.fromJson((l$sender as Map<String, dynamic>));
+    }
+    if (data.containsKey('senderId')) {
+      final l$senderId = data['senderId'];
+      result$data['senderId'] = l$senderId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$senderId as Map<String, dynamic>));
+    }
+    if (data.containsKey('thankedAt')) {
+      final l$thankedAt = data['thankedAt'];
+      result$data['thankedAt'] = l$thankedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$thankedAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('whenText')) {
+      final l$whenText = data['whenText'];
+      result$data['whenText'] = l$whenText == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$whenText as Map<String, dynamic>));
+    }
+    if (data.containsKey('wishText')) {
+      final l$wishText = data['wishText'];
+      result$data['wishText'] = l$wishText == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$wishText as Map<String, dynamic>));
+    }
+    return InputgentleRequests_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputgentleRequests_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputgentleRequests_bool_exp>?);
+
+  InputgentleRequests_bool_exp? get $_not => (_$data['_not'] as InputgentleRequests_bool_exp?);
+
+  List<InputgentleRequests_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputgentleRequests_bool_exp>?);
+
+  Inputtimestamptz_comparison_exp? get createdAt =>
+      (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
+
+  InputString_comparison_exp? get feelText => (_$data['feelText'] as InputString_comparison_exp?);
+
+  Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get purgeAfter =>
+      (_$data['purgeAfter'] as Inputtimestamptz_comparison_exp?);
+
+  Inputprofiles_bool_exp? get recipient => (_$data['recipient'] as Inputprofiles_bool_exp?);
+
+  Inputuuid_comparison_exp? get recipientId => (_$data['recipientId'] as Inputuuid_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get respondedAt =>
+      (_$data['respondedAt'] as Inputtimestamptz_comparison_exp?);
+
+  InputString_comparison_exp? get response => (_$data['response'] as InputString_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get seenAt =>
+      (_$data['seenAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputprofiles_bool_exp? get sender => (_$data['sender'] as Inputprofiles_bool_exp?);
+
+  Inputuuid_comparison_exp? get senderId => (_$data['senderId'] as Inputuuid_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get thankedAt =>
+      (_$data['thankedAt'] as Inputtimestamptz_comparison_exp?);
+
+  InputString_comparison_exp? get whenText => (_$data['whenText'] as InputString_comparison_exp?);
+
+  InputString_comparison_exp? get wishText => (_$data['wishText'] as InputString_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('feelText')) {
+      final l$feelText = feelText;
+      result$data['feelText'] = l$feelText?.toJson();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('purgeAfter')) {
+      final l$purgeAfter = purgeAfter;
+      result$data['purgeAfter'] = l$purgeAfter?.toJson();
+    }
+    if (_$data.containsKey('recipient')) {
+      final l$recipient = recipient;
+      result$data['recipient'] = l$recipient?.toJson();
+    }
+    if (_$data.containsKey('recipientId')) {
+      final l$recipientId = recipientId;
+      result$data['recipientId'] = l$recipientId?.toJson();
+    }
+    if (_$data.containsKey('respondedAt')) {
+      final l$respondedAt = respondedAt;
+      result$data['respondedAt'] = l$respondedAt?.toJson();
+    }
+    if (_$data.containsKey('response')) {
+      final l$response = response;
+      result$data['response'] = l$response?.toJson();
+    }
+    if (_$data.containsKey('seenAt')) {
+      final l$seenAt = seenAt;
+      result$data['seenAt'] = l$seenAt?.toJson();
+    }
+    if (_$data.containsKey('sender')) {
+      final l$sender = sender;
+      result$data['sender'] = l$sender?.toJson();
+    }
+    if (_$data.containsKey('senderId')) {
+      final l$senderId = senderId;
+      result$data['senderId'] = l$senderId?.toJson();
+    }
+    if (_$data.containsKey('thankedAt')) {
+      final l$thankedAt = thankedAt;
+      result$data['thankedAt'] = l$thankedAt?.toJson();
+    }
+    if (_$data.containsKey('whenText')) {
+      final l$whenText = whenText;
+      result$data['whenText'] = l$whenText?.toJson();
+    }
+    if (_$data.containsKey('wishText')) {
+      final l$wishText = wishText;
+      result$data['wishText'] = l$wishText?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputgentleRequests_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$feelText = feelText;
+    final lOther$feelText = other.feelText;
+    if (_$data.containsKey('feelText') != other._$data.containsKey('feelText')) {
+      return false;
+    }
+    if (l$feelText != lOther$feelText) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$purgeAfter = purgeAfter;
+    final lOther$purgeAfter = other.purgeAfter;
+    if (_$data.containsKey('purgeAfter') != other._$data.containsKey('purgeAfter')) {
+      return false;
+    }
+    if (l$purgeAfter != lOther$purgeAfter) {
+      return false;
+    }
+    final l$recipient = recipient;
+    final lOther$recipient = other.recipient;
+    if (_$data.containsKey('recipient') != other._$data.containsKey('recipient')) {
+      return false;
+    }
+    if (l$recipient != lOther$recipient) {
+      return false;
+    }
+    final l$recipientId = recipientId;
+    final lOther$recipientId = other.recipientId;
+    if (_$data.containsKey('recipientId') != other._$data.containsKey('recipientId')) {
+      return false;
+    }
+    if (l$recipientId != lOther$recipientId) {
+      return false;
+    }
+    final l$respondedAt = respondedAt;
+    final lOther$respondedAt = other.respondedAt;
+    if (_$data.containsKey('respondedAt') != other._$data.containsKey('respondedAt')) {
+      return false;
+    }
+    if (l$respondedAt != lOther$respondedAt) {
+      return false;
+    }
+    final l$response = response;
+    final lOther$response = other.response;
+    if (_$data.containsKey('response') != other._$data.containsKey('response')) {
+      return false;
+    }
+    if (l$response != lOther$response) {
+      return false;
+    }
+    final l$seenAt = seenAt;
+    final lOther$seenAt = other.seenAt;
+    if (_$data.containsKey('seenAt') != other._$data.containsKey('seenAt')) {
+      return false;
+    }
+    if (l$seenAt != lOther$seenAt) {
+      return false;
+    }
+    final l$sender = sender;
+    final lOther$sender = other.sender;
+    if (_$data.containsKey('sender') != other._$data.containsKey('sender')) {
+      return false;
+    }
+    if (l$sender != lOther$sender) {
+      return false;
+    }
+    final l$senderId = senderId;
+    final lOther$senderId = other.senderId;
+    if (_$data.containsKey('senderId') != other._$data.containsKey('senderId')) {
+      return false;
+    }
+    if (l$senderId != lOther$senderId) {
+      return false;
+    }
+    final l$thankedAt = thankedAt;
+    final lOther$thankedAt = other.thankedAt;
+    if (_$data.containsKey('thankedAt') != other._$data.containsKey('thankedAt')) {
+      return false;
+    }
+    if (l$thankedAt != lOther$thankedAt) {
+      return false;
+    }
+    final l$whenText = whenText;
+    final lOther$whenText = other.whenText;
+    if (_$data.containsKey('whenText') != other._$data.containsKey('whenText')) {
+      return false;
+    }
+    if (l$whenText != lOther$whenText) {
+      return false;
+    }
+    final l$wishText = wishText;
+    final lOther$wishText = other.wishText;
+    if (_$data.containsKey('wishText') != other._$data.containsKey('wishText')) {
+      return false;
+    }
+    if (l$wishText != lOther$wishText) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$createdAt = createdAt;
+    final l$feelText = feelText;
+    final l$id = id;
+    final l$purgeAfter = purgeAfter;
+    final l$recipient = recipient;
+    final l$recipientId = recipientId;
+    final l$respondedAt = respondedAt;
+    final l$response = response;
+    final l$seenAt = seenAt;
+    final l$sender = sender;
+    final l$senderId = senderId;
+    final l$thankedAt = thankedAt;
+    final l$whenText = whenText;
+    final l$wishText = wishText;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('feelText') ? l$feelText : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('purgeAfter') ? l$purgeAfter : const {},
+      _$data.containsKey('recipient') ? l$recipient : const {},
+      _$data.containsKey('recipientId') ? l$recipientId : const {},
+      _$data.containsKey('respondedAt') ? l$respondedAt : const {},
+      _$data.containsKey('response') ? l$response : const {},
+      _$data.containsKey('seenAt') ? l$seenAt : const {},
+      _$data.containsKey('sender') ? l$sender : const {},
+      _$data.containsKey('senderId') ? l$senderId : const {},
+      _$data.containsKey('thankedAt') ? l$thankedAt : const {},
+      _$data.containsKey('whenText') ? l$whenText : const {},
+      _$data.containsKey('wishText') ? l$wishText : const {},
+    ]);
+  }
+}
+
+class InputgentleRequests_order_by {
+  factory InputgentleRequests_order_by({
+    Enumorder_by? createdAt,
+    Enumorder_by? feelText,
+    Enumorder_by? id,
+    Enumorder_by? purgeAfter,
+    Inputprofiles_order_by? recipient,
+    Enumorder_by? recipientId,
+    Enumorder_by? respondedAt,
+    Enumorder_by? response,
+    Enumorder_by? seenAt,
+    Inputprofiles_order_by? sender,
+    Enumorder_by? senderId,
+    Enumorder_by? thankedAt,
+    Enumorder_by? whenText,
+    Enumorder_by? wishText,
+  }) => InputgentleRequests_order_by._({
+    if (createdAt != null) r'createdAt': createdAt,
+    if (feelText != null) r'feelText': feelText,
+    if (id != null) r'id': id,
+    if (purgeAfter != null) r'purgeAfter': purgeAfter,
+    if (recipient != null) r'recipient': recipient,
+    if (recipientId != null) r'recipientId': recipientId,
+    if (respondedAt != null) r'respondedAt': respondedAt,
+    if (response != null) r'response': response,
+    if (seenAt != null) r'seenAt': seenAt,
+    if (sender != null) r'sender': sender,
+    if (senderId != null) r'senderId': senderId,
+    if (thankedAt != null) r'thankedAt': thankedAt,
+    if (whenText != null) r'whenText': whenText,
+    if (wishText != null) r'wishText': wishText,
+  });
+
+  InputgentleRequests_order_by._(this._$data);
+
+  factory InputgentleRequests_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('feelText')) {
+      final l$feelText = data['feelText'];
+      result$data['feelText'] = l$feelText == null
+          ? null
+          : fromJsonEnumorder_by((l$feelText as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null ? null : fromJsonEnumorder_by((l$id as String));
+    }
+    if (data.containsKey('purgeAfter')) {
+      final l$purgeAfter = data['purgeAfter'];
+      result$data['purgeAfter'] = l$purgeAfter == null
+          ? null
+          : fromJsonEnumorder_by((l$purgeAfter as String));
+    }
+    if (data.containsKey('recipient')) {
+      final l$recipient = data['recipient'];
+      result$data['recipient'] = l$recipient == null
+          ? null
+          : Inputprofiles_order_by.fromJson((l$recipient as Map<String, dynamic>));
+    }
+    if (data.containsKey('recipientId')) {
+      final l$recipientId = data['recipientId'];
+      result$data['recipientId'] = l$recipientId == null
+          ? null
+          : fromJsonEnumorder_by((l$recipientId as String));
+    }
+    if (data.containsKey('respondedAt')) {
+      final l$respondedAt = data['respondedAt'];
+      result$data['respondedAt'] = l$respondedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$respondedAt as String));
+    }
+    if (data.containsKey('response')) {
+      final l$response = data['response'];
+      result$data['response'] = l$response == null
+          ? null
+          : fromJsonEnumorder_by((l$response as String));
+    }
+    if (data.containsKey('seenAt')) {
+      final l$seenAt = data['seenAt'];
+      result$data['seenAt'] = l$seenAt == null ? null : fromJsonEnumorder_by((l$seenAt as String));
+    }
+    if (data.containsKey('sender')) {
+      final l$sender = data['sender'];
+      result$data['sender'] = l$sender == null
+          ? null
+          : Inputprofiles_order_by.fromJson((l$sender as Map<String, dynamic>));
+    }
+    if (data.containsKey('senderId')) {
+      final l$senderId = data['senderId'];
+      result$data['senderId'] = l$senderId == null
+          ? null
+          : fromJsonEnumorder_by((l$senderId as String));
+    }
+    if (data.containsKey('thankedAt')) {
+      final l$thankedAt = data['thankedAt'];
+      result$data['thankedAt'] = l$thankedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$thankedAt as String));
+    }
+    if (data.containsKey('whenText')) {
+      final l$whenText = data['whenText'];
+      result$data['whenText'] = l$whenText == null
+          ? null
+          : fromJsonEnumorder_by((l$whenText as String));
+    }
+    if (data.containsKey('wishText')) {
+      final l$wishText = data['wishText'];
+      result$data['wishText'] = l$wishText == null
+          ? null
+          : fromJsonEnumorder_by((l$wishText as String));
+    }
+    return InputgentleRequests_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get feelText => (_$data['feelText'] as Enumorder_by?);
+
+  Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
+
+  Enumorder_by? get purgeAfter => (_$data['purgeAfter'] as Enumorder_by?);
+
+  Inputprofiles_order_by? get recipient => (_$data['recipient'] as Inputprofiles_order_by?);
+
+  Enumorder_by? get recipientId => (_$data['recipientId'] as Enumorder_by?);
+
+  Enumorder_by? get respondedAt => (_$data['respondedAt'] as Enumorder_by?);
+
+  Enumorder_by? get response => (_$data['response'] as Enumorder_by?);
+
+  Enumorder_by? get seenAt => (_$data['seenAt'] as Enumorder_by?);
+
+  Inputprofiles_order_by? get sender => (_$data['sender'] as Inputprofiles_order_by?);
+
+  Enumorder_by? get senderId => (_$data['senderId'] as Enumorder_by?);
+
+  Enumorder_by? get thankedAt => (_$data['thankedAt'] as Enumorder_by?);
+
+  Enumorder_by? get whenText => (_$data['whenText'] as Enumorder_by?);
+
+  Enumorder_by? get wishText => (_$data['wishText'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('feelText')) {
+      final l$feelText = feelText;
+      result$data['feelText'] = l$feelText == null ? null : toJsonEnumorder_by(l$feelText);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJsonEnumorder_by(l$id);
+    }
+    if (_$data.containsKey('purgeAfter')) {
+      final l$purgeAfter = purgeAfter;
+      result$data['purgeAfter'] = l$purgeAfter == null ? null : toJsonEnumorder_by(l$purgeAfter);
+    }
+    if (_$data.containsKey('recipient')) {
+      final l$recipient = recipient;
+      result$data['recipient'] = l$recipient?.toJson();
+    }
+    if (_$data.containsKey('recipientId')) {
+      final l$recipientId = recipientId;
+      result$data['recipientId'] = l$recipientId == null ? null : toJsonEnumorder_by(l$recipientId);
+    }
+    if (_$data.containsKey('respondedAt')) {
+      final l$respondedAt = respondedAt;
+      result$data['respondedAt'] = l$respondedAt == null ? null : toJsonEnumorder_by(l$respondedAt);
+    }
+    if (_$data.containsKey('response')) {
+      final l$response = response;
+      result$data['response'] = l$response == null ? null : toJsonEnumorder_by(l$response);
+    }
+    if (_$data.containsKey('seenAt')) {
+      final l$seenAt = seenAt;
+      result$data['seenAt'] = l$seenAt == null ? null : toJsonEnumorder_by(l$seenAt);
+    }
+    if (_$data.containsKey('sender')) {
+      final l$sender = sender;
+      result$data['sender'] = l$sender?.toJson();
+    }
+    if (_$data.containsKey('senderId')) {
+      final l$senderId = senderId;
+      result$data['senderId'] = l$senderId == null ? null : toJsonEnumorder_by(l$senderId);
+    }
+    if (_$data.containsKey('thankedAt')) {
+      final l$thankedAt = thankedAt;
+      result$data['thankedAt'] = l$thankedAt == null ? null : toJsonEnumorder_by(l$thankedAt);
+    }
+    if (_$data.containsKey('whenText')) {
+      final l$whenText = whenText;
+      result$data['whenText'] = l$whenText == null ? null : toJsonEnumorder_by(l$whenText);
+    }
+    if (_$data.containsKey('wishText')) {
+      final l$wishText = wishText;
+      result$data['wishText'] = l$wishText == null ? null : toJsonEnumorder_by(l$wishText);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputgentleRequests_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$feelText = feelText;
+    final lOther$feelText = other.feelText;
+    if (_$data.containsKey('feelText') != other._$data.containsKey('feelText')) {
+      return false;
+    }
+    if (l$feelText != lOther$feelText) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$purgeAfter = purgeAfter;
+    final lOther$purgeAfter = other.purgeAfter;
+    if (_$data.containsKey('purgeAfter') != other._$data.containsKey('purgeAfter')) {
+      return false;
+    }
+    if (l$purgeAfter != lOther$purgeAfter) {
+      return false;
+    }
+    final l$recipient = recipient;
+    final lOther$recipient = other.recipient;
+    if (_$data.containsKey('recipient') != other._$data.containsKey('recipient')) {
+      return false;
+    }
+    if (l$recipient != lOther$recipient) {
+      return false;
+    }
+    final l$recipientId = recipientId;
+    final lOther$recipientId = other.recipientId;
+    if (_$data.containsKey('recipientId') != other._$data.containsKey('recipientId')) {
+      return false;
+    }
+    if (l$recipientId != lOther$recipientId) {
+      return false;
+    }
+    final l$respondedAt = respondedAt;
+    final lOther$respondedAt = other.respondedAt;
+    if (_$data.containsKey('respondedAt') != other._$data.containsKey('respondedAt')) {
+      return false;
+    }
+    if (l$respondedAt != lOther$respondedAt) {
+      return false;
+    }
+    final l$response = response;
+    final lOther$response = other.response;
+    if (_$data.containsKey('response') != other._$data.containsKey('response')) {
+      return false;
+    }
+    if (l$response != lOther$response) {
+      return false;
+    }
+    final l$seenAt = seenAt;
+    final lOther$seenAt = other.seenAt;
+    if (_$data.containsKey('seenAt') != other._$data.containsKey('seenAt')) {
+      return false;
+    }
+    if (l$seenAt != lOther$seenAt) {
+      return false;
+    }
+    final l$sender = sender;
+    final lOther$sender = other.sender;
+    if (_$data.containsKey('sender') != other._$data.containsKey('sender')) {
+      return false;
+    }
+    if (l$sender != lOther$sender) {
+      return false;
+    }
+    final l$senderId = senderId;
+    final lOther$senderId = other.senderId;
+    if (_$data.containsKey('senderId') != other._$data.containsKey('senderId')) {
+      return false;
+    }
+    if (l$senderId != lOther$senderId) {
+      return false;
+    }
+    final l$thankedAt = thankedAt;
+    final lOther$thankedAt = other.thankedAt;
+    if (_$data.containsKey('thankedAt') != other._$data.containsKey('thankedAt')) {
+      return false;
+    }
+    if (l$thankedAt != lOther$thankedAt) {
+      return false;
+    }
+    final l$whenText = whenText;
+    final lOther$whenText = other.whenText;
+    if (_$data.containsKey('whenText') != other._$data.containsKey('whenText')) {
+      return false;
+    }
+    if (l$whenText != lOther$whenText) {
+      return false;
+    }
+    final l$wishText = wishText;
+    final lOther$wishText = other.wishText;
+    if (_$data.containsKey('wishText') != other._$data.containsKey('wishText')) {
+      return false;
+    }
+    if (l$wishText != lOther$wishText) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$feelText = feelText;
+    final l$id = id;
+    final l$purgeAfter = purgeAfter;
+    final l$recipient = recipient;
+    final l$recipientId = recipientId;
+    final l$respondedAt = respondedAt;
+    final l$response = response;
+    final l$seenAt = seenAt;
+    final l$sender = sender;
+    final l$senderId = senderId;
+    final l$thankedAt = thankedAt;
+    final l$whenText = whenText;
+    final l$wishText = wishText;
+    return Object.hashAll([
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('feelText') ? l$feelText : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('purgeAfter') ? l$purgeAfter : const {},
+      _$data.containsKey('recipient') ? l$recipient : const {},
+      _$data.containsKey('recipientId') ? l$recipientId : const {},
+      _$data.containsKey('respondedAt') ? l$respondedAt : const {},
+      _$data.containsKey('response') ? l$response : const {},
+      _$data.containsKey('seenAt') ? l$seenAt : const {},
+      _$data.containsKey('sender') ? l$sender : const {},
+      _$data.containsKey('senderId') ? l$senderId : const {},
+      _$data.containsKey('thankedAt') ? l$thankedAt : const {},
+      _$data.containsKey('whenText') ? l$whenText : const {},
+      _$data.containsKey('wishText') ? l$wishText : const {},
+    ]);
+  }
+}
+
+class InputgentleRequests_pk_columns_input {
+  factory InputgentleRequests_pk_columns_input({required String id}) =>
+      InputgentleRequests_pk_columns_input._({r'id': id});
+
+  InputgentleRequests_pk_columns_input._(this._$data);
+
+  factory InputgentleRequests_pk_columns_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    return InputgentleRequests_pk_columns_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputgentleRequests_pk_columns_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    return Object.hashAll([l$id]);
+  }
+}
+
+class InputgentleRequests_set_input {
+  factory InputgentleRequests_set_input({String? response, DateTime? seenAt}) =>
+      InputgentleRequests_set_input._({
+        if (response != null) r'response': response,
+        if (seenAt != null) r'seenAt': seenAt,
+      });
+
+  InputgentleRequests_set_input._(this._$data);
+
+  factory InputgentleRequests_set_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('response')) {
+      final l$response = data['response'];
+      result$data['response'] = (l$response as String?);
+    }
+    if (data.containsKey('seenAt')) {
+      final l$seenAt = data['seenAt'];
+      result$data['seenAt'] = l$seenAt == null ? null : DateTime.parse((l$seenAt as String));
+    }
+    return InputgentleRequests_set_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get response => (_$data['response'] as String?);
+
+  DateTime? get seenAt => (_$data['seenAt'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('response')) {
+      final l$response = response;
+      result$data['response'] = l$response;
+    }
+    if (_$data.containsKey('seenAt')) {
+      final l$seenAt = seenAt;
+      result$data['seenAt'] = l$seenAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$seenAt);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputgentleRequests_set_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$response = response;
+    final lOther$response = other.response;
+    if (_$data.containsKey('response') != other._$data.containsKey('response')) {
+      return false;
+    }
+    if (l$response != lOther$response) {
+      return false;
+    }
+    final l$seenAt = seenAt;
+    final lOther$seenAt = other.seenAt;
+    if (_$data.containsKey('seenAt') != other._$data.containsKey('seenAt')) {
+      return false;
+    }
+    if (l$seenAt != lOther$seenAt) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$response = response;
+    final l$seenAt = seenAt;
+    return Object.hashAll([
+      _$data.containsKey('response') ? l$response : const {},
+      _$data.containsKey('seenAt') ? l$seenAt : const {},
+    ]);
+  }
+}
+
+class InputgentleRequests_stream_cursor_input {
+  factory InputgentleRequests_stream_cursor_input({
+    required InputgentleRequests_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputgentleRequests_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputgentleRequests_stream_cursor_input._(this._$data);
+
+  factory InputgentleRequests_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputgentleRequests_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputgentleRequests_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputgentleRequests_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputgentleRequests_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputgentleRequests_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputgentleRequests_stream_cursor_value_input {
+  factory InputgentleRequests_stream_cursor_value_input({
+    DateTime? createdAt,
+    String? feelText,
+    String? id,
+    DateTime? purgeAfter,
+    String? recipientId,
+    DateTime? respondedAt,
+    String? response,
+    DateTime? seenAt,
+    String? senderId,
+    DateTime? thankedAt,
+    String? whenText,
+    String? wishText,
+  }) => InputgentleRequests_stream_cursor_value_input._({
+    if (createdAt != null) r'createdAt': createdAt,
+    if (feelText != null) r'feelText': feelText,
+    if (id != null) r'id': id,
+    if (purgeAfter != null) r'purgeAfter': purgeAfter,
+    if (recipientId != null) r'recipientId': recipientId,
+    if (respondedAt != null) r'respondedAt': respondedAt,
+    if (response != null) r'response': response,
+    if (seenAt != null) r'seenAt': seenAt,
+    if (senderId != null) r'senderId': senderId,
+    if (thankedAt != null) r'thankedAt': thankedAt,
+    if (whenText != null) r'whenText': whenText,
+    if (wishText != null) r'wishText': wishText,
+  });
+
+  InputgentleRequests_stream_cursor_value_input._(this._$data);
+
+  factory InputgentleRequests_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('feelText')) {
+      final l$feelText = data['feelText'];
+      result$data['feelText'] = (l$feelText as String?);
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('purgeAfter')) {
+      final l$purgeAfter = data['purgeAfter'];
+      result$data['purgeAfter'] = l$purgeAfter == null
+          ? null
+          : DateTime.parse((l$purgeAfter as String));
+    }
+    if (data.containsKey('recipientId')) {
+      final l$recipientId = data['recipientId'];
+      result$data['recipientId'] = (l$recipientId as String?);
+    }
+    if (data.containsKey('respondedAt')) {
+      final l$respondedAt = data['respondedAt'];
+      result$data['respondedAt'] = l$respondedAt == null
+          ? null
+          : DateTime.parse((l$respondedAt as String));
+    }
+    if (data.containsKey('response')) {
+      final l$response = data['response'];
+      result$data['response'] = (l$response as String?);
+    }
+    if (data.containsKey('seenAt')) {
+      final l$seenAt = data['seenAt'];
+      result$data['seenAt'] = l$seenAt == null ? null : DateTime.parse((l$seenAt as String));
+    }
+    if (data.containsKey('senderId')) {
+      final l$senderId = data['senderId'];
+      result$data['senderId'] = (l$senderId as String?);
+    }
+    if (data.containsKey('thankedAt')) {
+      final l$thankedAt = data['thankedAt'];
+      result$data['thankedAt'] = l$thankedAt == null
+          ? null
+          : DateTime.parse((l$thankedAt as String));
+    }
+    if (data.containsKey('whenText')) {
+      final l$whenText = data['whenText'];
+      result$data['whenText'] = (l$whenText as String?);
+    }
+    if (data.containsKey('wishText')) {
+      final l$wishText = data['wishText'];
+      result$data['wishText'] = (l$wishText as String?);
+    }
+    return InputgentleRequests_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
+
+  String? get feelText => (_$data['feelText'] as String?);
+
+  String? get id => (_$data['id'] as String?);
+
+  DateTime? get purgeAfter => (_$data['purgeAfter'] as DateTime?);
+
+  String? get recipientId => (_$data['recipientId'] as String?);
+
+  DateTime? get respondedAt => (_$data['respondedAt'] as DateTime?);
+
+  String? get response => (_$data['response'] as String?);
+
+  DateTime? get seenAt => (_$data['seenAt'] as DateTime?);
+
+  String? get senderId => (_$data['senderId'] as String?);
+
+  DateTime? get thankedAt => (_$data['thankedAt'] as DateTime?);
+
+  String? get whenText => (_$data['whenText'] as String?);
+
+  String? get wishText => (_$data['wishText'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('feelText')) {
+      final l$feelText = feelText;
+      result$data['feelText'] = l$feelText;
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('purgeAfter')) {
+      final l$purgeAfter = purgeAfter;
+      result$data['purgeAfter'] = l$purgeAfter == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$purgeAfter);
+    }
+    if (_$data.containsKey('recipientId')) {
+      final l$recipientId = recipientId;
+      result$data['recipientId'] = l$recipientId;
+    }
+    if (_$data.containsKey('respondedAt')) {
+      final l$respondedAt = respondedAt;
+      result$data['respondedAt'] = l$respondedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$respondedAt);
+    }
+    if (_$data.containsKey('response')) {
+      final l$response = response;
+      result$data['response'] = l$response;
+    }
+    if (_$data.containsKey('seenAt')) {
+      final l$seenAt = seenAt;
+      result$data['seenAt'] = l$seenAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$seenAt);
+    }
+    if (_$data.containsKey('senderId')) {
+      final l$senderId = senderId;
+      result$data['senderId'] = l$senderId;
+    }
+    if (_$data.containsKey('thankedAt')) {
+      final l$thankedAt = thankedAt;
+      result$data['thankedAt'] = l$thankedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$thankedAt);
+    }
+    if (_$data.containsKey('whenText')) {
+      final l$whenText = whenText;
+      result$data['whenText'] = l$whenText;
+    }
+    if (_$data.containsKey('wishText')) {
+      final l$wishText = wishText;
+      result$data['wishText'] = l$wishText;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputgentleRequests_stream_cursor_value_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$feelText = feelText;
+    final lOther$feelText = other.feelText;
+    if (_$data.containsKey('feelText') != other._$data.containsKey('feelText')) {
+      return false;
+    }
+    if (l$feelText != lOther$feelText) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$purgeAfter = purgeAfter;
+    final lOther$purgeAfter = other.purgeAfter;
+    if (_$data.containsKey('purgeAfter') != other._$data.containsKey('purgeAfter')) {
+      return false;
+    }
+    if (l$purgeAfter != lOther$purgeAfter) {
+      return false;
+    }
+    final l$recipientId = recipientId;
+    final lOther$recipientId = other.recipientId;
+    if (_$data.containsKey('recipientId') != other._$data.containsKey('recipientId')) {
+      return false;
+    }
+    if (l$recipientId != lOther$recipientId) {
+      return false;
+    }
+    final l$respondedAt = respondedAt;
+    final lOther$respondedAt = other.respondedAt;
+    if (_$data.containsKey('respondedAt') != other._$data.containsKey('respondedAt')) {
+      return false;
+    }
+    if (l$respondedAt != lOther$respondedAt) {
+      return false;
+    }
+    final l$response = response;
+    final lOther$response = other.response;
+    if (_$data.containsKey('response') != other._$data.containsKey('response')) {
+      return false;
+    }
+    if (l$response != lOther$response) {
+      return false;
+    }
+    final l$seenAt = seenAt;
+    final lOther$seenAt = other.seenAt;
+    if (_$data.containsKey('seenAt') != other._$data.containsKey('seenAt')) {
+      return false;
+    }
+    if (l$seenAt != lOther$seenAt) {
+      return false;
+    }
+    final l$senderId = senderId;
+    final lOther$senderId = other.senderId;
+    if (_$data.containsKey('senderId') != other._$data.containsKey('senderId')) {
+      return false;
+    }
+    if (l$senderId != lOther$senderId) {
+      return false;
+    }
+    final l$thankedAt = thankedAt;
+    final lOther$thankedAt = other.thankedAt;
+    if (_$data.containsKey('thankedAt') != other._$data.containsKey('thankedAt')) {
+      return false;
+    }
+    if (l$thankedAt != lOther$thankedAt) {
+      return false;
+    }
+    final l$whenText = whenText;
+    final lOther$whenText = other.whenText;
+    if (_$data.containsKey('whenText') != other._$data.containsKey('whenText')) {
+      return false;
+    }
+    if (l$whenText != lOther$whenText) {
+      return false;
+    }
+    final l$wishText = wishText;
+    final lOther$wishText = other.wishText;
+    if (_$data.containsKey('wishText') != other._$data.containsKey('wishText')) {
+      return false;
+    }
+    if (l$wishText != lOther$wishText) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$feelText = feelText;
+    final l$id = id;
+    final l$purgeAfter = purgeAfter;
+    final l$recipientId = recipientId;
+    final l$respondedAt = respondedAt;
+    final l$response = response;
+    final l$seenAt = seenAt;
+    final l$senderId = senderId;
+    final l$thankedAt = thankedAt;
+    final l$whenText = whenText;
+    final l$wishText = wishText;
+    return Object.hashAll([
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('feelText') ? l$feelText : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('purgeAfter') ? l$purgeAfter : const {},
+      _$data.containsKey('recipientId') ? l$recipientId : const {},
+      _$data.containsKey('respondedAt') ? l$respondedAt : const {},
+      _$data.containsKey('response') ? l$response : const {},
+      _$data.containsKey('seenAt') ? l$seenAt : const {},
+      _$data.containsKey('senderId') ? l$senderId : const {},
+      _$data.containsKey('thankedAt') ? l$thankedAt : const {},
+      _$data.containsKey('whenText') ? l$whenText : const {},
+      _$data.containsKey('wishText') ? l$wishText : const {},
+    ]);
+  }
+}
+
+class InputgentleRequests_updates {
+  factory InputgentleRequests_updates({
+    InputgentleRequests_set_input? $_set,
+    required InputgentleRequests_bool_exp where,
+  }) => InputgentleRequests_updates._({if ($_set != null) r'_set': $_set, r'where': where});
+
+  InputgentleRequests_updates._(this._$data);
+
+  factory InputgentleRequests_updates.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_set')) {
+      final l$$_set = data['_set'];
+      result$data['_set'] = l$$_set == null
+          ? null
+          : InputgentleRequests_set_input.fromJson((l$$_set as Map<String, dynamic>));
+    }
+    final l$where = data['where'];
+    result$data['where'] = InputgentleRequests_bool_exp.fromJson((l$where as Map<String, dynamic>));
+    return InputgentleRequests_updates._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputgentleRequests_set_input? get $_set => (_$data['_set'] as InputgentleRequests_set_input?);
+
+  InputgentleRequests_bool_exp get where => (_$data['where'] as InputgentleRequests_bool_exp);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_set')) {
+      final l$$_set = $_set;
+      result$data['_set'] = l$$_set?.toJson();
+    }
+    final l$where = where;
+    result$data['where'] = l$where.toJson();
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputgentleRequests_updates || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_set = $_set;
+    final lOther$$_set = other.$_set;
+    if (_$data.containsKey('_set') != other._$data.containsKey('_set')) {
+      return false;
+    }
+    if (l$$_set != lOther$$_set) {
+      return false;
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_set = $_set;
+    final l$where = where;
+    return Object.hashAll([_$data.containsKey('_set') ? l$$_set : const {}, l$where]);
+  }
+}
+
 class InputgiftIdeas_bool_exp {
   factory InputgiftIdeas_bool_exp({
     List<InputgiftIdeas_bool_exp>? $_and,
@@ -44772,6 +51461,7 @@ class InputinboxItems_bool_exp {
     InputinboxItems_bool_exp? $_not,
     List<InputinboxItems_bool_exp>? $_or,
     Inputtimestamptz_comparison_exp? createdAt,
+    InputString_comparison_exp? dedupeKey,
     Inputuuid_comparison_exp? id,
     Inputtimestamptz_comparison_exp? readAt,
     Inputuuid_comparison_exp? refId,
@@ -44782,6 +51472,7 @@ class InputinboxItems_bool_exp {
     if ($_not != null) r'_not': $_not,
     if ($_or != null) r'_or': $_or,
     if (createdAt != null) r'createdAt': createdAt,
+    if (dedupeKey != null) r'dedupeKey': dedupeKey,
     if (id != null) r'id': id,
     if (readAt != null) r'readAt': readAt,
     if (refId != null) r'refId': refId,
@@ -44816,6 +51507,12 @@ class InputinboxItems_bool_exp {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('dedupeKey')) {
+      final l$dedupeKey = data['dedupeKey'];
+      result$data['dedupeKey'] = l$dedupeKey == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$dedupeKey as Map<String, dynamic>));
     }
     if (data.containsKey('id')) {
       final l$id = data['id'];
@@ -44861,6 +51558,8 @@ class InputinboxItems_bool_exp {
   Inputtimestamptz_comparison_exp? get createdAt =>
       (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
 
+  InputString_comparison_exp? get dedupeKey => (_$data['dedupeKey'] as InputString_comparison_exp?);
+
   Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
 
   Inputtimestamptz_comparison_exp? get readAt =>
@@ -44890,6 +51589,10 @@ class InputinboxItems_bool_exp {
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('dedupeKey')) {
+      final l$dedupeKey = dedupeKey;
+      result$data['dedupeKey'] = l$dedupeKey?.toJson();
     }
     if (_$data.containsKey('id')) {
       final l$id = id;
@@ -44976,6 +51679,14 @@ class InputinboxItems_bool_exp {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
+    final l$dedupeKey = dedupeKey;
+    final lOther$dedupeKey = other.dedupeKey;
+    if (_$data.containsKey('dedupeKey') != other._$data.containsKey('dedupeKey')) {
+      return false;
+    }
+    if (l$dedupeKey != lOther$dedupeKey) {
+      return false;
+    }
     final l$id = id;
     final lOther$id = other.id;
     if (_$data.containsKey('id') != other._$data.containsKey('id')) {
@@ -45025,6 +51736,7 @@ class InputinboxItems_bool_exp {
     final l$$_not = $_not;
     final l$$_or = $_or;
     final l$createdAt = createdAt;
+    final l$dedupeKey = dedupeKey;
     final l$id = id;
     final l$readAt = readAt;
     final l$refId = refId;
@@ -45043,6 +51755,7 @@ class InputinboxItems_bool_exp {
                 : Object.hashAll(l$$_or.map((v) => v))
           : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('dedupeKey') ? l$dedupeKey : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('readAt') ? l$readAt : const {},
       _$data.containsKey('refId') ? l$refId : const {},
@@ -45055,6 +51768,7 @@ class InputinboxItems_bool_exp {
 class InputinboxItems_order_by {
   factory InputinboxItems_order_by({
     Enumorder_by? createdAt,
+    Enumorder_by? dedupeKey,
     Enumorder_by? id,
     Enumorder_by? readAt,
     Enumorder_by? refId,
@@ -45062,6 +51776,7 @@ class InputinboxItems_order_by {
     Enumorder_by? userId,
   }) => InputinboxItems_order_by._({
     if (createdAt != null) r'createdAt': createdAt,
+    if (dedupeKey != null) r'dedupeKey': dedupeKey,
     if (id != null) r'id': id,
     if (readAt != null) r'readAt': readAt,
     if (refId != null) r'refId': refId,
@@ -45078,6 +51793,12 @@ class InputinboxItems_order_by {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('dedupeKey')) {
+      final l$dedupeKey = data['dedupeKey'];
+      result$data['dedupeKey'] = l$dedupeKey == null
+          ? null
+          : fromJsonEnumorder_by((l$dedupeKey as String));
     }
     if (data.containsKey('id')) {
       final l$id = data['id'];
@@ -45106,6 +51827,8 @@ class InputinboxItems_order_by {
 
   Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
 
+  Enumorder_by? get dedupeKey => (_$data['dedupeKey'] as Enumorder_by?);
+
   Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
 
   Enumorder_by? get readAt => (_$data['readAt'] as Enumorder_by?);
@@ -45121,6 +51844,10 @@ class InputinboxItems_order_by {
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('dedupeKey')) {
+      final l$dedupeKey = dedupeKey;
+      result$data['dedupeKey'] = l$dedupeKey == null ? null : toJsonEnumorder_by(l$dedupeKey);
     }
     if (_$data.containsKey('id')) {
       final l$id = id;
@@ -45159,6 +51886,14 @@ class InputinboxItems_order_by {
       return false;
     }
     if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$dedupeKey = dedupeKey;
+    final lOther$dedupeKey = other.dedupeKey;
+    if (_$data.containsKey('dedupeKey') != other._$data.containsKey('dedupeKey')) {
+      return false;
+    }
+    if (l$dedupeKey != lOther$dedupeKey) {
       return false;
     }
     final l$id = id;
@@ -45207,6 +51942,7 @@ class InputinboxItems_order_by {
   @override
   int get hashCode {
     final l$createdAt = createdAt;
+    final l$dedupeKey = dedupeKey;
     final l$id = id;
     final l$readAt = readAt;
     final l$refId = refId;
@@ -45214,6 +51950,7 @@ class InputinboxItems_order_by {
     final l$userId = userId;
     return Object.hashAll([
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('dedupeKey') ? l$dedupeKey : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('readAt') ? l$readAt : const {},
       _$data.containsKey('refId') ? l$refId : const {},
@@ -45408,6 +52145,7 @@ class InputinboxItems_stream_cursor_input {
 class InputinboxItems_stream_cursor_value_input {
   factory InputinboxItems_stream_cursor_value_input({
     DateTime? createdAt,
+    String? dedupeKey,
     String? id,
     DateTime? readAt,
     String? refId,
@@ -45415,6 +52153,7 @@ class InputinboxItems_stream_cursor_value_input {
     String? userId,
   }) => InputinboxItems_stream_cursor_value_input._({
     if (createdAt != null) r'createdAt': createdAt,
+    if (dedupeKey != null) r'dedupeKey': dedupeKey,
     if (id != null) r'id': id,
     if (readAt != null) r'readAt': readAt,
     if (refId != null) r'refId': refId,
@@ -45431,6 +52170,10 @@ class InputinboxItems_stream_cursor_value_input {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('dedupeKey')) {
+      final l$dedupeKey = data['dedupeKey'];
+      result$data['dedupeKey'] = (l$dedupeKey as String?);
     }
     if (data.containsKey('id')) {
       final l$id = data['id'];
@@ -45461,6 +52204,8 @@ class InputinboxItems_stream_cursor_value_input {
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
+  String? get dedupeKey => (_$data['dedupeKey'] as String?);
+
   String? get id => (_$data['id'] as String?);
 
   DateTime? get readAt => (_$data['readAt'] as DateTime?);
@@ -45478,6 +52223,10 @@ class InputinboxItems_stream_cursor_value_input {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('dedupeKey')) {
+      final l$dedupeKey = dedupeKey;
+      result$data['dedupeKey'] = l$dedupeKey;
     }
     if (_$data.containsKey('id')) {
       final l$id = id;
@@ -45518,6 +52267,14 @@ class InputinboxItems_stream_cursor_value_input {
       return false;
     }
     if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$dedupeKey = dedupeKey;
+    final lOther$dedupeKey = other.dedupeKey;
+    if (_$data.containsKey('dedupeKey') != other._$data.containsKey('dedupeKey')) {
+      return false;
+    }
+    if (l$dedupeKey != lOther$dedupeKey) {
       return false;
     }
     final l$id = id;
@@ -45566,6 +52323,7 @@ class InputinboxItems_stream_cursor_value_input {
   @override
   int get hashCode {
     final l$createdAt = createdAt;
+    final l$dedupeKey = dedupeKey;
     final l$id = id;
     final l$readAt = readAt;
     final l$refId = refId;
@@ -45573,6 +52331,7 @@ class InputinboxItems_stream_cursor_value_input {
     final l$userId = userId;
     return Object.hashAll([
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('dedupeKey') ? l$dedupeKey : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('readAt') ? l$readAt : const {},
       _$data.containsKey('refId') ? l$refId : const {},
@@ -45649,6 +52408,361 @@ class InputinboxItems_updates {
     final l$$_set = $_set;
     final l$where = where;
     return Object.hashAll([_$data.containsKey('_set') ? l$$_set : const {}, l$where]);
+  }
+}
+
+class InputinviteAcceptResults_bool_exp {
+  factory InputinviteAcceptResults_bool_exp({
+    List<InputinviteAcceptResults_bool_exp>? $_and,
+    InputinviteAcceptResults_bool_exp? $_not,
+    List<InputinviteAcceptResults_bool_exp>? $_or,
+    InputString_comparison_exp? state,
+  }) => InputinviteAcceptResults_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (state != null) r'state': state,
+  });
+
+  InputinviteAcceptResults_bool_exp._(this._$data);
+
+  factory InputinviteAcceptResults_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputinviteAcceptResults_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputinviteAcceptResults_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputinviteAcceptResults_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('state')) {
+      final l$state = data['state'];
+      result$data['state'] = l$state == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$state as Map<String, dynamic>));
+    }
+    return InputinviteAcceptResults_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputinviteAcceptResults_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputinviteAcceptResults_bool_exp>?);
+
+  InputinviteAcceptResults_bool_exp? get $_not =>
+      (_$data['_not'] as InputinviteAcceptResults_bool_exp?);
+
+  List<InputinviteAcceptResults_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputinviteAcceptResults_bool_exp>?);
+
+  InputString_comparison_exp? get state => (_$data['state'] as InputString_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('state')) {
+      final l$state = state;
+      result$data['state'] = l$state?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinviteAcceptResults_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$state = state;
+    final lOther$state = other.state;
+    if (_$data.containsKey('state') != other._$data.containsKey('state')) {
+      return false;
+    }
+    if (l$state != lOther$state) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$state = state;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('state') ? l$state : const {},
+    ]);
+  }
+}
+
+class InputinviteAcceptResults_order_by {
+  factory InputinviteAcceptResults_order_by({Enumorder_by? state}) =>
+      InputinviteAcceptResults_order_by._({if (state != null) r'state': state});
+
+  InputinviteAcceptResults_order_by._(this._$data);
+
+  factory InputinviteAcceptResults_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('state')) {
+      final l$state = data['state'];
+      result$data['state'] = l$state == null ? null : fromJsonEnumorder_by((l$state as String));
+    }
+    return InputinviteAcceptResults_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get state => (_$data['state'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('state')) {
+      final l$state = state;
+      result$data['state'] = l$state == null ? null : toJsonEnumorder_by(l$state);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinviteAcceptResults_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$state = state;
+    final lOther$state = other.state;
+    if (_$data.containsKey('state') != other._$data.containsKey('state')) {
+      return false;
+    }
+    if (l$state != lOther$state) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$state = state;
+    return Object.hashAll([_$data.containsKey('state') ? l$state : const {}]);
+  }
+}
+
+class InputinviteAcceptResults_stream_cursor_input {
+  factory InputinviteAcceptResults_stream_cursor_input({
+    required InputinviteAcceptResults_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputinviteAcceptResults_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputinviteAcceptResults_stream_cursor_input._(this._$data);
+
+  factory InputinviteAcceptResults_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputinviteAcceptResults_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputinviteAcceptResults_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputinviteAcceptResults_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputinviteAcceptResults_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinviteAcceptResults_stream_cursor_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputinviteAcceptResults_stream_cursor_value_input {
+  factory InputinviteAcceptResults_stream_cursor_value_input({String? state}) =>
+      InputinviteAcceptResults_stream_cursor_value_input._({if (state != null) r'state': state});
+
+  InputinviteAcceptResults_stream_cursor_value_input._(this._$data);
+
+  factory InputinviteAcceptResults_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('state')) {
+      final l$state = data['state'];
+      result$data['state'] = (l$state as String?);
+    }
+    return InputinviteAcceptResults_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get state => (_$data['state'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('state')) {
+      final l$state = state;
+      result$data['state'] = l$state;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinviteAcceptResults_stream_cursor_value_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$state = state;
+    final lOther$state = other.state;
+    if (_$data.containsKey('state') != other._$data.containsKey('state')) {
+      return false;
+    }
+    if (l$state != lOther$state) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$state = state;
+    return Object.hashAll([_$data.containsKey('state') ? l$state : const {}]);
   }
 }
 
@@ -46141,6 +53255,569 @@ class InputinvitePreviews_stream_cursor_value_input {
     return Object.hashAll([
       _$data.containsKey('expiresAt') ? l$expiresAt : const {},
       _$data.containsKey('inviterName') ? l$inviterName : const {},
+    ]);
+  }
+}
+
+class InputinviteStatus_args {
+  factory InputinviteStatus_args({String? code}) =>
+      InputinviteStatus_args._({if (code != null) r'code': code});
+
+  InputinviteStatus_args._(this._$data);
+
+  factory InputinviteStatus_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('code')) {
+      final l$code = data['code'];
+      result$data['code'] = (l$code as String?);
+    }
+    return InputinviteStatus_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get code => (_$data['code'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('code')) {
+      final l$code = code;
+      result$data['code'] = l$code;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinviteStatus_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$code = code;
+    final lOther$code = other.code;
+    if (_$data.containsKey('code') != other._$data.containsKey('code')) {
+      return false;
+    }
+    if (l$code != lOther$code) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$code = code;
+    return Object.hashAll([_$data.containsKey('code') ? l$code : const {}]);
+  }
+}
+
+class InputinviteStatuses_bool_exp {
+  factory InputinviteStatuses_bool_exp({
+    List<InputinviteStatuses_bool_exp>? $_and,
+    InputinviteStatuses_bool_exp? $_not,
+    List<InputinviteStatuses_bool_exp>? $_or,
+    Inputtimestamptz_comparison_exp? expiresAt,
+    InputString_comparison_exp? inviterName,
+    InputString_comparison_exp? state,
+  }) => InputinviteStatuses_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (expiresAt != null) r'expiresAt': expiresAt,
+    if (inviterName != null) r'inviterName': inviterName,
+    if (state != null) r'state': state,
+  });
+
+  InputinviteStatuses_bool_exp._(this._$data);
+
+  factory InputinviteStatuses_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputinviteStatuses_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputinviteStatuses_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputinviteStatuses_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('expiresAt')) {
+      final l$expiresAt = data['expiresAt'];
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$expiresAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('inviterName')) {
+      final l$inviterName = data['inviterName'];
+      result$data['inviterName'] = l$inviterName == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$inviterName as Map<String, dynamic>));
+    }
+    if (data.containsKey('state')) {
+      final l$state = data['state'];
+      result$data['state'] = l$state == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$state as Map<String, dynamic>));
+    }
+    return InputinviteStatuses_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputinviteStatuses_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputinviteStatuses_bool_exp>?);
+
+  InputinviteStatuses_bool_exp? get $_not => (_$data['_not'] as InputinviteStatuses_bool_exp?);
+
+  List<InputinviteStatuses_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputinviteStatuses_bool_exp>?);
+
+  Inputtimestamptz_comparison_exp? get expiresAt =>
+      (_$data['expiresAt'] as Inputtimestamptz_comparison_exp?);
+
+  InputString_comparison_exp? get inviterName =>
+      (_$data['inviterName'] as InputString_comparison_exp?);
+
+  InputString_comparison_exp? get state => (_$data['state'] as InputString_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('expiresAt')) {
+      final l$expiresAt = expiresAt;
+      result$data['expiresAt'] = l$expiresAt?.toJson();
+    }
+    if (_$data.containsKey('inviterName')) {
+      final l$inviterName = inviterName;
+      result$data['inviterName'] = l$inviterName?.toJson();
+    }
+    if (_$data.containsKey('state')) {
+      final l$state = state;
+      result$data['state'] = l$state?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinviteStatuses_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$expiresAt = expiresAt;
+    final lOther$expiresAt = other.expiresAt;
+    if (_$data.containsKey('expiresAt') != other._$data.containsKey('expiresAt')) {
+      return false;
+    }
+    if (l$expiresAt != lOther$expiresAt) {
+      return false;
+    }
+    final l$inviterName = inviterName;
+    final lOther$inviterName = other.inviterName;
+    if (_$data.containsKey('inviterName') != other._$data.containsKey('inviterName')) {
+      return false;
+    }
+    if (l$inviterName != lOther$inviterName) {
+      return false;
+    }
+    final l$state = state;
+    final lOther$state = other.state;
+    if (_$data.containsKey('state') != other._$data.containsKey('state')) {
+      return false;
+    }
+    if (l$state != lOther$state) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$expiresAt = expiresAt;
+    final l$inviterName = inviterName;
+    final l$state = state;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('expiresAt') ? l$expiresAt : const {},
+      _$data.containsKey('inviterName') ? l$inviterName : const {},
+      _$data.containsKey('state') ? l$state : const {},
+    ]);
+  }
+}
+
+class InputinviteStatuses_order_by {
+  factory InputinviteStatuses_order_by({
+    Enumorder_by? expiresAt,
+    Enumorder_by? inviterName,
+    Enumorder_by? state,
+  }) => InputinviteStatuses_order_by._({
+    if (expiresAt != null) r'expiresAt': expiresAt,
+    if (inviterName != null) r'inviterName': inviterName,
+    if (state != null) r'state': state,
+  });
+
+  InputinviteStatuses_order_by._(this._$data);
+
+  factory InputinviteStatuses_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('expiresAt')) {
+      final l$expiresAt = data['expiresAt'];
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : fromJsonEnumorder_by((l$expiresAt as String));
+    }
+    if (data.containsKey('inviterName')) {
+      final l$inviterName = data['inviterName'];
+      result$data['inviterName'] = l$inviterName == null
+          ? null
+          : fromJsonEnumorder_by((l$inviterName as String));
+    }
+    if (data.containsKey('state')) {
+      final l$state = data['state'];
+      result$data['state'] = l$state == null ? null : fromJsonEnumorder_by((l$state as String));
+    }
+    return InputinviteStatuses_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get expiresAt => (_$data['expiresAt'] as Enumorder_by?);
+
+  Enumorder_by? get inviterName => (_$data['inviterName'] as Enumorder_by?);
+
+  Enumorder_by? get state => (_$data['state'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('expiresAt')) {
+      final l$expiresAt = expiresAt;
+      result$data['expiresAt'] = l$expiresAt == null ? null : toJsonEnumorder_by(l$expiresAt);
+    }
+    if (_$data.containsKey('inviterName')) {
+      final l$inviterName = inviterName;
+      result$data['inviterName'] = l$inviterName == null ? null : toJsonEnumorder_by(l$inviterName);
+    }
+    if (_$data.containsKey('state')) {
+      final l$state = state;
+      result$data['state'] = l$state == null ? null : toJsonEnumorder_by(l$state);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinviteStatuses_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$expiresAt = expiresAt;
+    final lOther$expiresAt = other.expiresAt;
+    if (_$data.containsKey('expiresAt') != other._$data.containsKey('expiresAt')) {
+      return false;
+    }
+    if (l$expiresAt != lOther$expiresAt) {
+      return false;
+    }
+    final l$inviterName = inviterName;
+    final lOther$inviterName = other.inviterName;
+    if (_$data.containsKey('inviterName') != other._$data.containsKey('inviterName')) {
+      return false;
+    }
+    if (l$inviterName != lOther$inviterName) {
+      return false;
+    }
+    final l$state = state;
+    final lOther$state = other.state;
+    if (_$data.containsKey('state') != other._$data.containsKey('state')) {
+      return false;
+    }
+    if (l$state != lOther$state) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$expiresAt = expiresAt;
+    final l$inviterName = inviterName;
+    final l$state = state;
+    return Object.hashAll([
+      _$data.containsKey('expiresAt') ? l$expiresAt : const {},
+      _$data.containsKey('inviterName') ? l$inviterName : const {},
+      _$data.containsKey('state') ? l$state : const {},
+    ]);
+  }
+}
+
+class InputinviteStatuses_stream_cursor_input {
+  factory InputinviteStatuses_stream_cursor_input({
+    required InputinviteStatuses_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputinviteStatuses_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputinviteStatuses_stream_cursor_input._(this._$data);
+
+  factory InputinviteStatuses_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputinviteStatuses_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputinviteStatuses_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputinviteStatuses_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputinviteStatuses_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinviteStatuses_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputinviteStatuses_stream_cursor_value_input {
+  factory InputinviteStatuses_stream_cursor_value_input({
+    DateTime? expiresAt,
+    String? inviterName,
+    String? state,
+  }) => InputinviteStatuses_stream_cursor_value_input._({
+    if (expiresAt != null) r'expiresAt': expiresAt,
+    if (inviterName != null) r'inviterName': inviterName,
+    if (state != null) r'state': state,
+  });
+
+  InputinviteStatuses_stream_cursor_value_input._(this._$data);
+
+  factory InputinviteStatuses_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('expiresAt')) {
+      final l$expiresAt = data['expiresAt'];
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : DateTime.parse((l$expiresAt as String));
+    }
+    if (data.containsKey('inviterName')) {
+      final l$inviterName = data['inviterName'];
+      result$data['inviterName'] = (l$inviterName as String?);
+    }
+    if (data.containsKey('state')) {
+      final l$state = data['state'];
+      result$data['state'] = (l$state as String?);
+    }
+    return InputinviteStatuses_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get expiresAt => (_$data['expiresAt'] as DateTime?);
+
+  String? get inviterName => (_$data['inviterName'] as String?);
+
+  String? get state => (_$data['state'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('expiresAt')) {
+      final l$expiresAt = expiresAt;
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$expiresAt);
+    }
+    if (_$data.containsKey('inviterName')) {
+      final l$inviterName = inviterName;
+      result$data['inviterName'] = l$inviterName;
+    }
+    if (_$data.containsKey('state')) {
+      final l$state = state;
+      result$data['state'] = l$state;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputinviteStatuses_stream_cursor_value_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$expiresAt = expiresAt;
+    final lOther$expiresAt = other.expiresAt;
+    if (_$data.containsKey('expiresAt') != other._$data.containsKey('expiresAt')) {
+      return false;
+    }
+    if (l$expiresAt != lOther$expiresAt) {
+      return false;
+    }
+    final l$inviterName = inviterName;
+    final lOther$inviterName = other.inviterName;
+    if (_$data.containsKey('inviterName') != other._$data.containsKey('inviterName')) {
+      return false;
+    }
+    if (l$inviterName != lOther$inviterName) {
+      return false;
+    }
+    final l$state = state;
+    final lOther$state = other.state;
+    if (_$data.containsKey('state') != other._$data.containsKey('state')) {
+      return false;
+    }
+    if (l$state != lOther$state) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$expiresAt = expiresAt;
+    final l$inviterName = inviterName;
+    final l$state = state;
+    return Object.hashAll([
+      _$data.containsKey('expiresAt') ? l$expiresAt : const {},
+      _$data.containsKey('inviterName') ? l$inviterName : const {},
+      _$data.containsKey('state') ? l$state : const {},
     ]);
   }
 }
@@ -56136,6 +63813,8 @@ class InputlogisticItems_bool_exp {
     Inputuuid_comparison_exp? assigneeId,
     Inputprofiles_bool_exp? author,
     Inputuuid_comparison_exp? authorId,
+    Inputtimestamptz_comparison_exp? confirmedAt,
+    Inputuuid_comparison_exp? confirmedBy,
     Inputcouples_bool_exp? couple,
     Inputuuid_comparison_exp? coupleId,
     InputcoupleMembers_bool_exp? coupleMembers,
@@ -56155,6 +63834,8 @@ class InputlogisticItems_bool_exp {
     if (assigneeId != null) r'assigneeId': assigneeId,
     if (author != null) r'author': author,
     if (authorId != null) r'authorId': authorId,
+    if (confirmedAt != null) r'confirmedAt': confirmedAt,
+    if (confirmedBy != null) r'confirmedBy': confirmedBy,
     if (couple != null) r'couple': couple,
     if (coupleId != null) r'coupleId': coupleId,
     if (coupleMembers != null) r'coupleMembers': coupleMembers,
@@ -56213,6 +63894,18 @@ class InputlogisticItems_bool_exp {
       result$data['authorId'] = l$authorId == null
           ? null
           : Inputuuid_comparison_exp.fromJson((l$authorId as Map<String, dynamic>));
+    }
+    if (data.containsKey('confirmedAt')) {
+      final l$confirmedAt = data['confirmedAt'];
+      result$data['confirmedAt'] = l$confirmedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$confirmedAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('confirmedBy')) {
+      final l$confirmedBy = data['confirmedBy'];
+      result$data['confirmedBy'] = l$confirmedBy == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$confirmedBy as Map<String, dynamic>));
     }
     if (data.containsKey('couple')) {
       final l$couple = data['couple'];
@@ -56301,6 +63994,11 @@ class InputlogisticItems_bool_exp {
 
   Inputuuid_comparison_exp? get authorId => (_$data['authorId'] as Inputuuid_comparison_exp?);
 
+  Inputtimestamptz_comparison_exp? get confirmedAt =>
+      (_$data['confirmedAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_comparison_exp? get confirmedBy => (_$data['confirmedBy'] as Inputuuid_comparison_exp?);
+
   Inputcouples_bool_exp? get couple => (_$data['couple'] as Inputcouples_bool_exp?);
 
   Inputuuid_comparison_exp? get coupleId => (_$data['coupleId'] as Inputuuid_comparison_exp?);
@@ -56357,6 +64055,14 @@ class InputlogisticItems_bool_exp {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId?.toJson();
+    }
+    if (_$data.containsKey('confirmedAt')) {
+      final l$confirmedAt = confirmedAt;
+      result$data['confirmedAt'] = l$confirmedAt?.toJson();
+    }
+    if (_$data.containsKey('confirmedBy')) {
+      final l$confirmedBy = confirmedBy;
+      result$data['confirmedBy'] = l$confirmedBy?.toJson();
     }
     if (_$data.containsKey('couple')) {
       final l$couple = couple;
@@ -56491,6 +64197,22 @@ class InputlogisticItems_bool_exp {
     if (l$authorId != lOther$authorId) {
       return false;
     }
+    final l$confirmedAt = confirmedAt;
+    final lOther$confirmedAt = other.confirmedAt;
+    if (_$data.containsKey('confirmedAt') != other._$data.containsKey('confirmedAt')) {
+      return false;
+    }
+    if (l$confirmedAt != lOther$confirmedAt) {
+      return false;
+    }
+    final l$confirmedBy = confirmedBy;
+    final lOther$confirmedBy = other.confirmedBy;
+    if (_$data.containsKey('confirmedBy') != other._$data.containsKey('confirmedBy')) {
+      return false;
+    }
+    if (l$confirmedBy != lOther$confirmedBy) {
+      return false;
+    }
     final l$couple = couple;
     final lOther$couple = other.couple;
     if (_$data.containsKey('couple') != other._$data.containsKey('couple')) {
@@ -56591,6 +64313,8 @@ class InputlogisticItems_bool_exp {
     final l$assigneeId = assigneeId;
     final l$author = author;
     final l$authorId = authorId;
+    final l$confirmedAt = confirmedAt;
+    final l$confirmedBy = confirmedBy;
     final l$couple = couple;
     final l$coupleId = coupleId;
     final l$coupleMembers = coupleMembers;
@@ -56618,6 +64342,8 @@ class InputlogisticItems_bool_exp {
       _$data.containsKey('assigneeId') ? l$assigneeId : const {},
       _$data.containsKey('author') ? l$author : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('confirmedAt') ? l$confirmedAt : const {},
+      _$data.containsKey('confirmedBy') ? l$confirmedBy : const {},
       _$data.containsKey('couple') ? l$couple : const {},
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('coupleMembers') ? l$coupleMembers : const {},
@@ -56979,6 +64705,8 @@ class InputlogisticItems_order_by {
     Enumorder_by? assigneeId,
     Inputprofiles_order_by? author,
     Enumorder_by? authorId,
+    Enumorder_by? confirmedAt,
+    Enumorder_by? confirmedBy,
     Inputcouples_order_by? couple,
     Enumorder_by? coupleId,
     InputcoupleMembers_aggregate_order_by? coupleMembers_aggregate,
@@ -56995,6 +64723,8 @@ class InputlogisticItems_order_by {
     if (assigneeId != null) r'assigneeId': assigneeId,
     if (author != null) r'author': author,
     if (authorId != null) r'authorId': authorId,
+    if (confirmedAt != null) r'confirmedAt': confirmedAt,
+    if (confirmedBy != null) r'confirmedBy': confirmedBy,
     if (couple != null) r'couple': couple,
     if (coupleId != null) r'coupleId': coupleId,
     if (coupleMembers_aggregate != null) r'coupleMembers_aggregate': coupleMembers_aggregate,
@@ -57035,6 +64765,18 @@ class InputlogisticItems_order_by {
       result$data['authorId'] = l$authorId == null
           ? null
           : fromJsonEnumorder_by((l$authorId as String));
+    }
+    if (data.containsKey('confirmedAt')) {
+      final l$confirmedAt = data['confirmedAt'];
+      result$data['confirmedAt'] = l$confirmedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$confirmedAt as String));
+    }
+    if (data.containsKey('confirmedBy')) {
+      final l$confirmedBy = data['confirmedBy'];
+      result$data['confirmedBy'] = l$confirmedBy == null
+          ? null
+          : fromJsonEnumorder_by((l$confirmedBy as String));
     }
     if (data.containsKey('couple')) {
       final l$couple = data['couple'];
@@ -57109,6 +64851,10 @@ class InputlogisticItems_order_by {
 
   Enumorder_by? get authorId => (_$data['authorId'] as Enumorder_by?);
 
+  Enumorder_by? get confirmedAt => (_$data['confirmedAt'] as Enumorder_by?);
+
+  Enumorder_by? get confirmedBy => (_$data['confirmedBy'] as Enumorder_by?);
+
   Inputcouples_order_by? get couple => (_$data['couple'] as Inputcouples_order_by?);
 
   Enumorder_by? get coupleId => (_$data['coupleId'] as Enumorder_by?);
@@ -57149,6 +64895,14 @@ class InputlogisticItems_order_by {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId == null ? null : toJsonEnumorder_by(l$authorId);
+    }
+    if (_$data.containsKey('confirmedAt')) {
+      final l$confirmedAt = confirmedAt;
+      result$data['confirmedAt'] = l$confirmedAt == null ? null : toJsonEnumorder_by(l$confirmedAt);
+    }
+    if (_$data.containsKey('confirmedBy')) {
+      final l$confirmedBy = confirmedBy;
+      result$data['confirmedBy'] = l$confirmedBy == null ? null : toJsonEnumorder_by(l$confirmedBy);
     }
     if (_$data.containsKey('couple')) {
       final l$couple = couple;
@@ -57237,6 +64991,22 @@ class InputlogisticItems_order_by {
       return false;
     }
     if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$confirmedAt = confirmedAt;
+    final lOther$confirmedAt = other.confirmedAt;
+    if (_$data.containsKey('confirmedAt') != other._$data.containsKey('confirmedAt')) {
+      return false;
+    }
+    if (l$confirmedAt != lOther$confirmedAt) {
+      return false;
+    }
+    final l$confirmedBy = confirmedBy;
+    final lOther$confirmedBy = other.confirmedBy;
+    if (_$data.containsKey('confirmedBy') != other._$data.containsKey('confirmedBy')) {
+      return false;
+    }
+    if (l$confirmedBy != lOther$confirmedBy) {
       return false;
     }
     final l$couple = couple;
@@ -57337,6 +65107,8 @@ class InputlogisticItems_order_by {
     final l$assigneeId = assigneeId;
     final l$author = author;
     final l$authorId = authorId;
+    final l$confirmedAt = confirmedAt;
+    final l$confirmedBy = confirmedBy;
     final l$couple = couple;
     final l$coupleId = coupleId;
     final l$coupleMembers_aggregate = coupleMembers_aggregate;
@@ -57353,6 +65125,8 @@ class InputlogisticItems_order_by {
       _$data.containsKey('assigneeId') ? l$assigneeId : const {},
       _$data.containsKey('author') ? l$author : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('confirmedAt') ? l$confirmedAt : const {},
+      _$data.containsKey('confirmedBy') ? l$confirmedBy : const {},
       _$data.containsKey('couple') ? l$couple : const {},
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('coupleMembers_aggregate') ? l$coupleMembers_aggregate : const {},
@@ -57697,6 +65471,8 @@ class InputlogisticItems_stream_cursor_value_input {
   factory InputlogisticItems_stream_cursor_value_input({
     String? assigneeId,
     String? authorId,
+    DateTime? confirmedAt,
+    String? confirmedBy,
     String? coupleId,
     DateTime? createdAt,
     DateTime? doneAt,
@@ -57709,6 +65485,8 @@ class InputlogisticItems_stream_cursor_value_input {
   }) => InputlogisticItems_stream_cursor_value_input._({
     if (assigneeId != null) r'assigneeId': assigneeId,
     if (authorId != null) r'authorId': authorId,
+    if (confirmedAt != null) r'confirmedAt': confirmedAt,
+    if (confirmedBy != null) r'confirmedBy': confirmedBy,
     if (coupleId != null) r'coupleId': coupleId,
     if (createdAt != null) r'createdAt': createdAt,
     if (doneAt != null) r'doneAt': doneAt,
@@ -57731,6 +65509,16 @@ class InputlogisticItems_stream_cursor_value_input {
     if (data.containsKey('authorId')) {
       final l$authorId = data['authorId'];
       result$data['authorId'] = (l$authorId as String?);
+    }
+    if (data.containsKey('confirmedAt')) {
+      final l$confirmedAt = data['confirmedAt'];
+      result$data['confirmedAt'] = l$confirmedAt == null
+          ? null
+          : DateTime.parse((l$confirmedAt as String));
+    }
+    if (data.containsKey('confirmedBy')) {
+      final l$confirmedBy = data['confirmedBy'];
+      result$data['confirmedBy'] = (l$confirmedBy as String?);
     }
     if (data.containsKey('coupleId')) {
       final l$coupleId = data['coupleId'];
@@ -57783,6 +65571,10 @@ class InputlogisticItems_stream_cursor_value_input {
 
   String? get authorId => (_$data['authorId'] as String?);
 
+  DateTime? get confirmedAt => (_$data['confirmedAt'] as DateTime?);
+
+  String? get confirmedBy => (_$data['confirmedBy'] as String?);
+
   String? get coupleId => (_$data['coupleId'] as String?);
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
@@ -57810,6 +65602,16 @@ class InputlogisticItems_stream_cursor_value_input {
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId;
+    }
+    if (_$data.containsKey('confirmedAt')) {
+      final l$confirmedAt = confirmedAt;
+      result$data['confirmedAt'] = l$confirmedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$confirmedAt);
+    }
+    if (_$data.containsKey('confirmedBy')) {
+      final l$confirmedBy = confirmedBy;
+      result$data['confirmedBy'] = l$confirmedBy;
     }
     if (_$data.containsKey('coupleId')) {
       final l$coupleId = coupleId;
@@ -57883,6 +65685,22 @@ class InputlogisticItems_stream_cursor_value_input {
       return false;
     }
     if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$confirmedAt = confirmedAt;
+    final lOther$confirmedAt = other.confirmedAt;
+    if (_$data.containsKey('confirmedAt') != other._$data.containsKey('confirmedAt')) {
+      return false;
+    }
+    if (l$confirmedAt != lOther$confirmedAt) {
+      return false;
+    }
+    final l$confirmedBy = confirmedBy;
+    final lOther$confirmedBy = other.confirmedBy;
+    if (_$data.containsKey('confirmedBy') != other._$data.containsKey('confirmedBy')) {
+      return false;
+    }
+    if (l$confirmedBy != lOther$confirmedBy) {
       return false;
     }
     final l$coupleId = coupleId;
@@ -57964,6 +65782,8 @@ class InputlogisticItems_stream_cursor_value_input {
   int get hashCode {
     final l$assigneeId = assigneeId;
     final l$authorId = authorId;
+    final l$confirmedAt = confirmedAt;
+    final l$confirmedBy = confirmedBy;
     final l$coupleId = coupleId;
     final l$createdAt = createdAt;
     final l$doneAt = doneAt;
@@ -57976,6 +65796,8 @@ class InputlogisticItems_stream_cursor_value_input {
     return Object.hashAll([
       _$data.containsKey('assigneeId') ? l$assigneeId : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
+      _$data.containsKey('confirmedAt') ? l$confirmedAt : const {},
+      _$data.containsKey('confirmedBy') ? l$confirmedBy : const {},
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('doneAt') ? l$doneAt : const {},
@@ -59748,6 +67570,7 @@ class Inputmemories_bool_exp {
     List<Inputmemories_bool_exp>? $_and,
     Inputmemories_bool_exp? $_not,
     List<Inputmemories_bool_exp>? $_or,
+    Inputtimestamptz_comparison_exp? acceptedAt,
     Inputprofiles_bool_exp? author,
     Inputuuid_comparison_exp? authorId,
     InputString_comparison_exp? body,
@@ -59756,6 +67579,7 @@ class Inputmemories_bool_exp {
     InputcoupleMembers_bool_exp? coupleMembers,
     Inputtimestamptz_comparison_exp? createdAt,
     InputDatePrecision_enum_comparison_exp? datePrecision,
+    Inputtimestamptz_comparison_exp? declinedAt,
     Inputdate_comparison_exp? happenedOn,
     Inputuuid_comparison_exp? id,
     InputMemoryOrigin_enum_comparison_exp? origin,
@@ -59769,6 +67593,7 @@ class Inputmemories_bool_exp {
     if ($_and != null) r'_and': $_and,
     if ($_not != null) r'_not': $_not,
     if ($_or != null) r'_or': $_or,
+    if (acceptedAt != null) r'acceptedAt': acceptedAt,
     if (author != null) r'author': author,
     if (authorId != null) r'authorId': authorId,
     if (body != null) r'body': body,
@@ -59777,6 +67602,7 @@ class Inputmemories_bool_exp {
     if (coupleMembers != null) r'coupleMembers': coupleMembers,
     if (createdAt != null) r'createdAt': createdAt,
     if (datePrecision != null) r'datePrecision': datePrecision,
+    if (declinedAt != null) r'declinedAt': declinedAt,
     if (happenedOn != null) r'happenedOn': happenedOn,
     if (id != null) r'id': id,
     if (origin != null) r'origin': origin,
@@ -59809,6 +67635,12 @@ class Inputmemories_bool_exp {
       result$data['_or'] = (l$$_or as List<dynamic>?)
           ?.map((e) => Inputmemories_bool_exp.fromJson((e as Map<String, dynamic>)))
           .toList();
+    }
+    if (data.containsKey('acceptedAt')) {
+      final l$acceptedAt = data['acceptedAt'];
+      result$data['acceptedAt'] = l$acceptedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$acceptedAt as Map<String, dynamic>));
     }
     if (data.containsKey('author')) {
       final l$author = data['author'];
@@ -59859,6 +67691,12 @@ class Inputmemories_bool_exp {
           : InputDatePrecision_enum_comparison_exp.fromJson(
               (l$datePrecision as Map<String, dynamic>),
             );
+    }
+    if (data.containsKey('declinedAt')) {
+      final l$declinedAt = data['declinedAt'];
+      result$data['declinedAt'] = l$declinedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$declinedAt as Map<String, dynamic>));
     }
     if (data.containsKey('happenedOn')) {
       final l$happenedOn = data['happenedOn'];
@@ -59925,6 +67763,9 @@ class Inputmemories_bool_exp {
 
   List<Inputmemories_bool_exp>? get $_or => (_$data['_or'] as List<Inputmemories_bool_exp>?);
 
+  Inputtimestamptz_comparison_exp? get acceptedAt =>
+      (_$data['acceptedAt'] as Inputtimestamptz_comparison_exp?);
+
   Inputprofiles_bool_exp? get author => (_$data['author'] as Inputprofiles_bool_exp?);
 
   Inputuuid_comparison_exp? get authorId => (_$data['authorId'] as Inputuuid_comparison_exp?);
@@ -59943,6 +67784,9 @@ class Inputmemories_bool_exp {
 
   InputDatePrecision_enum_comparison_exp? get datePrecision =>
       (_$data['datePrecision'] as InputDatePrecision_enum_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get declinedAt =>
+      (_$data['declinedAt'] as Inputtimestamptz_comparison_exp?);
 
   Inputdate_comparison_exp? get happenedOn => (_$data['happenedOn'] as Inputdate_comparison_exp?);
 
@@ -59978,6 +67822,10 @@ class Inputmemories_bool_exp {
       final l$$_or = $_or;
       result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
     }
+    if (_$data.containsKey('acceptedAt')) {
+      final l$acceptedAt = acceptedAt;
+      result$data['acceptedAt'] = l$acceptedAt?.toJson();
+    }
     if (_$data.containsKey('author')) {
       final l$author = author;
       result$data['author'] = l$author?.toJson();
@@ -60009,6 +67857,10 @@ class Inputmemories_bool_exp {
     if (_$data.containsKey('datePrecision')) {
       final l$datePrecision = datePrecision;
       result$data['datePrecision'] = l$datePrecision?.toJson();
+    }
+    if (_$data.containsKey('declinedAt')) {
+      final l$declinedAt = declinedAt;
+      result$data['declinedAt'] = l$declinedAt?.toJson();
     }
     if (_$data.containsKey('happenedOn')) {
       final l$happenedOn = happenedOn;
@@ -60103,6 +67955,14 @@ class Inputmemories_bool_exp {
     } else if (l$$_or != lOther$$_or) {
       return false;
     }
+    final l$acceptedAt = acceptedAt;
+    final lOther$acceptedAt = other.acceptedAt;
+    if (_$data.containsKey('acceptedAt') != other._$data.containsKey('acceptedAt')) {
+      return false;
+    }
+    if (l$acceptedAt != lOther$acceptedAt) {
+      return false;
+    }
     final l$author = author;
     final lOther$author = other.author;
     if (_$data.containsKey('author') != other._$data.containsKey('author')) {
@@ -60165,6 +68025,14 @@ class Inputmemories_bool_exp {
       return false;
     }
     if (l$datePrecision != lOther$datePrecision) {
+      return false;
+    }
+    final l$declinedAt = declinedAt;
+    final lOther$declinedAt = other.declinedAt;
+    if (_$data.containsKey('declinedAt') != other._$data.containsKey('declinedAt')) {
+      return false;
+    }
+    if (l$declinedAt != lOther$declinedAt) {
       return false;
     }
     final l$happenedOn = happenedOn;
@@ -60247,6 +68115,7 @@ class Inputmemories_bool_exp {
     final l$$_and = $_and;
     final l$$_not = $_not;
     final l$$_or = $_or;
+    final l$acceptedAt = acceptedAt;
     final l$author = author;
     final l$authorId = authorId;
     final l$body = body;
@@ -60255,6 +68124,7 @@ class Inputmemories_bool_exp {
     final l$coupleMembers = coupleMembers;
     final l$createdAt = createdAt;
     final l$datePrecision = datePrecision;
+    final l$declinedAt = declinedAt;
     final l$happenedOn = happenedOn;
     final l$id = id;
     final l$origin = origin;
@@ -60276,6 +68146,7 @@ class Inputmemories_bool_exp {
                 ? null
                 : Object.hashAll(l$$_or.map((v) => v))
           : const {},
+      _$data.containsKey('acceptedAt') ? l$acceptedAt : const {},
       _$data.containsKey('author') ? l$author : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
       _$data.containsKey('body') ? l$body : const {},
@@ -60284,6 +68155,7 @@ class Inputmemories_bool_exp {
       _$data.containsKey('coupleMembers') ? l$coupleMembers : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('datePrecision') ? l$datePrecision : const {},
+      _$data.containsKey('declinedAt') ? l$declinedAt : const {},
       _$data.containsKey('happenedOn') ? l$happenedOn : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('origin') ? l$origin : const {},
@@ -60591,10 +68463,12 @@ class Inputmemories_insert_input {
 
 class Inputmemories_max_order_by {
   factory Inputmemories_max_order_by({
+    Enumorder_by? acceptedAt,
     Enumorder_by? authorId,
     Enumorder_by? body,
     Enumorder_by? coupleId,
     Enumorder_by? createdAt,
+    Enumorder_by? declinedAt,
     Enumorder_by? happenedOn,
     Enumorder_by? id,
     Enumorder_by? photoFileId,
@@ -60603,10 +68477,12 @@ class Inputmemories_max_order_by {
     Enumorder_by? title,
     Enumorder_by? updatedAt,
   }) => Inputmemories_max_order_by._({
+    if (acceptedAt != null) r'acceptedAt': acceptedAt,
     if (authorId != null) r'authorId': authorId,
     if (body != null) r'body': body,
     if (coupleId != null) r'coupleId': coupleId,
     if (createdAt != null) r'createdAt': createdAt,
+    if (declinedAt != null) r'declinedAt': declinedAt,
     if (happenedOn != null) r'happenedOn': happenedOn,
     if (id != null) r'id': id,
     if (photoFileId != null) r'photoFileId': photoFileId,
@@ -60620,6 +68496,12 @@ class Inputmemories_max_order_by {
 
   factory Inputmemories_max_order_by.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('acceptedAt')) {
+      final l$acceptedAt = data['acceptedAt'];
+      result$data['acceptedAt'] = l$acceptedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$acceptedAt as String));
+    }
     if (data.containsKey('authorId')) {
       final l$authorId = data['authorId'];
       result$data['authorId'] = l$authorId == null
@@ -60641,6 +68523,12 @@ class Inputmemories_max_order_by {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('declinedAt')) {
+      final l$declinedAt = data['declinedAt'];
+      result$data['declinedAt'] = l$declinedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$declinedAt as String));
     }
     if (data.containsKey('happenedOn')) {
       final l$happenedOn = data['happenedOn'];
@@ -60683,6 +68571,8 @@ class Inputmemories_max_order_by {
 
   Map<String, dynamic> _$data;
 
+  Enumorder_by? get acceptedAt => (_$data['acceptedAt'] as Enumorder_by?);
+
   Enumorder_by? get authorId => (_$data['authorId'] as Enumorder_by?);
 
   Enumorder_by? get body => (_$data['body'] as Enumorder_by?);
@@ -60690,6 +68580,8 @@ class Inputmemories_max_order_by {
   Enumorder_by? get coupleId => (_$data['coupleId'] as Enumorder_by?);
 
   Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get declinedAt => (_$data['declinedAt'] as Enumorder_by?);
 
   Enumorder_by? get happenedOn => (_$data['happenedOn'] as Enumorder_by?);
 
@@ -60707,6 +68599,10 @@ class Inputmemories_max_order_by {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('acceptedAt')) {
+      final l$acceptedAt = acceptedAt;
+      result$data['acceptedAt'] = l$acceptedAt == null ? null : toJsonEnumorder_by(l$acceptedAt);
+    }
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId == null ? null : toJsonEnumorder_by(l$authorId);
@@ -60722,6 +68618,10 @@ class Inputmemories_max_order_by {
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('declinedAt')) {
+      final l$declinedAt = declinedAt;
+      result$data['declinedAt'] = l$declinedAt == null ? null : toJsonEnumorder_by(l$declinedAt);
     }
     if (_$data.containsKey('happenedOn')) {
       final l$happenedOn = happenedOn;
@@ -60762,6 +68662,14 @@ class Inputmemories_max_order_by {
     if (other is! Inputmemories_max_order_by || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$acceptedAt = acceptedAt;
+    final lOther$acceptedAt = other.acceptedAt;
+    if (_$data.containsKey('acceptedAt') != other._$data.containsKey('acceptedAt')) {
+      return false;
+    }
+    if (l$acceptedAt != lOther$acceptedAt) {
+      return false;
+    }
     final l$authorId = authorId;
     final lOther$authorId = other.authorId;
     if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
@@ -60792,6 +68700,14 @@ class Inputmemories_max_order_by {
       return false;
     }
     if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$declinedAt = declinedAt;
+    final lOther$declinedAt = other.declinedAt;
+    if (_$data.containsKey('declinedAt') != other._$data.containsKey('declinedAt')) {
+      return false;
+    }
+    if (l$declinedAt != lOther$declinedAt) {
       return false;
     }
     final l$happenedOn = happenedOn;
@@ -60855,10 +68771,12 @@ class Inputmemories_max_order_by {
 
   @override
   int get hashCode {
+    final l$acceptedAt = acceptedAt;
     final l$authorId = authorId;
     final l$body = body;
     final l$coupleId = coupleId;
     final l$createdAt = createdAt;
+    final l$declinedAt = declinedAt;
     final l$happenedOn = happenedOn;
     final l$id = id;
     final l$photoFileId = photoFileId;
@@ -60867,10 +68785,12 @@ class Inputmemories_max_order_by {
     final l$title = title;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
+      _$data.containsKey('acceptedAt') ? l$acceptedAt : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('declinedAt') ? l$declinedAt : const {},
       _$data.containsKey('happenedOn') ? l$happenedOn : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('photoFileId') ? l$photoFileId : const {},
@@ -60884,10 +68804,12 @@ class Inputmemories_max_order_by {
 
 class Inputmemories_min_order_by {
   factory Inputmemories_min_order_by({
+    Enumorder_by? acceptedAt,
     Enumorder_by? authorId,
     Enumorder_by? body,
     Enumorder_by? coupleId,
     Enumorder_by? createdAt,
+    Enumorder_by? declinedAt,
     Enumorder_by? happenedOn,
     Enumorder_by? id,
     Enumorder_by? photoFileId,
@@ -60896,10 +68818,12 @@ class Inputmemories_min_order_by {
     Enumorder_by? title,
     Enumorder_by? updatedAt,
   }) => Inputmemories_min_order_by._({
+    if (acceptedAt != null) r'acceptedAt': acceptedAt,
     if (authorId != null) r'authorId': authorId,
     if (body != null) r'body': body,
     if (coupleId != null) r'coupleId': coupleId,
     if (createdAt != null) r'createdAt': createdAt,
+    if (declinedAt != null) r'declinedAt': declinedAt,
     if (happenedOn != null) r'happenedOn': happenedOn,
     if (id != null) r'id': id,
     if (photoFileId != null) r'photoFileId': photoFileId,
@@ -60913,6 +68837,12 @@ class Inputmemories_min_order_by {
 
   factory Inputmemories_min_order_by.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('acceptedAt')) {
+      final l$acceptedAt = data['acceptedAt'];
+      result$data['acceptedAt'] = l$acceptedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$acceptedAt as String));
+    }
     if (data.containsKey('authorId')) {
       final l$authorId = data['authorId'];
       result$data['authorId'] = l$authorId == null
@@ -60934,6 +68864,12 @@ class Inputmemories_min_order_by {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('declinedAt')) {
+      final l$declinedAt = data['declinedAt'];
+      result$data['declinedAt'] = l$declinedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$declinedAt as String));
     }
     if (data.containsKey('happenedOn')) {
       final l$happenedOn = data['happenedOn'];
@@ -60976,6 +68912,8 @@ class Inputmemories_min_order_by {
 
   Map<String, dynamic> _$data;
 
+  Enumorder_by? get acceptedAt => (_$data['acceptedAt'] as Enumorder_by?);
+
   Enumorder_by? get authorId => (_$data['authorId'] as Enumorder_by?);
 
   Enumorder_by? get body => (_$data['body'] as Enumorder_by?);
@@ -60983,6 +68921,8 @@ class Inputmemories_min_order_by {
   Enumorder_by? get coupleId => (_$data['coupleId'] as Enumorder_by?);
 
   Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get declinedAt => (_$data['declinedAt'] as Enumorder_by?);
 
   Enumorder_by? get happenedOn => (_$data['happenedOn'] as Enumorder_by?);
 
@@ -61000,6 +68940,10 @@ class Inputmemories_min_order_by {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('acceptedAt')) {
+      final l$acceptedAt = acceptedAt;
+      result$data['acceptedAt'] = l$acceptedAt == null ? null : toJsonEnumorder_by(l$acceptedAt);
+    }
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId == null ? null : toJsonEnumorder_by(l$authorId);
@@ -61015,6 +68959,10 @@ class Inputmemories_min_order_by {
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('declinedAt')) {
+      final l$declinedAt = declinedAt;
+      result$data['declinedAt'] = l$declinedAt == null ? null : toJsonEnumorder_by(l$declinedAt);
     }
     if (_$data.containsKey('happenedOn')) {
       final l$happenedOn = happenedOn;
@@ -61055,6 +69003,14 @@ class Inputmemories_min_order_by {
     if (other is! Inputmemories_min_order_by || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$acceptedAt = acceptedAt;
+    final lOther$acceptedAt = other.acceptedAt;
+    if (_$data.containsKey('acceptedAt') != other._$data.containsKey('acceptedAt')) {
+      return false;
+    }
+    if (l$acceptedAt != lOther$acceptedAt) {
+      return false;
+    }
     final l$authorId = authorId;
     final lOther$authorId = other.authorId;
     if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
@@ -61085,6 +69041,14 @@ class Inputmemories_min_order_by {
       return false;
     }
     if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$declinedAt = declinedAt;
+    final lOther$declinedAt = other.declinedAt;
+    if (_$data.containsKey('declinedAt') != other._$data.containsKey('declinedAt')) {
+      return false;
+    }
+    if (l$declinedAt != lOther$declinedAt) {
       return false;
     }
     final l$happenedOn = happenedOn;
@@ -61148,10 +69112,12 @@ class Inputmemories_min_order_by {
 
   @override
   int get hashCode {
+    final l$acceptedAt = acceptedAt;
     final l$authorId = authorId;
     final l$body = body;
     final l$coupleId = coupleId;
     final l$createdAt = createdAt;
+    final l$declinedAt = declinedAt;
     final l$happenedOn = happenedOn;
     final l$id = id;
     final l$photoFileId = photoFileId;
@@ -61160,10 +69126,12 @@ class Inputmemories_min_order_by {
     final l$title = title;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
+      _$data.containsKey('acceptedAt') ? l$acceptedAt : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('declinedAt') ? l$declinedAt : const {},
       _$data.containsKey('happenedOn') ? l$happenedOn : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('photoFileId') ? l$photoFileId : const {},
@@ -61295,6 +69263,7 @@ class Inputmemories_on_conflict {
 
 class Inputmemories_order_by {
   factory Inputmemories_order_by({
+    Enumorder_by? acceptedAt,
     Inputprofiles_order_by? author,
     Enumorder_by? authorId,
     Enumorder_by? body,
@@ -61303,6 +69272,7 @@ class Inputmemories_order_by {
     InputcoupleMembers_aggregate_order_by? coupleMembers_aggregate,
     Enumorder_by? createdAt,
     Enumorder_by? datePrecision,
+    Enumorder_by? declinedAt,
     Enumorder_by? happenedOn,
     Enumorder_by? id,
     Enumorder_by? origin,
@@ -61313,6 +69283,7 @@ class Inputmemories_order_by {
     Enumorder_by? title,
     Enumorder_by? updatedAt,
   }) => Inputmemories_order_by._({
+    if (acceptedAt != null) r'acceptedAt': acceptedAt,
     if (author != null) r'author': author,
     if (authorId != null) r'authorId': authorId,
     if (body != null) r'body': body,
@@ -61321,6 +69292,7 @@ class Inputmemories_order_by {
     if (coupleMembers_aggregate != null) r'coupleMembers_aggregate': coupleMembers_aggregate,
     if (createdAt != null) r'createdAt': createdAt,
     if (datePrecision != null) r'datePrecision': datePrecision,
+    if (declinedAt != null) r'declinedAt': declinedAt,
     if (happenedOn != null) r'happenedOn': happenedOn,
     if (id != null) r'id': id,
     if (origin != null) r'origin': origin,
@@ -61336,6 +69308,12 @@ class Inputmemories_order_by {
 
   factory Inputmemories_order_by.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('acceptedAt')) {
+      final l$acceptedAt = data['acceptedAt'];
+      result$data['acceptedAt'] = l$acceptedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$acceptedAt as String));
+    }
     if (data.containsKey('author')) {
       final l$author = data['author'];
       result$data['author'] = l$author == null
@@ -61383,6 +69361,12 @@ class Inputmemories_order_by {
       result$data['datePrecision'] = l$datePrecision == null
           ? null
           : fromJsonEnumorder_by((l$datePrecision as String));
+    }
+    if (data.containsKey('declinedAt')) {
+      final l$declinedAt = data['declinedAt'];
+      result$data['declinedAt'] = l$declinedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$declinedAt as String));
     }
     if (data.containsKey('happenedOn')) {
       final l$happenedOn = data['happenedOn'];
@@ -61435,6 +69419,8 @@ class Inputmemories_order_by {
 
   Map<String, dynamic> _$data;
 
+  Enumorder_by? get acceptedAt => (_$data['acceptedAt'] as Enumorder_by?);
+
   Inputprofiles_order_by? get author => (_$data['author'] as Inputprofiles_order_by?);
 
   Enumorder_by? get authorId => (_$data['authorId'] as Enumorder_by?);
@@ -61451,6 +69437,8 @@ class Inputmemories_order_by {
   Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
 
   Enumorder_by? get datePrecision => (_$data['datePrecision'] as Enumorder_by?);
+
+  Enumorder_by? get declinedAt => (_$data['declinedAt'] as Enumorder_by?);
 
   Enumorder_by? get happenedOn => (_$data['happenedOn'] as Enumorder_by?);
 
@@ -61472,6 +69460,10 @@ class Inputmemories_order_by {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('acceptedAt')) {
+      final l$acceptedAt = acceptedAt;
+      result$data['acceptedAt'] = l$acceptedAt == null ? null : toJsonEnumorder_by(l$acceptedAt);
+    }
     if (_$data.containsKey('author')) {
       final l$author = author;
       result$data['author'] = l$author?.toJson();
@@ -61505,6 +69497,10 @@ class Inputmemories_order_by {
       result$data['datePrecision'] = l$datePrecision == null
           ? null
           : toJsonEnumorder_by(l$datePrecision);
+    }
+    if (_$data.containsKey('declinedAt')) {
+      final l$declinedAt = declinedAt;
+      result$data['declinedAt'] = l$declinedAt == null ? null : toJsonEnumorder_by(l$declinedAt);
     }
     if (_$data.containsKey('happenedOn')) {
       final l$happenedOn = happenedOn;
@@ -61551,6 +69547,14 @@ class Inputmemories_order_by {
       return true;
     }
     if (other is! Inputmemories_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$acceptedAt = acceptedAt;
+    final lOther$acceptedAt = other.acceptedAt;
+    if (_$data.containsKey('acceptedAt') != other._$data.containsKey('acceptedAt')) {
+      return false;
+    }
+    if (l$acceptedAt != lOther$acceptedAt) {
       return false;
     }
     final l$author = author;
@@ -61616,6 +69620,14 @@ class Inputmemories_order_by {
       return false;
     }
     if (l$datePrecision != lOther$datePrecision) {
+      return false;
+    }
+    final l$declinedAt = declinedAt;
+    final lOther$declinedAt = other.declinedAt;
+    if (_$data.containsKey('declinedAt') != other._$data.containsKey('declinedAt')) {
+      return false;
+    }
+    if (l$declinedAt != lOther$declinedAt) {
       return false;
     }
     final l$happenedOn = happenedOn;
@@ -61695,6 +69707,7 @@ class Inputmemories_order_by {
 
   @override
   int get hashCode {
+    final l$acceptedAt = acceptedAt;
     final l$author = author;
     final l$authorId = authorId;
     final l$body = body;
@@ -61703,6 +69716,7 @@ class Inputmemories_order_by {
     final l$coupleMembers_aggregate = coupleMembers_aggregate;
     final l$createdAt = createdAt;
     final l$datePrecision = datePrecision;
+    final l$declinedAt = declinedAt;
     final l$happenedOn = happenedOn;
     final l$id = id;
     final l$origin = origin;
@@ -61713,6 +69727,7 @@ class Inputmemories_order_by {
     final l$title = title;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
+      _$data.containsKey('acceptedAt') ? l$acceptedAt : const {},
       _$data.containsKey('author') ? l$author : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
       _$data.containsKey('body') ? l$body : const {},
@@ -61721,6 +69736,7 @@ class Inputmemories_order_by {
       _$data.containsKey('coupleMembers_aggregate') ? l$coupleMembers_aggregate : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('datePrecision') ? l$datePrecision : const {},
+      _$data.containsKey('declinedAt') ? l$declinedAt : const {},
       _$data.containsKey('happenedOn') ? l$happenedOn : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('origin') ? l$origin : const {},
@@ -62061,11 +70077,13 @@ class Inputmemories_stream_cursor_input {
 
 class Inputmemories_stream_cursor_value_input {
   factory Inputmemories_stream_cursor_value_input({
+    DateTime? acceptedAt,
     String? authorId,
     String? body,
     String? coupleId,
     DateTime? createdAt,
     EnumDatePrecision_enum? datePrecision,
+    DateTime? declinedAt,
     DateTime? happenedOn,
     String? id,
     EnumMemoryOrigin_enum? origin,
@@ -62075,11 +70093,13 @@ class Inputmemories_stream_cursor_value_input {
     String? title,
     DateTime? updatedAt,
   }) => Inputmemories_stream_cursor_value_input._({
+    if (acceptedAt != null) r'acceptedAt': acceptedAt,
     if (authorId != null) r'authorId': authorId,
     if (body != null) r'body': body,
     if (coupleId != null) r'coupleId': coupleId,
     if (createdAt != null) r'createdAt': createdAt,
     if (datePrecision != null) r'datePrecision': datePrecision,
+    if (declinedAt != null) r'declinedAt': declinedAt,
     if (happenedOn != null) r'happenedOn': happenedOn,
     if (id != null) r'id': id,
     if (origin != null) r'origin': origin,
@@ -62094,6 +70114,12 @@ class Inputmemories_stream_cursor_value_input {
 
   factory Inputmemories_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('acceptedAt')) {
+      final l$acceptedAt = data['acceptedAt'];
+      result$data['acceptedAt'] = l$acceptedAt == null
+          ? null
+          : DateTime.parse((l$acceptedAt as String));
+    }
     if (data.containsKey('authorId')) {
       final l$authorId = data['authorId'];
       result$data['authorId'] = (l$authorId as String?);
@@ -62117,6 +70143,12 @@ class Inputmemories_stream_cursor_value_input {
       result$data['datePrecision'] = l$datePrecision == null
           ? null
           : fromJsonEnumDatePrecision_enum((l$datePrecision as String));
+    }
+    if (data.containsKey('declinedAt')) {
+      final l$declinedAt = data['declinedAt'];
+      result$data['declinedAt'] = l$declinedAt == null
+          ? null
+          : DateTime.parse((l$declinedAt as String));
     }
     if (data.containsKey('happenedOn')) {
       final l$happenedOn = data['happenedOn'];
@@ -62161,6 +70193,8 @@ class Inputmemories_stream_cursor_value_input {
 
   Map<String, dynamic> _$data;
 
+  DateTime? get acceptedAt => (_$data['acceptedAt'] as DateTime?);
+
   String? get authorId => (_$data['authorId'] as String?);
 
   String? get body => (_$data['body'] as String?);
@@ -62170,6 +70204,8 @@ class Inputmemories_stream_cursor_value_input {
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
   EnumDatePrecision_enum? get datePrecision => (_$data['datePrecision'] as EnumDatePrecision_enum?);
+
+  DateTime? get declinedAt => (_$data['declinedAt'] as DateTime?);
 
   DateTime? get happenedOn => (_$data['happenedOn'] as DateTime?);
 
@@ -62189,6 +70225,12 @@ class Inputmemories_stream_cursor_value_input {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('acceptedAt')) {
+      final l$acceptedAt = acceptedAt;
+      result$data['acceptedAt'] = l$acceptedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$acceptedAt);
+    }
     if (_$data.containsKey('authorId')) {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId;
@@ -62212,6 +70254,12 @@ class Inputmemories_stream_cursor_value_input {
       result$data['datePrecision'] = l$datePrecision == null
           ? null
           : toJsonEnumDatePrecision_enum(l$datePrecision);
+    }
+    if (_$data.containsKey('declinedAt')) {
+      final l$declinedAt = declinedAt;
+      result$data['declinedAt'] = l$declinedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$declinedAt);
     }
     if (_$data.containsKey('happenedOn')) {
       final l$happenedOn = happenedOn;
@@ -62260,6 +70308,14 @@ class Inputmemories_stream_cursor_value_input {
     if (other is! Inputmemories_stream_cursor_value_input || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$acceptedAt = acceptedAt;
+    final lOther$acceptedAt = other.acceptedAt;
+    if (_$data.containsKey('acceptedAt') != other._$data.containsKey('acceptedAt')) {
+      return false;
+    }
+    if (l$acceptedAt != lOther$acceptedAt) {
+      return false;
+    }
     final l$authorId = authorId;
     final lOther$authorId = other.authorId;
     if (_$data.containsKey('authorId') != other._$data.containsKey('authorId')) {
@@ -62298,6 +70354,14 @@ class Inputmemories_stream_cursor_value_input {
       return false;
     }
     if (l$datePrecision != lOther$datePrecision) {
+      return false;
+    }
+    final l$declinedAt = declinedAt;
+    final lOther$declinedAt = other.declinedAt;
+    if (_$data.containsKey('declinedAt') != other._$data.containsKey('declinedAt')) {
+      return false;
+    }
+    if (l$declinedAt != lOther$declinedAt) {
       return false;
     }
     final l$happenedOn = happenedOn;
@@ -62369,11 +70433,13 @@ class Inputmemories_stream_cursor_value_input {
 
   @override
   int get hashCode {
+    final l$acceptedAt = acceptedAt;
     final l$authorId = authorId;
     final l$body = body;
     final l$coupleId = coupleId;
     final l$createdAt = createdAt;
     final l$datePrecision = datePrecision;
+    final l$declinedAt = declinedAt;
     final l$happenedOn = happenedOn;
     final l$id = id;
     final l$origin = origin;
@@ -62383,11 +70449,13 @@ class Inputmemories_stream_cursor_value_input {
     final l$title = title;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
+      _$data.containsKey('acceptedAt') ? l$acceptedAt : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('datePrecision') ? l$datePrecision : const {},
+      _$data.containsKey('declinedAt') ? l$declinedAt : const {},
       _$data.containsKey('happenedOn') ? l$happenedOn : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('origin') ? l$origin : const {},
@@ -67091,19 +75159,41 @@ class InputpartnerFacts_updates {
 
 class InputpartnerMessages_aggregate_order_by {
   factory InputpartnerMessages_aggregate_order_by({
+    InputpartnerMessages_avg_order_by? avg,
     Enumorder_by? count,
     InputpartnerMessages_max_order_by? max,
     InputpartnerMessages_min_order_by? min,
+    InputpartnerMessages_stddev_order_by? stddev,
+    InputpartnerMessages_stddev_pop_order_by? stddev_pop,
+    InputpartnerMessages_stddev_samp_order_by? stddev_samp,
+    InputpartnerMessages_sum_order_by? sum,
+    InputpartnerMessages_var_pop_order_by? var_pop,
+    InputpartnerMessages_var_samp_order_by? var_samp,
+    InputpartnerMessages_variance_order_by? variance,
   }) => InputpartnerMessages_aggregate_order_by._({
+    if (avg != null) r'avg': avg,
     if (count != null) r'count': count,
     if (max != null) r'max': max,
     if (min != null) r'min': min,
+    if (stddev != null) r'stddev': stddev,
+    if (stddev_pop != null) r'stddev_pop': stddev_pop,
+    if (stddev_samp != null) r'stddev_samp': stddev_samp,
+    if (sum != null) r'sum': sum,
+    if (var_pop != null) r'var_pop': var_pop,
+    if (var_samp != null) r'var_samp': var_samp,
+    if (variance != null) r'variance': variance,
   });
 
   InputpartnerMessages_aggregate_order_by._(this._$data);
 
   factory InputpartnerMessages_aggregate_order_by.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('avg')) {
+      final l$avg = data['avg'];
+      result$data['avg'] = l$avg == null
+          ? null
+          : InputpartnerMessages_avg_order_by.fromJson((l$avg as Map<String, dynamic>));
+    }
     if (data.containsKey('count')) {
       final l$count = data['count'];
       result$data['count'] = l$count == null ? null : fromJsonEnumorder_by((l$count as String));
@@ -67120,10 +75210,59 @@ class InputpartnerMessages_aggregate_order_by {
           ? null
           : InputpartnerMessages_min_order_by.fromJson((l$min as Map<String, dynamic>));
     }
+    if (data.containsKey('stddev')) {
+      final l$stddev = data['stddev'];
+      result$data['stddev'] = l$stddev == null
+          ? null
+          : InputpartnerMessages_stddev_order_by.fromJson((l$stddev as Map<String, dynamic>));
+    }
+    if (data.containsKey('stddev_pop')) {
+      final l$stddev_pop = data['stddev_pop'];
+      result$data['stddev_pop'] = l$stddev_pop == null
+          ? null
+          : InputpartnerMessages_stddev_pop_order_by.fromJson(
+              (l$stddev_pop as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('stddev_samp')) {
+      final l$stddev_samp = data['stddev_samp'];
+      result$data['stddev_samp'] = l$stddev_samp == null
+          ? null
+          : InputpartnerMessages_stddev_samp_order_by.fromJson(
+              (l$stddev_samp as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('sum')) {
+      final l$sum = data['sum'];
+      result$data['sum'] = l$sum == null
+          ? null
+          : InputpartnerMessages_sum_order_by.fromJson((l$sum as Map<String, dynamic>));
+    }
+    if (data.containsKey('var_pop')) {
+      final l$var_pop = data['var_pop'];
+      result$data['var_pop'] = l$var_pop == null
+          ? null
+          : InputpartnerMessages_var_pop_order_by.fromJson((l$var_pop as Map<String, dynamic>));
+    }
+    if (data.containsKey('var_samp')) {
+      final l$var_samp = data['var_samp'];
+      result$data['var_samp'] = l$var_samp == null
+          ? null
+          : InputpartnerMessages_var_samp_order_by.fromJson((l$var_samp as Map<String, dynamic>));
+    }
+    if (data.containsKey('variance')) {
+      final l$variance = data['variance'];
+      result$data['variance'] = l$variance == null
+          ? null
+          : InputpartnerMessages_variance_order_by.fromJson((l$variance as Map<String, dynamic>));
+    }
     return InputpartnerMessages_aggregate_order_by._(result$data);
   }
 
   Map<String, dynamic> _$data;
+
+  InputpartnerMessages_avg_order_by? get avg =>
+      (_$data['avg'] as InputpartnerMessages_avg_order_by?);
 
   Enumorder_by? get count => (_$data['count'] as Enumorder_by?);
 
@@ -67133,8 +75272,33 @@ class InputpartnerMessages_aggregate_order_by {
   InputpartnerMessages_min_order_by? get min =>
       (_$data['min'] as InputpartnerMessages_min_order_by?);
 
+  InputpartnerMessages_stddev_order_by? get stddev =>
+      (_$data['stddev'] as InputpartnerMessages_stddev_order_by?);
+
+  InputpartnerMessages_stddev_pop_order_by? get stddev_pop =>
+      (_$data['stddev_pop'] as InputpartnerMessages_stddev_pop_order_by?);
+
+  InputpartnerMessages_stddev_samp_order_by? get stddev_samp =>
+      (_$data['stddev_samp'] as InputpartnerMessages_stddev_samp_order_by?);
+
+  InputpartnerMessages_sum_order_by? get sum =>
+      (_$data['sum'] as InputpartnerMessages_sum_order_by?);
+
+  InputpartnerMessages_var_pop_order_by? get var_pop =>
+      (_$data['var_pop'] as InputpartnerMessages_var_pop_order_by?);
+
+  InputpartnerMessages_var_samp_order_by? get var_samp =>
+      (_$data['var_samp'] as InputpartnerMessages_var_samp_order_by?);
+
+  InputpartnerMessages_variance_order_by? get variance =>
+      (_$data['variance'] as InputpartnerMessages_variance_order_by?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('avg')) {
+      final l$avg = avg;
+      result$data['avg'] = l$avg?.toJson();
+    }
     if (_$data.containsKey('count')) {
       final l$count = count;
       result$data['count'] = l$count == null ? null : toJsonEnumorder_by(l$count);
@@ -67147,6 +75311,34 @@ class InputpartnerMessages_aggregate_order_by {
       final l$min = min;
       result$data['min'] = l$min?.toJson();
     }
+    if (_$data.containsKey('stddev')) {
+      final l$stddev = stddev;
+      result$data['stddev'] = l$stddev?.toJson();
+    }
+    if (_$data.containsKey('stddev_pop')) {
+      final l$stddev_pop = stddev_pop;
+      result$data['stddev_pop'] = l$stddev_pop?.toJson();
+    }
+    if (_$data.containsKey('stddev_samp')) {
+      final l$stddev_samp = stddev_samp;
+      result$data['stddev_samp'] = l$stddev_samp?.toJson();
+    }
+    if (_$data.containsKey('sum')) {
+      final l$sum = sum;
+      result$data['sum'] = l$sum?.toJson();
+    }
+    if (_$data.containsKey('var_pop')) {
+      final l$var_pop = var_pop;
+      result$data['var_pop'] = l$var_pop?.toJson();
+    }
+    if (_$data.containsKey('var_samp')) {
+      final l$var_samp = var_samp;
+      result$data['var_samp'] = l$var_samp?.toJson();
+    }
+    if (_$data.containsKey('variance')) {
+      final l$variance = variance;
+      result$data['variance'] = l$variance?.toJson();
+    }
     return result$data;
   }
 
@@ -67156,6 +75348,14 @@ class InputpartnerMessages_aggregate_order_by {
       return true;
     }
     if (other is! InputpartnerMessages_aggregate_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$avg = avg;
+    final lOther$avg = other.avg;
+    if (_$data.containsKey('avg') != other._$data.containsKey('avg')) {
+      return false;
+    }
+    if (l$avg != lOther$avg) {
       return false;
     }
     final l$count = count;
@@ -67182,18 +75382,90 @@ class InputpartnerMessages_aggregate_order_by {
     if (l$min != lOther$min) {
       return false;
     }
+    final l$stddev = stddev;
+    final lOther$stddev = other.stddev;
+    if (_$data.containsKey('stddev') != other._$data.containsKey('stddev')) {
+      return false;
+    }
+    if (l$stddev != lOther$stddev) {
+      return false;
+    }
+    final l$stddev_pop = stddev_pop;
+    final lOther$stddev_pop = other.stddev_pop;
+    if (_$data.containsKey('stddev_pop') != other._$data.containsKey('stddev_pop')) {
+      return false;
+    }
+    if (l$stddev_pop != lOther$stddev_pop) {
+      return false;
+    }
+    final l$stddev_samp = stddev_samp;
+    final lOther$stddev_samp = other.stddev_samp;
+    if (_$data.containsKey('stddev_samp') != other._$data.containsKey('stddev_samp')) {
+      return false;
+    }
+    if (l$stddev_samp != lOther$stddev_samp) {
+      return false;
+    }
+    final l$sum = sum;
+    final lOther$sum = other.sum;
+    if (_$data.containsKey('sum') != other._$data.containsKey('sum')) {
+      return false;
+    }
+    if (l$sum != lOther$sum) {
+      return false;
+    }
+    final l$var_pop = var_pop;
+    final lOther$var_pop = other.var_pop;
+    if (_$data.containsKey('var_pop') != other._$data.containsKey('var_pop')) {
+      return false;
+    }
+    if (l$var_pop != lOther$var_pop) {
+      return false;
+    }
+    final l$var_samp = var_samp;
+    final lOther$var_samp = other.var_samp;
+    if (_$data.containsKey('var_samp') != other._$data.containsKey('var_samp')) {
+      return false;
+    }
+    if (l$var_samp != lOther$var_samp) {
+      return false;
+    }
+    final l$variance = variance;
+    final lOther$variance = other.variance;
+    if (_$data.containsKey('variance') != other._$data.containsKey('variance')) {
+      return false;
+    }
+    if (l$variance != lOther$variance) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
+    final l$avg = avg;
     final l$count = count;
     final l$max = max;
     final l$min = min;
+    final l$stddev = stddev;
+    final l$stddev_pop = stddev_pop;
+    final l$stddev_samp = stddev_samp;
+    final l$sum = sum;
+    final l$var_pop = var_pop;
+    final l$var_samp = var_samp;
+    final l$variance = variance;
     return Object.hashAll([
+      _$data.containsKey('avg') ? l$avg : const {},
       _$data.containsKey('count') ? l$count : const {},
       _$data.containsKey('max') ? l$max : const {},
       _$data.containsKey('min') ? l$min : const {},
+      _$data.containsKey('stddev') ? l$stddev : const {},
+      _$data.containsKey('stddev_pop') ? l$stddev_pop : const {},
+      _$data.containsKey('stddev_samp') ? l$stddev_samp : const {},
+      _$data.containsKey('sum') ? l$sum : const {},
+      _$data.containsKey('var_pop') ? l$var_pop : const {},
+      _$data.containsKey('var_samp') ? l$var_samp : const {},
+      _$data.containsKey('variance') ? l$variance : const {},
     ]);
   }
 }
@@ -67285,6 +75557,62 @@ class InputpartnerMessages_arr_rel_insert_input {
   }
 }
 
+class InputpartnerMessages_avg_order_by {
+  factory InputpartnerMessages_avg_order_by({Enumorder_by? durationMs}) =>
+      InputpartnerMessages_avg_order_by._({if (durationMs != null) r'durationMs': durationMs});
+
+  InputpartnerMessages_avg_order_by._(this._$data);
+
+  factory InputpartnerMessages_avg_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
+    }
+    return InputpartnerMessages_avg_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpartnerMessages_avg_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$durationMs = durationMs;
+    return Object.hashAll([_$data.containsKey('durationMs') ? l$durationMs : const {}]);
+  }
+}
+
 class InputpartnerMessages_bool_exp {
   factory InputpartnerMessages_bool_exp({
     List<InputpartnerMessages_bool_exp>? $_and,
@@ -67292,6 +75620,7 @@ class InputpartnerMessages_bool_exp {
     List<InputpartnerMessages_bool_exp>? $_or,
     InputString_comparison_exp? body,
     Inputtimestamptz_comparison_exp? createdAt,
+    InputInt_comparison_exp? durationMs,
     InputBoolean_comparison_exp? forWidget,
     Inputtimestamptz_comparison_exp? heartedAt,
     Inputuuid_comparison_exp? id,
@@ -67309,6 +75638,7 @@ class InputpartnerMessages_bool_exp {
     if ($_or != null) r'_or': $_or,
     if (body != null) r'body': body,
     if (createdAt != null) r'createdAt': createdAt,
+    if (durationMs != null) r'durationMs': durationMs,
     if (forWidget != null) r'forWidget': forWidget,
     if (heartedAt != null) r'heartedAt': heartedAt,
     if (id != null) r'id': id,
@@ -67355,6 +75685,12 @@ class InputpartnerMessages_bool_exp {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$durationMs as Map<String, dynamic>));
     }
     if (data.containsKey('forWidget')) {
       final l$forWidget = data['forWidget'];
@@ -67440,6 +75776,8 @@ class InputpartnerMessages_bool_exp {
   Inputtimestamptz_comparison_exp? get createdAt =>
       (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
 
+  InputInt_comparison_exp? get durationMs => (_$data['durationMs'] as InputInt_comparison_exp?);
+
   InputBoolean_comparison_exp? get forWidget =>
       (_$data['forWidget'] as InputBoolean_comparison_exp?);
 
@@ -67487,6 +75825,10 @@ class InputpartnerMessages_bool_exp {
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs?.toJson();
     }
     if (_$data.containsKey('forWidget')) {
       final l$forWidget = forWidget;
@@ -67605,6 +75947,14 @@ class InputpartnerMessages_bool_exp {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
     final l$forWidget = forWidget;
     final lOther$forWidget = other.forWidget;
     if (_$data.containsKey('forWidget') != other._$data.containsKey('forWidget')) {
@@ -67703,6 +76053,7 @@ class InputpartnerMessages_bool_exp {
     final l$$_or = $_or;
     final l$body = body;
     final l$createdAt = createdAt;
+    final l$durationMs = durationMs;
     final l$forWidget = forWidget;
     final l$heartedAt = heartedAt;
     final l$id = id;
@@ -67728,6 +76079,7 @@ class InputpartnerMessages_bool_exp {
           : const {},
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('durationMs') ? l$durationMs : const {},
       _$data.containsKey('forWidget') ? l$forWidget : const {},
       _$data.containsKey('heartedAt') ? l$heartedAt : const {},
       _$data.containsKey('id') ? l$id : const {},
@@ -67746,6 +76098,7 @@ class InputpartnerMessages_bool_exp {
 class InputpartnerMessages_insert_input {
   factory InputpartnerMessages_insert_input({
     String? body,
+    int? durationMs,
     bool? forWidget,
     String? id,
     EnumPartnerMessageKind_enum? kind,
@@ -67753,6 +76106,7 @@ class InputpartnerMessages_insert_input {
     String? mediaFileId,
   }) => InputpartnerMessages_insert_input._({
     if (body != null) r'body': body,
+    if (durationMs != null) r'durationMs': durationMs,
     if (forWidget != null) r'forWidget': forWidget,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
@@ -67767,6 +76121,10 @@ class InputpartnerMessages_insert_input {
     if (data.containsKey('body')) {
       final l$body = data['body'];
       result$data['body'] = (l$body as String?);
+    }
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = (l$durationMs as int?);
     }
     if (data.containsKey('forWidget')) {
       final l$forWidget = data['forWidget'];
@@ -67799,6 +76157,8 @@ class InputpartnerMessages_insert_input {
 
   String? get body => (_$data['body'] as String?);
 
+  int? get durationMs => (_$data['durationMs'] as int?);
+
   bool? get forWidget => (_$data['forWidget'] as bool?);
 
   String? get id => (_$data['id'] as String?);
@@ -67815,6 +76175,10 @@ class InputpartnerMessages_insert_input {
     if (_$data.containsKey('body')) {
       final l$body = body;
       result$data['body'] = l$body;
+    }
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs;
     }
     if (_$data.containsKey('forWidget')) {
       final l$forWidget = forWidget;
@@ -67853,6 +76217,14 @@ class InputpartnerMessages_insert_input {
       return false;
     }
     if (l$body != lOther$body) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
       return false;
     }
     final l$forWidget = forWidget;
@@ -67901,6 +76273,7 @@ class InputpartnerMessages_insert_input {
   @override
   int get hashCode {
     final l$body = body;
+    final l$durationMs = durationMs;
     final l$forWidget = forWidget;
     final l$id = id;
     final l$kind = kind;
@@ -67908,6 +76281,7 @@ class InputpartnerMessages_insert_input {
     final l$mediaFileId = mediaFileId;
     return Object.hashAll([
       _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('durationMs') ? l$durationMs : const {},
       _$data.containsKey('forWidget') ? l$forWidget : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
@@ -67921,6 +76295,7 @@ class InputpartnerMessages_max_order_by {
   factory InputpartnerMessages_max_order_by({
     Enumorder_by? body,
     Enumorder_by? createdAt,
+    Enumorder_by? durationMs,
     Enumorder_by? heartedAt,
     Enumorder_by? id,
     Enumorder_by? mediaFileId,
@@ -67930,6 +76305,7 @@ class InputpartnerMessages_max_order_by {
   }) => InputpartnerMessages_max_order_by._({
     if (body != null) r'body': body,
     if (createdAt != null) r'createdAt': createdAt,
+    if (durationMs != null) r'durationMs': durationMs,
     if (heartedAt != null) r'heartedAt': heartedAt,
     if (id != null) r'id': id,
     if (mediaFileId != null) r'mediaFileId': mediaFileId,
@@ -67951,6 +76327,12 @@ class InputpartnerMessages_max_order_by {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
     }
     if (data.containsKey('heartedAt')) {
       final l$heartedAt = data['heartedAt'];
@@ -67993,6 +76375,8 @@ class InputpartnerMessages_max_order_by {
 
   Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
 
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
   Enumorder_by? get heartedAt => (_$data['heartedAt'] as Enumorder_by?);
 
   Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
@@ -68014,6 +76398,10 @@ class InputpartnerMessages_max_order_by {
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
     }
     if (_$data.containsKey('heartedAt')) {
       final l$heartedAt = heartedAt;
@@ -68066,6 +76454,14 @@ class InputpartnerMessages_max_order_by {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
     final l$heartedAt = heartedAt;
     final lOther$heartedAt = other.heartedAt;
     if (_$data.containsKey('heartedAt') != other._$data.containsKey('heartedAt')) {
@@ -68121,6 +76517,7 @@ class InputpartnerMessages_max_order_by {
   int get hashCode {
     final l$body = body;
     final l$createdAt = createdAt;
+    final l$durationMs = durationMs;
     final l$heartedAt = heartedAt;
     final l$id = id;
     final l$mediaFileId = mediaFileId;
@@ -68130,6 +76527,7 @@ class InputpartnerMessages_max_order_by {
     return Object.hashAll([
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('durationMs') ? l$durationMs : const {},
       _$data.containsKey('heartedAt') ? l$heartedAt : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('mediaFileId') ? l$mediaFileId : const {},
@@ -68144,6 +76542,7 @@ class InputpartnerMessages_min_order_by {
   factory InputpartnerMessages_min_order_by({
     Enumorder_by? body,
     Enumorder_by? createdAt,
+    Enumorder_by? durationMs,
     Enumorder_by? heartedAt,
     Enumorder_by? id,
     Enumorder_by? mediaFileId,
@@ -68153,6 +76552,7 @@ class InputpartnerMessages_min_order_by {
   }) => InputpartnerMessages_min_order_by._({
     if (body != null) r'body': body,
     if (createdAt != null) r'createdAt': createdAt,
+    if (durationMs != null) r'durationMs': durationMs,
     if (heartedAt != null) r'heartedAt': heartedAt,
     if (id != null) r'id': id,
     if (mediaFileId != null) r'mediaFileId': mediaFileId,
@@ -68174,6 +76574,12 @@ class InputpartnerMessages_min_order_by {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
     }
     if (data.containsKey('heartedAt')) {
       final l$heartedAt = data['heartedAt'];
@@ -68216,6 +76622,8 @@ class InputpartnerMessages_min_order_by {
 
   Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
 
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
   Enumorder_by? get heartedAt => (_$data['heartedAt'] as Enumorder_by?);
 
   Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
@@ -68237,6 +76645,10 @@ class InputpartnerMessages_min_order_by {
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
     }
     if (_$data.containsKey('heartedAt')) {
       final l$heartedAt = heartedAt;
@@ -68289,6 +76701,14 @@ class InputpartnerMessages_min_order_by {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
     final l$heartedAt = heartedAt;
     final lOther$heartedAt = other.heartedAt;
     if (_$data.containsKey('heartedAt') != other._$data.containsKey('heartedAt')) {
@@ -68344,6 +76764,7 @@ class InputpartnerMessages_min_order_by {
   int get hashCode {
     final l$body = body;
     final l$createdAt = createdAt;
+    final l$durationMs = durationMs;
     final l$heartedAt = heartedAt;
     final l$id = id;
     final l$mediaFileId = mediaFileId;
@@ -68353,6 +76774,7 @@ class InputpartnerMessages_min_order_by {
     return Object.hashAll([
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('durationMs') ? l$durationMs : const {},
       _$data.containsKey('heartedAt') ? l$heartedAt : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('mediaFileId') ? l$mediaFileId : const {},
@@ -68486,6 +76908,7 @@ class InputpartnerMessages_order_by {
   factory InputpartnerMessages_order_by({
     Enumorder_by? body,
     Enumorder_by? createdAt,
+    Enumorder_by? durationMs,
     Enumorder_by? forWidget,
     Enumorder_by? heartedAt,
     Enumorder_by? id,
@@ -68500,6 +76923,7 @@ class InputpartnerMessages_order_by {
   }) => InputpartnerMessages_order_by._({
     if (body != null) r'body': body,
     if (createdAt != null) r'createdAt': createdAt,
+    if (durationMs != null) r'durationMs': durationMs,
     if (forWidget != null) r'forWidget': forWidget,
     if (heartedAt != null) r'heartedAt': heartedAt,
     if (id != null) r'id': id,
@@ -68526,6 +76950,12 @@ class InputpartnerMessages_order_by {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
     }
     if (data.containsKey('forWidget')) {
       final l$forWidget = data['forWidget'];
@@ -68596,6 +77026,8 @@ class InputpartnerMessages_order_by {
 
   Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
 
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
   Enumorder_by? get forWidget => (_$data['forWidget'] as Enumorder_by?);
 
   Enumorder_by? get heartedAt => (_$data['heartedAt'] as Enumorder_by?);
@@ -68627,6 +77059,10 @@ class InputpartnerMessages_order_by {
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
     }
     if (_$data.containsKey('forWidget')) {
       final l$forWidget = forWidget;
@@ -68697,6 +77133,14 @@ class InputpartnerMessages_order_by {
       return false;
     }
     if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
       return false;
     }
     final l$forWidget = forWidget;
@@ -68794,6 +77238,7 @@ class InputpartnerMessages_order_by {
   int get hashCode {
     final l$body = body;
     final l$createdAt = createdAt;
+    final l$durationMs = durationMs;
     final l$forWidget = forWidget;
     final l$heartedAt = heartedAt;
     final l$id = id;
@@ -68808,6 +77253,7 @@ class InputpartnerMessages_order_by {
     return Object.hashAll([
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('durationMs') ? l$durationMs : const {},
       _$data.containsKey('forWidget') ? l$forWidget : const {},
       _$data.containsKey('heartedAt') ? l$heartedAt : const {},
       _$data.containsKey('id') ? l$id : const {},
@@ -68955,6 +77401,178 @@ class InputpartnerMessages_set_input {
   }
 }
 
+class InputpartnerMessages_stddev_order_by {
+  factory InputpartnerMessages_stddev_order_by({Enumorder_by? durationMs}) =>
+      InputpartnerMessages_stddev_order_by._({if (durationMs != null) r'durationMs': durationMs});
+
+  InputpartnerMessages_stddev_order_by._(this._$data);
+
+  factory InputpartnerMessages_stddev_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
+    }
+    return InputpartnerMessages_stddev_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpartnerMessages_stddev_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$durationMs = durationMs;
+    return Object.hashAll([_$data.containsKey('durationMs') ? l$durationMs : const {}]);
+  }
+}
+
+class InputpartnerMessages_stddev_pop_order_by {
+  factory InputpartnerMessages_stddev_pop_order_by({Enumorder_by? durationMs}) =>
+      InputpartnerMessages_stddev_pop_order_by._({
+        if (durationMs != null) r'durationMs': durationMs,
+      });
+
+  InputpartnerMessages_stddev_pop_order_by._(this._$data);
+
+  factory InputpartnerMessages_stddev_pop_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
+    }
+    return InputpartnerMessages_stddev_pop_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpartnerMessages_stddev_pop_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$durationMs = durationMs;
+    return Object.hashAll([_$data.containsKey('durationMs') ? l$durationMs : const {}]);
+  }
+}
+
+class InputpartnerMessages_stddev_samp_order_by {
+  factory InputpartnerMessages_stddev_samp_order_by({Enumorder_by? durationMs}) =>
+      InputpartnerMessages_stddev_samp_order_by._({
+        if (durationMs != null) r'durationMs': durationMs,
+      });
+
+  InputpartnerMessages_stddev_samp_order_by._(this._$data);
+
+  factory InputpartnerMessages_stddev_samp_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
+    }
+    return InputpartnerMessages_stddev_samp_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpartnerMessages_stddev_samp_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$durationMs = durationMs;
+    return Object.hashAll([_$data.containsKey('durationMs') ? l$durationMs : const {}]);
+  }
+}
+
 class InputpartnerMessages_stream_cursor_input {
   factory InputpartnerMessages_stream_cursor_input({
     required InputpartnerMessages_stream_cursor_value_input initial_value,
@@ -69038,6 +77656,7 @@ class InputpartnerMessages_stream_cursor_value_input {
   factory InputpartnerMessages_stream_cursor_value_input({
     String? body,
     DateTime? createdAt,
+    int? durationMs,
     bool? forWidget,
     DateTime? heartedAt,
     String? id,
@@ -69049,6 +77668,7 @@ class InputpartnerMessages_stream_cursor_value_input {
   }) => InputpartnerMessages_stream_cursor_value_input._({
     if (body != null) r'body': body,
     if (createdAt != null) r'createdAt': createdAt,
+    if (durationMs != null) r'durationMs': durationMs,
     if (forWidget != null) r'forWidget': forWidget,
     if (heartedAt != null) r'heartedAt': heartedAt,
     if (id != null) r'id': id,
@@ -69072,6 +77692,10 @@ class InputpartnerMessages_stream_cursor_value_input {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = (l$durationMs as int?);
     }
     if (data.containsKey('forWidget')) {
       final l$forWidget = data['forWidget'];
@@ -69118,6 +77742,8 @@ class InputpartnerMessages_stream_cursor_value_input {
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
+  int? get durationMs => (_$data['durationMs'] as int?);
+
   bool? get forWidget => (_$data['forWidget'] as bool?);
 
   DateTime? get heartedAt => (_$data['heartedAt'] as DateTime?);
@@ -69145,6 +77771,10 @@ class InputpartnerMessages_stream_cursor_value_input {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs;
     }
     if (_$data.containsKey('forWidget')) {
       final l$forWidget = forWidget;
@@ -69208,6 +77838,14 @@ class InputpartnerMessages_stream_cursor_value_input {
       return false;
     }
     if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
       return false;
     }
     final l$forWidget = forWidget;
@@ -69281,6 +77919,7 @@ class InputpartnerMessages_stream_cursor_value_input {
   int get hashCode {
     final l$body = body;
     final l$createdAt = createdAt;
+    final l$durationMs = durationMs;
     final l$forWidget = forWidget;
     final l$heartedAt = heartedAt;
     final l$id = id;
@@ -69292,6 +77931,7 @@ class InputpartnerMessages_stream_cursor_value_input {
     return Object.hashAll([
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('durationMs') ? l$durationMs : const {},
       _$data.containsKey('forWidget') ? l$forWidget : const {},
       _$data.containsKey('heartedAt') ? l$heartedAt : const {},
       _$data.containsKey('id') ? l$id : const {},
@@ -69301,6 +77941,62 @@ class InputpartnerMessages_stream_cursor_value_input {
       _$data.containsKey('seenAt') ? l$seenAt : const {},
       _$data.containsKey('senderId') ? l$senderId : const {},
     ]);
+  }
+}
+
+class InputpartnerMessages_sum_order_by {
+  factory InputpartnerMessages_sum_order_by({Enumorder_by? durationMs}) =>
+      InputpartnerMessages_sum_order_by._({if (durationMs != null) r'durationMs': durationMs});
+
+  InputpartnerMessages_sum_order_by._(this._$data);
+
+  factory InputpartnerMessages_sum_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
+    }
+    return InputpartnerMessages_sum_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpartnerMessages_sum_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$durationMs = durationMs;
+    return Object.hashAll([_$data.containsKey('durationMs') ? l$durationMs : const {}]);
   }
 }
 
@@ -69376,6 +78072,174 @@ class InputpartnerMessages_updates {
   }
 }
 
+class InputpartnerMessages_var_pop_order_by {
+  factory InputpartnerMessages_var_pop_order_by({Enumorder_by? durationMs}) =>
+      InputpartnerMessages_var_pop_order_by._({if (durationMs != null) r'durationMs': durationMs});
+
+  InputpartnerMessages_var_pop_order_by._(this._$data);
+
+  factory InputpartnerMessages_var_pop_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
+    }
+    return InputpartnerMessages_var_pop_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpartnerMessages_var_pop_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$durationMs = durationMs;
+    return Object.hashAll([_$data.containsKey('durationMs') ? l$durationMs : const {}]);
+  }
+}
+
+class InputpartnerMessages_var_samp_order_by {
+  factory InputpartnerMessages_var_samp_order_by({Enumorder_by? durationMs}) =>
+      InputpartnerMessages_var_samp_order_by._({if (durationMs != null) r'durationMs': durationMs});
+
+  InputpartnerMessages_var_samp_order_by._(this._$data);
+
+  factory InputpartnerMessages_var_samp_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
+    }
+    return InputpartnerMessages_var_samp_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpartnerMessages_var_samp_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$durationMs = durationMs;
+    return Object.hashAll([_$data.containsKey('durationMs') ? l$durationMs : const {}]);
+  }
+}
+
+class InputpartnerMessages_variance_order_by {
+  factory InputpartnerMessages_variance_order_by({Enumorder_by? durationMs}) =>
+      InputpartnerMessages_variance_order_by._({if (durationMs != null) r'durationMs': durationMs});
+
+  InputpartnerMessages_variance_order_by._(this._$data);
+
+  factory InputpartnerMessages_variance_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('durationMs')) {
+      final l$durationMs = data['durationMs'];
+      result$data['durationMs'] = l$durationMs == null
+          ? null
+          : fromJsonEnumorder_by((l$durationMs as String));
+    }
+    return InputpartnerMessages_variance_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('durationMs')) {
+      final l$durationMs = durationMs;
+      result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpartnerMessages_variance_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$durationMs = durationMs;
+    final lOther$durationMs = other.durationMs;
+    if (_$data.containsKey('durationMs') != other._$data.containsKey('durationMs')) {
+      return false;
+    }
+    if (l$durationMs != lOther$durationMs) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$durationMs = durationMs;
+    return Object.hashAll([_$data.containsKey('durationMs') ? l$durationMs : const {}]);
+  }
+}
+
 class InputpartnerQuestionStates_args {
   factory InputpartnerQuestionStates_args({dynamic? questionSlugs}) =>
       InputpartnerQuestionStates_args._({
@@ -69437,34 +78301,48 @@ class InputplusStates_bool_exp {
     List<InputplusStates_bool_exp>? $_and,
     InputplusStates_bool_exp? $_not,
     List<InputplusStates_bool_exp>? $_or,
-    InputInt_comparison_exp? cardsLeftThisMonth,
+    InputBoolean_comparison_exp? billingIssue,
+    InputBoolean_comparison_exp? bothPaid,
     InputInt_comparison_exp? chatMessagesLeftToday,
+    InputInt_comparison_exp? chatMessagesLimit,
+    InputString_comparison_exp? coveredByName,
     Inputentitlements_bool_exp? entitlement,
     Inputuuid_comparison_exp? entitlementUserId,
+    InputInt_comparison_exp? gamesLeftThisWeek,
     InputInt_comparison_exp? guestLinksLeftToday,
     InputBoolean_comparison_exp? hasPlus,
     InputInt_comparison_exp? invitesLeftToday,
+    InputInt_comparison_exp? listsLeft,
+    InputString_comparison_exp? ownerStore,
     InputBoolean_comparison_exp? paidByPartner,
     InputInt_comparison_exp? partnerMessagesLeftToday,
+    InputInt_comparison_exp? ritualsLeft,
     InputInt_comparison_exp? signalsLeftToday,
-    InputInt_comparison_exp? slipsLeftThisMonth,
+    InputInt_comparison_exp? spiceCardsLeftThisWeek,
     InputInt_comparison_exp? supportRequestsLeftToday,
     Inputuuid_comparison_exp? userId,
   }) => InputplusStates_bool_exp._({
     if ($_and != null) r'_and': $_and,
     if ($_not != null) r'_not': $_not,
     if ($_or != null) r'_or': $_or,
-    if (cardsLeftThisMonth != null) r'cardsLeftThisMonth': cardsLeftThisMonth,
+    if (billingIssue != null) r'billingIssue': billingIssue,
+    if (bothPaid != null) r'bothPaid': bothPaid,
     if (chatMessagesLeftToday != null) r'chatMessagesLeftToday': chatMessagesLeftToday,
+    if (chatMessagesLimit != null) r'chatMessagesLimit': chatMessagesLimit,
+    if (coveredByName != null) r'coveredByName': coveredByName,
     if (entitlement != null) r'entitlement': entitlement,
     if (entitlementUserId != null) r'entitlementUserId': entitlementUserId,
+    if (gamesLeftThisWeek != null) r'gamesLeftThisWeek': gamesLeftThisWeek,
     if (guestLinksLeftToday != null) r'guestLinksLeftToday': guestLinksLeftToday,
     if (hasPlus != null) r'hasPlus': hasPlus,
     if (invitesLeftToday != null) r'invitesLeftToday': invitesLeftToday,
+    if (listsLeft != null) r'listsLeft': listsLeft,
+    if (ownerStore != null) r'ownerStore': ownerStore,
     if (paidByPartner != null) r'paidByPartner': paidByPartner,
     if (partnerMessagesLeftToday != null) r'partnerMessagesLeftToday': partnerMessagesLeftToday,
+    if (ritualsLeft != null) r'ritualsLeft': ritualsLeft,
     if (signalsLeftToday != null) r'signalsLeftToday': signalsLeftToday,
-    if (slipsLeftThisMonth != null) r'slipsLeftThisMonth': slipsLeftThisMonth,
+    if (spiceCardsLeftThisWeek != null) r'spiceCardsLeftThisWeek': spiceCardsLeftThisWeek,
     if (supportRequestsLeftToday != null) r'supportRequestsLeftToday': supportRequestsLeftToday,
     if (userId != null) r'userId': userId,
   });
@@ -69491,17 +78369,35 @@ class InputplusStates_bool_exp {
           ?.map((e) => InputplusStates_bool_exp.fromJson((e as Map<String, dynamic>)))
           .toList();
     }
-    if (data.containsKey('cardsLeftThisMonth')) {
-      final l$cardsLeftThisMonth = data['cardsLeftThisMonth'];
-      result$data['cardsLeftThisMonth'] = l$cardsLeftThisMonth == null
+    if (data.containsKey('billingIssue')) {
+      final l$billingIssue = data['billingIssue'];
+      result$data['billingIssue'] = l$billingIssue == null
           ? null
-          : InputInt_comparison_exp.fromJson((l$cardsLeftThisMonth as Map<String, dynamic>));
+          : InputBoolean_comparison_exp.fromJson((l$billingIssue as Map<String, dynamic>));
+    }
+    if (data.containsKey('bothPaid')) {
+      final l$bothPaid = data['bothPaid'];
+      result$data['bothPaid'] = l$bothPaid == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$bothPaid as Map<String, dynamic>));
     }
     if (data.containsKey('chatMessagesLeftToday')) {
       final l$chatMessagesLeftToday = data['chatMessagesLeftToday'];
       result$data['chatMessagesLeftToday'] = l$chatMessagesLeftToday == null
           ? null
           : InputInt_comparison_exp.fromJson((l$chatMessagesLeftToday as Map<String, dynamic>));
+    }
+    if (data.containsKey('chatMessagesLimit')) {
+      final l$chatMessagesLimit = data['chatMessagesLimit'];
+      result$data['chatMessagesLimit'] = l$chatMessagesLimit == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$chatMessagesLimit as Map<String, dynamic>));
+    }
+    if (data.containsKey('coveredByName')) {
+      final l$coveredByName = data['coveredByName'];
+      result$data['coveredByName'] = l$coveredByName == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$coveredByName as Map<String, dynamic>));
     }
     if (data.containsKey('entitlement')) {
       final l$entitlement = data['entitlement'];
@@ -69514,6 +78410,12 @@ class InputplusStates_bool_exp {
       result$data['entitlementUserId'] = l$entitlementUserId == null
           ? null
           : Inputuuid_comparison_exp.fromJson((l$entitlementUserId as Map<String, dynamic>));
+    }
+    if (data.containsKey('gamesLeftThisWeek')) {
+      final l$gamesLeftThisWeek = data['gamesLeftThisWeek'];
+      result$data['gamesLeftThisWeek'] = l$gamesLeftThisWeek == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$gamesLeftThisWeek as Map<String, dynamic>));
     }
     if (data.containsKey('guestLinksLeftToday')) {
       final l$guestLinksLeftToday = data['guestLinksLeftToday'];
@@ -69533,6 +78435,18 @@ class InputplusStates_bool_exp {
           ? null
           : InputInt_comparison_exp.fromJson((l$invitesLeftToday as Map<String, dynamic>));
     }
+    if (data.containsKey('listsLeft')) {
+      final l$listsLeft = data['listsLeft'];
+      result$data['listsLeft'] = l$listsLeft == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$listsLeft as Map<String, dynamic>));
+    }
+    if (data.containsKey('ownerStore')) {
+      final l$ownerStore = data['ownerStore'];
+      result$data['ownerStore'] = l$ownerStore == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$ownerStore as Map<String, dynamic>));
+    }
     if (data.containsKey('paidByPartner')) {
       final l$paidByPartner = data['paidByPartner'];
       result$data['paidByPartner'] = l$paidByPartner == null
@@ -69545,17 +78459,23 @@ class InputplusStates_bool_exp {
           ? null
           : InputInt_comparison_exp.fromJson((l$partnerMessagesLeftToday as Map<String, dynamic>));
     }
+    if (data.containsKey('ritualsLeft')) {
+      final l$ritualsLeft = data['ritualsLeft'];
+      result$data['ritualsLeft'] = l$ritualsLeft == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$ritualsLeft as Map<String, dynamic>));
+    }
     if (data.containsKey('signalsLeftToday')) {
       final l$signalsLeftToday = data['signalsLeftToday'];
       result$data['signalsLeftToday'] = l$signalsLeftToday == null
           ? null
           : InputInt_comparison_exp.fromJson((l$signalsLeftToday as Map<String, dynamic>));
     }
-    if (data.containsKey('slipsLeftThisMonth')) {
-      final l$slipsLeftThisMonth = data['slipsLeftThisMonth'];
-      result$data['slipsLeftThisMonth'] = l$slipsLeftThisMonth == null
+    if (data.containsKey('spiceCardsLeftThisWeek')) {
+      final l$spiceCardsLeftThisWeek = data['spiceCardsLeftThisWeek'];
+      result$data['spiceCardsLeftThisWeek'] = l$spiceCardsLeftThisWeek == null
           ? null
-          : InputInt_comparison_exp.fromJson((l$slipsLeftThisMonth as Map<String, dynamic>));
+          : InputInt_comparison_exp.fromJson((l$spiceCardsLeftThisWeek as Map<String, dynamic>));
     }
     if (data.containsKey('supportRequestsLeftToday')) {
       final l$supportRequestsLeftToday = data['supportRequestsLeftToday'];
@@ -69580,17 +78500,28 @@ class InputplusStates_bool_exp {
 
   List<InputplusStates_bool_exp>? get $_or => (_$data['_or'] as List<InputplusStates_bool_exp>?);
 
-  InputInt_comparison_exp? get cardsLeftThisMonth =>
-      (_$data['cardsLeftThisMonth'] as InputInt_comparison_exp?);
+  InputBoolean_comparison_exp? get billingIssue =>
+      (_$data['billingIssue'] as InputBoolean_comparison_exp?);
+
+  InputBoolean_comparison_exp? get bothPaid => (_$data['bothPaid'] as InputBoolean_comparison_exp?);
 
   InputInt_comparison_exp? get chatMessagesLeftToday =>
       (_$data['chatMessagesLeftToday'] as InputInt_comparison_exp?);
+
+  InputInt_comparison_exp? get chatMessagesLimit =>
+      (_$data['chatMessagesLimit'] as InputInt_comparison_exp?);
+
+  InputString_comparison_exp? get coveredByName =>
+      (_$data['coveredByName'] as InputString_comparison_exp?);
 
   Inputentitlements_bool_exp? get entitlement =>
       (_$data['entitlement'] as Inputentitlements_bool_exp?);
 
   Inputuuid_comparison_exp? get entitlementUserId =>
       (_$data['entitlementUserId'] as Inputuuid_comparison_exp?);
+
+  InputInt_comparison_exp? get gamesLeftThisWeek =>
+      (_$data['gamesLeftThisWeek'] as InputInt_comparison_exp?);
 
   InputInt_comparison_exp? get guestLinksLeftToday =>
       (_$data['guestLinksLeftToday'] as InputInt_comparison_exp?);
@@ -69600,17 +78531,24 @@ class InputplusStates_bool_exp {
   InputInt_comparison_exp? get invitesLeftToday =>
       (_$data['invitesLeftToday'] as InputInt_comparison_exp?);
 
+  InputInt_comparison_exp? get listsLeft => (_$data['listsLeft'] as InputInt_comparison_exp?);
+
+  InputString_comparison_exp? get ownerStore =>
+      (_$data['ownerStore'] as InputString_comparison_exp?);
+
   InputBoolean_comparison_exp? get paidByPartner =>
       (_$data['paidByPartner'] as InputBoolean_comparison_exp?);
 
   InputInt_comparison_exp? get partnerMessagesLeftToday =>
       (_$data['partnerMessagesLeftToday'] as InputInt_comparison_exp?);
 
+  InputInt_comparison_exp? get ritualsLeft => (_$data['ritualsLeft'] as InputInt_comparison_exp?);
+
   InputInt_comparison_exp? get signalsLeftToday =>
       (_$data['signalsLeftToday'] as InputInt_comparison_exp?);
 
-  InputInt_comparison_exp? get slipsLeftThisMonth =>
-      (_$data['slipsLeftThisMonth'] as InputInt_comparison_exp?);
+  InputInt_comparison_exp? get spiceCardsLeftThisWeek =>
+      (_$data['spiceCardsLeftThisWeek'] as InputInt_comparison_exp?);
 
   InputInt_comparison_exp? get supportRequestsLeftToday =>
       (_$data['supportRequestsLeftToday'] as InputInt_comparison_exp?);
@@ -69631,13 +78569,25 @@ class InputplusStates_bool_exp {
       final l$$_or = $_or;
       result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
     }
-    if (_$data.containsKey('cardsLeftThisMonth')) {
-      final l$cardsLeftThisMonth = cardsLeftThisMonth;
-      result$data['cardsLeftThisMonth'] = l$cardsLeftThisMonth?.toJson();
+    if (_$data.containsKey('billingIssue')) {
+      final l$billingIssue = billingIssue;
+      result$data['billingIssue'] = l$billingIssue?.toJson();
+    }
+    if (_$data.containsKey('bothPaid')) {
+      final l$bothPaid = bothPaid;
+      result$data['bothPaid'] = l$bothPaid?.toJson();
     }
     if (_$data.containsKey('chatMessagesLeftToday')) {
       final l$chatMessagesLeftToday = chatMessagesLeftToday;
       result$data['chatMessagesLeftToday'] = l$chatMessagesLeftToday?.toJson();
+    }
+    if (_$data.containsKey('chatMessagesLimit')) {
+      final l$chatMessagesLimit = chatMessagesLimit;
+      result$data['chatMessagesLimit'] = l$chatMessagesLimit?.toJson();
+    }
+    if (_$data.containsKey('coveredByName')) {
+      final l$coveredByName = coveredByName;
+      result$data['coveredByName'] = l$coveredByName?.toJson();
     }
     if (_$data.containsKey('entitlement')) {
       final l$entitlement = entitlement;
@@ -69646,6 +78596,10 @@ class InputplusStates_bool_exp {
     if (_$data.containsKey('entitlementUserId')) {
       final l$entitlementUserId = entitlementUserId;
       result$data['entitlementUserId'] = l$entitlementUserId?.toJson();
+    }
+    if (_$data.containsKey('gamesLeftThisWeek')) {
+      final l$gamesLeftThisWeek = gamesLeftThisWeek;
+      result$data['gamesLeftThisWeek'] = l$gamesLeftThisWeek?.toJson();
     }
     if (_$data.containsKey('guestLinksLeftToday')) {
       final l$guestLinksLeftToday = guestLinksLeftToday;
@@ -69659,6 +78613,14 @@ class InputplusStates_bool_exp {
       final l$invitesLeftToday = invitesLeftToday;
       result$data['invitesLeftToday'] = l$invitesLeftToday?.toJson();
     }
+    if (_$data.containsKey('listsLeft')) {
+      final l$listsLeft = listsLeft;
+      result$data['listsLeft'] = l$listsLeft?.toJson();
+    }
+    if (_$data.containsKey('ownerStore')) {
+      final l$ownerStore = ownerStore;
+      result$data['ownerStore'] = l$ownerStore?.toJson();
+    }
     if (_$data.containsKey('paidByPartner')) {
       final l$paidByPartner = paidByPartner;
       result$data['paidByPartner'] = l$paidByPartner?.toJson();
@@ -69667,13 +78629,17 @@ class InputplusStates_bool_exp {
       final l$partnerMessagesLeftToday = partnerMessagesLeftToday;
       result$data['partnerMessagesLeftToday'] = l$partnerMessagesLeftToday?.toJson();
     }
+    if (_$data.containsKey('ritualsLeft')) {
+      final l$ritualsLeft = ritualsLeft;
+      result$data['ritualsLeft'] = l$ritualsLeft?.toJson();
+    }
     if (_$data.containsKey('signalsLeftToday')) {
       final l$signalsLeftToday = signalsLeftToday;
       result$data['signalsLeftToday'] = l$signalsLeftToday?.toJson();
     }
-    if (_$data.containsKey('slipsLeftThisMonth')) {
-      final l$slipsLeftThisMonth = slipsLeftThisMonth;
-      result$data['slipsLeftThisMonth'] = l$slipsLeftThisMonth?.toJson();
+    if (_$data.containsKey('spiceCardsLeftThisWeek')) {
+      final l$spiceCardsLeftThisWeek = spiceCardsLeftThisWeek;
+      result$data['spiceCardsLeftThisWeek'] = l$spiceCardsLeftThisWeek?.toJson();
     }
     if (_$data.containsKey('supportRequestsLeftToday')) {
       final l$supportRequestsLeftToday = supportRequestsLeftToday;
@@ -69740,13 +78706,20 @@ class InputplusStates_bool_exp {
     } else if (l$$_or != lOther$$_or) {
       return false;
     }
-    final l$cardsLeftThisMonth = cardsLeftThisMonth;
-    final lOther$cardsLeftThisMonth = other.cardsLeftThisMonth;
-    if (_$data.containsKey('cardsLeftThisMonth') !=
-        other._$data.containsKey('cardsLeftThisMonth')) {
+    final l$billingIssue = billingIssue;
+    final lOther$billingIssue = other.billingIssue;
+    if (_$data.containsKey('billingIssue') != other._$data.containsKey('billingIssue')) {
       return false;
     }
-    if (l$cardsLeftThisMonth != lOther$cardsLeftThisMonth) {
+    if (l$billingIssue != lOther$billingIssue) {
+      return false;
+    }
+    final l$bothPaid = bothPaid;
+    final lOther$bothPaid = other.bothPaid;
+    if (_$data.containsKey('bothPaid') != other._$data.containsKey('bothPaid')) {
+      return false;
+    }
+    if (l$bothPaid != lOther$bothPaid) {
       return false;
     }
     final l$chatMessagesLeftToday = chatMessagesLeftToday;
@@ -69756,6 +78729,22 @@ class InputplusStates_bool_exp {
       return false;
     }
     if (l$chatMessagesLeftToday != lOther$chatMessagesLeftToday) {
+      return false;
+    }
+    final l$chatMessagesLimit = chatMessagesLimit;
+    final lOther$chatMessagesLimit = other.chatMessagesLimit;
+    if (_$data.containsKey('chatMessagesLimit') != other._$data.containsKey('chatMessagesLimit')) {
+      return false;
+    }
+    if (l$chatMessagesLimit != lOther$chatMessagesLimit) {
+      return false;
+    }
+    final l$coveredByName = coveredByName;
+    final lOther$coveredByName = other.coveredByName;
+    if (_$data.containsKey('coveredByName') != other._$data.containsKey('coveredByName')) {
+      return false;
+    }
+    if (l$coveredByName != lOther$coveredByName) {
       return false;
     }
     final l$entitlement = entitlement;
@@ -69772,6 +78761,14 @@ class InputplusStates_bool_exp {
       return false;
     }
     if (l$entitlementUserId != lOther$entitlementUserId) {
+      return false;
+    }
+    final l$gamesLeftThisWeek = gamesLeftThisWeek;
+    final lOther$gamesLeftThisWeek = other.gamesLeftThisWeek;
+    if (_$data.containsKey('gamesLeftThisWeek') != other._$data.containsKey('gamesLeftThisWeek')) {
+      return false;
+    }
+    if (l$gamesLeftThisWeek != lOther$gamesLeftThisWeek) {
       return false;
     }
     final l$guestLinksLeftToday = guestLinksLeftToday;
@@ -69799,6 +78796,22 @@ class InputplusStates_bool_exp {
     if (l$invitesLeftToday != lOther$invitesLeftToday) {
       return false;
     }
+    final l$listsLeft = listsLeft;
+    final lOther$listsLeft = other.listsLeft;
+    if (_$data.containsKey('listsLeft') != other._$data.containsKey('listsLeft')) {
+      return false;
+    }
+    if (l$listsLeft != lOther$listsLeft) {
+      return false;
+    }
+    final l$ownerStore = ownerStore;
+    final lOther$ownerStore = other.ownerStore;
+    if (_$data.containsKey('ownerStore') != other._$data.containsKey('ownerStore')) {
+      return false;
+    }
+    if (l$ownerStore != lOther$ownerStore) {
+      return false;
+    }
     final l$paidByPartner = paidByPartner;
     final lOther$paidByPartner = other.paidByPartner;
     if (_$data.containsKey('paidByPartner') != other._$data.containsKey('paidByPartner')) {
@@ -69816,6 +78829,14 @@ class InputplusStates_bool_exp {
     if (l$partnerMessagesLeftToday != lOther$partnerMessagesLeftToday) {
       return false;
     }
+    final l$ritualsLeft = ritualsLeft;
+    final lOther$ritualsLeft = other.ritualsLeft;
+    if (_$data.containsKey('ritualsLeft') != other._$data.containsKey('ritualsLeft')) {
+      return false;
+    }
+    if (l$ritualsLeft != lOther$ritualsLeft) {
+      return false;
+    }
     final l$signalsLeftToday = signalsLeftToday;
     final lOther$signalsLeftToday = other.signalsLeftToday;
     if (_$data.containsKey('signalsLeftToday') != other._$data.containsKey('signalsLeftToday')) {
@@ -69824,13 +78845,13 @@ class InputplusStates_bool_exp {
     if (l$signalsLeftToday != lOther$signalsLeftToday) {
       return false;
     }
-    final l$slipsLeftThisMonth = slipsLeftThisMonth;
-    final lOther$slipsLeftThisMonth = other.slipsLeftThisMonth;
-    if (_$data.containsKey('slipsLeftThisMonth') !=
-        other._$data.containsKey('slipsLeftThisMonth')) {
+    final l$spiceCardsLeftThisWeek = spiceCardsLeftThisWeek;
+    final lOther$spiceCardsLeftThisWeek = other.spiceCardsLeftThisWeek;
+    if (_$data.containsKey('spiceCardsLeftThisWeek') !=
+        other._$data.containsKey('spiceCardsLeftThisWeek')) {
       return false;
     }
-    if (l$slipsLeftThisMonth != lOther$slipsLeftThisMonth) {
+    if (l$spiceCardsLeftThisWeek != lOther$spiceCardsLeftThisWeek) {
       return false;
     }
     final l$supportRequestsLeftToday = supportRequestsLeftToday;
@@ -69858,17 +78879,24 @@ class InputplusStates_bool_exp {
     final l$$_and = $_and;
     final l$$_not = $_not;
     final l$$_or = $_or;
-    final l$cardsLeftThisMonth = cardsLeftThisMonth;
+    final l$billingIssue = billingIssue;
+    final l$bothPaid = bothPaid;
     final l$chatMessagesLeftToday = chatMessagesLeftToday;
+    final l$chatMessagesLimit = chatMessagesLimit;
+    final l$coveredByName = coveredByName;
     final l$entitlement = entitlement;
     final l$entitlementUserId = entitlementUserId;
+    final l$gamesLeftThisWeek = gamesLeftThisWeek;
     final l$guestLinksLeftToday = guestLinksLeftToday;
     final l$hasPlus = hasPlus;
     final l$invitesLeftToday = invitesLeftToday;
+    final l$listsLeft = listsLeft;
+    final l$ownerStore = ownerStore;
     final l$paidByPartner = paidByPartner;
     final l$partnerMessagesLeftToday = partnerMessagesLeftToday;
+    final l$ritualsLeft = ritualsLeft;
     final l$signalsLeftToday = signalsLeftToday;
-    final l$slipsLeftThisMonth = slipsLeftThisMonth;
+    final l$spiceCardsLeftThisWeek = spiceCardsLeftThisWeek;
     final l$supportRequestsLeftToday = supportRequestsLeftToday;
     final l$userId = userId;
     return Object.hashAll([
@@ -69883,17 +78911,24 @@ class InputplusStates_bool_exp {
                 ? null
                 : Object.hashAll(l$$_or.map((v) => v))
           : const {},
-      _$data.containsKey('cardsLeftThisMonth') ? l$cardsLeftThisMonth : const {},
+      _$data.containsKey('billingIssue') ? l$billingIssue : const {},
+      _$data.containsKey('bothPaid') ? l$bothPaid : const {},
       _$data.containsKey('chatMessagesLeftToday') ? l$chatMessagesLeftToday : const {},
+      _$data.containsKey('chatMessagesLimit') ? l$chatMessagesLimit : const {},
+      _$data.containsKey('coveredByName') ? l$coveredByName : const {},
       _$data.containsKey('entitlement') ? l$entitlement : const {},
       _$data.containsKey('entitlementUserId') ? l$entitlementUserId : const {},
+      _$data.containsKey('gamesLeftThisWeek') ? l$gamesLeftThisWeek : const {},
       _$data.containsKey('guestLinksLeftToday') ? l$guestLinksLeftToday : const {},
       _$data.containsKey('hasPlus') ? l$hasPlus : const {},
       _$data.containsKey('invitesLeftToday') ? l$invitesLeftToday : const {},
+      _$data.containsKey('listsLeft') ? l$listsLeft : const {},
+      _$data.containsKey('ownerStore') ? l$ownerStore : const {},
       _$data.containsKey('paidByPartner') ? l$paidByPartner : const {},
       _$data.containsKey('partnerMessagesLeftToday') ? l$partnerMessagesLeftToday : const {},
+      _$data.containsKey('ritualsLeft') ? l$ritualsLeft : const {},
       _$data.containsKey('signalsLeftToday') ? l$signalsLeftToday : const {},
-      _$data.containsKey('slipsLeftThisMonth') ? l$slipsLeftThisMonth : const {},
+      _$data.containsKey('spiceCardsLeftThisWeek') ? l$spiceCardsLeftThisWeek : const {},
       _$data.containsKey('supportRequestsLeftToday') ? l$supportRequestsLeftToday : const {},
       _$data.containsKey('userId') ? l$userId : const {},
     ]);
@@ -69902,31 +78937,45 @@ class InputplusStates_bool_exp {
 
 class InputplusStates_order_by {
   factory InputplusStates_order_by({
-    Enumorder_by? cardsLeftThisMonth,
+    Enumorder_by? billingIssue,
+    Enumorder_by? bothPaid,
     Enumorder_by? chatMessagesLeftToday,
+    Enumorder_by? chatMessagesLimit,
+    Enumorder_by? coveredByName,
     Inputentitlements_order_by? entitlement,
     Enumorder_by? entitlementUserId,
+    Enumorder_by? gamesLeftThisWeek,
     Enumorder_by? guestLinksLeftToday,
     Enumorder_by? hasPlus,
     Enumorder_by? invitesLeftToday,
+    Enumorder_by? listsLeft,
+    Enumorder_by? ownerStore,
     Enumorder_by? paidByPartner,
     Enumorder_by? partnerMessagesLeftToday,
+    Enumorder_by? ritualsLeft,
     Enumorder_by? signalsLeftToday,
-    Enumorder_by? slipsLeftThisMonth,
+    Enumorder_by? spiceCardsLeftThisWeek,
     Enumorder_by? supportRequestsLeftToday,
     Enumorder_by? userId,
   }) => InputplusStates_order_by._({
-    if (cardsLeftThisMonth != null) r'cardsLeftThisMonth': cardsLeftThisMonth,
+    if (billingIssue != null) r'billingIssue': billingIssue,
+    if (bothPaid != null) r'bothPaid': bothPaid,
     if (chatMessagesLeftToday != null) r'chatMessagesLeftToday': chatMessagesLeftToday,
+    if (chatMessagesLimit != null) r'chatMessagesLimit': chatMessagesLimit,
+    if (coveredByName != null) r'coveredByName': coveredByName,
     if (entitlement != null) r'entitlement': entitlement,
     if (entitlementUserId != null) r'entitlementUserId': entitlementUserId,
+    if (gamesLeftThisWeek != null) r'gamesLeftThisWeek': gamesLeftThisWeek,
     if (guestLinksLeftToday != null) r'guestLinksLeftToday': guestLinksLeftToday,
     if (hasPlus != null) r'hasPlus': hasPlus,
     if (invitesLeftToday != null) r'invitesLeftToday': invitesLeftToday,
+    if (listsLeft != null) r'listsLeft': listsLeft,
+    if (ownerStore != null) r'ownerStore': ownerStore,
     if (paidByPartner != null) r'paidByPartner': paidByPartner,
     if (partnerMessagesLeftToday != null) r'partnerMessagesLeftToday': partnerMessagesLeftToday,
+    if (ritualsLeft != null) r'ritualsLeft': ritualsLeft,
     if (signalsLeftToday != null) r'signalsLeftToday': signalsLeftToday,
-    if (slipsLeftThisMonth != null) r'slipsLeftThisMonth': slipsLeftThisMonth,
+    if (spiceCardsLeftThisWeek != null) r'spiceCardsLeftThisWeek': spiceCardsLeftThisWeek,
     if (supportRequestsLeftToday != null) r'supportRequestsLeftToday': supportRequestsLeftToday,
     if (userId != null) r'userId': userId,
   });
@@ -69935,17 +78984,35 @@ class InputplusStates_order_by {
 
   factory InputplusStates_order_by.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('cardsLeftThisMonth')) {
-      final l$cardsLeftThisMonth = data['cardsLeftThisMonth'];
-      result$data['cardsLeftThisMonth'] = l$cardsLeftThisMonth == null
+    if (data.containsKey('billingIssue')) {
+      final l$billingIssue = data['billingIssue'];
+      result$data['billingIssue'] = l$billingIssue == null
           ? null
-          : fromJsonEnumorder_by((l$cardsLeftThisMonth as String));
+          : fromJsonEnumorder_by((l$billingIssue as String));
+    }
+    if (data.containsKey('bothPaid')) {
+      final l$bothPaid = data['bothPaid'];
+      result$data['bothPaid'] = l$bothPaid == null
+          ? null
+          : fromJsonEnumorder_by((l$bothPaid as String));
     }
     if (data.containsKey('chatMessagesLeftToday')) {
       final l$chatMessagesLeftToday = data['chatMessagesLeftToday'];
       result$data['chatMessagesLeftToday'] = l$chatMessagesLeftToday == null
           ? null
           : fromJsonEnumorder_by((l$chatMessagesLeftToday as String));
+    }
+    if (data.containsKey('chatMessagesLimit')) {
+      final l$chatMessagesLimit = data['chatMessagesLimit'];
+      result$data['chatMessagesLimit'] = l$chatMessagesLimit == null
+          ? null
+          : fromJsonEnumorder_by((l$chatMessagesLimit as String));
+    }
+    if (data.containsKey('coveredByName')) {
+      final l$coveredByName = data['coveredByName'];
+      result$data['coveredByName'] = l$coveredByName == null
+          ? null
+          : fromJsonEnumorder_by((l$coveredByName as String));
     }
     if (data.containsKey('entitlement')) {
       final l$entitlement = data['entitlement'];
@@ -69958,6 +79025,12 @@ class InputplusStates_order_by {
       result$data['entitlementUserId'] = l$entitlementUserId == null
           ? null
           : fromJsonEnumorder_by((l$entitlementUserId as String));
+    }
+    if (data.containsKey('gamesLeftThisWeek')) {
+      final l$gamesLeftThisWeek = data['gamesLeftThisWeek'];
+      result$data['gamesLeftThisWeek'] = l$gamesLeftThisWeek == null
+          ? null
+          : fromJsonEnumorder_by((l$gamesLeftThisWeek as String));
     }
     if (data.containsKey('guestLinksLeftToday')) {
       final l$guestLinksLeftToday = data['guestLinksLeftToday'];
@@ -69977,6 +79050,18 @@ class InputplusStates_order_by {
           ? null
           : fromJsonEnumorder_by((l$invitesLeftToday as String));
     }
+    if (data.containsKey('listsLeft')) {
+      final l$listsLeft = data['listsLeft'];
+      result$data['listsLeft'] = l$listsLeft == null
+          ? null
+          : fromJsonEnumorder_by((l$listsLeft as String));
+    }
+    if (data.containsKey('ownerStore')) {
+      final l$ownerStore = data['ownerStore'];
+      result$data['ownerStore'] = l$ownerStore == null
+          ? null
+          : fromJsonEnumorder_by((l$ownerStore as String));
+    }
     if (data.containsKey('paidByPartner')) {
       final l$paidByPartner = data['paidByPartner'];
       result$data['paidByPartner'] = l$paidByPartner == null
@@ -69989,17 +79074,23 @@ class InputplusStates_order_by {
           ? null
           : fromJsonEnumorder_by((l$partnerMessagesLeftToday as String));
     }
+    if (data.containsKey('ritualsLeft')) {
+      final l$ritualsLeft = data['ritualsLeft'];
+      result$data['ritualsLeft'] = l$ritualsLeft == null
+          ? null
+          : fromJsonEnumorder_by((l$ritualsLeft as String));
+    }
     if (data.containsKey('signalsLeftToday')) {
       final l$signalsLeftToday = data['signalsLeftToday'];
       result$data['signalsLeftToday'] = l$signalsLeftToday == null
           ? null
           : fromJsonEnumorder_by((l$signalsLeftToday as String));
     }
-    if (data.containsKey('slipsLeftThisMonth')) {
-      final l$slipsLeftThisMonth = data['slipsLeftThisMonth'];
-      result$data['slipsLeftThisMonth'] = l$slipsLeftThisMonth == null
+    if (data.containsKey('spiceCardsLeftThisWeek')) {
+      final l$spiceCardsLeftThisWeek = data['spiceCardsLeftThisWeek'];
+      result$data['spiceCardsLeftThisWeek'] = l$spiceCardsLeftThisWeek == null
           ? null
-          : fromJsonEnumorder_by((l$slipsLeftThisMonth as String));
+          : fromJsonEnumorder_by((l$spiceCardsLeftThisWeek as String));
     }
     if (data.containsKey('supportRequestsLeftToday')) {
       final l$supportRequestsLeftToday = data['supportRequestsLeftToday'];
@@ -70016,14 +79107,22 @@ class InputplusStates_order_by {
 
   Map<String, dynamic> _$data;
 
-  Enumorder_by? get cardsLeftThisMonth => (_$data['cardsLeftThisMonth'] as Enumorder_by?);
+  Enumorder_by? get billingIssue => (_$data['billingIssue'] as Enumorder_by?);
+
+  Enumorder_by? get bothPaid => (_$data['bothPaid'] as Enumorder_by?);
 
   Enumorder_by? get chatMessagesLeftToday => (_$data['chatMessagesLeftToday'] as Enumorder_by?);
+
+  Enumorder_by? get chatMessagesLimit => (_$data['chatMessagesLimit'] as Enumorder_by?);
+
+  Enumorder_by? get coveredByName => (_$data['coveredByName'] as Enumorder_by?);
 
   Inputentitlements_order_by? get entitlement =>
       (_$data['entitlement'] as Inputentitlements_order_by?);
 
   Enumorder_by? get entitlementUserId => (_$data['entitlementUserId'] as Enumorder_by?);
+
+  Enumorder_by? get gamesLeftThisWeek => (_$data['gamesLeftThisWeek'] as Enumorder_by?);
 
   Enumorder_by? get guestLinksLeftToday => (_$data['guestLinksLeftToday'] as Enumorder_by?);
 
@@ -70031,14 +79130,20 @@ class InputplusStates_order_by {
 
   Enumorder_by? get invitesLeftToday => (_$data['invitesLeftToday'] as Enumorder_by?);
 
+  Enumorder_by? get listsLeft => (_$data['listsLeft'] as Enumorder_by?);
+
+  Enumorder_by? get ownerStore => (_$data['ownerStore'] as Enumorder_by?);
+
   Enumorder_by? get paidByPartner => (_$data['paidByPartner'] as Enumorder_by?);
 
   Enumorder_by? get partnerMessagesLeftToday =>
       (_$data['partnerMessagesLeftToday'] as Enumorder_by?);
 
+  Enumorder_by? get ritualsLeft => (_$data['ritualsLeft'] as Enumorder_by?);
+
   Enumorder_by? get signalsLeftToday => (_$data['signalsLeftToday'] as Enumorder_by?);
 
-  Enumorder_by? get slipsLeftThisMonth => (_$data['slipsLeftThisMonth'] as Enumorder_by?);
+  Enumorder_by? get spiceCardsLeftThisWeek => (_$data['spiceCardsLeftThisWeek'] as Enumorder_by?);
 
   Enumorder_by? get supportRequestsLeftToday =>
       (_$data['supportRequestsLeftToday'] as Enumorder_by?);
@@ -70047,17 +79152,33 @@ class InputplusStates_order_by {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('cardsLeftThisMonth')) {
-      final l$cardsLeftThisMonth = cardsLeftThisMonth;
-      result$data['cardsLeftThisMonth'] = l$cardsLeftThisMonth == null
+    if (_$data.containsKey('billingIssue')) {
+      final l$billingIssue = billingIssue;
+      result$data['billingIssue'] = l$billingIssue == null
           ? null
-          : toJsonEnumorder_by(l$cardsLeftThisMonth);
+          : toJsonEnumorder_by(l$billingIssue);
+    }
+    if (_$data.containsKey('bothPaid')) {
+      final l$bothPaid = bothPaid;
+      result$data['bothPaid'] = l$bothPaid == null ? null : toJsonEnumorder_by(l$bothPaid);
     }
     if (_$data.containsKey('chatMessagesLeftToday')) {
       final l$chatMessagesLeftToday = chatMessagesLeftToday;
       result$data['chatMessagesLeftToday'] = l$chatMessagesLeftToday == null
           ? null
           : toJsonEnumorder_by(l$chatMessagesLeftToday);
+    }
+    if (_$data.containsKey('chatMessagesLimit')) {
+      final l$chatMessagesLimit = chatMessagesLimit;
+      result$data['chatMessagesLimit'] = l$chatMessagesLimit == null
+          ? null
+          : toJsonEnumorder_by(l$chatMessagesLimit);
+    }
+    if (_$data.containsKey('coveredByName')) {
+      final l$coveredByName = coveredByName;
+      result$data['coveredByName'] = l$coveredByName == null
+          ? null
+          : toJsonEnumorder_by(l$coveredByName);
     }
     if (_$data.containsKey('entitlement')) {
       final l$entitlement = entitlement;
@@ -70068,6 +79189,12 @@ class InputplusStates_order_by {
       result$data['entitlementUserId'] = l$entitlementUserId == null
           ? null
           : toJsonEnumorder_by(l$entitlementUserId);
+    }
+    if (_$data.containsKey('gamesLeftThisWeek')) {
+      final l$gamesLeftThisWeek = gamesLeftThisWeek;
+      result$data['gamesLeftThisWeek'] = l$gamesLeftThisWeek == null
+          ? null
+          : toJsonEnumorder_by(l$gamesLeftThisWeek);
     }
     if (_$data.containsKey('guestLinksLeftToday')) {
       final l$guestLinksLeftToday = guestLinksLeftToday;
@@ -70085,6 +79212,14 @@ class InputplusStates_order_by {
           ? null
           : toJsonEnumorder_by(l$invitesLeftToday);
     }
+    if (_$data.containsKey('listsLeft')) {
+      final l$listsLeft = listsLeft;
+      result$data['listsLeft'] = l$listsLeft == null ? null : toJsonEnumorder_by(l$listsLeft);
+    }
+    if (_$data.containsKey('ownerStore')) {
+      final l$ownerStore = ownerStore;
+      result$data['ownerStore'] = l$ownerStore == null ? null : toJsonEnumorder_by(l$ownerStore);
+    }
     if (_$data.containsKey('paidByPartner')) {
       final l$paidByPartner = paidByPartner;
       result$data['paidByPartner'] = l$paidByPartner == null
@@ -70097,17 +79232,21 @@ class InputplusStates_order_by {
           ? null
           : toJsonEnumorder_by(l$partnerMessagesLeftToday);
     }
+    if (_$data.containsKey('ritualsLeft')) {
+      final l$ritualsLeft = ritualsLeft;
+      result$data['ritualsLeft'] = l$ritualsLeft == null ? null : toJsonEnumorder_by(l$ritualsLeft);
+    }
     if (_$data.containsKey('signalsLeftToday')) {
       final l$signalsLeftToday = signalsLeftToday;
       result$data['signalsLeftToday'] = l$signalsLeftToday == null
           ? null
           : toJsonEnumorder_by(l$signalsLeftToday);
     }
-    if (_$data.containsKey('slipsLeftThisMonth')) {
-      final l$slipsLeftThisMonth = slipsLeftThisMonth;
-      result$data['slipsLeftThisMonth'] = l$slipsLeftThisMonth == null
+    if (_$data.containsKey('spiceCardsLeftThisWeek')) {
+      final l$spiceCardsLeftThisWeek = spiceCardsLeftThisWeek;
+      result$data['spiceCardsLeftThisWeek'] = l$spiceCardsLeftThisWeek == null
           ? null
-          : toJsonEnumorder_by(l$slipsLeftThisMonth);
+          : toJsonEnumorder_by(l$spiceCardsLeftThisWeek);
     }
     if (_$data.containsKey('supportRequestsLeftToday')) {
       final l$supportRequestsLeftToday = supportRequestsLeftToday;
@@ -70130,13 +79269,20 @@ class InputplusStates_order_by {
     if (other is! InputplusStates_order_by || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$cardsLeftThisMonth = cardsLeftThisMonth;
-    final lOther$cardsLeftThisMonth = other.cardsLeftThisMonth;
-    if (_$data.containsKey('cardsLeftThisMonth') !=
-        other._$data.containsKey('cardsLeftThisMonth')) {
+    final l$billingIssue = billingIssue;
+    final lOther$billingIssue = other.billingIssue;
+    if (_$data.containsKey('billingIssue') != other._$data.containsKey('billingIssue')) {
       return false;
     }
-    if (l$cardsLeftThisMonth != lOther$cardsLeftThisMonth) {
+    if (l$billingIssue != lOther$billingIssue) {
+      return false;
+    }
+    final l$bothPaid = bothPaid;
+    final lOther$bothPaid = other.bothPaid;
+    if (_$data.containsKey('bothPaid') != other._$data.containsKey('bothPaid')) {
+      return false;
+    }
+    if (l$bothPaid != lOther$bothPaid) {
       return false;
     }
     final l$chatMessagesLeftToday = chatMessagesLeftToday;
@@ -70146,6 +79292,22 @@ class InputplusStates_order_by {
       return false;
     }
     if (l$chatMessagesLeftToday != lOther$chatMessagesLeftToday) {
+      return false;
+    }
+    final l$chatMessagesLimit = chatMessagesLimit;
+    final lOther$chatMessagesLimit = other.chatMessagesLimit;
+    if (_$data.containsKey('chatMessagesLimit') != other._$data.containsKey('chatMessagesLimit')) {
+      return false;
+    }
+    if (l$chatMessagesLimit != lOther$chatMessagesLimit) {
+      return false;
+    }
+    final l$coveredByName = coveredByName;
+    final lOther$coveredByName = other.coveredByName;
+    if (_$data.containsKey('coveredByName') != other._$data.containsKey('coveredByName')) {
+      return false;
+    }
+    if (l$coveredByName != lOther$coveredByName) {
       return false;
     }
     final l$entitlement = entitlement;
@@ -70162,6 +79324,14 @@ class InputplusStates_order_by {
       return false;
     }
     if (l$entitlementUserId != lOther$entitlementUserId) {
+      return false;
+    }
+    final l$gamesLeftThisWeek = gamesLeftThisWeek;
+    final lOther$gamesLeftThisWeek = other.gamesLeftThisWeek;
+    if (_$data.containsKey('gamesLeftThisWeek') != other._$data.containsKey('gamesLeftThisWeek')) {
+      return false;
+    }
+    if (l$gamesLeftThisWeek != lOther$gamesLeftThisWeek) {
       return false;
     }
     final l$guestLinksLeftToday = guestLinksLeftToday;
@@ -70189,6 +79359,22 @@ class InputplusStates_order_by {
     if (l$invitesLeftToday != lOther$invitesLeftToday) {
       return false;
     }
+    final l$listsLeft = listsLeft;
+    final lOther$listsLeft = other.listsLeft;
+    if (_$data.containsKey('listsLeft') != other._$data.containsKey('listsLeft')) {
+      return false;
+    }
+    if (l$listsLeft != lOther$listsLeft) {
+      return false;
+    }
+    final l$ownerStore = ownerStore;
+    final lOther$ownerStore = other.ownerStore;
+    if (_$data.containsKey('ownerStore') != other._$data.containsKey('ownerStore')) {
+      return false;
+    }
+    if (l$ownerStore != lOther$ownerStore) {
+      return false;
+    }
     final l$paidByPartner = paidByPartner;
     final lOther$paidByPartner = other.paidByPartner;
     if (_$data.containsKey('paidByPartner') != other._$data.containsKey('paidByPartner')) {
@@ -70206,6 +79392,14 @@ class InputplusStates_order_by {
     if (l$partnerMessagesLeftToday != lOther$partnerMessagesLeftToday) {
       return false;
     }
+    final l$ritualsLeft = ritualsLeft;
+    final lOther$ritualsLeft = other.ritualsLeft;
+    if (_$data.containsKey('ritualsLeft') != other._$data.containsKey('ritualsLeft')) {
+      return false;
+    }
+    if (l$ritualsLeft != lOther$ritualsLeft) {
+      return false;
+    }
     final l$signalsLeftToday = signalsLeftToday;
     final lOther$signalsLeftToday = other.signalsLeftToday;
     if (_$data.containsKey('signalsLeftToday') != other._$data.containsKey('signalsLeftToday')) {
@@ -70214,13 +79408,13 @@ class InputplusStates_order_by {
     if (l$signalsLeftToday != lOther$signalsLeftToday) {
       return false;
     }
-    final l$slipsLeftThisMonth = slipsLeftThisMonth;
-    final lOther$slipsLeftThisMonth = other.slipsLeftThisMonth;
-    if (_$data.containsKey('slipsLeftThisMonth') !=
-        other._$data.containsKey('slipsLeftThisMonth')) {
+    final l$spiceCardsLeftThisWeek = spiceCardsLeftThisWeek;
+    final lOther$spiceCardsLeftThisWeek = other.spiceCardsLeftThisWeek;
+    if (_$data.containsKey('spiceCardsLeftThisWeek') !=
+        other._$data.containsKey('spiceCardsLeftThisWeek')) {
       return false;
     }
-    if (l$slipsLeftThisMonth != lOther$slipsLeftThisMonth) {
+    if (l$spiceCardsLeftThisWeek != lOther$spiceCardsLeftThisWeek) {
       return false;
     }
     final l$supportRequestsLeftToday = supportRequestsLeftToday;
@@ -70245,31 +79439,45 @@ class InputplusStates_order_by {
 
   @override
   int get hashCode {
-    final l$cardsLeftThisMonth = cardsLeftThisMonth;
+    final l$billingIssue = billingIssue;
+    final l$bothPaid = bothPaid;
     final l$chatMessagesLeftToday = chatMessagesLeftToday;
+    final l$chatMessagesLimit = chatMessagesLimit;
+    final l$coveredByName = coveredByName;
     final l$entitlement = entitlement;
     final l$entitlementUserId = entitlementUserId;
+    final l$gamesLeftThisWeek = gamesLeftThisWeek;
     final l$guestLinksLeftToday = guestLinksLeftToday;
     final l$hasPlus = hasPlus;
     final l$invitesLeftToday = invitesLeftToday;
+    final l$listsLeft = listsLeft;
+    final l$ownerStore = ownerStore;
     final l$paidByPartner = paidByPartner;
     final l$partnerMessagesLeftToday = partnerMessagesLeftToday;
+    final l$ritualsLeft = ritualsLeft;
     final l$signalsLeftToday = signalsLeftToday;
-    final l$slipsLeftThisMonth = slipsLeftThisMonth;
+    final l$spiceCardsLeftThisWeek = spiceCardsLeftThisWeek;
     final l$supportRequestsLeftToday = supportRequestsLeftToday;
     final l$userId = userId;
     return Object.hashAll([
-      _$data.containsKey('cardsLeftThisMonth') ? l$cardsLeftThisMonth : const {},
+      _$data.containsKey('billingIssue') ? l$billingIssue : const {},
+      _$data.containsKey('bothPaid') ? l$bothPaid : const {},
       _$data.containsKey('chatMessagesLeftToday') ? l$chatMessagesLeftToday : const {},
+      _$data.containsKey('chatMessagesLimit') ? l$chatMessagesLimit : const {},
+      _$data.containsKey('coveredByName') ? l$coveredByName : const {},
       _$data.containsKey('entitlement') ? l$entitlement : const {},
       _$data.containsKey('entitlementUserId') ? l$entitlementUserId : const {},
+      _$data.containsKey('gamesLeftThisWeek') ? l$gamesLeftThisWeek : const {},
       _$data.containsKey('guestLinksLeftToday') ? l$guestLinksLeftToday : const {},
       _$data.containsKey('hasPlus') ? l$hasPlus : const {},
       _$data.containsKey('invitesLeftToday') ? l$invitesLeftToday : const {},
+      _$data.containsKey('listsLeft') ? l$listsLeft : const {},
+      _$data.containsKey('ownerStore') ? l$ownerStore : const {},
       _$data.containsKey('paidByPartner') ? l$paidByPartner : const {},
       _$data.containsKey('partnerMessagesLeftToday') ? l$partnerMessagesLeftToday : const {},
+      _$data.containsKey('ritualsLeft') ? l$ritualsLeft : const {},
       _$data.containsKey('signalsLeftToday') ? l$signalsLeftToday : const {},
-      _$data.containsKey('slipsLeftThisMonth') ? l$slipsLeftThisMonth : const {},
+      _$data.containsKey('spiceCardsLeftThisWeek') ? l$spiceCardsLeftThisWeek : const {},
       _$data.containsKey('supportRequestsLeftToday') ? l$supportRequestsLeftToday : const {},
       _$data.containsKey('userId') ? l$userId : const {},
     ]);
@@ -70357,29 +79565,43 @@ class InputplusStates_stream_cursor_input {
 
 class InputplusStates_stream_cursor_value_input {
   factory InputplusStates_stream_cursor_value_input({
-    int? cardsLeftThisMonth,
+    bool? billingIssue,
+    bool? bothPaid,
     int? chatMessagesLeftToday,
+    int? chatMessagesLimit,
+    String? coveredByName,
     String? entitlementUserId,
+    int? gamesLeftThisWeek,
     int? guestLinksLeftToday,
     bool? hasPlus,
     int? invitesLeftToday,
+    int? listsLeft,
+    String? ownerStore,
     bool? paidByPartner,
     int? partnerMessagesLeftToday,
+    int? ritualsLeft,
     int? signalsLeftToday,
-    int? slipsLeftThisMonth,
+    int? spiceCardsLeftThisWeek,
     int? supportRequestsLeftToday,
     String? userId,
   }) => InputplusStates_stream_cursor_value_input._({
-    if (cardsLeftThisMonth != null) r'cardsLeftThisMonth': cardsLeftThisMonth,
+    if (billingIssue != null) r'billingIssue': billingIssue,
+    if (bothPaid != null) r'bothPaid': bothPaid,
     if (chatMessagesLeftToday != null) r'chatMessagesLeftToday': chatMessagesLeftToday,
+    if (chatMessagesLimit != null) r'chatMessagesLimit': chatMessagesLimit,
+    if (coveredByName != null) r'coveredByName': coveredByName,
     if (entitlementUserId != null) r'entitlementUserId': entitlementUserId,
+    if (gamesLeftThisWeek != null) r'gamesLeftThisWeek': gamesLeftThisWeek,
     if (guestLinksLeftToday != null) r'guestLinksLeftToday': guestLinksLeftToday,
     if (hasPlus != null) r'hasPlus': hasPlus,
     if (invitesLeftToday != null) r'invitesLeftToday': invitesLeftToday,
+    if (listsLeft != null) r'listsLeft': listsLeft,
+    if (ownerStore != null) r'ownerStore': ownerStore,
     if (paidByPartner != null) r'paidByPartner': paidByPartner,
     if (partnerMessagesLeftToday != null) r'partnerMessagesLeftToday': partnerMessagesLeftToday,
+    if (ritualsLeft != null) r'ritualsLeft': ritualsLeft,
     if (signalsLeftToday != null) r'signalsLeftToday': signalsLeftToday,
-    if (slipsLeftThisMonth != null) r'slipsLeftThisMonth': slipsLeftThisMonth,
+    if (spiceCardsLeftThisWeek != null) r'spiceCardsLeftThisWeek': spiceCardsLeftThisWeek,
     if (supportRequestsLeftToday != null) r'supportRequestsLeftToday': supportRequestsLeftToday,
     if (userId != null) r'userId': userId,
   });
@@ -70388,17 +79610,33 @@ class InputplusStates_stream_cursor_value_input {
 
   factory InputplusStates_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('cardsLeftThisMonth')) {
-      final l$cardsLeftThisMonth = data['cardsLeftThisMonth'];
-      result$data['cardsLeftThisMonth'] = (l$cardsLeftThisMonth as int?);
+    if (data.containsKey('billingIssue')) {
+      final l$billingIssue = data['billingIssue'];
+      result$data['billingIssue'] = (l$billingIssue as bool?);
+    }
+    if (data.containsKey('bothPaid')) {
+      final l$bothPaid = data['bothPaid'];
+      result$data['bothPaid'] = (l$bothPaid as bool?);
     }
     if (data.containsKey('chatMessagesLeftToday')) {
       final l$chatMessagesLeftToday = data['chatMessagesLeftToday'];
       result$data['chatMessagesLeftToday'] = (l$chatMessagesLeftToday as int?);
     }
+    if (data.containsKey('chatMessagesLimit')) {
+      final l$chatMessagesLimit = data['chatMessagesLimit'];
+      result$data['chatMessagesLimit'] = (l$chatMessagesLimit as int?);
+    }
+    if (data.containsKey('coveredByName')) {
+      final l$coveredByName = data['coveredByName'];
+      result$data['coveredByName'] = (l$coveredByName as String?);
+    }
     if (data.containsKey('entitlementUserId')) {
       final l$entitlementUserId = data['entitlementUserId'];
       result$data['entitlementUserId'] = (l$entitlementUserId as String?);
+    }
+    if (data.containsKey('gamesLeftThisWeek')) {
+      final l$gamesLeftThisWeek = data['gamesLeftThisWeek'];
+      result$data['gamesLeftThisWeek'] = (l$gamesLeftThisWeek as int?);
     }
     if (data.containsKey('guestLinksLeftToday')) {
       final l$guestLinksLeftToday = data['guestLinksLeftToday'];
@@ -70412,6 +79650,14 @@ class InputplusStates_stream_cursor_value_input {
       final l$invitesLeftToday = data['invitesLeftToday'];
       result$data['invitesLeftToday'] = (l$invitesLeftToday as int?);
     }
+    if (data.containsKey('listsLeft')) {
+      final l$listsLeft = data['listsLeft'];
+      result$data['listsLeft'] = (l$listsLeft as int?);
+    }
+    if (data.containsKey('ownerStore')) {
+      final l$ownerStore = data['ownerStore'];
+      result$data['ownerStore'] = (l$ownerStore as String?);
+    }
     if (data.containsKey('paidByPartner')) {
       final l$paidByPartner = data['paidByPartner'];
       result$data['paidByPartner'] = (l$paidByPartner as bool?);
@@ -70420,13 +79666,17 @@ class InputplusStates_stream_cursor_value_input {
       final l$partnerMessagesLeftToday = data['partnerMessagesLeftToday'];
       result$data['partnerMessagesLeftToday'] = (l$partnerMessagesLeftToday as int?);
     }
+    if (data.containsKey('ritualsLeft')) {
+      final l$ritualsLeft = data['ritualsLeft'];
+      result$data['ritualsLeft'] = (l$ritualsLeft as int?);
+    }
     if (data.containsKey('signalsLeftToday')) {
       final l$signalsLeftToday = data['signalsLeftToday'];
       result$data['signalsLeftToday'] = (l$signalsLeftToday as int?);
     }
-    if (data.containsKey('slipsLeftThisMonth')) {
-      final l$slipsLeftThisMonth = data['slipsLeftThisMonth'];
-      result$data['slipsLeftThisMonth'] = (l$slipsLeftThisMonth as int?);
+    if (data.containsKey('spiceCardsLeftThisWeek')) {
+      final l$spiceCardsLeftThisWeek = data['spiceCardsLeftThisWeek'];
+      result$data['spiceCardsLeftThisWeek'] = (l$spiceCardsLeftThisWeek as int?);
     }
     if (data.containsKey('supportRequestsLeftToday')) {
       final l$supportRequestsLeftToday = data['supportRequestsLeftToday'];
@@ -70441,11 +79691,19 @@ class InputplusStates_stream_cursor_value_input {
 
   Map<String, dynamic> _$data;
 
-  int? get cardsLeftThisMonth => (_$data['cardsLeftThisMonth'] as int?);
+  bool? get billingIssue => (_$data['billingIssue'] as bool?);
+
+  bool? get bothPaid => (_$data['bothPaid'] as bool?);
 
   int? get chatMessagesLeftToday => (_$data['chatMessagesLeftToday'] as int?);
 
+  int? get chatMessagesLimit => (_$data['chatMessagesLimit'] as int?);
+
+  String? get coveredByName => (_$data['coveredByName'] as String?);
+
   String? get entitlementUserId => (_$data['entitlementUserId'] as String?);
+
+  int? get gamesLeftThisWeek => (_$data['gamesLeftThisWeek'] as int?);
 
   int? get guestLinksLeftToday => (_$data['guestLinksLeftToday'] as int?);
 
@@ -70453,13 +79711,19 @@ class InputplusStates_stream_cursor_value_input {
 
   int? get invitesLeftToday => (_$data['invitesLeftToday'] as int?);
 
+  int? get listsLeft => (_$data['listsLeft'] as int?);
+
+  String? get ownerStore => (_$data['ownerStore'] as String?);
+
   bool? get paidByPartner => (_$data['paidByPartner'] as bool?);
 
   int? get partnerMessagesLeftToday => (_$data['partnerMessagesLeftToday'] as int?);
 
+  int? get ritualsLeft => (_$data['ritualsLeft'] as int?);
+
   int? get signalsLeftToday => (_$data['signalsLeftToday'] as int?);
 
-  int? get slipsLeftThisMonth => (_$data['slipsLeftThisMonth'] as int?);
+  int? get spiceCardsLeftThisWeek => (_$data['spiceCardsLeftThisWeek'] as int?);
 
   int? get supportRequestsLeftToday => (_$data['supportRequestsLeftToday'] as int?);
 
@@ -70467,17 +79731,33 @@ class InputplusStates_stream_cursor_value_input {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('cardsLeftThisMonth')) {
-      final l$cardsLeftThisMonth = cardsLeftThisMonth;
-      result$data['cardsLeftThisMonth'] = l$cardsLeftThisMonth;
+    if (_$data.containsKey('billingIssue')) {
+      final l$billingIssue = billingIssue;
+      result$data['billingIssue'] = l$billingIssue;
+    }
+    if (_$data.containsKey('bothPaid')) {
+      final l$bothPaid = bothPaid;
+      result$data['bothPaid'] = l$bothPaid;
     }
     if (_$data.containsKey('chatMessagesLeftToday')) {
       final l$chatMessagesLeftToday = chatMessagesLeftToday;
       result$data['chatMessagesLeftToday'] = l$chatMessagesLeftToday;
     }
+    if (_$data.containsKey('chatMessagesLimit')) {
+      final l$chatMessagesLimit = chatMessagesLimit;
+      result$data['chatMessagesLimit'] = l$chatMessagesLimit;
+    }
+    if (_$data.containsKey('coveredByName')) {
+      final l$coveredByName = coveredByName;
+      result$data['coveredByName'] = l$coveredByName;
+    }
     if (_$data.containsKey('entitlementUserId')) {
       final l$entitlementUserId = entitlementUserId;
       result$data['entitlementUserId'] = l$entitlementUserId;
+    }
+    if (_$data.containsKey('gamesLeftThisWeek')) {
+      final l$gamesLeftThisWeek = gamesLeftThisWeek;
+      result$data['gamesLeftThisWeek'] = l$gamesLeftThisWeek;
     }
     if (_$data.containsKey('guestLinksLeftToday')) {
       final l$guestLinksLeftToday = guestLinksLeftToday;
@@ -70491,6 +79771,14 @@ class InputplusStates_stream_cursor_value_input {
       final l$invitesLeftToday = invitesLeftToday;
       result$data['invitesLeftToday'] = l$invitesLeftToday;
     }
+    if (_$data.containsKey('listsLeft')) {
+      final l$listsLeft = listsLeft;
+      result$data['listsLeft'] = l$listsLeft;
+    }
+    if (_$data.containsKey('ownerStore')) {
+      final l$ownerStore = ownerStore;
+      result$data['ownerStore'] = l$ownerStore;
+    }
     if (_$data.containsKey('paidByPartner')) {
       final l$paidByPartner = paidByPartner;
       result$data['paidByPartner'] = l$paidByPartner;
@@ -70499,13 +79787,17 @@ class InputplusStates_stream_cursor_value_input {
       final l$partnerMessagesLeftToday = partnerMessagesLeftToday;
       result$data['partnerMessagesLeftToday'] = l$partnerMessagesLeftToday;
     }
+    if (_$data.containsKey('ritualsLeft')) {
+      final l$ritualsLeft = ritualsLeft;
+      result$data['ritualsLeft'] = l$ritualsLeft;
+    }
     if (_$data.containsKey('signalsLeftToday')) {
       final l$signalsLeftToday = signalsLeftToday;
       result$data['signalsLeftToday'] = l$signalsLeftToday;
     }
-    if (_$data.containsKey('slipsLeftThisMonth')) {
-      final l$slipsLeftThisMonth = slipsLeftThisMonth;
-      result$data['slipsLeftThisMonth'] = l$slipsLeftThisMonth;
+    if (_$data.containsKey('spiceCardsLeftThisWeek')) {
+      final l$spiceCardsLeftThisWeek = spiceCardsLeftThisWeek;
+      result$data['spiceCardsLeftThisWeek'] = l$spiceCardsLeftThisWeek;
     }
     if (_$data.containsKey('supportRequestsLeftToday')) {
       final l$supportRequestsLeftToday = supportRequestsLeftToday;
@@ -70526,13 +79818,20 @@ class InputplusStates_stream_cursor_value_input {
     if (other is! InputplusStates_stream_cursor_value_input || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$cardsLeftThisMonth = cardsLeftThisMonth;
-    final lOther$cardsLeftThisMonth = other.cardsLeftThisMonth;
-    if (_$data.containsKey('cardsLeftThisMonth') !=
-        other._$data.containsKey('cardsLeftThisMonth')) {
+    final l$billingIssue = billingIssue;
+    final lOther$billingIssue = other.billingIssue;
+    if (_$data.containsKey('billingIssue') != other._$data.containsKey('billingIssue')) {
       return false;
     }
-    if (l$cardsLeftThisMonth != lOther$cardsLeftThisMonth) {
+    if (l$billingIssue != lOther$billingIssue) {
+      return false;
+    }
+    final l$bothPaid = bothPaid;
+    final lOther$bothPaid = other.bothPaid;
+    if (_$data.containsKey('bothPaid') != other._$data.containsKey('bothPaid')) {
+      return false;
+    }
+    if (l$bothPaid != lOther$bothPaid) {
       return false;
     }
     final l$chatMessagesLeftToday = chatMessagesLeftToday;
@@ -70544,12 +79843,36 @@ class InputplusStates_stream_cursor_value_input {
     if (l$chatMessagesLeftToday != lOther$chatMessagesLeftToday) {
       return false;
     }
+    final l$chatMessagesLimit = chatMessagesLimit;
+    final lOther$chatMessagesLimit = other.chatMessagesLimit;
+    if (_$data.containsKey('chatMessagesLimit') != other._$data.containsKey('chatMessagesLimit')) {
+      return false;
+    }
+    if (l$chatMessagesLimit != lOther$chatMessagesLimit) {
+      return false;
+    }
+    final l$coveredByName = coveredByName;
+    final lOther$coveredByName = other.coveredByName;
+    if (_$data.containsKey('coveredByName') != other._$data.containsKey('coveredByName')) {
+      return false;
+    }
+    if (l$coveredByName != lOther$coveredByName) {
+      return false;
+    }
     final l$entitlementUserId = entitlementUserId;
     final lOther$entitlementUserId = other.entitlementUserId;
     if (_$data.containsKey('entitlementUserId') != other._$data.containsKey('entitlementUserId')) {
       return false;
     }
     if (l$entitlementUserId != lOther$entitlementUserId) {
+      return false;
+    }
+    final l$gamesLeftThisWeek = gamesLeftThisWeek;
+    final lOther$gamesLeftThisWeek = other.gamesLeftThisWeek;
+    if (_$data.containsKey('gamesLeftThisWeek') != other._$data.containsKey('gamesLeftThisWeek')) {
+      return false;
+    }
+    if (l$gamesLeftThisWeek != lOther$gamesLeftThisWeek) {
       return false;
     }
     final l$guestLinksLeftToday = guestLinksLeftToday;
@@ -70577,6 +79900,22 @@ class InputplusStates_stream_cursor_value_input {
     if (l$invitesLeftToday != lOther$invitesLeftToday) {
       return false;
     }
+    final l$listsLeft = listsLeft;
+    final lOther$listsLeft = other.listsLeft;
+    if (_$data.containsKey('listsLeft') != other._$data.containsKey('listsLeft')) {
+      return false;
+    }
+    if (l$listsLeft != lOther$listsLeft) {
+      return false;
+    }
+    final l$ownerStore = ownerStore;
+    final lOther$ownerStore = other.ownerStore;
+    if (_$data.containsKey('ownerStore') != other._$data.containsKey('ownerStore')) {
+      return false;
+    }
+    if (l$ownerStore != lOther$ownerStore) {
+      return false;
+    }
     final l$paidByPartner = paidByPartner;
     final lOther$paidByPartner = other.paidByPartner;
     if (_$data.containsKey('paidByPartner') != other._$data.containsKey('paidByPartner')) {
@@ -70594,6 +79933,14 @@ class InputplusStates_stream_cursor_value_input {
     if (l$partnerMessagesLeftToday != lOther$partnerMessagesLeftToday) {
       return false;
     }
+    final l$ritualsLeft = ritualsLeft;
+    final lOther$ritualsLeft = other.ritualsLeft;
+    if (_$data.containsKey('ritualsLeft') != other._$data.containsKey('ritualsLeft')) {
+      return false;
+    }
+    if (l$ritualsLeft != lOther$ritualsLeft) {
+      return false;
+    }
     final l$signalsLeftToday = signalsLeftToday;
     final lOther$signalsLeftToday = other.signalsLeftToday;
     if (_$data.containsKey('signalsLeftToday') != other._$data.containsKey('signalsLeftToday')) {
@@ -70602,13 +79949,13 @@ class InputplusStates_stream_cursor_value_input {
     if (l$signalsLeftToday != lOther$signalsLeftToday) {
       return false;
     }
-    final l$slipsLeftThisMonth = slipsLeftThisMonth;
-    final lOther$slipsLeftThisMonth = other.slipsLeftThisMonth;
-    if (_$data.containsKey('slipsLeftThisMonth') !=
-        other._$data.containsKey('slipsLeftThisMonth')) {
+    final l$spiceCardsLeftThisWeek = spiceCardsLeftThisWeek;
+    final lOther$spiceCardsLeftThisWeek = other.spiceCardsLeftThisWeek;
+    if (_$data.containsKey('spiceCardsLeftThisWeek') !=
+        other._$data.containsKey('spiceCardsLeftThisWeek')) {
       return false;
     }
-    if (l$slipsLeftThisMonth != lOther$slipsLeftThisMonth) {
+    if (l$spiceCardsLeftThisWeek != lOther$spiceCardsLeftThisWeek) {
       return false;
     }
     final l$supportRequestsLeftToday = supportRequestsLeftToday;
@@ -70633,29 +79980,43 @@ class InputplusStates_stream_cursor_value_input {
 
   @override
   int get hashCode {
-    final l$cardsLeftThisMonth = cardsLeftThisMonth;
+    final l$billingIssue = billingIssue;
+    final l$bothPaid = bothPaid;
     final l$chatMessagesLeftToday = chatMessagesLeftToday;
+    final l$chatMessagesLimit = chatMessagesLimit;
+    final l$coveredByName = coveredByName;
     final l$entitlementUserId = entitlementUserId;
+    final l$gamesLeftThisWeek = gamesLeftThisWeek;
     final l$guestLinksLeftToday = guestLinksLeftToday;
     final l$hasPlus = hasPlus;
     final l$invitesLeftToday = invitesLeftToday;
+    final l$listsLeft = listsLeft;
+    final l$ownerStore = ownerStore;
     final l$paidByPartner = paidByPartner;
     final l$partnerMessagesLeftToday = partnerMessagesLeftToday;
+    final l$ritualsLeft = ritualsLeft;
     final l$signalsLeftToday = signalsLeftToday;
-    final l$slipsLeftThisMonth = slipsLeftThisMonth;
+    final l$spiceCardsLeftThisWeek = spiceCardsLeftThisWeek;
     final l$supportRequestsLeftToday = supportRequestsLeftToday;
     final l$userId = userId;
     return Object.hashAll([
-      _$data.containsKey('cardsLeftThisMonth') ? l$cardsLeftThisMonth : const {},
+      _$data.containsKey('billingIssue') ? l$billingIssue : const {},
+      _$data.containsKey('bothPaid') ? l$bothPaid : const {},
       _$data.containsKey('chatMessagesLeftToday') ? l$chatMessagesLeftToday : const {},
+      _$data.containsKey('chatMessagesLimit') ? l$chatMessagesLimit : const {},
+      _$data.containsKey('coveredByName') ? l$coveredByName : const {},
       _$data.containsKey('entitlementUserId') ? l$entitlementUserId : const {},
+      _$data.containsKey('gamesLeftThisWeek') ? l$gamesLeftThisWeek : const {},
       _$data.containsKey('guestLinksLeftToday') ? l$guestLinksLeftToday : const {},
       _$data.containsKey('hasPlus') ? l$hasPlus : const {},
       _$data.containsKey('invitesLeftToday') ? l$invitesLeftToday : const {},
+      _$data.containsKey('listsLeft') ? l$listsLeft : const {},
+      _$data.containsKey('ownerStore') ? l$ownerStore : const {},
       _$data.containsKey('paidByPartner') ? l$paidByPartner : const {},
       _$data.containsKey('partnerMessagesLeftToday') ? l$partnerMessagesLeftToday : const {},
+      _$data.containsKey('ritualsLeft') ? l$ritualsLeft : const {},
       _$data.containsKey('signalsLeftToday') ? l$signalsLeftToday : const {},
-      _$data.containsKey('slipsLeftThisMonth') ? l$slipsLeftThisMonth : const {},
+      _$data.containsKey('spiceCardsLeftThisWeek') ? l$spiceCardsLeftThisWeek : const {},
       _$data.containsKey('supportRequestsLeftToday') ? l$supportRequestsLeftToday : const {},
       _$data.containsKey('userId') ? l$userId : const {},
     ]);
@@ -71487,8 +80848,10 @@ class Inputprofiles_bool_exp {
     List<Inputprofiles_bool_exp>? $_and,
     Inputprofiles_bool_exp? $_not,
     List<Inputprofiles_bool_exp>? $_or,
+    InputString_comparison_exp? avatarColor,
     Inputfiles_bool_exp? avatarFile,
     Inputuuid_comparison_exp? avatarFileId,
+    InputString_comparison_exp? avatarIllustration,
     InputAvatarKind_enum_comparison_exp? avatarKind,
     InputString_comparison_exp? city,
     Inputtimestamptz_comparison_exp? createdAt,
@@ -71504,8 +80867,10 @@ class Inputprofiles_bool_exp {
     if ($_and != null) r'_and': $_and,
     if ($_not != null) r'_not': $_not,
     if ($_or != null) r'_or': $_or,
+    if (avatarColor != null) r'avatarColor': avatarColor,
     if (avatarFile != null) r'avatarFile': avatarFile,
     if (avatarFileId != null) r'avatarFileId': avatarFileId,
+    if (avatarIllustration != null) r'avatarIllustration': avatarIllustration,
     if (avatarKind != null) r'avatarKind': avatarKind,
     if (city != null) r'city': city,
     if (createdAt != null) r'createdAt': createdAt,
@@ -71541,6 +80906,12 @@ class Inputprofiles_bool_exp {
           ?.map((e) => Inputprofiles_bool_exp.fromJson((e as Map<String, dynamic>)))
           .toList();
     }
+    if (data.containsKey('avatarColor')) {
+      final l$avatarColor = data['avatarColor'];
+      result$data['avatarColor'] = l$avatarColor == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$avatarColor as Map<String, dynamic>));
+    }
     if (data.containsKey('avatarFile')) {
       final l$avatarFile = data['avatarFile'];
       result$data['avatarFile'] = l$avatarFile == null
@@ -71552,6 +80923,12 @@ class Inputprofiles_bool_exp {
       result$data['avatarFileId'] = l$avatarFileId == null
           ? null
           : Inputuuid_comparison_exp.fromJson((l$avatarFileId as Map<String, dynamic>));
+    }
+    if (data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = data['avatarIllustration'];
+      result$data['avatarIllustration'] = l$avatarIllustration == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$avatarIllustration as Map<String, dynamic>));
     }
     if (data.containsKey('avatarKind')) {
       final l$avatarKind = data['avatarKind'];
@@ -71630,10 +81007,16 @@ class Inputprofiles_bool_exp {
 
   List<Inputprofiles_bool_exp>? get $_or => (_$data['_or'] as List<Inputprofiles_bool_exp>?);
 
+  InputString_comparison_exp? get avatarColor =>
+      (_$data['avatarColor'] as InputString_comparison_exp?);
+
   Inputfiles_bool_exp? get avatarFile => (_$data['avatarFile'] as Inputfiles_bool_exp?);
 
   Inputuuid_comparison_exp? get avatarFileId =>
       (_$data['avatarFileId'] as Inputuuid_comparison_exp?);
+
+  InputString_comparison_exp? get avatarIllustration =>
+      (_$data['avatarIllustration'] as InputString_comparison_exp?);
 
   InputAvatarKind_enum_comparison_exp? get avatarKind =>
       (_$data['avatarKind'] as InputAvatarKind_enum_comparison_exp?);
@@ -71677,6 +81060,10 @@ class Inputprofiles_bool_exp {
       final l$$_or = $_or;
       result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
     }
+    if (_$data.containsKey('avatarColor')) {
+      final l$avatarColor = avatarColor;
+      result$data['avatarColor'] = l$avatarColor?.toJson();
+    }
     if (_$data.containsKey('avatarFile')) {
       final l$avatarFile = avatarFile;
       result$data['avatarFile'] = l$avatarFile?.toJson();
@@ -71684,6 +81071,10 @@ class Inputprofiles_bool_exp {
     if (_$data.containsKey('avatarFileId')) {
       final l$avatarFileId = avatarFileId;
       result$data['avatarFileId'] = l$avatarFileId?.toJson();
+    }
+    if (_$data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = avatarIllustration;
+      result$data['avatarIllustration'] = l$avatarIllustration?.toJson();
     }
     if (_$data.containsKey('avatarKind')) {
       final l$avatarKind = avatarKind;
@@ -71786,6 +81177,14 @@ class Inputprofiles_bool_exp {
     } else if (l$$_or != lOther$$_or) {
       return false;
     }
+    final l$avatarColor = avatarColor;
+    final lOther$avatarColor = other.avatarColor;
+    if (_$data.containsKey('avatarColor') != other._$data.containsKey('avatarColor')) {
+      return false;
+    }
+    if (l$avatarColor != lOther$avatarColor) {
+      return false;
+    }
     final l$avatarFile = avatarFile;
     final lOther$avatarFile = other.avatarFile;
     if (_$data.containsKey('avatarFile') != other._$data.containsKey('avatarFile')) {
@@ -71800,6 +81199,15 @@ class Inputprofiles_bool_exp {
       return false;
     }
     if (l$avatarFileId != lOther$avatarFileId) {
+      return false;
+    }
+    final l$avatarIllustration = avatarIllustration;
+    final lOther$avatarIllustration = other.avatarIllustration;
+    if (_$data.containsKey('avatarIllustration') !=
+        other._$data.containsKey('avatarIllustration')) {
+      return false;
+    }
+    if (l$avatarIllustration != lOther$avatarIllustration) {
       return false;
     }
     final l$avatarKind = avatarKind;
@@ -71898,8 +81306,10 @@ class Inputprofiles_bool_exp {
     final l$$_and = $_and;
     final l$$_not = $_not;
     final l$$_or = $_or;
+    final l$avatarColor = avatarColor;
     final l$avatarFile = avatarFile;
     final l$avatarFileId = avatarFileId;
+    final l$avatarIllustration = avatarIllustration;
     final l$avatarKind = avatarKind;
     final l$city = city;
     final l$createdAt = createdAt;
@@ -71923,8 +81333,10 @@ class Inputprofiles_bool_exp {
                 ? null
                 : Object.hashAll(l$$_or.map((v) => v))
           : const {},
+      _$data.containsKey('avatarColor') ? l$avatarColor : const {},
       _$data.containsKey('avatarFile') ? l$avatarFile : const {},
       _$data.containsKey('avatarFileId') ? l$avatarFileId : const {},
+      _$data.containsKey('avatarIllustration') ? l$avatarIllustration : const {},
       _$data.containsKey('avatarKind') ? l$avatarKind : const {},
       _$data.containsKey('city') ? l$city : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
@@ -71942,7 +81354,9 @@ class Inputprofiles_bool_exp {
 
 class Inputprofiles_max_order_by {
   factory Inputprofiles_max_order_by({
+    Enumorder_by? avatarColor,
     Enumorder_by? avatarFileId,
+    Enumorder_by? avatarIllustration,
     Enumorder_by? city,
     Enumorder_by? createdAt,
     Enumorder_by? displayName,
@@ -71950,7 +81364,9 @@ class Inputprofiles_max_order_by {
     Enumorder_by? timeZone,
     Enumorder_by? updatedAt,
   }) => Inputprofiles_max_order_by._({
+    if (avatarColor != null) r'avatarColor': avatarColor,
     if (avatarFileId != null) r'avatarFileId': avatarFileId,
+    if (avatarIllustration != null) r'avatarIllustration': avatarIllustration,
     if (city != null) r'city': city,
     if (createdAt != null) r'createdAt': createdAt,
     if (displayName != null) r'displayName': displayName,
@@ -71963,11 +81379,23 @@ class Inputprofiles_max_order_by {
 
   factory Inputprofiles_max_order_by.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('avatarColor')) {
+      final l$avatarColor = data['avatarColor'];
+      result$data['avatarColor'] = l$avatarColor == null
+          ? null
+          : fromJsonEnumorder_by((l$avatarColor as String));
+    }
     if (data.containsKey('avatarFileId')) {
       final l$avatarFileId = data['avatarFileId'];
       result$data['avatarFileId'] = l$avatarFileId == null
           ? null
           : fromJsonEnumorder_by((l$avatarFileId as String));
+    }
+    if (data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = data['avatarIllustration'];
+      result$data['avatarIllustration'] = l$avatarIllustration == null
+          ? null
+          : fromJsonEnumorder_by((l$avatarIllustration as String));
     }
     if (data.containsKey('city')) {
       final l$city = data['city'];
@@ -72006,7 +81434,11 @@ class Inputprofiles_max_order_by {
 
   Map<String, dynamic> _$data;
 
+  Enumorder_by? get avatarColor => (_$data['avatarColor'] as Enumorder_by?);
+
   Enumorder_by? get avatarFileId => (_$data['avatarFileId'] as Enumorder_by?);
+
+  Enumorder_by? get avatarIllustration => (_$data['avatarIllustration'] as Enumorder_by?);
 
   Enumorder_by? get city => (_$data['city'] as Enumorder_by?);
 
@@ -72022,11 +81454,21 @@ class Inputprofiles_max_order_by {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('avatarColor')) {
+      final l$avatarColor = avatarColor;
+      result$data['avatarColor'] = l$avatarColor == null ? null : toJsonEnumorder_by(l$avatarColor);
+    }
     if (_$data.containsKey('avatarFileId')) {
       final l$avatarFileId = avatarFileId;
       result$data['avatarFileId'] = l$avatarFileId == null
           ? null
           : toJsonEnumorder_by(l$avatarFileId);
+    }
+    if (_$data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = avatarIllustration;
+      result$data['avatarIllustration'] = l$avatarIllustration == null
+          ? null
+          : toJsonEnumorder_by(l$avatarIllustration);
     }
     if (_$data.containsKey('city')) {
       final l$city = city;
@@ -72063,12 +81505,29 @@ class Inputprofiles_max_order_by {
     if (other is! Inputprofiles_max_order_by || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$avatarColor = avatarColor;
+    final lOther$avatarColor = other.avatarColor;
+    if (_$data.containsKey('avatarColor') != other._$data.containsKey('avatarColor')) {
+      return false;
+    }
+    if (l$avatarColor != lOther$avatarColor) {
+      return false;
+    }
     final l$avatarFileId = avatarFileId;
     final lOther$avatarFileId = other.avatarFileId;
     if (_$data.containsKey('avatarFileId') != other._$data.containsKey('avatarFileId')) {
       return false;
     }
     if (l$avatarFileId != lOther$avatarFileId) {
+      return false;
+    }
+    final l$avatarIllustration = avatarIllustration;
+    final lOther$avatarIllustration = other.avatarIllustration;
+    if (_$data.containsKey('avatarIllustration') !=
+        other._$data.containsKey('avatarIllustration')) {
+      return false;
+    }
+    if (l$avatarIllustration != lOther$avatarIllustration) {
       return false;
     }
     final l$city = city;
@@ -72124,7 +81583,9 @@ class Inputprofiles_max_order_by {
 
   @override
   int get hashCode {
+    final l$avatarColor = avatarColor;
     final l$avatarFileId = avatarFileId;
+    final l$avatarIllustration = avatarIllustration;
     final l$city = city;
     final l$createdAt = createdAt;
     final l$displayName = displayName;
@@ -72132,7 +81593,9 @@ class Inputprofiles_max_order_by {
     final l$timeZone = timeZone;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
+      _$data.containsKey('avatarColor') ? l$avatarColor : const {},
       _$data.containsKey('avatarFileId') ? l$avatarFileId : const {},
+      _$data.containsKey('avatarIllustration') ? l$avatarIllustration : const {},
       _$data.containsKey('city') ? l$city : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('displayName') ? l$displayName : const {},
@@ -72145,7 +81608,9 @@ class Inputprofiles_max_order_by {
 
 class Inputprofiles_min_order_by {
   factory Inputprofiles_min_order_by({
+    Enumorder_by? avatarColor,
     Enumorder_by? avatarFileId,
+    Enumorder_by? avatarIllustration,
     Enumorder_by? city,
     Enumorder_by? createdAt,
     Enumorder_by? displayName,
@@ -72153,7 +81618,9 @@ class Inputprofiles_min_order_by {
     Enumorder_by? timeZone,
     Enumorder_by? updatedAt,
   }) => Inputprofiles_min_order_by._({
+    if (avatarColor != null) r'avatarColor': avatarColor,
     if (avatarFileId != null) r'avatarFileId': avatarFileId,
+    if (avatarIllustration != null) r'avatarIllustration': avatarIllustration,
     if (city != null) r'city': city,
     if (createdAt != null) r'createdAt': createdAt,
     if (displayName != null) r'displayName': displayName,
@@ -72166,11 +81633,23 @@ class Inputprofiles_min_order_by {
 
   factory Inputprofiles_min_order_by.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('avatarColor')) {
+      final l$avatarColor = data['avatarColor'];
+      result$data['avatarColor'] = l$avatarColor == null
+          ? null
+          : fromJsonEnumorder_by((l$avatarColor as String));
+    }
     if (data.containsKey('avatarFileId')) {
       final l$avatarFileId = data['avatarFileId'];
       result$data['avatarFileId'] = l$avatarFileId == null
           ? null
           : fromJsonEnumorder_by((l$avatarFileId as String));
+    }
+    if (data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = data['avatarIllustration'];
+      result$data['avatarIllustration'] = l$avatarIllustration == null
+          ? null
+          : fromJsonEnumorder_by((l$avatarIllustration as String));
     }
     if (data.containsKey('city')) {
       final l$city = data['city'];
@@ -72209,7 +81688,11 @@ class Inputprofiles_min_order_by {
 
   Map<String, dynamic> _$data;
 
+  Enumorder_by? get avatarColor => (_$data['avatarColor'] as Enumorder_by?);
+
   Enumorder_by? get avatarFileId => (_$data['avatarFileId'] as Enumorder_by?);
+
+  Enumorder_by? get avatarIllustration => (_$data['avatarIllustration'] as Enumorder_by?);
 
   Enumorder_by? get city => (_$data['city'] as Enumorder_by?);
 
@@ -72225,11 +81708,21 @@ class Inputprofiles_min_order_by {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('avatarColor')) {
+      final l$avatarColor = avatarColor;
+      result$data['avatarColor'] = l$avatarColor == null ? null : toJsonEnumorder_by(l$avatarColor);
+    }
     if (_$data.containsKey('avatarFileId')) {
       final l$avatarFileId = avatarFileId;
       result$data['avatarFileId'] = l$avatarFileId == null
           ? null
           : toJsonEnumorder_by(l$avatarFileId);
+    }
+    if (_$data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = avatarIllustration;
+      result$data['avatarIllustration'] = l$avatarIllustration == null
+          ? null
+          : toJsonEnumorder_by(l$avatarIllustration);
     }
     if (_$data.containsKey('city')) {
       final l$city = city;
@@ -72266,12 +81759,29 @@ class Inputprofiles_min_order_by {
     if (other is! Inputprofiles_min_order_by || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$avatarColor = avatarColor;
+    final lOther$avatarColor = other.avatarColor;
+    if (_$data.containsKey('avatarColor') != other._$data.containsKey('avatarColor')) {
+      return false;
+    }
+    if (l$avatarColor != lOther$avatarColor) {
+      return false;
+    }
     final l$avatarFileId = avatarFileId;
     final lOther$avatarFileId = other.avatarFileId;
     if (_$data.containsKey('avatarFileId') != other._$data.containsKey('avatarFileId')) {
       return false;
     }
     if (l$avatarFileId != lOther$avatarFileId) {
+      return false;
+    }
+    final l$avatarIllustration = avatarIllustration;
+    final lOther$avatarIllustration = other.avatarIllustration;
+    if (_$data.containsKey('avatarIllustration') !=
+        other._$data.containsKey('avatarIllustration')) {
+      return false;
+    }
+    if (l$avatarIllustration != lOther$avatarIllustration) {
       return false;
     }
     final l$city = city;
@@ -72327,7 +81837,9 @@ class Inputprofiles_min_order_by {
 
   @override
   int get hashCode {
+    final l$avatarColor = avatarColor;
     final l$avatarFileId = avatarFileId;
+    final l$avatarIllustration = avatarIllustration;
     final l$city = city;
     final l$createdAt = createdAt;
     final l$displayName = displayName;
@@ -72335,7 +81847,9 @@ class Inputprofiles_min_order_by {
     final l$timeZone = timeZone;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
+      _$data.containsKey('avatarColor') ? l$avatarColor : const {},
       _$data.containsKey('avatarFileId') ? l$avatarFileId : const {},
+      _$data.containsKey('avatarIllustration') ? l$avatarIllustration : const {},
       _$data.containsKey('city') ? l$city : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('displayName') ? l$displayName : const {},
@@ -72348,8 +81862,10 @@ class Inputprofiles_min_order_by {
 
 class Inputprofiles_order_by {
   factory Inputprofiles_order_by({
+    Enumorder_by? avatarColor,
     Inputfiles_order_by? avatarFile,
     Enumorder_by? avatarFileId,
+    Enumorder_by? avatarIllustration,
     Enumorder_by? avatarKind,
     Enumorder_by? city,
     Enumorder_by? createdAt,
@@ -72362,8 +81878,10 @@ class Inputprofiles_order_by {
     Enumorder_by? timeZone,
     Enumorder_by? updatedAt,
   }) => Inputprofiles_order_by._({
+    if (avatarColor != null) r'avatarColor': avatarColor,
     if (avatarFile != null) r'avatarFile': avatarFile,
     if (avatarFileId != null) r'avatarFileId': avatarFileId,
+    if (avatarIllustration != null) r'avatarIllustration': avatarIllustration,
     if (avatarKind != null) r'avatarKind': avatarKind,
     if (city != null) r'city': city,
     if (createdAt != null) r'createdAt': createdAt,
@@ -72381,6 +81899,12 @@ class Inputprofiles_order_by {
 
   factory Inputprofiles_order_by.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('avatarColor')) {
+      final l$avatarColor = data['avatarColor'];
+      result$data['avatarColor'] = l$avatarColor == null
+          ? null
+          : fromJsonEnumorder_by((l$avatarColor as String));
+    }
     if (data.containsKey('avatarFile')) {
       final l$avatarFile = data['avatarFile'];
       result$data['avatarFile'] = l$avatarFile == null
@@ -72392,6 +81916,12 @@ class Inputprofiles_order_by {
       result$data['avatarFileId'] = l$avatarFileId == null
           ? null
           : fromJsonEnumorder_by((l$avatarFileId as String));
+    }
+    if (data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = data['avatarIllustration'];
+      result$data['avatarIllustration'] = l$avatarIllustration == null
+          ? null
+          : fromJsonEnumorder_by((l$avatarIllustration as String));
     }
     if (data.containsKey('avatarKind')) {
       final l$avatarKind = data['avatarKind'];
@@ -72460,9 +81990,13 @@ class Inputprofiles_order_by {
 
   Map<String, dynamic> _$data;
 
+  Enumorder_by? get avatarColor => (_$data['avatarColor'] as Enumorder_by?);
+
   Inputfiles_order_by? get avatarFile => (_$data['avatarFile'] as Inputfiles_order_by?);
 
   Enumorder_by? get avatarFileId => (_$data['avatarFileId'] as Enumorder_by?);
+
+  Enumorder_by? get avatarIllustration => (_$data['avatarIllustration'] as Enumorder_by?);
 
   Enumorder_by? get avatarKind => (_$data['avatarKind'] as Enumorder_by?);
 
@@ -72489,6 +82023,10 @@ class Inputprofiles_order_by {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('avatarColor')) {
+      final l$avatarColor = avatarColor;
+      result$data['avatarColor'] = l$avatarColor == null ? null : toJsonEnumorder_by(l$avatarColor);
+    }
     if (_$data.containsKey('avatarFile')) {
       final l$avatarFile = avatarFile;
       result$data['avatarFile'] = l$avatarFile?.toJson();
@@ -72498,6 +82036,12 @@ class Inputprofiles_order_by {
       result$data['avatarFileId'] = l$avatarFileId == null
           ? null
           : toJsonEnumorder_by(l$avatarFileId);
+    }
+    if (_$data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = avatarIllustration;
+      result$data['avatarIllustration'] = l$avatarIllustration == null
+          ? null
+          : toJsonEnumorder_by(l$avatarIllustration);
     }
     if (_$data.containsKey('avatarKind')) {
       final l$avatarKind = avatarKind;
@@ -72554,6 +82098,14 @@ class Inputprofiles_order_by {
     if (other is! Inputprofiles_order_by || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$avatarColor = avatarColor;
+    final lOther$avatarColor = other.avatarColor;
+    if (_$data.containsKey('avatarColor') != other._$data.containsKey('avatarColor')) {
+      return false;
+    }
+    if (l$avatarColor != lOther$avatarColor) {
+      return false;
+    }
     final l$avatarFile = avatarFile;
     final lOther$avatarFile = other.avatarFile;
     if (_$data.containsKey('avatarFile') != other._$data.containsKey('avatarFile')) {
@@ -72568,6 +82120,15 @@ class Inputprofiles_order_by {
       return false;
     }
     if (l$avatarFileId != lOther$avatarFileId) {
+      return false;
+    }
+    final l$avatarIllustration = avatarIllustration;
+    final lOther$avatarIllustration = other.avatarIllustration;
+    if (_$data.containsKey('avatarIllustration') !=
+        other._$data.containsKey('avatarIllustration')) {
+      return false;
+    }
+    if (l$avatarIllustration != lOther$avatarIllustration) {
       return false;
     }
     final l$avatarKind = avatarKind;
@@ -72663,8 +82224,10 @@ class Inputprofiles_order_by {
 
   @override
   int get hashCode {
+    final l$avatarColor = avatarColor;
     final l$avatarFile = avatarFile;
     final l$avatarFileId = avatarFileId;
+    final l$avatarIllustration = avatarIllustration;
     final l$avatarKind = avatarKind;
     final l$city = city;
     final l$createdAt = createdAt;
@@ -72677,8 +82240,10 @@ class Inputprofiles_order_by {
     final l$timeZone = timeZone;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
+      _$data.containsKey('avatarColor') ? l$avatarColor : const {},
       _$data.containsKey('avatarFile') ? l$avatarFile : const {},
       _$data.containsKey('avatarFileId') ? l$avatarFileId : const {},
+      _$data.containsKey('avatarIllustration') ? l$avatarIllustration : const {},
       _$data.containsKey('avatarKind') ? l$avatarKind : const {},
       _$data.containsKey('city') ? l$city : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
@@ -72743,14 +82308,18 @@ class Inputprofiles_pk_columns_input {
 
 class Inputprofiles_set_input {
   factory Inputprofiles_set_input({
+    String? avatarColor,
     String? avatarFileId,
+    String? avatarIllustration,
     EnumAvatarKind_enum? avatarKind,
     String? city,
     String? displayName,
     EnumPronoun_enum? pronouns,
     String? timeZone,
   }) => Inputprofiles_set_input._({
+    if (avatarColor != null) r'avatarColor': avatarColor,
     if (avatarFileId != null) r'avatarFileId': avatarFileId,
+    if (avatarIllustration != null) r'avatarIllustration': avatarIllustration,
     if (avatarKind != null) r'avatarKind': avatarKind,
     if (city != null) r'city': city,
     if (displayName != null) r'displayName': displayName,
@@ -72762,9 +82331,17 @@ class Inputprofiles_set_input {
 
   factory Inputprofiles_set_input.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('avatarColor')) {
+      final l$avatarColor = data['avatarColor'];
+      result$data['avatarColor'] = (l$avatarColor as String?);
+    }
     if (data.containsKey('avatarFileId')) {
       final l$avatarFileId = data['avatarFileId'];
       result$data['avatarFileId'] = (l$avatarFileId as String?);
+    }
+    if (data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = data['avatarIllustration'];
+      result$data['avatarIllustration'] = (l$avatarIllustration as String?);
     }
     if (data.containsKey('avatarKind')) {
       final l$avatarKind = data['avatarKind'];
@@ -72795,7 +82372,11 @@ class Inputprofiles_set_input {
 
   Map<String, dynamic> _$data;
 
+  String? get avatarColor => (_$data['avatarColor'] as String?);
+
   String? get avatarFileId => (_$data['avatarFileId'] as String?);
+
+  String? get avatarIllustration => (_$data['avatarIllustration'] as String?);
 
   EnumAvatarKind_enum? get avatarKind => (_$data['avatarKind'] as EnumAvatarKind_enum?);
 
@@ -72809,9 +82390,17 @@ class Inputprofiles_set_input {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('avatarColor')) {
+      final l$avatarColor = avatarColor;
+      result$data['avatarColor'] = l$avatarColor;
+    }
     if (_$data.containsKey('avatarFileId')) {
       final l$avatarFileId = avatarFileId;
       result$data['avatarFileId'] = l$avatarFileId;
+    }
+    if (_$data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = avatarIllustration;
+      result$data['avatarIllustration'] = l$avatarIllustration;
     }
     if (_$data.containsKey('avatarKind')) {
       final l$avatarKind = avatarKind;
@@ -72846,12 +82435,29 @@ class Inputprofiles_set_input {
     if (other is! Inputprofiles_set_input || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$avatarColor = avatarColor;
+    final lOther$avatarColor = other.avatarColor;
+    if (_$data.containsKey('avatarColor') != other._$data.containsKey('avatarColor')) {
+      return false;
+    }
+    if (l$avatarColor != lOther$avatarColor) {
+      return false;
+    }
     final l$avatarFileId = avatarFileId;
     final lOther$avatarFileId = other.avatarFileId;
     if (_$data.containsKey('avatarFileId') != other._$data.containsKey('avatarFileId')) {
       return false;
     }
     if (l$avatarFileId != lOther$avatarFileId) {
+      return false;
+    }
+    final l$avatarIllustration = avatarIllustration;
+    final lOther$avatarIllustration = other.avatarIllustration;
+    if (_$data.containsKey('avatarIllustration') !=
+        other._$data.containsKey('avatarIllustration')) {
+      return false;
+    }
+    if (l$avatarIllustration != lOther$avatarIllustration) {
       return false;
     }
     final l$avatarKind = avatarKind;
@@ -72899,14 +82505,18 @@ class Inputprofiles_set_input {
 
   @override
   int get hashCode {
+    final l$avatarColor = avatarColor;
     final l$avatarFileId = avatarFileId;
+    final l$avatarIllustration = avatarIllustration;
     final l$avatarKind = avatarKind;
     final l$city = city;
     final l$displayName = displayName;
     final l$pronouns = pronouns;
     final l$timeZone = timeZone;
     return Object.hashAll([
+      _$data.containsKey('avatarColor') ? l$avatarColor : const {},
       _$data.containsKey('avatarFileId') ? l$avatarFileId : const {},
+      _$data.containsKey('avatarIllustration') ? l$avatarIllustration : const {},
       _$data.containsKey('avatarKind') ? l$avatarKind : const {},
       _$data.containsKey('city') ? l$city : const {},
       _$data.containsKey('displayName') ? l$displayName : const {},
@@ -72997,7 +82607,9 @@ class Inputprofiles_stream_cursor_input {
 
 class Inputprofiles_stream_cursor_value_input {
   factory Inputprofiles_stream_cursor_value_input({
+    String? avatarColor,
     String? avatarFileId,
+    String? avatarIllustration,
     EnumAvatarKind_enum? avatarKind,
     String? city,
     DateTime? createdAt,
@@ -73007,7 +82619,9 @@ class Inputprofiles_stream_cursor_value_input {
     String? timeZone,
     DateTime? updatedAt,
   }) => Inputprofiles_stream_cursor_value_input._({
+    if (avatarColor != null) r'avatarColor': avatarColor,
     if (avatarFileId != null) r'avatarFileId': avatarFileId,
+    if (avatarIllustration != null) r'avatarIllustration': avatarIllustration,
     if (avatarKind != null) r'avatarKind': avatarKind,
     if (city != null) r'city': city,
     if (createdAt != null) r'createdAt': createdAt,
@@ -73022,9 +82636,17 @@ class Inputprofiles_stream_cursor_value_input {
 
   factory Inputprofiles_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('avatarColor')) {
+      final l$avatarColor = data['avatarColor'];
+      result$data['avatarColor'] = (l$avatarColor as String?);
+    }
     if (data.containsKey('avatarFileId')) {
       final l$avatarFileId = data['avatarFileId'];
       result$data['avatarFileId'] = (l$avatarFileId as String?);
+    }
+    if (data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = data['avatarIllustration'];
+      result$data['avatarIllustration'] = (l$avatarIllustration as String?);
     }
     if (data.containsKey('avatarKind')) {
       final l$avatarKind = data['avatarKind'];
@@ -73071,7 +82693,11 @@ class Inputprofiles_stream_cursor_value_input {
 
   Map<String, dynamic> _$data;
 
+  String? get avatarColor => (_$data['avatarColor'] as String?);
+
   String? get avatarFileId => (_$data['avatarFileId'] as String?);
+
+  String? get avatarIllustration => (_$data['avatarIllustration'] as String?);
 
   EnumAvatarKind_enum? get avatarKind => (_$data['avatarKind'] as EnumAvatarKind_enum?);
 
@@ -73091,9 +82717,17 @@ class Inputprofiles_stream_cursor_value_input {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('avatarColor')) {
+      final l$avatarColor = avatarColor;
+      result$data['avatarColor'] = l$avatarColor;
+    }
     if (_$data.containsKey('avatarFileId')) {
       final l$avatarFileId = avatarFileId;
       result$data['avatarFileId'] = l$avatarFileId;
+    }
+    if (_$data.containsKey('avatarIllustration')) {
+      final l$avatarIllustration = avatarIllustration;
+      result$data['avatarIllustration'] = l$avatarIllustration;
     }
     if (_$data.containsKey('avatarKind')) {
       final l$avatarKind = avatarKind;
@@ -73144,12 +82778,29 @@ class Inputprofiles_stream_cursor_value_input {
     if (other is! Inputprofiles_stream_cursor_value_input || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$avatarColor = avatarColor;
+    final lOther$avatarColor = other.avatarColor;
+    if (_$data.containsKey('avatarColor') != other._$data.containsKey('avatarColor')) {
+      return false;
+    }
+    if (l$avatarColor != lOther$avatarColor) {
+      return false;
+    }
     final l$avatarFileId = avatarFileId;
     final lOther$avatarFileId = other.avatarFileId;
     if (_$data.containsKey('avatarFileId') != other._$data.containsKey('avatarFileId')) {
       return false;
     }
     if (l$avatarFileId != lOther$avatarFileId) {
+      return false;
+    }
+    final l$avatarIllustration = avatarIllustration;
+    final lOther$avatarIllustration = other.avatarIllustration;
+    if (_$data.containsKey('avatarIllustration') !=
+        other._$data.containsKey('avatarIllustration')) {
+      return false;
+    }
+    if (l$avatarIllustration != lOther$avatarIllustration) {
       return false;
     }
     final l$avatarKind = avatarKind;
@@ -73221,7 +82872,9 @@ class Inputprofiles_stream_cursor_value_input {
 
   @override
   int get hashCode {
+    final l$avatarColor = avatarColor;
     final l$avatarFileId = avatarFileId;
+    final l$avatarIllustration = avatarIllustration;
     final l$avatarKind = avatarKind;
     final l$city = city;
     final l$createdAt = createdAt;
@@ -73231,7 +82884,9 @@ class Inputprofiles_stream_cursor_value_input {
     final l$timeZone = timeZone;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
+      _$data.containsKey('avatarColor') ? l$avatarColor : const {},
       _$data.containsKey('avatarFileId') ? l$avatarFileId : const {},
+      _$data.containsKey('avatarIllustration') ? l$avatarIllustration : const {},
       _$data.containsKey('avatarKind') ? l$avatarKind : const {},
       _$data.containsKey('city') ? l$city : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
@@ -76948,6 +86603,7 @@ class InputquizResults_bool_exp {
     Inputuuid_comparison_exp? id,
     InputQuizKey_enum_comparison_exp? quizKey,
     InputString_array_comparison_exp? ranked,
+    Inputtimestamptz_comparison_exp? sharedAt,
     Inputtimestamptz_comparison_exp? updatedAt,
   }) => InputquizResults_bool_exp._({
     if ($_and != null) r'_and': $_and,
@@ -76959,6 +86615,7 @@ class InputquizResults_bool_exp {
     if (id != null) r'id': id,
     if (quizKey != null) r'quizKey': quizKey,
     if (ranked != null) r'ranked': ranked,
+    if (sharedAt != null) r'sharedAt': sharedAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
   });
 
@@ -77020,6 +86677,12 @@ class InputquizResults_bool_exp {
           ? null
           : InputString_array_comparison_exp.fromJson((l$ranked as Map<String, dynamic>));
     }
+    if (data.containsKey('sharedAt')) {
+      final l$sharedAt = data['sharedAt'];
+      result$data['sharedAt'] = l$sharedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$sharedAt as Map<String, dynamic>));
+    }
     if (data.containsKey('updatedAt')) {
       final l$updatedAt = data['updatedAt'];
       result$data['updatedAt'] = l$updatedAt == null
@@ -77052,6 +86715,9 @@ class InputquizResults_bool_exp {
 
   InputString_array_comparison_exp? get ranked =>
       (_$data['ranked'] as InputString_array_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get sharedAt =>
+      (_$data['sharedAt'] as Inputtimestamptz_comparison_exp?);
 
   Inputtimestamptz_comparison_exp? get updatedAt =>
       (_$data['updatedAt'] as Inputtimestamptz_comparison_exp?);
@@ -77093,6 +86759,10 @@ class InputquizResults_bool_exp {
     if (_$data.containsKey('ranked')) {
       final l$ranked = ranked;
       result$data['ranked'] = l$ranked?.toJson();
+    }
+    if (_$data.containsKey('sharedAt')) {
+      final l$sharedAt = sharedAt;
+      result$data['sharedAt'] = l$sharedAt?.toJson();
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
@@ -77203,6 +86873,14 @@ class InputquizResults_bool_exp {
     if (l$ranked != lOther$ranked) {
       return false;
     }
+    final l$sharedAt = sharedAt;
+    final lOther$sharedAt = other.sharedAt;
+    if (_$data.containsKey('sharedAt') != other._$data.containsKey('sharedAt')) {
+      return false;
+    }
+    if (l$sharedAt != lOther$sharedAt) {
+      return false;
+    }
     final l$updatedAt = updatedAt;
     final lOther$updatedAt = other.updatedAt;
     if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
@@ -77225,6 +86903,7 @@ class InputquizResults_bool_exp {
     final l$id = id;
     final l$quizKey = quizKey;
     final l$ranked = ranked;
+    final l$sharedAt = sharedAt;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
       _$data.containsKey('_and')
@@ -77244,6 +86923,7 @@ class InputquizResults_bool_exp {
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('quizKey') ? l$quizKey : const {},
       _$data.containsKey('ranked') ? l$ranked : const {},
+      _$data.containsKey('sharedAt') ? l$sharedAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
     ]);
   }
@@ -77495,6 +87175,7 @@ class InputquizResults_order_by {
     Enumorder_by? id,
     Enumorder_by? quizKey,
     Enumorder_by? ranked,
+    Enumorder_by? sharedAt,
     Enumorder_by? updatedAt,
   }) => InputquizResults_order_by._({
     if (author != null) r'author': author,
@@ -77503,6 +87184,7 @@ class InputquizResults_order_by {
     if (id != null) r'id': id,
     if (quizKey != null) r'quizKey': quizKey,
     if (ranked != null) r'ranked': ranked,
+    if (sharedAt != null) r'sharedAt': sharedAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
   });
 
@@ -77542,6 +87224,12 @@ class InputquizResults_order_by {
       final l$ranked = data['ranked'];
       result$data['ranked'] = l$ranked == null ? null : fromJsonEnumorder_by((l$ranked as String));
     }
+    if (data.containsKey('sharedAt')) {
+      final l$sharedAt = data['sharedAt'];
+      result$data['sharedAt'] = l$sharedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$sharedAt as String));
+    }
     if (data.containsKey('updatedAt')) {
       final l$updatedAt = data['updatedAt'];
       result$data['updatedAt'] = l$updatedAt == null
@@ -77564,6 +87252,8 @@ class InputquizResults_order_by {
   Enumorder_by? get quizKey => (_$data['quizKey'] as Enumorder_by?);
 
   Enumorder_by? get ranked => (_$data['ranked'] as Enumorder_by?);
+
+  Enumorder_by? get sharedAt => (_$data['sharedAt'] as Enumorder_by?);
 
   Enumorder_by? get updatedAt => (_$data['updatedAt'] as Enumorder_by?);
 
@@ -77592,6 +87282,10 @@ class InputquizResults_order_by {
     if (_$data.containsKey('ranked')) {
       final l$ranked = ranked;
       result$data['ranked'] = l$ranked == null ? null : toJsonEnumorder_by(l$ranked);
+    }
+    if (_$data.containsKey('sharedAt')) {
+      final l$sharedAt = sharedAt;
+      result$data['sharedAt'] = l$sharedAt == null ? null : toJsonEnumorder_by(l$sharedAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
@@ -77656,6 +87350,14 @@ class InputquizResults_order_by {
     if (l$ranked != lOther$ranked) {
       return false;
     }
+    final l$sharedAt = sharedAt;
+    final lOther$sharedAt = other.sharedAt;
+    if (_$data.containsKey('sharedAt') != other._$data.containsKey('sharedAt')) {
+      return false;
+    }
+    if (l$sharedAt != lOther$sharedAt) {
+      return false;
+    }
     final l$updatedAt = updatedAt;
     final lOther$updatedAt = other.updatedAt;
     if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
@@ -77675,6 +87377,7 @@ class InputquizResults_order_by {
     final l$id = id;
     final l$quizKey = quizKey;
     final l$ranked = ranked;
+    final l$sharedAt = sharedAt;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
       _$data.containsKey('author') ? l$author : const {},
@@ -77683,6 +87386,7 @@ class InputquizResults_order_by {
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('quizKey') ? l$quizKey : const {},
       _$data.containsKey('ranked') ? l$ranked : const {},
+      _$data.containsKey('sharedAt') ? l$sharedAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
     ]);
   }
@@ -77736,8 +87440,11 @@ class InputquizResults_pk_columns_input {
 }
 
 class InputquizResults_set_input {
-  factory InputquizResults_set_input({List<String>? ranked}) =>
-      InputquizResults_set_input._({if (ranked != null) r'ranked': ranked});
+  factory InputquizResults_set_input({List<String>? ranked, DateTime? sharedAt}) =>
+      InputquizResults_set_input._({
+        if (ranked != null) r'ranked': ranked,
+        if (sharedAt != null) r'sharedAt': sharedAt,
+      });
 
   InputquizResults_set_input._(this._$data);
 
@@ -77747,6 +87454,10 @@ class InputquizResults_set_input {
       final l$ranked = data['ranked'];
       result$data['ranked'] = (l$ranked as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
+    if (data.containsKey('sharedAt')) {
+      final l$sharedAt = data['sharedAt'];
+      result$data['sharedAt'] = l$sharedAt == null ? null : DateTime.parse((l$sharedAt as String));
+    }
     return InputquizResults_set_input._(result$data);
   }
 
@@ -77754,11 +87465,19 @@ class InputquizResults_set_input {
 
   List<String>? get ranked => (_$data['ranked'] as List<String>?);
 
+  DateTime? get sharedAt => (_$data['sharedAt'] as DateTime?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('ranked')) {
       final l$ranked = ranked;
       result$data['ranked'] = l$ranked?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('sharedAt')) {
+      final l$sharedAt = sharedAt;
+      result$data['sharedAt'] = l$sharedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$sharedAt);
     }
     return result$data;
   }
@@ -77790,18 +87509,28 @@ class InputquizResults_set_input {
     } else if (l$ranked != lOther$ranked) {
       return false;
     }
+    final l$sharedAt = sharedAt;
+    final lOther$sharedAt = other.sharedAt;
+    if (_$data.containsKey('sharedAt') != other._$data.containsKey('sharedAt')) {
+      return false;
+    }
+    if (l$sharedAt != lOther$sharedAt) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$ranked = ranked;
+    final l$sharedAt = sharedAt;
     return Object.hashAll([
       _$data.containsKey('ranked')
           ? l$ranked == null
                 ? null
                 : Object.hashAll(l$ranked.map((v) => v))
           : const {},
+      _$data.containsKey('sharedAt') ? l$sharedAt : const {},
     ]);
   }
 }
@@ -77892,6 +87621,7 @@ class InputquizResults_stream_cursor_value_input {
     String? id,
     EnumQuizKey_enum? quizKey,
     List<String>? ranked,
+    DateTime? sharedAt,
     DateTime? updatedAt,
   }) => InputquizResults_stream_cursor_value_input._({
     if (authorId != null) r'authorId': authorId,
@@ -77899,6 +87629,7 @@ class InputquizResults_stream_cursor_value_input {
     if (id != null) r'id': id,
     if (quizKey != null) r'quizKey': quizKey,
     if (ranked != null) r'ranked': ranked,
+    if (sharedAt != null) r'sharedAt': sharedAt,
     if (updatedAt != null) r'updatedAt': updatedAt,
   });
 
@@ -77930,6 +87661,10 @@ class InputquizResults_stream_cursor_value_input {
       final l$ranked = data['ranked'];
       result$data['ranked'] = (l$ranked as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
+    if (data.containsKey('sharedAt')) {
+      final l$sharedAt = data['sharedAt'];
+      result$data['sharedAt'] = l$sharedAt == null ? null : DateTime.parse((l$sharedAt as String));
+    }
     if (data.containsKey('updatedAt')) {
       final l$updatedAt = data['updatedAt'];
       result$data['updatedAt'] = l$updatedAt == null
@@ -77950,6 +87685,8 @@ class InputquizResults_stream_cursor_value_input {
   EnumQuizKey_enum? get quizKey => (_$data['quizKey'] as EnumQuizKey_enum?);
 
   List<String>? get ranked => (_$data['ranked'] as List<String>?);
+
+  DateTime? get sharedAt => (_$data['sharedAt'] as DateTime?);
 
   DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
 
@@ -77976,6 +87713,12 @@ class InputquizResults_stream_cursor_value_input {
     if (_$data.containsKey('ranked')) {
       final l$ranked = ranked;
       result$data['ranked'] = l$ranked?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('sharedAt')) {
+      final l$sharedAt = sharedAt;
+      result$data['sharedAt'] = l$sharedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$sharedAt);
     }
     if (_$data.containsKey('updatedAt')) {
       final l$updatedAt = updatedAt;
@@ -78045,6 +87788,14 @@ class InputquizResults_stream_cursor_value_input {
     } else if (l$ranked != lOther$ranked) {
       return false;
     }
+    final l$sharedAt = sharedAt;
+    final lOther$sharedAt = other.sharedAt;
+    if (_$data.containsKey('sharedAt') != other._$data.containsKey('sharedAt')) {
+      return false;
+    }
+    if (l$sharedAt != lOther$sharedAt) {
+      return false;
+    }
     final l$updatedAt = updatedAt;
     final lOther$updatedAt = other.updatedAt;
     if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
@@ -78063,6 +87814,7 @@ class InputquizResults_stream_cursor_value_input {
     final l$id = id;
     final l$quizKey = quizKey;
     final l$ranked = ranked;
+    final l$sharedAt = sharedAt;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
       _$data.containsKey('authorId') ? l$authorId : const {},
@@ -78074,6 +87826,7 @@ class InputquizResults_stream_cursor_value_input {
                 ? null
                 : Object.hashAll(l$ranked.map((v) => v))
           : const {},
+      _$data.containsKey('sharedAt') ? l$sharedAt : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
     ]);
   }
@@ -81424,6 +91177,138 @@ class InputresolveSharedItems_args {
   int get hashCode {
     final l$keep = keep;
     return Object.hashAll([_$data.containsKey('keep') ? l$keep : const {}]);
+  }
+}
+
+class InputrespondMemory_args {
+  factory InputrespondMemory_args({bool? accept, String? memoryId}) => InputrespondMemory_args._({
+    if (accept != null) r'accept': accept,
+    if (memoryId != null) r'memoryId': memoryId,
+  });
+
+  InputrespondMemory_args._(this._$data);
+
+  factory InputrespondMemory_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('accept')) {
+      final l$accept = data['accept'];
+      result$data['accept'] = (l$accept as bool?);
+    }
+    if (data.containsKey('memoryId')) {
+      final l$memoryId = data['memoryId'];
+      result$data['memoryId'] = (l$memoryId as String?);
+    }
+    return InputrespondMemory_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  bool? get accept => (_$data['accept'] as bool?);
+
+  String? get memoryId => (_$data['memoryId'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('accept')) {
+      final l$accept = accept;
+      result$data['accept'] = l$accept;
+    }
+    if (_$data.containsKey('memoryId')) {
+      final l$memoryId = memoryId;
+      result$data['memoryId'] = l$memoryId;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputrespondMemory_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$accept = accept;
+    final lOther$accept = other.accept;
+    if (_$data.containsKey('accept') != other._$data.containsKey('accept')) {
+      return false;
+    }
+    if (l$accept != lOther$accept) {
+      return false;
+    }
+    final l$memoryId = memoryId;
+    final lOther$memoryId = other.memoryId;
+    if (_$data.containsKey('memoryId') != other._$data.containsKey('memoryId')) {
+      return false;
+    }
+    if (l$memoryId != lOther$memoryId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$accept = accept;
+    final l$memoryId = memoryId;
+    return Object.hashAll([
+      _$data.containsKey('accept') ? l$accept : const {},
+      _$data.containsKey('memoryId') ? l$memoryId : const {},
+    ]);
+  }
+}
+
+class InputrevokeSession_args {
+  factory InputrevokeSession_args({String? sessionId}) =>
+      InputrevokeSession_args._({if (sessionId != null) r'sessionId': sessionId});
+
+  InputrevokeSession_args._(this._$data);
+
+  factory InputrevokeSession_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('sessionId')) {
+      final l$sessionId = data['sessionId'];
+      result$data['sessionId'] = (l$sessionId as String?);
+    }
+    return InputrevokeSession_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get sessionId => (_$data['sessionId'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('sessionId')) {
+      final l$sessionId = sessionId;
+      result$data['sessionId'] = l$sessionId;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputrevokeSession_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$sessionId = sessionId;
+    final lOther$sessionId = other.sessionId;
+    if (_$data.containsKey('sessionId') != other._$data.containsKey('sessionId')) {
+      return false;
+    }
+    if (l$sessionId != lOther$sessionId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$sessionId = sessionId;
+    return Object.hashAll([_$data.containsKey('sessionId') ? l$sessionId : const {}]);
   }
 }
 
@@ -87252,13 +97137,19 @@ class InputsavedDateIdeas_updates {
 }
 
 class InputsendCard_args {
-  factory InputsendCard_args({String? cardId}) =>
-      InputsendCard_args._({if (cardId != null) r'cardId': cardId});
+  factory InputsendCard_args({bool? anyway, String? cardId}) => InputsendCard_args._({
+    if (anyway != null) r'anyway': anyway,
+    if (cardId != null) r'cardId': cardId,
+  });
 
   InputsendCard_args._(this._$data);
 
   factory InputsendCard_args.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('anyway')) {
+      final l$anyway = data['anyway'];
+      result$data['anyway'] = (l$anyway as bool?);
+    }
     if (data.containsKey('cardId')) {
       final l$cardId = data['cardId'];
       result$data['cardId'] = (l$cardId as String?);
@@ -87268,10 +97159,16 @@ class InputsendCard_args {
 
   Map<String, dynamic> _$data;
 
+  bool? get anyway => (_$data['anyway'] as bool?);
+
   String? get cardId => (_$data['cardId'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('anyway')) {
+      final l$anyway = anyway;
+      result$data['anyway'] = l$anyway;
+    }
     if (_$data.containsKey('cardId')) {
       final l$cardId = cardId;
       result$data['cardId'] = l$cardId;
@@ -87287,6 +97184,14 @@ class InputsendCard_args {
     if (other is! InputsendCard_args || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$anyway = anyway;
+    final lOther$anyway = other.anyway;
+    if (_$data.containsKey('anyway') != other._$data.containsKey('anyway')) {
+      return false;
+    }
+    if (l$anyway != lOther$anyway) {
+      return false;
+    }
     final l$cardId = cardId;
     final lOther$cardId = other.cardId;
     if (_$data.containsKey('cardId') != other._$data.containsKey('cardId')) {
@@ -87300,13 +97205,143 @@ class InputsendCard_args {
 
   @override
   int get hashCode {
+    final l$anyway = anyway;
     final l$cardId = cardId;
-    return Object.hashAll([_$data.containsKey('cardId') ? l$cardId : const {}]);
+    return Object.hashAll([
+      _$data.containsKey('anyway') ? l$anyway : const {},
+      _$data.containsKey('cardId') ? l$cardId : const {},
+    ]);
+  }
+}
+
+class InputsendGentleRequest_args {
+  factory InputsendGentleRequest_args({
+    String? annoyanceId,
+    String? feelText,
+    String? whenText,
+    String? wishText,
+  }) => InputsendGentleRequest_args._({
+    if (annoyanceId != null) r'annoyanceId': annoyanceId,
+    if (feelText != null) r'feelText': feelText,
+    if (whenText != null) r'whenText': whenText,
+    if (wishText != null) r'wishText': wishText,
+  });
+
+  InputsendGentleRequest_args._(this._$data);
+
+  factory InputsendGentleRequest_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('annoyanceId')) {
+      final l$annoyanceId = data['annoyanceId'];
+      result$data['annoyanceId'] = (l$annoyanceId as String?);
+    }
+    if (data.containsKey('feelText')) {
+      final l$feelText = data['feelText'];
+      result$data['feelText'] = (l$feelText as String?);
+    }
+    if (data.containsKey('whenText')) {
+      final l$whenText = data['whenText'];
+      result$data['whenText'] = (l$whenText as String?);
+    }
+    if (data.containsKey('wishText')) {
+      final l$wishText = data['wishText'];
+      result$data['wishText'] = (l$wishText as String?);
+    }
+    return InputsendGentleRequest_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get annoyanceId => (_$data['annoyanceId'] as String?);
+
+  String? get feelText => (_$data['feelText'] as String?);
+
+  String? get whenText => (_$data['whenText'] as String?);
+
+  String? get wishText => (_$data['wishText'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('annoyanceId')) {
+      final l$annoyanceId = annoyanceId;
+      result$data['annoyanceId'] = l$annoyanceId;
+    }
+    if (_$data.containsKey('feelText')) {
+      final l$feelText = feelText;
+      result$data['feelText'] = l$feelText;
+    }
+    if (_$data.containsKey('whenText')) {
+      final l$whenText = whenText;
+      result$data['whenText'] = l$whenText;
+    }
+    if (_$data.containsKey('wishText')) {
+      final l$wishText = wishText;
+      result$data['wishText'] = l$wishText;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputsendGentleRequest_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$annoyanceId = annoyanceId;
+    final lOther$annoyanceId = other.annoyanceId;
+    if (_$data.containsKey('annoyanceId') != other._$data.containsKey('annoyanceId')) {
+      return false;
+    }
+    if (l$annoyanceId != lOther$annoyanceId) {
+      return false;
+    }
+    final l$feelText = feelText;
+    final lOther$feelText = other.feelText;
+    if (_$data.containsKey('feelText') != other._$data.containsKey('feelText')) {
+      return false;
+    }
+    if (l$feelText != lOther$feelText) {
+      return false;
+    }
+    final l$whenText = whenText;
+    final lOther$whenText = other.whenText;
+    if (_$data.containsKey('whenText') != other._$data.containsKey('whenText')) {
+      return false;
+    }
+    if (l$whenText != lOther$whenText) {
+      return false;
+    }
+    final l$wishText = wishText;
+    final lOther$wishText = other.wishText;
+    if (_$data.containsKey('wishText') != other._$data.containsKey('wishText')) {
+      return false;
+    }
+    if (l$wishText != lOther$wishText) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$annoyanceId = annoyanceId;
+    final l$feelText = feelText;
+    final l$whenText = whenText;
+    final l$wishText = wishText;
+    return Object.hashAll([
+      _$data.containsKey('annoyanceId') ? l$annoyanceId : const {},
+      _$data.containsKey('feelText') ? l$feelText : const {},
+      _$data.containsKey('whenText') ? l$whenText : const {},
+      _$data.containsKey('wishText') ? l$wishText : const {},
+    ]);
   }
 }
 
 class InputsendSlip_args {
-  factory InputsendSlip_args({String? note, String? slipId}) => InputsendSlip_args._({
+  factory InputsendSlip_args({bool? anyway, String? note, String? slipId}) => InputsendSlip_args._({
+    if (anyway != null) r'anyway': anyway,
     if (note != null) r'note': note,
     if (slipId != null) r'slipId': slipId,
   });
@@ -87315,6 +97350,10 @@ class InputsendSlip_args {
 
   factory InputsendSlip_args.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('anyway')) {
+      final l$anyway = data['anyway'];
+      result$data['anyway'] = (l$anyway as bool?);
+    }
     if (data.containsKey('note')) {
       final l$note = data['note'];
       result$data['note'] = (l$note as String?);
@@ -87328,12 +97367,18 @@ class InputsendSlip_args {
 
   Map<String, dynamic> _$data;
 
+  bool? get anyway => (_$data['anyway'] as bool?);
+
   String? get note => (_$data['note'] as String?);
 
   String? get slipId => (_$data['slipId'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('anyway')) {
+      final l$anyway = anyway;
+      result$data['anyway'] = l$anyway;
+    }
     if (_$data.containsKey('note')) {
       final l$note = note;
       result$data['note'] = l$note;
@@ -87351,6 +97396,14 @@ class InputsendSlip_args {
       return true;
     }
     if (other is! InputsendSlip_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$anyway = anyway;
+    final lOther$anyway = other.anyway;
+    if (_$data.containsKey('anyway') != other._$data.containsKey('anyway')) {
+      return false;
+    }
+    if (l$anyway != lOther$anyway) {
       return false;
     }
     final l$note = note;
@@ -87374,12 +97427,792 @@ class InputsendSlip_args {
 
   @override
   int get hashCode {
+    final l$anyway = anyway;
     final l$note = note;
     final l$slipId = slipId;
     return Object.hashAll([
+      _$data.containsKey('anyway') ? l$anyway : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('slipId') ? l$slipId : const {},
     ]);
+  }
+}
+
+class InputsessionRows_bool_exp {
+  factory InputsessionRows_bool_exp({
+    List<InputsessionRows_bool_exp>? $_and,
+    InputsessionRows_bool_exp? $_not,
+    List<InputsessionRows_bool_exp>? $_or,
+    Inputtimestamptz_comparison_exp? createdAt,
+    Inputuuid_comparison_exp? deviceId,
+    InputString_comparison_exp? deviceLabel,
+    Inputtimestamptz_comparison_exp? expiresAt,
+    Inputuuid_comparison_exp? id,
+    InputString_comparison_exp? platform,
+  }) => InputsessionRows_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (deviceId != null) r'deviceId': deviceId,
+    if (deviceLabel != null) r'deviceLabel': deviceLabel,
+    if (expiresAt != null) r'expiresAt': expiresAt,
+    if (id != null) r'id': id,
+    if (platform != null) r'platform': platform,
+  });
+
+  InputsessionRows_bool_exp._(this._$data);
+
+  factory InputsessionRows_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputsessionRows_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputsessionRows_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputsessionRows_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('deviceId')) {
+      final l$deviceId = data['deviceId'];
+      result$data['deviceId'] = l$deviceId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$deviceId as Map<String, dynamic>));
+    }
+    if (data.containsKey('deviceLabel')) {
+      final l$deviceLabel = data['deviceLabel'];
+      result$data['deviceLabel'] = l$deviceLabel == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$deviceLabel as Map<String, dynamic>));
+    }
+    if (data.containsKey('expiresAt')) {
+      final l$expiresAt = data['expiresAt'];
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$expiresAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$id as Map<String, dynamic>));
+    }
+    if (data.containsKey('platform')) {
+      final l$platform = data['platform'];
+      result$data['platform'] = l$platform == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$platform as Map<String, dynamic>));
+    }
+    return InputsessionRows_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputsessionRows_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputsessionRows_bool_exp>?);
+
+  InputsessionRows_bool_exp? get $_not => (_$data['_not'] as InputsessionRows_bool_exp?);
+
+  List<InputsessionRows_bool_exp>? get $_or => (_$data['_or'] as List<InputsessionRows_bool_exp>?);
+
+  Inputtimestamptz_comparison_exp? get createdAt =>
+      (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_comparison_exp? get deviceId => (_$data['deviceId'] as Inputuuid_comparison_exp?);
+
+  InputString_comparison_exp? get deviceLabel =>
+      (_$data['deviceLabel'] as InputString_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get expiresAt =>
+      (_$data['expiresAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
+
+  InputString_comparison_exp? get platform => (_$data['platform'] as InputString_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('deviceId')) {
+      final l$deviceId = deviceId;
+      result$data['deviceId'] = l$deviceId?.toJson();
+    }
+    if (_$data.containsKey('deviceLabel')) {
+      final l$deviceLabel = deviceLabel;
+      result$data['deviceLabel'] = l$deviceLabel?.toJson();
+    }
+    if (_$data.containsKey('expiresAt')) {
+      final l$expiresAt = expiresAt;
+      result$data['expiresAt'] = l$expiresAt?.toJson();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('platform')) {
+      final l$platform = platform;
+      result$data['platform'] = l$platform?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputsessionRows_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$deviceId = deviceId;
+    final lOther$deviceId = other.deviceId;
+    if (_$data.containsKey('deviceId') != other._$data.containsKey('deviceId')) {
+      return false;
+    }
+    if (l$deviceId != lOther$deviceId) {
+      return false;
+    }
+    final l$deviceLabel = deviceLabel;
+    final lOther$deviceLabel = other.deviceLabel;
+    if (_$data.containsKey('deviceLabel') != other._$data.containsKey('deviceLabel')) {
+      return false;
+    }
+    if (l$deviceLabel != lOther$deviceLabel) {
+      return false;
+    }
+    final l$expiresAt = expiresAt;
+    final lOther$expiresAt = other.expiresAt;
+    if (_$data.containsKey('expiresAt') != other._$data.containsKey('expiresAt')) {
+      return false;
+    }
+    if (l$expiresAt != lOther$expiresAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$platform = platform;
+    final lOther$platform = other.platform;
+    if (_$data.containsKey('platform') != other._$data.containsKey('platform')) {
+      return false;
+    }
+    if (l$platform != lOther$platform) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$createdAt = createdAt;
+    final l$deviceId = deviceId;
+    final l$deviceLabel = deviceLabel;
+    final l$expiresAt = expiresAt;
+    final l$id = id;
+    final l$platform = platform;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('deviceId') ? l$deviceId : const {},
+      _$data.containsKey('deviceLabel') ? l$deviceLabel : const {},
+      _$data.containsKey('expiresAt') ? l$expiresAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('platform') ? l$platform : const {},
+    ]);
+  }
+}
+
+class InputsessionRows_order_by {
+  factory InputsessionRows_order_by({
+    Enumorder_by? createdAt,
+    Enumorder_by? deviceId,
+    Enumorder_by? deviceLabel,
+    Enumorder_by? expiresAt,
+    Enumorder_by? id,
+    Enumorder_by? platform,
+  }) => InputsessionRows_order_by._({
+    if (createdAt != null) r'createdAt': createdAt,
+    if (deviceId != null) r'deviceId': deviceId,
+    if (deviceLabel != null) r'deviceLabel': deviceLabel,
+    if (expiresAt != null) r'expiresAt': expiresAt,
+    if (id != null) r'id': id,
+    if (platform != null) r'platform': platform,
+  });
+
+  InputsessionRows_order_by._(this._$data);
+
+  factory InputsessionRows_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('deviceId')) {
+      final l$deviceId = data['deviceId'];
+      result$data['deviceId'] = l$deviceId == null
+          ? null
+          : fromJsonEnumorder_by((l$deviceId as String));
+    }
+    if (data.containsKey('deviceLabel')) {
+      final l$deviceLabel = data['deviceLabel'];
+      result$data['deviceLabel'] = l$deviceLabel == null
+          ? null
+          : fromJsonEnumorder_by((l$deviceLabel as String));
+    }
+    if (data.containsKey('expiresAt')) {
+      final l$expiresAt = data['expiresAt'];
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : fromJsonEnumorder_by((l$expiresAt as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null ? null : fromJsonEnumorder_by((l$id as String));
+    }
+    if (data.containsKey('platform')) {
+      final l$platform = data['platform'];
+      result$data['platform'] = l$platform == null
+          ? null
+          : fromJsonEnumorder_by((l$platform as String));
+    }
+    return InputsessionRows_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get deviceId => (_$data['deviceId'] as Enumorder_by?);
+
+  Enumorder_by? get deviceLabel => (_$data['deviceLabel'] as Enumorder_by?);
+
+  Enumorder_by? get expiresAt => (_$data['expiresAt'] as Enumorder_by?);
+
+  Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
+
+  Enumorder_by? get platform => (_$data['platform'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('deviceId')) {
+      final l$deviceId = deviceId;
+      result$data['deviceId'] = l$deviceId == null ? null : toJsonEnumorder_by(l$deviceId);
+    }
+    if (_$data.containsKey('deviceLabel')) {
+      final l$deviceLabel = deviceLabel;
+      result$data['deviceLabel'] = l$deviceLabel == null ? null : toJsonEnumorder_by(l$deviceLabel);
+    }
+    if (_$data.containsKey('expiresAt')) {
+      final l$expiresAt = expiresAt;
+      result$data['expiresAt'] = l$expiresAt == null ? null : toJsonEnumorder_by(l$expiresAt);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJsonEnumorder_by(l$id);
+    }
+    if (_$data.containsKey('platform')) {
+      final l$platform = platform;
+      result$data['platform'] = l$platform == null ? null : toJsonEnumorder_by(l$platform);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputsessionRows_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$deviceId = deviceId;
+    final lOther$deviceId = other.deviceId;
+    if (_$data.containsKey('deviceId') != other._$data.containsKey('deviceId')) {
+      return false;
+    }
+    if (l$deviceId != lOther$deviceId) {
+      return false;
+    }
+    final l$deviceLabel = deviceLabel;
+    final lOther$deviceLabel = other.deviceLabel;
+    if (_$data.containsKey('deviceLabel') != other._$data.containsKey('deviceLabel')) {
+      return false;
+    }
+    if (l$deviceLabel != lOther$deviceLabel) {
+      return false;
+    }
+    final l$expiresAt = expiresAt;
+    final lOther$expiresAt = other.expiresAt;
+    if (_$data.containsKey('expiresAt') != other._$data.containsKey('expiresAt')) {
+      return false;
+    }
+    if (l$expiresAt != lOther$expiresAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$platform = platform;
+    final lOther$platform = other.platform;
+    if (_$data.containsKey('platform') != other._$data.containsKey('platform')) {
+      return false;
+    }
+    if (l$platform != lOther$platform) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$deviceId = deviceId;
+    final l$deviceLabel = deviceLabel;
+    final l$expiresAt = expiresAt;
+    final l$id = id;
+    final l$platform = platform;
+    return Object.hashAll([
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('deviceId') ? l$deviceId : const {},
+      _$data.containsKey('deviceLabel') ? l$deviceLabel : const {},
+      _$data.containsKey('expiresAt') ? l$expiresAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('platform') ? l$platform : const {},
+    ]);
+  }
+}
+
+class InputsessionRows_stream_cursor_input {
+  factory InputsessionRows_stream_cursor_input({
+    required InputsessionRows_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputsessionRows_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputsessionRows_stream_cursor_input._(this._$data);
+
+  factory InputsessionRows_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputsessionRows_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputsessionRows_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputsessionRows_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputsessionRows_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputsessionRows_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputsessionRows_stream_cursor_value_input {
+  factory InputsessionRows_stream_cursor_value_input({
+    DateTime? createdAt,
+    String? deviceId,
+    String? deviceLabel,
+    DateTime? expiresAt,
+    String? id,
+    String? platform,
+  }) => InputsessionRows_stream_cursor_value_input._({
+    if (createdAt != null) r'createdAt': createdAt,
+    if (deviceId != null) r'deviceId': deviceId,
+    if (deviceLabel != null) r'deviceLabel': deviceLabel,
+    if (expiresAt != null) r'expiresAt': expiresAt,
+    if (id != null) r'id': id,
+    if (platform != null) r'platform': platform,
+  });
+
+  InputsessionRows_stream_cursor_value_input._(this._$data);
+
+  factory InputsessionRows_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('deviceId')) {
+      final l$deviceId = data['deviceId'];
+      result$data['deviceId'] = (l$deviceId as String?);
+    }
+    if (data.containsKey('deviceLabel')) {
+      final l$deviceLabel = data['deviceLabel'];
+      result$data['deviceLabel'] = (l$deviceLabel as String?);
+    }
+    if (data.containsKey('expiresAt')) {
+      final l$expiresAt = data['expiresAt'];
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : DateTime.parse((l$expiresAt as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('platform')) {
+      final l$platform = data['platform'];
+      result$data['platform'] = (l$platform as String?);
+    }
+    return InputsessionRows_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
+
+  String? get deviceId => (_$data['deviceId'] as String?);
+
+  String? get deviceLabel => (_$data['deviceLabel'] as String?);
+
+  DateTime? get expiresAt => (_$data['expiresAt'] as DateTime?);
+
+  String? get id => (_$data['id'] as String?);
+
+  String? get platform => (_$data['platform'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('deviceId')) {
+      final l$deviceId = deviceId;
+      result$data['deviceId'] = l$deviceId;
+    }
+    if (_$data.containsKey('deviceLabel')) {
+      final l$deviceLabel = deviceLabel;
+      result$data['deviceLabel'] = l$deviceLabel;
+    }
+    if (_$data.containsKey('expiresAt')) {
+      final l$expiresAt = expiresAt;
+      result$data['expiresAt'] = l$expiresAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$expiresAt);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('platform')) {
+      final l$platform = platform;
+      result$data['platform'] = l$platform;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputsessionRows_stream_cursor_value_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$deviceId = deviceId;
+    final lOther$deviceId = other.deviceId;
+    if (_$data.containsKey('deviceId') != other._$data.containsKey('deviceId')) {
+      return false;
+    }
+    if (l$deviceId != lOther$deviceId) {
+      return false;
+    }
+    final l$deviceLabel = deviceLabel;
+    final lOther$deviceLabel = other.deviceLabel;
+    if (_$data.containsKey('deviceLabel') != other._$data.containsKey('deviceLabel')) {
+      return false;
+    }
+    if (l$deviceLabel != lOther$deviceLabel) {
+      return false;
+    }
+    final l$expiresAt = expiresAt;
+    final lOther$expiresAt = other.expiresAt;
+    if (_$data.containsKey('expiresAt') != other._$data.containsKey('expiresAt')) {
+      return false;
+    }
+    if (l$expiresAt != lOther$expiresAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$platform = platform;
+    final lOther$platform = other.platform;
+    if (_$data.containsKey('platform') != other._$data.containsKey('platform')) {
+      return false;
+    }
+    if (l$platform != lOther$platform) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$deviceId = deviceId;
+    final l$deviceLabel = deviceLabel;
+    final l$expiresAt = expiresAt;
+    final l$id = id;
+    final l$platform = platform;
+    return Object.hashAll([
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('deviceId') ? l$deviceId : const {},
+      _$data.containsKey('deviceLabel') ? l$deviceLabel : const {},
+      _$data.containsKey('expiresAt') ? l$expiresAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('platform') ? l$platform : const {},
+    ]);
+  }
+}
+
+class InputsetCoupleStartDate_args {
+  factory InputsetCoupleStartDate_args({DateTime? date}) =>
+      InputsetCoupleStartDate_args._({if (date != null) r'date': date});
+
+  InputsetCoupleStartDate_args._(this._$data);
+
+  factory InputsetCoupleStartDate_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('date')) {
+      final l$date = data['date'];
+      result$data['date'] = l$date == null ? null : DateTime.parse((l$date as String));
+    }
+    return InputsetCoupleStartDate_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get date => (_$data['date'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('date')) {
+      final l$date = date;
+      result$data['date'] = l$date == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$date);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputsetCoupleStartDate_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$date = date;
+    final lOther$date = other.date;
+    if (_$data.containsKey('date') != other._$data.containsKey('date')) {
+      return false;
+    }
+    if (l$date != lOther$date) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$date = date;
+    return Object.hashAll([_$data.containsKey('date') ? l$date : const {}]);
   }
 }
 
@@ -93168,6 +104001,4135 @@ class Inputsmallint_comparison_exp {
   }
 }
 
+class InputspiceCardPlays_bool_exp {
+  factory InputspiceCardPlays_bool_exp({
+    List<InputspiceCardPlays_bool_exp>? $_and,
+    InputspiceCardPlays_bool_exp? $_not,
+    List<InputspiceCardPlays_bool_exp>? $_or,
+    Inputuuid_comparison_exp? acceptedBy,
+    InputString_comparison_exp? contentSlug,
+    Inputuuid_comparison_exp? coupleId,
+    InputcoupleMembers_bool_exp? coupleMembers,
+    Inputtimestamptz_comparison_exp? createdAt,
+    Inputtimestamptz_comparison_exp? declinedAt,
+    Inputuuid_comparison_exp? id,
+    Inputuuid_comparison_exp? proposedBy,
+  }) => InputspiceCardPlays_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (acceptedBy != null) r'acceptedBy': acceptedBy,
+    if (contentSlug != null) r'contentSlug': contentSlug,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (coupleMembers != null) r'coupleMembers': coupleMembers,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (declinedAt != null) r'declinedAt': declinedAt,
+    if (id != null) r'id': id,
+    if (proposedBy != null) r'proposedBy': proposedBy,
+  });
+
+  InputspiceCardPlays_bool_exp._(this._$data);
+
+  factory InputspiceCardPlays_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputspiceCardPlays_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputspiceCardPlays_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputspiceCardPlays_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('acceptedBy')) {
+      final l$acceptedBy = data['acceptedBy'];
+      result$data['acceptedBy'] = l$acceptedBy == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$acceptedBy as Map<String, dynamic>));
+    }
+    if (data.containsKey('contentSlug')) {
+      final l$contentSlug = data['contentSlug'];
+      result$data['contentSlug'] = l$contentSlug == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$contentSlug as Map<String, dynamic>));
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$coupleId as Map<String, dynamic>));
+    }
+    if (data.containsKey('coupleMembers')) {
+      final l$coupleMembers = data['coupleMembers'];
+      result$data['coupleMembers'] = l$coupleMembers == null
+          ? null
+          : InputcoupleMembers_bool_exp.fromJson((l$coupleMembers as Map<String, dynamic>));
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('declinedAt')) {
+      final l$declinedAt = data['declinedAt'];
+      result$data['declinedAt'] = l$declinedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$declinedAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$id as Map<String, dynamic>));
+    }
+    if (data.containsKey('proposedBy')) {
+      final l$proposedBy = data['proposedBy'];
+      result$data['proposedBy'] = l$proposedBy == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$proposedBy as Map<String, dynamic>));
+    }
+    return InputspiceCardPlays_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputspiceCardPlays_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputspiceCardPlays_bool_exp>?);
+
+  InputspiceCardPlays_bool_exp? get $_not => (_$data['_not'] as InputspiceCardPlays_bool_exp?);
+
+  List<InputspiceCardPlays_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputspiceCardPlays_bool_exp>?);
+
+  Inputuuid_comparison_exp? get acceptedBy => (_$data['acceptedBy'] as Inputuuid_comparison_exp?);
+
+  InputString_comparison_exp? get contentSlug =>
+      (_$data['contentSlug'] as InputString_comparison_exp?);
+
+  Inputuuid_comparison_exp? get coupleId => (_$data['coupleId'] as Inputuuid_comparison_exp?);
+
+  InputcoupleMembers_bool_exp? get coupleMembers =>
+      (_$data['coupleMembers'] as InputcoupleMembers_bool_exp?);
+
+  Inputtimestamptz_comparison_exp? get createdAt =>
+      (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get declinedAt =>
+      (_$data['declinedAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
+
+  Inputuuid_comparison_exp? get proposedBy => (_$data['proposedBy'] as Inputuuid_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('acceptedBy')) {
+      final l$acceptedBy = acceptedBy;
+      result$data['acceptedBy'] = l$acceptedBy?.toJson();
+    }
+    if (_$data.containsKey('contentSlug')) {
+      final l$contentSlug = contentSlug;
+      result$data['contentSlug'] = l$contentSlug?.toJson();
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId?.toJson();
+    }
+    if (_$data.containsKey('coupleMembers')) {
+      final l$coupleMembers = coupleMembers;
+      result$data['coupleMembers'] = l$coupleMembers?.toJson();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('declinedAt')) {
+      final l$declinedAt = declinedAt;
+      result$data['declinedAt'] = l$declinedAt?.toJson();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('proposedBy')) {
+      final l$proposedBy = proposedBy;
+      result$data['proposedBy'] = l$proposedBy?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceCardPlays_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$acceptedBy = acceptedBy;
+    final lOther$acceptedBy = other.acceptedBy;
+    if (_$data.containsKey('acceptedBy') != other._$data.containsKey('acceptedBy')) {
+      return false;
+    }
+    if (l$acceptedBy != lOther$acceptedBy) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (_$data.containsKey('contentSlug') != other._$data.containsKey('contentSlug')) {
+      return false;
+    }
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$coupleMembers = coupleMembers;
+    final lOther$coupleMembers = other.coupleMembers;
+    if (_$data.containsKey('coupleMembers') != other._$data.containsKey('coupleMembers')) {
+      return false;
+    }
+    if (l$coupleMembers != lOther$coupleMembers) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$declinedAt = declinedAt;
+    final lOther$declinedAt = other.declinedAt;
+    if (_$data.containsKey('declinedAt') != other._$data.containsKey('declinedAt')) {
+      return false;
+    }
+    if (l$declinedAt != lOther$declinedAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$proposedBy = proposedBy;
+    final lOther$proposedBy = other.proposedBy;
+    if (_$data.containsKey('proposedBy') != other._$data.containsKey('proposedBy')) {
+      return false;
+    }
+    if (l$proposedBy != lOther$proposedBy) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$acceptedBy = acceptedBy;
+    final l$contentSlug = contentSlug;
+    final l$coupleId = coupleId;
+    final l$coupleMembers = coupleMembers;
+    final l$createdAt = createdAt;
+    final l$declinedAt = declinedAt;
+    final l$id = id;
+    final l$proposedBy = proposedBy;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('acceptedBy') ? l$acceptedBy : const {},
+      _$data.containsKey('contentSlug') ? l$contentSlug : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('coupleMembers') ? l$coupleMembers : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('declinedAt') ? l$declinedAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('proposedBy') ? l$proposedBy : const {},
+    ]);
+  }
+}
+
+class InputspiceCardPlays_order_by {
+  factory InputspiceCardPlays_order_by({
+    Enumorder_by? acceptedBy,
+    Enumorder_by? contentSlug,
+    Enumorder_by? coupleId,
+    InputcoupleMembers_aggregate_order_by? coupleMembers_aggregate,
+    Enumorder_by? createdAt,
+    Enumorder_by? declinedAt,
+    Enumorder_by? id,
+    Enumorder_by? proposedBy,
+  }) => InputspiceCardPlays_order_by._({
+    if (acceptedBy != null) r'acceptedBy': acceptedBy,
+    if (contentSlug != null) r'contentSlug': contentSlug,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (coupleMembers_aggregate != null) r'coupleMembers_aggregate': coupleMembers_aggregate,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (declinedAt != null) r'declinedAt': declinedAt,
+    if (id != null) r'id': id,
+    if (proposedBy != null) r'proposedBy': proposedBy,
+  });
+
+  InputspiceCardPlays_order_by._(this._$data);
+
+  factory InputspiceCardPlays_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('acceptedBy')) {
+      final l$acceptedBy = data['acceptedBy'];
+      result$data['acceptedBy'] = l$acceptedBy == null
+          ? null
+          : fromJsonEnumorder_by((l$acceptedBy as String));
+    }
+    if (data.containsKey('contentSlug')) {
+      final l$contentSlug = data['contentSlug'];
+      result$data['contentSlug'] = l$contentSlug == null
+          ? null
+          : fromJsonEnumorder_by((l$contentSlug as String));
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : fromJsonEnumorder_by((l$coupleId as String));
+    }
+    if (data.containsKey('coupleMembers_aggregate')) {
+      final l$coupleMembers_aggregate = data['coupleMembers_aggregate'];
+      result$data['coupleMembers_aggregate'] = l$coupleMembers_aggregate == null
+          ? null
+          : InputcoupleMembers_aggregate_order_by.fromJson(
+              (l$coupleMembers_aggregate as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('declinedAt')) {
+      final l$declinedAt = data['declinedAt'];
+      result$data['declinedAt'] = l$declinedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$declinedAt as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null ? null : fromJsonEnumorder_by((l$id as String));
+    }
+    if (data.containsKey('proposedBy')) {
+      final l$proposedBy = data['proposedBy'];
+      result$data['proposedBy'] = l$proposedBy == null
+          ? null
+          : fromJsonEnumorder_by((l$proposedBy as String));
+    }
+    return InputspiceCardPlays_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get acceptedBy => (_$data['acceptedBy'] as Enumorder_by?);
+
+  Enumorder_by? get contentSlug => (_$data['contentSlug'] as Enumorder_by?);
+
+  Enumorder_by? get coupleId => (_$data['coupleId'] as Enumorder_by?);
+
+  InputcoupleMembers_aggregate_order_by? get coupleMembers_aggregate =>
+      (_$data['coupleMembers_aggregate'] as InputcoupleMembers_aggregate_order_by?);
+
+  Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get declinedAt => (_$data['declinedAt'] as Enumorder_by?);
+
+  Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
+
+  Enumorder_by? get proposedBy => (_$data['proposedBy'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('acceptedBy')) {
+      final l$acceptedBy = acceptedBy;
+      result$data['acceptedBy'] = l$acceptedBy == null ? null : toJsonEnumorder_by(l$acceptedBy);
+    }
+    if (_$data.containsKey('contentSlug')) {
+      final l$contentSlug = contentSlug;
+      result$data['contentSlug'] = l$contentSlug == null ? null : toJsonEnumorder_by(l$contentSlug);
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId == null ? null : toJsonEnumorder_by(l$coupleId);
+    }
+    if (_$data.containsKey('coupleMembers_aggregate')) {
+      final l$coupleMembers_aggregate = coupleMembers_aggregate;
+      result$data['coupleMembers_aggregate'] = l$coupleMembers_aggregate?.toJson();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('declinedAt')) {
+      final l$declinedAt = declinedAt;
+      result$data['declinedAt'] = l$declinedAt == null ? null : toJsonEnumorder_by(l$declinedAt);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJsonEnumorder_by(l$id);
+    }
+    if (_$data.containsKey('proposedBy')) {
+      final l$proposedBy = proposedBy;
+      result$data['proposedBy'] = l$proposedBy == null ? null : toJsonEnumorder_by(l$proposedBy);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceCardPlays_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$acceptedBy = acceptedBy;
+    final lOther$acceptedBy = other.acceptedBy;
+    if (_$data.containsKey('acceptedBy') != other._$data.containsKey('acceptedBy')) {
+      return false;
+    }
+    if (l$acceptedBy != lOther$acceptedBy) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (_$data.containsKey('contentSlug') != other._$data.containsKey('contentSlug')) {
+      return false;
+    }
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$coupleMembers_aggregate = coupleMembers_aggregate;
+    final lOther$coupleMembers_aggregate = other.coupleMembers_aggregate;
+    if (_$data.containsKey('coupleMembers_aggregate') !=
+        other._$data.containsKey('coupleMembers_aggregate')) {
+      return false;
+    }
+    if (l$coupleMembers_aggregate != lOther$coupleMembers_aggregate) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$declinedAt = declinedAt;
+    final lOther$declinedAt = other.declinedAt;
+    if (_$data.containsKey('declinedAt') != other._$data.containsKey('declinedAt')) {
+      return false;
+    }
+    if (l$declinedAt != lOther$declinedAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$proposedBy = proposedBy;
+    final lOther$proposedBy = other.proposedBy;
+    if (_$data.containsKey('proposedBy') != other._$data.containsKey('proposedBy')) {
+      return false;
+    }
+    if (l$proposedBy != lOther$proposedBy) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$acceptedBy = acceptedBy;
+    final l$contentSlug = contentSlug;
+    final l$coupleId = coupleId;
+    final l$coupleMembers_aggregate = coupleMembers_aggregate;
+    final l$createdAt = createdAt;
+    final l$declinedAt = declinedAt;
+    final l$id = id;
+    final l$proposedBy = proposedBy;
+    return Object.hashAll([
+      _$data.containsKey('acceptedBy') ? l$acceptedBy : const {},
+      _$data.containsKey('contentSlug') ? l$contentSlug : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('coupleMembers_aggregate') ? l$coupleMembers_aggregate : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('declinedAt') ? l$declinedAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('proposedBy') ? l$proposedBy : const {},
+    ]);
+  }
+}
+
+class InputspiceCardPlays_stream_cursor_input {
+  factory InputspiceCardPlays_stream_cursor_input({
+    required InputspiceCardPlays_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputspiceCardPlays_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputspiceCardPlays_stream_cursor_input._(this._$data);
+
+  factory InputspiceCardPlays_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputspiceCardPlays_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputspiceCardPlays_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputspiceCardPlays_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputspiceCardPlays_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceCardPlays_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputspiceCardPlays_stream_cursor_value_input {
+  factory InputspiceCardPlays_stream_cursor_value_input({
+    String? acceptedBy,
+    String? contentSlug,
+    String? coupleId,
+    DateTime? createdAt,
+    DateTime? declinedAt,
+    String? id,
+    String? proposedBy,
+  }) => InputspiceCardPlays_stream_cursor_value_input._({
+    if (acceptedBy != null) r'acceptedBy': acceptedBy,
+    if (contentSlug != null) r'contentSlug': contentSlug,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (declinedAt != null) r'declinedAt': declinedAt,
+    if (id != null) r'id': id,
+    if (proposedBy != null) r'proposedBy': proposedBy,
+  });
+
+  InputspiceCardPlays_stream_cursor_value_input._(this._$data);
+
+  factory InputspiceCardPlays_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('acceptedBy')) {
+      final l$acceptedBy = data['acceptedBy'];
+      result$data['acceptedBy'] = (l$acceptedBy as String?);
+    }
+    if (data.containsKey('contentSlug')) {
+      final l$contentSlug = data['contentSlug'];
+      result$data['contentSlug'] = (l$contentSlug as String?);
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('declinedAt')) {
+      final l$declinedAt = data['declinedAt'];
+      result$data['declinedAt'] = l$declinedAt == null
+          ? null
+          : DateTime.parse((l$declinedAt as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('proposedBy')) {
+      final l$proposedBy = data['proposedBy'];
+      result$data['proposedBy'] = (l$proposedBy as String?);
+    }
+    return InputspiceCardPlays_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get acceptedBy => (_$data['acceptedBy'] as String?);
+
+  String? get contentSlug => (_$data['contentSlug'] as String?);
+
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
+
+  DateTime? get declinedAt => (_$data['declinedAt'] as DateTime?);
+
+  String? get id => (_$data['id'] as String?);
+
+  String? get proposedBy => (_$data['proposedBy'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('acceptedBy')) {
+      final l$acceptedBy = acceptedBy;
+      result$data['acceptedBy'] = l$acceptedBy;
+    }
+    if (_$data.containsKey('contentSlug')) {
+      final l$contentSlug = contentSlug;
+      result$data['contentSlug'] = l$contentSlug;
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('declinedAt')) {
+      final l$declinedAt = declinedAt;
+      result$data['declinedAt'] = l$declinedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$declinedAt);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('proposedBy')) {
+      final l$proposedBy = proposedBy;
+      result$data['proposedBy'] = l$proposedBy;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceCardPlays_stream_cursor_value_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$acceptedBy = acceptedBy;
+    final lOther$acceptedBy = other.acceptedBy;
+    if (_$data.containsKey('acceptedBy') != other._$data.containsKey('acceptedBy')) {
+      return false;
+    }
+    if (l$acceptedBy != lOther$acceptedBy) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (_$data.containsKey('contentSlug') != other._$data.containsKey('contentSlug')) {
+      return false;
+    }
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$declinedAt = declinedAt;
+    final lOther$declinedAt = other.declinedAt;
+    if (_$data.containsKey('declinedAt') != other._$data.containsKey('declinedAt')) {
+      return false;
+    }
+    if (l$declinedAt != lOther$declinedAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$proposedBy = proposedBy;
+    final lOther$proposedBy = other.proposedBy;
+    if (_$data.containsKey('proposedBy') != other._$data.containsKey('proposedBy')) {
+      return false;
+    }
+    if (l$proposedBy != lOther$proposedBy) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$acceptedBy = acceptedBy;
+    final l$contentSlug = contentSlug;
+    final l$coupleId = coupleId;
+    final l$createdAt = createdAt;
+    final l$declinedAt = declinedAt;
+    final l$id = id;
+    final l$proposedBy = proposedBy;
+    return Object.hashAll([
+      _$data.containsKey('acceptedBy') ? l$acceptedBy : const {},
+      _$data.containsKey('contentSlug') ? l$contentSlug : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('declinedAt') ? l$declinedAt : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('proposedBy') ? l$proposedBy : const {},
+    ]);
+  }
+}
+
+class InputspiceChallengeAct_args {
+  factory InputspiceChallengeAct_args({String? action}) =>
+      InputspiceChallengeAct_args._({if (action != null) r'action': action});
+
+  InputspiceChallengeAct_args._(this._$data);
+
+  factory InputspiceChallengeAct_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('action')) {
+      final l$action = data['action'];
+      result$data['action'] = (l$action as String?);
+    }
+    return InputspiceChallengeAct_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get action => (_$data['action'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('action')) {
+      final l$action = action;
+      result$data['action'] = l$action;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceChallengeAct_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$action = action;
+    final lOther$action = other.action;
+    if (_$data.containsKey('action') != other._$data.containsKey('action')) {
+      return false;
+    }
+    if (l$action != lOther$action) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$action = action;
+    return Object.hashAll([_$data.containsKey('action') ? l$action : const {}]);
+  }
+}
+
+class InputspiceChallenges_bool_exp {
+  factory InputspiceChallenges_bool_exp({
+    List<InputspiceChallenges_bool_exp>? $_and,
+    InputspiceChallenges_bool_exp? $_not,
+    List<InputspiceChallenges_bool_exp>? $_or,
+    Inputuuid_array_comparison_exp? acceptedBy,
+    InputString_comparison_exp? contentSlug,
+    Inputuuid_comparison_exp? coupleId,
+    InputcoupleMembers_bool_exp? coupleMembers,
+    Inputtimestamptz_comparison_exp? createdAt,
+    Inputuuid_array_comparison_exp? doneBy,
+    Inputuuid_comparison_exp? id,
+    Inputuuid_array_comparison_exp? seenBy,
+    Inputsmallint_comparison_exp? swaps,
+    Inputdate_comparison_exp? weekStart,
+  }) => InputspiceChallenges_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (acceptedBy != null) r'acceptedBy': acceptedBy,
+    if (contentSlug != null) r'contentSlug': contentSlug,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (coupleMembers != null) r'coupleMembers': coupleMembers,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (doneBy != null) r'doneBy': doneBy,
+    if (id != null) r'id': id,
+    if (seenBy != null) r'seenBy': seenBy,
+    if (swaps != null) r'swaps': swaps,
+    if (weekStart != null) r'weekStart': weekStart,
+  });
+
+  InputspiceChallenges_bool_exp._(this._$data);
+
+  factory InputspiceChallenges_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputspiceChallenges_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputspiceChallenges_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputspiceChallenges_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('acceptedBy')) {
+      final l$acceptedBy = data['acceptedBy'];
+      result$data['acceptedBy'] = l$acceptedBy == null
+          ? null
+          : Inputuuid_array_comparison_exp.fromJson((l$acceptedBy as Map<String, dynamic>));
+    }
+    if (data.containsKey('contentSlug')) {
+      final l$contentSlug = data['contentSlug'];
+      result$data['contentSlug'] = l$contentSlug == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$contentSlug as Map<String, dynamic>));
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$coupleId as Map<String, dynamic>));
+    }
+    if (data.containsKey('coupleMembers')) {
+      final l$coupleMembers = data['coupleMembers'];
+      result$data['coupleMembers'] = l$coupleMembers == null
+          ? null
+          : InputcoupleMembers_bool_exp.fromJson((l$coupleMembers as Map<String, dynamic>));
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('doneBy')) {
+      final l$doneBy = data['doneBy'];
+      result$data['doneBy'] = l$doneBy == null
+          ? null
+          : Inputuuid_array_comparison_exp.fromJson((l$doneBy as Map<String, dynamic>));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$id as Map<String, dynamic>));
+    }
+    if (data.containsKey('seenBy')) {
+      final l$seenBy = data['seenBy'];
+      result$data['seenBy'] = l$seenBy == null
+          ? null
+          : Inputuuid_array_comparison_exp.fromJson((l$seenBy as Map<String, dynamic>));
+    }
+    if (data.containsKey('swaps')) {
+      final l$swaps = data['swaps'];
+      result$data['swaps'] = l$swaps == null
+          ? null
+          : Inputsmallint_comparison_exp.fromJson((l$swaps as Map<String, dynamic>));
+    }
+    if (data.containsKey('weekStart')) {
+      final l$weekStart = data['weekStart'];
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : Inputdate_comparison_exp.fromJson((l$weekStart as Map<String, dynamic>));
+    }
+    return InputspiceChallenges_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputspiceChallenges_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputspiceChallenges_bool_exp>?);
+
+  InputspiceChallenges_bool_exp? get $_not => (_$data['_not'] as InputspiceChallenges_bool_exp?);
+
+  List<InputspiceChallenges_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputspiceChallenges_bool_exp>?);
+
+  Inputuuid_array_comparison_exp? get acceptedBy =>
+      (_$data['acceptedBy'] as Inputuuid_array_comparison_exp?);
+
+  InputString_comparison_exp? get contentSlug =>
+      (_$data['contentSlug'] as InputString_comparison_exp?);
+
+  Inputuuid_comparison_exp? get coupleId => (_$data['coupleId'] as Inputuuid_comparison_exp?);
+
+  InputcoupleMembers_bool_exp? get coupleMembers =>
+      (_$data['coupleMembers'] as InputcoupleMembers_bool_exp?);
+
+  Inputtimestamptz_comparison_exp? get createdAt =>
+      (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_array_comparison_exp? get doneBy =>
+      (_$data['doneBy'] as Inputuuid_array_comparison_exp?);
+
+  Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
+
+  Inputuuid_array_comparison_exp? get seenBy =>
+      (_$data['seenBy'] as Inputuuid_array_comparison_exp?);
+
+  Inputsmallint_comparison_exp? get swaps => (_$data['swaps'] as Inputsmallint_comparison_exp?);
+
+  Inputdate_comparison_exp? get weekStart => (_$data['weekStart'] as Inputdate_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('acceptedBy')) {
+      final l$acceptedBy = acceptedBy;
+      result$data['acceptedBy'] = l$acceptedBy?.toJson();
+    }
+    if (_$data.containsKey('contentSlug')) {
+      final l$contentSlug = contentSlug;
+      result$data['contentSlug'] = l$contentSlug?.toJson();
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId?.toJson();
+    }
+    if (_$data.containsKey('coupleMembers')) {
+      final l$coupleMembers = coupleMembers;
+      result$data['coupleMembers'] = l$coupleMembers?.toJson();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('doneBy')) {
+      final l$doneBy = doneBy;
+      result$data['doneBy'] = l$doneBy?.toJson();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('seenBy')) {
+      final l$seenBy = seenBy;
+      result$data['seenBy'] = l$seenBy?.toJson();
+    }
+    if (_$data.containsKey('swaps')) {
+      final l$swaps = swaps;
+      result$data['swaps'] = l$swaps?.toJson();
+    }
+    if (_$data.containsKey('weekStart')) {
+      final l$weekStart = weekStart;
+      result$data['weekStart'] = l$weekStart?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceChallenges_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$acceptedBy = acceptedBy;
+    final lOther$acceptedBy = other.acceptedBy;
+    if (_$data.containsKey('acceptedBy') != other._$data.containsKey('acceptedBy')) {
+      return false;
+    }
+    if (l$acceptedBy != lOther$acceptedBy) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (_$data.containsKey('contentSlug') != other._$data.containsKey('contentSlug')) {
+      return false;
+    }
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$coupleMembers = coupleMembers;
+    final lOther$coupleMembers = other.coupleMembers;
+    if (_$data.containsKey('coupleMembers') != other._$data.containsKey('coupleMembers')) {
+      return false;
+    }
+    if (l$coupleMembers != lOther$coupleMembers) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$doneBy = doneBy;
+    final lOther$doneBy = other.doneBy;
+    if (_$data.containsKey('doneBy') != other._$data.containsKey('doneBy')) {
+      return false;
+    }
+    if (l$doneBy != lOther$doneBy) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$seenBy = seenBy;
+    final lOther$seenBy = other.seenBy;
+    if (_$data.containsKey('seenBy') != other._$data.containsKey('seenBy')) {
+      return false;
+    }
+    if (l$seenBy != lOther$seenBy) {
+      return false;
+    }
+    final l$swaps = swaps;
+    final lOther$swaps = other.swaps;
+    if (_$data.containsKey('swaps') != other._$data.containsKey('swaps')) {
+      return false;
+    }
+    if (l$swaps != lOther$swaps) {
+      return false;
+    }
+    final l$weekStart = weekStart;
+    final lOther$weekStart = other.weekStart;
+    if (_$data.containsKey('weekStart') != other._$data.containsKey('weekStart')) {
+      return false;
+    }
+    if (l$weekStart != lOther$weekStart) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$acceptedBy = acceptedBy;
+    final l$contentSlug = contentSlug;
+    final l$coupleId = coupleId;
+    final l$coupleMembers = coupleMembers;
+    final l$createdAt = createdAt;
+    final l$doneBy = doneBy;
+    final l$id = id;
+    final l$seenBy = seenBy;
+    final l$swaps = swaps;
+    final l$weekStart = weekStart;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('acceptedBy') ? l$acceptedBy : const {},
+      _$data.containsKey('contentSlug') ? l$contentSlug : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('coupleMembers') ? l$coupleMembers : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('doneBy') ? l$doneBy : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('seenBy') ? l$seenBy : const {},
+      _$data.containsKey('swaps') ? l$swaps : const {},
+      _$data.containsKey('weekStart') ? l$weekStart : const {},
+    ]);
+  }
+}
+
+class InputspiceChallenges_order_by {
+  factory InputspiceChallenges_order_by({
+    Enumorder_by? acceptedBy,
+    Enumorder_by? contentSlug,
+    Enumorder_by? coupleId,
+    InputcoupleMembers_aggregate_order_by? coupleMembers_aggregate,
+    Enumorder_by? createdAt,
+    Enumorder_by? doneBy,
+    Enumorder_by? id,
+    Enumorder_by? seenBy,
+    Enumorder_by? swaps,
+    Enumorder_by? weekStart,
+  }) => InputspiceChallenges_order_by._({
+    if (acceptedBy != null) r'acceptedBy': acceptedBy,
+    if (contentSlug != null) r'contentSlug': contentSlug,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (coupleMembers_aggregate != null) r'coupleMembers_aggregate': coupleMembers_aggregate,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (doneBy != null) r'doneBy': doneBy,
+    if (id != null) r'id': id,
+    if (seenBy != null) r'seenBy': seenBy,
+    if (swaps != null) r'swaps': swaps,
+    if (weekStart != null) r'weekStart': weekStart,
+  });
+
+  InputspiceChallenges_order_by._(this._$data);
+
+  factory InputspiceChallenges_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('acceptedBy')) {
+      final l$acceptedBy = data['acceptedBy'];
+      result$data['acceptedBy'] = l$acceptedBy == null
+          ? null
+          : fromJsonEnumorder_by((l$acceptedBy as String));
+    }
+    if (data.containsKey('contentSlug')) {
+      final l$contentSlug = data['contentSlug'];
+      result$data['contentSlug'] = l$contentSlug == null
+          ? null
+          : fromJsonEnumorder_by((l$contentSlug as String));
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = l$coupleId == null
+          ? null
+          : fromJsonEnumorder_by((l$coupleId as String));
+    }
+    if (data.containsKey('coupleMembers_aggregate')) {
+      final l$coupleMembers_aggregate = data['coupleMembers_aggregate'];
+      result$data['coupleMembers_aggregate'] = l$coupleMembers_aggregate == null
+          ? null
+          : InputcoupleMembers_aggregate_order_by.fromJson(
+              (l$coupleMembers_aggregate as Map<String, dynamic>),
+            );
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('doneBy')) {
+      final l$doneBy = data['doneBy'];
+      result$data['doneBy'] = l$doneBy == null ? null : fromJsonEnumorder_by((l$doneBy as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null ? null : fromJsonEnumorder_by((l$id as String));
+    }
+    if (data.containsKey('seenBy')) {
+      final l$seenBy = data['seenBy'];
+      result$data['seenBy'] = l$seenBy == null ? null : fromJsonEnumorder_by((l$seenBy as String));
+    }
+    if (data.containsKey('swaps')) {
+      final l$swaps = data['swaps'];
+      result$data['swaps'] = l$swaps == null ? null : fromJsonEnumorder_by((l$swaps as String));
+    }
+    if (data.containsKey('weekStart')) {
+      final l$weekStart = data['weekStart'];
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : fromJsonEnumorder_by((l$weekStart as String));
+    }
+    return InputspiceChallenges_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get acceptedBy => (_$data['acceptedBy'] as Enumorder_by?);
+
+  Enumorder_by? get contentSlug => (_$data['contentSlug'] as Enumorder_by?);
+
+  Enumorder_by? get coupleId => (_$data['coupleId'] as Enumorder_by?);
+
+  InputcoupleMembers_aggregate_order_by? get coupleMembers_aggregate =>
+      (_$data['coupleMembers_aggregate'] as InputcoupleMembers_aggregate_order_by?);
+
+  Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get doneBy => (_$data['doneBy'] as Enumorder_by?);
+
+  Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
+
+  Enumorder_by? get seenBy => (_$data['seenBy'] as Enumorder_by?);
+
+  Enumorder_by? get swaps => (_$data['swaps'] as Enumorder_by?);
+
+  Enumorder_by? get weekStart => (_$data['weekStart'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('acceptedBy')) {
+      final l$acceptedBy = acceptedBy;
+      result$data['acceptedBy'] = l$acceptedBy == null ? null : toJsonEnumorder_by(l$acceptedBy);
+    }
+    if (_$data.containsKey('contentSlug')) {
+      final l$contentSlug = contentSlug;
+      result$data['contentSlug'] = l$contentSlug == null ? null : toJsonEnumorder_by(l$contentSlug);
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId == null ? null : toJsonEnumorder_by(l$coupleId);
+    }
+    if (_$data.containsKey('coupleMembers_aggregate')) {
+      final l$coupleMembers_aggregate = coupleMembers_aggregate;
+      result$data['coupleMembers_aggregate'] = l$coupleMembers_aggregate?.toJson();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('doneBy')) {
+      final l$doneBy = doneBy;
+      result$data['doneBy'] = l$doneBy == null ? null : toJsonEnumorder_by(l$doneBy);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJsonEnumorder_by(l$id);
+    }
+    if (_$data.containsKey('seenBy')) {
+      final l$seenBy = seenBy;
+      result$data['seenBy'] = l$seenBy == null ? null : toJsonEnumorder_by(l$seenBy);
+    }
+    if (_$data.containsKey('swaps')) {
+      final l$swaps = swaps;
+      result$data['swaps'] = l$swaps == null ? null : toJsonEnumorder_by(l$swaps);
+    }
+    if (_$data.containsKey('weekStart')) {
+      final l$weekStart = weekStart;
+      result$data['weekStart'] = l$weekStart == null ? null : toJsonEnumorder_by(l$weekStart);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceChallenges_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$acceptedBy = acceptedBy;
+    final lOther$acceptedBy = other.acceptedBy;
+    if (_$data.containsKey('acceptedBy') != other._$data.containsKey('acceptedBy')) {
+      return false;
+    }
+    if (l$acceptedBy != lOther$acceptedBy) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (_$data.containsKey('contentSlug') != other._$data.containsKey('contentSlug')) {
+      return false;
+    }
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$coupleMembers_aggregate = coupleMembers_aggregate;
+    final lOther$coupleMembers_aggregate = other.coupleMembers_aggregate;
+    if (_$data.containsKey('coupleMembers_aggregate') !=
+        other._$data.containsKey('coupleMembers_aggregate')) {
+      return false;
+    }
+    if (l$coupleMembers_aggregate != lOther$coupleMembers_aggregate) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$doneBy = doneBy;
+    final lOther$doneBy = other.doneBy;
+    if (_$data.containsKey('doneBy') != other._$data.containsKey('doneBy')) {
+      return false;
+    }
+    if (l$doneBy != lOther$doneBy) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$seenBy = seenBy;
+    final lOther$seenBy = other.seenBy;
+    if (_$data.containsKey('seenBy') != other._$data.containsKey('seenBy')) {
+      return false;
+    }
+    if (l$seenBy != lOther$seenBy) {
+      return false;
+    }
+    final l$swaps = swaps;
+    final lOther$swaps = other.swaps;
+    if (_$data.containsKey('swaps') != other._$data.containsKey('swaps')) {
+      return false;
+    }
+    if (l$swaps != lOther$swaps) {
+      return false;
+    }
+    final l$weekStart = weekStart;
+    final lOther$weekStart = other.weekStart;
+    if (_$data.containsKey('weekStart') != other._$data.containsKey('weekStart')) {
+      return false;
+    }
+    if (l$weekStart != lOther$weekStart) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$acceptedBy = acceptedBy;
+    final l$contentSlug = contentSlug;
+    final l$coupleId = coupleId;
+    final l$coupleMembers_aggregate = coupleMembers_aggregate;
+    final l$createdAt = createdAt;
+    final l$doneBy = doneBy;
+    final l$id = id;
+    final l$seenBy = seenBy;
+    final l$swaps = swaps;
+    final l$weekStart = weekStart;
+    return Object.hashAll([
+      _$data.containsKey('acceptedBy') ? l$acceptedBy : const {},
+      _$data.containsKey('contentSlug') ? l$contentSlug : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('coupleMembers_aggregate') ? l$coupleMembers_aggregate : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('doneBy') ? l$doneBy : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('seenBy') ? l$seenBy : const {},
+      _$data.containsKey('swaps') ? l$swaps : const {},
+      _$data.containsKey('weekStart') ? l$weekStart : const {},
+    ]);
+  }
+}
+
+class InputspiceChallenges_stream_cursor_input {
+  factory InputspiceChallenges_stream_cursor_input({
+    required InputspiceChallenges_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputspiceChallenges_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputspiceChallenges_stream_cursor_input._(this._$data);
+
+  factory InputspiceChallenges_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputspiceChallenges_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputspiceChallenges_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputspiceChallenges_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputspiceChallenges_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceChallenges_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputspiceChallenges_stream_cursor_value_input {
+  factory InputspiceChallenges_stream_cursor_value_input({
+    List<String>? acceptedBy,
+    String? contentSlug,
+    String? coupleId,
+    DateTime? createdAt,
+    List<String>? doneBy,
+    String? id,
+    List<String>? seenBy,
+    int? swaps,
+    DateTime? weekStart,
+  }) => InputspiceChallenges_stream_cursor_value_input._({
+    if (acceptedBy != null) r'acceptedBy': acceptedBy,
+    if (contentSlug != null) r'contentSlug': contentSlug,
+    if (coupleId != null) r'coupleId': coupleId,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (doneBy != null) r'doneBy': doneBy,
+    if (id != null) r'id': id,
+    if (seenBy != null) r'seenBy': seenBy,
+    if (swaps != null) r'swaps': swaps,
+    if (weekStart != null) r'weekStart': weekStart,
+  });
+
+  InputspiceChallenges_stream_cursor_value_input._(this._$data);
+
+  factory InputspiceChallenges_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('acceptedBy')) {
+      final l$acceptedBy = data['acceptedBy'];
+      result$data['acceptedBy'] = (l$acceptedBy as List<dynamic>?)
+          ?.map((e) => (e as String))
+          .toList();
+    }
+    if (data.containsKey('contentSlug')) {
+      final l$contentSlug = data['contentSlug'];
+      result$data['contentSlug'] = (l$contentSlug as String?);
+    }
+    if (data.containsKey('coupleId')) {
+      final l$coupleId = data['coupleId'];
+      result$data['coupleId'] = (l$coupleId as String?);
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('doneBy')) {
+      final l$doneBy = data['doneBy'];
+      result$data['doneBy'] = (l$doneBy as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('seenBy')) {
+      final l$seenBy = data['seenBy'];
+      result$data['seenBy'] = (l$seenBy as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('swaps')) {
+      final l$swaps = data['swaps'];
+      result$data['swaps'] = (l$swaps as int?);
+    }
+    if (data.containsKey('weekStart')) {
+      final l$weekStart = data['weekStart'];
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : DateTime.parse((l$weekStart as String));
+    }
+    return InputspiceChallenges_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<String>? get acceptedBy => (_$data['acceptedBy'] as List<String>?);
+
+  String? get contentSlug => (_$data['contentSlug'] as String?);
+
+  String? get coupleId => (_$data['coupleId'] as String?);
+
+  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
+
+  List<String>? get doneBy => (_$data['doneBy'] as List<String>?);
+
+  String? get id => (_$data['id'] as String?);
+
+  List<String>? get seenBy => (_$data['seenBy'] as List<String>?);
+
+  int? get swaps => (_$data['swaps'] as int?);
+
+  DateTime? get weekStart => (_$data['weekStart'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('acceptedBy')) {
+      final l$acceptedBy = acceptedBy;
+      result$data['acceptedBy'] = l$acceptedBy?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('contentSlug')) {
+      final l$contentSlug = contentSlug;
+      result$data['contentSlug'] = l$contentSlug;
+    }
+    if (_$data.containsKey('coupleId')) {
+      final l$coupleId = coupleId;
+      result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('doneBy')) {
+      final l$doneBy = doneBy;
+      result$data['doneBy'] = l$doneBy?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('seenBy')) {
+      final l$seenBy = seenBy;
+      result$data['seenBy'] = l$seenBy?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('swaps')) {
+      final l$swaps = swaps;
+      result$data['swaps'] = l$swaps;
+    }
+    if (_$data.containsKey('weekStart')) {
+      final l$weekStart = weekStart;
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceChallenges_stream_cursor_value_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$acceptedBy = acceptedBy;
+    final lOther$acceptedBy = other.acceptedBy;
+    if (_$data.containsKey('acceptedBy') != other._$data.containsKey('acceptedBy')) {
+      return false;
+    }
+    if (l$acceptedBy != null && lOther$acceptedBy != null) {
+      if (l$acceptedBy.length != lOther$acceptedBy.length) {
+        return false;
+      }
+      for (int i = 0; i < l$acceptedBy.length; i++) {
+        final l$acceptedBy$entry = l$acceptedBy[i];
+        final lOther$acceptedBy$entry = lOther$acceptedBy[i];
+        if (l$acceptedBy$entry != lOther$acceptedBy$entry) {
+          return false;
+        }
+      }
+    } else if (l$acceptedBy != lOther$acceptedBy) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (_$data.containsKey('contentSlug') != other._$data.containsKey('contentSlug')) {
+      return false;
+    }
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
+      return false;
+    }
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$doneBy = doneBy;
+    final lOther$doneBy = other.doneBy;
+    if (_$data.containsKey('doneBy') != other._$data.containsKey('doneBy')) {
+      return false;
+    }
+    if (l$doneBy != null && lOther$doneBy != null) {
+      if (l$doneBy.length != lOther$doneBy.length) {
+        return false;
+      }
+      for (int i = 0; i < l$doneBy.length; i++) {
+        final l$doneBy$entry = l$doneBy[i];
+        final lOther$doneBy$entry = lOther$doneBy[i];
+        if (l$doneBy$entry != lOther$doneBy$entry) {
+          return false;
+        }
+      }
+    } else if (l$doneBy != lOther$doneBy) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$seenBy = seenBy;
+    final lOther$seenBy = other.seenBy;
+    if (_$data.containsKey('seenBy') != other._$data.containsKey('seenBy')) {
+      return false;
+    }
+    if (l$seenBy != null && lOther$seenBy != null) {
+      if (l$seenBy.length != lOther$seenBy.length) {
+        return false;
+      }
+      for (int i = 0; i < l$seenBy.length; i++) {
+        final l$seenBy$entry = l$seenBy[i];
+        final lOther$seenBy$entry = lOther$seenBy[i];
+        if (l$seenBy$entry != lOther$seenBy$entry) {
+          return false;
+        }
+      }
+    } else if (l$seenBy != lOther$seenBy) {
+      return false;
+    }
+    final l$swaps = swaps;
+    final lOther$swaps = other.swaps;
+    if (_$data.containsKey('swaps') != other._$data.containsKey('swaps')) {
+      return false;
+    }
+    if (l$swaps != lOther$swaps) {
+      return false;
+    }
+    final l$weekStart = weekStart;
+    final lOther$weekStart = other.weekStart;
+    if (_$data.containsKey('weekStart') != other._$data.containsKey('weekStart')) {
+      return false;
+    }
+    if (l$weekStart != lOther$weekStart) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$acceptedBy = acceptedBy;
+    final l$contentSlug = contentSlug;
+    final l$coupleId = coupleId;
+    final l$createdAt = createdAt;
+    final l$doneBy = doneBy;
+    final l$id = id;
+    final l$seenBy = seenBy;
+    final l$swaps = swaps;
+    final l$weekStart = weekStart;
+    return Object.hashAll([
+      _$data.containsKey('acceptedBy')
+          ? l$acceptedBy == null
+                ? null
+                : Object.hashAll(l$acceptedBy.map((v) => v))
+          : const {},
+      _$data.containsKey('contentSlug') ? l$contentSlug : const {},
+      _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('doneBy')
+          ? l$doneBy == null
+                ? null
+                : Object.hashAll(l$doneBy.map((v) => v))
+          : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('seenBy')
+          ? l$seenBy == null
+                ? null
+                : Object.hashAll(l$seenBy.map((v) => v))
+          : const {},
+      _$data.containsKey('swaps') ? l$swaps : const {},
+      _$data.containsKey('weekStart') ? l$weekStart : const {},
+    ]);
+  }
+}
+
+class InputspiceDesireAnswers_bool_exp {
+  factory InputspiceDesireAnswers_bool_exp({
+    List<InputspiceDesireAnswers_bool_exp>? $_and,
+    InputspiceDesireAnswers_bool_exp? $_not,
+    List<InputspiceDesireAnswers_bool_exp>? $_or,
+    InputString_comparison_exp? answer,
+    InputString_comparison_exp? contentSlug,
+    Inputtimestamptz_comparison_exp? createdAt,
+    Inputtimestamptz_comparison_exp? updatedAt,
+    Inputuuid_comparison_exp? userId,
+  }) => InputspiceDesireAnswers_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (answer != null) r'answer': answer,
+    if (contentSlug != null) r'contentSlug': contentSlug,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+    if (userId != null) r'userId': userId,
+  });
+
+  InputspiceDesireAnswers_bool_exp._(this._$data);
+
+  factory InputspiceDesireAnswers_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputspiceDesireAnswers_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputspiceDesireAnswers_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputspiceDesireAnswers_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('answer')) {
+      final l$answer = data['answer'];
+      result$data['answer'] = l$answer == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$answer as Map<String, dynamic>));
+    }
+    if (data.containsKey('contentSlug')) {
+      final l$contentSlug = data['contentSlug'];
+      result$data['contentSlug'] = l$contentSlug == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$contentSlug as Map<String, dynamic>));
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : Inputtimestamptz_comparison_exp.fromJson((l$updatedAt as Map<String, dynamic>));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$userId as Map<String, dynamic>));
+    }
+    return InputspiceDesireAnswers_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputspiceDesireAnswers_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputspiceDesireAnswers_bool_exp>?);
+
+  InputspiceDesireAnswers_bool_exp? get $_not =>
+      (_$data['_not'] as InputspiceDesireAnswers_bool_exp?);
+
+  List<InputspiceDesireAnswers_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputspiceDesireAnswers_bool_exp>?);
+
+  InputString_comparison_exp? get answer => (_$data['answer'] as InputString_comparison_exp?);
+
+  InputString_comparison_exp? get contentSlug =>
+      (_$data['contentSlug'] as InputString_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get createdAt =>
+      (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputtimestamptz_comparison_exp? get updatedAt =>
+      (_$data['updatedAt'] as Inputtimestamptz_comparison_exp?);
+
+  Inputuuid_comparison_exp? get userId => (_$data['userId'] as Inputuuid_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('answer')) {
+      final l$answer = answer;
+      result$data['answer'] = l$answer?.toJson();
+    }
+    if (_$data.containsKey('contentSlug')) {
+      final l$contentSlug = contentSlug;
+      result$data['contentSlug'] = l$contentSlug?.toJson();
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt?.toJson();
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt?.toJson();
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceDesireAnswers_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$answer = answer;
+    final lOther$answer = other.answer;
+    if (_$data.containsKey('answer') != other._$data.containsKey('answer')) {
+      return false;
+    }
+    if (l$answer != lOther$answer) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (_$data.containsKey('contentSlug') != other._$data.containsKey('contentSlug')) {
+      return false;
+    }
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$answer = answer;
+    final l$contentSlug = contentSlug;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    final l$userId = userId;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('answer') ? l$answer : const {},
+      _$data.containsKey('contentSlug') ? l$contentSlug : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+    ]);
+  }
+}
+
+class InputspiceDesireAnswers_insert_input {
+  factory InputspiceDesireAnswers_insert_input({String? answer, String? contentSlug}) =>
+      InputspiceDesireAnswers_insert_input._({
+        if (answer != null) r'answer': answer,
+        if (contentSlug != null) r'contentSlug': contentSlug,
+      });
+
+  InputspiceDesireAnswers_insert_input._(this._$data);
+
+  factory InputspiceDesireAnswers_insert_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('answer')) {
+      final l$answer = data['answer'];
+      result$data['answer'] = (l$answer as String?);
+    }
+    if (data.containsKey('contentSlug')) {
+      final l$contentSlug = data['contentSlug'];
+      result$data['contentSlug'] = (l$contentSlug as String?);
+    }
+    return InputspiceDesireAnswers_insert_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get answer => (_$data['answer'] as String?);
+
+  String? get contentSlug => (_$data['contentSlug'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('answer')) {
+      final l$answer = answer;
+      result$data['answer'] = l$answer;
+    }
+    if (_$data.containsKey('contentSlug')) {
+      final l$contentSlug = contentSlug;
+      result$data['contentSlug'] = l$contentSlug;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceDesireAnswers_insert_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$answer = answer;
+    final lOther$answer = other.answer;
+    if (_$data.containsKey('answer') != other._$data.containsKey('answer')) {
+      return false;
+    }
+    if (l$answer != lOther$answer) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (_$data.containsKey('contentSlug') != other._$data.containsKey('contentSlug')) {
+      return false;
+    }
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$answer = answer;
+    final l$contentSlug = contentSlug;
+    return Object.hashAll([
+      _$data.containsKey('answer') ? l$answer : const {},
+      _$data.containsKey('contentSlug') ? l$contentSlug : const {},
+    ]);
+  }
+}
+
+class InputspiceDesireAnswers_on_conflict {
+  factory InputspiceDesireAnswers_on_conflict({
+    required EnumspiceDesireAnswers_constraint constraint,
+    List<EnumspiceDesireAnswers_update_column>? update_columns,
+    InputspiceDesireAnswers_bool_exp? where,
+  }) => InputspiceDesireAnswers_on_conflict._({
+    r'constraint': constraint,
+    if (update_columns != null) r'update_columns': update_columns,
+    if (where != null) r'where': where,
+  });
+
+  InputspiceDesireAnswers_on_conflict._(this._$data);
+
+  factory InputspiceDesireAnswers_on_conflict.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$constraint = data['constraint'];
+    result$data['constraint'] = fromJsonEnumspiceDesireAnswers_constraint((l$constraint as String));
+    if (data.containsKey('update_columns')) {
+      final l$update_columns = data['update_columns'];
+      result$data['update_columns'] = (l$update_columns as List<dynamic>)
+          .map((e) => fromJsonEnumspiceDesireAnswers_update_column((e as String)))
+          .toList();
+    }
+    if (data.containsKey('where')) {
+      final l$where = data['where'];
+      result$data['where'] = l$where == null
+          ? null
+          : InputspiceDesireAnswers_bool_exp.fromJson((l$where as Map<String, dynamic>));
+    }
+    return InputspiceDesireAnswers_on_conflict._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumspiceDesireAnswers_constraint get constraint =>
+      (_$data['constraint'] as EnumspiceDesireAnswers_constraint);
+
+  List<EnumspiceDesireAnswers_update_column>? get update_columns =>
+      (_$data['update_columns'] as List<EnumspiceDesireAnswers_update_column>?);
+
+  InputspiceDesireAnswers_bool_exp? get where =>
+      (_$data['where'] as InputspiceDesireAnswers_bool_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$constraint = constraint;
+    result$data['constraint'] = toJsonEnumspiceDesireAnswers_constraint(l$constraint);
+    if (_$data.containsKey('update_columns')) {
+      final l$update_columns = update_columns;
+      result$data['update_columns'] =
+          (l$update_columns as List<EnumspiceDesireAnswers_update_column>)
+              .map((e) => toJsonEnumspiceDesireAnswers_update_column(e))
+              .toList();
+    }
+    if (_$data.containsKey('where')) {
+      final l$where = where;
+      result$data['where'] = l$where?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceDesireAnswers_on_conflict || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$constraint = constraint;
+    final lOther$constraint = other.constraint;
+    if (l$constraint != lOther$constraint) {
+      return false;
+    }
+    final l$update_columns = update_columns;
+    final lOther$update_columns = other.update_columns;
+    if (_$data.containsKey('update_columns') != other._$data.containsKey('update_columns')) {
+      return false;
+    }
+    if (l$update_columns != null && lOther$update_columns != null) {
+      if (l$update_columns.length != lOther$update_columns.length) {
+        return false;
+      }
+      for (int i = 0; i < l$update_columns.length; i++) {
+        final l$update_columns$entry = l$update_columns[i];
+        final lOther$update_columns$entry = lOther$update_columns[i];
+        if (l$update_columns$entry != lOther$update_columns$entry) {
+          return false;
+        }
+      }
+    } else if (l$update_columns != lOther$update_columns) {
+      return false;
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (_$data.containsKey('where') != other._$data.containsKey('where')) {
+      return false;
+    }
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$constraint = constraint;
+    final l$update_columns = update_columns;
+    final l$where = where;
+    return Object.hashAll([
+      l$constraint,
+      _$data.containsKey('update_columns')
+          ? l$update_columns == null
+                ? null
+                : Object.hashAll(l$update_columns.map((v) => v))
+          : const {},
+      _$data.containsKey('where') ? l$where : const {},
+    ]);
+  }
+}
+
+class InputspiceDesireAnswers_order_by {
+  factory InputspiceDesireAnswers_order_by({
+    Enumorder_by? answer,
+    Enumorder_by? contentSlug,
+    Enumorder_by? createdAt,
+    Enumorder_by? updatedAt,
+    Enumorder_by? userId,
+  }) => InputspiceDesireAnswers_order_by._({
+    if (answer != null) r'answer': answer,
+    if (contentSlug != null) r'contentSlug': contentSlug,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+    if (userId != null) r'userId': userId,
+  });
+
+  InputspiceDesireAnswers_order_by._(this._$data);
+
+  factory InputspiceDesireAnswers_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('answer')) {
+      final l$answer = data['answer'];
+      result$data['answer'] = l$answer == null ? null : fromJsonEnumorder_by((l$answer as String));
+    }
+    if (data.containsKey('contentSlug')) {
+      final l$contentSlug = data['contentSlug'];
+      result$data['contentSlug'] = l$contentSlug == null
+          ? null
+          : fromJsonEnumorder_by((l$contentSlug as String));
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : fromJsonEnumorder_by((l$createdAt as String));
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : fromJsonEnumorder_by((l$updatedAt as String));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null ? null : fromJsonEnumorder_by((l$userId as String));
+    }
+    return InputspiceDesireAnswers_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get answer => (_$data['answer'] as Enumorder_by?);
+
+  Enumorder_by? get contentSlug => (_$data['contentSlug'] as Enumorder_by?);
+
+  Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
+
+  Enumorder_by? get updatedAt => (_$data['updatedAt'] as Enumorder_by?);
+
+  Enumorder_by? get userId => (_$data['userId'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('answer')) {
+      final l$answer = answer;
+      result$data['answer'] = l$answer == null ? null : toJsonEnumorder_by(l$answer);
+    }
+    if (_$data.containsKey('contentSlug')) {
+      final l$contentSlug = contentSlug;
+      result$data['contentSlug'] = l$contentSlug == null ? null : toJsonEnumorder_by(l$contentSlug);
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt == null ? null : toJsonEnumorder_by(l$updatedAt);
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId == null ? null : toJsonEnumorder_by(l$userId);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceDesireAnswers_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$answer = answer;
+    final lOther$answer = other.answer;
+    if (_$data.containsKey('answer') != other._$data.containsKey('answer')) {
+      return false;
+    }
+    if (l$answer != lOther$answer) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (_$data.containsKey('contentSlug') != other._$data.containsKey('contentSlug')) {
+      return false;
+    }
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$answer = answer;
+    final l$contentSlug = contentSlug;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    final l$userId = userId;
+    return Object.hashAll([
+      _$data.containsKey('answer') ? l$answer : const {},
+      _$data.containsKey('contentSlug') ? l$contentSlug : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+    ]);
+  }
+}
+
+class InputspiceDesireAnswers_pk_columns_input {
+  factory InputspiceDesireAnswers_pk_columns_input({
+    required String contentSlug,
+    required String userId,
+  }) =>
+      InputspiceDesireAnswers_pk_columns_input._({r'contentSlug': contentSlug, r'userId': userId});
+
+  InputspiceDesireAnswers_pk_columns_input._(this._$data);
+
+  factory InputspiceDesireAnswers_pk_columns_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$contentSlug = data['contentSlug'];
+    result$data['contentSlug'] = (l$contentSlug as String);
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as String);
+    return InputspiceDesireAnswers_pk_columns_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get contentSlug => (_$data['contentSlug'] as String);
+
+  String get userId => (_$data['userId'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$contentSlug = contentSlug;
+    result$data['contentSlug'] = l$contentSlug;
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceDesireAnswers_pk_columns_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$contentSlug = contentSlug;
+    final l$userId = userId;
+    return Object.hashAll([l$contentSlug, l$userId]);
+  }
+}
+
+class InputspiceDesireAnswers_set_input {
+  factory InputspiceDesireAnswers_set_input({String? answer}) =>
+      InputspiceDesireAnswers_set_input._({if (answer != null) r'answer': answer});
+
+  InputspiceDesireAnswers_set_input._(this._$data);
+
+  factory InputspiceDesireAnswers_set_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('answer')) {
+      final l$answer = data['answer'];
+      result$data['answer'] = (l$answer as String?);
+    }
+    return InputspiceDesireAnswers_set_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get answer => (_$data['answer'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('answer')) {
+      final l$answer = answer;
+      result$data['answer'] = l$answer;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceDesireAnswers_set_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$answer = answer;
+    final lOther$answer = other.answer;
+    if (_$data.containsKey('answer') != other._$data.containsKey('answer')) {
+      return false;
+    }
+    if (l$answer != lOther$answer) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$answer = answer;
+    return Object.hashAll([_$data.containsKey('answer') ? l$answer : const {}]);
+  }
+}
+
+class InputspiceDesireAnswers_stream_cursor_input {
+  factory InputspiceDesireAnswers_stream_cursor_input({
+    required InputspiceDesireAnswers_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputspiceDesireAnswers_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputspiceDesireAnswers_stream_cursor_input._(this._$data);
+
+  factory InputspiceDesireAnswers_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputspiceDesireAnswers_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputspiceDesireAnswers_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputspiceDesireAnswers_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputspiceDesireAnswers_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceDesireAnswers_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputspiceDesireAnswers_stream_cursor_value_input {
+  factory InputspiceDesireAnswers_stream_cursor_value_input({
+    String? answer,
+    String? contentSlug,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? userId,
+  }) => InputspiceDesireAnswers_stream_cursor_value_input._({
+    if (answer != null) r'answer': answer,
+    if (contentSlug != null) r'contentSlug': contentSlug,
+    if (createdAt != null) r'createdAt': createdAt,
+    if (updatedAt != null) r'updatedAt': updatedAt,
+    if (userId != null) r'userId': userId,
+  });
+
+  InputspiceDesireAnswers_stream_cursor_value_input._(this._$data);
+
+  factory InputspiceDesireAnswers_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('answer')) {
+      final l$answer = data['answer'];
+      result$data['answer'] = (l$answer as String?);
+    }
+    if (data.containsKey('contentSlug')) {
+      final l$contentSlug = data['contentSlug'];
+      result$data['contentSlug'] = (l$contentSlug as String?);
+    }
+    if (data.containsKey('createdAt')) {
+      final l$createdAt = data['createdAt'];
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : DateTime.parse((l$createdAt as String));
+    }
+    if (data.containsKey('updatedAt')) {
+      final l$updatedAt = data['updatedAt'];
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : DateTime.parse((l$updatedAt as String));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = (l$userId as String?);
+    }
+    return InputspiceDesireAnswers_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get answer => (_$data['answer'] as String?);
+
+  String? get contentSlug => (_$data['contentSlug'] as String?);
+
+  DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
+
+  DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
+
+  String? get userId => (_$data['userId'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('answer')) {
+      final l$answer = answer;
+      result$data['answer'] = l$answer;
+    }
+    if (_$data.containsKey('contentSlug')) {
+      final l$contentSlug = contentSlug;
+      result$data['contentSlug'] = l$contentSlug;
+    }
+    if (_$data.containsKey('createdAt')) {
+      final l$createdAt = createdAt;
+      result$data['createdAt'] = l$createdAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$createdAt);
+    }
+    if (_$data.containsKey('updatedAt')) {
+      final l$updatedAt = updatedAt;
+      result$data['updatedAt'] = l$updatedAt == null
+          ? null
+          : ((v) => v.toUtc().toIso8601String())(l$updatedAt);
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceDesireAnswers_stream_cursor_value_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$answer = answer;
+    final lOther$answer = other.answer;
+    if (_$data.containsKey('answer') != other._$data.containsKey('answer')) {
+      return false;
+    }
+    if (l$answer != lOther$answer) {
+      return false;
+    }
+    final l$contentSlug = contentSlug;
+    final lOther$contentSlug = other.contentSlug;
+    if (_$data.containsKey('contentSlug') != other._$data.containsKey('contentSlug')) {
+      return false;
+    }
+    if (l$contentSlug != lOther$contentSlug) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
+      return false;
+    }
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (_$data.containsKey('updatedAt') != other._$data.containsKey('updatedAt')) {
+      return false;
+    }
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$answer = answer;
+    final l$contentSlug = contentSlug;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    final l$userId = userId;
+    return Object.hashAll([
+      _$data.containsKey('answer') ? l$answer : const {},
+      _$data.containsKey('contentSlug') ? l$contentSlug : const {},
+      _$data.containsKey('createdAt') ? l$createdAt : const {},
+      _$data.containsKey('updatedAt') ? l$updatedAt : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+    ]);
+  }
+}
+
+class InputspiceDesireAnswers_updates {
+  factory InputspiceDesireAnswers_updates({
+    InputspiceDesireAnswers_set_input? $_set,
+    required InputspiceDesireAnswers_bool_exp where,
+  }) => InputspiceDesireAnswers_updates._({if ($_set != null) r'_set': $_set, r'where': where});
+
+  InputspiceDesireAnswers_updates._(this._$data);
+
+  factory InputspiceDesireAnswers_updates.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_set')) {
+      final l$$_set = data['_set'];
+      result$data['_set'] = l$$_set == null
+          ? null
+          : InputspiceDesireAnswers_set_input.fromJson((l$$_set as Map<String, dynamic>));
+    }
+    final l$where = data['where'];
+    result$data['where'] = InputspiceDesireAnswers_bool_exp.fromJson(
+      (l$where as Map<String, dynamic>),
+    );
+    return InputspiceDesireAnswers_updates._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputspiceDesireAnswers_set_input? get $_set =>
+      (_$data['_set'] as InputspiceDesireAnswers_set_input?);
+
+  InputspiceDesireAnswers_bool_exp get where =>
+      (_$data['where'] as InputspiceDesireAnswers_bool_exp);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_set')) {
+      final l$$_set = $_set;
+      result$data['_set'] = l$$_set?.toJson();
+    }
+    final l$where = where;
+    result$data['where'] = l$where.toJson();
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceDesireAnswers_updates || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_set = $_set;
+    final lOther$$_set = other.$_set;
+    if (_$data.containsKey('_set') != other._$data.containsKey('_set')) {
+      return false;
+    }
+    if (l$$_set != lOther$$_set) {
+      return false;
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_set = $_set;
+    final l$where = where;
+    return Object.hashAll([_$data.containsKey('_set') ? l$$_set : const {}, l$where]);
+  }
+}
+
+class InputspiceRespondCard_args {
+  factory InputspiceRespondCard_args({bool? accept, String? playId}) =>
+      InputspiceRespondCard_args._({
+        if (accept != null) r'accept': accept,
+        if (playId != null) r'playId': playId,
+      });
+
+  InputspiceRespondCard_args._(this._$data);
+
+  factory InputspiceRespondCard_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('accept')) {
+      final l$accept = data['accept'];
+      result$data['accept'] = (l$accept as bool?);
+    }
+    if (data.containsKey('playId')) {
+      final l$playId = data['playId'];
+      result$data['playId'] = (l$playId as String?);
+    }
+    return InputspiceRespondCard_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  bool? get accept => (_$data['accept'] as bool?);
+
+  String? get playId => (_$data['playId'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('accept')) {
+      final l$accept = accept;
+      result$data['accept'] = l$accept;
+    }
+    if (_$data.containsKey('playId')) {
+      final l$playId = playId;
+      result$data['playId'] = l$playId;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceRespondCard_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$accept = accept;
+    final lOther$accept = other.accept;
+    if (_$data.containsKey('accept') != other._$data.containsKey('accept')) {
+      return false;
+    }
+    if (l$accept != lOther$accept) {
+      return false;
+    }
+    final l$playId = playId;
+    final lOther$playId = other.playId;
+    if (_$data.containsKey('playId') != other._$data.containsKey('playId')) {
+      return false;
+    }
+    if (l$playId != lOther$playId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$accept = accept;
+    final l$playId = playId;
+    return Object.hashAll([
+      _$data.containsKey('accept') ? l$accept : const {},
+      _$data.containsKey('playId') ? l$playId : const {},
+    ]);
+  }
+}
+
+class InputspiceStates_bool_exp {
+  factory InputspiceStates_bool_exp({
+    List<InputspiceStates_bool_exp>? $_and,
+    InputspiceStates_bool_exp? $_not,
+    List<InputspiceStates_bool_exp>? $_or,
+    Inputsmallint_comparison_exp? coupleLevel,
+    Inputsmallint_comparison_exp? myLevel,
+    InputString_comparison_exp? state,
+  }) => InputspiceStates_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (coupleLevel != null) r'coupleLevel': coupleLevel,
+    if (myLevel != null) r'myLevel': myLevel,
+    if (state != null) r'state': state,
+  });
+
+  InputspiceStates_bool_exp._(this._$data);
+
+  factory InputspiceStates_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputspiceStates_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputspiceStates_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputspiceStates_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('coupleLevel')) {
+      final l$coupleLevel = data['coupleLevel'];
+      result$data['coupleLevel'] = l$coupleLevel == null
+          ? null
+          : Inputsmallint_comparison_exp.fromJson((l$coupleLevel as Map<String, dynamic>));
+    }
+    if (data.containsKey('myLevel')) {
+      final l$myLevel = data['myLevel'];
+      result$data['myLevel'] = l$myLevel == null
+          ? null
+          : Inputsmallint_comparison_exp.fromJson((l$myLevel as Map<String, dynamic>));
+    }
+    if (data.containsKey('state')) {
+      final l$state = data['state'];
+      result$data['state'] = l$state == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$state as Map<String, dynamic>));
+    }
+    return InputspiceStates_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputspiceStates_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputspiceStates_bool_exp>?);
+
+  InputspiceStates_bool_exp? get $_not => (_$data['_not'] as InputspiceStates_bool_exp?);
+
+  List<InputspiceStates_bool_exp>? get $_or => (_$data['_or'] as List<InputspiceStates_bool_exp>?);
+
+  Inputsmallint_comparison_exp? get coupleLevel =>
+      (_$data['coupleLevel'] as Inputsmallint_comparison_exp?);
+
+  Inputsmallint_comparison_exp? get myLevel => (_$data['myLevel'] as Inputsmallint_comparison_exp?);
+
+  InputString_comparison_exp? get state => (_$data['state'] as InputString_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('coupleLevel')) {
+      final l$coupleLevel = coupleLevel;
+      result$data['coupleLevel'] = l$coupleLevel?.toJson();
+    }
+    if (_$data.containsKey('myLevel')) {
+      final l$myLevel = myLevel;
+      result$data['myLevel'] = l$myLevel?.toJson();
+    }
+    if (_$data.containsKey('state')) {
+      final l$state = state;
+      result$data['state'] = l$state?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceStates_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$coupleLevel = coupleLevel;
+    final lOther$coupleLevel = other.coupleLevel;
+    if (_$data.containsKey('coupleLevel') != other._$data.containsKey('coupleLevel')) {
+      return false;
+    }
+    if (l$coupleLevel != lOther$coupleLevel) {
+      return false;
+    }
+    final l$myLevel = myLevel;
+    final lOther$myLevel = other.myLevel;
+    if (_$data.containsKey('myLevel') != other._$data.containsKey('myLevel')) {
+      return false;
+    }
+    if (l$myLevel != lOther$myLevel) {
+      return false;
+    }
+    final l$state = state;
+    final lOther$state = other.state;
+    if (_$data.containsKey('state') != other._$data.containsKey('state')) {
+      return false;
+    }
+    if (l$state != lOther$state) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$coupleLevel = coupleLevel;
+    final l$myLevel = myLevel;
+    final l$state = state;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('coupleLevel') ? l$coupleLevel : const {},
+      _$data.containsKey('myLevel') ? l$myLevel : const {},
+      _$data.containsKey('state') ? l$state : const {},
+    ]);
+  }
+}
+
+class InputspiceStates_order_by {
+  factory InputspiceStates_order_by({
+    Enumorder_by? coupleLevel,
+    Enumorder_by? myLevel,
+    Enumorder_by? state,
+  }) => InputspiceStates_order_by._({
+    if (coupleLevel != null) r'coupleLevel': coupleLevel,
+    if (myLevel != null) r'myLevel': myLevel,
+    if (state != null) r'state': state,
+  });
+
+  InputspiceStates_order_by._(this._$data);
+
+  factory InputspiceStates_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('coupleLevel')) {
+      final l$coupleLevel = data['coupleLevel'];
+      result$data['coupleLevel'] = l$coupleLevel == null
+          ? null
+          : fromJsonEnumorder_by((l$coupleLevel as String));
+    }
+    if (data.containsKey('myLevel')) {
+      final l$myLevel = data['myLevel'];
+      result$data['myLevel'] = l$myLevel == null
+          ? null
+          : fromJsonEnumorder_by((l$myLevel as String));
+    }
+    if (data.containsKey('state')) {
+      final l$state = data['state'];
+      result$data['state'] = l$state == null ? null : fromJsonEnumorder_by((l$state as String));
+    }
+    return InputspiceStates_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get coupleLevel => (_$data['coupleLevel'] as Enumorder_by?);
+
+  Enumorder_by? get myLevel => (_$data['myLevel'] as Enumorder_by?);
+
+  Enumorder_by? get state => (_$data['state'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('coupleLevel')) {
+      final l$coupleLevel = coupleLevel;
+      result$data['coupleLevel'] = l$coupleLevel == null ? null : toJsonEnumorder_by(l$coupleLevel);
+    }
+    if (_$data.containsKey('myLevel')) {
+      final l$myLevel = myLevel;
+      result$data['myLevel'] = l$myLevel == null ? null : toJsonEnumorder_by(l$myLevel);
+    }
+    if (_$data.containsKey('state')) {
+      final l$state = state;
+      result$data['state'] = l$state == null ? null : toJsonEnumorder_by(l$state);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceStates_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$coupleLevel = coupleLevel;
+    final lOther$coupleLevel = other.coupleLevel;
+    if (_$data.containsKey('coupleLevel') != other._$data.containsKey('coupleLevel')) {
+      return false;
+    }
+    if (l$coupleLevel != lOther$coupleLevel) {
+      return false;
+    }
+    final l$myLevel = myLevel;
+    final lOther$myLevel = other.myLevel;
+    if (_$data.containsKey('myLevel') != other._$data.containsKey('myLevel')) {
+      return false;
+    }
+    if (l$myLevel != lOther$myLevel) {
+      return false;
+    }
+    final l$state = state;
+    final lOther$state = other.state;
+    if (_$data.containsKey('state') != other._$data.containsKey('state')) {
+      return false;
+    }
+    if (l$state != lOther$state) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$coupleLevel = coupleLevel;
+    final l$myLevel = myLevel;
+    final l$state = state;
+    return Object.hashAll([
+      _$data.containsKey('coupleLevel') ? l$coupleLevel : const {},
+      _$data.containsKey('myLevel') ? l$myLevel : const {},
+      _$data.containsKey('state') ? l$state : const {},
+    ]);
+  }
+}
+
+class InputspiceStates_stream_cursor_input {
+  factory InputspiceStates_stream_cursor_input({
+    required InputspiceStates_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputspiceStates_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputspiceStates_stream_cursor_input._(this._$data);
+
+  factory InputspiceStates_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputspiceStates_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputspiceStates_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputspiceStates_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputspiceStates_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceStates_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputspiceStates_stream_cursor_value_input {
+  factory InputspiceStates_stream_cursor_value_input({
+    int? coupleLevel,
+    int? myLevel,
+    String? state,
+  }) => InputspiceStates_stream_cursor_value_input._({
+    if (coupleLevel != null) r'coupleLevel': coupleLevel,
+    if (myLevel != null) r'myLevel': myLevel,
+    if (state != null) r'state': state,
+  });
+
+  InputspiceStates_stream_cursor_value_input._(this._$data);
+
+  factory InputspiceStates_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('coupleLevel')) {
+      final l$coupleLevel = data['coupleLevel'];
+      result$data['coupleLevel'] = (l$coupleLevel as int?);
+    }
+    if (data.containsKey('myLevel')) {
+      final l$myLevel = data['myLevel'];
+      result$data['myLevel'] = (l$myLevel as int?);
+    }
+    if (data.containsKey('state')) {
+      final l$state = data['state'];
+      result$data['state'] = (l$state as String?);
+    }
+    return InputspiceStates_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get coupleLevel => (_$data['coupleLevel'] as int?);
+
+  int? get myLevel => (_$data['myLevel'] as int?);
+
+  String? get state => (_$data['state'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('coupleLevel')) {
+      final l$coupleLevel = coupleLevel;
+      result$data['coupleLevel'] = l$coupleLevel;
+    }
+    if (_$data.containsKey('myLevel')) {
+      final l$myLevel = myLevel;
+      result$data['myLevel'] = l$myLevel;
+    }
+    if (_$data.containsKey('state')) {
+      final l$state = state;
+      result$data['state'] = l$state;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputspiceStates_stream_cursor_value_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$coupleLevel = coupleLevel;
+    final lOther$coupleLevel = other.coupleLevel;
+    if (_$data.containsKey('coupleLevel') != other._$data.containsKey('coupleLevel')) {
+      return false;
+    }
+    if (l$coupleLevel != lOther$coupleLevel) {
+      return false;
+    }
+    final l$myLevel = myLevel;
+    final lOther$myLevel = other.myLevel;
+    if (_$data.containsKey('myLevel') != other._$data.containsKey('myLevel')) {
+      return false;
+    }
+    if (l$myLevel != lOther$myLevel) {
+      return false;
+    }
+    final l$state = state;
+    final lOther$state = other.state;
+    if (_$data.containsKey('state') != other._$data.containsKey('state')) {
+      return false;
+    }
+    if (l$state != lOther$state) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$coupleLevel = coupleLevel;
+    final l$myLevel = myLevel;
+    final l$state = state;
+    return Object.hashAll([
+      _$data.containsKey('coupleLevel') ? l$coupleLevel : const {},
+      _$data.containsKey('myLevel') ? l$myLevel : const {},
+      _$data.containsKey('state') ? l$state : const {},
+    ]);
+  }
+}
+
+class InputstartDates_bool_exp {
+  factory InputstartDates_bool_exp({
+    List<InputstartDates_bool_exp>? $_and,
+    InputstartDates_bool_exp? $_not,
+    List<InputstartDates_bool_exp>? $_or,
+    Inputdate_comparison_exp? couple,
+    InputBoolean_comparison_exp? matches,
+    Inputdate_comparison_exp? mine,
+    Inputdate_comparison_exp? partner,
+  }) => InputstartDates_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (couple != null) r'couple': couple,
+    if (matches != null) r'matches': matches,
+    if (mine != null) r'mine': mine,
+    if (partner != null) r'partner': partner,
+  });
+
+  InputstartDates_bool_exp._(this._$data);
+
+  factory InputstartDates_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputstartDates_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputstartDates_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputstartDates_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('couple')) {
+      final l$couple = data['couple'];
+      result$data['couple'] = l$couple == null
+          ? null
+          : Inputdate_comparison_exp.fromJson((l$couple as Map<String, dynamic>));
+    }
+    if (data.containsKey('matches')) {
+      final l$matches = data['matches'];
+      result$data['matches'] = l$matches == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$matches as Map<String, dynamic>));
+    }
+    if (data.containsKey('mine')) {
+      final l$mine = data['mine'];
+      result$data['mine'] = l$mine == null
+          ? null
+          : Inputdate_comparison_exp.fromJson((l$mine as Map<String, dynamic>));
+    }
+    if (data.containsKey('partner')) {
+      final l$partner = data['partner'];
+      result$data['partner'] = l$partner == null
+          ? null
+          : Inputdate_comparison_exp.fromJson((l$partner as Map<String, dynamic>));
+    }
+    return InputstartDates_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputstartDates_bool_exp>? get $_and => (_$data['_and'] as List<InputstartDates_bool_exp>?);
+
+  InputstartDates_bool_exp? get $_not => (_$data['_not'] as InputstartDates_bool_exp?);
+
+  List<InputstartDates_bool_exp>? get $_or => (_$data['_or'] as List<InputstartDates_bool_exp>?);
+
+  Inputdate_comparison_exp? get couple => (_$data['couple'] as Inputdate_comparison_exp?);
+
+  InputBoolean_comparison_exp? get matches => (_$data['matches'] as InputBoolean_comparison_exp?);
+
+  Inputdate_comparison_exp? get mine => (_$data['mine'] as Inputdate_comparison_exp?);
+
+  Inputdate_comparison_exp? get partner => (_$data['partner'] as Inputdate_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('couple')) {
+      final l$couple = couple;
+      result$data['couple'] = l$couple?.toJson();
+    }
+    if (_$data.containsKey('matches')) {
+      final l$matches = matches;
+      result$data['matches'] = l$matches?.toJson();
+    }
+    if (_$data.containsKey('mine')) {
+      final l$mine = mine;
+      result$data['mine'] = l$mine?.toJson();
+    }
+    if (_$data.containsKey('partner')) {
+      final l$partner = partner;
+      result$data['partner'] = l$partner?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputstartDates_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$couple = couple;
+    final lOther$couple = other.couple;
+    if (_$data.containsKey('couple') != other._$data.containsKey('couple')) {
+      return false;
+    }
+    if (l$couple != lOther$couple) {
+      return false;
+    }
+    final l$matches = matches;
+    final lOther$matches = other.matches;
+    if (_$data.containsKey('matches') != other._$data.containsKey('matches')) {
+      return false;
+    }
+    if (l$matches != lOther$matches) {
+      return false;
+    }
+    final l$mine = mine;
+    final lOther$mine = other.mine;
+    if (_$data.containsKey('mine') != other._$data.containsKey('mine')) {
+      return false;
+    }
+    if (l$mine != lOther$mine) {
+      return false;
+    }
+    final l$partner = partner;
+    final lOther$partner = other.partner;
+    if (_$data.containsKey('partner') != other._$data.containsKey('partner')) {
+      return false;
+    }
+    if (l$partner != lOther$partner) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$couple = couple;
+    final l$matches = matches;
+    final l$mine = mine;
+    final l$partner = partner;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('couple') ? l$couple : const {},
+      _$data.containsKey('matches') ? l$matches : const {},
+      _$data.containsKey('mine') ? l$mine : const {},
+      _$data.containsKey('partner') ? l$partner : const {},
+    ]);
+  }
+}
+
+class InputstartDates_order_by {
+  factory InputstartDates_order_by({
+    Enumorder_by? couple,
+    Enumorder_by? matches,
+    Enumorder_by? mine,
+    Enumorder_by? partner,
+  }) => InputstartDates_order_by._({
+    if (couple != null) r'couple': couple,
+    if (matches != null) r'matches': matches,
+    if (mine != null) r'mine': mine,
+    if (partner != null) r'partner': partner,
+  });
+
+  InputstartDates_order_by._(this._$data);
+
+  factory InputstartDates_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('couple')) {
+      final l$couple = data['couple'];
+      result$data['couple'] = l$couple == null ? null : fromJsonEnumorder_by((l$couple as String));
+    }
+    if (data.containsKey('matches')) {
+      final l$matches = data['matches'];
+      result$data['matches'] = l$matches == null
+          ? null
+          : fromJsonEnumorder_by((l$matches as String));
+    }
+    if (data.containsKey('mine')) {
+      final l$mine = data['mine'];
+      result$data['mine'] = l$mine == null ? null : fromJsonEnumorder_by((l$mine as String));
+    }
+    if (data.containsKey('partner')) {
+      final l$partner = data['partner'];
+      result$data['partner'] = l$partner == null
+          ? null
+          : fromJsonEnumorder_by((l$partner as String));
+    }
+    return InputstartDates_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get couple => (_$data['couple'] as Enumorder_by?);
+
+  Enumorder_by? get matches => (_$data['matches'] as Enumorder_by?);
+
+  Enumorder_by? get mine => (_$data['mine'] as Enumorder_by?);
+
+  Enumorder_by? get partner => (_$data['partner'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('couple')) {
+      final l$couple = couple;
+      result$data['couple'] = l$couple == null ? null : toJsonEnumorder_by(l$couple);
+    }
+    if (_$data.containsKey('matches')) {
+      final l$matches = matches;
+      result$data['matches'] = l$matches == null ? null : toJsonEnumorder_by(l$matches);
+    }
+    if (_$data.containsKey('mine')) {
+      final l$mine = mine;
+      result$data['mine'] = l$mine == null ? null : toJsonEnumorder_by(l$mine);
+    }
+    if (_$data.containsKey('partner')) {
+      final l$partner = partner;
+      result$data['partner'] = l$partner == null ? null : toJsonEnumorder_by(l$partner);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputstartDates_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$couple = couple;
+    final lOther$couple = other.couple;
+    if (_$data.containsKey('couple') != other._$data.containsKey('couple')) {
+      return false;
+    }
+    if (l$couple != lOther$couple) {
+      return false;
+    }
+    final l$matches = matches;
+    final lOther$matches = other.matches;
+    if (_$data.containsKey('matches') != other._$data.containsKey('matches')) {
+      return false;
+    }
+    if (l$matches != lOther$matches) {
+      return false;
+    }
+    final l$mine = mine;
+    final lOther$mine = other.mine;
+    if (_$data.containsKey('mine') != other._$data.containsKey('mine')) {
+      return false;
+    }
+    if (l$mine != lOther$mine) {
+      return false;
+    }
+    final l$partner = partner;
+    final lOther$partner = other.partner;
+    if (_$data.containsKey('partner') != other._$data.containsKey('partner')) {
+      return false;
+    }
+    if (l$partner != lOther$partner) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$couple = couple;
+    final l$matches = matches;
+    final l$mine = mine;
+    final l$partner = partner;
+    return Object.hashAll([
+      _$data.containsKey('couple') ? l$couple : const {},
+      _$data.containsKey('matches') ? l$matches : const {},
+      _$data.containsKey('mine') ? l$mine : const {},
+      _$data.containsKey('partner') ? l$partner : const {},
+    ]);
+  }
+}
+
+class InputstartDates_stream_cursor_input {
+  factory InputstartDates_stream_cursor_input({
+    required InputstartDates_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputstartDates_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputstartDates_stream_cursor_input._(this._$data);
+
+  factory InputstartDates_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputstartDates_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputstartDates_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputstartDates_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputstartDates_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputstartDates_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputstartDates_stream_cursor_value_input {
+  factory InputstartDates_stream_cursor_value_input({
+    DateTime? couple,
+    bool? matches,
+    DateTime? mine,
+    DateTime? partner,
+  }) => InputstartDates_stream_cursor_value_input._({
+    if (couple != null) r'couple': couple,
+    if (matches != null) r'matches': matches,
+    if (mine != null) r'mine': mine,
+    if (partner != null) r'partner': partner,
+  });
+
+  InputstartDates_stream_cursor_value_input._(this._$data);
+
+  factory InputstartDates_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('couple')) {
+      final l$couple = data['couple'];
+      result$data['couple'] = l$couple == null ? null : DateTime.parse((l$couple as String));
+    }
+    if (data.containsKey('matches')) {
+      final l$matches = data['matches'];
+      result$data['matches'] = (l$matches as bool?);
+    }
+    if (data.containsKey('mine')) {
+      final l$mine = data['mine'];
+      result$data['mine'] = l$mine == null ? null : DateTime.parse((l$mine as String));
+    }
+    if (data.containsKey('partner')) {
+      final l$partner = data['partner'];
+      result$data['partner'] = l$partner == null ? null : DateTime.parse((l$partner as String));
+    }
+    return InputstartDates_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get couple => (_$data['couple'] as DateTime?);
+
+  bool? get matches => (_$data['matches'] as bool?);
+
+  DateTime? get mine => (_$data['mine'] as DateTime?);
+
+  DateTime? get partner => (_$data['partner'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('couple')) {
+      final l$couple = couple;
+      result$data['couple'] = l$couple == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$couple);
+    }
+    if (_$data.containsKey('matches')) {
+      final l$matches = matches;
+      result$data['matches'] = l$matches;
+    }
+    if (_$data.containsKey('mine')) {
+      final l$mine = mine;
+      result$data['mine'] = l$mine == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$mine);
+    }
+    if (_$data.containsKey('partner')) {
+      final l$partner = partner;
+      result$data['partner'] = l$partner == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$partner);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputstartDates_stream_cursor_value_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$couple = couple;
+    final lOther$couple = other.couple;
+    if (_$data.containsKey('couple') != other._$data.containsKey('couple')) {
+      return false;
+    }
+    if (l$couple != lOther$couple) {
+      return false;
+    }
+    final l$matches = matches;
+    final lOther$matches = other.matches;
+    if (_$data.containsKey('matches') != other._$data.containsKey('matches')) {
+      return false;
+    }
+    if (l$matches != lOther$matches) {
+      return false;
+    }
+    final l$mine = mine;
+    final lOther$mine = other.mine;
+    if (_$data.containsKey('mine') != other._$data.containsKey('mine')) {
+      return false;
+    }
+    if (l$mine != lOther$mine) {
+      return false;
+    }
+    final l$partner = partner;
+    final lOther$partner = other.partner;
+    if (_$data.containsKey('partner') != other._$data.containsKey('partner')) {
+      return false;
+    }
+    if (l$partner != lOther$partner) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$couple = couple;
+    final l$matches = matches;
+    final l$mine = mine;
+    final l$partner = partner;
+    return Object.hashAll([
+      _$data.containsKey('couple') ? l$couple : const {},
+      _$data.containsKey('matches') ? l$matches : const {},
+      _$data.containsKey('mine') ? l$mine : const {},
+      _$data.containsKey('partner') ? l$partner : const {},
+    ]);
+  }
+}
+
 class InputstoryEvents_bool_exp {
   factory InputstoryEvents_bool_exp({
     List<InputstoryEvents_bool_exp>? $_and,
@@ -96996,6 +111958,85 @@ class InputtemperatureChecks_updates {
   }
 }
 
+class InputthankGentleRequest_args {
+  factory InputthankGentleRequest_args({String? body, String? requestId}) =>
+      InputthankGentleRequest_args._({
+        if (body != null) r'body': body,
+        if (requestId != null) r'requestId': requestId,
+      });
+
+  InputthankGentleRequest_args._(this._$data);
+
+  factory InputthankGentleRequest_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('body')) {
+      final l$body = data['body'];
+      result$data['body'] = (l$body as String?);
+    }
+    if (data.containsKey('requestId')) {
+      final l$requestId = data['requestId'];
+      result$data['requestId'] = (l$requestId as String?);
+    }
+    return InputthankGentleRequest_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get body => (_$data['body'] as String?);
+
+  String? get requestId => (_$data['requestId'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('body')) {
+      final l$body = body;
+      result$data['body'] = l$body;
+    }
+    if (_$data.containsKey('requestId')) {
+      final l$requestId = requestId;
+      result$data['requestId'] = l$requestId;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputthankGentleRequest_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$body = body;
+    final lOther$body = other.body;
+    if (_$data.containsKey('body') != other._$data.containsKey('body')) {
+      return false;
+    }
+    if (l$body != lOther$body) {
+      return false;
+    }
+    final l$requestId = requestId;
+    final lOther$requestId = other.requestId;
+    if (_$data.containsKey('requestId') != other._$data.containsKey('requestId')) {
+      return false;
+    }
+    if (l$requestId != lOther$requestId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$body = body;
+    final l$requestId = requestId;
+    return Object.hashAll([
+      _$data.containsKey('body') ? l$body : const {},
+      _$data.containsKey('requestId') ? l$requestId : const {},
+    ]);
+  }
+}
+
 class Inputtime_comparison_exp {
   factory Inputtime_comparison_exp({
     String? $_eq,
@@ -99257,6 +114298,60 @@ class Inputtoday_stream_cursor_value_input {
   }
 }
 
+class InputtryAcceptInvite_args {
+  factory InputtryAcceptInvite_args({String? code}) =>
+      InputtryAcceptInvite_args._({if (code != null) r'code': code});
+
+  InputtryAcceptInvite_args._(this._$data);
+
+  factory InputtryAcceptInvite_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('code')) {
+      final l$code = data['code'];
+      result$data['code'] = (l$code as String?);
+    }
+    return InputtryAcceptInvite_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get code => (_$data['code'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('code')) {
+      final l$code = code;
+      result$data['code'] = l$code;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputtryAcceptInvite_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$code = code;
+    final lOther$code = other.code;
+    if (_$data.containsKey('code') != other._$data.containsKey('code')) {
+      return false;
+    }
+    if (l$code != lOther$code) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$code = code;
+    return Object.hashAll([_$data.containsKey('code') ? l$code : const {}]);
+  }
+}
+
 class InputupdateGame_args {
   factory InputupdateGame_args({String? action, String? outcome, String? sessionId}) =>
       InputupdateGame_args._({
@@ -99369,6 +114464,7 @@ class InputuserSettings_bool_exp {
     Inputtimestamptz_comparison_exp? createdAt,
     InputRelationshipGoal_enum_comparison_exp? goal,
     InputString_array_comparison_exp? goals,
+    InputBoolean_comparison_exp? hasKids,
     InputString_array_comparison_exp? holidayCountries,
     InputString_comparison_exp? locale,
     InputBoolean_comparison_exp? lowStimulation,
@@ -99382,6 +114478,8 @@ class InputuserSettings_bool_exp {
     InputBoolean_comparison_exp? shareReadReceipts,
     InputBoolean_comparison_exp? slipsDefaultForCard,
     InputBoolean_comparison_exp? spiceEnabled,
+    Inputsmallint_comparison_exp? spiceMaxLevel,
+    InputBoolean_comparison_exp? spiceNotifications,
     InputAppTheme_enum_comparison_exp? theme,
     Inputdate_comparison_exp? togetherSince,
     Inputtimestamptz_comparison_exp? updatedAt,
@@ -99400,6 +114498,7 @@ class InputuserSettings_bool_exp {
     if (createdAt != null) r'createdAt': createdAt,
     if (goal != null) r'goal': goal,
     if (goals != null) r'goals': goals,
+    if (hasKids != null) r'hasKids': hasKids,
     if (holidayCountries != null) r'holidayCountries': holidayCountries,
     if (locale != null) r'locale': locale,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
@@ -99413,6 +114512,8 @@ class InputuserSettings_bool_exp {
     if (shareReadReceipts != null) r'shareReadReceipts': shareReadReceipts,
     if (slipsDefaultForCard != null) r'slipsDefaultForCard': slipsDefaultForCard,
     if (spiceEnabled != null) r'spiceEnabled': spiceEnabled,
+    if (spiceMaxLevel != null) r'spiceMaxLevel': spiceMaxLevel,
+    if (spiceNotifications != null) r'spiceNotifications': spiceNotifications,
     if (theme != null) r'theme': theme,
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (updatedAt != null) r'updatedAt': updatedAt,
@@ -99485,6 +114586,12 @@ class InputuserSettings_bool_exp {
       result$data['goals'] = l$goals == null
           ? null
           : InputString_array_comparison_exp.fromJson((l$goals as Map<String, dynamic>));
+    }
+    if (data.containsKey('hasKids')) {
+      final l$hasKids = data['hasKids'];
+      result$data['hasKids'] = l$hasKids == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$hasKids as Map<String, dynamic>));
     }
     if (data.containsKey('holidayCountries')) {
       final l$holidayCountries = data['holidayCountries'];
@@ -99568,6 +114675,18 @@ class InputuserSettings_bool_exp {
           ? null
           : InputBoolean_comparison_exp.fromJson((l$spiceEnabled as Map<String, dynamic>));
     }
+    if (data.containsKey('spiceMaxLevel')) {
+      final l$spiceMaxLevel = data['spiceMaxLevel'];
+      result$data['spiceMaxLevel'] = l$spiceMaxLevel == null
+          ? null
+          : Inputsmallint_comparison_exp.fromJson((l$spiceMaxLevel as Map<String, dynamic>));
+    }
+    if (data.containsKey('spiceNotifications')) {
+      final l$spiceNotifications = data['spiceNotifications'];
+      result$data['spiceNotifications'] = l$spiceNotifications == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$spiceNotifications as Map<String, dynamic>));
+    }
     if (data.containsKey('theme')) {
       final l$theme = data['theme'];
       result$data['theme'] = l$theme == null
@@ -99645,6 +114764,8 @@ class InputuserSettings_bool_exp {
   InputString_array_comparison_exp? get goals =>
       (_$data['goals'] as InputString_array_comparison_exp?);
 
+  InputBoolean_comparison_exp? get hasKids => (_$data['hasKids'] as InputBoolean_comparison_exp?);
+
   InputString_array_comparison_exp? get holidayCountries =>
       (_$data['holidayCountries'] as InputString_array_comparison_exp?);
 
@@ -99681,6 +114802,12 @@ class InputuserSettings_bool_exp {
 
   InputBoolean_comparison_exp? get spiceEnabled =>
       (_$data['spiceEnabled'] as InputBoolean_comparison_exp?);
+
+  Inputsmallint_comparison_exp? get spiceMaxLevel =>
+      (_$data['spiceMaxLevel'] as Inputsmallint_comparison_exp?);
+
+  InputBoolean_comparison_exp? get spiceNotifications =>
+      (_$data['spiceNotifications'] as InputBoolean_comparison_exp?);
 
   InputAppTheme_enum_comparison_exp? get theme =>
       (_$data['theme'] as InputAppTheme_enum_comparison_exp?);
@@ -99744,6 +114871,10 @@ class InputuserSettings_bool_exp {
       final l$goals = goals;
       result$data['goals'] = l$goals?.toJson();
     }
+    if (_$data.containsKey('hasKids')) {
+      final l$hasKids = hasKids;
+      result$data['hasKids'] = l$hasKids?.toJson();
+    }
     if (_$data.containsKey('holidayCountries')) {
       final l$holidayCountries = holidayCountries;
       result$data['holidayCountries'] = l$holidayCountries?.toJson();
@@ -99795,6 +114926,14 @@ class InputuserSettings_bool_exp {
     if (_$data.containsKey('spiceEnabled')) {
       final l$spiceEnabled = spiceEnabled;
       result$data['spiceEnabled'] = l$spiceEnabled?.toJson();
+    }
+    if (_$data.containsKey('spiceMaxLevel')) {
+      final l$spiceMaxLevel = spiceMaxLevel;
+      result$data['spiceMaxLevel'] = l$spiceMaxLevel?.toJson();
+    }
+    if (_$data.containsKey('spiceNotifications')) {
+      final l$spiceNotifications = spiceNotifications;
+      result$data['spiceNotifications'] = l$spiceNotifications?.toJson();
     }
     if (_$data.containsKey('theme')) {
       final l$theme = theme;
@@ -99937,6 +115076,14 @@ class InputuserSettings_bool_exp {
     if (l$goals != lOther$goals) {
       return false;
     }
+    final l$hasKids = hasKids;
+    final lOther$hasKids = other.hasKids;
+    if (_$data.containsKey('hasKids') != other._$data.containsKey('hasKids')) {
+      return false;
+    }
+    if (l$hasKids != lOther$hasKids) {
+      return false;
+    }
     final l$holidayCountries = holidayCountries;
     final lOther$holidayCountries = other.holidayCountries;
     if (_$data.containsKey('holidayCountries') != other._$data.containsKey('holidayCountries')) {
@@ -100043,6 +115190,23 @@ class InputuserSettings_bool_exp {
     if (l$spiceEnabled != lOther$spiceEnabled) {
       return false;
     }
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final lOther$spiceMaxLevel = other.spiceMaxLevel;
+    if (_$data.containsKey('spiceMaxLevel') != other._$data.containsKey('spiceMaxLevel')) {
+      return false;
+    }
+    if (l$spiceMaxLevel != lOther$spiceMaxLevel) {
+      return false;
+    }
+    final l$spiceNotifications = spiceNotifications;
+    final lOther$spiceNotifications = other.spiceNotifications;
+    if (_$data.containsKey('spiceNotifications') !=
+        other._$data.containsKey('spiceNotifications')) {
+      return false;
+    }
+    if (l$spiceNotifications != lOther$spiceNotifications) {
+      return false;
+    }
     final l$theme = theme;
     final lOther$theme = other.theme;
     if (_$data.containsKey('theme') != other._$data.containsKey('theme')) {
@@ -100116,6 +115280,7 @@ class InputuserSettings_bool_exp {
     final l$createdAt = createdAt;
     final l$goal = goal;
     final l$goals = goals;
+    final l$hasKids = hasKids;
     final l$holidayCountries = holidayCountries;
     final l$locale = locale;
     final l$lowStimulation = lowStimulation;
@@ -100129,6 +115294,8 @@ class InputuserSettings_bool_exp {
     final l$shareReadReceipts = shareReadReceipts;
     final l$slipsDefaultForCard = slipsDefaultForCard;
     final l$spiceEnabled = spiceEnabled;
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final l$spiceNotifications = spiceNotifications;
     final l$theme = theme;
     final l$togetherSince = togetherSince;
     final l$updatedAt = updatedAt;
@@ -100155,6 +115322,7 @@ class InputuserSettings_bool_exp {
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('goal') ? l$goal : const {},
       _$data.containsKey('goals') ? l$goals : const {},
+      _$data.containsKey('hasKids') ? l$hasKids : const {},
       _$data.containsKey('holidayCountries') ? l$holidayCountries : const {},
       _$data.containsKey('locale') ? l$locale : const {},
       _$data.containsKey('lowStimulation') ? l$lowStimulation : const {},
@@ -100168,6 +115336,8 @@ class InputuserSettings_bool_exp {
       _$data.containsKey('shareReadReceipts') ? l$shareReadReceipts : const {},
       _$data.containsKey('slipsDefaultForCard') ? l$slipsDefaultForCard : const {},
       _$data.containsKey('spiceEnabled') ? l$spiceEnabled : const {},
+      _$data.containsKey('spiceMaxLevel') ? l$spiceMaxLevel : const {},
+      _$data.containsKey('spiceNotifications') ? l$spiceNotifications : const {},
       _$data.containsKey('theme') ? l$theme : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
@@ -100176,6 +115346,60 @@ class InputuserSettings_bool_exp {
       _$data.containsKey('widgetOnLockScreen') ? l$widgetOnLockScreen : const {},
       _$data.containsKey('widgetShowNames') ? l$widgetShowNames : const {},
     ]);
+  }
+}
+
+class InputuserSettings_inc_input {
+  factory InputuserSettings_inc_input({int? spiceMaxLevel}) =>
+      InputuserSettings_inc_input._({if (spiceMaxLevel != null) r'spiceMaxLevel': spiceMaxLevel});
+
+  InputuserSettings_inc_input._(this._$data);
+
+  factory InputuserSettings_inc_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('spiceMaxLevel')) {
+      final l$spiceMaxLevel = data['spiceMaxLevel'];
+      result$data['spiceMaxLevel'] = (l$spiceMaxLevel as int?);
+    }
+    return InputuserSettings_inc_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get spiceMaxLevel => (_$data['spiceMaxLevel'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('spiceMaxLevel')) {
+      final l$spiceMaxLevel = spiceMaxLevel;
+      result$data['spiceMaxLevel'] = l$spiceMaxLevel;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputuserSettings_inc_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final lOther$spiceMaxLevel = other.spiceMaxLevel;
+    if (_$data.containsKey('spiceMaxLevel') != other._$data.containsKey('spiceMaxLevel')) {
+      return false;
+    }
+    if (l$spiceMaxLevel != lOther$spiceMaxLevel) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$spiceMaxLevel = spiceMaxLevel;
+    return Object.hashAll([_$data.containsKey('spiceMaxLevel') ? l$spiceMaxLevel : const {}]);
   }
 }
 
@@ -100188,6 +115412,7 @@ class InputuserSettings_order_by {
     Enumorder_by? createdAt,
     Enumorder_by? goal,
     Enumorder_by? goals,
+    Enumorder_by? hasKids,
     Enumorder_by? holidayCountries,
     Enumorder_by? locale,
     Enumorder_by? lowStimulation,
@@ -100201,6 +115426,8 @@ class InputuserSettings_order_by {
     Enumorder_by? shareReadReceipts,
     Enumorder_by? slipsDefaultForCard,
     Enumorder_by? spiceEnabled,
+    Enumorder_by? spiceMaxLevel,
+    Enumorder_by? spiceNotifications,
     Enumorder_by? theme,
     Enumorder_by? togetherSince,
     Enumorder_by? updatedAt,
@@ -100216,6 +115443,7 @@ class InputuserSettings_order_by {
     if (createdAt != null) r'createdAt': createdAt,
     if (goal != null) r'goal': goal,
     if (goals != null) r'goals': goals,
+    if (hasKids != null) r'hasKids': hasKids,
     if (holidayCountries != null) r'holidayCountries': holidayCountries,
     if (locale != null) r'locale': locale,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
@@ -100229,6 +115457,8 @@ class InputuserSettings_order_by {
     if (shareReadReceipts != null) r'shareReadReceipts': shareReadReceipts,
     if (slipsDefaultForCard != null) r'slipsDefaultForCard': slipsDefaultForCard,
     if (spiceEnabled != null) r'spiceEnabled': spiceEnabled,
+    if (spiceMaxLevel != null) r'spiceMaxLevel': spiceMaxLevel,
+    if (spiceNotifications != null) r'spiceNotifications': spiceNotifications,
     if (theme != null) r'theme': theme,
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (updatedAt != null) r'updatedAt': updatedAt,
@@ -100279,6 +115509,12 @@ class InputuserSettings_order_by {
     if (data.containsKey('goals')) {
       final l$goals = data['goals'];
       result$data['goals'] = l$goals == null ? null : fromJsonEnumorder_by((l$goals as String));
+    }
+    if (data.containsKey('hasKids')) {
+      final l$hasKids = data['hasKids'];
+      result$data['hasKids'] = l$hasKids == null
+          ? null
+          : fromJsonEnumorder_by((l$hasKids as String));
     }
     if (data.containsKey('holidayCountries')) {
       final l$holidayCountries = data['holidayCountries'];
@@ -100354,6 +115590,18 @@ class InputuserSettings_order_by {
           ? null
           : fromJsonEnumorder_by((l$spiceEnabled as String));
     }
+    if (data.containsKey('spiceMaxLevel')) {
+      final l$spiceMaxLevel = data['spiceMaxLevel'];
+      result$data['spiceMaxLevel'] = l$spiceMaxLevel == null
+          ? null
+          : fromJsonEnumorder_by((l$spiceMaxLevel as String));
+    }
+    if (data.containsKey('spiceNotifications')) {
+      final l$spiceNotifications = data['spiceNotifications'];
+      result$data['spiceNotifications'] = l$spiceNotifications == null
+          ? null
+          : fromJsonEnumorder_by((l$spiceNotifications as String));
+    }
     if (data.containsKey('theme')) {
       final l$theme = data['theme'];
       result$data['theme'] = l$theme == null ? null : fromJsonEnumorder_by((l$theme as String));
@@ -100411,6 +115659,8 @@ class InputuserSettings_order_by {
 
   Enumorder_by? get goals => (_$data['goals'] as Enumorder_by?);
 
+  Enumorder_by? get hasKids => (_$data['hasKids'] as Enumorder_by?);
+
   Enumorder_by? get holidayCountries => (_$data['holidayCountries'] as Enumorder_by?);
 
   Enumorder_by? get locale => (_$data['locale'] as Enumorder_by?);
@@ -100436,6 +115686,10 @@ class InputuserSettings_order_by {
   Enumorder_by? get slipsDefaultForCard => (_$data['slipsDefaultForCard'] as Enumorder_by?);
 
   Enumorder_by? get spiceEnabled => (_$data['spiceEnabled'] as Enumorder_by?);
+
+  Enumorder_by? get spiceMaxLevel => (_$data['spiceMaxLevel'] as Enumorder_by?);
+
+  Enumorder_by? get spiceNotifications => (_$data['spiceNotifications'] as Enumorder_by?);
 
   Enumorder_by? get theme => (_$data['theme'] as Enumorder_by?);
 
@@ -100482,6 +115736,10 @@ class InputuserSettings_order_by {
     if (_$data.containsKey('goals')) {
       final l$goals = goals;
       result$data['goals'] = l$goals == null ? null : toJsonEnumorder_by(l$goals);
+    }
+    if (_$data.containsKey('hasKids')) {
+      final l$hasKids = hasKids;
+      result$data['hasKids'] = l$hasKids == null ? null : toJsonEnumorder_by(l$hasKids);
     }
     if (_$data.containsKey('holidayCountries')) {
       final l$holidayCountries = holidayCountries;
@@ -100550,6 +115808,18 @@ class InputuserSettings_order_by {
       result$data['spiceEnabled'] = l$spiceEnabled == null
           ? null
           : toJsonEnumorder_by(l$spiceEnabled);
+    }
+    if (_$data.containsKey('spiceMaxLevel')) {
+      final l$spiceMaxLevel = spiceMaxLevel;
+      result$data['spiceMaxLevel'] = l$spiceMaxLevel == null
+          ? null
+          : toJsonEnumorder_by(l$spiceMaxLevel);
+    }
+    if (_$data.containsKey('spiceNotifications')) {
+      final l$spiceNotifications = spiceNotifications;
+      result$data['spiceNotifications'] = l$spiceNotifications == null
+          ? null
+          : toJsonEnumorder_by(l$spiceNotifications);
     }
     if (_$data.containsKey('theme')) {
       final l$theme = theme;
@@ -100654,6 +115924,14 @@ class InputuserSettings_order_by {
     if (l$goals != lOther$goals) {
       return false;
     }
+    final l$hasKids = hasKids;
+    final lOther$hasKids = other.hasKids;
+    if (_$data.containsKey('hasKids') != other._$data.containsKey('hasKids')) {
+      return false;
+    }
+    if (l$hasKids != lOther$hasKids) {
+      return false;
+    }
     final l$holidayCountries = holidayCountries;
     final lOther$holidayCountries = other.holidayCountries;
     if (_$data.containsKey('holidayCountries') != other._$data.containsKey('holidayCountries')) {
@@ -100760,6 +116038,23 @@ class InputuserSettings_order_by {
     if (l$spiceEnabled != lOther$spiceEnabled) {
       return false;
     }
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final lOther$spiceMaxLevel = other.spiceMaxLevel;
+    if (_$data.containsKey('spiceMaxLevel') != other._$data.containsKey('spiceMaxLevel')) {
+      return false;
+    }
+    if (l$spiceMaxLevel != lOther$spiceMaxLevel) {
+      return false;
+    }
+    final l$spiceNotifications = spiceNotifications;
+    final lOther$spiceNotifications = other.spiceNotifications;
+    if (_$data.containsKey('spiceNotifications') !=
+        other._$data.containsKey('spiceNotifications')) {
+      return false;
+    }
+    if (l$spiceNotifications != lOther$spiceNotifications) {
+      return false;
+    }
     final l$theme = theme;
     final lOther$theme = other.theme;
     if (_$data.containsKey('theme') != other._$data.containsKey('theme')) {
@@ -100830,6 +116125,7 @@ class InputuserSettings_order_by {
     final l$createdAt = createdAt;
     final l$goal = goal;
     final l$goals = goals;
+    final l$hasKids = hasKids;
     final l$holidayCountries = holidayCountries;
     final l$locale = locale;
     final l$lowStimulation = lowStimulation;
@@ -100843,6 +116139,8 @@ class InputuserSettings_order_by {
     final l$shareReadReceipts = shareReadReceipts;
     final l$slipsDefaultForCard = slipsDefaultForCard;
     final l$spiceEnabled = spiceEnabled;
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final l$spiceNotifications = spiceNotifications;
     final l$theme = theme;
     final l$togetherSince = togetherSince;
     final l$updatedAt = updatedAt;
@@ -100858,6 +116156,7 @@ class InputuserSettings_order_by {
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('goal') ? l$goal : const {},
       _$data.containsKey('goals') ? l$goals : const {},
+      _$data.containsKey('hasKids') ? l$hasKids : const {},
       _$data.containsKey('holidayCountries') ? l$holidayCountries : const {},
       _$data.containsKey('locale') ? l$locale : const {},
       _$data.containsKey('lowStimulation') ? l$lowStimulation : const {},
@@ -100871,6 +116170,8 @@ class InputuserSettings_order_by {
       _$data.containsKey('shareReadReceipts') ? l$shareReadReceipts : const {},
       _$data.containsKey('slipsDefaultForCard') ? l$slipsDefaultForCard : const {},
       _$data.containsKey('spiceEnabled') ? l$spiceEnabled : const {},
+      _$data.containsKey('spiceMaxLevel') ? l$spiceMaxLevel : const {},
+      _$data.containsKey('spiceNotifications') ? l$spiceNotifications : const {},
       _$data.containsKey('theme') ? l$theme : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
@@ -100937,6 +116238,7 @@ class InputuserSettings_set_input {
     bool? chatStoreFacts,
     EnumRelationshipGoal_enum? goal,
     List<String>? goals,
+    bool? hasKids,
     List<String>? holidayCountries,
     String? locale,
     bool? lowStimulation,
@@ -100949,6 +116251,8 @@ class InputuserSettings_set_input {
     bool? shareReadReceipts,
     bool? slipsDefaultForCard,
     bool? spiceEnabled,
+    int? spiceMaxLevel,
+    bool? spiceNotifications,
     EnumAppTheme_enum? theme,
     DateTime? togetherSince,
     bool? widgetAllowPartnerNotes,
@@ -100961,6 +116265,7 @@ class InputuserSettings_set_input {
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
     if (goal != null) r'goal': goal,
     if (goals != null) r'goals': goals,
+    if (hasKids != null) r'hasKids': hasKids,
     if (holidayCountries != null) r'holidayCountries': holidayCountries,
     if (locale != null) r'locale': locale,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
@@ -100973,6 +116278,8 @@ class InputuserSettings_set_input {
     if (shareReadReceipts != null) r'shareReadReceipts': shareReadReceipts,
     if (slipsDefaultForCard != null) r'slipsDefaultForCard': slipsDefaultForCard,
     if (spiceEnabled != null) r'spiceEnabled': spiceEnabled,
+    if (spiceMaxLevel != null) r'spiceMaxLevel': spiceMaxLevel,
+    if (spiceNotifications != null) r'spiceNotifications': spiceNotifications,
     if (theme != null) r'theme': theme,
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (widgetAllowPartnerNotes != null) r'widgetAllowPartnerNotes': widgetAllowPartnerNotes,
@@ -101011,6 +116318,10 @@ class InputuserSettings_set_input {
     if (data.containsKey('goals')) {
       final l$goals = data['goals'];
       result$data['goals'] = (l$goals as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('hasKids')) {
+      final l$hasKids = data['hasKids'];
+      result$data['hasKids'] = (l$hasKids as bool?);
     }
     if (data.containsKey('holidayCountries')) {
       final l$holidayCountries = data['holidayCountries'];
@@ -101072,6 +116383,14 @@ class InputuserSettings_set_input {
       final l$spiceEnabled = data['spiceEnabled'];
       result$data['spiceEnabled'] = (l$spiceEnabled as bool?);
     }
+    if (data.containsKey('spiceMaxLevel')) {
+      final l$spiceMaxLevel = data['spiceMaxLevel'];
+      result$data['spiceMaxLevel'] = (l$spiceMaxLevel as int?);
+    }
+    if (data.containsKey('spiceNotifications')) {
+      final l$spiceNotifications = data['spiceNotifications'];
+      result$data['spiceNotifications'] = (l$spiceNotifications as bool?);
+    }
     if (data.containsKey('theme')) {
       final l$theme = data['theme'];
       result$data['theme'] = l$theme == null
@@ -101113,6 +116432,8 @@ class InputuserSettings_set_input {
 
   List<String>? get goals => (_$data['goals'] as List<String>?);
 
+  bool? get hasKids => (_$data['hasKids'] as bool?);
+
   List<String>? get holidayCountries => (_$data['holidayCountries'] as List<String>?);
 
   String? get locale => (_$data['locale'] as String?);
@@ -101137,6 +116458,10 @@ class InputuserSettings_set_input {
   bool? get slipsDefaultForCard => (_$data['slipsDefaultForCard'] as bool?);
 
   bool? get spiceEnabled => (_$data['spiceEnabled'] as bool?);
+
+  int? get spiceMaxLevel => (_$data['spiceMaxLevel'] as int?);
+
+  bool? get spiceNotifications => (_$data['spiceNotifications'] as bool?);
 
   EnumAppTheme_enum? get theme => (_$data['theme'] as EnumAppTheme_enum?);
 
@@ -101175,6 +116500,10 @@ class InputuserSettings_set_input {
     if (_$data.containsKey('goals')) {
       final l$goals = goals;
       result$data['goals'] = l$goals?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('hasKids')) {
+      final l$hasKids = hasKids;
+      result$data['hasKids'] = l$hasKids;
     }
     if (_$data.containsKey('holidayCountries')) {
       final l$holidayCountries = holidayCountries;
@@ -101231,6 +116560,14 @@ class InputuserSettings_set_input {
     if (_$data.containsKey('spiceEnabled')) {
       final l$spiceEnabled = spiceEnabled;
       result$data['spiceEnabled'] = l$spiceEnabled;
+    }
+    if (_$data.containsKey('spiceMaxLevel')) {
+      final l$spiceMaxLevel = spiceMaxLevel;
+      result$data['spiceMaxLevel'] = l$spiceMaxLevel;
+    }
+    if (_$data.containsKey('spiceNotifications')) {
+      final l$spiceNotifications = spiceNotifications;
+      result$data['spiceNotifications'] = l$spiceNotifications;
     }
     if (_$data.containsKey('theme')) {
       final l$theme = theme;
@@ -101322,6 +116659,14 @@ class InputuserSettings_set_input {
         }
       }
     } else if (l$goals != lOther$goals) {
+      return false;
+    }
+    final l$hasKids = hasKids;
+    final lOther$hasKids = other.hasKids;
+    if (_$data.containsKey('hasKids') != other._$data.containsKey('hasKids')) {
+      return false;
+    }
+    if (l$hasKids != lOther$hasKids) {
       return false;
     }
     final l$holidayCountries = holidayCountries;
@@ -101433,6 +116778,23 @@ class InputuserSettings_set_input {
     if (l$spiceEnabled != lOther$spiceEnabled) {
       return false;
     }
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final lOther$spiceMaxLevel = other.spiceMaxLevel;
+    if (_$data.containsKey('spiceMaxLevel') != other._$data.containsKey('spiceMaxLevel')) {
+      return false;
+    }
+    if (l$spiceMaxLevel != lOther$spiceMaxLevel) {
+      return false;
+    }
+    final l$spiceNotifications = spiceNotifications;
+    final lOther$spiceNotifications = other.spiceNotifications;
+    if (_$data.containsKey('spiceNotifications') !=
+        other._$data.containsKey('spiceNotifications')) {
+      return false;
+    }
+    if (l$spiceNotifications != lOther$spiceNotifications) {
+      return false;
+    }
     final l$theme = theme;
     final lOther$theme = other.theme;
     if (_$data.containsKey('theme') != other._$data.containsKey('theme')) {
@@ -101486,6 +116848,7 @@ class InputuserSettings_set_input {
     final l$chatStoreFacts = chatStoreFacts;
     final l$goal = goal;
     final l$goals = goals;
+    final l$hasKids = hasKids;
     final l$holidayCountries = holidayCountries;
     final l$locale = locale;
     final l$lowStimulation = lowStimulation;
@@ -101498,6 +116861,8 @@ class InputuserSettings_set_input {
     final l$shareReadReceipts = shareReadReceipts;
     final l$slipsDefaultForCard = slipsDefaultForCard;
     final l$spiceEnabled = spiceEnabled;
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final l$spiceNotifications = spiceNotifications;
     final l$theme = theme;
     final l$togetherSince = togetherSince;
     final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
@@ -101514,6 +116879,7 @@ class InputuserSettings_set_input {
                 ? null
                 : Object.hashAll(l$goals.map((v) => v))
           : const {},
+      _$data.containsKey('hasKids') ? l$hasKids : const {},
       _$data.containsKey('holidayCountries')
           ? l$holidayCountries == null
                 ? null
@@ -101530,6 +116896,8 @@ class InputuserSettings_set_input {
       _$data.containsKey('shareReadReceipts') ? l$shareReadReceipts : const {},
       _$data.containsKey('slipsDefaultForCard') ? l$slipsDefaultForCard : const {},
       _$data.containsKey('spiceEnabled') ? l$spiceEnabled : const {},
+      _$data.containsKey('spiceMaxLevel') ? l$spiceMaxLevel : const {},
+      _$data.containsKey('spiceNotifications') ? l$spiceNotifications : const {},
       _$data.containsKey('theme') ? l$theme : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('widgetAllowPartnerNotes') ? l$widgetAllowPartnerNotes : const {},
@@ -101627,6 +116995,7 @@ class InputuserSettings_stream_cursor_value_input {
     DateTime? createdAt,
     EnumRelationshipGoal_enum? goal,
     List<String>? goals,
+    bool? hasKids,
     List<String>? holidayCountries,
     String? locale,
     bool? lowStimulation,
@@ -101639,6 +117008,8 @@ class InputuserSettings_stream_cursor_value_input {
     bool? shareReadReceipts,
     bool? slipsDefaultForCard,
     bool? spiceEnabled,
+    int? spiceMaxLevel,
+    bool? spiceNotifications,
     EnumAppTheme_enum? theme,
     DateTime? togetherSince,
     DateTime? updatedAt,
@@ -101654,6 +117025,7 @@ class InputuserSettings_stream_cursor_value_input {
     if (createdAt != null) r'createdAt': createdAt,
     if (goal != null) r'goal': goal,
     if (goals != null) r'goals': goals,
+    if (hasKids != null) r'hasKids': hasKids,
     if (holidayCountries != null) r'holidayCountries': holidayCountries,
     if (locale != null) r'locale': locale,
     if (lowStimulation != null) r'lowStimulation': lowStimulation,
@@ -101666,6 +117038,8 @@ class InputuserSettings_stream_cursor_value_input {
     if (shareReadReceipts != null) r'shareReadReceipts': shareReadReceipts,
     if (slipsDefaultForCard != null) r'slipsDefaultForCard': slipsDefaultForCard,
     if (spiceEnabled != null) r'spiceEnabled': spiceEnabled,
+    if (spiceMaxLevel != null) r'spiceMaxLevel': spiceMaxLevel,
+    if (spiceNotifications != null) r'spiceNotifications': spiceNotifications,
     if (theme != null) r'theme': theme,
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (updatedAt != null) r'updatedAt': updatedAt,
@@ -101712,6 +117086,10 @@ class InputuserSettings_stream_cursor_value_input {
     if (data.containsKey('goals')) {
       final l$goals = data['goals'];
       result$data['goals'] = (l$goals as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('hasKids')) {
+      final l$hasKids = data['hasKids'];
+      result$data['hasKids'] = (l$hasKids as bool?);
     }
     if (data.containsKey('holidayCountries')) {
       final l$holidayCountries = data['holidayCountries'];
@@ -101773,6 +117151,14 @@ class InputuserSettings_stream_cursor_value_input {
       final l$spiceEnabled = data['spiceEnabled'];
       result$data['spiceEnabled'] = (l$spiceEnabled as bool?);
     }
+    if (data.containsKey('spiceMaxLevel')) {
+      final l$spiceMaxLevel = data['spiceMaxLevel'];
+      result$data['spiceMaxLevel'] = (l$spiceMaxLevel as int?);
+    }
+    if (data.containsKey('spiceNotifications')) {
+      final l$spiceNotifications = data['spiceNotifications'];
+      result$data['spiceNotifications'] = (l$spiceNotifications as bool?);
+    }
     if (data.containsKey('theme')) {
       final l$theme = data['theme'];
       result$data['theme'] = l$theme == null
@@ -101826,6 +117212,8 @@ class InputuserSettings_stream_cursor_value_input {
 
   List<String>? get goals => (_$data['goals'] as List<String>?);
 
+  bool? get hasKids => (_$data['hasKids'] as bool?);
+
   List<String>? get holidayCountries => (_$data['holidayCountries'] as List<String>?);
 
   String? get locale => (_$data['locale'] as String?);
@@ -101850,6 +117238,10 @@ class InputuserSettings_stream_cursor_value_input {
   bool? get slipsDefaultForCard => (_$data['slipsDefaultForCard'] as bool?);
 
   bool? get spiceEnabled => (_$data['spiceEnabled'] as bool?);
+
+  int? get spiceMaxLevel => (_$data['spiceMaxLevel'] as int?);
+
+  bool? get spiceNotifications => (_$data['spiceNotifications'] as bool?);
 
   EnumAppTheme_enum? get theme => (_$data['theme'] as EnumAppTheme_enum?);
 
@@ -101898,6 +117290,10 @@ class InputuserSettings_stream_cursor_value_input {
     if (_$data.containsKey('goals')) {
       final l$goals = goals;
       result$data['goals'] = l$goals?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('hasKids')) {
+      final l$hasKids = hasKids;
+      result$data['hasKids'] = l$hasKids;
     }
     if (_$data.containsKey('holidayCountries')) {
       final l$holidayCountries = holidayCountries;
@@ -101954,6 +117350,14 @@ class InputuserSettings_stream_cursor_value_input {
     if (_$data.containsKey('spiceEnabled')) {
       final l$spiceEnabled = spiceEnabled;
       result$data['spiceEnabled'] = l$spiceEnabled;
+    }
+    if (_$data.containsKey('spiceMaxLevel')) {
+      final l$spiceMaxLevel = spiceMaxLevel;
+      result$data['spiceMaxLevel'] = l$spiceMaxLevel;
+    }
+    if (_$data.containsKey('spiceNotifications')) {
+      final l$spiceNotifications = spiceNotifications;
+      result$data['spiceNotifications'] = l$spiceNotifications;
     }
     if (_$data.containsKey('theme')) {
       final l$theme = theme;
@@ -102065,6 +117469,14 @@ class InputuserSettings_stream_cursor_value_input {
     } else if (l$goals != lOther$goals) {
       return false;
     }
+    final l$hasKids = hasKids;
+    final lOther$hasKids = other.hasKids;
+    if (_$data.containsKey('hasKids') != other._$data.containsKey('hasKids')) {
+      return false;
+    }
+    if (l$hasKids != lOther$hasKids) {
+      return false;
+    }
     final l$holidayCountries = holidayCountries;
     final lOther$holidayCountries = other.holidayCountries;
     if (_$data.containsKey('holidayCountries') != other._$data.containsKey('holidayCountries')) {
@@ -102174,6 +117586,23 @@ class InputuserSettings_stream_cursor_value_input {
     if (l$spiceEnabled != lOther$spiceEnabled) {
       return false;
     }
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final lOther$spiceMaxLevel = other.spiceMaxLevel;
+    if (_$data.containsKey('spiceMaxLevel') != other._$data.containsKey('spiceMaxLevel')) {
+      return false;
+    }
+    if (l$spiceMaxLevel != lOther$spiceMaxLevel) {
+      return false;
+    }
+    final l$spiceNotifications = spiceNotifications;
+    final lOther$spiceNotifications = other.spiceNotifications;
+    if (_$data.containsKey('spiceNotifications') !=
+        other._$data.containsKey('spiceNotifications')) {
+      return false;
+    }
+    if (l$spiceNotifications != lOther$spiceNotifications) {
+      return false;
+    }
     final l$theme = theme;
     final lOther$theme = other.theme;
     if (_$data.containsKey('theme') != other._$data.containsKey('theme')) {
@@ -102244,6 +117673,7 @@ class InputuserSettings_stream_cursor_value_input {
     final l$createdAt = createdAt;
     final l$goal = goal;
     final l$goals = goals;
+    final l$hasKids = hasKids;
     final l$holidayCountries = holidayCountries;
     final l$locale = locale;
     final l$lowStimulation = lowStimulation;
@@ -102256,6 +117686,8 @@ class InputuserSettings_stream_cursor_value_input {
     final l$shareReadReceipts = shareReadReceipts;
     final l$slipsDefaultForCard = slipsDefaultForCard;
     final l$spiceEnabled = spiceEnabled;
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final l$spiceNotifications = spiceNotifications;
     final l$theme = theme;
     final l$togetherSince = togetherSince;
     final l$updatedAt = updatedAt;
@@ -102275,6 +117707,7 @@ class InputuserSettings_stream_cursor_value_input {
                 ? null
                 : Object.hashAll(l$goals.map((v) => v))
           : const {},
+      _$data.containsKey('hasKids') ? l$hasKids : const {},
       _$data.containsKey('holidayCountries')
           ? l$holidayCountries == null
                 ? null
@@ -102291,6 +117724,8 @@ class InputuserSettings_stream_cursor_value_input {
       _$data.containsKey('shareReadReceipts') ? l$shareReadReceipts : const {},
       _$data.containsKey('slipsDefaultForCard') ? l$slipsDefaultForCard : const {},
       _$data.containsKey('spiceEnabled') ? l$spiceEnabled : const {},
+      _$data.containsKey('spiceMaxLevel') ? l$spiceMaxLevel : const {},
+      _$data.containsKey('spiceNotifications') ? l$spiceNotifications : const {},
       _$data.containsKey('theme') ? l$theme : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
@@ -102304,14 +117739,25 @@ class InputuserSettings_stream_cursor_value_input {
 
 class InputuserSettings_updates {
   factory InputuserSettings_updates({
+    InputuserSettings_inc_input? $_inc,
     InputuserSettings_set_input? $_set,
     required InputuserSettings_bool_exp where,
-  }) => InputuserSettings_updates._({if ($_set != null) r'_set': $_set, r'where': where});
+  }) => InputuserSettings_updates._({
+    if ($_inc != null) r'_inc': $_inc,
+    if ($_set != null) r'_set': $_set,
+    r'where': where,
+  });
 
   InputuserSettings_updates._(this._$data);
 
   factory InputuserSettings_updates.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('_inc')) {
+      final l$$_inc = data['_inc'];
+      result$data['_inc'] = l$$_inc == null
+          ? null
+          : InputuserSettings_inc_input.fromJson((l$$_inc as Map<String, dynamic>));
+    }
     if (data.containsKey('_set')) {
       final l$$_set = data['_set'];
       result$data['_set'] = l$$_set == null
@@ -102325,12 +117771,18 @@ class InputuserSettings_updates {
 
   Map<String, dynamic> _$data;
 
+  InputuserSettings_inc_input? get $_inc => (_$data['_inc'] as InputuserSettings_inc_input?);
+
   InputuserSettings_set_input? get $_set => (_$data['_set'] as InputuserSettings_set_input?);
 
   InputuserSettings_bool_exp get where => (_$data['where'] as InputuserSettings_bool_exp);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_inc')) {
+      final l$$_inc = $_inc;
+      result$data['_inc'] = l$$_inc?.toJson();
+    }
     if (_$data.containsKey('_set')) {
       final l$$_set = $_set;
       result$data['_set'] = l$$_set?.toJson();
@@ -102346,6 +117798,14 @@ class InputuserSettings_updates {
       return true;
     }
     if (other is! InputuserSettings_updates || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_inc = $_inc;
+    final lOther$$_inc = other.$_inc;
+    if (_$data.containsKey('_inc') != other._$data.containsKey('_inc')) {
+      return false;
+    }
+    if (l$$_inc != lOther$$_inc) {
       return false;
     }
     final l$$_set = $_set;
@@ -102366,9 +117826,465 @@ class InputuserSettings_updates {
 
   @override
   int get hashCode {
+    final l$$_inc = $_inc;
     final l$$_set = $_set;
     final l$where = where;
-    return Object.hashAll([_$data.containsKey('_set') ? l$$_set : const {}, l$where]);
+    return Object.hashAll([
+      _$data.containsKey('_inc') ? l$$_inc : const {},
+      _$data.containsKey('_set') ? l$$_set : const {},
+      l$where,
+    ]);
+  }
+}
+
+class Inputuuid_array_comparison_exp {
+  factory Inputuuid_array_comparison_exp({
+    List<String>? $_contained_in,
+    List<String>? $_contains,
+    List<String>? $_eq,
+    List<String>? $_gt,
+    List<String>? $_gte,
+    List<List<String>>? $_in,
+    bool? $_is_null,
+    List<String>? $_lt,
+    List<String>? $_lte,
+    List<String>? $_neq,
+    List<List<String>>? $_nin,
+  }) => Inputuuid_array_comparison_exp._({
+    if ($_contained_in != null) r'_contained_in': $_contained_in,
+    if ($_contains != null) r'_contains': $_contains,
+    if ($_eq != null) r'_eq': $_eq,
+    if ($_gt != null) r'_gt': $_gt,
+    if ($_gte != null) r'_gte': $_gte,
+    if ($_in != null) r'_in': $_in,
+    if ($_is_null != null) r'_is_null': $_is_null,
+    if ($_lt != null) r'_lt': $_lt,
+    if ($_lte != null) r'_lte': $_lte,
+    if ($_neq != null) r'_neq': $_neq,
+    if ($_nin != null) r'_nin': $_nin,
+  });
+
+  Inputuuid_array_comparison_exp._(this._$data);
+
+  factory Inputuuid_array_comparison_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_contained_in')) {
+      final l$$_contained_in = data['_contained_in'];
+      result$data['_contained_in'] = (l$$_contained_in as List<dynamic>?)
+          ?.map((e) => (e as String))
+          .toList();
+    }
+    if (data.containsKey('_contains')) {
+      final l$$_contains = data['_contains'];
+      result$data['_contains'] = (l$$_contains as List<dynamic>?)
+          ?.map((e) => (e as String))
+          .toList();
+    }
+    if (data.containsKey('_eq')) {
+      final l$$_eq = data['_eq'];
+      result$data['_eq'] = (l$$_eq as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('_gt')) {
+      final l$$_gt = data['_gt'];
+      result$data['_gt'] = (l$$_gt as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('_gte')) {
+      final l$$_gte = data['_gte'];
+      result$data['_gte'] = (l$$_gte as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('_in')) {
+      final l$$_in = data['_in'];
+      result$data['_in'] = (l$$_in as List<dynamic>?)
+          ?.map((e) => (e as List<dynamic>).map((e) => (e as String)).toList())
+          .toList();
+    }
+    if (data.containsKey('_is_null')) {
+      final l$$_is_null = data['_is_null'];
+      result$data['_is_null'] = (l$$_is_null as bool?);
+    }
+    if (data.containsKey('_lt')) {
+      final l$$_lt = data['_lt'];
+      result$data['_lt'] = (l$$_lt as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('_lte')) {
+      final l$$_lte = data['_lte'];
+      result$data['_lte'] = (l$$_lte as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('_neq')) {
+      final l$$_neq = data['_neq'];
+      result$data['_neq'] = (l$$_neq as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('_nin')) {
+      final l$$_nin = data['_nin'];
+      result$data['_nin'] = (l$$_nin as List<dynamic>?)
+          ?.map((e) => (e as List<dynamic>).map((e) => (e as String)).toList())
+          .toList();
+    }
+    return Inputuuid_array_comparison_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<String>? get $_contained_in => (_$data['_contained_in'] as List<String>?);
+
+  List<String>? get $_contains => (_$data['_contains'] as List<String>?);
+
+  List<String>? get $_eq => (_$data['_eq'] as List<String>?);
+
+  List<String>? get $_gt => (_$data['_gt'] as List<String>?);
+
+  List<String>? get $_gte => (_$data['_gte'] as List<String>?);
+
+  List<List<String>>? get $_in => (_$data['_in'] as List<List<String>>?);
+
+  bool? get $_is_null => (_$data['_is_null'] as bool?);
+
+  List<String>? get $_lt => (_$data['_lt'] as List<String>?);
+
+  List<String>? get $_lte => (_$data['_lte'] as List<String>?);
+
+  List<String>? get $_neq => (_$data['_neq'] as List<String>?);
+
+  List<List<String>>? get $_nin => (_$data['_nin'] as List<List<String>>?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_contained_in')) {
+      final l$$_contained_in = $_contained_in;
+      result$data['_contained_in'] = l$$_contained_in?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('_contains')) {
+      final l$$_contains = $_contains;
+      result$data['_contains'] = l$$_contains?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('_eq')) {
+      final l$$_eq = $_eq;
+      result$data['_eq'] = l$$_eq?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('_gt')) {
+      final l$$_gt = $_gt;
+      result$data['_gt'] = l$$_gt?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('_gte')) {
+      final l$$_gte = $_gte;
+      result$data['_gte'] = l$$_gte?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('_in')) {
+      final l$$_in = $_in;
+      result$data['_in'] = l$$_in?.map((e) => e.map((e) => e).toList()).toList();
+    }
+    if (_$data.containsKey('_is_null')) {
+      final l$$_is_null = $_is_null;
+      result$data['_is_null'] = l$$_is_null;
+    }
+    if (_$data.containsKey('_lt')) {
+      final l$$_lt = $_lt;
+      result$data['_lt'] = l$$_lt?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('_lte')) {
+      final l$$_lte = $_lte;
+      result$data['_lte'] = l$$_lte?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('_neq')) {
+      final l$$_neq = $_neq;
+      result$data['_neq'] = l$$_neq?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('_nin')) {
+      final l$$_nin = $_nin;
+      result$data['_nin'] = l$$_nin?.map((e) => e.map((e) => e).toList()).toList();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Inputuuid_array_comparison_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_contained_in = $_contained_in;
+    final lOther$$_contained_in = other.$_contained_in;
+    if (_$data.containsKey('_contained_in') != other._$data.containsKey('_contained_in')) {
+      return false;
+    }
+    if (l$$_contained_in != null && lOther$$_contained_in != null) {
+      if (l$$_contained_in.length != lOther$$_contained_in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_contained_in.length; i++) {
+        final l$$_contained_in$entry = l$$_contained_in[i];
+        final lOther$$_contained_in$entry = lOther$$_contained_in[i];
+        if (l$$_contained_in$entry != lOther$$_contained_in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_contained_in != lOther$$_contained_in) {
+      return false;
+    }
+    final l$$_contains = $_contains;
+    final lOther$$_contains = other.$_contains;
+    if (_$data.containsKey('_contains') != other._$data.containsKey('_contains')) {
+      return false;
+    }
+    if (l$$_contains != null && lOther$$_contains != null) {
+      if (l$$_contains.length != lOther$$_contains.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_contains.length; i++) {
+        final l$$_contains$entry = l$$_contains[i];
+        final lOther$$_contains$entry = lOther$$_contains[i];
+        if (l$$_contains$entry != lOther$$_contains$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_contains != lOther$$_contains) {
+      return false;
+    }
+    final l$$_eq = $_eq;
+    final lOther$$_eq = other.$_eq;
+    if (_$data.containsKey('_eq') != other._$data.containsKey('_eq')) {
+      return false;
+    }
+    if (l$$_eq != null && lOther$$_eq != null) {
+      if (l$$_eq.length != lOther$$_eq.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_eq.length; i++) {
+        final l$$_eq$entry = l$$_eq[i];
+        final lOther$$_eq$entry = lOther$$_eq[i];
+        if (l$$_eq$entry != lOther$$_eq$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_eq != lOther$$_eq) {
+      return false;
+    }
+    final l$$_gt = $_gt;
+    final lOther$$_gt = other.$_gt;
+    if (_$data.containsKey('_gt') != other._$data.containsKey('_gt')) {
+      return false;
+    }
+    if (l$$_gt != null && lOther$$_gt != null) {
+      if (l$$_gt.length != lOther$$_gt.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_gt.length; i++) {
+        final l$$_gt$entry = l$$_gt[i];
+        final lOther$$_gt$entry = lOther$$_gt[i];
+        if (l$$_gt$entry != lOther$$_gt$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_gt != lOther$$_gt) {
+      return false;
+    }
+    final l$$_gte = $_gte;
+    final lOther$$_gte = other.$_gte;
+    if (_$data.containsKey('_gte') != other._$data.containsKey('_gte')) {
+      return false;
+    }
+    if (l$$_gte != null && lOther$$_gte != null) {
+      if (l$$_gte.length != lOther$$_gte.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_gte.length; i++) {
+        final l$$_gte$entry = l$$_gte[i];
+        final lOther$$_gte$entry = lOther$$_gte[i];
+        if (l$$_gte$entry != lOther$$_gte$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_gte != lOther$$_gte) {
+      return false;
+    }
+    final l$$_in = $_in;
+    final lOther$$_in = other.$_in;
+    if (_$data.containsKey('_in') != other._$data.containsKey('_in')) {
+      return false;
+    }
+    if (l$$_in != null && lOther$$_in != null) {
+      if (l$$_in.length != lOther$$_in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_in.length; i++) {
+        final l$$_in$entry = l$$_in[i];
+        final lOther$$_in$entry = lOther$$_in[i];
+        if (l$$_in$entry.length != lOther$$_in$entry.length) {
+          return false;
+        }
+        for (int i = 0; i < l$$_in$entry.length; i++) {
+          final l$$_in$entry$entry = l$$_in$entry[i];
+          final lOther$$_in$entry$entry = lOther$$_in$entry[i];
+          if (l$$_in$entry$entry != lOther$$_in$entry$entry) {
+            return false;
+          }
+        }
+      }
+    } else if (l$$_in != lOther$$_in) {
+      return false;
+    }
+    final l$$_is_null = $_is_null;
+    final lOther$$_is_null = other.$_is_null;
+    if (_$data.containsKey('_is_null') != other._$data.containsKey('_is_null')) {
+      return false;
+    }
+    if (l$$_is_null != lOther$$_is_null) {
+      return false;
+    }
+    final l$$_lt = $_lt;
+    final lOther$$_lt = other.$_lt;
+    if (_$data.containsKey('_lt') != other._$data.containsKey('_lt')) {
+      return false;
+    }
+    if (l$$_lt != null && lOther$$_lt != null) {
+      if (l$$_lt.length != lOther$$_lt.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_lt.length; i++) {
+        final l$$_lt$entry = l$$_lt[i];
+        final lOther$$_lt$entry = lOther$$_lt[i];
+        if (l$$_lt$entry != lOther$$_lt$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_lt != lOther$$_lt) {
+      return false;
+    }
+    final l$$_lte = $_lte;
+    final lOther$$_lte = other.$_lte;
+    if (_$data.containsKey('_lte') != other._$data.containsKey('_lte')) {
+      return false;
+    }
+    if (l$$_lte != null && lOther$$_lte != null) {
+      if (l$$_lte.length != lOther$$_lte.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_lte.length; i++) {
+        final l$$_lte$entry = l$$_lte[i];
+        final lOther$$_lte$entry = lOther$$_lte[i];
+        if (l$$_lte$entry != lOther$$_lte$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_lte != lOther$$_lte) {
+      return false;
+    }
+    final l$$_neq = $_neq;
+    final lOther$$_neq = other.$_neq;
+    if (_$data.containsKey('_neq') != other._$data.containsKey('_neq')) {
+      return false;
+    }
+    if (l$$_neq != null && lOther$$_neq != null) {
+      if (l$$_neq.length != lOther$$_neq.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_neq.length; i++) {
+        final l$$_neq$entry = l$$_neq[i];
+        final lOther$$_neq$entry = lOther$$_neq[i];
+        if (l$$_neq$entry != lOther$$_neq$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_neq != lOther$$_neq) {
+      return false;
+    }
+    final l$$_nin = $_nin;
+    final lOther$$_nin = other.$_nin;
+    if (_$data.containsKey('_nin') != other._$data.containsKey('_nin')) {
+      return false;
+    }
+    if (l$$_nin != null && lOther$$_nin != null) {
+      if (l$$_nin.length != lOther$$_nin.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_nin.length; i++) {
+        final l$$_nin$entry = l$$_nin[i];
+        final lOther$$_nin$entry = lOther$$_nin[i];
+        if (l$$_nin$entry.length != lOther$$_nin$entry.length) {
+          return false;
+        }
+        for (int i = 0; i < l$$_nin$entry.length; i++) {
+          final l$$_nin$entry$entry = l$$_nin$entry[i];
+          final lOther$$_nin$entry$entry = lOther$$_nin$entry[i];
+          if (l$$_nin$entry$entry != lOther$$_nin$entry$entry) {
+            return false;
+          }
+        }
+      }
+    } else if (l$$_nin != lOther$$_nin) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_contained_in = $_contained_in;
+    final l$$_contains = $_contains;
+    final l$$_eq = $_eq;
+    final l$$_gt = $_gt;
+    final l$$_gte = $_gte;
+    final l$$_in = $_in;
+    final l$$_is_null = $_is_null;
+    final l$$_lt = $_lt;
+    final l$$_lte = $_lte;
+    final l$$_neq = $_neq;
+    final l$$_nin = $_nin;
+    return Object.hashAll([
+      _$data.containsKey('_contained_in')
+          ? l$$_contained_in == null
+                ? null
+                : Object.hashAll(l$$_contained_in.map((v) => v))
+          : const {},
+      _$data.containsKey('_contains')
+          ? l$$_contains == null
+                ? null
+                : Object.hashAll(l$$_contains.map((v) => v))
+          : const {},
+      _$data.containsKey('_eq')
+          ? l$$_eq == null
+                ? null
+                : Object.hashAll(l$$_eq.map((v) => v))
+          : const {},
+      _$data.containsKey('_gt')
+          ? l$$_gt == null
+                ? null
+                : Object.hashAll(l$$_gt.map((v) => v))
+          : const {},
+      _$data.containsKey('_gte')
+          ? l$$_gte == null
+                ? null
+                : Object.hashAll(l$$_gte.map((v) => v))
+          : const {},
+      _$data.containsKey('_in')
+          ? l$$_in == null
+                ? null
+                : Object.hashAll(l$$_in.map((v) => Object.hashAll(v.map((v) => v))))
+          : const {},
+      _$data.containsKey('_is_null') ? l$$_is_null : const {},
+      _$data.containsKey('_lt')
+          ? l$$_lt == null
+                ? null
+                : Object.hashAll(l$$_lt.map((v) => v))
+          : const {},
+      _$data.containsKey('_lte')
+          ? l$$_lte == null
+                ? null
+                : Object.hashAll(l$$_lte.map((v) => v))
+          : const {},
+      _$data.containsKey('_neq')
+          ? l$$_neq == null
+                ? null
+                : Object.hashAll(l$$_neq.map((v) => v))
+          : const {},
+      _$data.containsKey('_nin')
+          ? l$$_nin == null
+                ? null
+                : Object.hashAll(l$$_nin.map((v) => Object.hashAll(v.map((v) => v))))
+          : const {},
+    ]);
   }
 }
 
@@ -102633,6 +118549,1370 @@ class Inputuuid_comparison_exp {
                 ? null
                 : Object.hashAll(l$$_nin.map((v) => v))
           : const {},
+    ]);
+  }
+}
+
+class InputweeklyReview_args {
+  factory InputweeklyReview_args({DateTime? weekStart}) =>
+      InputweeklyReview_args._({if (weekStart != null) r'weekStart': weekStart});
+
+  InputweeklyReview_args._(this._$data);
+
+  factory InputweeklyReview_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('weekStart')) {
+      final l$weekStart = data['weekStart'];
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : DateTime.parse((l$weekStart as String));
+    }
+    return InputweeklyReview_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  DateTime? get weekStart => (_$data['weekStart'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('weekStart')) {
+      final l$weekStart = weekStart;
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputweeklyReview_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$weekStart = weekStart;
+    final lOther$weekStart = other.weekStart;
+    if (_$data.containsKey('weekStart') != other._$data.containsKey('weekStart')) {
+      return false;
+    }
+    if (l$weekStart != lOther$weekStart) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$weekStart = weekStart;
+    return Object.hashAll([_$data.containsKey('weekStart') ? l$weekStart : const {}]);
+  }
+}
+
+class InputweeklyReviews_bool_exp {
+  factory InputweeklyReviews_bool_exp({
+    List<InputweeklyReviews_bool_exp>? $_and,
+    InputweeklyReviews_bool_exp? $_not,
+    List<InputweeklyReviews_bool_exp>? $_or,
+    InputInt_comparison_exp? activeDays,
+    InputBoolean_comparison_exp? bothCheckinDone,
+    InputInt_comparison_exp? cardsReceived,
+    InputInt_comparison_exp? cardsSent,
+    InputBoolean_comparison_exp? checkinDone,
+    InputInt_comparison_exp? coupleRitualsDone,
+    InputBoolean_comparison_exp? lowData,
+    InputString_array_comparison_exp? missing,
+    InputInt_comparison_exp? moodsLogged,
+    InputInt_comparison_exp? partnerCardsSent,
+    InputInt_comparison_exp? ritualsDone,
+    InputInt_comparison_exp? slips,
+    InputInt_comparison_exp? streakDays,
+    Inputdate_comparison_exp? weekStart,
+  }) => InputweeklyReviews_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (activeDays != null) r'activeDays': activeDays,
+    if (bothCheckinDone != null) r'bothCheckinDone': bothCheckinDone,
+    if (cardsReceived != null) r'cardsReceived': cardsReceived,
+    if (cardsSent != null) r'cardsSent': cardsSent,
+    if (checkinDone != null) r'checkinDone': checkinDone,
+    if (coupleRitualsDone != null) r'coupleRitualsDone': coupleRitualsDone,
+    if (lowData != null) r'lowData': lowData,
+    if (missing != null) r'missing': missing,
+    if (moodsLogged != null) r'moodsLogged': moodsLogged,
+    if (partnerCardsSent != null) r'partnerCardsSent': partnerCardsSent,
+    if (ritualsDone != null) r'ritualsDone': ritualsDone,
+    if (slips != null) r'slips': slips,
+    if (streakDays != null) r'streakDays': streakDays,
+    if (weekStart != null) r'weekStart': weekStart,
+  });
+
+  InputweeklyReviews_bool_exp._(this._$data);
+
+  factory InputweeklyReviews_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputweeklyReviews_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputweeklyReviews_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputweeklyReviews_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('activeDays')) {
+      final l$activeDays = data['activeDays'];
+      result$data['activeDays'] = l$activeDays == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$activeDays as Map<String, dynamic>));
+    }
+    if (data.containsKey('bothCheckinDone')) {
+      final l$bothCheckinDone = data['bothCheckinDone'];
+      result$data['bothCheckinDone'] = l$bothCheckinDone == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$bothCheckinDone as Map<String, dynamic>));
+    }
+    if (data.containsKey('cardsReceived')) {
+      final l$cardsReceived = data['cardsReceived'];
+      result$data['cardsReceived'] = l$cardsReceived == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$cardsReceived as Map<String, dynamic>));
+    }
+    if (data.containsKey('cardsSent')) {
+      final l$cardsSent = data['cardsSent'];
+      result$data['cardsSent'] = l$cardsSent == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$cardsSent as Map<String, dynamic>));
+    }
+    if (data.containsKey('checkinDone')) {
+      final l$checkinDone = data['checkinDone'];
+      result$data['checkinDone'] = l$checkinDone == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$checkinDone as Map<String, dynamic>));
+    }
+    if (data.containsKey('coupleRitualsDone')) {
+      final l$coupleRitualsDone = data['coupleRitualsDone'];
+      result$data['coupleRitualsDone'] = l$coupleRitualsDone == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$coupleRitualsDone as Map<String, dynamic>));
+    }
+    if (data.containsKey('lowData')) {
+      final l$lowData = data['lowData'];
+      result$data['lowData'] = l$lowData == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$lowData as Map<String, dynamic>));
+    }
+    if (data.containsKey('missing')) {
+      final l$missing = data['missing'];
+      result$data['missing'] = l$missing == null
+          ? null
+          : InputString_array_comparison_exp.fromJson((l$missing as Map<String, dynamic>));
+    }
+    if (data.containsKey('moodsLogged')) {
+      final l$moodsLogged = data['moodsLogged'];
+      result$data['moodsLogged'] = l$moodsLogged == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$moodsLogged as Map<String, dynamic>));
+    }
+    if (data.containsKey('partnerCardsSent')) {
+      final l$partnerCardsSent = data['partnerCardsSent'];
+      result$data['partnerCardsSent'] = l$partnerCardsSent == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$partnerCardsSent as Map<String, dynamic>));
+    }
+    if (data.containsKey('ritualsDone')) {
+      final l$ritualsDone = data['ritualsDone'];
+      result$data['ritualsDone'] = l$ritualsDone == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$ritualsDone as Map<String, dynamic>));
+    }
+    if (data.containsKey('slips')) {
+      final l$slips = data['slips'];
+      result$data['slips'] = l$slips == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$slips as Map<String, dynamic>));
+    }
+    if (data.containsKey('streakDays')) {
+      final l$streakDays = data['streakDays'];
+      result$data['streakDays'] = l$streakDays == null
+          ? null
+          : InputInt_comparison_exp.fromJson((l$streakDays as Map<String, dynamic>));
+    }
+    if (data.containsKey('weekStart')) {
+      final l$weekStart = data['weekStart'];
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : Inputdate_comparison_exp.fromJson((l$weekStart as Map<String, dynamic>));
+    }
+    return InputweeklyReviews_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputweeklyReviews_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputweeklyReviews_bool_exp>?);
+
+  InputweeklyReviews_bool_exp? get $_not => (_$data['_not'] as InputweeklyReviews_bool_exp?);
+
+  List<InputweeklyReviews_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputweeklyReviews_bool_exp>?);
+
+  InputInt_comparison_exp? get activeDays => (_$data['activeDays'] as InputInt_comparison_exp?);
+
+  InputBoolean_comparison_exp? get bothCheckinDone =>
+      (_$data['bothCheckinDone'] as InputBoolean_comparison_exp?);
+
+  InputInt_comparison_exp? get cardsReceived =>
+      (_$data['cardsReceived'] as InputInt_comparison_exp?);
+
+  InputInt_comparison_exp? get cardsSent => (_$data['cardsSent'] as InputInt_comparison_exp?);
+
+  InputBoolean_comparison_exp? get checkinDone =>
+      (_$data['checkinDone'] as InputBoolean_comparison_exp?);
+
+  InputInt_comparison_exp? get coupleRitualsDone =>
+      (_$data['coupleRitualsDone'] as InputInt_comparison_exp?);
+
+  InputBoolean_comparison_exp? get lowData => (_$data['lowData'] as InputBoolean_comparison_exp?);
+
+  InputString_array_comparison_exp? get missing =>
+      (_$data['missing'] as InputString_array_comparison_exp?);
+
+  InputInt_comparison_exp? get moodsLogged => (_$data['moodsLogged'] as InputInt_comparison_exp?);
+
+  InputInt_comparison_exp? get partnerCardsSent =>
+      (_$data['partnerCardsSent'] as InputInt_comparison_exp?);
+
+  InputInt_comparison_exp? get ritualsDone => (_$data['ritualsDone'] as InputInt_comparison_exp?);
+
+  InputInt_comparison_exp? get slips => (_$data['slips'] as InputInt_comparison_exp?);
+
+  InputInt_comparison_exp? get streakDays => (_$data['streakDays'] as InputInt_comparison_exp?);
+
+  Inputdate_comparison_exp? get weekStart => (_$data['weekStart'] as Inputdate_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('activeDays')) {
+      final l$activeDays = activeDays;
+      result$data['activeDays'] = l$activeDays?.toJson();
+    }
+    if (_$data.containsKey('bothCheckinDone')) {
+      final l$bothCheckinDone = bothCheckinDone;
+      result$data['bothCheckinDone'] = l$bothCheckinDone?.toJson();
+    }
+    if (_$data.containsKey('cardsReceived')) {
+      final l$cardsReceived = cardsReceived;
+      result$data['cardsReceived'] = l$cardsReceived?.toJson();
+    }
+    if (_$data.containsKey('cardsSent')) {
+      final l$cardsSent = cardsSent;
+      result$data['cardsSent'] = l$cardsSent?.toJson();
+    }
+    if (_$data.containsKey('checkinDone')) {
+      final l$checkinDone = checkinDone;
+      result$data['checkinDone'] = l$checkinDone?.toJson();
+    }
+    if (_$data.containsKey('coupleRitualsDone')) {
+      final l$coupleRitualsDone = coupleRitualsDone;
+      result$data['coupleRitualsDone'] = l$coupleRitualsDone?.toJson();
+    }
+    if (_$data.containsKey('lowData')) {
+      final l$lowData = lowData;
+      result$data['lowData'] = l$lowData?.toJson();
+    }
+    if (_$data.containsKey('missing')) {
+      final l$missing = missing;
+      result$data['missing'] = l$missing?.toJson();
+    }
+    if (_$data.containsKey('moodsLogged')) {
+      final l$moodsLogged = moodsLogged;
+      result$data['moodsLogged'] = l$moodsLogged?.toJson();
+    }
+    if (_$data.containsKey('partnerCardsSent')) {
+      final l$partnerCardsSent = partnerCardsSent;
+      result$data['partnerCardsSent'] = l$partnerCardsSent?.toJson();
+    }
+    if (_$data.containsKey('ritualsDone')) {
+      final l$ritualsDone = ritualsDone;
+      result$data['ritualsDone'] = l$ritualsDone?.toJson();
+    }
+    if (_$data.containsKey('slips')) {
+      final l$slips = slips;
+      result$data['slips'] = l$slips?.toJson();
+    }
+    if (_$data.containsKey('streakDays')) {
+      final l$streakDays = streakDays;
+      result$data['streakDays'] = l$streakDays?.toJson();
+    }
+    if (_$data.containsKey('weekStart')) {
+      final l$weekStart = weekStart;
+      result$data['weekStart'] = l$weekStart?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputweeklyReviews_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$activeDays = activeDays;
+    final lOther$activeDays = other.activeDays;
+    if (_$data.containsKey('activeDays') != other._$data.containsKey('activeDays')) {
+      return false;
+    }
+    if (l$activeDays != lOther$activeDays) {
+      return false;
+    }
+    final l$bothCheckinDone = bothCheckinDone;
+    final lOther$bothCheckinDone = other.bothCheckinDone;
+    if (_$data.containsKey('bothCheckinDone') != other._$data.containsKey('bothCheckinDone')) {
+      return false;
+    }
+    if (l$bothCheckinDone != lOther$bothCheckinDone) {
+      return false;
+    }
+    final l$cardsReceived = cardsReceived;
+    final lOther$cardsReceived = other.cardsReceived;
+    if (_$data.containsKey('cardsReceived') != other._$data.containsKey('cardsReceived')) {
+      return false;
+    }
+    if (l$cardsReceived != lOther$cardsReceived) {
+      return false;
+    }
+    final l$cardsSent = cardsSent;
+    final lOther$cardsSent = other.cardsSent;
+    if (_$data.containsKey('cardsSent') != other._$data.containsKey('cardsSent')) {
+      return false;
+    }
+    if (l$cardsSent != lOther$cardsSent) {
+      return false;
+    }
+    final l$checkinDone = checkinDone;
+    final lOther$checkinDone = other.checkinDone;
+    if (_$data.containsKey('checkinDone') != other._$data.containsKey('checkinDone')) {
+      return false;
+    }
+    if (l$checkinDone != lOther$checkinDone) {
+      return false;
+    }
+    final l$coupleRitualsDone = coupleRitualsDone;
+    final lOther$coupleRitualsDone = other.coupleRitualsDone;
+    if (_$data.containsKey('coupleRitualsDone') != other._$data.containsKey('coupleRitualsDone')) {
+      return false;
+    }
+    if (l$coupleRitualsDone != lOther$coupleRitualsDone) {
+      return false;
+    }
+    final l$lowData = lowData;
+    final lOther$lowData = other.lowData;
+    if (_$data.containsKey('lowData') != other._$data.containsKey('lowData')) {
+      return false;
+    }
+    if (l$lowData != lOther$lowData) {
+      return false;
+    }
+    final l$missing = missing;
+    final lOther$missing = other.missing;
+    if (_$data.containsKey('missing') != other._$data.containsKey('missing')) {
+      return false;
+    }
+    if (l$missing != lOther$missing) {
+      return false;
+    }
+    final l$moodsLogged = moodsLogged;
+    final lOther$moodsLogged = other.moodsLogged;
+    if (_$data.containsKey('moodsLogged') != other._$data.containsKey('moodsLogged')) {
+      return false;
+    }
+    if (l$moodsLogged != lOther$moodsLogged) {
+      return false;
+    }
+    final l$partnerCardsSent = partnerCardsSent;
+    final lOther$partnerCardsSent = other.partnerCardsSent;
+    if (_$data.containsKey('partnerCardsSent') != other._$data.containsKey('partnerCardsSent')) {
+      return false;
+    }
+    if (l$partnerCardsSent != lOther$partnerCardsSent) {
+      return false;
+    }
+    final l$ritualsDone = ritualsDone;
+    final lOther$ritualsDone = other.ritualsDone;
+    if (_$data.containsKey('ritualsDone') != other._$data.containsKey('ritualsDone')) {
+      return false;
+    }
+    if (l$ritualsDone != lOther$ritualsDone) {
+      return false;
+    }
+    final l$slips = slips;
+    final lOther$slips = other.slips;
+    if (_$data.containsKey('slips') != other._$data.containsKey('slips')) {
+      return false;
+    }
+    if (l$slips != lOther$slips) {
+      return false;
+    }
+    final l$streakDays = streakDays;
+    final lOther$streakDays = other.streakDays;
+    if (_$data.containsKey('streakDays') != other._$data.containsKey('streakDays')) {
+      return false;
+    }
+    if (l$streakDays != lOther$streakDays) {
+      return false;
+    }
+    final l$weekStart = weekStart;
+    final lOther$weekStart = other.weekStart;
+    if (_$data.containsKey('weekStart') != other._$data.containsKey('weekStart')) {
+      return false;
+    }
+    if (l$weekStart != lOther$weekStart) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$activeDays = activeDays;
+    final l$bothCheckinDone = bothCheckinDone;
+    final l$cardsReceived = cardsReceived;
+    final l$cardsSent = cardsSent;
+    final l$checkinDone = checkinDone;
+    final l$coupleRitualsDone = coupleRitualsDone;
+    final l$lowData = lowData;
+    final l$missing = missing;
+    final l$moodsLogged = moodsLogged;
+    final l$partnerCardsSent = partnerCardsSent;
+    final l$ritualsDone = ritualsDone;
+    final l$slips = slips;
+    final l$streakDays = streakDays;
+    final l$weekStart = weekStart;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('activeDays') ? l$activeDays : const {},
+      _$data.containsKey('bothCheckinDone') ? l$bothCheckinDone : const {},
+      _$data.containsKey('cardsReceived') ? l$cardsReceived : const {},
+      _$data.containsKey('cardsSent') ? l$cardsSent : const {},
+      _$data.containsKey('checkinDone') ? l$checkinDone : const {},
+      _$data.containsKey('coupleRitualsDone') ? l$coupleRitualsDone : const {},
+      _$data.containsKey('lowData') ? l$lowData : const {},
+      _$data.containsKey('missing') ? l$missing : const {},
+      _$data.containsKey('moodsLogged') ? l$moodsLogged : const {},
+      _$data.containsKey('partnerCardsSent') ? l$partnerCardsSent : const {},
+      _$data.containsKey('ritualsDone') ? l$ritualsDone : const {},
+      _$data.containsKey('slips') ? l$slips : const {},
+      _$data.containsKey('streakDays') ? l$streakDays : const {},
+      _$data.containsKey('weekStart') ? l$weekStart : const {},
+    ]);
+  }
+}
+
+class InputweeklyReviews_order_by {
+  factory InputweeklyReviews_order_by({
+    Enumorder_by? activeDays,
+    Enumorder_by? bothCheckinDone,
+    Enumorder_by? cardsReceived,
+    Enumorder_by? cardsSent,
+    Enumorder_by? checkinDone,
+    Enumorder_by? coupleRitualsDone,
+    Enumorder_by? lowData,
+    Enumorder_by? missing,
+    Enumorder_by? moodsLogged,
+    Enumorder_by? partnerCardsSent,
+    Enumorder_by? ritualsDone,
+    Enumorder_by? slips,
+    Enumorder_by? streakDays,
+    Enumorder_by? weekStart,
+  }) => InputweeklyReviews_order_by._({
+    if (activeDays != null) r'activeDays': activeDays,
+    if (bothCheckinDone != null) r'bothCheckinDone': bothCheckinDone,
+    if (cardsReceived != null) r'cardsReceived': cardsReceived,
+    if (cardsSent != null) r'cardsSent': cardsSent,
+    if (checkinDone != null) r'checkinDone': checkinDone,
+    if (coupleRitualsDone != null) r'coupleRitualsDone': coupleRitualsDone,
+    if (lowData != null) r'lowData': lowData,
+    if (missing != null) r'missing': missing,
+    if (moodsLogged != null) r'moodsLogged': moodsLogged,
+    if (partnerCardsSent != null) r'partnerCardsSent': partnerCardsSent,
+    if (ritualsDone != null) r'ritualsDone': ritualsDone,
+    if (slips != null) r'slips': slips,
+    if (streakDays != null) r'streakDays': streakDays,
+    if (weekStart != null) r'weekStart': weekStart,
+  });
+
+  InputweeklyReviews_order_by._(this._$data);
+
+  factory InputweeklyReviews_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('activeDays')) {
+      final l$activeDays = data['activeDays'];
+      result$data['activeDays'] = l$activeDays == null
+          ? null
+          : fromJsonEnumorder_by((l$activeDays as String));
+    }
+    if (data.containsKey('bothCheckinDone')) {
+      final l$bothCheckinDone = data['bothCheckinDone'];
+      result$data['bothCheckinDone'] = l$bothCheckinDone == null
+          ? null
+          : fromJsonEnumorder_by((l$bothCheckinDone as String));
+    }
+    if (data.containsKey('cardsReceived')) {
+      final l$cardsReceived = data['cardsReceived'];
+      result$data['cardsReceived'] = l$cardsReceived == null
+          ? null
+          : fromJsonEnumorder_by((l$cardsReceived as String));
+    }
+    if (data.containsKey('cardsSent')) {
+      final l$cardsSent = data['cardsSent'];
+      result$data['cardsSent'] = l$cardsSent == null
+          ? null
+          : fromJsonEnumorder_by((l$cardsSent as String));
+    }
+    if (data.containsKey('checkinDone')) {
+      final l$checkinDone = data['checkinDone'];
+      result$data['checkinDone'] = l$checkinDone == null
+          ? null
+          : fromJsonEnumorder_by((l$checkinDone as String));
+    }
+    if (data.containsKey('coupleRitualsDone')) {
+      final l$coupleRitualsDone = data['coupleRitualsDone'];
+      result$data['coupleRitualsDone'] = l$coupleRitualsDone == null
+          ? null
+          : fromJsonEnumorder_by((l$coupleRitualsDone as String));
+    }
+    if (data.containsKey('lowData')) {
+      final l$lowData = data['lowData'];
+      result$data['lowData'] = l$lowData == null
+          ? null
+          : fromJsonEnumorder_by((l$lowData as String));
+    }
+    if (data.containsKey('missing')) {
+      final l$missing = data['missing'];
+      result$data['missing'] = l$missing == null
+          ? null
+          : fromJsonEnumorder_by((l$missing as String));
+    }
+    if (data.containsKey('moodsLogged')) {
+      final l$moodsLogged = data['moodsLogged'];
+      result$data['moodsLogged'] = l$moodsLogged == null
+          ? null
+          : fromJsonEnumorder_by((l$moodsLogged as String));
+    }
+    if (data.containsKey('partnerCardsSent')) {
+      final l$partnerCardsSent = data['partnerCardsSent'];
+      result$data['partnerCardsSent'] = l$partnerCardsSent == null
+          ? null
+          : fromJsonEnumorder_by((l$partnerCardsSent as String));
+    }
+    if (data.containsKey('ritualsDone')) {
+      final l$ritualsDone = data['ritualsDone'];
+      result$data['ritualsDone'] = l$ritualsDone == null
+          ? null
+          : fromJsonEnumorder_by((l$ritualsDone as String));
+    }
+    if (data.containsKey('slips')) {
+      final l$slips = data['slips'];
+      result$data['slips'] = l$slips == null ? null : fromJsonEnumorder_by((l$slips as String));
+    }
+    if (data.containsKey('streakDays')) {
+      final l$streakDays = data['streakDays'];
+      result$data['streakDays'] = l$streakDays == null
+          ? null
+          : fromJsonEnumorder_by((l$streakDays as String));
+    }
+    if (data.containsKey('weekStart')) {
+      final l$weekStart = data['weekStart'];
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : fromJsonEnumorder_by((l$weekStart as String));
+    }
+    return InputweeklyReviews_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get activeDays => (_$data['activeDays'] as Enumorder_by?);
+
+  Enumorder_by? get bothCheckinDone => (_$data['bothCheckinDone'] as Enumorder_by?);
+
+  Enumorder_by? get cardsReceived => (_$data['cardsReceived'] as Enumorder_by?);
+
+  Enumorder_by? get cardsSent => (_$data['cardsSent'] as Enumorder_by?);
+
+  Enumorder_by? get checkinDone => (_$data['checkinDone'] as Enumorder_by?);
+
+  Enumorder_by? get coupleRitualsDone => (_$data['coupleRitualsDone'] as Enumorder_by?);
+
+  Enumorder_by? get lowData => (_$data['lowData'] as Enumorder_by?);
+
+  Enumorder_by? get missing => (_$data['missing'] as Enumorder_by?);
+
+  Enumorder_by? get moodsLogged => (_$data['moodsLogged'] as Enumorder_by?);
+
+  Enumorder_by? get partnerCardsSent => (_$data['partnerCardsSent'] as Enumorder_by?);
+
+  Enumorder_by? get ritualsDone => (_$data['ritualsDone'] as Enumorder_by?);
+
+  Enumorder_by? get slips => (_$data['slips'] as Enumorder_by?);
+
+  Enumorder_by? get streakDays => (_$data['streakDays'] as Enumorder_by?);
+
+  Enumorder_by? get weekStart => (_$data['weekStart'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('activeDays')) {
+      final l$activeDays = activeDays;
+      result$data['activeDays'] = l$activeDays == null ? null : toJsonEnumorder_by(l$activeDays);
+    }
+    if (_$data.containsKey('bothCheckinDone')) {
+      final l$bothCheckinDone = bothCheckinDone;
+      result$data['bothCheckinDone'] = l$bothCheckinDone == null
+          ? null
+          : toJsonEnumorder_by(l$bothCheckinDone);
+    }
+    if (_$data.containsKey('cardsReceived')) {
+      final l$cardsReceived = cardsReceived;
+      result$data['cardsReceived'] = l$cardsReceived == null
+          ? null
+          : toJsonEnumorder_by(l$cardsReceived);
+    }
+    if (_$data.containsKey('cardsSent')) {
+      final l$cardsSent = cardsSent;
+      result$data['cardsSent'] = l$cardsSent == null ? null : toJsonEnumorder_by(l$cardsSent);
+    }
+    if (_$data.containsKey('checkinDone')) {
+      final l$checkinDone = checkinDone;
+      result$data['checkinDone'] = l$checkinDone == null ? null : toJsonEnumorder_by(l$checkinDone);
+    }
+    if (_$data.containsKey('coupleRitualsDone')) {
+      final l$coupleRitualsDone = coupleRitualsDone;
+      result$data['coupleRitualsDone'] = l$coupleRitualsDone == null
+          ? null
+          : toJsonEnumorder_by(l$coupleRitualsDone);
+    }
+    if (_$data.containsKey('lowData')) {
+      final l$lowData = lowData;
+      result$data['lowData'] = l$lowData == null ? null : toJsonEnumorder_by(l$lowData);
+    }
+    if (_$data.containsKey('missing')) {
+      final l$missing = missing;
+      result$data['missing'] = l$missing == null ? null : toJsonEnumorder_by(l$missing);
+    }
+    if (_$data.containsKey('moodsLogged')) {
+      final l$moodsLogged = moodsLogged;
+      result$data['moodsLogged'] = l$moodsLogged == null ? null : toJsonEnumorder_by(l$moodsLogged);
+    }
+    if (_$data.containsKey('partnerCardsSent')) {
+      final l$partnerCardsSent = partnerCardsSent;
+      result$data['partnerCardsSent'] = l$partnerCardsSent == null
+          ? null
+          : toJsonEnumorder_by(l$partnerCardsSent);
+    }
+    if (_$data.containsKey('ritualsDone')) {
+      final l$ritualsDone = ritualsDone;
+      result$data['ritualsDone'] = l$ritualsDone == null ? null : toJsonEnumorder_by(l$ritualsDone);
+    }
+    if (_$data.containsKey('slips')) {
+      final l$slips = slips;
+      result$data['slips'] = l$slips == null ? null : toJsonEnumorder_by(l$slips);
+    }
+    if (_$data.containsKey('streakDays')) {
+      final l$streakDays = streakDays;
+      result$data['streakDays'] = l$streakDays == null ? null : toJsonEnumorder_by(l$streakDays);
+    }
+    if (_$data.containsKey('weekStart')) {
+      final l$weekStart = weekStart;
+      result$data['weekStart'] = l$weekStart == null ? null : toJsonEnumorder_by(l$weekStart);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputweeklyReviews_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$activeDays = activeDays;
+    final lOther$activeDays = other.activeDays;
+    if (_$data.containsKey('activeDays') != other._$data.containsKey('activeDays')) {
+      return false;
+    }
+    if (l$activeDays != lOther$activeDays) {
+      return false;
+    }
+    final l$bothCheckinDone = bothCheckinDone;
+    final lOther$bothCheckinDone = other.bothCheckinDone;
+    if (_$data.containsKey('bothCheckinDone') != other._$data.containsKey('bothCheckinDone')) {
+      return false;
+    }
+    if (l$bothCheckinDone != lOther$bothCheckinDone) {
+      return false;
+    }
+    final l$cardsReceived = cardsReceived;
+    final lOther$cardsReceived = other.cardsReceived;
+    if (_$data.containsKey('cardsReceived') != other._$data.containsKey('cardsReceived')) {
+      return false;
+    }
+    if (l$cardsReceived != lOther$cardsReceived) {
+      return false;
+    }
+    final l$cardsSent = cardsSent;
+    final lOther$cardsSent = other.cardsSent;
+    if (_$data.containsKey('cardsSent') != other._$data.containsKey('cardsSent')) {
+      return false;
+    }
+    if (l$cardsSent != lOther$cardsSent) {
+      return false;
+    }
+    final l$checkinDone = checkinDone;
+    final lOther$checkinDone = other.checkinDone;
+    if (_$data.containsKey('checkinDone') != other._$data.containsKey('checkinDone')) {
+      return false;
+    }
+    if (l$checkinDone != lOther$checkinDone) {
+      return false;
+    }
+    final l$coupleRitualsDone = coupleRitualsDone;
+    final lOther$coupleRitualsDone = other.coupleRitualsDone;
+    if (_$data.containsKey('coupleRitualsDone') != other._$data.containsKey('coupleRitualsDone')) {
+      return false;
+    }
+    if (l$coupleRitualsDone != lOther$coupleRitualsDone) {
+      return false;
+    }
+    final l$lowData = lowData;
+    final lOther$lowData = other.lowData;
+    if (_$data.containsKey('lowData') != other._$data.containsKey('lowData')) {
+      return false;
+    }
+    if (l$lowData != lOther$lowData) {
+      return false;
+    }
+    final l$missing = missing;
+    final lOther$missing = other.missing;
+    if (_$data.containsKey('missing') != other._$data.containsKey('missing')) {
+      return false;
+    }
+    if (l$missing != lOther$missing) {
+      return false;
+    }
+    final l$moodsLogged = moodsLogged;
+    final lOther$moodsLogged = other.moodsLogged;
+    if (_$data.containsKey('moodsLogged') != other._$data.containsKey('moodsLogged')) {
+      return false;
+    }
+    if (l$moodsLogged != lOther$moodsLogged) {
+      return false;
+    }
+    final l$partnerCardsSent = partnerCardsSent;
+    final lOther$partnerCardsSent = other.partnerCardsSent;
+    if (_$data.containsKey('partnerCardsSent') != other._$data.containsKey('partnerCardsSent')) {
+      return false;
+    }
+    if (l$partnerCardsSent != lOther$partnerCardsSent) {
+      return false;
+    }
+    final l$ritualsDone = ritualsDone;
+    final lOther$ritualsDone = other.ritualsDone;
+    if (_$data.containsKey('ritualsDone') != other._$data.containsKey('ritualsDone')) {
+      return false;
+    }
+    if (l$ritualsDone != lOther$ritualsDone) {
+      return false;
+    }
+    final l$slips = slips;
+    final lOther$slips = other.slips;
+    if (_$data.containsKey('slips') != other._$data.containsKey('slips')) {
+      return false;
+    }
+    if (l$slips != lOther$slips) {
+      return false;
+    }
+    final l$streakDays = streakDays;
+    final lOther$streakDays = other.streakDays;
+    if (_$data.containsKey('streakDays') != other._$data.containsKey('streakDays')) {
+      return false;
+    }
+    if (l$streakDays != lOther$streakDays) {
+      return false;
+    }
+    final l$weekStart = weekStart;
+    final lOther$weekStart = other.weekStart;
+    if (_$data.containsKey('weekStart') != other._$data.containsKey('weekStart')) {
+      return false;
+    }
+    if (l$weekStart != lOther$weekStart) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$activeDays = activeDays;
+    final l$bothCheckinDone = bothCheckinDone;
+    final l$cardsReceived = cardsReceived;
+    final l$cardsSent = cardsSent;
+    final l$checkinDone = checkinDone;
+    final l$coupleRitualsDone = coupleRitualsDone;
+    final l$lowData = lowData;
+    final l$missing = missing;
+    final l$moodsLogged = moodsLogged;
+    final l$partnerCardsSent = partnerCardsSent;
+    final l$ritualsDone = ritualsDone;
+    final l$slips = slips;
+    final l$streakDays = streakDays;
+    final l$weekStart = weekStart;
+    return Object.hashAll([
+      _$data.containsKey('activeDays') ? l$activeDays : const {},
+      _$data.containsKey('bothCheckinDone') ? l$bothCheckinDone : const {},
+      _$data.containsKey('cardsReceived') ? l$cardsReceived : const {},
+      _$data.containsKey('cardsSent') ? l$cardsSent : const {},
+      _$data.containsKey('checkinDone') ? l$checkinDone : const {},
+      _$data.containsKey('coupleRitualsDone') ? l$coupleRitualsDone : const {},
+      _$data.containsKey('lowData') ? l$lowData : const {},
+      _$data.containsKey('missing') ? l$missing : const {},
+      _$data.containsKey('moodsLogged') ? l$moodsLogged : const {},
+      _$data.containsKey('partnerCardsSent') ? l$partnerCardsSent : const {},
+      _$data.containsKey('ritualsDone') ? l$ritualsDone : const {},
+      _$data.containsKey('slips') ? l$slips : const {},
+      _$data.containsKey('streakDays') ? l$streakDays : const {},
+      _$data.containsKey('weekStart') ? l$weekStart : const {},
+    ]);
+  }
+}
+
+class InputweeklyReviews_stream_cursor_input {
+  factory InputweeklyReviews_stream_cursor_input({
+    required InputweeklyReviews_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputweeklyReviews_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputweeklyReviews_stream_cursor_input._(this._$data);
+
+  factory InputweeklyReviews_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputweeklyReviews_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputweeklyReviews_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputweeklyReviews_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputweeklyReviews_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputweeklyReviews_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputweeklyReviews_stream_cursor_value_input {
+  factory InputweeklyReviews_stream_cursor_value_input({
+    int? activeDays,
+    bool? bothCheckinDone,
+    int? cardsReceived,
+    int? cardsSent,
+    bool? checkinDone,
+    int? coupleRitualsDone,
+    bool? lowData,
+    List<String>? missing,
+    int? moodsLogged,
+    int? partnerCardsSent,
+    int? ritualsDone,
+    int? slips,
+    int? streakDays,
+    DateTime? weekStart,
+  }) => InputweeklyReviews_stream_cursor_value_input._({
+    if (activeDays != null) r'activeDays': activeDays,
+    if (bothCheckinDone != null) r'bothCheckinDone': bothCheckinDone,
+    if (cardsReceived != null) r'cardsReceived': cardsReceived,
+    if (cardsSent != null) r'cardsSent': cardsSent,
+    if (checkinDone != null) r'checkinDone': checkinDone,
+    if (coupleRitualsDone != null) r'coupleRitualsDone': coupleRitualsDone,
+    if (lowData != null) r'lowData': lowData,
+    if (missing != null) r'missing': missing,
+    if (moodsLogged != null) r'moodsLogged': moodsLogged,
+    if (partnerCardsSent != null) r'partnerCardsSent': partnerCardsSent,
+    if (ritualsDone != null) r'ritualsDone': ritualsDone,
+    if (slips != null) r'slips': slips,
+    if (streakDays != null) r'streakDays': streakDays,
+    if (weekStart != null) r'weekStart': weekStart,
+  });
+
+  InputweeklyReviews_stream_cursor_value_input._(this._$data);
+
+  factory InputweeklyReviews_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('activeDays')) {
+      final l$activeDays = data['activeDays'];
+      result$data['activeDays'] = (l$activeDays as int?);
+    }
+    if (data.containsKey('bothCheckinDone')) {
+      final l$bothCheckinDone = data['bothCheckinDone'];
+      result$data['bothCheckinDone'] = (l$bothCheckinDone as bool?);
+    }
+    if (data.containsKey('cardsReceived')) {
+      final l$cardsReceived = data['cardsReceived'];
+      result$data['cardsReceived'] = (l$cardsReceived as int?);
+    }
+    if (data.containsKey('cardsSent')) {
+      final l$cardsSent = data['cardsSent'];
+      result$data['cardsSent'] = (l$cardsSent as int?);
+    }
+    if (data.containsKey('checkinDone')) {
+      final l$checkinDone = data['checkinDone'];
+      result$data['checkinDone'] = (l$checkinDone as bool?);
+    }
+    if (data.containsKey('coupleRitualsDone')) {
+      final l$coupleRitualsDone = data['coupleRitualsDone'];
+      result$data['coupleRitualsDone'] = (l$coupleRitualsDone as int?);
+    }
+    if (data.containsKey('lowData')) {
+      final l$lowData = data['lowData'];
+      result$data['lowData'] = (l$lowData as bool?);
+    }
+    if (data.containsKey('missing')) {
+      final l$missing = data['missing'];
+      result$data['missing'] = (l$missing as List<dynamic>?)?.map((e) => (e as String)).toList();
+    }
+    if (data.containsKey('moodsLogged')) {
+      final l$moodsLogged = data['moodsLogged'];
+      result$data['moodsLogged'] = (l$moodsLogged as int?);
+    }
+    if (data.containsKey('partnerCardsSent')) {
+      final l$partnerCardsSent = data['partnerCardsSent'];
+      result$data['partnerCardsSent'] = (l$partnerCardsSent as int?);
+    }
+    if (data.containsKey('ritualsDone')) {
+      final l$ritualsDone = data['ritualsDone'];
+      result$data['ritualsDone'] = (l$ritualsDone as int?);
+    }
+    if (data.containsKey('slips')) {
+      final l$slips = data['slips'];
+      result$data['slips'] = (l$slips as int?);
+    }
+    if (data.containsKey('streakDays')) {
+      final l$streakDays = data['streakDays'];
+      result$data['streakDays'] = (l$streakDays as int?);
+    }
+    if (data.containsKey('weekStart')) {
+      final l$weekStart = data['weekStart'];
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : DateTime.parse((l$weekStart as String));
+    }
+    return InputweeklyReviews_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get activeDays => (_$data['activeDays'] as int?);
+
+  bool? get bothCheckinDone => (_$data['bothCheckinDone'] as bool?);
+
+  int? get cardsReceived => (_$data['cardsReceived'] as int?);
+
+  int? get cardsSent => (_$data['cardsSent'] as int?);
+
+  bool? get checkinDone => (_$data['checkinDone'] as bool?);
+
+  int? get coupleRitualsDone => (_$data['coupleRitualsDone'] as int?);
+
+  bool? get lowData => (_$data['lowData'] as bool?);
+
+  List<String>? get missing => (_$data['missing'] as List<String>?);
+
+  int? get moodsLogged => (_$data['moodsLogged'] as int?);
+
+  int? get partnerCardsSent => (_$data['partnerCardsSent'] as int?);
+
+  int? get ritualsDone => (_$data['ritualsDone'] as int?);
+
+  int? get slips => (_$data['slips'] as int?);
+
+  int? get streakDays => (_$data['streakDays'] as int?);
+
+  DateTime? get weekStart => (_$data['weekStart'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('activeDays')) {
+      final l$activeDays = activeDays;
+      result$data['activeDays'] = l$activeDays;
+    }
+    if (_$data.containsKey('bothCheckinDone')) {
+      final l$bothCheckinDone = bothCheckinDone;
+      result$data['bothCheckinDone'] = l$bothCheckinDone;
+    }
+    if (_$data.containsKey('cardsReceived')) {
+      final l$cardsReceived = cardsReceived;
+      result$data['cardsReceived'] = l$cardsReceived;
+    }
+    if (_$data.containsKey('cardsSent')) {
+      final l$cardsSent = cardsSent;
+      result$data['cardsSent'] = l$cardsSent;
+    }
+    if (_$data.containsKey('checkinDone')) {
+      final l$checkinDone = checkinDone;
+      result$data['checkinDone'] = l$checkinDone;
+    }
+    if (_$data.containsKey('coupleRitualsDone')) {
+      final l$coupleRitualsDone = coupleRitualsDone;
+      result$data['coupleRitualsDone'] = l$coupleRitualsDone;
+    }
+    if (_$data.containsKey('lowData')) {
+      final l$lowData = lowData;
+      result$data['lowData'] = l$lowData;
+    }
+    if (_$data.containsKey('missing')) {
+      final l$missing = missing;
+      result$data['missing'] = l$missing?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('moodsLogged')) {
+      final l$moodsLogged = moodsLogged;
+      result$data['moodsLogged'] = l$moodsLogged;
+    }
+    if (_$data.containsKey('partnerCardsSent')) {
+      final l$partnerCardsSent = partnerCardsSent;
+      result$data['partnerCardsSent'] = l$partnerCardsSent;
+    }
+    if (_$data.containsKey('ritualsDone')) {
+      final l$ritualsDone = ritualsDone;
+      result$data['ritualsDone'] = l$ritualsDone;
+    }
+    if (_$data.containsKey('slips')) {
+      final l$slips = slips;
+      result$data['slips'] = l$slips;
+    }
+    if (_$data.containsKey('streakDays')) {
+      final l$streakDays = streakDays;
+      result$data['streakDays'] = l$streakDays;
+    }
+    if (_$data.containsKey('weekStart')) {
+      final l$weekStart = weekStart;
+      result$data['weekStart'] = l$weekStart == null
+          ? null
+          : ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputweeklyReviews_stream_cursor_value_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$activeDays = activeDays;
+    final lOther$activeDays = other.activeDays;
+    if (_$data.containsKey('activeDays') != other._$data.containsKey('activeDays')) {
+      return false;
+    }
+    if (l$activeDays != lOther$activeDays) {
+      return false;
+    }
+    final l$bothCheckinDone = bothCheckinDone;
+    final lOther$bothCheckinDone = other.bothCheckinDone;
+    if (_$data.containsKey('bothCheckinDone') != other._$data.containsKey('bothCheckinDone')) {
+      return false;
+    }
+    if (l$bothCheckinDone != lOther$bothCheckinDone) {
+      return false;
+    }
+    final l$cardsReceived = cardsReceived;
+    final lOther$cardsReceived = other.cardsReceived;
+    if (_$data.containsKey('cardsReceived') != other._$data.containsKey('cardsReceived')) {
+      return false;
+    }
+    if (l$cardsReceived != lOther$cardsReceived) {
+      return false;
+    }
+    final l$cardsSent = cardsSent;
+    final lOther$cardsSent = other.cardsSent;
+    if (_$data.containsKey('cardsSent') != other._$data.containsKey('cardsSent')) {
+      return false;
+    }
+    if (l$cardsSent != lOther$cardsSent) {
+      return false;
+    }
+    final l$checkinDone = checkinDone;
+    final lOther$checkinDone = other.checkinDone;
+    if (_$data.containsKey('checkinDone') != other._$data.containsKey('checkinDone')) {
+      return false;
+    }
+    if (l$checkinDone != lOther$checkinDone) {
+      return false;
+    }
+    final l$coupleRitualsDone = coupleRitualsDone;
+    final lOther$coupleRitualsDone = other.coupleRitualsDone;
+    if (_$data.containsKey('coupleRitualsDone') != other._$data.containsKey('coupleRitualsDone')) {
+      return false;
+    }
+    if (l$coupleRitualsDone != lOther$coupleRitualsDone) {
+      return false;
+    }
+    final l$lowData = lowData;
+    final lOther$lowData = other.lowData;
+    if (_$data.containsKey('lowData') != other._$data.containsKey('lowData')) {
+      return false;
+    }
+    if (l$lowData != lOther$lowData) {
+      return false;
+    }
+    final l$missing = missing;
+    final lOther$missing = other.missing;
+    if (_$data.containsKey('missing') != other._$data.containsKey('missing')) {
+      return false;
+    }
+    if (l$missing != null && lOther$missing != null) {
+      if (l$missing.length != lOther$missing.length) {
+        return false;
+      }
+      for (int i = 0; i < l$missing.length; i++) {
+        final l$missing$entry = l$missing[i];
+        final lOther$missing$entry = lOther$missing[i];
+        if (l$missing$entry != lOther$missing$entry) {
+          return false;
+        }
+      }
+    } else if (l$missing != lOther$missing) {
+      return false;
+    }
+    final l$moodsLogged = moodsLogged;
+    final lOther$moodsLogged = other.moodsLogged;
+    if (_$data.containsKey('moodsLogged') != other._$data.containsKey('moodsLogged')) {
+      return false;
+    }
+    if (l$moodsLogged != lOther$moodsLogged) {
+      return false;
+    }
+    final l$partnerCardsSent = partnerCardsSent;
+    final lOther$partnerCardsSent = other.partnerCardsSent;
+    if (_$data.containsKey('partnerCardsSent') != other._$data.containsKey('partnerCardsSent')) {
+      return false;
+    }
+    if (l$partnerCardsSent != lOther$partnerCardsSent) {
+      return false;
+    }
+    final l$ritualsDone = ritualsDone;
+    final lOther$ritualsDone = other.ritualsDone;
+    if (_$data.containsKey('ritualsDone') != other._$data.containsKey('ritualsDone')) {
+      return false;
+    }
+    if (l$ritualsDone != lOther$ritualsDone) {
+      return false;
+    }
+    final l$slips = slips;
+    final lOther$slips = other.slips;
+    if (_$data.containsKey('slips') != other._$data.containsKey('slips')) {
+      return false;
+    }
+    if (l$slips != lOther$slips) {
+      return false;
+    }
+    final l$streakDays = streakDays;
+    final lOther$streakDays = other.streakDays;
+    if (_$data.containsKey('streakDays') != other._$data.containsKey('streakDays')) {
+      return false;
+    }
+    if (l$streakDays != lOther$streakDays) {
+      return false;
+    }
+    final l$weekStart = weekStart;
+    final lOther$weekStart = other.weekStart;
+    if (_$data.containsKey('weekStart') != other._$data.containsKey('weekStart')) {
+      return false;
+    }
+    if (l$weekStart != lOther$weekStart) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$activeDays = activeDays;
+    final l$bothCheckinDone = bothCheckinDone;
+    final l$cardsReceived = cardsReceived;
+    final l$cardsSent = cardsSent;
+    final l$checkinDone = checkinDone;
+    final l$coupleRitualsDone = coupleRitualsDone;
+    final l$lowData = lowData;
+    final l$missing = missing;
+    final l$moodsLogged = moodsLogged;
+    final l$partnerCardsSent = partnerCardsSent;
+    final l$ritualsDone = ritualsDone;
+    final l$slips = slips;
+    final l$streakDays = streakDays;
+    final l$weekStart = weekStart;
+    return Object.hashAll([
+      _$data.containsKey('activeDays') ? l$activeDays : const {},
+      _$data.containsKey('bothCheckinDone') ? l$bothCheckinDone : const {},
+      _$data.containsKey('cardsReceived') ? l$cardsReceived : const {},
+      _$data.containsKey('cardsSent') ? l$cardsSent : const {},
+      _$data.containsKey('checkinDone') ? l$checkinDone : const {},
+      _$data.containsKey('coupleRitualsDone') ? l$coupleRitualsDone : const {},
+      _$data.containsKey('lowData') ? l$lowData : const {},
+      _$data.containsKey('missing')
+          ? l$missing == null
+                ? null
+                : Object.hashAll(l$missing.map((v) => v))
+          : const {},
+      _$data.containsKey('moodsLogged') ? l$moodsLogged : const {},
+      _$data.containsKey('partnerCardsSent') ? l$partnerCardsSent : const {},
+      _$data.containsKey('ritualsDone') ? l$ritualsDone : const {},
+      _$data.containsKey('slips') ? l$slips : const {},
+      _$data.containsKey('streakDays') ? l$streakDays : const {},
+      _$data.containsKey('weekStart') ? l$weekStart : const {},
     ]);
   }
 }
@@ -103660,6 +120940,7 @@ EnumCardStatus_enum fromJsonEnumCardStatus_enum(String value) {
 }
 
 enum EnumConsentKind_enum {
+  adult,
   ai,
   analytics,
   marketing,
@@ -103673,6 +120954,8 @@ enum EnumConsentKind_enum {
 
 String toJsonEnumConsentKind_enum(EnumConsentKind_enum e) {
   switch (e) {
+    case EnumConsentKind_enum.adult:
+      return r'adult';
     case EnumConsentKind_enum.ai:
       return r'ai';
     case EnumConsentKind_enum.analytics:
@@ -103688,6 +120971,8 @@ String toJsonEnumConsentKind_enum(EnumConsentKind_enum e) {
 
 EnumConsentKind_enum fromJsonEnumConsentKind_enum(String value) {
   switch (value) {
+    case r'adult':
+      return EnumConsentKind_enum.adult;
     case r'ai':
       return EnumConsentKind_enum.ai;
     case r'analytics':
@@ -103717,6 +121002,8 @@ enum EnumContentKind_enum {
   repair_card,
   ritual_idea,
   spice_card,
+  spice_challenge,
+  spice_desire,
   touch_card,
   $unknown;
 
@@ -103757,6 +121044,10 @@ String toJsonEnumContentKind_enum(EnumContentKind_enum e) {
       return r'ritual_idea';
     case EnumContentKind_enum.spice_card:
       return r'spice_card';
+    case EnumContentKind_enum.spice_challenge:
+      return r'spice_challenge';
+    case EnumContentKind_enum.spice_desire:
+      return r'spice_desire';
     case EnumContentKind_enum.touch_card:
       return r'touch_card';
     case EnumContentKind_enum.$unknown:
@@ -103796,6 +121087,10 @@ EnumContentKind_enum fromJsonEnumContentKind_enum(String value) {
       return EnumContentKind_enum.ritual_idea;
     case r'spice_card':
       return EnumContentKind_enum.spice_card;
+    case r'spice_challenge':
+      return EnumContentKind_enum.spice_challenge;
+    case r'spice_desire':
+      return EnumContentKind_enum.spice_desire;
     case r'touch_card':
       return EnumContentKind_enum.touch_card;
     default:
@@ -104872,6 +122167,7 @@ EnumMood_enum fromJsonEnumMood_enum(String value) {
 }
 
 enum EnumNotificationType_enum {
+  annoyance_check,
   capsule_opened,
   card_reaction,
   card_ready,
@@ -104879,11 +122175,21 @@ enum EnumNotificationType_enum {
   daily_idea,
   date_coming,
   game_invite,
+  gentle_request,
+  gentle_request_answered,
   gentle_return,
+  memory_accepted,
+  memory_declined,
+  memory_proposed,
   partner_joined,
   partner_message,
+  plus_billing_issue,
+  plus_coverage_ended,
+  quiz_shared,
   ritual,
   signal,
+  spice_invite,
+  spice_off,
   unpaired,
   $unknown;
 
@@ -104895,6 +122201,8 @@ enum EnumNotificationType_enum {
 
 String toJsonEnumNotificationType_enum(EnumNotificationType_enum e) {
   switch (e) {
+    case EnumNotificationType_enum.annoyance_check:
+      return r'annoyance_check';
     case EnumNotificationType_enum.capsule_opened:
       return r'capsule_opened';
     case EnumNotificationType_enum.card_reaction:
@@ -104909,16 +122217,36 @@ String toJsonEnumNotificationType_enum(EnumNotificationType_enum e) {
       return r'date_coming';
     case EnumNotificationType_enum.game_invite:
       return r'game_invite';
+    case EnumNotificationType_enum.gentle_request:
+      return r'gentle_request';
+    case EnumNotificationType_enum.gentle_request_answered:
+      return r'gentle_request_answered';
     case EnumNotificationType_enum.gentle_return:
       return r'gentle_return';
+    case EnumNotificationType_enum.memory_accepted:
+      return r'memory_accepted';
+    case EnumNotificationType_enum.memory_declined:
+      return r'memory_declined';
+    case EnumNotificationType_enum.memory_proposed:
+      return r'memory_proposed';
     case EnumNotificationType_enum.partner_joined:
       return r'partner_joined';
     case EnumNotificationType_enum.partner_message:
       return r'partner_message';
+    case EnumNotificationType_enum.plus_billing_issue:
+      return r'plus_billing_issue';
+    case EnumNotificationType_enum.plus_coverage_ended:
+      return r'plus_coverage_ended';
+    case EnumNotificationType_enum.quiz_shared:
+      return r'quiz_shared';
     case EnumNotificationType_enum.ritual:
       return r'ritual';
     case EnumNotificationType_enum.signal:
       return r'signal';
+    case EnumNotificationType_enum.spice_invite:
+      return r'spice_invite';
+    case EnumNotificationType_enum.spice_off:
+      return r'spice_off';
     case EnumNotificationType_enum.unpaired:
       return r'unpaired';
     case EnumNotificationType_enum.$unknown:
@@ -104928,6 +122256,8 @@ String toJsonEnumNotificationType_enum(EnumNotificationType_enum e) {
 
 EnumNotificationType_enum fromJsonEnumNotificationType_enum(String value) {
   switch (value) {
+    case r'annoyance_check':
+      return EnumNotificationType_enum.annoyance_check;
     case r'capsule_opened':
       return EnumNotificationType_enum.capsule_opened;
     case r'card_reaction':
@@ -104942,16 +122272,36 @@ EnumNotificationType_enum fromJsonEnumNotificationType_enum(String value) {
       return EnumNotificationType_enum.date_coming;
     case r'game_invite':
       return EnumNotificationType_enum.game_invite;
+    case r'gentle_request':
+      return EnumNotificationType_enum.gentle_request;
+    case r'gentle_request_answered':
+      return EnumNotificationType_enum.gentle_request_answered;
     case r'gentle_return':
       return EnumNotificationType_enum.gentle_return;
+    case r'memory_accepted':
+      return EnumNotificationType_enum.memory_accepted;
+    case r'memory_declined':
+      return EnumNotificationType_enum.memory_declined;
+    case r'memory_proposed':
+      return EnumNotificationType_enum.memory_proposed;
     case r'partner_joined':
       return EnumNotificationType_enum.partner_joined;
     case r'partner_message':
       return EnumNotificationType_enum.partner_message;
+    case r'plus_billing_issue':
+      return EnumNotificationType_enum.plus_billing_issue;
+    case r'plus_coverage_ended':
+      return EnumNotificationType_enum.plus_coverage_ended;
+    case r'quiz_shared':
+      return EnumNotificationType_enum.quiz_shared;
     case r'ritual':
       return EnumNotificationType_enum.ritual;
     case r'signal':
       return EnumNotificationType_enum.signal;
+    case r'spice_invite':
+      return EnumNotificationType_enum.spice_invite;
+    case r'spice_off':
+      return EnumNotificationType_enum.spice_off;
     case r'unpaired':
       return EnumNotificationType_enum.unpaired;
     default:
@@ -105931,6 +123281,249 @@ EnumWorkArea_enum fromJsonEnumWorkArea_enum(String value) {
   }
 }
 
+enum Enumagreements_constraint {
+  agreements_pkey,
+  $unknown;
+
+  factory Enumagreements_constraint.fromJson(String value) =>
+      fromJsonEnumagreements_constraint(value);
+
+  String toJson() => toJsonEnumagreements_constraint(this);
+}
+
+String toJsonEnumagreements_constraint(Enumagreements_constraint e) {
+  switch (e) {
+    case Enumagreements_constraint.agreements_pkey:
+      return r'agreements_pkey';
+    case Enumagreements_constraint.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enumagreements_constraint fromJsonEnumagreements_constraint(String value) {
+  switch (value) {
+    case r'agreements_pkey':
+      return Enumagreements_constraint.agreements_pkey;
+    default:
+      return Enumagreements_constraint.$unknown;
+  }
+}
+
+enum Enumagreements_select_column {
+  archivedAt,
+  authorId,
+  body,
+  confirmedAt,
+  confirmedBy,
+  coupleId,
+  createdAt,
+  id,
+  updatedAt,
+  $unknown;
+
+  factory Enumagreements_select_column.fromJson(String value) =>
+      fromJsonEnumagreements_select_column(value);
+
+  String toJson() => toJsonEnumagreements_select_column(this);
+}
+
+String toJsonEnumagreements_select_column(Enumagreements_select_column e) {
+  switch (e) {
+    case Enumagreements_select_column.archivedAt:
+      return r'archivedAt';
+    case Enumagreements_select_column.authorId:
+      return r'authorId';
+    case Enumagreements_select_column.body:
+      return r'body';
+    case Enumagreements_select_column.confirmedAt:
+      return r'confirmedAt';
+    case Enumagreements_select_column.confirmedBy:
+      return r'confirmedBy';
+    case Enumagreements_select_column.coupleId:
+      return r'coupleId';
+    case Enumagreements_select_column.createdAt:
+      return r'createdAt';
+    case Enumagreements_select_column.id:
+      return r'id';
+    case Enumagreements_select_column.updatedAt:
+      return r'updatedAt';
+    case Enumagreements_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enumagreements_select_column fromJsonEnumagreements_select_column(String value) {
+  switch (value) {
+    case r'archivedAt':
+      return Enumagreements_select_column.archivedAt;
+    case r'authorId':
+      return Enumagreements_select_column.authorId;
+    case r'body':
+      return Enumagreements_select_column.body;
+    case r'confirmedAt':
+      return Enumagreements_select_column.confirmedAt;
+    case r'confirmedBy':
+      return Enumagreements_select_column.confirmedBy;
+    case r'coupleId':
+      return Enumagreements_select_column.coupleId;
+    case r'createdAt':
+      return Enumagreements_select_column.createdAt;
+    case r'id':
+      return Enumagreements_select_column.id;
+    case r'updatedAt':
+      return Enumagreements_select_column.updatedAt;
+    default:
+      return Enumagreements_select_column.$unknown;
+  }
+}
+
+enum Enumagreements_update_column {
+  archivedAt,
+  body,
+  coupleId,
+  $unknown;
+
+  factory Enumagreements_update_column.fromJson(String value) =>
+      fromJsonEnumagreements_update_column(value);
+
+  String toJson() => toJsonEnumagreements_update_column(this);
+}
+
+String toJsonEnumagreements_update_column(Enumagreements_update_column e) {
+  switch (e) {
+    case Enumagreements_update_column.archivedAt:
+      return r'archivedAt';
+    case Enumagreements_update_column.body:
+      return r'body';
+    case Enumagreements_update_column.coupleId:
+      return r'coupleId';
+    case Enumagreements_update_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enumagreements_update_column fromJsonEnumagreements_update_column(String value) {
+  switch (value) {
+    case r'archivedAt':
+      return Enumagreements_update_column.archivedAt;
+    case r'body':
+      return Enumagreements_update_column.body;
+    case r'coupleId':
+      return Enumagreements_update_column.coupleId;
+    default:
+      return Enumagreements_update_column.$unknown;
+  }
+}
+
+enum Enumannoyances_constraint {
+  annoyances_pkey,
+  $unknown;
+
+  factory Enumannoyances_constraint.fromJson(String value) =>
+      fromJsonEnumannoyances_constraint(value);
+
+  String toJson() => toJsonEnumannoyances_constraint(this);
+}
+
+String toJsonEnumannoyances_constraint(Enumannoyances_constraint e) {
+  switch (e) {
+    case Enumannoyances_constraint.annoyances_pkey:
+      return r'annoyances_pkey';
+    case Enumannoyances_constraint.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enumannoyances_constraint fromJsonEnumannoyances_constraint(String value) {
+  switch (value) {
+    case r'annoyances_pkey':
+      return Enumannoyances_constraint.annoyances_pkey;
+    default:
+      return Enumannoyances_constraint.$unknown;
+  }
+}
+
+enum Enumannoyances_select_column {
+  authorId,
+  body,
+  checkSentAt,
+  createdAt,
+  expiresAt,
+  id,
+  $unknown;
+
+  factory Enumannoyances_select_column.fromJson(String value) =>
+      fromJsonEnumannoyances_select_column(value);
+
+  String toJson() => toJsonEnumannoyances_select_column(this);
+}
+
+String toJsonEnumannoyances_select_column(Enumannoyances_select_column e) {
+  switch (e) {
+    case Enumannoyances_select_column.authorId:
+      return r'authorId';
+    case Enumannoyances_select_column.body:
+      return r'body';
+    case Enumannoyances_select_column.checkSentAt:
+      return r'checkSentAt';
+    case Enumannoyances_select_column.createdAt:
+      return r'createdAt';
+    case Enumannoyances_select_column.expiresAt:
+      return r'expiresAt';
+    case Enumannoyances_select_column.id:
+      return r'id';
+    case Enumannoyances_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enumannoyances_select_column fromJsonEnumannoyances_select_column(String value) {
+  switch (value) {
+    case r'authorId':
+      return Enumannoyances_select_column.authorId;
+    case r'body':
+      return Enumannoyances_select_column.body;
+    case r'checkSentAt':
+      return Enumannoyances_select_column.checkSentAt;
+    case r'createdAt':
+      return Enumannoyances_select_column.createdAt;
+    case r'expiresAt':
+      return Enumannoyances_select_column.expiresAt;
+    case r'id':
+      return Enumannoyances_select_column.id;
+    default:
+      return Enumannoyances_select_column.$unknown;
+  }
+}
+
+enum Enumannoyances_update_column {
+  body,
+  $unknown;
+
+  factory Enumannoyances_update_column.fromJson(String value) =>
+      fromJsonEnumannoyances_update_column(value);
+
+  String toJson() => toJsonEnumannoyances_update_column(this);
+}
+
+String toJsonEnumannoyances_update_column(Enumannoyances_update_column e) {
+  switch (e) {
+    case Enumannoyances_update_column.body:
+      return r'body';
+    case Enumannoyances_update_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enumannoyances_update_column fromJsonEnumannoyances_update_column(String value) {
+  switch (value) {
+    case r'body':
+      return Enumannoyances_update_column.body;
+    default:
+      return Enumannoyances_update_column.$unknown;
+  }
+}
+
 enum EnumappConfig_select_column {
   key,
   value,
@@ -106398,6 +123991,7 @@ enum Enumcards_select_column {
   authorId,
   coupleId,
   createdAt,
+  heldReason,
   id,
   kind,
   note,
@@ -106421,6 +124015,8 @@ String toJsonEnumcards_select_column(Enumcards_select_column e) {
       return r'coupleId';
     case Enumcards_select_column.createdAt:
       return r'createdAt';
+    case Enumcards_select_column.heldReason:
+      return r'heldReason';
     case Enumcards_select_column.id:
       return r'id';
     case Enumcards_select_column.kind:
@@ -106450,6 +124046,8 @@ Enumcards_select_column fromJsonEnumcards_select_column(String value) {
       return Enumcards_select_column.coupleId;
     case r'createdAt':
       return Enumcards_select_column.createdAt;
+    case r'heldReason':
+      return Enumcards_select_column.heldReason;
     case r'id':
       return Enumcards_select_column.id;
     case r'kind':
@@ -106468,6 +124066,104 @@ Enumcards_select_column fromJsonEnumcards_select_column(String value) {
       return Enumcards_select_column.weekStart;
     default:
       return Enumcards_select_column.$unknown;
+  }
+}
+
+enum EnumcatalogItems_select_column {
+  body,
+  country,
+  day,
+  id,
+  kind,
+  locale,
+  locked,
+  month,
+  parentSlug,
+  plusOnly,
+  position,
+  sensitive,
+  slug,
+  tags,
+  title,
+  $unknown;
+
+  factory EnumcatalogItems_select_column.fromJson(String value) =>
+      fromJsonEnumcatalogItems_select_column(value);
+
+  String toJson() => toJsonEnumcatalogItems_select_column(this);
+}
+
+String toJsonEnumcatalogItems_select_column(EnumcatalogItems_select_column e) {
+  switch (e) {
+    case EnumcatalogItems_select_column.body:
+      return r'body';
+    case EnumcatalogItems_select_column.country:
+      return r'country';
+    case EnumcatalogItems_select_column.day:
+      return r'day';
+    case EnumcatalogItems_select_column.id:
+      return r'id';
+    case EnumcatalogItems_select_column.kind:
+      return r'kind';
+    case EnumcatalogItems_select_column.locale:
+      return r'locale';
+    case EnumcatalogItems_select_column.locked:
+      return r'locked';
+    case EnumcatalogItems_select_column.month:
+      return r'month';
+    case EnumcatalogItems_select_column.parentSlug:
+      return r'parentSlug';
+    case EnumcatalogItems_select_column.plusOnly:
+      return r'plusOnly';
+    case EnumcatalogItems_select_column.position:
+      return r'position';
+    case EnumcatalogItems_select_column.sensitive:
+      return r'sensitive';
+    case EnumcatalogItems_select_column.slug:
+      return r'slug';
+    case EnumcatalogItems_select_column.tags:
+      return r'tags';
+    case EnumcatalogItems_select_column.title:
+      return r'title';
+    case EnumcatalogItems_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumcatalogItems_select_column fromJsonEnumcatalogItems_select_column(String value) {
+  switch (value) {
+    case r'body':
+      return EnumcatalogItems_select_column.body;
+    case r'country':
+      return EnumcatalogItems_select_column.country;
+    case r'day':
+      return EnumcatalogItems_select_column.day;
+    case r'id':
+      return EnumcatalogItems_select_column.id;
+    case r'kind':
+      return EnumcatalogItems_select_column.kind;
+    case r'locale':
+      return EnumcatalogItems_select_column.locale;
+    case r'locked':
+      return EnumcatalogItems_select_column.locked;
+    case r'month':
+      return EnumcatalogItems_select_column.month;
+    case r'parentSlug':
+      return EnumcatalogItems_select_column.parentSlug;
+    case r'plusOnly':
+      return EnumcatalogItems_select_column.plusOnly;
+    case r'position':
+      return EnumcatalogItems_select_column.position;
+    case r'sensitive':
+      return EnumcatalogItems_select_column.sensitive;
+    case r'slug':
+      return EnumcatalogItems_select_column.slug;
+    case r'tags':
+      return EnumcatalogItems_select_column.tags;
+    case r'title':
+      return EnumcatalogItems_select_column.title;
+    default:
+      return EnumcatalogItems_select_column.$unknown;
   }
 }
 
@@ -106799,6 +124495,7 @@ enum EnumcontentItems_select_column {
   day,
   id,
   kind,
+  level,
   locale,
   month,
   parentSlug,
@@ -106829,6 +124526,8 @@ String toJsonEnumcontentItems_select_column(EnumcontentItems_select_column e) {
       return r'id';
     case EnumcontentItems_select_column.kind:
       return r'kind';
+    case EnumcontentItems_select_column.level:
+      return r'level';
     case EnumcontentItems_select_column.locale:
       return r'locale';
     case EnumcontentItems_select_column.month:
@@ -106866,6 +124565,8 @@ EnumcontentItems_select_column fromJsonEnumcontentItems_select_column(String val
       return EnumcontentItems_select_column.id;
     case r'kind':
       return EnumcontentItems_select_column.kind;
+    case r'level':
+      return EnumcontentItems_select_column.level;
     case r'locale':
       return EnumcontentItems_select_column.locale;
     case r'month':
@@ -107171,6 +124872,8 @@ enum Enumcouples_select_column {
   createdAt,
   endedAt,
   id,
+  startDate,
+  startDateSetBy,
   touchTopicsEnabled,
   $unknown;
 
@@ -107188,6 +124891,10 @@ String toJsonEnumcouples_select_column(Enumcouples_select_column e) {
       return r'endedAt';
     case Enumcouples_select_column.id:
       return r'id';
+    case Enumcouples_select_column.startDate:
+      return r'startDate';
+    case Enumcouples_select_column.startDateSetBy:
+      return r'startDateSetBy';
     case Enumcouples_select_column.touchTopicsEnabled:
       return r'touchTopicsEnabled';
     case Enumcouples_select_column.$unknown:
@@ -107203,10 +124910,62 @@ Enumcouples_select_column fromJsonEnumcouples_select_column(String value) {
       return Enumcouples_select_column.endedAt;
     case r'id':
       return Enumcouples_select_column.id;
+    case r'startDate':
+      return Enumcouples_select_column.startDate;
+    case r'startDateSetBy':
+      return Enumcouples_select_column.startDateSetBy;
     case r'touchTopicsEnabled':
       return Enumcouples_select_column.touchTopicsEnabled;
     default:
       return Enumcouples_select_column.$unknown;
+  }
+}
+
+enum EnumcurrentConsents_select_column {
+  createdAt,
+  granted,
+  kind,
+  userId,
+  version,
+  $unknown;
+
+  factory EnumcurrentConsents_select_column.fromJson(String value) =>
+      fromJsonEnumcurrentConsents_select_column(value);
+
+  String toJson() => toJsonEnumcurrentConsents_select_column(this);
+}
+
+String toJsonEnumcurrentConsents_select_column(EnumcurrentConsents_select_column e) {
+  switch (e) {
+    case EnumcurrentConsents_select_column.createdAt:
+      return r'createdAt';
+    case EnumcurrentConsents_select_column.granted:
+      return r'granted';
+    case EnumcurrentConsents_select_column.kind:
+      return r'kind';
+    case EnumcurrentConsents_select_column.userId:
+      return r'userId';
+    case EnumcurrentConsents_select_column.version:
+      return r'version';
+    case EnumcurrentConsents_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumcurrentConsents_select_column fromJsonEnumcurrentConsents_select_column(String value) {
+  switch (value) {
+    case r'createdAt':
+      return EnumcurrentConsents_select_column.createdAt;
+    case r'granted':
+      return EnumcurrentConsents_select_column.granted;
+    case r'kind':
+      return EnumcurrentConsents_select_column.kind;
+    case r'userId':
+      return EnumcurrentConsents_select_column.userId;
+    case r'version':
+      return EnumcurrentConsents_select_column.version;
+    default:
+      return EnumcurrentConsents_select_column.$unknown;
   }
 }
 
@@ -107374,6 +125133,7 @@ enum Enumdevices_select_column {
   label,
   lastSeenAt,
   platform,
+  refreshTokenId,
   token,
   userId,
   $unknown;
@@ -107396,6 +125156,8 @@ String toJsonEnumdevices_select_column(Enumdevices_select_column e) {
       return r'lastSeenAt';
     case Enumdevices_select_column.platform:
       return r'platform';
+    case Enumdevices_select_column.refreshTokenId:
+      return r'refreshTokenId';
     case Enumdevices_select_column.token:
       return r'token';
     case Enumdevices_select_column.userId:
@@ -107417,6 +125179,8 @@ Enumdevices_select_column fromJsonEnumdevices_select_column(String value) {
       return Enumdevices_select_column.lastSeenAt;
     case r'platform':
       return Enumdevices_select_column.platform;
+    case r'refreshTokenId':
+      return Enumdevices_select_column.refreshTokenId;
     case r'token':
       return Enumdevices_select_column.token;
     case r'userId':
@@ -107429,6 +125193,7 @@ Enumdevices_select_column fromJsonEnumdevices_select_column(String value) {
 enum Enumdevices_update_column {
   label,
   platform,
+  refreshTokenId,
   $unknown;
 
   factory Enumdevices_update_column.fromJson(String value) =>
@@ -107443,6 +125208,8 @@ String toJsonEnumdevices_update_column(Enumdevices_update_column e) {
       return r'label';
     case Enumdevices_update_column.platform:
       return r'platform';
+    case Enumdevices_update_column.refreshTokenId:
+      return r'refreshTokenId';
     case Enumdevices_update_column.$unknown:
       return r'$unknown';
   }
@@ -107454,6 +125221,8 @@ Enumdevices_update_column fromJsonEnumdevices_update_column(String value) {
       return Enumdevices_update_column.label;
     case r'platform':
       return Enumdevices_update_column.platform;
+    case r'refreshTokenId':
+      return Enumdevices_update_column.refreshTokenId;
     default:
       return Enumdevices_update_column.$unknown;
   }
@@ -107893,6 +125662,89 @@ EnumgameSessions_update_column fromJsonEnumgameSessions_update_column(String val
       return EnumgameSessions_update_column.$_PLACEHOLDER;
     default:
       return EnumgameSessions_update_column.$unknown;
+  }
+}
+
+enum EnumgentleRequests_select_column {
+  createdAt,
+  feelText,
+  id,
+  purgeAfter,
+  recipientId,
+  respondedAt,
+  response,
+  seenAt,
+  senderId,
+  thankedAt,
+  whenText,
+  wishText,
+  $unknown;
+
+  factory EnumgentleRequests_select_column.fromJson(String value) =>
+      fromJsonEnumgentleRequests_select_column(value);
+
+  String toJson() => toJsonEnumgentleRequests_select_column(this);
+}
+
+String toJsonEnumgentleRequests_select_column(EnumgentleRequests_select_column e) {
+  switch (e) {
+    case EnumgentleRequests_select_column.createdAt:
+      return r'createdAt';
+    case EnumgentleRequests_select_column.feelText:
+      return r'feelText';
+    case EnumgentleRequests_select_column.id:
+      return r'id';
+    case EnumgentleRequests_select_column.purgeAfter:
+      return r'purgeAfter';
+    case EnumgentleRequests_select_column.recipientId:
+      return r'recipientId';
+    case EnumgentleRequests_select_column.respondedAt:
+      return r'respondedAt';
+    case EnumgentleRequests_select_column.response:
+      return r'response';
+    case EnumgentleRequests_select_column.seenAt:
+      return r'seenAt';
+    case EnumgentleRequests_select_column.senderId:
+      return r'senderId';
+    case EnumgentleRequests_select_column.thankedAt:
+      return r'thankedAt';
+    case EnumgentleRequests_select_column.whenText:
+      return r'whenText';
+    case EnumgentleRequests_select_column.wishText:
+      return r'wishText';
+    case EnumgentleRequests_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumgentleRequests_select_column fromJsonEnumgentleRequests_select_column(String value) {
+  switch (value) {
+    case r'createdAt':
+      return EnumgentleRequests_select_column.createdAt;
+    case r'feelText':
+      return EnumgentleRequests_select_column.feelText;
+    case r'id':
+      return EnumgentleRequests_select_column.id;
+    case r'purgeAfter':
+      return EnumgentleRequests_select_column.purgeAfter;
+    case r'recipientId':
+      return EnumgentleRequests_select_column.recipientId;
+    case r'respondedAt':
+      return EnumgentleRequests_select_column.respondedAt;
+    case r'response':
+      return EnumgentleRequests_select_column.response;
+    case r'seenAt':
+      return EnumgentleRequests_select_column.seenAt;
+    case r'senderId':
+      return EnumgentleRequests_select_column.senderId;
+    case r'thankedAt':
+      return EnumgentleRequests_select_column.thankedAt;
+    case r'whenText':
+      return EnumgentleRequests_select_column.whenText;
+    case r'wishText':
+      return EnumgentleRequests_select_column.wishText;
+    default:
+      return EnumgentleRequests_select_column.$unknown;
   }
 }
 
@@ -108380,6 +126232,7 @@ EnumimportantDates_update_column fromJsonEnumimportantDates_update_column(String
 
 enum EnuminboxItems_select_column {
   createdAt,
+  dedupeKey,
   id,
   readAt,
   refId,
@@ -108397,6 +126250,8 @@ String toJsonEnuminboxItems_select_column(EnuminboxItems_select_column e) {
   switch (e) {
     case EnuminboxItems_select_column.createdAt:
       return r'createdAt';
+    case EnuminboxItems_select_column.dedupeKey:
+      return r'dedupeKey';
     case EnuminboxItems_select_column.id:
       return r'id';
     case EnuminboxItems_select_column.readAt:
@@ -108416,6 +126271,8 @@ EnuminboxItems_select_column fromJsonEnuminboxItems_select_column(String value) 
   switch (value) {
     case r'createdAt':
       return EnuminboxItems_select_column.createdAt;
+    case r'dedupeKey':
+      return EnuminboxItems_select_column.dedupeKey;
     case r'id':
       return EnuminboxItems_select_column.id;
     case r'readAt':
@@ -108428,6 +126285,34 @@ EnuminboxItems_select_column fromJsonEnuminboxItems_select_column(String value) 
       return EnuminboxItems_select_column.userId;
     default:
       return EnuminboxItems_select_column.$unknown;
+  }
+}
+
+enum EnuminviteAcceptResults_select_column {
+  state,
+  $unknown;
+
+  factory EnuminviteAcceptResults_select_column.fromJson(String value) =>
+      fromJsonEnuminviteAcceptResults_select_column(value);
+
+  String toJson() => toJsonEnuminviteAcceptResults_select_column(this);
+}
+
+String toJsonEnuminviteAcceptResults_select_column(EnuminviteAcceptResults_select_column e) {
+  switch (e) {
+    case EnuminviteAcceptResults_select_column.state:
+      return r'state';
+    case EnuminviteAcceptResults_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnuminviteAcceptResults_select_column fromJsonEnuminviteAcceptResults_select_column(String value) {
+  switch (value) {
+    case r'state':
+      return EnuminviteAcceptResults_select_column.state;
+    default:
+      return EnuminviteAcceptResults_select_column.$unknown;
   }
 }
 
@@ -108461,6 +126346,44 @@ EnuminvitePreviews_select_column fromJsonEnuminvitePreviews_select_column(String
       return EnuminvitePreviews_select_column.inviterName;
     default:
       return EnuminvitePreviews_select_column.$unknown;
+  }
+}
+
+enum EnuminviteStatuses_select_column {
+  expiresAt,
+  inviterName,
+  state,
+  $unknown;
+
+  factory EnuminviteStatuses_select_column.fromJson(String value) =>
+      fromJsonEnuminviteStatuses_select_column(value);
+
+  String toJson() => toJsonEnuminviteStatuses_select_column(this);
+}
+
+String toJsonEnuminviteStatuses_select_column(EnuminviteStatuses_select_column e) {
+  switch (e) {
+    case EnuminviteStatuses_select_column.expiresAt:
+      return r'expiresAt';
+    case EnuminviteStatuses_select_column.inviterName:
+      return r'inviterName';
+    case EnuminviteStatuses_select_column.state:
+      return r'state';
+    case EnuminviteStatuses_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnuminviteStatuses_select_column fromJsonEnuminviteStatuses_select_column(String value) {
+  switch (value) {
+    case r'expiresAt':
+      return EnuminviteStatuses_select_column.expiresAt;
+    case r'inviterName':
+      return EnuminviteStatuses_select_column.inviterName;
+    case r'state':
+      return EnuminviteStatuses_select_column.state;
+    default:
+      return EnuminviteStatuses_select_column.$unknown;
   }
 }
 
@@ -109235,6 +127158,8 @@ EnumlogisticItems_constraint fromJsonEnumlogisticItems_constraint(String value) 
 enum EnumlogisticItems_select_column {
   assigneeId,
   authorId,
+  confirmedAt,
+  confirmedBy,
   coupleId,
   createdAt,
   doneAt,
@@ -109258,6 +127183,10 @@ String toJsonEnumlogisticItems_select_column(EnumlogisticItems_select_column e) 
       return r'assigneeId';
     case EnumlogisticItems_select_column.authorId:
       return r'authorId';
+    case EnumlogisticItems_select_column.confirmedAt:
+      return r'confirmedAt';
+    case EnumlogisticItems_select_column.confirmedBy:
+      return r'confirmedBy';
     case EnumlogisticItems_select_column.coupleId:
       return r'coupleId';
     case EnumlogisticItems_select_column.createdAt:
@@ -109287,6 +127216,10 @@ EnumlogisticItems_select_column fromJsonEnumlogisticItems_select_column(String v
       return EnumlogisticItems_select_column.assigneeId;
     case r'authorId':
       return EnumlogisticItems_select_column.authorId;
+    case r'confirmedAt':
+      return EnumlogisticItems_select_column.confirmedAt;
+    case r'confirmedBy':
+      return EnumlogisticItems_select_column.confirmedBy;
     case r'coupleId':
       return EnumlogisticItems_select_column.coupleId;
     case r'createdAt':
@@ -109525,11 +127458,13 @@ Enummemories_constraint fromJsonEnummemories_constraint(String value) {
 }
 
 enum Enummemories_select_column {
+  acceptedAt,
   authorId,
   body,
   coupleId,
   createdAt,
   datePrecision,
+  declinedAt,
   happenedOn,
   id,
   origin,
@@ -109548,6 +127483,8 @@ enum Enummemories_select_column {
 
 String toJsonEnummemories_select_column(Enummemories_select_column e) {
   switch (e) {
+    case Enummemories_select_column.acceptedAt:
+      return r'acceptedAt';
     case Enummemories_select_column.authorId:
       return r'authorId';
     case Enummemories_select_column.body:
@@ -109558,6 +127495,8 @@ String toJsonEnummemories_select_column(Enummemories_select_column e) {
       return r'createdAt';
     case Enummemories_select_column.datePrecision:
       return r'datePrecision';
+    case Enummemories_select_column.declinedAt:
+      return r'declinedAt';
     case Enummemories_select_column.happenedOn:
       return r'happenedOn';
     case Enummemories_select_column.id:
@@ -109581,6 +127520,8 @@ String toJsonEnummemories_select_column(Enummemories_select_column e) {
 
 Enummemories_select_column fromJsonEnummemories_select_column(String value) {
   switch (value) {
+    case r'acceptedAt':
+      return Enummemories_select_column.acceptedAt;
     case r'authorId':
       return Enummemories_select_column.authorId;
     case r'body':
@@ -109591,6 +127532,8 @@ Enummemories_select_column fromJsonEnummemories_select_column(String value) {
       return Enummemories_select_column.createdAt;
     case r'datePrecision':
       return Enummemories_select_column.datePrecision;
+    case r'declinedAt':
+      return Enummemories_select_column.declinedAt;
     case r'happenedOn':
       return Enummemories_select_column.happenedOn;
     case r'id':
@@ -110162,6 +128105,7 @@ EnumpartnerMessages_constraint fromJsonEnumpartnerMessages_constraint(String val
 enum EnumpartnerMessages_select_column {
   body,
   createdAt,
+  durationMs,
   forWidget,
   heartedAt,
   id,
@@ -110184,6 +128128,8 @@ String toJsonEnumpartnerMessages_select_column(EnumpartnerMessages_select_column
       return r'body';
     case EnumpartnerMessages_select_column.createdAt:
       return r'createdAt';
+    case EnumpartnerMessages_select_column.durationMs:
+      return r'durationMs';
     case EnumpartnerMessages_select_column.forWidget:
       return r'forWidget';
     case EnumpartnerMessages_select_column.heartedAt:
@@ -110211,6 +128157,8 @@ EnumpartnerMessages_select_column fromJsonEnumpartnerMessages_select_column(Stri
       return EnumpartnerMessages_select_column.body;
     case r'createdAt':
       return EnumpartnerMessages_select_column.createdAt;
+    case r'durationMs':
+      return EnumpartnerMessages_select_column.durationMs;
     case r'forWidget':
       return EnumpartnerMessages_select_column.forWidget;
     case r'heartedAt':
@@ -110266,16 +128214,23 @@ EnumpartnerMessages_update_column fromJsonEnumpartnerMessages_update_column(Stri
 }
 
 enum EnumplusStates_select_column {
-  cardsLeftThisMonth,
+  billingIssue,
+  bothPaid,
   chatMessagesLeftToday,
+  chatMessagesLimit,
+  coveredByName,
   entitlementUserId,
+  gamesLeftThisWeek,
   guestLinksLeftToday,
   hasPlus,
   invitesLeftToday,
+  listsLeft,
+  ownerStore,
   paidByPartner,
   partnerMessagesLeftToday,
+  ritualsLeft,
   signalsLeftToday,
-  slipsLeftThisMonth,
+  spiceCardsLeftThisWeek,
   supportRequestsLeftToday,
   userId,
   $unknown;
@@ -110288,26 +128243,40 @@ enum EnumplusStates_select_column {
 
 String toJsonEnumplusStates_select_column(EnumplusStates_select_column e) {
   switch (e) {
-    case EnumplusStates_select_column.cardsLeftThisMonth:
-      return r'cardsLeftThisMonth';
+    case EnumplusStates_select_column.billingIssue:
+      return r'billingIssue';
+    case EnumplusStates_select_column.bothPaid:
+      return r'bothPaid';
     case EnumplusStates_select_column.chatMessagesLeftToday:
       return r'chatMessagesLeftToday';
+    case EnumplusStates_select_column.chatMessagesLimit:
+      return r'chatMessagesLimit';
+    case EnumplusStates_select_column.coveredByName:
+      return r'coveredByName';
     case EnumplusStates_select_column.entitlementUserId:
       return r'entitlementUserId';
+    case EnumplusStates_select_column.gamesLeftThisWeek:
+      return r'gamesLeftThisWeek';
     case EnumplusStates_select_column.guestLinksLeftToday:
       return r'guestLinksLeftToday';
     case EnumplusStates_select_column.hasPlus:
       return r'hasPlus';
     case EnumplusStates_select_column.invitesLeftToday:
       return r'invitesLeftToday';
+    case EnumplusStates_select_column.listsLeft:
+      return r'listsLeft';
+    case EnumplusStates_select_column.ownerStore:
+      return r'ownerStore';
     case EnumplusStates_select_column.paidByPartner:
       return r'paidByPartner';
     case EnumplusStates_select_column.partnerMessagesLeftToday:
       return r'partnerMessagesLeftToday';
+    case EnumplusStates_select_column.ritualsLeft:
+      return r'ritualsLeft';
     case EnumplusStates_select_column.signalsLeftToday:
       return r'signalsLeftToday';
-    case EnumplusStates_select_column.slipsLeftThisMonth:
-      return r'slipsLeftThisMonth';
+    case EnumplusStates_select_column.spiceCardsLeftThisWeek:
+      return r'spiceCardsLeftThisWeek';
     case EnumplusStates_select_column.supportRequestsLeftToday:
       return r'supportRequestsLeftToday';
     case EnumplusStates_select_column.userId:
@@ -110319,26 +128288,40 @@ String toJsonEnumplusStates_select_column(EnumplusStates_select_column e) {
 
 EnumplusStates_select_column fromJsonEnumplusStates_select_column(String value) {
   switch (value) {
-    case r'cardsLeftThisMonth':
-      return EnumplusStates_select_column.cardsLeftThisMonth;
+    case r'billingIssue':
+      return EnumplusStates_select_column.billingIssue;
+    case r'bothPaid':
+      return EnumplusStates_select_column.bothPaid;
     case r'chatMessagesLeftToday':
       return EnumplusStates_select_column.chatMessagesLeftToday;
+    case r'chatMessagesLimit':
+      return EnumplusStates_select_column.chatMessagesLimit;
+    case r'coveredByName':
+      return EnumplusStates_select_column.coveredByName;
     case r'entitlementUserId':
       return EnumplusStates_select_column.entitlementUserId;
+    case r'gamesLeftThisWeek':
+      return EnumplusStates_select_column.gamesLeftThisWeek;
     case r'guestLinksLeftToday':
       return EnumplusStates_select_column.guestLinksLeftToday;
     case r'hasPlus':
       return EnumplusStates_select_column.hasPlus;
     case r'invitesLeftToday':
       return EnumplusStates_select_column.invitesLeftToday;
+    case r'listsLeft':
+      return EnumplusStates_select_column.listsLeft;
+    case r'ownerStore':
+      return EnumplusStates_select_column.ownerStore;
     case r'paidByPartner':
       return EnumplusStates_select_column.paidByPartner;
     case r'partnerMessagesLeftToday':
       return EnumplusStates_select_column.partnerMessagesLeftToday;
+    case r'ritualsLeft':
+      return EnumplusStates_select_column.ritualsLeft;
     case r'signalsLeftToday':
       return EnumplusStates_select_column.signalsLeftToday;
-    case r'slipsLeftThisMonth':
-      return EnumplusStates_select_column.slipsLeftThisMonth;
+    case r'spiceCardsLeftThisWeek':
+      return EnumplusStates_select_column.spiceCardsLeftThisWeek;
     case r'supportRequestsLeftToday':
       return EnumplusStates_select_column.supportRequestsLeftToday;
     case r'userId':
@@ -110402,7 +128385,9 @@ EnumpreparedCards_select_column fromJsonEnumpreparedCards_select_column(String v
 }
 
 enum Enumprofiles_select_column {
+  avatarColor,
   avatarFileId,
+  avatarIllustration,
   avatarKind,
   city,
   createdAt,
@@ -110421,8 +128406,12 @@ enum Enumprofiles_select_column {
 
 String toJsonEnumprofiles_select_column(Enumprofiles_select_column e) {
   switch (e) {
+    case Enumprofiles_select_column.avatarColor:
+      return r'avatarColor';
     case Enumprofiles_select_column.avatarFileId:
       return r'avatarFileId';
+    case Enumprofiles_select_column.avatarIllustration:
+      return r'avatarIllustration';
     case Enumprofiles_select_column.avatarKind:
       return r'avatarKind';
     case Enumprofiles_select_column.city:
@@ -110446,8 +128435,12 @@ String toJsonEnumprofiles_select_column(Enumprofiles_select_column e) {
 
 Enumprofiles_select_column fromJsonEnumprofiles_select_column(String value) {
   switch (value) {
+    case r'avatarColor':
+      return Enumprofiles_select_column.avatarColor;
     case r'avatarFileId':
       return Enumprofiles_select_column.avatarFileId;
+    case r'avatarIllustration':
+      return Enumprofiles_select_column.avatarIllustration;
     case r'avatarKind':
       return Enumprofiles_select_column.avatarKind;
     case r'city':
@@ -110789,6 +128782,7 @@ enum EnumquizResults_select_column {
   id,
   quizKey,
   ranked,
+  sharedAt,
   updatedAt,
   $unknown;
 
@@ -110810,6 +128804,8 @@ String toJsonEnumquizResults_select_column(EnumquizResults_select_column e) {
       return r'quizKey';
     case EnumquizResults_select_column.ranked:
       return r'ranked';
+    case EnumquizResults_select_column.sharedAt:
+      return r'sharedAt';
     case EnumquizResults_select_column.updatedAt:
       return r'updatedAt';
     case EnumquizResults_select_column.$unknown:
@@ -110829,6 +128825,8 @@ EnumquizResults_select_column fromJsonEnumquizResults_select_column(String value
       return EnumquizResults_select_column.quizKey;
     case r'ranked':
       return EnumquizResults_select_column.ranked;
+    case r'sharedAt':
+      return EnumquizResults_select_column.sharedAt;
     case r'updatedAt':
       return EnumquizResults_select_column.updatedAt;
     default:
@@ -110838,6 +128836,7 @@ EnumquizResults_select_column fromJsonEnumquizResults_select_column(String value
 
 enum EnumquizResults_update_column {
   ranked,
+  sharedAt,
   $unknown;
 
   factory EnumquizResults_update_column.fromJson(String value) =>
@@ -110850,6 +128849,8 @@ String toJsonEnumquizResults_update_column(EnumquizResults_update_column e) {
   switch (e) {
     case EnumquizResults_update_column.ranked:
       return r'ranked';
+    case EnumquizResults_update_column.sharedAt:
+      return r'sharedAt';
     case EnumquizResults_update_column.$unknown:
       return r'$unknown';
   }
@@ -110859,6 +128860,8 @@ EnumquizResults_update_column fromJsonEnumquizResults_update_column(String value
   switch (value) {
     case r'ranked':
       return EnumquizResults_update_column.ranked;
+    case r'sharedAt':
+      return EnumquizResults_update_column.sharedAt;
     default:
       return EnumquizResults_update_column.$unknown;
   }
@@ -111588,6 +129591,59 @@ EnumsavedDateIdeas_update_column fromJsonEnumsavedDateIdeas_update_column(String
   }
 }
 
+enum EnumsessionRows_select_column {
+  createdAt,
+  deviceId,
+  deviceLabel,
+  expiresAt,
+  id,
+  platform,
+  $unknown;
+
+  factory EnumsessionRows_select_column.fromJson(String value) =>
+      fromJsonEnumsessionRows_select_column(value);
+
+  String toJson() => toJsonEnumsessionRows_select_column(this);
+}
+
+String toJsonEnumsessionRows_select_column(EnumsessionRows_select_column e) {
+  switch (e) {
+    case EnumsessionRows_select_column.createdAt:
+      return r'createdAt';
+    case EnumsessionRows_select_column.deviceId:
+      return r'deviceId';
+    case EnumsessionRows_select_column.deviceLabel:
+      return r'deviceLabel';
+    case EnumsessionRows_select_column.expiresAt:
+      return r'expiresAt';
+    case EnumsessionRows_select_column.id:
+      return r'id';
+    case EnumsessionRows_select_column.platform:
+      return r'platform';
+    case EnumsessionRows_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumsessionRows_select_column fromJsonEnumsessionRows_select_column(String value) {
+  switch (value) {
+    case r'createdAt':
+      return EnumsessionRows_select_column.createdAt;
+    case r'deviceId':
+      return EnumsessionRows_select_column.deviceId;
+    case r'deviceLabel':
+      return EnumsessionRows_select_column.deviceLabel;
+    case r'expiresAt':
+      return EnumsessionRows_select_column.expiresAt;
+    case r'id':
+      return EnumsessionRows_select_column.id;
+    case r'platform':
+      return EnumsessionRows_select_column.platform;
+    default:
+      return EnumsessionRows_select_column.$unknown;
+  }
+}
+
 enum EnumsharedMoods_select_column {
   day,
   mood,
@@ -111997,6 +130053,317 @@ Enumslips_update_column fromJsonEnumslips_update_column(String value) {
       return Enumslips_update_column.workArea;
     default:
       return Enumslips_update_column.$unknown;
+  }
+}
+
+enum EnumspiceCardPlays_select_column {
+  acceptedBy,
+  contentSlug,
+  coupleId,
+  createdAt,
+  declinedAt,
+  id,
+  proposedBy,
+  $unknown;
+
+  factory EnumspiceCardPlays_select_column.fromJson(String value) =>
+      fromJsonEnumspiceCardPlays_select_column(value);
+
+  String toJson() => toJsonEnumspiceCardPlays_select_column(this);
+}
+
+String toJsonEnumspiceCardPlays_select_column(EnumspiceCardPlays_select_column e) {
+  switch (e) {
+    case EnumspiceCardPlays_select_column.acceptedBy:
+      return r'acceptedBy';
+    case EnumspiceCardPlays_select_column.contentSlug:
+      return r'contentSlug';
+    case EnumspiceCardPlays_select_column.coupleId:
+      return r'coupleId';
+    case EnumspiceCardPlays_select_column.createdAt:
+      return r'createdAt';
+    case EnumspiceCardPlays_select_column.declinedAt:
+      return r'declinedAt';
+    case EnumspiceCardPlays_select_column.id:
+      return r'id';
+    case EnumspiceCardPlays_select_column.proposedBy:
+      return r'proposedBy';
+    case EnumspiceCardPlays_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumspiceCardPlays_select_column fromJsonEnumspiceCardPlays_select_column(String value) {
+  switch (value) {
+    case r'acceptedBy':
+      return EnumspiceCardPlays_select_column.acceptedBy;
+    case r'contentSlug':
+      return EnumspiceCardPlays_select_column.contentSlug;
+    case r'coupleId':
+      return EnumspiceCardPlays_select_column.coupleId;
+    case r'createdAt':
+      return EnumspiceCardPlays_select_column.createdAt;
+    case r'declinedAt':
+      return EnumspiceCardPlays_select_column.declinedAt;
+    case r'id':
+      return EnumspiceCardPlays_select_column.id;
+    case r'proposedBy':
+      return EnumspiceCardPlays_select_column.proposedBy;
+    default:
+      return EnumspiceCardPlays_select_column.$unknown;
+  }
+}
+
+enum EnumspiceChallenges_select_column {
+  acceptedBy,
+  contentSlug,
+  coupleId,
+  createdAt,
+  doneBy,
+  id,
+  seenBy,
+  swaps,
+  weekStart,
+  $unknown;
+
+  factory EnumspiceChallenges_select_column.fromJson(String value) =>
+      fromJsonEnumspiceChallenges_select_column(value);
+
+  String toJson() => toJsonEnumspiceChallenges_select_column(this);
+}
+
+String toJsonEnumspiceChallenges_select_column(EnumspiceChallenges_select_column e) {
+  switch (e) {
+    case EnumspiceChallenges_select_column.acceptedBy:
+      return r'acceptedBy';
+    case EnumspiceChallenges_select_column.contentSlug:
+      return r'contentSlug';
+    case EnumspiceChallenges_select_column.coupleId:
+      return r'coupleId';
+    case EnumspiceChallenges_select_column.createdAt:
+      return r'createdAt';
+    case EnumspiceChallenges_select_column.doneBy:
+      return r'doneBy';
+    case EnumspiceChallenges_select_column.id:
+      return r'id';
+    case EnumspiceChallenges_select_column.seenBy:
+      return r'seenBy';
+    case EnumspiceChallenges_select_column.swaps:
+      return r'swaps';
+    case EnumspiceChallenges_select_column.weekStart:
+      return r'weekStart';
+    case EnumspiceChallenges_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumspiceChallenges_select_column fromJsonEnumspiceChallenges_select_column(String value) {
+  switch (value) {
+    case r'acceptedBy':
+      return EnumspiceChallenges_select_column.acceptedBy;
+    case r'contentSlug':
+      return EnumspiceChallenges_select_column.contentSlug;
+    case r'coupleId':
+      return EnumspiceChallenges_select_column.coupleId;
+    case r'createdAt':
+      return EnumspiceChallenges_select_column.createdAt;
+    case r'doneBy':
+      return EnumspiceChallenges_select_column.doneBy;
+    case r'id':
+      return EnumspiceChallenges_select_column.id;
+    case r'seenBy':
+      return EnumspiceChallenges_select_column.seenBy;
+    case r'swaps':
+      return EnumspiceChallenges_select_column.swaps;
+    case r'weekStart':
+      return EnumspiceChallenges_select_column.weekStart;
+    default:
+      return EnumspiceChallenges_select_column.$unknown;
+  }
+}
+
+enum EnumspiceDesireAnswers_constraint {
+  spice_desire_answers_pkey,
+  $unknown;
+
+  factory EnumspiceDesireAnswers_constraint.fromJson(String value) =>
+      fromJsonEnumspiceDesireAnswers_constraint(value);
+
+  String toJson() => toJsonEnumspiceDesireAnswers_constraint(this);
+}
+
+String toJsonEnumspiceDesireAnswers_constraint(EnumspiceDesireAnswers_constraint e) {
+  switch (e) {
+    case EnumspiceDesireAnswers_constraint.spice_desire_answers_pkey:
+      return r'spice_desire_answers_pkey';
+    case EnumspiceDesireAnswers_constraint.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumspiceDesireAnswers_constraint fromJsonEnumspiceDesireAnswers_constraint(String value) {
+  switch (value) {
+    case r'spice_desire_answers_pkey':
+      return EnumspiceDesireAnswers_constraint.spice_desire_answers_pkey;
+    default:
+      return EnumspiceDesireAnswers_constraint.$unknown;
+  }
+}
+
+enum EnumspiceDesireAnswers_select_column {
+  answer,
+  contentSlug,
+  createdAt,
+  updatedAt,
+  userId,
+  $unknown;
+
+  factory EnumspiceDesireAnswers_select_column.fromJson(String value) =>
+      fromJsonEnumspiceDesireAnswers_select_column(value);
+
+  String toJson() => toJsonEnumspiceDesireAnswers_select_column(this);
+}
+
+String toJsonEnumspiceDesireAnswers_select_column(EnumspiceDesireAnswers_select_column e) {
+  switch (e) {
+    case EnumspiceDesireAnswers_select_column.answer:
+      return r'answer';
+    case EnumspiceDesireAnswers_select_column.contentSlug:
+      return r'contentSlug';
+    case EnumspiceDesireAnswers_select_column.createdAt:
+      return r'createdAt';
+    case EnumspiceDesireAnswers_select_column.updatedAt:
+      return r'updatedAt';
+    case EnumspiceDesireAnswers_select_column.userId:
+      return r'userId';
+    case EnumspiceDesireAnswers_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumspiceDesireAnswers_select_column fromJsonEnumspiceDesireAnswers_select_column(String value) {
+  switch (value) {
+    case r'answer':
+      return EnumspiceDesireAnswers_select_column.answer;
+    case r'contentSlug':
+      return EnumspiceDesireAnswers_select_column.contentSlug;
+    case r'createdAt':
+      return EnumspiceDesireAnswers_select_column.createdAt;
+    case r'updatedAt':
+      return EnumspiceDesireAnswers_select_column.updatedAt;
+    case r'userId':
+      return EnumspiceDesireAnswers_select_column.userId;
+    default:
+      return EnumspiceDesireAnswers_select_column.$unknown;
+  }
+}
+
+enum EnumspiceDesireAnswers_update_column {
+  answer,
+  $unknown;
+
+  factory EnumspiceDesireAnswers_update_column.fromJson(String value) =>
+      fromJsonEnumspiceDesireAnswers_update_column(value);
+
+  String toJson() => toJsonEnumspiceDesireAnswers_update_column(this);
+}
+
+String toJsonEnumspiceDesireAnswers_update_column(EnumspiceDesireAnswers_update_column e) {
+  switch (e) {
+    case EnumspiceDesireAnswers_update_column.answer:
+      return r'answer';
+    case EnumspiceDesireAnswers_update_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumspiceDesireAnswers_update_column fromJsonEnumspiceDesireAnswers_update_column(String value) {
+  switch (value) {
+    case r'answer':
+      return EnumspiceDesireAnswers_update_column.answer;
+    default:
+      return EnumspiceDesireAnswers_update_column.$unknown;
+  }
+}
+
+enum EnumspiceStates_select_column {
+  coupleLevel,
+  myLevel,
+  state,
+  $unknown;
+
+  factory EnumspiceStates_select_column.fromJson(String value) =>
+      fromJsonEnumspiceStates_select_column(value);
+
+  String toJson() => toJsonEnumspiceStates_select_column(this);
+}
+
+String toJsonEnumspiceStates_select_column(EnumspiceStates_select_column e) {
+  switch (e) {
+    case EnumspiceStates_select_column.coupleLevel:
+      return r'coupleLevel';
+    case EnumspiceStates_select_column.myLevel:
+      return r'myLevel';
+    case EnumspiceStates_select_column.state:
+      return r'state';
+    case EnumspiceStates_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumspiceStates_select_column fromJsonEnumspiceStates_select_column(String value) {
+  switch (value) {
+    case r'coupleLevel':
+      return EnumspiceStates_select_column.coupleLevel;
+    case r'myLevel':
+      return EnumspiceStates_select_column.myLevel;
+    case r'state':
+      return EnumspiceStates_select_column.state;
+    default:
+      return EnumspiceStates_select_column.$unknown;
+  }
+}
+
+enum EnumstartDates_select_column {
+  couple,
+  matches,
+  mine,
+  partner,
+  $unknown;
+
+  factory EnumstartDates_select_column.fromJson(String value) =>
+      fromJsonEnumstartDates_select_column(value);
+
+  String toJson() => toJsonEnumstartDates_select_column(this);
+}
+
+String toJsonEnumstartDates_select_column(EnumstartDates_select_column e) {
+  switch (e) {
+    case EnumstartDates_select_column.couple:
+      return r'couple';
+    case EnumstartDates_select_column.matches:
+      return r'matches';
+    case EnumstartDates_select_column.mine:
+      return r'mine';
+    case EnumstartDates_select_column.partner:
+      return r'partner';
+    case EnumstartDates_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumstartDates_select_column fromJsonEnumstartDates_select_column(String value) {
+  switch (value) {
+    case r'couple':
+      return EnumstartDates_select_column.couple;
+    case r'matches':
+      return EnumstartDates_select_column.matches;
+    case r'mine':
+      return EnumstartDates_select_column.mine;
+    case r'partner':
+      return EnumstartDates_select_column.partner;
+    default:
+      return EnumstartDates_select_column.$unknown;
   }
 }
 
@@ -112482,6 +130849,7 @@ enum EnumuserSettings_select_column {
   createdAt,
   goal,
   goals,
+  hasKids,
   holidayCountries,
   locale,
   lowStimulation,
@@ -112494,6 +130862,8 @@ enum EnumuserSettings_select_column {
   shareReadReceipts,
   slipsDefaultForCard,
   spiceEnabled,
+  spiceMaxLevel,
+  spiceNotifications,
   theme,
   togetherSince,
   updatedAt,
@@ -112525,6 +130895,8 @@ String toJsonEnumuserSettings_select_column(EnumuserSettings_select_column e) {
       return r'goal';
     case EnumuserSettings_select_column.goals:
       return r'goals';
+    case EnumuserSettings_select_column.hasKids:
+      return r'hasKids';
     case EnumuserSettings_select_column.holidayCountries:
       return r'holidayCountries';
     case EnumuserSettings_select_column.locale:
@@ -112549,6 +130921,10 @@ String toJsonEnumuserSettings_select_column(EnumuserSettings_select_column e) {
       return r'slipsDefaultForCard';
     case EnumuserSettings_select_column.spiceEnabled:
       return r'spiceEnabled';
+    case EnumuserSettings_select_column.spiceMaxLevel:
+      return r'spiceMaxLevel';
+    case EnumuserSettings_select_column.spiceNotifications:
+      return r'spiceNotifications';
     case EnumuserSettings_select_column.theme:
       return r'theme';
     case EnumuserSettings_select_column.togetherSince:
@@ -112584,6 +130960,8 @@ EnumuserSettings_select_column fromJsonEnumuserSettings_select_column(String val
       return EnumuserSettings_select_column.goal;
     case r'goals':
       return EnumuserSettings_select_column.goals;
+    case r'hasKids':
+      return EnumuserSettings_select_column.hasKids;
     case r'holidayCountries':
       return EnumuserSettings_select_column.holidayCountries;
     case r'locale':
@@ -112608,6 +130986,10 @@ EnumuserSettings_select_column fromJsonEnumuserSettings_select_column(String val
       return EnumuserSettings_select_column.slipsDefaultForCard;
     case r'spiceEnabled':
       return EnumuserSettings_select_column.spiceEnabled;
+    case r'spiceMaxLevel':
+      return EnumuserSettings_select_column.spiceMaxLevel;
+    case r'spiceNotifications':
+      return EnumuserSettings_select_column.spiceNotifications;
     case r'theme':
       return EnumuserSettings_select_column.theme;
     case r'togetherSince':
@@ -112624,6 +131006,99 @@ EnumuserSettings_select_column fromJsonEnumuserSettings_select_column(String val
       return EnumuserSettings_select_column.widgetShowNames;
     default:
       return EnumuserSettings_select_column.$unknown;
+  }
+}
+
+enum EnumweeklyReviews_select_column {
+  activeDays,
+  bothCheckinDone,
+  cardsReceived,
+  cardsSent,
+  checkinDone,
+  coupleRitualsDone,
+  lowData,
+  missing,
+  moodsLogged,
+  partnerCardsSent,
+  ritualsDone,
+  slips,
+  streakDays,
+  weekStart,
+  $unknown;
+
+  factory EnumweeklyReviews_select_column.fromJson(String value) =>
+      fromJsonEnumweeklyReviews_select_column(value);
+
+  String toJson() => toJsonEnumweeklyReviews_select_column(this);
+}
+
+String toJsonEnumweeklyReviews_select_column(EnumweeklyReviews_select_column e) {
+  switch (e) {
+    case EnumweeklyReviews_select_column.activeDays:
+      return r'activeDays';
+    case EnumweeklyReviews_select_column.bothCheckinDone:
+      return r'bothCheckinDone';
+    case EnumweeklyReviews_select_column.cardsReceived:
+      return r'cardsReceived';
+    case EnumweeklyReviews_select_column.cardsSent:
+      return r'cardsSent';
+    case EnumweeklyReviews_select_column.checkinDone:
+      return r'checkinDone';
+    case EnumweeklyReviews_select_column.coupleRitualsDone:
+      return r'coupleRitualsDone';
+    case EnumweeklyReviews_select_column.lowData:
+      return r'lowData';
+    case EnumweeklyReviews_select_column.missing:
+      return r'missing';
+    case EnumweeklyReviews_select_column.moodsLogged:
+      return r'moodsLogged';
+    case EnumweeklyReviews_select_column.partnerCardsSent:
+      return r'partnerCardsSent';
+    case EnumweeklyReviews_select_column.ritualsDone:
+      return r'ritualsDone';
+    case EnumweeklyReviews_select_column.slips:
+      return r'slips';
+    case EnumweeklyReviews_select_column.streakDays:
+      return r'streakDays';
+    case EnumweeklyReviews_select_column.weekStart:
+      return r'weekStart';
+    case EnumweeklyReviews_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumweeklyReviews_select_column fromJsonEnumweeklyReviews_select_column(String value) {
+  switch (value) {
+    case r'activeDays':
+      return EnumweeklyReviews_select_column.activeDays;
+    case r'bothCheckinDone':
+      return EnumweeklyReviews_select_column.bothCheckinDone;
+    case r'cardsReceived':
+      return EnumweeklyReviews_select_column.cardsReceived;
+    case r'cardsSent':
+      return EnumweeklyReviews_select_column.cardsSent;
+    case r'checkinDone':
+      return EnumweeklyReviews_select_column.checkinDone;
+    case r'coupleRitualsDone':
+      return EnumweeklyReviews_select_column.coupleRitualsDone;
+    case r'lowData':
+      return EnumweeklyReviews_select_column.lowData;
+    case r'missing':
+      return EnumweeklyReviews_select_column.missing;
+    case r'moodsLogged':
+      return EnumweeklyReviews_select_column.moodsLogged;
+    case r'partnerCardsSent':
+      return EnumweeklyReviews_select_column.partnerCardsSent;
+    case r'ritualsDone':
+      return EnumweeklyReviews_select_column.ritualsDone;
+    case r'slips':
+      return EnumweeklyReviews_select_column.slips;
+    case r'streakDays':
+      return EnumweeklyReviews_select_column.streakDays;
+    case r'weekStart':
+      return EnumweeklyReviews_select_column.weekStart;
+    default:
+      return EnumweeklyReviews_select_column.$unknown;
   }
 }
 

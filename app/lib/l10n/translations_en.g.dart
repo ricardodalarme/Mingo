@@ -3766,32 +3766,39 @@ class _Translations$plus$en extends Translations$plus$pt {
   @override
   String get paidByPartner => 'Your partner has Plus and it covers you both.';
   @override
-  String freeLeft({required Object slips, required Object cards}) =>
-      'Free plan, this month: ${slips} and ${cards}.';
+  String freeLeft({required Object games, required Object rituals, required Object lists}) =>
+      'On the free plan you have ${games}, ${rituals} and ${lists} left.';
   @override
-  String slipCount({required num count}) =>
+  String gameCount({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
         count,
-        one: '1 slip',
-        other: '${count} slips',
+        one: '1 game this week',
+        other: '${count} games this week',
       );
   @override
-  String cardCount({required num count}) =>
+  String ritualCount({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
         count,
-        one: '1 sent card',
-        other: '${count} sent cards',
+        one: '1 ritual',
+        other: '${count} rituals',
+      );
+  @override
+  String listCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 list',
+        other: '${count} lists',
       );
   @override
   String get freeName => 'Free';
   @override
   String get freeFeatures =>
-      'Slips every month, one sent card a month, repair and everything you already saved.';
+      'Unlimited slips and cards, repair, 3 games a week, 3 rituals, 3 lists and everything you already saved.';
   @override
   String get plusName => 'Plus';
   @override
   String get plusFeatures =>
-      'More slips and cards each month and more for both of you, covering you and your partner.';
+      'Unlimited games, rituals and lists, more chats with the mascot and more for both of you, covering you and your partner.';
   @override
   String get monthly => 'Monthly';
   @override
@@ -9563,28 +9570,35 @@ extension on TranslationsEn {
           'plus.activeText' => 'Thank you. Everything is unlocked for you and your partner.',
           'plus.paidByPartner' => 'Your partner has Plus and it covers you both.',
           'plus.freeLeft' => ({
-            required Object slips,
-            required Object cards,
-          }) => 'Free plan, this month: ${slips} and ${cards}.',
-          'plus.slipCount' =>
+            required Object games,
+            required Object rituals,
+            required Object lists,
+          }) => 'On the free plan you have ${games}, ${rituals} and ${lists} left.',
+          'plus.gameCount' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
                   count,
-                  one: '1 slip',
-                  other: '${count} slips',
+                  one: '1 game this week',
+                  other: '${count} games this week',
                 ),
-          'plus.cardCount' =>
+          'plus.ritualCount' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
                   count,
-                  one: '1 sent card',
-                  other: '${count} sent cards',
+                  one: '1 ritual',
+                  other: '${count} rituals',
+                ),
+          'plus.listCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 list',
+                  other: '${count} lists',
                 ),
           'plus.freeName' => 'Free',
-          'plus.freeFeatures' =>
-            'Slips every month, one sent card a month, repair and everything you already saved.',
+          'plus.freeFeatures' => 'Unlimited slips and cards, repair, 3 games a week, 3 rituals, 3 lists and everything you already saved.',
           'plus.plusName' => 'Plus',
-          'plus.plusFeatures' => 'More slips and cards each month and more for both of you, covering you and your partner.',
+          'plus.plusFeatures' => 'Unlimited games, rituals and lists, more chats with the mascot and more for both of you, covering you and your partner.',
           'plus.monthly' => 'Monthly',
           'plus.yearly' => 'Yearly',
           'plus.storeTitle' => 'Couldn\'t load the prices',
@@ -9911,10 +9925,10 @@ extension on TranslationsEn {
           'quickSlip.privacyNote' =>
             'It stays private. On Sunday you choose what goes on the card.',
           'quickSlip.botheredNote' => 'Only you see it. A slip like this never goes on the card.',
-          'quickSlip.requestLabel' => 'A request, if you want',
           _ => null,
         } ??
         switch (path) {
+          'quickSlip.requestLabel' => 'A request, if you want',
           'quickSlip.requestHint' => 'E.g. could you let me know beforehand?',
           'quickSlip.requestHelper' => 'Optional. It stays with you and is not sent to anyone.',
           'quickSlip.requestErrors.tooLong' => 'Use at most 140 characters',
@@ -10477,10 +10491,10 @@ extension on TranslationsEn {
           'story.errorTitle' => 'Couldn\'t load',
           'story.errorText' => 'Try again in a moment.',
           'story.errors.other' => 'Couldn\'t share right now. Try again.',
-          'sundayCard.title' => 'Your card',
           _ => null,
         } ??
         switch (path) {
+          'sundayCard.title' => 'Your card',
           'sundayCard.edit' => 'Edit',
           'sundayCard.save' => 'Save',
           'sundayCard.cancel' => 'Cancel',

@@ -17,6 +17,17 @@ extension EnumNotificationTypeMapper on EnumNotificationType_enum {
     EnumNotificationType_enum.daily_idea => NotificationKind.dailyIdea,
     EnumNotificationType_enum.gentle_return => NotificationKind.gentleReturn,
     EnumNotificationType_enum.capsule_opened => NotificationKind.capsuleOpened,
+    EnumNotificationType_enum.gentle_request ||
+    EnumNotificationType_enum.gentle_request_answered ||
+    EnumNotificationType_enum.quiz_shared ||
+    EnumNotificationType_enum.spice_invite ||
+    EnumNotificationType_enum.spice_off ||
+    EnumNotificationType_enum.memory_proposed ||
+    EnumNotificationType_enum.memory_accepted ||
+    EnumNotificationType_enum.memory_declined ||
+    EnumNotificationType_enum.annoyance_check ||
+    EnumNotificationType_enum.plus_billing_issue ||
+    EnumNotificationType_enum.plus_coverage_ended ||
     EnumNotificationType_enum.$unknown => null,
   };
 }
