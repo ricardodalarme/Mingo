@@ -5589,6 +5589,12 @@ class _Translations$sundayCard$en extends Translations$sundayCard$pt {
   @override
   late final _Translations$sundayCard$heldByRule$en heldByRule =
       _Translations$sundayCard$heldByRule$en._(_root);
+  @override
+  String get dayTitle => 'Day';
+  @override
+  String get dayError => 'Could not change the day. The earlier one was kept.';
+  @override
+  String get dayNote => 'Applies to the next card.';
 }
 
 // Path: tabs
@@ -11206,6 +11212,9 @@ extension on TranslationsEn {
           'sundayCard.heldByRule.reassurance' => 'Nothing was sent and nothing is lost.',
           'sundayCard.heldByRule.rewrite' => 'Rewrite',
           'sundayCard.heldByRule.sendAnyway' => 'Send anyway',
+          'sundayCard.dayTitle' => 'Day',
+          'sundayCard.dayError' => 'Could not change the day. The earlier one was kept.',
+          'sundayCard.dayNote' => 'Applies to the next card.',
           'tabs.today' => 'Today',
           'tabs.slips' => 'Slips',
           'tabs.together' => 'Together',
@@ -11636,12 +11645,12 @@ extension on TranslationsEn {
           'widgets.ownSlipSubtitle' => 'Tap to log',
           'widgets.ownIdeaLabel' => 'DAILY IDEA',
           'widgets.ownIdeaDefault' => 'Leave a small note today',
-          'widgets.ownIdeaHint' => 'Tap to open',
-          'widgets.ownJarLabel' => 'BAD DAY JAR',
-          'widgets.ownJarTitle' => 'Open a saved slip',
           _ => null,
         } ??
         switch (path) {
+          'widgets.ownIdeaHint' => 'Tap to open',
+          'widgets.ownJarLabel' => 'BAD DAY JAR',
+          'widgets.ownJarTitle' => 'Open a saved slip',
           'widgets.ownJarPrivacy' => 'Private: only on your device',
           'widgets.lockScreenLabel' => 'LOCK SCREEN',
           'widgets.lockScreenDefault' => 'Calm reminder · No names',

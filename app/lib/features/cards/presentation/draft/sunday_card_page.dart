@@ -27,10 +27,12 @@ class const SundayCardPage({super.key}) extends StatelessWidget implements AutoR
       body: BlocListener<SundayCardCubit, SundayCardState>(
         listenWhen: (previous, current) =>
             previous.saveAction != current.saveAction ||
-            previous.deliverAction != current.deliverAction,
+            previous.deliverAction != current.deliverAction ||
+            previous.sendDayFailed != current.sendDayFailed,
         listener: (context, state) {
           if (state.saveAction is Failure) BaseToast.show(context, l10n.saveError);
           if (state.deliverAction is Failure) BaseToast.show(context, l10n.deliverError);
+          if (state.sendDayFailed) BaseToast.show(context, l10n.dayError);
         },
         child: switch (card) {
           Success<SundayCard>(:final value) => SundayCardBody(card: value),

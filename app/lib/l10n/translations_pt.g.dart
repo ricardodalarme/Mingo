@@ -6909,6 +6909,15 @@ class Translations$sundayCard$pt {
   late final Translations$sundayCard$sent$pt sent = Translations$sundayCard$sent$pt.internal(_root);
   late final Translations$sundayCard$heldByRule$pt heldByRule =
       Translations$sundayCard$heldByRule$pt.internal(_root);
+
+  /// pt: 'Dia'
+  String get dayTitle => 'Dia';
+
+  /// pt: 'Não deu para mudar o dia. O anterior foi mantido.'
+  String get dayError => 'Não deu para mudar o dia. O anterior foi mantido.';
+
+  /// pt: 'Vale para o próximo cartão.'
+  String get dayNote => 'Vale para o próximo cartão.';
 }
 
 // Path: tabs
@@ -13147,6 +13156,9 @@ extension on Translations {
           'sundayCard.heldByRule.reassurance' => 'Nada foi enviado e nada se perde.',
           'sundayCard.heldByRule.rewrite' => 'Reescrever',
           'sundayCard.heldByRule.sendAnyway' => 'Enviar mesmo assim',
+          'sundayCard.dayTitle' => 'Dia',
+          'sundayCard.dayError' => 'Não deu para mudar o dia. O anterior foi mantido.',
+          'sundayCard.dayNote' => 'Vale para o próximo cartão.',
           'tabs.today' => 'Hoje',
           'tabs.slips' => 'Slips',
           'tabs.together' => 'Juntos',
@@ -13578,12 +13590,12 @@ extension on Translations {
           'widgets.ownSlipSubtitle' => 'Toque para anotar',
           'widgets.ownIdeaLabel' => 'IDEIA DO DIA',
           'widgets.ownIdeaDefault' => 'Deixe um bilhete hoje',
-          'widgets.ownIdeaHint' => 'Toque para abrir',
-          'widgets.ownJarLabel' => 'POTINHO DO DIA RUIM',
-          'widgets.ownJarTitle' => 'Abrir um slip guardado',
           _ => null,
         } ??
         switch (path) {
+          'widgets.ownIdeaHint' => 'Toque para abrir',
+          'widgets.ownJarLabel' => 'POTINHO DO DIA RUIM',
+          'widgets.ownJarTitle' => 'Abrir um slip guardado',
           'widgets.ownJarPrivacy' => 'Privado: só no seu aparelho',
           'widgets.lockScreenLabel' => 'TELA DE BLOQUEIO',
           'widgets.lockScreenDefault' => 'Lembrete calmo · Sem nomes',

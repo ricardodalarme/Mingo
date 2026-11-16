@@ -6,6 +6,8 @@ final class const SundayCardState({
   final String? selfName,
   final String? partnerName,
   final bool isPaired = false,
+  final int? sendDay,
+  final bool sendDayFailed = false,
   final Resource<void> saveAction = const Initial(),
   final Resource<void> deliverAction = const Initial(),
 }) with Equatable {
@@ -19,6 +21,8 @@ final class const SundayCardState({
     String? selfName,
     String? partnerName,
     bool? isPaired,
+    int? sendDay,
+    bool? sendDayFailed,
     Resource<void>? saveAction,
     Resource<void>? deliverAction,
   }) {
@@ -28,6 +32,8 @@ final class const SundayCardState({
       selfName: selfName ?? this.selfName,
       partnerName: partnerName ?? this.partnerName,
       isPaired: isPaired ?? this.isPaired,
+      sendDay: sendDay ?? this.sendDay,
+      sendDayFailed: sendDayFailed ?? this.sendDayFailed,
       saveAction: saveAction ?? this.saveAction,
       deliverAction: deliverAction ?? this.deliverAction,
     );
@@ -40,6 +46,8 @@ final class const SundayCardState({
     selfName,
     partnerName,
     isPaired,
+    sendDay,
+    sendDayFailed,
     saveAction,
     deliverAction,
   ];

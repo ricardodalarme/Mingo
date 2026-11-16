@@ -1,5 +1,7 @@
 import 'package:app/features/cards/data/models/sunday_card.dart';
 import 'package:app/features/cards/data/repositories/cards_repository.dart';
+import 'package:app/features/notifications/data/models/notification_preferences.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
@@ -15,14 +17,17 @@ class SundayCardCubit({
   required final CardsRepository _cardsRepository,
   required final ProfileRepository _profileRepository,
   required final PairingRepository _pairingRepository,
+  required final NotificationsRepository _notificationsRepository,
 }) extends Cubit<SundayCardState> {
   this : super(const SundayCardState());
 
   final Set<String> _removedItemIds = {};
+  NotificationPreferences? _preferences;
 
   Future<void> load() async {
     if (state.card is! Success) emit(state.copyWith(card: const Loading()));
     final names = await _readNames();
+    final preferences = await _readPreferences();
     try {
       final card = await _cardsRepository.getDraft();
       emit(
@@ -31,11 +36,37 @@ class SundayCardCubit({
           selfName: names.self,
           partnerName: names.partner,
           isPaired: names.isPaired,
+          sendDay: preferences?.cardDay,
         ),
       );
+      _preferences = preferences;
     } catch (exception) {
       if (state.card is Success) return;
       emit(state.copyWith(card: Failure.fromObject(exception)));
+    }
+  }
+
+  /// Chooses the weekday the card is sent, from the next card on; the previous choice stays when saving fails.
+  Future<void> setSendDay(int day) async {
+    final preferences = _preferences;
+    if (preferences == null || day == state.sendDay) return;
+
+    final previous = state.sendDay;
+    emit(state.copyWith(sendDay: day));
+    try {
+      await _notificationsRepository.savePreferences(preferences.copyWith(cardDay: day));
+      _preferences = preferences.copyWith(cardDay: day);
+    } on Object {
+      emit(state.copyWith(sendDay: previous, sendDayFailed: true));
+      emit(state.copyWith(sendDayFailed: false));
+    }
+  }
+
+  Future<NotificationPreferences?> _readPreferences() async {
+    try {
+      return await _notificationsRepository.getPreferences();
+    } on Object {
+      return null;
     }
   }
 

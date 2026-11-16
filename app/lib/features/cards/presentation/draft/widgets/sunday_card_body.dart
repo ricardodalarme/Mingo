@@ -21,6 +21,7 @@ class const SundayCardBody({required final SundayCard card, super.key}) extends 
     final isDelivering = context.select(
       (SundayCardCubit cubit) => cubit.state.deliverAction.isLoading,
     );
+    final sendDay = context.select((SundayCardCubit cubit) => cubit.state.sendDay);
     final cubit = context.read<SundayCardCubit>();
     final shown = draft ?? card;
 
@@ -48,6 +49,24 @@ class const SundayCardBody({required final SundayCard card, super.key}) extends 
                 ? null
                 : (context, index) => _ItemActions(index: index, count: shown.items.length),
           ),
+          if (draft == null && sendDay != null) ...[
+            const SizedBox(height: AppSpace.s12),
+            BaseListGroup(
+              footer: l10n.dayNote,
+              children: [
+                BaseListTile(
+                  icon: AppIcons.calendar,
+                  title: l10n.dayTitle,
+                  trailing: Text(
+                    context.l10n.notificationPreferences.days[sendDay],
+                    style: context.text.body.copyWith(color: context.colors.textSecondary),
+                  ),
+                  showsChevron: true,
+                  onTap: () => _chooseDay(context, sendDay),
+                ),
+              ],
+            ),
+          ],
           if (draft != null) ...[
             const SizedBox(height: AppSpace.s16),
             BaseTextArea(
@@ -111,6 +130,27 @@ class const SundayCardBody({required final SundayCard card, super.key}) extends 
             ),
     );
   }
+}
+
+Future<void> _chooseDay(BuildContext context, int current) async {
+  final cubit = context.read<SundayCardCubit>();
+  final days = context.l10n.notificationPreferences.days;
+
+  final chosen = await BaseSheet.show<int>(
+    context: context,
+    title: context.l10n.sundayCard.dayTitle,
+    child: BaseListGroup(
+      children: [
+        for (var day = 0; day < days.length; day++)
+          BaseListTile(
+            title: days[day],
+            trailing: day == current ? const Icon(AppIcons.check) : null,
+            onTap: () => Navigator.pop(context, day),
+          ),
+      ],
+    ),
+  );
+  if (chosen != null) await cubit.setSendDay(chosen);
 }
 
 class const _ItemActions({required final int index, required final int count})

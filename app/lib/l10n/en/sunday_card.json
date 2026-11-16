@@ -57,5 +57,8 @@
     "reassurance": "Nothing was sent and nothing is lost.",
     "rewrite": "Rewrite",
     "sendAnyway": "Send anyway"
-  }
+  },
+  "dayTitle": "Day",
+  "dayError": "Could not change the day. The earlier one was kept.",
+  "dayNote": "Applies to the next card."
 }

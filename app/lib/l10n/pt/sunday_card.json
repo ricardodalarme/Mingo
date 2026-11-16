@@ -57,5 +57,8 @@
     "reassurance": "Nada foi enviado e nada se perde.",
     "rewrite": "Reescrever",
     "sendAnyway": "Enviar mesmo assim"
-  }
+  },
+  "dayTitle": "Dia",
+  "dayError": "Não deu para mudar o dia. O anterior foi mantido.",
+  "dayNote": "Vale para o próximo cartão."
 }

@@ -4,6 +4,7 @@ import 'package:app/features/cards/data/repositories/cards_repository.dart';
 import 'package:app/features/cards/presentation/detail/cubit/card_detail_cubit.dart';
 import 'package:app/features/cards/presentation/draft/cubit/sunday_card_cubit.dart';
 import 'package:app/features/cards/presentation/list/cubit/cards_list_cubit.dart';
+import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
@@ -34,6 +35,7 @@ class CardsInjectionModule() implements InjectionModule {
         cardsRepository: injector.get<CardsRepository>(),
         profileRepository: injector.get<ProfileRepository>(),
         pairingRepository: injector.get<PairingRepository>(),
+        notificationsRepository: injector.get<NotificationsRepository>(),
       ),
     );
 }

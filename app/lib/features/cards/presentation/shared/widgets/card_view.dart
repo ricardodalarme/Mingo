@@ -60,6 +60,14 @@ class const _Item({required final CardItem item, final Widget? trailing}) extend
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Padding(
+          padding: const EdgeInsets.only(top: AppSpace.s4, right: AppSpace.s12),
+          child: Icon(
+            AppIcons.heart_filled,
+            size: AppIconSize.sm,
+            color: context.colors.accentLabel,
+          ),
+        ),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
