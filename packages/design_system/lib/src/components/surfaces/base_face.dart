@@ -1,3 +1,7 @@
+import 'package:design_system/src/components/surfaces/face_drawing.dart';
+import 'package:design_system/src/components/surfaces/face_motion_policy.dart';
+import 'package:design_system/src/components/surfaces/face_motion_scope.dart';
+import 'package:design_system/src/components/surfaces/face_svg.dart';
 import 'package:design_system/src/theme/app_theme.dart';
 import 'package:design_system/src/tokens/tokens.dart';
 import 'package:flutter/widgets.dart';
@@ -12,6 +16,18 @@ enum FaceKind() {
   sad,
   thinking,
   smile,
+}
+
+/// How a face moves; leave it unset on [BaseFace] for the automatic choice.
+enum FaceMotion() {
+  /// The static drawing; no animation engine is involved.
+  still,
+
+  /// A quiet loop that starts at a random point.
+  idle,
+
+  /// Draws itself once, then loops like [idle].
+  enter,
 }
 
 /// Face circle and drawing diameters per size token.
@@ -44,23 +60,78 @@ extension FaceSizeGeometry on FaceSize {
 }
 
 /// A hand-drawn face in a white circle; pass [semanticLabel] when it carries meaning.
+///
+/// [motion] is chosen automatically when `null`: a selected face idles and pops when it becomes
+/// selected, a showcase face draws itself, any other face stays still. Changing [popToken] plays a
+/// pop. Faces stay still under reduced motion or a disabled [FaceMotionScope].
 class const BaseFace({
   required final FaceKind kind,
   final FaceSize size = .medium,
   final bool selected = false,
   final String? semanticLabel,
   final Color? tint,
+  final FaceMotion? motion,
+  final int popToken = 0,
   super.key,
-}) extends StatelessWidget {
+}) extends StatefulWidget {
+  @override
+  State<BaseFace> createState() => _BaseFaceState();
+}
+
+class _BaseFaceState() extends State<BaseFace> {
+  int _pops = 0;
+  bool _popsOnMount = false;
+
+  @override
+  void didUpdateWidget(BaseFace oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final becameSelected = widget.motion == null && widget.selected && !oldWidget.selected;
+    if (becameSelected || widget.popToken != oldWidget.popToken) {
+      _pops++;
+      _popsOnMount = true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final ink = tint ?? colors.textPrimary;
-    final isMarked = selected;
+    final ink = widget.tint ?? colors.textPrimary;
+    final isMarked = widget.selected;
+    final size = widget.size;
+
+    final resolved = resolveFaceMotion(
+      motion: widget.motion,
+      selected: widget.selected,
+      size: size,
+    );
+    final isAnimated =
+        resolved != .still &&
+        !context.reduceMotion &&
+        (FaceMotionScope.maybeOf(context)?.enabled ?? true);
+
+    final Widget drawing;
+    if (isAnimated) {
+      drawing = FaceDrawing(
+        kind: widget.kind,
+        dimension: size.drawing,
+        tint: ink,
+        motion: resolved,
+        popToken: _pops,
+        popsOnMount: _popsOnMount,
+      );
+    } else {
+      drawing = SvgPicture.string(
+        faceSvgFor(widget.kind, ink),
+        width: size.drawing,
+        height: size.drawing,
+      );
+    }
+    _popsOnMount = false;
 
     final circle = Container(
       width: size.circle,
       height: size.circle,
+      clipBehavior: isAnimated ? Clip.antiAlias : Clip.none,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: isMarked ? colors.accentSoft : colors.bgSurface,
@@ -68,61 +139,11 @@ class const BaseFace({
         boxShadow: isMarked ? null : AppShadows.face,
       ),
       alignment: Alignment.center,
-      child: SvgPicture.string(_faceSvg(kind, ink), width: size.drawing, height: size.drawing),
+      child: drawing,
     );
 
-    final label = semanticLabel;
+    final label = widget.semanticLabel;
     if (label == null) return ExcludeSemantics(child: circle);
     return Semantics(label: label, image: true, child: circle);
   }
-}
-
-String _faceSvg(FaceKind kind, Color tint) {
-  final color = _hex(tint);
-  final body = switch (kind) {
-    .good =>
-      '''
-      <path d="M11.5 13v3M20.5 13v3"/>
-      <path d="M10 20.5c3.2 3.6 8.8 3.6 12 0"/>''',
-    .affectionate =>
-      '''
-      <path fill="$color" stroke="none" d="M11 16.8c-2.6-1.7-3.6-2.9-3.6-4.2 0-1 .8-1.8 1.8-1.8.8 0 1.4.4 1.8 1.1.4-.7 1-1.1 1.8-1.1 1 0 1.8.8 1.8 1.8 0 1.3-1 2.5-3.6 4.2zM21 16.8c-2.6-1.7-3.6-2.9-3.6-4.2 0-1 .8-1.8 1.8-1.8.8 0 1.4.4 1.8 1.1.4-.7 1-1.1 1.8-1.1 1 0 1.8.8 1.8 1.8 0 1.3-1 2.5-3.6 4.2z"/>
-      <path d="M11.5 21.5c2.6 2.6 6.4 2.6 9 0"/>''',
-    .tired =>
-      '''
-      <path d="M9.5 15c1.2 1.2 3 1.2 4.2 0M18.3 15c1.2 1.2 3 1.2 4.2 0"/>
-      <path d="M14 22h4"/>
-      <path d="M22 6h3.5L22 9.5h3.5" stroke-width="1.5"/>''',
-    .tense =>
-      '''
-      <path d="M9.5 11.5l4 1.5M22.5 11.5l-4 1.5"/>
-      <path d="M12 15.5v2M20 15.5v2"/>
-      <path d="M10.5 22.5l2-1.5 1.8 1.5 1.8-1.5 1.8 1.5 1.8-1.5 1.8 1.5"/>''',
-    .sad =>
-      '''
-      <path d="M11.5 13.5v2.6M20.5 13.5v2.6"/>
-      <path d="M11.5 23c2.6-2.6 6.4-2.6 9 0"/>
-      <path stroke-width="1.4" d="M8.6 18.5c-.7 1-1 1.7-1 2.2a1 1 0 002 0c0-.5-.3-1.2-1-2.2z"/>''',
-    .thinking =>
-      '''
-      <path d="M8 9.5l1.4 2.2M5.8 13l1.6.6M24 9.5l-1.4 2.2M26.2 13l-1.6.6"/>
-      <path d="M13 14.5v2.4M19 14.5v2.4"/>
-      <path d="M13.5 22c1.6 1.3 3.4 1.3 5 0"/>
-      <path d="M16 17.5l-.8 2.2h1.4"/>''',
-    .smile =>
-      '''
-      <path d="M10 14.5c.9-1.4 2.7-1.4 3.6 0M18.4 14.5c.9-1.4 2.7-1.4 3.6 0"/>
-      <path d="M10.5 19.5c2.8 3.6 8.2 3.6 11 0"/>
-      <path d="M6 9l1.6 1.2M26 9l-1.6 1.2"/>''',
-  };
-
-  return '''
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-<g fill="none" stroke="$color" stroke-width="1.8" stroke-linecap="round"
-stroke-linejoin="round">$body</g></svg>''';
-}
-
-String _hex(Color color) {
-  final value = color.toARGB32() & 0xFFFFFF;
-  return '#${value.toRadixString(16).padLeft(6, '0')}';
 }

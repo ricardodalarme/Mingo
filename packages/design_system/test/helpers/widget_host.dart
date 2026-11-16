@@ -5,7 +5,8 @@ import 'package:material_ui/material_ui.dart';
 
 const Size defaultTestSurface = Size(390, 844);
 
-Widget uiLocalized(Widget child) => TranslationProvider(child: child);
+Widget uiLocalized(Widget child) =>
+    FaceMotionScope(enabled: false, child: TranslationProvider(child: child));
 
 AppColors colorsOf(AppThemeVariant variant) => AppColors.forVariant(variant);
 
