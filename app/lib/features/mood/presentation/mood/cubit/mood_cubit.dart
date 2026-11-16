@@ -66,6 +66,15 @@ class MoodCubit({
     );
   }
 
+  /// Moves on from the mood to the choice of who sees it.
+  void next() {
+    if (state.mood == null || state.saveAction.isLoading) return;
+    emit(state.copyWith(isChoosingShare: true));
+  }
+
+  /// Goes back from the share choice to the mood.
+  void back() => emit(state.copyWith(isChoosingShare: false));
+
   void selectShare(MoodShare share) {
     if (state.saveAction.isLoading) return;
     if (share == MoodShare.moodNeed && state.need == null) return;

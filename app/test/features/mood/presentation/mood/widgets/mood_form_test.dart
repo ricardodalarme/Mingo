@@ -26,7 +26,7 @@ void main() {
     registerFallbackValue(NeedKind.hug);
   });
 
-  testWidgets('the form is disabled while a save is in flight', (tester) async {
+  testWidgets('the share step is disabled while a save is in flight', (tester) async {
     final repository = _MockMoodRepository();
     final pending = Completer<MoodEntry>();
     when(repository.getTodayMood).thenAnswer((_) async {
@@ -45,16 +45,19 @@ void main() {
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const MoodForm()));
 
-    expect(find.text('O que Marina vê'), findsOneWidget);
+    expect(find.text('Próximo'), findsOneWidget);
+
+    await tester.tap(find.text('Próximo'));
+    await tester.pump();
+
+    expect(cubit.state.isChoosingShare, isTrue);
+    expect(find.text('Manter privado'), findsOneWidget);
 
     await tester.tap(find.text('Salvar'));
     await tester.pump();
     expect(cubit.state.saveAction.isLoading, isTrue);
 
-    await tester.tap(find.text('Triste'));
     final shareOption = find.text('Só meu humor');
-    await tester.ensureVisible(shareOption);
-    await tester.pump();
     await tester.tap(shareOption);
     await tester.pump();
 
@@ -89,5 +92,28 @@ void main() {
 
     expect(widths, hasLength(4));
     expect(widths.toSet(), hasLength(1));
+  });
+
+  testWidgets('the next step waits for a mood and the back button returns to it', (tester) async {
+    final repository = _MockMoodRepository();
+    when(repository.getTodayMood)
+        .thenAnswer((_) async => (entry: null, partnerMood: null, partnerName: 'Marina'));
+    final cubit = MoodCubit(moodRepository: repository, slipRepository: _MockSlipRepository());
+    await cubit.load();
+    addTearDown(cubit.close);
+
+    cubit.next();
+
+    expect(cubit.state.isChoosingShare, isFalse);
+
+    cubit
+      ..selectMood(MoodKind.tired)
+      ..next();
+
+    expect(cubit.state.isChoosingShare, isTrue);
+
+    cubit.back();
+
+    expect(cubit.state.isChoosingShare, isFalse);
   });
 }

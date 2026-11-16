@@ -25,12 +25,8 @@
   },
   "needMenuAction": "Preciso de…",
   "needMenuActionSelected": "Preciso de: {need}",
-  "needMenuEmpty": "Escolher",
-  "needMenuSupport": "Uma coisa por dia.",
   "needSheetSubtitle": "Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.",
   "needSaved": "Salvo",
-  "shareTitle": "O que seu par vê",
-  "shareTitleNamed": "O que {name} vê",
   "shareSubtitle": "Quem cria o dado decide. O padrão é privado.",
   "share(map)": {
     "none": "Manter privado",
@@ -79,5 +75,10 @@
     "tired": "Cansado",
     "stressed": "Tenso",
     "sad": "Triste"
-  }
+  },
+  "next": "Próximo",
+  "shareAction": "Compartilhar",
+  "shareHeadline": "Compartilhar com {name}?",
+  "shareHeadlineNoName": "Compartilhar com sua pessoa?",
+  "shareHeadlineNoNameHighlight": "sua pessoa"
 }

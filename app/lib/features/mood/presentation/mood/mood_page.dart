@@ -32,9 +32,18 @@ class const MoodPage({final String? initialMood, super.key})
   @override
   Widget build(BuildContext context) {
     final entry = context.select((MoodCubit cubit) => cubit.state.entry);
+    final isChoosingShare = context.select((MoodCubit cubit) => cubit.state.isChoosingShare);
 
     return BaseView(
-      appBar: BaseAppBar(subtitle: context.l10n.mood.privateCue),
+      appBar: isChoosingShare
+          ? BaseAppBar(onBack: context.read<MoodCubit>().back)
+          : BaseAppBar(
+              onClose: () => context.router.maybePop(),
+              trailing: Text(
+                context.l10n.mood.privateCue,
+                style: context.text.body.copyWith(color: context.colors.textSecondary),
+              ),
+            ),
       body: BlocListener<MoodCubit, MoodState>(
         listenWhen: (previous, current) => previous.saveAction != current.saveAction,
         listener: _onSaveChanged,
@@ -81,6 +90,9 @@ class const MoodPage({final String? initialMood, super.key})
 
       return;
     }
-    if (action is Success) BaseToast.show(context, l10n.saved);
+    if (action is Success) {
+      BaseToast.show(context, l10n.saved);
+      context.router.maybePop();
+    }
   }
 }

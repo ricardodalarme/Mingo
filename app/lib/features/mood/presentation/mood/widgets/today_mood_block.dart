@@ -4,7 +4,6 @@ import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:app/features/mood/presentation/mood/mood_faces.dart';
 import 'package:app/features/mood/presentation/mood/widgets/mood_row.dart';
 import 'package:app/features/mood/presentation/mood/widgets/partner_mood_hint.dart';
-import 'package:app/features/mood/presentation/need_sheet/need_sheet.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
@@ -64,6 +63,7 @@ class const TodayMoodBlock({
                   MoodRow(
                     title: l10n.homeTitle,
                     actionLabel: l10n.homePrivacy,
+                    onAction: () => _openDetails(context),
                     options: [
                       for (final option in _homeMoods)
                         MoodRowOption(
@@ -89,16 +89,6 @@ class const TodayMoodBlock({
                     ),
                     const SizedBox(height: AppSpace.s4),
                   ],
-                  const SizedBox(height: AppSpace.s8),
-                  const _NeedEntry(),
-                  const SizedBox(height: AppSpace.s8),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: BaseButton.text(
-                      text: l10n.homeDetailsLink,
-                      onPressed: () => _openDetails(context),
-                    ),
-                  ),
                   const SizedBox(height: AppSpace.s16),
                 ],
               ),
@@ -149,27 +139,5 @@ class const TodayMoodBlock({
     if (state.reactAction is Success) BaseToast.show(context, l10n.moodHelp.sent);
     if (state.talkAction is Success) BaseToast.show(context, l10n.moodHelp.askSent);
     if (state.messageAction is Success) BaseToast.show(context, l10n.moodHelp.messageSent);
-  }
-}
-
-/// The quiet entry into the "Preciso de…" menu, showing what is already asked for.
-class const _NeedEntry() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.mood;
-    final need = context.select((MoodCubit cubit) => cubit.state.need);
-    final isSaving = context.select((MoodCubit cubit) => cubit.state.needAction.isLoading);
-    final label = need == null
-        ? l10n.needMenuAction
-        : l10n.needMenuActionSelected(need: l10n.needs.selectOrFallback(need.name));
-
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: BaseButton.text(
-        text: label,
-        icon: AppIcons.heart,
-        onPressed: isSaving ? null : () => showNeedSheet(context),
-      ),
-    );
   }
 }

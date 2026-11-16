@@ -4141,24 +4141,12 @@ class Translations$mood$pt {
   /// pt: 'Preciso de: {need}'
   String needMenuActionSelected({required Object need}) => 'Preciso de: ${need}';
 
-  /// pt: 'Escolher'
-  String get needMenuEmpty => 'Escolher';
-
-  /// pt: 'Uma coisa por dia.'
-  String get needMenuSupport => 'Uma coisa por dia.';
-
   /// pt: 'Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.'
   String get needSheetSubtitle =>
       'Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.';
 
   /// pt: 'Salvo'
   String get needSaved => 'Salvo';
-
-  /// pt: 'O que seu par vê'
-  String get shareTitle => 'O que seu par vê';
-
-  /// pt: 'O que {name} vê'
-  String shareTitleNamed({required Object name}) => 'O que ${name} vê';
 
   /// pt: 'Quem cria o dado decide. O padrão é privado.'
   String get shareSubtitle => 'Quem cria o dado decide. O padrão é privado.';
@@ -4265,6 +4253,21 @@ class Translations$mood$pt {
     'stressed': 'Tenso',
     'sad': 'Triste',
   };
+
+  /// pt: 'Próximo'
+  String get next => 'Próximo';
+
+  /// pt: 'Compartilhar'
+  String get shareAction => 'Compartilhar';
+
+  /// pt: 'Compartilhar com {name}?'
+  String shareHeadline({required Object name}) => 'Compartilhar com ${name}?';
+
+  /// pt: 'Compartilhar com sua pessoa?'
+  String get shareHeadlineNoName => 'Compartilhar com sua pessoa?';
+
+  /// pt: 'sua pessoa'
+  String get shareHeadlineNoNameHighlight => 'sua pessoa';
 }
 
 // Path: moodHelp
@@ -11553,13 +11556,9 @@ extension on Translations {
           'mood.needs.rest' => 'Descansar',
           'mood.needMenuAction' => 'Preciso de…',
           'mood.needMenuActionSelected' => ({required Object need}) => 'Preciso de: ${need}',
-          'mood.needMenuEmpty' => 'Escolher',
-          'mood.needMenuSupport' => 'Uma coisa por dia.',
           'mood.needSheetSubtitle' =>
             'Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.',
           'mood.needSaved' => 'Salvo',
-          'mood.shareTitle' => 'O que seu par vê',
-          'mood.shareTitleNamed' => ({required Object name}) => 'O que ${name} vê',
           'mood.shareSubtitle' => 'Quem cria o dado decide. O padrão é privado.',
           'mood.share.none' => 'Manter privado',
           'mood.share.mood' => 'Só meu humor',
@@ -11609,6 +11608,11 @@ extension on Translations {
           'mood.homeMoods.tired' => 'Cansado',
           'mood.homeMoods.stressed' => 'Tenso',
           'mood.homeMoods.sad' => 'Triste',
+          'mood.next' => 'Próximo',
+          'mood.shareAction' => 'Compartilhar',
+          'mood.shareHeadline' => ({required Object name}) => 'Compartilhar com ${name}?',
+          'mood.shareHeadlineNoName' => 'Compartilhar com sua pessoa?',
+          'mood.shareHeadlineNoNameHighlight' => 'sua pessoa',
           'moodHelp.listenTitle' => 'Escuta primeiro',
           'moodHelp.listenSubtitle' => 'Sem pressa e sem cobrar resposta.',
           'moodHelp.talkLabel' => 'Conversa',
@@ -12120,10 +12124,10 @@ extension on Translations {
             required Object year,
           }) => '${day} ${month} ${year}',
           'programs.moods.calm' => 'Em paz',
-          'programs.moods.tender' => 'Acolhido(a)',
           _ => null,
         } ??
         switch (path) {
+          'programs.moods.tender' => 'Acolhido(a)',
           'programs.moods.tired' => 'Cansado(a)',
           'programs.moods.heavy' => 'Pesado',
           'programs.moods.other' => 'Como estou',
@@ -12692,10 +12696,10 @@ extension on Translations {
           'slipKind.invisible.subtitle' => 'Só para você. Isto nunca vai para o cartão.',
           'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
           'slipKind.invisible.areaLabel' => 'Que tipo de trabalho?',
-          'slipKind.invisible.private' => 'Fica só com você, não entra em nenhum cartão.',
           _ => null,
         } ??
         switch (path) {
+          'slipKind.invisible.private' => 'Fica só com você, não entra em nenhum cartão.',
           'slipKind.workAreas.planning' => 'Planejar',
           'slipKind.workAreas.dates' => 'Datas',
           'slipKind.workAreas.kitchen' => 'Cozinha',
@@ -13305,10 +13309,10 @@ extension on Translations {
             'Não foi possível remover a foto do casal agora.',
           'widgets.errors.COUPLE_PHOTO_INVALID' =>
             'Escolha uma imagem JPG, PNG, WebP ou HEIC de até 8 MB.',
-          'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Não foi possível ler o arquivo escolhido.',
           _ => null,
         } ??
         switch (path) {
+          'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Não foi possível ler o arquivo escolhido.',
           'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Não foi possível abrir o seletor de fotos.',
           'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' =>
             'Entre na sua conta para escolher uma foto do casal.',

@@ -13,6 +13,7 @@ class const MoodRow({
   required final ValueChanged<int> onSelected,
   final String? supportText,
   final String? actionLabel,
+  final VoidCallback? onAction,
   final int? selectedIndex,
   super.key,
 }) extends StatelessWidget {
@@ -28,7 +29,14 @@ class const MoodRow({
           children: [
             Expanded(child: Text(title, style: context.text.titleSm)),
             if (action != null)
-              Text(action, style: context.text.bodySm.copyWith(color: colors.textSecondary)),
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: onAction,
+                child: Text(
+                  action,
+                  style: context.text.bodySm.copyWith(color: colors.textSecondary),
+                ),
+              ),
           ],
         ),
         if (supportText != null) ...[

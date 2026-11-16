@@ -3389,24 +3389,16 @@ class _Translations$mood$en extends Translations$mood$pt {
   @override
   String needMenuActionSelected({required Object need}) => 'I need: ${need}';
   @override
-  String get needMenuEmpty => 'Choose';
-  @override
-  String get needMenuSupport => 'One thing a day.';
-  @override
   String get needSheetSubtitle =>
       'One thing a day. Your partner sees it only if you share your mood.';
   @override
   String get needSaved => 'Saved';
   @override
-  String get shareTitle => 'What your partner sees';
-  @override
-  String shareTitleNamed({required Object name}) => 'What ${name} sees';
-  @override
   String get shareSubtitle => 'You decide. Nothing is shared by default.';
   @override
   Map<String, String> get share => {
     'none': 'Keep private',
-    'mood': 'Just my mood',
+    'mood': 'Only my mood',
     'moodNeed': 'Mood and what I need',
   };
   @override
@@ -3482,6 +3474,16 @@ class _Translations$mood$en extends Translations$mood$pt {
     'stressed': 'Tense',
     'sad': 'Sad',
   };
+  @override
+  String get next => 'Next';
+  @override
+  String get shareAction => 'Share';
+  @override
+  String shareHeadline({required Object name}) => 'Share with ${name}?';
+  @override
+  String get shareHeadlineNoName => 'Share with your person?';
+  @override
+  String get shareHeadlineNoNameHighlight => 'your person';
 }
 
 // Path: moodHelp
@@ -9663,16 +9665,12 @@ extension on TranslationsEn {
           'mood.needs.rest' => 'To rest',
           'mood.needMenuAction' => 'I need…',
           'mood.needMenuActionSelected' => ({required Object need}) => 'I need: ${need}',
-          'mood.needMenuEmpty' => 'Choose',
-          'mood.needMenuSupport' => 'One thing a day.',
           'mood.needSheetSubtitle' =>
             'One thing a day. Your partner sees it only if you share your mood.',
           'mood.needSaved' => 'Saved',
-          'mood.shareTitle' => 'What your partner sees',
-          'mood.shareTitleNamed' => ({required Object name}) => 'What ${name} sees',
           'mood.shareSubtitle' => 'You decide. Nothing is shared by default.',
           'mood.share.none' => 'Keep private',
-          'mood.share.mood' => 'Just my mood',
+          'mood.share.mood' => 'Only my mood',
           'mood.share.moodNeed' => 'Mood and what I need',
           'mood.shareSupport.none' => 'Nothing is shared.',
           'mood.shareSupport.mood' => 'Your partner sees the mood only.',
@@ -9714,6 +9712,11 @@ extension on TranslationsEn {
           'mood.homeMoods.tired' => 'Tired',
           'mood.homeMoods.stressed' => 'Tense',
           'mood.homeMoods.sad' => 'Sad',
+          'mood.next' => 'Next',
+          'mood.shareAction' => 'Share',
+          'mood.shareHeadline' => ({required Object name}) => 'Share with ${name}?',
+          'mood.shareHeadlineNoName' => 'Share with your person?',
+          'mood.shareHeadlineNoNameHighlight' => 'your person',
           'moodHelp.listenTitle' => 'Listen first',
           'moodHelp.listenSubtitle' => 'No rush, no pressure to answer.',
           'moodHelp.talkLabel' => 'Talk',
@@ -10224,10 +10227,10 @@ extension on TranslationsEn {
             required Object year,
           }) => '${month} ${day}, ${year}',
           'programs.moods.calm' => 'At peace',
-          'programs.moods.tender' => 'Held',
           _ => null,
         } ??
         switch (path) {
+          'programs.moods.tender' => 'Held',
           'programs.moods.tired' => 'Tired',
           'programs.moods.heavy' => 'Heavy',
           'programs.moods.other' => 'How I am',
@@ -10791,10 +10794,10 @@ extension on TranslationsEn {
           'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
           'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
           'slipKind.invisible.areaLabel' => 'What kind of work?',
-          'slipKind.invisible.private' => 'Stays with you and never enters a card.',
           _ => null,
         } ??
         switch (path) {
+          'slipKind.invisible.private' => 'Stays with you and never enters a card.',
           'slipKind.workAreas.planning' => 'Planning',
           'slipKind.workAreas.dates' => 'Dates',
           'slipKind.workAreas.kitchen' => 'Kitchen',
@@ -11401,10 +11404,10 @@ extension on TranslationsEn {
             'Could not remove the couple photo right now.',
           'widgets.errors.COUPLE_PHOTO_INVALID' =>
             'Choose a JPG, PNG, WebP or HEIC image up to 8 MB.',
-          'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Could not read the selected file.',
           _ => null,
         } ??
         switch (path) {
+          'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Could not read the selected file.',
           'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Could not open the photo picker.',
           'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' => 'Sign in to choose a couple photo.',
           'widgets.errors.COUPLE_PHOTO_NOT_PAIRED' =>

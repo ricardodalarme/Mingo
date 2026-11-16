@@ -25,16 +25,12 @@
   },
   "needMenuAction": "I need…",
   "needMenuActionSelected": "I need: {need}",
-  "needMenuEmpty": "Choose",
-  "needMenuSupport": "One thing a day.",
   "needSheetSubtitle": "One thing a day. Your partner sees it only if you share your mood.",
   "needSaved": "Saved",
-  "shareTitle": "What your partner sees",
-  "shareTitleNamed": "What {name} sees",
   "shareSubtitle": "You decide. Nothing is shared by default.",
   "share(map)": {
     "none": "Keep private",
-    "mood": "Just my mood",
+    "mood": "Only my mood",
     "moodNeed": "Mood and what I need"
   },
   "shareSupport(map)": {
@@ -79,5 +75,10 @@
     "tired": "Tired",
     "stressed": "Tense",
     "sad": "Sad"
-  }
+  },
+  "next": "Next",
+  "shareAction": "Share",
+  "shareHeadline": "Share with {name}?",
+  "shareHeadlineNoName": "Share with your person?",
+  "shareHeadlineNoNameHighlight": "your person"
 }
