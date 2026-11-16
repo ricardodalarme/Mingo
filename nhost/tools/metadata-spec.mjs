@@ -154,6 +154,8 @@ export const tables = {
   },
   invite_previews: resultTable(['public', 'user']),
   start_dates: resultTable(['user']),
+  invite_statuses: resultTable(['public', 'user']),
+  invite_accept_results: resultTable(['user']),
 
   // Slips and cards ------------------------------------------------------------------------------------------------
   slips: ownerOnly({
@@ -265,6 +267,7 @@ export const tables = {
       user: {
         select: { columns: '*', filter: mine('user_id'), aggregate: true },
         update: { columns: ['read_at'], filter: mine('user_id') },
+        delete: { filter: mine('user_id') },
       },
     },
   },
@@ -611,6 +614,8 @@ export const functions = {
   send_card: { session: true, roles: ['user'] },
   send_slip: { session: true, roles: ['user'] },
   accept_invite: { session: true, roles: ['user'] },
+  try_accept_invite: { session: true, roles: ['user'] },
+  invite_status: { roles: ['public', 'user'] },
   unpair: { session: true, roles: ['user'] },
   start_date_state: { session: true, roles: ['user'] },
   set_couple_start_date: { session: true, roles: ['user'] },

@@ -7,7 +7,7 @@ const qualify = (name: string) => (name.includes('.') ? name : `public.${name}`)
 
 const publicQueries = new Set([
   'appConfig', 'appConfigByPk', 'guestCard', 'guestCards', 'guestCardsByPk', 'guestResults', 'guestResultsByPk',
-  'invitePreview', 'invitePreviews', 'invitePreviewsByPk',
+  'invitePreview', 'invitePreviews', 'invitePreviewsByPk', 'inviteStatus', 'inviteStatuses',
 ]);
 const publicMutations = new Set(['guestOpen', 'guestReact', 'guestStop', 'guestResume', 'guestForget', 'guestReport']);
 

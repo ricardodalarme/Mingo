@@ -1,0 +1,43 @@
+table:
+  name: invite_statuses
+  schema: public
+configuration:
+  column_config:
+    expires_at:
+      custom_name: expiresAt
+    inviter_name:
+      custom_name: inviterName
+    state:
+      custom_name: state
+  custom_column_names:
+    expires_at: expiresAt
+    inviter_name: inviterName
+    state: state
+  custom_name: inviteStatuses
+  custom_root_fields:
+    delete: deleteInviteStatuses
+    delete_by_pk: deleteInviteStatusesByPk
+    insert: insertInviteStatuses
+    insert_one: insertInviteStatusesOne
+    select: inviteStatuses
+    select_aggregate: inviteStatusesAggregate
+    select_by_pk: inviteStatusesByPk
+    select_stream: inviteStatusesStream
+    update: updateInviteStatuses
+    update_by_pk: updateInviteStatusesByPk
+    update_many: updateInviteStatusesMany
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - expires_at
+        - inviter_name
+        - state
+      filter: {}
+  - role: user
+    permission:
+      columns:
+        - expires_at
+        - inviter_name
+        - state
+      filter: {}

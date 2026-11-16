@@ -1,0 +1,28 @@
+table:
+  name: invite_accept_results
+  schema: public
+configuration:
+  column_config:
+    state:
+      custom_name: state
+  custom_column_names:
+    state: state
+  custom_name: inviteAcceptResults
+  custom_root_fields:
+    delete: deleteInviteAcceptResults
+    delete_by_pk: deleteInviteAcceptResultsByPk
+    insert: insertInviteAcceptResults
+    insert_one: insertInviteAcceptResultsOne
+    select: inviteAcceptResults
+    select_aggregate: inviteAcceptResultsAggregate
+    select_by_pk: inviteAcceptResultsByPk
+    select_stream: inviteAcceptResultsStream
+    update: updateInviteAcceptResults
+    update_by_pk: updateInviteAcceptResultsByPk
+    update_many: updateInviteAcceptResultsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - state
+      filter: {}

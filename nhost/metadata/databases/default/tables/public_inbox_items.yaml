@@ -5,6 +5,8 @@ configuration:
   column_config:
     created_at:
       custom_name: createdAt
+    dedupe_key:
+      custom_name: dedupeKey
     id:
       custom_name: id
     read_at:
@@ -17,6 +19,7 @@ configuration:
       custom_name: userId
   custom_column_names:
     created_at: createdAt
+    dedupe_key: dedupeKey
     id: id
     read_at: readAt
     ref_id: refId
@@ -40,6 +43,7 @@ select_permissions:
     permission:
       columns:
         - created_at
+        - dedupe_key
         - id
         - read_at
         - ref_id
@@ -58,3 +62,9 @@ update_permissions:
         user_id:
           _eq: X-Hasura-User-Id
       check: null
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

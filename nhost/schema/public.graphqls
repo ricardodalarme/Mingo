@@ -96,6 +96,23 @@ enum invitePreviews_select_column {
   inviterName
 }
 """
+select columns of table "invite_statuses"
+"""
+enum inviteStatuses_select_column {
+  """
+  column name
+  """
+  expiresAt
+  """
+  column name
+  """
+  inviterName
+  """
+  column name
+  """
+  state
+}
+"""
 column ordering options
 """
 enum order_by {
@@ -162,6 +179,14 @@ columns and relationships of "invite_previews"
 type invitePreviews {
   expiresAt: timestamptz!
   inviterName: String
+}
+"""
+columns and relationships of "invite_statuses"
+"""
+type inviteStatuses {
+  expiresAt: timestamptz
+  inviterName: String
+  state: String!
 }
 """
 mutation root
@@ -573,6 +598,69 @@ type query_root {
   fetch data from the table: "invite_previews" using primary key columns
   """
   invitePreviewsByPk(expiresAt: timestamptz!): invitePreviews
+  """
+  execute function "invite_status" which returns "invite_statuses"
+  """
+  inviteStatus(
+    """
+    input parameters for function "inviteStatus"
+    """
+    args: inviteStatus_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
+  """
+  fetch data from the table: "invite_statuses"
+  """
+  inviteStatuses(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
 }
 type subscription_root {
   """
@@ -851,6 +939,88 @@ type subscription_root {
     """
     where: invitePreviews_bool_exp
   ): [invitePreviews!]!
+  """
+  execute function "invite_status" which returns "invite_statuses"
+  """
+  inviteStatus(
+    """
+    input parameters for function "inviteStatus"
+    """
+    args: inviteStatus_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
+  """
+  fetch data from the table: "invite_statuses"
+  """
+  inviteStatuses(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
+  """
+  fetch data from the table in a streaming manner: "invite_statuses"
+  """
+  inviteStatusesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [inviteStatuses_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
 }
 """
 Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
@@ -1114,6 +1284,49 @@ Initial value of the column from where the streaming should start
 input invitePreviews_stream_cursor_value_input {
   expiresAt: timestamptz
   inviterName: String
+}
+input inviteStatus_args {
+  code: String
+}
+"""
+Boolean expression to filter rows from the table "invite_statuses". All fields are combined with a logical 'AND'.
+"""
+input inviteStatuses_bool_exp {
+  _and: [inviteStatuses_bool_exp!]
+  _not: inviteStatuses_bool_exp
+  _or: [inviteStatuses_bool_exp!]
+  expiresAt: timestamptz_comparison_exp
+  inviterName: String_comparison_exp
+  state: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "invite_statuses".
+"""
+input inviteStatuses_order_by {
+  expiresAt: order_by
+  inviterName: order_by
+  state: order_by
+}
+"""
+Streaming cursor of the table "inviteStatuses"
+"""
+input inviteStatuses_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: inviteStatuses_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input inviteStatuses_stream_cursor_value_input {
+  expiresAt: timestamptz
+  inviterName: String
+  state: String
 }
 input jsonb_cast_exp {
   String: String_comparison_exp

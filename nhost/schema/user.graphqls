@@ -210,6 +210,7 @@ enum Mood_enum {
   tired
 }
 enum NotificationType_enum {
+  annoyance_check
   capsule_opened
   card_reaction
   card_ready
@@ -217,11 +218,21 @@ enum NotificationType_enum {
   daily_idea
   date_coming
   game_invite
+  gentle_request
+  gentle_request_answered
   gentle_return
+  memory_accepted
+  memory_declined
+  memory_proposed
   partner_joined
   partner_message
+  plus_billing_issue
+  plus_coverage_ended
+  quiz_shared
   ritual
   signal
+  spice_invite
+  spice_off
   unpaired
 }
 enum PartnerFactCategory_enum {
@@ -1674,6 +1685,10 @@ enum inboxItems_select_column {
   """
   column name
   """
+  dedupeKey
+  """
+  column name
+  """
   id
   """
   column name
@@ -1693,6 +1708,15 @@ enum inboxItems_select_column {
   userId
 }
 """
+select columns of table "invite_accept_results"
+"""
+enum inviteAcceptResults_select_column {
+  """
+  column name
+  """
+  state
+}
+"""
 select columns of table "invite_previews"
 """
 enum invitePreviews_select_column {
@@ -1704,6 +1728,23 @@ enum invitePreviews_select_column {
   column name
   """
   inviterName
+}
+"""
+select columns of table "invite_statuses"
+"""
+enum inviteStatuses_select_column {
+  """
+  column name
+  """
+  expiresAt
+  """
+  column name
+  """
+  inviterName
+  """
+  column name
+  """
+  state
 }
 """
 unique or primary key constraints on table "invites"
@@ -5357,6 +5398,7 @@ columns and relationships of "inbox_items"
 """
 type inboxItems {
   createdAt: timestamptz!
+  dedupeKey: String
   id: uuid!
   readAt: timestamptz
   refId: uuid
@@ -5383,6 +5425,7 @@ aggregate max on columns
 """
 type inboxItems_max_fields {
   createdAt: timestamptz
+  dedupeKey: String
   id: uuid
   readAt: timestamptz
   refId: uuid
@@ -5393,6 +5436,7 @@ aggregate min on columns
 """
 type inboxItems_min_fields {
   createdAt: timestamptz
+  dedupeKey: String
   id: uuid
   readAt: timestamptz
   refId: uuid
@@ -5412,11 +5456,25 @@ type inboxItems_mutation_response {
   returning: [inboxItems!]!
 }
 """
+columns and relationships of "invite_accept_results"
+"""
+type inviteAcceptResults {
+  state: String!
+}
+"""
 columns and relationships of "invite_previews"
 """
 type invitePreviews {
   expiresAt: timestamptz!
   inviterName: String
+}
+"""
+columns and relationships of "invite_statuses"
+"""
+type inviteStatuses {
+  expiresAt: timestamptz
+  inviterName: String
+  state: String!
 }
 """
 columns and relationships of "invites"
@@ -6389,6 +6447,19 @@ type mutation_root {
   delete single row from the table: "important_dates"
   """
   deleteImportantDatesByPk(id: uuid!): importantDates
+  """
+  delete data from the table: "inbox_items"
+  """
+  deleteInboxItems(
+    """
+    filter the rows which have to be deleted
+    """
+    where: inboxItems_bool_exp!
+  ): inboxItems_mutation_response
+  """
+  delete single row from the table: "inbox_items"
+  """
+  deleteInboxItemsByPk(id: uuid!): inboxItems
   """
   delete data from the table: "journal_entries"
   """
@@ -8126,6 +8197,40 @@ type mutation_root {
     """
     where: chatTurns_bool_exp
   ): [chatTurns!]!
+  """
+  execute VOLATILE function "try_accept_invite" which returns "invite_accept_results"
+  """
+  tryAcceptInvite(
+    """
+    input parameters for function "tryAcceptInvite"
+    """
+    args: tryAcceptInvite_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteAcceptResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteAcceptResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteAcceptResults_bool_exp
+  ): [inviteAcceptResults!]!
   """
   execute VOLATILE function "unpair" which returns "profiles"
   """
@@ -10938,6 +11043,35 @@ type query_root {
   """
   inboxItemsByPk(id: uuid!): inboxItems
   """
+  fetch data from the table: "invite_accept_results"
+  """
+  inviteAcceptResults(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteAcceptResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteAcceptResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteAcceptResults_bool_exp
+  ): [inviteAcceptResults!]!
+  """
   execute function "invite_preview" which returns "invite_previews"
   """
   invitePreview(
@@ -11004,6 +11138,69 @@ type query_root {
   fetch data from the table: "invite_previews" using primary key columns
   """
   invitePreviewsByPk(expiresAt: timestamptz!): invitePreviews
+  """
+  execute function "invite_status" which returns "invite_statuses"
+  """
+  inviteStatus(
+    """
+    input parameters for function "inviteStatus"
+    """
+    args: inviteStatus_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
+  """
+  fetch data from the table: "invite_statuses"
+  """
+  inviteStatuses(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
   """
   fetch data from the table: "invites"
   """
@@ -15330,6 +15527,54 @@ type subscription_root {
     where: inboxItems_bool_exp
   ): [inboxItems!]!
   """
+  fetch data from the table: "invite_accept_results"
+  """
+  inviteAcceptResults(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteAcceptResults_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteAcceptResults_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteAcceptResults_bool_exp
+  ): [inviteAcceptResults!]!
+  """
+  fetch data from the table in a streaming manner: "invite_accept_results"
+  """
+  inviteAcceptResultsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [inviteAcceptResults_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: inviteAcceptResults_bool_exp
+  ): [inviteAcceptResults!]!
+  """
   execute function "invite_preview" which returns "invite_previews"
   """
   invitePreview(
@@ -15415,6 +15660,88 @@ type subscription_root {
     """
     where: invitePreviews_bool_exp
   ): [invitePreviews!]!
+  """
+  execute function "invite_status" which returns "invite_statuses"
+  """
+  inviteStatus(
+    """
+    input parameters for function "inviteStatus"
+    """
+    args: inviteStatus_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
+  """
+  fetch data from the table: "invite_statuses"
+  """
+  inviteStatuses(
+    """
+    distinct select on columns
+    """
+    distinct_on: [inviteStatuses_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [inviteStatuses_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
+  """
+  fetch data from the table in a streaming manner: "invite_statuses"
+  """
+  inviteStatusesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [inviteStatuses_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: inviteStatuses_bool_exp
+  ): [inviteStatuses!]!
   """
   fetch data from the table: "invites"
   """
@@ -21127,6 +21454,7 @@ input inboxItems_bool_exp {
   _not: inboxItems_bool_exp
   _or: [inboxItems_bool_exp!]
   createdAt: timestamptz_comparison_exp
+  dedupeKey: String_comparison_exp
   id: uuid_comparison_exp
   readAt: timestamptz_comparison_exp
   refId: uuid_comparison_exp
@@ -21138,6 +21466,7 @@ Ordering options when selecting data from "inbox_items".
 """
 input inboxItems_order_by {
   createdAt: order_by
+  dedupeKey: order_by
   id: order_by
   readAt: order_by
   refId: order_by
@@ -21174,6 +21503,7 @@ Initial value of the column from where the streaming should start
 """
 input inboxItems_stream_cursor_value_input {
   createdAt: timestamptz
+  dedupeKey: String
   id: uuid
   readAt: timestamptz
   refId: uuid
@@ -21189,6 +21519,40 @@ input inboxItems_updates {
   filter the rows which have to be updated
   """
   where: inboxItems_bool_exp!
+}
+"""
+Boolean expression to filter rows from the table "invite_accept_results". All fields are combined with a logical 'AND'.
+"""
+input inviteAcceptResults_bool_exp {
+  _and: [inviteAcceptResults_bool_exp!]
+  _not: inviteAcceptResults_bool_exp
+  _or: [inviteAcceptResults_bool_exp!]
+  state: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "invite_accept_results".
+"""
+input inviteAcceptResults_order_by {
+  state: order_by
+}
+"""
+Streaming cursor of the table "inviteAcceptResults"
+"""
+input inviteAcceptResults_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: inviteAcceptResults_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input inviteAcceptResults_stream_cursor_value_input {
+  state: String
 }
 input invitePreview_args {
   code: String
@@ -21229,6 +21593,49 @@ Initial value of the column from where the streaming should start
 input invitePreviews_stream_cursor_value_input {
   expiresAt: timestamptz
   inviterName: String
+}
+input inviteStatus_args {
+  code: String
+}
+"""
+Boolean expression to filter rows from the table "invite_statuses". All fields are combined with a logical 'AND'.
+"""
+input inviteStatuses_bool_exp {
+  _and: [inviteStatuses_bool_exp!]
+  _not: inviteStatuses_bool_exp
+  _or: [inviteStatuses_bool_exp!]
+  expiresAt: timestamptz_comparison_exp
+  inviterName: String_comparison_exp
+  state: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "invite_statuses".
+"""
+input inviteStatuses_order_by {
+  expiresAt: order_by
+  inviterName: order_by
+  state: order_by
+}
+"""
+Streaming cursor of the table "inviteStatuses"
+"""
+input inviteStatuses_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: inviteStatuses_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input inviteStatuses_stream_cursor_value_input {
+  expiresAt: timestamptz
+  inviterName: String
+  state: String
 }
 """
 Boolean expression to filter rows from the table "invites". All fields are combined with a logical 'AND'.
@@ -24907,6 +25314,9 @@ input today_stream_cursor_value_input {
   unseenSignals: Int
   userId: uuid
   weekStart: date
+}
+input tryAcceptInvite_args {
+  code: String
 }
 input updateGame_args {
   action: String

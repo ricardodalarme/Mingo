@@ -1,0 +1,11 @@
+function:
+  name: invite_status
+  schema: public
+configuration:
+  custom_name: inviteStatus
+  custom_root_fields:
+    function: inviteStatus
+    function_aggregate: inviteStatusAggregate
+permissions:
+  - role: public
+  - role: user
