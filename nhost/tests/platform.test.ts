@@ -151,3 +151,16 @@ test('a function that is not admin-only is granted to itself and never inferred'
     assert.equal(userRoots.has(root), granted, `${root} is ${granted ? 'missing' : 'open'} for the user role`);
   }
 });
+
+test('the launch configuration is readable before sign-in and holds every limit the server enforces', async () => {
+  const { appConfig } = await ok('public', `{ appConfig { key value } }`);
+  const config = Object.fromEntries(appConfig.map((r: any) => [r.key, r.value]));
+  for (const key of ['chat_messages_per_day_free', 'chat_messages_per_day_plus', 'free_games_per_week', 'free_rituals', 'free_lists',
+    'free_spice_cards_per_week', 'free_agreements', 'free_card_themes', 'min_app_version', 'min_app_version_ios', 'min_app_version_android',
+    'store_url_ios', 'store_url_android']) {
+    assert.ok(key in config, `missing ${key}`);
+  }
+  assert.deepEqual([config.chat_messages_per_day_free, config.chat_messages_per_day_plus, config.free_games_per_week, config.free_rituals,
+    config.free_lists, config.free_spice_cards_per_week, config.free_card_themes], ['5', '20', '3', '3', '3', '3', 'paper']);
+  assert.equal('free_slips_per_month' in config || 'free_cards_per_month' in config, false, 'the removed limits are gone');
+});

@@ -4,7 +4,7 @@
 import { asAdmin, isTrigger, log, type Req, type Res } from '../_lib/backend';
 import { removeFile } from '../_lib/files';
 
-const DATABASE_JOBS = ['weekly_cards', 'reminders', 'open_capsules', 'purge_accounts', 'prune'];
+const DATABASE_JOBS = ['weekly_cards', 'reminders', 'open_capsules', 'purge_accounts', 'prune', 'expire_annoyances'];
 
 export default async (req: Req, res: Res) => {
   if (!isTrigger(req)) return res.status(401).json({ error: 'UNAUTHORIZED' });

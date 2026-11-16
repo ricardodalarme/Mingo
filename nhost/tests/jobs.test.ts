@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, download, ok, person, signUp, sql, upload, waitFor, zoneAtHour } from './lib.ts';
+import { assert, couple, denied, download, ok, person, signUp, sql, upload, waitFor, webhook, zoneAtHour } from './lib.ts';
 
 async function run(job: string): Promise<number> {
   const { runJob } = await ok('admin', `mutation ($job: String!) { runJob(args: {job: $job}) { affected job } }`, { job });
@@ -142,4 +142,25 @@ test('a person cannot run a job, read the job history or make one up', async () 
   assert.ok((await denied(p, `mutation { runJob(args: {job: "prune"}) { id } }`)).errors?.length);
   assert.ok((await denied(p, `{ jobRuns { id } }`)).errors?.length);
   assert.ok((await denied('admin', `mutation { runJob(args: {job: "not_a_job"}) { id } }`)).errors?.length);
+});
+
+test('the daily prune drops old inbox rows, unanswered Tempero cards and expired exports', async () => {
+  const { a } = await couple();
+  const old = await sql(`insert into public.inbox_items (user_id, type, created_at) values ('${a.id}', 'card_received', now() - interval '31 days'), ('${a.id}', 'card_received', now()) returning id`);
+  await sql(`insert into public.spice_card_plays (couple_id, content_slug, proposed_by, created_at)
+             select private.couple_of('${a.id}'), 'old-card', '${a.id}', now() - interval '91 days'`);
+  await sql(`insert into private.export_requests (user_id, created_at) values ('${a.id}', now() - interval '8 days')`);
+  await sql(`insert into storage.files (id, bucket_id, name, size, mime_type, is_uploaded, created_at) values (gen_random_uuid(), 'exports', 'old.json', 2, 'application/json', true, now() - interval '25 hours')`);
+  await run('prune');
+  assert.deepEqual(await sql(`select count(*) from public.inbox_items where user_id = '${a.id}' and type = 'card_received'`), [['1']]);
+  assert.deepEqual(await sql(`select count(*) from public.spice_card_plays where content_slug = 'old-card'`), [['0']]);
+  assert.deepEqual(await sql(`select count(*) from private.export_requests where user_id = '${a.id}'`), [['0']]);
+  await waitFor(async () => (await sql(`select count(*) from storage.files where bucket_id = 'exports' and name = 'old.json'`))[0][0] === '0');
+  assert.equal(old.length, 2);
+});
+
+test('the annoyance job is a known cron job', async () => {
+  const answer = await webhook('/events/jobs', { payload: { job: 'expire_annoyances' } });
+  assert.equal(answer.status, 200);
+  assert.equal(answer.body.job, 'expire_annoyances');
 });
