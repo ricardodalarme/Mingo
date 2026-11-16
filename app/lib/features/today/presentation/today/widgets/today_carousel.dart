@@ -80,6 +80,14 @@ class const TodayCarousel({
           title: l10n.weekReadyTitle,
           supportText: isAlone ? l10n.weekReadySupportPrivate : l10n.weekReadySupport,
           actionText: l10n.weekReadyAction,
+          onAction: () => context.pushRoute(const WeeklyReviewRoute()),
+        ),
+      if (home.slipsThisWeek > 0)
+        BaseCarouselCard(
+          tag: l10n.sundayCardLabel,
+          title: l10n.sundayCardTitle,
+          supportText: context.l10n.sundayCard.openFromToday,
+          actionText: l10n.weekReadyAction,
           onAction: () => context.pushRoute(const SundayCardRoute()),
         ),
       if (idea != null)

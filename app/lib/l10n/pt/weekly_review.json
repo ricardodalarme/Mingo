@@ -1,0 +1,47 @@
+{
+  "title": "Sua semana",
+  "titleHighlight": "semana",
+  "range": "{start} a {end} de {month}",
+  "months": [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro"
+  ],
+  "slips(plural, param=count)": {
+    "one": "slip",
+    "other": "slips"
+  },
+  "moodDays(plural, param=count)": {
+    "zero": "dias de humor",
+    "one": "dia de humor",
+    "other": "dias de humor"
+  },
+  "rituals(plural, param=count)": {
+    "zero": "rituais feitos",
+    "one": "ritual feito",
+    "other": "rituais feitos"
+  },
+  "note": "Calculado pelo app, sem IA. Só você vê.",
+  "talk": "Conversar sobre isso",
+  "close": "Fechar",
+  "quietTitle": "Semana tranquila",
+  "quietHighlight": "tranquila",
+  "quietCardTitle": "Sem pressa",
+  "quietCardText": "Anotar uma coisa boa leva 30 segundos. Começa quando você quiser.",
+  "quietNote": "Sem comparação com outras semanas.",
+  "writeSlip": "Anotar um slip",
+  "errorTitle": "Não deu para abrir sua semana",
+  "errors(map)": {
+    "NETWORK": "Sem conexão. Tente de novo.",
+    "other": "Algo deu errado. Tente de novo."
+  }
+}

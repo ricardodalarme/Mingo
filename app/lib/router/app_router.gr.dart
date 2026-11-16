@@ -2625,6 +2625,22 @@ class UsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [WeeklyReviewPage]
+class WeeklyReviewRoute extends PageRouteInfo<void> {
+  const WeeklyReviewRoute({List<PageRouteInfo>? children})
+    : super(WeeklyReviewRoute.name, initialChildren: children);
+
+  static const String name = 'WeeklyReviewRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const WeeklyReviewPage());
+    },
+  );
+}
+
+/// generated route for
 /// [WelcomePage]
 class WelcomeRoute extends PageRouteInfo<void> {
   const WelcomeRoute({List<PageRouteInfo>? children})

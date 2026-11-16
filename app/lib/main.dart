@@ -43,6 +43,7 @@ import 'package:app/features/spice/di/spice_injection_module.dart';
 import 'package:app/features/story/di/story_injection_module.dart';
 import 'package:app/features/today/di/today_injection_module.dart';
 import 'package:app/features/together/di/together_injection_module.dart';
+import 'package:app/features/weekly_review/di/weekly_review_injection_module.dart';
 import 'package:app/features/widgets/di/widgets_injection_module.dart';
 import 'package:app/infrastructure/initializers/initializers.dart';
 import 'package:core/core.dart';
@@ -90,6 +91,7 @@ void _registerModules() {
     NotificationsInjectionModule(),
     OnboardingInjectionModule(),
     AnnoyancesInjectionModule(),
+    WeeklyReviewInjectionModule(),
     PairingInjectionModule(),
     DatesInjectionModule(),
     HelpInjectionModule(),

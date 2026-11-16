@@ -1,0 +1,10 @@
+query WeeklyReview {
+  weeklyReview(args: {}) {
+    weekStart
+    slips
+    moodsLogged
+    ritualsDone
+    activeDays
+    lowData
+  }
+}
