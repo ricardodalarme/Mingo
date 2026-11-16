@@ -62,13 +62,12 @@ class const WelcomePage({super.key}) extends StatelessWidget {
               onPressed: () => context.pushRoute(const SignInRoute()),
             ),
             if (EnvVariables.debugSignIn) ...[
-              BaseTextLink(
-                text: l10n.debugSignIn,
-                onPressed: () => context.pushRoute(const DebugSignInRoute()),
-              ),
-              BaseTextLink(
-                text: 'Dev menu',
-                onPressed: () => context.router.pushWidget(const DevMenuPage()),
+              const SizedBox(height: AppSpace.s10),
+              Center(
+                child: BaseTextLink(
+                  text: 'Dev menu',
+                  onPressed: () => context.router.pushWidget(const DevMenuPage()),
+                ),
               ),
             ],
           ],
