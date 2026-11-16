@@ -10,12 +10,29 @@ type Field =
 
 export type ToolSpec = { confirm: boolean; description: string; params: Record<string, Field> };
 
+const defineTools = <const T extends Record<string, ToolSpec>>(tools: T) => tools;
+
+type FieldValue<F> = F extends { type: 'string'; values: readonly (infer V)[] }
+  ? V
+  : F extends { type: 'integer' }
+    ? number
+    : F extends { type: 'boolean' }
+      ? boolean
+      : string;
+type Optional<P> = { [K in keyof P]: P[K] extends { optional: true } ? K : never }[keyof P];
+/** The arguments of a tool, read from its parameter schema: required keys are required, `optional` ones may be missing. */
+export type ToolArgs<P> = { [K in Exclude<keyof P, Optional<P>>]: FieldValue<P[K]> } & { [K in Optional<P>]?: FieldValue<P[K]> };
+
 const MOODS = ['happy', 'tired', 'sad', 'stressed', 'loving', 'playful'] as const;
 const GAMES = ['me_or_you', 'how_well', 'twenty_questions', 'never_have_we', 'compliments', 'mission'] as const;
 const TARGETS = ['partner_fact', 'date', 'memory', 'commitment'] as const;
-const text = (max: number, optional?: true): Field => ({ type: 'string', max, ...(optional ? { optional } : {}) });
+function text(max: number): { readonly type: 'string'; readonly max: number };
+function text(max: number, optional: true): { readonly type: 'string'; readonly max: number; readonly optional: true };
+function text(max: number, optional?: true) {
+  return optional ? ({ type: 'string', max, optional } as const) : ({ type: 'string', max } as const);
+}
 
-export const TOOLS: Record<string, ToolSpec> = {
+export const TOOLS = defineTools({
   search_slips: { confirm: false, description: 'Look for the person\'s own slips by a word.', params: { query: text(80) } },
   create_private_slip: { confirm: false, description: 'Save a small good thing the partner did, private to the person.', params: { body: text(280), feeling: text(200, true) } },
   send_slip_to_partner: { confirm: true, description: 'Send one slip to the partner as a card.', params: { body: text(280) } },
@@ -41,7 +58,10 @@ export const TOOLS: Record<string, ToolSpec> = {
   change_distance_count: { confirm: true, description: 'Change the day the distance count starts from.', params: { start_date: { type: 'date', optional: true } } },
   draft_note: { confirm: false, description: 'Draft a short note for the partner; nothing is sent.', params: { body: text(280) } },
   send_note_or_drawing: { confirm: true, description: 'Send a short note to the partner.', params: { kind: { type: 'string', max: 8, values: ['note'] }, body: text(280) } },
-};
+});
+
+export type ToolName = keyof typeof TOOLS;
+const isToolName = (name: string): name is ToolName => Object.hasOwn(TOOLS, name);
 
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const TIME = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -66,12 +86,15 @@ function check(field: Field, value: unknown): unknown {
   }
 }
 
-export type Action = { tool: string; args: Record<string, unknown>; confirm: boolean };
+export type Action = {
+  [N in ToolName]: { tool: N; args: ToolArgs<(typeof TOOLS)[N]['params']>; confirm: boolean };
+}[ToolName];
 
 /** The action for a tool call, or null when the tool is unknown or an argument is missing, extra or out of bounds. */
 export function validateAction(name: string, raw: unknown): Action | null {
-  const spec = Object.hasOwn(TOOLS, name) ? TOOLS[name] : undefined;
-  if (!spec || !raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+  if (!isToolName(name)) return null;
+  const spec: ToolSpec = TOOLS[name];
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
   const input = raw as Record<string, unknown>;
   if (Object.keys(input).some((key) => !Object.hasOwn(spec.params, key))) return null;
   const args: Record<string, unknown> = {};
@@ -80,7 +103,7 @@ export function validateAction(name: string, raw: unknown): Action | null {
     if (value === null) return null;
     if (value !== undefined) args[key] = value;
   }
-  return { tool: name, args, confirm: spec.confirm };
+  return { tool: name, args, confirm: spec.confirm } as Action;
 }
 
 /** The tool list in the OpenAI-compatible `tools` format. */
