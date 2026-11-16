@@ -1,0 +1,11 @@
+function:
+  name: set_notification_mutes
+  schema: public
+configuration:
+  custom_name: setNotificationMutes
+  custom_root_fields:
+    function: setNotificationMutes
+    function_aggregate: setNotificationMutesAggregate
+  session_argument: session
+permissions:
+  - role: user

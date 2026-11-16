@@ -1,0 +1,32 @@
+table:
+  name: question_states
+  schema: public
+configuration:
+  column_config:
+    partner_answered:
+      custom_name: partnerAnswered
+    question_slug:
+      custom_name: questionSlug
+  custom_column_names:
+    partner_answered: partnerAnswered
+    question_slug: questionSlug
+  custom_name: questionStates
+  custom_root_fields:
+    delete: deleteQuestionStates
+    delete_by_pk: deleteQuestionStatesByPk
+    insert: insertQuestionStates
+    insert_one: insertQuestionStatesOne
+    select: questionStates
+    select_aggregate: questionStatesAggregate
+    select_by_pk: questionStatesByPk
+    select_stream: questionStatesStream
+    update: updateQuestionStates
+    update_by_pk: updateQuestionStatesByPk
+    update_many: updateQuestionStatesMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - partner_answered
+        - question_slug
+      filter: {}

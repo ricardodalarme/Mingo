@@ -1,0 +1,6 @@
+query PartnerAnswered($slugs: jsonb!) {
+  partnerQuestionStates(args: { questionSlugs: $slugs }) {
+    questionSlug
+    partnerAnswered
+  }
+}

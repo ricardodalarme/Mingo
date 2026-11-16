@@ -614,6 +614,15 @@ enum chatTurns_select_column {
   id
 }
 """
+select columns of table "checkin_states"
+"""
+enum checkinStates_select_column {
+  """
+  column name
+  """
+  partnerCompleted
+}
+"""
 unique or primary key constraints on table "checkins"
 """
 enum checkins_constraint {
@@ -2698,6 +2707,19 @@ enum questionAnswers_update_column {
   _PLACEHOLDER
 }
 """
+select columns of table "question_states"
+"""
+enum questionStates_select_column {
+  """
+  column name
+  """
+  partnerAnswered
+  """
+  column name
+  """
+  questionSlug
+}
+"""
 unique or primary key constraints on table "quiz_results"
 """
 enum quizResults_constraint {
@@ -4055,6 +4077,12 @@ columns and relationships of "chat_turns"
 type chatTurns {
   createdAt: timestamptz!
   id: uuid!
+}
+"""
+columns and relationships of "checkin_states"
+"""
+type checkinStates {
+  partnerCompleted: Boolean!
 }
 """
 columns and relationships of "checkins"
@@ -7705,6 +7733,40 @@ type mutation_root {
     where: cards_bool_exp
   ): [cards!]!
   """
+  execute VOLATILE function "set_notification_mutes" which returns "notification_mutes"
+  """
+  setNotificationMutes(
+    """
+    input parameters for function "setNotificationMutes"
+    """
+    args: setNotificationMutes_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [notificationMutes_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [notificationMutes_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: notificationMutes_bool_exp
+  ): [notificationMutes!]!
+  """
   execute VOLATILE function "take_chat_turn" which returns "chat_turns"
   """
   takeChatTurn(
@@ -9668,6 +9730,35 @@ type query_root {
   """
   chatTurnsByPk(id: uuid!): chatTurns
   """
+  fetch data from the table: "checkin_states"
+  """
+  checkinStates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [checkinStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [checkinStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: checkinStates_bool_exp
+  ): [checkinStates!]!
+  """
   fetch data from the table: "checkins"
   """
   checkins(
@@ -10983,6 +11074,35 @@ type query_root {
   """
   notificationSettingsByPk(userId: uuid!): notificationSettings
   """
+  execute function "partner_checkin_state" which returns "checkin_states"
+  """
+  partnerCheckinState(
+    """
+    distinct select on columns
+    """
+    distinct_on: [checkinStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [checkinStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: checkinStates_bool_exp
+  ): [checkinStates!]!
+  """
   fetch data from the table: "partner_facts"
   """
   partnerFacts(
@@ -11077,6 +11197,40 @@ type query_root {
   fetch data from the table: "partner_messages" using primary key columns
   """
   partnerMessagesByPk(id: uuid!): partnerMessages
+  """
+  execute function "partner_question_states" which returns "question_states"
+  """
+  partnerQuestionStates(
+    """
+    input parameters for function "partnerQuestionStates"
+    """
+    args: partnerQuestionStates_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [questionStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [questionStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: questionStates_bool_exp
+  ): [questionStates!]!
   """
   fetch data from the table: "plus_states"
   """
@@ -11267,6 +11421,39 @@ type query_root {
   fetch data from the table: "question_answers" using primary key columns
   """
   questionAnswersByPk(id: uuid!): questionAnswers
+  """
+  fetch data from the table: "question_states"
+  """
+  questionStates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [questionStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [questionStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: questionStates_bool_exp
+  ): [questionStates!]!
+  """
+  fetch data from the table: "question_states" using primary key columns
+  """
+  questionStatesByPk(questionSlug: String!): questionStates
   """
   fetch data from the table: "quiz_results"
   """
@@ -12073,6 +12260,13 @@ type questionAnswers_mutation_response {
   data from the rows affected by the mutation
   """
   returning: [questionAnswers!]!
+}
+"""
+columns and relationships of "question_states"
+"""
+type questionStates {
+  partnerAnswered: Boolean!
+  questionSlug: String!
 }
 """
 columns and relationships of "quiz_results"
@@ -13322,6 +13516,54 @@ type subscription_root {
     """
     where: chatTurns_bool_exp
   ): [chatTurns!]!
+  """
+  fetch data from the table: "checkin_states"
+  """
+  checkinStates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [checkinStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [checkinStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: checkinStates_bool_exp
+  ): [checkinStates!]!
+  """
+  fetch data from the table in a streaming manner: "checkin_states"
+  """
+  checkinStatesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [checkinStates_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: checkinStates_bool_exp
+  ): [checkinStates!]!
   """
   fetch data from the table: "checkins"
   """
@@ -15189,6 +15431,35 @@ type subscription_root {
     where: notificationSettings_bool_exp
   ): [notificationSettings!]!
   """
+  execute function "partner_checkin_state" which returns "checkin_states"
+  """
+  partnerCheckinState(
+    """
+    distinct select on columns
+    """
+    distinct_on: [checkinStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [checkinStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: checkinStates_bool_exp
+  ): [checkinStates!]!
+  """
   fetch data from the table: "partner_facts"
   """
   partnerFacts(
@@ -15321,6 +15592,40 @@ type subscription_root {
     """
     where: partnerMessages_bool_exp
   ): [partnerMessages!]!
+  """
+  execute function "partner_question_states" which returns "question_states"
+  """
+  partnerQuestionStates(
+    """
+    input parameters for function "partnerQuestionStates"
+    """
+    args: partnerQuestionStates_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [questionStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [questionStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: questionStates_bool_exp
+  ): [questionStates!]!
   """
   fetch data from the table: "plus_states"
   """
@@ -15606,6 +15911,58 @@ type subscription_root {
     """
     where: questionAnswers_bool_exp
   ): [questionAnswers!]!
+  """
+  fetch data from the table: "question_states"
+  """
+  questionStates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [questionStates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [questionStates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: questionStates_bool_exp
+  ): [questionStates!]!
+  """
+  fetch data from the table: "question_states" using primary key columns
+  """
+  questionStatesByPk(questionSlug: String!): questionStates
+  """
+  fetch data from the table in a streaming manner: "question_states"
+  """
+  questionStatesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [questionStates_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: questionStates_bool_exp
+  ): [questionStates!]!
   """
   fetch data from the table: "quiz_results"
   """
@@ -18011,6 +18368,40 @@ Initial value of the column from where the streaming should start
 input chatTurns_stream_cursor_value_input {
   createdAt: timestamptz
   id: uuid
+}
+"""
+Boolean expression to filter rows from the table "checkin_states". All fields are combined with a logical 'AND'.
+"""
+input checkinStates_bool_exp {
+  _and: [checkinStates_bool_exp!]
+  _not: checkinStates_bool_exp
+  _or: [checkinStates_bool_exp!]
+  partnerCompleted: Boolean_comparison_exp
+}
+"""
+Ordering options when selecting data from "checkin_states".
+"""
+input checkinStates_order_by {
+  partnerCompleted: order_by
+}
+"""
+Streaming cursor of the table "checkinStates"
+"""
+input checkinStates_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: checkinStates_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input checkinStates_stream_cursor_value_input {
+  partnerCompleted: Boolean
 }
 """
 order by aggregate values of table "checkins"
@@ -21358,6 +21749,9 @@ input partnerMessages_updates {
   """
   where: partnerMessages_bool_exp!
 }
+input partnerQuestionStates_args {
+  questionSlugs: jsonb
+}
 """
 Boolean expression to filter rows from the table "plus_states". All fields are combined with a logical 'AND'.
 """
@@ -21823,6 +22217,43 @@ input questionAnswers_stream_cursor_value_input {
   id: uuid
   questionSlug: String
   soloKey: String
+}
+"""
+Boolean expression to filter rows from the table "question_states". All fields are combined with a logical 'AND'.
+"""
+input questionStates_bool_exp {
+  _and: [questionStates_bool_exp!]
+  _not: questionStates_bool_exp
+  _or: [questionStates_bool_exp!]
+  partnerAnswered: Boolean_comparison_exp
+  questionSlug: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "question_states".
+"""
+input questionStates_order_by {
+  partnerAnswered: order_by
+  questionSlug: order_by
+}
+"""
+Streaming cursor of the table "questionStates"
+"""
+input questionStates_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: questionStates_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input questionStates_stream_cursor_value_input {
+  partnerAnswered: Boolean
+  questionSlug: String
 }
 """
 Boolean expression to filter rows from the table "quiz_results". All fields are combined with a logical 'AND'.
@@ -22546,6 +22977,9 @@ input sendCard_args {
 input sendSlip_args {
   note: String
   slipId: uuid
+}
+input setNotificationMutes_args {
+  types: jsonb
 }
 """
 Boolean expression to filter rows from the table "shared_moods". All fields are combined with a logical 'AND'.

@@ -1,4 +1,3 @@
-import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/devices/data/mappers/device_platform_mapper.dart';
 import 'package:app/features/devices/data/models/device_platform.dart';
 import 'package:app/features/notifications/data/data_sources/remote/mutations/generated/RegisterDevice.graphql.dart';
@@ -50,10 +49,7 @@ class NotificationsDataSource({required final GQLClient _client}) {
           enabled: enabled,
           cardDay: cardDay,
           cardHour: cardHour,
-          mutes: [
-            for (final type in mutedTypes)
-              InputnotificationMutes_insert_input(type: EnumNotificationType_enum.fromJson(type)),
-          ],
+          mutes: mutedTypes,
         ),
       ),
     );

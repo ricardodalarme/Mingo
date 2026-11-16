@@ -19149,6 +19149,368 @@ class InputchatTurns_stream_cursor_value_input {
   }
 }
 
+class InputcheckinStates_bool_exp {
+  factory InputcheckinStates_bool_exp({
+    List<InputcheckinStates_bool_exp>? $_and,
+    InputcheckinStates_bool_exp? $_not,
+    List<InputcheckinStates_bool_exp>? $_or,
+    InputBoolean_comparison_exp? partnerCompleted,
+  }) => InputcheckinStates_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (partnerCompleted != null) r'partnerCompleted': partnerCompleted,
+  });
+
+  InputcheckinStates_bool_exp._(this._$data);
+
+  factory InputcheckinStates_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputcheckinStates_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputcheckinStates_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputcheckinStates_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('partnerCompleted')) {
+      final l$partnerCompleted = data['partnerCompleted'];
+      result$data['partnerCompleted'] = l$partnerCompleted == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$partnerCompleted as Map<String, dynamic>));
+    }
+    return InputcheckinStates_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputcheckinStates_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputcheckinStates_bool_exp>?);
+
+  InputcheckinStates_bool_exp? get $_not => (_$data['_not'] as InputcheckinStates_bool_exp?);
+
+  List<InputcheckinStates_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputcheckinStates_bool_exp>?);
+
+  InputBoolean_comparison_exp? get partnerCompleted =>
+      (_$data['partnerCompleted'] as InputBoolean_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('partnerCompleted')) {
+      final l$partnerCompleted = partnerCompleted;
+      result$data['partnerCompleted'] = l$partnerCompleted?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcheckinStates_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$partnerCompleted = partnerCompleted;
+    final lOther$partnerCompleted = other.partnerCompleted;
+    if (_$data.containsKey('partnerCompleted') != other._$data.containsKey('partnerCompleted')) {
+      return false;
+    }
+    if (l$partnerCompleted != lOther$partnerCompleted) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$partnerCompleted = partnerCompleted;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('partnerCompleted') ? l$partnerCompleted : const {},
+    ]);
+  }
+}
+
+class InputcheckinStates_order_by {
+  factory InputcheckinStates_order_by({Enumorder_by? partnerCompleted}) =>
+      InputcheckinStates_order_by._({
+        if (partnerCompleted != null) r'partnerCompleted': partnerCompleted,
+      });
+
+  InputcheckinStates_order_by._(this._$data);
+
+  factory InputcheckinStates_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('partnerCompleted')) {
+      final l$partnerCompleted = data['partnerCompleted'];
+      result$data['partnerCompleted'] = l$partnerCompleted == null
+          ? null
+          : fromJsonEnumorder_by((l$partnerCompleted as String));
+    }
+    return InputcheckinStates_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get partnerCompleted => (_$data['partnerCompleted'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('partnerCompleted')) {
+      final l$partnerCompleted = partnerCompleted;
+      result$data['partnerCompleted'] = l$partnerCompleted == null
+          ? null
+          : toJsonEnumorder_by(l$partnerCompleted);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcheckinStates_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$partnerCompleted = partnerCompleted;
+    final lOther$partnerCompleted = other.partnerCompleted;
+    if (_$data.containsKey('partnerCompleted') != other._$data.containsKey('partnerCompleted')) {
+      return false;
+    }
+    if (l$partnerCompleted != lOther$partnerCompleted) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$partnerCompleted = partnerCompleted;
+    return Object.hashAll([_$data.containsKey('partnerCompleted') ? l$partnerCompleted : const {}]);
+  }
+}
+
+class InputcheckinStates_stream_cursor_input {
+  factory InputcheckinStates_stream_cursor_input({
+    required InputcheckinStates_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputcheckinStates_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputcheckinStates_stream_cursor_input._(this._$data);
+
+  factory InputcheckinStates_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputcheckinStates_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputcheckinStates_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputcheckinStates_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputcheckinStates_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcheckinStates_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputcheckinStates_stream_cursor_value_input {
+  factory InputcheckinStates_stream_cursor_value_input({bool? partnerCompleted}) =>
+      InputcheckinStates_stream_cursor_value_input._({
+        if (partnerCompleted != null) r'partnerCompleted': partnerCompleted,
+      });
+
+  InputcheckinStates_stream_cursor_value_input._(this._$data);
+
+  factory InputcheckinStates_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('partnerCompleted')) {
+      final l$partnerCompleted = data['partnerCompleted'];
+      result$data['partnerCompleted'] = (l$partnerCompleted as bool?);
+    }
+    return InputcheckinStates_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  bool? get partnerCompleted => (_$data['partnerCompleted'] as bool?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('partnerCompleted')) {
+      final l$partnerCompleted = partnerCompleted;
+      result$data['partnerCompleted'] = l$partnerCompleted;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputcheckinStates_stream_cursor_value_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$partnerCompleted = partnerCompleted;
+    final lOther$partnerCompleted = other.partnerCompleted;
+    if (_$data.containsKey('partnerCompleted') != other._$data.containsKey('partnerCompleted')) {
+      return false;
+    }
+    if (l$partnerCompleted != lOther$partnerCompleted) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$partnerCompleted = partnerCompleted;
+    return Object.hashAll([_$data.containsKey('partnerCompleted') ? l$partnerCompleted : const {}]);
+  }
+}
+
 class Inputcheckins_aggregate_order_by {
   factory Inputcheckins_aggregate_order_by({
     Enumorder_by? count,
@@ -67762,6 +68124,62 @@ class InputpartnerMessages_updates {
   }
 }
 
+class InputpartnerQuestionStates_args {
+  factory InputpartnerQuestionStates_args({dynamic? questionSlugs}) =>
+      InputpartnerQuestionStates_args._({
+        if (questionSlugs != null) r'questionSlugs': questionSlugs,
+      });
+
+  InputpartnerQuestionStates_args._(this._$data);
+
+  factory InputpartnerQuestionStates_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('questionSlugs')) {
+      final l$questionSlugs = data['questionSlugs'];
+      result$data['questionSlugs'] = l$questionSlugs == null ? null : jsonDecode(l$questionSlugs);
+    }
+    return InputpartnerQuestionStates_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  dynamic? get questionSlugs => (_$data['questionSlugs'] as dynamic?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('questionSlugs')) {
+      final l$questionSlugs = questionSlugs;
+      result$data['questionSlugs'] = l$questionSlugs == null ? null : jsonEncode(l$questionSlugs);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputpartnerQuestionStates_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$questionSlugs = questionSlugs;
+    final lOther$questionSlugs = other.questionSlugs;
+    if (_$data.containsKey('questionSlugs') != other._$data.containsKey('questionSlugs')) {
+      return false;
+    }
+    if (l$questionSlugs != lOther$questionSlugs) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$questionSlugs = questionSlugs;
+    return Object.hashAll([_$data.containsKey('questionSlugs') ? l$questionSlugs : const {}]);
+  }
+}
+
 class InputplusStates_bool_exp {
   factory InputplusStates_bool_exp({
     List<InputplusStates_bool_exp>? $_and,
@@ -74865,6 +75283,447 @@ class InputquestionAnswers_stream_cursor_value_input {
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('questionSlug') ? l$questionSlug : const {},
       _$data.containsKey('soloKey') ? l$soloKey : const {},
+    ]);
+  }
+}
+
+class InputquestionStates_bool_exp {
+  factory InputquestionStates_bool_exp({
+    List<InputquestionStates_bool_exp>? $_and,
+    InputquestionStates_bool_exp? $_not,
+    List<InputquestionStates_bool_exp>? $_or,
+    InputBoolean_comparison_exp? partnerAnswered,
+    InputString_comparison_exp? questionSlug,
+  }) => InputquestionStates_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (partnerAnswered != null) r'partnerAnswered': partnerAnswered,
+    if (questionSlug != null) r'questionSlug': questionSlug,
+  });
+
+  InputquestionStates_bool_exp._(this._$data);
+
+  factory InputquestionStates_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputquestionStates_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputquestionStates_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputquestionStates_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('partnerAnswered')) {
+      final l$partnerAnswered = data['partnerAnswered'];
+      result$data['partnerAnswered'] = l$partnerAnswered == null
+          ? null
+          : InputBoolean_comparison_exp.fromJson((l$partnerAnswered as Map<String, dynamic>));
+    }
+    if (data.containsKey('questionSlug')) {
+      final l$questionSlug = data['questionSlug'];
+      result$data['questionSlug'] = l$questionSlug == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$questionSlug as Map<String, dynamic>));
+    }
+    return InputquestionStates_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputquestionStates_bool_exp>? get $_and =>
+      (_$data['_and'] as List<InputquestionStates_bool_exp>?);
+
+  InputquestionStates_bool_exp? get $_not => (_$data['_not'] as InputquestionStates_bool_exp?);
+
+  List<InputquestionStates_bool_exp>? get $_or =>
+      (_$data['_or'] as List<InputquestionStates_bool_exp>?);
+
+  InputBoolean_comparison_exp? get partnerAnswered =>
+      (_$data['partnerAnswered'] as InputBoolean_comparison_exp?);
+
+  InputString_comparison_exp? get questionSlug =>
+      (_$data['questionSlug'] as InputString_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('partnerAnswered')) {
+      final l$partnerAnswered = partnerAnswered;
+      result$data['partnerAnswered'] = l$partnerAnswered?.toJson();
+    }
+    if (_$data.containsKey('questionSlug')) {
+      final l$questionSlug = questionSlug;
+      result$data['questionSlug'] = l$questionSlug?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputquestionStates_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$partnerAnswered = partnerAnswered;
+    final lOther$partnerAnswered = other.partnerAnswered;
+    if (_$data.containsKey('partnerAnswered') != other._$data.containsKey('partnerAnswered')) {
+      return false;
+    }
+    if (l$partnerAnswered != lOther$partnerAnswered) {
+      return false;
+    }
+    final l$questionSlug = questionSlug;
+    final lOther$questionSlug = other.questionSlug;
+    if (_$data.containsKey('questionSlug') != other._$data.containsKey('questionSlug')) {
+      return false;
+    }
+    if (l$questionSlug != lOther$questionSlug) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$partnerAnswered = partnerAnswered;
+    final l$questionSlug = questionSlug;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('partnerAnswered') ? l$partnerAnswered : const {},
+      _$data.containsKey('questionSlug') ? l$questionSlug : const {},
+    ]);
+  }
+}
+
+class InputquestionStates_order_by {
+  factory InputquestionStates_order_by({
+    Enumorder_by? partnerAnswered,
+    Enumorder_by? questionSlug,
+  }) => InputquestionStates_order_by._({
+    if (partnerAnswered != null) r'partnerAnswered': partnerAnswered,
+    if (questionSlug != null) r'questionSlug': questionSlug,
+  });
+
+  InputquestionStates_order_by._(this._$data);
+
+  factory InputquestionStates_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('partnerAnswered')) {
+      final l$partnerAnswered = data['partnerAnswered'];
+      result$data['partnerAnswered'] = l$partnerAnswered == null
+          ? null
+          : fromJsonEnumorder_by((l$partnerAnswered as String));
+    }
+    if (data.containsKey('questionSlug')) {
+      final l$questionSlug = data['questionSlug'];
+      result$data['questionSlug'] = l$questionSlug == null
+          ? null
+          : fromJsonEnumorder_by((l$questionSlug as String));
+    }
+    return InputquestionStates_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get partnerAnswered => (_$data['partnerAnswered'] as Enumorder_by?);
+
+  Enumorder_by? get questionSlug => (_$data['questionSlug'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('partnerAnswered')) {
+      final l$partnerAnswered = partnerAnswered;
+      result$data['partnerAnswered'] = l$partnerAnswered == null
+          ? null
+          : toJsonEnumorder_by(l$partnerAnswered);
+    }
+    if (_$data.containsKey('questionSlug')) {
+      final l$questionSlug = questionSlug;
+      result$data['questionSlug'] = l$questionSlug == null
+          ? null
+          : toJsonEnumorder_by(l$questionSlug);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputquestionStates_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$partnerAnswered = partnerAnswered;
+    final lOther$partnerAnswered = other.partnerAnswered;
+    if (_$data.containsKey('partnerAnswered') != other._$data.containsKey('partnerAnswered')) {
+      return false;
+    }
+    if (l$partnerAnswered != lOther$partnerAnswered) {
+      return false;
+    }
+    final l$questionSlug = questionSlug;
+    final lOther$questionSlug = other.questionSlug;
+    if (_$data.containsKey('questionSlug') != other._$data.containsKey('questionSlug')) {
+      return false;
+    }
+    if (l$questionSlug != lOther$questionSlug) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$partnerAnswered = partnerAnswered;
+    final l$questionSlug = questionSlug;
+    return Object.hashAll([
+      _$data.containsKey('partnerAnswered') ? l$partnerAnswered : const {},
+      _$data.containsKey('questionSlug') ? l$questionSlug : const {},
+    ]);
+  }
+}
+
+class InputquestionStates_stream_cursor_input {
+  factory InputquestionStates_stream_cursor_input({
+    required InputquestionStates_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputquestionStates_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputquestionStates_stream_cursor_input._(this._$data);
+
+  factory InputquestionStates_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputquestionStates_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputquestionStates_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputquestionStates_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputquestionStates_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputquestionStates_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputquestionStates_stream_cursor_value_input {
+  factory InputquestionStates_stream_cursor_value_input({
+    bool? partnerAnswered,
+    String? questionSlug,
+  }) => InputquestionStates_stream_cursor_value_input._({
+    if (partnerAnswered != null) r'partnerAnswered': partnerAnswered,
+    if (questionSlug != null) r'questionSlug': questionSlug,
+  });
+
+  InputquestionStates_stream_cursor_value_input._(this._$data);
+
+  factory InputquestionStates_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('partnerAnswered')) {
+      final l$partnerAnswered = data['partnerAnswered'];
+      result$data['partnerAnswered'] = (l$partnerAnswered as bool?);
+    }
+    if (data.containsKey('questionSlug')) {
+      final l$questionSlug = data['questionSlug'];
+      result$data['questionSlug'] = (l$questionSlug as String?);
+    }
+    return InputquestionStates_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  bool? get partnerAnswered => (_$data['partnerAnswered'] as bool?);
+
+  String? get questionSlug => (_$data['questionSlug'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('partnerAnswered')) {
+      final l$partnerAnswered = partnerAnswered;
+      result$data['partnerAnswered'] = l$partnerAnswered;
+    }
+    if (_$data.containsKey('questionSlug')) {
+      final l$questionSlug = questionSlug;
+      result$data['questionSlug'] = l$questionSlug;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputquestionStates_stream_cursor_value_input ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$partnerAnswered = partnerAnswered;
+    final lOther$partnerAnswered = other.partnerAnswered;
+    if (_$data.containsKey('partnerAnswered') != other._$data.containsKey('partnerAnswered')) {
+      return false;
+    }
+    if (l$partnerAnswered != lOther$partnerAnswered) {
+      return false;
+    }
+    final l$questionSlug = questionSlug;
+    final lOther$questionSlug = other.questionSlug;
+    if (_$data.containsKey('questionSlug') != other._$data.containsKey('questionSlug')) {
+      return false;
+    }
+    if (l$questionSlug != lOther$questionSlug) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$partnerAnswered = partnerAnswered;
+    final l$questionSlug = questionSlug;
+    return Object.hashAll([
+      _$data.containsKey('partnerAnswered') ? l$partnerAnswered : const {},
+      _$data.containsKey('questionSlug') ? l$questionSlug : const {},
     ]);
   }
 }
@@ -85312,6 +86171,60 @@ class InputsendSlip_args {
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('slipId') ? l$slipId : const {},
     ]);
+  }
+}
+
+class InputsetNotificationMutes_args {
+  factory InputsetNotificationMutes_args({dynamic? types}) =>
+      InputsetNotificationMutes_args._({if (types != null) r'types': types});
+
+  InputsetNotificationMutes_args._(this._$data);
+
+  factory InputsetNotificationMutes_args.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('types')) {
+      final l$types = data['types'];
+      result$data['types'] = l$types == null ? null : jsonDecode(l$types);
+    }
+    return InputsetNotificationMutes_args._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  dynamic? get types => (_$data['types'] as dynamic?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('types')) {
+      final l$types = types;
+      result$data['types'] = l$types == null ? null : jsonEncode(l$types);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputsetNotificationMutes_args || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$types = types;
+    final lOther$types = other.types;
+    if (_$data.containsKey('types') != other._$data.containsKey('types')) {
+      return false;
+    }
+    if (l$types != lOther$types) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$types = types;
+    return Object.hashAll([_$data.containsKey('types') ? l$types : const {}]);
   }
 }
 
@@ -104105,6 +105018,34 @@ EnumchatTurns_select_column fromJsonEnumchatTurns_select_column(String value) {
   }
 }
 
+enum EnumcheckinStates_select_column {
+  partnerCompleted,
+  $unknown;
+
+  factory EnumcheckinStates_select_column.fromJson(String value) =>
+      fromJsonEnumcheckinStates_select_column(value);
+
+  String toJson() => toJsonEnumcheckinStates_select_column(this);
+}
+
+String toJsonEnumcheckinStates_select_column(EnumcheckinStates_select_column e) {
+  switch (e) {
+    case EnumcheckinStates_select_column.partnerCompleted:
+      return r'partnerCompleted';
+    case EnumcheckinStates_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumcheckinStates_select_column fromJsonEnumcheckinStates_select_column(String value) {
+  switch (value) {
+    case r'partnerCompleted':
+      return EnumcheckinStates_select_column.partnerCompleted;
+    default:
+      return EnumcheckinStates_select_column.$unknown;
+  }
+}
+
 enum Enumcheckins_constraint {
   checkins_once,
   checkins_pkey,
@@ -108234,6 +109175,39 @@ EnumquestionAnswers_update_column fromJsonEnumquestionAnswers_update_column(Stri
       return EnumquestionAnswers_update_column.$_PLACEHOLDER;
     default:
       return EnumquestionAnswers_update_column.$unknown;
+  }
+}
+
+enum EnumquestionStates_select_column {
+  partnerAnswered,
+  questionSlug,
+  $unknown;
+
+  factory EnumquestionStates_select_column.fromJson(String value) =>
+      fromJsonEnumquestionStates_select_column(value);
+
+  String toJson() => toJsonEnumquestionStates_select_column(this);
+}
+
+String toJsonEnumquestionStates_select_column(EnumquestionStates_select_column e) {
+  switch (e) {
+    case EnumquestionStates_select_column.partnerAnswered:
+      return r'partnerAnswered';
+    case EnumquestionStates_select_column.questionSlug:
+      return r'questionSlug';
+    case EnumquestionStates_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumquestionStates_select_column fromJsonEnumquestionStates_select_column(String value) {
+  switch (value) {
+    case r'partnerAnswered':
+      return EnumquestionStates_select_column.partnerAnswered;
+    case r'questionSlug':
+      return EnumquestionStates_select_column.questionSlug;
+    default:
+      return EnumquestionStates_select_column.$unknown;
   }
 }
 

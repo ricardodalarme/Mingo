@@ -1,0 +1,11 @@
+function:
+  name: partner_checkin_state
+  schema: public
+configuration:
+  custom_name: partnerCheckinState
+  custom_root_fields:
+    function: partnerCheckinState
+    function_aggregate: partnerCheckinStateAggregate
+  session_argument: session
+permissions:
+  - role: user

@@ -1,5 +1,6 @@
 import 'package:app/features/questions/data/data_sources/remote/mutations/generated/DeleteQuestionAnswer.graphql.dart';
 import 'package:app/features/questions/data/data_sources/remote/mutations/generated/InsertQuestionAnswer.graphql.dart';
+import 'package:app/features/questions/data/data_sources/remote/queries/generated/PartnerAnswered.graphql.dart';
 import 'package:app/features/questions/data/data_sources/remote/queries/generated/QuestionAnswers.graphql.dart';
 import 'package:app/features/questions/data/data_sources/remote/queries/generated/QuestionOfTheWeek.graphql.dart';
 import 'package:network/network.dart';
@@ -56,13 +57,25 @@ class QuestionsDataSource({required final GQLClient _client}) {
       ),
     );
     final rows = validateResponseData(response, getData: (data) => data.questionAnswers);
+    final state = await _client.query(
+      OptionsQueryPartnerAnswered(
+        variables: VariablesQueryPartnerAnswered(slugs: [questionSlug]),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
+    );
+    final partnerAnswered = validateResponseData(
+      state,
+      getData: (data) => data.partnerQuestionStates.any(
+        (row) => row.questionSlug == questionSlug && row.partnerAnswered,
+      ),
+    );
 
     return (
       rows: [
         for (final row in rows)
           (id: row.id, isMine: row.authorId == selfId, coupleId: row.coupleId, body: row.body),
       ],
-      partnerAnswered: rows.any((row) => row.authorId != selfId),
+      partnerAnswered: partnerAnswered,
     );
   }
 

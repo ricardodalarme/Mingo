@@ -1,0 +1,11 @@
+function:
+  name: partner_question_states
+  schema: public
+configuration:
+  custom_name: partnerQuestionStates
+  custom_root_fields:
+    function: partnerQuestionStates
+    function_aggregate: partnerQuestionStatesAggregate
+  session_argument: session
+permissions:
+  - role: user

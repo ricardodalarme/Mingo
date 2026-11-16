@@ -2,6 +2,7 @@
 import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -12,7 +13,7 @@ class VariablesMutationUpdateNotificationSettings {
     required bool enabled,
     required int cardDay,
     required int cardHour,
-    required List<InputnotificationMutes_insert_input> mutes,
+    required dynamic mutes,
   }) => VariablesMutationUpdateNotificationSettings._({
     r'userId': userId,
     r'enabled': enabled,
@@ -34,9 +35,7 @@ class VariablesMutationUpdateNotificationSettings {
     final l$cardHour = data['cardHour'];
     result$data['cardHour'] = (l$cardHour as int);
     final l$mutes = data['mutes'];
-    result$data['mutes'] = (l$mutes as List<dynamic>)
-        .map((e) => InputnotificationMutes_insert_input.fromJson((e as Map<String, dynamic>)))
-        .toList();
+    result$data['mutes'] = jsonDecode(l$mutes);
     return VariablesMutationUpdateNotificationSettings._(result$data);
   }
 
@@ -50,8 +49,7 @@ class VariablesMutationUpdateNotificationSettings {
 
   int get cardHour => (_$data['cardHour'] as int);
 
-  List<InputnotificationMutes_insert_input> get mutes =>
-      (_$data['mutes'] as List<InputnotificationMutes_insert_input>);
+  dynamic get mutes => (_$data['mutes'] as dynamic);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -64,7 +62,7 @@ class VariablesMutationUpdateNotificationSettings {
     final l$cardHour = cardHour;
     result$data['cardHour'] = l$cardHour;
     final l$mutes = mutes;
-    result$data['mutes'] = l$mutes.map((e) => e.toJson()).toList();
+    result$data['mutes'] = jsonEncode(l$mutes);
     return result$data;
   }
 
@@ -98,15 +96,8 @@ class VariablesMutationUpdateNotificationSettings {
     }
     final l$mutes = mutes;
     final lOther$mutes = other.mutes;
-    if (l$mutes.length != lOther$mutes.length) {
+    if (l$mutes != lOther$mutes) {
       return false;
-    }
-    for (int i = 0; i < l$mutes.length; i++) {
-      final l$mutes$entry = l$mutes[i];
-      final lOther$mutes$entry = lOther$mutes[i];
-      if (l$mutes$entry != lOther$mutes$entry) {
-        return false;
-      }
     }
     return true;
   }
@@ -118,28 +109,20 @@ class VariablesMutationUpdateNotificationSettings {
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
     final l$mutes = mutes;
-    return Object.hashAll([
-      l$userId,
-      l$enabled,
-      l$cardDay,
-      l$cardHour,
-      Object.hashAll(l$mutes.map((v) => v)),
-    ]);
+    return Object.hashAll([l$userId, l$enabled, l$cardDay, l$cardHour, l$mutes]);
   }
 }
 
 class MutationUpdateNotificationSettings {
   MutationUpdateNotificationSettings({
     this.updateNotificationSettings,
-    this.deleteNotificationMutes,
-    this.insertNotificationMutes,
+    required this.setNotificationMutes,
     this.$__typename = 'mutation_root',
   });
 
   factory MutationUpdateNotificationSettings.fromJson(Map<String, dynamic> json) {
     final l$updateNotificationSettings = json['updateNotificationSettings'];
-    final l$deleteNotificationMutes = json['deleteNotificationMutes'];
-    final l$insertNotificationMutes = json['insertNotificationMutes'];
+    final l$setNotificationMutes = json['setNotificationMutes'];
     final l$$__typename = json['__typename'];
     return MutationUpdateNotificationSettings(
       updateNotificationSettings: l$updateNotificationSettings == null
@@ -147,25 +130,20 @@ class MutationUpdateNotificationSettings {
           : MutationUpdateNotificationSettingsupdateNotificationSettings.fromJson(
               (l$updateNotificationSettings as Map<String, dynamic>),
             ),
-      deleteNotificationMutes: l$deleteNotificationMutes == null
-          ? null
-          : MutationUpdateNotificationSettingsdeleteNotificationMutes.fromJson(
-              (l$deleteNotificationMutes as Map<String, dynamic>),
+      setNotificationMutes: (l$setNotificationMutes as List<dynamic>)
+          .map(
+            (e) => MutationUpdateNotificationSettingssetNotificationMutes.fromJson(
+              (e as Map<String, dynamic>),
             ),
-      insertNotificationMutes: l$insertNotificationMutes == null
-          ? null
-          : MutationUpdateNotificationSettingsinsertNotificationMutes.fromJson(
-              (l$insertNotificationMutes as Map<String, dynamic>),
-            ),
+          )
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
   final MutationUpdateNotificationSettingsupdateNotificationSettings? updateNotificationSettings;
 
-  final MutationUpdateNotificationSettingsdeleteNotificationMutes? deleteNotificationMutes;
-
-  final MutationUpdateNotificationSettingsinsertNotificationMutes? insertNotificationMutes;
+  final List<MutationUpdateNotificationSettingssetNotificationMutes> setNotificationMutes;
 
   final String $__typename;
 
@@ -173,10 +151,8 @@ class MutationUpdateNotificationSettings {
     final _resultData = <String, dynamic>{};
     final l$updateNotificationSettings = updateNotificationSettings;
     _resultData['updateNotificationSettings'] = l$updateNotificationSettings?.toJson();
-    final l$deleteNotificationMutes = deleteNotificationMutes;
-    _resultData['deleteNotificationMutes'] = l$deleteNotificationMutes?.toJson();
-    final l$insertNotificationMutes = insertNotificationMutes;
-    _resultData['insertNotificationMutes'] = l$insertNotificationMutes?.toJson();
+    final l$setNotificationMutes = setNotificationMutes;
+    _resultData['setNotificationMutes'] = l$setNotificationMutes.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -185,13 +161,11 @@ class MutationUpdateNotificationSettings {
   @override
   int get hashCode {
     final l$updateNotificationSettings = updateNotificationSettings;
-    final l$deleteNotificationMutes = deleteNotificationMutes;
-    final l$insertNotificationMutes = insertNotificationMutes;
+    final l$setNotificationMutes = setNotificationMutes;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$updateNotificationSettings,
-      l$deleteNotificationMutes,
-      l$insertNotificationMutes,
+      Object.hashAll(l$setNotificationMutes.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -209,15 +183,17 @@ class MutationUpdateNotificationSettings {
     if (l$updateNotificationSettings != lOther$updateNotificationSettings) {
       return false;
     }
-    final l$deleteNotificationMutes = deleteNotificationMutes;
-    final lOther$deleteNotificationMutes = other.deleteNotificationMutes;
-    if (l$deleteNotificationMutes != lOther$deleteNotificationMutes) {
+    final l$setNotificationMutes = setNotificationMutes;
+    final lOther$setNotificationMutes = other.setNotificationMutes;
+    if (l$setNotificationMutes.length != lOther$setNotificationMutes.length) {
       return false;
     }
-    final l$insertNotificationMutes = insertNotificationMutes;
-    final lOther$insertNotificationMutes = other.insertNotificationMutes;
-    if (l$insertNotificationMutes != lOther$insertNotificationMutes) {
-      return false;
+    for (int i = 0; i < l$setNotificationMutes.length; i++) {
+      final l$setNotificationMutes$entry = l$setNotificationMutes[i];
+      final lOther$setNotificationMutes$entry = lOther$setNotificationMutes[i];
+      if (l$setNotificationMutes$entry != lOther$setNotificationMutes$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -260,13 +236,7 @@ const documentNodeMutationUpdateNotificationSettings = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'mutes')),
-          type: ListTypeNode(
-            type: NamedTypeNode(
-              name: NameNode(value: 'notificationMutes_insert_input'),
-              isNonNull: true,
-            ),
-            isNonNull: true,
-          ),
+          type: NamedTypeNode(name: NameNode(value: 'jsonb'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -337,23 +307,16 @@ const documentNodeMutationUpdateNotificationSettings = DocumentNode(
             ),
           ),
           FieldNode(
-            name: NameNode(value: 'deleteNotificationMutes'),
+            name: NameNode(value: 'setNotificationMutes'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'where'),
+                name: NameNode(value: 'args'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
-                      name: NameNode(value: 'userId'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: '_eq'),
-                            value: VariableNode(name: NameNode(value: 'userId')),
-                          ),
-                        ],
-                      ),
+                      name: NameNode(value: 'types'),
+                      value: VariableNode(name: NameNode(value: 'mutes')),
                     ),
                   ],
                 ),
@@ -363,36 +326,7 @@ const documentNodeMutationUpdateNotificationSettings = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affected_rows'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
-          ),
-          FieldNode(
-            name: NameNode(value: 'insertNotificationMutes'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                name: NameNode(value: 'objects'),
-                value: VariableNode(name: NameNode(value: 'mutes')),
-              ),
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'affected_rows'),
+                  name: NameNode(value: 'type'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -576,31 +510,31 @@ class MutationUpdateNotificationSettingsupdateNotificationSettings {
   }
 }
 
-class MutationUpdateNotificationSettingsdeleteNotificationMutes {
-  MutationUpdateNotificationSettingsdeleteNotificationMutes({
-    required this.affected_rows,
-    this.$__typename = 'notificationMutes_mutation_response',
+class MutationUpdateNotificationSettingssetNotificationMutes {
+  MutationUpdateNotificationSettingssetNotificationMutes({
+    required this.type,
+    this.$__typename = 'notificationMutes',
   });
 
-  factory MutationUpdateNotificationSettingsdeleteNotificationMutes.fromJson(
+  factory MutationUpdateNotificationSettingssetNotificationMutes.fromJson(
     Map<String, dynamic> json,
   ) {
-    final l$affected_rows = json['affected_rows'];
+    final l$type = json['type'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateNotificationSettingsdeleteNotificationMutes(
-      affected_rows: (l$affected_rows as int),
+    return MutationUpdateNotificationSettingssetNotificationMutes(
+      type: fromJsonEnumNotificationType_enum((l$type as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affected_rows;
+  final EnumNotificationType_enum type;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affected_rows = affected_rows;
-    _resultData['affected_rows'] = l$affected_rows;
+    final l$type = type;
+    _resultData['type'] = toJsonEnumNotificationType_enum(l$type);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -608,9 +542,9 @@ class MutationUpdateNotificationSettingsdeleteNotificationMutes {
 
   @override
   int get hashCode {
-    final l$affected_rows = affected_rows;
+    final l$type = type;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affected_rows, l$$__typename]);
+    return Object.hashAll([l$type, l$$__typename]);
   }
 
   @override
@@ -618,73 +552,13 @@ class MutationUpdateNotificationSettingsdeleteNotificationMutes {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateNotificationSettingsdeleteNotificationMutes ||
+    if (other is! MutationUpdateNotificationSettingssetNotificationMutes ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affected_rows = affected_rows;
-    final lOther$affected_rows = other.affected_rows;
-    if (l$affected_rows != lOther$affected_rows) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class MutationUpdateNotificationSettingsinsertNotificationMutes {
-  MutationUpdateNotificationSettingsinsertNotificationMutes({
-    required this.affected_rows,
-    this.$__typename = 'notificationMutes_mutation_response',
-  });
-
-  factory MutationUpdateNotificationSettingsinsertNotificationMutes.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final l$affected_rows = json['affected_rows'];
-    final l$$__typename = json['__typename'];
-    return MutationUpdateNotificationSettingsinsertNotificationMutes(
-      affected_rows: (l$affected_rows as int),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int affected_rows;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$affected_rows = affected_rows;
-    _resultData['affected_rows'] = l$affected_rows;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$affected_rows = affected_rows;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$affected_rows, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationUpdateNotificationSettingsinsertNotificationMutes ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$affected_rows = affected_rows;
-    final lOther$affected_rows = other.affected_rows;
-    if (l$affected_rows != lOther$affected_rows) {
+    final l$type = type;
+    final lOther$type = other.type;
+    if (l$type != lOther$type) {
       return false;
     }
     final l$$__typename = $__typename;

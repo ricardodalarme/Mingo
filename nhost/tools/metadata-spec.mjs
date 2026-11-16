@@ -227,6 +227,8 @@ export const tables = {
   guest_cards: resultTable(['public']),
   guest_results: resultTable(['public']),
   prepared_cards: resultTable(['user']),
+  question_states: resultTable(['user']),
+  checkin_states: resultTable(['user']),
 
   // Notifications --------------------------------------------------------------------------------------------------
   devices: {
@@ -609,5 +611,8 @@ export const functions = {
   'private.run_job': {},
   'private.claim_notification': {},
   'private.complete_notification': {},
+  partner_question_states: { session: true, roles: ['user'] },
+  partner_checkin_state: { session: true, roles: ['user'] },
+  set_notification_mutes: { session: true, roles: ['user'] },
   'private.apply_purchase_event': {},
 };

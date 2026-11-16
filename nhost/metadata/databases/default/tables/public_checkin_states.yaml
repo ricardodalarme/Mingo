@@ -1,0 +1,28 @@
+table:
+  name: checkin_states
+  schema: public
+configuration:
+  column_config:
+    partner_completed:
+      custom_name: partnerCompleted
+  custom_column_names:
+    partner_completed: partnerCompleted
+  custom_name: checkinStates
+  custom_root_fields:
+    delete: deleteCheckinStates
+    delete_by_pk: deleteCheckinStatesByPk
+    insert: insertCheckinStates
+    insert_one: insertCheckinStatesOne
+    select: checkinStates
+    select_aggregate: checkinStatesAggregate
+    select_by_pk: checkinStatesByPk
+    select_stream: checkinStatesStream
+    update: updateCheckinStates
+    update_by_pk: updateCheckinStatesByPk
+    update_many: updateCheckinStatesMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - partner_completed
+      filter: {}

@@ -3,7 +3,7 @@ mutation UpdateNotificationSettings(
   $enabled: Boolean!
   $cardDay: smallint!
   $cardHour: smallint!
-  $mutes: [notificationMutes_insert_input!]!
+  $mutes: jsonb!
 ) {
   updateNotificationSettings(
     where: { userId: { _eq: $userId } }
@@ -11,10 +11,7 @@ mutation UpdateNotificationSettings(
   ) {
     affected_rows
   }
-  deleteNotificationMutes(where: { userId: { _eq: $userId } }) {
-    affected_rows
-  }
-  insertNotificationMutes(objects: $mutes) {
-    affected_rows
+  setNotificationMutes(args: { types: $mutes }) {
+    type
   }
 }
