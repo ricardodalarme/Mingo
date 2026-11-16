@@ -85,6 +85,8 @@ select_permissions:
         _and:
           - published:
               _eq: true
+          - plus_only:
+              _eq: false
           - _or:
               - kind:
                   _neq: spice_card

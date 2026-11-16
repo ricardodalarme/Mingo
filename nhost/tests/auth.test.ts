@@ -53,10 +53,10 @@ test('a token cannot act as another person and carries no anonymous role', async
 test('the profile and settings of a new person start from a known state', async () => {
   const session = await signUp();
   const data = await okToken(session.token, `{ profiles { avatarKind timeZone } userSettings { theme relationshipStatus shareReadReceipts spiceEnabled chatEnabled locale }
-    plusStates { hasPlus slipsLeftThisMonth cardsLeftThisMonth chatMessagesLeftToday } }`);
+    plusStates { hasPlus chatMessagesLeftToday chatMessagesLimit gamesLeftThisWeek } }`);
   assert.deepEqual(data.profiles[0], { avatarKind: 'initials', timeZone: 'America/Sao_Paulo' });
   assert.deepEqual(data.userSettings[0], {
     theme: 'neutro', relationshipStatus: 'together', shareReadReceipts: false, spiceEnabled: false, chatEnabled: false, locale: 'pt-BR',
   });
-  assert.deepEqual(data.plusStates[0], { hasPlus: false, slipsLeftThisMonth: 15, cardsLeftThisMonth: 1, chatMessagesLeftToday: 0 });
+  assert.deepEqual(data.plusStates[0], { hasPlus: false, chatMessagesLeftToday: 5, chatMessagesLimit: 5, gamesLeftThisWeek: 3 });
 });

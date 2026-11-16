@@ -3,41 +3,62 @@ table:
   schema: public
 configuration:
   column_config:
-    cards_left_this_month:
-      custom_name: cardsLeftThisMonth
+    billing_issue:
+      custom_name: billingIssue
+    both_paid:
+      custom_name: bothPaid
     chat_messages_left_today:
       custom_name: chatMessagesLeftToday
+    chat_messages_limit:
+      custom_name: chatMessagesLimit
+    covered_by_name:
+      custom_name: coveredByName
     entitlement_user_id:
       custom_name: entitlementUserId
+    games_left_this_week:
+      custom_name: gamesLeftThisWeek
     guest_links_left_today:
       custom_name: guestLinksLeftToday
     has_plus:
       custom_name: hasPlus
     invites_left_today:
       custom_name: invitesLeftToday
+    lists_left:
+      custom_name: listsLeft
+    owner_store:
+      custom_name: ownerStore
     paid_by_partner:
       custom_name: paidByPartner
     partner_messages_left_today:
       custom_name: partnerMessagesLeftToday
+    rituals_left:
+      custom_name: ritualsLeft
     signals_left_today:
       custom_name: signalsLeftToday
-    slips_left_this_month:
-      custom_name: slipsLeftThisMonth
+    spice_cards_left_this_week:
+      custom_name: spiceCardsLeftThisWeek
     support_requests_left_today:
       custom_name: supportRequestsLeftToday
     user_id:
       custom_name: userId
   custom_column_names:
-    cards_left_this_month: cardsLeftThisMonth
+    billing_issue: billingIssue
+    both_paid: bothPaid
     chat_messages_left_today: chatMessagesLeftToday
+    chat_messages_limit: chatMessagesLimit
+    covered_by_name: coveredByName
     entitlement_user_id: entitlementUserId
+    games_left_this_week: gamesLeftThisWeek
     guest_links_left_today: guestLinksLeftToday
     has_plus: hasPlus
     invites_left_today: invitesLeftToday
+    lists_left: listsLeft
+    owner_store: ownerStore
     paid_by_partner: paidByPartner
     partner_messages_left_today: partnerMessagesLeftToday
+    rituals_left: ritualsLeft
     signals_left_today: signalsLeftToday
-    slips_left_this_month: slipsLeftThisMonth
+    spice_cards_left_this_week: spiceCardsLeftThisWeek
     support_requests_left_today: supportRequestsLeftToday
     user_id: userId
   custom_name: plusStates
@@ -67,16 +88,23 @@ select_permissions:
   - role: user
     permission:
       columns:
-        - cards_left_this_month
+        - billing_issue
+        - both_paid
         - chat_messages_left_today
+        - chat_messages_limit
+        - covered_by_name
         - entitlement_user_id
+        - games_left_this_week
         - guest_links_left_today
         - has_plus
         - invites_left_today
+        - lists_left
+        - owner_store
         - paid_by_partner
         - partner_messages_left_today
+        - rituals_left
         - signals_left_today
-        - slips_left_this_month
+        - spice_cards_left_this_week
         - support_requests_left_today
         - user_id
       filter:

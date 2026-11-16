@@ -25,6 +25,7 @@
 - "!include public_card_reactions.yaml"
 - "!include public_card_status.yaml"
 - "!include public_cards.yaml"
+- "!include public_catalog_items.yaml"
 - "!include public_chat_turns.yaml"
 - "!include public_checkin_states.yaml"
 - "!include public_checkins.yaml"

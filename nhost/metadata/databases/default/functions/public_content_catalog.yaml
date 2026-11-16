@@ -1,0 +1,11 @@
+function:
+  name: content_catalog
+  schema: public
+configuration:
+  custom_name: contentCatalog
+  custom_root_fields:
+    function: contentCatalog
+    function_aggregate: contentCatalogAggregate
+  session_argument: session
+permissions:
+  - role: user

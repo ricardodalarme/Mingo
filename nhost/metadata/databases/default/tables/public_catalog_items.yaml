@@ -1,0 +1,84 @@
+table:
+  name: catalog_items
+  schema: public
+configuration:
+  column_config:
+    body:
+      custom_name: body
+    country:
+      custom_name: country
+    day:
+      custom_name: day
+    id:
+      custom_name: id
+    kind:
+      custom_name: kind
+    locale:
+      custom_name: locale
+    locked:
+      custom_name: locked
+    month:
+      custom_name: month
+    parent_slug:
+      custom_name: parentSlug
+    plus_only:
+      custom_name: plusOnly
+    position:
+      custom_name: position
+    sensitive:
+      custom_name: sensitive
+    slug:
+      custom_name: slug
+    tags:
+      custom_name: tags
+    title:
+      custom_name: title
+  custom_column_names:
+    body: body
+    country: country
+    day: day
+    id: id
+    kind: kind
+    locale: locale
+    locked: locked
+    month: month
+    parent_slug: parentSlug
+    plus_only: plusOnly
+    position: position
+    sensitive: sensitive
+    slug: slug
+    tags: tags
+    title: title
+  custom_name: catalogItems
+  custom_root_fields:
+    delete: deleteCatalogItems
+    delete_by_pk: deleteCatalogItemsByPk
+    insert: insertCatalogItems
+    insert_one: insertCatalogItemsOne
+    select: catalogItems
+    select_aggregate: catalogItemsAggregate
+    select_by_pk: catalogItemsByPk
+    select_stream: catalogItemsStream
+    update: updateCatalogItems
+    update_by_pk: updateCatalogItemsByPk
+    update_many: updateCatalogItemsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - body
+        - country
+        - day
+        - id
+        - kind
+        - locale
+        - locked
+        - month
+        - parent_slug
+        - plus_only
+        - position
+        - sensitive
+        - slug
+        - tags
+        - title
+      filter: {}

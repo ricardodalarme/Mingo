@@ -189,7 +189,7 @@ test('spice cards exist only when both partners switched the mode on', async () 
   await enable(solo, true);
   assert.deepEqual([await spice(a), await spice(b), await spice(solo)], [0, 0, 0]);
   await enable(b, true);
-  const publishedSpice = Number((await sql(`select count(*) from public.content_items where kind = 'spice_card' and published`))[0][0]);
+  const publishedSpice = Number((await sql(`select count(*) from public.content_items where kind = 'spice_card' and published and not plus_only`))[0][0]);
   assert.ok(publishedSpice > 0, 'the seed has spice cards');
   assert.deepEqual([await spice(a), await spice(b)], [publishedSpice, publishedSpice]);
   assert.deepEqual((await ok(a, `{ contentItems(where: {slug: {_eq: "unpublished"}}) { slug } }`)).contentItems, []);

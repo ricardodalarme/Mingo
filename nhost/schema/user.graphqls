@@ -610,6 +610,71 @@ enum cards_select_column {
   weekStart
 }
 """
+select columns of table "catalog_items"
+"""
+enum catalogItems_select_column {
+  """
+  column name
+  """
+  body
+  """
+  column name
+  """
+  country
+  """
+  column name
+  """
+  day
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  kind
+  """
+  column name
+  """
+  locale
+  """
+  column name
+  """
+  locked
+  """
+  column name
+  """
+  month
+  """
+  column name
+  """
+  parentSlug
+  """
+  column name
+  """
+  plusOnly
+  """
+  column name
+  """
+  position
+  """
+  column name
+  """
+  sensitive
+  """
+  column name
+  """
+  slug
+  """
+  column name
+  """
+  tags
+  """
+  column name
+  """
+  title
+}
+"""
 select columns of table "chat_turns"
 """
 enum chatTurns_select_column {
@@ -2510,7 +2575,11 @@ enum plusStates_select_column {
   """
   column name
   """
-  cardsLeftThisMonth
+  billingIssue
+  """
+  column name
+  """
+  bothPaid
   """
   column name
   """
@@ -2518,7 +2587,19 @@ enum plusStates_select_column {
   """
   column name
   """
+  chatMessagesLimit
+  """
+  column name
+  """
+  coveredByName
+  """
+  column name
+  """
   entitlementUserId
+  """
+  column name
+  """
+  gamesLeftThisWeek
   """
   column name
   """
@@ -2534,6 +2615,14 @@ enum plusStates_select_column {
   """
   column name
   """
+  listsLeft
+  """
+  column name
+  """
+  ownerStore
+  """
+  column name
+  """
   paidByPartner
   """
   column name
@@ -2542,11 +2631,15 @@ enum plusStates_select_column {
   """
   column name
   """
+  ritualsLeft
+  """
+  column name
+  """
   signalsLeftToday
   """
   column name
   """
-  slipsLeftThisMonth
+  spiceCardsLeftThisWeek
   """
   column name
   """
@@ -4116,6 +4209,26 @@ type cards_mutation_response {
   data from the rows affected by the mutation
   """
   returning: [cards!]!
+}
+"""
+columns and relationships of "catalog_items"
+"""
+type catalogItems {
+  body: String
+  country: String
+  day: smallint
+  id: uuid!
+  kind: String!
+  locale: String!
+  locked: Boolean!
+  month: smallint
+  parentSlug: String
+  plusOnly: Boolean!
+  position: Int!
+  sensitive: Boolean!
+  slug: String!
+  tags: [String!]!
+  title: String!
 }
 """
 columns and relationships of "chat_turns"
@@ -9405,20 +9518,27 @@ type partnerMessages_mutation_response {
 columns and relationships of "plus_states"
 """
 type plusStates {
-  cardsLeftThisMonth: Int
+  billingIssue: Boolean
+  bothPaid: Boolean
   chatMessagesLeftToday: Int
+  chatMessagesLimit: Int
+  coveredByName: String
   """
   An object relationship
   """
   entitlement: entitlements
   entitlementUserId: uuid
+  gamesLeftThisWeek: Int
   guestLinksLeftToday: Int
   hasPlus: Boolean
   invitesLeftToday: Int
+  listsLeft: Int
+  ownerStore: String
   paidByPartner: Boolean
   partnerMessagesLeftToday: Int
+  ritualsLeft: Int
   signalsLeftToday: Int
-  slipsLeftThisMonth: Int
+  spiceCardsLeftThisWeek: Int
   supportRequestsLeftToday: Int
   userId: uuid
 }
@@ -9834,6 +9954,39 @@ type query_root {
   """
   cardsByPk(id: uuid!): cards
   """
+  fetch data from the table: "catalog_items"
+  """
+  catalogItems(
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
+  """
+  fetch data from the table: "catalog_items" using primary key columns
+  """
+  catalogItemsByPk(id: uuid!): catalogItems
+  """
   fetch data from the table: "chat_turns"
   """
   chatTurns(
@@ -9961,6 +10114,40 @@ type query_root {
   fetch data from the table: "consents" using primary key columns
   """
   consentsByPk(id: uuid!): consents
+  """
+  execute function "content_catalog" which returns "catalog_items"
+  """
+  contentCatalog(
+    """
+    input parameters for function "contentCatalog"
+    """
+    args: contentCatalog_args
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
   """
   fetch data from the table: "content_items"
   """
@@ -13664,6 +13851,58 @@ type subscription_root {
     where: cards_bool_exp
   ): [cards!]!
   """
+  fetch data from the table: "catalog_items"
+  """
+  catalogItems(
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
+  """
+  fetch data from the table: "catalog_items" using primary key columns
+  """
+  catalogItemsByPk(id: uuid!): catalogItems
+  """
+  fetch data from the table in a streaming manner: "catalog_items"
+  """
+  catalogItemsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [catalogItems_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
+  """
   fetch data from the table: "chat_turns"
   """
   chatTurns(
@@ -13867,6 +14106,40 @@ type subscription_root {
     """
     where: consents_bool_exp
   ): [consents!]!
+  """
+  execute function "content_catalog" which returns "catalog_items"
+  """
+  contentCatalog(
+    """
+    input parameters for function "contentCatalog"
+    """
+    args: contentCatalog_args
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [catalogItems_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [catalogItems_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: catalogItems_bool_exp
+  ): [catalogItems!]!
   """
   fetch data from the table: "content_items"
   """
@@ -18635,6 +18908,82 @@ input cards_updates {
   where: cards_bool_exp!
 }
 """
+Boolean expression to filter rows from the table "catalog_items". All fields are combined with a logical 'AND'.
+"""
+input catalogItems_bool_exp {
+  _and: [catalogItems_bool_exp!]
+  _not: catalogItems_bool_exp
+  _or: [catalogItems_bool_exp!]
+  body: String_comparison_exp
+  country: String_comparison_exp
+  day: smallint_comparison_exp
+  id: uuid_comparison_exp
+  kind: String_comparison_exp
+  locale: String_comparison_exp
+  locked: Boolean_comparison_exp
+  month: smallint_comparison_exp
+  parentSlug: String_comparison_exp
+  plusOnly: Boolean_comparison_exp
+  position: Int_comparison_exp
+  sensitive: Boolean_comparison_exp
+  slug: String_comparison_exp
+  tags: String_array_comparison_exp
+  title: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "catalog_items".
+"""
+input catalogItems_order_by {
+  body: order_by
+  country: order_by
+  day: order_by
+  id: order_by
+  kind: order_by
+  locale: order_by
+  locked: order_by
+  month: order_by
+  parentSlug: order_by
+  plusOnly: order_by
+  position: order_by
+  sensitive: order_by
+  slug: order_by
+  tags: order_by
+  title: order_by
+}
+"""
+Streaming cursor of the table "catalogItems"
+"""
+input catalogItems_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: catalogItems_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input catalogItems_stream_cursor_value_input {
+  body: String
+  country: String
+  day: smallint
+  id: uuid
+  kind: String
+  locale: String
+  locked: Boolean
+  month: smallint
+  parentSlug: String
+  plusOnly: Boolean
+  position: Int
+  sensitive: Boolean
+  slug: String
+  tags: [String!]
+  title: String
+}
+"""
 Boolean expression to filter rows from the table "chat_turns". All fields are combined with a logical 'AND'.
 """
 input chatTurns_bool_exp {
@@ -18931,6 +19280,10 @@ input consents_stream_cursor_value_input {
   kind: ConsentKind_enum
   userId: uuid
   version: String
+}
+input contentCatalog_args {
+  kind: String
+  locale: String
 }
 """
 Boolean expression to filter rows from the table "content_items". All fields are combined with a logical 'AND'.
@@ -22132,17 +22485,24 @@ input plusStates_bool_exp {
   _and: [plusStates_bool_exp!]
   _not: plusStates_bool_exp
   _or: [plusStates_bool_exp!]
-  cardsLeftThisMonth: Int_comparison_exp
+  billingIssue: Boolean_comparison_exp
+  bothPaid: Boolean_comparison_exp
   chatMessagesLeftToday: Int_comparison_exp
+  chatMessagesLimit: Int_comparison_exp
+  coveredByName: String_comparison_exp
   entitlement: entitlements_bool_exp
   entitlementUserId: uuid_comparison_exp
+  gamesLeftThisWeek: Int_comparison_exp
   guestLinksLeftToday: Int_comparison_exp
   hasPlus: Boolean_comparison_exp
   invitesLeftToday: Int_comparison_exp
+  listsLeft: Int_comparison_exp
+  ownerStore: String_comparison_exp
   paidByPartner: Boolean_comparison_exp
   partnerMessagesLeftToday: Int_comparison_exp
+  ritualsLeft: Int_comparison_exp
   signalsLeftToday: Int_comparison_exp
-  slipsLeftThisMonth: Int_comparison_exp
+  spiceCardsLeftThisWeek: Int_comparison_exp
   supportRequestsLeftToday: Int_comparison_exp
   userId: uuid_comparison_exp
 }
@@ -22150,17 +22510,24 @@ input plusStates_bool_exp {
 Ordering options when selecting data from "plus_states".
 """
 input plusStates_order_by {
-  cardsLeftThisMonth: order_by
+  billingIssue: order_by
+  bothPaid: order_by
   chatMessagesLeftToday: order_by
+  chatMessagesLimit: order_by
+  coveredByName: order_by
   entitlement: entitlements_order_by
   entitlementUserId: order_by
+  gamesLeftThisWeek: order_by
   guestLinksLeftToday: order_by
   hasPlus: order_by
   invitesLeftToday: order_by
+  listsLeft: order_by
+  ownerStore: order_by
   paidByPartner: order_by
   partnerMessagesLeftToday: order_by
+  ritualsLeft: order_by
   signalsLeftToday: order_by
-  slipsLeftThisMonth: order_by
+  spiceCardsLeftThisWeek: order_by
   supportRequestsLeftToday: order_by
   userId: order_by
 }
@@ -22181,16 +22548,23 @@ input plusStates_stream_cursor_input {
 Initial value of the column from where the streaming should start
 """
 input plusStates_stream_cursor_value_input {
-  cardsLeftThisMonth: Int
+  billingIssue: Boolean
+  bothPaid: Boolean
   chatMessagesLeftToday: Int
+  chatMessagesLimit: Int
+  coveredByName: String
   entitlementUserId: uuid
+  gamesLeftThisWeek: Int
   guestLinksLeftToday: Int
   hasPlus: Boolean
   invitesLeftToday: Int
+  listsLeft: Int
+  ownerStore: String
   paidByPartner: Boolean
   partnerMessagesLeftToday: Int
+  ritualsLeft: Int
   signalsLeftToday: Int
-  slipsLeftThisMonth: Int
+  spiceCardsLeftThisWeek: Int
   supportRequestsLeftToday: Int
   userId: uuid
 }

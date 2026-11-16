@@ -3,6 +3,7 @@
 - "!include private_complete_notification.yaml"
 - "!include private_run_job.yaml"
 - "!include public_accept_invite.yaml"
+- "!include public_content_catalog.yaml"
 - "!include public_daily_content.yaml"
 - "!include public_guest_card.yaml"
 - "!include public_guest_forget.yaml"

@@ -300,7 +300,11 @@ export const tables = {
   content_items: {
     roles: {
       user: {
-        select: { columns: '*', filter: and({ published: { _eq: true } }, or({ kind: { _neq: 'spice_card' } }, spiceAllowed)) },
+        // Plus-only rows are read through `contentCatalog`, which hides their body from a person without Plus.
+        select: {
+          columns: '*',
+          filter: and({ published: { _eq: true } }, { plus_only: { _eq: false } }, or({ kind: { _neq: 'spice_card' } }, spiceAllowed)),
+        },
       },
     },
   },
@@ -309,6 +313,7 @@ export const tables = {
     // Plus covers both partners, so each can see the other's plan.
     roles: { user: { select: { columns: '*', filter: or(mine('user_id'), { profile: meOrPartner }) } } },
   },
+  catalog_items: resultTable(['user']),
   plus_states: {
     object: { entitlement: { manual: 'entitlements', on: { entitlement_user_id: 'user_id' } } },
     roles: { user: { select: { columns: '*', filter: mine('user_id') } } },
@@ -606,6 +611,7 @@ export const functions = {
   unpair: { session: true, roles: ['user'] },
   resolve_shared_items: { session: true, roles: ['user'] },
   daily_content: { session: true, roles: ['user'] },
+  content_catalog: { session: true, roles: ['user'] },
   next_game_items: { session: true, roles: ['user'] },
   update_game: { session: true, roles: ['user'] },
   take_chat_turn: { session: true, roles: ['user'] },

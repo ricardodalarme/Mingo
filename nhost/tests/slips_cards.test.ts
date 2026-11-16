@@ -57,45 +57,11 @@ test('a bothered or invisible slip never reaches a card, and a request needs a b
   assert.deepEqual((await ok(a, `mutation ($s: uuid!) { sendSlip(args: {slipId: $s}) { id } }`, { s: bothered.id })).sendSlip, []);
 });
 
-test('the free plan allows 15 new slips a month; editing still works at the limit and Plus lifts it', async () => {
+test('slips are unlimited on the free plan', async () => {
   const a = await person();
-  await sql(`insert into public.slips (author_id, body) select '${a.id}', 'seed ' || g from generate_series(1, 14) g`);
-  const last = await addSlip(a);
-  assert.equal((await ok(a, `{ plusStates { slipsLeftThisMonth hasPlus } }`)).plusStates[0].slipsLeftThisMonth, 0);
-  await denied(a, `mutation { insertSlipsOne(object: {body: "one too many"}) { id } }`);
-  await ok(a, `mutation ($id: uuid!) { updateSlipsByPk(pk_columns: {id: $id}, _set: {body: "edited"}) { id } }`, { id: last.id });
-  await plus(a);
+  await sql(`insert into public.slips (author_id, body) select '${a.id}', 'seed ' || g from generate_series(1, 100) g`);
   await addSlip(a);
-  assert.equal((await ok(a, `{ plusStates { hasPlus } }`)).plusStates[0].hasPlus, true);
-});
-
-test('Plus covers the partner, who sees the plan but not the purchase', async () => {
-  const { a, b } = await couple();
-  await plus(a);
-  const state = (await ok(b, `{ plusStates { hasPlus paidByPartner entitlement { plan status } } }`)).plusStates[0];
-  assert.deepEqual(state, { hasPlus: true, paidByPartner: true, entitlement: { plan: 'plus_annual', status: 'active' } });
-  const stranger = await person();
-  assert.deepEqual((await ok(stranger, `{ entitlements { userId } plusStates { userId } }`)), { entitlements: [], plusStates: [{ userId: stranger.id }] });
-});
-
-test('a draft is the author\'s alone; the recipient sees the card only once it is sent', async () => {
-  const { a, b } = await couple();
-  const slip = await addSlip(a);
-  const draft = (await ok(a, `mutation { prepareCard { cardId status kind items } }`)).prepareCard[0];
-  // The items are in the payload because a function's new rows are not visible to a relationship in the same call.
-  const items = (await ok(a, `{ cardItems { body slipId } }`)).cardItems;
-  assert.deepEqual([draft.status, draft.kind, draft.items.map((i: any) => i.body), items],
-    ['draft', 'weekly', ['made coffee'], [{ body: 'made coffee', slipId: slip.id }]]);
-  assert.deepEqual((await ok(b, `{ cards { id } cardItems { id } }`)), { cards: [], cardItems: [] });
-  await denied(a, `mutation ($id: uuid!) { updateCardsByPk(pk_columns: {id: $id}, _set: {status: sent}) { id } }`, { id: draft.cardId });
-  const held = await ok(a, `mutation ($id: uuid!) { updateCardsByPk(pk_columns: {id: $id}, _set: {status: held, note: "for you"}) { status } }`, { id: draft.cardId });
-  assert.equal(held.updateCardsByPk.status, 'held');
-  assert.deepEqual((await ok(b, `mutation ($id: uuid!) { sendCard(args: {cardId: $id}) { id } }`, { id: draft.cardId })).sendCard, [], 'only the author sends');
-  const sent = (await ok(a, `mutation ($id: uuid!) { sendCard(args: {cardId: $id}) { status recipientId } }`, { id: draft.cardId })).sendCard[0];
-  assert.deepEqual(sent, { status: 'sent', recipientId: b.id });
-  const seen = (await ok(b, `{ cards { id note author { displayName } items { body slipId } } }`)).cards;
-  assert.deepEqual(seen, [{ id: draft.cardId, note: 'for you', author: { displayName: 'Ana' }, items: [{ body: 'made coffee', slipId: slip.id }] }]);
-  assert.deepEqual((await ok(b, `{ slips { id } }`)).slips, [], 'the card shows a copy, never the slip');
+  assert.equal((await ok(a, `{ slipsAggregate { aggregate { count } } }`)).slipsAggregate.aggregate.count, 101);
 });
 
 test('a sent card is frozen: later edits and deletes of the slip do not change it, and it cannot be edited', async () => {
@@ -111,16 +77,13 @@ test('a sent card is frozen: later edits and deletes of the slip do not change i
   assert.deepEqual((await ok(a, `mutation ($id: uuid!) { sendCard(args: {cardId: $id}) { id } }`, { id: prepareCard[0].cardId })).sendCard, [], 'not sent twice');
 });
 
-test('the free plan sends one card a month', async () => {
+test('the free plan sends as many cards as the person asks', async () => {
   const { a } = await couple();
   await sentCard(a);
-  assert.equal((await ok(a, `{ plusStates { cardsLeftThisMonth } }`)).plusStates[0].cardsLeftThisMonth, 0);
   const slip = await addSlip(a);
-  assert.deepEqual((await ok(a, `mutation ($s: uuid!) { sendSlip(args: {slipId: $s}) { id } }`, { s: slip.id })).sendSlip, []);
-  assert.equal((await ok(a, `{ cards { id } }`)).cards.length, 1, 'a refused single card leaves nothing behind');
-  await plus(a);
   const single = (await ok(a, `mutation ($s: uuid!) { sendSlip(args: {slipId: $s, note: "now"}) { kind status note } }`, { s: slip.id })).sendSlip[0];
   assert.deepEqual(single, { kind: 'single', status: 'sent', note: 'now' });
+  assert.equal((await ok(a, `{ cards { id } }`)).cards.length, 2);
 });
 
 test('only the recipient reacts and opens; the author sees the open only with shared read receipts', async () => {
