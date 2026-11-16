@@ -33,12 +33,13 @@ class CardsRepository({
   /// One page of the sent and received cards, newest first.
   Future<CardSummaryPage> getHistory({int offset = 0}) async {
     try {
-      final rows = await _dataSource.getCards(limit: cardPageSize, offset: offset);
+      final rows = await _dataSource.getCards(limit: cardPageSize + 1, offset: offset);
+      final pageRows = rows.take(cardPageSize).toList();
       final userId = _authenticationRepository.currentUserId;
 
       return CardSummaryPage(
         items: [
-          for (final row in rows)
+          for (final row in pageRows)
             CardSummary(
               id: row.id,
               isMine: row.authorId == userId,
@@ -49,8 +50,8 @@ class CardsRepository({
               isOpened: row.open != null,
             ),
         ],
-        hasNext: rows.length == cardPageSize,
-        offset: offset + rows.length,
+        hasNext: rows.length > cardPageSize,
+        offset: offset + pageRows.length,
       );
     } catch (e, stack) {
       _logger.error('Failed to load the card history', error: e, stackTrace: stack);

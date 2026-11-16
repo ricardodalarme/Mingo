@@ -74,14 +74,15 @@ void main() {
       ),
     ).thenAnswer(
       (_) async => [
-        for (var index = 0; index < cardPageSize; index++) card(id: 'c$index', authorId: 'me'),
+        for (var index = 0; index <= cardPageSize; index++) card(id: 'c$index', authorId: 'me'),
       ],
     );
 
     final page = await repository.getHistory(offset: 20);
 
+    expect(page.items.length, cardPageSize);
     expect(page.hasNext, isTrue);
-    expect(page.offset, 40);
+    expect(page.offset, 20 + cardPageSize);
   });
 
   test('the detail reads ownership from the author', () async {

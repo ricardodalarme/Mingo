@@ -215,15 +215,16 @@ class SlipRepository({
   }) async {
     try {
       final rows = await _slipDataSource.getSlips(
-        limit: pageSize,
+        limit: pageSize + 1,
         offset: offset,
         since: since,
         archived: archived,
       );
+      final pageRows = rows.take(pageSize).toList();
 
       return SlipPage(
         items: [
-          for (final row in rows)
+          for (final row in pageRows)
             SlipEntry(
               id: row.id,
               body: row.body,
@@ -233,8 +234,8 @@ class SlipRepository({
               createdAt: row.createdAt,
             ),
         ],
-        hasNext: rows.length == pageSize,
-        offset: offset + rows.length,
+        hasNext: rows.length > pageSize,
+        offset: offset + pageRows.length,
       );
     } catch (e, stack) {
       _logger.error('Failed to load slips', error: e, stackTrace: stack);
