@@ -2235,6 +2235,22 @@ class SlipsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SlipsSearchPage]
+class SlipsSearchRoute extends PageRouteInfo<void> {
+  const SlipsSearchRoute({List<PageRouteInfo>? children})
+    : super(SlipsSearchRoute.name, initialChildren: children);
+
+  static const String name = 'SlipsSearchRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SlipsSearchPage());
+    },
+  );
+}
+
+/// generated route for
 /// [SoftStartPage]
 class SoftStartRoute extends PageRouteInfo<void> {
   const SoftStartRoute({List<PageRouteInfo>? children})

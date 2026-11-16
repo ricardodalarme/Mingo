@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/features/slips/data/models/slip_entry.dart';
+import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
@@ -37,6 +38,8 @@ Future<void> _pumpReducedMotionPage(WidgetTester tester, SlipsListCubit cubit) a
 }
 
 void main() {
+  setUpAll(() => registerFallbackValue(const SlipFilter()));
+
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
   late SlipRepository repository;
@@ -54,8 +57,7 @@ void main() {
     when(
       () => repository.getSlips(
         offset: any(named: 'offset'),
-        since: any(named: 'since'),
-        archived: any(named: 'archived'),
+        filter: any(named: 'filter'),
         pageSize: any(named: 'pageSize'),
       ),
     ).thenAnswer((_) async => SlipPage(items: items, hasNext: false));
@@ -74,7 +76,9 @@ void main() {
     await tester.pump();
   }
 
-  testWidgets('an empty list shows the title, search and the empty invitation', (tester) async {
+  testWidgets('an empty list shows the title, the filters and the empty invitation', (
+    tester,
+  ) async {
     stubPage(const []);
     final cubit = await build();
 
@@ -82,14 +86,13 @@ void main() {
 
     expect(find.byType(BaseEmptyState), findsOneWidget);
     expect(find.byType(BaseChoiceChip), findsNWidgets(3));
-    expect(find.text('Arquivados'), findsOneWidget);
-    expect(find.byType(BaseTextLink), findsNothing);
+    expect(find.text('Privado'), findsOneWidget);
     expect(find.byType(BaseRoundButton), findsOneWidget);
     expect(find.byType(SlipsGroups), findsNothing);
     expect(find.text('Slips'), findsOneWidget);
   });
 
-  testWidgets('a populated list keeps the scopes, search and the history link', (tester) async {
+  testWidgets('a populated list shows the slips and the free note', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
       stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now())]);
       final cubit = await build();
@@ -98,54 +101,10 @@ void main() {
 
       expect(find.byType(BaseEmptyState), findsNothing);
       expect(find.byType(BaseChoiceChip), findsNWidgets(3));
-      expect(find.text('Arquivados'), findsOneWidget);
-      expect(find.byType(BaseTextLink), findsNothing);
-      expect(find.text('Cartões anteriores'), findsOneWidget);
-      expect(find.byType(BaseRoundButton), findsOneWidget);
       expect(find.byType(SlipsGroups), findsOneWidget);
       expect(find.text('Fez café sem eu pedir'), findsOneWidget);
+      expect(find.text('Slips são sempre livres.'), findsOneWidget);
     });
-  });
-
-  testWidgets('search filters the loaded slips and reports no matches', (tester) async {
-    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
-      stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now())]);
-      final cubit = await build();
-
-      await pumpPage(tester, cubit);
-      cubit
-        ..openSearch()
-        ..onQueryChanged('café');
-      await tester.pump();
-      await tester.pump();
-
-      expect(find.text('Fez café sem eu pedir'), findsOneWidget);
-
-      cubit.onQueryChanged('xyz');
-      await tester.pump();
-      await tester.pump();
-
-      expect(find.byType(SlipsGroups), findsNothing);
-      expect(find.byType(BaseEmptyState), findsOneWidget);
-      expect(find.text('Nada encontrado'), findsOneWidget);
-      expect(find.text('Limpar busca'), findsOneWidget);
-    });
-  });
-
-  testWidgets('search without a single slip still reports no matches', (tester) async {
-    stubPage(const []);
-    final cubit = await build();
-
-    await pumpPage(tester, cubit);
-    cubit
-      ..openSearch()
-      ..onQueryChanged('xyz');
-    await tester.pump();
-    await tester.pump();
-
-    expect(find.text('Nada encontrado'), findsOneWidget);
-    expect(find.text('Nada ainda'), findsNothing);
-    expect(find.text('Limpar busca'), findsOneWidget);
   });
 
   testWidgets('a detailed slip shows its kind on the list row', (tester) async {

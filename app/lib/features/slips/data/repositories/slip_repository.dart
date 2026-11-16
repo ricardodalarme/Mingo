@@ -8,6 +8,7 @@ import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_detail.dart';
 import 'package:app/features/slips/data/models/slip_draft.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
+import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
 import 'package:app/features/slips/data/models/slip_work_area.dart';
 import 'package:core/core.dart';
@@ -195,21 +196,17 @@ class SlipRepository({
     }
   }
 
-  /// Reads a page of the person's slips, newest first; [since] limits it to recent ones.
-  ///
-  /// [archived] reads the slips taken out of the timeline instead.
+  /// Reads a page of the person's slips that match [filter], newest first.
   Future<SlipPage> getSlips({
     int offset = 0,
-    DateTime? since,
-    bool archived = false,
+    SlipFilter filter = const SlipFilter(),
     int pageSize = slipPageSize,
   }) async {
     try {
       final rows = await _slipDataSource.getSlips(
         limit: pageSize + 1,
         offset: offset,
-        since: since,
-        archived: archived,
+        filter: filter,
       );
       final pageRows = rows.take(pageSize).toList();
 

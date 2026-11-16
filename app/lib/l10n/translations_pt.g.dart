@@ -6435,14 +6435,8 @@ class Translations$slipsList$pt {
   /// pt: 'Todos'
   String get scopeAll => 'Todos';
 
-  /// pt: 'Arquivados'
-  String get scopeArchived => 'Arquivados';
-
   /// pt: 'Buscar'
   String get search => 'Buscar';
-
-  /// pt: 'Fechar busca'
-  String get searchClose => 'Fechar busca';
 
   /// pt: 'Buscar nos seus slips'
   String get searchHint => 'Buscar nos seus slips';
@@ -6452,9 +6446,6 @@ class Translations$slipsList$pt {
 
   /// pt: 'Tente outra palavra.'
   String get searchEmptyText => 'Tente outra palavra.';
-
-  /// pt: 'Limpar busca'
-  String get clearSearch => 'Limpar busca';
 
   /// pt: 'Esta semana'
   String get thisWeek => 'Esta semana';
@@ -6470,9 +6461,6 @@ class Translations$slipsList$pt {
 
   /// pt: '{weekday} · {category}'
   String dayLine({required Object weekday, required Object category}) => '${weekday} · ${category}';
-
-  /// pt: 'Só eu'
-  String get privateMark => 'Só eu';
 
   List<String> get weekdaysShort => ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
   List<String> get monthsShort => [
@@ -6504,9 +6492,6 @@ class Translations$slipsList$pt {
     'other': '',
   };
 
-  /// pt: 'Cartões anteriores'
-  String get pastCards => 'Cartões anteriores';
-
   /// pt: 'Nada ainda'
   String get emptyTitle => 'Nada ainda';
 
@@ -6521,6 +6506,21 @@ class Translations$slipsList$pt {
 
   /// pt: 'Eles continuam salvos. Tente de novo.'
   String get errorText => 'Eles continuam salvos. Tente de novo.';
+
+  /// pt: 'Privado'
+  String get scopePrivate => 'Privado';
+
+  /// pt: 'Slips são sempre livres.'
+  String get freeNote => 'Slips são sempre livres.';
+
+  /// pt: 'Este mês'
+  String get filterThisMonth => 'Este mês';
+
+  /// pt: 'Em um cartão'
+  String get filterInCard => 'Em um cartão';
+
+  /// pt: 'Trabalho invisível'
+  String get filterInvisible => 'Trabalho invisível';
 }
 
 // Path: spice
@@ -12348,13 +12348,10 @@ extension on Translations {
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'Esta semana',
           'slipsList.scopeAll' => 'Todos',
-          'slipsList.scopeArchived' => 'Arquivados',
           'slipsList.search' => 'Buscar',
-          'slipsList.searchClose' => 'Fechar busca',
           'slipsList.searchHint' => 'Buscar nos seus slips',
           'slipsList.searchEmptyTitle' => 'Nada encontrado',
           'slipsList.searchEmptyText' => 'Tente outra palavra.',
-          'slipsList.clearSearch' => 'Limpar busca',
           'slipsList.thisWeek' => 'Esta semana',
           'slipsList.lastWeek' => 'Semana passada',
           'slipsList.weekRange' => ({
@@ -12369,7 +12366,6 @@ extension on Translations {
             required Object weekday,
             required Object category,
           }) => '${weekday} · ${category}',
-          'slipsList.privateMark' => 'Só eu',
           'slipsList.weekdaysShort.0' => 'Seg',
           'slipsList.weekdaysShort.1' => 'Ter',
           'slipsList.weekdaysShort.2' => 'Qua',
@@ -12399,12 +12395,16 @@ extension on Translations {
           'slipsList.kinds.ifThen' => 'Se… então',
           'slipsList.kinds.invisible' => 'Invisível',
           'slipsList.kinds.other' => '',
-          'slipsList.pastCards' => 'Cartões anteriores',
           'slipsList.emptyTitle' => 'Nada ainda',
           'slipsList.emptyText' => 'Um slip é uma coisa boa, em uma linha.',
           'slipsList.emptyAction' => 'Adicionar um slip',
           'slipsList.errorTitle' => 'Não deu para carregar seus slips',
           'slipsList.errorText' => 'Eles continuam salvos. Tente de novo.',
+          'slipsList.scopePrivate' => 'Privado',
+          'slipsList.freeNote' => 'Slips são sempre livres.',
+          'slipsList.filterThisMonth' => 'Este mês',
+          'slipsList.filterInCard' => 'Em um cartão',
+          'slipsList.filterInvisible' => 'Trabalho invisível',
           'spice.title' => 'Momentos a dois',
           'spice.offText' => 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.',
           'spice.turnOn' => 'Ligar',

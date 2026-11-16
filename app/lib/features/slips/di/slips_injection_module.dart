@@ -7,6 +7,7 @@ import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubi
 import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:app/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:app/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
+import 'package:app/features/slips/presentation/slips_search/cubit/slips_search_cubit.dart';
 import 'package:core/core.dart';
 import 'package:network/network.dart';
 import 'package:preferences_service/preferences_service.dart';
@@ -26,6 +27,9 @@ class SlipsInjectionModule() implements InjectionModule {
     )
     ..registerFactory<SlipsListCubit>(
       () => SlipsListCubit(slipRepository: injector.get<SlipRepository>()),
+    )
+    ..registerFactory<SlipsSearchCubit>(
+      () => SlipsSearchCubit(slipRepository: injector.get<SlipRepository>()),
     )
     ..registerFactory<QuickSlipCubit>(
       () => QuickSlipCubit(

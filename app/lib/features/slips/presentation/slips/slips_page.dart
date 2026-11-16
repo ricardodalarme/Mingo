@@ -51,8 +51,6 @@ class _SlipsPageState() extends State<SlipsPage> {
     final l10n = context.l10n.slipsList;
     final slips = context.select((SlipsListCubit cubit) => cubit.state.slips);
     final scope = context.select((SlipsListCubit cubit) => cubit.state.scope);
-    final isSearching = context.select((SlipsListCubit cubit) => cubit.state.isSearching);
-    final query = context.select((SlipsListCubit cubit) => cubit.state.query);
     final cubit = context.read<SlipsListCubit>();
 
     return BaseView(
@@ -68,17 +66,13 @@ class _SlipsPageState() extends State<SlipsPage> {
                 children: [
                   Expanded(child: Text(l10n.title, style: context.text.titleXl)),
                   BaseRoundButton(
-                    icon: isSearching ? AppIcons.close : AppIcons.search,
-                    semanticLabel: isSearching ? l10n.searchClose : l10n.search,
-                    onPressed: isSearching ? cubit.closeSearch : cubit.openSearch,
+                    icon: AppIcons.search,
+                    semanticLabel: l10n.search,
+                    onPressed: () => context.pushRoute(const SlipsSearchRoute()),
                   ),
                 ],
               ),
               const SizedBox(height: AppSpace.s16),
-              if (isSearching) ...[
-                BaseTextField(text: query, hint: l10n.searchHint, onChanged: cubit.onQueryChanged),
-                const SizedBox(height: AppSpace.s16),
-              ],
               Wrap(
                 spacing: AppSpace.s8,
                 runSpacing: AppSpace.s8,
@@ -88,7 +82,7 @@ class _SlipsPageState() extends State<SlipsPage> {
                       label: switch (option) {
                         SlipsScope.week => l10n.scopeWeek,
                         SlipsScope.all => l10n.scopeAll,
-                        SlipsScope.archived => l10n.scopeArchived,
+                        SlipsScope.private => l10n.scopePrivate,
                       },
                       isSelected: scope == option,
                       onTap: () => cubit.changeScope(option),
@@ -100,21 +94,18 @@ class _SlipsPageState() extends State<SlipsPage> {
                 slips,
                 fakeValue: [SlipEntry.fake(), SlipEntry.fake(), SlipEntry.fake()],
                 successBuilder: (items) => items.isEmpty
-                    ? isSearching
-                          ? BaseEmptyState(
-                              title: l10n.searchEmptyTitle,
-                              text: l10n.searchEmptyText,
-                              actionText: l10n.clearSearch,
-                              onAction: cubit.closeSearch,
-                            )
-                          : BaseEmptyState(
-                              title: l10n.emptyTitle,
-                              text: l10n.emptyText,
-                              face: FaceKind.thinking,
-                              actionText: l10n.emptyAction,
-                              onAction: () => context.router.root.push(const QuickSlipRoute()),
-                            )
-                    : _Results(items: items, isLoaded: slips is Success<List<SlipEntry>>),
+                    ? BaseEmptyState(
+                        title: l10n.emptyTitle,
+                        text: l10n.emptyText,
+                        face: FaceKind.thinking,
+                        actionText: l10n.emptyAction,
+                        onAction: () => context.router.root.push(const QuickSlipRoute()),
+                      )
+                    : _Results(
+                        items: items,
+                        isLoaded: slips is Success<List<SlipEntry>>,
+                        showsHeaders: scope == SlipsScope.all,
+                      ),
                 failureBuilder: (_) => BaseEmptyState(
                   title: l10n.errorTitle,
                   text: l10n.errorText,
@@ -130,36 +121,26 @@ class _SlipsPageState() extends State<SlipsPage> {
   }
 }
 
-class const _Results({required final List<SlipEntry> items, required final bool isLoaded})
-    extends StatelessWidget {
+class const _Results({
+  required final List<SlipEntry> items,
+  required final bool isLoaded,
+  required final bool showsHeaders,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.slipsList;
-    final matches = context.select((SlipsListCubit cubit) => cubit.state.matching(items));
-    if (matches.isEmpty) {
-      return BaseEmptyState(
-        title: l10n.searchEmptyTitle,
-        text: l10n.searchEmptyText,
-        actionText: l10n.clearSearch,
-        onAction: context.read<SlipsListCubit>().closeSearch,
-      );
-    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SlipsGroups(slips: matches, isLoaded: isLoaded),
-        const SizedBox(height: AppSpace.s16),
-        BaseListGroup(
-          children: [
-            BaseListTile(
-              title: l10n.pastCards,
-              showsChevron: true,
-              titleMaxLines: 1,
-              onTap: () => context.pushRoute(const CardsListRoute()),
-            ),
-          ],
+        SlipsGroups(
+          slips: items,
+          isLoaded: isLoaded,
+          showsHeaders: showsHeaders,
+          isLoadingMore: context.select((SlipsListCubit cubit) => cubit.state.isLoadingMore),
         ),
+        const SizedBox(height: AppSpace.s8),
+        BaseNote(text: l10n.freeNote, icon: AppIcons.info),
       ],
     );
   }

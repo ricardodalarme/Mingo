@@ -96,6 +96,7 @@ import 'package:app/features/slips/presentation/quick_slip/quick_slip_page.dart'
 import 'package:app/features/slips/presentation/slip_detail/slip_detail_page.dart';
 import 'package:app/features/slips/presentation/slip_kind/slip_kind_page.dart';
 import 'package:app/features/slips/presentation/slips/slips_page.dart';
+import 'package:app/features/slips/presentation/slips_search/slips_search_page.dart';
 import 'package:app/features/spice/presentation/spice/spice_page.dart';
 import 'package:app/features/story/presentation/story/story_page.dart';
 import 'package:app/features/today/presentation/today/today_page.dart';
@@ -153,6 +154,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: UnpairDoneRoute.page),
     AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
     AutoRoute(page: GentleRequestRoute.page),
+    AutoRoute(page: SlipsSearchRoute.page),
     AutoRoute(page: SlipKindRoute.page, fullscreenDialog: true),
     AutoRoute(page: NeedRoute.page, fullscreenDialog: true),
     AutoRoute(page: TemperatureRoute.page, fullscreenDialog: true),

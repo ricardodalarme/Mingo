@@ -1,6 +1,5 @@
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
-import 'package:app/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
@@ -8,18 +7,17 @@ import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Slips grouped by week, newest week first.
 class const SlipsGroups({
   required final List<SlipEntry> slips,
   final bool isLoaded = true,
+  final bool showsHeaders = true,
+  final bool isLoadingMore = false,
   super.key,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.slipsList;
-    final isLoadingMore = context.select((SlipsListCubit cubit) => cubit.state.isLoadingMore);
     final groups = groupByWeek(slips);
     final thisMonday = _monday(clock.now());
 
@@ -27,8 +25,10 @@ class const SlipsGroups({
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         for (final group in groups.entries) ...[
-          BaseSectionHeader(title: _weekTitle(context, group.key, thisMonday)),
-          const SizedBox(height: AppSpace.s8),
+          if (showsHeaders) ...[
+            BaseSectionHeader(title: _weekTitle(context, group.key, thisMonday)),
+            const SizedBox(height: AppSpace.s8),
+          ],
           RevealScope(
             play: isLoaded,
             child: BaseListGroup(
@@ -39,7 +39,7 @@ class const SlipsGroups({
                     child: BaseListTile(
                       title: slip.body,
                       subtitle: _dayLine(context, slip),
-                      trailing: slip.isPrivate ? BaseTag(text: l10n.privateMark) : null,
+                      showsChevron: true,
                       onTap: () => context.pushRoute(SlipDetailRoute(id: slip.id)),
                     ),
                   ),

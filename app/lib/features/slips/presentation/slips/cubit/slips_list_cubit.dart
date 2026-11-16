@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/features/slips/data/models/slip_entry.dart';
+import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
@@ -25,18 +26,13 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
   Future<void> load() async {
     if (state.slips is! Success) emit(state.copyWith(slips: const Loading()));
     try {
-      final page = await _slipRepository.getSlips(
-        since: _since(state.scope, clock.now()),
-        archived: state.scope == SlipsScope.archived,
-      );
+      final page = await _slipRepository.getSlips(filter: _filter(state.scope, clock.now()));
       emit(
         SlipsListState(
           slips: Success(page.items),
           scope: state.scope,
           hasNext: page.hasNext,
           offset: page.offset,
-          isSearching: state.isSearching,
-          query: state.query,
         ),
       );
     } catch (exception) {
@@ -48,15 +44,9 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
   Future<void> changeScope(SlipsScope scope) async {
     if (scope == state.scope) return;
 
-    emit(SlipsListState(scope: scope, isSearching: state.isSearching, query: state.query));
+    emit(SlipsListState(scope: scope));
     await load();
   }
-
-  void openSearch() => emit(state.copyWith(isSearching: true));
-
-  void closeSearch() => emit(state.copyWith(isSearching: false, query: ''));
-
-  void onQueryChanged(String query) => emit(state.copyWith(query: query));
 
   /// Appends the next page; ignored while one is loading or when there is none.
   Future<void> loadMore() async {
@@ -67,8 +57,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
     try {
       final page = await _slipRepository.getSlips(
         offset: state.offset,
-        since: _since(state.scope, clock.now()),
-        archived: state.scope == SlipsScope.archived,
+        filter: _filter(state.scope, clock.now()),
       );
       final knownIds = current.value.map((slip) => slip.id).toSet();
       emit(
@@ -80,8 +69,6 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
           scope: state.scope,
           hasNext: page.hasNext,
           offset: page.offset,
-          isSearching: state.isSearching,
-          query: state.query,
         ),
       );
     } on Object {
@@ -95,12 +82,16 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
     return super.close();
   }
 
-  /// Monday 00:00 of the week [now] falls in, or `null` for every slip or the archive.
-  static DateTime? _since(SlipsScope scope, DateTime now) {
-    if (scope != SlipsScope.week) return null;
-
+  /// The slips [scope] asks for; the week starts on Monday at 00:00.
+  static SlipFilter _filter(SlipsScope scope, DateTime now) {
     final today = DateTime(now.year, now.month, now.day);
 
-    return today.subtract(Duration(days: today.weekday - DateTime.monday));
+    return switch (scope) {
+      SlipsScope.week => SlipFilter(
+        since: today.subtract(Duration(days: today.weekday - DateTime.monday)),
+      ),
+      SlipsScope.all => const SlipFilter(),
+      SlipsScope.private => const SlipFilter(inCard: false),
+    };
   }
 }

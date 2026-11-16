@@ -6,6 +6,7 @@ import 'package:app/features/slips/data/data_sources/remote/mutations/generated/
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SetSlipInJar.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/SlipDetail.graphql.dart';
+import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:network/network.dart';
 
 /// One slip and whether it already belongs to a card.
@@ -61,15 +62,13 @@ class SlipDataSource({required final GQLClient _client}) {
   /// Sends the partner a hug, optionally carrying a short [body].
   Future<void> sendHug({String? body}) => sendSignal(kind: EnumSignalKind_enum.hug, body: body);
 
-  /// Reads one page of the person's own slips, newest first.
-  ///
-  /// When [archived] is true it reads only the slips taken out of the timeline.
+  /// Reads one page of the person's own slips that match [filter], newest first.
   Future<List<QueryMySlipsslips>> getSlips({
     required int limit,
     required int offset,
-    DateTime? since,
-    bool archived = false,
+    SlipFilter filter = const SlipFilter(),
   }) async {
+    final text = filter.text.trim();
     final response = await _client.query(
       OptionsQueryMySlips(
         fetchPolicy: FetchPolicy.networkOnly,
@@ -77,10 +76,17 @@ class SlipDataSource({required final GQLClient _client}) {
           limit: limit,
           offset: offset,
           where: Inputslips_bool_exp(
-            archivedAt: Inputtimestamptz_comparison_exp($_is_null: !archived),
-            createdAt: since == null || archived
+            archivedAt: Inputtimestamptz_comparison_exp($_is_null: true),
+            createdAt: filter.since == null
                 ? null
-                : Inputtimestamptz_comparison_exp($_gte: since),
+                : Inputtimestamptz_comparison_exp($_gte: filter.since),
+            forCard: filter.inCard == null
+                ? null
+                : InputBoolean_comparison_exp($_eq: filter.inCard),
+            kind: filter.onlyInvisible
+                ? InputSlipKind_enum_comparison_exp($_eq: EnumSlipKind_enum.invisible)
+                : null,
+            body: text.isEmpty ? null : InputString_comparison_exp($_ilike: '%$text%'),
           ),
         ),
       ),

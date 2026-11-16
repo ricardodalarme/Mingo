@@ -5213,19 +5213,13 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   @override
   String get scopeAll => 'All';
   @override
-  String get scopeArchived => 'Archived';
-  @override
   String get search => 'Search';
-  @override
-  String get searchClose => 'Close search';
   @override
   String get searchHint => 'Search your slips';
   @override
   String get searchEmptyTitle => 'Nothing found';
   @override
   String get searchEmptyText => 'Try another word.';
-  @override
-  String get clearSearch => 'Clear search';
   @override
   String get thisWeek => 'This week';
   @override
@@ -5236,8 +5230,6 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   String dateShort({required Object month, required Object day}) => '${month} ${day}';
   @override
   String dayLine({required Object weekday, required Object category}) => '${weekday} · ${category}';
-  @override
-  String get privateMark => 'Only me';
   @override
   List<String> get weekdaysShort => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   @override
@@ -5272,8 +5264,6 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
     'other': '',
   };
   @override
-  String get pastCards => 'Past cards';
-  @override
   String get emptyTitle => 'Nothing yet';
   @override
   String get emptyText => 'A slip is one good thing, in one line.';
@@ -5283,6 +5273,16 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   String get errorTitle => 'Could not load your slips';
   @override
   String get errorText => 'They are still saved. Try again.';
+  @override
+  String get scopePrivate => 'Private';
+  @override
+  String get freeNote => 'Slips are always free.';
+  @override
+  String get filterThisMonth => 'This month';
+  @override
+  String get filterInCard => 'In a card';
+  @override
+  String get filterInvisible => 'Invisible work';
 }
 
 // Path: spice
@@ -10497,13 +10497,10 @@ extension on TranslationsEn {
           'slipsList.title' => 'Slips',
           'slipsList.scopeWeek' => 'This week',
           'slipsList.scopeAll' => 'All',
-          'slipsList.scopeArchived' => 'Archived',
           'slipsList.search' => 'Search',
-          'slipsList.searchClose' => 'Close search',
           'slipsList.searchHint' => 'Search your slips',
           'slipsList.searchEmptyTitle' => 'Nothing found',
           'slipsList.searchEmptyText' => 'Try another word.',
-          'slipsList.clearSearch' => 'Clear search',
           'slipsList.thisWeek' => 'This week',
           'slipsList.lastWeek' => 'Last week',
           'slipsList.weekRange' => ({
@@ -10518,7 +10515,6 @@ extension on TranslationsEn {
             required Object weekday,
             required Object category,
           }) => '${weekday} · ${category}',
-          'slipsList.privateMark' => 'Only me',
           'slipsList.weekdaysShort.0' => 'Mon',
           'slipsList.weekdaysShort.1' => 'Tue',
           'slipsList.weekdaysShort.2' => 'Wed',
@@ -10548,12 +10544,16 @@ extension on TranslationsEn {
           'slipsList.kinds.ifThen' => 'If… then',
           'slipsList.kinds.invisible' => 'Invisible',
           'slipsList.kinds.other' => '',
-          'slipsList.pastCards' => 'Past cards',
           'slipsList.emptyTitle' => 'Nothing yet',
           'slipsList.emptyText' => 'A slip is one good thing, in one line.',
           'slipsList.emptyAction' => 'Add a slip',
           'slipsList.errorTitle' => 'Could not load your slips',
           'slipsList.errorText' => 'They are still saved. Try again.',
+          'slipsList.scopePrivate' => 'Private',
+          'slipsList.freeNote' => 'Slips are always free.',
+          'slipsList.filterThisMonth' => 'This month',
+          'slipsList.filterInCard' => 'In a card',
+          'slipsList.filterInvisible' => 'Invisible work',
           'spice.title' => 'Moments for two',
           'spice.offText' => 'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.',
           'spice.turnOn' => 'Turn on',

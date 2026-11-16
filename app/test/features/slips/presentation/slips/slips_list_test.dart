@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/features/slips/data/models/slip_entry.dart';
+import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
 import 'package:app/features/slips/presentation/slips/widgets/slips_groups.dart';
@@ -13,6 +14,8 @@ class _MockSlipRepository() extends Mock implements SlipRepository;
 SlipEntry _slip(String id, DateTime at) => SlipEntry(id: id, body: id, createdAt: at);
 
 void main() {
+  setUpAll(() => registerFallbackValue(const SlipFilter()));
+
   late SlipRepository repository;
   late StreamController<void> changes;
 
@@ -29,8 +32,7 @@ void main() {
   void stubPage(SlipPage page, {int offset = 0}) => when(
     () => repository.getSlips(
       offset: offset,
-      since: any(named: 'since'),
-      archived: any(named: 'archived'),
+      filter: any(named: 'filter'),
       pageSize: any(named: 'pageSize'),
     ),
   ).thenAnswer((_) async => page);
@@ -100,8 +102,7 @@ void main() {
       verify(
         () => repository.getSlips(
           offset: any(named: 'offset'),
-          since: any(named: 'since'),
-          archived: any(named: 'archived'),
+          filter: any(named: 'filter'),
           pageSize: any(named: 'pageSize'),
         ),
       ).called(1);
@@ -118,25 +119,23 @@ void main() {
       verify(
         () => repository.getSlips(
           offset: 0,
-          since: null,
-          archived: false,
+          filter: const SlipFilter(),
           pageSize: any(named: 'pageSize'),
         ),
       ).called(1);
     });
 
-    test('the archived scope reads the slips taken out of the timeline', () async {
+    test('the private scope reads the slips kept out of the weekly card', () async {
       stubPage(const SlipPage(items: [], hasNext: false));
       final cubit = build();
       await cubit.load();
 
-      await cubit.changeScope(SlipsScope.archived);
+      await cubit.changeScope(SlipsScope.private);
 
       verify(
         () => repository.getSlips(
           offset: 0,
-          since: null,
-          archived: true,
+          filter: const SlipFilter(inCard: false),
           pageSize: any(named: 'pageSize'),
         ),
       ).called(1);
@@ -146,8 +145,7 @@ void main() {
       when(
         () => repository.getSlips(
           offset: any(named: 'offset'),
-          since: any(named: 'since'),
-          archived: any(named: 'archived'),
+          filter: any(named: 'filter'),
           pageSize: any(named: 'pageSize'),
         ),
       ).thenAnswer((_) async => throw Exception());
@@ -169,8 +167,7 @@ void main() {
       verify(
         () => repository.getSlips(
           offset: any(named: 'offset'),
-          since: any(named: 'since'),
-          archived: any(named: 'archived'),
+          filter: any(named: 'filter'),
           pageSize: any(named: 'pageSize'),
         ),
       ).called(2);
