@@ -131,6 +131,7 @@ Future<void> _runStartupPipeline() async {
     AuthenticationInitializer(),
     BlocInitializer(),
     CrashReportInitializer(),
+    FaceAnimationsInitializer(),
     FirebaseInitializer(),
     LocaleInitializer(),
     NotificationsInitializer(),
