@@ -3,8 +3,12 @@ table:
   schema: public
 configuration:
   column_config:
+    avatar_color:
+      custom_name: avatarColor
     avatar_file_id:
       custom_name: avatarFileId
+    avatar_illustration:
+      custom_name: avatarIllustration
     avatar_kind:
       custom_name: avatarKind
     city:
@@ -22,7 +26,9 @@ configuration:
     updated_at:
       custom_name: updatedAt
   custom_column_names:
+    avatar_color: avatarColor
     avatar_file_id: avatarFileId
+    avatar_illustration: avatarIllustration
     avatar_kind: avatarKind
     city: city
     created_at: createdAt
@@ -73,7 +79,9 @@ select_permissions:
   - role: user
     permission:
       columns:
+        - avatar_color
         - avatar_file_id
+        - avatar_illustration
         - avatar_kind
         - city
         - created_at
@@ -100,6 +108,8 @@ update_permissions:
         - city
         - avatar_kind
         - avatar_file_id
+        - avatar_color
+        - avatar_illustration
         - time_zone
       filter:
         id:

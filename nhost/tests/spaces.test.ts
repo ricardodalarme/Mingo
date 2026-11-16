@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { assert, couple, denied, gql, ok, person, randomUUID, sql, type Person } from './lib.ts';
+import { adult, assert, couple, denied, gql, ok, person, randomUUID, sql, type Person } from './lib.ts';
 
 // table -> a minimal valid row, for the tables that are private to their author.
 const privateTables: Record<string, string> = {
@@ -185,6 +185,7 @@ test('spice cards exist only when both partners switched the mode on', async () 
   const solo = await person();
   const spice = (who: Person) => ok(who, `{ contentItems(where: {kind: {_eq: spice_card}}) { slug } }`).then((d) => d.contentItems.length);
   const enable = (who: Person, on: boolean) => ok(who, `mutation ($id: uuid!, $on: Boolean!) { updateUserSettingsByPk(pk_columns: {userId: $id}, _set: {spiceEnabled: $on}) { userId } }`, { id: who.id, on });
+  for (const who of [a, b, solo]) await adult(who);
   await enable(a, true);
   await enable(solo, true);
   assert.deepEqual([await spice(a), await spice(b), await spice(solo)], [0, 0, 0]);

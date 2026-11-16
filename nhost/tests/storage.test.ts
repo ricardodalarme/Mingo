@@ -15,7 +15,7 @@ test('a file a profile points to is readable by the partner and lost by an ex-pa
   const partner = await signUp('Bruno');
   const stranger = await signUp('Carla');
   const file = await upload(session.token, 'avatars');
-  await ok(session, `mutation ($id: uuid!) { updateProfilesByPk(pk_columns: {id: "${session.id}"}, _set: {avatarFileId: $id}) { id } }`, { id: file.id });
+  await ok(session, `mutation ($id: uuid!) { updateProfilesByPk(pk_columns: {id: "${session.id}"}, _set: {avatarKind: photo, avatarFileId: $id}) { id } }`, { id: file.id });
   assert.equal(await download(partner.token, file.id), 404, 'not a partner yet');
   const { insertInvitesOne } = await ok(session, `mutation { insertInvitesOne(object: {}) { code } }`);
   await ok(partner, `mutation ($c: String!) { acceptInvite(args: {code: $c}) { id } }`, { c: insertInvitesOne.code });
@@ -41,7 +41,7 @@ test('a partner reads the media in a message and a stranger does not', async () 
 test('a file column cannot point to a file someone else uploaded', async () => {
   const { a } = await couple();
   const ownerFile = await upload((await signUp()).token, 'avatars');
-  await denied(a, `mutation ($id: uuid!) { updateProfilesByPk(pk_columns: {id: "${a.id}"}, _set: {avatarFileId: $id}) { id } }`, { id: ownerFile.id });
+  await denied(a, `mutation ($id: uuid!) { updateProfilesByPk(pk_columns: {id: "${a.id}"}, _set: {avatarKind: photo, avatarFileId: $id}) { id } }`, { id: ownerFile.id });
   await denied(a, `mutation ($id: uuid!) { insertMemoriesOne(object: {title: "x", happenedOn: "2026-01-01", photoFileId: $id}) { id } }`, { id: ownerFile.id });
 });
 

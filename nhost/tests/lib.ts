@@ -68,6 +68,11 @@ export async function sql(text: string): Promise<string[][]> {
   return (body.result ?? []).slice(1);
 }
 
+/** Records the adult declaration the app collects before Tempero can be switched on. */
+export async function adult(p: { id: string }, granted = true): Promise<void> {
+  await sql(`insert into public.consents (user_id, kind, granted, version) values ('${p.id}', 'adult', ${granted}, '1')`);
+}
+
 export type Person = { id: string; email: string };
 
 /** Creates an auth user the way the Auth service does; the profile rows come from the database trigger. */
@@ -136,10 +141,17 @@ export async function okToken(token: string, query: string, variables: Record<st
 export type StoredFile = { id: string; name: string; size: number; bucketId: string };
 
 /** Uploads bytes through the Storage service with the caller's token, as the app does. */
-export async function upload(token: string, bucket: string, bytes: number[] = [1, 2, 3], name = 'photo.png'): Promise<StoredFile> {
+// A real 1x1 PNG: Storage detects the type from the content, so a made-up payload would be stored as octet-stream.
+export const PNG = [
+  0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0x00, 0x00, 0x00, 0x0d, 0x49, 0x48, 0x44, 0x52, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01,
+  0x08, 0x06, 0x00, 0x00, 0x00, 0x1f, 0x15, 0xc4, 0x89, 0x00, 0x00, 0x00, 0x0d, 0x49, 0x44, 0x41, 0x54, 0x78, 0x9c, 0x63, 0xf8, 0xff, 0xff, 0x3f,
+  0x00, 0x05, 0xfe, 0x02, 0xfe, 0xa7, 0x35, 0x81, 0x84, 0x00, 0x00, 0x00, 0x00, 0x49, 0x45, 0x4e, 0x44, 0xae, 0x42, 0x60, 0x82,
+];
+
+export async function upload(token: string, bucket: string, bytes: number[] = PNG, name = 'photo.png', type = 'image/png'): Promise<StoredFile> {
   const form = new FormData();
   form.append('bucket-id', bucket);
-  form.append('file[]', new Blob([new Uint8Array(bytes)], { type: 'image/png' }), name);
+  form.append('file[]', new Blob([new Uint8Array(bytes)], { type }), name);
   const res = await fetch(`${urls.storage}/files`, { method: 'POST', headers: { authorization: `Bearer ${token}` }, body: form });
   const body = (await res.json()) as any;
   assert.equal(res.status, 201, `upload failed: ${JSON.stringify(body)}`);

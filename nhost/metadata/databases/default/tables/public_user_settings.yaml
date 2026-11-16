@@ -17,6 +17,8 @@ configuration:
       custom_name: goal
     goals:
       custom_name: goals
+    has_kids:
+      custom_name: hasKids
     holiday_countries:
       custom_name: holidayCountries
     locale:
@@ -63,6 +65,7 @@ configuration:
     created_at: createdAt
     goal: goal
     goals: goals
+    has_kids: hasKids
     holiday_countries: holidayCountries
     locale: locale
     low_stimulation: lowStimulation
@@ -110,6 +113,7 @@ select_permissions:
         - created_at
         - goal
         - goals
+        - has_kids
         - holiday_countries
         - locale
         - low_stimulation
@@ -159,6 +163,7 @@ update_permissions:
         - low_stimulation
         - chat_enabled
         - chat_store_facts
+        - has_kids
       filter:
         user_id:
           _eq: X-Hasura-User-Id

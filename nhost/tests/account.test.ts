@@ -52,8 +52,8 @@ test('cancelling keeps the account and can be undone by asking again', async () 
 test('the purge erases the person and everything that hangs from the account', async () => {
   const session = await signUp('Apagar');
   const { a: partner } = await couple();
-  const file = await upload(session.token, 'avatars', [7, 7, 7]);
-  await ok(session, `mutation ($id: uuid!) { updateProfilesByPk(pk_columns: {id: "${session.id}"}, _set: {avatarFileId: $id}) { id } }`, { id: file.id });
+  const file = await upload(session.token, 'avatars');
+  await ok(session, `mutation ($id: uuid!) { updateProfilesByPk(pk_columns: {id: "${session.id}"}, _set: {avatarKind: photo, avatarFileId: $id}) { id } }`, { id: file.id });
   await ok(session, `mutation { insertConsentsOne(object: {kind: terms, granted: true, version: "1"}) { id } }`);
   const message = `preciso de ajuda ${randomUUID()}`;
   const sent = await ok(session, `mutation ($message: String!) { insertSupportRequests(objects: [{topic: other, message: $message}]) { affected_rows } }`, { message });

@@ -1,0 +1,46 @@
+table:
+  name: current_consents
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    granted:
+      custom_name: granted
+    kind:
+      custom_name: kind
+    user_id:
+      custom_name: userId
+    version:
+      custom_name: version
+  custom_column_names:
+    created_at: createdAt
+    granted: granted
+    kind: kind
+    user_id: userId
+    version: version
+  custom_name: currentConsents
+  custom_root_fields:
+    delete: deleteCurrentConsents
+    delete_by_pk: deleteCurrentConsentsByPk
+    insert: insertCurrentConsents
+    insert_one: insertCurrentConsentsOne
+    select: currentConsents
+    select_aggregate: currentConsentsAggregate
+    select_by_pk: currentConsentsByPk
+    select_stream: currentConsentsStream
+    update: updateCurrentConsents
+    update_by_pk: updateCurrentConsentsByPk
+    update_many: updateCurrentConsentsMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - granted
+        - kind
+        - user_id
+        - version
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

@@ -105,7 +105,7 @@ export const tables = {
       user: {
         select: { columns: '*', filter: or(mine('id'), meOrPartner) },
         update: {
-          columns: ['display_name', 'pronouns', 'city', 'avatar_kind', 'avatar_file_id', 'time_zone'],
+          columns: ['display_name', 'pronouns', 'city', 'avatar_kind', 'avatar_file_id', 'avatar_color', 'avatar_illustration', 'time_zone'],
           filter: mine('id'),
           check: ownFile('avatar_file_id', 'avatarFile'),
         },
@@ -121,7 +121,7 @@ export const tables = {
           columns: ['theme', 'locale', 'goal', 'goals', 'phase', 'relationship_status', 'partner_name', 'partner_pronouns', 'partner_intent', 'together_since', 'onboarded_at',
             'share_read_receipts', 'holiday_countries', 'card_channel', 'card_theme', 'slips_default_for_card',
             'widget_allow_partner_notes', 'widget_on_lock_screen', 'widget_show_names', 'spice_enabled', 'low_stimulation',
-            'chat_enabled', 'chat_store_facts'],
+            'chat_enabled', 'chat_store_facts', 'has_kids'],
           filter: mine('user_id'),
         },
       },
@@ -153,6 +153,7 @@ export const tables = {
     object: { creator: 'created_by' },
   },
   invite_previews: resultTable(['public', 'user']),
+  start_dates: resultTable(['user']),
 
   // Slips and cards ------------------------------------------------------------------------------------------------
   slips: ownerOnly({
@@ -328,6 +329,8 @@ export const tables = {
       },
     },
   },
+  // The newest answer per kind, so the app reads its consents without a function.
+  current_consents: { roles: { user: { select: { columns: '*', filter: mine('user_id') } } } },
   deletion_requests: {
     roles: {
       user: {
@@ -609,6 +612,8 @@ export const functions = {
   send_slip: { session: true, roles: ['user'] },
   accept_invite: { session: true, roles: ['user'] },
   unpair: { session: true, roles: ['user'] },
+  start_date_state: { session: true, roles: ['user'] },
+  set_couple_start_date: { session: true, roles: ['user'] },
   resolve_shared_items: { session: true, roles: ['user'] },
   daily_content: { session: true, roles: ['user'] },
   content_catalog: { session: true, roles: ['user'] },

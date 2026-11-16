@@ -1,0 +1,11 @@
+function:
+  name: start_date_state
+  schema: public
+configuration:
+  custom_name: startDateState
+  custom_root_fields:
+    function: startDateState
+    function_aggregate: startDateStateAggregate
+  session_argument: session
+permissions:
+  - role: user

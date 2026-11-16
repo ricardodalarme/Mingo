@@ -33,6 +33,7 @@ enum CardStatus_enum {
   sent
 }
 enum ConsentKind_enum {
+  adult
   ai
   analytics
   marketing
@@ -1037,7 +1038,40 @@ enum couples_select_column {
   """
   column name
   """
+  startDate
+  """
+  column name
+  """
+  startDateSetBy
+  """
+  column name
+  """
   touchTopicsEnabled
+}
+"""
+select columns of table "current_consents"
+"""
+enum currentConsents_select_column {
+  """
+  column name
+  """
+  createdAt
+  """
+  column name
+  """
+  granted
+  """
+  column name
+  """
+  kind
+  """
+  column name
+  """
+  userId
+  """
+  column name
+  """
+  version
 }
 """
 ordering argument of a cursor
@@ -2685,7 +2719,15 @@ enum profiles_select_column {
   """
   column name
   """
+  avatarColor
+  """
+  column name
+  """
   avatarFileId
+  """
+  column name
+  """
+  avatarIllustration
   """
   column name
   """
@@ -3520,6 +3562,27 @@ enum slips_update_column {
   workArea
 }
 """
+select columns of table "start_dates"
+"""
+enum startDates_select_column {
+  """
+  column name
+  """
+  couple
+  """
+  column name
+  """
+  matches
+  """
+  column name
+  """
+  mine
+  """
+  column name
+  """
+  partner
+}
+"""
 unique or primary key constraints on table "story_events"
 """
 enum storyEvents_constraint {
@@ -3797,6 +3860,10 @@ enum userSettings_select_column {
   column name
   """
   goals
+  """
+  column name
+  """
+  hasKids
   """
   column name
   """
@@ -4567,6 +4634,8 @@ type couples {
   An object relationship
   """
   photo: couplePhotos
+  startDate: date
+  startDateSetBy: uuid
   touchTopicsEnabled: Boolean!
 }
 """
@@ -4581,6 +4650,16 @@ type couples_mutation_response {
   data from the rows affected by the mutation
   """
   returning: [couples!]!
+}
+"""
+columns and relationships of "current_consents"
+"""
+type currentConsents {
+  createdAt: timestamptz
+  granted: Boolean
+  kind: String
+  userId: uuid
+  version: String
 }
 """
 columns and relationships of "deletion_requests"
@@ -7951,6 +8030,40 @@ type mutation_root {
     where: cards_bool_exp
   ): [cards!]!
   """
+  execute VOLATILE function "set_couple_start_date" which returns "couples"
+  """
+  setCoupleStartDate(
+    """
+    input parameters for function "setCoupleStartDate"
+    """
+    args: setCoupleStartDate_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [couples_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [couples_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: couples_bool_exp
+  ): [couples!]!
+  """
   execute VOLATILE function "set_notification_mutes" which returns "notification_mutes"
   """
   setNotificationMutes(
@@ -9562,11 +9675,13 @@ type preparedCards {
 columns and relationships of "profiles"
 """
 type profiles {
+  avatarColor: String
   """
   An object relationship
   """
   avatarFile: files
   avatarFileId: uuid
+  avatarIllustration: String
   avatarKind: AvatarKind_enum!
   city: String
   createdAt: timestamptz!
@@ -10342,6 +10457,35 @@ type query_root {
   fetch data from the table: "couples" using primary key columns
   """
   couplesByPk(id: uuid!): couples
+  """
+  fetch data from the table: "current_consents"
+  """
+  currentConsents(
+    """
+    distinct select on columns
+    """
+    distinct_on: [currentConsents_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [currentConsents_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: currentConsents_bool_exp
+  ): [currentConsents!]!
   """
   execute function "daily_content" which returns "content_items"
   """
@@ -12312,6 +12456,64 @@ type query_root {
   """
   slipsByPk(id: uuid!): slips
   """
+  execute function "start_date_state" which returns "start_dates"
+  """
+  startDateState(
+    """
+    distinct select on columns
+    """
+    distinct_on: [startDates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [startDates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: startDates_bool_exp
+  ): [startDates!]!
+  """
+  fetch data from the table: "start_dates"
+  """
+  startDates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [startDates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [startDates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: startDates_bool_exp
+  ): [startDates!]!
+  """
   fetch data from the table: "story_events"
   """
   storyEvents(
@@ -13406,6 +13608,15 @@ type slips_mutation_response {
   returning: [slips!]!
 }
 """
+columns and relationships of "start_dates"
+"""
+type startDates {
+  couple: date
+  matches: Boolean!
+  mine: date
+  partner: date
+}
+"""
 columns and relationships of "story_events"
 """
 type storyEvents {
@@ -14429,6 +14640,54 @@ type subscription_root {
     """
     where: couples_bool_exp
   ): [couples!]!
+  """
+  fetch data from the table: "current_consents"
+  """
+  currentConsents(
+    """
+    distinct select on columns
+    """
+    distinct_on: [currentConsents_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [currentConsents_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: currentConsents_bool_exp
+  ): [currentConsents!]!
+  """
+  fetch data from the table in a streaming manner: "current_consents"
+  """
+  currentConsentsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [currentConsents_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: currentConsents_bool_exp
+  ): [currentConsents!]!
   """
   execute function "daily_content" which returns "content_items"
   """
@@ -17159,6 +17418,83 @@ type subscription_root {
     where: slips_bool_exp
   ): [slips!]!
   """
+  execute function "start_date_state" which returns "start_dates"
+  """
+  startDateState(
+    """
+    distinct select on columns
+    """
+    distinct_on: [startDates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [startDates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: startDates_bool_exp
+  ): [startDates!]!
+  """
+  fetch data from the table: "start_dates"
+  """
+  startDates(
+    """
+    distinct select on columns
+    """
+    distinct_on: [startDates_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [startDates_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: startDates_bool_exp
+  ): [startDates!]!
+  """
+  fetch data from the table in a streaming manner: "start_dates"
+  """
+  startDatesStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [startDates_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: startDates_bool_exp
+  ): [startDates!]!
+  """
   fetch data from the table: "story_events"
   """
   storyEvents(
@@ -17657,6 +17993,7 @@ type userSettings {
   createdAt: timestamptz!
   goal: RelationshipGoal_enum
   goals: [String!]!
+  hasKids: Boolean!
   holidayCountries: [String!]!
   locale: String!
   lowStimulation: Boolean!
@@ -19669,6 +20006,8 @@ input couples_bool_exp {
   id: uuid_comparison_exp
   members: coupleMembers_bool_exp
   photo: couplePhotos_bool_exp
+  startDate: date_comparison_exp
+  startDateSetBy: uuid_comparison_exp
   touchTopicsEnabled: Boolean_comparison_exp
 }
 """
@@ -19680,6 +20019,8 @@ input couples_order_by {
   id: order_by
   members_aggregate: coupleMembers_aggregate_order_by
   photo: couplePhotos_order_by
+  startDate: order_by
+  startDateSetBy: order_by
   touchTopicsEnabled: order_by
 }
 """
@@ -19714,6 +20055,8 @@ input couples_stream_cursor_value_input {
   createdAt: timestamptz
   endedAt: timestamptz
   id: uuid
+  startDate: date
+  startDateSetBy: uuid
   touchTopicsEnabled: Boolean
 }
 input couples_updates {
@@ -19725,6 +20068,52 @@ input couples_updates {
   filter the rows which have to be updated
   """
   where: couples_bool_exp!
+}
+"""
+Boolean expression to filter rows from the table "current_consents". All fields are combined with a logical 'AND'.
+"""
+input currentConsents_bool_exp {
+  _and: [currentConsents_bool_exp!]
+  _not: currentConsents_bool_exp
+  _or: [currentConsents_bool_exp!]
+  createdAt: timestamptz_comparison_exp
+  granted: Boolean_comparison_exp
+  kind: String_comparison_exp
+  userId: uuid_comparison_exp
+  version: String_comparison_exp
+}
+"""
+Ordering options when selecting data from "current_consents".
+"""
+input currentConsents_order_by {
+  createdAt: order_by
+  granted: order_by
+  kind: order_by
+  userId: order_by
+  version: order_by
+}
+"""
+Streaming cursor of the table "currentConsents"
+"""
+input currentConsents_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: currentConsents_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input currentConsents_stream_cursor_value_input {
+  createdAt: timestamptz
+  granted: Boolean
+  kind: String
+  userId: uuid
+  version: String
 }
 input dailyContent_args {
   kind: String
@@ -22632,8 +23021,10 @@ input profiles_bool_exp {
   _and: [profiles_bool_exp!]
   _not: profiles_bool_exp
   _or: [profiles_bool_exp!]
+  avatarColor: String_comparison_exp
   avatarFile: files_bool_exp
   avatarFileId: uuid_comparison_exp
+  avatarIllustration: String_comparison_exp
   avatarKind: AvatarKind_enum_comparison_exp
   city: String_comparison_exp
   createdAt: timestamptz_comparison_exp
@@ -22650,7 +23041,9 @@ input profiles_bool_exp {
 order by max() on columns of table "profiles"
 """
 input profiles_max_order_by {
+  avatarColor: order_by
   avatarFileId: order_by
+  avatarIllustration: order_by
   city: order_by
   createdAt: order_by
   displayName: order_by
@@ -22662,7 +23055,9 @@ input profiles_max_order_by {
 order by min() on columns of table "profiles"
 """
 input profiles_min_order_by {
+  avatarColor: order_by
   avatarFileId: order_by
+  avatarIllustration: order_by
   city: order_by
   createdAt: order_by
   displayName: order_by
@@ -22674,8 +23069,10 @@ input profiles_min_order_by {
 Ordering options when selecting data from "profiles".
 """
 input profiles_order_by {
+  avatarColor: order_by
   avatarFile: files_order_by
   avatarFileId: order_by
+  avatarIllustration: order_by
   avatarKind: order_by
   city: order_by
   createdAt: order_by
@@ -22698,7 +23095,9 @@ input profiles_pk_columns_input {
 input type for updating data in table "profiles"
 """
 input profiles_set_input {
+  avatarColor: String
   avatarFileId: uuid
+  avatarIllustration: String
   avatarKind: AvatarKind_enum
   city: String
   displayName: String
@@ -22722,7 +23121,9 @@ input profiles_stream_cursor_input {
 Initial value of the column from where the streaming should start
 """
 input profiles_stream_cursor_value_input {
+  avatarColor: String
   avatarFileId: uuid
+  avatarIllustration: String
   avatarKind: AvatarKind_enum
   city: String
   createdAt: timestamptz
@@ -23723,6 +24124,9 @@ input sendSlip_args {
   note: String
   slipId: uuid
 }
+input setCoupleStartDate_args {
+  date: date
+}
 input setNotificationMutes_args {
   types: jsonb
 }
@@ -24077,6 +24481,49 @@ input smallint_comparison_exp {
   _lte: smallint
   _neq: smallint
   _nin: [smallint!]
+}
+"""
+Boolean expression to filter rows from the table "start_dates". All fields are combined with a logical 'AND'.
+"""
+input startDates_bool_exp {
+  _and: [startDates_bool_exp!]
+  _not: startDates_bool_exp
+  _or: [startDates_bool_exp!]
+  couple: date_comparison_exp
+  matches: Boolean_comparison_exp
+  mine: date_comparison_exp
+  partner: date_comparison_exp
+}
+"""
+Ordering options when selecting data from "start_dates".
+"""
+input startDates_order_by {
+  couple: order_by
+  matches: order_by
+  mine: order_by
+  partner: order_by
+}
+"""
+Streaming cursor of the table "startDates"
+"""
+input startDates_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: startDates_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input startDates_stream_cursor_value_input {
+  couple: date
+  matches: Boolean
+  mine: date
+  partner: date
 }
 """
 Boolean expression to filter rows from the table "story_events". All fields are combined with a logical 'AND'.
@@ -24480,6 +24927,7 @@ input userSettings_bool_exp {
   createdAt: timestamptz_comparison_exp
   goal: RelationshipGoal_enum_comparison_exp
   goals: String_array_comparison_exp
+  hasKids: Boolean_comparison_exp
   holidayCountries: String_array_comparison_exp
   locale: String_comparison_exp
   lowStimulation: Boolean_comparison_exp
@@ -24512,6 +24960,7 @@ input userSettings_order_by {
   createdAt: order_by
   goal: order_by
   goals: order_by
+  hasKids: order_by
   holidayCountries: order_by
   locale: order_by
   lowStimulation: order_by
@@ -24549,6 +24998,7 @@ input userSettings_set_input {
   chatStoreFacts: Boolean
   goal: RelationshipGoal_enum
   goals: [String!]
+  hasKids: Boolean
   holidayCountries: [String!]
   locale: String
   lowStimulation: Boolean
@@ -24591,6 +25041,7 @@ input userSettings_stream_cursor_value_input {
   createdAt: timestamptz
   goal: RelationshipGoal_enum
   goals: [String!]
+  hasKids: Boolean
   holidayCountries: [String!]
   locale: String
   lowStimulation: Boolean

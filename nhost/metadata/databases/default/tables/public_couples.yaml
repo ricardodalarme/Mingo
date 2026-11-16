@@ -9,12 +9,18 @@ configuration:
       custom_name: endedAt
     id:
       custom_name: id
+    start_date:
+      custom_name: startDate
+    start_date_set_by:
+      custom_name: startDateSetBy
     touch_topics_enabled:
       custom_name: touchTopicsEnabled
   custom_column_names:
     created_at: createdAt
     ended_at: endedAt
     id: id
+    start_date: startDate
+    start_date_set_by: startDateSetBy
     touch_topics_enabled: touchTopicsEnabled
   custom_name: couples
   custom_root_fields:
@@ -52,6 +58,8 @@ select_permissions:
         - created_at
         - ended_at
         - id
+        - start_date
+        - start_date_set_by
         - touch_topics_enabled
       filter:
         members:

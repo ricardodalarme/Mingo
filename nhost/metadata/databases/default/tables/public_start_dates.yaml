@@ -1,0 +1,40 @@
+table:
+  name: start_dates
+  schema: public
+configuration:
+  column_config:
+    couple:
+      custom_name: couple
+    matches:
+      custom_name: matches
+    mine:
+      custom_name: mine
+    partner:
+      custom_name: partner
+  custom_column_names:
+    couple: couple
+    matches: matches
+    mine: mine
+    partner: partner
+  custom_name: startDates
+  custom_root_fields:
+    delete: deleteStartDates
+    delete_by_pk: deleteStartDatesByPk
+    insert: insertStartDates
+    insert_one: insertStartDatesOne
+    select: startDates
+    select_aggregate: startDatesAggregate
+    select_by_pk: startDatesByPk
+    select_stream: startDatesStream
+    update: updateStartDates
+    update_by_pk: updateStartDatesByPk
+    update_many: updateStartDatesMany
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - couple
+        - matches
+        - mine
+        - partner
+      filter: {}

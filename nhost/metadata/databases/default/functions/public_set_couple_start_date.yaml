@@ -1,0 +1,11 @@
+function:
+  name: set_couple_start_date
+  schema: public
+configuration:
+  custom_name: setCoupleStartDate
+  custom_root_fields:
+    function: setCoupleStartDate
+    function_aggregate: setCoupleStartDateAggregate
+  session_argument: session
+permissions:
+  - role: user
