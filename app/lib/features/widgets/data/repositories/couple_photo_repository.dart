@@ -23,7 +23,7 @@ class CouplePhotoRepository({
   final PhotoResizer _resizePhoto = CouplePhotoImage.downscalePng,
   final PhotoDownloader? _downloadPhoto,
 }) {
-  static const String bucket = 'couple_photos';
+  static const String bucket = 'couple-photos';
   static const int maxBytes = 8 * 1024 * 1024;
 
   final Logger _logger = Logger('CouplePhotoRepository');

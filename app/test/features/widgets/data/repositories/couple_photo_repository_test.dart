@@ -97,7 +97,7 @@ void main() {
 
       verify(
         () => storageService.upload(
-          bucket: 'couple_photos',
+          bucket: 'couple-photos',
           bytes: bytes,
           contentType: 'image/jpeg',
           name: 'couple.jpg',
