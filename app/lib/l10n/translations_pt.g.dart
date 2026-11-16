@@ -6433,12 +6433,6 @@ class Translations$slipDetail$pt {
     'other': '',
   };
 
-  /// pt: 'Só você vê este slip.'
-  String get private => 'Só você vê este slip.';
-
-  /// pt: 'Arquivado'
-  String get archived => 'Arquivado';
-
   /// pt: 'Como você se sentiu'
   String get feeling => 'Como você se sentiu';
 
@@ -6450,30 +6444,6 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Para abrir em um dia ruim. Só você vê.'
   String get jarText => 'Para abrir em um dia ruim. Só você vê.';
-
-  /// pt: 'Quem vê isto'
-  String get cardTitle => 'Quem vê isto';
-
-  /// pt: 'Só eu'
-  String get cardOff => 'Só eu';
-
-  /// pt: 'Fica na sua semana e não entra no cartão.'
-  String get cardOffText => 'Fica na sua semana e não entra no cartão.';
-
-  /// pt: 'Pode entrar no cartão'
-  String get cardOn => 'Pode entrar no cartão';
-
-  /// pt: 'No domingo você escolhe se ele vai.'
-  String get cardOnText => 'No domingo você escolhe se ele vai.';
-
-  /// pt: 'Slips invisíveis nunca entram em um cartão.'
-  String get cardInvisible => 'Slips invisíveis nunca entram em um cartão.';
-
-  /// pt: 'O que seu par leria'
-  String get previewTitle => 'O que seu par leria';
-
-  /// pt: 'Se este slip entrar no cartão, é este texto que aparece.'
-  String get previewText => 'Se este slip entrar no cartão, é este texto que aparece.';
 
   /// pt: 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.'
   String get sentNote =>
@@ -6493,12 +6463,6 @@ class Translations$slipDetail$pt {
   /// pt: 'Cancelar'
   String get editCancel => 'Cancelar';
 
-  /// pt: 'Arquivar'
-  String get archive => 'Arquivar';
-
-  /// pt: 'Restaurar'
-  String get restore => 'Restaurar';
-
   /// pt: 'Apagar'
   String get delete => 'Apagar';
 
@@ -6513,9 +6477,6 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Salvo'
   String get saved => 'Salvo';
-
-  /// pt: 'Arquivado'
-  String get archivedToast => 'Arquivado';
 
   /// pt: 'Slip apagado'
   String get deleted => 'Slip apagado';
@@ -6540,6 +6501,49 @@ class Translations$slipDetail$pt {
 
   /// pt: 'Descartar este slip?'
   String get discardTitle => 'Descartar este slip?';
+
+  List<String> get weekdaysShort => ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+
+  /// pt: '{weekday} {day} de {month}'
+  String factDate({required Object weekday, required Object day, required Object month}) =>
+      '${weekday} ${day} de ${month}';
+
+  /// pt: 'Data'
+  String get factDateLabel => 'Data';
+
+  /// pt: 'Tipo'
+  String get factType => 'Tipo';
+
+  /// pt: 'Visibilidade'
+  String get factVisibility => 'Visibilidade';
+
+  /// pt: 'Incluído no cartão'
+  String get factInCard => 'Incluído no cartão';
+
+  /// pt: 'Privado'
+  String get visibilityPrivate => 'Privado';
+
+  /// pt: 'No cartão semanal'
+  String get visibilityCard => 'No cartão semanal';
+
+  /// pt: 'Enviado'
+  String get visibilitySent => 'Enviado';
+
+  /// pt: 'Sim'
+  String get yes => 'Sim';
+
+  /// pt: 'Não'
+  String get no => 'Não';
+
+  Map<String, String> get categories => {
+    'said': 'Disse algo',
+    'did': 'Fez algo',
+    'noticed': 'Me notou',
+    'helped': 'Me ajudou',
+    'other': '',
+  };
+  late final Translations$slipDetail$visibility$pt visibility =
+      Translations$slipDetail$visibility$pt.internal(_root);
 }
 
 // Path: slipKind
@@ -9049,6 +9053,45 @@ class Translations$repair$next$pt {
 
   /// pt: 'Enviar um reparo'
   String get quick => 'Enviar um reparo';
+}
+
+// Path: slipDetail.visibility
+class Translations$slipDetail$visibility$pt {
+  Translations$slipDetail$visibility$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Quem vê este slip?'
+  String get title => 'Quem vê este slip?';
+
+  /// pt: 'O padrão é privado.'
+  String get subtitle => 'O padrão é privado.';
+
+  /// pt: 'Só eu'
+  String get onlyMe => 'Só eu';
+
+  /// pt: 'Fica na sua semana'
+  String get onlyMeText => 'Fica na sua semana';
+
+  /// pt: 'Colocar no meu cartão semanal'
+  String get weeklyCard => 'Colocar no meu cartão semanal';
+
+  /// pt: 'Enviar agora'
+  String get sendNow => 'Enviar agora';
+
+  /// pt: 'Pronto'
+  String get done => 'Pronto';
+
+  /// pt: 'Slip enviado'
+  String get sentToast => 'Slip enviado';
+
+  /// pt: 'O texto parece duro e o cartão ficou retido. Reescreva e tente de novo.'
+  String get heldToast => 'O texto parece duro e o cartão ficou retido. Reescreva e tente de novo.';
+
+  /// pt: 'Não foi enviado. Confira se vocês estão conectados.'
+  String get notSentToast => 'Não foi enviado. Confira se vocês estão conectados.';
 }
 
 // Path: slipKind.specific
@@ -12528,34 +12571,21 @@ extension on Translations {
           'slipDetail.kinds.ifThen' => 'Se… então',
           'slipDetail.kinds.invisible' => 'Invisível',
           'slipDetail.kinds.other' => '',
-          'slipDetail.private' => 'Só você vê este slip.',
-          'slipDetail.archived' => 'Arquivado',
           'slipDetail.feeling' => 'Como você se sentiu',
           'slipDetail.plan' => 'Então eu…',
           'slipDetail.jarTitle' => 'Guardar no potinho',
           'slipDetail.jarText' => 'Para abrir em um dia ruim. Só você vê.',
-          'slipDetail.cardTitle' => 'Quem vê isto',
-          'slipDetail.cardOff' => 'Só eu',
-          'slipDetail.cardOffText' => 'Fica na sua semana e não entra no cartão.',
-          'slipDetail.cardOn' => 'Pode entrar no cartão',
-          'slipDetail.cardOnText' => 'No domingo você escolhe se ele vai.',
-          'slipDetail.cardInvisible' => 'Slips invisíveis nunca entram em um cartão.',
-          'slipDetail.previewTitle' => 'O que seu par leria',
-          'slipDetail.previewText' => 'Se este slip entrar no cartão, é este texto que aparece.',
           'slipDetail.sentNote' => 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.',
           'slipDetail.draftBodyErrors.empty' => 'Escreva o slip primeiro',
           'slipDetail.draftBodyErrors.tooLong' => 'Este slip está muito longo',
           'slipDetail.edit' => 'Editar',
           'slipDetail.editSave' => 'Salvar',
           'slipDetail.editCancel' => 'Cancelar',
-          'slipDetail.archive' => 'Arquivar',
-          'slipDetail.restore' => 'Restaurar',
           'slipDetail.delete' => 'Apagar',
           'slipDetail.deleteTitle' => 'Apagar este slip?',
           'slipDetail.deleteText' => 'Será removido da sua semana e da linha do tempo.',
           'slipDetail.deleteConfirm' => 'Apagar',
           'slipDetail.saved' => 'Salvo',
-          'slipDetail.archivedToast' => 'Arquivado',
           'slipDetail.deleted' => 'Slip apagado',
           'slipDetail.notFoundTitle' => 'Este slip não existe mais',
           'slipDetail.notFoundText' => 'Ele pode ter sido apagado.',
@@ -12565,6 +12595,44 @@ extension on Translations {
           'slipDetail.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'slipDetail.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'slipDetail.discardTitle' => 'Descartar este slip?',
+          'slipDetail.weekdaysShort.0' => 'Seg',
+          'slipDetail.weekdaysShort.1' => 'Ter',
+          'slipDetail.weekdaysShort.2' => 'Qua',
+          'slipDetail.weekdaysShort.3' => 'Qui',
+          'slipDetail.weekdaysShort.4' => 'Sex',
+          'slipDetail.weekdaysShort.5' => 'Sáb',
+          'slipDetail.weekdaysShort.6' => 'Dom',
+          'slipDetail.factDate' => ({
+            required Object weekday,
+            required Object day,
+            required Object month,
+          }) => '${weekday} ${day} de ${month}',
+          'slipDetail.factDateLabel' => 'Data',
+          'slipDetail.factType' => 'Tipo',
+          'slipDetail.factVisibility' => 'Visibilidade',
+          'slipDetail.factInCard' => 'Incluído no cartão',
+          'slipDetail.visibilityPrivate' => 'Privado',
+          'slipDetail.visibilityCard' => 'No cartão semanal',
+          'slipDetail.visibilitySent' => 'Enviado',
+          'slipDetail.yes' => 'Sim',
+          'slipDetail.no' => 'Não',
+          'slipDetail.categories.said' => 'Disse algo',
+          'slipDetail.categories.did' => 'Fez algo',
+          'slipDetail.categories.noticed' => 'Me notou',
+          'slipDetail.categories.helped' => 'Me ajudou',
+          'slipDetail.categories.other' => '',
+          'slipDetail.visibility.title' => 'Quem vê este slip?',
+          'slipDetail.visibility.subtitle' => 'O padrão é privado.',
+          'slipDetail.visibility.onlyMe' => 'Só eu',
+          'slipDetail.visibility.onlyMeText' => 'Fica na sua semana',
+          'slipDetail.visibility.weeklyCard' => 'Colocar no meu cartão semanal',
+          'slipDetail.visibility.sendNow' => 'Enviar agora',
+          'slipDetail.visibility.done' => 'Pronto',
+          'slipDetail.visibility.sentToast' => 'Slip enviado',
+          'slipDetail.visibility.heldToast' =>
+            'O texto parece duro e o cartão ficou retido. Reescreva e tente de novo.',
+          'slipDetail.visibility.notSentToast' =>
+            'Não foi enviado. Confira se vocês estão conectados.',
           'slipKind.switcherTitle' => 'Outras formas de registrar',
           'slipKind.quickEntry' => 'Rápido',
           'slipKind.needEntry' => 'Preciso de…',
@@ -12591,6 +12659,9 @@ extension on Translations {
           'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
           'slipKind.invisible.areaLabel' => 'Que tipo de trabalho?',
           'slipKind.invisible.private' => 'Fica só com você, não entra em nenhum cartão.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.workAreas.planning' => 'Planejar',
           'slipKind.workAreas.dates' => 'Datas',
           'slipKind.workAreas.kitchen' => 'Cozinha',
@@ -12610,9 +12681,6 @@ extension on Translations {
           'slipKind.saved.added' => 'Registrado.',
           'slipKind.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
           'slipKind.saved.done' => 'Pronto',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.errors.FREE_LIMIT_REACHED' => 'Você chegou ao limite de slips do plano grátis.',
           'slipKind.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'slipKind.errors.other' =>

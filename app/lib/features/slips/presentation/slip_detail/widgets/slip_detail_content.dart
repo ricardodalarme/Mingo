@@ -1,5 +1,7 @@
 import 'package:app/features/slips/data/models/slip_detail.dart';
+import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
+import 'package:app/features/slips/presentation/slip_detail/widgets/slip_visibility_sheet.dart';
 import 'package:app/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
@@ -17,20 +19,21 @@ class const SlipDetailContent({super.key}) extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _Header(slip: slip),
+          if (isEditing)
+            const _EditField()
+          else
+            Semantics(header: true, child: Text(slip.body, style: context.text.titleXl)),
           const SizedBox(height: AppSpace.s16),
-          if (isEditing) const _EditField() else _Body(slip: slip),
-          if (slip.feeling != null && !isEditing) ...[
-            const SizedBox(height: AppSpace.s16),
-            _Labelled(label: context.l10n.slipDetail.feeling, text: slip.feeling!),
-          ],
-          if (slip.planNote != null && !isEditing) ...[
-            const SizedBox(height: AppSpace.s16),
-            _Labelled(label: context.l10n.slipDetail.plan, text: slip.planNote!),
-          ],
-          const SizedBox(height: AppSpace.s24),
           if (!isEditing) ...[
-            _CardSection(slip: slip),
+            _Facts(slip: slip),
+            if (slip.feeling != null) ...[
+              const SizedBox(height: AppSpace.s16),
+              _Labelled(label: context.l10n.slipDetail.feeling, text: slip.feeling!),
+            ],
+            if (slip.planNote != null) ...[
+              const SizedBox(height: AppSpace.s16),
+              _Labelled(label: context.l10n.slipDetail.plan, text: slip.planNote!),
+            ],
             const SizedBox(height: AppSpace.s12),
             BaseListGroup(
               children: [
@@ -45,42 +48,77 @@ class const SlipDetailContent({super.key}) extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: AppSpace.s12),
+            if (slip.wasInCard) ...[
+              const SizedBox(height: AppSpace.s12),
+              BaseNote(text: context.l10n.slipDetail.sentNote),
+            ],
           ],
-          if (slip.wasInCard) BaseNote(text: context.l10n.slipDetail.sentNote),
         ],
       ),
-      footer: isEditing ? const _EditActions() : _Actions(slip: slip),
+      footer: isEditing ? const _EditActions() : const _Actions(),
     );
   }
 }
 
-class const _Header({required final SlipDetail slip}) extends StatelessWidget {
+class const _Facts({required final SlipDetail slip}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.slipDetail;
     final date = slip.createdAt.toLocal();
-    final line = l10n.dateLine(
-      weekday: l10n.weekdays[date.weekday - 1],
+    final dateLine = l10n.factDate(
+      weekday: l10n.weekdaysShort[date.weekday - 1],
       day: date.day,
       month: l10n.monthsShort[date.month - 1],
     );
+    final category = slip.category;
+    final type = category != null
+        ? l10n.categories.selectOrFallback(category.name)
+        : l10n.kinds.selectOrFallback(slip.kind.name);
+    final visibility = slip.wasInCard
+        ? l10n.visibilitySent
+        : slip.forCard
+        ? l10n.visibilityCard
+        : l10n.visibilityPrivate;
 
-    return Row(
+    return BaseListGroup(
       children: [
-        BaseTag(text: l10n.kinds.selectOrFallback(slip.kind.name)),
-        if (slip.isArchived) ...[const SizedBox(width: AppSpace.s8), BaseTag(text: l10n.archived)],
-        const Spacer(),
-        Text(line, style: context.text.label.copyWith(color: context.colors.textSecondary)),
+        BaseListTile(title: l10n.factDateLabel, value: dateLine, showsDivider: true),
+        BaseListTile(title: l10n.factType, value: type, showsDivider: true),
+        BaseListTile(
+          leading: BaseIconTile(
+            icon: slip.forCard || slip.wasInCard ? AppIcons.mail_filled : AppIcons.lock,
+          ),
+          title: l10n.factVisibility,
+          value: visibility,
+          showsChevron: true,
+          showsDivider: true,
+          onTap: () => _chooseVisibility(context, slip),
+        ),
+        BaseListTile(title: l10n.factInCard, value: slip.wasInCard ? l10n.yes : l10n.no),
       ],
     );
   }
-}
 
-class const _Body({required final SlipDetail slip}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(header: true, child: Text(slip.body, style: context.text.titleLg));
+  Future<void> _chooseVisibility(BuildContext context, SlipDetail slip) async {
+    final l10n = context.l10n.slipDetail.visibility;
+    final cubit = context.read<SlipDetailCubit>();
+    final choice = await showSlipVisibilitySheet(context, slip);
+    if (choice == null || !context.mounted) return;
+
+    switch (choice) {
+      case SlipVisibility.onlyMe:
+        await cubit.setForCard(value: false);
+      case SlipVisibility.weeklyCard:
+        await cubit.setForCard(value: true);
+      case SlipVisibility.sendNow:
+        final outcome = await cubit.sendNow();
+        if (!context.mounted || outcome == null) return;
+        BaseToast.show(context, switch (outcome) {
+          SlipSendOutcome.sent => l10n.sentToast,
+          SlipSendOutcome.held => l10n.heldToast,
+          SlipSendOutcome.notSent => l10n.notSentToast,
+        });
+    }
   }
 }
 
@@ -113,56 +151,7 @@ class const _EditField() extends StatelessWidget {
   }
 }
 
-class const _CardSection({required final SlipDetail slip}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.slipDetail;
-    final isBusy = context.select((SlipDetailCubit cubit) => cubit.state.saveAction.isLoading);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        BaseSectionHeader(title: l10n.cardTitle),
-        const SizedBox(height: AppSpace.s8),
-        if (!slip.canGoInCard)
-          BaseNote(text: l10n.cardInvisible)
-        else ...[
-          BaseListGroup(
-            children: [
-              BaseListTile(
-                title: slip.forCard ? l10n.cardOn : l10n.cardOff,
-                subtitle: slip.forCard ? l10n.cardOnText : l10n.cardOffText,
-                isEnabled: !isBusy,
-                control: BaseSwitch(
-                  value: slip.forCard,
-                  semanticLabel: l10n.cardOn,
-                  onChanged: (value) => context.read<SlipDetailCubit>().setForCard(value: value),
-                ),
-              ),
-            ],
-          ),
-          if (slip.forCard) ...[
-            const SizedBox(height: AppSpace.s16),
-            Text(l10n.previewTitle, style: context.text.label),
-            const SizedBox(height: AppSpace.s4),
-            Text(
-              l10n.previewText,
-              style: context.text.caption.copyWith(color: context.colors.textSecondary),
-            ),
-            const SizedBox(height: AppSpace.s8),
-            BaseSurfaceCard(
-              style: .ring,
-              padding: const EdgeInsets.all(AppSpace.s16),
-              child: Text(slip.body, style: context.text.bodyLg),
-            ),
-          ],
-        ],
-      ],
-    );
-  }
-}
-
-class const _Actions({required final SlipDetail slip}) extends StatelessWidget {
+class const _Actions() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.slipDetail;
@@ -170,34 +159,19 @@ class const _Actions({required final SlipDetail slip}) extends StatelessWidget {
     final isDeleting = context.select(
       (SlipDetailCubit cubit) => cubit.state.deleteAction.isLoading,
     );
-    final isBusy = context.select((SlipDetailCubit cubit) => cubit.state.saveAction.isLoading);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Row(
+      spacing: AppSpace.s10,
       children: [
-        BaseButton(text: l10n.edit, onPressed: cubit.startEditing),
-        const SizedBox(height: AppSpace.s10),
-        Row(
-          children: [
-            Expanded(
-              child: BaseButton(
-                text: slip.isArchived ? l10n.restore : l10n.archive,
-                variant: .secondary,
-                isLoading: isBusy,
-                onPressed: cubit.toggleArchive,
-              ),
-            ),
-            const SizedBox(width: AppSpace.s10),
-            Expanded(
-              child: BaseButton(
-                text: l10n.delete,
-                variant: .secondary,
-                isLoading: isDeleting,
-                onPressed: () => _confirmDelete(context),
-              ),
-            ),
-          ],
+        BaseButton(
+          text: l10n.delete,
+          variant: .secondary,
+          isFullWidth: false,
+          isLoading: isDeleting,
+          onPressed: () => _confirmDelete(context),
+        ),
+        Expanded(
+          child: BaseButton(text: l10n.edit, onPressed: cubit.startEditing),
         ),
       ],
     );

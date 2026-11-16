@@ -5201,10 +5201,6 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
     'other': '',
   };
   @override
-  String get private => 'Only you see this slip.';
-  @override
-  String get archived => 'Archived';
-  @override
   String get feeling => 'How you felt';
   @override
   String get plan => 'Then I…';
@@ -5212,22 +5208,6 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   String get jarTitle => 'Keep in the jar';
   @override
   String get jarText => 'To open on a bad day. Only you see it.';
-  @override
-  String get cardTitle => 'Who sees this';
-  @override
-  String get cardOff => 'Only me';
-  @override
-  String get cardOffText => 'Stays in your week and does not go in the card.';
-  @override
-  String get cardOn => 'Can go in the card';
-  @override
-  String get cardOnText => 'On Sunday you choose whether it goes.';
-  @override
-  String get cardInvisible => 'Invisible slips never go in a card.';
-  @override
-  String get previewTitle => 'What your partner would read';
-  @override
-  String get previewText => 'If this slip goes in the card, this is the text that shows.';
   @override
   String get sentNote =>
       'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.';
@@ -5243,10 +5223,6 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   @override
   String get editCancel => 'Cancel';
   @override
-  String get archive => 'Archive';
-  @override
-  String get restore => 'Restore';
-  @override
   String get delete => 'Delete';
   @override
   String get deleteTitle => 'Delete this slip?';
@@ -5256,8 +5232,6 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   String get deleteConfirm => 'Delete';
   @override
   String get saved => 'Saved';
-  @override
-  String get archivedToast => 'Archived';
   @override
   String get deleted => 'Slip deleted';
   @override
@@ -5276,6 +5250,40 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   };
   @override
   String get discardTitle => 'Discard this slip?';
+  @override
+  List<String> get weekdaysShort => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  @override
+  String factDate({required Object weekday, required Object month, required Object day}) =>
+      '${weekday} ${month} ${day}';
+  @override
+  String get factDateLabel => 'Date';
+  @override
+  String get factType => 'Type';
+  @override
+  String get factVisibility => 'Visibility';
+  @override
+  String get factInCard => 'Included in a card';
+  @override
+  String get visibilityPrivate => 'Private';
+  @override
+  String get visibilityCard => 'In the weekly card';
+  @override
+  String get visibilitySent => 'Sent';
+  @override
+  String get yes => 'Yes';
+  @override
+  String get no => 'No';
+  @override
+  Map<String, String> get categories => {
+    'said': 'Said something',
+    'did': 'Did something',
+    'noticed': 'Noticed me',
+    'helped': 'Helped me',
+    'other': '',
+  };
+  @override
+  late final _Translations$slipDetail$visibility$en visibility =
+      _Translations$slipDetail$visibility$en._(_root);
 }
 
 // Path: slipKind
@@ -7228,6 +7236,38 @@ class _Translations$repair$next$en extends Translations$repair$next$pt {
   String get guided => 'Start the guided repair';
   @override
   String get quick => 'Send a repair';
+}
+
+// Path: slipDetail.visibility
+class _Translations$slipDetail$visibility$en extends Translations$slipDetail$visibility$pt {
+  _Translations$slipDetail$visibility$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Who sees this slip?';
+  @override
+  String get subtitle => 'Private is the default.';
+  @override
+  String get onlyMe => 'Only me';
+  @override
+  String get onlyMeText => 'Stays in your week';
+  @override
+  String get weeklyCard => 'Put it in my weekly card';
+  @override
+  String get sendNow => 'Send now';
+  @override
+  String get done => 'Done';
+  @override
+  String get sentToast => 'Slip sent';
+  @override
+  String get heldToast =>
+      'The wording sounds harsh, so the card was held. Rewrite it and try again.';
+  @override
+  String get notSentToast => 'It was not sent. Check that you two are connected.';
 }
 
 // Path: slipKind.specific
@@ -10632,34 +10672,21 @@ extension on TranslationsEn {
           'slipDetail.kinds.ifThen' => 'If… then',
           'slipDetail.kinds.invisible' => 'Invisible',
           'slipDetail.kinds.other' => '',
-          'slipDetail.private' => 'Only you see this slip.',
-          'slipDetail.archived' => 'Archived',
           'slipDetail.feeling' => 'How you felt',
           'slipDetail.plan' => 'Then I…',
           'slipDetail.jarTitle' => 'Keep in the jar',
           'slipDetail.jarText' => 'To open on a bad day. Only you see it.',
-          'slipDetail.cardTitle' => 'Who sees this',
-          'slipDetail.cardOff' => 'Only me',
-          'slipDetail.cardOffText' => 'Stays in your week and does not go in the card.',
-          'slipDetail.cardOn' => 'Can go in the card',
-          'slipDetail.cardOnText' => 'On Sunday you choose whether it goes.',
-          'slipDetail.cardInvisible' => 'Invisible slips never go in a card.',
-          'slipDetail.previewTitle' => 'What your partner would read',
-          'slipDetail.previewText' => 'If this slip goes in the card, this is the text that shows.',
           'slipDetail.sentNote' => 'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.',
           'slipDetail.draftBodyErrors.empty' => 'Write the slip first',
           'slipDetail.draftBodyErrors.tooLong' => 'This slip is too long',
           'slipDetail.edit' => 'Edit',
           'slipDetail.editSave' => 'Save',
           'slipDetail.editCancel' => 'Cancel',
-          'slipDetail.archive' => 'Archive',
-          'slipDetail.restore' => 'Restore',
           'slipDetail.delete' => 'Delete',
           'slipDetail.deleteTitle' => 'Delete this slip?',
           'slipDetail.deleteText' => 'It will be removed from your week and your timeline.',
           'slipDetail.deleteConfirm' => 'Delete',
           'slipDetail.saved' => 'Saved',
-          'slipDetail.archivedToast' => 'Archived',
           'slipDetail.deleted' => 'Slip deleted',
           'slipDetail.notFoundTitle' => 'This slip no longer exists',
           'slipDetail.notFoundText' => 'It may have been deleted.',
@@ -10669,6 +10696,44 @@ extension on TranslationsEn {
           'slipDetail.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'slipDetail.errors.other' => 'Couldn\'t do that right now. Try again.',
           'slipDetail.discardTitle' => 'Discard this slip?',
+          'slipDetail.weekdaysShort.0' => 'Mon',
+          'slipDetail.weekdaysShort.1' => 'Tue',
+          'slipDetail.weekdaysShort.2' => 'Wed',
+          'slipDetail.weekdaysShort.3' => 'Thu',
+          'slipDetail.weekdaysShort.4' => 'Fri',
+          'slipDetail.weekdaysShort.5' => 'Sat',
+          'slipDetail.weekdaysShort.6' => 'Sun',
+          'slipDetail.factDate' => ({
+            required Object weekday,
+            required Object month,
+            required Object day,
+          }) => '${weekday} ${month} ${day}',
+          'slipDetail.factDateLabel' => 'Date',
+          'slipDetail.factType' => 'Type',
+          'slipDetail.factVisibility' => 'Visibility',
+          'slipDetail.factInCard' => 'Included in a card',
+          'slipDetail.visibilityPrivate' => 'Private',
+          'slipDetail.visibilityCard' => 'In the weekly card',
+          'slipDetail.visibilitySent' => 'Sent',
+          'slipDetail.yes' => 'Yes',
+          'slipDetail.no' => 'No',
+          'slipDetail.categories.said' => 'Said something',
+          'slipDetail.categories.did' => 'Did something',
+          'slipDetail.categories.noticed' => 'Noticed me',
+          'slipDetail.categories.helped' => 'Helped me',
+          'slipDetail.categories.other' => '',
+          'slipDetail.visibility.title' => 'Who sees this slip?',
+          'slipDetail.visibility.subtitle' => 'Private is the default.',
+          'slipDetail.visibility.onlyMe' => 'Only me',
+          'slipDetail.visibility.onlyMeText' => 'Stays in your week',
+          'slipDetail.visibility.weeklyCard' => 'Put it in my weekly card',
+          'slipDetail.visibility.sendNow' => 'Send now',
+          'slipDetail.visibility.done' => 'Done',
+          'slipDetail.visibility.sentToast' => 'Slip sent',
+          'slipDetail.visibility.heldToast' =>
+            'The wording sounds harsh, so the card was held. Rewrite it and try again.',
+          'slipDetail.visibility.notSentToast' =>
+            'It was not sent. Check that you two are connected.',
           'slipKind.switcherTitle' => 'Other ways to write it down',
           'slipKind.quickEntry' => 'Quick',
           'slipKind.needEntry' => 'I need…',
@@ -10695,6 +10760,9 @@ extension on TranslationsEn {
           'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
           'slipKind.invisible.areaLabel' => 'What kind of work?',
           'slipKind.invisible.private' => 'Stays with you and never enters a card.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipKind.workAreas.planning' => 'Planning',
           'slipKind.workAreas.dates' => 'Dates',
           'slipKind.workAreas.kitchen' => 'Kitchen',
@@ -10715,9 +10783,6 @@ extension on TranslationsEn {
           'slipKind.saved.queued' =>
             'Saved on this phone. We\'ll send it when the connection is back.',
           'slipKind.saved.done' => 'Done',
-          _ => null,
-        } ??
-        switch (path) {
           'slipKind.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'slipKind.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'slipKind.errors.other' =>

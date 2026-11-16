@@ -152,4 +152,26 @@ void main() {
     ],
     verify: (_) => verify(() => repository.deleteSlip('s1')).called(1),
   );
+
+  test('sending a slip now reports what happened and changes nothing else', () async {
+    when(() => repository.sendNow('s1')).thenAnswer((_) async => SlipSendOutcome.held);
+    final cubit = build();
+    addTearDown(cubit.close);
+    await cubit.load('s1');
+
+    final outcome = await cubit.sendNow();
+
+    expect(outcome, SlipSendOutcome.held);
+    expect(cubit.state.current, slip);
+    expect(cubit.state.saveAction, isA<Initial>());
+  });
+
+  test('a failed send shows the error and reports no outcome', () async {
+    when(() => repository.sendNow('s1')).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
+    final cubit = build();
+    addTearDown(cubit.close);
+    await cubit.load('s1');
+
+    expect(await cubit.sendNow(), isNull);
+  });
 }

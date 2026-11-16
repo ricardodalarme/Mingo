@@ -3,6 +3,7 @@ import 'package:app/features/slips/data/data_sources/remote/mutations/generated/
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/DeleteSlip.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SaveSlip.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SendSignal.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SendSlipNow.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SetSlipInJar.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/SlipDetail.graphql.dart';
@@ -141,5 +142,15 @@ class SlipDataSource({required final GQLClient _client}) {
     );
 
     validateResponse(response);
+  }
+
+  /// Sends one slip to the partner on its own; the status of the card it made, or null when none.
+  Future<EnumCardStatus_enum?> sendSlipNow(String slipId) async {
+    final response = await _client.mutate(
+      OptionsMutationSendSlipNow(variables: VariablesMutationSendSlipNow(slipId: slipId)),
+    );
+    validateResponse(response);
+
+    return response.parsedData?.sendSlip.firstOrNull?.status;
   }
 }

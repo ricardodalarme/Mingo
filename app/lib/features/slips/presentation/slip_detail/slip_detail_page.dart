@@ -33,6 +33,7 @@ class const SlipDetailPage({@PathParam('id') required final String id, super.key
         isEditing && current != null && draftBody.value.trim() != current.body.trim();
 
     return BaseView(
+      appBar: BaseAppBar(onBack: () => context.router.maybePop()),
       body: DirtyFormGuard(
         isDirty: hasUnsavedDraft,
         title: l10n.discardTitle,
@@ -72,9 +73,7 @@ class const SlipDetailPage({@PathParam('id') required final String id, super.key
     if (action is Failure) {
       BaseToast.show(context, l10n.errors.selectOrFallback(action.exception.l10nKey));
     } else if (action is Success) {
-      final slip = state.current;
-      final text = slip != null && slip.isArchived ? l10n.archivedToast : l10n.saved;
-      BaseToast.show(context, text);
+      BaseToast.show(context, l10n.saved);
     }
   }
 

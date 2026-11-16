@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/mappers/slip_enum_mapper.dart';
@@ -17,6 +19,18 @@ import 'package:network/network.dart';
 
 /// How many slips one page holds.
 const int slipPageSize = 20;
+
+/// What happened when a slip was sent on its own.
+enum SlipSendOutcome() {
+  /// The partner has it.
+  sent,
+
+  /// The wording matched a rule, so the card was held instead of sent.
+  held,
+
+  /// Nothing was sent: no partner, or the slip may not be sent.
+  notSent,
+}
 
 /// Where a saved slip ended up.
 enum SlipSaveOutcome() {
@@ -281,6 +295,23 @@ class SlipRepository({
     if (text.trim().isEmpty && category == null) return _localDataSource.clearDraft();
 
     return _localDataSource.writeDraft(SlipDraft(text: text, savedAt: now, category: category));
+  }
+
+  /// Sends one slip to the partner now, without waiting for Sunday.
+  Future<SlipSendOutcome> sendNow(String slipId) async {
+    try {
+      final status = await _slipDataSource.sendSlipNow(slipId);
+      _changes.add(null);
+
+      return switch (status) {
+        EnumCardStatus_enum.sent => SlipSendOutcome.sent,
+        EnumCardStatus_enum.held => SlipSendOutcome.held,
+        _ => SlipSendOutcome.notSent,
+      };
+    } catch (e, stack) {
+      _logger.error('Failed to send a slip', error: e, stackTrace: stack);
+      rethrow;
+    }
   }
 
   Future<void> clearDraft() => _localDataSource.clearDraft();

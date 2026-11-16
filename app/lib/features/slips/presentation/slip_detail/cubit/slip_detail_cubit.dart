@@ -97,6 +97,24 @@ class SlipDetailCubit({required final SlipRepository _slipRepository})
     }
   }
 
+  /// Sends the slip to the partner now; the outcome tells the page what to say.
+  Future<SlipSendOutcome?> sendNow() async {
+    final slip = state.current;
+    if (slip == null || state.saveAction.isLoading) return null;
+
+    emit(state.copyWith(saveAction: const Loading()));
+    try {
+      final outcome = await _slipRepository.sendNow(slip.id);
+      emit(state.copyWith(saveAction: const Initial()));
+
+      return outcome;
+    } catch (exception) {
+      _fail(exception);
+
+      return null;
+    }
+  }
+
   Future<void> delete() async {
     final slip = state.current;
     if (slip == null || state.deleteAction.isLoading) return;

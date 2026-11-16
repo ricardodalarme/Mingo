@@ -1,0 +1,6 @@
+mutation SendSlipNow($slipId: uuid!) {
+  sendSlip(args: { slipId: $slipId }) {
+    id
+    status
+  }
+}
