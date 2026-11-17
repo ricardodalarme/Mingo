@@ -37,7 +37,7 @@
     "other": "{count} slips this week"
   },
   "weekHintEmpty": "no rush",
-  "weekHint": "card on Sunday",
+  "weekHint": "card for the week",
   "forToday": "For today",
   "ideaLabel": "Idea of the day",
   "sundayCardLabel": "Sunday card",
@@ -72,7 +72,6 @@
   "errorTitle": "Could not load Today",
   "errorText": "Your slips are safe. Try again.",
   "cardReceivedNamed": "{name} sent you a card",
-  "weekHintToday": "card goes out today, 18:00",
   "inviteCardSupport": "Your space already works. The other person joins whenever they want.",
   "inviteCardAction": "Invite",
   "carouselCardTag": "Card",

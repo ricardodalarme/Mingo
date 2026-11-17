@@ -37,7 +37,7 @@
     "other": "{count} slips esta semana"
   },
   "weekHintEmpty": "sem pressa",
-  "weekHint": "cartão no domingo",
+  "weekHint": "cartão da semana",
   "forToday": "Para hoje",
   "ideaLabel": "Ideia do dia",
   "sundayCardLabel": "Cartão de domingo",
@@ -72,7 +72,6 @@
   "errorTitle": "Não deu para carregar o Hoje",
   "errorText": "Seus slips estão seguros. Tente de novo.",
   "cardReceivedNamed": "{name} te mandou um cartão",
-  "weekHintToday": "cartão sai hoje, 18:00",
   "inviteCardSupport": "Seu espaço já funciona. A outra pessoa entra quando quiser.",
   "inviteCardAction": "Convidar",
   "carouselCardTag": "Cartão",

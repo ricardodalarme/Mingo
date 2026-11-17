@@ -169,7 +169,6 @@ class const TodayContent({
   String _weekSupport(BuildContext context) {
     final l10n = context.l10n.today;
     if (home.slipsThisWeek == 0) return l10n.weekHintEmpty;
-    if (clock.now().weekday == DateTime.sunday) return l10n.weekHintToday;
 
     return l10n.weekHint;
   }
