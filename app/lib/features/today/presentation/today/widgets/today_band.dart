@@ -8,7 +8,7 @@ import 'package:design_system/design_system.dart';
 /// The single notice Hoje shows before its blocks.
 ///
 /// A pending invite outranks no connection, which outranks reminders switched off, so the screen
-/// never stacks two bands. The reminders notice keeps its own switch and close on the device.
+/// never stacks two bands. The reminders notice decides on the device whether it shows.
 class const TodayBand({
   required final TodayHome home,
   required final bool isOffline,
