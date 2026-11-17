@@ -123,7 +123,9 @@ Never write the old separate form (`const SlipCard({required this.slip});` in th
   through `GQLClient.mutate` succeeds. A data source passes the generated `WatchOptionsQuery<Name>` with
   `FetchPolicy.cacheAndNetwork`; the repository exposes `watchX()` and passes failures on. Use it for what the person's own writes
   change on other screens, so no repository announces changes by hand. Select `id` on every entity so the normalized cache can
-  match it. The cache lives in memory and `QueryCacheInitializer` clears it on sign-out; nothing is stored on disk.
+  match it. The cache is saved on the device in an encrypted box (`PersistentStore`, opened by
+  `QueryStoreInitializer` with a key from secure storage) so reads work offline: a `networkOnly` query that cannot reach the server is
+  answered from the saved copy of the same query. Everything the cache holds is saved; `QueryCacheInitializer` empties it on sign-out.
 - **Requests are a budget** (the backend rate limit is 600 a minute). Read the person id from the session
   (`AuthenticationRepository.currentUserId`) and the couple id from `TogetherRepository.getCoupleId()`, which follows one
   subscription; never query them. Published catalog content (`contentItems`: games, spice texts, programs, help, ideas) uses

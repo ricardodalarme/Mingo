@@ -30,6 +30,7 @@ Future<void> _runStartupPipeline() async {
     NotificationsInitializer(),
     PreferencesInitializer(),
     QueryCacheInitializer(),
+    QueryStoreInitializer(),
   ]);
 
   final report = await pipeline.execute();

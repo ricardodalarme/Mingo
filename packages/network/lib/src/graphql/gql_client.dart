@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:graphql/client.dart';
 import 'package:graphql_query_compress/graphql_query_compress.dart';
+import 'package:logger/logger.dart';
 import 'package:network/src/graphql/links/link_chain.dart';
 
 class GQLClient._(
@@ -16,6 +17,7 @@ class GQLClient._(
     Map<String, String> defaultHeaders = const {},
     Duration queryTimeout = const Duration(seconds: 10),
     Duration mutationTimeout = const Duration(seconds: 30),
+    Store? store,
   }) {
     // ignore: close_sinks, the client lives as long as the app
     final toggle = StreamController<ToggleConnectionState>.broadcast();
@@ -39,7 +41,7 @@ class GQLClient._(
 
     return GQLClient._(
       GraphQLClient(
-        cache: GraphQLCache(),
+        cache: GraphQLCache(store: store),
         link: link,
         // TimeoutLink owns the deadlines; the client's own timer completes a request twice.
         queryRequestTimeout: null,
@@ -58,10 +60,43 @@ class GQLClient._(
   /// Wraps an existing [client], so a test can supply its own link.
   factory withClient(GraphQLClient client) => GQLClient._(client);
 
+  static final Logger _logger = Logger('GQLClient');
+
   final Set<ObservableQuery<Object?>> _watched = {};
 
-  Future<QueryResult<T>> query<T>(QueryOptions<T> options) {
-    return _client.query(options);
+  /// Runs a query. A `networkOnly` read that cannot reach the server is answered from the saved
+  /// copy of the same query when there is one, and fails as it did when there is none.
+  Future<QueryResult<T>> query<T>(QueryOptions<T> options) async {
+    final result = await _client.query(options);
+    if (options.fetchPolicy != FetchPolicy.networkOnly || !_isUnreachable(result)) return result;
+
+    final saved = await _client.query(
+      options.copyWithPolicies(
+        Policies(
+          fetch: FetchPolicy.cacheOnly,
+          error: options.errorPolicy,
+          cacheReread: options.cacheRereadPolicy,
+        ),
+      ),
+    );
+    final data = saved.data;
+    if (data == null) {
+      _logger.debug('${options.operationName} has no saved copy');
+
+      return result;
+    }
+
+    _logger.info('${options.operationName} could not reach the server, answered from saved data');
+
+    // An open watch of the same query hands back its own failed result, so the saved data is
+    // returned on its own.
+    return QueryResult<T>(options: options, source: QueryResultSource.cache, data: data);
+  }
+
+  bool _isUnreachable(QueryResult<Object?> result) {
+    final exception = result.exception;
+
+    return exception != null && exception.linkException != null && exception.graphqlErrors.isEmpty;
   }
 
   /// Runs a mutation and, when it succeeds, reads every open [watch] again so each screen that

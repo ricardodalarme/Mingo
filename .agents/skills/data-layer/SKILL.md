@@ -64,7 +64,10 @@ class GiftsDataSource({required final GQLClient _client}) {
 
 - `GQLClient` comes from `package:network/network.dart` and is constructor-injected. App code never imports `package:graphql`;
   `FetchPolicy` and the other types it needs are re-exported by `package:network`.
-- The client default is `cacheAndNetwork`; reads pass `FetchPolicy.networkOnly` so the cubit gets one fresh result.
+- The client default is `cacheAndNetwork`; reads pass `FetchPolicy.networkOnly` so the cubit gets one fresh result. When such a read
+  cannot reach the server, `GQLClient.query` answers from the saved copy of the same query (same document and variables) and fails as
+  before when there is none, so a data source needs nothing extra to work offline.
+- The cache is saved on the device, so anything a query or mutation returns can be read again offline.
 - Wrap every call in `validateResponseData(response, getData: ...)`. It throws `ServerResponseException` for a failed response
   (codes `NETWORK` and `TIMEOUT` when the request did not complete, otherwise the server's stable code) and `NoDataException` when
   the data, or what `getData` selects, is null. Do not add your own null check after it.

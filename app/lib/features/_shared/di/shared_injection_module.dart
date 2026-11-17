@@ -52,9 +52,11 @@ class SharedInjectionModule() implements InjectionModule {
       () => DeviceMarkerStore(secureStorageService: injector.get<SecureStorageService>()),
     )
     ..registerLazySingleton<PreferencesService>(PreferencesService.new)
+    ..registerLazySingleton<PersistentStore>(PersistentStore.new)
     ..registerLazySingleton<GQLClient>(
       () => GQLClient(
         serverUrl: EnvVariables.serverUrl,
+        store: injector.get<PersistentStore>(),
         tokenCallback: injector.get<AuthenticationRepository>().getFreshAccessToken,
         refreshSession: injector.get<AuthenticationRepository>().refreshSession,
       ),

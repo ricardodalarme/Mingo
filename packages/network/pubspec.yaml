@@ -12,6 +12,7 @@ dependencies:
   gql: ^1.0.1
   graphql: ^5.2.4
   graphql_query_compress: ^1.0.0
+  hive_ce: ^2.11.0
   logger:
     path: ../logger
 
