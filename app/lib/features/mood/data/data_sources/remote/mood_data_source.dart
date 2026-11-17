@@ -19,6 +19,7 @@ typedef PartnerMoodRecord = ({DateTime? day, EnumMood_enum? mood, EnumMoodNeed_e
 /// The server's local day, the partner's name, today's own mood and the partner's shared mood.
 typedef MoodTodayRecord = ({
   DateTime day,
+  bool hasPartner,
   String? partnerName,
   MoodRecord? mood,
   PartnerMoodRecord? partnerMood,
@@ -40,7 +41,13 @@ class MoodDataSource({required final GQLClient _client}) {
     final shared = today.partner?.sharedMood;
     final partnerMood = shared != null && shared.day == localDate ? shared.toRecord() : null;
 
-    return (day: localDate, partnerName: today.partnerName, mood: mood, partnerMood: partnerMood);
+    return (
+      day: localDate,
+      hasPartner: today.partner != null,
+      partnerName: today.partnerName,
+      mood: mood,
+      partnerMood: partnerMood,
+    );
   }
 
   Future<MoodRecord> insertMood({

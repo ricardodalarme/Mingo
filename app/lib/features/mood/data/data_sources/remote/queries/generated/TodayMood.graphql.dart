@@ -132,6 +132,13 @@ const documentNodeQueryTodayMood = DocumentNode(
                   selectionSet: SelectionSetNode(
                     selections: [
                       FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
                         name: NameNode(value: 'sharedMood'),
                         alias: null,
                         arguments: [],
@@ -461,12 +468,14 @@ class QueryTodayMoodtoday {
 }
 
 class QueryTodayMoodtodaypartner {
-  QueryTodayMoodtodaypartner({this.sharedMood, this.$__typename = 'profiles'});
+  QueryTodayMoodtodaypartner({required this.id, this.sharedMood, this.$__typename = 'profiles'});
 
   factory QueryTodayMoodtodaypartner.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$sharedMood = json['sharedMood'];
     final l$$__typename = json['__typename'];
     return QueryTodayMoodtodaypartner(
+      id: (l$id as String),
       sharedMood: l$sharedMood == null
           ? null
           : QueryTodayMoodtodaypartnersharedMood.fromJson((l$sharedMood as Map<String, dynamic>)),
@@ -474,12 +483,16 @@ class QueryTodayMoodtodaypartner {
     );
   }
 
+  final String id;
+
   final QueryTodayMoodtodaypartnersharedMood? sharedMood;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$sharedMood = sharedMood;
     _resultData['sharedMood'] = l$sharedMood?.toJson();
     final l$$__typename = $__typename;
@@ -489,9 +502,10 @@ class QueryTodayMoodtodaypartner {
 
   @override
   int get hashCode {
+    final l$id = id;
     final l$sharedMood = sharedMood;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$sharedMood, l$$__typename]);
+    return Object.hashAll([l$id, l$sharedMood, l$$__typename]);
   }
 
   @override
@@ -500,6 +514,11 @@ class QueryTodayMoodtodaypartner {
       return true;
     }
     if (other is! QueryTodayMoodtodaypartner || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$sharedMood = sharedMood;

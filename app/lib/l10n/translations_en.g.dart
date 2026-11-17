@@ -3481,6 +3481,10 @@ class _Translations$mood$en extends Translations$mood$pt {
   @override
   String get privateCue => 'Only you see this';
   @override
+  String sharedCue({required Object name}) => '${name} sees it';
+  @override
+  String get sharedCueNoName => 'your partner sees it';
+  @override
   Map<String, String> get moods => {
     'happy': 'Happy',
     'tired': 'Tired',
@@ -3580,9 +3584,15 @@ class _Translations$mood$en extends Translations$mood$pt {
   @override
   String get partnerNeedRest => 'What helps: rest.';
   @override
+  String partnerSharedChoice({required Object name}) => '${name} chose to share this with you.';
+  @override
   String get homeTitle => 'How are you?';
   @override
   String get homePrivacy => 'Only you see it';
+  @override
+  String homePrivacyShared({required Object name}) => '${name} sees it';
+  @override
+  String get homePrivacySharedNoName => 'Your partner sees it';
   @override
   String get homeDetailsLink => 'What your partner sees';
   @override
@@ -3658,6 +3668,8 @@ class _Translations$moodHelp$en extends Translations$moodHelp$pt {
   String get makeCoffeeOrDinner => 'Make coffee or dinner';
   @override
   String get makeCoffeeOrDinnerSupport => 'Without turning it into a shared task.';
+  @override
+  String get noDiagnosisNote => 'App suggestions, not a diagnosis. No rush.';
   @override
   String get reactionLabel => 'Send a heart';
   @override
@@ -10520,6 +10532,8 @@ extension on TranslationsEn {
           'mood.titleHighlight' => 'today',
           'mood.subtitle' => 'One tap. The “I need…” tag is optional.',
           'mood.privateCue' => 'Only you see this',
+          'mood.sharedCue' => ({required Object name}) => '${name} sees it',
+          'mood.sharedCueNoName' => 'your partner sees it',
           'mood.moods.happy' => 'Happy',
           'mood.moods.tired' => 'Tired',
           'mood.moods.sad' => 'Sad',
@@ -10577,8 +10591,13 @@ extension on TranslationsEn {
           'mood.partnerNeedForeheadKiss' => 'What helps: a kiss on the forehead.',
           'mood.partnerNeedCompany' => 'What helps: some company.',
           'mood.partnerNeedRest' => 'What helps: rest.',
+          'mood.partnerSharedChoice' => ({
+            required Object name,
+          }) => '${name} chose to share this with you.',
           'mood.homeTitle' => 'How are you?',
           'mood.homePrivacy' => 'Only you see it',
+          'mood.homePrivacyShared' => ({required Object name}) => '${name} sees it',
+          'mood.homePrivacySharedNoName' => 'Your partner sees it',
           'mood.homeDetailsLink' => 'What your partner sees',
           'mood.homeMoods.happy' => 'Good',
           'mood.homeMoods.loving' => 'Loving',
@@ -10613,6 +10632,7 @@ extension on TranslationsEn {
           'moodHelp.sweetMessageBody' => 'No rush. I\'m here.',
           'moodHelp.makeCoffeeOrDinner' => 'Make coffee or dinner',
           'moodHelp.makeCoffeeOrDinnerSupport' => 'Without turning it into a shared task.',
+          'moodHelp.noDiagnosisNote' => 'App suggestions, not a diagnosis. No rush.',
           'moodHelp.reactionLabel' => 'Send a heart',
           'moodHelp.sent' => 'Heart sent',
           'moodHelp.askSent' => 'Question sent',
@@ -11063,6 +11083,9 @@ extension on TranslationsEn {
           'programs.lessonsComingTitle' => 'Lessons coming',
           'programs.lessonsComingText' => 'This program is still being prepared. Come back soon.',
           'programs.lessonGoneTitle' => 'Lesson not here',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.lessonGoneText' =>
             'This day is no longer part of the program. Choose another lesson.',
           'programs.dayOneHint' => 'The first lesson is always open in this program.',
@@ -11635,6 +11658,9 @@ extension on TranslationsEn {
           'slipDetail.deleteConfirm' => 'Delete',
           'slipDetail.saved' => 'Saved',
           'slipDetail.deleted' => 'Slip deleted',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.notFoundTitle' => 'This slip no longer exists',
           'slipDetail.notFoundText' => 'It may have been deleted.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
@@ -12381,6 +12407,9 @@ extension on TranslationsEn {
           'weeklyReview.months.2' => 'March',
           'weeklyReview.months.3' => 'April',
           'weeklyReview.months.4' => 'May',
+          _ => null,
+        } ??
+        switch (path) {
           'weeklyReview.months.5' => 'June',
           'weeklyReview.months.6' => 'July',
           'weeklyReview.months.7' => 'August',

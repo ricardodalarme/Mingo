@@ -3,6 +3,8 @@
   "titleHighlight": "today",
   "subtitle": "One tap. The “I need…” tag is optional.",
   "privateCue": "Only you see this",
+  "sharedCue": "{name} sees it",
+  "sharedCueNoName": "your partner sees it",
   "moods(map)": {
     "happy": "Happy",
     "tired": "Tired",
@@ -66,8 +68,11 @@
   "partnerNeedForeheadKiss": "What helps: a kiss on the forehead.",
   "partnerNeedCompany": "What helps: some company.",
   "partnerNeedRest": "What helps: rest.",
+  "partnerSharedChoice": "{name} chose to share this with you.",
   "homeTitle": "How are you?",
   "homePrivacy": "Only you see it",
+  "homePrivacyShared": "{name} sees it",
+  "homePrivacySharedNoName": "Your partner sees it",
   "homeDetailsLink": "What your partner sees",
   "homeMoods(map)": {
     "happy": "Good",

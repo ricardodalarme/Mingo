@@ -1,5 +1,6 @@
 import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:app/features/mood/presentation/mood/widgets/mood_form.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
@@ -31,18 +32,23 @@ class const MoodPage({final String? initialMood, super.key})
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n.mood;
     final entry = context.select((MoodCubit cubit) => cubit.state.entry);
+    final audience = context.select((MoodCubit cubit) => cubit.state.audience);
+    final partnerName = context.select((MoodCubit cubit) => cubit.state.partnerName);
     final isChoosingShare = context.select((MoodCubit cubit) => cubit.state.isChoosingShare);
+    final hasName = partnerName != null && partnerName.isNotEmpty;
 
     return BaseView(
       appBar: isChoosingShare
           ? BaseAppBar(onBack: context.read<MoodCubit>().back)
           : BaseAppBar(
               onClose: () => context.router.maybePop(),
-              trailing: Text(
-                context.l10n.mood.privateCue,
-                style: context.text.body.copyWith(color: context.colors.textSecondary),
-              ),
+              trailing: Text(switch (audience) {
+                MoodShare.none => l10n.privateCue,
+                MoodShare.mood || MoodShare.moodNeed =>
+                  hasName ? l10n.sharedCue(name: partnerName) : l10n.sharedCueNoName,
+              }, style: context.text.body.copyWith(color: context.colors.textSecondary)),
             ),
       body: BlocListener<MoodCubit, MoodState>(
         listenWhen: (previous, current) => previous.saveAction != current.saveAction,

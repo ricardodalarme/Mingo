@@ -11,7 +11,12 @@ import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
 /// Today's own mood, the partner's shared mood and the partner's name for the share title.
-typedef MoodToday = ({MoodEntry? entry, PartnerMood? partnerMood, String? partnerName});
+typedef MoodToday = ({
+  MoodEntry? entry,
+  PartnerMood? partnerMood,
+  String? partnerName,
+  bool hasPartner,
+});
 
 class MoodRepository({
   required final MoodDataSource _dataSource,
@@ -28,6 +33,7 @@ class MoodRepository({
       entry: entry,
       partnerMood: today.partnerMood?.toPartnerMood(),
       partnerName: today.partnerName,
+      hasPartner: today.hasPartner,
     );
   });
 

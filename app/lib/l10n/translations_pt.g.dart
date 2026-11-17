@@ -4258,6 +4258,12 @@ class Translations$mood$pt {
   /// pt: 'só você vê'
   String get privateCue => 'só você vê';
 
+  /// pt: '{name} vê'
+  String sharedCue({required Object name}) => '${name} vê';
+
+  /// pt: 'seu par vê'
+  String get sharedCueNoName => 'seu par vê';
+
   Map<String, String> get moods => {
     'happy': 'Feliz',
     'tired': 'Cansado(a)',
@@ -4384,11 +4390,21 @@ class Translations$mood$pt {
   /// pt: 'O que ajuda: descanso.'
   String get partnerNeedRest => 'O que ajuda: descanso.';
 
+  /// pt: '{name} escolheu compartilhar isso com você.'
+  String partnerSharedChoice({required Object name}) =>
+      '${name} escolheu compartilhar isso com você.';
+
   /// pt: 'Como você está?'
   String get homeTitle => 'Como você está?';
 
   /// pt: 'Só você vê'
   String get homePrivacy => 'Só você vê';
+
+  /// pt: '{name} vê'
+  String homePrivacyShared({required Object name}) => '${name} vê';
+
+  /// pt: 'Seu par vê'
+  String get homePrivacySharedNoName => 'Seu par vê';
 
   /// pt: 'O que seu par vê'
   String get homeDetailsLink => 'O que seu par vê';
@@ -4493,6 +4509,9 @@ class Translations$moodHelp$pt {
 
   /// pt: 'Sem transformar em tarefa combinada.'
   String get makeCoffeeOrDinnerSupport => 'Sem transformar em tarefa combinada.';
+
+  /// pt: 'Sugestões do app, sem diagnóstico. Sem pressa.'
+  String get noDiagnosisNote => 'Sugestões do app, sem diagnóstico. Sem pressa.';
 
   /// pt: 'Mandar um coração'
   String get reactionLabel => 'Mandar um coração';
@@ -12584,6 +12603,8 @@ extension on Translations {
           'mood.titleHighlight' => 'hoje',
           'mood.subtitle' => 'Um toque. A etiqueta “Preciso de...” é opcional.',
           'mood.privateCue' => 'só você vê',
+          'mood.sharedCue' => ({required Object name}) => '${name} vê',
+          'mood.sharedCueNoName' => 'seu par vê',
           'mood.moods.happy' => 'Feliz',
           'mood.moods.tired' => 'Cansado(a)',
           'mood.moods.sad' => 'Triste',
@@ -12646,8 +12667,13 @@ extension on Translations {
           'mood.partnerNeedForeheadKiss' => 'O que ajuda: um beijinho na testa.',
           'mood.partnerNeedCompany' => 'O que ajuda: companhia.',
           'mood.partnerNeedRest' => 'O que ajuda: descanso.',
+          'mood.partnerSharedChoice' => ({
+            required Object name,
+          }) => '${name} escolheu compartilhar isso com você.',
           'mood.homeTitle' => 'Como você está?',
           'mood.homePrivacy' => 'Só você vê',
+          'mood.homePrivacyShared' => ({required Object name}) => '${name} vê',
+          'mood.homePrivacySharedNoName' => 'Seu par vê',
           'mood.homeDetailsLink' => 'O que seu par vê',
           'mood.homeMoods.happy' => 'Bem',
           'mood.homeMoods.loving' => 'Carinhoso',
@@ -12682,6 +12708,7 @@ extension on Translations {
           'moodHelp.sweetMessageBody' => 'Sem pressa. Estou por aqui.',
           'moodHelp.makeCoffeeOrDinner' => 'Fazer café ou o jantar',
           'moodHelp.makeCoffeeOrDinnerSupport' => 'Sem transformar em tarefa combinada.',
+          'moodHelp.noDiagnosisNote' => 'Sugestões do app, sem diagnóstico. Sem pressa.',
           'moodHelp.reactionLabel' => 'Mandar um coração',
           'moodHelp.sent' => 'Coração enviado',
           'moodHelp.askSent' => 'Pergunta enviada',
@@ -13133,6 +13160,9 @@ extension on Translations {
           'programs.lessonsComingText' =>
             'Este programa ainda está sendo preparado. Volte em breve.',
           'programs.lessonGoneTitle' => 'Lição indisponível',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.lessonGoneText' =>
             'Este dia não faz mais parte do programa. Escolha outra lição.',
           'programs.dayOneHint' => 'A primeira lição é sempre aberta neste programa.',
@@ -13710,6 +13740,9 @@ extension on Translations {
           'slipDetail.deleteConfirm' => 'Apagar',
           'slipDetail.saved' => 'Salvo',
           'slipDetail.deleted' => 'Slip apagado',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.notFoundTitle' => 'Este slip não existe mais',
           'slipDetail.notFoundText' => 'Ele pode ter sido apagado.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
@@ -14453,6 +14486,9 @@ extension on Translations {
           'weeklyReview.months.2' => 'março',
           'weeklyReview.months.3' => 'abril',
           'weeklyReview.months.4' => 'maio',
+          _ => null,
+        } ??
+        switch (path) {
           'weeklyReview.months.5' => 'junho',
           'weeklyReview.months.6' => 'julho',
           'weeklyReview.months.7' => 'agosto',

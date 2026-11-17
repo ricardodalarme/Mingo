@@ -3,6 +3,7 @@ query TodayMood {
     localDate
     partnerName
     partner {
+      id
       sharedMood {
         day
         mood

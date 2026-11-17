@@ -39,8 +39,12 @@ void main() {
     need: NeedKind.hug,
     share: MoodShare.mood,
   );
-  MoodToday today({MoodEntry? value, PartnerMood? partner, String? partnerName = 'Marina'}) =>
-      (entry: value, partnerMood: partner, partnerName: partnerName);
+  MoodToday today({
+    MoodEntry? value,
+    PartnerMood? partner,
+    String? partnerName = 'Marina',
+    bool hasPartner = true,
+  }) => (entry: value, partnerMood: partner, partnerName: partnerName, hasPartner: hasPartner);
 
   setUpAll(() {
     LocaleSettings.setLocaleSync(AppLocale.pt);
@@ -240,6 +244,17 @@ void main() {
   });
 
   testWidgets('the privacy label opens the mood card', (tester) async {
+    when(() => repository.getTodayMood()).thenAnswer(
+      (_) async => today(
+        value: MoodEntry(
+          id: 'm1',
+          day: day,
+          mood: MoodKind.tired,
+          need: NeedKind.hug,
+          share: MoodShare.none,
+        ),
+      ),
+    );
     final router = _MockStackRouter();
     when(() => router.push<Object?>(any(), onFailure: any(named: 'onFailure')))
         .thenAnswer((_) async => null);
@@ -261,6 +276,16 @@ void main() {
       () => router.push<Object?>(captureAny(), onFailure: any(named: 'onFailure')),
     ).captured.single;
     expect(route, isA<MoodRoute>());
+  });
+
+  testWidgets('a mood shared today says the partner sees it', (tester) async {
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+
+    expect(find.text('Marina vê'), findsOneWidget);
+    expect(find.text('Só você vê'), findsNothing);
   });
 
   testWidgets('asking to talk sends one ask and confirms it', (tester) async {

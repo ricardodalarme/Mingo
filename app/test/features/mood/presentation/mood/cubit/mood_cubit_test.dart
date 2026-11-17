@@ -30,8 +30,12 @@ void main() {
     share: MoodShare.moodNeed,
   );
   final partnerMood = PartnerMood(day: day, mood: MoodKind.stressed, need: NeedKind.space);
-  MoodToday today({MoodEntry? value, PartnerMood? partner, String? partnerName = 'Marina'}) =>
-      (entry: value, partnerMood: partner, partnerName: partnerName);
+  MoodToday today({
+    MoodEntry? value,
+    PartnerMood? partner,
+    String? partnerName = 'Marina',
+    bool hasPartner = true,
+  }) => (entry: value, partnerMood: partner, partnerName: partnerName, hasPartner: hasPartner);
 
   setUpAll(() {
     registerFallbackValue(MoodKind.happy);
@@ -142,6 +146,39 @@ void main() {
 
     verify(() => repository.saveMood(mood: MoodKind.happy, need: null, share: MoodShare.none))
         .called(1);
+  });
+
+  test('without a partner the mood saves privately and never opens the share step', () async {
+    when(() => repository.getTodayMood())
+        .thenAnswer((_) async => today(hasPartner: false, partnerName: null));
+    final cubit = build();
+    await cubit.load();
+
+    cubit
+      ..selectMood(MoodKind.happy)
+      ..next();
+
+    expect(cubit.state.isChoosingShare, isFalse);
+
+    cubit.selectShare(MoodShare.mood);
+    expect(cubit.state.share, MoodShare.none);
+
+    await cubit.save();
+
+    verify(() => repository.saveMood(mood: MoodKind.happy, need: null, share: MoodShare.none))
+        .called(1);
+  });
+
+  test('a share saved before pairing reads as private without a partner', () async {
+    when(() => repository.getTodayMood())
+        .thenAnswer((_) async => today(value: entry, hasPartner: false, partnerName: null));
+    final cubit = build();
+
+    await cubit.load();
+
+    expect(cubit.state.hasPartner, isFalse);
+    expect(cubit.state.audience, MoodShare.none);
+    expect(cubit.state.partnerMood, isNull);
   });
 
   test('saving twice keeps one row and the latest values win', () async {

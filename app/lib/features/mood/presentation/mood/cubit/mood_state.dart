@@ -6,6 +6,7 @@ final class const MoodState({
   final MoodKind? mood,
   final NeedKind? need,
   final MoodShare share = MoodShare.none,
+  final bool hasPartner = false,
   final bool isChoosingShare = false,
   final String? partnerName,
   final Resource<void> saveAction = const Initial(),
@@ -18,12 +19,16 @@ final class const MoodState({
   bool get canSave =>
       mood != null && !saveAction.isLoading && (share != MoodShare.moodNeed || need != null);
 
+  /// The audience of the saved mood; without a partner nothing is ever shared.
+  MoodShare get audience => hasPartner ? share : MoodShare.none;
+
   MoodState copyWith({
     Resource<MoodEntry?>? entry,
     PartnerMood? partnerMood,
     MoodKind? mood,
     NeedKind? need,
     MoodShare? share,
+    bool? hasPartner,
     bool? isChoosingShare,
     String? partnerName,
     Resource<void>? saveAction,
@@ -42,6 +47,7 @@ final class const MoodState({
       mood: clearMood ? null : mood ?? this.mood,
       need: clearNeed ? null : need ?? this.need,
       share: share ?? this.share,
+      hasPartner: hasPartner ?? this.hasPartner,
       isChoosingShare: isChoosingShare ?? this.isChoosingShare,
       partnerName: clearPartnerName ? partnerName : partnerName ?? this.partnerName,
       saveAction: saveAction ?? this.saveAction,
@@ -59,6 +65,7 @@ final class const MoodState({
     mood,
     need,
     share,
+    hasPartner,
     isChoosingShare,
     partnerName,
     saveAction,

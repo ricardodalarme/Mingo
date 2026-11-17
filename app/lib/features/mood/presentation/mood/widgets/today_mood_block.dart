@@ -1,5 +1,6 @@
 import 'package:app/features/mood/data/models/mood_entry.dart';
 import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:app/features/mood/presentation/mood/mood_faces.dart';
 import 'package:app/features/mood/presentation/mood/widgets/mood_row.dart';
@@ -38,9 +39,16 @@ class const TodayMoodBlock({
     final helpL10n = context.l10n.moodHelp;
     final entry = context.select((MoodCubit cubit) => cubit.state.entry);
     final mood = context.select((MoodCubit cubit) => cubit.state.mood);
+    final audience = context.select((MoodCubit cubit) => cubit.state.audience);
     final partnerMood = context.select((MoodCubit cubit) => cubit.state.partnerMood);
     final partnerName = context.select((MoodCubit cubit) => cubit.state.partnerName);
     final selectedIndex = mood == null ? null : _homeMoods.indexOf(mood);
+    final hasName = partnerName != null && partnerName.isNotEmpty;
+    final privacyLabel = switch (audience) {
+      MoodShare.none => l10n.homePrivacy,
+      MoodShare.mood || MoodShare.moodNeed =>
+        hasName ? l10n.homePrivacyShared(name: partnerName) : l10n.homePrivacySharedNoName,
+    };
 
     return BlocListener<MoodCubit, MoodState>(
       listenWhen: (previous, current) =>
@@ -62,7 +70,7 @@ class const TodayMoodBlock({
                 children: [
                   MoodRow(
                     title: l10n.homeTitle,
-                    actionLabel: l10n.homePrivacy,
+                    actionLabel: privacyLabel,
                     onAction: () => _openDetails(context),
                     options: [
                       for (final option in _homeMoods)

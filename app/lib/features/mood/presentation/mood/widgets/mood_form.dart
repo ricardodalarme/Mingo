@@ -22,6 +22,7 @@ class const _MoodStep() extends StatelessWidget {
     final l10n = context.l10n.mood;
     final mood = context.select((MoodCubit cubit) => cubit.state.mood);
     final need = context.select((MoodCubit cubit) => cubit.state.need);
+    final hasPartner = context.select((MoodCubit cubit) => cubit.state.hasPartner);
     final isSaving = context.select((MoodCubit cubit) => cubit.state.saveAction.isLoading);
     final cubit = context.read<MoodCubit>();
 
@@ -61,7 +62,12 @@ class const _MoodStep() extends StatelessWidget {
           ),
         ],
       ),
-      footer: BaseButton(text: l10n.next, isEnabled: mood != null, onPressed: cubit.next),
+      footer: BaseButton(
+        text: hasPartner ? l10n.next : l10n.save,
+        isEnabled: mood != null,
+        isLoading: !hasPartner && isSaving,
+        onPressed: hasPartner ? cubit.next : cubit.save,
+      ),
     );
   }
 }

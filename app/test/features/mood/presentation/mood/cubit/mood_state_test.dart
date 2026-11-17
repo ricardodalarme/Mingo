@@ -38,6 +38,15 @@ void main() {
     expect(updated.need, NeedKind.hug);
   });
 
+  test('the audience is always private without a partner', () {
+    const shared = MoodState(share: MoodShare.moodNeed, hasPartner: true);
+    expect(shared.audience, MoodShare.moodNeed);
+
+    final alone = shared.copyWith(hasPartner: false);
+    expect(alone.audience, MoodShare.none);
+    expect(alone.share, MoodShare.moodNeed);
+  });
+
   test('canSave needs a mood and a need when both are shared', () {
     expect(const MoodState().canSave, isFalse);
 

@@ -3,6 +3,8 @@
   "titleHighlight": "hoje",
   "subtitle": "Um toque. A etiqueta “Preciso de...” é opcional.",
   "privateCue": "só você vê",
+  "sharedCue": "{name} vê",
+  "sharedCueNoName": "seu par vê",
   "moods(map)": {
     "happy": "Feliz",
     "tired": "Cansado(a)",
@@ -66,8 +68,11 @@
   "partnerNeedForeheadKiss": "O que ajuda: um beijinho na testa.",
   "partnerNeedCompany": "O que ajuda: companhia.",
   "partnerNeedRest": "O que ajuda: descanso.",
+  "partnerSharedChoice": "{name} escolheu compartilhar isso com você.",
   "homeTitle": "Como você está?",
   "homePrivacy": "Só você vê",
+  "homePrivacyShared": "{name} vê",
+  "homePrivacySharedNoName": "Seu par vê",
   "homeDetailsLink": "O que seu par vê",
   "homeMoods(map)": {
     "happy": "Bem",

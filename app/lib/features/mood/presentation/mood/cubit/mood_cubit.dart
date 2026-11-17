@@ -35,6 +35,8 @@ class MoodCubit({
       if (isClosed) return;
       emit(
         _fromEntry(today.entry).copyWith(
+          hasPartner: today.hasPartner,
+          share: today.hasPartner ? null : MoodShare.none,
           partnerMood: today.partnerMood,
           clearPartnerMood: today.partnerMood == null,
           partnerName: today.partnerName,
@@ -66,9 +68,9 @@ class MoodCubit({
     );
   }
 
-  /// Moves on from the mood to the choice of who sees it.
+  /// Moves on from the mood to the choice of who sees it; without a partner there is no choice.
   void next() {
-    if (state.mood == null || state.saveAction.isLoading) return;
+    if (state.mood == null || !state.hasPartner || state.saveAction.isLoading) return;
     emit(state.copyWith(isChoosingShare: true));
   }
 
@@ -77,6 +79,7 @@ class MoodCubit({
 
   void selectShare(MoodShare share) {
     if (state.saveAction.isLoading) return;
+    if (!state.hasPartner && share != MoodShare.none) return;
     if (share == MoodShare.moodNeed && state.need == null) return;
     emit(state.copyWith(share: share));
   }
@@ -90,7 +93,7 @@ class MoodCubit({
       final entry = await _moodRepository.saveMood(
         mood: state.mood!,
         need: state.need,
-        share: state.share,
+        share: state.audience,
       );
       if (isClosed) return;
       emit(_fromEntry(entry).copyWith(saveAction: const Success(null)));
@@ -119,7 +122,7 @@ class MoodCubit({
       final entry = await _moodRepository.saveMood(
         mood: mood,
         need: state.need,
-        share: state.share,
+        share: state.audience,
       );
       if (isClosed) return;
       emit(_fromEntry(entry).copyWith(saveAction: const Success(null)));
@@ -139,7 +142,11 @@ class MoodCubit({
     final share = need == null && state.share == MoodShare.moodNeed ? MoodShare.mood : state.share;
     emit(state.copyWith(needAction: const Loading()));
     try {
-      final entry = await _moodRepository.saveMood(mood: mood, need: need, share: share);
+      final entry = await _moodRepository.saveMood(
+        mood: mood,
+        need: need,
+        share: state.hasPartner ? share : MoodShare.none,
+      );
       if (isClosed) return;
       emit(_fromEntry(entry).copyWith(needAction: const Success(null)));
     } catch (exception) {

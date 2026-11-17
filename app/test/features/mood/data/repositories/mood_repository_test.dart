@@ -37,7 +37,14 @@ void main() {
     MoodRecord? mood,
     String? partnerName = 'Rui',
     PartnerMoodRecord? partnerMood,
-  }) => (day: day, partnerName: partnerName, mood: mood, partnerMood: partnerMood);
+    bool hasPartner = true,
+  }) => (
+    day: day,
+    hasPartner: hasPartner,
+    partnerName: partnerName,
+    mood: mood,
+    partnerMood: partnerMood,
+  );
 
   setUpAll(() {
     registerFallbackValue('');
@@ -61,12 +68,24 @@ void main() {
   test('maps the own mood, need, share and partner name', () async {
     final result = await repository.getTodayMood();
 
+    expect(result.hasPartner, isTrue);
     expect(result.partnerName, 'Rui');
     expect(result.entry?.id, 'm1');
     expect(result.entry?.day, day);
     expect(result.entry?.mood, MoodKind.tired);
     expect(result.entry?.need, NeedKind.hug);
     expect(result.entry?.share, MoodShare.moodNeed);
+  });
+
+  test('a person with nobody linked reads as having no partner', () async {
+    when(() => dataSource.getTodayMood())
+        .thenAnswer((_) async => today(hasPartner: false, partnerName: null));
+
+    final result = await repository.getTodayMood();
+
+    expect(result.hasPartner, isFalse);
+    expect(result.partnerName, isNull);
+    expect(result.partnerMood, isNull);
   });
 
   test("maps the partner's shared mood and need", () async {

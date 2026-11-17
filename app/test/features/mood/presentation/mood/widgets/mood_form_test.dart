@@ -30,7 +30,7 @@ void main() {
     final repository = _MockMoodRepository();
     final pending = Completer<MoodEntry>();
     when(repository.getTodayMood).thenAnswer((_) async {
-      return (entry: null, partnerMood: null, partnerName: 'Marina');
+      return (entry: null, partnerMood: null, partnerName: 'Marina', hasPartner: true);
     });
     when(
       () => repository.saveMood(
@@ -73,8 +73,9 @@ void main() {
 
   testWidgets('every mood card takes the same width', (tester) async {
     final repository = _MockMoodRepository();
-    when(repository.getTodayMood)
-        .thenAnswer((_) async => (entry: null, partnerMood: null, partnerName: 'Marina'));
+    when(repository.getTodayMood).thenAnswer(
+      (_) async => (entry: null, partnerMood: null, partnerName: 'Marina', hasPartner: true),
+    );
     final cubit = MoodCubit(moodRepository: repository, slipRepository: _MockSlipRepository());
     await cubit.load();
     addTearDown(cubit.close);
@@ -96,8 +97,9 @@ void main() {
 
   testWidgets('the next step waits for a mood and the back button returns to it', (tester) async {
     final repository = _MockMoodRepository();
-    when(repository.getTodayMood)
-        .thenAnswer((_) async => (entry: null, partnerMood: null, partnerName: 'Marina'));
+    when(repository.getTodayMood).thenAnswer(
+      (_) async => (entry: null, partnerMood: null, partnerName: 'Marina', hasPartner: true),
+    );
     final cubit = MoodCubit(moodRepository: repository, slipRepository: _MockSlipRepository());
     await cubit.load();
     addTearDown(cubit.close);
@@ -115,5 +117,47 @@ void main() {
     cubit.back();
 
     expect(cubit.state.isChoosingShare, isFalse);
+  });
+
+  testWidgets('without a partner the card saves at once and never asks who sees it', (
+    tester,
+  ) async {
+    final repository = _MockMoodRepository();
+    when(repository.getTodayMood).thenAnswer(
+      (_) async => (entry: null, partnerMood: null, partnerName: null, hasPartner: false),
+    );
+    when(
+      () => repository.saveMood(
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+      ),
+    ).thenAnswer(
+      (_) async => MoodEntry(
+        id: 'm1',
+        day: DateTime(2026, 11, 11),
+        mood: MoodKind.happy,
+        share: MoodShare.none,
+      ),
+    );
+    final cubit = MoodCubit(moodRepository: repository, slipRepository: _MockSlipRepository());
+    await cubit.load();
+    addTearDown(cubit.close);
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const MoodForm()));
+
+    expect(find.text('Salvar'), findsOneWidget);
+    expect(find.text('Próximo'), findsNothing);
+
+    await tester.tap(find.text('Feliz'));
+    await tester.pump();
+    await tester.tap(find.text('Salvar'));
+    await tester.pump();
+    await tester.pump();
+
+    verify(() => repository.saveMood(mood: MoodKind.happy, need: null, share: MoodShare.none))
+        .called(1);
+    expect(find.text('Compartilhar com a Marina?'), findsNothing);
+    expect(find.text('Manter privado'), findsNothing);
   });
 }
