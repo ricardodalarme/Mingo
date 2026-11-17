@@ -28,19 +28,19 @@
   "invisible": {
     "title": "Things nobody notices",
     "titleHighlight": "nobody notices",
-    "subtitle": "Only for you. This never goes into a card.",
+    "subtitle": "Name the work nobody sees.",
     "hint": "E.g. remembered the kids' appointment",
     "areaLabel": "What kind of work?",
     "private": "Stays with you and never enters a card."
   },
   "workAreas(map)": {
     "planning": "Planning",
-    "dates": "Dates",
+    "dates": "Remembering dates",
     "kitchen": "Kitchen",
     "cleaning": "Cleaning",
-    "kids": "Kids",
-    "emotional": "Emotional",
-    "finances": "Finances",
+    "kids": "Kids' logistics",
+    "emotional": "Emotional support",
+    "finances": "Household finances",
     "other": "Other"
   },
   "textErrors(map)": {

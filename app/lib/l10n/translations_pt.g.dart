@@ -6765,13 +6765,13 @@ class Translations$slipKind$pt {
   late final Translations$slipKind$invisible$pt invisible =
       Translations$slipKind$invisible$pt.internal(_root);
   Map<String, String> get workAreas => {
-    'planning': 'Planejar',
-    'dates': 'Datas',
+    'planning': 'Planejamento',
+    'dates': 'Lembrar de datas',
     'kitchen': 'Cozinha',
     'cleaning': 'Limpeza',
-    'kids': 'Filhos',
-    'emotional': 'Emocional',
-    'finances': 'Finanças',
+    'kids': 'Logística dos filhos',
+    'emotional': 'Apoio emocional',
+    'finances': 'Finanças da casa',
     'other': 'Outro',
   };
   Map<String, String> get textErrors => {
@@ -9779,8 +9779,8 @@ class Translations$slipKind$invisible$pt {
   /// pt: 'ninguém percebe'
   String get titleHighlight => 'ninguém percebe';
 
-  /// pt: 'Só para você. Isto nunca vai para o cartão.'
-  String get subtitle => 'Só para você. Isto nunca vai para o cartão.';
+  /// pt: 'Dê nome ao trabalho que ninguém vê.'
+  String get subtitle => 'Dê nome ao trabalho que ninguém vê.';
 
   /// pt: 'Ex.: lembrei da consulta das crianças'
   String get hint => 'Ex.: lembrei da consulta das crianças';
@@ -13778,17 +13778,17 @@ extension on Translations {
           'slipKind.ifThen.thenHint' => 'Ex.: peço um tempo de 10 minutos',
           'slipKind.invisible.title' => 'Coisas que ninguém percebe',
           'slipKind.invisible.titleHighlight' => 'ninguém percebe',
-          'slipKind.invisible.subtitle' => 'Só para você. Isto nunca vai para o cartão.',
+          'slipKind.invisible.subtitle' => 'Dê nome ao trabalho que ninguém vê.',
           'slipKind.invisible.hint' => 'Ex.: lembrei da consulta das crianças',
           'slipKind.invisible.areaLabel' => 'Que tipo de trabalho?',
           'slipKind.invisible.private' => 'Fica só com você, não entra em nenhum cartão.',
-          'slipKind.workAreas.planning' => 'Planejar',
-          'slipKind.workAreas.dates' => 'Datas',
+          'slipKind.workAreas.planning' => 'Planejamento',
+          'slipKind.workAreas.dates' => 'Lembrar de datas',
           'slipKind.workAreas.kitchen' => 'Cozinha',
           'slipKind.workAreas.cleaning' => 'Limpeza',
-          'slipKind.workAreas.kids' => 'Filhos',
-          'slipKind.workAreas.emotional' => 'Emocional',
-          'slipKind.workAreas.finances' => 'Finanças',
+          'slipKind.workAreas.kids' => 'Logística dos filhos',
+          'slipKind.workAreas.emotional' => 'Apoio emocional',
+          'slipKind.workAreas.finances' => 'Finanças da casa',
           'slipKind.workAreas.other' => 'Outro',
           'slipKind.textErrors.empty' => 'Escreva o slip primeiro',
           'slipKind.textErrors.tooLong' => 'Este slip está muito longo',

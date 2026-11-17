@@ -5469,12 +5469,12 @@ class _Translations$slipKind$en extends Translations$slipKind$pt {
   @override
   Map<String, String> get workAreas => {
     'planning': 'Planning',
-    'dates': 'Dates',
+    'dates': 'Remembering dates',
     'kitchen': 'Kitchen',
     'cleaning': 'Cleaning',
-    'kids': 'Kids',
-    'emotional': 'Emotional',
-    'finances': 'Finances',
+    'kids': 'Kids\' logistics',
+    'emotional': 'Emotional support',
+    'finances': 'Household finances',
     'other': 'Other',
   };
   @override
@@ -7835,7 +7835,7 @@ class _Translations$slipKind$invisible$en extends Translations$slipKind$invisibl
   @override
   String get titleHighlight => 'nobody notices';
   @override
-  String get subtitle => 'Only for you. This never goes into a card.';
+  String get subtitle => 'Name the work nobody sees.';
   @override
   String get hint => 'E.g. remembered the kids\' appointment';
   @override
@@ -11703,17 +11703,17 @@ extension on TranslationsEn {
           'slipKind.ifThen.thenHint' => 'E.g. I ask for 10 minutes alone',
           'slipKind.invisible.title' => 'Things nobody notices',
           'slipKind.invisible.titleHighlight' => 'nobody notices',
-          'slipKind.invisible.subtitle' => 'Only for you. This never goes into a card.',
+          'slipKind.invisible.subtitle' => 'Name the work nobody sees.',
           'slipKind.invisible.hint' => 'E.g. remembered the kids\' appointment',
           'slipKind.invisible.areaLabel' => 'What kind of work?',
           'slipKind.invisible.private' => 'Stays with you and never enters a card.',
           'slipKind.workAreas.planning' => 'Planning',
-          'slipKind.workAreas.dates' => 'Dates',
+          'slipKind.workAreas.dates' => 'Remembering dates',
           'slipKind.workAreas.kitchen' => 'Kitchen',
           'slipKind.workAreas.cleaning' => 'Cleaning',
-          'slipKind.workAreas.kids' => 'Kids',
-          'slipKind.workAreas.emotional' => 'Emotional',
-          'slipKind.workAreas.finances' => 'Finances',
+          'slipKind.workAreas.kids' => 'Kids\' logistics',
+          'slipKind.workAreas.emotional' => 'Emotional support',
+          'slipKind.workAreas.finances' => 'Household finances',
           'slipKind.workAreas.other' => 'Other',
           'slipKind.textErrors.empty' => 'Write the slip first',
           'slipKind.textErrors.tooLong' => 'This slip is too long',
