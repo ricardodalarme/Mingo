@@ -1,16 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-/// The notification types a person can switch off one by one, matching the server type keys.
-const List<String> notificationTypes = [
-  'card_ready',
-  'card_received',
-  'card_reaction',
-  'daily_idea',
-  'date_coming',
-];
+/// The reminders a person can switch off one by one, matching the server type keys.
+///
+/// Notifications started by the partner are not reminders: they always arrive and are not listed.
+const List<String> notificationTypes = ['daily_idea', 'date_coming', 'card_ready'];
 
-/// The most pushes a person can receive in a day.
-const int maxDailyNotifications = 2;
+/// The fewest and the most reminders a day may bring.
+const int minDailyMax = 1;
+const int maxDailyMax = 2;
 
 /// What the person chose for notifications, kept on the server so it applies to pushes.
 final class const NotificationPreferences({
@@ -18,7 +15,7 @@ final class const NotificationPreferences({
   final Set<String> mutedTypes = const {},
   final int cardDay = 0,
   final int cardHour = 9,
-  final int dailyMax = maxDailyNotifications,
+  final int dailyMax = maxDailyMax,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() => const NotificationPreferences();
@@ -37,7 +34,7 @@ final class const NotificationPreferences({
     mutedTypes: mutedTypes ?? this.mutedTypes,
     cardDay: cardDay ?? this.cardDay,
     cardHour: cardHour ?? this.cardHour,
-    dailyMax: dailyMax ?? this.dailyMax,
+    dailyMax: (dailyMax ?? this.dailyMax).clamp(minDailyMax, maxDailyMax),
   );
 
   @override

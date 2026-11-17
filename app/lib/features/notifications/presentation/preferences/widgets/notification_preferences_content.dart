@@ -1,10 +1,13 @@
 import 'package:app/features/notifications/data/models/notification_preferences.dart';
 import 'package:app/features/notifications/presentation/preferences/cubit/notification_preferences_cubit.dart';
-import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// The reminder choices drawn the way the board draws them: the daily cap, the types and the rule.
+///
+/// The card's day and hour moved to the card settings, where they belong, and quiet hours are not
+/// a server choice, so the screen keeps only what the backend enforces.
 class const NotificationPreferencesContent({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,23 +20,14 @@ class const NotificationPreferencesContent({super.key}) extends StatelessWidget 
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
-          const SizedBox(height: AppSpace.s8),
-          Text(
-            l10n.subtitle,
-            style: context.text.body.copyWith(color: context.colors.textSecondary),
-          ),
-          const SizedBox(height: AppSpace.s20),
           if (isSystemOff) ...[const _SystemOffBanner(), const SizedBox(height: AppSpace.s16)],
-          const _MasterSwitch(),
-          const SizedBox(height: AppSpace.s20),
-          const _Types(),
-          const SizedBox(height: AppSpace.s20),
           const _DailyMax(),
           const SizedBox(height: AppSpace.s20),
-          const _SundayCard(),
-          const SizedBox(height: AppSpace.s20),
-          const _Preview(),
+          BaseSectionHeader(title: l10n.typesTitle),
+          const SizedBox(height: AppSpace.s8),
+          const _Types(),
+          const SizedBox(height: AppSpace.s16),
+          BaseNote(text: l10n.note, icon: AppIcons.info),
         ],
       ),
     );
@@ -54,28 +48,50 @@ class const _SystemOffBanner() extends StatelessWidget {
   }
 }
 
-class const _MasterSwitch() extends StatelessWidget {
+class const _DailyMax() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.notificationPreferences;
-    final isEnabled = context.select(
-      (NotificationPreferencesCubit cubit) => cubit.state.current?.isEnabled ?? true,
+    final dailyMax = context.select(
+      (NotificationPreferencesCubit cubit) => cubit.state.current?.dailyMax ?? maxDailyMax,
     );
 
     return BaseListGroup(
       children: [
         BaseListTile(
-          title: l10n.all,
-          subtitle: l10n.allText,
-          control: BaseSwitch(
-            value: isEnabled,
-            semanticLabel: l10n.all,
-            onChanged: (value) =>
-                context.read<NotificationPreferencesCubit>().setEnabled(value: value),
-          ),
+          title: l10n.perDayTitle,
+          subtitle: l10n.perDaySupport,
+          value: l10n.perDayValue(count: dailyMax),
+          showsChevron: true,
+          onTap: () => _pick(context, dailyMax),
         ),
       ],
     );
+  }
+
+  Future<void> _pick(BuildContext context, int current) async {
+    final l10n = context.l10n.notificationPreferences;
+    final value = await BaseSheet.show<int>(
+      context: context,
+      title: l10n.perDaySheetTitle,
+      child: Builder(
+        builder: (sheetContext) => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (var count = minDailyMax; count <= maxDailyMax; count++) ...[
+              BaseOptionTile(
+                title: l10n.perDayValue(count: count),
+                isSelected: count == current,
+                onTap: () => Navigator.of(sheetContext).pop(count),
+              ),
+              if (count < maxDailyMax) const SizedBox(height: AppSpace.s10),
+            ],
+          ],
+        ),
+      ),
+    );
+    if (value == null || !context.mounted) return;
+    await context.read<NotificationPreferencesCubit>().setDailyMax(value);
   }
 }
 
@@ -85,131 +101,25 @@ class const _Types() extends StatelessWidget {
     final l10n = context.l10n.notificationPreferences;
     final preferences = context.select((NotificationPreferencesCubit cubit) => cubit.state.current);
     if (preferences == null) return const SizedBox.shrink();
+    final labels = {
+      'daily_idea': l10n.types.dailyIdea,
+      'date_coming': l10n.types.dateComing,
+      'card_ready': l10n.types.cardReady,
+    };
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return BaseListGroup(
       children: [
-        BaseSectionHeader(title: l10n.typesTitle),
-        const SizedBox(height: AppSpace.s8),
-        BaseListGroup(
-          children: [
-            for (final type in notificationTypes)
-              BaseListTile(
-                title: l10n.types.selectOrFallback(type),
-                isEnabled: preferences.isEnabled,
-                control: BaseSwitch(
-                  value: preferences.allows(type),
-                  semanticLabel: l10n.types.selectOrFallback(type),
-                  onChanged: (value) => context.read<NotificationPreferencesCubit>().setTypeEnabled(
-                    type,
-                    value: value,
-                  ),
-                ),
-              ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-List<BaseSelectOption<int>> _hourOptions(String Function(int hour) format) => [
-  for (var hour = 0; hour < 24; hour++) BaseSelectOption(value: hour, label: format(hour)),
-];
-
-class const _SundayCard() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.notificationPreferences;
-    final preferences = context.select((NotificationPreferencesCubit cubit) => cubit.state.current);
-    if (preferences == null) return const SizedBox.shrink();
-
-    final cubit = context.read<NotificationPreferencesCubit>();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        BaseSectionHeader(title: l10n.cardTitle),
-        const SizedBox(height: AppSpace.s12),
-        BaseSelect<int>(
-          label: l10n.cardDay,
-          options: [
-            for (var day = 0; day < l10n.days.length; day++)
-              BaseSelectOption(value: day, label: l10n.days[day]),
-          ],
-          value: preferences.cardDay,
-          onChanged: cubit.setCardDay,
-        ),
-        const SizedBox(height: AppSpace.s12),
-        BaseSelect<int>(
-          label: l10n.cardHour,
-          options: _hourOptions((hour) => l10n.hourFormat(hour: hour.toString().padLeft(2, '0'))),
-          value: preferences.cardHour,
-          onChanged: cubit.setCardHour,
-        ),
-      ],
-    );
-  }
-}
-
-class const _Preview() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.notificationPreferences;
-    final reminders = context.l10n.reminders;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        BaseSectionHeader(title: l10n.previewTitle),
-        const SizedBox(height: AppSpace.s8),
-        BaseSurfaceCard(
-          style: .ring,
-          padding: const EdgeInsets.all(AppSpace.s16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(reminders.title, style: context.text.label),
-              const SizedBox(height: AppSpace.s4),
-              Text(reminders.weeklyCard, style: context.text.body),
-            ],
+        for (final type in notificationTypes)
+          BaseListTile(
+            title: labels[type] ?? l10n.types.other,
+            isEnabled: preferences.isEnabled,
+            control: BaseSwitch(
+              value: preferences.allows(type),
+              semanticLabel: labels[type] ?? l10n.types.other,
+              onChanged: (value) =>
+                  context.read<NotificationPreferencesCubit>().setTypeEnabled(type, value: value),
+            ),
           ),
-        ),
-        const SizedBox(height: AppSpace.s8),
-        Text(
-          l10n.previewText,
-          style: context.text.caption.copyWith(color: context.colors.textSecondary),
-        ),
-      ],
-    );
-  }
-}
-
-class const _DailyMax() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.notificationPreferences;
-    final preferences = context.select((NotificationPreferencesCubit cubit) => cubit.state.current);
-    if (preferences == null) return const SizedBox.shrink();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        BaseSectionHeader(title: l10n.dailyMaxTitle),
-        const SizedBox(height: AppSpace.s8),
-        BaseSegmented(
-          segments: [
-            for (var value = 0; value <= maxDailyNotifications; value++)
-              l10n.dailyMax(count: value),
-          ],
-          selectedIndex: preferences.dailyMax,
-          onSelectionChanged: context.read<NotificationPreferencesCubit>().setDailyMax,
-        ),
-        const SizedBox(height: AppSpace.s8),
-        Text(
-          l10n.dailyMaxNote,
-          style: context.text.caption.copyWith(color: context.colors.textSecondary),
-        ),
       ],
     );
   }

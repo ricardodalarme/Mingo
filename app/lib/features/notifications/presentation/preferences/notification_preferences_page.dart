@@ -1,7 +1,6 @@
 import 'package:app/features/notifications/data/models/notification_preferences.dart';
 import 'package:app/features/notifications/presentation/preferences/cubit/notification_preferences_cubit.dart';
 import 'package:app/features/notifications/presentation/preferences/widgets/notification_preferences_content.dart';
-import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
@@ -55,6 +54,7 @@ class _NotificationPreferencesPageState()
     );
 
     return BaseView(
+      appBar: BaseAppBar(title: l10n.title),
       body: BlocListener<NotificationPreferencesCubit, NotificationPreferencesState>(
         listenWhen: (previous, current) => previous.saveAction != current.saveAction,
         listener: _onSaveChanged,
@@ -76,9 +76,10 @@ class _NotificationPreferencesPageState()
   void _onSaveChanged(BuildContext context, NotificationPreferencesState state) {
     final action = state.saveAction;
     if (action is Failure) {
+      final errors = context.l10n.notificationPreferences.errors;
       BaseToast.show(
         context,
-        context.l10n.notificationPreferences.errors.selectOrFallback(action.exception.l10nKey),
+        action.exception.l10nKey == 'RATE_LIMITED' ? errors.rateLimited : errors.other,
       );
     }
   }

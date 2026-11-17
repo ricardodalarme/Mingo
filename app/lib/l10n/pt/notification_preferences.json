@@ -1,22 +1,18 @@
 {
-  "title": "Notificações",
-  "subtitle": "Escolha o que chega e quando. Nada de cobrança.",
+  "title": "Lembretes",
   "systemOff": "As notificações estão desligadas neste celular. Suas escolhas valem quando você ligar.",
   "openSystem": "Abrir configurações",
-  "all": "Receber notificações",
-  "allText": "Desligue para pausar tudo.",
-  "typesTitle": "O que você quer receber",
-  "types(map)": {
-    "card_ready": "Cartão pronto",
-    "card_received": "Cartão recebido",
-    "card_reaction": "Resposta ao seu cartão",
+  "perDayTitle": "Por dia",
+  "perDaySupport": "No máximo",
+  "perDayValue": "Até {count}",
+  "perDaySheetTitle": "Quantos lembretes por dia?",
+  "typesTitle": "Tipos",
+  "types": {
     "daily_idea": "Ideia do dia",
-    "date_coming": "Datas chegando",
+    "date_coming": "Datas e feriados",
+    "card_ready": "Cartão semanal",
     "other": ""
   },
-  "cardTitle": "Cartão de domingo",
-  "cardDay": "Dia",
-  "cardHour": "Horário",
   "days": [
     "Domingo",
     "Segunda",
@@ -27,19 +23,11 @@
     "Sábado"
   ],
   "hourFormat": "{hour}:00",
-  "previewTitle": "Como a notificação aparece",
-  "previewText": "Sempre curta e sem detalhes pessoais.",
-  "loadErrorTitle": "Não deu para abrir suas preferências",
-  "loadErrorText": "Elas continuam salvas. Tente de novo.",
-  "errors(map)": {
+  "note": "Limite rígido de 1 a 2 mensagens por dia. Cada tipo pode ser desligado.",
+  "loadErrorTitle": "Não deu para abrir seus lembretes",
+  "loadErrorText": "Eles continuam salvos. Tente de novo.",
+  "errors": {
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para salvar agora. Sua escolha anterior foi mantida."
-  },
-  "dailyMaxTitle": "Quantas por dia",
-  "dailyMaxNote": "No máximo duas por dia, sempre curtas e sem detalhes pessoais.",
-  "dailyMax(plural, param=count)": {
-    "zero": "Nenhuma",
-    "one": "Até 1",
-    "other": "Até {count}"
   }
 }

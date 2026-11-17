@@ -77,6 +77,26 @@ void main() {
     verify(() => sync.sync()).called(1);
   });
 
+  test('a lower daily cap is saved', () async {
+    final cubit = build();
+    await cubit.load();
+
+    await cubit.setDailyMax(1);
+
+    expect(cubit.state.current?.dailyMax, 1);
+    verify(() => notifications.savePreferences(const NotificationPreferences(dailyMax: 1)))
+        .called(1);
+  });
+
+  test('the daily cap never goes below one reminder', () async {
+    final cubit = build();
+    await cubit.load();
+
+    await cubit.setDailyMax(0);
+
+    expect(cubit.state.current?.dailyMax, 1);
+  });
+
   test('turning everything off pauses the local reminders', () async {
     final cubit = build();
     await cubit.load();

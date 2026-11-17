@@ -54,6 +54,9 @@ class NotificationPreferencesCubit({
 
   Future<void> setCardHour(int hour) => _change((current) => current.copyWith(cardHour: hour));
 
+  Future<void> setDailyMax(int dailyMax) =>
+      _change((current) => current.copyWith(dailyMax: dailyMax));
+
   Future<void> _change(NotificationPreferences Function(NotificationPreferences) update) async {
     final current = state.current;
     if (current == null || state.saveAction.isLoading) return;
