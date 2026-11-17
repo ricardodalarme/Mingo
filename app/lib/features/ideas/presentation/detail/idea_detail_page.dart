@@ -26,6 +26,7 @@ class const IdeaDetailPage({@QueryParam('slug') final String? slug, super.key})
     final ideas = context.select((IdeaDetailCubit cubit) => cubit.state.ideas);
 
     return BaseView(
+      appBar: BaseAppBar(title: l10n.label),
       body: BlocListener<IdeaDetailCubit, IdeaDetailState>(
         listenWhen: (previous, current) => previous.reminderAction != current.reminderAction,
         listener: _onReminderChanged,

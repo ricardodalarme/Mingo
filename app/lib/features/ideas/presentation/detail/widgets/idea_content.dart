@@ -4,6 +4,7 @@ import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// The idea as the board draws it: a hero card with the idea, why it was chosen, and the actions.
 class const IdeaContent({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,26 +18,35 @@ class const IdeaContent({super.key}) extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: BaseTag(text: l10n.label),
-          ),
-          const SizedBox(height: AppSpace.s14),
-          Semantics(
-            header: true,
-            child: AppHighlightedText(
-              text: idea.title,
-              highlight: _longestWord(idea.title),
-              style: context.text.display,
+          BaseSurfaceCard(
+            style: .ring,
+            padding: const EdgeInsets.all(AppSpace.s22),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    BaseTag(text: l10n.label),
+                    const Spacer(),
+                    const BaseFace(kind: FaceKind.smile, size: FaceSize.small),
+                  ],
+                ),
+                const SizedBox(height: AppSpace.s20),
+                AppHighlightedText(
+                  text: idea.title,
+                  highlight: _longestWord(idea.title),
+                  style: context.text.question,
+                ),
+                if (idea.body != null) ...[
+                  const SizedBox(height: AppSpace.s12),
+                  Text(
+                    idea.body!,
+                    style: context.text.body.copyWith(color: context.colors.textSecondary),
+                  ),
+                ],
+              ],
             ),
           ),
-          if (idea.body != null) ...[
-            const SizedBox(height: AppSpace.s12),
-            Text(
-              idea.body!,
-              style: context.text.bodyLg.copyWith(color: context.colors.textSecondary),
-            ),
-          ],
           const SizedBox(height: AppSpace.s24),
           const IdeaReason(),
         ],
@@ -51,24 +61,10 @@ class const IdeaContent({super.key}) extends StatelessWidget {
             onPressed: cubit.markDone,
           ),
           const SizedBox(height: AppSpace.s10),
-          Row(
-            children: [
-              Expanded(
-                child: BaseButton(
-                  text: l10n.another,
-                  variant: .secondary,
-                  onPressed: cubit.another,
-                ),
-              ),
-              const SizedBox(width: AppSpace.s10),
-              Expanded(
-                child: BaseButton(
-                  text: l10n.later,
-                  variant: .secondary,
-                  onPressed: () => _pickReminder(context),
-                ),
-              ),
-            ],
+          BaseButton(text: l10n.another, variant: .secondary, onPressed: cubit.another),
+          const SizedBox(height: AppSpace.s6),
+          Center(
+            child: BaseTextLink(text: l10n.later, onPressed: () => _pickReminder(context)),
           ),
         ],
       ),
