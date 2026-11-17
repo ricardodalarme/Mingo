@@ -80,7 +80,8 @@ export default async (req: Req, res: Res) => {
   const upstream = await fetch(`${apiUrl.replace(/\/$/, '')}/chat/completions`, {
     method: 'POST',
     signal: AbortSignal.timeout(30_000),
-    headers: { 'content-type': 'application/json', authorization: `Bearer ${apiKey}`, ...extraHeaders },
+    // The gateway routes by session; without it a request is refused before the model runs.
+    headers: { 'content-type': 'application/json', authorization: `Bearer ${apiKey}`, 'x-opencode-session': session, ...extraHeaders },
     body: JSON.stringify({
       model,
       messages: [
