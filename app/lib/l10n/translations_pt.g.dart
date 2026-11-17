@@ -4889,11 +4889,8 @@ class Translations$notificationPreferences$pt {
 
   // Translations
 
-  /// pt: 'Notificações'
-  String get title => 'Notificações';
-
-  /// pt: 'Escolha o que chega e quando. Nada de cobrança.'
-  String get subtitle => 'Escolha o que chega e quando. Nada de cobrança.';
+  /// pt: 'Lembretes'
+  String get title => 'Lembretes';
 
   /// pt: 'As notificações estão desligadas neste celular. Suas escolhas valem quando você ligar.'
   String get systemOff =>
@@ -4902,69 +4899,39 @@ class Translations$notificationPreferences$pt {
   /// pt: 'Abrir configurações'
   String get openSystem => 'Abrir configurações';
 
-  /// pt: 'Receber notificações'
-  String get all => 'Receber notificações';
+  /// pt: 'Por dia'
+  String get perDayTitle => 'Por dia';
 
-  /// pt: 'Desligue para pausar tudo.'
-  String get allText => 'Desligue para pausar tudo.';
+  /// pt: 'No máximo'
+  String get perDaySupport => 'No máximo';
 
-  /// pt: 'O que você quer receber'
-  String get typesTitle => 'O que você quer receber';
+  /// pt: 'Até {count}'
+  String perDayValue({required Object count}) => 'Até ${count}';
 
-  Map<String, String> get types => {
-    'card_ready': 'Cartão pronto',
-    'card_received': 'Cartão recebido',
-    'card_reaction': 'Resposta ao seu cartão',
-    'daily_idea': 'Ideia do dia',
-    'date_coming': 'Datas chegando',
-    'other': '',
-  };
+  /// pt: 'Quantos lembretes por dia?'
+  String get perDaySheetTitle => 'Quantos lembretes por dia?';
 
-  /// pt: 'Cartão de domingo'
-  String get cardTitle => 'Cartão de domingo';
+  /// pt: 'Tipos'
+  String get typesTitle => 'Tipos';
 
-  /// pt: 'Dia'
-  String get cardDay => 'Dia';
-
-  /// pt: 'Horário'
-  String get cardHour => 'Horário';
-
+  late final Translations$notificationPreferences$types$pt types =
+      Translations$notificationPreferences$types$pt.internal(_root);
   List<String> get days => ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 
   /// pt: '{hour}:00'
   String hourFormat({required Object hour}) => '${hour}:00';
 
-  /// pt: 'Como a notificação aparece'
-  String get previewTitle => 'Como a notificação aparece';
+  /// pt: 'Limite rígido de 1 a 2 mensagens por dia. Cada tipo pode ser desligado.'
+  String get note => 'Limite rígido de 1 a 2 mensagens por dia. Cada tipo pode ser desligado.';
 
-  /// pt: 'Sempre curta e sem detalhes pessoais.'
-  String get previewText => 'Sempre curta e sem detalhes pessoais.';
+  /// pt: 'Não deu para abrir seus lembretes'
+  String get loadErrorTitle => 'Não deu para abrir seus lembretes';
 
-  /// pt: 'Não deu para abrir suas preferências'
-  String get loadErrorTitle => 'Não deu para abrir suas preferências';
+  /// pt: 'Eles continuam salvos. Tente de novo.'
+  String get loadErrorText => 'Eles continuam salvos. Tente de novo.';
 
-  /// pt: 'Elas continuam salvas. Tente de novo.'
-  String get loadErrorText => 'Elas continuam salvas. Tente de novo.';
-
-  Map<String, String> get errors => {
-    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para salvar agora. Sua escolha anterior foi mantida.',
-  };
-
-  /// pt: 'Quantas por dia'
-  String get dailyMaxTitle => 'Quantas por dia';
-
-  /// pt: 'No máximo duas por dia, sempre curtas e sem detalhes pessoais.'
-  String get dailyMaxNote => 'No máximo duas por dia, sempre curtas e sem detalhes pessoais.';
-
-  /// pt: '(zero) {Nenhuma} (one) {Até 1} (other) {Até {count}}'
-  String dailyMax({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        zero: 'Nenhuma',
-        one: 'Até 1',
-        other: 'Até ${count}',
-      );
+  late final Translations$notificationPreferences$errors$pt errors =
+      Translations$notificationPreferences$errors$pt.internal(_root);
 }
 
 // Path: partnerProfile
@@ -7773,9 +7740,6 @@ class Translations$today$pt {
   /// pt: 'A pessoa ainda não entrou. Reenviar ou revogar.'
   String get pendingInviteText => 'A pessoa ainda não entrou. Reenviar ou revogar.';
 
-  /// pt: 'Ver convite'
-  String get pendingInviteAction => 'Ver convite';
-
   /// pt: 'Responder'
   String get answer => 'Responder';
 
@@ -7791,8 +7755,8 @@ class Translations$today$pt {
   /// pt: 'sem pressa'
   String get weekHintEmpty => 'sem pressa';
 
-  /// pt: 'cartão no domingo'
-  String get weekHint => 'cartão no domingo';
+  /// pt: 'cartão da semana'
+  String get weekHint => 'cartão da semana';
 
   /// pt: 'Para hoje'
   String get forToday => 'Para hoje';
@@ -7848,12 +7812,6 @@ class Translations$today$pt {
   /// pt: 'Você recebeu um cartão'
   String get cardReceived => 'Você recebeu um cartão';
 
-  /// pt: 'Ver cartão'
-  String get cardReceivedAction => 'Ver cartão';
-
-  /// pt: 'Começando'
-  String get firstDayLabel => 'Começando';
-
   /// pt: 'Oi, {name}'
   String firstDayGreeting({required Object name}) => 'Oi, ${name}';
 
@@ -7894,18 +7852,6 @@ class Translations$today$pt {
 
   /// pt: '{name} te mandou um cartão'
   String cardReceivedNamed({required Object name}) => '${name} te mandou um cartão';
-
-  /// pt: 'Seu par te mandou uma mensagem'
-  String get signalReceived => 'Seu par te mandou uma mensagem';
-
-  /// pt: 'Ver'
-  String get signalReceivedAction => 'Ver';
-
-  /// pt: 'cartão sai hoje, 18:00'
-  String get weekHintToday => 'cartão sai hoje, 18:00';
-
-  /// pt: 'Fica só com você até você convidar alguém.'
-  String get privateSupport => 'Fica só com você até você convidar alguém.';
 
   /// pt: 'Seu espaço já funciona. A outra pessoa entra quando quiser.'
   String get inviteCardSupport => 'Seu espaço já funciona. A outra pessoa entra quando quiser.';
@@ -7958,6 +7904,21 @@ class Translations$today$pt {
   late final Translations$today$conflict$pt conflict = Translations$today$conflict$pt.internal(
     _root,
   );
+
+  /// pt: 'Hoje'
+  String get questionTag => 'Hoje';
+
+  /// pt: 'Para este momento'
+  String get partnerMomentTag => 'Para este momento';
+
+  /// pt: 'Uma ideia pequena pode ajudar.'
+  String get partnerMomentSupport => 'Uma ideia pequena pode ajudar.';
+
+  /// pt: 'Ver ideias'
+  String get partnerMomentAction => 'Ver ideias';
+
+  /// pt: 'Sem conexão. Mostrando o que já estava no seu celular.'
+  String get offlineBand => 'Sem conexão. Mostrando o que já estava no seu celular.';
 }
 
 // Path: unpair
@@ -9355,6 +9316,42 @@ class Translations$need$sent$pt {
 
   /// pt: 'Pronto'
   String get done => 'Pronto';
+}
+
+// Path: notificationPreferences.types
+class Translations$notificationPreferences$types$pt {
+  Translations$notificationPreferences$types$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Ideia do dia'
+  String get dailyIdea => 'Ideia do dia';
+
+  /// pt: 'Datas e feriados'
+  String get dateComing => 'Datas e feriados';
+
+  /// pt: 'Cartão semanal'
+  String get cardReady => 'Cartão semanal';
+
+  /// pt: ''
+  String get other => '';
+}
+
+// Path: notificationPreferences.errors
+class Translations$notificationPreferences$errors$pt {
+  Translations$notificationPreferences$errors$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Muitas tentativas seguidas. Espere um instante.'
+  String get rateLimited => 'Muitas tentativas seguidas. Espere um instante.';
+
+  /// pt: 'Não deu para salvar agora. Sua escolha anterior foi mantida.'
+  String get other => 'Não deu para salvar agora. Sua escolha anterior foi mantida.';
 }
 
 // Path: partnerStep.why
@@ -12930,22 +12927,18 @@ extension on Translations {
             'Não foi possível ativar as notificações neste aparelho. Tente de novo mais tarde.',
           'notificationPermission.errors.other' =>
             'Não foi possível ativar as notificações. Tente de novo.',
-          'notificationPreferences.title' => 'Notificações',
-          'notificationPreferences.subtitle' => 'Escolha o que chega e quando. Nada de cobrança.',
+          'notificationPreferences.title' => 'Lembretes',
           'notificationPreferences.systemOff' => 'As notificações estão desligadas neste celular. Suas escolhas valem quando você ligar.',
           'notificationPreferences.openSystem' => 'Abrir configurações',
-          'notificationPreferences.all' => 'Receber notificações',
-          'notificationPreferences.allText' => 'Desligue para pausar tudo.',
-          'notificationPreferences.typesTitle' => 'O que você quer receber',
-          'notificationPreferences.types.card_ready' => 'Cartão pronto',
-          'notificationPreferences.types.card_received' => 'Cartão recebido',
-          'notificationPreferences.types.card_reaction' => 'Resposta ao seu cartão',
-          'notificationPreferences.types.daily_idea' => 'Ideia do dia',
-          'notificationPreferences.types.date_coming' => 'Datas chegando',
+          'notificationPreferences.perDayTitle' => 'Por dia',
+          'notificationPreferences.perDaySupport' => 'No máximo',
+          'notificationPreferences.perDayValue' => ({required Object count}) => 'Até ${count}',
+          'notificationPreferences.perDaySheetTitle' => 'Quantos lembretes por dia?',
+          'notificationPreferences.typesTitle' => 'Tipos',
+          'notificationPreferences.types.dailyIdea' => 'Ideia do dia',
+          'notificationPreferences.types.dateComing' => 'Datas e feriados',
+          'notificationPreferences.types.cardReady' => 'Cartão semanal',
           'notificationPreferences.types.other' => '',
-          'notificationPreferences.cardTitle' => 'Cartão de domingo',
-          'notificationPreferences.cardDay' => 'Dia',
-          'notificationPreferences.cardHour' => 'Horário',
           'notificationPreferences.days.0' => 'Domingo',
           'notificationPreferences.days.1' => 'Segunda',
           'notificationPreferences.days.2' => 'Terça',
@@ -12954,25 +12947,14 @@ extension on Translations {
           'notificationPreferences.days.5' => 'Sexta',
           'notificationPreferences.days.6' => 'Sábado',
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
-          'notificationPreferences.previewTitle' => 'Como a notificação aparece',
-          'notificationPreferences.previewText' => 'Sempre curta e sem detalhes pessoais.',
-          'notificationPreferences.loadErrorTitle' => 'Não deu para abrir suas preferências',
-          'notificationPreferences.loadErrorText' => 'Elas continuam salvas. Tente de novo.',
-          'notificationPreferences.errors.RATE_LIMITED' =>
+          'notificationPreferences.note' =>
+            'Limite rígido de 1 a 2 mensagens por dia. Cada tipo pode ser desligado.',
+          'notificationPreferences.loadErrorTitle' => 'Não deu para abrir seus lembretes',
+          'notificationPreferences.loadErrorText' => 'Eles continuam salvos. Tente de novo.',
+          'notificationPreferences.errors.rateLimited' =>
             'Muitas tentativas seguidas. Espere um instante.',
           'notificationPreferences.errors.other' =>
             'Não deu para salvar agora. Sua escolha anterior foi mantida.',
-          'notificationPreferences.dailyMaxTitle' => 'Quantas por dia',
-          'notificationPreferences.dailyMaxNote' =>
-            'No máximo duas por dia, sempre curtas e sem detalhes pessoais.',
-          'notificationPreferences.dailyMax' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  zero: 'Nenhuma',
-                  one: 'Até 1',
-                  other: 'Até ${count}',
-                ),
           'partnerProfile.title' => 'Sobre seu par',
           'partnerProfile.privateNote' =>
             'Só você vê estas notas. Elas nunca aparecem em avisos, widgets ou para seu par.',
@@ -13140,9 +13122,6 @@ extension on Translations {
           'profileDetails.loginAccount' => 'Conta',
           'profileDetails.loginEmail' => 'E-mail',
           'profileDetails.loginApple' => 'Apple',
-          _ => null,
-        } ??
-        switch (path) {
           'profileDetails.loginGoogle' => 'Google',
           'profileDetails.photoNote' => 'Ainda não dá para enviar foto.',
           'profileDetails.saved' => 'Salvo',
@@ -13151,6 +13130,9 @@ extension on Translations {
           'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
           'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
+          _ => null,
+        } ??
+        switch (path) {
           'profileDetails.timeZones.America/Mexico_City' => 'Cidade do México',
           'profileDetails.timeZones.America/New_York' => 'Nova York',
           'profileDetails.timeZones.America/Los_Angeles' => 'Los Angeles',
@@ -13706,9 +13688,6 @@ extension on Translations {
           'settingsHome.connectedWith' => ({required Object name}) => 'Conectado com ${name}',
           'share.entryTitle' => 'Compartilhar imagem',
           'share.entrySubtitleToday' => 'O tempo de vocês e a lua do dia em que tudo começou.',
-          _ => null,
-        } ??
-        switch (path) {
           'share.entrySubtitleMemories' =>
             'Uma linha do tempo com os momentos que vocês guardaram.',
           'share.entrySubtitleCard' => 'Uma frase do cartão que chegou para você.',
@@ -13719,6 +13698,9 @@ extension on Translations {
           'share.cardLabels.counter' => 'Nosso tempo',
           'share.cardLabels.moon' => 'A lua do nosso dia',
           'share.cardLabels.timeline' => 'Nossa linha do tempo',
+          _ => null,
+        } ??
+        switch (path) {
           'share.cardLabels.quote' => 'De um cartão',
           'share.cardLabels.other' => '',
           'share.counterEyebrow' => 'NOSSO TEMPO',
@@ -14298,9 +14280,6 @@ extension on Translations {
           'tabs.badDayMeta' => 'Três coisas pequenas',
           'tabs.distanceMeta' => 'Fusos e reencontro',
           'tabs.diaryMeta' => 'Só seu',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.moodCalendarTitle' => 'Meus humores',
           'tabs.moodCalendarMeta' => 'Seu mês, só você vê',
           'tabs.hardTalkMeta' => 'Notas antes de falar',
@@ -14309,6 +14288,9 @@ extension on Translations {
           'tabs.partnerMeta' => 'Só para você',
           'tabs.fightStyleMeta' => 'Como você reage',
           'tabs.loveStyleMeta' => 'Como você se sente amado',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.chatMeta' => 'Uma conversa calma',
           'tabs.listsNone' => 'Nenhuma ainda',
           'tabs.needsBoth' => 'Precisa dos dois · Convidar',
@@ -14429,7 +14411,6 @@ extension on Translations {
           'today.invitePerson' => 'Convidar sua pessoa',
           'today.pendingInviteTitle' => 'Convite enviado',
           'today.pendingInviteText' => 'A pessoa ainda não entrou. Reenviar ou revogar.',
-          'today.pendingInviteAction' => 'Ver convite',
           'today.answer' => 'Responder',
           'today.slipsThisWeek' =>
             ({required num count}) =>
@@ -14440,7 +14421,7 @@ extension on Translations {
                   other: '${count} slips esta semana',
                 ),
           'today.weekHintEmpty' => 'sem pressa',
-          'today.weekHint' => 'cartão no domingo',
+          'today.weekHint' => 'cartão da semana',
           'today.forToday' => 'Para hoje',
           'today.ideaLabel' => 'Ideia do dia',
           'today.sundayCardLabel' => 'Cartão de domingo',
@@ -14459,8 +14440,6 @@ extension on Translations {
           'today.emptyWeekAction' => 'Anotar um slip',
           'today.nothingReceived' => 'Nenhum cartão novo. Sem pressa.',
           'today.cardReceived' => 'Você recebeu um cartão',
-          'today.cardReceivedAction' => 'Ver cartão',
-          'today.firstDayLabel' => 'Começando',
           'today.firstDayGreeting' => ({required Object name}) => 'Oi, ${name}',
           'today.firstDaySubtitle' => 'que bom ter você por aqui',
           'today.firstDayTag' => 'Bom começo',
@@ -14484,10 +14463,6 @@ extension on Translations {
           'today.errorTitle' => 'Não deu para carregar o Hoje',
           'today.errorText' => 'Seus slips estão seguros. Tente de novo.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} te mandou um cartão',
-          'today.signalReceived' => 'Seu par te mandou uma mensagem',
-          'today.signalReceivedAction' => 'Ver',
-          'today.weekHintToday' => 'cartão sai hoje, 18:00',
-          'today.privateSupport' => 'Fica só com você até você convidar alguém.',
           'today.inviteCardSupport' =>
             'Seu espaço já funciona. A outra pessoa entra quando quiser.',
           'today.inviteCardAction' => 'Convidar',
@@ -14517,6 +14492,11 @@ extension on Translations {
             'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.',
           'today.conflict.repair' => 'Começar o reparo',
           'today.conflict.chat' => 'Conversar para me organizar',
+          'today.questionTag' => 'Hoje',
+          'today.partnerMomentTag' => 'Para este momento',
+          'today.partnerMomentSupport' => 'Uma ideia pequena pode ajudar.',
+          'today.partnerMomentAction' => 'Ver ideias',
+          'today.offlineBand' => 'Sem conexão. Mostrando o que já estava no seu celular.',
           'unpair.appBarTitle' => 'Desvincular',
           'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
           'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',

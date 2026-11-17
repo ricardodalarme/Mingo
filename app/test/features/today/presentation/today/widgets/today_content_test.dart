@@ -34,8 +34,9 @@ void main() {
     final moodRepository = _MockMoodRepository();
     final slips = _MockSlipRepository();
     when(moodRepository.readCachedTodayMood).thenReturn(null);
-    when(moodRepository.getTodayMood)
-        .thenAnswer((_) async => (entry: null, partnerMood: null, partnerName: 'Luanna'));
+    when(moodRepository.getTodayMood).thenAnswer(
+      (_) async => (entry: null, partnerMood: null, partnerName: 'Luanna', hasPartner: true),
+    );
     mood = MoodCubit(moodRepository: moodRepository, slipRepository: slips);
 
     inbox = _MockInboxRepository();

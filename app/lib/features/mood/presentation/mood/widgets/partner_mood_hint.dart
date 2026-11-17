@@ -45,6 +45,7 @@ class const PartnerMoodHint({
 
     final l10n = context.l10n.mood;
     final helpL10n = context.l10n.moodHelp;
+    final name = partnerName ?? l10n.partnerFallback;
     final line = partnerMoodLine(context, mood, partnerName: partnerName);
     final needLine = switch (partnerMood.need) {
       NeedKind.listen => l10n.partnerNeedListen,

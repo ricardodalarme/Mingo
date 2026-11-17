@@ -3976,35 +3976,25 @@ class _Translations$notificationPreferences$en extends Translations$notification
 
   // Translations
   @override
-  String get title => 'Notifications';
-  @override
-  String get subtitle => 'Choose what arrives and when. No pressure.';
+  String get title => 'Reminders';
   @override
   String get systemOff =>
-      'Notifications are off on this phone. Your choices apply once you turn them on.';
+      'Notifications are off on this phone. Your choices apply when you turn them on.';
   @override
   String get openSystem => 'Open settings';
   @override
-  String get all => 'Receive notifications';
+  String get perDayTitle => 'Per day';
   @override
-  String get allText => 'Turn off to pause everything.';
+  String get perDaySupport => 'At most';
   @override
-  String get typesTitle => 'What you want to receive';
+  String perDayValue({required Object count}) => 'Up to ${count}';
   @override
-  Map<String, String> get types => {
-    'card_ready': 'Card ready',
-    'card_received': 'Card received',
-    'card_reaction': 'Reply to your card',
-    'daily_idea': 'Idea of the day',
-    'date_coming': 'Dates coming up',
-    'other': '',
-  };
+  String get perDaySheetTitle => 'How many reminders a day?';
   @override
-  String get cardTitle => 'Sunday card';
+  String get typesTitle => 'Types';
   @override
-  String get cardDay => 'Day';
-  @override
-  String get cardHour => 'Time';
+  late final _Translations$notificationPreferences$types$en types =
+      _Translations$notificationPreferences$types$en._(_root);
   @override
   List<String> get days => [
     'Sunday',
@@ -4018,30 +4008,14 @@ class _Translations$notificationPreferences$en extends Translations$notification
   @override
   String hourFormat({required Object hour}) => '${hour}:00';
   @override
-  String get previewTitle => 'How a notification looks';
+  String get note => 'A hard limit of 1 to 2 messages a day. Each type can be switched off.';
   @override
-  String get previewText => 'Always short, with no personal details.';
-  @override
-  String get loadErrorTitle => 'Couldn\'t open your preferences';
+  String get loadErrorTitle => 'Could not open your reminders';
   @override
   String get loadErrorText => 'They are still saved. Try again.';
   @override
-  Map<String, String> get errors => {
-    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
-    'other': 'Couldn\'t save right now. Your previous choice was kept.',
-  };
-  @override
-  String get dailyMaxTitle => 'How many a day';
-  @override
-  String get dailyMaxNote => 'Two a day at most, always short and without personal details.';
-  @override
-  String dailyMax({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        zero: 'None',
-        one: 'Up to 1',
-        other: 'Up to ${count}',
-      );
+  late final _Translations$notificationPreferences$errors$en errors =
+      _Translations$notificationPreferences$errors$en._(_root);
 }
 
 // Path: partnerProfile
@@ -6245,8 +6219,6 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String get pendingInviteText => 'They have not joined yet. Send again or revoke.';
   @override
-  String get pendingInviteAction => 'See invite';
-  @override
   String get answer => 'Answer';
   @override
   String slipsThisWeek({required num count}) =>
@@ -6259,7 +6231,7 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String get weekHintEmpty => 'no rush';
   @override
-  String get weekHint => 'card on Sunday';
+  String get weekHint => 'card for the week';
   @override
   String get forToday => 'For today';
   @override
@@ -6297,10 +6269,6 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String get cardReceived => 'You received a card';
   @override
-  String get cardReceivedAction => 'See card';
-  @override
-  String get firstDayLabel => 'Getting started';
-  @override
   String firstDayGreeting({required Object name}) => 'Hi, ${name}';
   @override
   String get firstDaySubtitle => 'so glad you are here';
@@ -6330,14 +6298,6 @@ class _Translations$today$en extends Translations$today$pt {
   String get errorText => 'Your slips are safe. Try again.';
   @override
   String cardReceivedNamed({required Object name}) => '${name} sent you a card';
-  @override
-  String get signalReceived => 'Your partner sent you a message';
-  @override
-  String get signalReceivedAction => 'View';
-  @override
-  String get weekHintToday => 'card goes out today, 18:00';
-  @override
-  String get privateSupport => 'It stays with you until you invite someone.';
   @override
   String get inviteCardSupport =>
       'Your space already works. The other person joins whenever they want.';
@@ -6375,6 +6335,16 @@ class _Translations$today$en extends Translations$today$pt {
       );
   @override
   late final _Translations$today$conflict$en conflict = _Translations$today$conflict$en._(_root);
+  @override
+  String get questionTag => 'Today';
+  @override
+  String get partnerMomentTag => 'For this moment';
+  @override
+  String get partnerMomentSupport => 'A small idea can help.';
+  @override
+  String get partnerMomentAction => 'See ideas';
+  @override
+  String get offlineBand => 'No connection. Showing what was already on your phone.';
 }
 
 // Path: unpair
@@ -7483,6 +7453,42 @@ class _Translations$need$sent$en extends Translations$need$sent$pt {
   String get text => 'Your partner will see it when they open the app.';
   @override
   String get done => 'Done';
+}
+
+// Path: notificationPreferences.types
+class _Translations$notificationPreferences$types$en
+    extends Translations$notificationPreferences$types$pt {
+  _Translations$notificationPreferences$types$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get dailyIdea => 'Idea of the day';
+  @override
+  String get dateComing => 'Dates and holidays';
+  @override
+  String get cardReady => 'Weekly card';
+  @override
+  String get other => '';
+}
+
+// Path: notificationPreferences.errors
+class _Translations$notificationPreferences$errors$en
+    extends Translations$notificationPreferences$errors$pt {
+  _Translations$notificationPreferences$errors$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get rateLimited => 'Too many tries in a row. Wait a moment.';
+  @override
+  String get other => 'Could not save now. Your previous choice was kept.';
 }
 
 // Path: partnerStep.why
@@ -10841,23 +10847,19 @@ extension on TranslationsEn {
           'notificationPermission.errors.registerDevice' =>
             'Could not turn notifications on for this phone. Try again later.',
           'notificationPermission.errors.other' => 'Could not turn notifications on. Try again.',
-          'notificationPreferences.title' => 'Notifications',
-          'notificationPreferences.subtitle' => 'Choose what arrives and when. No pressure.',
+          'notificationPreferences.title' => 'Reminders',
           'notificationPreferences.systemOff' =>
-            'Notifications are off on this phone. Your choices apply once you turn them on.',
+            'Notifications are off on this phone. Your choices apply when you turn them on.',
           'notificationPreferences.openSystem' => 'Open settings',
-          'notificationPreferences.all' => 'Receive notifications',
-          'notificationPreferences.allText' => 'Turn off to pause everything.',
-          'notificationPreferences.typesTitle' => 'What you want to receive',
-          'notificationPreferences.types.card_ready' => 'Card ready',
-          'notificationPreferences.types.card_received' => 'Card received',
-          'notificationPreferences.types.card_reaction' => 'Reply to your card',
-          'notificationPreferences.types.daily_idea' => 'Idea of the day',
-          'notificationPreferences.types.date_coming' => 'Dates coming up',
+          'notificationPreferences.perDayTitle' => 'Per day',
+          'notificationPreferences.perDaySupport' => 'At most',
+          'notificationPreferences.perDayValue' => ({required Object count}) => 'Up to ${count}',
+          'notificationPreferences.perDaySheetTitle' => 'How many reminders a day?',
+          'notificationPreferences.typesTitle' => 'Types',
+          'notificationPreferences.types.dailyIdea' => 'Idea of the day',
+          'notificationPreferences.types.dateComing' => 'Dates and holidays',
+          'notificationPreferences.types.cardReady' => 'Weekly card',
           'notificationPreferences.types.other' => '',
-          'notificationPreferences.cardTitle' => 'Sunday card',
-          'notificationPreferences.cardDay' => 'Day',
-          'notificationPreferences.cardHour' => 'Time',
           'notificationPreferences.days.0' => 'Sunday',
           'notificationPreferences.days.1' => 'Monday',
           'notificationPreferences.days.2' => 'Tuesday',
@@ -10866,25 +10868,13 @@ extension on TranslationsEn {
           'notificationPreferences.days.5' => 'Friday',
           'notificationPreferences.days.6' => 'Saturday',
           'notificationPreferences.hourFormat' => ({required Object hour}) => '${hour}:00',
-          'notificationPreferences.previewTitle' => 'How a notification looks',
-          'notificationPreferences.previewText' => 'Always short, with no personal details.',
-          'notificationPreferences.loadErrorTitle' => 'Couldn\'t open your preferences',
+          'notificationPreferences.note' =>
+            'A hard limit of 1 to 2 messages a day. Each type can be switched off.',
+          'notificationPreferences.loadErrorTitle' => 'Could not open your reminders',
           'notificationPreferences.loadErrorText' => 'They are still saved. Try again.',
-          'notificationPreferences.errors.RATE_LIMITED' =>
-            'Too many attempts in a row. Wait a moment.',
+          'notificationPreferences.errors.rateLimited' => 'Too many tries in a row. Wait a moment.',
           'notificationPreferences.errors.other' =>
-            'Couldn\'t save right now. Your previous choice was kept.',
-          'notificationPreferences.dailyMaxTitle' => 'How many a day',
-          'notificationPreferences.dailyMaxNote' =>
-            'Two a day at most, always short and without personal details.',
-          'notificationPreferences.dailyMax' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  zero: 'None',
-                  one: 'Up to 1',
-                  other: 'Up to ${count}',
-                ),
+            'Could not save now. Your previous choice was kept.',
           'partnerProfile.title' => 'About your partner',
           'partnerProfile.privateNote' => 'Only you see these notes. They never show in notifications, widgets or to your partner.',
           'partnerProfile.categories.likes' => 'Likes',
@@ -11050,9 +11040,6 @@ extension on TranslationsEn {
           'profileDetails.loginAccount' => 'Account',
           'profileDetails.loginEmail' => 'Email',
           'profileDetails.loginApple' => 'Apple',
-          _ => null,
-        } ??
-        switch (path) {
           'profileDetails.loginGoogle' => 'Google',
           'profileDetails.photoNote' => 'Photo upload is not available yet.',
           'profileDetails.saved' => 'Saved',
@@ -11061,6 +11048,9 @@ extension on TranslationsEn {
           'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
           'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
+          _ => null,
+        } ??
+        switch (path) {
           'profileDetails.timeZones.America/Mexico_City' => 'Mexico City',
           'profileDetails.timeZones.America/New_York' => 'New York',
           'profileDetails.timeZones.America/Los_Angeles' => 'Los Angeles',
@@ -11615,9 +11605,6 @@ extension on TranslationsEn {
           'settingsHome.connectedWith' => ({required Object name}) => 'Connected with ${name}',
           'share.entryTitle' => 'Share image',
           'share.entrySubtitleToday' => 'Your time together and the moon from the day it began.',
-          _ => null,
-        } ??
-        switch (path) {
           'share.entrySubtitleMemories' => 'A timeline of the moments you kept.',
           'share.entrySubtitleCard' => 'A line from the card that reached you.',
           'share.sheetTitle' => 'Share image',
@@ -11627,6 +11614,9 @@ extension on TranslationsEn {
           'share.cardLabels.counter' => 'Our time',
           'share.cardLabels.moon' => 'The moon of our day',
           'share.cardLabels.timeline' => 'Our timeline',
+          _ => null,
+        } ??
+        switch (path) {
           'share.cardLabels.quote' => 'From a card',
           'share.cardLabels.other' => '',
           'share.counterEyebrow' => 'OUR TIME',
@@ -12207,9 +12197,6 @@ extension on TranslationsEn {
           'tabs.badDayMeta' => 'Three small things',
           'tabs.distanceMeta' => 'Time zones and reunion',
           'tabs.diaryMeta' => 'Only yours',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.moodCalendarTitle' => 'My moods',
           'tabs.moodCalendarMeta' => 'Your month, only you',
           'tabs.hardTalkMeta' => 'Notes before you talk',
@@ -12218,6 +12205,9 @@ extension on TranslationsEn {
           'tabs.partnerMeta' => 'Only for you',
           'tabs.fightStyleMeta' => 'How you react',
           'tabs.loveStyleMeta' => 'How you feel loved',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.chatMeta' => 'A calm conversation',
           'tabs.listsNone' => 'None yet',
           'tabs.needsBoth' => 'Needs both of you · Invite',
@@ -12337,7 +12327,6 @@ extension on TranslationsEn {
           'today.invitePerson' => 'Invite your person',
           'today.pendingInviteTitle' => 'Invite sent',
           'today.pendingInviteText' => 'They have not joined yet. Send again or revoke.',
-          'today.pendingInviteAction' => 'See invite',
           'today.answer' => 'Answer',
           'today.slipsThisWeek' =>
             ({required num count}) =>
@@ -12348,7 +12337,7 @@ extension on TranslationsEn {
                   other: '${count} slips this week',
                 ),
           'today.weekHintEmpty' => 'no rush',
-          'today.weekHint' => 'card on Sunday',
+          'today.weekHint' => 'card for the week',
           'today.forToday' => 'For today',
           'today.ideaLabel' => 'Idea of the day',
           'today.sundayCardLabel' => 'Sunday card',
@@ -12367,8 +12356,6 @@ extension on TranslationsEn {
           'today.emptyWeekAction' => 'Note a slip',
           'today.nothingReceived' => 'No new cards. No rush.',
           'today.cardReceived' => 'You received a card',
-          'today.cardReceivedAction' => 'See card',
-          'today.firstDayLabel' => 'Getting started',
           'today.firstDayGreeting' => ({required Object name}) => 'Hi, ${name}',
           'today.firstDaySubtitle' => 'so glad you are here',
           'today.firstDayTag' => 'Good start',
@@ -12392,10 +12379,6 @@ extension on TranslationsEn {
           'today.errorTitle' => 'Could not load Today',
           'today.errorText' => 'Your slips are safe. Try again.',
           'today.cardReceivedNamed' => ({required Object name}) => '${name} sent you a card',
-          'today.signalReceived' => 'Your partner sent you a message',
-          'today.signalReceivedAction' => 'View',
-          'today.weekHintToday' => 'card goes out today, 18:00',
-          'today.privateSupport' => 'It stays with you until you invite someone.',
           'today.inviteCardSupport' =>
             'Your space already works. The other person joins whenever they want.',
           'today.inviteCardAction' => 'Invite',
@@ -12425,6 +12408,11 @@ extension on TranslationsEn {
             'No common cards for now. Start with a repair or sort out what to say.',
           'today.conflict.repair' => 'Start the repair',
           'today.conflict.chat' => 'Talk to get organized',
+          'today.questionTag' => 'Today',
+          'today.partnerMomentTag' => 'For this moment',
+          'today.partnerMomentSupport' => 'A small idea can help.',
+          'today.partnerMomentAction' => 'See ideas',
+          'today.offlineBand' => 'No connection. Showing what was already on your phone.',
           'unpair.appBarTitle' => 'Unpair',
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
           'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
