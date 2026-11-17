@@ -1,4 +1,6 @@
 import 'package:app/features/questions/data/data_sources/remote/questions_data_source.dart';
+import 'package:app/features/questions/data/mappers/question_answer_mapper.dart';
+import 'package:app/features/questions/data/mappers/question_prompt_mapper.dart';
 import 'package:app/features/questions/data/models/question_thread.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
@@ -10,16 +12,7 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
   Future<QuestionPrompt> getPrompt() => _run('read the weekly question', () async {
     final record = await _dataSource.getPrompt();
 
-    return QuestionPrompt(
-      slug: record.slug,
-      title: record.title,
-      body: record.body,
-      tags: record.tags,
-      isPaired: record.isPaired,
-      partnerName: record.partnerName,
-      coupleId: record.coupleId,
-      selfId: record.selfId,
-    );
+    return record.toModel();
   });
 
   /// Reads the question and the answer rows the server allows this person to see.
@@ -78,7 +71,7 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
     try {
       final record = await _dataSource.insertAnswer(questionSlug: prompt.slug, body: text);
 
-      return QuestionAnswer(id: record.id, body: record.body);
+      return record.toModel();
     } on LocalizedException catch (exception) {
       if (!_isUniqueViolation(exception)) rethrow;
       final fresh = await getThread();
@@ -87,7 +80,7 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
       await _dataSource.deleteAnswer(row.id);
       final record = await _dataSource.insertAnswer(questionSlug: prompt.slug, body: text);
 
-      return QuestionAnswer(id: record.id, body: record.body);
+      return record.toModel();
     }
   }
 
