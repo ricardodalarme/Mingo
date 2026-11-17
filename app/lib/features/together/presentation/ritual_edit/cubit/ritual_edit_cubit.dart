@@ -1,3 +1,5 @@
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/together/data/models/ritual.dart';
 import 'package:app/features/together/data/models/ritual_cadence.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
@@ -13,6 +15,8 @@ part 'ritual_edit_state.dart';
 class RitualEditCubit({
   required final TogetherRepository _togetherRepository,
   required final RitualReminderService _reminderService,
+  required final ProfileRepository _profileRepository,
+  required final PairingRepository _pairingRepository,
 }) extends Cubit<RitualEditState> {
   this
     : super(
@@ -25,11 +29,15 @@ class RitualEditCubit({
 
   /// Opens an existing ritual by [id], or a blank one when [id] is null.
   Future<void> start(String? id) async {
+    await _loadPeople();
     if (id == null) {
       emit(
         RitualEditState(
           ritual: Ritual(id: _uuid.v4(), title: '', cadence: RitualCadence.weekly, weekday: 5),
           isNew: true,
+          meId: state.meId,
+          partnerId: state.partnerId,
+          partnerName: state.partnerName,
         ),
       );
       return;
@@ -59,6 +67,25 @@ class RitualEditCubit({
   void onWeekdayChosen(int weekday) => _edit((ritual) => ritual.copyWith(weekday: weekday));
 
   void onHourChosen(int hour) => _edit((ritual) => ritual.copyWith(hour: hour));
+
+  /// Names who plans the ritual, or nobody in particular when [personId] is null.
+  void onPlannerChosen(String? personId) => _edit(
+    (ritual) => personId == null
+        ? ritual.copyWith(clearPlanner: true)
+        : ritual.copyWith(plannerId: personId),
+  );
+
+  Future<void> _loadPeople() async {
+    try {
+      final (me, partner) = await (
+        _profileRepository.getMyProfile(),
+        _pairingRepository.getPartner(),
+      ).wait;
+      emit(state.copyWith(meId: me.id, partnerId: partner?.id, partnerName: partner?.displayName));
+    } on Object {
+      return;
+    }
+  }
 
   void onReminderChanged({required bool value}) =>
       _edit((ritual) => ritual.copyWith(hasReminder: value));

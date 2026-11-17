@@ -166,6 +166,13 @@ const documentNodeQueryRituals = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'plannerId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'logs'),
                   alias: null,
                   arguments: [
@@ -338,6 +345,7 @@ class QueryRitualsrituals {
     this.weekday,
     this.atTime,
     required this.reminder,
+    this.plannerId,
     required this.logs,
     this.$__typename = 'rituals',
   });
@@ -349,6 +357,7 @@ class QueryRitualsrituals {
     final l$weekday = json['weekday'];
     final l$atTime = json['atTime'];
     final l$reminder = json['reminder'];
+    final l$plannerId = json['plannerId'];
     final l$logs = json['logs'];
     final l$$__typename = json['__typename'];
     return QueryRitualsrituals(
@@ -358,6 +367,7 @@ class QueryRitualsrituals {
       weekday: (l$weekday as int?),
       atTime: (l$atTime as String?),
       reminder: (l$reminder as bool),
+      plannerId: (l$plannerId as String?),
       logs: (l$logs as List<dynamic>)
           .map((e) => QueryRitualsritualslogs.fromJson((e as Map<String, dynamic>)))
           .toList(),
@@ -377,6 +387,8 @@ class QueryRitualsrituals {
 
   final bool reminder;
 
+  final String? plannerId;
+
   final List<QueryRitualsritualslogs> logs;
 
   final String $__typename;
@@ -395,6 +407,8 @@ class QueryRitualsrituals {
     _resultData['atTime'] = l$atTime;
     final l$reminder = reminder;
     _resultData['reminder'] = l$reminder;
+    final l$plannerId = plannerId;
+    _resultData['plannerId'] = l$plannerId;
     final l$logs = logs;
     _resultData['logs'] = l$logs.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
@@ -410,6 +424,7 @@ class QueryRitualsrituals {
     final l$weekday = weekday;
     final l$atTime = atTime;
     final l$reminder = reminder;
+    final l$plannerId = plannerId;
     final l$logs = logs;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -419,6 +434,7 @@ class QueryRitualsrituals {
       l$weekday,
       l$atTime,
       l$reminder,
+      l$plannerId,
       Object.hashAll(l$logs.map((v) => v)),
       l$$__typename,
     ]);
@@ -460,6 +476,11 @@ class QueryRitualsrituals {
     final l$reminder = reminder;
     final lOther$reminder = other.reminder;
     if (l$reminder != lOther$reminder) {
+      return false;
+    }
+    final l$plannerId = plannerId;
+    final lOther$plannerId = other.plannerId;
+    if (l$plannerId != lOther$plannerId) {
       return false;
     }
     final l$logs = logs;

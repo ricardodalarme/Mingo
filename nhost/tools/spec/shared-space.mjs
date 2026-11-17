@@ -3,8 +3,8 @@ import { ME, mine, and, or, isNull, inMyCouple, meOrPartner, ownFile, coupleMemb
 
 export const tables = {
   rituals: sharedWithCouple({
-    insert: ['title', 'cadence', 'weekday', 'at_time', 'reminder'],
-    update: ['title', 'cadence', 'weekday', 'at_time', 'reminder', 'archived_at'],
+    insert: ['title', 'cadence', 'weekday', 'at_time', 'reminder', 'planner_id'],
+    update: ['title', 'cadence', 'weekday', 'at_time', 'reminder', 'planner_id', 'archived_at'],
     array: { logs: { table: 'ritual_logs', column: 'ritual_id' } },
   }),
   ritual_logs: {

@@ -94,6 +94,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
             weekday: node.weekday,
             hour: _hourOf(node.atTime),
             hasReminder: node.reminder,
+            plannerId: node.plannerId,
             lastDoneOn: node.logs.firstOrNull?.doneOn,
           ),
       ];
@@ -117,6 +118,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
           atTime: time,
           reminder: ritual.hasReminder,
           coupleId: await _dataSource.getCoupleId(),
+          plannerId: ritual.plannerId,
         );
       } else {
         await _dataSource.updateRitual(
@@ -126,6 +128,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
           weekday: weekday,
           atTime: time,
           reminder: ritual.hasReminder,
+          plannerId: ritual.plannerId,
         );
       }
       _changes.add(null);

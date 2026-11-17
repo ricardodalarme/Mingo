@@ -15,6 +15,7 @@ class VariablesMutationAddRitual {
     String? atTime,
     required bool reminder,
     String? coupleId,
+    String? plannerId,
   }) => VariablesMutationAddRitual._({
     r'id': id,
     r'title': title,
@@ -23,6 +24,7 @@ class VariablesMutationAddRitual {
     if (atTime != null) r'atTime': atTime,
     r'reminder': reminder,
     if (coupleId != null) r'coupleId': coupleId,
+    if (plannerId != null) r'plannerId': plannerId,
   });
 
   VariablesMutationAddRitual._(this._$data);
@@ -49,6 +51,10 @@ class VariablesMutationAddRitual {
       final l$coupleId = data['coupleId'];
       result$data['coupleId'] = (l$coupleId as String?);
     }
+    if (data.containsKey('plannerId')) {
+      final l$plannerId = data['plannerId'];
+      result$data['plannerId'] = (l$plannerId as String?);
+    }
     return VariablesMutationAddRitual._(result$data);
   }
 
@@ -67,6 +73,8 @@ class VariablesMutationAddRitual {
   bool get reminder => (_$data['reminder'] as bool);
 
   String? get coupleId => (_$data['coupleId'] as String?);
+
+  String? get plannerId => (_$data['plannerId'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -89,6 +97,10 @@ class VariablesMutationAddRitual {
     if (_$data.containsKey('coupleId')) {
       final l$coupleId = coupleId;
       result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('plannerId')) {
+      final l$plannerId = plannerId;
+      result$data['plannerId'] = l$plannerId;
     }
     return result$data;
   }
@@ -145,6 +157,14 @@ class VariablesMutationAddRitual {
     if (l$coupleId != lOther$coupleId) {
       return false;
     }
+    final l$plannerId = plannerId;
+    final lOther$plannerId = other.plannerId;
+    if (_$data.containsKey('plannerId') != other._$data.containsKey('plannerId')) {
+      return false;
+    }
+    if (l$plannerId != lOther$plannerId) {
+      return false;
+    }
     return true;
   }
 
@@ -157,6 +177,7 @@ class VariablesMutationAddRitual {
     final l$atTime = atTime;
     final l$reminder = reminder;
     final l$coupleId = coupleId;
+    final l$plannerId = plannerId;
     return Object.hashAll([
       l$id,
       l$title,
@@ -165,6 +186,7 @@ class VariablesMutationAddRitual {
       _$data.containsKey('atTime') ? l$atTime : const {},
       l$reminder,
       _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('plannerId') ? l$plannerId : const {},
     ]);
   }
 }
@@ -275,6 +297,12 @@ const documentNodeMutationAddRitual = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'plannerId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
@@ -314,6 +342,10 @@ const documentNodeMutationAddRitual = DocumentNode(
                     ObjectFieldNode(
                       name: NameNode(value: 'coupleId'),
                       value: VariableNode(name: NameNode(value: 'coupleId')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'plannerId'),
+                      value: VariableNode(name: NameNode(value: 'plannerId')),
                     ),
                   ],
                 ),

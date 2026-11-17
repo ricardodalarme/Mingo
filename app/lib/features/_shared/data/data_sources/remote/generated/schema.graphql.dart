@@ -93267,6 +93267,7 @@ class Inputrituals_bool_exp {
     Inputtimestamptz_comparison_exp? createdAt,
     Inputuuid_comparison_exp? id,
     InputritualLogs_bool_exp? logs,
+    Inputuuid_comparison_exp? plannerId,
     InputBoolean_comparison_exp? reminder,
     InputString_comparison_exp? title,
     Inputtimestamptz_comparison_exp? updatedAt,
@@ -93286,6 +93287,7 @@ class Inputrituals_bool_exp {
     if (createdAt != null) r'createdAt': createdAt,
     if (id != null) r'id': id,
     if (logs != null) r'logs': logs,
+    if (plannerId != null) r'plannerId': plannerId,
     if (reminder != null) r'reminder': reminder,
     if (title != null) r'title': title,
     if (updatedAt != null) r'updatedAt': updatedAt,
@@ -93380,6 +93382,12 @@ class Inputrituals_bool_exp {
           ? null
           : InputritualLogs_bool_exp.fromJson((l$logs as Map<String, dynamic>));
     }
+    if (data.containsKey('plannerId')) {
+      final l$plannerId = data['plannerId'];
+      result$data['plannerId'] = l$plannerId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$plannerId as Map<String, dynamic>));
+    }
     if (data.containsKey('reminder')) {
       final l$reminder = data['reminder'];
       result$data['reminder'] = l$reminder == null
@@ -93440,6 +93448,8 @@ class Inputrituals_bool_exp {
   Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
 
   InputritualLogs_bool_exp? get logs => (_$data['logs'] as InputritualLogs_bool_exp?);
+
+  Inputuuid_comparison_exp? get plannerId => (_$data['plannerId'] as Inputuuid_comparison_exp?);
 
   InputBoolean_comparison_exp? get reminder => (_$data['reminder'] as InputBoolean_comparison_exp?);
 
@@ -93507,6 +93517,10 @@ class Inputrituals_bool_exp {
     if (_$data.containsKey('logs')) {
       final l$logs = logs;
       result$data['logs'] = l$logs?.toJson();
+    }
+    if (_$data.containsKey('plannerId')) {
+      final l$plannerId = plannerId;
+      result$data['plannerId'] = l$plannerId?.toJson();
     }
     if (_$data.containsKey('reminder')) {
       final l$reminder = reminder;
@@ -93669,6 +93683,14 @@ class Inputrituals_bool_exp {
     if (l$logs != lOther$logs) {
       return false;
     }
+    final l$plannerId = plannerId;
+    final lOther$plannerId = other.plannerId;
+    if (_$data.containsKey('plannerId') != other._$data.containsKey('plannerId')) {
+      return false;
+    }
+    if (l$plannerId != lOther$plannerId) {
+      return false;
+    }
     final l$reminder = reminder;
     final lOther$reminder = other.reminder;
     if (_$data.containsKey('reminder') != other._$data.containsKey('reminder')) {
@@ -93720,6 +93742,7 @@ class Inputrituals_bool_exp {
     final l$createdAt = createdAt;
     final l$id = id;
     final l$logs = logs;
+    final l$plannerId = plannerId;
     final l$reminder = reminder;
     final l$title = title;
     final l$updatedAt = updatedAt;
@@ -93747,6 +93770,7 @@ class Inputrituals_bool_exp {
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('logs') ? l$logs : const {},
+      _$data.containsKey('plannerId') ? l$plannerId : const {},
       _$data.containsKey('reminder') ? l$reminder : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
@@ -93816,6 +93840,7 @@ class Inputrituals_insert_input {
     String? coupleId,
     String? id,
     InputritualLogs_arr_rel_insert_input? logs,
+    String? plannerId,
     bool? reminder,
     String? title,
     int? weekday,
@@ -93825,6 +93850,7 @@ class Inputrituals_insert_input {
     if (coupleId != null) r'coupleId': coupleId,
     if (id != null) r'id': id,
     if (logs != null) r'logs': logs,
+    if (plannerId != null) r'plannerId': plannerId,
     if (reminder != null) r'reminder': reminder,
     if (title != null) r'title': title,
     if (weekday != null) r'weekday': weekday,
@@ -93858,6 +93884,10 @@ class Inputrituals_insert_input {
           ? null
           : InputritualLogs_arr_rel_insert_input.fromJson((l$logs as Map<String, dynamic>));
     }
+    if (data.containsKey('plannerId')) {
+      final l$plannerId = data['plannerId'];
+      result$data['plannerId'] = (l$plannerId as String?);
+    }
     if (data.containsKey('reminder')) {
       final l$reminder = data['reminder'];
       result$data['reminder'] = (l$reminder as bool?);
@@ -93886,6 +93916,8 @@ class Inputrituals_insert_input {
   InputritualLogs_arr_rel_insert_input? get logs =>
       (_$data['logs'] as InputritualLogs_arr_rel_insert_input?);
 
+  String? get plannerId => (_$data['plannerId'] as String?);
+
   bool? get reminder => (_$data['reminder'] as bool?);
 
   String? get title => (_$data['title'] as String?);
@@ -93913,6 +93945,10 @@ class Inputrituals_insert_input {
     if (_$data.containsKey('logs')) {
       final l$logs = logs;
       result$data['logs'] = l$logs?.toJson();
+    }
+    if (_$data.containsKey('plannerId')) {
+      final l$plannerId = plannerId;
+      result$data['plannerId'] = l$plannerId;
     }
     if (_$data.containsKey('reminder')) {
       final l$reminder = reminder;
@@ -93977,6 +94013,14 @@ class Inputrituals_insert_input {
     if (l$logs != lOther$logs) {
       return false;
     }
+    final l$plannerId = plannerId;
+    final lOther$plannerId = other.plannerId;
+    if (_$data.containsKey('plannerId') != other._$data.containsKey('plannerId')) {
+      return false;
+    }
+    if (l$plannerId != lOther$plannerId) {
+      return false;
+    }
     final l$reminder = reminder;
     final lOther$reminder = other.reminder;
     if (_$data.containsKey('reminder') != other._$data.containsKey('reminder')) {
@@ -94011,6 +94055,7 @@ class Inputrituals_insert_input {
     final l$coupleId = coupleId;
     final l$id = id;
     final l$logs = logs;
+    final l$plannerId = plannerId;
     final l$reminder = reminder;
     final l$title = title;
     final l$weekday = weekday;
@@ -94020,6 +94065,7 @@ class Inputrituals_insert_input {
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('logs') ? l$logs : const {},
+      _$data.containsKey('plannerId') ? l$plannerId : const {},
       _$data.containsKey('reminder') ? l$reminder : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('weekday') ? l$weekday : const {},
@@ -94231,6 +94277,7 @@ class Inputrituals_order_by {
     Enumorder_by? createdAt,
     Enumorder_by? id,
     InputritualLogs_aggregate_order_by? logs_aggregate,
+    Enumorder_by? plannerId,
     Enumorder_by? reminder,
     Enumorder_by? title,
     Enumorder_by? updatedAt,
@@ -94247,6 +94294,7 @@ class Inputrituals_order_by {
     if (createdAt != null) r'createdAt': createdAt,
     if (id != null) r'id': id,
     if (logs_aggregate != null) r'logs_aggregate': logs_aggregate,
+    if (plannerId != null) r'plannerId': plannerId,
     if (reminder != null) r'reminder': reminder,
     if (title != null) r'title': title,
     if (updatedAt != null) r'updatedAt': updatedAt,
@@ -94321,6 +94369,12 @@ class Inputrituals_order_by {
           ? null
           : InputritualLogs_aggregate_order_by.fromJson((l$logs_aggregate as Map<String, dynamic>));
     }
+    if (data.containsKey('plannerId')) {
+      final l$plannerId = data['plannerId'];
+      result$data['plannerId'] = l$plannerId == null
+          ? null
+          : fromJsonEnumorder_by((l$plannerId as String));
+    }
     if (data.containsKey('reminder')) {
       final l$reminder = data['reminder'];
       result$data['reminder'] = l$reminder == null
@@ -94371,6 +94425,8 @@ class Inputrituals_order_by {
 
   InputritualLogs_aggregate_order_by? get logs_aggregate =>
       (_$data['logs_aggregate'] as InputritualLogs_aggregate_order_by?);
+
+  Enumorder_by? get plannerId => (_$data['plannerId'] as Enumorder_by?);
 
   Enumorder_by? get reminder => (_$data['reminder'] as Enumorder_by?);
 
@@ -94425,6 +94481,10 @@ class Inputrituals_order_by {
     if (_$data.containsKey('logs_aggregate')) {
       final l$logs_aggregate = logs_aggregate;
       result$data['logs_aggregate'] = l$logs_aggregate?.toJson();
+    }
+    if (_$data.containsKey('plannerId')) {
+      final l$plannerId = plannerId;
+      result$data['plannerId'] = l$plannerId == null ? null : toJsonEnumorder_by(l$plannerId);
     }
     if (_$data.containsKey('reminder')) {
       final l$reminder = reminder;
@@ -94542,6 +94602,14 @@ class Inputrituals_order_by {
     if (l$logs_aggregate != lOther$logs_aggregate) {
       return false;
     }
+    final l$plannerId = plannerId;
+    final lOther$plannerId = other.plannerId;
+    if (_$data.containsKey('plannerId') != other._$data.containsKey('plannerId')) {
+      return false;
+    }
+    if (l$plannerId != lOther$plannerId) {
+      return false;
+    }
     final l$reminder = reminder;
     final lOther$reminder = other.reminder;
     if (_$data.containsKey('reminder') != other._$data.containsKey('reminder')) {
@@ -94590,6 +94658,7 @@ class Inputrituals_order_by {
     final l$createdAt = createdAt;
     final l$id = id;
     final l$logs_aggregate = logs_aggregate;
+    final l$plannerId = plannerId;
     final l$reminder = reminder;
     final l$title = title;
     final l$updatedAt = updatedAt;
@@ -94606,6 +94675,7 @@ class Inputrituals_order_by {
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('logs_aggregate') ? l$logs_aggregate : const {},
+      _$data.containsKey('plannerId') ? l$plannerId : const {},
       _$data.containsKey('reminder') ? l$reminder : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
@@ -94667,6 +94737,7 @@ class Inputrituals_set_input {
     String? atTime,
     EnumRitualCadence_enum? cadence,
     String? coupleId,
+    String? plannerId,
     bool? reminder,
     String? title,
     int? weekday,
@@ -94675,6 +94746,7 @@ class Inputrituals_set_input {
     if (atTime != null) r'atTime': atTime,
     if (cadence != null) r'cadence': cadence,
     if (coupleId != null) r'coupleId': coupleId,
+    if (plannerId != null) r'plannerId': plannerId,
     if (reminder != null) r'reminder': reminder,
     if (title != null) r'title': title,
     if (weekday != null) r'weekday': weekday,
@@ -94704,6 +94776,10 @@ class Inputrituals_set_input {
       final l$coupleId = data['coupleId'];
       result$data['coupleId'] = (l$coupleId as String?);
     }
+    if (data.containsKey('plannerId')) {
+      final l$plannerId = data['plannerId'];
+      result$data['plannerId'] = (l$plannerId as String?);
+    }
     if (data.containsKey('reminder')) {
       final l$reminder = data['reminder'];
       result$data['reminder'] = (l$reminder as bool?);
@@ -94728,6 +94804,8 @@ class Inputrituals_set_input {
   EnumRitualCadence_enum? get cadence => (_$data['cadence'] as EnumRitualCadence_enum?);
 
   String? get coupleId => (_$data['coupleId'] as String?);
+
+  String? get plannerId => (_$data['plannerId'] as String?);
 
   bool? get reminder => (_$data['reminder'] as bool?);
 
@@ -94754,6 +94832,10 @@ class Inputrituals_set_input {
     if (_$data.containsKey('coupleId')) {
       final l$coupleId = coupleId;
       result$data['coupleId'] = l$coupleId;
+    }
+    if (_$data.containsKey('plannerId')) {
+      final l$plannerId = plannerId;
+      result$data['plannerId'] = l$plannerId;
     }
     if (_$data.containsKey('reminder')) {
       final l$reminder = reminder;
@@ -94810,6 +94892,14 @@ class Inputrituals_set_input {
     if (l$coupleId != lOther$coupleId) {
       return false;
     }
+    final l$plannerId = plannerId;
+    final lOther$plannerId = other.plannerId;
+    if (_$data.containsKey('plannerId') != other._$data.containsKey('plannerId')) {
+      return false;
+    }
+    if (l$plannerId != lOther$plannerId) {
+      return false;
+    }
     final l$reminder = reminder;
     final lOther$reminder = other.reminder;
     if (_$data.containsKey('reminder') != other._$data.containsKey('reminder')) {
@@ -94843,6 +94933,7 @@ class Inputrituals_set_input {
     final l$atTime = atTime;
     final l$cadence = cadence;
     final l$coupleId = coupleId;
+    final l$plannerId = plannerId;
     final l$reminder = reminder;
     final l$title = title;
     final l$weekday = weekday;
@@ -94851,6 +94942,7 @@ class Inputrituals_set_input {
       _$data.containsKey('atTime') ? l$atTime : const {},
       _$data.containsKey('cadence') ? l$cadence : const {},
       _$data.containsKey('coupleId') ? l$coupleId : const {},
+      _$data.containsKey('plannerId') ? l$plannerId : const {},
       _$data.containsKey('reminder') ? l$reminder : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('weekday') ? l$weekday : const {},
@@ -94946,6 +95038,7 @@ class Inputrituals_stream_cursor_value_input {
     String? coupleId,
     DateTime? createdAt,
     String? id,
+    String? plannerId,
     bool? reminder,
     String? title,
     DateTime? updatedAt,
@@ -94958,6 +95051,7 @@ class Inputrituals_stream_cursor_value_input {
     if (coupleId != null) r'coupleId': coupleId,
     if (createdAt != null) r'createdAt': createdAt,
     if (id != null) r'id': id,
+    if (plannerId != null) r'plannerId': plannerId,
     if (reminder != null) r'reminder': reminder,
     if (title != null) r'title': title,
     if (updatedAt != null) r'updatedAt': updatedAt,
@@ -95002,6 +95096,10 @@ class Inputrituals_stream_cursor_value_input {
       final l$id = data['id'];
       result$data['id'] = (l$id as String?);
     }
+    if (data.containsKey('plannerId')) {
+      final l$plannerId = data['plannerId'];
+      result$data['plannerId'] = (l$plannerId as String?);
+    }
     if (data.containsKey('reminder')) {
       final l$reminder = data['reminder'];
       result$data['reminder'] = (l$reminder as bool?);
@@ -95038,6 +95136,8 @@ class Inputrituals_stream_cursor_value_input {
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
   String? get id => (_$data['id'] as String?);
+
+  String? get plannerId => (_$data['plannerId'] as String?);
 
   bool? get reminder => (_$data['reminder'] as bool?);
 
@@ -95080,6 +95180,10 @@ class Inputrituals_stream_cursor_value_input {
     if (_$data.containsKey('id')) {
       final l$id = id;
       result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('plannerId')) {
+      final l$plannerId = plannerId;
+      result$data['plannerId'] = l$plannerId;
     }
     if (_$data.containsKey('reminder')) {
       final l$reminder = reminder;
@@ -95166,6 +95270,14 @@ class Inputrituals_stream_cursor_value_input {
     if (l$id != lOther$id) {
       return false;
     }
+    final l$plannerId = plannerId;
+    final lOther$plannerId = other.plannerId;
+    if (_$data.containsKey('plannerId') != other._$data.containsKey('plannerId')) {
+      return false;
+    }
+    if (l$plannerId != lOther$plannerId) {
+      return false;
+    }
     final l$reminder = reminder;
     final lOther$reminder = other.reminder;
     if (_$data.containsKey('reminder') != other._$data.containsKey('reminder')) {
@@ -95210,6 +95322,7 @@ class Inputrituals_stream_cursor_value_input {
     final l$coupleId = coupleId;
     final l$createdAt = createdAt;
     final l$id = id;
+    final l$plannerId = plannerId;
     final l$reminder = reminder;
     final l$title = title;
     final l$updatedAt = updatedAt;
@@ -95222,6 +95335,7 @@ class Inputrituals_stream_cursor_value_input {
       _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('plannerId') ? l$plannerId : const {},
       _$data.containsKey('reminder') ? l$reminder : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
@@ -129429,6 +129543,7 @@ enum Enumrituals_select_column {
   coupleId,
   createdAt,
   id,
+  plannerId,
   reminder,
   title,
   updatedAt,
@@ -129457,6 +129572,8 @@ String toJsonEnumrituals_select_column(Enumrituals_select_column e) {
       return r'createdAt';
     case Enumrituals_select_column.id:
       return r'id';
+    case Enumrituals_select_column.plannerId:
+      return r'plannerId';
     case Enumrituals_select_column.reminder:
       return r'reminder';
     case Enumrituals_select_column.title:
@@ -129486,6 +129603,8 @@ Enumrituals_select_column fromJsonEnumrituals_select_column(String value) {
       return Enumrituals_select_column.createdAt;
     case r'id':
       return Enumrituals_select_column.id;
+    case r'plannerId':
+      return Enumrituals_select_column.plannerId;
     case r'reminder':
       return Enumrituals_select_column.reminder;
     case r'title':
@@ -129504,6 +129623,7 @@ enum Enumrituals_update_column {
   atTime,
   cadence,
   coupleId,
+  plannerId,
   reminder,
   title,
   weekday,
@@ -129525,6 +129645,8 @@ String toJsonEnumrituals_update_column(Enumrituals_update_column e) {
       return r'cadence';
     case Enumrituals_update_column.coupleId:
       return r'coupleId';
+    case Enumrituals_update_column.plannerId:
+      return r'plannerId';
     case Enumrituals_update_column.reminder:
       return r'reminder';
     case Enumrituals_update_column.title:
@@ -129546,6 +129668,8 @@ Enumrituals_update_column fromJsonEnumrituals_update_column(String value) {
       return Enumrituals_update_column.cadence;
     case r'coupleId':
       return Enumrituals_update_column.coupleId;
+    case r'plannerId':
+      return Enumrituals_update_column.plannerId;
     case r'reminder':
       return Enumrituals_update_column.reminder;
     case r'title':

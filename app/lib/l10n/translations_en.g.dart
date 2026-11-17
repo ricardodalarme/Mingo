@@ -5092,7 +5092,16 @@ class _Translations$rituals$en extends Translations$rituals$pt {
     'NOT_FOUND': 'That ritual isn\'t here anymore.',
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Try again.',
+    'INVALID_PLANNER': 'The planner has to be one of the two people.',
   };
+  @override
+  String get plannerLabel => 'Who plans it';
+  @override
+  String get plannerNobody => 'Nobody in particular';
+  @override
+  String get plannerMe => 'Me';
+  @override
+  String get plannerPartner => 'The other person';
 }
 
 // Path: sessionExpired
@@ -11418,6 +11427,11 @@ extension on TranslationsEn {
           'rituals.errors.NOT_FOUND' => 'That ritual isn\'t here anymore.',
           'rituals.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'rituals.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'rituals.errors.INVALID_PLANNER' => 'The planner has to be one of the two people.',
+          'rituals.plannerLabel' => 'Who plans it',
+          'rituals.plannerNobody' => 'Nobody in particular',
+          'rituals.plannerMe' => 'Me',
+          'rituals.plannerPartner' => 'The other person',
           'sessionExpired.title' => 'Your session ended',
           'sessionExpired.highlight' => 'ended',
           'sessionExpired.text' => 'Sign in again to continue. Your data is safe.',
@@ -11509,14 +11523,14 @@ extension on TranslationsEn {
           'share.monthsLong.11' => 'December',
           'share.phases.newMoon' => 'New moon',
           'share.phases.waxingCrescent' => 'Waxing crescent',
+          _ => null,
+        } ??
+        switch (path) {
           'share.phases.firstQuarter' => 'First quarter',
           'share.phases.waxingGibbous' => 'Waxing gibbous',
           'share.phases.fullMoon' => 'Full moon',
           'share.phases.waningGibbous' => 'Waning gibbous',
           'share.phases.lastQuarter' => 'Last quarter',
-          _ => null,
-        } ??
-        switch (path) {
           'share.phases.waningCrescent' => 'Waning crescent',
           'share.phases.other' => '',
           'share.productMark' => 'Mingo',
@@ -12122,14 +12136,14 @@ extension on TranslationsEn {
           'temperature.intensityHigh' => 'High value: how about a pause first?',
           'temperature.intensityLow' => 'Mild',
           'temperature.intensityTop' => 'Very strong',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.intensityLabel' => 'Intensity',
           'temperature.result.good.title' => 'That\'s good',
           'temperature.result.good.text' => 'Saved just for you. Carry on with your day.',
           'temperature.result.pause.title' => 'First, breathe',
           'temperature.result.pause.text' => 'When it\'s very hot, waiting helps. Some time apart is worth it before any conversation.',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.result.guided.title' => 'You can talk with care',
           'temperature.result.guided.text' => 'One step at a time, at your pace.',
           'temperature.result.quick.title' => 'A small fix is enough',

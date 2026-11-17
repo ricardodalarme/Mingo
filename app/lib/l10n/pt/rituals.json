@@ -14,7 +14,15 @@
     "other": ""
   },
   "cadenceOn": "{cadence}, {weekday}",
-  "weekdays": ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"],
+  "weekdays": [
+    "domingo",
+    "segunda",
+    "terça",
+    "quarta",
+    "quinta",
+    "sexta",
+    "sábado"
+  ],
   "createTitle": "Novo ritual",
   "editTitle": "Seu ritual",
   "nameLabel": "Nome",
@@ -34,6 +42,11 @@
   "errors(map)": {
     "NOT_FOUND": "Esse ritual não está mais aqui.",
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
-    "other": "Não deu para fazer isso agora. Tente de novo."
-  }
+    "other": "Não deu para fazer isso agora. Tente de novo.",
+    "INVALID_PLANNER": "Quem planeja precisa ser uma das duas pessoas."
+  },
+  "plannerLabel": "Quem planeja",
+  "plannerNobody": "Ninguém em especial",
+  "plannerMe": "Eu",
+  "plannerPartner": "A outra pessoa"
 }

@@ -116,6 +116,7 @@ class TogetherDataSource({required final GQLClient _client}) {
     int? weekday,
     String? atTime,
     String? coupleId,
+    String? plannerId,
   }) async {
     final response = await _client.mutate(
       OptionsMutationAddRitual(
@@ -127,6 +128,7 @@ class TogetherDataSource({required final GQLClient _client}) {
           atTime: atTime,
           reminder: reminder,
           coupleId: coupleId,
+          plannerId: plannerId,
         ),
       ),
     );
@@ -141,17 +143,20 @@ class TogetherDataSource({required final GQLClient _client}) {
     required bool reminder,
     int? weekday,
     String? atTime,
+    String? plannerId,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateRitual(
-        variables: VariablesMutationUpdateRitual(
-          id: id,
-          title: title,
-          cadence: cadence,
-          weekday: weekday,
-          atTime: atTime,
-          reminder: reminder,
-        ),
+        // fromJson keeps a null planner in the payload, which is how a planner is taken away.
+        variables: VariablesMutationUpdateRitual.fromJson({
+          'id': id,
+          'title': title,
+          'cadence': cadence.toJson(),
+          'weekday': weekday,
+          'atTime': atTime,
+          'reminder': reminder,
+          'plannerId': plannerId,
+        }),
       ),
     );
 

@@ -10,6 +10,7 @@ query Rituals {
     weekday
     atTime
     reminder
+    plannerId
     logs(order_by: [{ doneOn: desc_nulls_last }], limit: 1) {
       doneOn
     }

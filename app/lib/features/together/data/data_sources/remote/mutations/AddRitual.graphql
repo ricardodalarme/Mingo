@@ -6,6 +6,7 @@ mutation AddRitual(
   $atTime: time
   $reminder: Boolean!
   $coupleId: uuid
+  $plannerId: uuid
 ) {
   insertRitualsOne(
     object: {
@@ -16,6 +17,7 @@ mutation AddRitual(
       atTime: $atTime
       reminder: $reminder
       coupleId: $coupleId
+      plannerId: $plannerId
     }
   ) {
     id

@@ -12,6 +12,7 @@ final class const Ritual({
   final int? weekday,
   final int hour = 19,
   final bool hasReminder = false,
+  final String? plannerId,
   final DateTime? lastDoneOn,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
@@ -27,6 +28,8 @@ final class const Ritual({
     int? weekday,
     int? hour,
     bool? hasReminder,
+    String? plannerId,
+    bool clearPlanner = false,
   }) => Ritual(
     id: id,
     title: title ?? this.title,
@@ -34,9 +37,19 @@ final class const Ritual({
     weekday: weekday ?? this.weekday,
     hour: hour ?? this.hour,
     hasReminder: hasReminder ?? this.hasReminder,
+    plannerId: clearPlanner ? null : plannerId ?? this.plannerId,
     lastDoneOn: lastDoneOn,
   );
 
   @override
-  List<Object?> get props => [id, title, cadence, weekday, hour, hasReminder, lastDoneOn];
+  List<Object?> get props => [
+    id,
+    title,
+    cadence,
+    weekday,
+    hour,
+    hasReminder,
+    plannerId,
+    lastDoneOn,
+  ];
 }

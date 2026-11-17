@@ -6297,7 +6297,20 @@ class Translations$rituals$pt {
     'NOT_FOUND': 'Esse ritual não está mais aqui.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
+    'INVALID_PLANNER': 'Quem planeja precisa ser uma das duas pessoas.',
   };
+
+  /// pt: 'Quem planeja'
+  String get plannerLabel => 'Quem planeja';
+
+  /// pt: 'Ninguém em especial'
+  String get plannerNobody => 'Ninguém em especial';
+
+  /// pt: 'Eu'
+  String get plannerMe => 'Eu';
+
+  /// pt: 'A outra pessoa'
+  String get plannerPartner => 'A outra pessoa';
 }
 
 // Path: sessionExpired
@@ -13481,6 +13494,11 @@ extension on Translations {
           'rituals.errors.NOT_FOUND' => 'Esse ritual não está mais aqui.',
           'rituals.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'rituals.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'rituals.errors.INVALID_PLANNER' => 'Quem planeja precisa ser uma das duas pessoas.',
+          'rituals.plannerLabel' => 'Quem planeja',
+          'rituals.plannerNobody' => 'Ninguém em especial',
+          'rituals.plannerMe' => 'Eu',
+          'rituals.plannerPartner' => 'A outra pessoa',
           'sessionExpired.title' => 'Sua sessão terminou',
           'sessionExpired.highlight' => 'terminou',
           'sessionExpired.text' => 'Entre de novo para continuar. Seus dados estão seguros.',
@@ -13576,14 +13594,14 @@ extension on Translations {
           'share.monthsLong.11' => 'dezembro',
           'share.phases.newMoon' => 'Lua nova',
           'share.phases.waxingCrescent' => 'Lua crescente',
+          _ => null,
+        } ??
+        switch (path) {
           'share.phases.firstQuarter' => 'Quarto crescente',
           'share.phases.waxingGibbous' => 'Crescente gibosa',
           'share.phases.fullMoon' => 'Lua cheia',
           'share.phases.waningGibbous' => 'Minguante gibosa',
           'share.phases.lastQuarter' => 'Quarto minguante',
-          _ => null,
-        } ??
-        switch (path) {
           'share.phases.waningCrescent' => 'Lua minguante',
           'share.phases.other' => '',
           'share.productMark' => 'Mingo',
@@ -14186,14 +14204,14 @@ extension on Translations {
           'temperature.intensityHigh' => 'Valor alto: que tal uma pausa antes?',
           'temperature.intensityLow' => 'Fraca',
           'temperature.intensityTop' => 'Muito forte',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.intensityLabel' => 'Intensidade',
           'temperature.result.good.title' => 'Que bom',
           'temperature.result.good.text' => 'Registrado só para você. Siga o seu dia.',
           'temperature.result.pause.title' => 'Primeiro, respirar',
           'temperature.result.pause.text' => 'Quando está muito quente, esperar ajuda. Vale um tempo longe antes de qualquer conversa.',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.result.guided.title' => 'Dá para conversar com cuidado',
           'temperature.result.guided.text' => 'Um passo de cada vez, no seu ritmo.',
           'temperature.result.quick.title' => 'Um ajuste pequeno basta',

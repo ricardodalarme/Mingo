@@ -25,6 +25,10 @@ class const RitualEditPage({@QueryParam('id') final String? id, super.key})
     final state = context.select((RitualEditCubit cubit) => cubit.state);
     final cubit = context.read<RitualEditCubit>();
     final ritual = state.ritual;
+    final meId = state.meId;
+    final partnerId = state.partnerId;
+    final partnerName = state.partnerName;
+    final hasPartner = partnerId != null;
 
     return BaseView(
       appBar: BaseAppBar(onClose: () => context.router.maybePop()),
@@ -103,6 +107,32 @@ class const RitualEditPage({@QueryParam('id') final String? id, super.key})
                       value: ritual.hour,
                       onChanged: cubit.onHourChosen,
                     ),
+                    if (hasPartner) ...[
+                      const SizedBox(height: AppSpace.s16),
+                      Text(l10n.plannerLabel, style: context.text.label),
+                      const SizedBox(height: AppSpace.s8),
+                      Wrap(
+                        spacing: AppSpace.s8,
+                        runSpacing: AppSpace.s8,
+                        children: [
+                          BaseChoiceChip(
+                            label: l10n.plannerNobody,
+                            isSelected: ritual.plannerId == null,
+                            onTap: () => cubit.onPlannerChosen(null),
+                          ),
+                          BaseChoiceChip(
+                            label: l10n.plannerMe,
+                            isSelected: ritual.plannerId == meId,
+                            onTap: () => cubit.onPlannerChosen(meId),
+                          ),
+                          BaseChoiceChip(
+                            label: partnerName ?? l10n.plannerPartner,
+                            isSelected: ritual.plannerId == partnerId,
+                            onTap: () => cubit.onPlannerChosen(partnerId),
+                          ),
+                        ],
+                      ),
+                    ],
                     const SizedBox(height: AppSpace.s16),
                     BaseListGroup(
                       children: [

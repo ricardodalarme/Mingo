@@ -3435,6 +3435,10 @@ enum rituals_select_column {
   """
   column name
   """
+  plannerId
+  """
+  column name
+  """
   reminder
   """
   column name
@@ -3469,6 +3473,10 @@ enum rituals_update_column {
   column name
   """
   coupleId
+  """
+  column name
+  """
+  plannerId
   """
   column name
   """
@@ -15206,6 +15214,7 @@ type rituals {
     """
     where: ritualLogs_bool_exp
   ): [ritualLogs!]!
+  plannerId: uuid
   reminder: Boolean!
   title: String!
   updatedAt: timestamptz!
@@ -15249,6 +15258,7 @@ type rituals_max_fields {
   coupleId: uuid
   createdAt: timestamptz
   id: uuid
+  plannerId: uuid
   title: String
   updatedAt: timestamptz
   weekday: smallint
@@ -15262,6 +15272,7 @@ type rituals_min_fields {
   coupleId: uuid
   createdAt: timestamptz
   id: uuid
+  plannerId: uuid
   title: String
   updatedAt: timestamptz
   weekday: smallint
@@ -27234,6 +27245,7 @@ input rituals_bool_exp {
   createdAt: timestamptz_comparison_exp
   id: uuid_comparison_exp
   logs: ritualLogs_bool_exp
+  plannerId: uuid_comparison_exp
   reminder: Boolean_comparison_exp
   title: String_comparison_exp
   updatedAt: timestamptz_comparison_exp
@@ -27254,6 +27266,7 @@ input rituals_insert_input {
   coupleId: uuid
   id: uuid
   logs: ritualLogs_arr_rel_insert_input
+  plannerId: uuid
   reminder: Boolean
   title: String
   weekday: smallint
@@ -27291,6 +27304,7 @@ input rituals_order_by {
   createdAt: order_by
   id: order_by
   logs_aggregate: ritualLogs_aggregate_order_by
+  plannerId: order_by
   reminder: order_by
   title: order_by
   updatedAt: order_by
@@ -27310,6 +27324,7 @@ input rituals_set_input {
   atTime: time
   cadence: RitualCadence_enum
   coupleId: uuid
+  plannerId: uuid
   reminder: Boolean
   title: String
   weekday: smallint
@@ -27338,6 +27353,7 @@ input rituals_stream_cursor_value_input {
   coupleId: uuid
   createdAt: timestamptz
   id: uuid
+  plannerId: uuid
   reminder: Boolean
   title: String
   updatedAt: timestamptz

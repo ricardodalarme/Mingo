@@ -5,6 +5,7 @@ mutation UpdateRitual(
   $weekday: smallint
   $atTime: time
   $reminder: Boolean!
+  $plannerId: uuid
 ) {
   updateRitualsByPk(
     pk_columns: { id: $id }
@@ -14,6 +15,7 @@ mutation UpdateRitual(
       weekday: $weekday
       atTime: $atTime
       reminder: $reminder
+      plannerId: $plannerId
     }
   ) {
     id

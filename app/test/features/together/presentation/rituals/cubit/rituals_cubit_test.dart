@@ -1,3 +1,7 @@
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/models/avatar_kind.dart';
+import 'package:app/features/profile/data/models/profile.dart';
+import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/together/data/models/ritual.dart';
 import 'package:app/features/together/data/models/ritual_cadence.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
@@ -9,6 +13,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockTogetherRepository() extends Mock implements TogetherRepository;
+
+class _MockProfileRepository() extends Mock implements ProfileRepository;
+
+class _MockPairingRepository() extends Mock implements PairingRepository;
 
 class _MockRitualReminderService() extends Mock implements RitualReminderService;
 
@@ -83,8 +91,38 @@ void main() {
   });
 
   group('RitualEditCubit', () {
-    RitualEditCubit build() =>
-        RitualEditCubit(togetherRepository: together, reminderService: reminders);
+    late ProfileRepository profile;
+    late PairingRepository pairing;
+
+    setUp(() {
+      profile = _MockProfileRepository();
+      pairing = _MockPairingRepository();
+      when(profile.getMyProfile).thenAnswer(
+        (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'),
+      );
+      when(pairing.getPartner).thenAnswer(
+        (_) async => const Profile(id: 'you', avatarKind: AvatarKind.initials, displayName: 'Rui'),
+      );
+    });
+
+    RitualEditCubit build() => RitualEditCubit(
+      togetherRepository: together,
+      reminderService: reminders,
+      profileRepository: profile,
+      pairingRepository: pairing,
+    );
+
+    test('a ritual can name who plans it, or nobody', () async {
+      final cubit = build();
+      await cubit.start(null);
+
+      cubit.onPlannerChosen('you');
+      expect(cubit.state.ritual.plannerId, 'you');
+      expect(cubit.state.partnerName, 'Rui');
+
+      cubit.onPlannerChosen(null);
+      expect(cubit.state.ritual.plannerId, isNull);
+    });
 
     test('a new ritual needs a name', () async {
       final cubit = build();

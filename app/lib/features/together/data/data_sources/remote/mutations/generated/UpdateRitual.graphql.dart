@@ -14,6 +14,7 @@ class VariablesMutationUpdateRitual {
     int? weekday,
     String? atTime,
     required bool reminder,
+    String? plannerId,
   }) => VariablesMutationUpdateRitual._({
     r'id': id,
     r'title': title,
@@ -21,6 +22,7 @@ class VariablesMutationUpdateRitual {
     if (weekday != null) r'weekday': weekday,
     if (atTime != null) r'atTime': atTime,
     r'reminder': reminder,
+    if (plannerId != null) r'plannerId': plannerId,
   });
 
   VariablesMutationUpdateRitual._(this._$data);
@@ -43,6 +45,10 @@ class VariablesMutationUpdateRitual {
     }
     final l$reminder = data['reminder'];
     result$data['reminder'] = (l$reminder as bool);
+    if (data.containsKey('plannerId')) {
+      final l$plannerId = data['plannerId'];
+      result$data['plannerId'] = (l$plannerId as String?);
+    }
     return VariablesMutationUpdateRitual._(result$data);
   }
 
@@ -59,6 +65,8 @@ class VariablesMutationUpdateRitual {
   String? get atTime => (_$data['atTime'] as String?);
 
   bool get reminder => (_$data['reminder'] as bool);
+
+  String? get plannerId => (_$data['plannerId'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -78,6 +86,10 @@ class VariablesMutationUpdateRitual {
     }
     final l$reminder = reminder;
     result$data['reminder'] = l$reminder;
+    if (_$data.containsKey('plannerId')) {
+      final l$plannerId = plannerId;
+      result$data['plannerId'] = l$plannerId;
+    }
     return result$data;
   }
 
@@ -125,6 +137,14 @@ class VariablesMutationUpdateRitual {
     if (l$reminder != lOther$reminder) {
       return false;
     }
+    final l$plannerId = plannerId;
+    final lOther$plannerId = other.plannerId;
+    if (_$data.containsKey('plannerId') != other._$data.containsKey('plannerId')) {
+      return false;
+    }
+    if (l$plannerId != lOther$plannerId) {
+      return false;
+    }
     return true;
   }
 
@@ -136,6 +156,7 @@ class VariablesMutationUpdateRitual {
     final l$weekday = weekday;
     final l$atTime = atTime;
     final l$reminder = reminder;
+    final l$plannerId = plannerId;
     return Object.hashAll([
       l$id,
       l$title,
@@ -143,6 +164,7 @@ class VariablesMutationUpdateRitual {
       _$data.containsKey('weekday') ? l$weekday : const {},
       _$data.containsKey('atTime') ? l$atTime : const {},
       l$reminder,
+      _$data.containsKey('plannerId') ? l$plannerId : const {},
     ]);
   }
 }
@@ -247,6 +269,12 @@ const documentNodeMutationUpdateRitual = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'plannerId')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: false),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
@@ -289,6 +317,10 @@ const documentNodeMutationUpdateRitual = DocumentNode(
                     ObjectFieldNode(
                       name: NameNode(value: 'reminder'),
                       value: VariableNode(name: NameNode(value: 'reminder')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'plannerId'),
+                      value: VariableNode(name: NameNode(value: 'plannerId')),
                     ),
                   ],
                 ),

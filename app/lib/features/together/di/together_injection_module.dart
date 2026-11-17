@@ -57,6 +57,8 @@ class TogetherInjectionModule() implements InjectionModule {
       () => RitualEditCubit(
         togetherRepository: injector.get<TogetherRepository>(),
         reminderService: injector.get<RitualReminderService>(),
+        profileRepository: injector.get<ProfileRepository>(),
+        pairingRepository: injector.get<PairingRepository>(),
       ),
     )
     ..registerFactory<HelpCubit>(
