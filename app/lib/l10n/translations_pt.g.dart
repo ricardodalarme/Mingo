@@ -5918,6 +5918,9 @@ class Translations$quickSlip$pt {
   /// pt: 'Fica privado. No domingo você escolhe o que vai para o cartão.'
   String get privacyNote => 'Fica privado. No domingo você escolhe o que vai para o cartão.';
 
+  /// pt: 'Entra no seu cartão semanal. Você pode tirar quando quiser.'
+  String get cardNote => 'Entra no seu cartão semanal. Você pode tirar quando quiser.';
+
   /// pt: 'Salvar'
   String get save => 'Salvar';
 
@@ -5928,7 +5931,6 @@ class Translations$quickSlip$pt {
     _root,
   );
   Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'Você chegou ao limite de slips do plano grátis.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
   };
@@ -6675,12 +6677,6 @@ class Translations$slipDetail$pt {
   /// pt: 'Ele pode ter sido apagado.'
   String get notFoundText => 'Ele pode ter sido apagado.';
 
-  /// pt: 'Não deu para abrir este slip'
-  String get errorTitle => 'Não deu para abrir este slip';
-
-  /// pt: 'Ele continua salvo. Tente de novo.'
-  String get errorText => 'Ele continua salvo. Tente de novo.';
-
   Map<String, String> get errors => {
     'SLIP_NOT_FOUND': 'Este slip não existe mais.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
@@ -6792,7 +6788,6 @@ class Translations$slipKind$pt {
 
   late final Translations$slipKind$saved$pt saved = Translations$slipKind$saved$pt.internal(_root);
   Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'Você chegou ao limite de slips do plano grátis.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
   };
@@ -6881,11 +6876,14 @@ class Translations$slipsList$pt {
   /// pt: 'Adicionar um slip'
   String get emptyAction => 'Adicionar um slip';
 
-  /// pt: 'Não deu para carregar seus slips'
-  String get errorTitle => 'Não deu para carregar seus slips';
+  /// pt: 'Nada privado por aqui'
+  String get privateEmptyTitle => 'Nada privado por aqui';
 
-  /// pt: 'Eles continuam salvos. Tente de novo.'
-  String get errorText => 'Eles continuam salvos. Tente de novo.';
+  /// pt: 'Os slips que você deixa fora do cartão aparecem aqui.'
+  String get privateEmptyText => 'Os slips que você deixa fora do cartão aparecem aqui.';
+
+  /// pt: 'Slip privado'
+  String get privateMarker => 'Slip privado';
 
   /// pt: 'Privado'
   String get scopePrivate => 'Privado';
@@ -6901,6 +6899,9 @@ class Translations$slipsList$pt {
 
   /// pt: 'Trabalho invisível'
   String get filterInvisible => 'Trabalho invisível';
+
+  /// pt: 'Ajuste a busca ou os filtros.'
+  String get searchFiltersEmptyText => 'Ajuste a busca ou os filtros.';
 }
 
 // Path: spice
@@ -13271,6 +13272,7 @@ extension on Translations {
           'quickSlip.categories.other' => '',
           'quickSlip.privacyNote' =>
             'Fica privado. No domingo você escolhe o que vai para o cartão.',
+          'quickSlip.cardNote' => 'Entra no seu cartão semanal. Você pode tirar quando quiser.',
           'quickSlip.save' => 'Salvar',
           'quickSlip.discardTitle' => 'Descartar este slip?',
           'quickSlip.saved.title' => 'Salvo',
@@ -13281,8 +13283,6 @@ extension on Translations {
           'quickSlip.saved.done' => 'Pronto',
           'quickSlip.saved.annoyanceTitle' => 'Guardado',
           'quickSlip.saved.annoyanceAdded' => 'Fica só com você e some sozinho em 14 dias.',
-          'quickSlip.errors.FREE_LIMIT_REACHED' =>
-            'Você chegou ao limite de slips do plano grátis.',
           'quickSlip.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'quickSlip.errors.other' =>
             'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
@@ -13712,8 +13712,6 @@ extension on Translations {
           'slipDetail.deleted' => 'Slip apagado',
           'slipDetail.notFoundTitle' => 'Este slip não existe mais',
           'slipDetail.notFoundText' => 'Ele pode ter sido apagado.',
-          'slipDetail.errorTitle' => 'Não deu para abrir este slip',
-          'slipDetail.errorText' => 'Ele continua salvo. Tente de novo.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
           'slipDetail.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'slipDetail.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
@@ -13801,7 +13799,6 @@ extension on Translations {
           'slipKind.saved.added' => 'Registrado.',
           'slipKind.saved.queued' => 'Salvo neste celular. Enviamos quando a conexão voltar.',
           'slipKind.saved.done' => 'Pronto',
-          'slipKind.errors.FREE_LIMIT_REACHED' => 'Você chegou ao limite de slips do plano grátis.',
           'slipKind.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'slipKind.errors.other' =>
             'Não deu para salvar agora. Seu texto continua aqui, tente de novo.',
@@ -13858,13 +13855,15 @@ extension on Translations {
           'slipsList.emptyTitle' => 'Nada ainda',
           'slipsList.emptyText' => 'Um slip é uma coisa boa, em uma linha.',
           'slipsList.emptyAction' => 'Adicionar um slip',
-          'slipsList.errorTitle' => 'Não deu para carregar seus slips',
-          'slipsList.errorText' => 'Eles continuam salvos. Tente de novo.',
+          'slipsList.privateEmptyTitle' => 'Nada privado por aqui',
+          'slipsList.privateEmptyText' => 'Os slips que você deixa fora do cartão aparecem aqui.',
+          'slipsList.privateMarker' => 'Slip privado',
           'slipsList.scopePrivate' => 'Privado',
           'slipsList.freeNote' => 'Slips são sempre livres.',
           'slipsList.filterThisMonth' => 'Este mês',
           'slipsList.filterInCard' => 'Em um cartão',
           'slipsList.filterInvisible' => 'Trabalho invisível',
+          'slipsList.searchFiltersEmptyText' => 'Ajuste a busca ou os filtros.',
           'spice.title' => 'Tempero',
           'spice.introTitle' => 'Tempero, só para vocês dois',
           'spice.introHighlight' => 'vocês dois',
@@ -14253,10 +14252,10 @@ extension on Translations {
           'temperature.levels.turbulent' => 'Turbulento',
           'temperature.levels.fight' => 'Uma briga',
           'temperature.levels.other' => '',
+          'temperature.continueAction' => 'Continuar',
           _ => null,
         } ??
         switch (path) {
-          'temperature.continueAction' => 'Continuar',
           'temperature.back' => 'Voltar',
           'temperature.skip' => 'Agora não',
           'temperature.intensityTitle' => 'Qual a intensidade?',

@@ -4778,6 +4778,8 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   @override
   String get privacyNote => 'It stays private. On Sunday you choose what goes on the card.';
   @override
+  String get cardNote => 'It goes on your weekly card. You can take it out anytime.';
+  @override
   String get save => 'Save';
   @override
   String get discardTitle => 'Discard this slip?';
@@ -4785,7 +4787,6 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   late final _Translations$quickSlip$saved$en saved = _Translations$quickSlip$saved$en._(_root);
   @override
   Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'You reached the free plan\'s slip limit.',
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'Could not save right now. Your text is still here, try again.',
   };
@@ -5389,10 +5390,6 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   @override
   String get notFoundText => 'It may have been deleted.';
   @override
-  String get errorTitle => 'Couldn\'t open this slip';
-  @override
-  String get errorText => 'It is still saved. Try again.';
-  @override
   Map<String, String> get errors => {
     'SLIP_NOT_FOUND': 'This slip no longer exists.',
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
@@ -5497,7 +5494,6 @@ class _Translations$slipKind$en extends Translations$slipKind$pt {
   late final _Translations$slipKind$saved$en saved = _Translations$slipKind$saved$en._(_root);
   @override
   Map<String, String> get errors => {
-    'FREE_LIMIT_REACHED': 'You reached the free plan\'s slip limit.',
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t save right now. Your text is still here, try again.',
   };
@@ -5574,9 +5570,11 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   @override
   String get emptyAction => 'Add a slip';
   @override
-  String get errorTitle => 'Could not load your slips';
+  String get privateEmptyTitle => 'Nothing private here';
   @override
-  String get errorText => 'They are still saved. Try again.';
+  String get privateEmptyText => 'Slips you keep off the card show up here.';
+  @override
+  String get privateMarker => 'Private slip';
   @override
   String get scopePrivate => 'Private';
   @override
@@ -5587,6 +5585,8 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   String get filterInCard => 'In a card';
   @override
   String get filterInvisible => 'Invisible work';
+  @override
+  String get searchFiltersEmptyText => 'Adjust the search or the filters.';
 }
 
 // Path: spice
@@ -11203,6 +11203,7 @@ extension on TranslationsEn {
           'quickSlip.categories.other' => '',
           'quickSlip.privacyNote' =>
             'It stays private. On Sunday you choose what goes on the card.',
+          'quickSlip.cardNote' => 'It goes on your weekly card. You can take it out anytime.',
           'quickSlip.save' => 'Save',
           'quickSlip.discardTitle' => 'Discard this slip?',
           'quickSlip.saved.title' => 'Saved',
@@ -11215,7 +11216,6 @@ extension on TranslationsEn {
           'quickSlip.saved.annoyanceTitle' => 'Kept',
           'quickSlip.saved.annoyanceAdded' =>
             'It stays with you and goes away on its own in 14 days.',
-          'quickSlip.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'quickSlip.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'quickSlip.errors.other' =>
             'Could not save right now. Your text is still here, try again.',
@@ -11637,8 +11637,6 @@ extension on TranslationsEn {
           'slipDetail.deleted' => 'Slip deleted',
           'slipDetail.notFoundTitle' => 'This slip no longer exists',
           'slipDetail.notFoundText' => 'It may have been deleted.',
-          'slipDetail.errorTitle' => 'Couldn\'t open this slip',
-          'slipDetail.errorText' => 'It is still saved. Try again.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
           'slipDetail.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'slipDetail.errors.other' => 'Couldn\'t do that right now. Try again.',
@@ -11727,7 +11725,6 @@ extension on TranslationsEn {
           'slipKind.saved.queued' =>
             'Saved on this phone. We\'ll send it when the connection is back.',
           'slipKind.saved.done' => 'Done',
-          'slipKind.errors.FREE_LIMIT_REACHED' => 'You reached the free plan\'s slip limit.',
           'slipKind.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'slipKind.errors.other' =>
             'Couldn\'t save right now. Your text is still here, try again.',
@@ -11784,13 +11781,15 @@ extension on TranslationsEn {
           'slipsList.emptyTitle' => 'Nothing yet',
           'slipsList.emptyText' => 'A slip is one good thing, in one line.',
           'slipsList.emptyAction' => 'Add a slip',
-          'slipsList.errorTitle' => 'Could not load your slips',
-          'slipsList.errorText' => 'They are still saved. Try again.',
+          'slipsList.privateEmptyTitle' => 'Nothing private here',
+          'slipsList.privateEmptyText' => 'Slips you keep off the card show up here.',
+          'slipsList.privateMarker' => 'Private slip',
           'slipsList.scopePrivate' => 'Private',
           'slipsList.freeNote' => 'Slips are always free.',
           'slipsList.filterThisMonth' => 'This month',
           'slipsList.filterInCard' => 'In a card',
           'slipsList.filterInvisible' => 'Invisible work',
+          'slipsList.searchFiltersEmptyText' => 'Adjust the search or the filters.',
           'spice.title' => 'Tempero',
           'spice.introTitle' => 'Tempero, just for the two of you',
           'spice.introHighlight' => 'the two of you',
@@ -12182,10 +12181,10 @@ extension on TranslationsEn {
           'temperature.levels.turbulent' => 'Turbulent',
           'temperature.levels.fight' => 'An argument',
           'temperature.levels.other' => '',
+          'temperature.continueAction' => 'Continue',
           _ => null,
         } ??
         switch (path) {
-          'temperature.continueAction' => 'Continue',
           'temperature.back' => 'Back',
           'temperature.skip' => 'Not now',
           'temperature.intensityTitle' => 'How strong is it?',
