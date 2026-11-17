@@ -28,7 +28,7 @@ Functions get these variables: `NHOST_ADMIN_SECRET`, `NHOST_WEBHOOK_SECRET`, `NH
 - Always send the shared secret header (`nhost-webhook-secret: {{ NHOST_WEBHOOK_SECRET }}` via `value_from_env`) and verify it in the handler
   (`docs/products/events/guides/webhook-security.mdx`). A public function without it is an open door.
 - Request and payload transformations use Kriti templates (`reference/kriti.mdx`).
-- Events, cron triggers and Actions are executed by Hasura. They keep working when Constellation serves the GraphQL endpoint, as long as Hasura stays deployed.
+- Events, cron triggers and Actions are executed by Hasura.
 
 ## This backend
 

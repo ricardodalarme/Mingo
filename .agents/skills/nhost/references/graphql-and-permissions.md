@@ -1,7 +1,6 @@
 # GraphQL and permissions
 
-Read `.work/nhost-docs/docs/products/graphql/` and the Constellation files listed in `SKILL.md` before designing anything. Hasura v2 authors
-the metadata; Constellation reads the same metadata next to Hasura. Design to the **overlap** and mark anything that only works on one engine.
+Read `.work/nhost-docs/docs/products/graphql/` before designing anything. Hasura v2 serves the GraphQL API and authors the metadata.
 
 ## Authorization model
 
@@ -28,18 +27,15 @@ the metadata; Constellation reads the same metadata next to Hasura. Design to th
 ## SQL functions as API
 
 - A tracked function becomes a query (`STABLE`/`IMMUTABLE`) or a mutation (`VOLATILE`); `exposed_as` overrides it. It must return a tracked table
-  or view type, or `SETOF` one. A function that returns a scalar or JSON needs a result type: define a table for it. Do not use Actions (not served
-  by Constellation).
-- Function permissions are set per role, explicitly. Constellation never infers them; `inferFunctionPermissions = false` makes Hasura behave the same.
+  or view type, or `SETOF` one. A function that returns a scalar or JSON needs a result type: define a table for it. Prefer a tracked function to an Action.
+- Function permissions are set per role, explicitly; `inferFunctionPermissions = false` keeps Hasura from inferring them.
   The caller also needs select permission on the returned table; row and column permissions of that table apply to the result.
 - `session_argument` receives the session variables as JSON; read `session ->> 'x-hasura-user-id'`. No permission applies to the function's inputs or
   what it does internally, so authorization inside the function is your job.
 - **Rows a function creates are not visible to permission filters or relationships in the same statement.** Return a type whose permission is a
   plain column check, or a result payload built inside the function. Examples in this repo: `acceptInvite`, `unpair` and `resolveSharedItems` return
   the caller's profile; `prepareCard` returns `preparedCards` with its items.
-- Single-row functions (`RETURNS <table>`) have no `where`, `limit`, `order_by` or `_aggregate` on Constellation. Arguments without a default are
-  non-null on Constellation and nullable on Hasura; the schema diff shows it.
-- No client-visible error codes: Hasura hides `raise exception` text and Constellation sanitizes database errors. Every precondition is readable state
+- No client-visible error codes: Hasura hides `raise exception` text. Every precondition is readable state
   (`plusStates`), functions return no row when an action does not apply, and triggers use `private.reject(code)` only for races or abuse.
 
 ## Computed fields
@@ -56,50 +52,32 @@ $$;
 
 - Scalar fields are enabled per role in the select permission; table-returning fields follow the returned table's permissions and must **not** be listed.
   Extra arguments go under an `args` input.
-- Constellation serves computed fields since 0.8.0, partially: scalar and table selections, aggregates, argument-free filters and ordering. Custom
-  argument types are passed as strings, invalid definitions are dropped as inconsistencies. Hasura authors the metadata, so after every change dump
-  each role's schema from both engines and check the field exists.
 
 ## Enums
 
 Closed value sets must reach the client as GraphQL enums. Use an **enum table** (`is_enum: true`, one primary-key column): the engine exposes a GraphQL
 enum without any role permission on the table, and adding a value is an insert. This repo creates them with `private.create_enum` in migrations and
-tracks them in `spec/enums.mjs`. Do not rely on native Postgres enums unless a test proves the GraphQL enum on both engines.
+tracks them in `spec/enums.mjs`. Do not rely on native Postgres enums unless a test proves the GraphQL enum.
 
 ## Naming
 
 Hasura's default is snake_case; this app uses camelCase. It is produced per table with `configuration.custom_name`, `custom_root_fields` and per-column
-`column_config.<col>.custom_name` (Constellation honors all of them). Root fields are mechanical: `slips`, `slipsByPk`, `insertSlipsOne`, `updateSlipsByPk`,
-`updateSlipsMany`, `deleteSlipsByPk`. `naming_convention` is ignored by Constellation; do not use it.
+`column_config.<col>.custom_name`. Root fields are mechanical: `slips`, `slipsByPk`, `insertSlipsOne`, `updateSlipsByPk`,
+`updateSlipsMany`, `deleteSlipsByPk`. Do not use `naming_convention`; the app's names come from the custom names above.
 
 ## Relationships and files
 
 Foreign-key relationships are inferred from constraints; use `manual_configuration` for views and couple membership. Link rows to files with a real FK to
-`storage.files(id)` and track the relationship, so a query returns the file metadata with the row (`references/storage.md`). Remote relationships cannot be
-selected in subscriptions on Constellation.
+`storage.files(id)` and track the relationship, so a query returns the file metadata with the row (`references/storage.md`).
 
 ## Reads, pagination, aggregates
 
 The engine offers `where`, `order_by`, `limit`, `offset`, `distinct_on`, `_by_pk`, `_aggregate` (when `allow_aggregations`) and `on_conflict` upserts. There
 are no Relay connections or opaque cursors: page with `order_by` + `limit`/`offset` or keyset `where`, and ask for one row more than the page to know whether
-another page exists. A select permission `limit` is **not enforced by Constellation**: cap rows in queries and, where it matters, in a function.
+another page exists. A select permission `limit` caps the rows a role can read; queries still pass their own `limit`.
 
 ## Subscriptions
 
-WebSocket `graphql-transport-ws` on `/v1/graphql`, under the same permissions. One top-level field per subscription. Constellation polls
-(`subscriptionPollInterval`, default 1 s) and shares a poller for identical query shapes across sessions: two clients with the same subscription shape do
-not both receive updates. Hasura also polls (`liveQueriesMultiplexedRefetchInterval`, default 1000 ms). Treat subscriptions as an addition to the API, not
-as a notification channel, and test that a partner or an ex-partner cannot subscribe to anything private.
-
-## Engine strategy
-
-- Hasura is always deployed (it authors metadata and runs events, cron and Actions). Constellation is enabled with
-  `[experimental.constellation] version = "<latest in changelogs/constellation.md>"`; endpoints are `<sub>.graphql.<region>.nhost.run` (Constellation) and
-  `<sub>.hasura.<region>.nhost.run` (Hasura). Removing the block returns to Hasura.
-- Not served by Constellation (silently ignored, never rejected): Actions, event and cron triggers, REST endpoints, allowlists, query collections, inherited
-  roles, native queries, API limits, per-role introspection settings, select permission `limit`, `query_root_fields`, `backend_only`, `validate_input`,
-  `pool_settings`, `naming_convention`. Avoid or isolate every one of them.
-- Gate: for each role (`public`, `user`, any custom role) run `nhost schema dump --role <r>` against both engines and `nhost schema diff`; every difference
-  must be in `KNOWN_DIFFERENCES.md` or be fixed. Keep the dumps as the contract snapshots (`references/testing.md`).
-- This app targets Hasura today; the metadata avoids Hasura-only features so a switch is a configuration change. `_exists` is used once (spice gating) and
-  is supported by Constellation.
+WebSocket `graphql-transport-ws` on `/v1/graphql`, under the same permissions. One top-level field per subscription. Hasura polls
+(`liveQueriesMultiplexedRefetchInterval`, default 1000 ms) and multiplexes subscriptions with the same shape into one query. Treat subscriptions as an
+addition to the API, not as a notification channel, and test that a partner or an ex-partner cannot subscribe to anything private.

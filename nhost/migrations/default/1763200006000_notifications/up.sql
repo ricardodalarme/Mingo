@@ -106,7 +106,7 @@ begin
 end $$;
 
 -- Records a delivery. A token the push service rejected three times in a row is removed. The tokens arrive as JSON so
--- the argument is the same GraphQL type on both engines.
+-- the argument is the same GraphQL type.
 create function private.complete_notification(notification_id uuid, failed_tokens jsonb default '[]') returns setof public.devices
 language plpgsql volatile as $$
 declare v_failed text[] := coalesce(array(select jsonb_array_elements_text(failed_tokens)), '{}');

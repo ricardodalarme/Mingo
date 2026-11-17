@@ -64,14 +64,5 @@
     "op": "replace",
     "path": "/auth/misc/concealErrors",
     "value": false
-  },
-  {
-    "op": "add",
-    "path": "/experimental",
-    "value": {
-      "constellation": {
-        "version": "0.8.0"
-      }
-    }
   }
 ]

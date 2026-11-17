@@ -17,10 +17,7 @@ The proof lives at the GraphQL layer, where the authorization is. A change is no
    delivery locally (insert a row, see the handler run; replay the event, see no duplicate effect). Check the logs with `nhost logs`.
 5. **Contract snapshots.** For each role, `nhost/tools/dump-schemas.sh` writes `nhost/schema/<role>.graphqls`; commit them. The diff of a pull request is the
    contract change; review it like code.
-6. **Engine parity gate.** If Constellation is enabled: dump each role from Hasura and Constellation and run `nhost/tools/schema-diff.sh`; every difference
-   must be listed in `.work/nhost-docs/constellation/KNOWN_DIFFERENCES.md` or be fixed. Then run layers 2 to 4 against both endpoints; behavior that differs
-   (error format, subscriptions, computed fields) goes in `decisions.md`.
-7. **Performance.** `EXPLAIN (ANALYZE, BUFFERS)` the hot queries (Today, lists, shared tables) as a non-admin role on seeded data of realistic size; check that
+6. **Performance.** `EXPLAIN (ANALYZE, BUFFERS)` the hot queries (Today, lists, shared tables) as a non-admin role on seeded data of realistic size; check that
    every column used by a permission filter or foreign key is indexed. Compare admin versus role timing (JIT note in `references/graphql-and-permissions.md`).
 
 ## How to act as a user in tests
@@ -28,7 +25,7 @@ The proof lives at the GraphQL layer, where the authorization is. A change is no
 - Real flow: sign up or sign in test users through the local Auth service and use their access tokens. Use it for end-to-end tests and for token-lifetime,
   claims and refresh behavior.
 - Fast matrix: Hasura accepts the admin secret together with `x-hasura-role` and `x-hasura-user-id` headers to run a request as any role and user. Confirm it
-  on the local stack for both engines before building on it. Use real tokens for checks that depend on claims.
+  on the local stack before building on it. Use real tokens for checks that depend on claims.
 
 ## Tooling
 
@@ -40,8 +37,8 @@ The proof lives at the GraphQL layer, where the authorization is. A change is no
 ## CI
 
 `.github/workflows/nhost.yml` starts the stack from migrations, metadata and seeds, runs the Functions unit tests and the backend suite, regenerates the
-metadata and role schemas, and fails on `git diff --exit-code`. The parity gate is local because Constellation and the test stack both need Docker.
+metadata and role schemas, and fails on `git diff --exit-code`.
 
 ## Done means
 
-Clean replay green, matrix green, snapshots current, parity gate clean or explained, no `.only`/skipped tests, and the commit message names what the tests prove.
+Clean replay green, matrix green, snapshots current, no `.only`/skipped tests, and the commit message names what the tests prove.

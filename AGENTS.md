@@ -205,7 +205,7 @@ installs `MaterialApp.router`, so app code never touches `Scaffold`, `AppBar` or
   production users automatically; do not change that without the owner asking.
 - **Secrets and local files.** Keys live only in `.env*`. Never commit `.work/`, `.env*`, screenshots or build output.
 - **Done means verified.** `melos gen`, `melos l10n`, `melos l10n:analyze`, `melos lint` and `melos test` pass; for backend changes a
-  clean replay (`nhost/tools/reset.sh`), `cd nhost && npm test`, current schema snapshots and a clean parity diff pass too. Run the app for UI changes.
+  clean replay (`nhost/tools/reset.sh`), `cd nhost && npm test`, and current schema snapshots pass too. Run the app for UI changes.
 
 ## Comments
 
@@ -234,5 +234,5 @@ not its history or its consumers.
 | `storybook` | Widgetbook examples for components and widgets |
 | `design-system` | Any UI, styling, tokens or reusable widget; `Base*` naming |
 | `package` | A new workspace package or a third-party SDK wrapper |
-| `nhost` | Any Nhost backend work: docs, CLI, layout, config, GraphQL permissions, auth, storage, functions, events, testing, parity |
+| `nhost` | Any Nhost backend work: docs, CLI, layout, config, GraphQL permissions, auth, storage, functions, events, testing |
 | `git-workflow` | Committing, splitting, rebasing, writing commit messages or branch names |

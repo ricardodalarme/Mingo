@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Dumps the GraphQL schema each role is served, as the handoff contract for the app and the parity gate.
-# Uses the local stack by default; NHOST_GRAPHQL_URL points it at another engine (Constellation).
+# Dumps the GraphQL schema each role is served, as the handoff contract for the app.
+# Uses the local stack by default; NHOST_GRAPHQL_URL points it at another endpoint.
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 

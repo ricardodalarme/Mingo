@@ -1,6 +1,6 @@
 ---
 name: nhost
-description: Works on the Mingo backend on Nhost (Postgres, Hasura GraphQL, Auth, Storage, Functions, Events, Run) with the Nhost CLI. Covers the docs snapshot, the nhost/ layout, nhost.toml, overlays and secrets, the local stack, deployments, GraphQL permissions and functions, auth, storage, functions and events, testing, schema snapshots and Constellation parity. Use for any backend task, before changing nhost.toml, migrations, metadata, functions or deployment settings, or whenever you are about to state how an Nhost feature behaves.
+description: Works on the Mingo backend on Nhost (Postgres, Hasura GraphQL, Auth, Storage, Functions, Events, Run) with the Nhost CLI. Covers the docs snapshot, the nhost/ layout, nhost.toml, overlays and secrets, the local stack, deployments, GraphQL permissions and functions, auth, storage, functions and events, testing, schema snapshots. Use for any backend task, before changing nhost.toml, migrations, metadata, functions or deployment settings, or whenever you are about to state how an Nhost feature behaves.
 ---
 
 # Nhost backend
@@ -12,7 +12,6 @@ Never state how Nhost behaves from memory. Open the doc first; if the docs are s
 | Need | Look here |
 | --- | --- |
 | Nhost product docs (Auth, Storage, GraphQL, Events, Functions, Run, CLI, config reference) | `.work/nhost-docs/docs/` (MDX). Start at `docs/products/<product>/`, `docs/platform/`, `docs/reference/configuration/index.mdx` (every `nhost.toml` field with defaults) and `docs/reference/cli/commands.mdx` |
-| Constellation (Nhost's GraphQL engine) | `.work/nhost-docs/constellation/` (`README.md`, `KNOWN_DIFFERENCES.md`, `docs/user/hasura-metadata-support.md`, `docs/user/postgres-features.md`) and `changelogs/constellation.md` |
 | REST APIs of Auth and Storage | `.work/nhost-docs/api/*.openapi.yaml` |
 | Release notes per service | `.work/nhost-docs/changelogs/` |
 | Live search | `nhost docs search "<query>"`, `nhost docs show <page>`, or the CLI MCP `search` tool |
@@ -24,11 +23,11 @@ The snapshot is pinned (see `.work/nhost-docs/SOURCE.md`). Refresh it from the N
 
 | Area | Read |
 | --- | --- |
-| GraphQL surface, permissions, functions, computed fields, enums, naming, subscriptions, errors, engines | `references/graphql-and-permissions.md` |
+| GraphQL surface, permissions, functions, computed fields, enums, naming, subscriptions, errors | `references/graphql-and-permissions.md` |
 | Apple/Google sign-in, roles, claims, users, profile bootstrap, account deletion | `references/auth.md` |
 | Buckets, file permissions, uploads, URLs, images, cleanup | `references/storage.md` |
 | Functions, Run, event/cron/one-off triggers, webhooks, secrets | `references/functions-events.md` |
-| Clean replay, privacy matrix, schema snapshots, parity, CI | `references/testing.md` |
+| Clean replay, privacy matrix, schema snapshots, CI | `references/testing.md` |
 
 ## Tools you have
 
@@ -90,7 +89,7 @@ Cloud deployments apply `nhost.toml`, new migrations, metadata and functions on 
 
 ## Gotchas
 
-- The `[hasura]` block, `X-Hasura-*` session variables and the `https://hasura.io/jwt/claims` namespace keep the Hasura name on every engine. Keep them as they are.
+- The `[hasura]` block, `X-Hasura-*` session variables and the `https://hasura.io/jwt/claims` namespace keep the Hasura name. Keep them as they are.
 - Do not change the schema of `auth.*` tables or the root fields generated for them. You may add relationships and permissions on them.
 - Storage tables are owned by the storage service: migrations can insert buckets but cannot create indexes on `storage.files` on cloud. Keep storage cleanup in Functions.
 - Functions are bundled JavaScript or TypeScript: no native addons (`sharp`, `bcrypt`, `canvas`, `better-sqlite3`). Use Nhost Run for those. Timeouts: 10 s Starter, 180 s Pro, 600 s Teams; request and response bodies 6 MB.
@@ -99,4 +98,4 @@ Cloud deployments apply `nhost.toml`, new migrations, metadata and functions on 
 - Rate limits for GraphQL, Storage and Functions are per client IP and configured per service.
 - Permissions that look slow for non-admin roles: compare timing as admin and as a role; disabling Postgres JIT is the documented fix.
 - Extensions available on cloud include pg_cron, pgmq, http, pgvector, pg_jsonschema, pg_trgm, pg_search, postgis, timescaledb and pg_durable. pg_net and pgTAP are not in the documented list: do not assume them.
-- The documented Hasura engine default in the config schema is `v2.48.10-ce`; Constellation docs compare against Hasura `v2.50.3-ce`. Pin versions explicitly in `nhost.toml` and write them in the decision log.
+- The documented Hasura engine default in the config schema is `v2.48.10-ce`. Pin the version explicitly in `nhost.toml` and write it in the decision log.

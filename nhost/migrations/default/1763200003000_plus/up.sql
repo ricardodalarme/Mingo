@@ -45,7 +45,7 @@ language sql stable as $$
 $$;
 
 -- Idempotent by event id; an event older than the stored state is recorded and ignored. Timestamps arrive as ISO text
--- and are cast here, so the GraphQL argument type is the same on both engines.
+-- and are cast here, so the GraphQL argument type is the same.
 create function private.apply_purchase_event(p_event_id text, p_user_id uuid, p_type text, p_event_at text,
   p_plan text, p_status text, p_will_renew boolean, p_store text, p_expires_at text default null)
 returns setof public.entitlements language plpgsql volatile as $$
