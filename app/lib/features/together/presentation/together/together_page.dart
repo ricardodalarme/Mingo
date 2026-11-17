@@ -225,7 +225,7 @@ class const _ToolsSection({
         ),
         _row(
           icon: AppIcons.smartphone,
-          title: context.l10n.widgets.juntosTitle,
+          title: context.l10n.widgets.togetherTitle,
           subtitle: l10n.widgetsMeta,
           onTap: () => context.pushRoute(const WidgetsGalleryRoute()),
         ),

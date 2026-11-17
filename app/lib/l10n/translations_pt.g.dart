@@ -8066,13 +8066,13 @@ class Translations$widgets$pt {
   String get settingsSubtitle => 'Na tela inicial';
 
   /// pt: 'TELA INICIAL'
-  String get juntosCategory => 'TELA INICIAL';
+  String get togetherCategory => 'TELA INICIAL';
 
   /// pt: 'Widgets do Mingo'
-  String get juntosTitle => 'Widgets do Mingo';
+  String get togetherTitle => 'Widgets do Mingo';
 
   /// pt: 'Lembretes calmos para você ou para vocês dois.'
-  String get juntosSubtitle => 'Lembretes calmos para você ou para vocês dois.';
+  String get togetherSubtitle => 'Lembretes calmos para você ou para vocês dois.';
 
   /// pt: 'Widgets'
   String get galleryTitle => 'Widgets';
@@ -14505,9 +14505,9 @@ extension on Translations {
           'welcome.debugSignIn' => 'Entrar (debug)',
           'widgets.settingsTitle' => 'Widgets',
           'widgets.settingsSubtitle' => 'Na tela inicial',
-          'widgets.juntosCategory' => 'TELA INICIAL',
-          'widgets.juntosTitle' => 'Widgets do Mingo',
-          'widgets.juntosSubtitle' => 'Lembretes calmos para você ou para vocês dois.',
+          'widgets.togetherCategory' => 'TELA INICIAL',
+          'widgets.togetherTitle' => 'Widgets do Mingo',
+          'widgets.togetherSubtitle' => 'Lembretes calmos para você ou para vocês dois.',
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Só meus',
           'widgets.segmentCouple' => 'Do casal',

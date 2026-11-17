@@ -6474,11 +6474,11 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get settingsSubtitle => 'Home screen';
   @override
-  String get juntosCategory => 'HOME SCREEN';
+  String get togetherCategory => 'HOME SCREEN';
   @override
-  String get juntosTitle => 'Mingo widgets';
+  String get togetherTitle => 'Mingo widgets';
   @override
-  String get juntosSubtitle => 'Calm reminders for you or for the two of you.';
+  String get togetherSubtitle => 'Calm reminders for you or for the two of you.';
   @override
   String get galleryTitle => 'Widgets';
   @override
@@ -12433,9 +12433,9 @@ extension on TranslationsEn {
           'welcome.debugSignIn' => 'Sign in (debug)',
           'widgets.settingsTitle' => 'Widgets',
           'widgets.settingsSubtitle' => 'Home screen',
-          'widgets.juntosCategory' => 'HOME SCREEN',
-          'widgets.juntosTitle' => 'Mingo widgets',
-          'widgets.juntosSubtitle' => 'Calm reminders for you or for the two of you.',
+          'widgets.togetherCategory' => 'HOME SCREEN',
+          'widgets.togetherTitle' => 'Mingo widgets',
+          'widgets.togetherSubtitle' => 'Calm reminders for you or for the two of you.',
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Just mine',
           'widgets.segmentCouple' => 'Couple',
