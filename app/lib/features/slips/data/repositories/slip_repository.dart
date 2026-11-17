@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
-import 'package:app/features/slips/data/data_sources/remote/fragments/generated/SlipSummaryFragment.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
+import 'package:app/features/slips/data/mappers/drawn_slip_mapper.dart';
+import 'package:app/features/slips/data/mappers/slip_detail_mapper.dart';
+import 'package:app/features/slips/data/mappers/slip_entry_mapper.dart';
 import 'package:app/features/slips/data/mappers/slip_enum_mapper.dart';
+import 'package:app/features/slips/data/mappers/slip_send_outcome_mapper.dart';
 import 'package:app/features/slips/data/models/drawn_slip.dart';
 import 'package:app/features/slips/data/models/pending_slip.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
@@ -15,6 +16,7 @@ import 'package:app/features/slips/data/models/slip_draft.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/models/slip_send_outcome.dart';
 import 'package:app/features/slips/data/models/slip_work_area.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
@@ -22,18 +24,6 @@ import 'package:network/network.dart';
 
 /// How many slips one page holds.
 const int slipPageSize = 20;
-
-/// What happened when a slip was sent on its own.
-enum SlipSendOutcome() {
-  /// The partner has it.
-  sent,
-
-  /// The wording matched a rule, so the card was held instead of sent.
-  held,
-
-  /// Nothing was sent: no partner, or the slip may not be sent.
-  notSent,
-}
 
 /// Where a saved slip ended up.
 enum SlipSaveOutcome() {
@@ -97,22 +87,8 @@ class SlipRepository({
     try {
       final row = await _slipDataSource.getSlip(id);
       if (row == null) return null;
-      final node = row.slip;
 
-      return SlipDetail(
-        id: node.id,
-        body: node.body,
-        kind: node.kind.toModel() ?? SlipKind.quick,
-        createdAt: node.createdAt,
-        forCard: node.forCard,
-        feeling: node.feeling,
-        planNote: node.planNote,
-        category: node.category?.toModel(),
-        workArea: node.workArea?.toModel(),
-        isArchived: node.archivedAt != null,
-        isInJar: node.inJar,
-        wasInCard: row.wasInCard,
-      );
+      return row.toModel();
     } catch (e, stack) {
       _logger.error('Failed to load a slip', error: e, stackTrace: stack);
       rethrow;
@@ -156,7 +132,7 @@ class SlipRepository({
       if (slips.isEmpty) return null;
       final slip = slips[(_random ?? Random()).nextInt(slips.length)];
 
-      return DrawnSlip(id: slip.id, body: slip.body);
+      return slip.toModel();
     } catch (e, stack) {
       _logger.error('Failed to draw from the jar', error: e, stackTrace: stack);
       rethrow;
@@ -234,7 +210,7 @@ class SlipRepository({
         filter: filter,
       );
 
-      return _page(rows, offset: offset, pageSize: pageSize);
+      return rows.toPage(offset: offset, pageSize: pageSize);
     } catch (e, stack) {
       _logger.error('Failed to load slips', error: e, stackTrace: stack);
       rethrow;
@@ -248,7 +224,7 @@ class SlipRepository({
   Stream<SlipPage> watchSlips({int count = slipPageSize, SlipFilter filter = const SlipFilter()}) {
     return _slipDataSource
         .watchSlips(limit: count + 1, offset: 0, filter: filter)
-        .map((rows) => _page(rows, offset: 0, pageSize: count))
+        .map((rows) => rows.toPage(offset: 0, pageSize: count))
         .transform(
           StreamTransformer.fromHandlers(
             handleError: (error, stack, sink) {
@@ -257,30 +233,6 @@ class SlipRepository({
             },
           ),
         );
-  }
-
-  SlipPage _page(
-    List<FragmentSlipSummaryFragment> rows, {
-    required int offset,
-    required int pageSize,
-  }) {
-    final pageRows = rows.take(pageSize).toList();
-
-    return SlipPage(
-      items: [
-        for (final row in pageRows)
-          SlipEntry(
-            id: row.id,
-            body: row.body,
-            kind: row.kind.toModel() ?? SlipKind.quick,
-            category: row.category?.toModel(),
-            forCard: row.forCard,
-            createdAt: row.createdAt,
-          ),
-      ],
-      hasNext: rows.length > pageSize,
-      offset: offset + pageRows.length,
-    );
   }
 
   /// Keeps a slip only on the device; it is sent once there is a signed-in session.
@@ -337,11 +289,7 @@ class SlipRepository({
     try {
       final status = await _slipDataSource.sendSlipNow(slipId);
 
-      return switch (status) {
-        EnumCardStatus_enum.sent => SlipSendOutcome.sent,
-        EnumCardStatus_enum.held => SlipSendOutcome.held,
-        _ => SlipSendOutcome.notSent,
-      };
+      return status.toSlipSendOutcome();
     } catch (e, stack) {
       _logger.error('Failed to send a slip', error: e, stackTrace: stack);
       rethrow;

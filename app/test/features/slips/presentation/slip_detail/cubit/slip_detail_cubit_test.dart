@@ -1,5 +1,6 @@
 import 'package:app/features/slips/data/models/slip_detail.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
+import 'package:app/features/slips/data/models/slip_send_outcome.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
