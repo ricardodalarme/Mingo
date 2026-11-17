@@ -39,6 +39,7 @@ class ChatCubit({
         state.copyWith(
           stage: Success(status.messagesLeft <= 0 ? ChatStage.limitReached : ChatStage.ready),
           messagesLeft: status.messagesLeft,
+          limit: status.limit,
           hasPlus: status.hasPlus,
         ),
       );

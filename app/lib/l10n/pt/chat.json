@@ -98,5 +98,10 @@
   "starterThanks": "Quero agradecer",
   "starterDate": "Ideia de encontro",
   "starterTalk": "Preparar uma conversa",
-  "startHere": "Começar por aqui"
+  "startHere": "Começar por aqui",
+  "offlineSlip": "Virar slip",
+  "offlineDiary": "Anotar no diário",
+  "remembersTitle": "O que ele vê e lembra",
+  "remembersAction": "O que aprendi",
+  "remembersText": "Só guarda o que você confirmar, item por item. Você pode rever e apagar quando quiser."
 }

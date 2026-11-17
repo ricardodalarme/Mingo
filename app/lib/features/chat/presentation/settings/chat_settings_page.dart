@@ -1,5 +1,6 @@
 import 'package:app/features/chat/presentation/settings/cubit/chat_settings_cubit.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -37,16 +38,38 @@ class const ChatSettingsPage({super.key}) extends StatelessWidget implements Aut
                 style: context.text.label.copyWith(color: context.colors.textSecondary),
               ),
               const SizedBox(height: AppSpace.s4),
-              Text(
-                hasPlus ? l10n.usagePlus(left: messagesLeft, limit: limit) : l10n.usageFree,
-                style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
-              ),
+              if (hasPlus && limit > 0)
+                BaseMeter(
+                  value: limit - messagesLeft,
+                  max: limit,
+                  label: l10n.usagePlus(left: messagesLeft, limit: limit),
+                )
+              else
+                Text(
+                  hasPlus ? l10n.usagePlus(left: messagesLeft, limit: limit) : l10n.usageFree,
+                  style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+                ),
               const SizedBox(height: AppSpace.s20),
               Semantics(header: true, child: Text(l10n.sendingTitle, style: context.text.titleXs)),
               const SizedBox(height: AppSpace.s8),
               Text(
                 l10n.sendingText,
                 style: context.text.body.copyWith(color: context.colors.textSecondary),
+              ),
+              const SizedBox(height: AppSpace.s20),
+              BaseSectionHeader(title: l10n.remembersTitle),
+              const SizedBox(height: AppSpace.s8),
+              BaseListGroup(
+                children: [
+                  BaseListTile(
+                    icon: AppIcons.book,
+                    title: l10n.remembersAction,
+                    subtitle: l10n.remembersText,
+                    subtitleMaxLines: 3,
+                    showsChevron: true,
+                    onTap: () => context.pushRoute(const LearnedItemsRoute()),
+                  ),
+                ],
               ),
             ],
           ),

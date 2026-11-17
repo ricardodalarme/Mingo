@@ -98,5 +98,10 @@
   "starterThanks": "I want to say thanks",
   "starterDate": "A date idea",
   "starterTalk": "Prepare a conversation",
-  "startHere": "Start here"
+  "startHere": "Start here",
+  "offlineSlip": "Make a slip",
+  "offlineDiary": "Write in the diary",
+  "remembersTitle": "What it sees and remembers",
+  "remembersAction": "What I learned",
+  "remembersText": "It only keeps what you confirm, item by item. You can review and delete it any time."
 }

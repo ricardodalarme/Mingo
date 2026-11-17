@@ -271,6 +271,7 @@ class const _Composer() extends StatelessWidget {
     final draft = context.select((ChatCubit cubit) => cubit.state.draft);
     final isReplying = context.select((ChatCubit cubit) => cubit.state.isReplying);
     final messagesLeft = context.select((ChatCubit cubit) => cubit.state.messagesLeft);
+    final limit = context.select((ChatCubit cubit) => cubit.state.limit);
     final cubit = context.read<ChatCubit>();
     final isComposerEnabled = !isReplying && !isOffline;
 
@@ -298,13 +299,59 @@ class const _Composer() extends StatelessWidget {
             ),
           ],
         ),
-        if (isOffline || messagesLeft <= 2) ...[
+        if (isOffline) ...[
           const SizedBox(height: AppSpace.s4),
           Text(
-            isOffline ? l10n.offline : l10n.messagesLeft(count: messagesLeft),
+            l10n.offline,
             style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
           ),
+          const SizedBox(height: AppSpace.s8),
+          const _OfflineAlternatives(),
+        ] else if (_isRunningLow(messagesLeft: messagesLeft, limit: limit)) ...[
+          const SizedBox(height: AppSpace.s8),
+          if (limit > 0)
+            BaseMeter(
+              value: limit - messagesLeft,
+              max: limit,
+              label: l10n.messagesLeft(count: messagesLeft),
+              isThin: true,
+            )
+          else
+            Text(
+              l10n.messagesLeft(count: messagesLeft),
+              style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+            ),
         ],
+      ],
+    );
+  }
+}
+
+/// Whether 80% of the day's messages are used, or only two are left.
+bool _isRunningLow({required int messagesLeft, required int limit}) =>
+    messagesLeft <= 2 || (limit > 0 && (limit - messagesLeft) * 5 >= limit * 4);
+
+/// What the person can do while the chat is out of reach.
+class const _OfflineAlternatives() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.chat;
+
+    return Row(
+      spacing: AppSpace.s8,
+      children: [
+        Expanded(
+          child: BaseButton.compact(
+            text: l10n.offlineSlip,
+            onPressed: () => context.router.root.push(const QuickSlipRoute()),
+          ),
+        ),
+        Expanded(
+          child: BaseButton.compact(
+            text: l10n.offlineDiary,
+            onPressed: () => context.pushRoute(const DiaryRoute()),
+          ),
+        ),
       ],
     );
   }

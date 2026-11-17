@@ -203,4 +203,24 @@ void main() {
     ).called(1);
     expect(find.byType(SaveLearningSheet), findsNothing);
   });
+
+  testWidgets('the usage meter shows once 80% of the day is used', (tester) async {
+    when(chatRepository.getStatus)
+        .thenAnswer((_) async => (messagesLeft: 4, limit: 20, hasPlus: true));
+    final cubits = await build(isOnline: true);
+
+    await pumpChat(tester, cubits.chat, cubits.connectivity);
+
+    expect(find.byType(BaseMeter), findsOneWidget);
+    expect(find.text('Restam 4 mensagens hoje'), findsOneWidget);
+  });
+
+  testWidgets('offline offers a slip and the diary while the chat is out of reach', (tester) async {
+    final cubits = await build(isOnline: false);
+
+    await pumpChat(tester, cubits.chat, cubits.connectivity);
+
+    expect(find.text('Virar slip'), findsWidgets);
+    expect(find.text('Anotar no diário'), findsOneWidget);
+  });
 }

@@ -1106,6 +1106,22 @@ class Translations$chat$pt {
 
   /// pt: 'Começar por aqui'
   String get startHere => 'Começar por aqui';
+
+  /// pt: 'Virar slip'
+  String get offlineSlip => 'Virar slip';
+
+  /// pt: 'Anotar no diário'
+  String get offlineDiary => 'Anotar no diário';
+
+  /// pt: 'O que ele vê e lembra'
+  String get remembersTitle => 'O que ele vê e lembra';
+
+  /// pt: 'O que aprendi'
+  String get remembersAction => 'O que aprendi';
+
+  /// pt: 'Só guarda o que você confirmar, item por item. Você pode rever e apagar quando quiser.'
+  String get remembersText =>
+      'Só guarda o que você confirmar, item por item. Você pode rever e apagar quando quiser.';
 }
 
 // Path: checkin
@@ -11011,6 +11027,11 @@ extension on Translations {
           'chat.starterDate' => 'Ideia de encontro',
           'chat.starterTalk' => 'Preparar uma conversa',
           'chat.startHere' => 'Começar por aqui',
+          'chat.offlineSlip' => 'Virar slip',
+          'chat.offlineDiary' => 'Anotar no diário',
+          'chat.remembersTitle' => 'O que ele vê e lembra',
+          'chat.remembersAction' => 'O que aprendi',
+          'chat.remembersText' => 'Só guarda o que você confirmar, item por item. Você pode rever e apagar quando quiser.',
           'checkin.title' => 'Check-in semanal',
           'checkin.titleHighlight' => 'semanal',
           'checkin.introSubtitle' => 'Dez minutos. Cada um responde em privado primeiro.',
@@ -11115,14 +11136,14 @@ extension on Translations {
           'dateNight.monthsShort.2' => 'mar',
           'dateNight.monthsShort.3' => 'abr',
           'dateNight.monthsShort.4' => 'mai',
+          _ => null,
+        } ??
+        switch (path) {
           'dateNight.monthsShort.5' => 'jun',
           'dateNight.monthsShort.6' => 'jul',
           'dateNight.monthsShort.7' => 'ago',
           'dateNight.monthsShort.8' => 'set',
           'dateNight.monthsShort.9' => 'out',
-          _ => null,
-        } ??
-        switch (path) {
           'dateNight.monthsShort.10' => 'nov',
           'dateNight.monthsShort.11' => 'dez',
           'dateNight.planChoices.today' => 'Planejar para hoje',
@@ -11724,15 +11745,15 @@ extension on Translations {
           'hardConversation.exit' => 'Sair',
           'hardConversation.next' => 'Próximo',
           'hardConversation.back' => 'Voltar',
+          _ => null,
+        } ??
+        switch (path) {
           'hardConversation.retry' => 'Tentar de novo',
           'hardConversation.generationFailed' => 'Não deu para escrever uma frase agora.',
           'hardConversation.privateNote' =>
             'A mascote só vê o que você escreve aqui. Os dados do seu par nunca são enviados.',
           'hardConversation.offline' => 'Sem conexão. A frase de abertura precisa de internet.',
           'hardConversation.emptyTitle' => 'Não deu para carregar',
-          _ => null,
-        } ??
-        switch (path) {
           'hardConversation.emptyText' => 'Tente de novo em instantes.',
           'hardConversation.plusTitle' => 'Preparar uma conversa faz parte do Plus',
           'hardConversation.plusText' => 'As três etapas e a sugestão de abertura estão no Plus.',
@@ -12406,15 +12427,15 @@ extension on Translations {
           'loveStyle.privateNote' =>
             'Só você vê as respostas. Você escolhe se quer mostrar o resultado.',
           'loveStyle.resultTitle' => 'O que faz você se sentir querido(a)',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.resultHighlight' => 'querido(a)',
           'loveStyle.resultSubtitle' =>
             'Uma descrição do que te faz sentir querido(a), do seu jeito.',
           'loveStyle.topTag' => 'O que mais combina com você',
           'loveStyle.descriptions.time' => 'Você se sente querido(a) quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
           'loveStyle.descriptions.words' => 'Você se sente querido(a) quando ouve, de forma sincera, o que a outra pessoa sente por você.',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.descriptions.acts' => 'Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.',
           'loveStyle.descriptions.gifts' => 'Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
           'loveStyle.descriptions.touch' => 'Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
@@ -13008,6 +13029,9 @@ extension on Translations {
           'profileSetup.partnerNameLabel' => 'Nome do parceiro',
           'profileSetup.partnerNameHint' => 'O primeiro nome dele ou dela',
           'profileSetup.partnerNameErrors.tooLong' => 'Use no máximo 30 caracteres.',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.dateLabel' => 'Quando começaram?',
           'profileSetup.dateHint' => 'Escolha uma data',
           'profileSetup.dateErrors.empty' => 'Escolha a data de vocês.',
@@ -13017,9 +13041,6 @@ extension on Translations {
             required Object year,
           }) => '${day} de ${month} de ${year}',
           'profileSetup.months.0' => 'janeiro',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.months.1' => 'fevereiro',
           'profileSetup.months.2' => 'março',
           'profileSetup.months.3' => 'abril',
@@ -13589,14 +13610,14 @@ extension on Translations {
           'share.monthsLong.6' => 'julho',
           'share.monthsLong.7' => 'agosto',
           'share.monthsLong.8' => 'setembro',
+          _ => null,
+        } ??
+        switch (path) {
           'share.monthsLong.9' => 'outubro',
           'share.monthsLong.10' => 'novembro',
           'share.monthsLong.11' => 'dezembro',
           'share.phases.newMoon' => 'Lua nova',
           'share.phases.waxingCrescent' => 'Lua crescente',
-          _ => null,
-        } ??
-        switch (path) {
           'share.phases.firstQuarter' => 'Quarto crescente',
           'share.phases.waxingGibbous' => 'Crescente gibosa',
           'share.phases.fullMoon' => 'Lua cheia',
@@ -14198,15 +14219,15 @@ extension on Translations {
           'temperature.back' => 'Voltar',
           'temperature.skip' => 'Agora não',
           'temperature.intensityTitle' => 'Qual a intensidade?',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.intensityHighlight' => 'intensidade',
           'temperature.intensityHint' =>
             'Abaixo de 7 dá para conversar. Acima de 7, faça uma pausa primeiro.',
           'temperature.intensityHigh' => 'Valor alto: que tal uma pausa antes?',
           'temperature.intensityLow' => 'Fraca',
           'temperature.intensityTop' => 'Muito forte',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.intensityLabel' => 'Intensidade',
           'temperature.result.good.title' => 'Que bom',
           'temperature.result.good.text' => 'Registrado só para você. Siga o seu dia.',

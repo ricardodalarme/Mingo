@@ -985,6 +985,17 @@ class _Translations$chat$en extends Translations$chat$pt {
   String get starterTalk => 'Prepare a conversation';
   @override
   String get startHere => 'Start here';
+  @override
+  String get offlineSlip => 'Make a slip';
+  @override
+  String get offlineDiary => 'Write in the diary';
+  @override
+  String get remembersTitle => 'What it sees and remembers';
+  @override
+  String get remembersAction => 'What I learned';
+  @override
+  String get remembersText =>
+      'It only keeps what you confirm, item by item. You can review and delete it any time.';
 }
 
 // Path: checkin
@@ -8953,6 +8964,12 @@ extension on TranslationsEn {
           'chat.starterDate' => 'A date idea',
           'chat.starterTalk' => 'Prepare a conversation',
           'chat.startHere' => 'Start here',
+          'chat.offlineSlip' => 'Make a slip',
+          'chat.offlineDiary' => 'Write in the diary',
+          'chat.remembersTitle' => 'What it sees and remembers',
+          'chat.remembersAction' => 'What I learned',
+          'chat.remembersText' =>
+            'It only keeps what you confirm, item by item. You can review and delete it any time.',
           'checkin.title' => 'Weekly check-in',
           'checkin.titleHighlight' => 'Weekly',
           'checkin.introSubtitle' => 'Ten minutes. Each of you answers privately first.',
@@ -9060,14 +9077,14 @@ extension on TranslationsEn {
           'dateNight.monthsShort.2' => 'Mar',
           'dateNight.monthsShort.3' => 'Apr',
           'dateNight.monthsShort.4' => 'May',
+          _ => null,
+        } ??
+        switch (path) {
           'dateNight.monthsShort.5' => 'Jun',
           'dateNight.monthsShort.6' => 'Jul',
           'dateNight.monthsShort.7' => 'Aug',
           'dateNight.monthsShort.8' => 'Sep',
           'dateNight.monthsShort.9' => 'Oct',
-          _ => null,
-        } ??
-        switch (path) {
           'dateNight.monthsShort.10' => 'Nov',
           'dateNight.monthsShort.11' => 'Dec',
           'dateNight.planChoices.today' => 'Plan for today',
@@ -9665,15 +9682,15 @@ extension on TranslationsEn {
           'hardConversation.exit' => 'Leave',
           'hardConversation.next' => 'Next',
           'hardConversation.back' => 'Back',
+          _ => null,
+        } ??
+        switch (path) {
           'hardConversation.retry' => 'Try again',
           'hardConversation.generationFailed' => 'Couldn\'t write a sentence right now.',
           'hardConversation.privateNote' =>
             'The mascot only sees what you write here. Your partner\'s data is never sent.',
           'hardConversation.offline' => 'You\'re offline. The opening sentence needs a connection.',
           'hardConversation.emptyTitle' => 'Couldn\'t load',
-          _ => null,
-        } ??
-        switch (path) {
           'hardConversation.emptyText' => 'Try again in a moment.',
           'hardConversation.plusTitle' => 'Preparing a conversation is part of Plus',
           'hardConversation.plusText' => 'The three steps and the opening suggestion are in Plus.',
@@ -10343,6 +10360,9 @@ extension on TranslationsEn {
           'loveStyle.privateNote' =>
             'Only you see your answers. You choose whether to show the result.',
           'loveStyle.resultTitle' => 'What makes you feel loved',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.resultHighlight' => 'loved',
           'loveStyle.resultSubtitle' =>
             'A description of what makes you feel loved, in your own way.',
@@ -10350,9 +10370,6 @@ extension on TranslationsEn {
           'loveStyle.descriptions.time' => 'You feel loved when you have real time with someone you care about: unhurried, no screens, just presence.',
           'loveStyle.descriptions.words' =>
             'You feel loved when you hear, honestly, what the other person feels for you.',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.descriptions.acts' =>
             'You feel loved when someone notices what you need and helps without being asked.',
           'loveStyle.descriptions.gifts' =>
@@ -10943,6 +10960,9 @@ extension on TranslationsEn {
           'profileSetup.partnerNameLabel' => 'Partner\'s name',
           'profileSetup.partnerNameHint' => 'Their first name',
           'profileSetup.partnerNameErrors.tooLong' => 'Use at most 30 characters.',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.dateLabel' => 'When did you start?',
           'profileSetup.dateHint' => 'Pick a date',
           'profileSetup.dateErrors.empty' => 'Pick the date you started.',
@@ -10952,9 +10972,6 @@ extension on TranslationsEn {
             required Object year,
           }) => '${month} ${day}, ${year}',
           'profileSetup.months.0' => 'January',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.months.1' => 'February',
           'profileSetup.months.2' => 'March',
           'profileSetup.months.3' => 'April',
@@ -11518,14 +11535,14 @@ extension on TranslationsEn {
           'share.monthsLong.6' => 'July',
           'share.monthsLong.7' => 'August',
           'share.monthsLong.8' => 'September',
+          _ => null,
+        } ??
+        switch (path) {
           'share.monthsLong.9' => 'October',
           'share.monthsLong.10' => 'November',
           'share.monthsLong.11' => 'December',
           'share.phases.newMoon' => 'New moon',
           'share.phases.waxingCrescent' => 'Waxing crescent',
-          _ => null,
-        } ??
-        switch (path) {
           'share.phases.firstQuarter' => 'First quarter',
           'share.phases.waxingGibbous' => 'Waxing gibbous',
           'share.phases.fullMoon' => 'Full moon',
@@ -12131,14 +12148,14 @@ extension on TranslationsEn {
           'temperature.back' => 'Back',
           'temperature.skip' => 'Not now',
           'temperature.intensityTitle' => 'How strong is it?',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.intensityHighlight' => 'strong',
           'temperature.intensityHint' => 'Under 7 you can talk. Over 7, take a pause first.',
           'temperature.intensityHigh' => 'High value: how about a pause first?',
           'temperature.intensityLow' => 'Mild',
           'temperature.intensityTop' => 'Very strong',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.intensityLabel' => 'Intensity',
           'temperature.result.good.title' => 'That\'s good',
           'temperature.result.good.text' => 'Saved just for you. Carry on with your day.',
