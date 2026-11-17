@@ -86,7 +86,6 @@ class TogetherInjectionModule() implements InjectionModule {
     ..registerFactory<LogisticsCubit>(
       () => LogisticsCubit(
         togetherRepository: injector.get<TogetherRepository>(),
-        profileRepository: injector.get<ProfileRepository>(),
         pairingRepository: injector.get<PairingRepository>(),
       ),
     );

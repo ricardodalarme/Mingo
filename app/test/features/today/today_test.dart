@@ -267,6 +267,24 @@ void main() {
       await changes.close();
     });
 
+    test('reading Hoje again reuses the profile and settings it already holds', () async {
+      when(() => today.getToday()).thenAnswer((_) async => result());
+      when(() => profile.getMySettings())
+          .thenAnswer((_) async => const AccountSettings(theme: .rose));
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        repairRepository: repair,
+      );
+
+      await cubit.load();
+      await cubit.load();
+
+      verify(() => profile.getMyProfile()).called(1);
+      verify(() => profile.getMySettings()).called(1);
+      verify(() => today.getToday()).called(2);
+    });
+
     test('a change the server reports reads Hoje again', () async {
       var reads = 0;
       when(() => today.getToday()).thenAnswer((_) async {

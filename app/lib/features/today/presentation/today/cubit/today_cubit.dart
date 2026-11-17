@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/models/partner_intent.dart';
+import 'package:app/features/profile/data/models/profile.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:app/features/today/data/data_sources/remote/today_data_source.dart';
@@ -35,6 +36,8 @@ class TodayCubit({
 
   StreamSubscription<void>? _profileChanges;
   StreamSubscription<void>? _settingsChanges;
+  Profile? _profile;
+  AccountSettings? _settings;
   StreamSubscription<TodaySignals>? _signals;
   TodaySignals? _lastSignals;
   Timer? _refreshTimer;
@@ -44,16 +47,16 @@ class TodayCubit({
 
   void start() {
     WidgetsBinding.instance.addObserver(this);
-    _profileChanges ??= _profileRepository
-        .watchMyProfile()
-        .distinct()
-        .skip(1)
-        .listen((_) => load(), onError: (Object _) {});
-    _settingsChanges ??= _profileRepository
-        .watchMySettings()
-        .distinct()
-        .skip(1)
-        .listen((_) => load(), onError: (Object _) {});
+    _profileChanges ??= _profileRepository.watchMyProfile().distinct().listen((profile) {
+      final isChange = _profile != null && _profile != profile;
+      _profile = profile;
+      if (isChange) unawaited(load());
+    }, onError: (Object _) {});
+    _settingsChanges ??= _profileRepository.watchMySettings().distinct().listen((settings) {
+      final isChange = _settings != null && _settings != settings;
+      _settings = settings;
+      if (isChange) unawaited(load());
+    }, onError: (Object _) {});
     _signals ??= _todayRepository.watchSignals().listen(_onSignals);
     _refreshTimer ??= _timerFactory(_refreshInterval, _onRefreshTick);
     load();
@@ -153,7 +156,7 @@ class TodayCubit({
 
   Future<String?> _readOwnName() async {
     try {
-      return (await _profileRepository.getMyProfile()).displayName;
+      return (_profile ??= await _profileRepository.getMyProfile()).displayName;
     } on Object {
       return state.selfName;
     }
@@ -169,7 +172,7 @@ class TodayCubit({
 
   Future<AccountSettings?> _readSettings() async {
     try {
-      return await _profileRepository.getMySettings();
+      return _settings ??= await _profileRepository.getMySettings();
     } on Object {
       return null;
     }

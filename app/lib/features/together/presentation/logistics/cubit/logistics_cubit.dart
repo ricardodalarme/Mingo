@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/together/data/models/logistic_item.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:core/core.dart';
@@ -13,7 +12,6 @@ part 'logistics_state.dart';
 
 class LogisticsCubit({
   required final TogetherRepository _togetherRepository,
-  required final ProfileRepository _profileRepository,
   required final PairingRepository _pairingRepository,
 }) extends Cubit<LogisticsState> {
   this : super(const LogisticsState());
@@ -25,15 +23,15 @@ class LogisticsCubit({
   Future<void> load() async {
     if (state.items is! Success) emit(state.copyWith(items: const Loading()));
     try {
-      final (me, partner, items) = await (
-        _profileRepository.getMyProfile(),
+      final (meId, partner, items) = await (
+        _togetherRepository.getCurrentUserId(),
         _pairingRepository.getPartner(),
         _togetherRepository.getLogisticItems(),
       ).wait;
       emit(
         state.copyWith(
           items: Success(items),
-          meId: me.id,
+          meId: meId,
           partnerId: partner?.id,
           partnerName: partner?.displayName,
         ),

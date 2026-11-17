@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
-import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/together/data/models/logistic_item.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:app/features/together/presentation/logistics/cubit/logistics_cubit.dart';
@@ -13,13 +12,10 @@ import 'package:mocktail/mocktail.dart';
 
 class _MockTogetherRepository() extends Mock implements TogetherRepository;
 
-class _MockProfileRepository() extends Mock implements ProfileRepository;
-
 class _MockPairingRepository() extends Mock implements PairingRepository;
 
 void main() {
   late TogetherRepository together;
-  late ProfileRepository profile;
   late PairingRepository pairing;
   late StreamController<List<LogisticItem>> live;
 
@@ -30,11 +26,8 @@ void main() {
     live = StreamController<List<LogisticItem>>.broadcast();
     addTearDown(live.close);
     when(() => together.watchLogisticItems()).thenAnswer((_) => live.stream);
-    profile = _MockProfileRepository();
     pairing = _MockPairingRepository();
-    when(() => profile.getMyProfile()).thenAnswer(
-      (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'),
-    );
+    when(() => together.getCurrentUserId()).thenAnswer((_) async => 'me');
     when(() => pairing.getPartner()).thenAnswer(
       (_) async =>
           const Profile(id: 'partner', avatarKind: AvatarKind.initials, displayName: 'Rui'),
@@ -70,11 +63,8 @@ void main() {
     });
   });
 
-  LogisticsCubit build() => LogisticsCubit(
-    togetherRepository: together,
-    profileRepository: profile,
-    pairingRepository: pairing,
-  );
+  LogisticsCubit build() =>
+      LogisticsCubit(togetherRepository: together, pairingRepository: pairing);
 
   test('load reads the list, the person and the partner', () async {
     final cubit = build();
@@ -161,11 +151,7 @@ void main() {
 
   test('confirming an item of the partner confirms it and reads the list again', () async {
     when(() => together.confirmLogisticItem('i1')).thenAnswer((_) async {});
-    final cubit = LogisticsCubit(
-      togetherRepository: together,
-      profileRepository: profile,
-      pairingRepository: pairing,
-    );
+    final cubit = LogisticsCubit(togetherRepository: together, pairingRepository: pairing);
     await cubit.load();
 
     await cubit.confirm(item);
@@ -176,11 +162,7 @@ void main() {
 
   test('an item the partner adds shows up while the page is open', () async {
     const added = LogisticItem(id: 'i2', title: 'Ligar para o hotel');
-    final cubit = LogisticsCubit(
-      togetherRepository: together,
-      profileRepository: profile,
-      pairingRepository: pairing,
-    );
+    final cubit = LogisticsCubit(togetherRepository: together, pairingRepository: pairing);
     addTearDown(cubit.close);
     await cubit.load();
 
@@ -191,11 +173,7 @@ void main() {
   });
 
   test('stops following the list when it closes', () async {
-    final cubit = LogisticsCubit(
-      togetherRepository: together,
-      profileRepository: profile,
-      pairingRepository: pairing,
-    );
+    final cubit = LogisticsCubit(togetherRepository: together, pairingRepository: pairing);
     await cubit.load();
     expect(live.hasListener, isTrue);
 
