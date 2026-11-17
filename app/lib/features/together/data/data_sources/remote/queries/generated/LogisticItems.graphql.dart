@@ -125,7 +125,28 @@ const documentNodeQueryLogisticItems = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'authorId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'coupleId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: 'doneAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'confirmedAt'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -264,7 +285,10 @@ class QueryLogisticItemslogisticItems {
     required this.id,
     required this.title,
     this.assigneeId,
+    required this.authorId,
+    this.coupleId,
     this.doneAt,
+    this.confirmedAt,
     this.$__typename = 'logisticItems',
   });
 
@@ -272,13 +296,19 @@ class QueryLogisticItemslogisticItems {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$assigneeId = json['assigneeId'];
+    final l$authorId = json['authorId'];
+    final l$coupleId = json['coupleId'];
     final l$doneAt = json['doneAt'];
+    final l$confirmedAt = json['confirmedAt'];
     final l$$__typename = json['__typename'];
     return QueryLogisticItemslogisticItems(
       id: (l$id as String),
       title: (l$title as String),
       assigneeId: (l$assigneeId as String?),
+      authorId: (l$authorId as String),
+      coupleId: (l$coupleId as String?),
       doneAt: l$doneAt == null ? null : DateTime.parse((l$doneAt as String)),
+      confirmedAt: l$confirmedAt == null ? null : DateTime.parse((l$confirmedAt as String)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -289,7 +319,13 @@ class QueryLogisticItemslogisticItems {
 
   final String? assigneeId;
 
+  final String authorId;
+
+  final String? coupleId;
+
   final DateTime? doneAt;
+
+  final DateTime? confirmedAt;
 
   final String $__typename;
 
@@ -301,10 +337,18 @@ class QueryLogisticItemslogisticItems {
     _resultData['title'] = l$title;
     final l$assigneeId = assigneeId;
     _resultData['assigneeId'] = l$assigneeId;
+    final l$authorId = authorId;
+    _resultData['authorId'] = l$authorId;
+    final l$coupleId = coupleId;
+    _resultData['coupleId'] = l$coupleId;
     final l$doneAt = doneAt;
     _resultData['doneAt'] = l$doneAt == null
         ? null
         : ((v) => v.toUtc().toIso8601String())(l$doneAt);
+    final l$confirmedAt = confirmedAt;
+    _resultData['confirmedAt'] = l$confirmedAt == null
+        ? null
+        : ((v) => v.toUtc().toIso8601String())(l$confirmedAt);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -315,9 +359,21 @@ class QueryLogisticItemslogisticItems {
     final l$id = id;
     final l$title = title;
     final l$assigneeId = assigneeId;
+    final l$authorId = authorId;
+    final l$coupleId = coupleId;
     final l$doneAt = doneAt;
+    final l$confirmedAt = confirmedAt;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$title, l$assigneeId, l$doneAt, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$assigneeId,
+      l$authorId,
+      l$coupleId,
+      l$doneAt,
+      l$confirmedAt,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -343,9 +399,24 @@ class QueryLogisticItemslogisticItems {
     if (l$assigneeId != lOther$assigneeId) {
       return false;
     }
+    final l$authorId = authorId;
+    final lOther$authorId = other.authorId;
+    if (l$authorId != lOther$authorId) {
+      return false;
+    }
+    final l$coupleId = coupleId;
+    final lOther$coupleId = other.coupleId;
+    if (l$coupleId != lOther$coupleId) {
+      return false;
+    }
     final l$doneAt = doneAt;
     final lOther$doneAt = other.doneAt;
     if (l$doneAt != lOther$doneAt) {
+      return false;
+    }
+    final l$confirmedAt = confirmedAt;
+    final lOther$confirmedAt = other.confirmedAt;
+    if (l$confirmedAt != lOther$confirmedAt) {
       return false;
     }
     final l$$__typename = $__typename;

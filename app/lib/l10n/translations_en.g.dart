@@ -3163,6 +3163,12 @@ class _Translations$logistics$en extends Translations$logistics$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Try again.',
   };
+  @override
+  String get confirm => 'Confirm';
+  @override
+  String get waitingYou => 'Waiting for you';
+  @override
+  String get waitingPartner => 'Waiting for the other person';
 }
 
 // Path: loveStyle
@@ -10006,6 +10012,9 @@ extension on TranslationsEn {
           'logistics.errorText' => 'The list is still saved. Try again.',
           'logistics.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'logistics.errors.other' => 'Couldn\'t do that right now. Try again.',
+          'logistics.confirm' => 'Confirm',
+          'logistics.waitingYou' => 'Waiting for you',
+          'logistics.waitingPartner' => 'Waiting for the other person',
           'loveStyle.entryLabel' => 'ONLY FOR YOU',
           'loveStyle.entryTitle' => 'What makes me feel loved',
           'loveStyle.entryText' => 'Six quick questions to notice what makes you feel loved.',
@@ -10071,15 +10080,15 @@ extension on TranslationsEn {
           'loveStyle.descriptions.time' => 'You feel loved when you have real time with someone you care about: unhurried, no screens, just presence.',
           'loveStyle.descriptions.words' =>
             'You feel loved when you hear, honestly, what the other person feels for you.',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.descriptions.acts' =>
             'You feel loved when someone notices what you need and helps without being asked.',
           'loveStyle.descriptions.gifts' =>
             'You feel loved when someone remembers you in a small detail, chosen with care.',
           'loveStyle.descriptions.touch' =>
             'You feel loved when a hug, a held hand or a caress says what words cannot.',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.descriptions.other' => '',
           'loveStyle.shareDescriptions.time' =>
             'I feel loved when we spend unhurried time together, with no screens.',
@@ -10665,12 +10674,12 @@ extension on TranslationsEn {
           'profileSetup.months.6' => 'July',
           'profileSetup.months.7' => 'August',
           'profileSetup.months.8' => 'September',
-          'profileSetup.months.9' => 'October',
-          'profileSetup.months.10' => 'November',
-          'profileSetup.months.11' => 'December',
           _ => null,
         } ??
         switch (path) {
+          'profileSetup.months.9' => 'October',
+          'profileSetup.months.10' => 'November',
+          'profileSetup.months.11' => 'December',
           'profileSetup.continueButton' => 'Continue',
           'profileSetup.errors.INVALID_DATE' =>
             'That date does not look right. Pick one between 1950 and today.',
@@ -11240,12 +11249,12 @@ extension on TranslationsEn {
           'slipDetail.weekdays.0' => 'Monday',
           'slipDetail.weekdays.1' => 'Tuesday',
           'slipDetail.weekdays.2' => 'Wednesday',
-          'slipDetail.weekdays.3' => 'Thursday',
-          'slipDetail.weekdays.4' => 'Friday',
-          'slipDetail.weekdays.5' => 'Saturday',
           _ => null,
         } ??
         switch (path) {
+          'slipDetail.weekdays.3' => 'Thursday',
+          'slipDetail.weekdays.4' => 'Friday',
+          'slipDetail.weekdays.5' => 'Saturday',
           'slipDetail.weekdays.6' => 'Sunday',
           'slipDetail.monthsShort.0' => 'Jan',
           'slipDetail.monthsShort.1' => 'Feb',
@@ -11866,12 +11875,12 @@ extension on TranslationsEn {
             'No common cards for now. Start with a repair or sort out what to say.',
           'today.conflict.repair' => 'Start the repair',
           'today.conflict.chat' => 'Talk to get organized',
-          'unpair.appBarTitle' => 'Unpair',
-          'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
-          'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
           _ => null,
         } ??
         switch (path) {
+          'unpair.appBarTitle' => 'Unpair',
+          'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
+          'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
           'unpair.confirm' => 'Unpair',
           'unpair.cancel' => 'Cancel',
           'unpair.unnamedPartner' => 'your person',

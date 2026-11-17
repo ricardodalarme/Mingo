@@ -5,6 +5,7 @@ import 'package:app/features/together/data/data_sources/remote/mutations/generat
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/AddSharedDate.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/ArchiveRitual.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/CompleteRitual.graphql.dart';
+import 'package:app/features/together/data/data_sources/remote/mutations/generated/ConfirmLogisticItem.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/DeleteDateIdea.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/DeleteLogisticItem.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/PlanDateIdea.graphql.dart';
@@ -74,6 +75,14 @@ class TogetherDataSource({required final GQLClient _client}) {
           'doneAt': doneAt?.toUtc().toIso8601String(),
         }),
       ),
+    );
+
+    validateResponse(response);
+  }
+
+  Future<void> confirmLogisticItem(String id) async {
+    final response = await _client.mutate(
+      OptionsMutationConfirmLogisticItem(variables: VariablesMutationConfirmLogisticItem(id: id)),
     );
 
     validateResponse(response);

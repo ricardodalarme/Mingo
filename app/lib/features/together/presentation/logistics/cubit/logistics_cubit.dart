@@ -73,6 +73,9 @@ class LogisticsCubit({
     () => _togetherRepository.setLogisticItemAssignee(id: item.id, assigneeId: assigneeId),
   );
 
+  Future<void> confirm(LogisticItem item) =>
+      _change(item, () => _togetherRepository.confirmLogisticItem(item.id));
+
   Future<void> delete(LogisticItem item) =>
       _change(item, () => _togetherRepository.deleteLogisticItem(item.id));
 

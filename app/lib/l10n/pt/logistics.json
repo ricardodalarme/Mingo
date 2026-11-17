@@ -16,5 +16,8 @@
   "errors(map)": {
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para fazer isso agora. Tente de novo."
-  }
+  },
+  "confirm": "Confirmar",
+  "waitingYou": "Esperando você",
+  "waitingPartner": "Esperando a outra pessoa"
 }

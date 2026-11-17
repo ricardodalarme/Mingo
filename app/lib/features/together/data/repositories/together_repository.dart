@@ -32,6 +32,9 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
             id: node.id,
             title: node.title,
             assigneeId: node.assigneeId,
+            authorId: node.authorId,
+            isShared: node.coupleId != null,
+            isConfirmed: node.confirmedAt != null,
             isDone: node.doneAt != null,
           ),
       ];
@@ -72,6 +75,10 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
     'assign a logistic item',
     () => _dataSource.setLogisticItemAssignee(id: id, assigneeId: assigneeId),
   );
+
+  /// Confirms an item the partner proposed, which turns it into something both agreed on.
+  Future<void> confirmLogisticItem(String id) =>
+      _run('confirm a logistic item', () => _dataSource.confirmLogisticItem(id));
 
   Future<void> deleteLogisticItem(String id) =>
       _run('delete a logistic item', () => _dataSource.deleteLogisticItem(id));

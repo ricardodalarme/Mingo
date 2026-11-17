@@ -129,9 +129,21 @@ class const _ItemTile({required final LogisticItem item}) extends StatelessWidge
       _ => state.partnerName ?? l10n.partner,
     };
 
+    final needsMe = item.needsConfirmationFrom(state.meId);
+    final status = needsMe
+        ? l10n.waitingYou
+        : item.isWaitingFor(state.meId)
+        ? l10n.waitingPartner
+        : null;
+
+    final subtitle = [if (state.hasPartner || item.assigneeId != null) who, ?status].join(' · ');
+
     return BaseListTile(
       title: item.title,
-      subtitle: state.hasPartner || item.assigneeId != null ? who : null,
+      subtitle: subtitle.isEmpty ? null : subtitle,
+      trailing: needsMe
+          ? BaseButton.compact(text: l10n.confirm, onPressed: () => cubit.confirm(item))
+          : null,
       leading: BaseCheckbox(
         value: item.isDone,
         semanticLabel: item.title,

@@ -3880,6 +3880,15 @@ class Translations$logistics$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
+
+  /// pt: 'Confirmar'
+  String get confirm => 'Confirmar';
+
+  /// pt: 'Esperando você'
+  String get waitingYou => 'Esperando você';
+
+  /// pt: 'Esperando a outra pessoa'
+  String get waitingPartner => 'Esperando a outra pessoa';
 }
 
 // Path: loveStyle
@@ -12003,6 +12012,9 @@ extension on Translations {
           'logistics.errorText' => 'A lista continua salva. Tente de novo.',
           'logistics.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'logistics.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'logistics.confirm' => 'Confirmar',
+          'logistics.waitingYou' => 'Esperando você',
+          'logistics.waitingPartner' => 'Esperando a outra pessoa',
           'loveStyle.entryLabel' => 'SÓ PARA VOCÊ',
           'loveStyle.entryTitle' => 'Como eu me sinto querido(a)',
           'loveStyle.entryText' =>
@@ -12068,12 +12080,12 @@ extension on Translations {
           'loveStyle.topTag' => 'O que mais combina com você',
           'loveStyle.descriptions.time' => 'Você se sente querido(a) quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
           'loveStyle.descriptions.words' => 'Você se sente querido(a) quando ouve, de forma sincera, o que a outra pessoa sente por você.',
-          'loveStyle.descriptions.acts' => 'Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.',
-          'loveStyle.descriptions.gifts' => 'Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
-          'loveStyle.descriptions.touch' => 'Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
           _ => null,
         } ??
         switch (path) {
+          'loveStyle.descriptions.acts' => 'Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.',
+          'loveStyle.descriptions.gifts' => 'Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
+          'loveStyle.descriptions.touch' => 'Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
           'loveStyle.descriptions.other' => '',
           'loveStyle.shareDescriptions.time' =>
             'Eu me sinto querido(a) quando a gente passa um tempo junto, sem pressa e sem telas.',
@@ -12665,12 +12677,12 @@ extension on Translations {
           'profileSetup.months.6' => 'julho',
           'profileSetup.months.7' => 'agosto',
           'profileSetup.months.8' => 'setembro',
-          'profileSetup.months.9' => 'outubro',
-          'profileSetup.months.10' => 'novembro',
-          'profileSetup.months.11' => 'dezembro',
           _ => null,
         } ??
         switch (path) {
+          'profileSetup.months.9' => 'outubro',
+          'profileSetup.months.10' => 'novembro',
+          'profileSetup.months.11' => 'dezembro',
           'profileSetup.continueButton' => 'Continuar',
           'profileSetup.errors.INVALID_DATE' =>
             'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
@@ -13246,12 +13258,12 @@ extension on Translations {
           'slipDetail.weekdays.0' => 'segunda',
           'slipDetail.weekdays.1' => 'terça',
           'slipDetail.weekdays.2' => 'quarta',
-          'slipDetail.weekdays.3' => 'quinta',
-          'slipDetail.weekdays.4' => 'sexta',
-          'slipDetail.weekdays.5' => 'sábado',
           _ => null,
         } ??
         switch (path) {
+          'slipDetail.weekdays.3' => 'quinta',
+          'slipDetail.weekdays.4' => 'sexta',
+          'slipDetail.weekdays.5' => 'sábado',
           'slipDetail.weekdays.6' => 'domingo',
           'slipDetail.monthsShort.0' => 'jan',
           'slipDetail.monthsShort.1' => 'fev',
@@ -13872,12 +13884,12 @@ extension on Translations {
             'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.',
           'today.conflict.repair' => 'Começar o reparo',
           'today.conflict.chat' => 'Conversar para me organizar',
-          'unpair.appBarTitle' => 'Desvincular',
-          'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
-          'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',
           _ => null,
         } ??
         switch (path) {
+          'unpair.appBarTitle' => 'Desvincular',
+          'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
+          'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',
           'unpair.confirm' => 'Desvincular',
           'unpair.cancel' => 'Cancelar',
           'unpair.unnamedPartner' => 'sua pessoa',

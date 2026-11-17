@@ -152,4 +152,19 @@ void main() {
 
     expect(cubit.state.hasPartner, isFalse);
   });
+
+  test('confirming an item of the partner confirms it and reads the list again', () async {
+    when(() => together.confirmLogisticItem('i1')).thenAnswer((_) async {});
+    final cubit = LogisticsCubit(
+      togetherRepository: together,
+      profileRepository: profile,
+      pairingRepository: pairing,
+    );
+    await cubit.load();
+
+    await cubit.confirm(item);
+
+    verify(() => together.confirmLogisticItem('i1')).called(1);
+    verify(() => together.getLogisticItems()).called(2);
+  });
 }

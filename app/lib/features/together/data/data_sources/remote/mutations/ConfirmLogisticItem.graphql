@@ -1,0 +1,5 @@
+mutation ConfirmLogisticItem($id: uuid!) {
+  confirmLogisticItem(args: { itemId: $id }) {
+    id
+  }
+}

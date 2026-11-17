@@ -16,5 +16,8 @@
   "errors(map)": {
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't do that right now. Try again."
-  }
+  },
+  "confirm": "Confirm",
+  "waitingYou": "Waiting for you",
+  "waitingPartner": "Waiting for the other person"
 }
