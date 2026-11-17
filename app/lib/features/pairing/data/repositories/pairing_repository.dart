@@ -76,10 +76,9 @@ class PairingRepository({
 
   /// Emits whether the person is connected, now and each time that changes; empty when signed out.
   Stream<bool> watchIsConnected() {
-    final userId = _authenticationRepository.currentUserId;
-    if (userId == null) return const Stream.empty();
+    if (_authenticationRepository.currentUserId == null) return const Stream.empty();
 
-    return _pairingDataSource.watchIsConnected(userId).handleError((Object e, StackTrace stack) {
+    return _pairingDataSource.watchIsConnected().handleError((Object e, StackTrace stack) {
       _logger.error('The couple subscription failed', error: e, stackTrace: stack);
     });
   }

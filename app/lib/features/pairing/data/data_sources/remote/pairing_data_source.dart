@@ -40,13 +40,12 @@ class PairingDataSource({required final GQLClient _client}) {
   }
 
   /// Emits whether the person is in a couple, now and each time that changes.
-  Stream<bool> watchIsConnected(String userId) {
+  ///
+  /// The permission already limits `couples` to the person's own, so the subscription carries no
+  /// variable and every person shares one polling query on the server.
+  Stream<bool> watchIsConnected() {
     return _client
-        .subscribe(
-          OptionsSubscriptionWatchMyCouple(
-            variables: VariablesSubscriptionWatchMyCouple(userId: userId),
-          ),
-        )
+        .subscribe(OptionsSubscriptionWatchMyCouple())
         .mapResponseData((data) => data.couples.isNotEmpty);
   }
 

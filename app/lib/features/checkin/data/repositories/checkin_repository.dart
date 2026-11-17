@@ -59,7 +59,7 @@ class CheckinRepository({
     final coupleId = week.coupleId;
     if (coupleId == null) return const Stream.empty();
 
-    return _dataSource.watchRowCount(weekStart: week.weekStart, coupleId: coupleId).handleError((
+    return _dataSource.watchRowCount(weekStart: week.weekStart).handleError((
       Object e,
       StackTrace stack,
     ) {

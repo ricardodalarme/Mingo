@@ -5,10 +5,8 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class VariablesSubscriptionWatchCheckinRows {
-  factory VariablesSubscriptionWatchCheckinRows({
-    required DateTime weekStart,
-    required String coupleId,
-  }) => VariablesSubscriptionWatchCheckinRows._({r'weekStart': weekStart, r'coupleId': coupleId});
+  factory VariablesSubscriptionWatchCheckinRows({required DateTime weekStart}) =>
+      VariablesSubscriptionWatchCheckinRows._({r'weekStart': weekStart});
 
   VariablesSubscriptionWatchCheckinRows._(this._$data);
 
@@ -16,8 +14,6 @@ class VariablesSubscriptionWatchCheckinRows {
     final result$data = <String, dynamic>{};
     final l$weekStart = data['weekStart'];
     result$data['weekStart'] = DateTime.parse((l$weekStart as String));
-    final l$coupleId = data['coupleId'];
-    result$data['coupleId'] = (l$coupleId as String);
     return VariablesSubscriptionWatchCheckinRows._(result$data);
   }
 
@@ -25,14 +21,10 @@ class VariablesSubscriptionWatchCheckinRows {
 
   DateTime get weekStart => (_$data['weekStart'] as DateTime);
 
-  String get coupleId => (_$data['coupleId'] as String);
-
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$weekStart = weekStart;
     result$data['weekStart'] = ((v) => v.toIso8601String().substring(0, 10))(l$weekStart);
-    final l$coupleId = coupleId;
-    result$data['coupleId'] = l$coupleId;
     return result$data;
   }
 
@@ -49,19 +41,13 @@ class VariablesSubscriptionWatchCheckinRows {
     if (l$weekStart != lOther$weekStart) {
       return false;
     }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$weekStart = weekStart;
-    final l$coupleId = coupleId;
-    return Object.hashAll([l$weekStart, l$coupleId]);
+    return Object.hashAll([l$weekStart]);
   }
 }
 
@@ -128,12 +114,6 @@ const documentNodeSubscriptionWatchCheckinRows = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'coupleId')),
-          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
@@ -153,17 +133,6 @@ const documentNodeSubscriptionWatchCheckinRows = DocumentNode(
                           ObjectFieldNode(
                             name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'weekStart')),
-                          ),
-                        ],
-                      ),
-                    ),
-                    ObjectFieldNode(
-                      name: NameNode(value: 'coupleId'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: '_eq'),
-                            value: VariableNode(name: NameNode(value: 'coupleId')),
                           ),
                         ],
                       ),

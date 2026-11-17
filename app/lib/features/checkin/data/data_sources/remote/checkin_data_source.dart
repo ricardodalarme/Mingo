@@ -69,15 +69,14 @@ class CheckinDataSource({required final GQLClient _client}) {
 
   /// Emits how many check-in rows of the week the person can read, now and on each change.
   ///
-  /// The partner's row only becomes readable once both people finished all four answers.
-  Stream<int> watchRowCount({required DateTime weekStart, required String coupleId}) {
+  /// The partner's row only becomes readable once both people finished all four answers. The
+  /// permission already limits the rows to the person's couple, so the subscription is shared by
+  /// everyone in the same week.
+  Stream<int> watchRowCount({required DateTime weekStart}) {
     return _client
         .subscribe(
           OptionsSubscriptionWatchCheckinRows(
-            variables: VariablesSubscriptionWatchCheckinRows(
-              weekStart: weekStart,
-              coupleId: coupleId,
-            ),
+            variables: VariablesSubscriptionWatchCheckinRows(weekStart: weekStart),
           ),
         )
         .mapResponseData((data) => data.checkins.length);

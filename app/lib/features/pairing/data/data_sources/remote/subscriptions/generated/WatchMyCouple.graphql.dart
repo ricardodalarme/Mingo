@@ -4,53 +4,6 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
-class VariablesSubscriptionWatchMyCouple {
-  factory VariablesSubscriptionWatchMyCouple({required String userId}) =>
-      VariablesSubscriptionWatchMyCouple._({r'userId': userId});
-
-  VariablesSubscriptionWatchMyCouple._(this._$data);
-
-  factory VariablesSubscriptionWatchMyCouple.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    final l$userId = data['userId'];
-    result$data['userId'] = (l$userId as String);
-    return VariablesSubscriptionWatchMyCouple._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String get userId => (_$data['userId'] as String);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    final l$userId = userId;
-    result$data['userId'] = l$userId;
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! VariablesSubscriptionWatchMyCouple || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$userId = userId;
-    final lOther$userId = other.userId;
-    if (l$userId != lOther$userId) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$userId = userId;
-    return Object.hashAll([l$userId]);
-  }
-}
-
 class SubscriptionWatchMyCouple {
   SubscriptionWatchMyCouple({required this.couples});
 
@@ -107,14 +60,7 @@ const documentNodeSubscriptionWatchMyCouple = DocumentNode(
     OperationDefinitionNode(
       type: OperationType.subscription,
       name: NameNode(value: 'WatchMyCouple'),
-      variableDefinitions: [
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'userId')),
-          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
-      ],
+      variableDefinitions: [],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
@@ -122,31 +68,6 @@ const documentNodeSubscriptionWatchMyCouple = DocumentNode(
             name: NameNode(value: 'couples'),
             alias: null,
             arguments: [
-              ArgumentNode(
-                name: NameNode(value: 'where'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'members'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: 'userId'),
-                            value: ObjectValueNode(
-                              fields: [
-                                ObjectFieldNode(
-                                  name: NameNode(value: '_eq'),
-                                  value: VariableNode(name: NameNode(value: 'userId')),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               ArgumentNode(
                 name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '1'),
@@ -184,7 +105,6 @@ class OptionsSubscriptionWatchMyCouple
     extends graphql.SubscriptionOptions<SubscriptionWatchMyCouple> {
   OptionsSubscriptionWatchMyCouple({
     String? operationName,
-    required VariablesSubscriptionWatchMyCouple variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -192,7 +112,6 @@ class OptionsSubscriptionWatchMyCouple
     SubscriptionWatchMyCouple? typedOptimisticResult,
     graphql.Context? context,
   }) : super(
-         variables: variables.toJson(),
          operationName: operationName ?? 'WatchMyCouple',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -208,7 +127,6 @@ class WatchOptionsSubscriptionWatchMyCouple
     extends graphql.WatchQueryOptions<SubscriptionWatchMyCouple> {
   WatchOptionsSubscriptionWatchMyCouple({
     String? operationName,
-    required VariablesSubscriptionWatchMyCouple variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -220,7 +138,6 @@ class WatchOptionsSubscriptionWatchMyCouple
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         variables: variables.toJson(),
          operationName: operationName ?? 'WatchMyCouple',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -237,24 +154,18 @@ class WatchOptionsSubscriptionWatchMyCouple
 }
 
 class FetchMoreOptionsSubscriptionWatchMyCouple extends graphql.FetchMoreOptions {
-  FetchMoreOptionsSubscriptionWatchMyCouple({
-    required graphql.UpdateQuery updateQuery,
-    required VariablesSubscriptionWatchMyCouple variables,
-  }) : super(
-         updateQuery: updateQuery,
-         variables: variables.toJson(),
-         document: documentNodeSubscriptionWatchMyCouple,
-       );
+  FetchMoreOptionsSubscriptionWatchMyCouple({required graphql.UpdateQuery updateQuery})
+    : super(updateQuery: updateQuery, document: documentNodeSubscriptionWatchMyCouple);
 }
 
 extension ClientExtensionSubscriptionWatchMyCouple on graphql.GraphQLClient {
-  Stream<graphql.QueryResult<SubscriptionWatchMyCouple>> subscribeWatchMyCouple(
-    OptionsSubscriptionWatchMyCouple options,
-  ) => this.subscribe(options);
+  Stream<graphql.QueryResult<SubscriptionWatchMyCouple>> subscribeWatchMyCouple([
+    OptionsSubscriptionWatchMyCouple? options,
+  ]) => this.subscribe(options ?? OptionsSubscriptionWatchMyCouple());
 
-  graphql.ObservableQuery<SubscriptionWatchMyCouple> watchSubscriptionWatchMyCouple(
-    WatchOptionsSubscriptionWatchMyCouple options,
-  ) => this.watchQuery(options);
+  graphql.ObservableQuery<SubscriptionWatchMyCouple> watchSubscriptionWatchMyCouple([
+    WatchOptionsSubscriptionWatchMyCouple? options,
+  ]) => this.watchQuery(options ?? WatchOptionsSubscriptionWatchMyCouple());
 }
 
 class SubscriptionWatchMyCouplecouples {

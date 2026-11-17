@@ -1,5 +1,5 @@
-subscription WatchMyCouple($userId: uuid!) {
-  couples(where: { members: { userId: { _eq: $userId } } }, limit: 1) {
+subscription WatchMyCouple {
+  couples(limit: 1) {
     id
   }
 }

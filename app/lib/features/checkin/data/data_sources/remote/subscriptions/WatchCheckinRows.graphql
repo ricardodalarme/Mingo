@@ -1,8 +1,5 @@
-subscription WatchCheckinRows($weekStart: date!, $coupleId: uuid!) {
-  checkins(
-    where: { weekStart: { _eq: $weekStart }, coupleId: { _eq: $coupleId } }
-    limit: 10
-  ) {
+subscription WatchCheckinRows($weekStart: date!) {
+  checkins(where: { weekStart: { _eq: $weekStart } }, limit: 10) {
     id
     completed
   }
