@@ -4,7 +4,6 @@ final class const GameState({
   final Resource<GamePlay> play = const Loading(),
   final Map<int, String> answers = const {},
   final int step = -1,
-  final bool isReviewing = false,
   final Set<int> lockedSteps = const {},
   final String draft = '',
   final Resource<void> action = const Initial(),
@@ -19,7 +18,7 @@ final class const GameState({
   bool get isBusy => action.isLoading;
 
   /// Whether the game intro is on screen before the first question.
-  bool get isIntro => step < 0 && !isReviewing;
+  bool get isIntro => step < 0;
 
   /// Whether the answer of the step being edited cannot change any more.
   bool get isLocked => lockedSteps.contains(step);
@@ -30,7 +29,6 @@ final class const GameState({
     Resource<GamePlay>? play,
     Map<int, String>? answers,
     int? step,
-    bool? isReviewing,
     Set<int>? lockedSteps,
     String? draft,
     Resource<void>? action,
@@ -39,7 +37,6 @@ final class const GameState({
       play: play ?? this.play,
       answers: answers ?? this.answers,
       step: step ?? this.step,
-      isReviewing: isReviewing ?? this.isReviewing,
       lockedSteps: lockedSteps ?? this.lockedSteps,
       draft: draft ?? this.draft,
       action: action ?? this.action,
@@ -47,5 +44,5 @@ final class const GameState({
   }
 
   @override
-  List<Object?> get props => [play, answers, step, isReviewing, lockedSteps, draft, action];
+  List<Object?> get props => [play, answers, step, lockedSteps, draft, action];
 }

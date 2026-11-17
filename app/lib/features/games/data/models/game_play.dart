@@ -160,13 +160,6 @@ final class const GamePlay({
     };
   }
 
-  /// The slugs of the items a new session starts with, in the order they are asked.
-  List<String> startSlugs() {
-    final picked = [for (final item in available.take(kind.itemCount)) item.slug];
-
-    return kind.asksTwice ? [...picked, ...picked] : picked;
-  }
-
   GamePlay withOwnAnswer(int step, String answer) => GamePlay(
     kind: kind,
     selfId: selfId,
@@ -244,6 +237,21 @@ final class const GamePlay({
   List<GameTalkResult> get talkResults => [
     for (var step = 0; step < items.length; step++)
       GameTalkResult(item: items[step], mine: _read(own, step), theirs: _read(partner, step)),
+  ];
+
+  /// How many pick questions the partner answered the same way.
+  int get pickAgreementCount => pickResults.where((result) => result.agree).length;
+
+  /// Things this person guessed wrong about the partner, with the partner's answer.
+  List<GameGuessResult> get discoveriesAboutPartner => [
+    for (final result in guessResults)
+      if (!result.ownGuessMatched && result.partnerAnswer != null) result,
+  ];
+
+  /// Things the partner guessed wrong about this person, with this person's answer.
+  List<GameGuessResult> get discoveriesAboutSelf => [
+    for (final result in guessResults)
+      if (!result.partnerGuessMatched && result.ownAnswer != null) result,
   ];
 
   /// This person's reflection on the date, or null when skipped.

@@ -23,7 +23,6 @@ void main() {
   final created = DateTime(2026, 3, 10, 12);
   const failure = LocalizedException(l10nKey: 'other');
   const alreadyOpen = LocalizedException(l10nKey: 'GAME_ALREADY_OPEN');
-  const invalidIndex = LocalizedException(l10nKey: 'INVALID_GAME_INDEX');
   const locked = LocalizedException(l10nKey: gameAnswerLockedCode);
 
   GameSession session({GameStatus status = GameStatus.invited, String invitedBy = 'partner'}) =>
@@ -79,6 +78,15 @@ void main() {
         now: any(named: 'now'),
       ),
     ).thenAnswer((_) async => fresh());
+    when(
+      () => repository.answer(
+        session: any(named: 'session'),
+        step: any(named: 'step'),
+        answer: any(named: 'answer'),
+      ),
+    ).thenAnswer((_) async {
+      return;
+    });
   });
 
   test('starts loading', () {
@@ -262,13 +270,11 @@ void main() {
   );
 
   blocTest<GameCubit, GameState>(
-    'keeps the draft as the answer of the round and moves on',
+    'choosing an option keeps it as the draft until the person moves on',
     build: build,
-    seed: () => GameState(play: Success(active()), step: 0, draft: pickSelf),
-    act: (cubit) => cubit.submit(),
-    expect: () => [
-      GameState(play: Success(active()), answers: const {0: pickSelf}, step: 1),
-    ],
+    seed: () => GameState(play: Success(active()), step: 0),
+    act: (cubit) => cubit.choose(pickSelf),
+    expect: () => [GameState(play: Success(active()), step: 0, draft: pickSelf)],
     verify: (_) => verifyNever(
       () => repository.answer(
         session: any(named: 'session'),
@@ -276,6 +282,25 @@ void main() {
         answer: any(named: 'answer'),
       ),
     ),
+  );
+
+  blocTest<GameCubit, GameState>(
+    'saves the draft as the answer and moves on',
+    build: build,
+    seed: () => GameState(play: Success(active()), step: 0, draft: pickSelf),
+    act: (cubit) => cubit.submit(),
+    verify: (cubit) {
+      verify(
+        () => repository.answer(
+          session: any(named: 'session'),
+          step: 0,
+          answer: pickSelf,
+        ),
+      ).called(1);
+      expect(cubit.state.step, 1);
+      expect(cubit.state.answers, const {0: pickSelf});
+      expect(cubit.state.action, const Initial());
+    },
   );
 
   blocTest<GameCubit, GameState>(
@@ -298,41 +323,87 @@ void main() {
     build: build,
     seed: () => GameState(play: Success(active()), step: 0, draft: 'rascunho'),
     act: (cubit) => cubit.skip(),
-    expect: () => [
-      GameState(play: Success(active()), answers: const {0: gameSkippedAnswer}, step: 1),
-    ],
-    verify: (_) => verifyNever(
-      () => repository.answer(
-        session: any(named: 'session'),
-        step: any(named: 'step'),
-        answer: any(named: 'answer'),
-      ),
-    ),
+    verify: (cubit) {
+      verify(
+        () => repository.answer(
+          session: any(named: 'session'),
+          step: 0,
+          answer: gameSkippedAnswer,
+        ),
+      ).called(1);
+      expect(cubit.state.answers, const {0: gameSkippedAnswer});
+      expect(cubit.state.step, 1);
+    },
   );
 
   blocTest<GameCubit, GameState>(
-    'going back keeps the answers already given in the round',
-    build: build,
-    seed: () => GameState(play: Success(active()), step: 0),
-    act: (cubit) {
-      cubit
-        ..onDraftChanged(pickSelf)
-        ..submit()
-        ..onDraftChanged('rascunho')
-        ..previous();
-    },
-    verify: (cubit) {
-      expect(cubit.state.step, 0);
-      expect(cubit.state.answers, const {0: pickSelf});
-      expect(cubit.state.draft, pickSelf);
-      verifyNever(
+    'a failed answer reports the failure and keeps the draft',
+    build: () {
+      when(
         () => repository.answer(
           session: any(named: 'session'),
-          step: any(named: 'step'),
+          step: 0,
           answer: any(named: 'answer'),
         ),
-      );
+      ).thenThrow(failure);
+
+      return build();
     },
+    seed: () => GameState(play: Success(active()), step: 0, draft: pickSelf),
+    act: (cubit) => cubit.submit(),
+    verify: (cubit) {
+      expect(cubit.state.step, 0);
+      expect(cubit.state.draft, pickSelf);
+      expect(cubit.state.answers.containsKey(0), isFalse);
+      expect(cubit.state.action, const Initial());
+    },
+  );
+
+  blocTest<GameCubit, GameState>(
+    'a locked answer is reported and kept read-only with the stored answer',
+    build: () {
+      when(
+        () => repository.answer(
+          session: any(named: 'session'),
+          step: 0,
+          answer: any(named: 'answer'),
+        ),
+      ).thenThrow(locked);
+
+      return build();
+    },
+    seed: () => GameState(
+      play: Success(active(own: const {0: pickSelf})),
+      answers: const {0: pickPartner},
+      step: 0,
+      draft: pickPartner,
+    ),
+    act: (cubit) => cubit.submit(),
+    verify: (cubit) {
+      expect(cubit.state.lockedSteps, const {0});
+      expect(cubit.state.answers[0], pickSelf);
+      expect(cubit.state.isLocked, isTrue);
+      expect(cubit.state.action, const Initial());
+    },
+  );
+
+  blocTest<GameCubit, GameState>(
+    'going back opens the answer already saved',
+    build: build,
+    seed: () => GameState(
+      play: Success(active(own: const {0: pickSelf})),
+      answers: const {0: pickSelf},
+      step: 1,
+    ),
+    act: (cubit) => cubit.previous(),
+    expect: () => [
+      GameState(
+        play: Success(active(own: const {0: pickSelf})),
+        answers: const {0: pickSelf},
+        step: 0,
+        draft: pickSelf,
+      ),
+    ],
   );
 
   blocTest<GameCubit, GameState>(
@@ -349,88 +420,31 @@ void main() {
   );
 
   blocTest<GameCubit, GameState>(
-    'opening an answer from the review fills the draft with it',
+    'going back while waiting opens the last answer',
     build: build,
     seed: () => GameState(
-      play: Success(active()),
+      play: Success(active(own: const {0: pickSelf, 1: pickPartner})),
       answers: const {0: pickSelf, 1: pickPartner},
-      step: 1,
-      isReviewing: true,
+      step: 2,
     ),
-    act: (cubit) => cubit.editStep(0),
-    expect: () => [
-      GameState(
-        play: Success(active()),
-        answers: const {0: pickSelf, 1: pickPartner},
-        step: 0,
-        draft: pickSelf,
-      ),
-    ],
-  );
-
-  blocTest<GameCubit, GameState>(
-    'a skipped answer opens with an empty draft',
-    build: build,
-    seed: () => GameState(
-      play: Success(active()),
-      answers: const {0: gameSkippedAnswer, 1: pickSelf},
-      step: 1,
-      isReviewing: true,
-    ),
-    act: (cubit) => cubit.editStep(0),
-    expect: () => [
-      GameState(
-        play: Success(active()),
-        answers: const {0: gameSkippedAnswer, 1: pickSelf},
-        step: 0,
-      ),
-    ],
-  );
-
-  blocTest<GameCubit, GameState>(
-    'a locked answer cannot be opened to edit',
-    build: build,
-    seed: () => GameState(
-      play: Success(active()),
-      answers: const {0: pickSelf, 1: pickPartner},
-      step: 1,
-      isReviewing: true,
-      lockedSteps: const {0},
-    ),
-    act: (cubit) => cubit.editStep(0),
-    expect: () => <GameState>[],
-  );
-
-  blocTest<GameCubit, GameState>(
-    'sends every answer of the round once on confirm',
-    build: () {
-      when(
-        () => repository.answer(
-          session: any(named: 'session'),
-          step: any(named: 'step'),
-          answer: any(named: 'answer'),
-        ),
-      ).thenAnswer((_) async {
-        return;
-      });
-
-      return build();
-    },
-    seed: () => GameState(
-      play: Success(active()),
-      answers: const {0: pickSelf, 1: pickPartner},
-      step: 1,
-      isReviewing: true,
-    ),
-    act: (cubit) => cubit.send(),
+    act: (cubit) => cubit.previous(),
     verify: (cubit) {
-      verify(
-        () => repository.answer(
-          session: any(named: 'session'),
-          step: 0,
-          answer: pickSelf,
-        ),
-      ).called(1);
+      expect(cubit.state.step, 1);
+      expect(cubit.state.draft, pickPartner);
+    },
+  );
+
+  blocTest<GameCubit, GameState>(
+    'the last answer opens the wait for the partner',
+    build: build,
+    seed: () => GameState(
+      play: Success(active(own: const {0: pickSelf})),
+      answers: const {0: pickSelf},
+      step: 1,
+      draft: pickPartner,
+    ),
+    act: (cubit) => cubit.submit(),
+    verify: (cubit) {
       verify(
         () => repository.answer(
           session: any(named: 'session'),
@@ -438,67 +452,9 @@ void main() {
           answer: pickPartner,
         ),
       ).called(1);
-      expect(cubit.state.isReviewing, isFalse);
-      expect(cubit.state.current?.own, const {0: pickSelf, 1: pickPartner});
-      expect(cubit.state.action, const Initial());
-    },
-  );
-
-  blocTest<GameCubit, GameState>(
-    'confirm ignores a second tap while the answers are sent',
-    build: build,
-    seed: () => GameState(
-      play: Success(active()),
-      answers: const {0: pickSelf, 1: pickPartner},
-      step: 1,
-      isReviewing: true,
-      action: const Loading(),
-    ),
-    act: (cubit) => cubit.send(),
-    expect: () => <GameState>[],
-    verify: (_) => verifyNever(
-      () => repository.answer(
-        session: any(named: 'session'),
-        step: any(named: 'step'),
-        answer: any(named: 'answer'),
-      ),
-    ),
-  );
-
-  blocTest<GameCubit, GameState>(
-    'a locked answer is reported and kept read-only',
-    build: () {
-      when(
-        () => repository.answer(
-          session: any(named: 'session'),
-          step: 0,
-          answer: any(named: 'answer'),
-        ),
-      ).thenThrow(locked);
-      when(
-        () => repository.answer(
-          session: any(named: 'session'),
-          step: 1,
-          answer: any(named: 'answer'),
-        ),
-      ).thenAnswer((_) async {
-        return;
-      });
-
-      return build();
-    },
-    seed: () => GameState(
-      play: Success(active(own: const {0: pickSelf})),
-      answers: const {0: pickPartner, 1: pickPartner},
-      step: 1,
-      isReviewing: true,
-    ),
-    act: (cubit) => cubit.send(),
-    verify: (cubit) {
-      expect(cubit.state.lockedSteps, const {0});
-      expect(cubit.state.answers[0], pickSelf);
-      expect(cubit.state.isReviewing, isTrue);
-      expect(cubit.state.action, const Initial());
+      expect(cubit.state.current?.isOwnDone, isTrue);
+      expect(cubit.state.step, 2);
+      expect(cubit.state.draft, isEmpty);
     },
   );
 
@@ -578,47 +534,5 @@ void main() {
       GameState(play: Success(fresh())),
     ],
     verify: (_) => verify(() => repository.invite(any())).called(1),
-  );
-
-  blocTest<GameCubit, GameState>(
-    'a refused send reports the failure and keeps the answers',
-    build: () {
-      when(
-        () => repository.answer(
-          session: any(named: 'session'),
-          step: any(named: 'step'),
-          answer: any(named: 'answer'),
-        ),
-      ).thenThrow(invalidIndex);
-
-      return build();
-    },
-    seed: () => GameState(
-      play: Success(active()),
-      answers: const {0: pickSelf, 1: pickPartner},
-      step: 1,
-      isReviewing: true,
-    ),
-    act: (cubit) => cubit.send(),
-    verify: (cubit) {
-      verify(
-        () => repository.answer(
-          session: any(named: 'session'),
-          step: 0,
-          answer: pickSelf,
-        ),
-      ).called(1);
-      verifyNever(
-        () => repository.answer(
-          session: any(named: 'session'),
-          step: 1,
-          answer: any(named: 'answer'),
-        ),
-      );
-      expect(cubit.state.answers, const {0: pickSelf, 1: pickPartner});
-      expect(cubit.state.lockedSteps, isEmpty);
-      expect(cubit.state.isReviewing, isTrue);
-      expect(cubit.state.action, const Initial());
-    },
   );
 }

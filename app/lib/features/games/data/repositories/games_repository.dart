@@ -85,11 +85,18 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
         );
       });
 
-  /// Starts a session of [play]'s game with the first items the content offers.
-  Future<GameSession> invite(GamePlay play) => _run('invite to a game', () async {
-    final slugs = play.startSlugs();
+  /// Starts a session of [kind] with the next questions the content offers.
+  ///
+  /// The server serves unseen questions first and recycles the oldest ones when the
+  /// pool runs out, so a replay does not repeat the same round.
+  Future<GameSession> invite(GameKind kind) => _run('invite to a game', () async {
+    final items = await _dataSource.nextItems(game: kind.key, count: kind.itemCount);
+    final slugs = [for (final item in items) item.slug];
     if (slugs.isEmpty) throw const NoDataException();
-    final record = await _dataSource.invite(game: play.kind.toRemote(), itemSlugs: slugs);
+    final record = await _dataSource.invite(
+      game: kind.toRemote(),
+      itemSlugs: kind.asksTwice ? [...slugs, ...slugs] : slugs,
+    );
 
     return _session(record)!;
   });

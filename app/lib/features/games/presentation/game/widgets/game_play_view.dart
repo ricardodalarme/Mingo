@@ -4,7 +4,6 @@ import 'package:app/features/games/presentation/game/widgets/game_active_view.da
 import 'package:app/features/games/presentation/game/widgets/game_content_view.dart';
 import 'package:app/features/games/presentation/game/widgets/game_finished_view.dart';
 import 'package:app/features/games/presentation/game/widgets/game_invitation_view.dart';
-import 'package:app/features/games/presentation/game/widgets/game_review_view.dart';
 import 'package:app/features/games/presentation/game/widgets/game_start_view.dart';
 import 'package:app/features/games/presentation/game/widgets/game_waiting_partner_view.dart';
 import 'package:app/features/games/presentation/game/widgets/game_waiting_view.dart';
@@ -17,9 +16,7 @@ class const GamePlayView({required final GamePlay play, super.key}) extends Stat
   @override
   Widget build(BuildContext context) {
     final stage = play.stage(clock.now());
-    final isReviewing = context.select((GameCubit cubit) => cubit.state.isReviewing);
     final step = context.select((GameCubit cubit) => cubit.state.step);
-    if (isReviewing && stage != GameStage.finished) return GameReviewView(play: play);
     if (stage == GameStage.waitingForPartner && step < play.totalSteps) {
       return GameActiveView(play: play);
     }

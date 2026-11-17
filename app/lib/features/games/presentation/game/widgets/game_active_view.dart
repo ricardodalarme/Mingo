@@ -48,6 +48,12 @@ class const _IntroPlayView({required final GamePlay play}) extends StatelessWidg
               style: context.text.titleXl,
             ),
           ),
+          const SizedBox(height: AppSpace.s6),
+          Text(
+            gameKindMeta(context, play.kind),
+            textAlign: TextAlign.center,
+            style: context.text.caption.copyWith(color: context.colors.textSecondary),
+          ),
           const SizedBox(height: AppSpace.s10),
           Text(
             play.kind.intro(context),
@@ -84,12 +90,12 @@ class const _LockedPlayView({required final GamePlay play, required final int st
           if (item != null)
             Semantics(header: true, child: Text(item.title, style: context.text.titleXl)),
           const SizedBox(height: AppSpace.s20),
-          BaseNote(text: l10n.review.lockedNote),
+          BaseNote(text: l10n.playing.lockedNote),
         ],
       ),
       footer: BaseButton.secondary(
-        text: l10n.review.back,
-        onPressed: cubit.review,
+        text: l10n.common.back,
+        onPressed: cubit.previous,
         isFullWidth: true,
       ),
     );
@@ -97,27 +103,27 @@ class const _LockedPlayView({required final GamePlay play, required final int st
 }
 
 class const _PlayScaffold({
-  required final GamePlay play,
-  required final int step,
   required final String title,
   required final Widget content,
   final String? label,
   final String? subtitle,
+  final Widget? note,
+  final String? progress,
   final Widget? footer,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.games.playing;
-
     return BaseStackedContent(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            l10n.progress(current: step + 1, total: play.totalSteps),
-            style: context.text.caption.copyWith(color: context.colors.textSecondary),
-          ),
-          const SizedBox(height: AppSpace.s8),
+          if (progress != null) ...[
+            Text(
+              progress!,
+              style: context.text.caption.copyWith(color: context.colors.textSecondary),
+            ),
+            const SizedBox(height: AppSpace.s8),
+          ],
           if (label != null) ...[
             Align(
               alignment: Alignment.centerLeft,
@@ -132,6 +138,7 @@ class const _PlayScaffold({
           ],
           const SizedBox(height: AppSpace.s20),
           content,
+          if (note != null) ...[const SizedBox(height: AppSpace.s12), note!],
         ],
       ),
       footer: footer,
@@ -146,30 +153,41 @@ class const _PickPlayView({required final GamePlay play, required final int step
     final l10n = context.l10n.games.playing;
     final cubit = context.read<GameCubit>();
     final isBusy = context.select((GameCubit cubit) => cubit.state.isBusy);
-    final answer = context.select((GameCubit cubit) => cubit.state.answers[step]);
+    final draft = context.select((GameCubit cubit) => cubit.state.draft);
     final name = gamePartnerName(play.partnerName, l10n.partnerFallback);
     final item = play.itemAt(step)!;
+    final isChanging = play.own.containsKey(step);
 
     return _PlayScaffold(
-      play: play,
-      step: step,
+      progress: l10n.progress(current: step + 1, total: play.totalSteps),
       title: item.title,
       content: Column(
         children: [
-          BaseOptionTile(
-            title: l10n.you,
-            isSelected: answer == pickSelf,
-            isEnabled: !isBusy,
-            onTap: isBusy ? null : () => cubit.choose(pickSelf),
-          ),
-          const SizedBox(height: AppSpace.s10),
-          BaseOptionTile(
-            title: name,
-            isSelected: answer == pickPartner,
-            isEnabled: !isBusy,
-            onTap: isBusy ? null : () => cubit.choose(pickPartner),
-          ),
+          for (final option in [
+            (label: l10n.me, key: pickSelf),
+            (label: name, key: pickPartner),
+            (label: l10n.both, key: pickBoth),
+          ])
+            Padding(
+              padding: const EdgeInsets.only(bottom: AppSpace.s10),
+              child: BaseOptionTile(
+                title: option.label,
+                isSelected: draft == option.key,
+                isEnabled: !isBusy,
+                onTap: isBusy ? null : () => cubit.choose(option.key),
+              ),
+            ),
         ],
+      ),
+      note: isChanging
+          ? BaseNote(text: _changeNote(context, name))
+          : BaseNote(text: l10n.privacyNote),
+      footer: _AnswerFooter(
+        canSubmit: draft.trim().isNotEmpty && !isBusy,
+        isBusy: isBusy,
+        actionText: l10n.next,
+        onSubmit: cubit.submit,
+        onSkip: cubit.skip,
       ),
     );
   }
@@ -186,6 +204,8 @@ class const _GuessPlayView({required final GamePlay play, required final int ste
     final name = gamePartnerName(play.partnerName, '');
     final isGuess = play.phaseAt(step) == GamePhase.guess;
     final item = play.itemAt(step)!;
+    final half = play.totalSteps ~/ 2;
+    final question = isGuess ? step - half + 1 : step + 1;
     final label = isGuess
         ? name.isEmpty
               ? l10n.guessAboutPartnerFallback
@@ -198,10 +218,12 @@ class const _GuessPlayView({required final GamePlay play, required final int ste
         : null;
     final hint = isGuess ? l10n.guessHint : l10n.answerHint;
     final options = item.options;
+    final isChanging = play.own.containsKey(step);
 
     return _PlayScaffold(
-      play: play,
-      step: step,
+      progress: isGuess
+          ? l10n.guessProgress(current: question, total: play.questionCount)
+          : l10n.progress(current: question, total: play.questionCount),
       label: label,
       title: item.title,
       subtitle: prompt,
@@ -221,15 +243,16 @@ class const _GuessPlayView({required final GamePlay play, required final int ste
                       title: option,
                       isSelected: draft == option,
                       isEnabled: !isBusy,
-                      onTap: isBusy ? null : () => cubit.onDraftChanged(option),
+                      onTap: isBusy ? null : () => cubit.choose(option),
                     ),
                   ),
               ],
             ),
+      note: isChanging ? BaseNote(text: _changeNote(context, name)) : null,
       footer: _AnswerFooter(
         canSubmit: draft.trim().isNotEmpty && !isBusy,
         isBusy: isBusy,
-        actionText: _stepAction(context, play, step),
+        actionText: isGuess ? l10n.nextGuess : l10n.next,
         onSubmit: cubit.submit,
         onSkip: cubit.skip,
       ),
@@ -246,28 +269,24 @@ class const _TalkPlayView({required final GamePlay play, required final int step
     final draft = context.select((GameCubit cubit) => cubit.state.draft);
     final isBusy = context.select((GameCubit cubit) => cubit.state.isBusy);
     final item = play.itemAt(step)!;
+    final name = gamePartnerName(play.partnerName, '');
+    final isChanging = play.own.containsKey(step);
 
     return _PlayScaffold(
-      play: play,
-      step: step,
+      progress: l10n.progress(current: step + 1, total: play.totalSteps),
       title: item.title,
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          BaseTextArea(
-            text: draft,
-            hint: l10n.talkHint,
-            maxLength: gameAnswerMaxLength,
-            onChanged: cubit.onDraftChanged,
-          ),
-          const SizedBox(height: AppSpace.s12),
-          BaseNote(text: l10n.talkNote),
-        ],
+      subtitle: l10n.talkSubtitle,
+      content: BaseTextArea(
+        text: draft,
+        hint: l10n.talkHint,
+        maxLength: gameAnswerMaxLength,
+        onChanged: cubit.onDraftChanged,
       ),
+      note: BaseNote(text: isChanging ? _changeNote(context, name) : l10n.talkNote),
       footer: _AnswerFooter(
         canSubmit: draft.trim().isNotEmpty && !isBusy,
         isBusy: isBusy,
-        actionText: _stepAction(context, play, step),
+        actionText: l10n.next,
         onSubmit: cubit.submit,
         onSkip: cubit.skip,
       ),
@@ -295,8 +314,7 @@ class _DatePlayViewState() extends State<_DatePlayView> {
 
     if (!_started && !answers.containsKey(widget.step)) {
       return _PlayScaffold(
-        play: widget.play,
-        step: widget.step,
+        label: l10n.date.missionTag,
         title: item.title,
         subtitle: item.body,
         content: BaseNote(text: l10n.date.startNote, icon: AppIcons.heart),
@@ -310,10 +328,7 @@ class _DatePlayViewState() extends State<_DatePlayView> {
     final canSubmit = draft.isNotEmpty && !isBusy;
 
     return _PlayScaffold(
-      play: widget.play,
-      step: widget.step,
-      title: item.title,
-      subtitle: l10n.date.reflectionTitle,
+      title: l10n.date.reflectionTitle,
       content: Column(
         children: [
           for (final reflection in dateReflections)
@@ -323,17 +338,30 @@ class _DatePlayViewState() extends State<_DatePlayView> {
                 title: gameReflectionLabel(context, reflection),
                 isSelected: draft == reflection,
                 isEnabled: !isBusy,
-                onTap: isBusy ? null : () => cubit.onDraftChanged(reflection),
+                onTap: isBusy ? null : () => cubit.choose(reflection),
               ),
             ),
-          BaseNote(text: l10n.date.reflectionText),
         ],
       ),
-      footer: BaseButton.primary(
-        text: _stepAction(context, widget.play, widget.step),
-        isEnabled: canSubmit,
-        isLoading: isBusy,
-        onPressed: canSubmit ? cubit.submit : null,
+      note: BaseNote(text: l10n.date.reflectionText),
+      footer: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          BaseButton.primary(
+            text: l10n.date.save,
+            isEnabled: canSubmit,
+            isLoading: isBusy,
+            onPressed: canSubmit ? cubit.submit : null,
+          ),
+          const SizedBox(height: AppSpace.s6),
+          BaseButton.text(
+            text: l10n.playing.skip,
+            isEnabled: !isBusy,
+            onPressed: isBusy ? null : cubit.skip,
+            isFullWidth: true,
+          ),
+        ],
       ),
     );
   }
@@ -372,13 +400,8 @@ class const _AnswerFooter({
   }
 }
 
-/// The primary action of a question: keep going or open the review at the end.
-String _stepAction(BuildContext context, GamePlay play, int step) {
-  final answers = context.select((GameCubit cubit) => cubit.state.answers);
+String _changeNote(BuildContext context, String name) {
   final l10n = context.l10n.games.playing;
-  final isLast =
-      answers.length >= play.totalSteps ||
-      (answers.length == play.totalSteps - 1 && !answers.containsKey(step));
 
-  return isLast ? l10n.reviewAction : l10n.next;
+  return name.isEmpty ? l10n.changeNoteFallback : l10n.changeNote(name: name);
 }

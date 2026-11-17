@@ -33,7 +33,7 @@
   "kinds": {
     "meOrYou": {
       "title": "Eu ou ele",
-      "intro": "Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual."
+      "intro": "Respondam em separado quem combina mais com cada frase. Depois vejam onde concordaram."
     },
     "howWell": {
       "title": "Quanto você me conhece",
@@ -74,65 +74,98 @@
     "window": "O convite espera por até 48 horas.",
     "checkAgain": "Ver se já entrou",
     "stillWaiting": "Ainda não entrou. O convite continua aqui.",
-    "cancel": "Cancelar o convite"
+    "cancel": "Cancelar"
   },
   "active": {
-    "title": "O jogo começou",
-    "text": "Os dois estão dentro. As telas deste jogo aparecem aqui.",
     "cancel": "Encerrar o jogo"
   },
   "playing": {
     "progress": "Pergunta {current} de {total}",
+    "guessProgress": "Palpite {current} de {total}",
     "you": "Você",
+    "me": "Eu",
+    "both": "Os dois",
     "partnerFallback": "Seu par",
-    "skip": "Pular esta",
+    "skip": "Pular",
     "guessAboutYou": "Sobre você",
     "guessAboutPartner": "Sobre {name}",
     "guessAboutPartnerFallback": "Sobre seu par",
     "guessPrompt": "O que {name} respondeu?",
     "guessPromptFallback": "O que seu par respondeu?",
-    "guessYourGuess": "Seu palpite",
     "answerHint": "Responda do seu jeito.",
     "guessHint": "Tente adivinhar a resposta.",
     "talkHint": "Escreva sua resposta. Só você lê até os dois terminarem.",
+    "talkSubtitle": "Responder em privado, revelar juntos.",
     "talkNote": "Seu par só vê depois que os dois responderem.",
-    "introCta": "Começar a responder",
-    "next": "Continuar",
-    "reviewAction": "Revisar respostas"
+    "privacyNote": "Cada um responde em privado. Pular é sempre permitido.",
+    "changeNote": "Você pode mudar sua resposta até {name} responder esta pergunta.",
+    "changeNoteFallback": "Você pode mudar sua resposta até seu par responder esta pergunta.",
+    "lockedNote": "Este jogo já foi fechado. Esta resposta não pode mais ser editada.",
+    "introCta": "Começar",
+    "next": "Próxima",
+    "nextGuess": "Próximo"
   },
   "date": {
-    "start": "Começar o encontro",
+    "missionTag": "Missão",
+    "start": "Aceitar",
     "startNote": "Façam a missão juntos e voltem para contar como foi.",
     "reflectionTitle": "Como foi?",
-    "reflectionText": "Escolha o que aconteceu. Seu par só vê depois que os dois responderem."
+    "reflectionText": "Escolha o que aconteceu. Seu par só vê depois que os dois responderem.",
+    "save": "Salvar"
   },
   "reflections(map)": {
     "great": "Foi ótimo",
-    "ok": "Foi bom",
-    "did_not_happen": "Não aconteceu",
+    "ok": "Foi ok",
+    "did_not_happen": "Não rolou",
     "other": "Sem resposta"
   },
   "waitingPartner": {
-    "title": "Você respondeu tudo",
-    "text": "Agora é só esperar {name}. Nada do que você escreveu aparece antes dos dois terminarem.",
-    "textFallback": "Agora é só esperar seu par. Nada do que você escreveu aparece antes dos dois terminarem.",
-    "answersTitle": "O que você salvou",
-    "checkAgain": "Ver de novo",
-    "cancel": "Encerrar o jogo"
+    "title": "Terminei",
+    "text": "Agora é a vez de {name}. Você vê o resultado quando os dois terminarem.",
+    "textFallback": "Agora é a vez do seu par. Você vê o resultado quando os dois terminarem.",
+    "checkAgain": "Ver se já terminou",
+    "close": "Fechar",
+    "cancel": "Encerrar o jogo",
+    "note": "Nada do que você respondeu aparece antes de os dois terminarem.",
+    "stillWaiting": "Ainda não terminou. O resultado aparece quando os dois terminarem."
   },
   "finished": {
-    "title": "Que conversa boa",
-    "text": "Sem placar, sem vencedor. Só vocês dois.",
+    "pickTitle": "Vocês concordaram em {agreed} de {total}",
+    "pickHighlight": "{agreed} de {total}",
+    "pickNote": "As diferenças viram assunto, não placar.",
+    "discoveriesTitle": "Descobertas",
+    "discoveriesText": "Coisas que vocês ainda não sabiam um do outro.",
+    "youDidNotKnow": "Você não sabia",
+    "partnerDidNotKnow": "{name} não sabia",
+    "partnerAnswered": "{name} respondeu: {value}",
+    "youAnswered": "Você respondeu: {value}",
+    "noDiscoveries": "Nenhuma descoberta desta vez: vocês já sabiam o que o outro responderia.",
+    "doneTitle": "Pronto",
+    "doneText(plural, param=count)": {
+      "one": "Você respondeu 1 pergunta. Sem vencedor, sem pontuação.",
+      "other": "Você respondeu {count} perguntas. Sem vencedor, sem pontuação."
+    },
+    "dateText": "Sem vencedor, sem pontuação. Só o encontro de vocês.",
     "you": "Você",
-    "youChose": "Você escolheu: {value}",
-    "partnerChose": "{name} escolheu: {value}",
-    "yourGuess": "Seu palpite",
-    "partnerGuess": "O palpite do seu par",
-    "matched": "Acertou",
     "noAnswer": "Sem resposta",
     "both": "Os dois",
-    "agreed": "Vocês combinaram",
-    "back": "Voltar"
+    "bothSaid": "Os dois disseram: {value}",
+    "eachSaid": "Você disse {you} · {name} disse {partner}",
+    "matchedLabel": "Igual",
+    "differentLabel": "Diferente",
+    "replayTag": "Nova rodada",
+    "replayQuestions(plural, param=count)": {
+      "one": "1 pergunta que vocês ainda não viram",
+      "other": "{count} perguntas que vocês ainda não viram"
+    },
+    "replayGuesses(plural, param=count)": {
+      "one": "1 palpite que vocês ainda não viram",
+      "other": "{count} palpites que vocês ainda não viram"
+    },
+    "replayMission": "Uma nova missão para vocês",
+    "replayText": "Cada rodada traz conteúdo novo. Quando acabar, o app avisa e mistura o que já passou.",
+    "playAgain": "Jogar de novo",
+    "chooseAnother": "Escolher outro jogo"
   },
   "notFound": {
     "title": "Este jogo não existe",
@@ -150,7 +183,8 @@
     "text": "Quando seu par entrar, vocês podem jogar juntos."
   },
   "common": {
-    "close": "Fechar"
+    "close": "Fechar",
+    "back": "Voltar"
   },
   "loadErrorTitle": "Não deu para abrir o jogo",
   "loadErrorText": "Nada foi perdido. Tente de novo.",
@@ -163,13 +197,5 @@
     "INVALID_GAME_INDEX": "Essa pergunta mudou. Vamos atualizar.",
     "ANSWER_LOCKED": "As respostas deste jogo já foram fechadas. Não dá para editar agora.",
     "other": "Não deu para fazer isso agora. Tente de novo."
-  },
-  "review": {
-    "title": "Revisar respostas",
-    "text": "Confira o que você respondeu. Toque em uma resposta para editar. Nada é enviado antes de você confirmar.",
-    "confirm": "Enviar respostas",
-    "back": "Voltar para a revisão",
-    "locked": "Fechado",
-    "lockedNote": "Este jogo já foi fechado. Esta resposta não pode mais ser editada."
   }
 }

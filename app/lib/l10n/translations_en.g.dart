@@ -1741,7 +1741,7 @@ class _Translations$games$en extends Translations$games$pt {
   @override
   Map<String, String> get reflections => {
     'great': 'It was great',
-    'ok': 'It was nice',
+    'ok': 'It was ok',
     'did_not_happen': 'It did not happen',
     'other': 'No answer',
   };
@@ -1773,8 +1773,6 @@ class _Translations$games$en extends Translations$games$pt {
     'ANSWER_LOCKED': 'This game\'s answers are closed. You can\'t edit them now.',
     'other': 'Could not do that right now. Try again.',
   };
-  @override
-  late final _Translations$games$review$en review = _Translations$games$review$en._(_root);
 }
 
 // Path: gentleRequest
@@ -6995,7 +6993,7 @@ class _Translations$games$waiting$en extends Translations$games$waiting$pt {
   @override
   String get stillWaiting => 'Not in yet. The invite is still here.';
   @override
-  String get cancel => 'Cancel the invitation';
+  String get cancel => 'Cancel';
 }
 
 // Path: games.active
@@ -7005,10 +7003,6 @@ class _Translations$games$active$en extends Translations$games$active$pt {
   final TranslationsEn _root; // ignore: unused_field
 
   // Translations
-  @override
-  String get title => 'The game has started';
-  @override
-  String get text => 'Both of you are in. This game\'s screens appear here.';
   @override
   String get cancel => 'End the game';
 }
@@ -7024,11 +7018,18 @@ class _Translations$games$playing$en extends Translations$games$playing$pt {
   String progress({required Object current, required Object total}) =>
       'Question ${current} of ${total}';
   @override
+  String guessProgress({required Object current, required Object total}) =>
+      'Guess ${current} of ${total}';
+  @override
   String get you => 'You';
+  @override
+  String get me => 'Me';
+  @override
+  String get both => 'Both';
   @override
   String get partnerFallback => 'Your partner';
   @override
-  String get skip => 'Skip this one';
+  String get skip => 'Skip';
   @override
   String get guessAboutYou => 'About you';
   @override
@@ -7040,21 +7041,31 @@ class _Translations$games$playing$en extends Translations$games$playing$pt {
   @override
   String get guessPromptFallback => 'What did your partner answer?';
   @override
-  String get guessYourGuess => 'Your guess';
-  @override
   String get answerHint => 'Answer as you would.';
   @override
   String get guessHint => 'Guess what they answered.';
   @override
   String get talkHint => 'Write your answer. Only you can read it until you both finish.';
   @override
+  String get talkSubtitle => 'Answer in private, reveal together.';
+  @override
   String get talkNote => 'Your partner only sees this after both of you answer.';
   @override
-  String get introCta => 'Start answering';
+  String get privacyNote => 'Each of you answers in private. Skipping is always allowed.';
   @override
-  String get next => 'Continue';
+  String changeNote({required Object name}) =>
+      'You can change your answer until ${name} answers this question.';
   @override
-  String get reviewAction => 'Review answers';
+  String get changeNoteFallback =>
+      'You can change your answer until your partner answers this question.';
+  @override
+  String get lockedNote => 'This game is closed. This answer can no longer be edited.';
+  @override
+  String get introCta => 'Start';
+  @override
+  String get next => 'Next';
+  @override
+  String get nextGuess => 'Next';
 }
 
 // Path: games.date
@@ -7065,7 +7076,9 @@ class _Translations$games$date$en extends Translations$games$date$pt {
 
   // Translations
   @override
-  String get start => 'Start the date';
+  String get missionTag => 'Mission';
+  @override
+  String get start => 'Accept';
   @override
   String get startNote => 'Do the mission together, then come back and tell how it was.';
   @override
@@ -7073,6 +7086,8 @@ class _Translations$games$date$en extends Translations$games$date$pt {
   @override
   String get reflectionText =>
       'Pick what happened. Your partner sees it only after you both answer.';
+  @override
+  String get save => 'Save';
 }
 
 // Path: games.waitingPartner
@@ -7085,19 +7100,23 @@ class _Translations$games$waitingPartner$en extends Translations$games$waitingPa
 
   // Translations
   @override
-  String get title => 'You answered everything';
+  String get title => 'I\'m done';
   @override
   String text({required Object name}) =>
-      'Now it is just waiting for ${name}. Nothing you wrote appears before both of you finish.';
+      'Now it is ${name}\'s turn. You see the result when both of you finish.';
   @override
   String get textFallback =>
-      'Now it is just waiting for your partner. Nothing you wrote appears before both of you finish.';
+      'Now it is your partner\'s turn. You see the result when both of you finish.';
   @override
-  String get answersTitle => 'What you saved';
+  String get checkAgain => 'Check if they finished';
   @override
-  String get checkAgain => 'Check again';
+  String get close => 'Close';
   @override
   String get cancel => 'End the game';
+  @override
+  String get note => 'Nothing you answered appears before both of you finish.';
+  @override
+  String get stillWaiting => 'Not done yet. The result appears when both of you finish.';
 }
 
 // Path: games.finished
@@ -7108,29 +7127,79 @@ class _Translations$games$finished$en extends Translations$games$finished$pt {
 
   // Translations
   @override
-  String get title => 'That was a good conversation';
+  String pickTitle({required Object agreed, required Object total}) =>
+      'You agreed on ${agreed} of ${total}';
   @override
-  String get text => 'No score, no winner. Just the two of you.';
+  String pickHighlight({required Object agreed, required Object total}) => '${agreed} of ${total}';
+  @override
+  String get pickNote => 'The differences become conversation, not a score.';
+  @override
+  String get discoveriesTitle => 'Discoveries';
+  @override
+  String get discoveriesText => 'Things you still did not know about each other.';
+  @override
+  String get youDidNotKnow => 'You did not know';
+  @override
+  String partnerDidNotKnow({required Object name}) => '${name} did not know';
+  @override
+  String partnerAnswered({required Object name, required Object value}) =>
+      '${name} answered: ${value}';
+  @override
+  String youAnswered({required Object value}) => 'You answered: ${value}';
+  @override
+  String get noDiscoveries =>
+      'No discoveries this time: you already knew what the other would answer.';
+  @override
+  String get doneTitle => 'Done';
+  @override
+  String doneText({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'You answered 1 question. No winner, no score.',
+        other: 'You answered ${count} questions. No winner, no score.',
+      );
+  @override
+  String get dateText => 'No winner, no score. Just your date.';
   @override
   String get you => 'You';
-  @override
-  String youChose({required Object value}) => 'You chose: ${value}';
-  @override
-  String partnerChose({required Object name, required Object value}) => '${name} chose: ${value}';
-  @override
-  String get yourGuess => 'Your guess';
-  @override
-  String get partnerGuess => 'Their guess';
-  @override
-  String get matched => 'Matched';
   @override
   String get noAnswer => 'No answer';
   @override
   String get both => 'Both of you';
   @override
-  String get agreed => 'You both agreed';
+  String bothSaid({required Object value}) => 'You both said: ${value}';
   @override
-  String get back => 'Back';
+  String eachSaid({required Object you, required Object name, required Object partner}) =>
+      'You said ${you} · ${name} said ${partner}';
+  @override
+  String get matchedLabel => 'Same';
+  @override
+  String get differentLabel => 'Different';
+  @override
+  String get replayTag => 'New round';
+  @override
+  String replayQuestions({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 question you have not seen yet',
+        other: '${count} questions you have not seen yet',
+      );
+  @override
+  String replayGuesses({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 guess you have not seen yet',
+        other: '${count} guesses you have not seen yet',
+      );
+  @override
+  String get replayMission => 'A new mission for you';
+  @override
+  String get replayText =>
+      'Each round brings new content. When it runs out, the app tells you and mixes in what you already saw.';
+  @override
+  String get playAgain => 'Play again';
+  @override
+  String get chooseAnother => 'Choose another game';
 }
 
 // Path: games.notFound
@@ -7187,28 +7256,8 @@ class _Translations$games$common$en extends Translations$games$common$pt {
   // Translations
   @override
   String get close => 'Close';
-}
-
-// Path: games.review
-class _Translations$games$review$en extends Translations$games$review$pt {
-  _Translations$games$review$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
   @override
-  String get title => 'Review answers';
-  @override
-  String get text =>
-      'Check what you answered. Tap an answer to edit it. Nothing is sent until you confirm.';
-  @override
-  String get confirm => 'Send answers';
-  @override
-  String get back => 'Back to the review';
-  @override
-  String get locked => 'Closed';
-  @override
-  String get lockedNote => 'This game is closed. This answer can no longer be edited.';
+  String get back => 'Back';
 }
 
 // Path: guides.hub
@@ -8386,8 +8435,7 @@ class _Translations$games$kinds$meOrYou$en extends Translations$games$kinds$meOr
   @override
   String get title => 'Me or you';
   @override
-  String get intro =>
-      'Answer separately who fits each phrase better. Then see where you thought alike.';
+  String get intro => 'Answer separately who fits each phrase better. Then see where you agreed.';
 }
 
 // Path: games.kinds.howWell
@@ -9457,7 +9505,7 @@ extension on TranslationsEn {
                 ),
           'games.kinds.meOrYou.title' => 'Me or you',
           'games.kinds.meOrYou.intro' =>
-            'Answer separately who fits each phrase better. Then see where you thought alike.',
+            'Answer separately who fits each phrase better. Then see where you agreed.',
           'games.kinds.howWell.title' => 'How well you know me',
           'games.kinds.howWell.intro' => 'Each of you answers about yourself and guesses the other\'s answer. Then comes the conversation.',
           'games.kinds.twentyQuestions.title' => '20 questions',
@@ -9489,63 +9537,125 @@ extension on TranslationsEn {
           'games.waiting.window' => 'The invitation waits for up to 48 hours.',
           'games.waiting.checkAgain' => 'Check if they joined',
           'games.waiting.stillWaiting' => 'Not in yet. The invite is still here.',
-          'games.waiting.cancel' => 'Cancel the invitation',
-          'games.active.title' => 'The game has started',
-          'games.active.text' => 'Both of you are in. This game\'s screens appear here.',
+          'games.waiting.cancel' => 'Cancel',
           'games.active.cancel' => 'End the game',
           'games.playing.progress' => ({
             required Object current,
             required Object total,
           }) => 'Question ${current} of ${total}',
+          'games.playing.guessProgress' => ({
+            required Object current,
+            required Object total,
+          }) => 'Guess ${current} of ${total}',
           'games.playing.you' => 'You',
+          'games.playing.me' => 'Me',
+          'games.playing.both' => 'Both',
           'games.playing.partnerFallback' => 'Your partner',
-          'games.playing.skip' => 'Skip this one',
+          'games.playing.skip' => 'Skip',
           'games.playing.guessAboutYou' => 'About you',
           'games.playing.guessAboutPartner' => ({required Object name}) => 'About ${name}',
           'games.playing.guessAboutPartnerFallback' => 'About your partner',
           'games.playing.guessPrompt' => ({required Object name}) => 'What did ${name} answer?',
           'games.playing.guessPromptFallback' => 'What did your partner answer?',
-          'games.playing.guessYourGuess' => 'Your guess',
           'games.playing.answerHint' => 'Answer as you would.',
           'games.playing.guessHint' => 'Guess what they answered.',
           'games.playing.talkHint' =>
             'Write your answer. Only you can read it until you both finish.',
+          'games.playing.talkSubtitle' => 'Answer in private, reveal together.',
           'games.playing.talkNote' => 'Your partner only sees this after both of you answer.',
-          'games.playing.introCta' => 'Start answering',
-          'games.playing.next' => 'Continue',
-          'games.playing.reviewAction' => 'Review answers',
-          'games.date.start' => 'Start the date',
+          'games.playing.privacyNote' =>
+            'Each of you answers in private. Skipping is always allowed.',
+          'games.playing.changeNote' => ({
+            required Object name,
+          }) => 'You can change your answer until ${name} answers this question.',
+          'games.playing.changeNoteFallback' =>
+            'You can change your answer until your partner answers this question.',
+          'games.playing.lockedNote' => 'This game is closed. This answer can no longer be edited.',
+          'games.playing.introCta' => 'Start',
+          'games.playing.next' => 'Next',
+          'games.playing.nextGuess' => 'Next',
+          'games.date.missionTag' => 'Mission',
+          'games.date.start' => 'Accept',
           'games.date.startNote' => 'Do the mission together, then come back and tell how it was.',
           'games.date.reflectionTitle' => 'How was it?',
           'games.date.reflectionText' =>
             'Pick what happened. Your partner sees it only after you both answer.',
+          'games.date.save' => 'Save',
           'games.reflections.great' => 'It was great',
-          'games.reflections.ok' => 'It was nice',
+          'games.reflections.ok' => 'It was ok',
           'games.reflections.did_not_happen' => 'It did not happen',
           'games.reflections.other' => 'No answer',
-          'games.waitingPartner.title' => 'You answered everything',
+          'games.waitingPartner.title' => 'I\'m done',
           'games.waitingPartner.text' => ({
             required Object name,
-          }) => 'Now it is just waiting for ${name}. Nothing you wrote appears before both of you finish.',
-          'games.waitingPartner.textFallback' => 'Now it is just waiting for your partner. Nothing you wrote appears before both of you finish.',
-          'games.waitingPartner.answersTitle' => 'What you saved',
-          'games.waitingPartner.checkAgain' => 'Check again',
+          }) => 'Now it is ${name}\'s turn. You see the result when both of you finish.',
+          'games.waitingPartner.textFallback' =>
+            'Now it is your partner\'s turn. You see the result when both of you finish.',
+          'games.waitingPartner.checkAgain' => 'Check if they finished',
+          'games.waitingPartner.close' => 'Close',
           'games.waitingPartner.cancel' => 'End the game',
-          'games.finished.title' => 'That was a good conversation',
-          'games.finished.text' => 'No score, no winner. Just the two of you.',
-          'games.finished.you' => 'You',
-          'games.finished.youChose' => ({required Object value}) => 'You chose: ${value}',
-          'games.finished.partnerChose' => ({
+          'games.waitingPartner.note' => 'Nothing you answered appears before both of you finish.',
+          'games.waitingPartner.stillWaiting' =>
+            'Not done yet. The result appears when both of you finish.',
+          'games.finished.pickTitle' => ({
+            required Object agreed,
+            required Object total,
+          }) => 'You agreed on ${agreed} of ${total}',
+          'games.finished.pickHighlight' => ({
+            required Object agreed,
+            required Object total,
+          }) => '${agreed} of ${total}',
+          'games.finished.pickNote' => 'The differences become conversation, not a score.',
+          'games.finished.discoveriesTitle' => 'Discoveries',
+          'games.finished.discoveriesText' => 'Things you still did not know about each other.',
+          'games.finished.youDidNotKnow' => 'You did not know',
+          'games.finished.partnerDidNotKnow' => ({required Object name}) => '${name} did not know',
+          'games.finished.partnerAnswered' => ({
             required Object name,
             required Object value,
-          }) => '${name} chose: ${value}',
-          'games.finished.yourGuess' => 'Your guess',
-          'games.finished.partnerGuess' => 'Their guess',
-          'games.finished.matched' => 'Matched',
+          }) => '${name} answered: ${value}',
+          'games.finished.youAnswered' => ({required Object value}) => 'You answered: ${value}',
+          'games.finished.noDiscoveries' =>
+            'No discoveries this time: you already knew what the other would answer.',
+          'games.finished.doneTitle' => 'Done',
+          'games.finished.doneText' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'You answered 1 question. No winner, no score.',
+                  other: 'You answered ${count} questions. No winner, no score.',
+                ),
+          'games.finished.dateText' => 'No winner, no score. Just your date.',
+          'games.finished.you' => 'You',
           'games.finished.noAnswer' => 'No answer',
           'games.finished.both' => 'Both of you',
-          'games.finished.agreed' => 'You both agreed',
-          'games.finished.back' => 'Back',
+          'games.finished.bothSaid' => ({required Object value}) => 'You both said: ${value}',
+          'games.finished.eachSaid' => ({
+            required Object you,
+            required Object name,
+            required Object partner,
+          }) => 'You said ${you} · ${name} said ${partner}',
+          'games.finished.matchedLabel' => 'Same',
+          'games.finished.differentLabel' => 'Different',
+          'games.finished.replayTag' => 'New round',
+          'games.finished.replayQuestions' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 question you have not seen yet',
+                  other: '${count} questions you have not seen yet',
+                ),
+          'games.finished.replayGuesses' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 guess you have not seen yet',
+                  other: '${count} guesses you have not seen yet',
+                ),
+          'games.finished.replayMission' => 'A new mission for you',
+          'games.finished.replayText' => 'Each round brings new content. When it runs out, the app tells you and mixes in what you already saw.',
+          'games.finished.playAgain' => 'Play again',
+          'games.finished.chooseAnother' => 'Choose another game',
           'games.notFound.title' => 'This game does not exist',
           'games.notFound.text' =>
             'It may have changed or never existed. Go back and pick another one.',
@@ -9557,6 +9667,7 @@ extension on TranslationsEn {
           'games.noPartner.title' => 'Games are for two',
           'games.noPartner.text' => 'When your partner joins, you can play together.',
           'games.common.close' => 'Close',
+          'games.common.back' => 'Back',
           'games.loadErrorTitle' => 'Could not open the game',
           'games.loadErrorText' => 'Nothing was lost. Try again.',
           'games.errors.NOT_PAIRED' => 'Games need both of you connected.',
@@ -9570,13 +9681,6 @@ extension on TranslationsEn {
           'games.errors.ANSWER_LOCKED' =>
             'This game\'s answers are closed. You can\'t edit them now.',
           'games.errors.other' => 'Could not do that right now. Try again.',
-          'games.review.title' => 'Review answers',
-          'games.review.text' =>
-            'Check what you answered. Tap an answer to edit it. Nothing is sent until you confirm.',
-          'games.review.confirm' => 'Send answers',
-          'games.review.back' => 'Back to the review',
-          'games.review.locked' => 'Closed',
-          'games.review.lockedNote' => 'This game is closed. This answer can no longer be edited.',
           'gentleRequest.title' => 'Gentle request',
           'gentleRequest.titleHighlight' => 'Gentle',
           'gentleRequest.whenLabel' => 'When…',
@@ -9802,6 +9906,9 @@ extension on TranslationsEn {
           'help.emptyText' => 'We\'re preparing more suggestions.',
           'help.errorTitle' => 'Couldn\'t load',
           'help.errorText' => 'Try again in a moment.',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.title' => 'Help',
           'helpSupport.contactTitle' => 'Talk to support',
           'helpSupport.reportBug' => 'Report a bug',
@@ -10490,6 +10597,9 @@ extension on TranslationsEn {
           'loveStyle.retryPairing' => 'Try again',
           'loveStyle.retake' => 'Take it again',
           'loveStyle.loadErrorTitle' => 'Couldn\'t load',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.loadErrorText' => 'Couldn\'t open your result right now. Try again.',
           'loveStyle.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'loveStyle.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
@@ -11124,6 +11234,9 @@ extension on TranslationsEn {
           'programs.errorTitle' => 'Couldn\'t load',
           'programs.errorText' => 'The programs are still here. Try again.',
           'programs.diaryLabel' => 'JUST ME',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.diaryTitle' => 'Diary',
           'programs.diaryText' => 'A private place to write how you are.',
           'programs.start' => 'Start',
@@ -11697,6 +11810,9 @@ extension on TranslationsEn {
           'slipDetail.feeling' => 'How you felt',
           'slipDetail.plan' => 'Then I…',
           'slipDetail.jarTitle' => 'Keep in the jar',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.jarText' => 'To open on a bad day. Only you see it.',
           'slipDetail.sentNote' => 'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.',
           'slipDetail.draftBodyErrors.empty' => 'Write the slip first',
@@ -12439,6 +12555,9 @@ extension on TranslationsEn {
           'unpair.partnerNotice.title' => ({required Object name}) => '${name} unpaired',
           'unpair.partnerNotice.titleNoName' => 'Your partner unpaired',
           'unpair.partnerNotice.highlight' => 'unpaired',
+          _ => null,
+        } ??
+        switch (path) {
           'unpair.partnerNotice.text' => 'Your data stays yours. Shared cards stopped.',
           'unpair.partnerNotice.ok' => 'Ok',
           'unpair.errors.NETWORK' => 'No connection. Check your internet and try again.',

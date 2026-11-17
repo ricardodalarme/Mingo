@@ -1,0 +1,7 @@
+mutation NextGameItems($game: String!, $count: Int) {
+  nextGameItems(args: { game: $game, count: $count }) {
+    slug
+    title
+    body
+  }
+}

@@ -2029,8 +2029,8 @@ class Translations$games$pt {
   late final Translations$games$date$pt date = Translations$games$date$pt.internal(_root);
   Map<String, String> get reflections => {
     'great': 'Foi ótimo',
-    'ok': 'Foi bom',
-    'did_not_happen': 'Não aconteceu',
+    'ok': 'Foi ok',
+    'did_not_happen': 'Não rolou',
     'other': 'Sem resposta',
   };
   late final Translations$games$waitingPartner$pt waitingPartner =
@@ -2063,7 +2063,6 @@ class Translations$games$pt {
     'ANSWER_LOCKED': 'As respostas deste jogo já foram fechadas. Não dá para editar agora.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
-  late final Translations$games$review$pt review = Translations$games$review$pt.internal(_root);
 }
 
 // Path: gentleRequest
@@ -8744,8 +8743,8 @@ class Translations$games$waiting$pt {
   /// pt: 'Ainda não entrou. O convite continua aqui.'
   String get stillWaiting => 'Ainda não entrou. O convite continua aqui.';
 
-  /// pt: 'Cancelar o convite'
-  String get cancel => 'Cancelar o convite';
+  /// pt: 'Cancelar'
+  String get cancel => 'Cancelar';
 }
 
 // Path: games.active
@@ -8755,12 +8754,6 @@ class Translations$games$active$pt {
   final Translations _root; // ignore: unused_field
 
   // Translations
-
-  /// pt: 'O jogo começou'
-  String get title => 'O jogo começou';
-
-  /// pt: 'Os dois estão dentro. As telas deste jogo aparecem aqui.'
-  String get text => 'Os dois estão dentro. As telas deste jogo aparecem aqui.';
 
   /// pt: 'Encerrar o jogo'
   String get cancel => 'Encerrar o jogo';
@@ -8778,14 +8771,24 @@ class Translations$games$playing$pt {
   String progress({required Object current, required Object total}) =>
       'Pergunta ${current} de ${total}';
 
+  /// pt: 'Palpite {current} de {total}'
+  String guessProgress({required Object current, required Object total}) =>
+      'Palpite ${current} de ${total}';
+
   /// pt: 'Você'
   String get you => 'Você';
+
+  /// pt: 'Eu'
+  String get me => 'Eu';
+
+  /// pt: 'Os dois'
+  String get both => 'Os dois';
 
   /// pt: 'Seu par'
   String get partnerFallback => 'Seu par';
 
-  /// pt: 'Pular esta'
-  String get skip => 'Pular esta';
+  /// pt: 'Pular'
+  String get skip => 'Pular';
 
   /// pt: 'Sobre você'
   String get guessAboutYou => 'Sobre você';
@@ -8802,9 +8805,6 @@ class Translations$games$playing$pt {
   /// pt: 'O que seu par respondeu?'
   String get guessPromptFallback => 'O que seu par respondeu?';
 
-  /// pt: 'Seu palpite'
-  String get guessYourGuess => 'Seu palpite';
-
   /// pt: 'Responda do seu jeito.'
   String get answerHint => 'Responda do seu jeito.';
 
@@ -8814,17 +8814,34 @@ class Translations$games$playing$pt {
   /// pt: 'Escreva sua resposta. Só você lê até os dois terminarem.'
   String get talkHint => 'Escreva sua resposta. Só você lê até os dois terminarem.';
 
+  /// pt: 'Responder em privado, revelar juntos.'
+  String get talkSubtitle => 'Responder em privado, revelar juntos.';
+
   /// pt: 'Seu par só vê depois que os dois responderem.'
   String get talkNote => 'Seu par só vê depois que os dois responderem.';
 
-  /// pt: 'Começar a responder'
-  String get introCta => 'Começar a responder';
+  /// pt: 'Cada um responde em privado. Pular é sempre permitido.'
+  String get privacyNote => 'Cada um responde em privado. Pular é sempre permitido.';
 
-  /// pt: 'Continuar'
-  String get next => 'Continuar';
+  /// pt: 'Você pode mudar sua resposta até {name} responder esta pergunta.'
+  String changeNote({required Object name}) =>
+      'Você pode mudar sua resposta até ${name} responder esta pergunta.';
 
-  /// pt: 'Revisar respostas'
-  String get reviewAction => 'Revisar respostas';
+  /// pt: 'Você pode mudar sua resposta até seu par responder esta pergunta.'
+  String get changeNoteFallback =>
+      'Você pode mudar sua resposta até seu par responder esta pergunta.';
+
+  /// pt: 'Este jogo já foi fechado. Esta resposta não pode mais ser editada.'
+  String get lockedNote => 'Este jogo já foi fechado. Esta resposta não pode mais ser editada.';
+
+  /// pt: 'Começar'
+  String get introCta => 'Começar';
+
+  /// pt: 'Próxima'
+  String get next => 'Próxima';
+
+  /// pt: 'Próximo'
+  String get nextGuess => 'Próximo';
 }
 
 // Path: games.date
@@ -8835,8 +8852,11 @@ class Translations$games$date$pt {
 
   // Translations
 
-  /// pt: 'Começar o encontro'
-  String get start => 'Começar o encontro';
+  /// pt: 'Missão'
+  String get missionTag => 'Missão';
+
+  /// pt: 'Aceitar'
+  String get start => 'Aceitar';
 
   /// pt: 'Façam a missão juntos e voltem para contar como foi.'
   String get startNote => 'Façam a missão juntos e voltem para contar como foi.';
@@ -8847,6 +8867,9 @@ class Translations$games$date$pt {
   /// pt: 'Escolha o que aconteceu. Seu par só vê depois que os dois responderem.'
   String get reflectionText =>
       'Escolha o que aconteceu. Seu par só vê depois que os dois responderem.';
+
+  /// pt: 'Salvar'
+  String get save => 'Salvar';
 }
 
 // Path: games.waitingPartner
@@ -8857,25 +8880,31 @@ class Translations$games$waitingPartner$pt {
 
   // Translations
 
-  /// pt: 'Você respondeu tudo'
-  String get title => 'Você respondeu tudo';
+  /// pt: 'Terminei'
+  String get title => 'Terminei';
 
-  /// pt: 'Agora é só esperar {name}. Nada do que você escreveu aparece antes dos dois terminarem.'
+  /// pt: 'Agora é a vez de {name}. Você vê o resultado quando os dois terminarem.'
   String text({required Object name}) =>
-      'Agora é só esperar ${name}. Nada do que você escreveu aparece antes dos dois terminarem.';
+      'Agora é a vez de ${name}. Você vê o resultado quando os dois terminarem.';
 
-  /// pt: 'Agora é só esperar seu par. Nada do que você escreveu aparece antes dos dois terminarem.'
+  /// pt: 'Agora é a vez do seu par. Você vê o resultado quando os dois terminarem.'
   String get textFallback =>
-      'Agora é só esperar seu par. Nada do que você escreveu aparece antes dos dois terminarem.';
+      'Agora é a vez do seu par. Você vê o resultado quando os dois terminarem.';
 
-  /// pt: 'O que você salvou'
-  String get answersTitle => 'O que você salvou';
+  /// pt: 'Ver se já terminou'
+  String get checkAgain => 'Ver se já terminou';
 
-  /// pt: 'Ver de novo'
-  String get checkAgain => 'Ver de novo';
+  /// pt: 'Fechar'
+  String get close => 'Fechar';
 
   /// pt: 'Encerrar o jogo'
   String get cancel => 'Encerrar o jogo';
+
+  /// pt: 'Nada do que você respondeu aparece antes de os dois terminarem.'
+  String get note => 'Nada do que você respondeu aparece antes de os dois terminarem.';
+
+  /// pt: 'Ainda não terminou. O resultado aparece quando os dois terminarem.'
+  String get stillWaiting => 'Ainda não terminou. O resultado aparece quando os dois terminarem.';
 }
 
 // Path: games.finished
@@ -8886,30 +8915,55 @@ class Translations$games$finished$pt {
 
   // Translations
 
-  /// pt: 'Que conversa boa'
-  String get title => 'Que conversa boa';
+  /// pt: 'Vocês concordaram em {agreed} de {total}'
+  String pickTitle({required Object agreed, required Object total}) =>
+      'Vocês concordaram em ${agreed} de ${total}';
 
-  /// pt: 'Sem placar, sem vencedor. Só vocês dois.'
-  String get text => 'Sem placar, sem vencedor. Só vocês dois.';
+  /// pt: '{agreed} de {total}'
+  String pickHighlight({required Object agreed, required Object total}) => '${agreed} de ${total}';
+
+  /// pt: 'As diferenças viram assunto, não placar.'
+  String get pickNote => 'As diferenças viram assunto, não placar.';
+
+  /// pt: 'Descobertas'
+  String get discoveriesTitle => 'Descobertas';
+
+  /// pt: 'Coisas que vocês ainda não sabiam um do outro.'
+  String get discoveriesText => 'Coisas que vocês ainda não sabiam um do outro.';
+
+  /// pt: 'Você não sabia'
+  String get youDidNotKnow => 'Você não sabia';
+
+  /// pt: '{name} não sabia'
+  String partnerDidNotKnow({required Object name}) => '${name} não sabia';
+
+  /// pt: '{name} respondeu: {value}'
+  String partnerAnswered({required Object name, required Object value}) =>
+      '${name} respondeu: ${value}';
+
+  /// pt: 'Você respondeu: {value}'
+  String youAnswered({required Object value}) => 'Você respondeu: ${value}';
+
+  /// pt: 'Nenhuma descoberta desta vez: vocês já sabiam o que o outro responderia.'
+  String get noDiscoveries =>
+      'Nenhuma descoberta desta vez: vocês já sabiam o que o outro responderia.';
+
+  /// pt: 'Pronto'
+  String get doneTitle => 'Pronto';
+
+  /// pt: '(one) {Você respondeu 1 pergunta. Sem vencedor, sem pontuação.} (other) {Você respondeu {count} perguntas. Sem vencedor, sem pontuação.}'
+  String doneText({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'Você respondeu 1 pergunta. Sem vencedor, sem pontuação.',
+        other: 'Você respondeu ${count} perguntas. Sem vencedor, sem pontuação.',
+      );
+
+  /// pt: 'Sem vencedor, sem pontuação. Só o encontro de vocês.'
+  String get dateText => 'Sem vencedor, sem pontuação. Só o encontro de vocês.';
 
   /// pt: 'Você'
   String get you => 'Você';
-
-  /// pt: 'Você escolheu: {value}'
-  String youChose({required Object value}) => 'Você escolheu: ${value}';
-
-  /// pt: '{name} escolheu: {value}'
-  String partnerChose({required Object name, required Object value}) =>
-      '${name} escolheu: ${value}';
-
-  /// pt: 'Seu palpite'
-  String get yourGuess => 'Seu palpite';
-
-  /// pt: 'O palpite do seu par'
-  String get partnerGuess => 'O palpite do seu par';
-
-  /// pt: 'Acertou'
-  String get matched => 'Acertou';
 
   /// pt: 'Sem resposta'
   String get noAnswer => 'Sem resposta';
@@ -8917,11 +8971,50 @@ class Translations$games$finished$pt {
   /// pt: 'Os dois'
   String get both => 'Os dois';
 
-  /// pt: 'Vocês combinaram'
-  String get agreed => 'Vocês combinaram';
+  /// pt: 'Os dois disseram: {value}'
+  String bothSaid({required Object value}) => 'Os dois disseram: ${value}';
 
-  /// pt: 'Voltar'
-  String get back => 'Voltar';
+  /// pt: 'Você disse {you} · {name} disse {partner}'
+  String eachSaid({required Object you, required Object name, required Object partner}) =>
+      'Você disse ${you} · ${name} disse ${partner}';
+
+  /// pt: 'Igual'
+  String get matchedLabel => 'Igual';
+
+  /// pt: 'Diferente'
+  String get differentLabel => 'Diferente';
+
+  /// pt: 'Nova rodada'
+  String get replayTag => 'Nova rodada';
+
+  /// pt: '(one) {1 pergunta que vocês ainda não viram} (other) {{count} perguntas que vocês ainda não viram}'
+  String replayQuestions({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 pergunta que vocês ainda não viram',
+        other: '${count} perguntas que vocês ainda não viram',
+      );
+
+  /// pt: '(one) {1 palpite que vocês ainda não viram} (other) {{count} palpites que vocês ainda não viram}'
+  String replayGuesses({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 palpite que vocês ainda não viram',
+        other: '${count} palpites que vocês ainda não viram',
+      );
+
+  /// pt: 'Uma nova missão para vocês'
+  String get replayMission => 'Uma nova missão para vocês';
+
+  /// pt: 'Cada rodada traz conteúdo novo. Quando acabar, o app avisa e mistura o que já passou.'
+  String get replayText =>
+      'Cada rodada traz conteúdo novo. Quando acabar, o app avisa e mistura o que já passou.';
+
+  /// pt: 'Jogar de novo'
+  String get playAgain => 'Jogar de novo';
+
+  /// pt: 'Escolher outro jogo'
+  String get chooseAnother => 'Escolher outro jogo';
 }
 
 // Path: games.notFound
@@ -8988,34 +9081,9 @@ class Translations$games$common$pt {
 
   /// pt: 'Fechar'
   String get close => 'Fechar';
-}
 
-// Path: games.review
-class Translations$games$review$pt {
-  Translations$games$review$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Revisar respostas'
-  String get title => 'Revisar respostas';
-
-  /// pt: 'Confira o que você respondeu. Toque em uma resposta para editar. Nada é enviado antes de você confirmar.'
-  String get text =>
-      'Confira o que você respondeu. Toque em uma resposta para editar. Nada é enviado antes de você confirmar.';
-
-  /// pt: 'Enviar respostas'
-  String get confirm => 'Enviar respostas';
-
-  /// pt: 'Voltar para a revisão'
-  String get back => 'Voltar para a revisão';
-
-  /// pt: 'Fechado'
-  String get locked => 'Fechado';
-
-  /// pt: 'Este jogo já foi fechado. Esta resposta não pode mais ser editada.'
-  String get lockedNote => 'Este jogo já foi fechado. Esta resposta não pode mais ser editada.';
+  /// pt: 'Voltar'
+  String get back => 'Voltar';
 }
 
 // Path: guides.hub
@@ -10444,9 +10512,9 @@ class Translations$games$kinds$meOrYou$pt {
   /// pt: 'Eu ou ele'
   String get title => 'Eu ou ele';
 
-  /// pt: 'Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual.'
+  /// pt: 'Respondam em separado quem combina mais com cada frase. Depois vejam onde concordaram.'
   String get intro =>
-      'Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual.';
+      'Respondam em separado quem combina mais com cada frase. Depois vejam onde concordaram.';
 }
 
 // Path: games.kinds.howWell
@@ -11528,7 +11596,7 @@ extension on Translations {
                   other: '${count} palpites',
                 ),
           'games.kinds.meOrYou.title' => 'Eu ou ele',
-          'games.kinds.meOrYou.intro' => 'Respondam em separado quem combina mais com cada frase. Depois vejam onde vocês pensaram igual.',
+          'games.kinds.meOrYou.intro' => 'Respondam em separado quem combina mais com cada frase. Depois vejam onde concordaram.',
           'games.kinds.howWell.title' => 'Quanto você me conhece',
           'games.kinds.howWell.intro' => 'Cada um responde sobre si e tenta adivinhar a resposta do outro. Depois vem a conversa.',
           'games.kinds.twentyQuestions.title' => '20 perguntas',
@@ -11559,62 +11627,126 @@ extension on Translations {
           'games.waiting.window' => 'O convite espera por até 48 horas.',
           'games.waiting.checkAgain' => 'Ver se já entrou',
           'games.waiting.stillWaiting' => 'Ainda não entrou. O convite continua aqui.',
-          'games.waiting.cancel' => 'Cancelar o convite',
-          'games.active.title' => 'O jogo começou',
-          'games.active.text' => 'Os dois estão dentro. As telas deste jogo aparecem aqui.',
+          'games.waiting.cancel' => 'Cancelar',
           'games.active.cancel' => 'Encerrar o jogo',
           'games.playing.progress' => ({
             required Object current,
             required Object total,
           }) => 'Pergunta ${current} de ${total}',
+          'games.playing.guessProgress' => ({
+            required Object current,
+            required Object total,
+          }) => 'Palpite ${current} de ${total}',
           'games.playing.you' => 'Você',
+          'games.playing.me' => 'Eu',
+          'games.playing.both' => 'Os dois',
           'games.playing.partnerFallback' => 'Seu par',
-          'games.playing.skip' => 'Pular esta',
+          'games.playing.skip' => 'Pular',
           'games.playing.guessAboutYou' => 'Sobre você',
           'games.playing.guessAboutPartner' => ({required Object name}) => 'Sobre ${name}',
           'games.playing.guessAboutPartnerFallback' => 'Sobre seu par',
           'games.playing.guessPrompt' => ({required Object name}) => 'O que ${name} respondeu?',
           'games.playing.guessPromptFallback' => 'O que seu par respondeu?',
-          'games.playing.guessYourGuess' => 'Seu palpite',
           'games.playing.answerHint' => 'Responda do seu jeito.',
           'games.playing.guessHint' => 'Tente adivinhar a resposta.',
           'games.playing.talkHint' => 'Escreva sua resposta. Só você lê até os dois terminarem.',
+          'games.playing.talkSubtitle' => 'Responder em privado, revelar juntos.',
           'games.playing.talkNote' => 'Seu par só vê depois que os dois responderem.',
-          'games.playing.introCta' => 'Começar a responder',
-          'games.playing.next' => 'Continuar',
-          'games.playing.reviewAction' => 'Revisar respostas',
-          'games.date.start' => 'Começar o encontro',
+          'games.playing.privacyNote' => 'Cada um responde em privado. Pular é sempre permitido.',
+          'games.playing.changeNote' => ({
+            required Object name,
+          }) => 'Você pode mudar sua resposta até ${name} responder esta pergunta.',
+          'games.playing.changeNoteFallback' =>
+            'Você pode mudar sua resposta até seu par responder esta pergunta.',
+          'games.playing.lockedNote' =>
+            'Este jogo já foi fechado. Esta resposta não pode mais ser editada.',
+          'games.playing.introCta' => 'Começar',
+          'games.playing.next' => 'Próxima',
+          'games.playing.nextGuess' => 'Próximo',
+          'games.date.missionTag' => 'Missão',
+          'games.date.start' => 'Aceitar',
           'games.date.startNote' => 'Façam a missão juntos e voltem para contar como foi.',
           'games.date.reflectionTitle' => 'Como foi?',
           'games.date.reflectionText' =>
             'Escolha o que aconteceu. Seu par só vê depois que os dois responderem.',
+          'games.date.save' => 'Salvar',
           'games.reflections.great' => 'Foi ótimo',
-          'games.reflections.ok' => 'Foi bom',
-          'games.reflections.did_not_happen' => 'Não aconteceu',
+          'games.reflections.ok' => 'Foi ok',
+          'games.reflections.did_not_happen' => 'Não rolou',
           'games.reflections.other' => 'Sem resposta',
-          'games.waitingPartner.title' => 'Você respondeu tudo',
+          'games.waitingPartner.title' => 'Terminei',
           'games.waitingPartner.text' => ({
             required Object name,
-          }) => 'Agora é só esperar ${name}. Nada do que você escreveu aparece antes dos dois terminarem.',
-          'games.waitingPartner.textFallback' => 'Agora é só esperar seu par. Nada do que você escreveu aparece antes dos dois terminarem.',
-          'games.waitingPartner.answersTitle' => 'O que você salvou',
-          'games.waitingPartner.checkAgain' => 'Ver de novo',
+          }) => 'Agora é a vez de ${name}. Você vê o resultado quando os dois terminarem.',
+          'games.waitingPartner.textFallback' =>
+            'Agora é a vez do seu par. Você vê o resultado quando os dois terminarem.',
+          'games.waitingPartner.checkAgain' => 'Ver se já terminou',
+          'games.waitingPartner.close' => 'Fechar',
           'games.waitingPartner.cancel' => 'Encerrar o jogo',
-          'games.finished.title' => 'Que conversa boa',
-          'games.finished.text' => 'Sem placar, sem vencedor. Só vocês dois.',
-          'games.finished.you' => 'Você',
-          'games.finished.youChose' => ({required Object value}) => 'Você escolheu: ${value}',
-          'games.finished.partnerChose' => ({
+          'games.waitingPartner.note' =>
+            'Nada do que você respondeu aparece antes de os dois terminarem.',
+          'games.waitingPartner.stillWaiting' =>
+            'Ainda não terminou. O resultado aparece quando os dois terminarem.',
+          'games.finished.pickTitle' => ({
+            required Object agreed,
+            required Object total,
+          }) => 'Vocês concordaram em ${agreed} de ${total}',
+          'games.finished.pickHighlight' => ({
+            required Object agreed,
+            required Object total,
+          }) => '${agreed} de ${total}',
+          'games.finished.pickNote' => 'As diferenças viram assunto, não placar.',
+          'games.finished.discoveriesTitle' => 'Descobertas',
+          'games.finished.discoveriesText' => 'Coisas que vocês ainda não sabiam um do outro.',
+          'games.finished.youDidNotKnow' => 'Você não sabia',
+          'games.finished.partnerDidNotKnow' => ({required Object name}) => '${name} não sabia',
+          'games.finished.partnerAnswered' => ({
             required Object name,
             required Object value,
-          }) => '${name} escolheu: ${value}',
-          'games.finished.yourGuess' => 'Seu palpite',
-          'games.finished.partnerGuess' => 'O palpite do seu par',
-          'games.finished.matched' => 'Acertou',
+          }) => '${name} respondeu: ${value}',
+          'games.finished.youAnswered' => ({required Object value}) => 'Você respondeu: ${value}',
+          'games.finished.noDiscoveries' =>
+            'Nenhuma descoberta desta vez: vocês já sabiam o que o outro responderia.',
+          'games.finished.doneTitle' => 'Pronto',
+          'games.finished.doneText' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'Você respondeu 1 pergunta. Sem vencedor, sem pontuação.',
+                  other: 'Você respondeu ${count} perguntas. Sem vencedor, sem pontuação.',
+                ),
+          'games.finished.dateText' => 'Sem vencedor, sem pontuação. Só o encontro de vocês.',
+          'games.finished.you' => 'Você',
           'games.finished.noAnswer' => 'Sem resposta',
           'games.finished.both' => 'Os dois',
-          'games.finished.agreed' => 'Vocês combinaram',
-          'games.finished.back' => 'Voltar',
+          'games.finished.bothSaid' => ({required Object value}) => 'Os dois disseram: ${value}',
+          'games.finished.eachSaid' => ({
+            required Object you,
+            required Object name,
+            required Object partner,
+          }) => 'Você disse ${you} · ${name} disse ${partner}',
+          'games.finished.matchedLabel' => 'Igual',
+          'games.finished.differentLabel' => 'Diferente',
+          'games.finished.replayTag' => 'Nova rodada',
+          'games.finished.replayQuestions' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 pergunta que vocês ainda não viram',
+                  other: '${count} perguntas que vocês ainda não viram',
+                ),
+          'games.finished.replayGuesses' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 palpite que vocês ainda não viram',
+                  other: '${count} palpites que vocês ainda não viram',
+                ),
+          'games.finished.replayMission' => 'Uma nova missão para vocês',
+          'games.finished.replayText' =>
+            'Cada rodada traz conteúdo novo. Quando acabar, o app avisa e mistura o que já passou.',
+          'games.finished.playAgain' => 'Jogar de novo',
+          'games.finished.chooseAnother' => 'Escolher outro jogo',
           'games.notFound.title' => 'Este jogo não existe',
           'games.notFound.text' =>
             'Ele pode ter mudado ou nunca ter existido. Volte e escolha outro.',
@@ -11626,6 +11758,7 @@ extension on Translations {
           'games.noPartner.title' => 'Os jogos são para os dois',
           'games.noPartner.text' => 'Quando seu par entrar, vocês podem jogar juntos.',
           'games.common.close' => 'Fechar',
+          'games.common.back' => 'Voltar',
           'games.loadErrorTitle' => 'Não deu para abrir o jogo',
           'games.loadErrorText' => 'Nada foi perdido. Tente de novo.',
           'games.errors.NOT_PAIRED' => 'Os jogos precisam dos dois conectados.',
@@ -11639,13 +11772,6 @@ extension on Translations {
           'games.errors.ANSWER_LOCKED' =>
             'As respostas deste jogo já foram fechadas. Não dá para editar agora.',
           'games.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          'games.review.title' => 'Revisar respostas',
-          'games.review.text' => 'Confira o que você respondeu. Toque em uma resposta para editar. Nada é enviado antes de você confirmar.',
-          'games.review.confirm' => 'Enviar respostas',
-          'games.review.back' => 'Voltar para a revisão',
-          'games.review.locked' => 'Fechado',
-          'games.review.lockedNote' =>
-            'Este jogo já foi fechado. Esta resposta não pode mais ser editada.',
           'gentleRequest.title' => 'Pedido gentil',
           'gentleRequest.titleHighlight' => 'gentil',
           'gentleRequest.whenLabel' => 'Quando…',
@@ -11877,6 +12003,9 @@ extension on Translations {
           'help.emptyText' => 'Estamos preparando mais sugestões.',
           'help.errorTitle' => 'Não deu para carregar',
           'help.errorText' => 'Tente de novo daqui a pouco.',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.title' => 'Ajuda',
           'helpSupport.contactTitle' => 'Falar com o suporte',
           'helpSupport.reportBug' => 'Relatar um erro',
@@ -12562,6 +12691,9 @@ extension on Translations {
           'loveStyle.retryPairing' => 'Tentar de novo',
           'loveStyle.retake' => 'Refazer o exercício',
           'loveStyle.loadErrorTitle' => 'Não deu para carregar',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.loadErrorText' => 'Não deu para abrir seu resultado agora. Tente de novo.',
           'loveStyle.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'loveStyle.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
@@ -13206,6 +13338,9 @@ extension on Translations {
           'programs.errorTitle' => 'Não deu para carregar',
           'programs.errorText' => 'Os programas continuam aqui. Tente de novo.',
           'programs.diaryLabel' => 'SÓ EU',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.diaryTitle' => 'Diário',
           'programs.diaryText' => 'Um lugar privado para escrever como você está.',
           'programs.start' => 'Começar',
@@ -13784,6 +13919,9 @@ extension on Translations {
           'slipDetail.feeling' => 'Como você se sentiu',
           'slipDetail.plan' => 'Então eu…',
           'slipDetail.jarTitle' => 'Guardar no potinho',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.jarText' => 'Para abrir em um dia ruim. Só você vê.',
           'slipDetail.sentNote' => 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.',
           'slipDetail.draftBodyErrors.empty' => 'Escreva o slip primeiro',
@@ -14522,6 +14660,9 @@ extension on Translations {
           'unpair.partnerNotice.title' => ({required Object name}) => 'A ${name} desvinculou',
           'unpair.partnerNotice.titleNoName' => 'Seu par desvinculou',
           'unpair.partnerNotice.highlight' => 'desvinculou',
+          _ => null,
+        } ??
+        switch (path) {
           'unpair.partnerNotice.text' =>
             'Seus dados continuam seus. Cartões compartilhados pararam.',
           'unpair.partnerNotice.ok' => 'Ok',

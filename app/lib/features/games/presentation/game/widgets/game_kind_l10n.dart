@@ -41,3 +41,17 @@ extension GameKindL10n on GameKind {
 /// The partner's name, or [fallback] when it is unknown.
 String gamePartnerName(String? name, String fallback) =>
     name == null || name.trim().isEmpty ? fallback : name;
+
+/// The round size and duration, such as "8 perguntas · 3 min".
+String gameKindMeta(BuildContext context, GameKind kind) {
+  final l10n = context.l10n.games.hub;
+  final minutes = l10n.minutes(minutes: kind.minutes);
+  final count = switch (kind) {
+    GameKind.meOrYou => l10n.questionCount(count: kind.itemCount),
+    GameKind.howWell => l10n.guessCount(count: kind.itemCount),
+    GameKind.twentyQuestions => l10n.questionCount(count: kind.itemCount),
+    GameKind.neverHaveWe || GameKind.mission => null,
+  };
+
+  return count == null ? minutes : '$count · $minutes';
+}

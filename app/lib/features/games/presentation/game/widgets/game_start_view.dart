@@ -36,6 +36,12 @@ class const GameStartView({required final GamePlay play, super.key}) extends Sta
               style: context.text.titleXl,
             ),
           ),
+          const SizedBox(height: AppSpace.s6),
+          Text(
+            gameKindMeta(context, play.kind),
+            textAlign: TextAlign.center,
+            style: context.text.caption.copyWith(color: context.colors.textSecondary),
+          ),
           const SizedBox(height: AppSpace.s10),
           Text(
             play.kind.intro(context),

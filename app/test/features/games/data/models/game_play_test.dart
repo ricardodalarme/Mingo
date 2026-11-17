@@ -185,20 +185,42 @@ void main() {
     expect(play.withOwnAnswer(0, gameSkippedAnswer).ownReflection, isNull);
   });
 
-  test('starts a session with the first available items, twice for guesses', () {
-    const available = [a, b, c];
-
-    expect(
-      const GamePlay(kind: GameKind.meOrYou, selfId: 'me', available: available).startSlugs(),
-      ['a', 'b', 'c'],
+  test('counts the pick questions both people answered the same way', () {
+    const play = GamePlay(
+      kind: GameKind.meOrYou,
+      selfId: 'me',
+      items: [a, b, c],
+      own: {0: pickSelf, 1: pickPartner, 2: pickBoth},
+      partner: {0: pickSelf, 1: pickSelf, 2: pickBoth},
     );
-    expect(const GamePlay(kind: GameKind.howWell, selfId: 'me', available: [a, b]).startSlugs(), [
-      'a',
-      'b',
-      'a',
-      'b',
-    ]);
-    expect(const GamePlay(kind: GameKind.meOrYou, selfId: 'me').startSlugs(), isEmpty);
+
+    expect(play.pickAgreementCount, 2);
+  });
+
+  test('lists the discoveries of each side and ignores a missing answer', () {
+    const play = GamePlay(
+      kind: GameKind.howWell,
+      selfId: 'me',
+      items: [a, b],
+      own: {0: 'Café', 1: 'Água'},
+      partner: {0: 'Chá', 1: gameSkippedAnswer},
+    );
+
+    expect(play.discoveriesAboutPartner, hasLength(1));
+    expect(play.discoveriesAboutPartner.single.partnerAnswer, 'Chá');
+    expect(play.discoveriesAboutSelf, hasLength(1));
+    expect(play.discoveriesAboutSelf.single.ownAnswer, 'Café');
+
+    const matched = GamePlay(
+      kind: GameKind.howWell,
+      selfId: 'me',
+      items: [a],
+      own: {0: 'Café'},
+      partner: {0: 'Café'},
+    );
+
+    expect(matched.discoveriesAboutPartner, isEmpty);
+    expect(matched.discoveriesAboutSelf, isEmpty);
   });
 
   test('maps every stage of a session', () {

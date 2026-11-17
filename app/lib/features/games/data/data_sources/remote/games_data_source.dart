@@ -2,6 +2,7 @@ import 'package:app/features/_shared/data/data_sources/remote/generated/schema.g
 import 'package:app/features/games/data/data_sources/remote/fragments/generated/GameSessionFragment.graphql.dart';
 import 'package:app/features/games/data/data_sources/remote/mutations/generated/AnswerGame.graphql.dart';
 import 'package:app/features/games/data/data_sources/remote/mutations/generated/InviteToGame.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/mutations/generated/NextGameItems.graphql.dart';
 import 'package:app/features/games/data/data_sources/remote/mutations/generated/UpdateGame.graphql.dart';
 import 'package:app/features/games/data/data_sources/remote/queries/generated/GameAnswers.graphql.dart';
 import 'package:app/features/games/data/data_sources/remote/queries/generated/GameItems.graphql.dart';
@@ -97,6 +98,18 @@ class GamesDataSource({required final GQLClient _client}) {
     return [
       for (final row in rows) (isMine: row.authorId == selfId, idx: row.idx, answer: row.answer),
     ];
+  }
+
+  /// The questions a new round should use: unseen ones first, then the least recently seen.
+  Future<List<GameItemRecord>> nextItems({required String game, required int count}) async {
+    final response = await _client.mutate(
+      OptionsMutationNextGameItems(
+        variables: VariablesMutationNextGameItems(game: game, count: count),
+      ),
+    );
+    final rows = validateResponseData(response, getData: (data) => data.nextGameItems);
+
+    return [for (final row in rows) (slug: row.slug, title: row.title, body: row.body)];
   }
 
   Future<GameSessionRecord> invite({

@@ -3,7 +3,6 @@ import 'package:app/features/games/data/models/game_play.dart';
 import 'package:app/features/games/data/models/game_session.dart';
 import 'package:app/features/games/data/repositories/games_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
-import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +23,7 @@ class GameCubit({
     await _read(reset: true);
   }
 
-  /// Reads the game again on resume, pull to refresh or "check again".
+  /// Reads the game again on resume or "check again".
   ///
   /// A person who already answered everything also asks the server to finish, which only
   /// succeeds once the partner has answered everything too.
@@ -47,7 +46,7 @@ class GameCubit({
     }
   }
 
-  /// Reads the invitation again and shows a loading action while it checks.
+  /// Reads the game again and shows a loading action while it checks.
   Future<void> checkAgain() async {
     if (state.action.isLoading) return;
 
@@ -57,59 +56,36 @@ class GameCubit({
     emit(state.copyWith(action: const Initial()));
   }
 
-  /// Shows the first question of a round.
+  /// Shows the first question of a round, or the wait when everything was answered.
   void begin() {
     final play = state.current;
     if (play == null || state.isBusy) return;
-    final next = _firstUnanswered(play, 0);
-    if (next < 0) {
-      review();
-      return;
-    }
-    emit(state.copyWith(step: next, draft: _draftFor(next), isReviewing: false));
+    final next = play.currentStep;
+    emit(
+      state.copyWith(
+        answers: play.own,
+        step: next,
+        draft: next < play.totalSteps ? _draftFor(next, play.own) : '',
+      ),
+    );
   }
 
   /// Returns to the previous question, or to the game intro from the first one.
   ///
-  /// While the partner finishes, going back from an answer opens the review again.
+  /// While the partner finishes, going back opens the last answer so it can change.
   void previous() {
     final play = state.current;
     if (play == null || state.isBusy) return;
-    final isWaiting = play.stage(clock.now()) == GameStage.waitingForPartner;
 
-    if (state.isReviewing) {
-      if (isWaiting) {
-        emit(state.copyWith(isReviewing: false, step: play.totalSteps));
-        return;
-      }
+    if (state.step >= play.totalSteps) {
       final last = play.totalSteps - 1;
-      emit(state.copyWith(step: last, isReviewing: false, draft: _draftFor(last)));
-      return;
-    }
-    if (isWaiting) {
-      review();
+      if (last < 0) return;
+      emit(state.copyWith(step: last, draft: _draftFor(last)));
       return;
     }
     if (state.step < 0) return;
     final step = state.step - 1;
-    emit(state.copyWith(step: step, draft: _draftFor(step)));
-  }
-
-  /// Opens the review of every answer in this round.
-  void review() {
-    final play = state.current;
-    if (play == null || play.totalSteps == 0 || state.isBusy) return;
-
-    emit(state.copyWith(isReviewing: true, draft: ''));
-  }
-
-  /// Opens [step] to edit the answer already given.
-  void editStep(int step) {
-    final play = state.current;
-    if (play == null || state.isBusy) return;
-    if (step < 0 || step >= play.totalSteps || state.lockedSteps.contains(step)) return;
-
-    emit(state.copyWith(step: step, isReviewing: false, draft: _draftFor(step)));
+    emit(state.copyWith(step: step, draft: step < 0 ? '' : _draftFor(step)));
   }
 
   void onDraftChanged(String draft) {
@@ -117,98 +93,25 @@ class GameCubit({
     emit(state.copyWith(draft: draft));
   }
 
-  /// Keeps the draft as the answer of this step and moves to the next question.
-  void submit() {
-    final play = state.current;
-    if (play == null || !state.canSubmit) return;
-
-    _keep(play, {...state.answers, state.step: state.draft.trim()});
-  }
-
-  /// Keeps [answer] as the answer of this step and moves to the next question.
+  /// Keeps [answer] as the draft of this step; the primary action sends it.
   void choose(String answer) {
-    final play = state.current;
-    if (play == null || state.isBusy || state.isLocked) return;
+    if (state.isBusy || state.isLocked) return;
 
-    _keep(play, {...state.answers, state.step: answer});
+    emit(state.copyWith(draft: answer));
   }
 
-  /// Keeps a skip for this step so the session can still finish.
-  void skip() {
-    final play = state.current;
-    if (play == null || state.isBusy || state.isLocked) return;
+  /// Sends the draft as this step's answer and moves on.
+  Future<void> submit() async {
+    if (!state.canSubmit) return;
 
-    _keep(play, {...state.answers, state.step: gameSkippedAnswer});
+    await _save(state.step, state.draft.trim());
   }
 
-  /// Sends every answer changed since the last send, then opens the wait.
-  ///
-  /// A step the server refuses to change stays read-only instead of being retried.
-  Future<void> send() async {
-    final play = state.current;
-    final session = play?.session;
-    if (play == null || session == null || state.isBusy) return;
+  /// Sends a skip for this step so the session can still finish.
+  Future<void> skip() async {
+    if (state.isBusy || state.isLocked) return;
 
-    final answers = {...state.answers};
-    final changed = [
-      for (var step = 0; step < play.totalSteps; step++)
-        if (answers.containsKey(step) && answers[step] != play.own[step]) step,
-    ];
-    if (changed.isEmpty) {
-      emit(state.copyWith(isReviewing: false, step: play.totalSteps));
-      return;
-    }
-
-    emit(state.copyWith(action: const Loading()));
-    final locked = {...state.lockedSteps};
-    final sent = <int, String>{};
-    Object? failure;
-    for (final step in changed) {
-      try {
-        await _repository.answer(session: session, step: step, answer: answers[step]!);
-        if (isClosed) return;
-        sent[step] = answers[step]!;
-      } catch (exception) {
-        if (isClosed) return;
-        if (exception is LocalizedException && exception.l10nKey == gameAnswerLockedCode) {
-          locked.add(step);
-          final stored = play.own[step];
-          if (stored == null) {
-            answers.remove(step);
-          } else {
-            answers[step] = stored;
-          }
-          failure ??= exception;
-          continue;
-        }
-        failure = exception;
-        break;
-      }
-    }
-
-    var next = sent.isEmpty ? play : play.withOwnAnswers(sent);
-    try {
-      if (next.isOwnDone) next = await _finishIfReady(next);
-    } catch (exception) {
-      failure ??= exception;
-    }
-    if (isClosed) return;
-
-    final nextState = state.copyWith(
-      play: Success(next),
-      answers: answers,
-      lockedSteps: locked,
-      isReviewing: failure != null,
-      step: failure == null ? play.totalSteps : state.step,
-      draft: failure == null ? '' : state.draft,
-    );
-    if (failure == null) {
-      emit(nextState.copyWith(action: const Success(null)));
-      emit(nextState.copyWith(action: const Initial()));
-      return;
-    }
-    emit(nextState.copyWith(action: Failure.fromObject(failure)));
-    emit(nextState.copyWith(action: const Initial()));
+    await _save(state.step, gameSkippedAnswer);
   }
 
   /// Sends the invitation for a new session.
@@ -216,7 +119,7 @@ class GameCubit({
     final play = state.current;
     if (play == null || state.isBusy || play.available.isEmpty) return;
 
-    await _act(() => _repository.invite(play));
+    await _act(() => _repository.invite(play.kind));
   }
 
   /// Accepts the partner's invitation.
@@ -242,21 +145,58 @@ class GameCubit({
       play: Success(play),
       answers: play.own,
       step: play.own.isEmpty ? -1 : play.currentStep,
-      isReviewing: false,
       lockedSteps: const {},
       draft: '',
     );
   }
 
-  void _keep(GamePlay play, Map<int, String> answers) {
-    final next = _firstUnanswered(play, state.step + 1, answers);
-    if (next < 0) {
+  Future<void> _save(int step, String answer) async {
+    final play = state.current;
+    final session = play?.session;
+    if (play == null || session == null || state.isBusy || state.isLocked) return;
+
+    emit(state.copyWith(action: const Loading()));
+    try {
+      await _repository.answer(session: session, step: step, answer: answer);
+      if (isClosed) return;
+      var next = play.withOwnAnswer(step, answer);
+      Object? finishFailure;
+      if (next.isOwnDone) {
+        try {
+          next = await _finishIfReady(next);
+        } catch (exception) {
+          finishFailure = exception;
+        }
+      }
+      if (isClosed) return;
+      final nextStep = next.isOwnDone ? next.totalSteps : next.currentStep;
       emit(
-        state.copyWith(answers: answers, step: play.totalSteps - 1, isReviewing: true, draft: ''),
+        state.copyWith(
+          play: Success(next),
+          answers: next.own,
+          step: nextStep,
+          draft: nextStep < next.totalSteps ? _draftFor(nextStep, next.own) : '',
+          action: finishFailure == null ? const Initial() : Failure.fromObject(finishFailure),
+        ),
       );
-      return;
+      if (finishFailure == null) return;
+      emit(state.copyWith(action: const Initial()));
+    } on LocalizedException catch (exception) {
+      if (isClosed) return;
+      final isLocked = exception.l10nKey == gameAnswerLockedCode;
+      emit(
+        state.copyWith(
+          answers: isLocked ? {...state.answers, step: play.own[step] ?? ''} : state.answers,
+          lockedSteps: isLocked ? {...state.lockedSteps, step} : state.lockedSteps,
+          action: Failure.fromObject(exception),
+        ),
+      );
+      emit(state.copyWith(action: const Initial()));
+    } catch (exception) {
+      if (isClosed) return;
+      emit(state.copyWith(action: Failure.fromObject(exception)));
+      emit(state.copyWith(action: const Initial()));
     }
-    emit(state.copyWith(answers: answers, step: next, draft: _draftFor(next, answers)));
   }
 
   /// The stored answer of [step] as an editable draft, with a skip reading as empty.
@@ -264,19 +204,6 @@ class GameCubit({
     final answer = (answers ?? state.answers)[step];
 
     return answer == null || answer == gameSkippedAnswer ? '' : answer;
-  }
-
-  /// The first step from [from] without an answer, wrapping around the round.
-  int _firstUnanswered(GamePlay play, int from, [Map<int, String>? answers]) {
-    final given = answers ?? state.answers;
-    for (var step = from; step < play.totalSteps; step++) {
-      if (!given.containsKey(step)) return step;
-    }
-    for (var step = 0; step < from && step < play.totalSteps; step++) {
-      if (!given.containsKey(step)) return step;
-    }
-
-    return -1;
   }
 
   Future<void> _act(Future<Object?> Function() action) async {

@@ -152,19 +152,13 @@ class const _GameTile({
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.games.hub;
-    final minutes = l10n.minutes(minutes: entry.kind.minutes);
-    final count = switch (entry.kind) {
-      GameKind.meOrYou => l10n.questionCount(count: entry.kind.itemCount),
-      GameKind.howWell => l10n.guessCount(count: entry.kind.itemCount),
-      GameKind.twentyQuestions => l10n.questionCount(count: entry.kind.itemCount),
-      GameKind.neverHaveWe || GameKind.mission => null,
-    };
+    final meta = gameKindMeta(context, entry.kind);
     final state = _stateText(context, l10n, entry.state);
-    final meta = count == null ? minutes : '$count · $minutes';
+    final subtitle = state == null ? meta : '$meta · $state';
 
     return BaseListTile(
       title: entry.kind.title(context),
-      subtitle: state == null ? meta : '$meta · $state',
+      subtitle: subtitle,
       icon: entry.kind.icon,
       showsChevron: hasPartner,
       trailing: hasPartner ? null : BaseTag(text: l10n.lockChip),
@@ -211,7 +205,7 @@ class const _InvitationCard({required final GameEntry entry, final String? partn
       category: AppCategory.invite,
       categoryLabel: name.isEmpty ? l10n.invitedFallbackTitle : l10n.invitedTitle(name: name),
       title: entry.kind.title(context),
-      supportText: l10n.minutes(minutes: entry.kind.minutes),
+      supportText: gameKindMeta(context, entry.kind),
       trailing: BaseButton.compact(text: l10n.join, onPressed: join),
       onTap: join,
     );

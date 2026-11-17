@@ -46,7 +46,7 @@ void main() {
   const a = GameItem(slug: 'a', title: 'Pergunta A');
   const b = GameItem(slug: 'b', title: 'Pergunta B');
   const mission = GameItem(slug: 'm', title: 'Missão do encontro', body: 'Vejam fotos antigas.');
-  const drink = GameItem(slug: 'h', title: 'Qual é a bebida favorita dele?', body: 'Café|Chá');
+  const drink = GameItem(slug: 'h', title: 'Qual é a bebida favorita dele?');
 
   GameSession session({
     GameKind game = GameKind.meOrYou,
@@ -129,57 +129,37 @@ void main() {
   }
 
   Future<void> startRound(WidgetTester tester) async {
-    await tester.tap(find.text('Começar a responder'));
+    await tester.tap(find.text('Começar'));
     await tester.pump();
   }
 
-  testWithClock('pick shows the intro, the prompt and both people as options', (tester) async {
+  testWithClock('pick shows the intro and the three answers of each phrase', (tester) async {
     final cubit = await loaded(gamePlay());
 
     await pumpPlay(tester, cubit);
 
     expect(find.text('Eu ou ele'), findsOneWidget);
-    expect(find.text('Começar a responder'), findsOneWidget);
+    expect(find.text('8 perguntas · 3 min'), findsOneWidget);
+    expect(find.text('Começar'), findsOneWidget);
 
     await startRound(tester);
 
     expect(find.text('Pergunta 1 de 2'), findsOneWidget);
     expect(find.text('Pergunta A'), findsOneWidget);
-    expect(find.text('Você'), findsOneWidget);
+    expect(find.text('Eu'), findsOneWidget);
     expect(find.text('Marina'), findsOneWidget);
-
-    await tester.tap(find.text('Marina'));
-    await settle(tester);
-
-    verifyNever(
-      () => repository.answer(
-        session: any(named: 'session'),
-        step: any(named: 'step'),
-        answer: any(named: 'answer'),
-      ),
-    );
-    expect(find.text('Pergunta B'), findsOneWidget);
+    expect(find.text('Os dois'), findsOneWidget);
+    expect(find.text('Cada um responde em privado. Pular é sempre permitido.'), findsOneWidget);
   });
 
-  testWithClock('pick reviews both answers and sends them on confirm', (tester) async {
+  testWithClock('pick saves each answer as the person moves on', (tester) async {
     final cubit = await loaded(gamePlay());
 
     await pumpPlay(tester, cubit);
     await startRound(tester);
 
     await tester.tap(find.text('Marina'));
-    await settle(tester);
-    await tester.tap(find.text('Você'));
-    await settle(tester);
-
-    expect(
-      find.text(
-        'Confira o que você respondeu. Toque em uma resposta para editar. '
-        'Nada é enviado antes de você confirmar.',
-      ),
-      findsOneWidget,
-    );
-    expect(find.text('Enviar respostas'), findsOneWidget);
+    await tester.pump();
     verifyNever(
       () => repository.answer(
         session: any(named: 'session'),
@@ -188,7 +168,7 @@ void main() {
       ),
     );
 
-    await tester.tap(find.text('Enviar respostas'));
+    await tester.tap(find.text('Próxima'));
     await settle(tester);
 
     verify(
@@ -198,17 +178,42 @@ void main() {
         answer: pickPartner,
       ),
     ).called(1);
+    expect(find.text('Pergunta B'), findsOneWidget);
+
+    await tester.tap(find.text('Os dois'));
+    await tester.pump();
+    await tester.tap(find.text('Próxima'));
+    await settle(tester);
+
     verify(
       () => repository.answer(
         session: any(named: 'session'),
         step: 1,
-        answer: pickSelf,
+        answer: pickBoth,
       ),
     ).called(1);
-    expect(find.text('Você respondeu tudo'), findsOneWidget);
+    expect(find.text('Terminei'), findsOneWidget);
   });
 
-  testWithClock('talk keeps a written answer and advances without sending', (tester) async {
+  testWithClock('going back after an answer shows the saved choice and the change note', (
+    tester,
+  ) async {
+    final cubit = await loaded(gamePlay(own: const {0: pickSelf, 1: pickBoth}));
+
+    await pumpPlay(tester, cubit);
+    expect(find.text('Terminei'), findsOneWidget);
+
+    cubit.previous();
+    await settle(tester);
+
+    expect(find.text('Pergunta B'), findsOneWidget);
+    expect(
+      find.text('Você pode mudar sua resposta até Marina responder esta pergunta.'),
+      findsOneWidget,
+    );
+  });
+
+  testWithClock('talk saves a written answer without a review screen', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.neverHaveWe,
@@ -219,18 +224,19 @@ void main() {
     await pumpPlay(tester, cubit);
     await startRound(tester);
 
+    expect(find.text('Responder em privado, revelar juntos.'), findsOneWidget);
     await tester.enterText(find.byType(BaseTextArea), 'nunca fomos');
     await tester.pump();
-    await tester.tap(find.text('Continuar'));
+    await tester.tap(find.text('Próxima'));
     await settle(tester);
 
-    verifyNever(
+    verify(
       () => repository.answer(
         session: any(named: 'session'),
-        step: any(named: 'step'),
-        answer: any(named: 'answer'),
+        step: 0,
+        answer: 'nunca fomos',
       ),
-    );
+    ).called(1);
     expect(find.text('Pergunta B'), findsOneWidget);
   });
 
@@ -245,20 +251,20 @@ void main() {
     await pumpPlay(tester, cubit);
     await startRound(tester);
 
-    await tester.tap(find.text('Pular esta'));
+    await tester.tap(find.text('Pular'));
     await settle(tester);
 
-    verifyNever(
+    verify(
       () => repository.answer(
         session: any(named: 'session'),
-        step: any(named: 'step'),
-        answer: any(named: 'answer'),
+        step: 0,
+        answer: gameSkippedAnswer,
       ),
-    );
+    ).called(1);
     expect(find.text('Pergunta B'), findsOneWidget);
   });
 
-  testWithClock('guess answers about the person and then guesses the partner', (tester) async {
+  testWithClock('guess answers about the person and then counts the guesses', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.howWell,
@@ -271,22 +277,20 @@ void main() {
     await startRound(tester);
 
     expect(find.text('SOBRE VOCÊ'), findsOneWidget);
-    expect(find.text('Café'), findsOneWidget);
+    expect(find.text('Pergunta 1 de 1'), findsOneWidget);
 
-    await tester.tap(find.text('Café'));
+    await tester.enterText(find.byType(BaseTextArea), 'Café');
     await tester.pump();
-    await tester.tap(find.text('Continuar'));
+    await tester.tap(find.text('Próxima'));
     await settle(tester);
 
     expect(find.text('SOBRE MARINA'), findsOneWidget);
+    expect(find.text('Palpite 1 de 1'), findsOneWidget);
     expect(find.text('O que Marina respondeu?'), findsOneWidget);
 
-    await tester.tap(find.text('Chá'));
+    await tester.enterText(find.byType(BaseTextArea), 'Chá');
     await tester.pump();
-    await tester.tap(find.text('Revisar respostas'));
-    await settle(tester);
-
-    await tester.tap(find.text('Enviar respostas'));
+    await tester.tap(find.text('Próximo'));
     await settle(tester);
 
     verify(
@@ -303,10 +307,10 @@ void main() {
         answer: 'Chá',
       ),
     ).called(1);
-    expect(find.text('Você respondeu tudo'), findsOneWidget);
+    expect(find.text('Terminei'), findsOneWidget);
   });
 
-  testWithClock('date starts the mission and saves the reflection', (tester) async {
+  testWithClock('date accepts the mission and saves the reflection', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.mission,
@@ -318,10 +322,11 @@ void main() {
     await pumpPlay(tester, cubit);
     await startRound(tester);
 
+    expect(find.text('MISSÃO'), findsOneWidget);
     expect(find.text('Missão do encontro'), findsOneWidget);
-    expect(find.text('Começar o encontro'), findsOneWidget);
+    expect(find.text('Aceitar'), findsOneWidget);
 
-    await tester.tap(find.text('Começar o encontro'));
+    await tester.tap(find.text('Aceitar'));
     await tester.pump();
 
     expect(find.text('Como foi?'), findsOneWidget);
@@ -329,9 +334,7 @@ void main() {
 
     await tester.tap(find.text('Foi ótimo'));
     await tester.pump();
-    await tester.tap(find.text('Revisar respostas'));
-    await settle(tester);
-    await tester.tap(find.text('Enviar respostas'));
+    await tester.tap(find.text('Salvar'));
     await settle(tester);
 
     verify(
@@ -341,11 +344,10 @@ void main() {
         answer: 'great',
       ),
     ).called(1);
-    expect(find.text('Você respondeu tudo'), findsOneWidget);
-    expect(find.text('Foi ótimo'), findsOneWidget);
+    expect(find.text('Terminei'), findsOneWidget);
   });
 
-  testWithClock('waiting shows what was saved and checks again', (tester) async {
+  testWithClock('waiting closes and checks again', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.neverHaveWe,
@@ -356,11 +358,14 @@ void main() {
 
     await pumpPlay(tester, cubit);
 
-    expect(find.text('Você respondeu tudo'), findsOneWidget);
-    expect(find.text('nunca fomos'), findsOneWidget);
-    expect(find.text('Ver de novo'), findsOneWidget);
+    expect(find.text('Terminei'), findsOneWidget);
+    expect(
+      find.text('Agora é a vez de Marina. Você vê o resultado quando os dois terminarem.'),
+      findsOneWidget,
+    );
+    expect(find.text('Fechar'), findsOneWidget);
 
-    await tester.tap(find.text('Ver de novo'));
+    await tester.tap(find.text('Ver se já terminou'));
     await settle(tester);
 
     verify(
@@ -372,74 +377,57 @@ void main() {
     ).called(2);
   });
 
-  testWithClock('an answer already sent can be edited while the partner finishes', (tester) async {
+  testWithClock('a locked answer shows the honest reason instead of an editor', (tester) async {
+    const locked = LocalizedException(l10nKey: gameAnswerLockedCode);
+    when(
+      () => repository.answer(
+        session: any(named: 'session'),
+        step: 0,
+        answer: any(named: 'answer'),
+      ),
+    ).thenThrow(locked);
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.neverHaveWe,
         sessionOverride: session(game: GameKind.neverHaveWe),
-        own: const {0: 'nunca fomos', 1: 'já fomos'},
+        own: const {0: 'nunca fomos'},
       ),
     );
+    cubit.previous();
+    await tester.pump();
 
     await pumpPlay(tester, cubit);
-
-    expect(find.text('Você respondeu tudo'), findsOneWidget);
-
-    await tester.tap(find.text('Revisar respostas'));
-    await settle(tester);
-
-    await tester.tap(find.text('Pergunta A'));
-    await settle(tester);
-
-    expect(find.text('Pergunta 1 de 2'), findsOneWidget);
-    expect(find.text('nunca fomos'), findsOneWidget);
-
-    await tester.enterText(find.byType(BaseTextArea), 'nunca fomos juntos');
+    cubit.onDraftChanged('outra resposta');
+    await cubit.submit();
     await tester.pump();
-    await tester.tap(find.text('Revisar respostas'));
-    await settle(tester);
-    await tester.tap(find.text('Enviar respostas'));
-    await settle(tester);
 
-    verify(
-      () => repository.answer(
-        session: any(named: 'session'),
-        step: 0,
-        answer: 'nunca fomos juntos',
-      ),
-    ).called(1);
-    verifyNever(
-      () => repository.answer(
-        session: any(named: 'session'),
-        step: 1,
-        answer: any(named: 'answer'),
-      ),
+    expect(
+      find.text('Este jogo já foi fechado. Esta resposta não pode mais ser editada.'),
+      findsOneWidget,
     );
+    expect(find.text('outra resposta'), findsNothing);
   });
 
-  testWithClock('finished pick reveals both choices without a cancel action', (tester) async {
+  testWithClock('finished pick reveals the agreement count and both choices', (tester) async {
     final cubit = await loaded(
       gamePlay(
-        sessionOverride: session(status: GameStatus.finished, slugs: const ['a']),
-        items: const [a],
-        own: const {0: pickSelf},
-        partner: const {0: pickPartner},
+        sessionOverride: session(status: GameStatus.finished),
+        own: const {0: pickSelf, 1: pickBoth},
+        partner: const {0: pickPartner, 1: pickBoth},
       ),
     );
 
     await pumpPlay(tester, cubit);
 
-    expect(find.text('Que conversa boa'), findsOneWidget);
+    expect(find.textContaining('Vocês concordaram em'), findsOneWidget);
+    expect(find.text('2 de 2'), findsOneWidget);
+    expect(find.text('As diferenças viram assunto, não placar.'), findsOneWidget);
     expect(find.text('Pergunta A'), findsOneWidget);
-    expect(find.text('VOCÊS COMBINARAM'), findsOneWidget);
+    expect(find.text('Os dois disseram: Você'), findsOneWidget);
     expect(find.text('Encerrar o jogo'), findsNothing);
-    expect(
-      find.textContaining(RegExp(r'\d+ (pontos|%)|ranking|sequência', caseSensitive: false)),
-      findsNothing,
-    );
   });
 
-  testWithClock('finished guess reveals the answers and the matches warmly', (tester) async {
+  testWithClock('finished guess shows the discoveries of each side', (tester) async {
     final cubit = await loaded(
       gamePlay(
         kind: GameKind.howWell,
@@ -450,20 +438,16 @@ void main() {
         ),
         items: const [drink, drink],
         own: const {0: 'Café', 1: 'Café'},
-        partner: const {0: 'Café', 1: 'Chá'},
+        partner: const {0: 'Chá', 1: 'Café'},
       ),
     );
 
     await pumpPlay(tester, cubit);
 
-    expect(find.text('ACERTOU'), findsOneWidget);
-    expect(find.text('Café'), findsWidgets);
-    expect(find.text('Chá'), findsOneWidget);
-    expect(find.text('Encerrar o jogo'), findsNothing);
-    expect(
-      find.textContaining(RegExp(r'\d+ (pontos|%)|ranking|sequência', caseSensitive: false)),
-      findsNothing,
-    );
+    expect(find.text('Descobertas'), findsWidgets);
+    expect(find.text('VOCÊ NÃO SABIA'), findsOneWidget);
+    expect(find.text('Marina respondeu: Chá'), findsOneWidget);
+    expect(find.textContaining(RegExp(r'\d+ (pontos|%)|ranking|sequência')), findsNothing);
   });
 
   testWithClock('finished talk shows both answers side by side', (tester) async {
@@ -483,9 +467,10 @@ void main() {
 
     await pumpPlay(tester, cubit);
 
+    expect(find.text('Pronto'), findsWidgets);
+    expect(find.text('Você respondeu 1 pergunta. Sem vencedor, sem pontuação.'), findsOneWidget);
     expect(find.text('nunca fomos'), findsOneWidget);
     expect(find.text('já fomos'), findsOneWidget);
-    expect(find.text('Encerrar o jogo'), findsNothing);
   });
 
   testWithClock('finished date shows both reflections', (tester) async {
@@ -506,7 +491,7 @@ void main() {
     await pumpPlay(tester, cubit);
 
     expect(find.text('Foi ótimo'), findsOneWidget);
-    expect(find.text('Foi bom'), findsOneWidget);
+    expect(find.text('Foi ok'), findsOneWidget);
     expect(find.text('Encerrar o jogo'), findsNothing);
   });
 

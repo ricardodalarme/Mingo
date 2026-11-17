@@ -1,6 +1,5 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/games/data/data_sources/remote/games_data_source.dart';
-import 'package:app/features/games/data/models/game_item.dart';
 import 'package:app/features/games/data/models/game_kind.dart';
 import 'package:app/features/games/data/models/game_play.dart';
 import 'package:app/features/games/data/models/game_session.dart';
@@ -200,44 +199,66 @@ void main() {
     expect(play.stage(now), GameStage.finished);
   });
 
-  test('invites with the first items of the game', () async {
+  test('invites with the next items the server offers', () async {
+    when(
+      () => dataSource.nextItems(
+        game: any(named: 'game'),
+        count: any(named: 'count'),
+      ),
+    ).thenAnswer(
+      (_) async => [(slug: 'a', title: 'A?', body: null), (slug: 'b', title: 'B?', body: null)],
+    );
     when(
       () => dataSource.invite(
         game: any(named: 'game'),
         itemSlugs: any(named: 'itemSlugs'),
       ),
     ).thenAnswer((_) async => record(status: EnumGameStatus_enum.invited));
-    const play = GamePlay(
-      kind: GameKind.meOrYou,
-      selfId: 'me',
-      available: [
-        GameItem(slug: 'a', title: 'A?'),
-        GameItem(slug: 'b', title: 'B?'),
-      ],
-    );
 
-    final session = await repository.invite(play);
+    final session = await repository.invite(GameKind.meOrYou);
 
     expect(session.status, GameStatus.invited);
+    verify(() => dataSource.nextItems(game: 'me_or_you', count: 8)).called(1);
     verify(() => dataSource.invite(game: EnumGameKind_enum.me_or_you, itemSlugs: ['a', 'b']))
         .called(1);
   });
 
+  test('asks each guess item twice in the round', () async {
+    when(
+      () => dataSource.nextItems(
+        game: any(named: 'game'),
+        count: any(named: 'count'),
+      ),
+    ).thenAnswer((_) async => [(slug: 'a', title: 'A?', body: null)]);
+    when(
+      () => dataSource.invite(
+        game: any(named: 'game'),
+        itemSlugs: any(named: 'itemSlugs'),
+      ),
+    ).thenAnswer((_) async => record(status: EnumGameStatus_enum.invited));
+
+    await repository.invite(GameKind.howWell);
+
+    verify(() => dataSource.invite(game: EnumGameKind_enum.how_well, itemSlugs: ['a', 'a']))
+        .called(1);
+  });
+
   test('keeps the server code when another game is already open', () async {
+    when(
+      () => dataSource.nextItems(
+        game: any(named: 'game'),
+        count: any(named: 'count'),
+      ),
+    ).thenAnswer((_) async => [(slug: 'a', title: 'A?', body: null)]);
     when(
       () => dataSource.invite(
         game: any(named: 'game'),
         itemSlugs: any(named: 'itemSlugs'),
       ),
     ).thenThrow(ServerResponseException('GAME_ALREADY_OPEN', Exception('open')));
-    const play = GamePlay(
-      kind: GameKind.meOrYou,
-      selfId: 'me',
-      available: [GameItem(slug: 'a', title: 'A?')],
-    );
 
     await expectLater(
-      repository.invite(play),
+      repository.invite(GameKind.meOrYou),
       throwsA(
         isA<ServerResponseException>().having(
           (exception) => exception.l10nKey,
@@ -249,9 +270,14 @@ void main() {
   });
 
   test('refuses to invite when there is nothing to play', () async {
-    const play = GamePlay(kind: GameKind.meOrYou, selfId: 'me');
+    when(
+      () => dataSource.nextItems(
+        game: any(named: 'game'),
+        count: any(named: 'count'),
+      ),
+    ).thenAnswer((_) async => []);
 
-    await expectLater(repository.invite(play), throwsA(isA<NoDataException>()));
+    await expectLater(repository.invite(GameKind.meOrYou), throwsA(isA<NoDataException>()));
     verifyNever(
       () => dataSource.invite(
         game: any(named: 'game'),

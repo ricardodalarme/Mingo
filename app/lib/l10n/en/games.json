@@ -33,7 +33,7 @@
   "kinds": {
     "meOrYou": {
       "title": "Me or you",
-      "intro": "Answer separately who fits each phrase better. Then see where you thought alike."
+      "intro": "Answer separately who fits each phrase better. Then see where you agreed."
     },
     "howWell": {
       "title": "How well you know me",
@@ -74,65 +74,98 @@
     "window": "The invitation waits for up to 48 hours.",
     "checkAgain": "Check if they joined",
     "stillWaiting": "Not in yet. The invite is still here.",
-    "cancel": "Cancel the invitation"
+    "cancel": "Cancel"
   },
   "active": {
-    "title": "The game has started",
-    "text": "Both of you are in. This game's screens appear here.",
     "cancel": "End the game"
   },
   "playing": {
     "progress": "Question {current} of {total}",
+    "guessProgress": "Guess {current} of {total}",
     "you": "You",
+    "me": "Me",
+    "both": "Both",
     "partnerFallback": "Your partner",
-    "skip": "Skip this one",
+    "skip": "Skip",
     "guessAboutYou": "About you",
     "guessAboutPartner": "About {name}",
     "guessAboutPartnerFallback": "About your partner",
     "guessPrompt": "What did {name} answer?",
     "guessPromptFallback": "What did your partner answer?",
-    "guessYourGuess": "Your guess",
     "answerHint": "Answer as you would.",
     "guessHint": "Guess what they answered.",
     "talkHint": "Write your answer. Only you can read it until you both finish.",
+    "talkSubtitle": "Answer in private, reveal together.",
     "talkNote": "Your partner only sees this after both of you answer.",
-    "introCta": "Start answering",
-    "next": "Continue",
-    "reviewAction": "Review answers"
+    "privacyNote": "Each of you answers in private. Skipping is always allowed.",
+    "changeNote": "You can change your answer until {name} answers this question.",
+    "changeNoteFallback": "You can change your answer until your partner answers this question.",
+    "lockedNote": "This game is closed. This answer can no longer be edited.",
+    "introCta": "Start",
+    "next": "Next",
+    "nextGuess": "Next"
   },
   "date": {
-    "start": "Start the date",
+    "missionTag": "Mission",
+    "start": "Accept",
     "startNote": "Do the mission together, then come back and tell how it was.",
     "reflectionTitle": "How was it?",
-    "reflectionText": "Pick what happened. Your partner sees it only after you both answer."
+    "reflectionText": "Pick what happened. Your partner sees it only after you both answer.",
+    "save": "Save"
   },
   "reflections(map)": {
     "great": "It was great",
-    "ok": "It was nice",
+    "ok": "It was ok",
     "did_not_happen": "It did not happen",
     "other": "No answer"
   },
   "waitingPartner": {
-    "title": "You answered everything",
-    "text": "Now it is just waiting for {name}. Nothing you wrote appears before both of you finish.",
-    "textFallback": "Now it is just waiting for your partner. Nothing you wrote appears before both of you finish.",
-    "answersTitle": "What you saved",
-    "checkAgain": "Check again",
-    "cancel": "End the game"
+    "title": "I'm done",
+    "text": "Now it is {name}'s turn. You see the result when both of you finish.",
+    "textFallback": "Now it is your partner's turn. You see the result when both of you finish.",
+    "checkAgain": "Check if they finished",
+    "close": "Close",
+    "cancel": "End the game",
+    "note": "Nothing you answered appears before both of you finish.",
+    "stillWaiting": "Not done yet. The result appears when both of you finish."
   },
   "finished": {
-    "title": "That was a good conversation",
-    "text": "No score, no winner. Just the two of you.",
+    "pickTitle": "You agreed on {agreed} of {total}",
+    "pickHighlight": "{agreed} of {total}",
+    "pickNote": "The differences become conversation, not a score.",
+    "discoveriesTitle": "Discoveries",
+    "discoveriesText": "Things you still did not know about each other.",
+    "youDidNotKnow": "You did not know",
+    "partnerDidNotKnow": "{name} did not know",
+    "partnerAnswered": "{name} answered: {value}",
+    "youAnswered": "You answered: {value}",
+    "noDiscoveries": "No discoveries this time: you already knew what the other would answer.",
+    "doneTitle": "Done",
+    "doneText(plural, param=count)": {
+      "one": "You answered 1 question. No winner, no score.",
+      "other": "You answered {count} questions. No winner, no score."
+    },
+    "dateText": "No winner, no score. Just your date.",
     "you": "You",
-    "youChose": "You chose: {value}",
-    "partnerChose": "{name} chose: {value}",
-    "yourGuess": "Your guess",
-    "partnerGuess": "Their guess",
-    "matched": "Matched",
     "noAnswer": "No answer",
     "both": "Both of you",
-    "agreed": "You both agreed",
-    "back": "Back"
+    "bothSaid": "You both said: {value}",
+    "eachSaid": "You said {you} · {name} said {partner}",
+    "matchedLabel": "Same",
+    "differentLabel": "Different",
+    "replayTag": "New round",
+    "replayQuestions(plural, param=count)": {
+      "one": "1 question you have not seen yet",
+      "other": "{count} questions you have not seen yet"
+    },
+    "replayGuesses(plural, param=count)": {
+      "one": "1 guess you have not seen yet",
+      "other": "{count} guesses you have not seen yet"
+    },
+    "replayMission": "A new mission for you",
+    "replayText": "Each round brings new content. When it runs out, the app tells you and mixes in what you already saw.",
+    "playAgain": "Play again",
+    "chooseAnother": "Choose another game"
   },
   "notFound": {
     "title": "This game does not exist",
@@ -150,7 +183,8 @@
     "text": "When your partner joins, you can play together."
   },
   "common": {
-    "close": "Close"
+    "close": "Close",
+    "back": "Back"
   },
   "loadErrorTitle": "Could not open the game",
   "loadErrorText": "Nothing was lost. Try again.",
@@ -163,13 +197,5 @@
     "INVALID_GAME_INDEX": "That question changed. We'll refresh.",
     "ANSWER_LOCKED": "This game's answers are closed. You can't edit them now.",
     "other": "Could not do that right now. Try again."
-  },
-  "review": {
-    "title": "Review answers",
-    "text": "Check what you answered. Tap an answer to edit it. Nothing is sent until you confirm.",
-    "confirm": "Send answers",
-    "back": "Back to the review",
-    "locked": "Closed",
-    "lockedNote": "This game is closed. This answer can no longer be edited."
   }
 }

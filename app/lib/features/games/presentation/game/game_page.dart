@@ -61,21 +61,21 @@ class _GamePageState() extends State<GamePage> with WidgetsBindingObserver {
     final l10n = context.l10n.games;
     final play = context.select((GameCubit cubit) => cubit.state.play);
     final step = context.select((GameCubit cubit) => cubit.state.step);
-    final isReviewing = context.select((GameCubit cubit) => cubit.state.isReviewing);
     final cubit = context.read<GameCubit>();
     final current = switch (play) {
       Success(:final value) => value,
       _ => null,
     };
     final stage = current?.stage(clock.now());
-    final canGoBack = switch (stage) {
-      GameStage.playing => isReviewing || step >= 0,
-      GameStage.waitingForPartner => isReviewing || step < (current?.totalSteps ?? 0),
-      _ => false,
-    };
+    final canGoBack = stage == GameStage.playing || stage == GameStage.waitingForPartner;
 
     return BaseView(
-      appBar: BaseAppBar(onBack: canGoBack ? cubit.previous : null),
+      appBar: BaseAppBar(
+        onBack: canGoBack ? cubit.previous : null,
+        stepIndicator: current == null || !canGoBack
+            ? null
+            : _stepIndicator(context, current, step),
+      ),
       body: BlocListener<GameCubit, GameState>(
         listenWhen: (previous, current) => previous.action != current.action,
         listener: (context, state) {
@@ -86,7 +86,6 @@ class _GamePageState() extends State<GamePage> with WidgetsBindingObserver {
             l10n.errors.selectOrFallback(action.exception.l10nKey),
             variant: BaseToastVariant.error,
           );
-          context.read<GameCubit>().refresh();
         },
         child: SkeletonizerResourceWidget<GamePlay>(
           play,
@@ -102,4 +101,22 @@ class _GamePageState() extends State<GamePage> with WidgetsBindingObserver {
       ),
     );
   }
+}
+
+/// The dots of the round, counting questions rather than the steps of a guess game.
+Widget? _stepIndicator(BuildContext context, GamePlay play, int step) {
+  final total = play.kind.flow == GameFlow.guess ? play.questionCount : play.totalSteps;
+  if (step < 0 || step >= play.totalSteps || total <= 0) return null;
+  final isGuess = play.kind.flow == GameFlow.guess && play.phaseAt(step) == GamePhase.guess;
+  final index = isGuess ? step - play.totalSteps ~/ 2 : step;
+  final l10n = context.l10n.games.playing;
+  final label = isGuess
+      ? l10n.guessProgress(current: index + 1, total: total)
+      : l10n.progress(current: index + 1, total: total);
+
+  if (total <= 10) {
+    return BaseStepper(count: total, currentIndex: index, semanticLabel: label);
+  }
+
+  return BaseStepper.continuous(count: total, currentIndex: index, semanticLabel: label);
 }

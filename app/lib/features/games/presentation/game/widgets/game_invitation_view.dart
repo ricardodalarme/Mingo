@@ -31,7 +31,7 @@ class const GameInvitationView({required final GamePlay play, super.key}) extend
           ),
           const SizedBox(height: AppSpace.s10),
           Text(
-            '${play.kind.title(context)} · ${context.l10n.games.hub.minutes(minutes: play.kind.minutes)}',
+            '${play.kind.title(context)} · ${gameKindMeta(context, play.kind)}',
             textAlign: TextAlign.center,
             style: context.text.body.copyWith(color: context.colors.textSecondary),
           ),

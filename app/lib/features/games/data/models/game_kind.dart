@@ -23,7 +23,7 @@ enum GameKind(
   final int minutes, {
   final ContentKind? contentKind,
 }) {
-  meOrYou('me_or_you', GameFlow.pick, 5, 3, contentKind: ContentKind.meOrYou),
+  meOrYou('me_or_you', GameFlow.pick, 8, 3, contentKind: ContentKind.meOrYou),
   howWell('how_well', GameFlow.guess, 10, 5, contentKind: ContentKind.howWell),
   twentyQuestions('twenty_questions', GameFlow.talk, 20, 5),
   neverHaveWe('never_have_we', GameFlow.talk, 10, 10, contentKind: ContentKind.neverHaveWe),
