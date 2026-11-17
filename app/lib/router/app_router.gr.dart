@@ -1512,6 +1512,22 @@ class LogisticsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LoveStyleComparePage]
+class LoveStyleCompareRoute extends PageRouteInfo<void> {
+  const LoveStyleCompareRoute({List<PageRouteInfo>? children})
+    : super(LoveStyleCompareRoute.name, initialChildren: children);
+
+  static const String name = 'LoveStyleCompareRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const LoveStyleComparePage());
+    },
+  );
+}
+
+/// generated route for
 /// [LoveStylePage]
 class LoveStyleRoute extends PageRouteInfo<void> {
   const LoveStyleRoute({List<PageRouteInfo>? children})

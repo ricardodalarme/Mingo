@@ -1,7 +1,4 @@
 {
-  "exerciseTitle": "Como eu reajo numa briga",
-  "exerciseHighlight": "reajo",
-  "exerciseSubtitle": "Seis perguntas rápidas, só para você.",
   "questionOf": "Pergunta {current} de {total}",
   "questions": [
     "Quando a conversa esquenta, o que você faz primeiro?",
@@ -89,5 +86,6 @@
   "addErrors(map)": {
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para adicionar agora. Tente de novo."
-  }
+  },
+  "resultBarTitle": "Resultado"
 }

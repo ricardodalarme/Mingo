@@ -1,68 +1,76 @@
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:app/features/love_style/data/data_sources/local/love_style_local_data_source.dart';
 import 'package:app/features/love_style/data/data_sources/remote/love_style_data_source.dart';
+import 'package:app/features/love_style/data/models/love_style_entry.dart';
+import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
 class LoveStyleRepository({
   required final LoveStyleDataSource _dataSource,
-  required final LoveStyleLocalDataSource _localDataSource,
   required final AuthenticationRepository _authenticationRepository,
 }) {
   static const int _manualValueLimit = 1000;
-  static const int _shareBodyLimit = 280;
 
   final Logger _logger = Logger('LoveStyleRepository');
 
-  /// The ranked patterns already saved, or null when the exercise was never finished.
-  Future<List<String>?> getSavedRanked() async {
+  /// The person's own result and the partner's result when it was shown.
+  Future<LoveStyleOverview> getOverview() async {
     try {
-      return (await _dataSource.getResult())?.ranked;
+      final record = await _dataSource.getResults();
+      LoveStyleEntry? own;
+      LoveStyleEntry? partner;
+      for (final row in record.rows) {
+        final entry = LoveStyleEntry(id: row.id, ranked: row.ranked, sharedAt: row.sharedAt);
+        if (row.authorId == record.selfId) {
+          own = entry;
+        } else {
+          partner = entry;
+        }
+      }
+
+      return LoveStyleOverview(own: own, partner: partner);
     } catch (e, stack) {
       _logger.error('Failed to read the love-style result', error: e, stackTrace: stack);
       rethrow;
     }
   }
 
-  /// The stored share id while the message still exists, or null when it is gone.
-  Future<String?> getSharedMessageId() async {
-    final userId = _authenticationRepository.currentUserId;
-    if (userId == null) return null;
-    final stored = _localDataSource.readSharedMessageId(userId);
-    if (stored == null) return null;
-
-    try {
-      if (await _dataSource.sharedMessageExists(stored)) return stored;
-      await _localDataSource.clearSharedMessageId(userId);
-
-      return null;
-    } catch (e, stack) {
-      _logger.error('Failed to check the love-style share', error: e, stackTrace: stack);
-
-      return stored;
-    }
-  }
-
   /// Stores the latest ranking, updating the saved row so a retake replaces it.
-  Future<void> saveRanked(List<String> ranked) async {
+  ///
+  /// Returns the row id, which the share action needs.
+  Future<String> saveRanked(List<String> ranked) async {
     try {
-      final saved = await _dataSource.getResult();
+      final overview = await getOverview();
+      final saved = overview.own;
       if (saved != null) {
         await _dataSource.updateResult(id: saved.id, ranked: ranked);
 
-        return;
+        return saved.id;
       }
 
       try {
-        await _dataSource.insertResult(ranked);
+        return await _dataSource.insertResult(ranked);
       } on LocalizedException catch (exception) {
         if (!_isUniqueViolation(exception)) rethrow;
-        final raced = await _dataSource.getResult();
-        if (raced == null) rethrow;
-        await _dataSource.updateResult(id: raced.id, ranked: ranked);
+        final raced = await getOverview();
+        final row = raced.own;
+        if (row == null) rethrow;
+        await _dataSource.updateResult(id: row.id, ranked: ranked);
+
+        return row.id;
       }
     } catch (e, stack) {
       _logger.error('Failed to save the love-style result', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// Shows the person's own result to the partner, or hides it again.
+  Future<void> setShared({required String id, required bool isShared}) async {
+    try {
+      await _dataSource.setShared(id: id, sharedAt: isShared ? clock.now().toUtc() : null);
+    } catch (e, stack) {
+      _logger.error('Failed to update the love-style share', error: e, stackTrace: stack);
       rethrow;
     }
   }
@@ -110,40 +118,6 @@ class LoveStyleRepository({
       _logger.error('Failed to save the love-style manual entry', error: e, stackTrace: stack);
       rethrow;
     }
-  }
-
-  /// Sends the short description to the partner and returns the message id.
-  Future<String> share(String body) async {
-    final trimmed = body.trim();
-    final bounded = trimmed.length > _shareBodyLimit
-        ? trimmed.substring(0, _shareBodyLimit)
-        : trimmed;
-    final userId = _authenticationRepository.currentUserId;
-    if (userId == null) throw const LocalizedException(l10nKey: 'UNAUTHENTICATED');
-
-    try {
-      final id = await _dataSource.shareMessage(bounded);
-      await _localDataSource.writeSharedMessageId(userId: userId, id: id);
-
-      return id;
-    } catch (e, stack) {
-      _logger.error('Failed to share the love-style result', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
-
-  /// Removes the shared note so it stops appearing for the partner.
-  Future<void> revokeShare(String messageId) async {
-    final userId = _authenticationRepository.currentUserId;
-
-    try {
-      await _dataSource.revokeShare(messageId);
-    } catch (e, stack) {
-      _logger.error('Failed to revoke the love-style share', error: e, stackTrace: stack);
-      rethrow;
-    }
-
-    if (userId != null) await _localDataSource.clearSharedMessageId(userId);
   }
 
   bool _isUniqueViolation(LocalizedException exception) =>

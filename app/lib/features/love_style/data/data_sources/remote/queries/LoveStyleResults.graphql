@@ -1,0 +1,11 @@
+query LoveStyleResults {
+  today {
+    userId
+  }
+  quizResults(where: { quizKey: { _eq: loved } }, limit: 2) {
+    id
+    authorId
+    ranked
+    sharedAt
+  }
+}

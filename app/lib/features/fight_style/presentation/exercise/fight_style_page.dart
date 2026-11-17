@@ -47,6 +47,7 @@ class const FightStylePage({super.key}) extends StatelessWidget implements AutoR
       },
       child: BaseView(
         appBar: BaseAppBar(
+          title: saved != null && !isAnswering ? l10n.resultBarTitle : null,
           onClose: () => context.router.maybePop(),
           trailing: saved != null && !isAnswering
               ? BaseTextLink(text: l10n.retake, onPressed: cubit.retake)

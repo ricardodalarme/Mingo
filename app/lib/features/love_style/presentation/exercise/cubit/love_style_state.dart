@@ -10,7 +10,9 @@ final class const LoveStyleState({
   final Resource<void> shareAction = const Initial(),
   final Resource<void> revokeAction = const Initial(),
   final bool isInManual = false,
-  final String? sharedMessageId,
+  final String? entryId,
+  final bool isShared = false,
+  final List<String>? partnerRanked,
   final bool hasPartner = false,
   final String? partnerName,
   final bool pairingFailed = false,
@@ -29,7 +31,8 @@ final class const LoveStyleState({
 
   bool get isRevokingShare => revokeAction.isLoading;
 
-  bool get isShared => sharedMessageId != null;
+  /// Whether both people showed the result, which the comparison needs.
+  bool get canCompare => isShared && partnerRanked != null;
 
   String? get currentAnswer => questionIndex < answers.length && answers[questionIndex].isNotEmpty
       ? answers[questionIndex]
@@ -52,8 +55,11 @@ final class const LoveStyleState({
     Resource<void>? shareAction,
     Resource<void>? revokeAction,
     bool? isInManual,
-    String? sharedMessageId,
-    bool clearSharedMessage = false,
+    String? entryId,
+    bool clearEntry = false,
+    bool? isShared,
+    List<String>? partnerRanked,
+    bool clearPartnerRanked = false,
     bool? hasPartner,
     String? partnerName,
     bool clearPartnerName = false,
@@ -69,7 +75,9 @@ final class const LoveStyleState({
       shareAction: shareAction ?? this.shareAction,
       revokeAction: revokeAction ?? this.revokeAction,
       isInManual: isInManual ?? this.isInManual,
-      sharedMessageId: clearSharedMessage ? null : sharedMessageId ?? this.sharedMessageId,
+      entryId: clearEntry ? null : entryId ?? this.entryId,
+      isShared: isShared ?? this.isShared,
+      partnerRanked: clearPartnerRanked ? null : partnerRanked ?? this.partnerRanked,
       hasPartner: hasPartner ?? this.hasPartner,
       partnerName: partnerName ?? (clearPartnerName ? null : this.partnerName),
       pairingFailed: pairingFailed ?? this.pairingFailed,
@@ -87,7 +95,9 @@ final class const LoveStyleState({
     shareAction,
     revokeAction,
     isInManual,
-    sharedMessageId,
+    entryId,
+    isShared,
+    partnerRanked,
     hasPartner,
     partnerName,
     pairingFailed,

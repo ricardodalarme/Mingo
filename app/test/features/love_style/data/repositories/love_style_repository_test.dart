@@ -1,5 +1,4 @@
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:app/features/love_style/data/data_sources/local/love_style_local_data_source.dart';
 import 'package:app/features/love_style/data/data_sources/remote/love_style_data_source.dart';
 import 'package:app/features/love_style/data/repositories/love_style_repository.dart';
 import 'package:core/core.dart';
@@ -8,13 +7,10 @@ import 'package:mocktail/mocktail.dart';
 
 class _MockLoveStyleDataSource() extends Mock implements LoveStyleDataSource;
 
-class _MockLoveStyleLocalDataSource() extends Mock implements LoveStyleLocalDataSource;
-
 class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
 void main() {
   late LoveStyleDataSource dataSource;
-  late LoveStyleLocalDataSource localDataSource;
   late AuthenticationRepository authenticationRepository;
   late LoveStyleRepository repository;
 
@@ -23,42 +19,61 @@ void main() {
 
   setUpAll(() {
     registerFallbackValue(<String>[]);
-    registerFallbackValue(<String?>[]);
+    registerFallbackValue(DateTime.utc(2026));
   });
 
   setUp(() {
     dataSource = _MockLoveStyleDataSource();
-    localDataSource = _MockLoveStyleLocalDataSource();
     authenticationRepository = _MockAuthenticationRepository();
     when(() => authenticationRepository.currentUserId).thenReturn('u1');
-    when(() => localDataSource.readSharedMessageId(any())).thenReturn(null);
-    when(
-      () => localDataSource.writeSharedMessageId(
-        userId: any(named: 'userId'),
-        id: any(named: 'id'),
-      ),
-    ).thenAnswer((_) async {
-      return;
-    });
-    when(() => localDataSource.clearSharedMessageId(any())).thenAnswer((_) async {
-      return;
-    });
     repository = LoveStyleRepository(
       dataSource: dataSource,
-      localDataSource: localDataSource,
       authenticationRepository: authenticationRepository,
     );
   });
 
+  LoveStyleResultsRecord results({List<LoveStyleRecord> rows = const []}) =>
+      (selfId: 'u1', rows: rows);
+
+  group('overview', () {
+    test('keeps the own result and the shared partner result apart', () async {
+      when(() => dataSource.getResults()).thenAnswer(
+        (_) async => results(
+          rows: [
+            (id: 'own', authorId: 'u1', ranked: first, sharedAt: null),
+            (id: 'partner', authorId: 'u2', ranked: retaken, sharedAt: DateTime.utc(2026, 3)),
+          ],
+        ),
+      );
+
+      final overview = await repository.getOverview();
+
+      expect(overview.own?.id, 'own');
+      expect(overview.own?.isShared, isFalse);
+      expect(overview.partner?.id, 'partner');
+      expect(overview.canCompare, isTrue);
+    });
+
+    test('a person without a partner has no comparison', () async {
+      when(() => dataSource.getResults()).thenAnswer(
+        (_) async => results(rows: [(id: 'own', authorId: 'u1', ranked: first, sharedAt: null)]),
+      );
+
+      final overview = await repository.getOverview();
+
+      expect(overview.partner, isNull);
+      expect(overview.canCompare, isFalse);
+    });
+  });
+
   group('ranking', () {
-    test('inserts the first ranking and never updates another row', () async {
-      when(() => dataSource.getResult()).thenAnswer((_) async => null);
-      when(() => dataSource.insertResult(any())).thenAnswer((_) async {
-        return;
-      });
+    test('inserts the first ranking and returns its row id', () async {
+      when(() => dataSource.getResults()).thenAnswer((_) async => results());
+      when(() => dataSource.insertResult(any())).thenAnswer((_) async => 'q1');
 
-      await repository.saveRanked(first);
+      final id = await repository.saveRanked(first);
 
+      expect(id, 'q1');
       verify(() => dataSource.insertResult(first)).called(1);
       verifyNever(
         () => dataSource.updateResult(
@@ -69,7 +84,9 @@ void main() {
     });
 
     test('a retake updates the saved row so the latest ranking wins', () async {
-      when(() => dataSource.getResult()).thenAnswer((_) async => (id: 'q1', ranked: first));
+      when(() => dataSource.getResults()).thenAnswer(
+        (_) async => results(rows: [(id: 'q1', authorId: 'u1', ranked: first, sharedAt: null)]),
+      );
       when(
         () => dataSource.updateResult(
           id: any(named: 'id'),
@@ -79,18 +96,21 @@ void main() {
         return;
       });
 
-      await repository.saveRanked(retaken);
+      final id = await repository.saveRanked(retaken);
 
+      expect(id, 'q1');
       verify(() => dataSource.updateResult(id: 'q1', ranked: retaken)).called(1);
       verifyNever(() => dataSource.insertResult(any()));
     });
 
     test('a race on the unique key falls back to updating the saved row', () async {
       var reads = 0;
-      when(() => dataSource.getResult()).thenAnswer((_) async {
+      when(() => dataSource.getResults()).thenAnswer((_) async {
         reads++;
 
-        return reads == 1 ? null : (id: 'q1', ranked: first);
+        return reads == 1
+            ? results()
+            : results(rows: [(id: 'q1', authorId: 'u1', ranked: first, sharedAt: null)]);
       });
       when(() => dataSource.insertResult(any()))
           .thenThrow(const LocalizedException(l10nKey: '23505'));
@@ -109,6 +129,45 @@ void main() {
     });
   });
 
+  group('sharing', () {
+    test('sharing sends a time the server replaces with its own', () async {
+      when(
+        () => dataSource.setShared(
+          id: any(named: 'id'),
+          sharedAt: any(named: 'sharedAt'),
+        ),
+      ).thenAnswer((_) async {
+        return;
+      });
+
+      await repository.setShared(id: 'q1', isShared: true);
+
+      final sharedAt = verify(
+        () => dataSource.setShared(
+          id: 'q1',
+          sharedAt: captureAny(named: 'sharedAt'),
+        ),
+      ).captured.single;
+
+      expect(sharedAt, isNotNull);
+    });
+
+    test('hiding the result clears the share time', () async {
+      when(
+        () => dataSource.setShared(
+          id: any(named: 'id'),
+          sharedAt: any(named: 'sharedAt'),
+        ),
+      ).thenAnswer((_) async {
+        return;
+      });
+
+      await repository.setShared(id: 'q1', isShared: false);
+
+      verify(() => dataSource.setShared(id: 'q1', sharedAt: null)).called(1);
+    });
+  });
+
   group('manual entry', () {
     test('the first save inserts the loved entry', () async {
       when(() => dataSource.getManualEntry('u1')).thenAnswer((_) async => null);
@@ -116,10 +175,9 @@ void main() {
         return;
       });
 
-      await repository.saveManualEntry('  Você se sente querido(a) com tempo junto.  ');
+      await repository.saveManualEntry('  Você se sente amado com tempo junto.  ');
 
-      verify(() => dataSource.insertManualEntry('Você se sente querido(a) com tempo junto.'))
-          .called(1);
+      verify(() => dataSource.insertManualEntry('Você se sente amado com tempo junto.')).called(1);
       verifyNever(
         () => dataSource.updateManualEntry(
           id: any(named: 'id'),
@@ -140,25 +198,6 @@ void main() {
         return;
       });
 
-      await repository.saveManualEntry('Novo');
-
-      verify(() => dataSource.updateManualEntry(id: 'm1', value: 'Novo')).called(1);
-      verifyNever(() => dataSource.insertManualEntry(any()));
-    });
-
-    test('a shared loved entry is loaded and updated instead of hidden', () async {
-      when(() => dataSource.getManualEntry('u1'))
-          .thenAnswer((_) async => (id: 'm1', value: 'Compartilhado'));
-      when(
-        () => dataSource.updateManualEntry(
-          id: any(named: 'id'),
-          value: any(named: 'value'),
-        ),
-      ).thenAnswer((_) async {
-        return;
-      });
-
-      expect(await repository.getManualEntry(), 'Compartilhado');
       await repository.saveManualEntry('Novo');
 
       verify(() => dataSource.updateManualEntry(id: 'm1', value: 'Novo')).called(1);
@@ -199,60 +238,6 @@ void main() {
       await repository.saveManualEntry('Novo');
 
       verify(() => dataSource.updateManualEntry(id: 'm1', value: 'Novo')).called(1);
-    });
-  });
-
-  group('sharing', () {
-    test('shares the short description, returns the id and stores it for the person', () async {
-      when(() => dataSource.shareMessage(any())).thenAnswer((_) async => 'msg-1');
-
-      final id = await repository.share('  Eu me sinto querido(a) com tempo junto.  ');
-
-      expect(id, 'msg-1');
-      verify(() => dataSource.shareMessage('Eu me sinto querido(a) com tempo junto.')).called(1);
-      verify(() => localDataSource.writeSharedMessageId(userId: 'u1', id: 'msg-1')).called(1);
-    });
-
-    test('the share body is bounded to 280 characters', () async {
-      when(() => dataSource.shareMessage(any())).thenAnswer((_) async => 'msg-1');
-
-      await repository.share('b' * 320);
-
-      final body = verify(() => dataSource.shareMessage(captureAny())).captured.single;
-
-      expect((body as String).length, 280);
-    });
-
-    test('a stored share is returned while the message still exists', () async {
-      when(() => localDataSource.readSharedMessageId('u1')).thenReturn('msg-1');
-      when(() => dataSource.sharedMessageExists('msg-1')).thenAnswer((_) async => true);
-
-      expect(await repository.getSharedMessageId(), 'msg-1');
-    });
-
-    test('a stored share is cleared when the message was deleted elsewhere', () async {
-      when(() => localDataSource.readSharedMessageId('u1')).thenReturn('msg-1');
-      when(() => dataSource.sharedMessageExists('msg-1')).thenAnswer((_) async => false);
-
-      expect(await repository.getSharedMessageId(), isNull);
-      verify(() => localDataSource.clearSharedMessageId('u1')).called(1);
-    });
-
-    test('revoking deletes the shared message by id and clears the stored share', () async {
-      when(() => dataSource.revokeShare('msg-1')).thenAnswer((_) async => true);
-
-      await repository.revokeShare('msg-1');
-
-      verify(() => dataSource.revokeShare('msg-1')).called(1);
-      verify(() => localDataSource.clearSharedMessageId('u1')).called(1);
-    });
-
-    test('a revoke the server matched no row for is already revoked', () async {
-      when(() => dataSource.revokeShare('msg-1')).thenAnswer((_) async => false);
-
-      await repository.revokeShare('msg-1');
-
-      verify(() => localDataSource.clearSharedMessageId('u1')).called(1);
     });
   });
 }

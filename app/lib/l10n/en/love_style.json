@@ -1,10 +1,4 @@
 {
-  "entryLabel": "ONLY FOR YOU",
-  "entryTitle": "What makes me feel loved",
-  "entryText": "Six quick questions to notice what makes you feel loved.",
-  "exerciseTitle": "How I feel loved",
-  "exerciseHighlight": "loved",
-  "exerciseSubtitle": "Six quick questions, just for you.",
   "questionOf": "Question {current} of {total}",
   "questions": [
     "What makes you feel loved the most?",
@@ -68,8 +62,23 @@
   "privateNote": "Only you see your answers. You choose whether to show the result.",
   "resultTitle": "What makes you feel loved",
   "resultHighlight": "loved",
-  "resultSubtitle": "A description of what makes you feel loved, in your own way.",
-  "topTag": "What fits you best",
+  "resultSubtitle": "A reading of what fits you best.",
+  "labels(map)": {
+    "time": "Time just for us",
+    "words": "Words of care",
+    "acts": "Help with tasks",
+    "gifts": "Small gifts",
+    "touch": "Touch and hugs",
+    "other": ""
+  },
+  "commonLabels(map)": {
+    "time": "time just for us",
+    "words": "words of care",
+    "acts": "help with tasks",
+    "gifts": "small gifts",
+    "touch": "touch and hugs",
+    "other": ""
+  },
   "descriptions(map)": {
     "time": "You feel loved when you have real time with someone you care about: unhurried, no screens, just presence.",
     "words": "You feel loved when you hear, honestly, what the other person feels for you.",
@@ -78,27 +87,36 @@
     "touch": "You feel loved when a hug, a held hand or a caress says what words cannot.",
     "other": ""
   },
-  "shareDescriptions(map)": {
-    "time": "I feel loved when we spend unhurried time together, with no screens.",
-    "words": "I feel loved when I hear, honestly, what you feel for me.",
-    "acts": "I feel loved when you notice what I need and help without me asking.",
-    "gifts": "I feel loved when you remember me in a small detail, chosen with care.",
-    "touch": "I feel loved when a hug, a held hand or a caress says what words cannot.",
-    "other": ""
-  },
-  "resultPrivacyNote": "Saved only for you. Showing it on your partner's widget is your choice, and you can undo it.",
+  "resultPrivacyNote": "Saved only for you until you show it. You can undo it whenever you want.",
   "saveManualAction": "Save to My manual",
   "savedManualAction": "Saved to My manual",
   "manualToast": "Saved to My manual.",
   "shareAction": "Show {name}",
-  "revokeAction": "Remove from their widget",
-  "shareToast": "It appears on their widget if they allow notes.",
-  "revokeToast": "It's no longer on their widget.",
-  "shareSoloNote": "When you're connected with a partner, you can show this on their widget.",
+  "revokeAction": "Stop showing {name}",
+  "shareConfirmTitle": "Show {name}?",
+  "shareConfirmText": "Only the result appears, never your answers. {name} gets a notice and may choose not to respond.",
+  "shareConfirm": "Show",
+  "shareCancel": "Not now",
+  "shareToast": "Done. {name} can see the result now.",
+  "revokeToast": "{name} can no longer see it.",
+  "shareSoloNote": "It stays with you. When someone joins, you decide whether to show it.",
+  "inviteAction": "Invite my person",
+  "compareAction": "Compare the two",
+  "compareTitle": "The two of you",
+  "compareHeadline": "What makes you both feel loved",
+  "compareHighlight": "both",
+  "compareYou": "You",
+  "compareMost": "Most important",
+  "compareNext": "Then",
+  "compareCommon": "In common",
+  "compareCommonText": "You both value {label}.",
+  "comparePlan": "Plan time just for us",
+  "compareMissingTitle": "The comparison is not ready yet",
+  "compareMissingText": "It appears when both of you have shown your result.",
   "partnerFallback": "your partner",
   "pairingErrorNote": "Couldn't check your partner right now.",
   "retryPairing": "Try again",
-  "retake": "Take it again",
+  "retake": "Take the quiz again",
   "loadErrorTitle": "Couldn't load",
   "loadErrorText": "Couldn't open your result right now. Try again.",
   "errors(map)": {
@@ -116,6 +134,6 @@
   },
   "revokeErrors(map)": {
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
-    "other": "Couldn't remove it from their widget right now. Try again."
+    "other": "Couldn't stop showing it right now. Try again."
   }
 }

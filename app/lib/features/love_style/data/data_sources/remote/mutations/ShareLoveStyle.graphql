@@ -1,5 +1,0 @@
-mutation ShareLoveStyle($body: String!) {
-  insertPartnerMessagesOne(object: { kind: note, body: $body, forWidget: true }) {
-    id
-  }
-}

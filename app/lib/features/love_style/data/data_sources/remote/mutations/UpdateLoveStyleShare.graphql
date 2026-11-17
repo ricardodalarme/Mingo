@@ -1,0 +1,5 @@
+mutation UpdateLoveStyleShare($id: uuid!, $sharedAt: timestamptz) {
+  updateQuizResults(where: { id: { _eq: $id } }, _set: { sharedAt: $sharedAt }) {
+    affected_rows
+  }
+}

@@ -19,21 +19,24 @@ class LoveStyleCubit({
   Future<void> load() async {
     emit(state.copyWith(result: const Loading(), pairingFailed: false));
     try {
-      final (saved, sharedMessageId, manualValue, partner) = await (
-        _repository.getSavedRanked(),
-        _repository.getSharedMessageId(),
+      final (overview, manualValue, partner) = await (
+        _repository.getOverview(),
         _repository.getManualEntry(),
         _readPartner(),
       ).wait;
-      final result = LoveStyleResult.fromRecord(saved);
+      final own = overview.own;
+      final result = LoveStyleResult.fromRecord(own?.ranked);
       if (isClosed) return;
       emit(
         state.copyWith(
           result: Success<LoveStyleResult?>(result),
           isAnswering: result == null,
           isInManual: manualValue != null,
-          sharedMessageId: sharedMessageId,
-          clearSharedMessage: sharedMessageId == null,
+          entryId: own?.id,
+          clearEntry: own == null,
+          isShared: own?.isShared ?? false,
+          partnerRanked: overview.partner?.knownRanked,
+          clearPartnerRanked: overview.partner == null,
           hasPartner: partner.profile != null,
           partnerName: partner.profile?.displayName,
           clearPartnerName: true,
@@ -72,13 +75,9 @@ class LoveStyleCubit({
     emit(state.copyWith(questionIndex: state.questionIndex - 1));
   }
 
-  /// Starts again with empty answers; a shared note is revoked so it cannot look like the new result.
-  Future<void> retake() async {
+  /// Starts again with empty answers; the saved result stays until a new one is finished.
+  void retake() {
     if (state.isSaving || state.isRevokingShare) return;
-    if (state.isShared) {
-      await revokeShare();
-      if (isClosed || state.isShared) return;
-    }
     emit(state.copyWith(isAnswering: true, questionIndex: 0, answers: const [], isInManual: false));
   }
 
@@ -98,20 +97,16 @@ class LoveStyleCubit({
     }
   }
 
-  /// Sends the short description to the partner as a note.
-  Future<void> share(String body) async {
-    if (!state.hasPartner ||
-        state.sharedMessageId != null ||
-        state.isSharing ||
-        state.isRevokingShare) {
-      return;
-    }
+  /// Shows the result to the partner.
+  Future<void> share() async {
+    final id = state.entryId;
+    if (id == null || !state.hasPartner || state.isShared || state.isSharing) return;
 
     emit(state.copyWith(shareAction: const Loading()));
     try {
-      final id = await _repository.share(body);
+      await _repository.setShared(id: id, isShared: true);
       if (isClosed) return;
-      emit(state.copyWith(sharedMessageId: id, shareAction: const Success(null)));
+      emit(state.copyWith(isShared: true, shareAction: const Success(null)));
     } catch (exception) {
       if (isClosed) return;
       emit(state.copyWith(shareAction: Failure.fromObject(exception)));
@@ -119,16 +114,16 @@ class LoveStyleCubit({
     }
   }
 
-  /// Deletes the shared note so it stops appearing for the partner.
+  /// Hides the result from the partner again.
   Future<void> revokeShare() async {
-    final id = state.sharedMessageId;
-    if (id == null || state.isRevokingShare) return;
+    final id = state.entryId;
+    if (id == null || !state.isShared || state.isRevokingShare) return;
 
     emit(state.copyWith(revokeAction: const Loading()));
     try {
-      await _repository.revokeShare(id);
+      await _repository.setShared(id: id, isShared: false);
       if (isClosed) return;
-      emit(state.copyWith(clearSharedMessage: true, revokeAction: const Success(null)));
+      emit(state.copyWith(isShared: false, revokeAction: const Success(null)));
     } catch (exception) {
       if (isClosed) return;
       emit(state.copyWith(revokeAction: Failure.fromObject(exception)));
@@ -143,13 +138,15 @@ class LoveStyleCubit({
     emit(state.copyWith(saveAction: const Loading()));
     try {
       final ranked = rankLovePatterns(answers);
-      await _repository.saveRanked(ranked);
+      final id = await _repository.saveRanked(ranked);
       if (isClosed) return;
       emit(
         state.copyWith(
           result: Success<LoveStyleResult?>(LoveStyleResult(ranked: ranked)),
           isAnswering: false,
           isInManual: false,
+          entryId: id,
+          isShared: false,
           saveAction: const Success(null),
         ),
       );

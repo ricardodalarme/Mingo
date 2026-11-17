@@ -28,20 +28,6 @@ class const FightStyleQuestionView({super.key}) extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Semantics(
-            header: true,
-            child: AppHighlightedText(
-              text: l10n.exerciseTitle,
-              highlight: l10n.exerciseHighlight,
-              style: context.text.display,
-            ),
-          ),
-          const SizedBox(height: AppSpace.s8),
-          Text(
-            l10n.exerciseSubtitle,
-            style: context.text.body.copyWith(color: context.colors.textSecondary),
-          ),
-          const SizedBox(height: AppSpace.s20),
           BaseStepper(count: fightStyleQuestionCount, currentIndex: index),
           const SizedBox(height: AppSpace.s22),
           Text(
@@ -49,7 +35,7 @@ class const FightStyleQuestionView({super.key}) extends StatelessWidget {
             style: context.text.label.copyWith(color: context.colors.textSecondary),
           ),
           const SizedBox(height: AppSpace.s8),
-          Text(l10n.questions[index], style: context.text.question),
+          Semantics(header: true, child: Text(l10n.questions[index], style: context.text.question)),
           const SizedBox(height: AppSpace.s20),
           for (final pattern in reactionOrderFor(index)) ...[
             BaseOptionTile(

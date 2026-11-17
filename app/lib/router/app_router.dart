@@ -51,6 +51,7 @@ import 'package:app/features/home/presentation/home/home_page.dart';
 import 'package:app/features/ideas/presentation/detail/idea_detail_page.dart';
 import 'package:app/features/lists/presentation/detail/list_detail_page.dart';
 import 'package:app/features/lists/presentation/lists/lists_page.dart';
+import 'package:app/features/love_style/presentation/compare/love_style_compare_page.dart';
 import 'package:app/features/love_style/presentation/exercise/love_style_page.dart';
 import 'package:app/features/memories/presentation/jar/jar_page.dart';
 import 'package:app/features/memories/presentation/memories/memories_page.dart';
@@ -291,6 +292,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: HistoryNumbersRoute.page),
     AutoRoute(page: DifferentDatesRoute.page),
     AutoRoute(page: QuizzesRoute.page, path: '/quizzes'),
+    AutoRoute(page: LoveStyleCompareRoute.page),
   ];
 
   /// Settings, privacy, plans and help.

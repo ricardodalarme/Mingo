@@ -2,13 +2,13 @@ import 'package:app/features/love_style/presentation/exercise/cubit/love_style_c
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('clearSharedMessage drops the shared message', () {
-    const state = LoveStyleState(sharedMessageId: 'message-1');
+  test('clearEntry drops the saved row', () {
+    const state = LoveStyleState(entryId: 'q1', isShared: true);
 
-    final cleared = state.copyWith(clearSharedMessage: true);
+    final cleared = state.copyWith(clearEntry: true);
 
-    expect(cleared.sharedMessageId, isNull);
-    expect(cleared.isShared, isFalse);
+    expect(cleared.entryId, isNull);
+    expect(cleared.isShared, isTrue);
   });
 
   test('clearPartnerName drops the partner name', () {
@@ -17,12 +17,21 @@ void main() {
     expect(state.copyWith(clearPartnerName: true).partnerName, isNull);
   });
 
-  test('changing the question keeps the shared message and partner name', () {
-    const state = LoveStyleState(sharedMessageId: 'message-1', partnerName: 'Bia');
+  test('clearPartnerRanked drops the comparison', () {
+    const state = LoveStyleState(partnerRanked: ['time'], isShared: true);
+
+    expect(state.canCompare, isTrue);
+    expect(state.copyWith(clearPartnerRanked: true).partnerRanked, isNull);
+    expect(state.copyWith(clearPartnerRanked: true).canCompare, isFalse);
+  });
+
+  test('changing the question keeps the saved row and partner name', () {
+    const state = LoveStyleState(entryId: 'q1', isShared: true, partnerName: 'Bia');
 
     final updated = state.copyWith(questionIndex: 2);
 
-    expect(updated.sharedMessageId, 'message-1');
+    expect(updated.entryId, 'q1');
+    expect(updated.isShared, isTrue);
     expect(updated.partnerName, 'Bia');
   });
 

@@ -1,4 +1,5 @@
 import 'package:app/features/love_style/data/models/love_pattern.dart';
+import 'package:app/features/love_style/data/models/love_style_entry.dart';
 import 'package:app/features/love_style/data/repositories/love_style_repository.dart';
 import 'package:app/features/love_style/presentation/exercise/cubit/love_style_cubit.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
@@ -16,6 +17,8 @@ void main() {
   late LoveStyleRepository repository;
   late PairingRepository pairingRepository;
 
+  const ranked = ['touch', 'time', 'words', 'acts', 'gifts'];
+
   setUpAll(() {
     registerFallbackValue(<String>[]);
   });
@@ -23,17 +26,18 @@ void main() {
   setUp(() {
     repository = _MockLoveStyleRepository();
     pairingRepository = _MockPairingRepository();
-    when(() => repository.getSavedRanked()).thenAnswer((_) async => null);
-    when(() => repository.getSharedMessageId()).thenAnswer((_) async => null);
+    when(() => repository.getOverview()).thenAnswer((_) async => const LoveStyleOverview());
     when(() => repository.getManualEntry()).thenAnswer((_) async => null);
-    when(() => repository.saveRanked(any())).thenAnswer((_) async {
-      return;
-    });
+    when(() => repository.saveRanked(any())).thenAnswer((_) async => 'q1');
     when(() => repository.saveManualEntry(any())).thenAnswer((_) async {
       return;
     });
-    when(() => repository.share(any())).thenAnswer((_) async => 'msg-1');
-    when(() => repository.revokeShare(any())).thenAnswer((_) async {
+    when(
+      () => repository.setShared(
+        id: any(named: 'id'),
+        isShared: any(named: 'isShared'),
+      ),
+    ).thenAnswer((_) async {
       return;
     });
     when(() => pairingRepository.getPartner()).thenAnswer(
@@ -52,8 +56,11 @@ void main() {
   }
 
   test('a saved result opens straight on the result screen', () async {
-    when(() => repository.getSavedRanked())
-        .thenAnswer((_) async => const ['touch', 'time', 'words', 'acts', 'gifts']);
+    when(() => repository.getOverview()).thenAnswer(
+      (_) async => const LoveStyleOverview(
+        own: LoveStyleEntry(id: 'q1', ranked: ranked),
+      ),
+    );
 
     final cubit = build();
     await cubit.load();
@@ -64,34 +71,29 @@ void main() {
     expect(cubit.state.partnerName, 'Marina');
   });
 
-  test('a stored share is hydrated so the revoke action survives a reload', () async {
-    when(() => repository.getSavedRanked())
-        .thenAnswer((_) async => const ['touch', 'time', 'words', 'acts', 'gifts']);
-    when(() => repository.getSharedMessageId()).thenAnswer((_) async => 'msg-1');
+  test('a shared result and the partner result are hydrated for the comparison', () async {
+    when(() => repository.getOverview()).thenAnswer(
+      (_) async => LoveStyleOverview(
+        own: LoveStyleEntry(id: 'q1', ranked: ranked, sharedAt: DateTime.utc(2026, 3)),
+        partner: const LoveStyleEntry(id: 'q2', ranked: ranked),
+      ),
+    );
 
     final cubit = build();
     await cubit.load();
 
     expect(cubit.state.isShared, isTrue);
-    expect(cubit.state.sharedMessageId, 'msg-1');
-  });
-
-  test('a share hydrated on load can be revoked', () async {
-    when(() => repository.getSavedRanked())
-        .thenAnswer((_) async => const ['touch', 'time', 'words', 'acts', 'gifts']);
-    when(() => repository.getSharedMessageId()).thenAnswer((_) async => 'msg-1');
-    final cubit = build();
-    await cubit.load();
-
-    await cubit.revokeShare();
-
-    verify(() => repository.revokeShare('msg-1')).called(1);
-    expect(cubit.state.isShared, isFalse);
+    expect(cubit.state.entryId, 'q1');
+    expect(cubit.state.partnerRanked, ranked);
+    expect(cubit.state.canCompare, isTrue);
   });
 
   test('an existing manual entry is hydrated on load', () async {
-    when(() => repository.getSavedRanked())
-        .thenAnswer((_) async => const ['touch', 'time', 'words', 'acts', 'gifts']);
+    when(() => repository.getOverview()).thenAnswer(
+      (_) async => const LoveStyleOverview(
+        own: LoveStyleEntry(id: 'q1', ranked: ranked),
+      ),
+    );
     when(() => repository.getManualEntry()).thenAnswer((_) async => 'Descrição salva.');
 
     final cubit = build();
@@ -109,6 +111,7 @@ void main() {
 
     expect(cubit.state.isAnswering, isFalse);
     expect(cubit.state.savedResult?.topPattern, 'acts');
+    expect(cubit.state.entryId, 'q1');
     verify(() => repository.saveRanked(any())).called(1);
   });
 
@@ -128,7 +131,7 @@ void main() {
   });
 
   test('a failed saved read shows a failure, not a fresh exercise', () async {
-    when(() => repository.getSavedRanked()).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
+    when(() => repository.getOverview()).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
 
     final cubit = build();
     await cubit.load();
@@ -140,11 +143,13 @@ void main() {
 
   test('retrying after a failed read opens the saved result', () async {
     var reads = 0;
-    when(() => repository.getSavedRanked()).thenAnswer((_) async {
+    when(() => repository.getOverview()).thenAnswer((_) async {
       reads++;
       if (reads == 1) throw const LocalizedException(l10nKey: 'NETWORK');
 
-      return const ['gifts', 'time', 'words', 'acts', 'touch'];
+      return const LoveStyleOverview(
+        own: LoveStyleEntry(id: 'q1', ranked: ranked),
+      );
     });
 
     final cubit = build();
@@ -154,7 +159,7 @@ void main() {
     await cubit.load();
 
     expect(cubit.state.isAnswering, isFalse);
-    expect(cubit.state.savedResult?.topPattern, 'gifts');
+    expect(cubit.state.savedResult?.topPattern, 'touch');
   });
 
   test('retaking replaces the saved ranking with the latest one', () async {
@@ -162,7 +167,7 @@ void main() {
     await cubit.load();
     await answerAll(cubit, 'time');
 
-    await cubit.retake();
+    cubit.retake();
     expect(cubit.state.answers, isEmpty);
     await answerAll(cubit, 'touch');
 
@@ -172,35 +177,31 @@ void main() {
     expect(saved.last, ['touch', 'time', 'words', 'acts', 'gifts']);
   });
 
-  test('retaking a shared result revokes the old share before starting', () async {
-    when(() => repository.getSavedRanked())
-        .thenAnswer((_) async => const ['touch', 'time', 'words', 'acts', 'gifts']);
-    when(() => repository.getSharedMessageId()).thenAnswer((_) async => 'msg-1');
+  test('retaking a shared result keeps the old share until the new one is saved', () async {
+    when(() => repository.getOverview()).thenAnswer(
+      (_) async => LoveStyleOverview(
+        own: LoveStyleEntry(id: 'q1', ranked: ranked, sharedAt: DateTime.utc(2026, 3)),
+      ),
+    );
     final cubit = build();
     await cubit.load();
     expect(cubit.state.isShared, isTrue);
 
-    await cubit.retake();
+    cubit.retake();
 
-    verify(() => repository.revokeShare('msg-1')).called(1);
-    expect(cubit.state.isShared, isFalse);
+    expect(cubit.state.isShared, isTrue);
     expect(cubit.state.isAnswering, isTrue);
     expect(cubit.state.answers, isEmpty);
-  });
+    verifyNever(
+      () => repository.setShared(
+        id: any(named: 'id'),
+        isShared: any(named: 'isShared'),
+      ),
+    );
 
-  test('a failed revoke keeps the old share so retake does not start', () async {
-    when(() => repository.getSavedRanked())
-        .thenAnswer((_) async => const ['touch', 'time', 'words', 'acts', 'gifts']);
-    when(() => repository.getSharedMessageId()).thenAnswer((_) async => 'msg-1');
-    when(() => repository.revokeShare(any()))
-        .thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
-    final cubit = build();
-    await cubit.load();
+    await answerAll(cubit, 'time');
 
-    await cubit.retake();
-
-    expect(cubit.state.isShared, isTrue);
-    expect(cubit.state.isAnswering, isFalse);
+    expect(cubit.state.isShared, isFalse);
   });
 
   test('a failed save keeps every answer on the exercise', () async {
@@ -245,19 +246,16 @@ void main() {
     expect(cubit.state.manualAction, isA<Initial>());
   });
 
-  test('sharing is only offered with a partner and stores the message id', () async {
+  test('sharing shows the saved result only once', () async {
     final cubit = build();
     await cubit.load();
     await answerAll(cubit, 'words');
-    clearInteractions(pairingRepository);
 
-    await cubit.share('Eu me sinto querido(a) com palavras.');
-    await cubit.share('Eu me sinto querido(a) com palavras.');
+    await cubit.share();
+    await cubit.share();
 
     expect(cubit.state.isShared, isTrue);
-    expect(cubit.state.sharedMessageId, 'msg-1');
-    verify(() => repository.share('Eu me sinto querido(a) com palavras.')).called(1);
-    verifyNever(() => pairingRepository.getPartner());
+    verify(() => repository.setShared(id: 'q1', isShared: true)).called(1);
   });
 
   test('a paired person with no display name can still share', () async {
@@ -270,10 +268,10 @@ void main() {
     expect(cubit.state.hasPartner, isTrue);
     expect(cubit.state.partnerName, isNull);
 
-    await cubit.share('Eu me sinto querido(a) com toque.');
+    await cubit.share();
 
     expect(cubit.state.isShared, isTrue);
-    verify(() => repository.share(any())).called(1);
+    verify(() => repository.setShared(id: 'q1', isShared: true)).called(1);
   });
 
   test('a pairing failure is shown instead of looking unpaired', () async {
@@ -292,52 +290,60 @@ void main() {
     await cubit.load();
     await answerAll(cubit, 'touch');
 
-    await cubit.share('Eu me sinto querido(a) com toque.');
+    await cubit.share();
 
     expect(cubit.state.hasPartner, isFalse);
     expect(cubit.state.isShared, isFalse);
-    verifyNever(() => repository.share(any()));
+    verifyNever(
+      () => repository.setShared(
+        id: any(named: 'id'),
+        isShared: any(named: 'isShared'),
+      ),
+    );
   });
 
   test('a failed share keeps the result and can be tried again', () async {
-    when(() => repository.share(any())).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
+    when(
+      () => repository.setShared(
+        id: any(named: 'id'),
+        isShared: any(named: 'isShared'),
+      ),
+    ).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
     final cubit = build();
     await cubit.load();
     await answerAll(cubit, 'acts');
 
-    await cubit.share('Eu me sinto querido(a) com ajuda.');
+    await cubit.share();
 
     expect(cubit.state.savedResult?.topPattern, 'acts');
     expect(cubit.state.isShared, isFalse);
     expect(cubit.state.shareAction, isA<Initial>());
   });
 
-  test('revoking deletes the shared note and clears it', () async {
+  test('revoking hides the result again', () async {
     final cubit = build();
     await cubit.load();
     await answerAll(cubit, 'acts');
-    await cubit.share('Eu me sinto querido(a) com ajuda.');
+    await cubit.share();
 
     await cubit.revokeShare();
 
     expect(cubit.state.isShared, isFalse);
     expect(cubit.state.revokeAction, isA<Success<void>>());
-    verify(() => repository.revokeShare('msg-1')).called(1);
-    verify(() => repository.share(any())).called(1);
+    verify(() => repository.setShared(id: 'q1', isShared: false)).called(1);
   });
 
   test('a failed revoke keeps the shared state so it can be tried again', () async {
-    when(() => repository.revokeShare(any()))
-        .thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
     final cubit = build();
     await cubit.load();
     await answerAll(cubit, 'acts');
-    await cubit.share('Eu me sinto querido(a) com ajuda.');
+    await cubit.share();
+    when(() => repository.setShared(id: any(named: 'id'), isShared: false))
+        .thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
 
     await cubit.revokeShare();
 
     expect(cubit.state.isShared, isTrue);
-    expect(cubit.state.sharedMessageId, 'msg-1');
     expect(cubit.state.revokeAction, isA<Initial>());
   });
 }

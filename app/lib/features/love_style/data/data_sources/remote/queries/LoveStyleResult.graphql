@@ -1,6 +1,0 @@
-query LoveStyleResult {
-  quizResults(where: { quizKey: { _eq: loved } }, limit: 1) {
-    id
-    ranked
-  }
-}

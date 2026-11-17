@@ -1,45 +1,67 @@
 import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/InsertLoveStyleManualEntry.graphql.dart';
 import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/InsertLoveStyleResult.graphql.dart';
-import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/RevokeLoveStyleShare.graphql.dart';
-import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/ShareLoveStyle.graphql.dart';
 import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/UpdateLoveStyleManualEntry.graphql.dart';
 import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/UpdateLoveStyleResult.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/mutations/generated/UpdateLoveStyleShare.graphql.dart';
 import 'package:app/features/love_style/data/data_sources/remote/queries/generated/LoveStyleManualEntry.graphql.dart';
-import 'package:app/features/love_style/data/data_sources/remote/queries/generated/LoveStyleResult.graphql.dart';
-import 'package:app/features/love_style/data/data_sources/remote/queries/generated/LoveStyleSharedMessage.graphql.dart';
+import 'package:app/features/love_style/data/data_sources/remote/queries/generated/LoveStyleResults.graphql.dart';
 import 'package:network/network.dart';
 
-/// A saved love-style result with its row id, before the domain mapping.
-typedef LoveStyleRecord = ({String id, List<String> ranked});
+/// A saved love-style result with its row id and share time, before the domain mapping.
+typedef LoveStyleRecord = ({String id, String authorId, List<String> ranked, DateTime? sharedAt});
+
+/// The person and whichever results they may read.
+typedef LoveStyleResultsRecord = ({String selfId, List<LoveStyleRecord> rows});
 
 /// A saved manual entry with its row id, before the domain mapping.
 typedef ManualEntryRecord = ({String id, String value});
 
 class LoveStyleDataSource({required final GQLClient _client}) {
-  Future<LoveStyleRecord?> getResult() async {
+  Future<LoveStyleResultsRecord> getResults() async {
     final response = await _client.query(
-      OptionsQueryLoveStyleResult(fetchPolicy: FetchPolicy.networkOnly),
+      OptionsQueryLoveStyleResults(fetchPolicy: FetchPolicy.networkOnly),
     );
-    final rows = validateResponseData(response, getData: (data) => data.quizResults);
-    final node = rows.firstOrNull;
+    final data = validateResponseData<QueryLoveStyleResults, QueryLoveStyleResults>(response);
+    final selfId = data.today.firstOrNull?.userId;
+    if (selfId == null) throw const NoDataException();
 
-    return node == null ? null : (id: node.id, ranked: node.ranked);
+    return (
+      selfId: selfId,
+      rows: [
+        for (final row in data.quizResults)
+          (id: row.id, authorId: row.authorId, ranked: row.ranked, sharedAt: row.sharedAt),
+      ],
+    );
   }
 
-  Future<void> insertResult(List<String> ranked) async {
+  Future<String> insertResult(List<String> ranked) async {
     final response = await _client.mutate(
       OptionsMutationInsertLoveStyleResult(
         variables: VariablesMutationInsertLoveStyleResult(ranked: ranked),
       ),
     );
 
-    validateResponseData(response, getData: (data) => data.insertQuizResultsOne);
+    return validateResponseData(response, getData: (data) => data.insertQuizResultsOne!.id);
   }
 
   Future<void> updateResult({required String id, required List<String> ranked}) async {
     final response = await _client.mutate(
       OptionsMutationUpdateLoveStyleResult(
         variables: VariablesMutationUpdateLoveStyleResult(id: id, ranked: ranked),
+      ),
+    );
+    final affectedCount = validateResponseData(
+      response,
+      getData: (data) => data.updateQuizResults?.affected_rows ?? 0,
+    );
+    if (affectedCount == 0) throw const NoDataException();
+  }
+
+  /// Shows the result to the partner, or hides it again.
+  Future<void> setShared({required String id, required DateTime? sharedAt}) async {
+    final response = await _client.mutate(
+      OptionsMutationUpdateLoveStyleShare(
+        variables: VariablesMutationUpdateLoveStyleShare(id: id, sharedAt: sharedAt),
       ),
     );
     final affectedCount = validateResponseData(
@@ -83,41 +105,5 @@ class LoveStyleDataSource({required final GQLClient _client}) {
       getData: (data) => data.updateManualEntries?.affected_rows ?? 0,
     );
     if (affectedCount == 0) throw const NoDataException();
-  }
-
-  /// Sends the short description as a note and returns the stored message id.
-  Future<String> shareMessage(String body) async {
-    final response = await _client.mutate(
-      OptionsMutationShareLoveStyle(variables: VariablesMutationShareLoveStyle(body: body)),
-    );
-
-    return validateResponseData(response, getData: (data) => data.insertPartnerMessagesOne?.id);
-  }
-
-  /// Whether the sender still has a message with [id], so a stored share can be trusted.
-  Future<bool> sharedMessageExists(String id) async {
-    final response = await _client.query(
-      OptionsQueryLoveStyleSharedMessage(
-        variables: VariablesQueryLoveStyleSharedMessage(id: id),
-        fetchPolicy: FetchPolicy.networkOnly,
-      ),
-    );
-    validateResponse(response);
-
-    return response.parsedData?.partnerMessagesByPk != null;
-  }
-
-  /// Deletes one of the person's own notes.
-  ///
-  /// Returns `false` when the row was already gone.
-  Future<bool> revokeShare(String id) async {
-    final response = await _client.mutate(
-      OptionsMutationRevokeLoveStyleShare(variables: VariablesMutationRevokeLoveStyleShare(id: id)),
-    );
-
-    return validateResponseData<MutationRevokeLoveStyleShare, bool>(
-      response,
-      getData: (data) => data.deletePartnerMessagesByPk != null,
-    );
   }
 }

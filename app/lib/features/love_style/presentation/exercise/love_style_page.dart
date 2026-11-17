@@ -48,18 +48,19 @@ class const LoveStylePage({super.key}) extends StatelessWidget implements AutoRo
             BaseToast.show(context, l10n.manualToast);
           default:
         }
+        final name = state.partnerName ?? l10n.partnerFallback;
         switch (state.shareAction) {
           case Failure(:final exception):
             BaseToast.show(context, l10n.shareErrors.selectOrFallback(exception.l10nKey));
           case Success():
-            BaseToast.show(context, l10n.shareToast);
+            BaseToast.show(context, l10n.shareToast(name: name));
           default:
         }
         switch (state.revokeAction) {
           case Failure(:final exception):
             BaseToast.show(context, l10n.revokeErrors.selectOrFallback(exception.l10nKey));
           case Success():
-            BaseToast.show(context, l10n.revokeToast);
+            BaseToast.show(context, l10n.revokeToast(name: name));
           default:
         }
       },

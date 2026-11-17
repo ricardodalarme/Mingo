@@ -1,7 +1,4 @@
 {
-  "exerciseTitle": "How I react in a fight",
-  "exerciseHighlight": "react",
-  "exerciseSubtitle": "Six quick questions, just for you.",
   "questionOf": "Question {current} of {total}",
   "questions": [
     "When the conversation heats up, what do you do first?",
@@ -89,5 +86,6 @@
   "addErrors(map)": {
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't add it right now. Try again."
-  }
+  },
+  "resultBarTitle": "Result"
 }
