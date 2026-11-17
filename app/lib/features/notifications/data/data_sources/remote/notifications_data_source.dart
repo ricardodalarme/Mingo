@@ -12,6 +12,7 @@ typedef NotificationSettingsRow = ({
   Set<String> mutedTypes,
   int cardDay,
   int cardHour,
+  int dailyMax,
 });
 
 class NotificationsDataSource({required final GQLClient _client}) {
@@ -32,6 +33,7 @@ class NotificationsDataSource({required final GQLClient _client}) {
       mutedTypes: {for (final mute in data.notificationMutes) mute.type.toJson()},
       cardDay: settings.cardDay,
       cardHour: settings.cardHour,
+      dailyMax: settings.dailyMax,
     );
   }
 
@@ -41,6 +43,7 @@ class NotificationsDataSource({required final GQLClient _client}) {
     required List<String> mutedTypes,
     required int cardDay,
     required int cardHour,
+    required int dailyMax,
   }) async {
     final response = await _client.mutate(
       OptionsMutationUpdateNotificationSettings(
@@ -49,6 +52,7 @@ class NotificationsDataSource({required final GQLClient _client}) {
           enabled: enabled,
           cardDay: cardDay,
           cardHour: cardHour,
+          dailyMax: dailyMax,
           mutes: mutedTypes,
         ),
       ),

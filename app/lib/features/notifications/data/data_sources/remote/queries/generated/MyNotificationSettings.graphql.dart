@@ -193,6 +193,13 @@ const documentNodeQueryMyNotificationSettings = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
+                  name: NameNode(value: 'dailyMax'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
                   name: NameNode(value: '__typename'),
                   alias: null,
                   arguments: [],
@@ -394,6 +401,7 @@ class QueryMyNotificationSettingsnotificationSettingsByPk {
     required this.enabled,
     required this.cardDay,
     required this.cardHour,
+    required this.dailyMax,
     this.$__typename = 'notificationSettings',
   });
 
@@ -401,11 +409,13 @@ class QueryMyNotificationSettingsnotificationSettingsByPk {
     final l$enabled = json['enabled'];
     final l$cardDay = json['cardDay'];
     final l$cardHour = json['cardHour'];
+    final l$dailyMax = json['dailyMax'];
     final l$$__typename = json['__typename'];
     return QueryMyNotificationSettingsnotificationSettingsByPk(
       enabled: (l$enabled as bool),
       cardDay: (l$cardDay as int),
       cardHour: (l$cardHour as int),
+      dailyMax: (l$dailyMax as int),
       $__typename: (l$$__typename as String),
     );
   }
@@ -415,6 +425,8 @@ class QueryMyNotificationSettingsnotificationSettingsByPk {
   final int cardDay;
 
   final int cardHour;
+
+  final int dailyMax;
 
   final String $__typename;
 
@@ -426,6 +438,8 @@ class QueryMyNotificationSettingsnotificationSettingsByPk {
     _resultData['cardDay'] = l$cardDay;
     final l$cardHour = cardHour;
     _resultData['cardHour'] = l$cardHour;
+    final l$dailyMax = dailyMax;
+    _resultData['dailyMax'] = l$dailyMax;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -436,8 +450,9 @@ class QueryMyNotificationSettingsnotificationSettingsByPk {
     final l$enabled = enabled;
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
+    final l$dailyMax = dailyMax;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$enabled, l$cardDay, l$cardHour, l$$__typename]);
+    return Object.hashAll([l$enabled, l$cardDay, l$cardHour, l$dailyMax, l$$__typename]);
   }
 
   @override
@@ -462,6 +477,11 @@ class QueryMyNotificationSettingsnotificationSettingsByPk {
     final l$cardHour = cardHour;
     final lOther$cardHour = other.cardHour;
     if (l$cardHour != lOther$cardHour) {
+      return false;
+    }
+    final l$dailyMax = dailyMax;
+    final lOther$dailyMax = other.dailyMax;
+    if (l$dailyMax != lOther$dailyMax) {
       return false;
     }
     final l$$__typename = $__typename;

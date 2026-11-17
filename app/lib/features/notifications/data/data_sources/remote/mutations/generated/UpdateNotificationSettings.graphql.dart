@@ -13,12 +13,14 @@ class VariablesMutationUpdateNotificationSettings {
     required bool enabled,
     required int cardDay,
     required int cardHour,
+    required int dailyMax,
     required dynamic mutes,
   }) => VariablesMutationUpdateNotificationSettings._({
     r'userId': userId,
     r'enabled': enabled,
     r'cardDay': cardDay,
     r'cardHour': cardHour,
+    r'dailyMax': dailyMax,
     r'mutes': mutes,
   });
 
@@ -34,6 +36,8 @@ class VariablesMutationUpdateNotificationSettings {
     result$data['cardDay'] = (l$cardDay as int);
     final l$cardHour = data['cardHour'];
     result$data['cardHour'] = (l$cardHour as int);
+    final l$dailyMax = data['dailyMax'];
+    result$data['dailyMax'] = (l$dailyMax as int);
     final l$mutes = data['mutes'];
     result$data['mutes'] = decodeJsonb(l$mutes);
     return VariablesMutationUpdateNotificationSettings._(result$data);
@@ -49,6 +53,8 @@ class VariablesMutationUpdateNotificationSettings {
 
   int get cardHour => (_$data['cardHour'] as int);
 
+  int get dailyMax => (_$data['dailyMax'] as int);
+
   dynamic get mutes => (_$data['mutes'] as dynamic);
 
   Map<String, dynamic> toJson() {
@@ -61,6 +67,8 @@ class VariablesMutationUpdateNotificationSettings {
     result$data['cardDay'] = l$cardDay;
     final l$cardHour = cardHour;
     result$data['cardHour'] = l$cardHour;
+    final l$dailyMax = dailyMax;
+    result$data['dailyMax'] = l$dailyMax;
     final l$mutes = mutes;
     result$data['mutes'] = encodeJsonb(l$mutes);
     return result$data;
@@ -94,6 +102,11 @@ class VariablesMutationUpdateNotificationSettings {
     if (l$cardHour != lOther$cardHour) {
       return false;
     }
+    final l$dailyMax = dailyMax;
+    final lOther$dailyMax = other.dailyMax;
+    if (l$dailyMax != lOther$dailyMax) {
+      return false;
+    }
     final l$mutes = mutes;
     final lOther$mutes = other.mutes;
     if (l$mutes != lOther$mutes) {
@@ -108,8 +121,9 @@ class VariablesMutationUpdateNotificationSettings {
     final l$enabled = enabled;
     final l$cardDay = cardDay;
     final l$cardHour = cardHour;
+    final l$dailyMax = dailyMax;
     final l$mutes = mutes;
-    return Object.hashAll([l$userId, l$enabled, l$cardDay, l$cardHour, l$mutes]);
+    return Object.hashAll([l$userId, l$enabled, l$cardDay, l$cardHour, l$dailyMax, l$mutes]);
   }
 }
 
@@ -235,6 +249,12 @@ const documentNodeMutationUpdateNotificationSettings = DocumentNode(
           directives: [],
         ),
         VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'dailyMax')),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'mutes')),
           type: NamedTypeNode(name: NameNode(value: 'jsonb'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
@@ -281,6 +301,10 @@ const documentNodeMutationUpdateNotificationSettings = DocumentNode(
                     ObjectFieldNode(
                       name: NameNode(value: 'cardHour'),
                       value: VariableNode(name: NameNode(value: 'cardHour')),
+                    ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'dailyMax'),
+                      value: VariableNode(name: NameNode(value: 'dailyMax')),
                     ),
                   ],
                 ),

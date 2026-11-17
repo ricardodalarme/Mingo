@@ -48,6 +48,8 @@ class NotificationPreferencesCubit({
     return current.copyWith(mutedTypes: muted);
   });
 
+  Future<void> setDailyMax(int value) => _change((current) => current.copyWith(dailyMax: value));
+
   Future<void> setCardDay(int day) => _change((current) => current.copyWith(cardDay: day));
 
   Future<void> setCardHour(int hour) => _change((current) => current.copyWith(cardHour: hour));

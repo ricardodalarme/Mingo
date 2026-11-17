@@ -110,4 +110,14 @@ void main() {
 
     verifyNever(() => notifications.savePreferences(any()));
   });
+
+  test('choosing how many a day saves the cap and keeps the rest', () async {
+    final cubit = build();
+    await cubit.load();
+
+    await cubit.setDailyMax(1);
+
+    verify(() => notifications.savePreferences(const NotificationPreferences(dailyMax: 1)))
+        .called(1);
+  });
 }

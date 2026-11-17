@@ -3,6 +3,7 @@ query MyNotificationSettings($userId: uuid!) {
     enabled
     cardDay
     cardHour
+    dailyMax
   }
   notificationMutes(where: { userId: { _eq: $userId } }) {
     type

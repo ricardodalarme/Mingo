@@ -3967,6 +3967,18 @@ class _Translations$notificationPreferences$en extends Translations$notification
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t save right now. Your previous choice was kept.',
   };
+  @override
+  String get dailyMaxTitle => 'How many a day';
+  @override
+  String get dailyMaxNote => 'Two a day at most, always short and without personal details.';
+  @override
+  String dailyMax({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        zero: 'None',
+        one: 'Up to 1',
+        other: 'Up to ${count}',
+      );
 }
 
 // Path: partnerProfile
@@ -10713,6 +10725,17 @@ extension on TranslationsEn {
             'Too many attempts in a row. Wait a moment.',
           'notificationPreferences.errors.other' =>
             'Couldn\'t save right now. Your previous choice was kept.',
+          'notificationPreferences.dailyMaxTitle' => 'How many a day',
+          'notificationPreferences.dailyMaxNote' =>
+            'Two a day at most, always short and without personal details.',
+          'notificationPreferences.dailyMax' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  zero: 'None',
+                  one: 'Up to 1',
+                  other: 'Up to ${count}',
+                ),
           'partnerProfile.title' => 'About your partner',
           'partnerProfile.privateNote' => 'Only you see these notes. They never show in notifications, widgets or to your partner.',
           'partnerProfile.categories.likes' => 'Likes',
@@ -10920,12 +10943,12 @@ extension on TranslationsEn {
             required Object year,
           }) => '${month} ${day}, ${year}',
           'profileSetup.months.0' => 'January',
-          'profileSetup.months.1' => 'February',
-          'profileSetup.months.2' => 'March',
-          'profileSetup.months.3' => 'April',
           _ => null,
         } ??
         switch (path) {
+          'profileSetup.months.1' => 'February',
+          'profileSetup.months.2' => 'March',
+          'profileSetup.months.3' => 'April',
           'profileSetup.months.4' => 'May',
           'profileSetup.months.5' => 'June',
           'profileSetup.months.6' => 'July',
@@ -11491,12 +11514,12 @@ extension on TranslationsEn {
           'share.phases.fullMoon' => 'Full moon',
           'share.phases.waningGibbous' => 'Waning gibbous',
           'share.phases.lastQuarter' => 'Last quarter',
-          'share.phases.waningCrescent' => 'Waning crescent',
-          'share.phases.other' => '',
-          'share.productMark' => 'Mingo',
           _ => null,
         } ??
         switch (path) {
+          'share.phases.waningCrescent' => 'Waning crescent',
+          'share.phases.other' => '',
+          'share.productMark' => 'Mingo',
           'share.errors.other' => 'Couldn\'t share right now. Try again.',
           'slipDetail.dateLine' => ({
             required Object weekday,
@@ -12104,12 +12127,12 @@ extension on TranslationsEn {
           'temperature.result.good.text' => 'Saved just for you. Carry on with your day.',
           'temperature.result.pause.title' => 'First, breathe',
           'temperature.result.pause.text' => 'When it\'s very hot, waiting helps. Some time apart is worth it before any conversation.',
-          'temperature.result.guided.title' => 'You can talk with care',
-          'temperature.result.guided.text' => 'One step at a time, at your pace.',
-          'temperature.result.quick.title' => 'A small fix is enough',
           _ => null,
         } ??
         switch (path) {
+          'temperature.result.guided.title' => 'You can talk with care',
+          'temperature.result.guided.text' => 'One step at a time, at your pace.',
+          'temperature.result.quick.title' => 'A small fix is enough',
           'temperature.result.quick.text' => 'Something light and quick can do it.',
           'temperature.result.done' => 'Done',
           'temperature.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',

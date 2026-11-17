@@ -9,12 +9,16 @@ const List<String> notificationTypes = [
   'date_coming',
 ];
 
+/// The most pushes a person can receive in a day.
+const int maxDailyNotifications = 2;
+
 /// What the person chose for notifications, kept on the server so it applies to pushes.
 final class const NotificationPreferences({
   final bool isEnabled = true,
   final Set<String> mutedTypes = const {},
   final int cardDay = 0,
   final int cardHour = 9,
+  final int dailyMax = maxDailyNotifications,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
   factory fake() => const NotificationPreferences();
@@ -27,13 +31,15 @@ final class const NotificationPreferences({
     Set<String>? mutedTypes,
     int? cardDay,
     int? cardHour,
+    int? dailyMax,
   }) => NotificationPreferences(
     isEnabled: isEnabled ?? this.isEnabled,
     mutedTypes: mutedTypes ?? this.mutedTypes,
     cardDay: cardDay ?? this.cardDay,
     cardHour: cardHour ?? this.cardHour,
+    dailyMax: dailyMax ?? this.dailyMax,
   );
 
   @override
-  List<Object?> get props => [isEnabled, mutedTypes, cardDay, cardHour];
+  List<Object?> get props => [isEnabled, mutedTypes, cardDay, cardHour, dailyMax];
 }

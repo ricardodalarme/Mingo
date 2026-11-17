@@ -4867,6 +4867,21 @@ class Translations$notificationPreferences$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Sua escolha anterior foi mantida.',
   };
+
+  /// pt: 'Quantas por dia'
+  String get dailyMaxTitle => 'Quantas por dia';
+
+  /// pt: 'No máximo duas por dia, sempre curtas e sem detalhes pessoais.'
+  String get dailyMaxNote => 'No máximo duas por dia, sempre curtas e sem detalhes pessoais.';
+
+  /// pt: '(zero) {Nenhuma} (one) {Até 1} (other) {Até {count}}'
+  String dailyMax({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        zero: 'Nenhuma',
+        one: 'Até 1',
+        other: 'Até ${count}',
+      );
 }
 
 // Path: partnerProfile
@@ -12769,6 +12784,17 @@ extension on Translations {
             'Muitas tentativas seguidas. Espere um instante.',
           'notificationPreferences.errors.other' =>
             'Não deu para salvar agora. Sua escolha anterior foi mantida.',
+          'notificationPreferences.dailyMaxTitle' => 'Quantas por dia',
+          'notificationPreferences.dailyMaxNote' =>
+            'No máximo duas por dia, sempre curtas e sem detalhes pessoais.',
+          'notificationPreferences.dailyMax' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  zero: 'Nenhuma',
+                  one: 'Até 1',
+                  other: 'Até ${count}',
+                ),
           'partnerProfile.title' => 'Sobre seu par',
           'partnerProfile.privateNote' =>
             'Só você vê estas notas. Elas nunca aparecem em avisos, widgets ou para seu par.',
@@ -12978,12 +13004,12 @@ extension on Translations {
             required Object year,
           }) => '${day} de ${month} de ${year}',
           'profileSetup.months.0' => 'janeiro',
-          'profileSetup.months.1' => 'fevereiro',
-          'profileSetup.months.2' => 'março',
-          'profileSetup.months.3' => 'abril',
           _ => null,
         } ??
         switch (path) {
+          'profileSetup.months.1' => 'fevereiro',
+          'profileSetup.months.2' => 'março',
+          'profileSetup.months.3' => 'abril',
           'profileSetup.months.4' => 'maio',
           'profileSetup.months.5' => 'junho',
           'profileSetup.months.6' => 'julho',
@@ -13555,12 +13581,12 @@ extension on Translations {
           'share.phases.fullMoon' => 'Lua cheia',
           'share.phases.waningGibbous' => 'Minguante gibosa',
           'share.phases.lastQuarter' => 'Quarto minguante',
-          'share.phases.waningCrescent' => 'Lua minguante',
-          'share.phases.other' => '',
-          'share.productMark' => 'Mingo',
           _ => null,
         } ??
         switch (path) {
+          'share.phases.waningCrescent' => 'Lua minguante',
+          'share.phases.other' => '',
+          'share.productMark' => 'Mingo',
           'share.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
           'slipDetail.dateLine' => ({
             required Object weekday,
@@ -14165,12 +14191,12 @@ extension on Translations {
           'temperature.result.good.text' => 'Registrado só para você. Siga o seu dia.',
           'temperature.result.pause.title' => 'Primeiro, respirar',
           'temperature.result.pause.text' => 'Quando está muito quente, esperar ajuda. Vale um tempo longe antes de qualquer conversa.',
-          'temperature.result.guided.title' => 'Dá para conversar com cuidado',
-          'temperature.result.guided.text' => 'Um passo de cada vez, no seu ritmo.',
-          'temperature.result.quick.title' => 'Um ajuste pequeno basta',
           _ => null,
         } ??
         switch (path) {
+          'temperature.result.guided.title' => 'Dá para conversar com cuidado',
+          'temperature.result.guided.text' => 'Um passo de cada vez, no seu ritmo.',
+          'temperature.result.quick.title' => 'Um ajuste pequeno basta',
           'temperature.result.quick.text' => 'Algo leve e rápido pode resolver.',
           'temperature.result.done' => 'Pronto',
           'temperature.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',

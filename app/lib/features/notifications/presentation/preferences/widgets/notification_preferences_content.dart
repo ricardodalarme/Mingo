@@ -29,6 +29,8 @@ class const NotificationPreferencesContent({super.key}) extends StatelessWidget 
           const SizedBox(height: AppSpace.s20),
           const _Types(),
           const SizedBox(height: AppSpace.s20),
+          const _DailyMax(),
+          const SizedBox(height: AppSpace.s20),
           const _SundayCard(),
           const SizedBox(height: AppSpace.s20),
           const _Preview(),
@@ -176,6 +178,36 @@ class const _Preview() extends StatelessWidget {
         const SizedBox(height: AppSpace.s8),
         Text(
           l10n.previewText,
+          style: context.text.caption.copyWith(color: context.colors.textSecondary),
+        ),
+      ],
+    );
+  }
+}
+
+class const _DailyMax() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.notificationPreferences;
+    final preferences = context.select((NotificationPreferencesCubit cubit) => cubit.state.current);
+    if (preferences == null) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        BaseSectionHeader(title: l10n.dailyMaxTitle),
+        const SizedBox(height: AppSpace.s8),
+        BaseSegmented(
+          segments: [
+            for (var value = 0; value <= maxDailyNotifications; value++)
+              l10n.dailyMax(count: value),
+          ],
+          selectedIndex: preferences.dailyMax,
+          onSelectionChanged: context.read<NotificationPreferencesCubit>().setDailyMax,
+        ),
+        const SizedBox(height: AppSpace.s8),
+        Text(
+          l10n.dailyMaxNote,
           style: context.text.caption.copyWith(color: context.colors.textSecondary),
         ),
       ],

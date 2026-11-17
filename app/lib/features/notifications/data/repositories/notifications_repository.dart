@@ -111,6 +111,7 @@ class NotificationsRepository({
         mutedTypes: settings.mutedTypes,
         cardDay: settings.cardDay,
         cardHour: settings.cardHour,
+        dailyMax: settings.dailyMax,
       );
     } catch (e, stack) {
       _logger.error('Failed to load notification settings', error: e, stackTrace: stack);
@@ -127,6 +128,7 @@ class NotificationsRepository({
         mutedTypes: preferences.mutedTypes.toList(),
         cardDay: preferences.cardDay,
         cardHour: preferences.cardHour,
+        dailyMax: preferences.dailyMax,
       );
     } catch (e, stack) {
       _logger.error('Failed to save notification settings', error: e, stackTrace: stack);

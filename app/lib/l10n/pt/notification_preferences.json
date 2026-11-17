@@ -17,7 +17,15 @@
   "cardTitle": "Cartão de domingo",
   "cardDay": "Dia",
   "cardHour": "Horário",
-  "days": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+  "days": [
+    "Domingo",
+    "Segunda",
+    "Terça",
+    "Quarta",
+    "Quinta",
+    "Sexta",
+    "Sábado"
+  ],
   "hourFormat": "{hour}:00",
   "previewTitle": "Como a notificação aparece",
   "previewText": "Sempre curta e sem detalhes pessoais.",
@@ -26,5 +34,12 @@
   "errors(map)": {
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para salvar agora. Sua escolha anterior foi mantida."
+  },
+  "dailyMaxTitle": "Quantas por dia",
+  "dailyMaxNote": "No máximo duas por dia, sempre curtas e sem detalhes pessoais.",
+  "dailyMax(plural, param=count)": {
+    "zero": "Nenhuma",
+    "one": "Até 1",
+    "other": "Até {count}"
   }
 }

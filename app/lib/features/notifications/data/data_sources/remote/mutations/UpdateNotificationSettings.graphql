@@ -3,11 +3,12 @@ mutation UpdateNotificationSettings(
   $enabled: Boolean!
   $cardDay: smallint!
   $cardHour: smallint!
+  $dailyMax: smallint!
   $mutes: jsonb!
 ) {
   updateNotificationSettings(
     where: { userId: { _eq: $userId } }
-    _set: { enabled: $enabled, cardDay: $cardDay, cardHour: $cardHour }
+    _set: { enabled: $enabled, cardDay: $cardDay, cardHour: $cardHour, dailyMax: $dailyMax }
   ) {
     affected_rows
   }

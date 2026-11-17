@@ -17,7 +17,15 @@
   "cardTitle": "Sunday card",
   "cardDay": "Day",
   "cardHour": "Time",
-  "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  "days": [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ],
   "hourFormat": "{hour}:00",
   "previewTitle": "How a notification looks",
   "previewText": "Always short, with no personal details.",
@@ -26,5 +34,12 @@
   "errors(map)": {
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't save right now. Your previous choice was kept."
+  },
+  "dailyMaxTitle": "How many a day",
+  "dailyMaxNote": "Two a day at most, always short and without personal details.",
+  "dailyMax(plural, param=count)": {
+    "zero": "None",
+    "one": "Up to 1",
+    "other": "Up to {count}"
   }
 }
