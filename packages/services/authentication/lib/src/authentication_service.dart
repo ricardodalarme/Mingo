@@ -6,7 +6,13 @@ import 'package:authentication_service/src/exceptions.dart';
 import 'package:http/http.dart' as http;
 import 'package:nhost_auth_dart/nhost_auth_dart.dart';
 import 'package:nhost_sdk/nhost_sdk.dart'
-    show ApiException, AuthenticationState, NhostException, Session, UserSession;
+    show
+        ApiException,
+        AuthenticationState,
+        NhostException,
+        Session,
+        UserSession,
+        unauthorizedStatus;
 import 'package:secure_storage_service/secure_storage_service.dart';
 
 /// A signed-in person and the tokens that prove it.
@@ -54,11 +60,16 @@ class AuthenticationService({
   final http.Client? httpClient,
 }) {
   static const _sessionKey = 'auth.session';
+  static const _refreshMargin = Duration(seconds: 45);
+  // The SDK's own refresh timer throws an unhandled error when a refresh fails, so this service
+  // schedules the refresh itself and the SDK's is set too far out to ever fire.
+  static const _sdkRefreshInterval = Duration(days: 36500);
 
   late final SecureStorageService _storage = secureStorage ?? SecureStorageService();
   final StreamController<bool> _authChanges = StreamController<bool>.broadcast();
 
   NhostAuthClient? _client;
+  Timer? _refreshTimer;
 
   NhostAuthClient get _auth => _client!;
 
@@ -86,12 +97,23 @@ class AuthenticationService({
 
   Future<void> initialize({required String url}) async {
     if (url.isEmpty) throw AuthenticationException(code: 'invalid_configuration');
-    _client = authClient ?? NhostAuthClient(url: url, httpClient: httpClient);
+    _client =
+        authClient ??
+        NhostAuthClient(
+          url: url,
+          httpClient: httpClient,
+          tokenRefreshInterval: _sdkRefreshInterval,
+        );
     _auth.addAuthStateChangedCallback((state) {
       _authChanges.add(state == AuthenticationState.signedIn);
     });
-    _auth.addTokenChangedCallback(() => unawaited(_persist()));
-    _auth.addSessionRefreshFailedCallback((_, _) => unawaited(_clear()));
+    _auth.addTokenChangedCallback(() {
+      unawaited(_persist());
+      _scheduleRefresh();
+    });
+    _auth.addSessionRefreshFailedCallback((error, _) {
+      if (_isRejected(error)) unawaited(_clear());
+    });
 
     final stored = await _storage.read(key: _sessionKey);
     if (stored == null) return;
@@ -103,15 +125,18 @@ class AuthenticationService({
       }
       final expiry = _expiry(session.accessToken);
       if (expiry == null || DateTime.now().isAfter(expiry.subtract(const Duration(seconds: 30)))) {
-        await _auth.signInWithRefreshToken(refreshToken);
-        await _persist();
+        try {
+          await _auth.signInWithRefreshToken(refreshToken);
+          await _persist();
+        } on Exception catch (error) {
+          if (_isRejected(error)) rethrow;
+          // Offline or the server is down: the person stays signed in, and the stored tokens are
+          // renewed with the first request that can reach the server.
+          await _restore(session, expiresIn: Duration.zero);
+        }
         return;
       }
-      // Restoring the stored session is the documented use of this setter; the annotation is about tests.
-      // ignore: invalid_use_of_visible_for_testing_member
-      await _auth.setSession(
-        session.copyWith(accessTokenExpiresIn: expiry.difference(DateTime.now())),
-      );
+      await _restore(session, expiresIn: expiry.difference(DateTime.now()));
     } on Object {
       await _clear();
     }
@@ -186,13 +211,33 @@ class AuthenticationService({
       await _auth.signInWithRefreshToken(refreshToken);
       await _persist();
       return true;
-    } on Object {
-      await _clear();
+    } on Object catch (error) {
+      if (_isRejected(error)) await _clear();
       return false;
     }
   }
 
+  /// Whether the server refused the refresh token, as opposed to not being reachable.
+  bool _isRejected(Object error) => error is ApiException && error.statusCode == unauthorizedStatus;
+
+  Future<void> _restore(Session session, {required Duration expiresIn}) =>
+      // Restoring the stored session is the documented use of this setter; the annotation is about tests.
+      // ignore: invalid_use_of_visible_for_testing_member
+      _auth.setSession(session.copyWith(accessTokenExpiresIn: expiresIn));
+
+  void _scheduleRefresh() {
+    _refreshTimer?.cancel();
+    final expiry = _expiry(_auth.accessToken);
+    if (expiry == null) return;
+    final wait = expiry.subtract(_refreshMargin).difference(DateTime.now());
+    _refreshTimer = Timer(
+      wait.isNegative ? Duration.zero : wait,
+      () => unawaited(refreshSession()),
+    );
+  }
+
   void dispose() {
+    _refreshTimer?.cancel();
     _auth.close();
     unawaited(_authChanges.close());
   }
@@ -225,6 +270,7 @@ class AuthenticationService({
   }
 
   Future<void> _clear() async {
+    _refreshTimer?.cancel();
     await _storage.delete(key: _sessionKey);
     // Clearing locally is the documented way to end an unusable refresh token without a network call.
     // ignore: invalid_use_of_visible_for_testing_member
