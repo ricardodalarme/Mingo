@@ -3,6 +3,7 @@ import 'package:app/features/mood/chat/mood_chat_handlers.dart';
 import 'package:app/features/mood/data/data_sources/local/mood_local_data_source.dart';
 import 'package:app/features/mood/data/data_sources/remote/mood_data_source.dart';
 import 'package:app/features/mood/data/repositories/mood_repository.dart';
+import 'package:app/features/mood/presentation/calendar/cubit/mood_calendar_cubit.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:core/core.dart';
@@ -30,6 +31,9 @@ class MoodInjectionModule() implements InjectionModule {
           moodRepository: injector.get<MoodRepository>(),
           slipRepository: injector.get<SlipRepository>(),
         ),
+      )
+      ..registerFactory<MoodCalendarCubit>(
+        () => MoodCalendarCubit(moodRepository: injector.get<MoodRepository>()),
       );
 
     injector.get<ChatActionRegistry>()

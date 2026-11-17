@@ -311,4 +311,43 @@ void main() {
 
     expect(repository.getTodayMood(), throwsA(isA<LocalizedException>()));
   });
+
+  test('the month read asks for the first and the last day and maps the rows', () async {
+    when(
+      () => dataSource.getMonthMoods(
+        from: any(named: 'from'),
+        to: any(named: 'to'),
+      ),
+    ).thenAnswer(
+      (_) async => [
+        record(),
+        (
+          id: 'm2',
+          day: DateTime(2026, 11, 12),
+          mood: EnumMood_enum.happy,
+          need: null,
+          share: EnumMoodShare_enum.none,
+        ),
+      ],
+    );
+
+    final entries = await repository.getMonthMoods(month: DateTime(2026, 11, 16));
+
+    verify(() => dataSource.getMonthMoods(from: DateTime(2026, 11, 1), to: DateTime(2026, 11, 30)))
+        .called(1);
+    expect(entries, hasLength(2));
+    expect(entries.first.mood, MoodKind.tired);
+    expect(entries.last.mood, MoodKind.happy);
+  });
+
+  test('a month read failure is rethrown', () {
+    when(
+      () => dataSource.getMonthMoods(
+        from: any(named: 'from'),
+        to: any(named: 'to'),
+      ),
+    ).thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+
+    expect(repository.getMonthMoods(month: DateTime(2026, 2)), throwsA(isA<LocalizedException>()));
+  });
 }

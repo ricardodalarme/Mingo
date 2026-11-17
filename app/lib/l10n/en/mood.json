@@ -85,5 +85,26 @@
   "shareAction": "Share",
   "shareHeadline": "Share with {name}?",
   "shareHeadlineNoName": "Share with your person?",
-  "shareHeadlineNoNameHighlight": "your person"
+  "shareHeadlineNoNameHighlight": "your person",
+  "calendarTitle": "My moods",
+  "calendarMonth": "{month} {year}",
+  "calendarEmpty": "No mood in this month yet.",
+  "calendarPrivacyNote": "Only you see this. It never shows up for your partner unless it was shared for the day.",
+  "calendarAction": "Record my mood",
+  "calendarErrorTitle": "Couldn't open your moods",
+  "calendarErrorText": "Nothing was lost. Try again.",
+  "monthNames": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ]
 }

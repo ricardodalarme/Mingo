@@ -1,6 +1,7 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/mood/data/data_sources/remote/mutations/generated/InsertMood.graphql.dart';
 import 'package:app/features/mood/data/data_sources/remote/mutations/generated/UpdateMood.graphql.dart';
+import 'package:app/features/mood/data/data_sources/remote/queries/generated/MoodMonth.graphql.dart';
 import 'package:app/features/mood/data/data_sources/remote/queries/generated/TodayMood.graphql.dart';
 import 'package:network/network.dart';
 
@@ -50,6 +51,19 @@ class MoodDataSource({required final GQLClient _client}) {
     );
   }
 
+  /// The person's own rows between [from] and [to], oldest first.
+  Future<List<MoodRecord>> getMonthMoods({required DateTime from, required DateTime to}) async {
+    final response = await _client.query(
+      OptionsQueryMoodMonth(
+        variables: VariablesQueryMoodMonth(from: from, to: to),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
+    );
+    final data = validateResponseData<QueryMoodMonth, QueryMoodMonth>(response);
+
+    return [for (final node in data.moods) node.toRecord()];
+  }
+
   Future<MoodRecord> insertMood({
     required EnumMood_enum mood,
     required EnumMoodNeed_enum? need,
@@ -94,6 +108,10 @@ class MoodDataSource({required final GQLClient _client}) {
 }
 
 extension on QueryTodayMoodmoods {
+  MoodRecord toRecord() => (id: id, day: day, mood: mood, need: need, share: share);
+}
+
+extension on QueryMoodMonthmoods {
   MoodRecord toRecord() => (id: id, day: day, mood: mood, need: need, share: share);
 }
 

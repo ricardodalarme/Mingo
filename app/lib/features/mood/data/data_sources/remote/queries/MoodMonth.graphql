@@ -1,0 +1,9 @@
+query MoodMonth($from: date!, $to: date!) {
+  moods(where: { day: { _gte: $from, _lte: $to } }, order_by: [{ day: asc }]) {
+    id
+    day
+    mood
+    need
+    share
+  }
+}

@@ -40,6 +40,18 @@ class MoodRepository({
   /// Today's own mood kept on the device, so a cold start paints before the read returns.
   MoodEntry? readCachedTodayMood() => _localDataSource.readToday();
 
+  /// The person's own moods for [month], oldest first.
+  ///
+  /// The partner's shared mood is only ever today's row, so no other person's days arrive here.
+  Future<List<MoodEntry>> getMonthMoods({required DateTime month}) =>
+      _run('read the month of moods', () async {
+        final first = DateTime(month.year, month.month);
+        final last = DateTime(month.year, month.month + 1, 0);
+        final rows = await _dataSource.getMonthMoods(from: first, to: last);
+
+        return [for (final row in rows) row.toEntry()];
+      });
+
   /// Updates today's row when it exists and inserts it otherwise, so the latest save wins.
   Future<MoodEntry> saveMood({required MoodKind mood, required MoodShare share, NeedKind? need}) =>
       _run("save today's mood", () async {

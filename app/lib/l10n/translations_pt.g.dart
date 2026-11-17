@@ -4431,6 +4431,43 @@ class Translations$mood$pt {
 
   /// pt: 'sua pessoa'
   String get shareHeadlineNoNameHighlight => 'sua pessoa';
+
+  /// pt: 'Meus humores'
+  String get calendarTitle => 'Meus humores';
+
+  /// pt: '{month} de {year}'
+  String calendarMonth({required Object month, required Object year}) => '${month} de ${year}';
+
+  /// pt: 'Nenhum humor neste mês ainda.'
+  String get calendarEmpty => 'Nenhum humor neste mês ainda.';
+
+  /// pt: 'Só você vê isto. Não aparece para o parceiro, a menos que seja compartilhado por dia.'
+  String get calendarPrivacyNote =>
+      'Só você vê isto. Não aparece para o parceiro, a menos que seja compartilhado por dia.';
+
+  /// pt: 'Registrar meu humor'
+  String get calendarAction => 'Registrar meu humor';
+
+  /// pt: 'Não deu para abrir seus humores'
+  String get calendarErrorTitle => 'Não deu para abrir seus humores';
+
+  /// pt: 'Nada se perdeu. Tente de novo.'
+  String get calendarErrorText => 'Nada se perdeu. Tente de novo.';
+
+  List<String> get monthNames => [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
+  ];
 }
 
 // Path: moodHelp
@@ -7497,6 +7534,12 @@ class Translations$tabs$pt {
 
   /// pt: 'Só seu'
   String get diaryMeta => 'Só seu';
+
+  /// pt: 'Meus humores'
+  String get moodCalendarTitle => 'Meus humores';
+
+  /// pt: 'Seu mês, só você vê'
+  String get moodCalendarMeta => 'Seu mês, só você vê';
 
   /// pt: 'Notas antes de falar'
   String get hardTalkMeta => 'Notas antes de falar';
@@ -12685,6 +12728,29 @@ extension on Translations {
           'mood.shareHeadline' => ({required Object name}) => 'Compartilhar com ${name}?',
           'mood.shareHeadlineNoName' => 'Compartilhar com sua pessoa?',
           'mood.shareHeadlineNoNameHighlight' => 'sua pessoa',
+          'mood.calendarTitle' => 'Meus humores',
+          'mood.calendarMonth' => ({
+            required Object month,
+            required Object year,
+          }) => '${month} de ${year}',
+          'mood.calendarEmpty' => 'Nenhum humor neste mês ainda.',
+          'mood.calendarPrivacyNote' =>
+            'Só você vê isto. Não aparece para o parceiro, a menos que seja compartilhado por dia.',
+          'mood.calendarAction' => 'Registrar meu humor',
+          'mood.calendarErrorTitle' => 'Não deu para abrir seus humores',
+          'mood.calendarErrorText' => 'Nada se perdeu. Tente de novo.',
+          'mood.monthNames.0' => 'janeiro',
+          'mood.monthNames.1' => 'fevereiro',
+          'mood.monthNames.2' => 'março',
+          'mood.monthNames.3' => 'abril',
+          'mood.monthNames.4' => 'maio',
+          'mood.monthNames.5' => 'junho',
+          'mood.monthNames.6' => 'julho',
+          'mood.monthNames.7' => 'agosto',
+          'mood.monthNames.8' => 'setembro',
+          'mood.monthNames.9' => 'outubro',
+          'mood.monthNames.10' => 'novembro',
+          'mood.monthNames.11' => 'dezembro',
           'moodHelp.listenTitle' => 'Escuta primeiro',
           'moodHelp.listenSubtitle' => 'Sem pressa e sem cobrar resposta.',
           'moodHelp.talkLabel' => 'Conversa',
@@ -13140,6 +13206,9 @@ extension on Translations {
                   one: '1 lição',
                   other: '${count} lições',
                 ),
+          _ => null,
+        } ??
+        switch (path) {
           'programs.noLessons' => 'Lições chegando',
           'programs.emptyTitle' => 'Nenhum programa por aqui ainda',
           'programs.emptyText' => 'Novos programas chegam em breve. Volte quando quiser.',
@@ -13160,9 +13229,6 @@ extension on Translations {
           'programs.lessonsComingText' =>
             'Este programa ainda está sendo preparado. Volte em breve.',
           'programs.lessonGoneTitle' => 'Lição indisponível',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.lessonGoneText' =>
             'Este dia não faz mais parte do programa. Escolha outra lição.',
           'programs.dayOneHint' => 'A primeira lição é sempre aberta neste programa.',
@@ -13721,6 +13787,9 @@ extension on Translations {
           'slipDetail.monthsShort.11' => 'dez',
           'slipDetail.kinds.quick' => 'Rápido',
           'slipDetail.kinds.specific' => 'Específico',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.kinds.ifThen' => 'Se… então',
           'slipDetail.kinds.invisible' => 'Invisível',
           'slipDetail.kinds.other' => '',
@@ -13740,9 +13809,6 @@ extension on Translations {
           'slipDetail.deleteConfirm' => 'Apagar',
           'slipDetail.saved' => 'Salvo',
           'slipDetail.deleted' => 'Slip apagado',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.notFoundTitle' => 'Este slip não existe mais',
           'slipDetail.notFoundText' => 'Ele pode ter sido apagado.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
@@ -14226,6 +14292,8 @@ extension on Translations {
           'tabs.badDayMeta' => 'Três coisas pequenas',
           'tabs.distanceMeta' => 'Fusos e reencontro',
           'tabs.diaryMeta' => 'Só seu',
+          'tabs.moodCalendarTitle' => 'Meus humores',
+          'tabs.moodCalendarMeta' => 'Seu mês, só você vê',
           'tabs.hardTalkMeta' => 'Notas antes de falar',
           'tabs.notesMeta' => 'Quando quiser',
           'tabs.learningMeta' => 'Anotações privadas',
@@ -14460,6 +14528,9 @@ extension on Translations {
           'unpair.relationship.unpair' => ({required Object name}) => 'Desvincular da ${name}',
           'unpair.relationship.ended' => 'A relação terminou',
           'unpair.breakup.appBarTitle' => 'Terminamos',
+          _ => null,
+        } ??
+        switch (path) {
           'unpair.breakup.title' => 'Sinto muito',
           'unpair.breakup.highlight' => 'muito',
           'unpair.breakup.text' => 'Você decide o que guardar. Nada é apagado sem você querer.',
@@ -14486,9 +14557,6 @@ extension on Translations {
           'weeklyReview.months.2' => 'março',
           'weeklyReview.months.3' => 'abril',
           'weeklyReview.months.4' => 'maio',
-          _ => null,
-        } ??
-        switch (path) {
           'weeklyReview.months.5' => 'junho',
           'weeklyReview.months.6' => 'julho',
           'weeklyReview.months.7' => 'agosto',

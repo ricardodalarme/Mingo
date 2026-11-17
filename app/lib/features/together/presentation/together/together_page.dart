@@ -291,6 +291,12 @@ class const _PrivateSection() extends StatelessWidget {
       title: l10n.sectionPrivate,
       children: [
         _row(
+          icon: AppIcons.calendar,
+          title: l10n.moodCalendarTitle,
+          subtitle: l10n.moodCalendarMeta,
+          onTap: () => context.pushRoute(const MoodCalendarRoute()),
+        ),
+        _row(
           icon: AppIcons.lock,
           title: context.l10n.programs.diaryTitle,
           subtitle: l10n.diaryMeta,

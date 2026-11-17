@@ -85,5 +85,26 @@
   "shareAction": "Compartilhar",
   "shareHeadline": "Compartilhar com {name}?",
   "shareHeadlineNoName": "Compartilhar com sua pessoa?",
-  "shareHeadlineNoNameHighlight": "sua pessoa"
+  "shareHeadlineNoNameHighlight": "sua pessoa",
+  "calendarTitle": "Meus humores",
+  "calendarMonth": "{month} de {year}",
+  "calendarEmpty": "Nenhum humor neste mês ainda.",
+  "calendarPrivacyNote": "Só você vê isto. Não aparece para o parceiro, a menos que seja compartilhado por dia.",
+  "calendarAction": "Registrar meu humor",
+  "calendarErrorTitle": "Não deu para abrir seus humores",
+  "calendarErrorText": "Nada se perdeu. Tente de novo.",
+  "monthNames": [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro"
+  ]
 }

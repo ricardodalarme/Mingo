@@ -1688,6 +1688,22 @@ class MilestoneRouteArgs {
 }
 
 /// generated route for
+/// [MoodCalendarPage]
+class MoodCalendarRoute extends PageRouteInfo<void> {
+  const MoodCalendarRoute({List<PageRouteInfo>? children})
+    : super(MoodCalendarRoute.name, initialChildren: children);
+
+  static const String name = 'MoodCalendarRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const MoodCalendarPage());
+    },
+  );
+}
+
+/// generated route for
 /// [MoodPage]
 class MoodRoute extends PageRouteInfo<MoodRouteArgs> {
   MoodRoute({String? initialMood, Key? key, List<PageRouteInfo>? children})
