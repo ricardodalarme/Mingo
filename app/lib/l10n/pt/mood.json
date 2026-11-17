@@ -73,6 +73,7 @@
   "homePrivacy": "Só você vê",
   "homePrivacyShared": "{name} vê",
   "homePrivacySharedNoName": "Seu par vê",
+  "homeLoadFailed": "Não deu para carregar. Toque para abrir.",
   "homeDetailsLink": "O que seu par vê",
   "homeMoods(map)": {
     "happy": "Bem",

@@ -349,4 +349,35 @@ void main() {
     verify(() => slips.sendSweetMessage('Sem pressa. Estou por aqui.')).called(1);
     expect(find.text('Mensagem enviada'), findsOneWidget);
   });
+
+  testWidgets('a failed read with nothing cached keeps a way into the mood card', (tester) async {
+    when(() => repository.getTodayMood())
+        .thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+
+    expect(find.text('Como você está?'), findsOneWidget);
+    expect(find.text('Não deu para carregar. Toque para abrir.'), findsOneWidget);
+  });
+
+  testWidgets('offline the strip shows the mood cached on the device', (tester) async {
+    when(() => repository.readCachedTodayMood()).thenReturn(entry);
+    when(() => repository.getTodayMood())
+        .thenThrow(const LocalizedException(l10nKey: networkErrorCode));
+    final cubit = build();
+    await cubit.load();
+
+    await pumpBlock(tester, cubit);
+
+    expect(find.text('Tenso'), findsOneWidget);
+    expect(find.text('Não deu para carregar. Toque para abrir.'), findsNothing);
+    expect(
+      find.byWidgetPredicate(
+        (widget) => widget is BaseFace && widget.selected && widget.kind == FaceKind.tired,
+      ),
+      findsOneWidget,
+    );
+  });
 }

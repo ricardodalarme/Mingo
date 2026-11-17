@@ -73,6 +73,7 @@
   "homePrivacy": "Only you see it",
   "homePrivacyShared": "{name} sees it",
   "homePrivacySharedNoName": "Your partner sees it",
+  "homeLoadFailed": "Couldn't load it. Tap to open.",
   "homeDetailsLink": "What your partner sees",
   "homeMoods(map)": {
     "happy": "Good",

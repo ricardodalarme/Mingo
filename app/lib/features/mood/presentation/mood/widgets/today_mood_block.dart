@@ -100,7 +100,11 @@ class const TodayMoodBlock({
                   const SizedBox(height: AppSpace.s16),
                 ],
               ),
-              failureBuilder: (_) => const SizedBox.shrink(),
+              failureBuilder: (_) => BaseListTile(
+                title: l10n.homeTitle,
+                subtitle: l10n.homeLoadFailed,
+                onTap: () => _openDetails(context),
+              ),
             ),
         ],
       ),
