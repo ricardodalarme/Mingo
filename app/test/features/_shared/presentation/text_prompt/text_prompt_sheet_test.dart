@@ -1,4 +1,4 @@
-import 'package:app/features/lists/presentation/text_prompt/text_prompt_sheet.dart';
+import 'package:app/features/_shared/presentation/text_prompt/text_prompt_sheet.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';

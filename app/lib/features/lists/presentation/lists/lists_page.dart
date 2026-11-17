@@ -1,9 +1,9 @@
 import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
+import 'package:app/features/_shared/presentation/text_prompt/text_prompt_sheet.dart';
 import 'package:app/features/lists/data/models/list_kind.dart';
 import 'package:app/features/lists/data/models/list_models.dart';
 import 'package:app/features/lists/presentation/create_list/create_list_sheet.dart';
 import 'package:app/features/lists/presentation/lists/cubit/lists_cubit.dart';
-import 'package:app/features/lists/presentation/text_prompt/text_prompt_sheet.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
