@@ -7472,6 +7472,9 @@ class Translations$tabs$pt {
 
   /// pt: 'Nós'
   String get couple => 'Nós';
+
+  /// pt: 'Nossa história'
+  String get storyChip => 'Nossa história';
 }
 
 // Path: temperature
@@ -13705,6 +13708,7 @@ extension on Translations {
                 ),
           'tabs.chat' => 'Conversa',
           'tabs.couple' => 'Nós',
+          'tabs.storyChip' => 'Nossa história',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
@@ -13871,10 +13875,10 @@ extension on Translations {
           'unpair.appBarTitle' => 'Desvincular',
           'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
           'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',
-          'unpair.confirm' => 'Desvincular',
           _ => null,
         } ??
         switch (path) {
+          'unpair.confirm' => 'Desvincular',
           'unpair.cancel' => 'Cancelar',
           'unpair.unnamedPartner' => 'sua pessoa',
           'unpair.done.title' => 'Desvinculado',

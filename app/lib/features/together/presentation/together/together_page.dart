@@ -39,13 +39,17 @@ class const TogetherPage({final bool isEmbedded = false, super.key})
         children: [
           if (!isEmbedded)
             Semantics(header: true, child: Text(l10n.together, style: context.text.titleXl)),
-          if (since != null && hasPartner) ...[
-            if (!isEmbedded) const SizedBox(height: AppSpace.s4),
-            Text(
-              _duration(l10n, since, clock.now()),
-              style: context.text.body.copyWith(color: context.colors.textSecondary),
+          if (!isEmbedded) const SizedBox(height: AppSpace.s8),
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: BaseChip.icon(
+              label: since != null && hasPartner
+                  ? _duration(l10n, since, clock.now())
+                  : l10n.storyChip,
+              icon: AppIcons.heart,
+              onTap: () => context.pushRoute(const StoryRoute()),
             ),
-          ],
+          ),
           const SizedBox(height: AppSpace.s16),
           if (!hasPartner) ...[
             BaseNote(text: l10n.soloNote),

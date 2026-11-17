@@ -5995,6 +5995,8 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get chat => 'Chat';
   @override
   String get couple => 'Us';
+  @override
+  String get storyChip => 'Our story';
 }
 
 // Path: temperature
@@ -11701,6 +11703,7 @@ extension on TranslationsEn {
                 ),
           'tabs.chat' => 'Chat',
           'tabs.couple' => 'Us',
+          'tabs.storyChip' => 'Our story',
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',
@@ -11866,10 +11869,10 @@ extension on TranslationsEn {
           'unpair.appBarTitle' => 'Unpair',
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
           'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
-          'unpair.confirm' => 'Unpair',
           _ => null,
         } ??
         switch (path) {
+          'unpair.confirm' => 'Unpair',
           'unpair.cancel' => 'Cancel',
           'unpair.unnamedPartner' => 'your person',
           'unpair.done.title' => 'Unpaired',
