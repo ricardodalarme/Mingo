@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/spice/data/models/spice_models.dart';
 import 'package:app/features/spice/data/repositories/spice_repository.dart';
@@ -13,6 +15,8 @@ class SpiceCubit({
 }) extends Cubit<SpiceState> {
   this : super(const SpiceState());
 
+  StreamSubscription<SpiceStatus>? _live;
+
   /// Reads the mode and whether the person has a partner; what is on screen stays while it reloads.
   Future<void> load() async {
     if (state.status is! Success) emit(state.copyWith(status: const Loading()));
@@ -22,6 +26,7 @@ class SpiceCubit({
         _pairingRepository.getPartner(),
       ).wait;
       emit(state.copyWith(status: Success(status), hasPartner: partner != null));
+      _watch();
     } catch (exception) {
       if (state.status is Success) return;
       emit(state.copyWith(status: Failure.fromObject(exception)));
@@ -59,5 +64,22 @@ class SpiceCubit({
       emit(state.copyWith(changeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(changeAction: const Initial()));
+  }
+
+  /// Follows the mode after the first read, so the partner switching it on or off shows up while
+  /// the page is open.
+  void _watch() {
+    _live ??= _spiceRepository.watchStatus().listen((status) {
+      final current = state.status;
+      if (current is! Success<SpiceStatus> || current.value == status) return;
+      unawaited(load());
+    });
+  }
+
+  @override
+  Future<void> close() async {
+    await _live?.cancel();
+
+    return super.close();
   }
 }

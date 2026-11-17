@@ -15,7 +15,11 @@ import 'package:app/features/spice/data/data_sources/remote/queries/generated/Sp
 import 'package:app/features/spice/data/data_sources/remote/queries/generated/SpiceMatches.graphql.dart';
 import 'package:app/features/spice/data/data_sources/remote/queries/generated/SpiceState.graphql.dart';
 import 'package:app/features/spice/data/data_sources/remote/queries/generated/SpiceTexts.graphql.dart';
+import 'package:app/features/spice/data/data_sources/remote/subscriptions/generated/WatchSpiceChallenge.graphql.dart';
+import 'package:app/features/spice/data/data_sources/remote/subscriptions/generated/WatchSpiceState.graphql.dart';
 import 'package:network/network.dart';
+
+typedef SpiceStateRecord = ({String state, int? myLevel, int? coupleLevel});
 
 class SpiceDataSource({required final GQLClient _client}) {
   Future<QuerySpiceStatespiceState> getState() async {
@@ -26,6 +30,25 @@ class SpiceDataSource({required final GQLClient _client}) {
     if (rows.isEmpty) throw const NoDataException();
 
     return rows.first;
+  }
+
+  /// Emits the mode now and each time either person switches it on or off or changes a level.
+  Stream<SpiceStateRecord> watchState() {
+    return _client.subscribe(OptionsSubscriptionWatchSpiceState()).mapResponseData((data) {
+      final row = data.spiceState.firstOrNull;
+      if (row == null) return null;
+
+      return (state: row.state, myLevel: row.myLevel, coupleLevel: row.coupleLevel);
+    });
+  }
+
+  /// Emits the couple's current challenge now and each time it is accepted, done or swapped;
+  /// null when there is none.
+  Stream<FragmentSpiceChallengeFragment?> watchChallenge() {
+    return _client
+        .subscribe(OptionsSubscriptionWatchSpiceChallenge())
+        .mapResponseData((data) => List<FragmentSpiceChallengeFragment>.of(data.spiceChallenges))
+        .map((rows) => rows.firstOrNull);
   }
 
   /// Records that the person is an adult; the server refuses to switch the mode on without it.

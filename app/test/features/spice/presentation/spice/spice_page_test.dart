@@ -25,6 +25,7 @@ void main() {
   setUp(() {
     spice = _MockSpiceRepository();
     pairing = _MockPairingRepository();
+    when(spice.watchStatus).thenAnswer((_) => const Stream<SpiceStatus>.empty());
     when(pairing.getPartner).thenAnswer(
       (_) async => const Profile(id: 'p', avatarKind: AvatarKind.initials, displayName: 'Rui'),
     );

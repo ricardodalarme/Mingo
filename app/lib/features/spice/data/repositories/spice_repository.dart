@@ -29,12 +29,33 @@ class SpiceRepository({
   Future<SpiceStatus> getStatus() => _run('read the mode', () async {
     final node = await _dataSource.getState();
 
-    return SpiceStatus(
-      stage: spiceStageFromRemote(node.state),
-      myLevel: spiceLevelFromRemote(node.myLevel),
-      coupleLevel: node.coupleLevel == null ? null : spiceLevelFromRemote(node.coupleLevel),
-    );
+    return _status((state: node.state, myLevel: node.myLevel, coupleLevel: node.coupleLevel));
   });
+
+  /// Emits the mode now and each time either person changes it. A failed event is logged and
+  /// skipped, so a screen keeps what it shows.
+  Stream<SpiceStatus> watchStatus() {
+    return _dataSource.watchState().map(_status).handleError((Object e, StackTrace stack) {
+      _logger.error('The mode subscription failed', error: e, stackTrace: stack);
+    });
+  }
+
+  /// Emits the couple's challenge now and each time the partner or the person acts on it; null
+  /// when there is none. A failed event is logged and skipped.
+  Stream<SpiceChallenge?> watchChallenge() {
+    return _dataSource.watchChallenge().asyncMap(_toChallenge).handleError((
+      Object e,
+      StackTrace stack,
+    ) {
+      _logger.error('The challenge subscription failed', error: e, stackTrace: stack);
+    });
+  }
+
+  SpiceStatus _status(SpiceStateRecord node) => SpiceStatus(
+    stage: spiceStageFromRemote(node.state),
+    myLevel: spiceLevelFromRemote(node.myLevel),
+    coupleLevel: node.coupleLevel == null ? null : spiceLevelFromRemote(node.coupleLevel),
+  );
 
   /// Confirms the person is an adult and switches the mode on for them only.
   Future<void> turnOn() => _run('switch the mode on', () async {

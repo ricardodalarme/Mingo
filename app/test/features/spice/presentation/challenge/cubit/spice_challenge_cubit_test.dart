@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/spice/data/models/spice_models.dart';
 import 'package:app/features/spice/data/repositories/spice_repository.dart';
 import 'package:app/features/spice/presentation/challenge/cubit/spice_challenge_cubit.dart';
@@ -9,6 +11,7 @@ class _MockSpiceRepository() extends Mock implements SpiceRepository;
 
 void main() {
   late SpiceRepository spice;
+  late StreamController<SpiceChallenge?> live;
   const fresh = SpiceChallenge(
     text: 'Uma noite sem telas',
     acceptedByMe: false,
@@ -26,6 +29,9 @@ void main() {
 
   setUp(() {
     spice = _MockSpiceRepository();
+    live = StreamController<SpiceChallenge?>.broadcast();
+    addTearDown(live.close);
+    when(spice.watchChallenge).thenAnswer((_) => live.stream);
     when(spice.getChallenge).thenAnswer((_) async => fresh);
     when(() => spice.actOnChallenge(any())).thenAnswer((_) async => accepted);
   });
@@ -61,5 +67,33 @@ void main() {
 
     expect(actions.whereType<Failure>(), isNotEmpty);
     expect(cubit.state.challenge, const Success<SpiceChallenge?>(fresh));
+  });
+
+  test('the partner accepting the challenge shows up while the page is open', () async {
+    const both = SpiceChallenge(
+      text: 'Uma noite sem telas',
+      acceptedByMe: false,
+      doneByMe: false,
+      acceptedByPartner: true,
+      swapsLeft: 3,
+    );
+    final cubit = SpiceChallengeCubit(spiceRepository: spice);
+    addTearDown(cubit.close);
+    await cubit.load();
+
+    live.add(both);
+    await pumpEventQueue();
+
+    expect(cubit.state.challenge, const Success<SpiceChallenge?>(both));
+  });
+
+  test('stops following the challenge when it closes', () async {
+    final cubit = SpiceChallengeCubit(spiceRepository: spice);
+    await cubit.load();
+    expect(live.hasListener, isTrue);
+
+    await cubit.close();
+
+    expect(live.hasListener, isFalse);
   });
 }

@@ -129,4 +129,48 @@ void main() {
     expect(challenge.doneByMe, isFalse);
     expect(challenge.swapsLeft, 2);
   });
+
+  test('watching the mode maps each state to a stage and the levels', () async {
+    when(dataSource.watchState)
+        .thenAnswer((_) => Stream.value((state: 'waiting_partner', myLevel: 2, coupleLevel: null)));
+
+    final status = await repository.watchStatus().first;
+
+    expect(status.stage, SpiceStage.waitingPartner);
+    expect(status.myLevel, SpiceLevel.warm);
+    expect(status.coupleLevel, isNull);
+  });
+
+  test('watching the challenge reads the text and who accepted', () async {
+    when(
+      () => dataSource.getTexts(
+        slugs: any(named: 'slugs'),
+        locale: any(named: 'locale'),
+      ),
+    ).thenAnswer((_) async => {'s': 'Uma noite sem telas'});
+    when(dataSource.watchChallenge).thenAnswer(
+      (_) => Stream.value(
+        FragmentSpiceChallengeFragment(
+          id: 'c',
+          contentSlug: 's',
+          acceptedBy: ['you'],
+          doneBy: [],
+          swaps: 1,
+        ),
+      ),
+    );
+
+    final challenge = await repository.watchChallenge().first;
+
+    expect(challenge?.text, 'Uma noite sem telas');
+    expect(challenge?.acceptedByPartner, isTrue);
+    expect(challenge?.acceptedByMe, isFalse);
+    expect(challenge?.swapsLeft, spiceMaxSwaps - 1);
+  });
+
+  test('watching the challenge emits null when there is none', () async {
+    when(dataSource.watchChallenge).thenAnswer((_) => Stream.value(null));
+
+    expect(await repository.watchChallenge().first, isNull);
+  });
 }

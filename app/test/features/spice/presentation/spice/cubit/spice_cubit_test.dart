@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
@@ -15,12 +17,16 @@ class _MockPairingRepository() extends Mock implements PairingRepository;
 void main() {
   late SpiceRepository spice;
   late PairingRepository pairing;
+  late StreamController<SpiceStatus> live;
 
   const off = SpiceStatus(stage: SpiceStage.off, myLevel: SpiceLevel.soft);
 
   setUp(() {
     spice = _MockSpiceRepository();
     pairing = _MockPairingRepository();
+    live = StreamController<SpiceStatus>.broadcast();
+    addTearDown(live.close);
+    when(spice.watchStatus).thenAnswer((_) => live.stream);
     when(spice.getStatus).thenAnswer((_) async => off);
     when(pairing.getPartner).thenAnswer(
       (_) async => const Profile(id: 'p', avatarKind: AvatarKind.initials, displayName: 'Rui'),
@@ -72,5 +78,30 @@ void main() {
 
     expect(actions.whereType<Failure>(), isNotEmpty);
     expect(cubit.state.status, const Success(off));
+  });
+
+  test('reads the mode again when the partner switches it on', () async {
+    const waiting = SpiceStatus(stage: SpiceStage.waitingPartner, myLevel: SpiceLevel.soft);
+    const on = SpiceStatus(stage: SpiceStage.on, myLevel: SpiceLevel.soft);
+    final reads = [waiting, on];
+    when(spice.getStatus).thenAnswer((_) async => reads.removeAt(0));
+    final cubit = build();
+    addTearDown(cubit.close);
+    await cubit.load();
+
+    live.add(on);
+    await pumpEventQueue();
+
+    expect(cubit.state.status, const Success(on));
+  });
+
+  test('stops following the mode when it closes', () async {
+    final cubit = build();
+    await cubit.load();
+    expect(live.hasListener, isTrue);
+
+    await cubit.close();
+
+    expect(live.hasListener, isFalse);
   });
 }

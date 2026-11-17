@@ -1,0 +1,5 @@
+subscription WatchSpiceChallenge {
+  spiceChallenges(order_by: [{ createdAt: desc }], limit: 1) {
+    ...SpiceChallengeFragment
+  }
+}

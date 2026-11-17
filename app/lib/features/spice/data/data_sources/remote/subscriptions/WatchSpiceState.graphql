@@ -1,0 +1,7 @@
+subscription WatchSpiceState {
+  spiceState {
+    state
+    myLevel
+    coupleLevel
+  }
+}
