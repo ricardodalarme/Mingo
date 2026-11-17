@@ -1,5 +1,6 @@
 import 'package:app/features/questions/data/models/question_thread.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 
@@ -22,37 +23,42 @@ class const QuestionsRevealView({required final QuestionThread thread, super.key
             child: AppHighlightedText(
               text: l10n.revealTitle,
               highlight: l10n.revealHighlight,
-              style: context.text.question,
+              style: context.text.display,
             ),
           ),
-          const SizedBox(height: AppSpace.s8),
-          Text(
-            l10n.revealSubtitle,
-            style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+          const SizedBox(height: AppSpace.s20),
+          BaseSurfaceCard(
+            title: l10n.you,
+            child: Text(thread.ownAnswer?.body ?? '', style: context.text.body),
+          ),
+          const SizedBox(height: AppSpace.s12),
+          BaseSurfaceCard(
+            title: partnerLabel,
+            child: Text(thread.partnerAnswer?.body ?? '', style: context.text.body),
           ),
           const SizedBox(height: AppSpace.s20),
-          _AnswerCard(label: l10n.you, body: thread.ownAnswer?.body ?? ''),
-          const SizedBox(height: AppSpace.s12),
-          _AnswerCard(label: partnerLabel, body: thread.partnerAnswer?.body ?? ''),
-          const SizedBox(height: AppSpace.s16),
           Text(
-            l10n.revealNote,
-            style: context.text.caption.copyWith(color: context.colors.textSecondary),
+            l10n.keepPrompt,
+            style: context.text.body.copyWith(color: context.colors.textSecondary),
           ),
         ],
       ),
-      footer: BaseButton.primary(text: l10n.close, onPressed: () => context.router.maybePop()),
-    );
-  }
-}
-
-class const _AnswerCard({required final String label, required final String body})
-    extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BaseSurfaceCard(
-      title: label,
-      child: Text(body, style: context.text.body),
+      footer: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          BaseButton.primary(
+            text: l10n.saveMilestone,
+            onPressed: () => context.pushRoute(MilestoneRoute(initialTitle: thread.prompt.title)),
+          ),
+          const SizedBox(height: AppSpace.s6),
+          BaseButton.text(
+            text: l10n.notNow,
+            onPressed: () => context.router.maybePop(),
+            isFullWidth: true,
+          ),
+        ],
+      ),
     );
   }
 }

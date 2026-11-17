@@ -1,28 +1,28 @@
 {
-  "tag": "Pergunta para vocês dois",
-  "eyebrow": "Pergunta do dia",
+  "tag": "Pergunta do casal",
   "answerCta": "Responder",
-  "editCta": "Editar minha resposta",
+  "introNote": "Uma pergunta por dia ou por semana.",
   "answerHint": "Escreva o quanto quiser.",
   "answerErrors(map)": {
     "empty": "Escreva uma resposta",
     "tooLong": "A resposta está muito longa"
   },
-  "privateNote": "Só você vê isto até seu par responder também.",
   "partnerAnsweredNote": "Seu par já respondeu. Envie a sua para ver as duas.",
+  "partnerSeesAfter": "Só depois que você enviar a sua e {name} responder também.",
+  "partnerSeesAfterFallback": "Só depois que você enviar a sua e seu par responder também.",
   "soloNote": "Sua resposta fica privada. Seu par vai ver depois que vocês se conectarem.",
   "save": "Enviar",
   "cancel": "Cancelar",
+  "skip": "Pular",
   "waitingTitle": "Sua resposta ficou guardada",
   "waitingText": "Ela aparece aqui quando seu par responder também.",
   "waitingSoloText": "Quando seu par entrar, ele vê a sua resposta e você vê a dele.",
   "checkAgain": "Verificar de novo",
-  "voiceSoon": "Recado de voz",
-  "voiceSoonNote": "Por enquanto as respostas são escritas. A voz vem depois.",
-  "revealTitle": "Suas respostas juntas",
-  "revealHighlight": "juntas",
-  "revealSubtitle": "Agora que os dois responderam, vocês veem as duas.",
-  "revealNote": "Sem notas. Só o que cada um escreveu.",
+  "revealTitle": "As duas lembranças",
+  "revealHighlight": "lembranças",
+  "keepPrompt": "Querem guardar isso na história de vocês?",
+  "saveMilestone": "Salvar como marco",
+  "notNow": "Agora não",
   "you": "Você",
   "partnerFallback": "Seu par",
   "discardTitle": "Descartar esta resposta?",
@@ -34,5 +34,6 @@
   "close": "Fechar",
   "errors(map)": {
     "other": "Não deu para salvar agora. Tente de novo."
-  }
+  },
+  "editCta": "Editar minha resposta"
 }

@@ -3,6 +3,7 @@ part of 'questions_cubit.dart';
 const int answerMaxLength = 1000;
 
 enum QuestionsView() {
+  intro,
   answer,
   waiting,
   revealed,
@@ -12,6 +13,7 @@ final class const QuestionsState({
   final Resource<QuestionThread> thread = const Loading(),
   final FormInput<String> draft = const FormInput(''),
   final bool isEditing = false,
+  final bool hasStarted = false,
   final Resource<void> saveAction = const Initial(),
 }) with Equatable {
   /// The loaded thread, or null while loading or failed.
@@ -27,6 +29,7 @@ final class const QuestionsState({
     if (thread == null) return QuestionsView.answer;
     if (thread.isRevealed) return QuestionsView.revealed;
     if (thread.isAnswered) return QuestionsView.waiting;
+    if (!hasStarted) return QuestionsView.intro;
 
     return QuestionsView.answer;
   }
@@ -37,16 +40,18 @@ final class const QuestionsState({
     Resource<QuestionThread>? thread,
     FormInput<String>? draft,
     bool? isEditing,
+    bool? hasStarted,
     Resource<void>? saveAction,
   }) {
     return QuestionsState(
       thread: thread ?? this.thread,
       draft: draft ?? this.draft,
       isEditing: isEditing ?? this.isEditing,
+      hasStarted: hasStarted ?? this.hasStarted,
       saveAction: saveAction ?? this.saveAction,
     );
   }
 
   @override
-  List<Object?> get props => [thread, draft, isEditing, saveAction];
+  List<Object?> get props => [thread, draft, isEditing, hasStarted, saveAction];
 }

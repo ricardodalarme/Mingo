@@ -1,6 +1,7 @@
 import 'package:app/features/questions/data/models/question_thread.dart';
 import 'package:app/features/questions/presentation/questions/cubit/questions_cubit.dart';
 import 'package:app/features/questions/presentation/questions/widgets/questions_answer_view.dart';
+import 'package:app/features/questions/presentation/questions/widgets/questions_intro_view.dart';
 import 'package:app/features/questions/presentation/questions/widgets/questions_reveal_view.dart';
 import 'package:app/features/questions/presentation/questions/widgets/questions_waiting_view.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
@@ -78,7 +79,7 @@ class _QuestionsPageState() extends State<QuestionsPage> with WidgetsBindingObse
           child: SkeletonizerResourceWidget<QuestionThread>(
             thread,
             fakeValue: QuestionThread.fake(),
-            successBuilder: (thread) => _QuestionsBody(thread: thread),
+            successBuilder: (thread) => _QuestionsBody(thread: thread, onSkip: _skip),
             failureBuilder: (_) => BaseEmptyState(
               title: l10n.loadErrorTitle,
               text: l10n.loadErrorText,
@@ -89,6 +90,11 @@ class _QuestionsPageState() extends State<QuestionsPage> with WidgetsBindingObse
         ),
       ),
     );
+  }
+
+  void _skip() {
+    setState(() => _isDiscarding = true);
+    Navigator.of(context).pop();
   }
 
   Future<void> _confirmDiscard() async {
@@ -120,14 +126,18 @@ class _QuestionsPageState() extends State<QuestionsPage> with WidgetsBindingObse
   }
 }
 
-class const _QuestionsBody({required final QuestionThread thread}) extends StatelessWidget {
+class const _QuestionsBody({required final QuestionThread thread, final VoidCallback? onSkip})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isEditing = context.select((QuestionsCubit cubit) => cubit.state.isEditing);
+    final hasStarted = context.select((QuestionsCubit cubit) => cubit.state.hasStarted);
 
-    if (isEditing || !thread.isAnswered) return QuestionsAnswerView(thread: thread);
+    if (isEditing) return QuestionsAnswerView(thread: thread, onSkip: onSkip);
     if (thread.isRevealed) return QuestionsRevealView(thread: thread);
+    if (thread.isAnswered) return QuestionsWaitingView(thread: thread);
+    if (!hasStarted) return QuestionsIntroView(thread: thread);
 
-    return QuestionsWaitingView(thread: thread);
+    return QuestionsAnswerView(thread: thread, onSkip: onSkip);
   }
 }

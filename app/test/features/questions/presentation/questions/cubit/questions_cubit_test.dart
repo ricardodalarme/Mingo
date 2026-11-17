@@ -50,12 +50,17 @@ void main() {
 
   QuestionsCubit build() => QuestionsCubit(repository: repository);
 
-  test('an unanswered question opens the answer form', () async {
+  test('an unanswered question opens the intro before the form', () async {
     final cubit = build();
 
     await cubit.load();
 
     expect(cubit.state.thread, isA<Success<QuestionThread>>());
+    expect(cubit.state.view, QuestionsView.intro);
+    expect(cubit.state.showsAnswerForm, isFalse);
+
+    cubit.start();
+
     expect(cubit.state.view, QuestionsView.answer);
     expect(cubit.state.showsAnswerForm, isTrue);
   });
@@ -128,7 +133,9 @@ void main() {
     ).thenThrow(const LocalizedException(l10nKey: networkErrorCode));
     final cubit = build();
     await cubit.load();
-    cubit.onDraftChanged('Não quero perder isto');
+    cubit
+      ..start()
+      ..onDraftChanged('Não quero perder isto');
 
     await cubit.save();
 
@@ -191,6 +198,7 @@ void main() {
     final cubit = build();
 
     await cubit.load();
+    cubit.start();
 
     expect(cubit.state.current?.isSolo, isTrue);
     expect(cubit.state.showsAnswerForm, isTrue);

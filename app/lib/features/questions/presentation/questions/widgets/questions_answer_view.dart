@@ -5,8 +5,11 @@ import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class const QuestionsAnswerView({required final QuestionThread thread, super.key})
-    extends StatelessWidget {
+class const QuestionsAnswerView({
+  required final QuestionThread thread,
+  final VoidCallback? onSkip,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.questions;
@@ -14,21 +17,27 @@ class const QuestionsAnswerView({required final QuestionThread thread, super.key
     final isSaving = context.select((QuestionsCubit cubit) => cubit.state.isSaving);
     final isEditing = context.select((QuestionsCubit cubit) => cubit.state.isEditing);
     final cubit = context.read<QuestionsCubit>();
+    final name = thread.prompt.partnerName;
+    final body = thread.prompt.body;
 
     return BaseStackedContent(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            l10n.eyebrow,
-            style: context.text.label.copyWith(color: context.colors.textSecondary),
-          ),
-          const SizedBox(height: AppSpace.s8),
           Semantics(header: true, child: Text(thread.prompt.title, style: context.text.question)),
-          if (thread.prompt.body case final body? when body.trim().isNotEmpty) ...[
+          if (body != null && body.trim().isNotEmpty) ...[
             const SizedBox(height: AppSpace.s10),
             Text(body, style: context.text.body.copyWith(color: context.colors.textSecondary)),
           ],
+          const SizedBox(height: AppSpace.s12),
+          Text(
+            thread.partnerHasAnswered
+                ? l10n.partnerAnsweredNote
+                : name == null || name.trim().isEmpty
+                ? l10n.partnerSeesAfterFallback
+                : l10n.partnerSeesAfter(name: name),
+            style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
+          ),
           const SizedBox(height: AppSpace.s22),
           BaseTextArea(
             text: draft.value,
@@ -38,39 +47,30 @@ class const QuestionsAnswerView({required final QuestionThread thread, super.key
             errorText: l10n.answerErrors.selectOrNull(draft.errorName),
             onChanged: cubit.onDraftChanged,
           ),
-          const SizedBox(height: AppSpace.s16),
-          BaseNote(text: thread.partnerHasAnswered ? l10n.partnerAnsweredNote : l10n.privateNote),
           if (thread.isSolo) ...[
             const SizedBox(height: AppSpace.s10),
             BaseNote(text: l10n.soloNote),
           ],
-          const SizedBox(height: AppSpace.s18),
-          BaseButton.secondary(
-            text: l10n.voiceSoon,
-            onPressed: null,
-            isEnabled: false,
-            isFullWidth: true,
-            icon: AppIcons.mic,
-          ),
-          const SizedBox(height: AppSpace.s8),
-          Text(
-            l10n.voiceSoonNote,
-            textAlign: TextAlign.center,
-            style: context.text.caption.copyWith(color: context.colors.textSecondary),
-          ),
         ],
       ),
       footer: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           BaseButton.primary(text: l10n.save, isLoading: isSaving, onPressed: cubit.save),
-          if (isEditing) ...[
-            const SizedBox(height: AppSpace.s6),
+          const SizedBox(height: AppSpace.s6),
+          if (isEditing)
             BaseButton.text(
               text: l10n.cancel,
               onPressed: isSaving ? null : cubit.cancelEditing,
               isFullWidth: true,
+            )
+          else
+            BaseButton.text(
+              text: l10n.skip,
+              onPressed: isSaving ? null : onSkip,
+              isFullWidth: true,
             ),
-          ],
         ],
       ),
     );

@@ -18,11 +18,25 @@ class QuestionsCubit({required final QuestionsRepository _repository})
     try {
       final thread = await _repository.getThread();
       if (isClosed) return;
-      emit(state.copyWith(thread: Success(thread), draft: const FormInput(''), isEditing: false));
+      emit(
+        state.copyWith(
+          thread: Success(thread),
+          draft: const FormInput(''),
+          isEditing: false,
+          hasStarted: false,
+        ),
+      );
     } catch (exception) {
       if (isClosed || state.thread is Success) return;
       emit(state.copyWith(thread: Failure.fromObject(exception)));
     }
+  }
+
+  /// Opens the answer form after the intro card.
+  void start() {
+    if (state.current == null || state.isSaving) return;
+
+    emit(state.copyWith(hasStarted: true));
   }
 
   void startEditing() {

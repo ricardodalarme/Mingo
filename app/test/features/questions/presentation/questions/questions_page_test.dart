@@ -71,28 +71,32 @@ void main() {
     expect(find.text('Uma resposta gentil.'), findsOneWidget);
   });
 
-  testWidgets('the answer screen keeps voice honestly disabled', (tester) async {
+  testWidgets('the intro card opens the answer and explains who sees it', (tester) async {
     final cubit = await loaded(thread());
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuestionsPage()));
     await tester.pump();
 
+    expect(find.text('PERGUNTA DO CASAL'), findsOneWidget);
     expect(find.text('O que você se lembra da primeira vez?'), findsOneWidget);
-    expect(find.text('Só você vê isto até seu par responder também.'), findsOneWidget);
-    final voice = tester.widget<BaseButton>(
-      find.ancestor(of: find.text('Recado de voz'), matching: find.byType(BaseButton)),
-    );
-    expect(voice.isEnabled, isFalse);
-    await tester.tap(find.text('Recado de voz'));
+    expect(find.text('Uma pergunta por dia ou por semana.'), findsOneWidget);
+    expect(find.text('Responder'), findsOneWidget);
+    expect(find.byType(EditableText), findsNothing);
+
+    await tester.tap(find.text('Responder'));
     await tester.pump();
 
-    expect(tester.takeException(), isNull);
+    expect(find.text('Só depois que você enviar a sua e Marina responder também.'), findsOneWidget);
+    expect(find.byType(EditableText), findsOneWidget);
+    expect(find.text('Pular'), findsOneWidget);
   });
 
   testWidgets('an empty send shows the field error instead of doing nothing', (tester) async {
     final cubit = await loaded(thread());
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuestionsPage()));
+    await tester.pump();
+    await tester.tap(find.text('Responder'));
     await tester.pump();
 
     await tester.tap(find.text('Enviar'));
@@ -167,17 +171,23 @@ void main() {
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuestionsPage()));
     await tester.pump();
 
+    expect(find.textContaining('As duas'), findsOneWidget);
+    expect(find.text('lembranças'), findsOneWidget);
     expect(find.text('Foi na festa da Ana.'), findsOneWidget);
     expect(find.text('Achei você sério demais.'), findsOneWidget);
     expect(find.text('Marina'), findsOneWidget);
-    expect(find.text('Sem notas. Só o que cada um escreveu.'), findsOneWidget);
-    expect(find.textContaining('nota'), findsOneWidget);
+    expect(find.text('Querem guardar isso na história de vocês?'), findsOneWidget);
+    expect(find.text('Salvar como marco'), findsOneWidget);
+    expect(find.text('Agora não'), findsOneWidget);
+    expect(find.textContaining(RegExp('nota|pontos|ranking')), findsNothing);
   });
 
   testWidgets('a solo question explains the partner will see it later', (tester) async {
     final cubit = await loaded(thread(isPaired: false));
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuestionsPage()));
+    await tester.pump();
+    await tester.tap(find.text('Responder'));
     await tester.pump();
 
     expect(
@@ -200,6 +210,8 @@ void main() {
     await cubit.load();
 
     await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuestionsPage()));
+    await tester.pump();
+    await tester.tap(find.text('Responder'));
     await tester.pump();
     await tester.enterText(find.byType(EditableText), 'Não quero perder isto');
     await tester.pump();
