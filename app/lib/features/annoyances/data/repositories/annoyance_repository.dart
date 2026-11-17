@@ -1,4 +1,5 @@
 import 'package:app/features/annoyances/data/data_sources/remote/annoyance_data_source.dart';
+import 'package:app/features/annoyances/data/data_sources/remote/fragments/generated/GentleRequestFragment.graphql.dart';
 import 'package:app/features/annoyances/data/mappers/gentle_response_mapper.dart';
 import 'package:app/features/annoyances/data/models/annoyance.dart';
 import 'package:app/features/annoyances/data/models/gentle_request.dart';
@@ -78,27 +79,39 @@ class AnnoyanceRepository({required final AnnoyanceDataSource _dataSource}) {
   Future<GentleRequest?> getGentleRequest(String id) async {
     try {
       final row = await _dataSource.getGentleRequest(id);
-      if (row == null) return null;
 
-      return GentleRequest(
-        id: row.id,
-        whenText: row.whenText,
-        feelText: row.feelText,
-        wishText: row.wishText,
-        senderId: row.senderId,
-        recipientId: row.recipientId,
-        createdAt: row.createdAt,
-        response: row.response?.toGentleResponse(),
-        seenAt: row.seenAt,
-        thankedAt: row.thankedAt,
-        senderName: row.sender.displayName,
-        recipientName: row.recipient.displayName,
-      );
+      return row == null ? null : _gentleRequest(row);
     } catch (e, stack) {
       _logger.error('Failed to load a gentle request', error: e, stackTrace: stack);
       rethrow;
     }
   }
+
+  /// Emits the request now and each time the other person answers, sees or thanks for it. A
+  /// failed event is logged and skipped, so a screen keeps what it shows.
+  Stream<GentleRequest> watchGentleRequest(String id) {
+    return _dataSource.watchGentleRequest(id).map(_gentleRequest).handleError((
+      Object e,
+      StackTrace stack,
+    ) {
+      _logger.error('The gentle request subscription failed', error: e, stackTrace: stack);
+    });
+  }
+
+  GentleRequest _gentleRequest(FragmentGentleRequestFragment row) => GentleRequest(
+    id: row.id,
+    whenText: row.whenText,
+    feelText: row.feelText,
+    wishText: row.wishText,
+    senderId: row.senderId,
+    recipientId: row.recipientId,
+    createdAt: row.createdAt,
+    response: row.response?.toGentleResponse(),
+    seenAt: row.seenAt,
+    thankedAt: row.thankedAt,
+    senderName: row.sender.displayName,
+    recipientName: row.recipient.displayName,
+  );
 
   /// Answers a request that was sent to the person.
   Future<void> respond({required String id, required GentleResponse response}) async {

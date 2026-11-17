@@ -1,0 +1,5 @@
+subscription WatchGentleRequest($id: uuid!) {
+  gentleRequestsByPk(id: $id) {
+    ...GentleRequestFragment
+  }
+}

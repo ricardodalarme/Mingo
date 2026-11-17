@@ -1,20 +1,5 @@
 query GentleRequestById($id: uuid!) {
   gentleRequestsByPk(id: $id) {
-    id
-    whenText
-    feelText
-    wishText
-    senderId
-    recipientId
-    response
-    seenAt
-    thankedAt
-    createdAt
-    sender {
-      displayName
-    }
-    recipient {
-      displayName
-    }
+    ...GentleRequestFragment
   }
 }

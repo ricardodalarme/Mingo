@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:app/features/annoyances/data/models/gentle_request.dart';
 import 'package:app/features/annoyances/data/models/gentle_response.dart';
 import 'package:app/features/annoyances/data/repositories/annoyance_repository.dart';
 import 'package:app/features/annoyances/presentation/gentle_request_detail/cubit/gentle_request_detail_cubit.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -27,10 +30,14 @@ GentleRequest _request({GentleResponse? response, DateTime? seenAt, DateTime? th
 void main() {
   late AnnoyanceRepository repository;
   late AuthenticationRepository authentication;
+  late StreamController<GentleRequest> live;
 
   setUp(() {
     repository = _MockAnnoyanceRepository();
     authentication = _MockAuthenticationRepository();
+    live = StreamController<GentleRequest>.broadcast();
+    addTearDown(live.close);
+    when(() => repository.watchGentleRequest(any())).thenAnswer((_) => live.stream);
     when(() => repository.markSeen(any())).thenAnswer((_) async {});
     when(
       () => repository.respond(
@@ -106,5 +113,27 @@ void main() {
     await cubit.thank('Ele cuidou disso');
 
     verify(() => repository.thank(requestId: 'r1', body: 'Ele cuidou disso')).called(1);
+  });
+
+  test('the answer of the recipient shows up on the sender page while it is open', () async {
+    final cubit = build('sender', _request());
+    addTearDown(cubit.close);
+    await cubit.load('r1');
+
+    live.add(_request(response: GentleResponse.willDo, seenAt: DateTime(2026, 1, 2)));
+    await pumpEventQueue();
+
+    final value = (cubit.state.request as Success<GentleRequest?>).value;
+    expect(value?.response, GentleResponse.willDo);
+  });
+
+  test('stops following the request when it closes', () async {
+    final cubit = build('sender', _request());
+    await cubit.load('r1');
+    expect(live.hasListener, isTrue);
+
+    await cubit.close();
+
+    expect(live.hasListener, isFalse);
   });
 }

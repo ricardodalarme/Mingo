@@ -1,0 +1,18 @@
+fragment GentleRequestFragment on gentleRequests {
+  id
+  whenText
+  feelText
+  wishText
+  senderId
+  recipientId
+  response
+  seenAt
+  thankedAt
+  createdAt
+  sender {
+    displayName
+  }
+  recipient {
+    displayName
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:app/features/annoyances/data/data_sources/remote/annoyance_data_source.dart';
+import 'package:app/features/annoyances/data/data_sources/remote/fragments/generated/GentleRequestFragment.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/SaveAnnoyance.graphql.dart';
 import 'package:app/features/annoyances/data/repositories/annoyance_repository.dart';
 import 'package:core/core.dart';
@@ -81,5 +82,30 @@ void main() {
     await repository.delete('a1');
 
     verify(() => remote.delete('a1')).called(1);
+  });
+
+  test('watching a request maps the answer and the names of both people', () async {
+    when(() => remote.watchGentleRequest('r1')).thenAnswer(
+      (_) => Stream.value(
+        FragmentGentleRequestFragment(
+          id: 'r1',
+          whenText: 'quando',
+          feelText: 'sinto',
+          wishText: 'queria',
+          senderId: 's',
+          recipientId: 'r',
+          response: 'will_do',
+          createdAt: DateTime.utc(2026),
+          sender: FragmentGentleRequestFragmentsender(displayName: 'Ana'),
+          recipient: FragmentGentleRequestFragmentrecipient(displayName: 'Rui'),
+        ),
+      ),
+    );
+
+    final request = await repository.watchGentleRequest('r1').first;
+
+    expect(request.senderName, 'Ana');
+    expect(request.recipientName, 'Rui');
+    expect(request.response, isNotNull);
   });
 }

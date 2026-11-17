@@ -1,3 +1,4 @@
+import 'package:app/features/annoyances/data/data_sources/remote/fragments/generated/GentleRequestFragment.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/DeleteAnnoyance.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/MarkGentleRequestSeen.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/RespondGentleRequest.graphql.dart';
@@ -6,6 +7,7 @@ import 'package:app/features/annoyances/data/data_sources/remote/mutations/gener
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/ThankGentleRequest.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/queries/generated/GentleRequestById.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/queries/generated/MyAnnoyance.graphql.dart';
+import 'package:app/features/annoyances/data/data_sources/remote/subscriptions/generated/WatchGentleRequest.graphql.dart';
 import 'package:network/network.dart';
 
 class AnnoyanceDataSource({required final GQLClient _client}) {
@@ -63,7 +65,7 @@ class AnnoyanceDataSource({required final GQLClient _client}) {
   }
 
   /// One gentle request the person sent or received, or null when it is gone.
-  Future<QueryGentleRequestByIdgentleRequestsByPk?> getGentleRequest(String id) async {
+  Future<FragmentGentleRequestFragment?> getGentleRequest(String id) async {
     final response = await _client.query(
       OptionsQueryGentleRequestById(
         variables: VariablesQueryGentleRequestById(id: id),
@@ -73,6 +75,17 @@ class AnnoyanceDataSource({required final GQLClient _client}) {
     validateResponse(response);
 
     return response.parsedData?.gentleRequestsByPk;
+  }
+
+  /// Emits the request now and each time the other person answers, sees or thanks for it.
+  Stream<FragmentGentleRequestFragment> watchGentleRequest(String id) {
+    return _client
+        .subscribe(
+          OptionsSubscriptionWatchGentleRequest(
+            variables: VariablesSubscriptionWatchGentleRequest(id: id),
+          ),
+        )
+        .mapResponseData((data) => data.gentleRequestsByPk);
   }
 
   Future<void> respond({required String id, required String response}) async {

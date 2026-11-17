@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/annoyances/data/models/gentle_request.dart';
 import 'package:app/features/annoyances/data/models/gentle_response.dart';
 import 'package:app/features/annoyances/data/repositories/annoyance_repository.dart';
@@ -14,14 +16,19 @@ class GentleRequestDetailCubit({
 }) extends Cubit<GentleRequestDetailState> {
   this : super(const GentleRequestDetailState());
 
+  StreamSubscription<GentleRequest>? _live;
+
   /// Reads the request; opening it as the recipient notes that it was seen.
   Future<void> load(String id) async {
     final userId = _authenticationRepository.currentUserId;
+    await _live?.cancel();
+    _live = null;
     emit(state.copyWith(request: const Loading(), userId: userId));
     try {
       final request = await _annoyanceRepository.getGentleRequest(id);
       if (isClosed) return;
       emit(state.copyWith(request: Success(request)));
+      if (request != null) _watch(id);
       if (request != null && userId == request.recipientId && request.seenAt == null) {
         await _annoyanceRepository.markSeen(id);
       }
@@ -62,5 +69,21 @@ class GentleRequestDetailCubit({
       emit(state.copyWith(action: Failure.fromObject(exception)));
       emit(state.copyWith(action: const Initial()));
     }
+  }
+
+  /// Follows the request after the first read, so the answer or the thanks of the other person
+  /// shows up while the page is open.
+  void _watch(String id) {
+    _live ??= _annoyanceRepository.watchGentleRequest(id).listen((request) {
+      if (state.action.isLoading) return;
+      emit(state.copyWith(request: Success<GentleRequest?>(request)));
+    });
+  }
+
+  @override
+  Future<void> close() async {
+    await _live?.cancel();
+
+    return super.close();
   }
 }
