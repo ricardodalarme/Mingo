@@ -210,6 +210,14 @@ Stream<List<QueryMySlipsslips>> watchSlips(...) => _client
 - Return an empty stream while signed out. The cache is in memory and is cleared on sign-out by `QueryCacheInitializer`.
 - A data source and a repository each have a test for the stream, including the failure path.
 
+**Spend requests carefully.** The backend allows 600 a minute per client, and every successful mutation refetches each open watch.
+
+- Never query the person or couple id. Use `AuthenticationRepository.currentUserId` and `TogetherRepository.getCoupleId()`.
+- Published catalog content (`contentItems`) reads with `FetchPolicy.cacheFirst`; personal data keeps `networkOnly` or a watch.
+- Several reads a screen needs together go in one document with several root fields, in the feature that owns the screen.
+- Do not pass `$userId` or `$coupleId` to a subscription when the permission already limits the rows. The server shares one
+  poll between identical queries, so a variable gives each person their own.
+
 ## Gotchas
 
 - `melos gen` is required before analyzing new GraphQL code, and CI does not run it: commit the generated files.

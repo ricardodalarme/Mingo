@@ -124,6 +124,12 @@ Never write the old separate form (`const SlipCard({required this.slip});` in th
   `FetchPolicy.cacheAndNetwork`; the repository exposes `watchX()` and passes failures on. Use it for what the person's own writes
   change on other screens, so no repository announces changes by hand. Select `id` on every entity so the normalized cache can
   match it. The cache lives in memory and `QueryCacheInitializer` clears it on sign-out; nothing is stored on disk.
+- **Requests are a budget** (the backend rate limit is 600 a minute). Read the person id from the session
+  (`AuthenticationRepository.currentUserId`) and the couple id from `TogetherRepository.getCoupleId()`, which follows one
+  subscription; never query them. Published catalog content (`contentItems`: games, spice texts, programs, help, ideas) uses
+  `FetchPolicy.cacheFirst`. A subscription carries no user or couple variable when the permission already limits the rows, so
+  every person shares one server poll. The app pauses subscriptions when it is hidden and resumes them when it returns
+  (`GQLClient.pauseSubscriptions`, `resumeSubscriptions`).
 - **Data sources** are concrete classes that call `GQLClient` from `package:network/network.dart`, wrap one-shot queries in
   `validateResponseData`, and never let generated GraphQL types escape the data layer. **Repositories** are concrete classes with a
   `Logger` that return models. There is no domain layer, no use cases and no repository interfaces.
