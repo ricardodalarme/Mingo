@@ -26,6 +26,7 @@ build
 .flutter-plugins-dependencies
 .test_optimizer.dart
 *.test_optimizer.dart
+devtools_options.yaml
 
 # Test coverage
 coverage/
