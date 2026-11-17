@@ -6,14 +6,12 @@ import 'package:app/features/repair/data/models/guided_session.dart';
 import 'package:app/features/repair/data/models/received_signal.dart';
 import 'package:app/features/repair/data/models/repair_path.dart';
 import 'package:app/features/repair/data/models/signal_answer.dart';
+import 'package:app/features/repair/data/models/temperature_history.dart';
+import 'package:clock/clock.dart';
 import 'package:logger/logger.dart';
 
 class RepairRepository({required final RepairDataSource _dataSource}) {
   final Logger _logger = Logger('RepairRepository');
-  final StreamController<void> _pauseChanges = StreamController<void>.broadcast();
-
-  /// Emits whenever the person starts a pause, so Hoje can read again.
-  Stream<void> get onPauseChanged => _pauseChanges.stream;
 
   /// Stores the private temperature answer.
   Future<void> recordTemperature(Temperature level) async {
@@ -21,6 +19,30 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
       await _dataSource.recordTemperature(level.toRemote());
     } catch (e, stack) {
       _logger.error('Failed to record the temperature', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// The person's own temperature answers from the last weeks, newest first.
+  Future<List<TemperatureCheck>> getTemperatureChecks() => _readTemperatureChecks(limit: 200);
+
+  /// Whether the last answer was a fight in the past [conflictWindow].
+  Future<bool> isInConflict() async {
+    final latest = (await _readTemperatureChecks(limit: 1)).firstOrNull;
+
+    return latest != null &&
+        latest.level == Temperature.fight &&
+        clock.now().difference(latest.at) < conflictWindow;
+  }
+
+  Future<List<TemperatureCheck>> _readTemperatureChecks({required int limit}) async {
+    try {
+      return [
+        for (final node in await _dataSource.getTemperatureChecks(limit: limit))
+          TemperatureCheck(level: node.level.toModel(), at: node.createdAt),
+      ];
+    } catch (e, stack) {
+      _logger.error('Failed to read the temperature history', error: e, stackTrace: stack);
       rethrow;
     }
   }
@@ -145,7 +167,8 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
     try {
       final node = await _dataSource.respondToSignal(
         signalId: signalId,
-        response: response?.toRpc(),
+        at: clock.now(),
+        response: response?.toRemote(),
       );
 
       return SignalAnswer(
@@ -155,17 +178,6 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
       );
     } catch (e, stack) {
       _logger.error('Failed to answer a message', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
-
-  /// Asks the partner for space until [returnAt] with a short [message].
-  Future<void> startPause({required DateTime returnAt, String? message}) async {
-    try {
-      await _dataSource.startPause(returnAt: returnAt, message: message?.trim());
-      _pauseChanges.add(null);
-    } catch (e, stack) {
-      _logger.error('Failed to start a pause', error: e, stackTrace: stack);
       rethrow;
     }
   }

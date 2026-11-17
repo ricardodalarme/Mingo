@@ -12,57 +12,63 @@ void main() {
     }
   });
   test('maps every temperature to its stored level', () {
-    expect(Temperature.good.toRemote(), EnumTemperatureLevel.good);
-    expect(Temperature.soSo.toRemote(), EnumTemperatureLevel.so_so);
-    expect(Temperature.turbulent.toRemote(), EnumTemperatureLevel.turbulent);
-    expect(Temperature.fight.toRemote(), EnumTemperatureLevel.fight);
+    expect(Temperature.good.toRemote(), EnumTemperatureLevel_enum.good);
+    expect(Temperature.soSo.toRemote(), EnumTemperatureLevel_enum.so_so);
+    expect(Temperature.turbulent.toRemote(), EnumTemperatureLevel_enum.turbulent);
+    expect(Temperature.fight.toRemote(), EnumTemperatureLevel_enum.fight);
+  });
+
+  test('a temperature survives a trip to the remote enum and back', () {
+    for (final value in Temperature.values) {
+      expect(value.toRemote().toModel(), value);
+    }
+    expect(EnumTemperatureLevel_enum.$unknown.toModel(), Temperature.soSo);
   });
 
   test('maps every repair path and feeling', () {
-    expect(RepairPath.pause.toRemote(), EnumRepairPath.pause);
-    expect(RepairPath.quick.toRemote(), EnumRepairPath.quick);
-    expect(RepairPath.guided.toRemote(), EnumRepairPath.guided);
-    expect(RepairFeeling.calmer.toRemote(), EnumRepairFeeling.calmer);
-    expect(RepairFeeling.stillTense.toRemote(), EnumRepairFeeling.still_tense);
-    expect(RepairFeeling.needMoreTime.toRemote(), EnumRepairFeeling.need_more_time);
+    expect(RepairPath.pause.toRemote(), EnumRepairPath_enum.pause);
+    expect(RepairPath.quick.toRemote(), EnumRepairPath_enum.quick);
+    expect(RepairPath.guided.toRemote(), EnumRepairPath_enum.guided);
+    expect(RepairFeeling.calmer.toRemote(), EnumRepairFeeling_enum.calmer);
+    expect(RepairFeeling.stillTense.toRemote(), EnumRepairFeeling_enum.still_tense);
+    expect(RepairFeeling.needMoreTime.toRemote(), EnumRepairFeeling_enum.need_more_time);
   });
 
   test('maps every signal kind and shows an unknown one as a need', () {
-    expect(EnumSignalKind.need.toModel(), SignalKind.need);
-    expect(EnumSignalKind.miss_us.toModel(), SignalKind.missUs);
-    expect(EnumSignalKind.hug.toModel(), SignalKind.hug);
-    expect(EnumSignalKind.distance.toModel(), SignalKind.distance);
-    expect(EnumSignalKind.repair.toModel(), SignalKind.repair);
-    expect(EnumSignalKind.heavy_day.toModel(), SignalKind.heavyDay);
-    expect(EnumSignalKind.good_news.toModel(), SignalKind.goodNews);
-    expect(EnumSignalKind.$unknown.toModel(), SignalKind.need);
+    expect(EnumSignalKind_enum.need.toModel(), SignalKind.need);
+    expect(EnumSignalKind_enum.miss_us.toModel(), SignalKind.missUs);
+    expect(EnumSignalKind_enum.hug.toModel(), SignalKind.hug);
+    expect(EnumSignalKind_enum.distance.toModel(), SignalKind.distance);
+    expect(EnumSignalKind_enum.repair.toModel(), SignalKind.repair);
+    expect(EnumSignalKind_enum.good_news.toModel(), SignalKind.goodNews);
+    expect(EnumSignalKind_enum.$unknown.toModel(), SignalKind.need);
   });
 
   test('an unknown learning kind is shown as a need', () {
-    expect(EnumRepairLearningKind.$unknown.toModel(), RepairLearningKind.need);
+    expect(EnumRepairLearningKind_enum.$unknown.toModel(), RepairLearningKind.need);
   });
 
-  test('a response sent to the function is its stored text', () {
-    expect(RepairResponse.here.toRpc(), 'here');
-    expect(RepairResponse.talk.toRpc(), 'talk');
-    expect(RepairResponse.moreTime.toRpc(), 'more_time');
-    expect(RepairResponse.willDo.toRpc(), 'will_do');
-    expect(RepairResponse.notNow.toRpc(), 'not_now');
-    expect(RepairResponse.plan.toRpc(), 'plan');
-    expect(RepairResponse.later.toRpc(), 'later');
-    expect(RepairResponse.heart.toRpc(), 'heart');
+  test('a response sent to the server is its stored value', () {
+    expect(RepairResponse.here.toRemote(), EnumSignalResponse_enum.here);
+    expect(RepairResponse.talk.toRemote(), EnumSignalResponse_enum.talk);
+    expect(RepairResponse.moreTime.toRemote(), EnumSignalResponse_enum.more_time);
+    expect(RepairResponse.willDo.toRemote(), EnumSignalResponse_enum.will_do);
+    expect(RepairResponse.notNow.toRemote(), EnumSignalResponse_enum.not_now);
+    expect(RepairResponse.plan.toRemote(), EnumSignalResponse_enum.plan);
+    expect(RepairResponse.later.toRemote(), EnumSignalResponse_enum.later);
+    expect(RepairResponse.heart.toRemote(), EnumSignalResponse_enum.heart);
   });
 
   test('every answer the app offers is a response the server stores', () {
     for (final response in RepairResponse.values) {
-      final stored = EnumSignalResponse.fromJson(response.toRpc());
+      final stored = EnumSignalResponse_enum.fromJson(response.toRemote().toJson());
 
-      expect(stored, isNot(EnumSignalResponse.$unknown), reason: response.name);
+      expect(stored, isNot(EnumSignalResponse_enum.$unknown), reason: response.name);
       expect(stored.toModel(), response);
     }
   });
 
   test('a response this version does not know is left unnamed', () {
-    expect(EnumSignalResponse.$unknown.toModel(), isNull);
+    expect(EnumSignalResponse_enum.$unknown.toModel(), isNull);
   });
 }

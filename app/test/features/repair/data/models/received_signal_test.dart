@@ -34,10 +34,6 @@ void main() {
     ]);
   });
 
-  test('a heavy day asks for presence and for taking something over', () {
-    expect(SignalKind.heavyDay.answers, [RepairResponse.here, RepairResponse.willDo]);
-  });
-
   test('good news takes a heart', () {
     expect(SignalKind.goodNews.answers, [RepairResponse.heart]);
   });

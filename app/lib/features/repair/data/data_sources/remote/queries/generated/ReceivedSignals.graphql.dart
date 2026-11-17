@@ -54,27 +54,27 @@ class VariablesQueryReceivedSignals {
 }
 
 class QueryReceivedSignals {
-  QueryReceivedSignals({required this.signalsCollection, this.$__typename = 'Query'});
+  QueryReceivedSignals({required this.signals, this.$__typename = 'query_root'});
 
   factory QueryReceivedSignals.fromJson(Map<String, dynamic> json) {
-    final l$signalsCollection = json['signalsCollection'];
+    final l$signals = json['signals'];
     final l$$__typename = json['__typename'];
     return QueryReceivedSignals(
-      signalsCollection: QueryReceivedSignalssignalsCollection.fromJson(
-        (l$signalsCollection as Map<String, dynamic>),
-      ),
+      signals: (l$signals as List<dynamic>)
+          .map((e) => QueryReceivedSignalssignals.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryReceivedSignalssignalsCollection signalsCollection;
+  final List<QueryReceivedSignalssignals> signals;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$signalsCollection = signalsCollection;
-    _resultData['signalsCollection'] = l$signalsCollection.toJson();
+    final l$signals = signals;
+    _resultData['signals'] = l$signals.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -82,9 +82,9 @@ class QueryReceivedSignals {
 
   @override
   int get hashCode {
-    final l$signalsCollection = signalsCollection;
+    final l$signals = signals;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$signalsCollection, l$$__typename]);
+    return Object.hashAll([Object.hashAll(l$signals.map((v) => v)), l$$__typename]);
   }
 
   @override
@@ -95,10 +95,17 @@ class QueryReceivedSignals {
     if (other is! QueryReceivedSignals || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$signalsCollection = signalsCollection;
-    final lOther$signalsCollection = other.signalsCollection;
-    if (l$signalsCollection != lOther$signalsCollection) {
+    final l$signals = signals;
+    final lOther$signals = other.signals;
+    if (l$signals.length != lOther$signals.length) {
       return false;
+    }
+    for (int i = 0; i < l$signals.length; i++) {
+      final l$signals$entry = l$signals[i];
+      final lOther$signals$entry = lOther$signals[i];
+      if (l$signals$entry != lOther$signals$entry) {
+        return false;
+      }
     }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -117,7 +124,7 @@ const documentNodeQueryReceivedSignals = DocumentNode(
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'recipientId')),
-          type: NamedTypeNode(name: NameNode(value: 'UUID'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -126,11 +133,11 @@ const documentNodeQueryReceivedSignals = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'signalsCollection'),
+            name: NameNode(value: 'signals'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'filter'),
+                name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
@@ -138,7 +145,7 @@ const documentNodeQueryReceivedSignals = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'eq'),
+                            name: NameNode(value: '_eq'),
                             value: VariableNode(name: NameNode(value: 'recipientId')),
                           ),
                         ],
@@ -149,8 +156,8 @@ const documentNodeQueryReceivedSignals = DocumentNode(
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
-                            name: NameNode(value: 'is'),
-                            value: EnumValueNode(name: NameNode(value: 'NULL')),
+                            name: NameNode(value: '_is_null'),
+                            value: BooleanValueNode(value: true),
                           ),
                         ],
                       ),
@@ -159,22 +166,18 @@ const documentNodeQueryReceivedSignals = DocumentNode(
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'orderBy'),
-                value: ListValueNode(
-                  values: [
-                    ObjectValueNode(
-                      fields: [
-                        ObjectFieldNode(
-                          name: NameNode(value: 'createdAt'),
-                          value: EnumValueNode(name: NameNode(value: 'DescNullsLast')),
-                        ),
-                      ],
+                name: NameNode(value: 'order_by'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'createdAt'),
+                      value: EnumValueNode(name: NameNode(value: 'desc')),
                     ),
                   ],
                 ),
               ),
               ArgumentNode(
-                name: NameNode(value: 'first'),
+                name: NameNode(value: 'limit'),
                 value: IntValueNode(value: '20'),
               ),
             ],
@@ -182,94 +185,60 @@ const documentNodeQueryReceivedSignals = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'edges'),
+                  name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'node'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(
-                          selections: [
-                            FieldNode(
-                              name: NameNode(value: 'id'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'kind'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'value'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'body'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'response'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'respondedAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'seenAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: 'createdAt'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                            FieldNode(
-                              name: NameNode(value: '__typename'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'kind'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'value'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'body'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'response'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'respondedAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'seenAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'createdAt'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -422,135 +391,8 @@ extension ClientExtensionQueryReceivedSignals on graphql.GraphQLClient {
   }
 }
 
-class QueryReceivedSignalssignalsCollection {
-  QueryReceivedSignalssignalsCollection({
-    required this.edges,
-    this.$__typename = 'SignalsConnection',
-  });
-
-  factory QueryReceivedSignalssignalsCollection.fromJson(Map<String, dynamic> json) {
-    final l$edges = json['edges'];
-    final l$$__typename = json['__typename'];
-    return QueryReceivedSignalssignalsCollection(
-      edges: (l$edges as List<dynamic>)
-          .map(
-            (e) => QueryReceivedSignalssignalsCollectionedges.fromJson((e as Map<String, dynamic>)),
-          )
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<QueryReceivedSignalssignalsCollectionedges> edges;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$edges = edges;
-    _resultData['edges'] = l$edges.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$edges = edges;
-    final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$edges.map((v) => v)), l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryReceivedSignalssignalsCollection || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$edges = edges;
-    final lOther$edges = other.edges;
-    if (l$edges.length != lOther$edges.length) {
-      return false;
-    }
-    for (int i = 0; i < l$edges.length; i++) {
-      final l$edges$entry = l$edges[i];
-      final lOther$edges$entry = lOther$edges[i];
-      if (l$edges$entry != lOther$edges$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryReceivedSignalssignalsCollectionedges {
-  QueryReceivedSignalssignalsCollectionedges({
-    required this.node,
-    this.$__typename = 'SignalsEdge',
-  });
-
-  factory QueryReceivedSignalssignalsCollectionedges.fromJson(Map<String, dynamic> json) {
-    final l$node = json['node'];
-    final l$$__typename = json['__typename'];
-    return QueryReceivedSignalssignalsCollectionedges(
-      node: QueryReceivedSignalssignalsCollectionedgesnode.fromJson(
-        (l$node as Map<String, dynamic>),
-      ),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final QueryReceivedSignalssignalsCollectionedgesnode node;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$node = node;
-    _resultData['node'] = l$node.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$node = node;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$node, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! QueryReceivedSignalssignalsCollectionedges || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$node = node;
-    final lOther$node = other.node;
-    if (l$node != lOther$node) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-class QueryReceivedSignalssignalsCollectionedgesnode {
-  QueryReceivedSignalssignalsCollectionedgesnode({
+class QueryReceivedSignalssignals {
+  QueryReceivedSignalssignals({
     required this.id,
     required this.kind,
     this.value,
@@ -559,10 +401,10 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     this.respondedAt,
     this.seenAt,
     required this.createdAt,
-    this.$__typename = 'Signals',
+    this.$__typename = 'signals',
   });
 
-  factory QueryReceivedSignalssignalsCollectionedgesnode.fromJson(Map<String, dynamic> json) {
+  factory QueryReceivedSignalssignals.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$kind = json['kind'];
     final l$value = json['value'];
@@ -572,12 +414,12 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     final l$seenAt = json['seenAt'];
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
-    return QueryReceivedSignalssignalsCollectionedgesnode(
+    return QueryReceivedSignalssignals(
       id: (l$id as String),
-      kind: fromJsonEnumSignalKind((l$kind as String)),
+      kind: fromJsonEnumSignalKind_enum((l$kind as String)),
       value: (l$value as String?),
       body: (l$body as String?),
-      response: l$response == null ? null : fromJsonEnumSignalResponse((l$response as String)),
+      response: l$response == null ? null : fromJsonEnumSignalResponse_enum((l$response as String)),
       respondedAt: l$respondedAt == null ? null : DateTime.parse((l$respondedAt as String)),
       seenAt: l$seenAt == null ? null : DateTime.parse((l$seenAt as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
@@ -587,13 +429,13 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
 
   final String id;
 
-  final EnumSignalKind kind;
+  final EnumSignalKind_enum kind;
 
   final String? value;
 
   final String? body;
 
-  final EnumSignalResponse? response;
+  final EnumSignalResponse_enum? response;
 
   final DateTime? respondedAt;
 
@@ -608,13 +450,13 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     final l$id = id;
     _resultData['id'] = l$id;
     final l$kind = kind;
-    _resultData['kind'] = toJsonEnumSignalKind(l$kind);
+    _resultData['kind'] = toJsonEnumSignalKind_enum(l$kind);
     final l$value = value;
     _resultData['value'] = l$value;
     final l$body = body;
     _resultData['body'] = l$body;
     final l$response = response;
-    _resultData['response'] = l$response == null ? null : toJsonEnumSignalResponse(l$response);
+    _resultData['response'] = l$response == null ? null : toJsonEnumSignalResponse_enum(l$response);
     final l$respondedAt = respondedAt;
     _resultData['respondedAt'] = l$respondedAt == null
         ? null
@@ -659,8 +501,7 @@ class QueryReceivedSignalssignalsCollectionedgesnode {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryReceivedSignalssignalsCollectionedgesnode ||
-        runtimeType != other.runtimeType) {
+    if (other is! QueryReceivedSignalssignals || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;

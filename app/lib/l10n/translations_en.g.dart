@@ -10424,9 +10424,6 @@ extension on TranslationsEn {
           'story.together' => 'together',
           'story.namesLabel' => 'Include the names',
           'story.namesText' => 'Off by default.',
-          _ => null,
-        } ??
-        switch (path) {
           'story.phraseLabel' => 'A line (optional)',
           'story.phraseHint' => 'E.g. so much still ahead',
           'story.share' => 'Share image',
