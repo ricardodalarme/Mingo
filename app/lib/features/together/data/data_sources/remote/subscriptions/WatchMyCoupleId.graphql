@@ -1,6 +1,5 @@
-query MyCouple {
+subscription WatchMyCoupleId {
   today(limit: 1) {
-    userId
     coupleId
   }
 }

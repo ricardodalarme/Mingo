@@ -18,25 +18,20 @@ import 'package:app/features/together/data/data_sources/remote/queries/generated
 import 'package:app/features/together/data/data_sources/remote/queries/generated/DateIdeas.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/queries/generated/HelpContent.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/queries/generated/LogisticItems.graphql.dart';
-import 'package:app/features/together/data/data_sources/remote/queries/generated/MyCouple.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/queries/generated/Rituals.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/subscriptions/generated/WatchLogisticItems.graphql.dart';
+import 'package:app/features/together/data/data_sources/remote/subscriptions/generated/WatchMyCoupleId.graphql.dart';
 import 'package:network/network.dart';
 
 class TogetherDataSource({required final GQLClient _client}) {
-  /// The id of the couple the person is in, or null when they are on their own.
-  Future<String?> getCoupleId() async => (await _identity())?.coupleId;
+  /// Emits the id of the couple the person is in, or null when they are on their own, now and
+  /// each time it changes, including when the partner joins or leaves.
+  Stream<String?> watchCoupleId() {
+    return _client.subscribe(OptionsSubscriptionWatchMyCoupleId()).map((response) {
+      validateResponse(response);
 
-  /// The id of the signed-in person, or null when they are signed out.
-  Future<String?> getCurrentUserId() async => (await _identity())?.userId;
-
-  Future<QueryMyCoupletoday?> _identity() async {
-    final response = await _client.query(
-      OptionsQueryMyCouple(fetchPolicy: FetchPolicy.networkOnly),
-    );
-    validateResponse(response);
-
-    return response.parsedData?.today.firstOrNull;
+      return response.parsedData?.today.firstOrNull?.coupleId;
+    });
   }
 
   Future<List<FragmentLogisticItemFragment>> getLogisticItems() async {

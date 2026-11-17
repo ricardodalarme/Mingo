@@ -1,6 +1,6 @@
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/SetLogisticItemAssignee.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/SetLogisticItemDone.graphql.dart';
-import 'package:app/features/together/data/data_sources/remote/queries/generated/MyCouple.graphql.dart';
+import 'package:app/features/together/data/data_sources/remote/subscriptions/generated/WatchMyCoupleId.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/together_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -13,7 +13,7 @@ void main() {
   late TogetherDataSource dataSource;
 
   setUpAll(() {
-    registerFallbackValue(OptionsQueryMyCouple());
+    registerFallbackValue(OptionsSubscriptionWatchMyCoupleId());
     registerFallbackValue(
       OptionsMutationSetLogisticItemDone(variables: VariablesMutationSetLogisticItemDone(id: 'x')),
     );
@@ -29,49 +29,44 @@ void main() {
     dataSource = TogetherDataSource(client: client);
   });
 
-  QueryResult<QueryMyCouple> response(Map<String, dynamic> data) => QueryResult<QueryMyCouple>(
-    options: OptionsQueryMyCouple(),
-    source: QueryResultSource.network,
-    data: data,
-  );
+  QueryResult<SubscriptionWatchMyCoupleId> response(Map<String, dynamic> data) =>
+      QueryResult<SubscriptionWatchMyCoupleId>(
+        options: OptionsSubscriptionWatchMyCoupleId(),
+        source: QueryResultSource.network,
+        data: data,
+      );
 
-  test('a person without a couple gets no id', () async {
-    when(() => client.query<QueryMyCouple>(any())).thenAnswer(
-      (_) async => response({
-        'today': [
-          {'userId': 'user-1', 'coupleId': null, '__typename': 'today'},
-        ],
-        '__typename': 'Query',
-      }),
+  test('a person without a couple emits no id', () async {
+    when(() => client.subscribe<SubscriptionWatchMyCoupleId>(any())).thenAnswer(
+      (_) => Stream.value(
+        response({
+          'today': [
+            {'coupleId': null, '__typename': 'today'},
+          ],
+        }),
+      ),
     );
 
-    expect(await dataSource.getCoupleId(), isNull);
+    expect(await dataSource.watchCoupleId().first, isNull);
   });
 
-  test('a paired person gets the couple id', () async {
-    when(() => client.query<QueryMyCouple>(any())).thenAnswer(
-      (_) async => response({
-        'today': [
-          {'userId': 'user-1', 'coupleId': 'couple-1', '__typename': 'today'},
-        ],
-        '__typename': 'Query',
-      }),
+  test('a paired person emits the couple id and each change after it', () async {
+    when(() => client.subscribe<SubscriptionWatchMyCoupleId>(any())).thenAnswer(
+      (_) => Stream.fromIterable([
+        response({
+          'today': [
+            {'coupleId': null, '__typename': 'today'},
+          ],
+        }),
+        response({
+          'today': [
+            {'coupleId': 'couple-1', '__typename': 'today'},
+          ],
+        }),
+      ]),
     );
 
-    expect(await dataSource.getCoupleId(), 'couple-1');
-  });
-
-  test('a signed-in person gets their own id', () async {
-    when(() => client.query<QueryMyCouple>(any())).thenAnswer(
-      (_) async => response({
-        'today': [
-          {'userId': 'user-1', 'coupleId': 'couple-1', '__typename': 'today'},
-        ],
-        '__typename': 'Query',
-      }),
-    );
-
-    expect(await dataSource.getCurrentUserId(), 'user-1');
+    expect(await dataSource.watchCoupleId().toList(), [null, 'couple-1']);
   });
 
   Map<String, dynamic> updated() => {

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/features/_shared/data/mappers/content_kind_mapper.dart';
 import 'package:app/features/_shared/data/models/content_kind.dart';
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/together/data/data_sources/remote/fragments/generated/LogisticItemFragment.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/together_data_source.dart';
 import 'package:app/features/together/data/mappers/together_enum_mapper.dart';
@@ -12,14 +13,58 @@ import 'package:app/features/together/data/models/ritual.dart';
 import 'package:clock/clock.dart';
 import 'package:logger/logger.dart';
 
-class TogetherRepository({required final TogetherDataSource _dataSource}) {
+class TogetherRepository({
+  required final TogetherDataSource _dataSource,
+  required final AuthenticationRepository _authenticationRepository,
+}) {
   final Logger _logger = Logger('TogetherRepository');
+  StreamSubscription<String?>? _couple;
+  Future<String?>? _firstCoupleId;
+  ({String? id})? _knownCouple;
+  // ignore: cancel_subscriptions, the repository lives as long as the app
+  StreamSubscription<bool>? _authState;
 
   /// The id of the couple the person is in, or null when they are on their own.
-  Future<String?> getCoupleId() => _dataSource.getCoupleId();
+  ///
+  /// It follows a subscription, so it stays right when the partner joins or leaves, and costs no
+  /// request after the first one.
+  Future<String?> getCoupleId() async {
+    _authState ??= _authenticationRepository.isAuthenticatedStream
+        .where((isAuthenticated) => !isAuthenticated)
+        .listen((_) => _forgetCouple());
+    final known = _knownCouple;
+    if (known != null) return known.id;
 
-  /// The id of the signed-in person, or null when they are signed out.
-  Future<String?> getCurrentUserId() => _dataSource.getCurrentUserId();
+    return _firstCoupleId ??= _followCouple();
+  }
+
+  /// The id of the signed-in person, read from the session; null when signed out.
+  Future<String?> getCurrentUserId() async => _authenticationRepository.currentUserId;
+
+  Future<String?> _followCouple() {
+    final first = Completer<String?>();
+    _couple = _dataSource.watchCoupleId().listen(
+      (id) {
+        _knownCouple = (id: id);
+        if (!first.isCompleted) first.complete(id);
+      },
+      onError: (Object e, StackTrace stack) {
+        _logger.error('Failed to follow the couple', error: e, stackTrace: stack);
+        if (first.isCompleted) return;
+        _forgetCouple();
+        first.completeError(e, stack);
+      },
+    );
+
+    return first.future;
+  }
+
+  void _forgetCouple() {
+    unawaited(_couple?.cancel());
+    _couple = null;
+    _firstCoupleId = null;
+    _knownCouple = null;
+  }
 
   Future<List<LogisticItem>> getLogisticItems() async {
     try {
@@ -59,7 +104,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
     String? assigneeId,
   }) async {
     try {
-      final coupleId = await _dataSource.getCoupleId();
+      final coupleId = await getCoupleId();
       await _dataSource.addLogisticItem(
         id: id,
         title: title.trim(),
@@ -124,7 +169,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
           weekday: weekday,
           atTime: time,
           reminder: ritual.hasReminder,
-          coupleId: await _dataSource.getCoupleId(),
+          coupleId: await getCoupleId(),
           plannerId: ritual.plannerId,
         );
       } else {
@@ -191,7 +236,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
         id: id,
         title: title.trim(),
         slug: slug,
-        coupleId: await _dataSource.getCoupleId(),
+        coupleId: await getCoupleId(),
       );
     } catch (e, stack) {
       _logger.error('Failed to save a date idea', error: e, stackTrace: stack);
@@ -203,11 +248,7 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
   Future<void> planDateIdea(DateIdea idea, {required DateTime day}) async {
     try {
       await _dataSource.planDateIdea(id: idea.id, day: day);
-      await _dataSource.addSharedDate(
-        title: idea.title,
-        day: day,
-        coupleId: await _dataSource.getCoupleId(),
-      );
+      await _dataSource.addSharedDate(title: idea.title, day: day, coupleId: await getCoupleId());
     } catch (e, stack) {
       _logger.error('Failed to plan a date', error: e, stackTrace: stack);
       rethrow;

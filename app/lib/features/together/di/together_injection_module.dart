@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:app/features/dates/data/repositories/dates_repository.dart';
 import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
@@ -28,7 +29,10 @@ class TogetherInjectionModule() implements InjectionModule {
       () => TogetherDataSource(client: injector.get<GQLClient>()),
     )
     ..registerLazySingleton<TogetherRepository>(
-      () => TogetherRepository(dataSource: injector.get<TogetherDataSource>()),
+      () => TogetherRepository(
+        dataSource: injector.get<TogetherDataSource>(),
+        authenticationRepository: injector.get<AuthenticationRepository>(),
+      ),
     )
     ..registerFactory<TogetherCubit>(
       () => TogetherCubit(
