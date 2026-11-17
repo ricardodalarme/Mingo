@@ -61,10 +61,12 @@ class const HomePage({super.key}) extends StatelessWidget {
                 child: MediaQuery.removePadding(
                   context: context,
                   removeBottom: true,
-                  child: MediaQuery.removeViewInsets(
-                    context: context,
-                    removeBottom: true,
-                    child: child,
+                  child: Builder(
+                    builder: (context) => MediaQuery.removeViewInsets(
+                      context: context,
+                      removeBottom: true,
+                      child: child,
+                    ),
                   ),
                 ),
               ),
