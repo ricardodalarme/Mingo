@@ -14,16 +14,3 @@ extension CardSummaryMapper on QueryMyCardscards {
     isOpened: open != null,
   );
 }
-
-extension CardSummaryPageMapper on List<QueryMyCardscards> {
-  /// The first [pageSize] cards; the page has a next one when the read held more than that.
-  CardSummaryPage toPage({required int offset, required int pageSize, required String? userId}) {
-    final pageRows = take(pageSize).toList();
-
-    return CardSummaryPage(
-      items: [for (final row in pageRows) row.toModel(userId: userId)],
-      hasNext: length > pageSize,
-      offset: offset + pageRows.length,
-    );
-  }
-}

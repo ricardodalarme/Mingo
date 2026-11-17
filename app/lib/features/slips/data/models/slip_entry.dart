@@ -20,13 +20,3 @@ final class const SlipEntry({
   @override
   List<Object?> get props => [id, body, createdAt, kind, category, forCard];
 }
-
-/// One page of slips and where the next one starts.
-final class const SlipPage({
-  required final List<SlipEntry> items,
-  required final bool hasNext,
-  final int offset = 0,
-}) with Equatable {
-  @override
-  List<Object?> get props => [items, hasNext, offset];
-}

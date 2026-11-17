@@ -1,3 +1,4 @@
+import 'package:app/features/_shared/data/models/page_info.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
@@ -16,7 +17,7 @@ void main() {
   setUp(() {
     repository = _MockSlipRepository();
     when(() => repository.getSlips(filter: any(named: 'filter')))
-        .thenAnswer((_) async => const SlipPage(items: [], hasNext: false));
+        .thenAnswer((_) async => const PageInfo<SlipEntry>(items: [], hasNext: false));
   });
 
   SlipsSearchCubit build() => SlipsSearchCubit(slipRepository: repository);

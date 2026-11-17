@@ -14,16 +14,3 @@ extension SlipEntryMapper on FragmentSlipSummaryFragment {
     createdAt: createdAt,
   );
 }
-
-extension SlipPageMapper on List<FragmentSlipSummaryFragment> {
-  /// The first [pageSize] slips; the page has a next one when the read held more than that.
-  SlipPage toPage({required int offset, required int pageSize}) {
-    final pageRows = take(pageSize).toList();
-
-    return SlipPage(
-      items: [for (final row in pageRows) row.toModel()],
-      hasNext: length > pageSize,
-      offset: offset + pageRows.length,
-    );
-  }
-}

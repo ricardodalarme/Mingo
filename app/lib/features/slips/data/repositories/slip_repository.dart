@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:app/features/_shared/data/mappers/page_info_mapper.dart';
+import 'package:app/features/_shared/data/models/page_info.dart';
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/mappers/drawn_slip_mapper.dart';
@@ -198,7 +200,7 @@ class SlipRepository({
   }
 
   /// Reads a page of the person's slips that match [filter], newest first.
-  Future<SlipPage> getSlips({
+  Future<PageInfo<SlipEntry>> getSlips({
     int offset = 0,
     SlipFilter filter = const SlipFilter(),
     int pageSize = slipPageSize,
@@ -210,7 +212,7 @@ class SlipRepository({
         filter: filter,
       );
 
-      return rows.toPage(offset: offset, pageSize: pageSize);
+      return rows.toPageInfo(offset: offset, pageSize: pageSize, map: (row) => row.toModel());
     } catch (e, stack) {
       _logger.error('Failed to load slips', error: e, stackTrace: stack);
       rethrow;
@@ -221,10 +223,13 @@ class SlipRepository({
   /// is saved, edited, archived or deleted by this person.
   ///
   /// A failure is logged and passed on, so a screen can show it when it has nothing yet.
-  Stream<SlipPage> watchSlips({int count = slipPageSize, SlipFilter filter = const SlipFilter()}) {
+  Stream<PageInfo<SlipEntry>> watchSlips({
+    int count = slipPageSize,
+    SlipFilter filter = const SlipFilter(),
+  }) {
     return _slipDataSource
         .watchSlips(limit: count + 1, offset: 0, filter: filter)
-        .map((rows) => rows.toPage(offset: 0, pageSize: count))
+        .map((rows) => rows.toPageInfo(offset: 0, pageSize: count, map: (row) => row.toModel()))
         .transform(
           StreamTransformer.fromHandlers(
             handleError: (error, stack, sink) {

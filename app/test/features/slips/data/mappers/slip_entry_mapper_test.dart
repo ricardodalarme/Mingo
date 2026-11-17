@@ -39,29 +39,4 @@ void main() {
   test('a kind this version does not know reads as a quick slip', () {
     expect(row('a', kind: EnumSlipKind_enum.$unknown).toModel().kind, SlipKind.quick);
   });
-
-  group('page', () {
-    test('holds the first rows and says another page follows when the read had more', () {
-      final page = [row('a'), row('b'), row('c')].toPage(offset: 0, pageSize: 2);
-
-      expect(page.items.map((slip) => slip.id), ['a', 'b']);
-      expect(page.hasNext, isTrue);
-      expect(page.offset, 2);
-    });
-
-    test('the last page has no next one', () {
-      final page = [row('a'), row('b')].toPage(offset: 20, pageSize: 2);
-
-      expect(page.hasNext, isFalse);
-      expect(page.offset, 22);
-    });
-
-    test('an empty read is an empty page', () {
-      final page = <FragmentSlipSummaryFragment>[].toPage(offset: 0, pageSize: 20);
-
-      expect(page.items, isEmpty);
-      expect(page.hasNext, isFalse);
-      expect(page.offset, 0);
-    });
-  });
 }

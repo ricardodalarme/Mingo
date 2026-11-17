@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/data/models/page_info.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
@@ -17,18 +18,18 @@ void main() {
   setUpAll(() => registerFallbackValue(const SlipFilter()));
 
   late SlipRepository repository;
-  late StreamController<SlipPage> pages;
+  late StreamController<PageInfo<SlipEntry>> pages;
 
   setUp(() {
     repository = _MockSlipRepository();
-    pages = StreamController<SlipPage>.broadcast();
+    pages = StreamController<PageInfo<SlipEntry>>.broadcast();
     addTearDown(pages.close);
   });
 
   SlipsListCubit build() => SlipsListCubit(slipRepository: repository);
 
   /// Answers each watch with [page] straight away.
-  void stubPage(SlipPage page) => when(
+  void stubPage(PageInfo<SlipEntry> page) => when(
     () => repository.watchSlips(
       count: any(named: 'count'),
       filter: any(named: 'filter'),
@@ -51,7 +52,9 @@ void main() {
 
   group('SlipsListCubit', () {
     test('load shows the first page', () async {
-      stubPage(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: true, offset: 1));
+      stubPage(
+        PageInfo<SlipEntry>(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: true, offset: 1),
+      );
       final cubit = build();
       addTearDown(cubit.close);
 
@@ -63,7 +66,7 @@ void main() {
     });
 
     test('an empty page is a success with no items, never an error', () async {
-      stubPage(const SlipPage(items: [], hasNext: false));
+      stubPage(const PageInfo<SlipEntry>(items: [], hasNext: false));
       final cubit = build();
       addTearDown(cubit.close);
 
@@ -73,13 +76,15 @@ void main() {
     });
 
     test('loadMore watches one page more and keeps every loaded slip', () async {
-      stubPage(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: true, offset: 1));
+      stubPage(
+        PageInfo<SlipEntry>(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: true, offset: 1),
+      );
       final cubit = build();
       addTearDown(cubit.close);
       await cubit.load();
 
       stubPage(
-        SlipPage(
+        PageInfo<SlipEntry>(
           items: [_slip('a', DateTime(2026, 11, 9)), _slip('b', DateTime(2026, 11, 2))],
           hasNext: false,
           offset: 2,
@@ -100,7 +105,7 @@ void main() {
     });
 
     test('loadMore does nothing when there is no next page', () async {
-      stubPage(const SlipPage(items: [], hasNext: false));
+      stubPage(const PageInfo<SlipEntry>(items: [], hasNext: false));
       final cubit = build();
       addTearDown(cubit.close);
       await cubit.load();
@@ -115,7 +120,7 @@ void main() {
     });
 
     test('changing the scope watches the list again from the start', () async {
-      stubPage(const SlipPage(items: [], hasNext: false));
+      stubPage(const PageInfo<SlipEntry>(items: [], hasNext: false));
       final cubit = build();
       addTearDown(cubit.close);
       await cubit.load();
@@ -128,7 +133,7 @@ void main() {
     });
 
     test('the private scope watches the slips kept out of the weekly card', () async {
-      stubPage(const SlipPage(items: [], hasNext: false));
+      stubPage(const PageInfo<SlipEntry>(items: [], hasNext: false));
       final cubit = build();
       addTearDown(cubit.close);
       await cubit.load();
@@ -164,7 +169,9 @@ void main() {
       ).thenAnswer((_) => pages.stream);
       final cubit = build()..start();
       addTearDown(cubit.close);
-      pages.add(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: false, offset: 1));
+      pages.add(
+        PageInfo<SlipEntry>(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: false, offset: 1),
+      );
       await pumpEventQueue();
 
       pages.addError(Exception());
@@ -182,10 +189,12 @@ void main() {
       ).thenAnswer((_) => pages.stream);
       final cubit = build()..start();
       addTearDown(cubit.close);
-      pages.add(const SlipPage(items: [], hasNext: false));
+      pages.add(const PageInfo<SlipEntry>(items: [], hasNext: false));
       await pumpEventQueue();
 
-      pages.add(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: false, offset: 1));
+      pages.add(
+        PageInfo<SlipEntry>(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: false, offset: 1),
+      );
       await pumpEventQueue();
 
       final items = (cubit.state.slips as Success<List<SlipEntry>>).value;

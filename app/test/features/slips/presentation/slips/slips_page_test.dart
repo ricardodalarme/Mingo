@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/data/models/page_info.dart';
 import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_filter.dart';
@@ -55,7 +56,7 @@ void main() {
         count: any(named: 'count'),
         filter: any(named: 'filter'),
       ),
-    ).thenAnswer((_) => Stream.value(SlipPage(items: items, hasNext: false)));
+    ).thenAnswer((_) => Stream.value(PageInfo<SlipEntry>(items: items, hasNext: false)));
   }
 
   Future<SlipsListCubit> build() async {

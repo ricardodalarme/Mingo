@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/data/mappers/page_info_mapper.dart';
+import 'package:app/features/_shared/data/models/page_info.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/cards/data/data_sources/remote/cards_data_source.dart';
 import 'package:app/features/cards/data/mappers/card_detail_mapper.dart';
@@ -33,14 +35,16 @@ class CardsRepository({
   }
 
   /// One page of the sent and received cards, newest first.
-  Future<CardSummaryPage> getHistory({int offset = 0}) async {
+  Future<PageInfo<CardSummary>> getHistory({int offset = 0}) async {
     try {
       final rows = await _dataSource.getCards(limit: cardPageSize + 1, offset: offset);
 
-      return rows.toPage(
+      final userId = _authenticationRepository.currentUserId;
+
+      return rows.toPageInfo(
         offset: offset,
         pageSize: cardPageSize,
-        userId: _authenticationRepository.currentUserId,
+        map: (row) => row.toModel(userId: userId),
       );
     } catch (e, stack) {
       _logger.error('Failed to load the card history', error: e, stackTrace: stack);

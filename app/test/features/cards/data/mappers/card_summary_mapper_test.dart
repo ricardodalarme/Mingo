@@ -57,21 +57,4 @@ void main() {
     expect(row('a', opened: true).toModel(userId: 'me').isOpened, isTrue);
     expect(row('a').toModel(userId: 'me').isOpened, isFalse);
   });
-
-  group('page', () {
-    test('holds the first rows and says another page follows when the read had more', () {
-      final page = [row('a'), row('b'), row('c')].toPage(offset: 0, pageSize: 2, userId: 'me');
-
-      expect(page.items.map((card) => card.id), ['a', 'b']);
-      expect(page.hasNext, isTrue);
-      expect(page.offset, 2);
-    });
-
-    test('the last page has no next one', () {
-      final page = [row('a')].toPage(offset: 20, pageSize: 2, userId: 'me');
-
-      expect(page.hasNext, isFalse);
-      expect(page.offset, 21);
-    });
-  });
 }

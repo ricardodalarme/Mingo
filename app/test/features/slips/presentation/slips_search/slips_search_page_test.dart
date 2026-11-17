@@ -1,3 +1,4 @@
+import 'package:app/features/_shared/data/models/page_info.dart';
 import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_filter.dart';
@@ -27,12 +28,12 @@ void main() {
   setUp(() {
     repository = _MockSlipRepository();
     when(() => repository.getSlips(filter: any(named: 'filter')))
-        .thenAnswer((_) async => const SlipPage(items: [], hasNext: false));
+        .thenAnswer((_) async => const PageInfo<SlipEntry>(items: [], hasNext: false));
   });
 
   void stubPage(List<SlipEntry> items) {
     when(() => repository.getSlips(filter: any(named: 'filter')))
-        .thenAnswer((_) async => SlipPage(items: items, hasNext: false));
+        .thenAnswer((_) async => PageInfo<SlipEntry>(items: items, hasNext: false));
   }
 
   Future<SlipsSearchCubit> build({bool search = true}) async {

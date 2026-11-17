@@ -16,13 +16,3 @@ final class const CardSummary({
   @override
   List<Object?> get props => [id, isMine, sentAt, itemCount, reaction, hasReply, isOpened];
 }
-
-/// One page of the card history.
-final class const CardSummaryPage({
-  required final List<CardSummary> items,
-  required final bool hasNext,
-  final int offset = 0,
-}) with Equatable {
-  @override
-  List<Object?> get props => [items, hasNext, offset];
-}

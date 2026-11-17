@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/data/models/page_info.dart';
 import 'package:app/features/cards/data/models/card_summary.dart';
 import 'package:app/features/cards/data/repositories/cards_repository.dart';
 import 'package:app/features/cards/presentation/list/cubit/cards_list_cubit.dart';
@@ -21,11 +22,11 @@ void main() {
 
   CardsListCubit build() => CardsListCubit(cardsRepository: cards);
 
-  void stub(CardSummaryPage page, {int offset = 0}) =>
+  void stub(PageInfo<CardSummary> page, {int offset = 0}) =>
       when(() => cards.getHistory(offset: offset)).thenAnswer((_) async => page);
 
   test('load shows sent and received cards in the order the server gave', () async {
-    stub(CardSummaryPage(items: [_card('a'), _card('b', mine: false)], hasNext: false));
+    stub(PageInfo<CardSummary>(items: [_card('a'), _card('b', mine: false)], hasNext: false));
     final cubit = build();
 
     await cubit.load();
@@ -36,7 +37,7 @@ void main() {
   });
 
   test('an empty history is a success, never an error', () async {
-    stub(const CardSummaryPage(items: [], hasNext: false));
+    stub(const PageInfo<CardSummary>(items: [], hasNext: false));
     final cubit = build();
 
     await cubit.load();
@@ -45,11 +46,14 @@ void main() {
   });
 
   test('loadMore appends the next page without duplicates', () async {
-    stub(CardSummaryPage(items: [_card('a')], hasNext: true, offset: 1));
+    stub(PageInfo<CardSummary>(items: [_card('a')], hasNext: true, offset: 1));
     final cubit = build();
     await cubit.load();
 
-    stub(CardSummaryPage(items: [_card('a'), _card('b')], hasNext: false, offset: 3), offset: 1);
+    stub(
+      PageInfo<CardSummary>(items: [_card('a'), _card('b')], hasNext: false, offset: 3),
+      offset: 1,
+    );
     await cubit.loadMore();
 
     expect((cubit.state.cards as Success<List<CardSummary>>).value.map((card) => card.id), [
@@ -70,7 +74,7 @@ void main() {
   });
 
   test('a failed refresh keeps the list on screen', () async {
-    stub(CardSummaryPage(items: [_card('a')], hasNext: false));
+    stub(PageInfo<CardSummary>(items: [_card('a')], hasNext: false));
     final cubit = build();
     await cubit.load();
 
@@ -82,18 +86,18 @@ void main() {
   });
 
   test('a refresh discards a page that was already in flight', () async {
-    stub(CardSummaryPage(items: [_card('a')], hasNext: true, offset: 1));
+    stub(PageInfo<CardSummary>(items: [_card('a')], hasNext: true, offset: 1));
     final cubit = build();
     await cubit.load();
 
-    final page = Completer<CardSummaryPage>();
+    final page = Completer<PageInfo<CardSummary>>();
     when(() => cards.getHistory(offset: 1)).thenAnswer((_) => page.future);
     final more = cubit.loadMore();
 
-    stub(CardSummaryPage(items: [_card('fresh')], hasNext: false));
+    stub(PageInfo<CardSummary>(items: [_card('fresh')], hasNext: false));
     await cubit.load();
 
-    page.complete(CardSummaryPage(items: [_card('stale')], hasNext: false));
+    page.complete(PageInfo<CardSummary>(items: [_card('stale')], hasNext: false));
     await more;
 
     final items = (cubit.state.cards as Success<List<CardSummary>>).value;

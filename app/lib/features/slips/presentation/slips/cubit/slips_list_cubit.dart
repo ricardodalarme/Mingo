@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/data/models/page_info.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
@@ -14,7 +15,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
     extends Cubit<SlipsListState> {
   this : super(const SlipsListState());
 
-  StreamSubscription<SlipPage>? _slips;
+  StreamSubscription<PageInfo<SlipEntry>>? _slips;
   int _count = slipPageSize;
 
   /// Starts following the list; it updates itself when a slip is saved, edited or removed.
