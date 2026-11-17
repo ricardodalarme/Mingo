@@ -1,40 +1,32 @@
 import 'dart:async';
 
 import 'package:graphql/client.dart';
-import 'package:network/src/graphql/links/auth_refresh_link.dart';
 import 'package:network/src/graphql/links/logging_link.dart';
 import 'package:network/src/graphql/links/retry_link.dart';
 import 'package:network/src/graphql/links/timeout_link.dart';
+import 'package:network/src/graphql/links/token_link.dart';
 
 /// Composes the links a request passes through, outermost first: identical queries in flight are
-/// shared, a failed query is retried, each attempt gets a deadline, an expired session is renewed
-/// once, and the token is attached just before the [terminatingLink] sends it. Subscriptions skip
-/// all of that and go through [subscriptionLink] when one is given.
+/// shared, a failed query is retried, each attempt gets a deadline, and the token is attached just
+/// before the [terminatingLink] sends it, renewing the session once when it is rejected.
+/// Subscriptions skip all of that and go through [subscriptionLink] when one is given.
 Link buildGraphQLLink({
   required Link terminatingLink,
   FutureOr<String?> Function()? tokenCallback,
-  Future<bool> Function()? refreshSession,
+  Future<bool> Function(String? rejected)? refreshSession,
   Duration queryTimeout = const Duration(seconds: 10),
   Duration mutationTimeout = const Duration(seconds: 30),
   int maxQueryAttempts = 2,
   Duration retryDelay = const Duration(milliseconds: 400),
   Link? subscriptionLink,
 }) {
-  final authLink = AuthLink(
-    getToken: () async {
-      final accessToken = await tokenCallback?.call();
-      if (accessToken == null || accessToken.isEmpty) return null;
-      return 'Bearer $accessToken';
-    },
-  );
-
   final httpLink = Link.from([
     DedupeLink(shouldDedupe: (request) => request.isQuery),
     LoggingLink(),
     RetryLink(maxAttempts: maxQueryAttempts, baseDelay: retryDelay),
     TimeoutLink(queryTimeout: queryTimeout, mutationTimeout: mutationTimeout),
-    if (refreshSession != null) AuthRefreshLink(refreshSession: refreshSession),
-    authLink,
+    if (tokenCallback != null && refreshSession != null)
+      TokenLink(tokenCallback: tokenCallback, refreshSession: refreshSession),
     terminatingLink,
   ]);
 
@@ -61,7 +53,7 @@ String webSocketUrlFor(String serverUrl) {
 Link buildSubscriptionLink({
   required String webSocketUrl,
   FutureOr<String?> Function()? tokenCallback,
-  Future<bool> Function()? refreshSession,
+  Future<bool> Function(String? rejected)? refreshSession,
   Stream<ToggleConnectionState>? toggleConnection,
   Duration reconnectDelay = const Duration(seconds: 3),
 }) {
@@ -74,7 +66,7 @@ Link buildSubscriptionLink({
       onConnectionLost: (code, reason) async {
         if (!_isAuthClose(code)) return null;
 
-        final isRenewed = await refreshSession?.call() ?? false;
+        final isRenewed = await refreshSession?.call(null) ?? false;
 
         return isRenewed ? Duration.zero : null;
       },

@@ -1,6 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:meta/meta.dart';
+import 'package:network/src/rest/interceptors/token_interceptor.dart';
 
 abstract interface class RestClient() {
   Future<Response<T>> get<T>(String path, {Object? data, Map<String, dynamic>? queryParameters});
@@ -22,8 +25,28 @@ abstract interface class RestClient() {
 }
 
 class const RestClientImpl._(final Dio _client) implements RestClient {
-  factory({required String baseUrl}) {
-    return RestClientImpl._(Dio(BaseOptions(baseUrl: baseUrl)));
+  /// A client for [baseUrl]. With [tokenCallback], each request carries the access token, and a
+  /// 401 calls [refreshSession] with the refused token and, when it renews the session, sends the
+  /// request again.
+  factory({
+    required String baseUrl,
+    FutureOr<String?> Function()? tokenCallback,
+    Future<bool> Function(String? rejected)? refreshSession,
+    @visibleForTesting HttpClientAdapter? adapter,
+  }) {
+    final client = Dio(BaseOptions(baseUrl: baseUrl));
+    if (adapter != null) client.httpClientAdapter = adapter;
+    if (tokenCallback != null && refreshSession != null) {
+      client.interceptors.add(
+        TokenInterceptor(
+          tokenCallback: tokenCallback,
+          refreshSession: refreshSession,
+          client: client,
+        ),
+      );
+    }
+
+    return RestClientImpl._(client);
   }
 
   @override

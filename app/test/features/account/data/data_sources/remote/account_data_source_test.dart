@@ -19,28 +19,27 @@ void main() {
     dataSource = AccountDataSource(client: _MockGQLClient(), restClient: rest);
   });
 
-  test('the export sends the token and returns the link', () async {
-    when(() => rest.post<Map<String, Object?>>('/export', headers: {'authorization': 'Bearer t'}))
+  test('the export returns the link', () async {
+    when(() => rest.post<Map<String, Object?>>('/export'))
         .thenAnswer((_) async => ok({'url': 'https://files.test/a.json'}));
 
-    expect(await dataSource.exportData(accessToken: 't'), Uri.parse('https://files.test/a.json'));
+    expect(await dataSource.exportData(), Uri.parse('https://files.test/a.json'));
   });
 
   test('a limit answer keeps the server code', () async {
-    when(() => rest.post<Map<String, Object?>>('/export', headers: any(named: 'headers')))
-        .thenThrow(
-          DioException(
-            requestOptions: RequestOptions(),
-            response: Response(
-              requestOptions: RequestOptions(),
-              data: {'error': 'EXPORT_LIMIT'},
-              statusCode: 429,
-            ),
-          ),
-        );
+    when(() => rest.post<Map<String, Object?>>('/export')).thenThrow(
+      DioException(
+        requestOptions: RequestOptions(),
+        response: Response(
+          requestOptions: RequestOptions(),
+          data: {'error': 'EXPORT_LIMIT'},
+          statusCode: 429,
+        ),
+      ),
+    );
 
     await expectLater(
-      dataSource.exportData(accessToken: 't'),
+      dataSource.exportData(),
       throwsA(isA<ServerResponseException>().having((e) => e.l10nKey, 'l10nKey', 'EXPORT_LIMIT')),
     );
   });

@@ -61,7 +61,13 @@ class SharedInjectionModule() implements InjectionModule {
         refreshSession: injector.get<AuthenticationRepository>().refreshSession,
       ),
     )
-    ..registerLazySingleton<RestClient>(() => RestClientImpl(baseUrl: EnvVariables.functionsUrl))
+    ..registerLazySingleton<RestClient>(
+      () => RestClientImpl(
+        baseUrl: EnvVariables.functionsUrl,
+        tokenCallback: injector.get<AuthenticationRepository>().getFreshAccessToken,
+        refreshSession: injector.get<AuthenticationRepository>().refreshSession,
+      ),
+    )
     ..registerLazySingleton<AnalyticsService>(FirebaseAnalyticsService.new)
     ..registerLazySingleton<RemoteConfigService>(RemoteConfigService.new)
     ..registerLazySingleton<ReviewService>(ReviewService.new)

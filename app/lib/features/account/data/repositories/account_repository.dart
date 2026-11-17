@@ -30,9 +30,7 @@ class AccountRepository({
   }
 
   /// A short-lived link to a file with the person's own data.
-  Future<Uri> exportData() async {
-    return await _dataSource.exportData(accessToken: _authenticationRepository.getAccessToken());
-  }
+  Future<Uri> exportData() => _dataSource.exportData();
 
   Future<void> cancelDeletion() async {
     await _dataSource.cancelDeletion(_userId);

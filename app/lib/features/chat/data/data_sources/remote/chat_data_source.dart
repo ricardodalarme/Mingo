@@ -32,15 +32,8 @@ class ChatDataSource({
   }
 
   /// Sends [request] and streams the reply; the stream ends when the server closes it.
-  Stream<ChatEventDto> send({
-    required ChatRequestDto request,
-    required String? accessToken,
-  }) async* {
-    final lines = _restClient.postLines(
-      _functionUrl,
-      data: request.toMap(),
-      headers: {'authorization': 'Bearer $accessToken'},
-    );
+  Stream<ChatEventDto> send({required ChatRequestDto request}) async* {
+    final lines = _restClient.postLines(_functionUrl, data: request.toMap());
     await for (final line in lines) {
       final event = parseChatLine(line);
       if (event != null) yield event;

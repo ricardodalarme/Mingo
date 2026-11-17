@@ -1,4 +1,3 @@
-import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/chat/data/data_sources/remote/chat_data_source.dart';
 import 'package:app/features/chat/data/data_sources/remote/dtos/chat_request_dto.dart';
 import 'package:app/features/chat/data/mappers/chat_mapper.dart';
@@ -18,7 +17,6 @@ typedef ChatStatus = ({int messagesLeft, int limit, bool hasPlus});
 class ChatRepository({
   required final ChatDataSource _dataSource,
   required final ProfileRepository _profileRepository,
-  required final AuthenticationRepository _authenticationRepository,
   required final SlipRepository _slipRepository,
   required final PlusRepository _plusRepository,
 }) {
@@ -64,7 +62,6 @@ class ChatRepository({
           for (final turn in recent) ChatTurnDto(role: turn.role.toRemote(), text: turn.text),
         ],
       ),
-      accessToken: _authenticationRepository.getAccessToken(),
     );
     await for (final event in events) {
       yield event.toModel();

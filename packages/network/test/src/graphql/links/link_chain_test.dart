@@ -16,7 +16,7 @@ void main() {
   Link build({
     required Stream<Response> Function(int call) handler,
     FutureOr<String?> Function()? tokenCallback,
-    Future<bool> Function()? refreshSession,
+    Future<bool> Function(String? rejected)? refreshSession,
     Duration queryTimeout = const Duration(milliseconds: 60),
     Duration mutationTimeout = const Duration(milliseconds: 200),
   }) => buildGraphQLLink(
@@ -42,6 +42,7 @@ void main() {
       final link = build(
         handler: (_) => slow(const Duration(milliseconds: 20)),
         tokenCallback: () => 'abc',
+        refreshSession: (_) async => true,
       );
 
       await Future.wait([link.request(queryRequest()).first, link.request(queryRequest()).first]);
@@ -85,6 +86,7 @@ void main() {
     test('waits for an asynchronous token', () async {
       final link = build(
         handler: (_) => Stream.value(okResponse()),
+        refreshSession: (_) async => true,
         tokenCallback: () async {
           await Future<void>.delayed(const Duration(milliseconds: 10));
 
@@ -98,7 +100,11 @@ void main() {
     });
 
     test('attaches the bearer token to every request', () async {
-      final link = build(handler: (_) => Stream.value(okResponse()), tokenCallback: () => 'abc');
+      final link = build(
+        handler: (_) => Stream.value(okResponse()),
+        tokenCallback: () => 'abc',
+        refreshSession: (_) async => true,
+      );
 
       await link.request(queryRequest()).first;
 
@@ -106,7 +112,11 @@ void main() {
     });
 
     test('sends no authorization header without a token', () async {
-      final link = build(handler: (_) => Stream.value(okResponse()), tokenCallback: () => '');
+      final link = build(
+        handler: (_) => Stream.value(okResponse()),
+        tokenCallback: () => '',
+        refreshSession: (_) async => true,
+      );
 
       await link.request(queryRequest()).first;
 
@@ -118,7 +128,7 @@ void main() {
       final link = build(
         handler: (call) => call == 1 ? Stream.error(httpError(401)) : Stream.value(okResponse()),
         tokenCallback: () => token,
-        refreshSession: () async {
+        refreshSession: (_) async {
           token = 'new';
           return true;
         },

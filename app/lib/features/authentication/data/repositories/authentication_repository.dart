@@ -9,19 +9,21 @@ class AuthenticationRepository({required final AuthenticationService _authentica
   UserSession get userSession => _authenticationService.userSession;
   Stream<bool> get isAuthenticatedStream => _authenticationService.authStateChanges;
 
-  String? getAccessToken() => _authenticationService.currentSession?.accessToken;
-
   /// The access token, renewed first when it is about to expire.
   Future<String?> getFreshAccessToken() => _authenticationService.getFreshAccessToken();
 
   /// Renews the session; false when there is none or it cannot be renewed.
-  Future<bool> refreshSession() => _authenticationService.refreshSession();
+  ///
+  /// [rejected] is the token a request was just refused with, so a renewal that already replaced it
+  /// is not repeated.
+  Future<bool> refreshSession([String? rejected]) =>
+      _authenticationService.refreshSession(rejected);
 
   /// The auth provider that created the session, or null when it cannot be read.
   String? get loginProvider => _authenticationService.loginProvider;
 
   /// The signed-in user's id, which is also the profile id.
-  String? get currentUserId => _authenticationService.currentSession?.user.id;
+  String? get currentUserId => _authenticationService.currentUserId;
 
   Future<void> logInWithEmailAndPassword({required String email, required String password}) async {
     try {

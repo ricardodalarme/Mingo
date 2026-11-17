@@ -37,12 +37,9 @@ class AccountDataSource({required final GQLClient _client, required final RestCl
   /// Builds the person's data file and returns a short-lived link to it.
   ///
   /// Fails with `EXPORT_LIMIT` when a file was already built in the last 24 hours.
-  Future<Uri> exportData({required String? accessToken}) async {
+  Future<Uri> exportData() async {
     try {
-      final response = await _restClient.post<Map<String, Object?>>(
-        '/export',
-        headers: {'authorization': 'Bearer $accessToken'},
-      );
+      final response = await _restClient.post<Map<String, Object?>>('/export');
       final url = response.data?['url'];
       if (url is! String) throw const NoDataException();
 

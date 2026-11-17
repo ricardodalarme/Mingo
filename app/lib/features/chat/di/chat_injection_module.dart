@@ -46,7 +46,6 @@ class ChatInjectionModule() implements InjectionModule {
         () => ChatRepository(
           dataSource: injector.get<ChatDataSource>(),
           profileRepository: injector.get<ProfileRepository>(),
-          authenticationRepository: injector.get<AuthenticationRepository>(),
           slipRepository: injector.get<SlipRepository>(),
           plusRepository: injector.get<PlusRepository>(),
         ),

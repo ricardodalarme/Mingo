@@ -13,7 +13,7 @@ class GQLClient._(
   factory({
     required String serverUrl,
     FutureOr<String?> Function()? tokenCallback,
-    Future<bool> Function()? refreshSession,
+    Future<bool> Function(String? rejected)? refreshSession,
     Map<String, String> defaultHeaders = const {},
     Duration queryTimeout = const Duration(seconds: 10),
     Duration mutationTimeout = const Duration(seconds: 30),

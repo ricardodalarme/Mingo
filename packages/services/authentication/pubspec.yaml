@@ -6,10 +6,11 @@ environment:
   sdk: ^3.14.0
 
 dependencies:
-  equatable: ^2.1.0
   flutter:
     sdk: flutter
   http: ^1.6.0
+  logger:
+    path: ../../logger
   nhost_auth_dart: ^2.7.0
   nhost_sdk: ^5.8.1
   secure_storage_service:

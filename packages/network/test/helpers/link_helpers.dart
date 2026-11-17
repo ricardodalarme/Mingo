@@ -53,3 +53,20 @@ Future<Object?> failureOf(Stream<Response> stream) async {
 
   return null;
 }
+
+/// Stands in for the session: hands out [current] and decides how each renewal ends, recording
+/// the token it was asked to replace.
+class FakeSession({var String? current, var Future<bool> Function(String? rejected)? onRenew}) {
+  final List<String?> renewals = [];
+
+  Future<String?> token() async => current;
+
+  Future<bool> renew(String? rejected) async {
+    renewals.add(rejected);
+
+    return onRenew == null ? true : onRenew!(rejected);
+  }
+}
+
+String? authorizationOf(Request request) =>
+    request.context.entry<HttpLinkHeaders>()?.headers['Authorization'];
