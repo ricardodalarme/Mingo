@@ -2,7 +2,13 @@ import 'package:app/features/authentication/data/repositories/authentication_rep
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/spice/data/data_sources/remote/fragments/generated/SpiceChallengeFragment.graphql.dart';
 import 'package:app/features/spice/data/data_sources/remote/spice_data_source.dart';
+import 'package:app/features/spice/data/mappers/spice_card_mapper.dart';
+import 'package:app/features/spice/data/mappers/spice_challenge_mapper.dart';
+import 'package:app/features/spice/data/mappers/spice_desire_mapper.dart';
 import 'package:app/features/spice/data/mappers/spice_mapper.dart';
+import 'package:app/features/spice/data/mappers/spice_match_mapper.dart';
+import 'package:app/features/spice/data/mappers/spice_settings_mapper.dart';
+import 'package:app/features/spice/data/mappers/spice_status_mapper.dart';
 import 'package:app/features/spice/data/models/spice_models.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
@@ -29,13 +35,16 @@ class SpiceRepository({
   Future<SpiceStatus> getStatus() => _run('read the mode', () async {
     final node = await _dataSource.getState();
 
-    return _status((state: node.state, myLevel: node.myLevel, coupleLevel: node.coupleLevel));
+    return (state: node.state, myLevel: node.myLevel, coupleLevel: node.coupleLevel).toModel();
   });
 
   /// Emits the mode now and each time either person changes it. A failed event is logged and
   /// skipped, so a screen keeps what it shows.
   Stream<SpiceStatus> watchStatus() {
-    return _dataSource.watchState().map(_status).handleError((Object e, StackTrace stack) {
+    return _dataSource.watchState().map((record) => record.toModel()).handleError((
+      Object e,
+      StackTrace stack,
+    ) {
       _logger.error('The mode subscription failed', error: e, stackTrace: stack);
     });
   }
@@ -50,12 +59,6 @@ class SpiceRepository({
       _logger.error('The challenge subscription failed', error: e, stackTrace: stack);
     });
   }
-
-  SpiceStatus _status(SpiceStateRecord node) => SpiceStatus(
-    stage: spiceStageFromRemote(node.state),
-    myLevel: spiceLevelFromRemote(node.myLevel),
-    coupleLevel: node.coupleLevel == null ? null : spiceLevelFromRemote(node.coupleLevel),
-  );
 
   /// Confirms the person is an adult and switches the mode on for them only.
   Future<void> turnOn() => _run('switch the mode on', () async {
@@ -72,11 +75,7 @@ class SpiceRepository({
     if (node == null) return null;
     final texts = await _dataSource.getTexts(slugs: [node.contentSlug], locale: await _locale());
 
-    return SpiceCard(
-      id: node.id,
-      text: texts[node.contentSlug] ?? '',
-      isMine: node.proposedBy == _userId,
-    );
+    return node.toModel(text: texts[node.contentSlug] ?? '', userId: _userId);
   });
 
   Future<void> respondToCard({required String id, required bool accept}) =>
@@ -92,15 +91,7 @@ class SpiceRepository({
     ).wait;
     final byId = {for (final answer in answers) answer.contentSlug: answer.answer.toModel()};
 
-    return [
-      for (final node in desires)
-        SpiceDesire(
-          slug: node.slug,
-          title: node.title,
-          level: spiceLevelFromRemote(node.level),
-          answer: byId[node.slug],
-        ),
-    ];
+    return [for (final node in desires) node.toModel(answer: byId[node.slug])];
   });
 
   Future<void> answerDesire({required String slug, required SpiceAnswer answer}) => _run(
@@ -109,10 +100,7 @@ class SpiceRepository({
   );
 
   Future<List<SpiceMatch>> getMatches() => _run('read the matches', () async {
-    return [
-      for (final node in await _dataSource.getMatches())
-        SpiceMatch(slug: node.slug, title: node.title),
-    ];
+    return [for (final node in await _dataSource.getMatches()) node.toModel()];
   });
 
   Future<SpiceChallenge?> getChallenge() =>
@@ -126,10 +114,7 @@ class SpiceRepository({
   Future<SpiceSettings> getSettings() => _run('read the settings', () async {
     final node = await _dataSource.getSettings(_userId);
 
-    return SpiceSettings(
-      maxLevel: spiceLevelFromRemote(node.spiceMaxLevel),
-      notifications: node.spiceNotifications,
-    );
+    return node.toModel();
   });
 
   Future<void> setSettings(SpiceSettings settings) => _run(
@@ -144,16 +129,8 @@ class SpiceRepository({
   Future<SpiceChallenge?> _toChallenge(FragmentSpiceChallengeFragment? node) async {
     if (node == null) return null;
     final texts = await _dataSource.getTexts(slugs: [node.contentSlug], locale: await _locale());
-    final me = _userId;
-    final partnerAccepted = node.acceptedBy.any((id) => id != me);
 
-    return SpiceChallenge(
-      text: texts[node.contentSlug] ?? '',
-      acceptedByMe: node.acceptedBy.contains(me),
-      doneByMe: node.doneBy.contains(me),
-      acceptedByPartner: partnerAccepted,
-      swapsLeft: spiceMaxSwaps - node.swaps,
-    );
+    return node.toModel(text: texts[node.contentSlug] ?? '', userId: _userId);
   }
 
   Future<T> _run<T>(String what, Future<T> Function() action) async {
