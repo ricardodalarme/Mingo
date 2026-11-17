@@ -66,7 +66,7 @@ class GamesDataSource({required final GQLClient _client}) {
     final response = await _client.query(
       OptionsQueryGameItems(
         variables: VariablesQueryGameItems(kind: kind, locale: locale, limit: limit),
-        fetchPolicy: FetchPolicy.networkOnly,
+        fetchPolicy: FetchPolicy.cacheFirst,
       ),
     );
     final rows = validateResponseData(response, getData: (data) => data.contentItems);
@@ -82,7 +82,7 @@ class GamesDataSource({required final GQLClient _client}) {
     final response = await _client.query(
       OptionsQueryGameItemsBySlug(
         variables: VariablesQueryGameItemsBySlug(kind: kind, locale: locale, slugs: slugs),
-        fetchPolicy: FetchPolicy.networkOnly,
+        fetchPolicy: FetchPolicy.cacheFirst,
       ),
     );
     final rows = validateResponseData(response, getData: (data) => data.contentItems);

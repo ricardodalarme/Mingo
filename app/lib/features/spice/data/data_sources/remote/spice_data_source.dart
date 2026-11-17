@@ -105,7 +105,7 @@ class SpiceDataSource({required final GQLClient _client}) {
     final response = await _client.query(
       OptionsQuerySpiceTexts(
         variables: VariablesQuerySpiceTexts(slugs: slugs, locale: locale),
-        fetchPolicy: FetchPolicy.networkOnly,
+        fetchPolicy: FetchPolicy.cacheFirst,
       ),
     );
     final items = validateResponseData(response, getData: (data) => data.contentItems);
@@ -120,7 +120,7 @@ class SpiceDataSource({required final GQLClient _client}) {
     final response = await _client.query(
       OptionsQuerySpiceDesires(
         variables: VariablesQuerySpiceDesires(locale: locale, maxLevel: maxLevel),
-        fetchPolicy: FetchPolicy.networkOnly,
+        fetchPolicy: FetchPolicy.cacheFirst,
       ),
     );
 

@@ -101,7 +101,10 @@ class DatesDataSource({required final GQLClient _client}) {
 
   Future<List<QueryHolidayscontentItems>> getHolidays(String locale) async {
     final response = await _client.query(
-      OptionsQueryHolidays(variables: VariablesQueryHolidays(locale: locale)),
+      OptionsQueryHolidays(
+        fetchPolicy: FetchPolicy.cacheFirst,
+        variables: VariablesQueryHolidays(locale: locale),
+      ),
     );
 
     return validateResponseData(response, getData: (data) => data.contentItems);

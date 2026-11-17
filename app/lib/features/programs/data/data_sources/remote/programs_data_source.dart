@@ -41,7 +41,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
     final response = await _client.query(
       OptionsQueryPrograms(
         variables: VariablesQueryPrograms(locale: locale),
-        fetchPolicy: FetchPolicy.networkOnly,
+        fetchPolicy: FetchPolicy.cacheFirst,
       ),
     );
     final data = validateResponseData<QueryPrograms, QueryPrograms>(response);
@@ -76,7 +76,7 @@ class ProgramsDataSource({required final GQLClient _client}) {
     final response = await _client.query(
       OptionsQueryProgramDetail(
         variables: VariablesQueryProgramDetail(slug: slug, locale: locale),
-        fetchPolicy: FetchPolicy.networkOnly,
+        fetchPolicy: FetchPolicy.cacheFirst,
       ),
     );
     final data = validateResponseData<QueryProgramDetail, QueryProgramDetail>(response);

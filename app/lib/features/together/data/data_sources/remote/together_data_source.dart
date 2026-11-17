@@ -200,7 +200,10 @@ class TogetherDataSource({required final GQLClient _client}) {
 
   Future<List<QueryDateIdeaSuggestionscontentItems>> getDateIdeaSuggestions(String locale) async {
     final response = await _client.query(
-      OptionsQueryDateIdeaSuggestions(variables: VariablesQueryDateIdeaSuggestions(locale: locale)),
+      OptionsQueryDateIdeaSuggestions(
+        fetchPolicy: FetchPolicy.cacheFirst,
+        variables: VariablesQueryDateIdeaSuggestions(locale: locale),
+      ),
     );
 
     return validateResponseData(response, getData: (data) => data.contentItems);
@@ -284,6 +287,7 @@ class TogetherDataSource({required final GQLClient _client}) {
   }) async {
     final response = await _client.query(
       OptionsQueryHelpContent(
+        fetchPolicy: FetchPolicy.cacheFirst,
         variables: VariablesQueryHelpContent(kind: kind, locale: locale),
       ),
     );
