@@ -30,7 +30,6 @@
   "invitePerson": "Invite your person",
   "pendingInviteTitle": "Invite sent",
   "pendingInviteText": "They have not joined yet. Send again or revoke.",
-  "pendingInviteAction": "See invite",
   "answer": "Answer",
   "slipsThisWeek(plural, param=count)": {
     "zero": "No slips yet",
@@ -57,8 +56,6 @@
   "emptyWeekAction": "Note a slip",
   "nothingReceived": "No new cards. No rush.",
   "cardReceived": "You received a card",
-  "cardReceivedAction": "See card",
-  "firstDayLabel": "Getting started",
   "firstDayGreeting": "Hi, {name}",
   "firstDaySubtitle": "so glad you are here",
   "firstDayTag": "Good start",
@@ -75,10 +72,7 @@
   "errorTitle": "Could not load Today",
   "errorText": "Your slips are safe. Try again.",
   "cardReceivedNamed": "{name} sent you a card",
-  "signalReceived": "Your partner sent you a message",
-  "signalReceivedAction": "View",
   "weekHintToday": "card goes out today, 18:00",
-  "privateSupport": "It stays with you until you invite someone.",
   "inviteCardSupport": "Your space already works. The other person joins whenever they want.",
   "inviteCardAction": "Invite",
   "carouselCardTag": "Card",
@@ -104,5 +98,10 @@
     "text": "No common cards for now. Start with a repair or sort out what to say.",
     "repair": "Start the repair",
     "chat": "Talk to get organized"
-  }
+  },
+  "questionTag": "Today",
+  "partnerMomentTag": "For this moment",
+  "partnerMomentSupport": "A small idea can help.",
+  "partnerMomentAction": "See ideas",
+  "offlineBand": "No connection. Showing what was already on your phone."
 }

@@ -1,12 +1,16 @@
 import 'package:app/features/cards/presentation/shared/widgets/week_card.dart';
+import 'package:app/features/mood/data/models/mood_kind.dart';
+import 'package:app/features/mood/data/models/partner_mood.dart';
+import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
+import 'package:app/features/mood/presentation/mood/widgets/partner_mood_help_sheet.dart';
 import 'package:app/features/mood/presentation/mood/widgets/today_mood_block.dart';
-import 'package:app/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
 import 'package:app/features/today/data/models/today_home.dart';
-import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
 import 'package:app/features/today/presentation/today/widgets/conflict_section.dart';
 import 'package:app/features/today/presentation/today/widgets/open_invite.dart';
-import 'package:app/features/today/presentation/today/widgets/today_carousel.dart';
+import 'package:app/features/today/presentation/today/widgets/today_band.dart';
+import 'package:app/features/today/presentation/today/widgets/today_blocks.dart';
 import 'package:app/features/today/presentation/today/widgets/today_header.dart';
+import 'package:app/features/today/presentation/today/widgets/today_section.dart';
 import 'package:app/features/today/presentation/today/widgets/today_share_entry.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
@@ -15,10 +19,12 @@ import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// The home-driven body of Hoje: header, mood, the main card, the week so far and "Para hoje".
+/// The home-driven body of Hoje, in the board's order: the header and one band, then the mood,
+/// the question, the week and "Para hoje".
 ///
-/// The main card follows the person's state: the question when connected and a welcome on the
-/// first day. On their own the person sees the invite entry and a code shortcut instead.
+/// Each block is only built when the state has content for it, and the state decides what the
+/// person can see: alone, waiting for an invite, on the first day, after a fight or with no slips
+/// this week.
 class const TodayContent({
   required final TodayHome home,
   final String? selfName,
@@ -26,174 +32,156 @@ class const TodayContent({
   final bool isFirstDay = false,
   final bool isSoloOnly = false,
   final bool isInConflict = false,
+  final bool isOffline = false,
   super.key,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final isAlone = !home.isPaired;
-    final canInvite = isAlone && !isSoloOnly;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        _TopSection(
-          home: home,
-          selfName: selfName,
-          isFirstDay: isFirstDay,
-          isInConflict: isInConflict,
-        ),
-        if (isInConflict) ...[
-          const SizedBox(height: AppSpace.s16),
-          const ConflictSection(),
-        ] else ...[
-          if (canInvite && !home.hasPendingInvite) ...[
-            const SizedBox(height: AppSpace.s12),
-            BaseListCard(
-              categoryLabel: context.l10n.today.inviteCardLabel,
-              category: AppCategory.invite,
-              title: partnerHint == null
-                  ? context.l10n.today.inviteCardTitleNoName
-                  : context.l10n.today.inviteCardTitle(name: partnerHint!),
-              supportText: context.l10n.today.inviteCardText,
-              onTap: () => openInvite(context),
-            ),
-          ],
-          if (isFirstDay)
-            _FirstDayIdea(idea: home.idea)
-          else
-            TodayCarousel(home: home, isSoloOnly: isSoloOnly),
-          if (canInvite) const _HaveCodeButton(),
-          TodayShareEntry(home: home),
-        ],
-      ],
+    final blocks = todayBlocksFor(
+      home: home,
+      isFirstDay: isFirstDay,
+      isInConflict: isInConflict,
+      isSoloOnly: isSoloOnly,
     );
-  }
-}
-
-class const _TopSection({
-  required final TodayHome home,
-  required final String? selfName,
-  required final bool isFirstDay,
-  required final bool isInConflict,
-}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.today;
-    final isAlone = !home.isPaired;
-    final today = home.localDate ?? clock.now();
-    final weekStart = DateTime(
-      today.year,
-      today.month,
-      today.day,
-    ).subtract(Duration(days: today.weekday - DateTime.monday));
-    final weekCounts = List<int>.filled(7, 0);
-    for (final day in home.slipDays) {
-      final index = DateTime(day.year, day.month, day.day).difference(weekStart).inDays;
-      if (index >= 0 && index < 7) weekCounts[index]++;
-    }
+    final partnerMood = context.select((MoodCubit cubit) => cubit.state.partnerMood);
+    final partnerName = context.select((MoodCubit cubit) => cubit.state.partnerName);
+    final mood = partnerMood?.mood;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TodayHeader(home: home, selfName: selfName, isFirstDay: isFirstDay),
         const SizedBox(height: AppSpace.s20),
-        const NotificationsOffBanner(),
-        if (home.unseenSignals > 0) ...[
-          BaseBanner(
-            text: l10n.signalReceived,
-            icon: AppIcons.mail,
-            actionLabel: l10n.signalReceivedAction,
-            onAction: () async {
-              await context.pushRoute(const ReceivedSignalsRoute());
-              if (context.mounted) await context.read<TodayCubit>().load();
-            },
+        TodayBand(home: home, isOffline: isOffline),
+        for (var index = 0; index < blocks.length; index++) ...[
+          if (index > 0) SizedBox(height: _gapBefore(blocks[index], previous: blocks[index - 1])),
+          _block(
+            context,
+            blocks[index],
+            partnerMood: partnerMood,
+            partnerName: partnerName,
+            mood: mood,
           ),
-          const SizedBox(height: AppSpace.s12),
-        ],
-        if (home.hasPendingInvite) ...[
-          BaseListCard(
-            category: AppCategory.invite,
-            categoryLabel: l10n.pendingInviteTitle,
-            title: l10n.pendingInviteText,
-            supportText: l10n.pendingInviteAction,
-            onTap: () => openInvite(context),
-          ),
-          const SizedBox(height: AppSpace.s12),
-        ],
-        if (!isInConflict) ...[
-          TodayMoodBlock(isFirstDay: isFirstDay, hasPendingInvite: home.hasPendingInvite),
-          if (!isAlone || isFirstDay) _MainCard(home: home, isFirstDay: isFirstDay),
-          if (!home.hasPendingInvite) ...[
-            const SizedBox(height: AppSpace.s16),
-            WeekCard(
-              title: isAlone
-                  ? l10n.privateWeekTitle
-                  : l10n.slipsThisWeek(count: home.slipsThisWeek),
-              supportText: isAlone
-                  ? l10n.privateWeekCount(count: home.slipsThisWeek)
-                  : home.slipsThisWeek == 0
-                  ? l10n.weekHintEmpty
-                  : today.weekday == DateTime.sunday
-                  ? l10n.weekHintToday
-                  : l10n.weekHint,
-              dayCounts: weekCounts,
-              dayLabels: [for (final day in l10n.weekdays) day.substring(0, 3)],
-              todayIndex: today.weekday - 1,
-            ),
-          ],
-          if (home.isPaired && home.unopenedCards == 0 && home.slipsThisWeek > 0) ...[
-            const SizedBox(height: AppSpace.s10),
-            Center(
-              child: Text(
-                l10n.nothingReceived,
-                style: context.text.caption.copyWith(color: context.colors.textSecondary),
-              ),
-            ),
-          ],
         ],
       ],
     );
   }
-}
 
-class const _FirstDayIdea({required final Suggestion? idea}) extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  double _gapBefore(TodayBlock block, {required TodayBlock previous}) {
+    if (previous == TodayBlock.mood) return 0;
+
+    return switch (block) {
+      TodayBlock.conflict ||
+      TodayBlock.firstDayCard ||
+      TodayBlock.privateCard ||
+      TodayBlock.mood => 0,
+      TodayBlock.nothingReceived ||
+      TodayBlock.questionCard ||
+      TodayBlock.weekCard ||
+      TodayBlock.emptyWeekCard ||
+      TodayBlock.inviteCard => AppSpace.s12,
+      TodayBlock.forToday => AppSpace.s24,
+      TodayBlock.haveCode => AppSpace.s16,
+      TodayBlock.shareEntry => AppSpace.s24,
+    };
+  }
+
+  Widget _block(
+    BuildContext context,
+    TodayBlock block, {
+    required PartnerMood? partnerMood,
+    required String? partnerName,
+    required MoodKind? mood,
+  }) {
     final l10n = context.l10n.today;
-    final suggestion = idea;
-    if (suggestion == null) return const SizedBox.shrink();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const SizedBox(height: AppSpace.s24),
-        BaseSectionHeader(title: l10n.forToday),
-        const SizedBox(height: AppSpace.s10),
-        BaseListCard(
-          categoryLabel: l10n.ideaLabel,
-          category: AppCategory.idea,
-          title: suggestion.title,
-          supportText: suggestion.body,
-          face: FaceKind.smile,
-          onTap: () => context.pushRoute(IdeaDetailRoute(slug: suggestion.slug)),
-        ),
-      ],
-    );
-  }
-}
-
-class const _HaveCodeButton() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: AppSpace.s16),
-      child: BaseButton(
-        text: context.l10n.today.haveCode,
-        variant: .secondary,
-        onPressed: () => context.pushRoute(AcceptInviteRoute()),
+    return switch (block) {
+      TodayBlock.conflict => const ConflictSection(),
+      TodayBlock.firstDayCard => _MainCard(home: home, isFirstDay: true),
+      TodayBlock.privateCard => BaseFeatureCard(
+        tag: l10n.privateTag,
+        question: l10n.privateQuestion,
+        highlightedWord: l10n.privateHighlight,
+        actionText: l10n.privateAction,
+        face: FaceKind.smile,
+        onAction: () => _openCapture(context),
       ),
-    );
+      TodayBlock.mood => TodayMoodBlock(
+        isFirstDay: isFirstDay,
+        hasPendingInvite: home.hasPendingInvite,
+      ),
+      TodayBlock.questionCard => _MainCard(home: home, isFirstDay: false),
+      TodayBlock.nothingReceived => BaseNote(text: l10n.nothingReceived, icon: AppIcons.info),
+      TodayBlock.emptyWeekCard => BaseFeatureCard(
+        tag: l10n.emptyWeekTag,
+        question: l10n.emptyWeekQuestion,
+        highlightedWord: l10n.emptyWeekHighlight,
+        face: FaceKind.thinking,
+        actionText: l10n.emptyWeekAction,
+        onAction: () => _openCapture(context),
+      ),
+      TodayBlock.weekCard => _Week(
+        home: home,
+        title: _countsCard ? l10n.slipsThisWeek(count: home.slipsThisWeek) : l10n.privateWeekTitle,
+        supportText: _countsCard ? _weekSupport(context) : _privateWeekSupport(context),
+      ),
+      TodayBlock.inviteCard => BaseListCard(
+        categoryLabel: l10n.inviteCardLabel,
+        category: AppCategory.invite,
+        title: partnerHint == null
+            ? l10n.inviteCardTitleNoName
+            : l10n.inviteCardTitle(name: partnerHint!),
+        supportText: l10n.inviteCardSupport,
+        onTap: () => openInvite(context),
+      ),
+      TodayBlock.forToday => TodaySection(
+        home: home,
+        isSoloOnly: isSoloOnly,
+        isFirstDay: isFirstDay,
+        partnerHint: partnerHint,
+        partnerMood: partnerMood,
+        partnerName: partnerName,
+        onSeeIdeas: mood == null
+            ? null
+            : () => openPartnerMoodHelp(
+                context,
+                mood: mood,
+                onSendMessage: () => context.read<MoodCubit>().sendSweetMessage(
+                  context.l10n.moodHelp.sweetMessageBody,
+                ),
+              ),
+      ),
+      TodayBlock.haveCode => Padding(
+        padding: const EdgeInsets.only(bottom: AppSpace.s2),
+        child: BaseButton(
+          text: l10n.haveCode,
+          variant: .secondary,
+          onPressed: () => context.pushRoute(AcceptInviteRoute()),
+        ),
+      ),
+      TodayBlock.shareEntry => TodayShareEntry(home: home),
+    };
   }
+
+  /// The first day draws the shared week even alone: the card explains what a slip becomes.
+  bool get _countsCard => home.isPaired || isFirstDay;
+
+  String _weekSupport(BuildContext context) {
+    final l10n = context.l10n.today;
+    if (home.slipsThisWeek == 0) return l10n.weekHintEmpty;
+    if (clock.now().weekday == DateTime.sunday) return l10n.weekHintToday;
+
+    return l10n.weekHint;
+  }
+
+  String _privateWeekSupport(BuildContext context) {
+    final l10n = context.l10n.today;
+    if (home.slipsThisWeek == 0) return l10n.weekHintEmpty;
+
+    return l10n.privateWeekCount(count: home.slipsThisWeek);
+  }
+
+  void _openCapture(BuildContext context) => context.router.root.push(const QuickSlipRoute());
 }
 
 class const _MainCard({required final TodayHome home, required final bool isFirstDay})
@@ -201,7 +189,6 @@ class const _MainCard({required final TodayHome home, required final bool isFirs
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.today;
-    void openCapture() => context.router.root.push(const QuickSlipRoute());
 
     if (isFirstDay) {
       return BaseFeatureCard(
@@ -210,29 +197,20 @@ class const _MainCard({required final TodayHome home, required final bool isFirs
         highlightedWord: l10n.firstDayHighlight(count: home.slipsTotal),
         supportText: l10n.firstDayText,
         actionText: l10n.firstDayAction,
-        onAction: openCapture,
-      );
-    }
-    if (home.slipsThisWeek == 0) {
-      return BaseFeatureCard(
-        tag: l10n.emptyWeekTag,
-        question: l10n.emptyWeekQuestion,
-        highlightedWord: l10n.emptyWeekHighlight,
-        face: FaceKind.thinking,
-        actionText: l10n.emptyWeekAction,
-        onAction: openCapture,
+        face: FaceKind.smile,
+        onAction: () => context.router.root.push(const QuickSlipRoute()),
       );
     }
     final question = home.question;
     if (question == null) return const SizedBox.shrink();
 
     return BaseFeatureCard(
-      tag: question.tags.isEmpty ? l10n.forToday : question.tags.first,
+      tag: l10n.questionTag,
       question: question.title,
       highlightedWord: _longestWord(question.title),
       face: FaceKind.smile,
       actionText: l10n.answer,
-      onAction: openCapture,
+      onAction: () => context.router.root.push(const QuickSlipRoute()),
     );
   }
 
@@ -240,5 +218,32 @@ class const _MainCard({required final TodayHome home, required final bool isFirs
     final words = text.replaceAll(RegExp('[?.!,]'), '').split(' ');
 
     return words.reduce((a, b) => b.length > a.length ? b : a);
+  }
+}
+
+class const _Week({
+  required final TodayHome home,
+  required final String title,
+  required final String supportText,
+}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.today;
+    final today = home.localDate ?? clock.now();
+    final day = DateTime(today.year, today.month, today.day);
+    final weekStart = day.subtract(Duration(days: today.weekday - DateTime.monday));
+    final dayCounts = List<int>.filled(7, 0);
+    for (final slipDay in home.slipDays) {
+      final index = DateTime(slipDay.year, slipDay.month, slipDay.day).difference(weekStart).inDays;
+      if (index >= 0 && index < 7) dayCounts[index]++;
+    }
+
+    return WeekCard(
+      title: title,
+      supportText: supportText,
+      dayCounts: dayCounts,
+      dayLabels: [for (final weekday in l10n.weekdays) weekday.substring(0, 3)],
+      todayIndex: today.weekday - 1,
+    );
   }
 }

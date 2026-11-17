@@ -1,3 +1,4 @@
+import 'package:app/features/cards/data/models/card_status.dart';
 import 'package:equatable/equatable.dart';
 
 /// A piece of editorial content shown on Hoje.
@@ -97,6 +98,10 @@ final class const TodayHome({
     'idea': idea?.toMap(),
     'slipDays': [for (final day in slipDays) day.toIso8601String()],
   };
+
+  /// Whether this week's card exists and has not gone out yet.
+  bool get hasCardToSend =>
+      cardStatus == CardStatus.draft.name || cardStatus == CardStatus.held.name;
 
   static DateTime? _date(Object? value) => value == null ? null : DateTime.parse(value as String);
 

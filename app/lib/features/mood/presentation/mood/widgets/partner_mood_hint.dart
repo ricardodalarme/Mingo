@@ -10,6 +10,21 @@ import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 
+/// How the partner's day reads on Hoje: one line about the mood they shared.
+String partnerMoodLine(BuildContext context, MoodKind mood, {String? partnerName}) {
+  final l10n = context.l10n.mood;
+  final name = partnerName ?? l10n.partnerFallback;
+
+  return switch (mood) {
+    MoodKind.happy => l10n.partnerHappy(name: name),
+    MoodKind.tired => l10n.partnerTired(name: name),
+    MoodKind.sad => l10n.partnerSad(name: name),
+    MoodKind.stressed => l10n.partnerStressed(name: name),
+    MoodKind.loving => l10n.partnerLoving(name: name),
+    MoodKind.playful => l10n.partnerPlayful(name: name),
+  };
+}
+
 /// The partner's shared mood for today.
 ///
 /// A shared need opens the sheet that answers it, before any mood routing. Otherwise a good mood
@@ -30,15 +45,7 @@ class const PartnerMoodHint({
 
     final l10n = context.l10n.mood;
     final helpL10n = context.l10n.moodHelp;
-    final name = partnerName ?? l10n.partnerFallback;
-    final line = switch (mood) {
-      MoodKind.happy => l10n.partnerHappy(name: name),
-      MoodKind.tired => l10n.partnerTired(name: name),
-      MoodKind.sad => l10n.partnerSad(name: name),
-      MoodKind.stressed => l10n.partnerStressed(name: name),
-      MoodKind.loving => l10n.partnerLoving(name: name),
-      MoodKind.playful => l10n.partnerPlayful(name: name),
-    };
+    final line = partnerMoodLine(context, mood, partnerName: partnerName);
     final needLine = switch (partnerMood.need) {
       NeedKind.listen => l10n.partnerNeedListen,
       NeedKind.opinion => l10n.partnerNeedOpinion,
@@ -104,23 +111,8 @@ class const PartnerMoodHint({
     }
   }
 
-  Future<void> _openHelp(BuildContext context, MoodKind mood) async {
-    final l10n = context.l10n.moodHelp;
-    final action = await BaseSheet.show<PartnerMoodHelpAction>(
-      context: context,
-      title: l10n.helpTitle,
-      subtitle: l10n.helpSubtitle,
-      child: PartnerMoodHelpSheet(mood: mood),
-    );
-    if (!context.mounted) return;
-
-    switch (action) {
-      case PartnerMoodHelpAction.sendMessage:
-        onSendMessage?.call();
-      case null:
-        return;
-    }
-  }
+  Future<void> _openHelp(BuildContext context, MoodKind mood) =>
+      openPartnerMoodHelp(context, mood: mood, onSendMessage: onSendMessage);
 
   Future<void> _openListen(BuildContext context) async {
     final l10n = context.l10n.moodHelp;

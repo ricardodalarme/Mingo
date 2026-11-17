@@ -69,3 +69,20 @@ class const _Suggestion({required final String title, required final String supp
     );
   }
 }
+
+/// Opens the help sheet that fits [mood] and runs the chosen action.
+Future<void> openPartnerMoodHelp(
+  BuildContext context, {
+  required MoodKind mood,
+  VoidCallback? onSendMessage,
+}) async {
+  final l10n = context.l10n.moodHelp;
+  final action = await BaseSheet.show<PartnerMoodHelpAction>(
+    context: context,
+    title: l10n.helpTitle,
+    subtitle: l10n.helpSubtitle,
+    child: PartnerMoodHelpSheet(mood: mood),
+  );
+  if (!context.mounted) return;
+  if (action == PartnerMoodHelpAction.sendMessage) onSendMessage?.call();
+}

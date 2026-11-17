@@ -30,7 +30,6 @@
   "invitePerson": "Convidar sua pessoa",
   "pendingInviteTitle": "Convite enviado",
   "pendingInviteText": "A pessoa ainda não entrou. Reenviar ou revogar.",
-  "pendingInviteAction": "Ver convite",
   "answer": "Responder",
   "slipsThisWeek(plural, param=count)": {
     "zero": "Nenhum slip ainda",
@@ -57,8 +56,6 @@
   "emptyWeekAction": "Anotar um slip",
   "nothingReceived": "Nenhum cartão novo. Sem pressa.",
   "cardReceived": "Você recebeu um cartão",
-  "cardReceivedAction": "Ver cartão",
-  "firstDayLabel": "Começando",
   "firstDayGreeting": "Oi, {name}",
   "firstDaySubtitle": "que bom ter você por aqui",
   "firstDayTag": "Bom começo",
@@ -75,10 +72,7 @@
   "errorTitle": "Não deu para carregar o Hoje",
   "errorText": "Seus slips estão seguros. Tente de novo.",
   "cardReceivedNamed": "{name} te mandou um cartão",
-  "signalReceived": "Seu par te mandou uma mensagem",
-  "signalReceivedAction": "Ver",
   "weekHintToday": "cartão sai hoje, 18:00",
-  "privateSupport": "Fica só com você até você convidar alguém.",
   "inviteCardSupport": "Seu espaço já funciona. A outra pessoa entra quando quiser.",
   "inviteCardAction": "Convidar",
   "carouselCardTag": "Cartão",
@@ -104,5 +98,10 @@
     "text": "Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.",
     "repair": "Começar o reparo",
     "chat": "Conversar para me organizar"
-  }
+  },
+  "questionTag": "Hoje",
+  "partnerMomentTag": "Para este momento",
+  "partnerMomentSupport": "Uma ideia pequena pode ajudar.",
+  "partnerMomentAction": "Ver ideias",
+  "offlineBand": "Sem conexão. Mostrando o que já estava no seu celular."
 }
