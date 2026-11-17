@@ -7,13 +7,8 @@ import 'package:app/features/plus/data/models/plus_state.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
-import 'package:app/features/safety/data/repositories/safe_mode_repository.dart';
-import 'package:app/features/safety/presentation/safe_mode/cubit/safe_mode_cubit.dart';
-import 'package:app/features/settings/data/models/discreet_mode_values.dart';
 import 'package:app/features/settings/data/models/settings.dart';
-import 'package:app/features/settings/data/repositories/discreet_repository.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
-import 'package:app/features/settings/presentation/discreet/cubit/discreet_mode_cubit.dart';
 import 'package:app/features/settings/presentation/home/cubit/settings_home_cubit.dart';
 import 'package:app/features/settings/presentation/home/settings_home_page.dart';
 import 'package:app/l10n/translations.g.dart';
@@ -34,10 +29,6 @@ class _MockAccountRepository() extends Mock implements AccountRepository;
 
 class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
-class _MockDiscreetRepository() extends Mock implements DiscreetRepository;
-
-class _MockSafeModeRepository() extends Mock implements SafeModeRepository;
-
 class _MockSettingsRepository() extends Mock implements SettingsRepository;
 
 void main() {
@@ -53,8 +44,6 @@ void main() {
   late AccountRepository account;
   late AuthenticationRepository authentication;
   late SettingsRepository settingsRepository;
-  late DiscreetModeCubit discreet;
-  late SafeModeCubit safeMode;
 
   setUp(() {
     pairing = _MockPairingRepository();
@@ -70,17 +59,6 @@ void main() {
         .thenAnswer((_) async => const NotificationPreferences());
     AppInjector.instance.registerFactory<SettingsRepository>(() => settingsRepository);
     addTearDown(() => AppInjector.instance.unregister<SettingsRepository>());
-
-    final safeModeRepository = _MockSafeModeRepository();
-    when(() => safeModeRepository.isOn).thenReturn(false);
-    safeMode = SafeModeCubit(repository: safeModeRepository);
-    final discreetRepository = _MockDiscreetRepository();
-    when(() => discreetRepository.local).thenReturn(const DiscreetModeValues());
-    when(() => discreetRepository.setNeutralIcon(value: any(named: 'value')))
-        .thenAnswer((_) async {});
-    discreet = DiscreetModeCubit(repository: discreetRepository);
-    addTearDown(safeMode.close);
-    addTearDown(discreet.close);
   });
 
   SettingsHomeCubit buildHome() => SettingsHomeCubit(
@@ -93,34 +71,9 @@ void main() {
 
   Future<void> pumpSettings(WidgetTester tester, SettingsHomeCubit home) async {
     addTearDown(home.close);
-    await tester.pumpApp(
-      MultiBlocProvider(
-        providers: [
-          BlocProvider.value(value: home),
-          BlocProvider.value(value: safeMode),
-          BlocProvider.value(value: discreet),
-        ],
-        child: const SettingsHomePage(),
-      ),
-    );
+    await tester.pumpApp(BlocProvider.value(value: home, child: const SettingsHomePage()));
     await tester.pumpAndSettle();
   }
-
-  testWidgets('the discreet summary follows the live switches', (tester) async {
-    when(() => authentication.isAuthenticated).thenReturn(true);
-    when(() => pairing.getPartner()).thenAnswer((_) async => null);
-    final home = buildHome();
-    await home.load();
-
-    await pumpSettings(tester, home);
-
-    expect(find.text(l10n.settingsHome.discreetOff), findsOneWidget);
-
-    await discreet.setNeutralIcon(value: true);
-    await tester.pumpAndSettle();
-
-    expect(find.text(l10n.settingsHome.discreetOn), findsOneWidget);
-  });
 
   testWidgets('signed out it shows the local rows and no session or partner rows', (tester) async {
     when(() => authentication.isAuthenticated).thenReturn(false);
@@ -131,7 +84,6 @@ void main() {
 
     expect(find.text(l10n.settingsHome.theme), findsOneWidget);
     expect(find.text(l10n.settingsHome.language), findsOneWidget);
-    expect(find.text(l10n.settingsHome.safety), findsOneWidget);
     expect(find.text(l10n.settingsHome.help), findsOneWidget);
 
     expect(find.text(l10n.settingsHome.accountSection), findsNothing);
@@ -146,7 +98,6 @@ void main() {
     expect(find.text(l10n.settingsHome.relationship), findsNothing);
     expect(find.text(l10n.settingsHome.spice), findsNothing);
     expect(find.text(l10n.settingsHome.privacy), findsNothing);
-    expect(find.text(l10n.settingsHome.discreet), findsNothing);
   });
 
   testWidgets('signed in without a partner it keeps the session rows and hides the couple ones', (
@@ -167,7 +118,6 @@ void main() {
     expect(find.text(l10n.settingsHome.weeklyCard), findsOneWidget);
     expect(find.text(l10n.settingsHome.signOut), findsOneWidget);
     expect(find.text(l10n.settingsHome.deleteAccount), findsOneWidget);
-    expect(find.text(l10n.settingsHome.discreet), findsOneWidget);
 
     expect(find.text(l10n.settingsHome.relationship), findsNothing);
     expect(find.text(l10n.settingsHome.spice), findsNothing);
