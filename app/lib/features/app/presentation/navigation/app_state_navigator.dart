@@ -6,12 +6,12 @@ import 'package:app/router/app_router.dart';
 import 'package:app/router/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
 
-/// The root route a resolved app state should show.
+/// The root route an app state should show.
 PageRouteInfo<void> routeForAppState(AppState state) => switch (state) {
-  .authenticated => const HomeRoute(),
+  .authenticated || .checking => const HomeRoute(),
   .onboarding => const ProfileSetupRoute(),
   .sessionExpired => SessionExpiredRoute(),
-  .unauthenticated || .checking => const WelcomeRoute(),
+  .unauthenticated => const WelcomeRoute(),
 };
 
 /// Turns app auth states into navigation without discarding the stack on expiry.
