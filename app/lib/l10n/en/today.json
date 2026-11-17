@@ -96,5 +96,13 @@
     "zero": "no rush",
     "one": "1 this week",
     "other": "{count} this week"
+  },
+  "conflict": {
+    "tag": "Now",
+    "title": "First, take care of you two",
+    "highlight": "care",
+    "text": "No common cards for now. Start with a repair or sort out what to say.",
+    "repair": "Start the repair",
+    "chat": "Talk to get organized"
   }
 }

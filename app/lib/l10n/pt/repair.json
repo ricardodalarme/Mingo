@@ -99,7 +99,14 @@
       "other": "Não deu para salvar agora. Suas respostas continuam aqui."
     },
     "loadErrorTitle": "Não deu para abrir",
-    "loadErrorText": "Nada se perdeu. Tente de novo."
+    "loadErrorText": "Nada se perdeu. Tente de novo.",
+    "done": {
+      "title": "Reparo concluído",
+      "highlight": "concluído",
+      "text": "Cuidar disso já é um passo. Se quiser, guarde o que você aprendeu, só para você.",
+      "learn": "Guardar o que aprendi",
+      "close": "Agora não"
+    }
   },
   "learning": {
     "title": "O que você aprendeu?",

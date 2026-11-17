@@ -4,6 +4,7 @@ import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/models/partner_intent.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/data/repositories/today_repository.dart';
@@ -29,6 +30,7 @@ class TodayCubit({
   required final ProfileRepository _profileRepository,
   required final PairingRepository _pairingRepository,
   required final SlipRepository _slipRepository,
+  required final RepairRepository _repairRepository,
   final Duration _refreshInterval = todayRefreshInterval,
   final TodayRefreshTimerFactory _timerFactory = _periodicTimer,
 }) extends Cubit<TodayState> with WidgetsBindingObserver {
@@ -67,8 +69,11 @@ class TodayCubit({
     _isLoading = true;
     try {
       if (state.home is! Success) emit(state.copyWith(home: const Loading()));
-      final selfName = await _readOwnName();
-      final settings = await _readSettings();
+      final (selfName, settings, isInConflict) = await (
+        _readOwnName(),
+        _readSettings(),
+        _readConflict(),
+      ).wait;
       try {
         final result = await _todayRepository.getToday();
         if (isClosed) return;
@@ -76,6 +81,7 @@ class TodayCubit({
           state.copyWith(
             home: Success(result.home),
             isOffline: result.isFromCache,
+            isInConflict: isInConflict,
             selfName: selfName,
             partnerHint: settings?.partnerName,
             isFirstDay: _isFirstDay(settings),
@@ -110,6 +116,7 @@ class TodayCubit({
         partnerHint: state.partnerHint,
         isFirstDay: state.isFirstDay,
         isSoloOnly: state.isSoloOnly,
+        isInConflict: state.isInConflict,
       ),
     );
   }
@@ -135,6 +142,14 @@ class TodayCubit({
       return (await _profileRepository.getMyProfile()).displayName;
     } on Object {
       return state.selfName;
+    }
+  }
+
+  Future<bool> _readConflict() async {
+    try {
+      return await _repairRepository.isInConflict();
+    } on Object {
+      return state.isInConflict;
     }
   }
 

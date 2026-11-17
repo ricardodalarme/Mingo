@@ -6,6 +6,53 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
+class VariablesQueryMyTemperatureChecks {
+  factory VariablesQueryMyTemperatureChecks({required int limit}) =>
+      VariablesQueryMyTemperatureChecks._({r'limit': limit});
+
+  VariablesQueryMyTemperatureChecks._(this._$data);
+
+  factory VariablesQueryMyTemperatureChecks.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$limit = data['limit'];
+    result$data['limit'] = (l$limit as int);
+    return VariablesQueryMyTemperatureChecks._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get limit => (_$data['limit'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$limit = limit;
+    result$data['limit'] = l$limit;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! VariablesQueryMyTemperatureChecks || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$limit = limit;
+    final lOther$limit = other.limit;
+    if (l$limit != lOther$limit) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$limit = limit;
+    return Object.hashAll([l$limit]);
+  }
+}
+
 class QueryMyTemperatureChecks {
   QueryMyTemperatureChecks({required this.temperatureChecks, this.$__typename = 'query_root'});
 
@@ -76,7 +123,14 @@ const documentNodeQueryMyTemperatureChecks = DocumentNode(
     OperationDefinitionNode(
       type: OperationType.query,
       name: NameNode(value: 'MyTemperatureChecks'),
-      variableDefinitions: [],
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'limit')),
+          type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
       directives: [],
       selectionSet: SelectionSetNode(
         selections: [
@@ -97,7 +151,7 @@ const documentNodeQueryMyTemperatureChecks = DocumentNode(
               ),
               ArgumentNode(
                 name: NameNode(value: 'limit'),
-                value: IntValueNode(value: '200'),
+                value: VariableNode(name: NameNode(value: 'limit')),
               ),
             ],
             directives: [],
@@ -156,6 +210,7 @@ typedef OnQueryCompleteQueryMyTemperatureChecks = FutureOr<void> Function(
 class OptionsQueryMyTemperatureChecks extends graphql.QueryOptions<QueryMyTemperatureChecks> {
   OptionsQueryMyTemperatureChecks({
     String? operationName,
+    required VariablesQueryMyTemperatureChecks variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -167,6 +222,7 @@ class OptionsQueryMyTemperatureChecks extends graphql.QueryOptions<QueryMyTemper
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'MyTemperatureChecks',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -198,6 +254,7 @@ class WatchOptionsQueryMyTemperatureChecks
     extends graphql.WatchQueryOptions<QueryMyTemperatureChecks> {
   WatchOptionsQueryMyTemperatureChecks({
     String? operationName,
+    required VariablesQueryMyTemperatureChecks variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -209,6 +266,7 @@ class WatchOptionsQueryMyTemperatureChecks
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
+         variables: variables.toJson(),
          operationName: operationName ?? 'MyTemperatureChecks',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
@@ -225,31 +283,47 @@ class WatchOptionsQueryMyTemperatureChecks
 }
 
 class FetchMoreOptionsQueryMyTemperatureChecks extends graphql.FetchMoreOptions {
-  FetchMoreOptionsQueryMyTemperatureChecks({required graphql.UpdateQuery updateQuery})
-    : super(updateQuery: updateQuery, document: documentNodeQueryMyTemperatureChecks);
+  FetchMoreOptionsQueryMyTemperatureChecks({
+    required graphql.UpdateQuery updateQuery,
+    required VariablesQueryMyTemperatureChecks variables,
+  }) : super(
+         updateQuery: updateQuery,
+         variables: variables.toJson(),
+         document: documentNodeQueryMyTemperatureChecks,
+       );
 }
 
 extension ClientExtensionQueryMyTemperatureChecks on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QueryMyTemperatureChecks>> queryMyTemperatureChecks([
-    OptionsQueryMyTemperatureChecks? options,
-  ]) async => await this.query(options ?? OptionsQueryMyTemperatureChecks());
+  Future<graphql.QueryResult<QueryMyTemperatureChecks>> queryMyTemperatureChecks(
+    OptionsQueryMyTemperatureChecks options,
+  ) async => await this.query(options);
 
-  graphql.ObservableQuery<QueryMyTemperatureChecks> watchQueryMyTemperatureChecks([
-    WatchOptionsQueryMyTemperatureChecks? options,
-  ]) => this.watchQuery(options ?? WatchOptionsQueryMyTemperatureChecks());
+  graphql.ObservableQuery<QueryMyTemperatureChecks> watchQueryMyTemperatureChecks(
+    WatchOptionsQueryMyTemperatureChecks options,
+  ) => this.watchQuery(options);
 
   void writeQueryMyTemperatureChecks({
     required QueryMyTemperatureChecks data,
+    required VariablesQueryMyTemperatureChecks variables,
     bool broadcast = true,
   }) => this.writeQuery(
-    graphql.Request(operation: graphql.Operation(document: documentNodeQueryMyTemperatureChecks)),
+    graphql.Request(
+      operation: graphql.Operation(document: documentNodeQueryMyTemperatureChecks),
+      variables: variables.toJson(),
+    ),
     data: data.toJson(),
     broadcast: broadcast,
   );
 
-  QueryMyTemperatureChecks? readQueryMyTemperatureChecks({bool optimistic = true}) {
+  QueryMyTemperatureChecks? readQueryMyTemperatureChecks({
+    required VariablesQueryMyTemperatureChecks variables,
+    bool optimistic = true,
+  }) {
     final result = this.readQuery(
-      graphql.Request(operation: graphql.Operation(document: documentNodeQueryMyTemperatureChecks)),
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryMyTemperatureChecks),
+        variables: variables.toJson(),
+      ),
       optimistic: optimistic,
     );
     return result == null ? null : QueryMyTemperatureChecks.fromJson(result);

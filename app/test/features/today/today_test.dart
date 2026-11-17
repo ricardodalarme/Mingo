@@ -4,6 +4,7 @@ import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/today/data/data_sources/local/today_local_data_source.dart';
 import 'package:app/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
@@ -27,6 +28,8 @@ class _MockProfileRepository() extends Mock implements ProfileRepository;
 class _MockPairingRepository() extends Mock implements PairingRepository;
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
+
+class _MockRepairRepository() extends Mock implements RepairRepository;
 
 QueryTodayHome _query({QueryTodayHometoday? today}) =>
     QueryTodayHome(today: today == null ? const [] : [today], question: const [], idea: const []);
@@ -181,12 +184,15 @@ void main() {
     late ProfileRepository profile;
     late PairingRepository pairing;
     late SlipRepository slip;
+    late RepairRepository repair;
 
     setUp(() {
       today = _MockTodayRepository();
       profile = _MockProfileRepository();
       pairing = _MockPairingRepository();
       slip = _MockSlipRepository();
+      repair = _MockRepairRepository();
+      when(repair.isInConflict).thenAnswer((_) async => false);
       when(() => pairing.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => profile.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => slip.onChanged).thenAnswer((_) => const Stream.empty());
@@ -198,6 +204,22 @@ void main() {
       });
     });
 
+    test('a fight answer in the last day puts Hoje in conflict mode', () async {
+      when(repair.isInConflict).thenAnswer((_) async => true);
+      when(() => today.getToday()).thenAnswer((_) async => result());
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        pairingRepository: pairing,
+        slipRepository: slip,
+        repairRepository: repair,
+      );
+
+      await cubit.load();
+
+      expect(cubit.state.isInConflict, isTrue);
+    });
+
     test('load shows the state and the person name', () async {
       when(() => today.getToday()).thenAnswer((_) async => result());
       final cubit = TodayCubit(
@@ -205,6 +227,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         slipRepository: slip,
+        repairRepository: repair,
       );
 
       await cubit.load();
@@ -223,6 +246,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         slipRepository: slip,
+        repairRepository: repair,
       );
 
       unawaited(Future<void>.microtask(cubit.start));
@@ -254,6 +278,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         slipRepository: slip,
+        repairRepository: repair,
       );
 
       unawaited(Future<void>.microtask(cubit.start));
@@ -281,6 +306,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         slipRepository: slip,
+        repairRepository: repair,
         refreshInterval: const Duration(seconds: 1),
         timerFactory: (_, onTick) {
           tick = onTick;
@@ -321,6 +347,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         slipRepository: slip,
+        repairRepository: repair,
         refreshInterval: const Duration(seconds: 1),
         timerFactory: (_, onTick) {
           tick = onTick;
@@ -348,6 +375,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         slipRepository: slip,
+        repairRepository: repair,
       );
 
       await cubit.load();
@@ -362,6 +390,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         slipRepository: slip,
+        repairRepository: repair,
       );
 
       await cubit.load();
@@ -376,6 +405,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         slipRepository: slip,
+        repairRepository: repair,
       );
       await cubit.load();
 
@@ -394,6 +424,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         slipRepository: slip,
+        repairRepository: repair,
       );
 
       await cubit.load();
@@ -420,6 +451,7 @@ void main() {
         profileRepository: profile,
         pairingRepository: pairing,
         slipRepository: slip,
+        repairRepository: repair,
       );
 
       await cubit.load();

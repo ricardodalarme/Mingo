@@ -1,5 +1,5 @@
-query MyTemperatureChecks {
-  temperatureChecks(order_by: { createdAt: desc }, limit: 200) {
+query MyTemperatureChecks($limit: Int!) {
+  temperatureChecks(order_by: { createdAt: desc }, limit: $limit) {
     id
     level
     createdAt

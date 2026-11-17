@@ -7704,6 +7704,10 @@ class Translations$today$pt {
         one: '1 nesta semana',
         other: '${count} nesta semana',
       );
+
+  late final Translations$today$conflict$pt conflict = Translations$today$conflict$pt.internal(
+    _root,
+  );
 }
 
 // Path: unpair
@@ -9254,6 +9258,10 @@ class Translations$repair$guided$pt {
 
   /// pt: 'Nada se perdeu. Tente de novo.'
   String get loadErrorText => 'Nada se perdeu. Tente de novo.';
+
+  late final Translations$repair$guided$done$pt done = Translations$repair$guided$done$pt.internal(
+    _root,
+  );
 }
 
 // Path: repair.learning
@@ -9704,6 +9712,34 @@ class Translations$temperature$history$pt {
   String get note => 'Só você vê isto. Nunca vira nota e nunca vai para a outra pessoa.';
 }
 
+// Path: today.conflict
+class Translations$today$conflict$pt {
+  Translations$today$conflict$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Agora'
+  String get tag => 'Agora';
+
+  /// pt: 'Primeiro, cuidar de vocês'
+  String get title => 'Primeiro, cuidar de vocês';
+
+  /// pt: 'cuidar'
+  String get highlight => 'cuidar';
+
+  /// pt: 'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.'
+  String get text =>
+      'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.';
+
+  /// pt: 'Começar o reparo'
+  String get repair => 'Começar o reparo';
+
+  /// pt: 'Conversar para me organizar'
+  String get chat => 'Conversar para me organizar';
+}
+
 // Path: unpair.done
 class Translations$unpair$done$pt {
   Translations$unpair$done$pt.internal(this._root);
@@ -9879,6 +9915,31 @@ class Translations$games$kinds$mission$pt {
 
   /// pt: 'Uma ideia de encontro para fazer juntos e uma reflexão curta depois.'
   String get intro => 'Uma ideia de encontro para fazer juntos e uma reflexão curta depois.';
+}
+
+// Path: repair.guided.done
+class Translations$repair$guided$done$pt {
+  Translations$repair$guided$done$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Reparo concluído'
+  String get title => 'Reparo concluído';
+
+  /// pt: 'concluído'
+  String get highlight => 'concluído';
+
+  /// pt: 'Cuidar disso já é um passo. Se quiser, guarde o que você aprendeu, só para você.'
+  String get text =>
+      'Cuidar disso já é um passo. Se quiser, guarde o que você aprendeu, só para você.';
+
+  /// pt: 'Guardar o que aprendi'
+  String get learn => 'Guardar o que aprendi';
+
+  /// pt: 'Agora não'
+  String get close => 'Agora não';
 }
 
 // Path: temperature.result.good
@@ -12803,6 +12864,12 @@ extension on Translations {
             'Não deu para salvar agora. Suas respostas continuam aqui.',
           'repair.guided.loadErrorTitle' => 'Não deu para abrir',
           'repair.guided.loadErrorText' => 'Nada se perdeu. Tente de novo.',
+          'repair.guided.done.title' => 'Reparo concluído',
+          'repair.guided.done.highlight' => 'concluído',
+          'repair.guided.done.text' =>
+            'Cuidar disso já é um passo. Se quiser, guarde o que você aprendeu, só para você.',
+          'repair.guided.done.learn' => 'Guardar o que aprendi',
+          'repair.guided.done.close' => 'Agora não',
           'repair.learning.title' => 'O que você aprendeu?',
           'repair.learning.titleHighlight' => 'aprendeu',
           'repair.learning.subtitle' => 'Fica só com você e pode ser apagado quando quiser.',
@@ -13037,14 +13104,14 @@ extension on Translations {
           'slipDetail.errorText' => 'Ele continua salvo. Tente de novo.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
           'slipDetail.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'slipDetail.discardTitle' => 'Descartar este slip?',
           'slipDetail.weekdaysShort.0' => 'Seg',
           'slipDetail.weekdaysShort.1' => 'Ter',
           'slipDetail.weekdaysShort.2' => 'Qua',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.weekdaysShort.3' => 'Qui',
           'slipDetail.weekdaysShort.4' => 'Sex',
           'slipDetail.weekdaysShort.5' => 'Sáb',
@@ -13612,6 +13679,13 @@ extension on Translations {
                   one: '1 nesta semana',
                   other: '${count} nesta semana',
                 ),
+          'today.conflict.tag' => 'Agora',
+          'today.conflict.title' => 'Primeiro, cuidar de vocês',
+          'today.conflict.highlight' => 'cuidar',
+          'today.conflict.text' =>
+            'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.',
+          'today.conflict.repair' => 'Começar o reparo',
+          'today.conflict.chat' => 'Conversar para me organizar',
           'unpair.appBarTitle' => 'Desvincular',
           'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
           'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',
@@ -13661,6 +13735,9 @@ extension on Translations {
           'weeklyReview.months.8' => 'setembro',
           'weeklyReview.months.9' => 'outubro',
           'weeklyReview.months.10' => 'novembro',
+          _ => null,
+        } ??
+        switch (path) {
           'weeklyReview.months.11' => 'dezembro',
           'weeklyReview.slips' =>
             ({required num count}) =>
@@ -13693,9 +13770,6 @@ extension on Translations {
           'weeklyReview.quietCardTitle' => 'Sem pressa',
           'weeklyReview.quietCardText' =>
             'Anotar uma coisa boa leva 30 segundos. Começa quando você quiser.',
-          _ => null,
-        } ??
-        switch (path) {
           'weeklyReview.quietNote' => 'Sem comparação com outras semanas.',
           'weeklyReview.writeSlip' => 'Anotar um slip',
           'weeklyReview.errorTitle' => 'Não deu para abrir sua semana',

@@ -1,10 +1,10 @@
 import 'package:app/features/repair/data/models/guided_session.dart';
 import 'package:app/features/repair/presentation/guided/cubit/guided_repair_cubit.dart';
+import 'package:app/features/repair/presentation/guided/widgets/guided_done.dart';
 import 'package:app/features/repair/presentation/guided/widgets/guided_final_step.dart';
 import 'package:app/features/repair/presentation/guided/widgets/guided_written_step.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
-import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
@@ -25,6 +25,9 @@ class const GuidedRepairPage({super.key}) extends StatelessWidget implements Aut
   Widget build(BuildContext context) {
     final l10n = context.l10n.repair.guided;
     final session = context.select((GuidedRepairCubit cubit) => cubit.state.session);
+    final isDone = context.select(
+      (GuidedRepairCubit cubit) => cubit.state.completeAction is Success,
+    );
 
     return BaseView(
       appBar: BaseAppBar(onClose: () => context.router.maybePop()),
@@ -36,7 +39,9 @@ class const GuidedRepairPage({super.key}) extends StatelessWidget implements Aut
         child: SkeletonizerResourceWidget<GuidedSession>(
           session,
           fakeValue: const GuidedSession(id: 'fake'),
-          successBuilder: (value) => value.step >= guidedWrittenSteps
+          successBuilder: (value) => isDone
+              ? GuidedDone(sessionId: value.id)
+              : value.step >= guidedWrittenSteps
               ? const GuidedFinalStep()
               : const GuidedWrittenStep(),
           failureBuilder: (_) => BaseEmptyState(
@@ -58,11 +63,6 @@ class const GuidedRepairPage({super.key}) extends StatelessWidget implements Aut
     };
     if (failure != null) {
       BaseToast.show(context, l10n.errors.selectOrFallback(failure.l10nKey));
-      return;
-    }
-    final session = state.current;
-    if (state.completeAction is Success && session != null) {
-      context.router.replace(LearningRoute(sessionId: session.id));
     }
   }
 }

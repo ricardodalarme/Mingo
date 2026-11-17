@@ -70,9 +70,14 @@ class RepairDataSource({required final GQLClient _client}) {
     validateResponse(response);
   }
 
-  Future<List<QueryMyTemperatureCheckstemperatureChecks>> getTemperatureChecks() async {
+  Future<List<QueryMyTemperatureCheckstemperatureChecks>> getTemperatureChecks({
+    required int limit,
+  }) async {
     final response = await _client.query(
-      OptionsQueryMyTemperatureChecks(fetchPolicy: FetchPolicy.networkOnly),
+      OptionsQueryMyTemperatureChecks(
+        variables: VariablesQueryMyTemperatureChecks(limit: limit),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
     );
 
     return validateResponseData(response, getData: (data) => data.temperatureChecks);

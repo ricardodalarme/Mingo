@@ -6175,6 +6175,8 @@ class _Translations$today$en extends Translations$today$pt {
         one: '1 this week',
         other: '${count} this week',
       );
+  @override
+  late final _Translations$today$conflict$en conflict = _Translations$today$conflict$en._(_root);
 }
 
 // Path: unpair
@@ -7408,6 +7410,10 @@ class _Translations$repair$guided$en extends Translations$repair$guided$pt {
   String get loadErrorTitle => 'Couldn\'t open this';
   @override
   String get loadErrorText => 'Nothing was lost. Try again.';
+  @override
+  late final _Translations$repair$guided$done$en done = _Translations$repair$guided$done$en._(
+    _root,
+  );
 }
 
 // Path: repair.learning
@@ -7783,6 +7789,27 @@ class _Translations$temperature$history$en extends Translations$temperature$hist
       'Only you see this. It never becomes a note and never goes to the other person.';
 }
 
+// Path: today.conflict
+class _Translations$today$conflict$en extends Translations$today$conflict$pt {
+  _Translations$today$conflict$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get tag => 'Now';
+  @override
+  String get title => 'First, take care of you two';
+  @override
+  String get highlight => 'care';
+  @override
+  String get text => 'No common cards for now. Start with a repair or sort out what to say.';
+  @override
+  String get repair => 'Start the repair';
+  @override
+  String get chat => 'Talk to get organized';
+}
+
 // Path: unpair.done
 class _Translations$unpair$done$en extends Translations$unpair$done$pt {
   _Translations$unpair$done$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -7942,6 +7969,28 @@ class _Translations$games$kinds$mission$en extends Translations$games$kinds$miss
   String get title => 'Date mission';
   @override
   String get intro => 'A date idea to do together and a short reflection afterwards.';
+}
+
+// Path: repair.guided.done
+class _Translations$repair$guided$done$en extends Translations$repair$guided$done$pt {
+  _Translations$repair$guided$done$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Repair done';
+  @override
+  String get highlight => 'done';
+  @override
+  String get text =>
+      'Taking care of this is already a step. If you want, keep what you learned, just for you.';
+  @override
+  String get learn => 'Keep what I learned';
+  @override
+  String get close => 'Not now';
 }
 
 // Path: temperature.result.good
@@ -10848,6 +10897,11 @@ extension on TranslationsEn {
           'repair.guided.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
           'repair.guided.loadErrorTitle' => 'Couldn\'t open this',
           'repair.guided.loadErrorText' => 'Nothing was lost. Try again.',
+          'repair.guided.done.title' => 'Repair done',
+          'repair.guided.done.highlight' => 'done',
+          'repair.guided.done.text' => 'Taking care of this is already a step. If you want, keep what you learned, just for you.',
+          'repair.guided.done.learn' => 'Keep what I learned',
+          'repair.guided.done.close' => 'Not now',
           'repair.learning.title' => 'What did you learn?',
           'repair.learning.titleHighlight' => 'learn',
           'repair.learning.subtitle' => 'It stays with you and can be deleted whenever you like.',
@@ -11075,14 +11129,14 @@ extension on TranslationsEn {
           'slipDetail.errorText' => 'It is still saved. Try again.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
           'slipDetail.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.errors.other' => 'Couldn\'t do that right now. Try again.',
           'slipDetail.discardTitle' => 'Discard this slip?',
           'slipDetail.weekdaysShort.0' => 'Mon',
           'slipDetail.weekdaysShort.1' => 'Tue',
           'slipDetail.weekdaysShort.2' => 'Wed',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.weekdaysShort.3' => 'Thu',
           'slipDetail.weekdaysShort.4' => 'Fri',
           'slipDetail.weekdaysShort.5' => 'Sat',
@@ -11650,6 +11704,13 @@ extension on TranslationsEn {
                   one: '1 this week',
                   other: '${count} this week',
                 ),
+          'today.conflict.tag' => 'Now',
+          'today.conflict.title' => 'First, take care of you two',
+          'today.conflict.highlight' => 'care',
+          'today.conflict.text' =>
+            'No common cards for now. Start with a repair or sort out what to say.',
+          'today.conflict.repair' => 'Start the repair',
+          'today.conflict.chat' => 'Talk to get organized',
           'unpair.appBarTitle' => 'Unpair',
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
           'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
@@ -11699,6 +11760,9 @@ extension on TranslationsEn {
           'weeklyReview.months.8' => 'September',
           'weeklyReview.months.9' => 'October',
           'weeklyReview.months.10' => 'November',
+          _ => null,
+        } ??
+        switch (path) {
           'weeklyReview.months.11' => 'December',
           'weeklyReview.slips' =>
             ({required num count}) =>
@@ -11731,9 +11795,6 @@ extension on TranslationsEn {
           'weeklyReview.quietCardTitle' => 'No rush',
           'weeklyReview.quietCardText' =>
             'Writing a good thing takes 30 seconds. Start whenever you like.',
-          _ => null,
-        } ??
-        switch (path) {
           'weeklyReview.quietNote' => 'Never compared with other weeks.',
           'weeklyReview.writeSlip' => 'Write a slip',
           'weeklyReview.errorTitle' => 'We could not open your week',

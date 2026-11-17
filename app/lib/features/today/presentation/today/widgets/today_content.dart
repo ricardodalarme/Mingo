@@ -3,6 +3,7 @@ import 'package:app/features/mood/presentation/mood/widgets/today_mood_block.dar
 import 'package:app/features/notifications/presentation/off_banner/widgets/notifications_off_banner.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/presentation/today/cubit/today_cubit.dart';
+import 'package:app/features/today/presentation/today/widgets/conflict_section.dart';
 import 'package:app/features/today/presentation/today/widgets/open_invite.dart';
 import 'package:app/features/today/presentation/today/widgets/today_carousel.dart';
 import 'package:app/features/today/presentation/today/widgets/today_header.dart';
@@ -24,6 +25,7 @@ class const TodayContent({
   final String? partnerHint,
   final bool isFirstDay = false,
   final bool isSoloOnly = false,
+  final bool isInConflict = false,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -34,25 +36,35 @@ class const TodayContent({
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _TopSection(home: home, selfName: selfName, isFirstDay: isFirstDay),
-        if (canInvite && !home.hasPendingInvite) ...[
-          const SizedBox(height: AppSpace.s12),
-          BaseListCard(
-            categoryLabel: context.l10n.today.inviteCardLabel,
-            category: AppCategory.invite,
-            title: partnerHint == null
-                ? context.l10n.today.inviteCardTitleNoName
-                : context.l10n.today.inviteCardTitle(name: partnerHint!),
-            supportText: context.l10n.today.inviteCardText,
-            onTap: () => openInvite(context),
-          ),
+        _TopSection(
+          home: home,
+          selfName: selfName,
+          isFirstDay: isFirstDay,
+          isInConflict: isInConflict,
+        ),
+        if (isInConflict) ...[
+          const SizedBox(height: AppSpace.s16),
+          const ConflictSection(),
+        ] else ...[
+          if (canInvite && !home.hasPendingInvite) ...[
+            const SizedBox(height: AppSpace.s12),
+            BaseListCard(
+              categoryLabel: context.l10n.today.inviteCardLabel,
+              category: AppCategory.invite,
+              title: partnerHint == null
+                  ? context.l10n.today.inviteCardTitleNoName
+                  : context.l10n.today.inviteCardTitle(name: partnerHint!),
+              supportText: context.l10n.today.inviteCardText,
+              onTap: () => openInvite(context),
+            ),
+          ],
+          if (isFirstDay)
+            _FirstDayIdea(idea: home.idea)
+          else
+            TodayCarousel(home: home, isSoloOnly: isSoloOnly),
+          if (canInvite) const _HaveCodeButton(),
+          TodayShareEntry(home: home),
         ],
-        if (isFirstDay)
-          _FirstDayIdea(idea: home.idea)
-        else
-          TodayCarousel(home: home, isSoloOnly: isSoloOnly),
-        if (canInvite) const _HaveCodeButton(),
-        TodayShareEntry(home: home),
       ],
     );
   }
@@ -62,6 +74,7 @@ class const _TopSection({
   required final TodayHome home,
   required final String? selfName,
   required final bool isFirstDay,
+  required final bool isInConflict,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -107,32 +120,36 @@ class const _TopSection({
           ),
           const SizedBox(height: AppSpace.s12),
         ],
-        TodayMoodBlock(isFirstDay: isFirstDay, hasPendingInvite: home.hasPendingInvite),
-        if (!isAlone || isFirstDay) _MainCard(home: home, isFirstDay: isFirstDay),
-        if (!home.hasPendingInvite) ...[
-          const SizedBox(height: AppSpace.s16),
-          WeekCard(
-            title: isAlone ? l10n.privateWeekTitle : l10n.slipsThisWeek(count: home.slipsThisWeek),
-            supportText: isAlone
-                ? l10n.privateWeekCount(count: home.slipsThisWeek)
-                : home.slipsThisWeek == 0
-                ? l10n.weekHintEmpty
-                : today.weekday == DateTime.sunday
-                ? l10n.weekHintToday
-                : l10n.weekHint,
-            dayCounts: weekCounts,
-            dayLabels: [for (final day in l10n.weekdays) day.substring(0, 3)],
-            todayIndex: today.weekday - 1,
-          ),
-        ],
-        if (home.isPaired && home.unopenedCards == 0 && home.slipsThisWeek > 0) ...[
-          const SizedBox(height: AppSpace.s10),
-          Center(
-            child: Text(
-              l10n.nothingReceived,
-              style: context.text.caption.copyWith(color: context.colors.textSecondary),
+        if (!isInConflict) ...[
+          TodayMoodBlock(isFirstDay: isFirstDay, hasPendingInvite: home.hasPendingInvite),
+          if (!isAlone || isFirstDay) _MainCard(home: home, isFirstDay: isFirstDay),
+          if (!home.hasPendingInvite) ...[
+            const SizedBox(height: AppSpace.s16),
+            WeekCard(
+              title: isAlone
+                  ? l10n.privateWeekTitle
+                  : l10n.slipsThisWeek(count: home.slipsThisWeek),
+              supportText: isAlone
+                  ? l10n.privateWeekCount(count: home.slipsThisWeek)
+                  : home.slipsThisWeek == 0
+                  ? l10n.weekHintEmpty
+                  : today.weekday == DateTime.sunday
+                  ? l10n.weekHintToday
+                  : l10n.weekHint,
+              dayCounts: weekCounts,
+              dayLabels: [for (final day in l10n.weekdays) day.substring(0, 3)],
+              todayIndex: today.weekday - 1,
             ),
-          ),
+          ],
+          if (home.isPaired && home.unopenedCards == 0 && home.slipsThisWeek > 0) ...[
+            const SizedBox(height: AppSpace.s10),
+            Center(
+              child: Text(
+                l10n.nothingReceived,
+                style: context.text.caption.copyWith(color: context.colors.textSecondary),
+              ),
+            ),
+          ],
         ],
       ],
     );

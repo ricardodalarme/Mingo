@@ -23,11 +23,22 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
     }
   }
 
-  /// The person's own temperature answers, newest first.
-  Future<List<TemperatureCheck>> getTemperatureChecks() async {
+  /// The person's own temperature answers from the last weeks, newest first.
+  Future<List<TemperatureCheck>> getTemperatureChecks() => _readTemperatureChecks(limit: 200);
+
+  /// Whether the last answer was a fight in the past [conflictWindow].
+  Future<bool> isInConflict() async {
+    final latest = (await _readTemperatureChecks(limit: 1)).firstOrNull;
+
+    return latest != null &&
+        latest.level == Temperature.fight &&
+        clock.now().difference(latest.at) < conflictWindow;
+  }
+
+  Future<List<TemperatureCheck>> _readTemperatureChecks({required int limit}) async {
     try {
       return [
-        for (final node in await _dataSource.getTemperatureChecks())
+        for (final node in await _dataSource.getTemperatureChecks(limit: limit))
           TemperatureCheck(level: node.level.toModel(), at: node.createdAt),
       ];
     } catch (e, stack) {

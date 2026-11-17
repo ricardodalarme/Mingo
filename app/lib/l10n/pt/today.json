@@ -96,5 +96,13 @@
     "zero": "sem pressa",
     "one": "1 nesta semana",
     "other": "{count} nesta semana"
+  },
+  "conflict": {
+    "tag": "Agora",
+    "title": "Primeiro, cuidar de vocês",
+    "highlight": "cuidar",
+    "text": "Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.",
+    "repair": "Começar o reparo",
+    "chat": "Conversar para me organizar"
   }
 }

@@ -4,6 +4,9 @@ import 'package:equatable/equatable.dart';
 /// How many weeks the history covers.
 const int temperatureHistoryWeeks = 8;
 
+/// How long a fight answer keeps the app in conflict mode.
+const Duration conflictWindow = Duration(hours: 24);
+
 /// One private temperature answer.
 final class const TemperatureCheck({required final Temperature level, required final DateTime at})
     with Equatable {

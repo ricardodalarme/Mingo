@@ -99,7 +99,14 @@
       "other": "Couldn't save right now. Your answers are still here."
     },
     "loadErrorTitle": "Couldn't open this",
-    "loadErrorText": "Nothing was lost. Try again."
+    "loadErrorText": "Nothing was lost. Try again.",
+    "done": {
+      "title": "Repair done",
+      "highlight": "done",
+      "text": "Taking care of this is already a step. If you want, keep what you learned, just for you.",
+      "learn": "Keep what I learned",
+      "close": "Not now"
+    }
   },
   "learning": {
     "title": "What did you learn?",
