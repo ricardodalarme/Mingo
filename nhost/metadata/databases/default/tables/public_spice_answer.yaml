@@ -1,0 +1,9 @@
+table:
+  name: spice_answer
+  schema: public
+is_enum: true
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: SpiceAnswer
+  custom_root_fields: {}

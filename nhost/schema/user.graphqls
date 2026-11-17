@@ -348,6 +348,11 @@ enum SlipPolarity_enum {
   bothered
   liked
 }
+enum SpiceAnswer_enum {
+  maybe
+  not_today
+  want
+}
 enum StoryEventKind_enum {
   custom
   dating
@@ -15672,7 +15677,7 @@ type spiceChallenges {
 columns and relationships of "spice_desire_answers"
 """
 type spiceDesireAnswers {
-  answer: String!
+  answer: SpiceAnswer_enum!
   contentSlug: String!
   createdAt: timestamptz!
   updatedAt: timestamptz!
@@ -21458,6 +21463,16 @@ input SlipPolarity_enum_comparison_exp {
   _is_null: Boolean
   _neq: SlipPolarity_enum
   _nin: [SlipPolarity_enum!]
+}
+"""
+Boolean expression to compare columns of type "SpiceAnswer_enum". All fields are combined with logical 'AND'.
+"""
+input SpiceAnswer_enum_comparison_exp {
+  _eq: SpiceAnswer_enum
+  _in: [SpiceAnswer_enum!]
+  _is_null: Boolean
+  _neq: SpiceAnswer_enum
+  _nin: [SpiceAnswer_enum!]
 }
 """
 Boolean expression to compare columns of type "StoryEventKind_enum". All fields are combined with logical 'AND'.
@@ -28012,7 +28027,7 @@ input spiceDesireAnswers_bool_exp {
   _and: [spiceDesireAnswers_bool_exp!]
   _not: spiceDesireAnswers_bool_exp
   _or: [spiceDesireAnswers_bool_exp!]
-  answer: String_comparison_exp
+  answer: SpiceAnswer_enum_comparison_exp
   contentSlug: String_comparison_exp
   createdAt: timestamptz_comparison_exp
   updatedAt: timestamptz_comparison_exp
@@ -28022,7 +28037,7 @@ input spiceDesireAnswers_bool_exp {
 input type for inserting data into table "spice_desire_answers"
 """
 input spiceDesireAnswers_insert_input {
-  answer: String
+  answer: SpiceAnswer_enum
   contentSlug: String
 }
 """
@@ -28054,7 +28069,7 @@ input spiceDesireAnswers_pk_columns_input {
 input type for updating data in table "spice_desire_answers"
 """
 input spiceDesireAnswers_set_input {
-  answer: String
+  answer: SpiceAnswer_enum
 }
 """
 Streaming cursor of the table "spiceDesireAnswers"
@@ -28073,7 +28088,7 @@ input spiceDesireAnswers_stream_cursor_input {
 Initial value of the column from where the streaming should start
 """
 input spiceDesireAnswers_stream_cursor_value_input {
-  answer: String
+  answer: SpiceAnswer_enum
   contentSlug: String
   createdAt: timestamptz
   updatedAt: timestamptz

@@ -9935,6 +9935,189 @@ class InputSlipPolarity_enum_comparison_exp {
   }
 }
 
+class InputSpiceAnswer_enum_comparison_exp {
+  factory InputSpiceAnswer_enum_comparison_exp({
+    EnumSpiceAnswer_enum? $_eq,
+    List<EnumSpiceAnswer_enum>? $_in,
+    bool? $_is_null,
+    EnumSpiceAnswer_enum? $_neq,
+    List<EnumSpiceAnswer_enum>? $_nin,
+  }) => InputSpiceAnswer_enum_comparison_exp._({
+    if ($_eq != null) r'_eq': $_eq,
+    if ($_in != null) r'_in': $_in,
+    if ($_is_null != null) r'_is_null': $_is_null,
+    if ($_neq != null) r'_neq': $_neq,
+    if ($_nin != null) r'_nin': $_nin,
+  });
+
+  InputSpiceAnswer_enum_comparison_exp._(this._$data);
+
+  factory InputSpiceAnswer_enum_comparison_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_eq')) {
+      final l$$_eq = data['_eq'];
+      result$data['_eq'] = l$$_eq == null ? null : fromJsonEnumSpiceAnswer_enum((l$$_eq as String));
+    }
+    if (data.containsKey('_in')) {
+      final l$$_in = data['_in'];
+      result$data['_in'] = (l$$_in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumSpiceAnswer_enum((e as String)))
+          .toList();
+    }
+    if (data.containsKey('_is_null')) {
+      final l$$_is_null = data['_is_null'];
+      result$data['_is_null'] = (l$$_is_null as bool?);
+    }
+    if (data.containsKey('_neq')) {
+      final l$$_neq = data['_neq'];
+      result$data['_neq'] = l$$_neq == null
+          ? null
+          : fromJsonEnumSpiceAnswer_enum((l$$_neq as String));
+    }
+    if (data.containsKey('_nin')) {
+      final l$$_nin = data['_nin'];
+      result$data['_nin'] = (l$$_nin as List<dynamic>?)
+          ?.map((e) => fromJsonEnumSpiceAnswer_enum((e as String)))
+          .toList();
+    }
+    return InputSpiceAnswer_enum_comparison_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumSpiceAnswer_enum? get $_eq => (_$data['_eq'] as EnumSpiceAnswer_enum?);
+
+  List<EnumSpiceAnswer_enum>? get $_in => (_$data['_in'] as List<EnumSpiceAnswer_enum>?);
+
+  bool? get $_is_null => (_$data['_is_null'] as bool?);
+
+  EnumSpiceAnswer_enum? get $_neq => (_$data['_neq'] as EnumSpiceAnswer_enum?);
+
+  List<EnumSpiceAnswer_enum>? get $_nin => (_$data['_nin'] as List<EnumSpiceAnswer_enum>?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_eq')) {
+      final l$$_eq = $_eq;
+      result$data['_eq'] = l$$_eq == null ? null : toJsonEnumSpiceAnswer_enum(l$$_eq);
+    }
+    if (_$data.containsKey('_in')) {
+      final l$$_in = $_in;
+      result$data['_in'] = l$$_in?.map((e) => toJsonEnumSpiceAnswer_enum(e)).toList();
+    }
+    if (_$data.containsKey('_is_null')) {
+      final l$$_is_null = $_is_null;
+      result$data['_is_null'] = l$$_is_null;
+    }
+    if (_$data.containsKey('_neq')) {
+      final l$$_neq = $_neq;
+      result$data['_neq'] = l$$_neq == null ? null : toJsonEnumSpiceAnswer_enum(l$$_neq);
+    }
+    if (_$data.containsKey('_nin')) {
+      final l$$_nin = $_nin;
+      result$data['_nin'] = l$$_nin?.map((e) => toJsonEnumSpiceAnswer_enum(e)).toList();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputSpiceAnswer_enum_comparison_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_eq = $_eq;
+    final lOther$$_eq = other.$_eq;
+    if (_$data.containsKey('_eq') != other._$data.containsKey('_eq')) {
+      return false;
+    }
+    if (l$$_eq != lOther$$_eq) {
+      return false;
+    }
+    final l$$_in = $_in;
+    final lOther$$_in = other.$_in;
+    if (_$data.containsKey('_in') != other._$data.containsKey('_in')) {
+      return false;
+    }
+    if (l$$_in != null && lOther$$_in != null) {
+      if (l$$_in.length != lOther$$_in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_in.length; i++) {
+        final l$$_in$entry = l$$_in[i];
+        final lOther$$_in$entry = lOther$$_in[i];
+        if (l$$_in$entry != lOther$$_in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_in != lOther$$_in) {
+      return false;
+    }
+    final l$$_is_null = $_is_null;
+    final lOther$$_is_null = other.$_is_null;
+    if (_$data.containsKey('_is_null') != other._$data.containsKey('_is_null')) {
+      return false;
+    }
+    if (l$$_is_null != lOther$$_is_null) {
+      return false;
+    }
+    final l$$_neq = $_neq;
+    final lOther$$_neq = other.$_neq;
+    if (_$data.containsKey('_neq') != other._$data.containsKey('_neq')) {
+      return false;
+    }
+    if (l$$_neq != lOther$$_neq) {
+      return false;
+    }
+    final l$$_nin = $_nin;
+    final lOther$$_nin = other.$_nin;
+    if (_$data.containsKey('_nin') != other._$data.containsKey('_nin')) {
+      return false;
+    }
+    if (l$$_nin != null && lOther$$_nin != null) {
+      if (l$$_nin.length != lOther$$_nin.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_nin.length; i++) {
+        final l$$_nin$entry = l$$_nin[i];
+        final lOther$$_nin$entry = lOther$$_nin[i];
+        if (l$$_nin$entry != lOther$$_nin$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_nin != lOther$$_nin) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_eq = $_eq;
+    final l$$_in = $_in;
+    final l$$_is_null = $_is_null;
+    final l$$_neq = $_neq;
+    final l$$_nin = $_nin;
+    return Object.hashAll([
+      _$data.containsKey('_eq') ? l$$_eq : const {},
+      _$data.containsKey('_in')
+          ? l$$_in == null
+                ? null
+                : Object.hashAll(l$$_in.map((v) => v))
+          : const {},
+      _$data.containsKey('_is_null') ? l$$_is_null : const {},
+      _$data.containsKey('_neq') ? l$$_neq : const {},
+      _$data.containsKey('_nin')
+          ? l$$_nin == null
+                ? null
+                : Object.hashAll(l$$_nin.map((v) => v))
+          : const {},
+    ]);
+  }
+}
+
 class InputStoryEventKind_enum_comparison_exp {
   factory InputStoryEventKind_enum_comparison_exp({
     EnumStoryEventKind_enum? $_eq,
@@ -105941,7 +106124,7 @@ class InputspiceDesireAnswers_bool_exp {
     List<InputspiceDesireAnswers_bool_exp>? $_and,
     InputspiceDesireAnswers_bool_exp? $_not,
     List<InputspiceDesireAnswers_bool_exp>? $_or,
-    InputString_comparison_exp? answer,
+    InputSpiceAnswer_enum_comparison_exp? answer,
     InputString_comparison_exp? contentSlug,
     Inputtimestamptz_comparison_exp? createdAt,
     Inputtimestamptz_comparison_exp? updatedAt,
@@ -105983,7 +106166,7 @@ class InputspiceDesireAnswers_bool_exp {
       final l$answer = data['answer'];
       result$data['answer'] = l$answer == null
           ? null
-          : InputString_comparison_exp.fromJson((l$answer as Map<String, dynamic>));
+          : InputSpiceAnswer_enum_comparison_exp.fromJson((l$answer as Map<String, dynamic>));
     }
     if (data.containsKey('contentSlug')) {
       final l$contentSlug = data['contentSlug'];
@@ -106023,7 +106206,8 @@ class InputspiceDesireAnswers_bool_exp {
   List<InputspiceDesireAnswers_bool_exp>? get $_or =>
       (_$data['_or'] as List<InputspiceDesireAnswers_bool_exp>?);
 
-  InputString_comparison_exp? get answer => (_$data['answer'] as InputString_comparison_exp?);
+  InputSpiceAnswer_enum_comparison_exp? get answer =>
+      (_$data['answer'] as InputSpiceAnswer_enum_comparison_exp?);
 
   InputString_comparison_exp? get contentSlug =>
       (_$data['contentSlug'] as InputString_comparison_exp?);
@@ -106202,11 +106386,13 @@ class InputspiceDesireAnswers_bool_exp {
 }
 
 class InputspiceDesireAnswers_insert_input {
-  factory InputspiceDesireAnswers_insert_input({String? answer, String? contentSlug}) =>
-      InputspiceDesireAnswers_insert_input._({
-        if (answer != null) r'answer': answer,
-        if (contentSlug != null) r'contentSlug': contentSlug,
-      });
+  factory InputspiceDesireAnswers_insert_input({
+    EnumSpiceAnswer_enum? answer,
+    String? contentSlug,
+  }) => InputspiceDesireAnswers_insert_input._({
+    if (answer != null) r'answer': answer,
+    if (contentSlug != null) r'contentSlug': contentSlug,
+  });
 
   InputspiceDesireAnswers_insert_input._(this._$data);
 
@@ -106214,7 +106400,9 @@ class InputspiceDesireAnswers_insert_input {
     final result$data = <String, dynamic>{};
     if (data.containsKey('answer')) {
       final l$answer = data['answer'];
-      result$data['answer'] = (l$answer as String?);
+      result$data['answer'] = l$answer == null
+          ? null
+          : fromJsonEnumSpiceAnswer_enum((l$answer as String));
     }
     if (data.containsKey('contentSlug')) {
       final l$contentSlug = data['contentSlug'];
@@ -106225,7 +106413,7 @@ class InputspiceDesireAnswers_insert_input {
 
   Map<String, dynamic> _$data;
 
-  String? get answer => (_$data['answer'] as String?);
+  EnumSpiceAnswer_enum? get answer => (_$data['answer'] as EnumSpiceAnswer_enum?);
 
   String? get contentSlug => (_$data['contentSlug'] as String?);
 
@@ -106233,7 +106421,7 @@ class InputspiceDesireAnswers_insert_input {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('answer')) {
       final l$answer = answer;
-      result$data['answer'] = l$answer;
+      result$data['answer'] = l$answer == null ? null : toJsonEnumSpiceAnswer_enum(l$answer);
     }
     if (_$data.containsKey('contentSlug')) {
       final l$contentSlug = contentSlug;
@@ -106617,7 +106805,7 @@ class InputspiceDesireAnswers_pk_columns_input {
 }
 
 class InputspiceDesireAnswers_set_input {
-  factory InputspiceDesireAnswers_set_input({String? answer}) =>
+  factory InputspiceDesireAnswers_set_input({EnumSpiceAnswer_enum? answer}) =>
       InputspiceDesireAnswers_set_input._({if (answer != null) r'answer': answer});
 
   InputspiceDesireAnswers_set_input._(this._$data);
@@ -106626,20 +106814,22 @@ class InputspiceDesireAnswers_set_input {
     final result$data = <String, dynamic>{};
     if (data.containsKey('answer')) {
       final l$answer = data['answer'];
-      result$data['answer'] = (l$answer as String?);
+      result$data['answer'] = l$answer == null
+          ? null
+          : fromJsonEnumSpiceAnswer_enum((l$answer as String));
     }
     return InputspiceDesireAnswers_set_input._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String? get answer => (_$data['answer'] as String?);
+  EnumSpiceAnswer_enum? get answer => (_$data['answer'] as EnumSpiceAnswer_enum?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('answer')) {
       final l$answer = answer;
-      result$data['answer'] = l$answer;
+      result$data['answer'] = l$answer == null ? null : toJsonEnumSpiceAnswer_enum(l$answer);
     }
     return result$data;
   }
@@ -106751,7 +106941,7 @@ class InputspiceDesireAnswers_stream_cursor_input {
 
 class InputspiceDesireAnswers_stream_cursor_value_input {
   factory InputspiceDesireAnswers_stream_cursor_value_input({
-    String? answer,
+    EnumSpiceAnswer_enum? answer,
     String? contentSlug,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -106770,7 +106960,9 @@ class InputspiceDesireAnswers_stream_cursor_value_input {
     final result$data = <String, dynamic>{};
     if (data.containsKey('answer')) {
       final l$answer = data['answer'];
-      result$data['answer'] = (l$answer as String?);
+      result$data['answer'] = l$answer == null
+          ? null
+          : fromJsonEnumSpiceAnswer_enum((l$answer as String));
     }
     if (data.containsKey('contentSlug')) {
       final l$contentSlug = data['contentSlug'];
@@ -106797,7 +106989,7 @@ class InputspiceDesireAnswers_stream_cursor_value_input {
 
   Map<String, dynamic> _$data;
 
-  String? get answer => (_$data['answer'] as String?);
+  EnumSpiceAnswer_enum? get answer => (_$data['answer'] as EnumSpiceAnswer_enum?);
 
   String? get contentSlug => (_$data['contentSlug'] as String?);
 
@@ -106811,7 +107003,7 @@ class InputspiceDesireAnswers_stream_cursor_value_input {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('answer')) {
       final l$answer = answer;
-      result$data['answer'] = l$answer;
+      result$data['answer'] = l$answer == null ? null : toJsonEnumSpiceAnswer_enum(l$answer);
     }
     if (_$data.containsKey('contentSlug')) {
       final l$contentSlug = contentSlug;
@@ -122995,6 +123187,43 @@ EnumSlipPolarity_enum fromJsonEnumSlipPolarity_enum(String value) {
       return EnumSlipPolarity_enum.liked;
     default:
       return EnumSlipPolarity_enum.$unknown;
+  }
+}
+
+enum EnumSpiceAnswer_enum {
+  maybe,
+  not_today,
+  want,
+  $unknown;
+
+  factory EnumSpiceAnswer_enum.fromJson(String value) => fromJsonEnumSpiceAnswer_enum(value);
+
+  String toJson() => toJsonEnumSpiceAnswer_enum(this);
+}
+
+String toJsonEnumSpiceAnswer_enum(EnumSpiceAnswer_enum e) {
+  switch (e) {
+    case EnumSpiceAnswer_enum.maybe:
+      return r'maybe';
+    case EnumSpiceAnswer_enum.not_today:
+      return r'not_today';
+    case EnumSpiceAnswer_enum.want:
+      return r'want';
+    case EnumSpiceAnswer_enum.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumSpiceAnswer_enum fromJsonEnumSpiceAnswer_enum(String value) {
+  switch (value) {
+    case r'maybe':
+      return EnumSpiceAnswer_enum.maybe;
+    case r'not_today':
+      return EnumSpiceAnswer_enum.not_today;
+    case r'want':
+      return EnumSpiceAnswer_enum.want;
+    default:
+      return EnumSpiceAnswer_enum.$unknown;
   }
 }
 
