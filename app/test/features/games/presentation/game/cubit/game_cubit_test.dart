@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/games/data/models/game_item.dart';
 import 'package:app/features/games/data/models/game_kind.dart';
 import 'package:app/features/games/data/models/game_play.dart';
@@ -19,6 +21,7 @@ class _MockProfileRepository() extends Mock implements ProfileRepository;
 void main() {
   late GamesRepository repository;
   late ProfileRepository profileRepository;
+  late StreamController<List<GameSession>> sessions;
 
   final created = DateTime(2026, 3, 10, 12);
   const failure = LocalizedException(l10nKey: 'other');
@@ -70,6 +73,9 @@ void main() {
     profileRepository = _MockProfileRepository();
     when(() => profileRepository.getMySettings())
         .thenAnswer((_) async => const AccountSettings(theme: AppThemeVariant.rose));
+    sessions = StreamController<List<GameSession>>.broadcast();
+    addTearDown(sessions.close);
+    when(() => repository.watchSessions()).thenAnswer((_) => sessions.stream);
     when(() => repository.finishIfComplete(any())).thenAnswer((_) async => null);
     when(
       () => repository.getPlay(
@@ -86,6 +92,52 @@ void main() {
       ),
     ).thenAnswer((_) async {
       return;
+    });
+  });
+
+  group('live session', () {
+    test('reads the game again when the partner accepts the invitation', () async {
+      final plays = [invited(), active()];
+      when(
+        () => repository.getPlay(
+          kind: any(named: 'kind'),
+          locale: any(named: 'locale'),
+          now: any(named: 'now'),
+        ),
+      ).thenAnswer((_) async => plays.removeAt(0));
+      final cubit = build();
+      await cubit.load(GameKind.meOrYou);
+
+      sessions.add([session(status: GameStatus.active)]);
+      await pumpEventQueue();
+
+      expect(cubit.state.current?.session?.status, GameStatus.active);
+    });
+
+    test('does not read the game again when the session did not change', () async {
+      when(
+        () => repository.getPlay(
+          kind: any(named: 'kind'),
+          locale: any(named: 'locale'),
+          now: any(named: 'now'),
+        ),
+      ).thenAnswer((_) async => invited());
+      final cubit = build();
+      await cubit.load(GameKind.meOrYou);
+
+      sessions.add([session()]);
+      await pumpEventQueue();
+
+      verify(() => repository.getPlay(kind: GameKind.meOrYou, locale: 'pt-BR')).called(1);
+    });
+
+    test('stops listening when the cubit closes', () async {
+      final cubit = build();
+      await cubit.load(GameKind.meOrYou);
+
+      await cubit.close();
+
+      expect(sessions.hasListener, isFalse);
     });
   });
 

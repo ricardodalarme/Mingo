@@ -1,0 +1,5 @@
+subscription WatchGameSessions {
+  gameSessions(limit: 40, order_by: [{ createdAt: desc_nulls_last }]) {
+    ...GameSessionFragment
+  }
+}

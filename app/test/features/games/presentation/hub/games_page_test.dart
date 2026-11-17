@@ -41,7 +41,10 @@ void main() {
 
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
-  setUp(() => repository = _MockGamesRepository());
+  setUp(() {
+    repository = _MockGamesRepository();
+    when(() => repository.watchSessions()).thenAnswer((_) => const Stream.empty());
+  });
 
   testWithClock('lists the games and shows no score, ranking or streak', (tester) async {
     final cubit = await loaded(const GamesOverview(selfId: 'me', hasPartner: true));

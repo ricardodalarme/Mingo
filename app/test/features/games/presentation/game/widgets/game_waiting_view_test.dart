@@ -29,6 +29,7 @@ void main() {
 
   testWidgets('checking the invitation says the partner has not joined yet', (tester) async {
     final repository = _MockGamesRepository();
+    when(repository.watchSessions).thenAnswer((_) => const Stream.empty());
     final profile = _MockProfileRepository();
     final waiting = GamePlay(
       kind: GameKind.meOrYou,

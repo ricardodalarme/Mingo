@@ -27,6 +27,18 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
     return _overview(record);
   });
 
+  /// Emits the couple's sessions now and each time one is created or changes.
+  ///
+  /// A failed event is logged and skipped, so a screen keeps what it shows.
+  Stream<List<GameSession>> watchSessions() {
+    return _dataSource
+        .watchSessions()
+        .map((records) => [for (final record in records) ?_session(record)])
+        .handleError((Object e, StackTrace stack) {
+          _logger.error('The game sessions subscription failed', error: e, stackTrace: stack);
+        });
+  }
+
   /// One game with its latest session, items and the answers the server lets this person see.
   ///
   /// When there is no session, the items a new one could start with are read instead. A

@@ -8,6 +8,7 @@ import 'package:app/features/games/data/data_sources/remote/queries/generated/Ga
 import 'package:app/features/games/data/data_sources/remote/queries/generated/GameItems.graphql.dart';
 import 'package:app/features/games/data/data_sources/remote/queries/generated/GameItemsBySlug.graphql.dart';
 import 'package:app/features/games/data/data_sources/remote/queries/generated/GameSessions.graphql.dart';
+import 'package:app/features/games/data/data_sources/remote/subscriptions/generated/WatchGameSessions.graphql.dart';
 import 'package:network/network.dart';
 
 typedef GameSessionRecord = ({
@@ -47,6 +48,13 @@ class GamesDataSource({required final GQLClient _client}) {
       partnerName: today.partnerName,
       sessions: [for (final node in data.gameSessions) _session(node)],
     );
+  }
+
+  /// Emits the latest sessions of the couple now and each time one is created or changes.
+  Stream<List<GameSessionRecord>> watchSessions() {
+    return _client
+        .subscribe(OptionsSubscriptionWatchGameSessions())
+        .mapResponseData((data) => [for (final node in data.gameSessions) _session(node)]);
   }
 
   /// The published items of a content [kind] for [locale], in editorial order.

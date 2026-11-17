@@ -377,4 +377,27 @@ void main() {
 
     verify(() => dataSource.answer(sessionId: 's1', idx: 2, answer: 'oi')).called(1);
   });
+
+  group('watchSessions', () {
+    test('maps each session and skips games the app has no screens for', () async {
+      when(() => dataSource.watchSessions()).thenAnswer(
+        (_) => Stream.value([record(), record(id: 's2', game: EnumGameKind_enum.$unknown)]),
+      );
+
+      final sessions = await repository.watchSessions().first;
+
+      expect([for (final session in sessions) session.id], ['s1']);
+    });
+
+    test('logs a failed event and keeps the stream open', () async {
+      when(() => dataSource.watchSessions()).thenAnswer(
+        (_) => Stream.fromIterable([const NoDataException(), null])
+            .asyncExpand((event) => event == null ? Stream.value([record()]) : Stream.error(event)),
+      );
+
+      final sessions = await repository.watchSessions().toList();
+
+      expect(sessions, hasLength(1));
+    });
+  });
 }

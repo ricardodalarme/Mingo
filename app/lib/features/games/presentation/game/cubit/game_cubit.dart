@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/games/data/models/game_kind.dart';
 import 'package:app/features/games/data/models/game_play.dart';
 import 'package:app/features/games/data/models/game_session.dart';
@@ -16,10 +18,12 @@ class GameCubit({
   this : super(const GameState());
 
   GameKind? _kind;
+  StreamSubscription<List<GameSession>>? _sessions;
 
   /// Reads [kind] with its latest session; calling it again refreshes the same game.
   Future<void> load(GameKind kind) async {
     _kind = kind;
+    _sessions ??= _repository.watchSessions().listen(_onSessions);
     await _read(reset: true);
   }
 
@@ -236,5 +240,30 @@ class GameCubit({
     if (isClosed) return;
     emit(state.copyWith(action: Failure.fromObject(exception)));
     emit(state.copyWith(action: const Initial()));
+  }
+
+  /// Reads the game again when its latest session was created or changed by the partner, such
+  /// as an invitation accepted, a game finished or one cancelled.
+  void _onSessions(List<GameSession> sessions) {
+    final kind = _kind;
+    final loaded = state.current;
+    if (kind == null || loaded == null || state.isBusy) return;
+
+    GameSession? latest;
+    for (final session in sessions) {
+      if (session.game != kind) continue;
+      if (latest == null || session.createdAt.isAfter(latest.createdAt)) latest = session;
+    }
+    final known = loaded.session;
+    if (latest?.id == known?.id && latest?.status == known?.status) return;
+
+    unawaited(refresh());
+  }
+
+  @override
+  Future<void> close() async {
+    await _sessions?.cancel();
+
+    return super.close();
   }
 }

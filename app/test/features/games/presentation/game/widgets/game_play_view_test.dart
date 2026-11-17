@@ -88,6 +88,7 @@ void main() {
 
   setUp(() {
     repository = _MockGamesRepository();
+    when(() => repository.watchSessions()).thenAnswer((_) => const Stream.empty());
     profileRepository = _MockProfileRepository();
     when(() => profileRepository.getMySettings())
         .thenAnswer((_) async => const AccountSettings(theme: AppThemeVariant.rose));
