@@ -67,7 +67,9 @@ class _GamePageState() extends State<GamePage> with WidgetsBindingObserver {
       _ => null,
     };
     final stage = current?.stage(clock.now());
-    final canGoBack = stage == GameStage.playing || stage == GameStage.waitingForPartner;
+    final canGoBack =
+        (stage == GameStage.playing && step >= 0) ||
+        (stage == GameStage.waitingForPartner && (current?.totalSteps ?? 0) > 0);
 
     return BaseView(
       appBar: BaseAppBar(
