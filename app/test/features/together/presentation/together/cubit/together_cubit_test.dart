@@ -40,7 +40,7 @@ void main() {
   late ProfileRepository profileRepository;
   late GiftsRepository giftsRepository;
   late HistoryRepository historyRepository;
-  late StreamController<void> profileChanges;
+  late StreamController<AccountSettings> settingsChanges;
 
   setUp(() {
     pairingRepository = _MockPairingRepository();
@@ -51,8 +51,8 @@ void main() {
     giftsRepository = _MockGiftsRepository();
     historyRepository = _MockHistoryRepository();
     when(historyRepository.getOverview).thenThrow(Exception());
-    profileChanges = StreamController<void>.broadcast();
-    when(() => profileRepository.onChanged).thenAnswer((_) => profileChanges.stream);
+    settingsChanges = StreamController<AccountSettings>.broadcast();
+    when(profileRepository.watchMySettings).thenAnswer((_) => settingsChanges.stream);
     when(profileRepository.getMySettings).thenThrow(Exception('none'));
     when(pairingRepository.getPartner).thenAnswer((_) async => null);
     when(checkinRepository.isCurrentWeekDismissed).thenAnswer((_) async => false);
@@ -68,7 +68,7 @@ void main() {
     );
   });
 
-  tearDown(() => profileChanges.close());
+  tearDown(() => settingsChanges.close());
 
   TogetherCubit build() => TogetherCubit(
     pairingRepository: pairingRepository,
@@ -167,7 +167,7 @@ void main() {
     expect(cubit.state.sharedGiftCount, 0);
   });
 
-  test('a saved phase change reloads the hub and swaps its variant card', () async {
+  test('a phase change from another screen reloads the hub and swaps its variant card', () async {
     when(profileRepository.getMySettings).thenAnswer(
       (_) async => const AccountSettings(theme: .rose, phase: RelationshipPhase.longDistance),
     );
@@ -175,26 +175,24 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
     expect(cubit.state.phase, RelationshipPhase.longDistance);
-
-    when(profileRepository.getMySettings).thenAnswer(
-      (_) async => const AccountSettings(theme: .rose, phase: RelationshipPhase.longDistance),
-    );
-    profileChanges.add(null);
+    settingsChanges.add(const AccountSettings(theme: .rose, phase: RelationshipPhase.longDistance));
     await pumpEventQueue();
 
-    expect(cubit.state.phase, RelationshipPhase.longDistance);
+    when(profileRepository.getMySettings).thenAnswer(
+      (_) async => const AccountSettings(theme: .rose, phase: RelationshipPhase.livingTogether),
+    );
+    settingsChanges.add(
+      const AccountSettings(theme: .rose, phase: RelationshipPhase.livingTogether),
+    );
+    await pumpEventQueue();
+
+    expect(cubit.state.phase, RelationshipPhase.livingTogether);
   });
 
-  test('closing stops listening for profile changes', () async {
+  test('closing stops listening for settings changes', () async {
     final cubit = build();
     await cubit.close();
-    when(profileRepository.getMySettings).thenAnswer(
-      (_) async => const AccountSettings(theme: .rose, phase: RelationshipPhase.longDistance),
-    );
 
-    profileChanges.add(null);
-    await pumpEventQueue();
-
-    expect(profileChanges.hasListener, isFalse);
+    expect(settingsChanges.hasListener, isFalse);
   });
 }

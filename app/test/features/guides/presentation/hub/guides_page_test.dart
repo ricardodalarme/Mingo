@@ -11,6 +11,7 @@ import 'package:app/features/lists/data/repositories/lists_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/plus/data/models/plus_state.dart';
 import 'package:app/features/plus/data/repositories/plus_repository.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/questions/data/models/question_thread.dart';
 import 'package:app/features/questions/data/repositories/questions_repository.dart';
@@ -115,7 +116,8 @@ void main() {
     final giftsRepository = _MockGiftsRepository();
     final historyRepository = _MockHistoryRepository();
     when(historyRepository.getOverview).thenThrow(Exception());
-    when(() => profileRepository.onChanged).thenAnswer((_) => const Stream<void>.empty());
+    when(profileRepository.watchMySettings)
+        .thenAnswer((_) => const Stream<AccountSettings>.empty());
     when(profileRepository.getMySettings).thenThrow(Exception('none'));
     when(pairingRepository.getPartner).thenAnswer((_) async => null);
     when(checkinRepository.isCurrentWeekDismissed).thenAnswer((_) async => false);

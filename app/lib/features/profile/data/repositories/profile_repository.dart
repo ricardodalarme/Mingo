@@ -38,10 +38,6 @@ class ProfileRepository({
   required final AuthenticationRepository _authenticationRepository,
 }) {
   final Logger _logger = Logger('ProfileRepository');
-  final StreamController<void> _changes = StreamController<void>.broadcast();
-
-  /// Emits when a saved profile or relationship field changes.
-  Stream<void> get onChanged => _changes.stream;
 
   String get _userId {
     final userId = _authenticationRepository.currentUserId;
@@ -101,7 +97,6 @@ class ProfileRepository({
         VariablesMutationUpdateDisplayName(profileId: profileId, displayName: displayName),
       );
       _ensureUpdated(affected);
-      _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the display name', error: e, stackTrace: stack);
       rethrow;
@@ -114,7 +109,6 @@ class ProfileRepository({
         VariablesMutationUpdatePronouns(profileId: profileId, pronouns: pronouns?.toRemote()),
       );
       _ensureUpdated(affected);
-      _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the pronouns', error: e, stackTrace: stack);
       rethrow;
@@ -130,7 +124,6 @@ class ProfileRepository({
         VariablesMutationUpdatePartnerIntent(profileId: profileId, intent: intent?.toRemote()),
       );
       _ensureUpdated(affected);
-      _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the partner choice', error: e, stackTrace: stack);
       rethrow;
@@ -143,7 +136,6 @@ class ProfileRepository({
         VariablesMutationUpdateTheme(profileId: profileId, theme: theme.toServerTheme()),
       );
       _ensureUpdated(affected);
-      _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the theme', error: e, stackTrace: stack);
       rethrow;
@@ -156,7 +148,6 @@ class ProfileRepository({
         VariablesMutationUpdateTimeZone(profileId: profileId, timeZone: timeZone),
       );
       _ensureUpdated(affected);
-      _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the time zone', error: e, stackTrace: stack);
       rethrow;
@@ -172,7 +163,6 @@ class ProfileRepository({
         VariablesMutationUpdateRelationshipPhase(profileId: profileId, phase: phase?.toRemote()),
       );
       _ensureUpdated(affected);
-      _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the relationship phase', error: e, stackTrace: stack);
       rethrow;
@@ -188,7 +178,6 @@ class ProfileRepository({
         VariablesMutationUpdateTogetherSince(profileId: profileId, togetherSince: togetherSince),
       );
       _ensureUpdated(affected);
-      _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the relationship date', error: e, stackTrace: stack);
       rethrow;
@@ -204,7 +193,6 @@ class ProfileRepository({
         VariablesMutationUpdateRelationshipStatus(profileId: profileId, status: status.toRemote()),
       );
       _ensureUpdated(affected);
-      _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the relationship status', error: e, stackTrace: stack);
       rethrow;
@@ -215,9 +203,38 @@ class ProfileRepository({
     if (affected != 1) throw const LocalizedException(l10nKey: 'UPDATE_FAILED');
   }
 
-  void _notifyChanges() {
-    if (!_changes.isClosed) _changes.add(null);
+  /// Emits the person's profile now and each time it changes, from any screen.
+  ///
+  /// Empty while signed out. A failure is logged and passed on.
+  Stream<Profile> watchMyProfile() {
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) return const Stream.empty();
+
+    return _profileDataSource
+        .watchMyProfile(userId)
+        .map((node) => node.toModel())
+        .transform(_logFailures('profile'));
   }
+
+  /// Emits the person's settings now and each time they change, from any screen.
+  ///
+  /// Empty while signed out. A failure is logged and passed on.
+  Stream<AccountSettings> watchMySettings() {
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) return const Stream.empty();
+
+    return _profileDataSource
+        .watchMySettings(userId)
+        .map((node) => node.toModel())
+        .transform(_logFailures('settings'));
+  }
+
+  StreamTransformer<T, T> _logFailures<T>(String what) => StreamTransformer.fromHandlers(
+    handleError: (error, stack, sink) {
+      _logger.error('Failed to watch the $what', error: error, stackTrace: stack);
+      sink.addError(error, stack);
+    },
+  );
 
   Future<AccountSettings> getMySettings() async {
     try {
@@ -275,7 +292,6 @@ class ProfileRepository({
           onboardedAt: clock.now().toUtc(),
         ),
       );
-      _notifyChanges();
     } catch (e, stack) {
       _logger.error('Failed to save the profile setup', error: e, stackTrace: stack);
       rethrow;

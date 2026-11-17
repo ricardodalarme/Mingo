@@ -113,7 +113,7 @@ class const _AppStateListener({
 
 class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBindingObserver {
   StreamSubscription<AppState>? _subscription;
-  StreamSubscription<void>? _profileSubscription;
+  final List<StreamSubscription<void>> _profileSubscriptions = [];
   StreamSubscription<Uri?>? _widgetClickSubscription;
   late AppState _previous;
 
@@ -124,11 +124,7 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
     _previous = widget.cubit.state;
     _subscription = widget.cubit.stream.listen(_onStateChanged);
     final injector = AppInjector.instance;
-    _profileSubscription = injector.get<ProfileRepository>().onChanged.listen((_) {
-      if (widget.cubit.state == AppState.authenticated) {
-        unawaited(injector.get<WidgetsRepository>().syncQuietly());
-      }
-    });
+    if (_previous == AppState.authenticated) _watchProfile();
     final widgetDataService = injector.get<WidgetDataService>();
     _widgetClickSubscription = widgetDataService.widgetClicked.listen(_handleWidgetDeepLink);
     unawaited(widgetDataService.initiallyLaunchedFromHomeWidget().then(_handleWidgetDeepLink));
@@ -139,6 +135,26 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
     if (state == AppLifecycleState.resumed && widget.cubit.state == AppState.authenticated) {
       unawaited(AppInjector.instance.get<WidgetsRepository>().syncQuietly());
     }
+  }
+
+  /// Syncs the home-screen widgets when the profile or the settings change, from any screen.
+  void _watchProfile() {
+    if (_profileSubscriptions.isNotEmpty) return;
+
+    final injector = AppInjector.instance;
+    final repository = injector.get<ProfileRepository>();
+    void sync(Object? _) => unawaited(injector.get<WidgetsRepository>().syncQuietly());
+    _profileSubscriptions.addAll([
+      repository.watchMyProfile().distinct().skip(1).listen(sync, onError: (Object _) {}),
+      repository.watchMySettings().distinct().skip(1).listen(sync, onError: (Object _) {}),
+    ]);
+  }
+
+  void _stopWatchingProfile() {
+    for (final subscription in _profileSubscriptions) {
+      unawaited(subscription.cancel());
+    }
+    _profileSubscriptions.clear();
   }
 
   void _handleWidgetDeepLink(Uri? uri) {
@@ -152,6 +168,11 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
     _previous = current;
     if (previous == current) return;
 
+    if (current == AppState.authenticated) {
+      _watchProfile();
+    } else {
+      _stopWatchingProfile();
+    }
     widget.navigator.onStateChanged(previous, current);
   }
 
@@ -159,7 +180,7 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _subscription?.cancel();
-    _profileSubscription?.cancel();
+    _stopWatchingProfile();
     _widgetClickSubscription?.cancel();
     super.dispose();
   }

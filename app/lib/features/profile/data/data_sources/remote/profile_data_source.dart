@@ -36,6 +36,30 @@ class ProfileDataSource({required final GQLClient _client}) {
     return validateResponseData(response, getData: (data) => data.userSettingsByPk);
   }
 
+  /// Emits the person's profile, then again when it changes or a mutation succeeds.
+  Stream<FragmentProfileFragment> watchMyProfile(String userId) {
+    return _client
+        .watch(
+          WatchOptionsQueryMyProfile(
+            variables: VariablesQueryMyProfile(userId: userId),
+            fetchPolicy: FetchPolicy.cacheAndNetwork,
+          ),
+        )
+        .mapResponseData((data) => data.profilesByPk);
+  }
+
+  /// Emits the person's settings, then again when they change or a mutation succeeds.
+  Stream<QueryMySettingsuserSettingsByPk> watchMySettings(String userId) {
+    return _client
+        .watch(
+          WatchOptionsQueryMySettings(
+            variables: VariablesQueryMySettings(userId: userId),
+            fetchPolicy: FetchPolicy.cacheAndNetwork,
+          ),
+        )
+        .mapResponseData((data) => data.userSettingsByPk);
+  }
+
   Future<void> saveIntroAnswers(VariablesMutationSaveIntroAnswers variables) async {
     final response = await _client.mutate(OptionsMutationSaveIntroAnswers(variables: variables));
 

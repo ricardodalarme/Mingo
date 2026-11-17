@@ -23,10 +23,15 @@ class TogetherCubit({
   required final HistoryRepository _historyRepository,
 }) extends Cubit<TogetherState> {
   this : super(const TogetherState()) {
-    _profileChanges = _profileRepository.onChanged.listen((_) => load());
+    _phaseChanges = _profileRepository
+        .watchMySettings()
+        .map((settings) => settings.phase)
+        .distinct()
+        .skip(1)
+        .listen((_) => load(), onError: (Object _) {});
   }
 
-  StreamSubscription<void>? _profileChanges;
+  StreamSubscription<void>? _phaseChanges;
 
   /// Finds the partner, the check-in entry, the list count and the other hub details, all at once.
   ///
@@ -90,7 +95,7 @@ class TogetherCubit({
 
   @override
   Future<void> close() async {
-    await _profileChanges?.cancel();
+    await _phaseChanges?.cancel();
 
     return super.close();
   }

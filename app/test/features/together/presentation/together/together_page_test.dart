@@ -5,6 +5,7 @@ import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:app/features/history/data/repositories/history_repository.dart';
 import 'package:app/features/lists/data/repositories/lists_repository.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
@@ -35,7 +36,7 @@ class _MockHistoryRepository() extends Mock implements HistoryRepository;
 void main() {
   late PairingRepository pairingRepository;
   late ProfileRepository profileRepository;
-  late StreamController<void> profileChanges;
+  late StreamController<AccountSettings> settingsChanges;
   late TogetherCubit cubit;
 
   setUp(() {
@@ -48,8 +49,8 @@ void main() {
     final giftsRepository = _MockGiftsRepository();
     final historyRepository = _MockHistoryRepository();
     when(historyRepository.getOverview).thenThrow(Exception());
-    profileChanges = StreamController<void>.broadcast();
-    when(() => profileRepository.onChanged).thenAnswer((_) => profileChanges.stream);
+    settingsChanges = StreamController<AccountSettings>.broadcast();
+    when(profileRepository.watchMySettings).thenAnswer((_) => settingsChanges.stream);
     when(profileRepository.getMySettings).thenThrow(Exception('none'));
     when(checkinRepository.isCurrentWeekDismissed).thenAnswer((_) async => false);
     when(listsRepository.getLists).thenAnswer((_) async => const []);
@@ -68,7 +69,7 @@ void main() {
 
   tearDown(() async {
     await cubit.close();
-    await profileChanges.close();
+    await settingsChanges.close();
   });
 
   Future<void> pumpTogether(WidgetTester tester) async {

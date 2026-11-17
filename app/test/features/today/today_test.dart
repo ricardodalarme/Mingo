@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
@@ -200,7 +201,8 @@ void main() {
       when(today.watchSignals).thenAnswer((_) => signals.stream);
       repair = _MockRepairRepository();
       when(repair.isInConflict).thenAnswer((_) async => false);
-      when(() => profile.onChanged).thenAnswer((_) => const Stream.empty());
+      when(profile.watchMyProfile).thenAnswer((_) => const Stream<Profile>.empty());
+      when(profile.watchMySettings).thenAnswer((_) => const Stream<AccountSettings>.empty());
       when(() => profile.getMyProfile()).thenAnswer(
         (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'),
       );
@@ -239,8 +241,8 @@ void main() {
     });
 
     test('a saved profile name reaches Hoje', () async {
-      final changes = StreamController<void>.broadcast();
-      when(() => profile.onChanged).thenAnswer((_) => changes.stream);
+      final changes = StreamController<Profile>.broadcast();
+      when(profile.watchMyProfile).thenAnswer((_) => changes.stream);
       when(() => today.getToday()).thenAnswer((_) async => result());
       final cubit = TodayCubit(
         todayRepository: today,
@@ -255,7 +257,9 @@ void main() {
       when(() => profile.getMyProfile()).thenAnswer(
         (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Bia'),
       );
-      changes.add(null);
+      changes
+        ..add(const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'))
+        ..add(const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Bia'));
       await pumpEventQueue();
 
       expect(cubit.state.selfName, 'Bia');

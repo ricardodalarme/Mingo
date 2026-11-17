@@ -34,6 +34,7 @@ class TodayCubit({
   this : super(const TodayState());
 
   StreamSubscription<void>? _profileChanges;
+  StreamSubscription<void>? _settingsChanges;
   StreamSubscription<TodaySignals>? _signals;
   TodaySignals? _lastSignals;
   Timer? _refreshTimer;
@@ -43,7 +44,16 @@ class TodayCubit({
 
   void start() {
     WidgetsBinding.instance.addObserver(this);
-    _profileChanges ??= _profileRepository.onChanged.listen((_) => load());
+    _profileChanges ??= _profileRepository
+        .watchMyProfile()
+        .distinct()
+        .skip(1)
+        .listen((_) => load(), onError: (Object _) {});
+    _settingsChanges ??= _profileRepository
+        .watchMySettings()
+        .distinct()
+        .skip(1)
+        .listen((_) => load(), onError: (Object _) {});
     _signals ??= _todayRepository.watchSignals().listen(_onSignals);
     _refreshTimer ??= _timerFactory(_refreshInterval, _onRefreshTick);
     load();
@@ -169,6 +179,7 @@ class TodayCubit({
   Future<void> close() async {
     _refreshTimer?.cancel();
     await _profileChanges?.cancel();
+    await _settingsChanges?.cancel();
     await _signals?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     return super.close();

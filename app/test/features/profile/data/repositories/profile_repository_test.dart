@@ -1,4 +1,6 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/profile/data/data_sources/remote/fragments/generated/ProfileFragment.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/profile_data_source.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
@@ -39,15 +41,38 @@ void main() {
     );
   });
 
-  test('a saved field notifies the app once', () async {
-    when(() => dataSource.updateDisplayName(any())).thenAnswer((_) async => 1);
-    final changes = <void>[];
-    final subscription = repository.onChanged.listen(changes.add);
-    addTearDown(subscription.cancel);
+  test('watching the profile maps each result to the model', () async {
+    when(() => dataSource.watchMyProfile('p1')).thenAnswer(
+      (_) => Stream.value(
+        FragmentProfileFragment(
+          id: 'p1',
+          displayName: 'Marina',
+          avatarKind: EnumAvatarKind_enum.initials,
+        ),
+      ),
+    );
 
-    await repository.updateDisplayName(profileId: 'p1', displayName: 'Marina');
-    await pumpEventQueue();
+    final profile = await repository.watchMyProfile().first;
 
-    expect(changes, hasLength(1));
+    expect(profile.displayName, 'Marina');
+  });
+
+  test('watching while signed out emits nothing', () async {
+    final authentication = _MockAuthenticationRepository();
+    when(() => authentication.currentUserId).thenReturn(null);
+    final signedOut = ProfileRepository(
+      profileDataSource: dataSource,
+      authenticationRepository: authentication,
+    );
+
+    expect(await signedOut.watchMyProfile().toList(), isEmpty);
+    expect(await signedOut.watchMySettings().toList(), isEmpty);
+    verifyNever(() => dataSource.watchMyProfile(any()));
+  });
+
+  test('a failed watch is passed on', () {
+    when(() => dataSource.watchMyProfile('p1')).thenAnswer((_) => Stream.error(Exception()));
+
+    expect(repository.watchMyProfile(), emitsError(isA<Exception>()));
   });
 }
