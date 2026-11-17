@@ -1,6 +1,5 @@
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
-import 'package:app/features/spice/data/data_sources/remote/fragments/generated/SpiceChallengeFragment.graphql.dart';
 import 'package:app/features/spice/data/data_sources/remote/spice_data_source.dart';
 import 'package:app/features/spice/data/mappers/spice_card_mapper.dart';
 import 'package:app/features/spice/data/mappers/spice_challenge_mapper.dart';
@@ -126,7 +125,7 @@ class SpiceRepository({
     ),
   );
 
-  Future<SpiceChallenge?> _toChallenge(FragmentSpiceChallengeFragment? node) async {
+  Future<SpiceChallenge?> _toChallenge(SpiceChallengeRecord? node) async {
     if (node == null) return null;
     final texts = await _dataSource.getTexts(slugs: [node.contentSlug], locale: await _locale());
 

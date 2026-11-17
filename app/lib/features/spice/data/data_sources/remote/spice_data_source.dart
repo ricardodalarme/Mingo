@@ -19,6 +19,9 @@ import 'package:app/features/spice/data/data_sources/remote/subscriptions/genera
 import 'package:app/features/spice/data/data_sources/remote/subscriptions/generated/WatchSpiceState.graphql.dart';
 import 'package:network/network.dart';
 
+/// The couple's challenge as the server stores it.
+typedef SpiceChallengeRecord = FragmentSpiceChallengeFragment;
+
 typedef SpiceStateRecord = ({String state, int? myLevel, int? coupleLevel});
 
 class SpiceDataSource({required final GQLClient _client}) {
