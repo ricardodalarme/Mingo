@@ -1,0 +1,48 @@
+table:
+  name: user_goals
+  schema: public
+configuration:
+  column_config:
+    goal:
+      custom_name: goal
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    goal: goal
+    user_id: userId
+  custom_name: userGoals
+  custom_root_fields:
+    delete: deleteUserGoals
+    delete_by_pk: deleteUserGoalsByPk
+    insert: insertUserGoals
+    insert_one: insertUserGoalsOne
+    select: userGoals
+    select_aggregate: userGoalsAggregate
+    select_by_pk: userGoalsByPk
+    select_stream: userGoalsStream
+    update: updateUserGoals
+    update_by_pk: updateUserGoalsByPk
+    update_many: updateUserGoalsMany
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        user_id: X-Hasura-User-Id
+      columns:
+        - goal
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - goal
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

@@ -7,5 +7,5 @@ export const enums = [
   'repair_learning_kind', 'repair_path', 'temperature_level', 'partner_fact_category', 'partner_fact_source', 'lesson_status',
   'quiz_key', 'ritual_cadence', 'date_idea_status', 'important_date_kind', 'important_date_origin', 'date_precision',
   'memory_origin', 'story_event_kind', 'list_kind', 'list_item_status', 'gift_idea_kind', 'gift_idea_status', 'gift_budget',
-  'pronoun', 'partner_intent', 'spice_answer',
+  'pronoun', 'partner_intent', 'spice_answer', 'gentle_response', 'held_reason', 'spice_stage',
 ];

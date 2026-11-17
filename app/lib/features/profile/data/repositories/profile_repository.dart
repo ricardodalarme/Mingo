@@ -243,9 +243,7 @@ class ProfileRepository({
     }
   }
 
-  /// Sends the answers given in the first-use introduction.
-  ///
-  /// The private goal [after a fight] stays in the person's own settings row.
+  /// Sends the answers given in the first-use introduction; the goals replace any saved before.
   Future<void> saveIntroAnswers({
     required String profileId,
     RelationshipPhase? phase,
@@ -255,8 +253,7 @@ class ProfileRepository({
       await _profileDataSource.saveIntroAnswers(
         profileId: profileId,
         phase: phase?.toRemote(),
-        goal: goals.map((goal) => goal.toPrimaryRemote()).nonNulls.firstOrNull,
-        goals: goals.isEmpty ? null : [for (final goal in goals) goal.toRemote()],
+        goals: [for (final goal in goals) goal.toRemote()],
       );
     } catch (e, stack) {
       _logger.error('Failed to save the introduction answers', error: e, stackTrace: stack);

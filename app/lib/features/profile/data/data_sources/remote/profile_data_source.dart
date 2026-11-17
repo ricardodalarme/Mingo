@@ -61,19 +61,18 @@ class ProfileDataSource({required final GQLClient _client}) {
         .mapResponseData((data) => data.userSettingsByPk);
   }
 
+  /// Saves the phase and replaces the goals with [goals], in one request.
   Future<void> saveIntroAnswers({
     required String profileId,
     EnumRelationshipPhase_enum? phase,
-    EnumRelationshipGoal_enum? goal,
-    List<String>? goals,
+    List<EnumRelationshipGoal_enum> goals = const [],
   }) async {
     final response = await _client.mutate(
       OptionsMutationSaveIntroAnswers(
         variables: VariablesMutationSaveIntroAnswers(
           profileId: profileId,
           phase: phase,
-          goal: goal,
-          goals: goals,
+          goals: [for (final goal in goals.toSet()) InputuserGoals_insert_input(goal: goal)],
         ),
       ),
     );

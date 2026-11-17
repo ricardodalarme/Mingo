@@ -116,3 +116,14 @@ test('a request ends with the couple', async () => {
   await ok(a, `mutation { unpair { id } }`);
   assert.deepEqual((await ok(b, `{ gentleRequests { id } }`)).gentleRequests, []);
 });
+
+test('an answer to a gentle request is one of five, in the schema and in the database', async () => {
+  const { a, b } = await couple();
+  const request = await send(a);
+
+  await denied(b, `mutation ($id: uuid!) { updateGentleRequestsByPk(pk_columns: {id: $id}, _set: {response: whenever}) { id } }`, { id: request.id });
+  await assert.rejects(sql(`update public.gentle_requests set response = 'whenever' where id = '${request.id}'`));
+
+  const values = (await sql(`select value from public.gentle_response order by value`)).map((row) => row[0]);
+  assert.deepEqual(values, ['later', 'more_time', 'not_now', 'talk', 'will_do']);
+});

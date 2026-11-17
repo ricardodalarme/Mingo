@@ -1,0 +1,9 @@
+table:
+  name: gentle_response
+  schema: public
+is_enum: true
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: GentleResponse
+  custom_root_fields: {}

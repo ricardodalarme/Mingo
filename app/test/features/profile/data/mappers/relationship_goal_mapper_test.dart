@@ -4,25 +4,24 @@ import 'package:app/features/profile/data/models/relationship_goal.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('a goal survives a trip to its stored text and back', () {
-    for (final value in RelationshipGoal.values) {
-      expect(value.toRemote().toRelationshipGoal(), value);
+  test('a goal survives a trip to the remote enum and back', () {
+    for (final goal in RelationshipGoal.values) {
+      expect(goal.toRemote().toModel(), goal);
     }
   });
 
-  test('multi-word goals keep their stored spelling', () {
-    expect(RelationshipGoal.fightLess.toRemote(), 'fight_less');
-    expect(RelationshipGoal.organizeRoutine.toRemote(), 'organize_routine');
+  test('each goal has its own remote value', () {
+    final remote = {for (final goal in RelationshipGoal.values) goal.toRemote()};
+
+    expect(remote, hasLength(RelationshipGoal.values.length));
   });
 
-  test('a stored goal this version does not know is left out', () {
-    expect('something_new'.toRelationshipGoal(), isNull);
+  test('multi-word goals map to their snake case values', () {
+    expect(RelationshipGoal.fightLess.toRemote(), EnumRelationshipGoal_enum.fight_less);
+    expect(RelationshipGoal.organizeRoutine.toRemote(), EnumRelationshipGoal_enum.organize_routine);
   });
 
-  test('only three goals have a main goal on the account', () {
-    expect(RelationshipGoal.reconnect.toPrimaryRemote(), EnumRelationshipGoal_enum.reconnect);
-    expect(RelationshipGoal.fightLess.toPrimaryRemote(), EnumRelationshipGoal_enum.after_fight);
-    expect(RelationshipGoal.keepRomance.toPrimaryRemote(), EnumRelationshipGoal_enum.keep);
-    expect(RelationshipGoal.justRecord.toPrimaryRemote(), isNull);
+  test('a goal this version does not know is left out', () {
+    expect(EnumRelationshipGoal_enum.$unknown.toModel(), isNull);
   });
 }

@@ -365,7 +365,9 @@ class QueryMySettingsuserSettingsByPk implements FragmentSettingsFragment {
       onboardedAt: l$onboardedAt == null ? null : DateTime.parse((l$onboardedAt as String)),
       shareReadReceipts: (l$shareReadReceipts as bool),
       phase: l$phase == null ? null : fromJsonEnumRelationshipPhase_enum((l$phase as String)),
-      goals: (l$goals as List<dynamic>).map((e) => (e as String)).toList(),
+      goals: (l$goals as List<dynamic>)
+          .map((e) => QueryMySettingsuserSettingsByPkgoals.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       locale: (l$locale as String),
       $__typename: (l$$__typename as String),
       profile: QueryMySettingsuserSettingsByPkprofile.fromJson((l$profile as Map<String, dynamic>)),
@@ -392,7 +394,7 @@ class QueryMySettingsuserSettingsByPk implements FragmentSettingsFragment {
 
   final EnumRelationshipPhase_enum? phase;
 
-  final List<String> goals;
+  final List<QueryMySettingsuserSettingsByPkgoals> goals;
 
   final String locale;
 
@@ -431,7 +433,7 @@ class QueryMySettingsuserSettingsByPk implements FragmentSettingsFragment {
     final l$phase = phase;
     _resultData['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase_enum(l$phase);
     final l$goals = goals;
-    _resultData['goals'] = l$goals.map((e) => e).toList();
+    _resultData['goals'] = l$goals.map((e) => e.toJson()).toList();
     final l$locale = locale;
     _resultData['locale'] = l$locale;
     final l$$__typename = $__typename;
@@ -558,6 +560,60 @@ class QueryMySettingsuserSettingsByPk implements FragmentSettingsFragment {
     final l$profile = profile;
     final lOther$profile = other.profile;
     if (l$profile != lOther$profile) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class QueryMySettingsuserSettingsByPkgoals implements FragmentSettingsFragmentgoals {
+  QueryMySettingsuserSettingsByPkgoals({required this.goal, this.$__typename = 'userGoals'});
+
+  factory QueryMySettingsuserSettingsByPkgoals.fromJson(Map<String, dynamic> json) {
+    final l$goal = json['goal'];
+    final l$$__typename = json['__typename'];
+    return QueryMySettingsuserSettingsByPkgoals(
+      goal: fromJsonEnumRelationshipGoal_enum((l$goal as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final EnumRelationshipGoal_enum goal;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$goal = goal;
+    _resultData['goal'] = toJsonEnumRelationshipGoal_enum(l$goal);
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$goal = goal;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$goal, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! QueryMySettingsuserSettingsByPkgoals || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$goal = goal;
+    final lOther$goal = other.goal;
+    if (l$goal != lOther$goal) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;

@@ -56,9 +56,11 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(EnumGameKind_enum.me_or_you);
   registerFallbackValue(EnumGameOutcome_enum.great);
   registerFallbackValue(EnumGameStatus_enum.invited);
+  registerFallbackValue(EnumGentleResponse_enum.will_do);
   registerFallbackValue(EnumGiftBudget_enum.free);
   registerFallbackValue(EnumGiftIdeaKind_enum.idea);
   registerFallbackValue(EnumGiftIdeaStatus_enum.idea);
+  registerFallbackValue(EnumHeldReason_enum.absolute);
   registerFallbackValue(EnumImportantDateKind_enum.relationship);
   registerFallbackValue(EnumImportantDateOrigin_enum.manual);
   registerFallbackValue(EnumLearnedItemStatus_enum.pending);
@@ -71,12 +73,13 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(EnumMood_enum.happy);
   registerFallbackValue(EnumMoodNeed_enum.listen);
   registerFallbackValue(EnumMoodShare_enum.none);
+  registerFallbackValue(EnumSpiceStage_enum.off);
   registerFallbackValue(Enumorder_by.asc_nulls_first);
   registerFallbackValue(EnumPartnerFactCategory_enum.likes);
   registerFallbackValue(EnumPartnerFactSource_enum.manual);
   registerFallbackValue(EnumPartnerMessageKind_enum.note);
   registerFallbackValue(EnumQuizKey_enum.loved);
-  registerFallbackValue(EnumRelationshipGoal_enum.keep);
+  registerFallbackValue(EnumRelationshipGoal_enum.reconnect);
   registerFallbackValue(EnumRelationshipPhase_enum.beginning);
   registerFallbackValue(EnumRelationshipStatus_enum.together);
   registerFallbackValue(EnumRepairFeeling_enum.calmer);

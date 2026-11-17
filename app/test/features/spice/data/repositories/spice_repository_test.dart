@@ -39,9 +39,10 @@ void main() {
   });
 
   test('the state becomes a stage and the levels', () async {
-    when(
-      dataSource.getState,
-    ).thenAnswer((_) async => QuerySpiceStatespiceState(state: 'on', myLevel: 3, coupleLevel: 1));
+    when(dataSource.getState).thenAnswer(
+      (_) async =>
+          QuerySpiceStatespiceState(state: EnumSpiceStage_enum.$on, myLevel: 3, coupleLevel: 1),
+    );
 
     final status = await repository.getStatus();
 
@@ -131,8 +132,10 @@ void main() {
   });
 
   test('watching the mode maps each state to a stage and the levels', () async {
-    when(dataSource.watchState)
-        .thenAnswer((_) => Stream.value((state: 'waiting_partner', myLevel: 2, coupleLevel: null)));
+    when(dataSource.watchState).thenAnswer(
+      (_) =>
+          Stream.value((state: EnumSpiceStage_enum.waiting_partner, myLevel: 2, coupleLevel: null)),
+    );
 
     final status = await repository.watchStatus().first;
 

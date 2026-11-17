@@ -57,7 +57,9 @@ $$;
 
 Closed value sets must reach the client as GraphQL enums. Use an **enum table** (`is_enum: true`, one primary-key column): the engine exposes a GraphQL
 enum without any role permission on the table, and adding a value is an insert. This repo creates them with `private.create_enum` in migrations and
-tracks them in `spec/enums.mjs`. Do not rely on native Postgres enums unless a test proves the GraphQL enum.
+tracks them in `spec/enums.mjs`. Do not rely on native Postgres enums unless a test proves the GraphQL enum. A set that was `text` with a `check` becomes an enum table
+and a foreign key; a **list** of values cannot be a GraphQL enum column, so it becomes rows of a join table with a foreign key to the enum
+table (`user_goals`).
 
 ## Naming
 

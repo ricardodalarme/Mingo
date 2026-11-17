@@ -249,3 +249,13 @@ test('no other table or type can reach Tempero by joining', async () => {
   }
   assert.deepEqual(leaks, []);
 });
+
+test('the state of the mode is one of four stages, in the schema and in the database', async () => {
+  const values = (await sql(`select value from public.spice_stage order by value`)).map((row) => row[0]);
+  assert.deepEqual(values, ['off', 'on', 'partner_wants', 'waiting_partner']);
+  assert.deepEqual(
+    (await ok('admin', `{ __type(name: "SpiceStage_enum") { enumValues { name } } }`)).__type.enumValues.map((value: any) => value.name).sort(),
+    values,
+  );
+  await assert.rejects(sql(`insert into public.spice_states (state) values ('maybe')`));
+});

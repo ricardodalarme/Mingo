@@ -22,7 +22,7 @@ import 'package:network/network.dart';
 /// The couple's challenge as the server stores it.
 typedef SpiceChallengeRecord = FragmentSpiceChallengeFragment;
 
-typedef SpiceStateRecord = ({String state, int? myLevel, int? coupleLevel});
+typedef SpiceStateRecord = ({EnumSpiceStage_enum state, int? myLevel, int? coupleLevel});
 
 class SpiceDataSource({required final GQLClient _client}) {
   Future<QuerySpiceStatespiceState> getState() async {

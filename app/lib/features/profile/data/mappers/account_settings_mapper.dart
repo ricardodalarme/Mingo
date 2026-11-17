@@ -19,7 +19,7 @@ extension MySettingsMapper on QueryMySettingsuserSettingsByPk {
     onboardedAt: onboardedAt,
     shareReadReceipts: shareReadReceipts,
     phase: phase?.toModel(),
-    goals: [for (final goal in goals) ?goal.toRelationshipGoal()],
+    goals: [for (final row in goals) ?row.goal.toModel()],
     locale: locale,
   );
 }

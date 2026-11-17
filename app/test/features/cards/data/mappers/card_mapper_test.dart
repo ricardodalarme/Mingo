@@ -133,15 +133,11 @@ void main() {
       id: 'c1',
       status: EnumCardStatus_enum.held,
       weekStart: weekStart,
-      heldReason: 'contempt',
+      heldReason: EnumHeldReason_enum.contempt,
       items: const [],
     ).toModel();
 
     expect(card.heldReason, HeldReason.contempt);
     expect(card.isHeldByRule, isTrue);
-  });
-
-  test('a reason this version does not know is left out', () {
-    expect('something_new'.toHeldReason(), isNull);
   });
 }

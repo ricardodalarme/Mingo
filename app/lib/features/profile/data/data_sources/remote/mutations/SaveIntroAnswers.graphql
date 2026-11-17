@@ -1,13 +1,15 @@
 mutation SaveIntroAnswers(
   $profileId: uuid!
   $phase: RelationshipPhase_enum
-  $goal: RelationshipGoal_enum
-  $goals: [String!]
+  $goals: [userGoals_insert_input!]!
 ) {
-  updateUserSettings(
-    where: { userId: { _eq: $profileId } }
-    _set: { phase: $phase, goal: $goal, goals: $goals }
-  ) {
+  updateUserSettingsByPk(pk_columns: { userId: $profileId }, _set: { phase: $phase }) {
+    userId
+  }
+  deleteUserGoals(where: { userId: { _eq: $profileId } }) {
+    affected_rows
+  }
+  insertUserGoals(objects: $goals) {
     affected_rows
   }
 }

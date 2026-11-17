@@ -5,11 +5,11 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('the stored state becomes a stage, and an unknown one is off', () {
-    expect('on'.toSpiceStage(), SpiceStage.on);
-    expect('waiting_partner'.toSpiceStage(), SpiceStage.waitingPartner);
-    expect('partner_wants'.toSpiceStage(), SpiceStage.partnerWants);
-    expect('off'.toSpiceStage(), SpiceStage.off);
-    expect('other'.toSpiceStage(), SpiceStage.off);
+    expect(EnumSpiceStage_enum.$on.toModel(), SpiceStage.on);
+    expect(EnumSpiceStage_enum.waiting_partner.toModel(), SpiceStage.waitingPartner);
+    expect(EnumSpiceStage_enum.partner_wants.toModel(), SpiceStage.partnerWants);
+    expect(EnumSpiceStage_enum.off.toModel(), SpiceStage.off);
+    expect(EnumSpiceStage_enum.$unknown.toModel(), SpiceStage.off);
   });
 
   test('a level survives a trip to the stored number and back', () {

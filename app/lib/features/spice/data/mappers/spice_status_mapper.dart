@@ -4,7 +4,7 @@ import 'package:app/features/spice/data/models/spice_models.dart';
 
 extension SpiceStatusMapper on SpiceStateRecord {
   SpiceStatus toModel() => SpiceStatus(
-    stage: state.toSpiceStage(),
+    stage: state.toModel(),
     myLevel: myLevel?.toSpiceLevel() ?? SpiceLevel.soft,
     coupleLevel: coupleLevel?.toSpiceLevel(),
   );

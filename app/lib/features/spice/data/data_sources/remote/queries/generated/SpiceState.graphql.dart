@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -246,14 +248,14 @@ class QuerySpiceStatespiceState {
     final l$coupleLevel = json['coupleLevel'];
     final l$$__typename = json['__typename'];
     return QuerySpiceStatespiceState(
-      state: (l$state as String),
+      state: fromJsonEnumSpiceStage_enum((l$state as String)),
       myLevel: (l$myLevel as int?),
       coupleLevel: (l$coupleLevel as int?),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String state;
+  final EnumSpiceStage_enum state;
 
   final int? myLevel;
 
@@ -264,7 +266,7 @@ class QuerySpiceStatespiceState {
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$state = state;
-    _resultData['state'] = l$state;
+    _resultData['state'] = toJsonEnumSpiceStage_enum(l$state);
     final l$myLevel = myLevel;
     _resultData['myLevel'] = l$myLevel;
     final l$coupleLevel = coupleLevel;

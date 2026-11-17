@@ -16,7 +16,9 @@ void main() {
       'onboardedAt': null,
       'shareReadReceipts': true,
       'phase': 'married',
-      'goals': ['keep_romance'],
+      'goals': [
+        {'goal': 'keep_romance', '__typename': 'userGoals'},
+      ],
       'locale': 'pt-BR',
       'profile': {'timeZone': 'America/Sao_Paulo', '__typename': 'profiles'},
       '__typename': 'userSettings',

@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
@@ -40,7 +42,7 @@ class FragmentGentleRequestFragment {
       wishText: (l$wishText as String),
       senderId: (l$senderId as String),
       recipientId: (l$recipientId as String),
-      response: (l$response as String?),
+      response: l$response == null ? null : fromJsonEnumGentleResponse_enum((l$response as String)),
       seenAt: l$seenAt == null ? null : DateTime.parse((l$seenAt as String)),
       thankedAt: l$thankedAt == null ? null : DateTime.parse((l$thankedAt as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
@@ -64,7 +66,7 @@ class FragmentGentleRequestFragment {
 
   final String recipientId;
 
-  final String? response;
+  final EnumGentleResponse_enum? response;
 
   final DateTime? seenAt;
 
@@ -93,7 +95,7 @@ class FragmentGentleRequestFragment {
     final l$recipientId = recipientId;
     _resultData['recipientId'] = l$recipientId;
     final l$response = response;
-    _resultData['response'] = l$response;
+    _resultData['response'] = l$response == null ? null : toJsonEnumGentleResponse_enum(l$response);
     final l$seenAt = seenAt;
     _resultData['seenAt'] = l$seenAt == null
         ? null

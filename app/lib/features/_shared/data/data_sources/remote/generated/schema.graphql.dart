@@ -3390,6 +3390,191 @@ class InputGameStatus_enum_comparison_exp {
   }
 }
 
+class InputGentleResponse_enum_comparison_exp {
+  factory InputGentleResponse_enum_comparison_exp({
+    EnumGentleResponse_enum? $_eq,
+    List<EnumGentleResponse_enum>? $_in,
+    bool? $_is_null,
+    EnumGentleResponse_enum? $_neq,
+    List<EnumGentleResponse_enum>? $_nin,
+  }) => InputGentleResponse_enum_comparison_exp._({
+    if ($_eq != null) r'_eq': $_eq,
+    if ($_in != null) r'_in': $_in,
+    if ($_is_null != null) r'_is_null': $_is_null,
+    if ($_neq != null) r'_neq': $_neq,
+    if ($_nin != null) r'_nin': $_nin,
+  });
+
+  InputGentleResponse_enum_comparison_exp._(this._$data);
+
+  factory InputGentleResponse_enum_comparison_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_eq')) {
+      final l$$_eq = data['_eq'];
+      result$data['_eq'] = l$$_eq == null
+          ? null
+          : fromJsonEnumGentleResponse_enum((l$$_eq as String));
+    }
+    if (data.containsKey('_in')) {
+      final l$$_in = data['_in'];
+      result$data['_in'] = (l$$_in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumGentleResponse_enum((e as String)))
+          .toList();
+    }
+    if (data.containsKey('_is_null')) {
+      final l$$_is_null = data['_is_null'];
+      result$data['_is_null'] = (l$$_is_null as bool?);
+    }
+    if (data.containsKey('_neq')) {
+      final l$$_neq = data['_neq'];
+      result$data['_neq'] = l$$_neq == null
+          ? null
+          : fromJsonEnumGentleResponse_enum((l$$_neq as String));
+    }
+    if (data.containsKey('_nin')) {
+      final l$$_nin = data['_nin'];
+      result$data['_nin'] = (l$$_nin as List<dynamic>?)
+          ?.map((e) => fromJsonEnumGentleResponse_enum((e as String)))
+          .toList();
+    }
+    return InputGentleResponse_enum_comparison_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumGentleResponse_enum? get $_eq => (_$data['_eq'] as EnumGentleResponse_enum?);
+
+  List<EnumGentleResponse_enum>? get $_in => (_$data['_in'] as List<EnumGentleResponse_enum>?);
+
+  bool? get $_is_null => (_$data['_is_null'] as bool?);
+
+  EnumGentleResponse_enum? get $_neq => (_$data['_neq'] as EnumGentleResponse_enum?);
+
+  List<EnumGentleResponse_enum>? get $_nin => (_$data['_nin'] as List<EnumGentleResponse_enum>?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_eq')) {
+      final l$$_eq = $_eq;
+      result$data['_eq'] = l$$_eq == null ? null : toJsonEnumGentleResponse_enum(l$$_eq);
+    }
+    if (_$data.containsKey('_in')) {
+      final l$$_in = $_in;
+      result$data['_in'] = l$$_in?.map((e) => toJsonEnumGentleResponse_enum(e)).toList();
+    }
+    if (_$data.containsKey('_is_null')) {
+      final l$$_is_null = $_is_null;
+      result$data['_is_null'] = l$$_is_null;
+    }
+    if (_$data.containsKey('_neq')) {
+      final l$$_neq = $_neq;
+      result$data['_neq'] = l$$_neq == null ? null : toJsonEnumGentleResponse_enum(l$$_neq);
+    }
+    if (_$data.containsKey('_nin')) {
+      final l$$_nin = $_nin;
+      result$data['_nin'] = l$$_nin?.map((e) => toJsonEnumGentleResponse_enum(e)).toList();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputGentleResponse_enum_comparison_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_eq = $_eq;
+    final lOther$$_eq = other.$_eq;
+    if (_$data.containsKey('_eq') != other._$data.containsKey('_eq')) {
+      return false;
+    }
+    if (l$$_eq != lOther$$_eq) {
+      return false;
+    }
+    final l$$_in = $_in;
+    final lOther$$_in = other.$_in;
+    if (_$data.containsKey('_in') != other._$data.containsKey('_in')) {
+      return false;
+    }
+    if (l$$_in != null && lOther$$_in != null) {
+      if (l$$_in.length != lOther$$_in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_in.length; i++) {
+        final l$$_in$entry = l$$_in[i];
+        final lOther$$_in$entry = lOther$$_in[i];
+        if (l$$_in$entry != lOther$$_in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_in != lOther$$_in) {
+      return false;
+    }
+    final l$$_is_null = $_is_null;
+    final lOther$$_is_null = other.$_is_null;
+    if (_$data.containsKey('_is_null') != other._$data.containsKey('_is_null')) {
+      return false;
+    }
+    if (l$$_is_null != lOther$$_is_null) {
+      return false;
+    }
+    final l$$_neq = $_neq;
+    final lOther$$_neq = other.$_neq;
+    if (_$data.containsKey('_neq') != other._$data.containsKey('_neq')) {
+      return false;
+    }
+    if (l$$_neq != lOther$$_neq) {
+      return false;
+    }
+    final l$$_nin = $_nin;
+    final lOther$$_nin = other.$_nin;
+    if (_$data.containsKey('_nin') != other._$data.containsKey('_nin')) {
+      return false;
+    }
+    if (l$$_nin != null && lOther$$_nin != null) {
+      if (l$$_nin.length != lOther$$_nin.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_nin.length; i++) {
+        final l$$_nin$entry = l$$_nin[i];
+        final lOther$$_nin$entry = lOther$$_nin[i];
+        if (l$$_nin$entry != lOther$$_nin$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_nin != lOther$$_nin) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_eq = $_eq;
+    final l$$_in = $_in;
+    final l$$_is_null = $_is_null;
+    final l$$_neq = $_neq;
+    final l$$_nin = $_nin;
+    return Object.hashAll([
+      _$data.containsKey('_eq') ? l$$_eq : const {},
+      _$data.containsKey('_in')
+          ? l$$_in == null
+                ? null
+                : Object.hashAll(l$$_in.map((v) => v))
+          : const {},
+      _$data.containsKey('_is_null') ? l$$_is_null : const {},
+      _$data.containsKey('_neq') ? l$$_neq : const {},
+      _$data.containsKey('_nin')
+          ? l$$_nin == null
+                ? null
+                : Object.hashAll(l$$_nin.map((v) => v))
+          : const {},
+    ]);
+  }
+}
+
 class InputGiftBudget_enum_comparison_exp {
   factory InputGiftBudget_enum_comparison_exp({
     EnumGiftBudget_enum? $_eq,
@@ -3851,6 +4036,189 @@ class InputGiftIdeaStatus_enum_comparison_exp {
       return true;
     }
     if (other is! InputGiftIdeaStatus_enum_comparison_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_eq = $_eq;
+    final lOther$$_eq = other.$_eq;
+    if (_$data.containsKey('_eq') != other._$data.containsKey('_eq')) {
+      return false;
+    }
+    if (l$$_eq != lOther$$_eq) {
+      return false;
+    }
+    final l$$_in = $_in;
+    final lOther$$_in = other.$_in;
+    if (_$data.containsKey('_in') != other._$data.containsKey('_in')) {
+      return false;
+    }
+    if (l$$_in != null && lOther$$_in != null) {
+      if (l$$_in.length != lOther$$_in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_in.length; i++) {
+        final l$$_in$entry = l$$_in[i];
+        final lOther$$_in$entry = lOther$$_in[i];
+        if (l$$_in$entry != lOther$$_in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_in != lOther$$_in) {
+      return false;
+    }
+    final l$$_is_null = $_is_null;
+    final lOther$$_is_null = other.$_is_null;
+    if (_$data.containsKey('_is_null') != other._$data.containsKey('_is_null')) {
+      return false;
+    }
+    if (l$$_is_null != lOther$$_is_null) {
+      return false;
+    }
+    final l$$_neq = $_neq;
+    final lOther$$_neq = other.$_neq;
+    if (_$data.containsKey('_neq') != other._$data.containsKey('_neq')) {
+      return false;
+    }
+    if (l$$_neq != lOther$$_neq) {
+      return false;
+    }
+    final l$$_nin = $_nin;
+    final lOther$$_nin = other.$_nin;
+    if (_$data.containsKey('_nin') != other._$data.containsKey('_nin')) {
+      return false;
+    }
+    if (l$$_nin != null && lOther$$_nin != null) {
+      if (l$$_nin.length != lOther$$_nin.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_nin.length; i++) {
+        final l$$_nin$entry = l$$_nin[i];
+        final lOther$$_nin$entry = lOther$$_nin[i];
+        if (l$$_nin$entry != lOther$$_nin$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_nin != lOther$$_nin) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_eq = $_eq;
+    final l$$_in = $_in;
+    final l$$_is_null = $_is_null;
+    final l$$_neq = $_neq;
+    final l$$_nin = $_nin;
+    return Object.hashAll([
+      _$data.containsKey('_eq') ? l$$_eq : const {},
+      _$data.containsKey('_in')
+          ? l$$_in == null
+                ? null
+                : Object.hashAll(l$$_in.map((v) => v))
+          : const {},
+      _$data.containsKey('_is_null') ? l$$_is_null : const {},
+      _$data.containsKey('_neq') ? l$$_neq : const {},
+      _$data.containsKey('_nin')
+          ? l$$_nin == null
+                ? null
+                : Object.hashAll(l$$_nin.map((v) => v))
+          : const {},
+    ]);
+  }
+}
+
+class InputHeldReason_enum_comparison_exp {
+  factory InputHeldReason_enum_comparison_exp({
+    EnumHeldReason_enum? $_eq,
+    List<EnumHeldReason_enum>? $_in,
+    bool? $_is_null,
+    EnumHeldReason_enum? $_neq,
+    List<EnumHeldReason_enum>? $_nin,
+  }) => InputHeldReason_enum_comparison_exp._({
+    if ($_eq != null) r'_eq': $_eq,
+    if ($_in != null) r'_in': $_in,
+    if ($_is_null != null) r'_is_null': $_is_null,
+    if ($_neq != null) r'_neq': $_neq,
+    if ($_nin != null) r'_nin': $_nin,
+  });
+
+  InputHeldReason_enum_comparison_exp._(this._$data);
+
+  factory InputHeldReason_enum_comparison_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_eq')) {
+      final l$$_eq = data['_eq'];
+      result$data['_eq'] = l$$_eq == null ? null : fromJsonEnumHeldReason_enum((l$$_eq as String));
+    }
+    if (data.containsKey('_in')) {
+      final l$$_in = data['_in'];
+      result$data['_in'] = (l$$_in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumHeldReason_enum((e as String)))
+          .toList();
+    }
+    if (data.containsKey('_is_null')) {
+      final l$$_is_null = data['_is_null'];
+      result$data['_is_null'] = (l$$_is_null as bool?);
+    }
+    if (data.containsKey('_neq')) {
+      final l$$_neq = data['_neq'];
+      result$data['_neq'] = l$$_neq == null
+          ? null
+          : fromJsonEnumHeldReason_enum((l$$_neq as String));
+    }
+    if (data.containsKey('_nin')) {
+      final l$$_nin = data['_nin'];
+      result$data['_nin'] = (l$$_nin as List<dynamic>?)
+          ?.map((e) => fromJsonEnumHeldReason_enum((e as String)))
+          .toList();
+    }
+    return InputHeldReason_enum_comparison_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumHeldReason_enum? get $_eq => (_$data['_eq'] as EnumHeldReason_enum?);
+
+  List<EnumHeldReason_enum>? get $_in => (_$data['_in'] as List<EnumHeldReason_enum>?);
+
+  bool? get $_is_null => (_$data['_is_null'] as bool?);
+
+  EnumHeldReason_enum? get $_neq => (_$data['_neq'] as EnumHeldReason_enum?);
+
+  List<EnumHeldReason_enum>? get $_nin => (_$data['_nin'] as List<EnumHeldReason_enum>?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_eq')) {
+      final l$$_eq = $_eq;
+      result$data['_eq'] = l$$_eq == null ? null : toJsonEnumHeldReason_enum(l$$_eq);
+    }
+    if (_$data.containsKey('_in')) {
+      final l$$_in = $_in;
+      result$data['_in'] = l$$_in?.map((e) => toJsonEnumHeldReason_enum(e)).toList();
+    }
+    if (_$data.containsKey('_is_null')) {
+      final l$$_is_null = $_is_null;
+      result$data['_is_null'] = l$$_is_null;
+    }
+    if (_$data.containsKey('_neq')) {
+      final l$$_neq = $_neq;
+      result$data['_neq'] = l$$_neq == null ? null : toJsonEnumHeldReason_enum(l$$_neq);
+    }
+    if (_$data.containsKey('_nin')) {
+      final l$$_nin = $_nin;
+      result$data['_nin'] = l$$_nin?.map((e) => toJsonEnumHeldReason_enum(e)).toList();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputHeldReason_enum_comparison_exp || runtimeType != other.runtimeType) {
       return false;
     }
     final l$$_eq = $_eq;
@@ -10026,6 +10394,189 @@ class InputSpiceAnswer_enum_comparison_exp {
       return true;
     }
     if (other is! InputSpiceAnswer_enum_comparison_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_eq = $_eq;
+    final lOther$$_eq = other.$_eq;
+    if (_$data.containsKey('_eq') != other._$data.containsKey('_eq')) {
+      return false;
+    }
+    if (l$$_eq != lOther$$_eq) {
+      return false;
+    }
+    final l$$_in = $_in;
+    final lOther$$_in = other.$_in;
+    if (_$data.containsKey('_in') != other._$data.containsKey('_in')) {
+      return false;
+    }
+    if (l$$_in != null && lOther$$_in != null) {
+      if (l$$_in.length != lOther$$_in.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_in.length; i++) {
+        final l$$_in$entry = l$$_in[i];
+        final lOther$$_in$entry = lOther$$_in[i];
+        if (l$$_in$entry != lOther$$_in$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_in != lOther$$_in) {
+      return false;
+    }
+    final l$$_is_null = $_is_null;
+    final lOther$$_is_null = other.$_is_null;
+    if (_$data.containsKey('_is_null') != other._$data.containsKey('_is_null')) {
+      return false;
+    }
+    if (l$$_is_null != lOther$$_is_null) {
+      return false;
+    }
+    final l$$_neq = $_neq;
+    final lOther$$_neq = other.$_neq;
+    if (_$data.containsKey('_neq') != other._$data.containsKey('_neq')) {
+      return false;
+    }
+    if (l$$_neq != lOther$$_neq) {
+      return false;
+    }
+    final l$$_nin = $_nin;
+    final lOther$$_nin = other.$_nin;
+    if (_$data.containsKey('_nin') != other._$data.containsKey('_nin')) {
+      return false;
+    }
+    if (l$$_nin != null && lOther$$_nin != null) {
+      if (l$$_nin.length != lOther$$_nin.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_nin.length; i++) {
+        final l$$_nin$entry = l$$_nin[i];
+        final lOther$$_nin$entry = lOther$$_nin[i];
+        if (l$$_nin$entry != lOther$$_nin$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_nin != lOther$$_nin) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_eq = $_eq;
+    final l$$_in = $_in;
+    final l$$_is_null = $_is_null;
+    final l$$_neq = $_neq;
+    final l$$_nin = $_nin;
+    return Object.hashAll([
+      _$data.containsKey('_eq') ? l$$_eq : const {},
+      _$data.containsKey('_in')
+          ? l$$_in == null
+                ? null
+                : Object.hashAll(l$$_in.map((v) => v))
+          : const {},
+      _$data.containsKey('_is_null') ? l$$_is_null : const {},
+      _$data.containsKey('_neq') ? l$$_neq : const {},
+      _$data.containsKey('_nin')
+          ? l$$_nin == null
+                ? null
+                : Object.hashAll(l$$_nin.map((v) => v))
+          : const {},
+    ]);
+  }
+}
+
+class InputSpiceStage_enum_comparison_exp {
+  factory InputSpiceStage_enum_comparison_exp({
+    EnumSpiceStage_enum? $_eq,
+    List<EnumSpiceStage_enum>? $_in,
+    bool? $_is_null,
+    EnumSpiceStage_enum? $_neq,
+    List<EnumSpiceStage_enum>? $_nin,
+  }) => InputSpiceStage_enum_comparison_exp._({
+    if ($_eq != null) r'_eq': $_eq,
+    if ($_in != null) r'_in': $_in,
+    if ($_is_null != null) r'_is_null': $_is_null,
+    if ($_neq != null) r'_neq': $_neq,
+    if ($_nin != null) r'_nin': $_nin,
+  });
+
+  InputSpiceStage_enum_comparison_exp._(this._$data);
+
+  factory InputSpiceStage_enum_comparison_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_eq')) {
+      final l$$_eq = data['_eq'];
+      result$data['_eq'] = l$$_eq == null ? null : fromJsonEnumSpiceStage_enum((l$$_eq as String));
+    }
+    if (data.containsKey('_in')) {
+      final l$$_in = data['_in'];
+      result$data['_in'] = (l$$_in as List<dynamic>?)
+          ?.map((e) => fromJsonEnumSpiceStage_enum((e as String)))
+          .toList();
+    }
+    if (data.containsKey('_is_null')) {
+      final l$$_is_null = data['_is_null'];
+      result$data['_is_null'] = (l$$_is_null as bool?);
+    }
+    if (data.containsKey('_neq')) {
+      final l$$_neq = data['_neq'];
+      result$data['_neq'] = l$$_neq == null
+          ? null
+          : fromJsonEnumSpiceStage_enum((l$$_neq as String));
+    }
+    if (data.containsKey('_nin')) {
+      final l$$_nin = data['_nin'];
+      result$data['_nin'] = (l$$_nin as List<dynamic>?)
+          ?.map((e) => fromJsonEnumSpiceStage_enum((e as String)))
+          .toList();
+    }
+    return InputSpiceStage_enum_comparison_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumSpiceStage_enum? get $_eq => (_$data['_eq'] as EnumSpiceStage_enum?);
+
+  List<EnumSpiceStage_enum>? get $_in => (_$data['_in'] as List<EnumSpiceStage_enum>?);
+
+  bool? get $_is_null => (_$data['_is_null'] as bool?);
+
+  EnumSpiceStage_enum? get $_neq => (_$data['_neq'] as EnumSpiceStage_enum?);
+
+  List<EnumSpiceStage_enum>? get $_nin => (_$data['_nin'] as List<EnumSpiceStage_enum>?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_eq')) {
+      final l$$_eq = $_eq;
+      result$data['_eq'] = l$$_eq == null ? null : toJsonEnumSpiceStage_enum(l$$_eq);
+    }
+    if (_$data.containsKey('_in')) {
+      final l$$_in = $_in;
+      result$data['_in'] = l$$_in?.map((e) => toJsonEnumSpiceStage_enum(e)).toList();
+    }
+    if (_$data.containsKey('_is_null')) {
+      final l$$_is_null = $_is_null;
+      result$data['_is_null'] = l$$_is_null;
+    }
+    if (_$data.containsKey('_neq')) {
+      final l$$_neq = $_neq;
+      result$data['_neq'] = l$$_neq == null ? null : toJsonEnumSpiceStage_enum(l$$_neq);
+    }
+    if (_$data.containsKey('_nin')) {
+      final l$$_nin = $_nin;
+      result$data['_nin'] = l$$_nin?.map((e) => toJsonEnumSpiceStage_enum(e)).toList();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputSpiceStage_enum_comparison_exp || runtimeType != other.runtimeType) {
       return false;
     }
     final l$$_eq = $_eq;
@@ -20377,7 +20928,7 @@ class Inputcards_bool_exp {
     Inputuuid_comparison_exp? coupleId,
     Inputtimestamptz_comparison_exp? createdAt,
     InputguestLinks_bool_exp? guestLinks,
-    InputString_comparison_exp? heldReason,
+    InputHeldReason_enum_comparison_exp? heldReason,
     Inputuuid_comparison_exp? id,
     InputcardItems_bool_exp? items,
     InputCardKind_enum_comparison_exp? kind,
@@ -20470,7 +21021,7 @@ class Inputcards_bool_exp {
       final l$heldReason = data['heldReason'];
       result$data['heldReason'] = l$heldReason == null
           ? null
-          : InputString_comparison_exp.fromJson((l$heldReason as Map<String, dynamic>));
+          : InputHeldReason_enum_comparison_exp.fromJson((l$heldReason as Map<String, dynamic>));
     }
     if (data.containsKey('id')) {
       final l$id = data['id'];
@@ -20566,8 +21117,8 @@ class Inputcards_bool_exp {
 
   InputguestLinks_bool_exp? get guestLinks => (_$data['guestLinks'] as InputguestLinks_bool_exp?);
 
-  InputString_comparison_exp? get heldReason =>
-      (_$data['heldReason'] as InputString_comparison_exp?);
+  InputHeldReason_enum_comparison_exp? get heldReason =>
+      (_$data['heldReason'] as InputHeldReason_enum_comparison_exp?);
 
   Inputuuid_comparison_exp? get id => (_$data['id'] as Inputuuid_comparison_exp?);
 
@@ -21620,7 +22171,7 @@ class Inputcards_stream_cursor_value_input {
     String? authorId,
     String? coupleId,
     DateTime? createdAt,
-    String? heldReason,
+    EnumHeldReason_enum? heldReason,
     String? id,
     EnumCardKind_enum? kind,
     String? note,
@@ -21664,7 +22215,9 @@ class Inputcards_stream_cursor_value_input {
     }
     if (data.containsKey('heldReason')) {
       final l$heldReason = data['heldReason'];
-      result$data['heldReason'] = (l$heldReason as String?);
+      result$data['heldReason'] = l$heldReason == null
+          ? null
+          : fromJsonEnumHeldReason_enum((l$heldReason as String));
     }
     if (data.containsKey('id')) {
       final l$id = data['id'];
@@ -21715,7 +22268,7 @@ class Inputcards_stream_cursor_value_input {
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
-  String? get heldReason => (_$data['heldReason'] as String?);
+  EnumHeldReason_enum? get heldReason => (_$data['heldReason'] as EnumHeldReason_enum?);
 
   String? get id => (_$data['id'] as String?);
 
@@ -21751,7 +22304,9 @@ class Inputcards_stream_cursor_value_input {
     }
     if (_$data.containsKey('heldReason')) {
       final l$heldReason = heldReason;
-      result$data['heldReason'] = l$heldReason;
+      result$data['heldReason'] = l$heldReason == null
+          ? null
+          : toJsonEnumHeldReason_enum(l$heldReason);
     }
     if (_$data.containsKey('id')) {
       final l$id = id;
@@ -44225,7 +44780,7 @@ class InputgentleRequests_bool_exp {
     Inputprofiles_bool_exp? recipient,
     Inputuuid_comparison_exp? recipientId,
     Inputtimestamptz_comparison_exp? respondedAt,
-    InputString_comparison_exp? response,
+    InputGentleResponse_enum_comparison_exp? response,
     Inputtimestamptz_comparison_exp? seenAt,
     Inputprofiles_bool_exp? sender,
     Inputuuid_comparison_exp? senderId,
@@ -44320,7 +44875,7 @@ class InputgentleRequests_bool_exp {
       final l$response = data['response'];
       result$data['response'] = l$response == null
           ? null
-          : InputString_comparison_exp.fromJson((l$response as Map<String, dynamic>));
+          : InputGentleResponse_enum_comparison_exp.fromJson((l$response as Map<String, dynamic>));
     }
     if (data.containsKey('seenAt')) {
       final l$seenAt = data['seenAt'];
@@ -44388,7 +44943,8 @@ class InputgentleRequests_bool_exp {
   Inputtimestamptz_comparison_exp? get respondedAt =>
       (_$data['respondedAt'] as Inputtimestamptz_comparison_exp?);
 
-  InputString_comparison_exp? get response => (_$data['response'] as InputString_comparison_exp?);
+  InputGentleResponse_enum_comparison_exp? get response =>
+      (_$data['response'] as InputGentleResponse_enum_comparison_exp?);
 
   Inputtimestamptz_comparison_exp? get seenAt =>
       (_$data['seenAt'] as Inputtimestamptz_comparison_exp?);
@@ -45112,7 +45668,7 @@ class InputgentleRequests_pk_columns_input {
 }
 
 class InputgentleRequests_set_input {
-  factory InputgentleRequests_set_input({String? response, DateTime? seenAt}) =>
+  factory InputgentleRequests_set_input({EnumGentleResponse_enum? response, DateTime? seenAt}) =>
       InputgentleRequests_set_input._({
         if (response != null) r'response': response,
         if (seenAt != null) r'seenAt': seenAt,
@@ -45124,7 +45680,9 @@ class InputgentleRequests_set_input {
     final result$data = <String, dynamic>{};
     if (data.containsKey('response')) {
       final l$response = data['response'];
-      result$data['response'] = (l$response as String?);
+      result$data['response'] = l$response == null
+          ? null
+          : fromJsonEnumGentleResponse_enum((l$response as String));
     }
     if (data.containsKey('seenAt')) {
       final l$seenAt = data['seenAt'];
@@ -45135,7 +45693,7 @@ class InputgentleRequests_set_input {
 
   Map<String, dynamic> _$data;
 
-  String? get response => (_$data['response'] as String?);
+  EnumGentleResponse_enum? get response => (_$data['response'] as EnumGentleResponse_enum?);
 
   DateTime? get seenAt => (_$data['seenAt'] as DateTime?);
 
@@ -45143,7 +45701,9 @@ class InputgentleRequests_set_input {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('response')) {
       final l$response = response;
-      result$data['response'] = l$response;
+      result$data['response'] = l$response == null
+          ? null
+          : toJsonEnumGentleResponse_enum(l$response);
     }
     if (_$data.containsKey('seenAt')) {
       final l$seenAt = seenAt;
@@ -45279,7 +45839,7 @@ class InputgentleRequests_stream_cursor_value_input {
     DateTime? purgeAfter,
     String? recipientId,
     DateTime? respondedAt,
-    String? response,
+    EnumGentleResponse_enum? response,
     DateTime? seenAt,
     String? senderId,
     DateTime? thankedAt,
@@ -45336,7 +45896,9 @@ class InputgentleRequests_stream_cursor_value_input {
     }
     if (data.containsKey('response')) {
       final l$response = data['response'];
-      result$data['response'] = (l$response as String?);
+      result$data['response'] = l$response == null
+          ? null
+          : fromJsonEnumGentleResponse_enum((l$response as String));
     }
     if (data.containsKey('seenAt')) {
       final l$seenAt = data['seenAt'];
@@ -45377,7 +45939,7 @@ class InputgentleRequests_stream_cursor_value_input {
 
   DateTime? get respondedAt => (_$data['respondedAt'] as DateTime?);
 
-  String? get response => (_$data['response'] as String?);
+  EnumGentleResponse_enum? get response => (_$data['response'] as EnumGentleResponse_enum?);
 
   DateTime? get seenAt => (_$data['seenAt'] as DateTime?);
 
@@ -45423,7 +45985,9 @@ class InputgentleRequests_stream_cursor_value_input {
     }
     if (_$data.containsKey('response')) {
       final l$response = response;
-      result$data['response'] = l$response;
+      result$data['response'] = l$response == null
+          ? null
+          : toJsonEnumGentleResponse_enum(l$response);
     }
     if (_$data.containsKey('seenAt')) {
       final l$seenAt = seenAt;
@@ -107371,7 +107935,7 @@ class InputspiceStates_bool_exp {
     List<InputspiceStates_bool_exp>? $_or,
     Inputsmallint_comparison_exp? coupleLevel,
     Inputsmallint_comparison_exp? myLevel,
-    InputString_comparison_exp? state,
+    InputSpiceStage_enum_comparison_exp? state,
   }) => InputspiceStates_bool_exp._({
     if ($_and != null) r'_and': $_and,
     if ($_not != null) r'_not': $_not,
@@ -107419,7 +107983,7 @@ class InputspiceStates_bool_exp {
       final l$state = data['state'];
       result$data['state'] = l$state == null
           ? null
-          : InputString_comparison_exp.fromJson((l$state as Map<String, dynamic>));
+          : InputSpiceStage_enum_comparison_exp.fromJson((l$state as Map<String, dynamic>));
     }
     return InputspiceStates_bool_exp._(result$data);
   }
@@ -107438,7 +108002,8 @@ class InputspiceStates_bool_exp {
 
   Inputsmallint_comparison_exp? get myLevel => (_$data['myLevel'] as Inputsmallint_comparison_exp?);
 
-  InputString_comparison_exp? get state => (_$data['state'] as InputString_comparison_exp?);
+  InputSpiceStage_enum_comparison_exp? get state =>
+      (_$data['state'] as InputSpiceStage_enum_comparison_exp?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -107767,7 +108332,7 @@ class InputspiceStates_stream_cursor_value_input {
   factory InputspiceStates_stream_cursor_value_input({
     int? coupleLevel,
     int? myLevel,
-    String? state,
+    EnumSpiceStage_enum? state,
   }) => InputspiceStates_stream_cursor_value_input._({
     if (coupleLevel != null) r'coupleLevel': coupleLevel,
     if (myLevel != null) r'myLevel': myLevel,
@@ -107788,7 +108353,9 @@ class InputspiceStates_stream_cursor_value_input {
     }
     if (data.containsKey('state')) {
       final l$state = data['state'];
-      result$data['state'] = (l$state as String?);
+      result$data['state'] = l$state == null
+          ? null
+          : fromJsonEnumSpiceStage_enum((l$state as String));
     }
     return InputspiceStates_stream_cursor_value_input._(result$data);
   }
@@ -107799,7 +108366,7 @@ class InputspiceStates_stream_cursor_value_input {
 
   int? get myLevel => (_$data['myLevel'] as int?);
 
-  String? get state => (_$data['state'] as String?);
+  EnumSpiceStage_enum? get state => (_$data['state'] as EnumSpiceStage_enum?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -107813,7 +108380,7 @@ class InputspiceStates_stream_cursor_value_input {
     }
     if (_$data.containsKey('state')) {
       final l$state = state;
-      result$data['state'] = l$state;
+      result$data['state'] = l$state == null ? null : toJsonEnumSpiceStage_enum(l$state);
     }
     return result$data;
   }
@@ -114762,6 +115329,824 @@ class InputupdateGame_args {
   }
 }
 
+class InputuserGoals_aggregate_order_by {
+  factory InputuserGoals_aggregate_order_by({
+    Enumorder_by? count,
+    InputuserGoals_max_order_by? max,
+    InputuserGoals_min_order_by? min,
+  }) => InputuserGoals_aggregate_order_by._({
+    if (count != null) r'count': count,
+    if (max != null) r'max': max,
+    if (min != null) r'min': min,
+  });
+
+  InputuserGoals_aggregate_order_by._(this._$data);
+
+  factory InputuserGoals_aggregate_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('count')) {
+      final l$count = data['count'];
+      result$data['count'] = l$count == null ? null : fromJsonEnumorder_by((l$count as String));
+    }
+    if (data.containsKey('max')) {
+      final l$max = data['max'];
+      result$data['max'] = l$max == null
+          ? null
+          : InputuserGoals_max_order_by.fromJson((l$max as Map<String, dynamic>));
+    }
+    if (data.containsKey('min')) {
+      final l$min = data['min'];
+      result$data['min'] = l$min == null
+          ? null
+          : InputuserGoals_min_order_by.fromJson((l$min as Map<String, dynamic>));
+    }
+    return InputuserGoals_aggregate_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get count => (_$data['count'] as Enumorder_by?);
+
+  InputuserGoals_max_order_by? get max => (_$data['max'] as InputuserGoals_max_order_by?);
+
+  InputuserGoals_min_order_by? get min => (_$data['min'] as InputuserGoals_min_order_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('count')) {
+      final l$count = count;
+      result$data['count'] = l$count == null ? null : toJsonEnumorder_by(l$count);
+    }
+    if (_$data.containsKey('max')) {
+      final l$max = max;
+      result$data['max'] = l$max?.toJson();
+    }
+    if (_$data.containsKey('min')) {
+      final l$min = min;
+      result$data['min'] = l$min?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputuserGoals_aggregate_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$count = count;
+    final lOther$count = other.count;
+    if (_$data.containsKey('count') != other._$data.containsKey('count')) {
+      return false;
+    }
+    if (l$count != lOther$count) {
+      return false;
+    }
+    final l$max = max;
+    final lOther$max = other.max;
+    if (_$data.containsKey('max') != other._$data.containsKey('max')) {
+      return false;
+    }
+    if (l$max != lOther$max) {
+      return false;
+    }
+    final l$min = min;
+    final lOther$min = other.min;
+    if (_$data.containsKey('min') != other._$data.containsKey('min')) {
+      return false;
+    }
+    if (l$min != lOther$min) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$count = count;
+    final l$max = max;
+    final l$min = min;
+    return Object.hashAll([
+      _$data.containsKey('count') ? l$count : const {},
+      _$data.containsKey('max') ? l$max : const {},
+      _$data.containsKey('min') ? l$min : const {},
+    ]);
+  }
+}
+
+class InputuserGoals_bool_exp {
+  factory InputuserGoals_bool_exp({
+    List<InputuserGoals_bool_exp>? $_and,
+    InputuserGoals_bool_exp? $_not,
+    List<InputuserGoals_bool_exp>? $_or,
+    InputRelationshipGoal_enum_comparison_exp? goal,
+    Inputuuid_comparison_exp? userId,
+  }) => InputuserGoals_bool_exp._({
+    if ($_and != null) r'_and': $_and,
+    if ($_not != null) r'_not': $_not,
+    if ($_or != null) r'_or': $_or,
+    if (goal != null) r'goal': goal,
+    if (userId != null) r'userId': userId,
+  });
+
+  InputuserGoals_bool_exp._(this._$data);
+
+  factory InputuserGoals_bool_exp.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => InputuserGoals_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : InputuserGoals_bool_exp.fromJson((l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => InputuserGoals_bool_exp.fromJson((e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('goal')) {
+      final l$goal = data['goal'];
+      result$data['goal'] = l$goal == null
+          ? null
+          : InputRelationshipGoal_enum_comparison_exp.fromJson((l$goal as Map<String, dynamic>));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null
+          ? null
+          : Inputuuid_comparison_exp.fromJson((l$userId as Map<String, dynamic>));
+    }
+    return InputuserGoals_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<InputuserGoals_bool_exp>? get $_and => (_$data['_and'] as List<InputuserGoals_bool_exp>?);
+
+  InputuserGoals_bool_exp? get $_not => (_$data['_not'] as InputuserGoals_bool_exp?);
+
+  List<InputuserGoals_bool_exp>? get $_or => (_$data['_or'] as List<InputuserGoals_bool_exp>?);
+
+  InputRelationshipGoal_enum_comparison_exp? get goal =>
+      (_$data['goal'] as InputRelationshipGoal_enum_comparison_exp?);
+
+  Inputuuid_comparison_exp? get userId => (_$data['userId'] as Inputuuid_comparison_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('goal')) {
+      final l$goal = goal;
+      result$data['goal'] = l$goal?.toJson();
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputuserGoals_bool_exp || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$goal = goal;
+    final lOther$goal = other.goal;
+    if (_$data.containsKey('goal') != other._$data.containsKey('goal')) {
+      return false;
+    }
+    if (l$goal != lOther$goal) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$goal = goal;
+    final l$userId = userId;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+                ? null
+                : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+                ? null
+                : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('goal') ? l$goal : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+    ]);
+  }
+}
+
+class InputuserGoals_insert_input {
+  factory InputuserGoals_insert_input({EnumRelationshipGoal_enum? goal}) =>
+      InputuserGoals_insert_input._({if (goal != null) r'goal': goal});
+
+  InputuserGoals_insert_input._(this._$data);
+
+  factory InputuserGoals_insert_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('goal')) {
+      final l$goal = data['goal'];
+      result$data['goal'] = l$goal == null
+          ? null
+          : fromJsonEnumRelationshipGoal_enum((l$goal as String));
+    }
+    return InputuserGoals_insert_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumRelationshipGoal_enum? get goal => (_$data['goal'] as EnumRelationshipGoal_enum?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('goal')) {
+      final l$goal = goal;
+      result$data['goal'] = l$goal == null ? null : toJsonEnumRelationshipGoal_enum(l$goal);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputuserGoals_insert_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$goal = goal;
+    final lOther$goal = other.goal;
+    if (_$data.containsKey('goal') != other._$data.containsKey('goal')) {
+      return false;
+    }
+    if (l$goal != lOther$goal) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$goal = goal;
+    return Object.hashAll([_$data.containsKey('goal') ? l$goal : const {}]);
+  }
+}
+
+class InputuserGoals_max_order_by {
+  factory InputuserGoals_max_order_by({Enumorder_by? userId}) =>
+      InputuserGoals_max_order_by._({if (userId != null) r'userId': userId});
+
+  InputuserGoals_max_order_by._(this._$data);
+
+  factory InputuserGoals_max_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null ? null : fromJsonEnumorder_by((l$userId as String));
+    }
+    return InputuserGoals_max_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get userId => (_$data['userId'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId == null ? null : toJsonEnumorder_by(l$userId);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputuserGoals_max_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    return Object.hashAll([_$data.containsKey('userId') ? l$userId : const {}]);
+  }
+}
+
+class InputuserGoals_min_order_by {
+  factory InputuserGoals_min_order_by({Enumorder_by? userId}) =>
+      InputuserGoals_min_order_by._({if (userId != null) r'userId': userId});
+
+  InputuserGoals_min_order_by._(this._$data);
+
+  factory InputuserGoals_min_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null ? null : fromJsonEnumorder_by((l$userId as String));
+    }
+    return InputuserGoals_min_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get userId => (_$data['userId'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId == null ? null : toJsonEnumorder_by(l$userId);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputuserGoals_min_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    return Object.hashAll([_$data.containsKey('userId') ? l$userId : const {}]);
+  }
+}
+
+class InputuserGoals_on_conflict {
+  factory InputuserGoals_on_conflict({
+    required EnumuserGoals_constraint constraint,
+    List<EnumuserGoals_update_column>? update_columns,
+    InputuserGoals_bool_exp? where,
+  }) => InputuserGoals_on_conflict._({
+    r'constraint': constraint,
+    if (update_columns != null) r'update_columns': update_columns,
+    if (where != null) r'where': where,
+  });
+
+  InputuserGoals_on_conflict._(this._$data);
+
+  factory InputuserGoals_on_conflict.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$constraint = data['constraint'];
+    result$data['constraint'] = fromJsonEnumuserGoals_constraint((l$constraint as String));
+    if (data.containsKey('update_columns')) {
+      final l$update_columns = data['update_columns'];
+      result$data['update_columns'] = (l$update_columns as List<dynamic>)
+          .map((e) => fromJsonEnumuserGoals_update_column((e as String)))
+          .toList();
+    }
+    if (data.containsKey('where')) {
+      final l$where = data['where'];
+      result$data['where'] = l$where == null
+          ? null
+          : InputuserGoals_bool_exp.fromJson((l$where as Map<String, dynamic>));
+    }
+    return InputuserGoals_on_conflict._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumuserGoals_constraint get constraint => (_$data['constraint'] as EnumuserGoals_constraint);
+
+  List<EnumuserGoals_update_column>? get update_columns =>
+      (_$data['update_columns'] as List<EnumuserGoals_update_column>?);
+
+  InputuserGoals_bool_exp? get where => (_$data['where'] as InputuserGoals_bool_exp?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$constraint = constraint;
+    result$data['constraint'] = toJsonEnumuserGoals_constraint(l$constraint);
+    if (_$data.containsKey('update_columns')) {
+      final l$update_columns = update_columns;
+      result$data['update_columns'] = (l$update_columns as List<EnumuserGoals_update_column>)
+          .map((e) => toJsonEnumuserGoals_update_column(e))
+          .toList();
+    }
+    if (_$data.containsKey('where')) {
+      final l$where = where;
+      result$data['where'] = l$where?.toJson();
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputuserGoals_on_conflict || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$constraint = constraint;
+    final lOther$constraint = other.constraint;
+    if (l$constraint != lOther$constraint) {
+      return false;
+    }
+    final l$update_columns = update_columns;
+    final lOther$update_columns = other.update_columns;
+    if (_$data.containsKey('update_columns') != other._$data.containsKey('update_columns')) {
+      return false;
+    }
+    if (l$update_columns != null && lOther$update_columns != null) {
+      if (l$update_columns.length != lOther$update_columns.length) {
+        return false;
+      }
+      for (int i = 0; i < l$update_columns.length; i++) {
+        final l$update_columns$entry = l$update_columns[i];
+        final lOther$update_columns$entry = lOther$update_columns[i];
+        if (l$update_columns$entry != lOther$update_columns$entry) {
+          return false;
+        }
+      }
+    } else if (l$update_columns != lOther$update_columns) {
+      return false;
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (_$data.containsKey('where') != other._$data.containsKey('where')) {
+      return false;
+    }
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$constraint = constraint;
+    final l$update_columns = update_columns;
+    final l$where = where;
+    return Object.hashAll([
+      l$constraint,
+      _$data.containsKey('update_columns')
+          ? l$update_columns == null
+                ? null
+                : Object.hashAll(l$update_columns.map((v) => v))
+          : const {},
+      _$data.containsKey('where') ? l$where : const {},
+    ]);
+  }
+}
+
+class InputuserGoals_order_by {
+  factory InputuserGoals_order_by({Enumorder_by? goal, Enumorder_by? userId}) =>
+      InputuserGoals_order_by._({
+        if (goal != null) r'goal': goal,
+        if (userId != null) r'userId': userId,
+      });
+
+  InputuserGoals_order_by._(this._$data);
+
+  factory InputuserGoals_order_by.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('goal')) {
+      final l$goal = data['goal'];
+      result$data['goal'] = l$goal == null ? null : fromJsonEnumorder_by((l$goal as String));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = l$userId == null ? null : fromJsonEnumorder_by((l$userId as String));
+    }
+    return InputuserGoals_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enumorder_by? get goal => (_$data['goal'] as Enumorder_by?);
+
+  Enumorder_by? get userId => (_$data['userId'] as Enumorder_by?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('goal')) {
+      final l$goal = goal;
+      result$data['goal'] = l$goal == null ? null : toJsonEnumorder_by(l$goal);
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId == null ? null : toJsonEnumorder_by(l$userId);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputuserGoals_order_by || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$goal = goal;
+    final lOther$goal = other.goal;
+    if (_$data.containsKey('goal') != other._$data.containsKey('goal')) {
+      return false;
+    }
+    if (l$goal != lOther$goal) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$goal = goal;
+    final l$userId = userId;
+    return Object.hashAll([
+      _$data.containsKey('goal') ? l$goal : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+    ]);
+  }
+}
+
+class InputuserGoals_stream_cursor_input {
+  factory InputuserGoals_stream_cursor_input({
+    required InputuserGoals_stream_cursor_value_input initial_value,
+    Enumcursor_ordering? ordering,
+  }) => InputuserGoals_stream_cursor_input._({
+    r'initial_value': initial_value,
+    if (ordering != null) r'ordering': ordering,
+  });
+
+  InputuserGoals_stream_cursor_input._(this._$data);
+
+  factory InputuserGoals_stream_cursor_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] = InputuserGoals_stream_cursor_value_input.fromJson(
+      (l$initial_value as Map<String, dynamic>),
+    );
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJsonEnumcursor_ordering((l$ordering as String));
+    }
+    return InputuserGoals_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  InputuserGoals_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value'] as InputuserGoals_stream_cursor_value_input);
+
+  Enumcursor_ordering? get ordering => (_$data['ordering'] as Enumcursor_ordering?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] = l$ordering == null ? null : toJsonEnumcursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputuserGoals_stream_cursor_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') != other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+class InputuserGoals_stream_cursor_value_input {
+  factory InputuserGoals_stream_cursor_value_input({
+    EnumRelationshipGoal_enum? goal,
+    String? userId,
+  }) => InputuserGoals_stream_cursor_value_input._({
+    if (goal != null) r'goal': goal,
+    if (userId != null) r'userId': userId,
+  });
+
+  InputuserGoals_stream_cursor_value_input._(this._$data);
+
+  factory InputuserGoals_stream_cursor_value_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('goal')) {
+      final l$goal = data['goal'];
+      result$data['goal'] = l$goal == null
+          ? null
+          : fromJsonEnumRelationshipGoal_enum((l$goal as String));
+    }
+    if (data.containsKey('userId')) {
+      final l$userId = data['userId'];
+      result$data['userId'] = (l$userId as String?);
+    }
+    return InputuserGoals_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  EnumRelationshipGoal_enum? get goal => (_$data['goal'] as EnumRelationshipGoal_enum?);
+
+  String? get userId => (_$data['userId'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('goal')) {
+      final l$goal = goal;
+      result$data['goal'] = l$goal == null ? null : toJsonEnumRelationshipGoal_enum(l$goal);
+    }
+    if (_$data.containsKey('userId')) {
+      final l$userId = userId;
+      result$data['userId'] = l$userId;
+    }
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! InputuserGoals_stream_cursor_value_input || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$goal = goal;
+    final lOther$goal = other.goal;
+    if (_$data.containsKey('goal') != other._$data.containsKey('goal')) {
+      return false;
+    }
+    if (l$goal != lOther$goal) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (_$data.containsKey('userId') != other._$data.containsKey('userId')) {
+      return false;
+    }
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$goal = goal;
+    final l$userId = userId;
+    return Object.hashAll([
+      _$data.containsKey('goal') ? l$goal : const {},
+      _$data.containsKey('userId') ? l$userId : const {},
+    ]);
+  }
+}
+
 class InputuserSettings_bool_exp {
   factory InputuserSettings_bool_exp({
     List<InputuserSettings_bool_exp>? $_and,
@@ -114771,8 +116156,7 @@ class InputuserSettings_bool_exp {
     InputString_comparison_exp? cardTheme,
     InputBoolean_comparison_exp? chatStoreFacts,
     Inputtimestamptz_comparison_exp? createdAt,
-    InputRelationshipGoal_enum_comparison_exp? goal,
-    InputString_array_comparison_exp? goals,
+    InputuserGoals_bool_exp? goals,
     InputBoolean_comparison_exp? hasKids,
     InputString_array_comparison_exp? holidayCountries,
     InputString_comparison_exp? locale,
@@ -114804,7 +116188,6 @@ class InputuserSettings_bool_exp {
     if (cardTheme != null) r'cardTheme': cardTheme,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
     if (createdAt != null) r'createdAt': createdAt,
-    if (goal != null) r'goal': goal,
     if (goals != null) r'goals': goals,
     if (hasKids != null) r'hasKids': hasKids,
     if (holidayCountries != null) r'holidayCountries': holidayCountries,
@@ -114877,17 +116260,11 @@ class InputuserSettings_bool_exp {
           ? null
           : Inputtimestamptz_comparison_exp.fromJson((l$createdAt as Map<String, dynamic>));
     }
-    if (data.containsKey('goal')) {
-      final l$goal = data['goal'];
-      result$data['goal'] = l$goal == null
-          ? null
-          : InputRelationshipGoal_enum_comparison_exp.fromJson((l$goal as Map<String, dynamic>));
-    }
     if (data.containsKey('goals')) {
       final l$goals = data['goals'];
       result$data['goals'] = l$goals == null
           ? null
-          : InputString_array_comparison_exp.fromJson((l$goals as Map<String, dynamic>));
+          : InputuserGoals_bool_exp.fromJson((l$goals as Map<String, dynamic>));
     }
     if (data.containsKey('hasKids')) {
       final l$hasKids = data['hasKids'];
@@ -115057,11 +116434,7 @@ class InputuserSettings_bool_exp {
   Inputtimestamptz_comparison_exp? get createdAt =>
       (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
 
-  InputRelationshipGoal_enum_comparison_exp? get goal =>
-      (_$data['goal'] as InputRelationshipGoal_enum_comparison_exp?);
-
-  InputString_array_comparison_exp? get goals =>
-      (_$data['goals'] as InputString_array_comparison_exp?);
+  InputuserGoals_bool_exp? get goals => (_$data['goals'] as InputuserGoals_bool_exp?);
 
   InputBoolean_comparison_exp? get hasKids => (_$data['hasKids'] as InputBoolean_comparison_exp?);
 
@@ -115157,10 +116530,6 @@ class InputuserSettings_bool_exp {
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt?.toJson();
-    }
-    if (_$data.containsKey('goal')) {
-      final l$goal = goal;
-      result$data['goal'] = l$goal?.toJson();
     }
     if (_$data.containsKey('goals')) {
       final l$goals = goals;
@@ -115347,14 +116716,6 @@ class InputuserSettings_bool_exp {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
-    final l$goal = goal;
-    final lOther$goal = other.goal;
-    if (_$data.containsKey('goal') != other._$data.containsKey('goal')) {
-      return false;
-    }
-    if (l$goal != lOther$goal) {
-      return false;
-    }
     final l$goals = goals;
     final lOther$goals = other.goals;
     if (_$data.containsKey('goals') != other._$data.containsKey('goals')) {
@@ -115564,7 +116925,6 @@ class InputuserSettings_bool_exp {
     final l$cardTheme = cardTheme;
     final l$chatStoreFacts = chatStoreFacts;
     final l$createdAt = createdAt;
-    final l$goal = goal;
     final l$goals = goals;
     final l$hasKids = hasKids;
     final l$holidayCountries = holidayCountries;
@@ -115605,7 +116965,6 @@ class InputuserSettings_bool_exp {
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
-      _$data.containsKey('goal') ? l$goal : const {},
       _$data.containsKey('goals') ? l$goals : const {},
       _$data.containsKey('hasKids') ? l$hasKids : const {},
       _$data.containsKey('holidayCountries') ? l$holidayCountries : const {},
@@ -115694,8 +117053,7 @@ class InputuserSettings_order_by {
     Enumorder_by? cardTheme,
     Enumorder_by? chatStoreFacts,
     Enumorder_by? createdAt,
-    Enumorder_by? goal,
-    Enumorder_by? goals,
+    InputuserGoals_aggregate_order_by? goals_aggregate,
     Enumorder_by? hasKids,
     Enumorder_by? holidayCountries,
     Enumorder_by? locale,
@@ -115724,8 +117082,7 @@ class InputuserSettings_order_by {
     if (cardTheme != null) r'cardTheme': cardTheme,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
     if (createdAt != null) r'createdAt': createdAt,
-    if (goal != null) r'goal': goal,
-    if (goals != null) r'goals': goals,
+    if (goals_aggregate != null) r'goals_aggregate': goals_aggregate,
     if (hasKids != null) r'hasKids': hasKids,
     if (holidayCountries != null) r'holidayCountries': holidayCountries,
     if (locale != null) r'locale': locale,
@@ -115779,13 +117136,11 @@ class InputuserSettings_order_by {
           ? null
           : fromJsonEnumorder_by((l$createdAt as String));
     }
-    if (data.containsKey('goal')) {
-      final l$goal = data['goal'];
-      result$data['goal'] = l$goal == null ? null : fromJsonEnumorder_by((l$goal as String));
-    }
-    if (data.containsKey('goals')) {
-      final l$goals = data['goals'];
-      result$data['goals'] = l$goals == null ? null : fromJsonEnumorder_by((l$goals as String));
+    if (data.containsKey('goals_aggregate')) {
+      final l$goals_aggregate = data['goals_aggregate'];
+      result$data['goals_aggregate'] = l$goals_aggregate == null
+          ? null
+          : InputuserGoals_aggregate_order_by.fromJson((l$goals_aggregate as Map<String, dynamic>));
     }
     if (data.containsKey('hasKids')) {
       final l$hasKids = data['hasKids'];
@@ -115930,9 +117285,8 @@ class InputuserSettings_order_by {
 
   Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
 
-  Enumorder_by? get goal => (_$data['goal'] as Enumorder_by?);
-
-  Enumorder_by? get goals => (_$data['goals'] as Enumorder_by?);
+  InputuserGoals_aggregate_order_by? get goals_aggregate =>
+      (_$data['goals_aggregate'] as InputuserGoals_aggregate_order_by?);
 
   Enumorder_by? get hasKids => (_$data['hasKids'] as Enumorder_by?);
 
@@ -116000,13 +117354,9 @@ class InputuserSettings_order_by {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
     }
-    if (_$data.containsKey('goal')) {
-      final l$goal = goal;
-      result$data['goal'] = l$goal == null ? null : toJsonEnumorder_by(l$goal);
-    }
-    if (_$data.containsKey('goals')) {
-      final l$goals = goals;
-      result$data['goals'] = l$goals == null ? null : toJsonEnumorder_by(l$goals);
+    if (_$data.containsKey('goals_aggregate')) {
+      final l$goals_aggregate = goals_aggregate;
+      result$data['goals_aggregate'] = l$goals_aggregate?.toJson();
     }
     if (_$data.containsKey('hasKids')) {
       final l$hasKids = hasKids;
@@ -116171,20 +117521,12 @@ class InputuserSettings_order_by {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
-    final l$goal = goal;
-    final lOther$goal = other.goal;
-    if (_$data.containsKey('goal') != other._$data.containsKey('goal')) {
+    final l$goals_aggregate = goals_aggregate;
+    final lOther$goals_aggregate = other.goals_aggregate;
+    if (_$data.containsKey('goals_aggregate') != other._$data.containsKey('goals_aggregate')) {
       return false;
     }
-    if (l$goal != lOther$goal) {
-      return false;
-    }
-    final l$goals = goals;
-    final lOther$goals = other.goals;
-    if (_$data.containsKey('goals') != other._$data.containsKey('goals')) {
-      return false;
-    }
-    if (l$goals != lOther$goals) {
+    if (l$goals_aggregate != lOther$goals_aggregate) {
       return false;
     }
     final l$hasKids = hasKids;
@@ -116385,8 +117727,7 @@ class InputuserSettings_order_by {
     final l$cardTheme = cardTheme;
     final l$chatStoreFacts = chatStoreFacts;
     final l$createdAt = createdAt;
-    final l$goal = goal;
-    final l$goals = goals;
+    final l$goals_aggregate = goals_aggregate;
     final l$hasKids = hasKids;
     final l$holidayCountries = holidayCountries;
     final l$locale = locale;
@@ -116415,8 +117756,7 @@ class InputuserSettings_order_by {
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
-      _$data.containsKey('goal') ? l$goal : const {},
-      _$data.containsKey('goals') ? l$goals : const {},
+      _$data.containsKey('goals_aggregate') ? l$goals_aggregate : const {},
       _$data.containsKey('hasKids') ? l$hasKids : const {},
       _$data.containsKey('holidayCountries') ? l$holidayCountries : const {},
       _$data.containsKey('locale') ? l$locale : const {},
@@ -116496,8 +117836,6 @@ class InputuserSettings_set_input {
     EnumCardChannel_enum? cardChannel,
     String? cardTheme,
     bool? chatStoreFacts,
-    EnumRelationshipGoal_enum? goal,
-    List<String>? goals,
     bool? hasKids,
     List<String>? holidayCountries,
     String? locale,
@@ -116522,8 +117860,6 @@ class InputuserSettings_set_input {
     if (cardChannel != null) r'cardChannel': cardChannel,
     if (cardTheme != null) r'cardTheme': cardTheme,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
-    if (goal != null) r'goal': goal,
-    if (goals != null) r'goals': goals,
     if (hasKids != null) r'hasKids': hasKids,
     if (holidayCountries != null) r'holidayCountries': holidayCountries,
     if (locale != null) r'locale': locale,
@@ -116563,16 +117899,6 @@ class InputuserSettings_set_input {
     if (data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = data['chatStoreFacts'];
       result$data['chatStoreFacts'] = (l$chatStoreFacts as bool?);
-    }
-    if (data.containsKey('goal')) {
-      final l$goal = data['goal'];
-      result$data['goal'] = l$goal == null
-          ? null
-          : fromJsonEnumRelationshipGoal_enum((l$goal as String));
-    }
-    if (data.containsKey('goals')) {
-      final l$goals = data['goals'];
-      result$data['goals'] = (l$goals as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
     if (data.containsKey('hasKids')) {
       final l$hasKids = data['hasKids'];
@@ -116681,10 +118007,6 @@ class InputuserSettings_set_input {
 
   bool? get chatStoreFacts => (_$data['chatStoreFacts'] as bool?);
 
-  EnumRelationshipGoal_enum? get goal => (_$data['goal'] as EnumRelationshipGoal_enum?);
-
-  List<String>? get goals => (_$data['goals'] as List<String>?);
-
   bool? get hasKids => (_$data['hasKids'] as bool?);
 
   List<String>? get holidayCountries => (_$data['holidayCountries'] as List<String>?);
@@ -116741,14 +118063,6 @@ class InputuserSettings_set_input {
     if (_$data.containsKey('chatStoreFacts')) {
       final l$chatStoreFacts = chatStoreFacts;
       result$data['chatStoreFacts'] = l$chatStoreFacts;
-    }
-    if (_$data.containsKey('goal')) {
-      final l$goal = goal;
-      result$data['goal'] = l$goal == null ? null : toJsonEnumRelationshipGoal_enum(l$goal);
-    }
-    if (_$data.containsKey('goals')) {
-      final l$goals = goals;
-      result$data['goals'] = l$goals?.map((e) => e).toList();
     }
     if (_$data.containsKey('hasKids')) {
       final l$hasKids = hasKids;
@@ -116873,33 +118187,6 @@ class InputuserSettings_set_input {
       return false;
     }
     if (l$chatStoreFacts != lOther$chatStoreFacts) {
-      return false;
-    }
-    final l$goal = goal;
-    final lOther$goal = other.goal;
-    if (_$data.containsKey('goal') != other._$data.containsKey('goal')) {
-      return false;
-    }
-    if (l$goal != lOther$goal) {
-      return false;
-    }
-    final l$goals = goals;
-    final lOther$goals = other.goals;
-    if (_$data.containsKey('goals') != other._$data.containsKey('goals')) {
-      return false;
-    }
-    if (l$goals != null && lOther$goals != null) {
-      if (l$goals.length != lOther$goals.length) {
-        return false;
-      }
-      for (int i = 0; i < l$goals.length; i++) {
-        final l$goals$entry = l$goals[i];
-        final lOther$goals$entry = lOther$goals[i];
-        if (l$goals$entry != lOther$goals$entry) {
-          return false;
-        }
-      }
-    } else if (l$goals != lOther$goals) {
       return false;
     }
     final l$hasKids = hasKids;
@@ -117086,8 +118373,6 @@ class InputuserSettings_set_input {
     final l$cardChannel = cardChannel;
     final l$cardTheme = cardTheme;
     final l$chatStoreFacts = chatStoreFacts;
-    final l$goal = goal;
-    final l$goals = goals;
     final l$hasKids = hasKids;
     final l$holidayCountries = holidayCountries;
     final l$locale = locale;
@@ -117112,12 +118397,6 @@ class InputuserSettings_set_input {
       _$data.containsKey('cardChannel') ? l$cardChannel : const {},
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
-      _$data.containsKey('goal') ? l$goal : const {},
-      _$data.containsKey('goals')
-          ? l$goals == null
-                ? null
-                : Object.hashAll(l$goals.map((v) => v))
-          : const {},
       _$data.containsKey('hasKids') ? l$hasKids : const {},
       _$data.containsKey('holidayCountries')
           ? l$holidayCountries == null
@@ -117231,8 +118510,6 @@ class InputuserSettings_stream_cursor_value_input {
     String? cardTheme,
     bool? chatStoreFacts,
     DateTime? createdAt,
-    EnumRelationshipGoal_enum? goal,
-    List<String>? goals,
     bool? hasKids,
     List<String>? holidayCountries,
     String? locale,
@@ -117260,8 +118537,6 @@ class InputuserSettings_stream_cursor_value_input {
     if (cardTheme != null) r'cardTheme': cardTheme,
     if (chatStoreFacts != null) r'chatStoreFacts': chatStoreFacts,
     if (createdAt != null) r'createdAt': createdAt,
-    if (goal != null) r'goal': goal,
-    if (goals != null) r'goals': goals,
     if (hasKids != null) r'hasKids': hasKids,
     if (holidayCountries != null) r'holidayCountries': holidayCountries,
     if (locale != null) r'locale': locale,
@@ -117309,16 +118584,6 @@ class InputuserSettings_stream_cursor_value_input {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : DateTime.parse((l$createdAt as String));
-    }
-    if (data.containsKey('goal')) {
-      final l$goal = data['goal'];
-      result$data['goal'] = l$goal == null
-          ? null
-          : fromJsonEnumRelationshipGoal_enum((l$goal as String));
-    }
-    if (data.containsKey('goals')) {
-      final l$goals = data['goals'];
-      result$data['goals'] = (l$goals as List<dynamic>?)?.map((e) => (e as String)).toList();
     }
     if (data.containsKey('hasKids')) {
       final l$hasKids = data['hasKids'];
@@ -117439,10 +118704,6 @@ class InputuserSettings_stream_cursor_value_input {
 
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
-  EnumRelationshipGoal_enum? get goal => (_$data['goal'] as EnumRelationshipGoal_enum?);
-
-  List<String>? get goals => (_$data['goals'] as List<String>?);
-
   bool? get hasKids => (_$data['hasKids'] as bool?);
 
   List<String>? get holidayCountries => (_$data['holidayCountries'] as List<String>?);
@@ -117509,14 +118770,6 @@ class InputuserSettings_stream_cursor_value_input {
       result$data['createdAt'] = l$createdAt == null
           ? null
           : ((v) => v.toUtc().toIso8601String())(l$createdAt);
-    }
-    if (_$data.containsKey('goal')) {
-      final l$goal = goal;
-      result$data['goal'] = l$goal == null ? null : toJsonEnumRelationshipGoal_enum(l$goal);
-    }
-    if (_$data.containsKey('goals')) {
-      final l$goals = goals;
-      result$data['goals'] = l$goals?.map((e) => e).toList();
     }
     if (_$data.containsKey('hasKids')) {
       final l$hasKids = hasKids;
@@ -117659,33 +118912,6 @@ class InputuserSettings_stream_cursor_value_input {
       return false;
     }
     if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$goal = goal;
-    final lOther$goal = other.goal;
-    if (_$data.containsKey('goal') != other._$data.containsKey('goal')) {
-      return false;
-    }
-    if (l$goal != lOther$goal) {
-      return false;
-    }
-    final l$goals = goals;
-    final lOther$goals = other.goals;
-    if (_$data.containsKey('goals') != other._$data.containsKey('goals')) {
-      return false;
-    }
-    if (l$goals != null && lOther$goals != null) {
-      if (l$goals.length != lOther$goals.length) {
-        return false;
-      }
-      for (int i = 0; i < l$goals.length; i++) {
-        final l$goals$entry = l$goals[i];
-        final lOther$goals$entry = lOther$goals[i];
-        if (l$goals$entry != lOther$goals$entry) {
-          return false;
-        }
-      }
-    } else if (l$goals != lOther$goals) {
       return false;
     }
     final l$hasKids = hasKids;
@@ -117889,8 +119115,6 @@ class InputuserSettings_stream_cursor_value_input {
     final l$cardTheme = cardTheme;
     final l$chatStoreFacts = chatStoreFacts;
     final l$createdAt = createdAt;
-    final l$goal = goal;
-    final l$goals = goals;
     final l$hasKids = hasKids;
     final l$holidayCountries = holidayCountries;
     final l$locale = locale;
@@ -117918,12 +119142,6 @@ class InputuserSettings_stream_cursor_value_input {
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
       _$data.containsKey('chatStoreFacts') ? l$chatStoreFacts : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
-      _$data.containsKey('goal') ? l$goal : const {},
-      _$data.containsKey('goals')
-          ? l$goals == null
-                ? null
-                : Object.hashAll(l$goals.map((v) => v))
-          : const {},
       _$data.containsKey('hasKids') ? l$hasKids : const {},
       _$data.containsKey('holidayCountries')
           ? l$holidayCountries == null
@@ -121729,6 +122947,53 @@ EnumGameStatus_enum fromJsonEnumGameStatus_enum(String value) {
   }
 }
 
+enum EnumGentleResponse_enum {
+  later,
+  more_time,
+  not_now,
+  talk,
+  will_do,
+  $unknown;
+
+  factory EnumGentleResponse_enum.fromJson(String value) => fromJsonEnumGentleResponse_enum(value);
+
+  String toJson() => toJsonEnumGentleResponse_enum(this);
+}
+
+String toJsonEnumGentleResponse_enum(EnumGentleResponse_enum e) {
+  switch (e) {
+    case EnumGentleResponse_enum.later:
+      return r'later';
+    case EnumGentleResponse_enum.more_time:
+      return r'more_time';
+    case EnumGentleResponse_enum.not_now:
+      return r'not_now';
+    case EnumGentleResponse_enum.talk:
+      return r'talk';
+    case EnumGentleResponse_enum.will_do:
+      return r'will_do';
+    case EnumGentleResponse_enum.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumGentleResponse_enum fromJsonEnumGentleResponse_enum(String value) {
+  switch (value) {
+    case r'later':
+      return EnumGentleResponse_enum.later;
+    case r'more_time':
+      return EnumGentleResponse_enum.more_time;
+    case r'not_now':
+      return EnumGentleResponse_enum.not_now;
+    case r'talk':
+      return EnumGentleResponse_enum.talk;
+    case r'will_do':
+      return EnumGentleResponse_enum.will_do;
+    default:
+      return EnumGentleResponse_enum.$unknown;
+  }
+}
+
 enum EnumGiftBudget_enum {
   free,
   high,
@@ -121837,6 +123102,48 @@ EnumGiftIdeaStatus_enum fromJsonEnumGiftIdeaStatus_enum(String value) {
       return EnumGiftIdeaStatus_enum.planned;
     default:
       return EnumGiftIdeaStatus_enum.$unknown;
+  }
+}
+
+enum EnumHeldReason_enum {
+  absolute,
+  blame,
+  contempt,
+  insult,
+  $unknown;
+
+  factory EnumHeldReason_enum.fromJson(String value) => fromJsonEnumHeldReason_enum(value);
+
+  String toJson() => toJsonEnumHeldReason_enum(this);
+}
+
+String toJsonEnumHeldReason_enum(EnumHeldReason_enum e) {
+  switch (e) {
+    case EnumHeldReason_enum.absolute:
+      return r'absolute';
+    case EnumHeldReason_enum.blame:
+      return r'blame';
+    case EnumHeldReason_enum.contempt:
+      return r'contempt';
+    case EnumHeldReason_enum.insult:
+      return r'insult';
+    case EnumHeldReason_enum.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumHeldReason_enum fromJsonEnumHeldReason_enum(String value) {
+  switch (value) {
+    case r'absolute':
+      return EnumHeldReason_enum.absolute;
+    case r'blame':
+      return EnumHeldReason_enum.blame;
+    case r'contempt':
+      return EnumHeldReason_enum.contempt;
+    case r'insult':
+      return EnumHeldReason_enum.insult;
+    default:
+      return EnumHeldReason_enum.$unknown;
   }
 }
 
@@ -122777,9 +124084,12 @@ EnumQuizKey_enum fromJsonEnumQuizKey_enum(String value) {
 }
 
 enum EnumRelationshipGoal_enum {
-  after_fight,
-  keep,
+  fight_less,
+  just_record,
+  keep_romance,
+  organize_routine,
   reconnect,
+  remember_dates,
   $unknown;
 
   factory EnumRelationshipGoal_enum.fromJson(String value) =>
@@ -122790,12 +124100,18 @@ enum EnumRelationshipGoal_enum {
 
 String toJsonEnumRelationshipGoal_enum(EnumRelationshipGoal_enum e) {
   switch (e) {
-    case EnumRelationshipGoal_enum.after_fight:
-      return r'after_fight';
-    case EnumRelationshipGoal_enum.keep:
-      return r'keep';
+    case EnumRelationshipGoal_enum.fight_less:
+      return r'fight_less';
+    case EnumRelationshipGoal_enum.just_record:
+      return r'just_record';
+    case EnumRelationshipGoal_enum.keep_romance:
+      return r'keep_romance';
+    case EnumRelationshipGoal_enum.organize_routine:
+      return r'organize_routine';
     case EnumRelationshipGoal_enum.reconnect:
       return r'reconnect';
+    case EnumRelationshipGoal_enum.remember_dates:
+      return r'remember_dates';
     case EnumRelationshipGoal_enum.$unknown:
       return r'$unknown';
   }
@@ -122803,12 +124119,18 @@ String toJsonEnumRelationshipGoal_enum(EnumRelationshipGoal_enum e) {
 
 EnumRelationshipGoal_enum fromJsonEnumRelationshipGoal_enum(String value) {
   switch (value) {
-    case r'after_fight':
-      return EnumRelationshipGoal_enum.after_fight;
-    case r'keep':
-      return EnumRelationshipGoal_enum.keep;
+    case r'fight_less':
+      return EnumRelationshipGoal_enum.fight_less;
+    case r'just_record':
+      return EnumRelationshipGoal_enum.just_record;
+    case r'keep_romance':
+      return EnumRelationshipGoal_enum.keep_romance;
+    case r'organize_routine':
+      return EnumRelationshipGoal_enum.organize_routine;
     case r'reconnect':
       return EnumRelationshipGoal_enum.reconnect;
+    case r'remember_dates':
+      return EnumRelationshipGoal_enum.remember_dates;
     default:
       return EnumRelationshipGoal_enum.$unknown;
   }
@@ -123338,6 +124660,48 @@ EnumSpiceAnswer_enum fromJsonEnumSpiceAnswer_enum(String value) {
       return EnumSpiceAnswer_enum.want;
     default:
       return EnumSpiceAnswer_enum.$unknown;
+  }
+}
+
+enum EnumSpiceStage_enum {
+  off,
+  $on,
+  partner_wants,
+  waiting_partner,
+  $unknown;
+
+  factory EnumSpiceStage_enum.fromJson(String value) => fromJsonEnumSpiceStage_enum(value);
+
+  String toJson() => toJsonEnumSpiceStage_enum(this);
+}
+
+String toJsonEnumSpiceStage_enum(EnumSpiceStage_enum e) {
+  switch (e) {
+    case EnumSpiceStage_enum.off:
+      return r'off';
+    case EnumSpiceStage_enum.$on:
+      return r'on';
+    case EnumSpiceStage_enum.partner_wants:
+      return r'partner_wants';
+    case EnumSpiceStage_enum.waiting_partner:
+      return r'waiting_partner';
+    case EnumSpiceStage_enum.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumSpiceStage_enum fromJsonEnumSpiceStage_enum(String value) {
+  switch (value) {
+    case r'off':
+      return EnumSpiceStage_enum.off;
+    case r'on':
+      return EnumSpiceStage_enum.$on;
+    case r'partner_wants':
+      return EnumSpiceStage_enum.partner_wants;
+    case r'waiting_partner':
+      return EnumSpiceStage_enum.waiting_partner;
+    default:
+      return EnumSpiceStage_enum.$unknown;
   }
 }
 
@@ -131105,13 +132469,100 @@ Enumtoday_select_column fromJsonEnumtoday_select_column(String value) {
   }
 }
 
+enum EnumuserGoals_constraint {
+  user_goals_pkey,
+  $unknown;
+
+  factory EnumuserGoals_constraint.fromJson(String value) =>
+      fromJsonEnumuserGoals_constraint(value);
+
+  String toJson() => toJsonEnumuserGoals_constraint(this);
+}
+
+String toJsonEnumuserGoals_constraint(EnumuserGoals_constraint e) {
+  switch (e) {
+    case EnumuserGoals_constraint.user_goals_pkey:
+      return r'user_goals_pkey';
+    case EnumuserGoals_constraint.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumuserGoals_constraint fromJsonEnumuserGoals_constraint(String value) {
+  switch (value) {
+    case r'user_goals_pkey':
+      return EnumuserGoals_constraint.user_goals_pkey;
+    default:
+      return EnumuserGoals_constraint.$unknown;
+  }
+}
+
+enum EnumuserGoals_select_column {
+  goal,
+  userId,
+  $unknown;
+
+  factory EnumuserGoals_select_column.fromJson(String value) =>
+      fromJsonEnumuserGoals_select_column(value);
+
+  String toJson() => toJsonEnumuserGoals_select_column(this);
+}
+
+String toJsonEnumuserGoals_select_column(EnumuserGoals_select_column e) {
+  switch (e) {
+    case EnumuserGoals_select_column.goal:
+      return r'goal';
+    case EnumuserGoals_select_column.userId:
+      return r'userId';
+    case EnumuserGoals_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumuserGoals_select_column fromJsonEnumuserGoals_select_column(String value) {
+  switch (value) {
+    case r'goal':
+      return EnumuserGoals_select_column.goal;
+    case r'userId':
+      return EnumuserGoals_select_column.userId;
+    default:
+      return EnumuserGoals_select_column.$unknown;
+  }
+}
+
+enum EnumuserGoals_update_column {
+  $_PLACEHOLDER,
+  $unknown;
+
+  factory EnumuserGoals_update_column.fromJson(String value) =>
+      fromJsonEnumuserGoals_update_column(value);
+
+  String toJson() => toJsonEnumuserGoals_update_column(this);
+}
+
+String toJsonEnumuserGoals_update_column(EnumuserGoals_update_column e) {
+  switch (e) {
+    case EnumuserGoals_update_column.$_PLACEHOLDER:
+      return r'_PLACEHOLDER';
+    case EnumuserGoals_update_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+EnumuserGoals_update_column fromJsonEnumuserGoals_update_column(String value) {
+  switch (value) {
+    case r'_PLACEHOLDER':
+      return EnumuserGoals_update_column.$_PLACEHOLDER;
+    default:
+      return EnumuserGoals_update_column.$unknown;
+  }
+}
+
 enum EnumuserSettings_select_column {
   cardChannel,
   cardTheme,
   chatStoreFacts,
   createdAt,
-  goal,
-  goals,
   hasKids,
   holidayCountries,
   locale,
@@ -131152,10 +132603,6 @@ String toJsonEnumuserSettings_select_column(EnumuserSettings_select_column e) {
       return r'chatStoreFacts';
     case EnumuserSettings_select_column.createdAt:
       return r'createdAt';
-    case EnumuserSettings_select_column.goal:
-      return r'goal';
-    case EnumuserSettings_select_column.goals:
-      return r'goals';
     case EnumuserSettings_select_column.hasKids:
       return r'hasKids';
     case EnumuserSettings_select_column.holidayCountries:
@@ -131215,10 +132662,6 @@ EnumuserSettings_select_column fromJsonEnumuserSettings_select_column(String val
       return EnumuserSettings_select_column.chatStoreFacts;
     case r'createdAt':
       return EnumuserSettings_select_column.createdAt;
-    case r'goal':
-      return EnumuserSettings_select_column.goal;
-    case r'goals':
-      return EnumuserSettings_select_column.goals;
     case r'hasKids':
       return EnumuserSettings_select_column.hasKids;
     case r'holidayCountries':

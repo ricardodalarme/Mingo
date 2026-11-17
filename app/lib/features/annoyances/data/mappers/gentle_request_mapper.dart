@@ -12,7 +12,7 @@ extension GentleRequestMapper on FragmentGentleRequestFragment {
     senderId: senderId,
     recipientId: recipientId,
     createdAt: createdAt,
-    response: response?.toGentleResponse(),
+    response: response?.toModel(),
     seenAt: seenAt,
     thankedAt: thankedAt,
     senderName: sender.displayName,

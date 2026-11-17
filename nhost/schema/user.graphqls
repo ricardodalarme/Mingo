@@ -117,6 +117,13 @@ enum GameStatus_enum {
   finished
   invited
 }
+enum GentleResponse_enum {
+  later
+  more_time
+  not_now
+  talk
+  will_do
+}
 enum GiftBudget_enum {
   free
   high
@@ -131,6 +138,12 @@ enum GiftIdeaStatus_enum {
   given
   idea
   planned
+}
+enum HeldReason_enum {
+  absolute
+  blame
+  contempt
+  insult
 }
 enum ImportantDateKind_enum {
   birthday
@@ -273,9 +286,12 @@ enum QuizKey_enum {
   loved
 }
 enum RelationshipGoal_enum {
-  after_fight
-  keep
+  fight_less
+  just_record
+  keep_romance
+  organize_routine
   reconnect
+  remember_dates
 }
 enum RelationshipPhase_enum {
   beginning
@@ -352,6 +368,12 @@ enum SpiceAnswer_enum {
   maybe
   not_today
   want
+}
+enum SpiceStage_enum {
+  off
+  on
+  partner_wants
+  waiting_partner
 }
 enum StoryEventKind_enum {
   custom
@@ -4259,6 +4281,37 @@ enum today_select_column {
   weekStart
 }
 """
+unique or primary key constraints on table "user_goals"
+"""
+enum userGoals_constraint {
+  """
+  unique or primary key constraint on columns "user_id", "goal"
+  """
+  user_goals_pkey
+}
+"""
+select columns of table "user_goals"
+"""
+enum userGoals_select_column {
+  """
+  column name
+  """
+  goal
+  """
+  column name
+  """
+  userId
+}
+"""
+placeholder for update columns of table "user_goals" (current role has no relevant permissions)
+"""
+enum userGoals_update_column {
+  """
+  placeholder (do not use)
+  """
+  _PLACEHOLDER
+}
+"""
 select columns of table "user_settings"
 """
 enum userSettings_select_column {
@@ -4278,14 +4331,6 @@ enum userSettings_select_column {
   column name
   """
   createdAt
-  """
-  column name
-  """
-  goal
-  """
-  column name
-  """
-  goals
   """
   column name
   """
@@ -4838,7 +4883,7 @@ type cards {
     """
     where: guestLinks_bool_exp
   ): [guestLinks!]!
-  heldReason: String
+  heldReason: HeldReason_enum
   id: uuid!
   """
   An array relationship
@@ -4911,7 +4956,6 @@ type cards_max_fields {
   authorId: uuid
   coupleId: uuid
   createdAt: timestamptz
-  heldReason: String
   id: uuid
   note: String
   recipientId: uuid
@@ -4926,7 +4970,6 @@ type cards_min_fields {
   authorId: uuid
   coupleId: uuid
   createdAt: timestamptz
-  heldReason: String
   id: uuid
   note: String
   recipientId: uuid
@@ -5710,7 +5753,7 @@ type gentleRequests {
   recipient: profiles!
   recipientId: uuid!
   respondedAt: timestamptz
-  response: String
+  response: GentleResponse_enum
   seenAt: timestamptz
   """
   An object relationship
@@ -7561,6 +7604,19 @@ type mutation_root {
   """
   deleteTemperatureChecksByPk(id: uuid!): temperatureChecks
   """
+  delete data from the table: "user_goals"
+  """
+  deleteUserGoals(
+    """
+    filter the rows which have to be deleted
+    """
+    where: userGoals_bool_exp!
+  ): userGoals_mutation_response
+  """
+  delete single row from the table: "user_goals"
+  """
+  deleteUserGoalsByPk(goal: RelationshipGoal_enum!, userId: uuid!): userGoals
+  """
   insert data into the table: "agreements"
   """
   insertAgreements(
@@ -8820,6 +8876,34 @@ type mutation_root {
     """
     on_conflict: temperatureChecks_on_conflict
   ): temperatureChecks
+  """
+  insert data into the table: "user_goals"
+  """
+  insertUserGoals(
+    """
+    the rows to be inserted
+    """
+    objects: [userGoals_insert_input!]!
+
+    """
+    upsert condition
+    """
+    on_conflict: userGoals_on_conflict
+  ): userGoals_mutation_response
+  """
+  insert a single row into the table: "user_goals"
+  """
+  insertUserGoalsOne(
+    """
+    the row to be inserted
+    """
+    object: userGoals_insert_input!
+
+    """
+    upsert condition
+    """
+    on_conflict: userGoals_on_conflict
+  ): userGoals
   """
   execute VOLATILE function "next_game_items" which returns "content_items"
   """
@@ -14613,6 +14697,39 @@ type query_root {
     where: today_bool_exp
   ): [today!]!
   """
+  fetch data from the table: "user_goals"
+  """
+  userGoals(
+    """
+    distinct select on columns
+    """
+    distinct_on: [userGoals_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [userGoals_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: userGoals_bool_exp
+  ): [userGoals!]!
+  """
+  fetch data from the table: "user_goals" using primary key columns
+  """
+  userGoalsByPk(goal: RelationshipGoal_enum!, userId: uuid!): userGoals
+  """
   fetch data from the table: "user_settings"
   """
   userSettings(
@@ -15713,7 +15830,7 @@ columns and relationships of "spice_states"
 type spiceStates {
   coupleLevel: smallint
   myLevel: smallint
-  state: String!
+  state: SpiceStage_enum!
 }
 """
 columns and relationships of "start_dates"
@@ -20548,6 +20665,58 @@ type subscription_root {
     where: today_bool_exp
   ): [today!]!
   """
+  fetch data from the table: "user_goals"
+  """
+  userGoals(
+    """
+    distinct select on columns
+    """
+    distinct_on: [userGoals_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [userGoals_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: userGoals_bool_exp
+  ): [userGoals!]!
+  """
+  fetch data from the table: "user_goals" using primary key columns
+  """
+  userGoalsByPk(goal: RelationshipGoal_enum!, userId: uuid!): userGoals
+  """
+  fetch data from the table in a streaming manner: "user_goals"
+  """
+  userGoalsStream(
+    """
+    maximum number of rows returned in a single batch
+    """
+    batch_size: Int!
+
+    """
+    cursor to stream the results returned by the query
+    """
+    cursor: [userGoals_stream_cursor_input]!
+
+    """
+    filter the rows returned
+    """
+    where: userGoals_bool_exp
+  ): [userGoals!]!
+  """
   fetch data from the table: "user_settings"
   """
   userSettings(
@@ -20856,6 +21025,26 @@ type today {
   weekStart: date
 }
 """
+columns and relationships of "user_goals"
+"""
+type userGoals {
+  goal: RelationshipGoal_enum!
+  userId: uuid!
+}
+"""
+response of any mutation on the table "user_goals"
+"""
+type userGoals_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [userGoals!]!
+}
+"""
 columns and relationships of "user_settings"
 """
 type userSettings {
@@ -20863,8 +21052,35 @@ type userSettings {
   cardTheme: String!
   chatStoreFacts: Boolean!
   createdAt: timestamptz!
-  goal: RelationshipGoal_enum
-  goals: [String!]!
+  """
+  An array relationship
+  """
+  goals(
+    """
+    distinct select on columns
+    """
+    distinct_on: [userGoals_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [userGoals_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: userGoals_bool_exp
+  ): [userGoals!]!
   hasKids: Boolean!
   holidayCountries: [String!]!
   locale: String!
@@ -21122,6 +21338,16 @@ input GameStatus_enum_comparison_exp {
   _nin: [GameStatus_enum!]
 }
 """
+Boolean expression to compare columns of type "GentleResponse_enum". All fields are combined with logical 'AND'.
+"""
+input GentleResponse_enum_comparison_exp {
+  _eq: GentleResponse_enum
+  _in: [GentleResponse_enum!]
+  _is_null: Boolean
+  _neq: GentleResponse_enum
+  _nin: [GentleResponse_enum!]
+}
+"""
 Boolean expression to compare columns of type "GiftBudget_enum". All fields are combined with logical 'AND'.
 """
 input GiftBudget_enum_comparison_exp {
@@ -21150,6 +21376,16 @@ input GiftIdeaStatus_enum_comparison_exp {
   _is_null: Boolean
   _neq: GiftIdeaStatus_enum
   _nin: [GiftIdeaStatus_enum!]
+}
+"""
+Boolean expression to compare columns of type "HeldReason_enum". All fields are combined with logical 'AND'.
+"""
+input HeldReason_enum_comparison_exp {
+  _eq: HeldReason_enum
+  _in: [HeldReason_enum!]
+  _is_null: Boolean
+  _neq: HeldReason_enum
+  _nin: [HeldReason_enum!]
 }
 """
 Boolean expression to compare columns of type "ImportantDateKind_enum". All fields are combined with logical 'AND'.
@@ -21484,6 +21720,16 @@ input SpiceAnswer_enum_comparison_exp {
   _is_null: Boolean
   _neq: SpiceAnswer_enum
   _nin: [SpiceAnswer_enum!]
+}
+"""
+Boolean expression to compare columns of type "SpiceStage_enum". All fields are combined with logical 'AND'.
+"""
+input SpiceStage_enum_comparison_exp {
+  _eq: SpiceStage_enum
+  _in: [SpiceStage_enum!]
+  _is_null: Boolean
+  _neq: SpiceStage_enum
+  _nin: [SpiceStage_enum!]
 }
 """
 Boolean expression to compare columns of type "StoryEventKind_enum". All fields are combined with logical 'AND'.
@@ -22252,7 +22498,7 @@ input cards_bool_exp {
   coupleId: uuid_comparison_exp
   createdAt: timestamptz_comparison_exp
   guestLinks: guestLinks_bool_exp
-  heldReason: String_comparison_exp
+  heldReason: HeldReason_enum_comparison_exp
   id: uuid_comparison_exp
   items: cardItems_bool_exp
   kind: CardKind_enum_comparison_exp
@@ -22322,7 +22568,7 @@ input cards_stream_cursor_value_input {
   authorId: uuid
   coupleId: uuid
   createdAt: timestamptz
-  heldReason: String
+  heldReason: HeldReason_enum
   id: uuid
   kind: CardKind_enum
   note: String
@@ -23865,7 +24111,7 @@ input gentleRequests_bool_exp {
   recipient: profiles_bool_exp
   recipientId: uuid_comparison_exp
   respondedAt: timestamptz_comparison_exp
-  response: String_comparison_exp
+  response: GentleResponse_enum_comparison_exp
   seenAt: timestamptz_comparison_exp
   sender: profiles_bool_exp
   senderId: uuid_comparison_exp
@@ -23902,7 +24148,7 @@ input gentleRequests_pk_columns_input {
 input type for updating data in table "gentle_requests"
 """
 input gentleRequests_set_input {
-  response: String
+  response: GentleResponse_enum
   seenAt: timestamptz
 }
 """
@@ -23928,7 +24174,7 @@ input gentleRequests_stream_cursor_value_input {
   purgeAfter: timestamptz
   recipientId: uuid
   respondedAt: timestamptz
-  response: String
+  response: GentleResponse_enum
   seenAt: timestamptz
   senderId: uuid
   thankedAt: timestamptz
@@ -28133,7 +28379,7 @@ input spiceStates_bool_exp {
   _or: [spiceStates_bool_exp!]
   coupleLevel: smallint_comparison_exp
   myLevel: smallint_comparison_exp
-  state: String_comparison_exp
+  state: SpiceStage_enum_comparison_exp
 }
 """
 Ordering options when selecting data from "spice_states".
@@ -28162,7 +28408,7 @@ Initial value of the column from where the streaming should start
 input spiceStates_stream_cursor_value_input {
   coupleLevel: smallint
   myLevel: smallint
-  state: String
+  state: SpiceStage_enum
 }
 """
 Boolean expression to filter rows from the table "start_dates". All fields are combined with a logical 'AND'.
@@ -28603,6 +28849,77 @@ input updateGame_args {
   sessionId: uuid
 }
 """
+order by aggregate values of table "user_goals"
+"""
+input userGoals_aggregate_order_by {
+  count: order_by
+  max: userGoals_max_order_by
+  min: userGoals_min_order_by
+}
+"""
+Boolean expression to filter rows from the table "user_goals". All fields are combined with a logical 'AND'.
+"""
+input userGoals_bool_exp {
+  _and: [userGoals_bool_exp!]
+  _not: userGoals_bool_exp
+  _or: [userGoals_bool_exp!]
+  goal: RelationshipGoal_enum_comparison_exp
+  userId: uuid_comparison_exp
+}
+"""
+input type for inserting data into table "user_goals"
+"""
+input userGoals_insert_input {
+  goal: RelationshipGoal_enum
+}
+"""
+order by max() on columns of table "user_goals"
+"""
+input userGoals_max_order_by {
+  userId: order_by
+}
+"""
+order by min() on columns of table "user_goals"
+"""
+input userGoals_min_order_by {
+  userId: order_by
+}
+"""
+on_conflict condition type for table "user_goals"
+"""
+input userGoals_on_conflict {
+  constraint: userGoals_constraint!
+  update_columns: [userGoals_update_column!]! = []
+  where: userGoals_bool_exp
+}
+"""
+Ordering options when selecting data from "user_goals".
+"""
+input userGoals_order_by {
+  goal: order_by
+  userId: order_by
+}
+"""
+Streaming cursor of the table "userGoals"
+"""
+input userGoals_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: userGoals_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+"""
+Initial value of the column from where the streaming should start
+"""
+input userGoals_stream_cursor_value_input {
+  goal: RelationshipGoal_enum
+  userId: uuid
+}
+"""
 Boolean expression to filter rows from the table "user_settings". All fields are combined with a logical 'AND'.
 """
 input userSettings_bool_exp {
@@ -28613,8 +28930,7 @@ input userSettings_bool_exp {
   cardTheme: String_comparison_exp
   chatStoreFacts: Boolean_comparison_exp
   createdAt: timestamptz_comparison_exp
-  goal: RelationshipGoal_enum_comparison_exp
-  goals: String_array_comparison_exp
+  goals: userGoals_bool_exp
   hasKids: Boolean_comparison_exp
   holidayCountries: String_array_comparison_exp
   locale: String_comparison_exp
@@ -28653,8 +28969,7 @@ input userSettings_order_by {
   cardTheme: order_by
   chatStoreFacts: order_by
   createdAt: order_by
-  goal: order_by
-  goals: order_by
+  goals_aggregate: userGoals_aggregate_order_by
   hasKids: order_by
   holidayCountries: order_by
   locale: order_by
@@ -28692,8 +29007,6 @@ input userSettings_set_input {
   cardChannel: CardChannel_enum
   cardTheme: String
   chatStoreFacts: Boolean
-  goal: RelationshipGoal_enum
-  goals: [String!]
   hasKids: Boolean
   holidayCountries: [String!]
   locale: String
@@ -28736,8 +29049,6 @@ input userSettings_stream_cursor_value_input {
   cardTheme: String
   chatStoreFacts: Boolean
   createdAt: timestamptz
-  goal: RelationshipGoal_enum
-  goals: [String!]
   hasKids: Boolean
   holidayCountries: [String!]
   locale: String

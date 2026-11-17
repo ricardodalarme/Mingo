@@ -1,3 +1,4 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/fragments/generated/GentleRequestFragment.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/DeleteAnnoyance.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/MarkGentleRequestSeen.graphql.dart';
@@ -88,7 +89,7 @@ class AnnoyanceDataSource({required final GQLClient _client}) {
         .mapResponseData((data) => data.gentleRequestsByPk);
   }
 
-  Future<void> respond({required String id, required String response}) async {
+  Future<void> respond({required String id, required EnumGentleResponse_enum response}) async {
     final result = await _client.mutate(
       OptionsMutationRespondGentleRequest(
         variables: VariablesMutationRespondGentleRequest(

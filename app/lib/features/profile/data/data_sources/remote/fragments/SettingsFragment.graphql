@@ -9,6 +9,8 @@ fragment SettingsFragment on userSettings {
   onboardedAt
   shareReadReceipts
   phase
-  goals
+  goals {
+    goal
+  }
   locale
 }

@@ -11,10 +11,6 @@ configuration:
       custom_name: chatStoreFacts
     created_at:
       custom_name: createdAt
-    goal:
-      custom_name: goal
-    goals:
-      custom_name: goals
     has_kids:
       custom_name: hasKids
     holiday_countries:
@@ -64,8 +60,6 @@ configuration:
     card_theme: cardTheme
     chat_store_facts: chatStoreFacts
     created_at: createdAt
-    goal: goal
-    goals: goals
     has_kids: hasKids
     holiday_countries: holidayCountries
     locale: locale
@@ -105,6 +99,14 @@ object_relationships:
   - name: profile
     using:
       foreign_key_constraint_on: user_id
+array_relationships:
+  - name: goals
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: user_goals
+          schema: public
 select_permissions:
   - role: user
     permission:
@@ -113,8 +115,6 @@ select_permissions:
         - card_theme
         - chat_store_facts
         - created_at
-        - goal
-        - goals
         - has_kids
         - holiday_countries
         - locale
@@ -146,8 +146,6 @@ update_permissions:
       columns:
         - theme
         - locale
-        - goal
-        - goals
         - phase
         - relationship_status
         - partner_name

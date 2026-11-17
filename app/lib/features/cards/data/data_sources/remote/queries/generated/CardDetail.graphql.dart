@@ -413,7 +413,9 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
       note: (l$note as String?),
       weekStart: DateTime.parse((l$weekStart as String)),
       sentAt: l$sentAt == null ? null : DateTime.parse((l$sentAt as String)),
-      heldReason: (l$heldReason as String?),
+      heldReason: l$heldReason == null
+          ? null
+          : fromJsonEnumHeldReason_enum((l$heldReason as String)),
       items: (l$items as List<dynamic>)
           .map((e) => QueryCardDetailcardsByPkitems.fromJson((e as Map<String, dynamic>)))
           .toList(),
@@ -439,7 +441,7 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
 
   final DateTime? sentAt;
 
-  final String? heldReason;
+  final EnumHeldReason_enum? heldReason;
 
   final List<QueryCardDetailcardsByPkitems> items;
 
@@ -468,7 +470,9 @@ class QueryCardDetailcardsByPk implements FragmentCardFragment {
         ? null
         : ((v) => v.toUtc().toIso8601String())(l$sentAt);
     final l$heldReason = heldReason;
-    _resultData['heldReason'] = l$heldReason;
+    _resultData['heldReason'] = l$heldReason == null
+        ? null
+        : toJsonEnumHeldReason_enum(l$heldReason);
     final l$items = items;
     _resultData['items'] = l$items.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;

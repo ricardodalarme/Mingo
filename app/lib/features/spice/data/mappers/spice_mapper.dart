@@ -1,13 +1,13 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/spice/data/models/spice_models.dart';
 
-extension SpiceStageNameMapper on String {
+extension EnumSpiceStageMapper on EnumSpiceStage_enum {
   /// The stage for a stored state; an unknown state reads as off.
-  SpiceStage toSpiceStage() => switch (this) {
-    'on' => SpiceStage.on,
-    'waiting_partner' => SpiceStage.waitingPartner,
-    'partner_wants' => SpiceStage.partnerWants,
-    _ => SpiceStage.off,
+  SpiceStage toModel() => switch (this) {
+    EnumSpiceStage_enum.$on => SpiceStage.on,
+    EnumSpiceStage_enum.waiting_partner => SpiceStage.waitingPartner,
+    EnumSpiceStage_enum.partner_wants => SpiceStage.partnerWants,
+    EnumSpiceStage_enum.off || EnumSpiceStage_enum.$unknown => SpiceStage.off,
   };
 }
 

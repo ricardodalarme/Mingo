@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -7,7 +9,7 @@ import 'package:graphql/client.dart' as graphql;
 class VariablesMutationRespondGentleRequest {
   factory VariablesMutationRespondGentleRequest({
     required String id,
-    required String response,
+    required EnumGentleResponse_enum response,
     required DateTime seenAt,
   }) => VariablesMutationRespondGentleRequest._({
     r'id': id,
@@ -22,7 +24,7 @@ class VariablesMutationRespondGentleRequest {
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
     final l$response = data['response'];
-    result$data['response'] = (l$response as String);
+    result$data['response'] = fromJsonEnumGentleResponse_enum((l$response as String));
     final l$seenAt = data['seenAt'];
     result$data['seenAt'] = DateTime.parse((l$seenAt as String));
     return VariablesMutationRespondGentleRequest._(result$data);
@@ -32,7 +34,7 @@ class VariablesMutationRespondGentleRequest {
 
   String get id => (_$data['id'] as String);
 
-  String get response => (_$data['response'] as String);
+  EnumGentleResponse_enum get response => (_$data['response'] as EnumGentleResponse_enum);
 
   DateTime get seenAt => (_$data['seenAt'] as DateTime);
 
@@ -41,7 +43,7 @@ class VariablesMutationRespondGentleRequest {
     final l$id = id;
     result$data['id'] = l$id;
     final l$response = response;
-    result$data['response'] = l$response;
+    result$data['response'] = toJsonEnumGentleResponse_enum(l$response);
     final l$seenAt = seenAt;
     result$data['seenAt'] = ((v) => v.toUtc().toIso8601String())(l$seenAt);
     return result$data;
@@ -154,7 +156,7 @@ const documentNodeMutationRespondGentleRequest = DocumentNode(
         ),
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'response')),
-          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          type: NamedTypeNode(name: NameNode(value: 'GentleResponse_enum'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),

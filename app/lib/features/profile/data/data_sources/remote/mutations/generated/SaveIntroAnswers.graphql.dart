@@ -10,13 +10,11 @@ class VariablesMutationSaveIntroAnswers {
   factory VariablesMutationSaveIntroAnswers({
     required String profileId,
     EnumRelationshipPhase_enum? phase,
-    EnumRelationshipGoal_enum? goal,
-    List<String>? goals,
+    required List<InputuserGoals_insert_input> goals,
   }) => VariablesMutationSaveIntroAnswers._({
     r'profileId': profileId,
     if (phase != null) r'phase': phase,
-    if (goal != null) r'goal': goal,
-    if (goals != null) r'goals': goals,
+    r'goals': goals,
   });
 
   VariablesMutationSaveIntroAnswers._(this._$data);
@@ -31,16 +29,10 @@ class VariablesMutationSaveIntroAnswers {
           ? null
           : fromJsonEnumRelationshipPhase_enum((l$phase as String));
     }
-    if (data.containsKey('goal')) {
-      final l$goal = data['goal'];
-      result$data['goal'] = l$goal == null
-          ? null
-          : fromJsonEnumRelationshipGoal_enum((l$goal as String));
-    }
-    if (data.containsKey('goals')) {
-      final l$goals = data['goals'];
-      result$data['goals'] = (l$goals as List<dynamic>?)?.map((e) => (e as String)).toList();
-    }
+    final l$goals = data['goals'];
+    result$data['goals'] = (l$goals as List<dynamic>)
+        .map((e) => InputuserGoals_insert_input.fromJson((e as Map<String, dynamic>)))
+        .toList();
     return VariablesMutationSaveIntroAnswers._(result$data);
   }
 
@@ -50,9 +42,8 @@ class VariablesMutationSaveIntroAnswers {
 
   EnumRelationshipPhase_enum? get phase => (_$data['phase'] as EnumRelationshipPhase_enum?);
 
-  EnumRelationshipGoal_enum? get goal => (_$data['goal'] as EnumRelationshipGoal_enum?);
-
-  List<String>? get goals => (_$data['goals'] as List<String>?);
+  List<InputuserGoals_insert_input> get goals =>
+      (_$data['goals'] as List<InputuserGoals_insert_input>);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -62,14 +53,8 @@ class VariablesMutationSaveIntroAnswers {
       final l$phase = phase;
       result$data['phase'] = l$phase == null ? null : toJsonEnumRelationshipPhase_enum(l$phase);
     }
-    if (_$data.containsKey('goal')) {
-      final l$goal = goal;
-      result$data['goal'] = l$goal == null ? null : toJsonEnumRelationshipGoal_enum(l$goal);
-    }
-    if (_$data.containsKey('goals')) {
-      final l$goals = goals;
-      result$data['goals'] = l$goals?.map((e) => e).toList();
-    }
+    final l$goals = goals;
+    result$data['goals'] = l$goals.map((e) => e.toJson()).toList();
     return result$data;
   }
 
@@ -94,32 +79,17 @@ class VariablesMutationSaveIntroAnswers {
     if (l$phase != lOther$phase) {
       return false;
     }
-    final l$goal = goal;
-    final lOther$goal = other.goal;
-    if (_$data.containsKey('goal') != other._$data.containsKey('goal')) {
-      return false;
-    }
-    if (l$goal != lOther$goal) {
-      return false;
-    }
     final l$goals = goals;
     final lOther$goals = other.goals;
-    if (_$data.containsKey('goals') != other._$data.containsKey('goals')) {
+    if (l$goals.length != lOther$goals.length) {
       return false;
     }
-    if (l$goals != null && lOther$goals != null) {
-      if (l$goals.length != lOther$goals.length) {
+    for (int i = 0; i < l$goals.length; i++) {
+      final l$goals$entry = l$goals[i];
+      final lOther$goals$entry = lOther$goals[i];
+      if (l$goals$entry != lOther$goals$entry) {
         return false;
       }
-      for (int i = 0; i < l$goals.length; i++) {
-        final l$goals$entry = l$goals[i];
-        final lOther$goals$entry = lOther$goals[i];
-        if (l$goals$entry != lOther$goals$entry) {
-          return false;
-        }
-      }
-    } else if (l$goals != lOther$goals) {
-      return false;
     }
     return true;
   }
@@ -128,45 +98,64 @@ class VariablesMutationSaveIntroAnswers {
   int get hashCode {
     final l$profileId = profileId;
     final l$phase = phase;
-    final l$goal = goal;
     final l$goals = goals;
     return Object.hashAll([
       l$profileId,
       _$data.containsKey('phase') ? l$phase : const {},
-      _$data.containsKey('goal') ? l$goal : const {},
-      _$data.containsKey('goals')
-          ? l$goals == null
-                ? null
-                : Object.hashAll(l$goals.map((v) => v))
-          : const {},
+      Object.hashAll(l$goals.map((v) => v)),
     ]);
   }
 }
 
 class MutationSaveIntroAnswers {
-  MutationSaveIntroAnswers({this.updateUserSettings, this.$__typename = 'mutation_root'});
+  MutationSaveIntroAnswers({
+    this.updateUserSettingsByPk,
+    this.deleteUserGoals,
+    this.insertUserGoals,
+    this.$__typename = 'mutation_root',
+  });
 
   factory MutationSaveIntroAnswers.fromJson(Map<String, dynamic> json) {
-    final l$updateUserSettings = json['updateUserSettings'];
+    final l$updateUserSettingsByPk = json['updateUserSettingsByPk'];
+    final l$deleteUserGoals = json['deleteUserGoals'];
+    final l$insertUserGoals = json['insertUserGoals'];
     final l$$__typename = json['__typename'];
     return MutationSaveIntroAnswers(
-      updateUserSettings: l$updateUserSettings == null
+      updateUserSettingsByPk: l$updateUserSettingsByPk == null
           ? null
-          : MutationSaveIntroAnswersupdateUserSettings.fromJson(
-              (l$updateUserSettings as Map<String, dynamic>),
+          : MutationSaveIntroAnswersupdateUserSettingsByPk.fromJson(
+              (l$updateUserSettingsByPk as Map<String, dynamic>),
+            ),
+      deleteUserGoals: l$deleteUserGoals == null
+          ? null
+          : MutationSaveIntroAnswersdeleteUserGoals.fromJson(
+              (l$deleteUserGoals as Map<String, dynamic>),
+            ),
+      insertUserGoals: l$insertUserGoals == null
+          ? null
+          : MutationSaveIntroAnswersinsertUserGoals.fromJson(
+              (l$insertUserGoals as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSaveIntroAnswersupdateUserSettings? updateUserSettings;
+  final MutationSaveIntroAnswersupdateUserSettingsByPk? updateUserSettingsByPk;
+
+  final MutationSaveIntroAnswersdeleteUserGoals? deleteUserGoals;
+
+  final MutationSaveIntroAnswersinsertUserGoals? insertUserGoals;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateUserSettings = updateUserSettings;
-    _resultData['updateUserSettings'] = l$updateUserSettings?.toJson();
+    final l$updateUserSettingsByPk = updateUserSettingsByPk;
+    _resultData['updateUserSettingsByPk'] = l$updateUserSettingsByPk?.toJson();
+    final l$deleteUserGoals = deleteUserGoals;
+    _resultData['deleteUserGoals'] = l$deleteUserGoals?.toJson();
+    final l$insertUserGoals = insertUserGoals;
+    _resultData['insertUserGoals'] = l$insertUserGoals?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -174,9 +163,16 @@ class MutationSaveIntroAnswers {
 
   @override
   int get hashCode {
-    final l$updateUserSettings = updateUserSettings;
+    final l$updateUserSettingsByPk = updateUserSettingsByPk;
+    final l$deleteUserGoals = deleteUserGoals;
+    final l$insertUserGoals = insertUserGoals;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateUserSettings, l$$__typename]);
+    return Object.hashAll([
+      l$updateUserSettingsByPk,
+      l$deleteUserGoals,
+      l$insertUserGoals,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -187,9 +183,19 @@ class MutationSaveIntroAnswers {
     if (other is! MutationSaveIntroAnswers || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateUserSettings = updateUserSettings;
-    final lOther$updateUserSettings = other.updateUserSettings;
-    if (l$updateUserSettings != lOther$updateUserSettings) {
+    final l$updateUserSettingsByPk = updateUserSettingsByPk;
+    final lOther$updateUserSettingsByPk = other.updateUserSettingsByPk;
+    if (l$updateUserSettingsByPk != lOther$updateUserSettingsByPk) {
+      return false;
+    }
+    final l$deleteUserGoals = deleteUserGoals;
+    final lOther$deleteUserGoals = other.deleteUserGoals;
+    if (l$deleteUserGoals != lOther$deleteUserGoals) {
+      return false;
+    }
+    final l$insertUserGoals = insertUserGoals;
+    final lOther$insertUserGoals = other.insertUserGoals;
+    if (l$insertUserGoals != lOther$insertUserGoals) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -220,16 +226,10 @@ const documentNodeMutationSaveIntroAnswers = DocumentNode(
           directives: [],
         ),
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'goal')),
-          type: NamedTypeNode(name: NameNode(value: 'RelationshipGoal_enum'), isNonNull: false),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
-        VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'goals')),
           type: ListTypeNode(
-            type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
-            isNonNull: false,
+            type: NamedTypeNode(name: NameNode(value: 'userGoals_insert_input'), isNonNull: true),
+            isNonNull: true,
           ),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
@@ -239,7 +239,54 @@ const documentNodeMutationSaveIntroAnswers = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateUserSettings'),
+            name: NameNode(value: 'updateUserSettingsByPk'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'pk_columns'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'userId'),
+                      value: VariableNode(name: NameNode(value: 'profileId')),
+                    ),
+                  ],
+                ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: '_set'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'phase'),
+                      value: VariableNode(name: NameNode(value: 'phase')),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'userId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: 'deleteUserGoals'),
             alias: null,
             arguments: [
               ArgumentNode(
@@ -260,24 +307,34 @@ const documentNodeMutationSaveIntroAnswers = DocumentNode(
                   ],
                 ),
               ),
-              ArgumentNode(
-                name: NameNode(value: '_set'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'phase'),
-                      value: VariableNode(name: NameNode(value: 'phase')),
-                    ),
-                    ObjectFieldNode(
-                      name: NameNode(value: 'goal'),
-                      value: VariableNode(name: NameNode(value: 'goal')),
-                    ),
-                    ObjectFieldNode(
-                      name: NameNode(value: 'goals'),
-                      value: VariableNode(name: NameNode(value: 'goals')),
-                    ),
-                  ],
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FieldNode(
+                  name: NameNode(value: 'affected_rows'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
                 ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: 'insertUserGoals'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'objects'),
+                value: VariableNode(name: NameNode(value: 'goals')),
               ),
             ],
             directives: [],
@@ -404,16 +461,74 @@ extension ClientExtensionMutationSaveIntroAnswers on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationSaveIntroAnswersupdateUserSettings {
-  MutationSaveIntroAnswersupdateUserSettings({
-    required this.affected_rows,
-    this.$__typename = 'userSettings_mutation_response',
+class MutationSaveIntroAnswersupdateUserSettingsByPk {
+  MutationSaveIntroAnswersupdateUserSettingsByPk({
+    required this.userId,
+    this.$__typename = 'userSettings',
   });
 
-  factory MutationSaveIntroAnswersupdateUserSettings.fromJson(Map<String, dynamic> json) {
+  factory MutationSaveIntroAnswersupdateUserSettingsByPk.fromJson(Map<String, dynamic> json) {
+    final l$userId = json['userId'];
+    final l$$__typename = json['__typename'];
+    return MutationSaveIntroAnswersupdateUserSettingsByPk(
+      userId: (l$userId as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String userId;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$userId, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationSaveIntroAnswersupdateUserSettingsByPk ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class MutationSaveIntroAnswersdeleteUserGoals {
+  MutationSaveIntroAnswersdeleteUserGoals({
+    required this.affected_rows,
+    this.$__typename = 'userGoals_mutation_response',
+  });
+
+  factory MutationSaveIntroAnswersdeleteUserGoals.fromJson(Map<String, dynamic> json) {
     final l$affected_rows = json['affected_rows'];
     final l$$__typename = json['__typename'];
-    return MutationSaveIntroAnswersupdateUserSettings(
+    return MutationSaveIntroAnswersdeleteUserGoals(
       affected_rows: (l$affected_rows as int),
       $__typename: (l$$__typename as String),
     );
@@ -444,7 +559,64 @@ class MutationSaveIntroAnswersupdateUserSettings {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationSaveIntroAnswersupdateUserSettings || runtimeType != other.runtimeType) {
+    if (other is! MutationSaveIntroAnswersdeleteUserGoals || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+class MutationSaveIntroAnswersinsertUserGoals {
+  MutationSaveIntroAnswersinsertUserGoals({
+    required this.affected_rows,
+    this.$__typename = 'userGoals_mutation_response',
+  });
+
+  factory MutationSaveIntroAnswersinsertUserGoals.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return MutationSaveIntroAnswersinsertUserGoals(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$affected_rows, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationSaveIntroAnswersinsertUserGoals || runtimeType != other.runtimeType) {
       return false;
     }
     final l$affected_rows = affected_rows;

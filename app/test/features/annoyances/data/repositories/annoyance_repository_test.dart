@@ -1,3 +1,4 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/annoyance_data_source.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/fragments/generated/GentleRequestFragment.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/SaveAnnoyance.graphql.dart';
@@ -94,7 +95,7 @@ void main() {
           wishText: 'queria',
           senderId: 's',
           recipientId: 'r',
-          response: 'will_do',
+          response: EnumGentleResponse_enum.will_do,
           createdAt: DateTime.utc(2026),
           sender: FragmentGentleRequestFragmentsender(displayName: 'Ana'),
           recipient: FragmentGentleRequestFragmentrecipient(displayName: 'Rui'),

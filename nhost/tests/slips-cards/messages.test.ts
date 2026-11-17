@@ -99,3 +99,12 @@ test('a voice note cannot use a file somebody else uploaded or from another buck
   await ok(a, `mutation { insertPartnerMessagesOne(object: {kind: drawing, mediaFileId: "${drawing.id}"}) { id } }`);
   await denied(a, `mutation { insertPartnerMessagesOne(object: {kind: note}) { id } }`);
 });
+
+test('a card is held for one of four reasons, in the schema and in the database', async () => {
+  const { a } = await couple();
+  const id = await draft(a, 'fez o jantar', 'Obrigada pelo jantar');
+  await assert.rejects(sql(`update public.cards set held_reason = 'rude' where id = '${id}'`));
+
+  const values = (await sql(`select value from public.held_reason order by value`)).map((row) => row[0]);
+  assert.deepEqual(values, ['absolute', 'blame', 'contempt', 'insult']);
+});
