@@ -1,6 +1,7 @@
 import 'package:app/features/account/data/data_sources/remote/account_data_source.dart';
 import 'package:app/features/account/data/repositories/account_repository.dart';
 import 'package:app/features/account/presentation/delete/cubit/delete_account_cubit.dart';
+import 'package:app/features/account/presentation/export/cubit/export_data_cubit.dart';
 import 'package:app/features/account/presentation/sign_out/cubit/sign_out_cubit.dart';
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
@@ -19,7 +20,10 @@ class AccountInjectionModule() implements InjectionModule {
   @override
   void registerDependencies({required Injector injector}) => injector
     ..registerLazySingleton<AccountDataSource>(
-      () => AccountDataSource(client: injector.get<GQLClient>()),
+      () => AccountDataSource(
+        client: injector.get<GQLClient>(),
+        restClient: injector.get<RestClient>(),
+      ),
     )
     ..registerLazySingleton<AccountRepository>(
       () => AccountRepository(
@@ -33,6 +37,9 @@ class AccountInjectionModule() implements InjectionModule {
         pairingRepository: injector.get<PairingRepository>(),
         biometricService: injector.get<BiometricService>(),
       ),
+    )
+    ..registerFactory<ExportDataCubit>(
+      () => ExportDataCubit(repository: injector.get<AccountRepository>()),
     )
     ..registerFactory<SignOutCubit>(
       () => SignOutCubit(

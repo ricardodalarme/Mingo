@@ -1,4 +1,5 @@
 import 'package:app/features/account/presentation/delete/delete_account_page.dart';
+import 'package:app/features/account/presentation/export/export_data_page.dart';
 import 'package:app/features/annoyances/presentation/annoyance_check/annoyance_check_page.dart';
 import 'package:app/features/annoyances/presentation/gentle_request/gentle_request_page.dart';
 import 'package:app/features/annoyances/presentation/gentle_request_detail/gentle_request_detail_page.dart';
@@ -204,6 +205,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: OurViewRoute.page),
     AutoRoute(page: ConsentsRoute.page),
     AutoRoute(page: DeleteAccountRoute.page),
+    AutoRoute(page: ExportDataRoute.page),
     AutoRoute(page: BadDayRoute.page),
     AutoRoute(page: StarterRoute.page),
     AutoRoute(page: DayRoute.page),

@@ -322,7 +322,7 @@ class _Translations$account$en extends Translations$account$pt {
   @override
   String get deleteHighlight => 'account';
   @override
-  String get deleteText => 'Your data is erased after 14 days. This needs a fresh sign-in.';
+  String get deleteText => 'Your data is erased after 30 days. This needs a fresh sign-in.';
   @override
   String get deleteWarningTitle => 'This also ends the link';
   @override
@@ -335,7 +335,7 @@ class _Translations$account$en extends Translations$account$pt {
   String get deleteConfirmTitle => 'Delete your account?';
   @override
   String get deleteConfirmText =>
-      'You have 14 days to change your mind. After that, nothing can be recovered.';
+      'You have 30 days to change your mind. After that, nothing can be recovered.';
   @override
   String get reauthReason => 'Confirm to delete your account.';
   @override
@@ -378,6 +378,8 @@ class _Translations$account$en extends Translations$account$pt {
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'Could not finish now. Try again.',
   };
+  @override
+  late final _Translations$account$export$en export = _Translations$account$export$en._(_root);
 }
 
 // Path: annoyanceCheck
@@ -6580,6 +6582,40 @@ class _Translations$acceptInvite$unusable$en extends Translations$acceptInvite$u
   String get close => 'Close';
 }
 
+// Path: account.export
+class _Translations$account$export$en extends Translations$account$export$pt {
+  _Translations$account$export$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get appBarTitle => 'Export my data';
+  @override
+  String get title => 'Take your data with you';
+  @override
+  String get titleHighlight => 'your data';
+  @override
+  String get text =>
+      'We build a file with only what is yours: slips, notes and answers. Nothing from the other person goes in it.';
+  @override
+  String get note => 'The link lasts a few minutes. You can build one file a day.';
+  @override
+  String get action => 'Build the file';
+  @override
+  String get again => 'Build again';
+  @override
+  String get beforeDelete => 'Export before deleting';
+  @override
+  String get openFailed => 'We could not open the file. Try building it again.';
+  @override
+  Map<String, String> get errors => {
+    'EXPORT_LIMIT': 'You already built a file today. Try again tomorrow.',
+    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
+    'other': 'We could not build the file now. Try again.',
+  };
+}
+
 // Path: chat.action
 class _Translations$chat$action$en extends Translations$chat$action$pt {
   _Translations$chat$action$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -8109,7 +8145,7 @@ extension on TranslationsEn {
             'Send this code to your person. What each of you has written so far stays private.',
           'account.deleteTitle' => 'Delete account',
           'account.deleteHighlight' => 'account',
-          'account.deleteText' => 'Your data is erased after 14 days. This needs a fresh sign-in.',
+          'account.deleteText' => 'Your data is erased after 30 days. This needs a fresh sign-in.',
           'account.deleteWarningTitle' => 'This also ends the link',
           'account.deleteWarning' => ({
             required Object name,
@@ -8118,7 +8154,7 @@ extension on TranslationsEn {
           'account.deleteAction' => 'Delete account',
           'account.deleteConfirmTitle' => 'Delete your account?',
           'account.deleteConfirmText' =>
-            'You have 14 days to change your mind. After that, nothing can be recovered.',
+            'You have 30 days to change your mind. After that, nothing can be recovered.',
           'account.reauthReason' => 'Confirm to delete your account.',
           'account.pendingTitle' => ({
             required Object month,
@@ -8151,6 +8187,19 @@ extension on TranslationsEn {
           'account.months.11' => 'Dec',
           'account.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'account.errors.other' => 'Could not finish now. Try again.',
+          'account.export.appBarTitle' => 'Export my data',
+          'account.export.title' => 'Take your data with you',
+          'account.export.titleHighlight' => 'your data',
+          'account.export.text' => 'We build a file with only what is yours: slips, notes and answers. Nothing from the other person goes in it.',
+          'account.export.note' => 'The link lasts a few minutes. You can build one file a day.',
+          'account.export.action' => 'Build the file',
+          'account.export.again' => 'Build again',
+          'account.export.beforeDelete' => 'Export before deleting',
+          'account.export.openFailed' => 'We could not open the file. Try building it again.',
+          'account.export.errors.EXPORT_LIMIT' =>
+            'You already built a file today. Try again tomorrow.',
+          'account.export.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'account.export.errors.other' => 'We could not build the file now. Try again.',
           'annoyanceCheck.title' => 'Does this still bother you?',
           'annoyanceCheck.titleHighlight' => 'bother',
           'annoyanceCheck.age' => ({
@@ -8663,6 +8712,9 @@ extension on TranslationsEn {
           'dates.kinds.relationship' => 'Relationship',
           'dates.kinds.birthday' => 'Birthday',
           'dates.kinds.first' => 'A first time',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.kinds.trip' => 'Trip',
           'dates.kinds.custom' => 'Other',
           'dates.kinds.holiday' => 'Holiday',
@@ -8675,9 +8727,6 @@ extension on TranslationsEn {
           'dates.yearHelp' => 'Without the year the date just repeats, with no age.',
           'dates.yearErrors.invalid' => 'Use a year between 1900 and 2200',
           'dates.months.0' => 'January',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.months.1' => 'February',
           'dates.months.2' => 'March',
           'dates.months.3' => 'April',
@@ -9272,6 +9321,9 @@ extension on TranslationsEn {
           'helpSupport.faqQuestions.replyTime' => 'When will I get an answer?',
           'helpSupport.faqQuestions.offline' => 'What if I send without internet?',
           'helpSupport.faqQuestions.privacy' => 'Who reads what I send?',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.faqQuestions.reportBug' => 'How do I report a bug?',
           'helpSupport.faqAnswers.replyTime' => 'We reply within 2 business days.',
           'helpSupport.faqAnswers.offline' =>
@@ -9286,9 +9338,6 @@ extension on TranslationsEn {
           'helpSupport.supportHighlight' => 'help',
           'helpSupport.topics.account' => 'Account',
           'helpSupport.topics.billing' => 'Billing',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.topics.bug' => 'Bug',
           'helpSupport.topics.other' => 'Other',
           'helpSupport.messageLabel' => 'Message',
@@ -9957,6 +10006,9 @@ extension on TranslationsEn {
           'loveStyle.manualErrors.other' => 'Couldn\'t save to My manual right now. Try again.',
           'loveStyle.shareErrors.NOT_PAIRED' => 'You don\'t have a connected partner yet.',
           'loveStyle.shareErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.shareErrors.other' => 'Couldn\'t show it right now. Try again.',
           'loveStyle.revokeErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'loveStyle.revokeErrors.other' =>
@@ -9970,9 +10022,6 @@ extension on TranslationsEn {
           'memories.storyText' => 'Your numbers in an image, with only what you choose.',
           'memories.placesLabel' => 'PLACES',
           'memories.placesText' => 'Only the name of the place, never the location.',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.placeLabel' => 'Place (optional)',
           'memories.placeHint' => 'E.g. Lisbon',
           'memories.placeAddressNote' =>
@@ -10550,6 +10599,9 @@ extension on TranslationsEn {
           'programs.restartConfirmTitle' => 'Start over?',
           'programs.restartConfirmText' =>
             'This clears your lesson marks and returns to the first lesson.',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.restartConfirm' => 'Start over',
           'programs.completed' => 'Completed',
           'programs.lessonsTitle' => 'Lessons',
@@ -10563,9 +10615,6 @@ extension on TranslationsEn {
           'programs.shortRead' => 'A short idea for today.',
           'programs.ready' => 'Done',
           'programs.saveForLater' => 'Save for later',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.saved' => 'Saved for later.',
           'programs.savedTag' => 'Saved',
           'programs.lockedTitle' => 'Plus lesson',
@@ -11117,6 +11166,9 @@ extension on TranslationsEn {
           'slipDetail.edit' => 'Edit',
           'slipDetail.editSave' => 'Save',
           'slipDetail.editCancel' => 'Cancel',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.delete' => 'Delete',
           'slipDetail.deleteTitle' => 'Delete this slip?',
           'slipDetail.deleteText' => 'It will be removed from your week and your timeline.',
@@ -11129,9 +11181,6 @@ extension on TranslationsEn {
           'slipDetail.errorText' => 'It is still saved. Try again.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'This slip no longer exists.',
           'slipDetail.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.errors.other' => 'Couldn\'t do that right now. Try again.',
           'slipDetail.discardTitle' => 'Discard this slip?',
           'slipDetail.weekdaysShort.0' => 'Mon',
@@ -11744,6 +11793,9 @@ extension on TranslationsEn {
           'unpair.errors.other' => 'Could not unpair right now. Try again.',
           'weeklyReview.title' => 'Your week',
           'weeklyReview.titleHighlight' => 'week',
+          _ => null,
+        } ??
+        switch (path) {
           'weeklyReview.range' => ({
             required Object month,
             required Object start,
@@ -11760,9 +11812,6 @@ extension on TranslationsEn {
           'weeklyReview.months.8' => 'September',
           'weeklyReview.months.9' => 'October',
           'weeklyReview.months.10' => 'November',
-          _ => null,
-        } ??
-        switch (path) {
           'weeklyReview.months.11' => 'December',
           'weeklyReview.slips' =>
             ({required num count}) =>

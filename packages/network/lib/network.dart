@@ -1,4 +1,5 @@
-export 'package:dio/dio.dart' show DioException, Options, Response, ResponseBody, ResponseType;
+export 'package:dio/dio.dart'
+    show DioException, Options, RequestOptions, Response, ResponseBody, ResponseType;
 export 'package:gql/language.dart';
 export 'package:graphql/client.dart'
     show

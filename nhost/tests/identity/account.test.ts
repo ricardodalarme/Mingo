@@ -1,13 +1,13 @@
 import { test } from 'node:test';
 import { assert, couple, denied, ok, person, randomUUID, signUp, sql, upload, waitFor } from '../lib.ts';
 
-test('asking to delete the account ends the pairing at once and schedules the purge in 14 days', async () => {
+test('asking to delete the account ends the pairing at once and schedules the purge in 30 days', async () => {
   const { a, b } = await couple();
   await ok(a, `mutation { insertSlipsOne(object: {body: "um bom dia"}) { id } }`);
   const request = (await ok(a, `mutation { insertDeletionRequestsOne(object: {}) { userId requestedAt purgeAfter } }`)).insertDeletionRequestsOne;
   assert.equal(request.userId, a.id);
   const days = await sql(`select round(extract(epoch from (purge_after - requested_at)) / 86400) from public.deletion_requests where user_id = '${a.id}'`);
-  assert.deepEqual(days, [['14']]);
+  assert.deepEqual(days, [['30']]);
   assert.deepEqual((await ok(b, `{ coupleMembers { userId } couples { id } }`)), { coupleMembers: [], couples: [] });
   assert.equal((await ok(a, `{ coupleMembers { userId } }`)).coupleMembers.length, 0);
   assert.equal((await ok(a, `{ slips { id } }`)).slips.length, 1, 'private data is untouched until the purge');

@@ -2,6 +2,7 @@ import 'package:app/features/account/data/models/deletion_request.dart';
 import 'package:app/features/account/presentation/delete/cubit/delete_account_cubit.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -62,11 +63,23 @@ class const DeleteAccountPage({super.key}) extends StatelessWidget implements Au
               ),
             ],
           ),
-          footer: BaseButton(
-            text: l10n.deleteAction,
-            variant: BaseButtonVariant.destructive,
-            isLoading: isWorking,
-            onPressed: () => _confirm(context),
+          footer: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              BaseButton(
+                text: l10n.export.beforeDelete,
+                variant: BaseButtonVariant.secondary,
+                onPressed: () => context.pushRoute(const ExportDataRoute()),
+              ),
+              const SizedBox(height: AppSpace.s10),
+              BaseButton(
+                text: l10n.deleteAction,
+                variant: BaseButtonVariant.destructive,
+                isLoading: isWorking,
+                onPressed: () => _confirm(context),
+              ),
+            ],
           ),
         ),
       ),

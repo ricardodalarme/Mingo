@@ -1,13 +1,13 @@
 {
   "deleteTitle": "Delete account",
   "deleteHighlight": "account",
-  "deleteText": "Your data is erased after 14 days. This needs a fresh sign-in.",
+  "deleteText": "Your data is erased after 30 days. This needs a fresh sign-in.",
   "deleteWarningTitle": "This also ends the link",
   "deleteWarning": "This also ends the link with {name}.",
   "deleteWarningNoPartner": "This also ends the link with your partner.",
   "deleteAction": "Delete account",
   "deleteConfirmTitle": "Delete your account?",
-  "deleteConfirmText": "You have 14 days to change your mind. After that, nothing can be recovered.",
+  "deleteConfirmText": "You have 30 days to change your mind. After that, nothing can be recovered.",
   "reauthReason": "Confirm to delete your account.",
   "pendingTitle": "Deletion on {month} {day}",
   "pendingHighlight": "{month} {day}",
@@ -18,9 +18,38 @@
   "signOutPending": "You have {count} slips that were not sent yet. Signing out and removing data erases them.",
   "signOut": "Sign out",
   "signOutRemove": "Sign out and remove data",
-  "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "months": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
   "errors(map)": {
     "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
     "other": "Could not finish now. Try again."
+  },
+  "export": {
+    "appBarTitle": "Export my data",
+    "title": "Take your data with you",
+    "titleHighlight": "your data",
+    "text": "We build a file with only what is yours: slips, notes and answers. Nothing from the other person goes in it.",
+    "note": "The link lasts a few minutes. You can build one file a day.",
+    "action": "Build the file",
+    "again": "Build again",
+    "beforeDelete": "Export before deleting",
+    "openFailed": "We could not open the file. Try building it again.",
+    "errors(map)": {
+      "EXPORT_LIMIT": "You already built a file today. Try again tomorrow.",
+      "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
+      "other": "We could not build the file now. Try again."
+    }
   }
 }

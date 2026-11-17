@@ -259,6 +259,11 @@ class const _AccountActions() extends StatelessWidget {
           onTap: () => showSignOutDialog(context),
         ),
         BaseListTile(
+          title: context.l10n.account.export.appBarTitle,
+          icon: AppIcons.download,
+          onTap: () => context.pushRoute(const ExportDataRoute()),
+        ),
+        BaseListTile(
           title: l10n.deleteAccount,
           icon: AppIcons.trash,
           isDestructive: true,

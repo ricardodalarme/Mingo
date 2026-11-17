@@ -4,7 +4,7 @@ import 'package:app/features/authentication/data/repositories/authentication_rep
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
-/// Requests and cancels the 14-day account deletion.
+/// Requests and cancels the 30-day account deletion, and exports the person's data.
 class AccountRepository({
   required final AccountDataSource _dataSource,
   required final AuthenticationRepository _authenticationRepository,
@@ -37,6 +37,16 @@ class AccountRepository({
       return DeletionRequest(requestedAt: row.requestedAt, purgeAfter: row.purgeAfter);
     } catch (e, stack) {
       _logger.error('Failed to request account deletion', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// A short-lived link to a file with the person's own data.
+  Future<Uri> exportData() async {
+    try {
+      return await _dataSource.exportData(accessToken: _authenticationRepository.getAccessToken());
+    } catch (e, stack) {
+      _logger.error('Failed to export the data', error: e, stackTrace: stack);
       rethrow;
     }
   }

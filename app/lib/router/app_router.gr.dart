@@ -682,6 +682,22 @@ class ExistingAccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ExportDataPage]
+class ExportDataRoute extends PageRouteInfo<void> {
+  const ExportDataRoute({List<PageRouteInfo>? children})
+    : super(ExportDataRoute.name, initialChildren: children);
+
+  static const String name = 'ExportDataRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const ExportDataPage());
+    },
+  );
+}
+
+/// generated route for
 /// [FightStylePage]
 class FightStyleRoute extends PageRouteInfo<void> {
   const FightStyleRoute({List<PageRouteInfo>? children})

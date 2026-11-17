@@ -277,8 +277,8 @@ class Translations$account$pt {
   /// pt: 'conta'
   String get deleteHighlight => 'conta';
 
-  /// pt: 'Os dados são apagados após 14 dias. Precisa de nova autenticação.'
-  String get deleteText => 'Os dados são apagados após 14 dias. Precisa de nova autenticação.';
+  /// pt: 'Os dados são apagados após 30 dias. Precisa de nova autenticação.'
+  String get deleteText => 'Os dados são apagados após 30 dias. Precisa de nova autenticação.';
 
   /// pt: 'Isso também desfaz o vínculo'
   String get deleteWarningTitle => 'Isso também desfaz o vínculo';
@@ -295,9 +295,9 @@ class Translations$account$pt {
   /// pt: 'Apagar sua conta?'
   String get deleteConfirmTitle => 'Apagar sua conta?';
 
-  /// pt: 'Você terá 14 dias para mudar de ideia. Depois disso, nada pode ser recuperado.'
+  /// pt: 'Você terá 30 dias para mudar de ideia. Depois disso, nada pode ser recuperado.'
   String get deleteConfirmText =>
-      'Você terá 14 dias para mudar de ideia. Depois disso, nada pode ser recuperado.';
+      'Você terá 30 dias para mudar de ideia. Depois disso, nada pode ser recuperado.';
 
   /// pt: 'Confirme para apagar sua conta.'
   String get reauthReason => 'Confirme para apagar sua conta.';
@@ -349,6 +349,7 @@ class Translations$account$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para concluir agora. Tente de novo.',
   };
+  late final Translations$account$export$pt export = Translations$account$export$pt.internal(_root);
 }
 
 // Path: annoyanceCheck
@@ -8238,6 +8239,49 @@ class Translations$acceptInvite$unusable$pt {
   String get close => 'Fechar';
 }
 
+// Path: account.export
+class Translations$account$export$pt {
+  Translations$account$export$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Exportar meus dados'
+  String get appBarTitle => 'Exportar meus dados';
+
+  /// pt: 'Levar seus dados com você'
+  String get title => 'Levar seus dados com você';
+
+  /// pt: 'seus dados'
+  String get titleHighlight => 'seus dados';
+
+  /// pt: 'Geramos um arquivo só com o que é seu: slips, anotações e respostas. Nada da outra pessoa vai nele.'
+  String get text =>
+      'Geramos um arquivo só com o que é seu: slips, anotações e respostas. Nada da outra pessoa vai nele.';
+
+  /// pt: 'O link dura poucos minutos. Dá para gerar um arquivo por dia.'
+  String get note => 'O link dura poucos minutos. Dá para gerar um arquivo por dia.';
+
+  /// pt: 'Gerar o arquivo'
+  String get action => 'Gerar o arquivo';
+
+  /// pt: 'Gerar de novo'
+  String get again => 'Gerar de novo';
+
+  /// pt: 'Exportar antes de apagar'
+  String get beforeDelete => 'Exportar antes de apagar';
+
+  /// pt: 'Não deu para abrir o arquivo. Tente gerar de novo.'
+  String get openFailed => 'Não deu para abrir o arquivo. Tente gerar de novo.';
+
+  Map<String, String> get errors => {
+    'EXPORT_LIMIT': 'Você já gerou um arquivo hoje. Tente de novo amanhã.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para gerar o arquivo agora. Tente de novo.',
+  };
+}
+
 // Path: chat.action
 class Translations$chat$action$pt {
   Translations$chat$action$pt.internal(this._root);
@@ -10060,7 +10104,7 @@ extension on Translations {
           'account.deleteTitle' => 'Apagar conta',
           'account.deleteHighlight' => 'conta',
           'account.deleteText' =>
-            'Os dados são apagados após 14 dias. Precisa de nova autenticação.',
+            'Os dados são apagados após 30 dias. Precisa de nova autenticação.',
           'account.deleteWarningTitle' => 'Isso também desfaz o vínculo',
           'account.deleteWarning' => ({
             required Object name,
@@ -10069,7 +10113,7 @@ extension on Translations {
           'account.deleteAction' => 'Apagar conta',
           'account.deleteConfirmTitle' => 'Apagar sua conta?',
           'account.deleteConfirmText' =>
-            'Você terá 14 dias para mudar de ideia. Depois disso, nada pode ser recuperado.',
+            'Você terá 30 dias para mudar de ideia. Depois disso, nada pode ser recuperado.',
           'account.reauthReason' => 'Confirme para apagar sua conta.',
           'account.pendingTitle' => ({
             required Object day,
@@ -10102,6 +10146,19 @@ extension on Translations {
           'account.months.11' => 'dez',
           'account.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'account.errors.other' => 'Não deu para concluir agora. Tente de novo.',
+          'account.export.appBarTitle' => 'Exportar meus dados',
+          'account.export.title' => 'Levar seus dados com você',
+          'account.export.titleHighlight' => 'seus dados',
+          'account.export.text' => 'Geramos um arquivo só com o que é seu: slips, anotações e respostas. Nada da outra pessoa vai nele.',
+          'account.export.note' => 'O link dura poucos minutos. Dá para gerar um arquivo por dia.',
+          'account.export.action' => 'Gerar o arquivo',
+          'account.export.again' => 'Gerar de novo',
+          'account.export.beforeDelete' => 'Exportar antes de apagar',
+          'account.export.openFailed' => 'Não deu para abrir o arquivo. Tente gerar de novo.',
+          'account.export.errors.EXPORT_LIMIT' =>
+            'Você já gerou um arquivo hoje. Tente de novo amanhã.',
+          'account.export.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'account.export.errors.other' => 'Não deu para gerar o arquivo agora. Tente de novo.',
           'annoyanceCheck.title' => 'Isso ainda incomoda?',
           'annoyanceCheck.titleHighlight' => 'incomoda',
           'annoyanceCheck.age' => ({
@@ -10622,6 +10679,9 @@ extension on Translations {
           'dates.kinds.relationship' => 'Namoro',
           'dates.kinds.birthday' => 'Aniversário',
           'dates.kinds.first' => 'Uma primeira vez',
+          _ => null,
+        } ??
+        switch (path) {
           'dates.kinds.trip' => 'Viagem',
           'dates.kinds.custom' => 'Outra',
           'dates.kinds.holiday' => 'Feriado',
@@ -10634,9 +10694,6 @@ extension on Translations {
           'dates.yearHelp' => 'Sem o ano, a data só se repete, sem idade.',
           'dates.yearErrors.invalid' => 'Use um ano entre 1900 e 2200',
           'dates.months.0' => 'janeiro',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.months.1' => 'fevereiro',
           'dates.months.2' => 'março',
           'dates.months.3' => 'abril',
@@ -11236,6 +11293,9 @@ extension on Translations {
           'helpSupport.faqQuestions.replyTime' => 'Quando vou receber uma resposta?',
           'helpSupport.faqQuestions.offline' => 'E se eu enviar sem internet?',
           'helpSupport.faqQuestions.privacy' => 'Quem lê o que eu envio?',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.faqQuestions.reportBug' => 'Como relato um erro?',
           'helpSupport.faqAnswers.replyTime' => 'Respondemos em até 2 dias úteis.',
           'helpSupport.faqAnswers.offline' =>
@@ -11252,9 +11312,6 @@ extension on Translations {
           'helpSupport.supportHighlight' => 'ajudar',
           'helpSupport.topics.account' => 'Conta',
           'helpSupport.topics.billing' => 'Cobrança',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.topics.bug' => 'Erro',
           'helpSupport.topics.other' => 'Outro',
           'helpSupport.messageLabel' => 'Mensagem',
@@ -11920,6 +11977,9 @@ extension on Translations {
             'Não deu para salvar no Meu manual agora. Tente de novo.',
           'loveStyle.shareErrors.NOT_PAIRED' => 'Você ainda não tem um par conectado.',
           'loveStyle.shareErrors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.shareErrors.other' => 'Não deu para mostrar agora. Tente de novo.',
           'loveStyle.revokeErrors.RATE_LIMITED' =>
             'Muitas tentativas seguidas. Espere um instante.',
@@ -11933,9 +11993,6 @@ extension on Translations {
           'memories.storyText' => 'Seus números em uma imagem, só com o que você escolher.',
           'memories.placesLabel' => 'LUGARES',
           'memories.placesText' => 'Só o nome do lugar, nunca a localização.',
-          _ => null,
-        } ??
-        switch (path) {
           'memories.placeLabel' => 'Lugar (opcional)',
           'memories.placeHint' => 'Ex.: Paraty',
           'memories.placeAddressNote' => 'Prefira só o nome do lugar, sem endereço ou número.',
@@ -12518,6 +12575,9 @@ extension on Translations {
           'programs.restart' => 'Começar de novo',
           'programs.restartConfirmTitle' => 'Começar de novo?',
           'programs.restartConfirmText' => 'Isto limpa suas marcações e volta à primeira lição.',
+          _ => null,
+        } ??
+        switch (path) {
           'programs.restartConfirm' => 'Começar de novo',
           'programs.completed' => 'Concluído',
           'programs.lessonsTitle' => 'Lições',
@@ -12532,9 +12592,6 @@ extension on Translations {
           'programs.shortRead' => 'Uma ideia curta para hoje.',
           'programs.ready' => 'Pronto',
           'programs.saveForLater' => 'Salvar para depois',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.saved' => 'Guardado para depois.',
           'programs.savedTag' => 'Guardado',
           'programs.lockedTitle' => 'Lição do Plus',
@@ -13092,6 +13149,9 @@ extension on Translations {
           'slipDetail.edit' => 'Editar',
           'slipDetail.editSave' => 'Salvar',
           'slipDetail.editCancel' => 'Cancelar',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.delete' => 'Apagar',
           'slipDetail.deleteTitle' => 'Apagar este slip?',
           'slipDetail.deleteText' => 'Será removido da sua semana e da linha do tempo.',
@@ -13104,9 +13164,6 @@ extension on Translations {
           'slipDetail.errorText' => 'Ele continua salvo. Tente de novo.',
           'slipDetail.errors.SLIP_NOT_FOUND' => 'Este slip não existe mais.',
           'slipDetail.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'slipDetail.discardTitle' => 'Descartar este slip?',
           'slipDetail.weekdaysShort.0' => 'Seg',
@@ -13719,6 +13776,9 @@ extension on Translations {
           'unpair.errors.other' => 'Não deu para desvincular agora. Tente de novo.',
           'weeklyReview.title' => 'Sua semana',
           'weeklyReview.titleHighlight' => 'semana',
+          _ => null,
+        } ??
+        switch (path) {
           'weeklyReview.range' => ({
             required Object start,
             required Object end,
@@ -13735,9 +13795,6 @@ extension on Translations {
           'weeklyReview.months.8' => 'setembro',
           'weeklyReview.months.9' => 'outubro',
           'weeklyReview.months.10' => 'novembro',
-          _ => null,
-        } ??
-        switch (path) {
           'weeklyReview.months.11' => 'dezembro',
           'weeklyReview.slips' =>
             ({required num count}) =>
