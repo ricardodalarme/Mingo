@@ -1842,15 +1842,6 @@ class Translations$fightStyle$pt {
 
   // Translations
 
-  /// pt: 'Como eu reajo numa briga'
-  String get exerciseTitle => 'Como eu reajo numa briga';
-
-  /// pt: 'reajo'
-  String get exerciseHighlight => 'reajo';
-
-  /// pt: 'Seis perguntas rápidas, só para você.'
-  String get exerciseSubtitle => 'Seis perguntas rápidas, só para você.';
-
   /// pt: 'Pergunta {current} de {total}'
   String questionOf({required Object current, required Object total}) =>
       'Pergunta ${current} de ${total}';
@@ -1862,6 +1853,14 @@ class Translations$fightStyle$pt {
     'O que mais te incomoda numa briga?',
     'Quando percebe que exagerou, você...',
     'O que te ajuda a voltar ao normal?',
+  ];
+  List<String> get questionHighlights => [
+    'primeiro',
+    'cala',
+    'acontecer',
+    'incomoda',
+    'exagerou',
+    'normal',
   ];
   Map<String, String> get options1 => {
     'pursue': 'Continuo falando até resolver.',
@@ -1974,6 +1973,9 @@ class Translations$fightStyle$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para adicionar agora. Tente de novo.',
   };
+
+  /// pt: 'Resultado'
+  String get resultBarTitle => 'Resultado';
 }
 
 // Path: firstSlip
@@ -2046,7 +2048,6 @@ class Translations$games$pt {
   late final Translations$games$noPartner$pt noPartner = Translations$games$noPartner$pt.internal(
     _root,
   );
-  late final Translations$games$common$pt common = Translations$games$common$pt.internal(_root);
 
   /// pt: 'Não deu para abrir o jogo'
   String get loadErrorTitle => 'Não deu para abrir o jogo';
@@ -2064,6 +2065,7 @@ class Translations$games$pt {
     'ANSWER_LOCKED': 'As respostas deste jogo já foram fechadas. Não dá para editar agora.',
     'other': 'Não deu para fazer isso agora. Tente de novo.',
   };
+  late final Translations$games$common$pt common = Translations$games$common$pt.internal(_root);
 }
 
 // Path: gentleRequest
@@ -3918,35 +3920,25 @@ class Translations$loveStyle$pt {
 
   // Translations
 
-  /// pt: 'SÓ PARA VOCÊ'
-  String get entryLabel => 'SÓ PARA VOCÊ';
-
-  /// pt: 'Como eu me sinto querido(a)'
-  String get entryTitle => 'Como eu me sinto querido(a)';
-
-  /// pt: 'Seis perguntas rápidas para notar o que te faz sentir querido(a).'
-  String get entryText => 'Seis perguntas rápidas para notar o que te faz sentir querido(a).';
-
-  /// pt: 'Como eu me sinto querido(a)'
-  String get exerciseTitle => 'Como eu me sinto querido(a)';
-
-  /// pt: 'querido(a)'
-  String get exerciseHighlight => 'querido(a)';
-
-  /// pt: 'Seis perguntas rápidas, só para você.'
-  String get exerciseSubtitle => 'Seis perguntas rápidas, só para você.';
-
   /// pt: 'Pergunta {current} de {total}'
   String questionOf({required Object current, required Object total}) =>
       'Pergunta ${current} de ${total}';
 
   List<String> get questions => [
-    'O que mais faz você se sentir querido(a)?',
+    'O que mais faz você se sentir amado?',
     'Num dia difícil, o que mais te conforta?',
     'O que você nota primeiro quando seu par demonstra carinho?',
     'Qual desses gestos aquece seu coração?',
     'O que te faz sentir importante para alguém?',
     'Se pudesse escolher um gesto para hoje, qual seria?',
+  ];
+  List<String> get questionHighlights => [
+    'amado',
+    'conforta',
+    'carinho',
+    'coração',
+    'importante',
+    'gesto',
   ];
   Map<String, String> get options1 => {
     'time': 'Passar um tempo junto, sem pressa.',
@@ -4009,38 +4001,45 @@ class Translations$loveStyle$pt {
   /// pt: 'Só você vê as respostas. Você escolhe se quer mostrar o resultado.'
   String get privateNote => 'Só você vê as respostas. Você escolhe se quer mostrar o resultado.';
 
-  /// pt: 'O que faz você se sentir querido(a)'
-  String get resultTitle => 'O que faz você se sentir querido(a)';
+  /// pt: 'O que faz você se sentir amado'
+  String get resultTitle => 'O que faz você se sentir amado';
 
-  /// pt: 'querido(a)'
-  String get resultHighlight => 'querido(a)';
+  /// pt: 'amado'
+  String get resultHighlight => 'amado';
 
-  /// pt: 'Uma descrição do que te faz sentir querido(a), do seu jeito.'
-  String get resultSubtitle => 'Uma descrição do que te faz sentir querido(a), do seu jeito.';
+  /// pt: 'Uma leitura do que mais combina com você.'
+  String get resultSubtitle => 'Uma leitura do que mais combina com você.';
 
-  /// pt: 'O que mais combina com você'
-  String get topTag => 'O que mais combina com você';
-
+  Map<String, String> get labels => {
+    'time': 'Tempo só nosso',
+    'words': 'Palavras de carinho',
+    'acts': 'Ajuda com as tarefas',
+    'gifts': 'Presentes pequenos',
+    'touch': 'Toque e abraço',
+    'other': '',
+  };
+  Map<String, String> get commonLabels => {
+    'time': 'tempo só nosso',
+    'words': 'palavras de carinho',
+    'acts': 'ajuda com as tarefas',
+    'gifts': 'presentes pequenos',
+    'touch': 'toque e abraço',
+    'other': '',
+  };
   Map<String, String> get descriptions => {
-    'time': 'Você se sente querido(a) quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
-    'words': 'Você se sente querido(a) quando ouve, de forma sincera, o que a outra pessoa sente por você.',
-    'acts': 'Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.',
-    'gifts': 'Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
-    'touch': 'Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
-    'other': '',
-  };
-  Map<String, String> get shareDescriptions => {
-    'time': 'Eu me sinto querido(a) quando a gente passa um tempo junto, sem pressa e sem telas.',
-    'words': 'Eu me sinto querido(a) quando ouço, com sinceridade, o que você sente por mim.',
-    'acts': 'Eu me sinto querido(a) quando você percebe o que eu preciso e me ajuda sem eu pedir.',
-    'gifts': 'Eu me sinto querido(a) quando você lembra de mim num detalhe pequeno, escolhido com carinho.',
-    'touch': 'Eu me sinto querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+    'time': 'Você se sente amado quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
+    'words':
+        'Você se sente amado quando ouve, de forma sincera, o que a outra pessoa sente por você.',
+    'acts':
+        'Você se sente amado quando alguém percebe o que você precisa e ajuda sem que você peça.',
+    'gifts': 'Você se sente amado quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
+    'touch': 'Você se sente amado quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
     'other': '',
   };
 
-  /// pt: 'Salvo só para você. Mostrar no widget do seu par é uma escolha sua, e você pode desfazer.'
+  /// pt: 'Salvo só para você até você mostrar. Você pode desfazer quando quiser.'
   String get resultPrivacyNote =>
-      'Salvo só para você. Mostrar no widget do seu par é uma escolha sua, e você pode desfazer.';
+      'Salvo só para você até você mostrar. Você pode desfazer quando quiser.';
 
   /// pt: 'Salvar no Meu manual'
   String get saveManualAction => 'Salvar no Meu manual';
@@ -4054,18 +4053,69 @@ class Translations$loveStyle$pt {
   /// pt: 'Mostrar para {name}'
   String shareAction({required Object name}) => 'Mostrar para ${name}';
 
-  /// pt: 'Tirar do widget dele(a)'
-  String get revokeAction => 'Tirar do widget dele(a)';
+  /// pt: 'Deixar de mostrar para {name}'
+  String revokeAction({required Object name}) => 'Deixar de mostrar para ${name}';
 
-  /// pt: 'Aparece no widget dele(a) se ele(a) permitir recados.'
-  String get shareToast => 'Aparece no widget dele(a) se ele(a) permitir recados.';
+  /// pt: 'Mostrar para {name}?'
+  String shareConfirmTitle({required Object name}) => 'Mostrar para ${name}?';
 
-  /// pt: 'Não aparece mais no widget dele(a).'
-  String get revokeToast => 'Não aparece mais no widget dele(a).';
+  /// pt: 'Só o resultado aparece, nunca as suas respostas. {name} recebe um aviso e pode escolher não responder nada.'
+  String shareConfirmText({required Object name}) =>
+      'Só o resultado aparece, nunca as suas respostas. ${name} recebe um aviso e pode escolher não responder nada.';
 
-  /// pt: 'Quando vocês estiverem conectados, você pode mostrar isso no widget do seu par.'
-  String get shareSoloNote =>
-      'Quando vocês estiverem conectados, você pode mostrar isso no widget do seu par.';
+  /// pt: 'Mostrar'
+  String get shareConfirm => 'Mostrar';
+
+  /// pt: 'Agora não'
+  String get shareCancel => 'Agora não';
+
+  /// pt: 'Pronto. Agora {name} vê o resultado.'
+  String shareToast({required Object name}) => 'Pronto. Agora ${name} vê o resultado.';
+
+  /// pt: 'Não aparece mais para {name}.'
+  String revokeToast({required Object name}) => 'Não aparece mais para ${name}.';
+
+  /// pt: 'Fica só com você. Quando alguém entrar, você decide se mostra.'
+  String get shareSoloNote => 'Fica só com você. Quando alguém entrar, você decide se mostra.';
+
+  /// pt: 'Convidar minha pessoa'
+  String get inviteAction => 'Convidar minha pessoa';
+
+  /// pt: 'Comparar os dois'
+  String get compareAction => 'Comparar os dois';
+
+  /// pt: 'Vocês dois'
+  String get compareTitle => 'Vocês dois';
+
+  /// pt: 'O que faz vocês se sentirem amados'
+  String get compareHeadline => 'O que faz vocês se sentirem amados';
+
+  /// pt: 'amados'
+  String get compareHighlight => 'amados';
+
+  /// pt: 'Você'
+  String get compareYou => 'Você';
+
+  /// pt: 'Mais importante'
+  String get compareMost => 'Mais importante';
+
+  /// pt: 'Depois'
+  String get compareNext => 'Depois';
+
+  /// pt: 'Em comum'
+  String get compareCommon => 'Em comum';
+
+  /// pt: 'Os dois valorizam {label}.'
+  String compareCommonText({required Object label}) => 'Os dois valorizam ${label}.';
+
+  /// pt: 'Planejar um tempo só nosso'
+  String get comparePlan => 'Planejar um tempo só nosso';
+
+  /// pt: 'A comparação ainda não está pronta'
+  String get compareMissingTitle => 'A comparação ainda não está pronta';
+
+  /// pt: 'Ela aparece quando os dois mostrarem o resultado.'
+  String get compareMissingText => 'Ela aparece quando os dois mostrarem o resultado.';
 
   /// pt: 'seu par'
   String get partnerFallback => 'seu par';
@@ -4076,8 +4126,8 @@ class Translations$loveStyle$pt {
   /// pt: 'Tentar de novo'
   String get retryPairing => 'Tentar de novo';
 
-  /// pt: 'Refazer o exercício'
-  String get retake => 'Refazer o exercício';
+  /// pt: 'Refazer o quiz'
+  String get retake => 'Refazer o quiz';
 
   /// pt: 'Não deu para carregar'
   String get loadErrorTitle => 'Não deu para carregar';
@@ -4100,7 +4150,7 @@ class Translations$loveStyle$pt {
   };
   Map<String, String> get revokeErrors => {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para tirar do widget agora. Tente de novo.',
+    'other': 'Não deu para deixar de mostrar agora. Tente de novo.',
   };
 }
 
@@ -5764,17 +5814,14 @@ class Translations$questions$pt {
 
   // Translations
 
-  /// pt: 'Pergunta para vocês dois'
-  String get tag => 'Pergunta para vocês dois';
-
-  /// pt: 'Pergunta do dia'
-  String get eyebrow => 'Pergunta do dia';
+  /// pt: 'Pergunta do casal'
+  String get tag => 'Pergunta do casal';
 
   /// pt: 'Responder'
   String get answerCta => 'Responder';
 
-  /// pt: 'Editar minha resposta'
-  String get editCta => 'Editar minha resposta';
+  /// pt: 'Uma pergunta por dia ou por semana.'
+  String get introNote => 'Uma pergunta por dia ou por semana.';
 
   /// pt: 'Escreva o quanto quiser.'
   String get answerHint => 'Escreva o quanto quiser.';
@@ -5784,11 +5831,16 @@ class Translations$questions$pt {
     'tooLong': 'A resposta está muito longa',
   };
 
-  /// pt: 'Só você vê isto até seu par responder também.'
-  String get privateNote => 'Só você vê isto até seu par responder também.';
-
   /// pt: 'Seu par já respondeu. Envie a sua para ver as duas.'
   String get partnerAnsweredNote => 'Seu par já respondeu. Envie a sua para ver as duas.';
+
+  /// pt: 'Só depois que você enviar a sua e {name} responder também.'
+  String partnerSeesAfter({required Object name}) =>
+      'Só depois que você enviar a sua e ${name} responder também.';
+
+  /// pt: 'Só depois que você enviar a sua e seu par responder também.'
+  String get partnerSeesAfterFallback =>
+      'Só depois que você enviar a sua e seu par responder também.';
 
   /// pt: 'Sua resposta fica privada. Seu par vai ver depois que vocês se conectarem.'
   String get soloNote =>
@@ -5799,6 +5851,9 @@ class Translations$questions$pt {
 
   /// pt: 'Cancelar'
   String get cancel => 'Cancelar';
+
+  /// pt: 'Pular'
+  String get skip => 'Pular';
 
   /// pt: 'Sua resposta ficou guardada'
   String get waitingTitle => 'Sua resposta ficou guardada';
@@ -5812,23 +5867,20 @@ class Translations$questions$pt {
   /// pt: 'Verificar de novo'
   String get checkAgain => 'Verificar de novo';
 
-  /// pt: 'Recado de voz'
-  String get voiceSoon => 'Recado de voz';
+  /// pt: 'As duas lembranças'
+  String get revealTitle => 'As duas lembranças';
 
-  /// pt: 'Por enquanto as respostas são escritas. A voz vem depois.'
-  String get voiceSoonNote => 'Por enquanto as respostas são escritas. A voz vem depois.';
+  /// pt: 'lembranças'
+  String get revealHighlight => 'lembranças';
 
-  /// pt: 'Suas respostas juntas'
-  String get revealTitle => 'Suas respostas juntas';
+  /// pt: 'Querem guardar isso na história de vocês?'
+  String get keepPrompt => 'Querem guardar isso na história de vocês?';
 
-  /// pt: 'juntas'
-  String get revealHighlight => 'juntas';
+  /// pt: 'Salvar como marco'
+  String get saveMilestone => 'Salvar como marco';
 
-  /// pt: 'Agora que os dois responderam, vocês veem as duas.'
-  String get revealSubtitle => 'Agora que os dois responderam, vocês veem as duas.';
-
-  /// pt: 'Sem notas. Só o que cada um escreveu.'
-  String get revealNote => 'Sem notas. Só o que cada um escreveu.';
+  /// pt: 'Agora não'
+  String get notNow => 'Agora não';
 
   /// pt: 'Você'
   String get you => 'Você';
@@ -5858,6 +5910,9 @@ class Translations$questions$pt {
   String get close => 'Fechar';
 
   Map<String, String> get errors => {'other': 'Não deu para salvar agora. Tente de novo.'};
+
+  /// pt: 'Editar minha resposta'
+  String get editCta => 'Editar minha resposta';
 }
 
 // Path: questionsEntry
@@ -7479,12 +7534,6 @@ class Translations$tabs$pt {
   /// pt: 'SÓ PARA VOCÊ'
   String get fightStyleLabel => 'SÓ PARA VOCÊ';
 
-  /// pt: 'Como eu reajo numa briga'
-  String get fightStyleTitle => 'Como eu reajo numa briga';
-
-  /// pt: 'Uma reflexão curta e privada sobre o seu jeito.'
-  String get fightStyleText => 'Uma reflexão curta e privada sobre o seu jeito.';
-
   /// pt: 'CONVERSAS'
   String get guidesLabel => 'CONVERSAS';
 
@@ -7517,9 +7566,6 @@ class Translations$tabs$pt {
 
   /// pt: 'Só seu'
   String get sectionPrivate => 'Só seu';
-
-  /// pt: 'Meus padrões'
-  String get sectionPatterns => 'Meus padrões';
 
   /// pt: '15 min · semanal'
   String get logisticsMeta => '15 min · semanal';
@@ -7606,12 +7652,6 @@ class Translations$tabs$pt {
 
   /// pt: 'Só para você'
   String get partnerMeta => 'Só para você';
-
-  /// pt: 'Como você reage'
-  String get fightStyleMeta => 'Como você reage';
-
-  /// pt: 'Como você se sente amado'
-  String get loveStyleMeta => 'Como você se sente amado';
 
   /// pt: 'Uma conversa calma'
   String get chatMeta => 'Uma conversa calma';
@@ -8854,9 +8894,6 @@ class Translations$games$playing$pt {
   String guessProgress({required Object current, required Object total}) =>
       'Palpite ${current} de ${total}';
 
-  /// pt: 'Você'
-  String get you => 'Você';
-
   /// pt: 'Eu'
   String get me => 'Eu';
 
@@ -9094,6 +9131,12 @@ class Translations$games$finished$pt {
 
   /// pt: 'Escolher outro jogo'
   String get chooseAnother => 'Escolher outro jogo';
+
+  /// pt: 'Esta rodada não está mais disponível'
+  String get missingTitle => 'Esta rodada não está mais disponível';
+
+  /// pt: 'O conteúdo mudou desde que vocês jogaram. Vocês podem começar outra.'
+  String get missingText => 'O conteúdo mudou desde que vocês jogaram. Vocês podem começar outra.';
 }
 
 // Path: games.notFound
@@ -9157,9 +9200,6 @@ class Translations$games$common$pt {
   final Translations _root; // ignore: unused_field
 
   // Translations
-
-  /// pt: 'Fechar'
-  String get close => 'Fechar';
 
   /// pt: 'Voltar'
   String get back => 'Voltar';
@@ -11548,9 +11588,6 @@ extension on Translations {
           'distance.addReunion' => 'Salvar uma data',
           'distance.errorTitle' => 'Não deu para carregar',
           'distance.errorText' => 'Tente de novo em instantes.',
-          'fightStyle.exerciseTitle' => 'Como eu reajo numa briga',
-          'fightStyle.exerciseHighlight' => 'reajo',
-          'fightStyle.exerciseSubtitle' => 'Seis perguntas rápidas, só para você.',
           'fightStyle.questionOf' => ({
             required Object current,
             required Object total,
@@ -11561,6 +11598,12 @@ extension on Translations {
           'fightStyle.questions.3' => 'O que mais te incomoda numa briga?',
           'fightStyle.questions.4' => 'Quando percebe que exagerou, você...',
           'fightStyle.questions.5' => 'O que te ajuda a voltar ao normal?',
+          'fightStyle.questionHighlights.0' => 'primeiro',
+          'fightStyle.questionHighlights.1' => 'cala',
+          'fightStyle.questionHighlights.2' => 'acontecer',
+          'fightStyle.questionHighlights.3' => 'incomoda',
+          'fightStyle.questionHighlights.4' => 'exagerou',
+          'fightStyle.questionHighlights.5' => 'normal',
           'fightStyle.options1.pursue' => 'Continuo falando até resolver.',
           'fightStyle.options1.withdraw' => 'Preciso de um tempo antes de continuar.',
           'fightStyle.options1.repair' => 'Tento aliviar o clima com algo mais leve.',
@@ -11629,6 +11672,7 @@ extension on Translations {
           'fightStyle.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
           'fightStyle.addErrors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'fightStyle.addErrors.other' => 'Não deu para adicionar agora. Tente de novo.',
+          'fightStyle.resultBarTitle' => 'Resultado',
           'firstSlip.title' => 'Comece com uma coisa boa',
           'firstSlip.titleHighlight' => 'uma coisa boa',
           'firstSlip.subtitle' => 'O que seu parceiro fez ultimamente que te fez sorrir? 30 segundos bastam. Ainda sem conta.',
@@ -11716,7 +11760,6 @@ extension on Translations {
             required Object current,
             required Object total,
           }) => 'Palpite ${current} de ${total}',
-          'games.playing.you' => 'Você',
           'games.playing.me' => 'Eu',
           'games.playing.both' => 'Os dois',
           'games.playing.partnerFallback' => 'Seu par',
@@ -11826,6 +11869,9 @@ extension on Translations {
             'Cada rodada traz conteúdo novo. Quando acabar, o app avisa e mistura o que já passou.',
           'games.finished.playAgain' => 'Jogar de novo',
           'games.finished.chooseAnother' => 'Escolher outro jogo',
+          'games.finished.missingTitle' => 'Esta rodada não está mais disponível',
+          'games.finished.missingText' =>
+            'O conteúdo mudou desde que vocês jogaram. Vocês podem começar outra.',
           'games.notFound.title' => 'Este jogo não existe',
           'games.notFound.text' =>
             'Ele pode ter mudado ou nunca ter existido. Volte e escolha outro.',
@@ -11836,8 +11882,6 @@ extension on Translations {
           'games.cancel.keep' => 'Continuar',
           'games.noPartner.title' => 'Os jogos são para os dois',
           'games.noPartner.text' => 'Quando seu par entrar, vocês podem jogar juntos.',
-          'games.common.close' => 'Fechar',
-          'games.common.back' => 'Voltar',
           'games.loadErrorTitle' => 'Não deu para abrir o jogo',
           'games.loadErrorText' => 'Nada foi perdido. Tente de novo.',
           'games.errors.NOT_PAIRED' => 'Os jogos precisam dos dois conectados.',
@@ -11851,6 +11895,7 @@ extension on Translations {
           'games.errors.ANSWER_LOCKED' =>
             'As respostas deste jogo já foram fechadas. Não dá para editar agora.',
           'games.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          'games.common.back' => 'Voltar',
           'gentleRequest.title' => 'Pedido gentil',
           'gentleRequest.titleHighlight' => 'gentil',
           'gentleRequest.whenLabel' => 'Quando…',
@@ -12024,6 +12069,9 @@ extension on Translations {
           }) => 'Passo ${current} de ${total}',
           'hardConversation.whatTitle' => 'O que aconteceu?',
           'hardConversation.whatHint' => 'Se quiser, conte do seu jeito',
+          _ => null,
+        } ??
+        switch (path) {
           'hardConversation.whatIgnored' => 'Ela se sentiu ignorada',
           'hardConversation.whatMoney' => 'Brigamos por dinheiro',
           'hardConversation.whatMisunderstanding' => 'Foi um mal-entendido',
@@ -12047,9 +12095,6 @@ extension on Translations {
           'hardConversation.sent' => 'Recado enviado',
           'hardConversation.exit' => 'Sair',
           'hardConversation.next' => 'Próximo',
-          _ => null,
-        } ??
-        switch (path) {
           'hardConversation.back' => 'Voltar',
           'hardConversation.retry' => 'Tentar de novo',
           'hardConversation.generationFailed' => 'Não deu para escrever uma frase agora.',
@@ -12082,9 +12127,6 @@ extension on Translations {
           'help.emptyText' => 'Estamos preparando mais sugestões.',
           'help.errorTitle' => 'Não deu para carregar',
           'help.errorText' => 'Tente de novo daqui a pouco.',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.title' => 'Ajuda',
           'helpSupport.contactTitle' => 'Falar com o suporte',
           'helpSupport.reportBug' => 'Relatar um erro',
@@ -12674,23 +12716,22 @@ extension on Translations {
           'logistics.confirm' => 'Confirmar',
           'logistics.waitingYou' => 'Esperando você',
           'logistics.waitingPartner' => 'Esperando a outra pessoa',
-          'loveStyle.entryLabel' => 'SÓ PARA VOCÊ',
-          'loveStyle.entryTitle' => 'Como eu me sinto querido(a)',
-          'loveStyle.entryText' =>
-            'Seis perguntas rápidas para notar o que te faz sentir querido(a).',
-          'loveStyle.exerciseTitle' => 'Como eu me sinto querido(a)',
-          'loveStyle.exerciseHighlight' => 'querido(a)',
-          'loveStyle.exerciseSubtitle' => 'Seis perguntas rápidas, só para você.',
           'loveStyle.questionOf' => ({
             required Object current,
             required Object total,
           }) => 'Pergunta ${current} de ${total}',
-          'loveStyle.questions.0' => 'O que mais faz você se sentir querido(a)?',
+          'loveStyle.questions.0' => 'O que mais faz você se sentir amado?',
           'loveStyle.questions.1' => 'Num dia difícil, o que mais te conforta?',
           'loveStyle.questions.2' => 'O que você nota primeiro quando seu par demonstra carinho?',
           'loveStyle.questions.3' => 'Qual desses gestos aquece seu coração?',
           'loveStyle.questions.4' => 'O que te faz sentir importante para alguém?',
           'loveStyle.questions.5' => 'Se pudesse escolher um gesto para hoje, qual seria?',
+          'loveStyle.questionHighlights.0' => 'amado',
+          'loveStyle.questionHighlights.1' => 'conforta',
+          'loveStyle.questionHighlights.2' => 'carinho',
+          'loveStyle.questionHighlights.3' => 'coração',
+          'loveStyle.questionHighlights.4' => 'importante',
+          'loveStyle.questionHighlights.5' => 'gesto',
           'loveStyle.options1.time' => 'Passar um tempo junto, sem pressa.',
           'loveStyle.options1.words' => 'Ouvir que sou importante.',
           'loveStyle.options1.acts' => 'Ver que a pessoa me ajuda com algo.',
@@ -12708,6 +12749,9 @@ extension on Translations {
           'loveStyle.options3.acts' => 'Quando a pessoa percebe o que eu preciso e faz.',
           'loveStyle.options3.gifts' => 'Quando a pessoa lembra de algo que eu gosto.',
           'loveStyle.options3.touch' => 'Quando a pessoa me toca de leve ao passar.',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.options3.other' => '',
           'loveStyle.options4.time' => 'Um encontro tranquilo, só nós dois.',
           'loveStyle.options4.words' => 'Uma conversa em que me sinto ouvido(a).',
@@ -12732,47 +12776,66 @@ extension on Translations {
           'loveStyle.back' => 'Voltar',
           'loveStyle.privateNote' =>
             'Só você vê as respostas. Você escolhe se quer mostrar o resultado.',
-          _ => null,
-        } ??
-        switch (path) {
-          'loveStyle.resultTitle' => 'O que faz você se sentir querido(a)',
-          'loveStyle.resultHighlight' => 'querido(a)',
-          'loveStyle.resultSubtitle' =>
-            'Uma descrição do que te faz sentir querido(a), do seu jeito.',
-          'loveStyle.topTag' => 'O que mais combina com você',
-          'loveStyle.descriptions.time' => 'Você se sente querido(a) quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
-          'loveStyle.descriptions.words' => 'Você se sente querido(a) quando ouve, de forma sincera, o que a outra pessoa sente por você.',
-          'loveStyle.descriptions.acts' => 'Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.',
-          'loveStyle.descriptions.gifts' => 'Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
-          'loveStyle.descriptions.touch' => 'Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+          'loveStyle.resultTitle' => 'O que faz você se sentir amado',
+          'loveStyle.resultHighlight' => 'amado',
+          'loveStyle.resultSubtitle' => 'Uma leitura do que mais combina com você.',
+          'loveStyle.labels.time' => 'Tempo só nosso',
+          'loveStyle.labels.words' => 'Palavras de carinho',
+          'loveStyle.labels.acts' => 'Ajuda com as tarefas',
+          'loveStyle.labels.gifts' => 'Presentes pequenos',
+          'loveStyle.labels.touch' => 'Toque e abraço',
+          'loveStyle.labels.other' => '',
+          'loveStyle.commonLabels.time' => 'tempo só nosso',
+          'loveStyle.commonLabels.words' => 'palavras de carinho',
+          'loveStyle.commonLabels.acts' => 'ajuda com as tarefas',
+          'loveStyle.commonLabels.gifts' => 'presentes pequenos',
+          'loveStyle.commonLabels.touch' => 'toque e abraço',
+          'loveStyle.commonLabels.other' => '',
+          'loveStyle.descriptions.time' => 'Você se sente amado quando tem tempo de verdade com quem gosta: sem pressa, sem telas, só a presença.',
+          'loveStyle.descriptions.words' => 'Você se sente amado quando ouve, de forma sincera, o que a outra pessoa sente por você.',
+          'loveStyle.descriptions.acts' => 'Você se sente amado quando alguém percebe o que você precisa e ajuda sem que você peça.',
+          'loveStyle.descriptions.gifts' => 'Você se sente amado quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
+          'loveStyle.descriptions.touch' => 'Você se sente amado quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
           'loveStyle.descriptions.other' => '',
-          'loveStyle.shareDescriptions.time' =>
-            'Eu me sinto querido(a) quando a gente passa um tempo junto, sem pressa e sem telas.',
-          'loveStyle.shareDescriptions.words' =>
-            'Eu me sinto querido(a) quando ouço, com sinceridade, o que você sente por mim.',
-          'loveStyle.shareDescriptions.acts' =>
-            'Eu me sinto querido(a) quando você percebe o que eu preciso e me ajuda sem eu pedir.',
-          'loveStyle.shareDescriptions.gifts' => 'Eu me sinto querido(a) quando você lembra de mim num detalhe pequeno, escolhido com carinho.',
-          'loveStyle.shareDescriptions.touch' => 'Eu me sinto querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
-          'loveStyle.shareDescriptions.other' => '',
-          'loveStyle.resultPrivacyNote' => 'Salvo só para você. Mostrar no widget do seu par é uma escolha sua, e você pode desfazer.',
+          'loveStyle.resultPrivacyNote' =>
+            'Salvo só para você até você mostrar. Você pode desfazer quando quiser.',
           'loveStyle.saveManualAction' => 'Salvar no Meu manual',
           'loveStyle.savedManualAction' => 'Salvo no Meu manual',
           'loveStyle.manualToast' => 'Salvo no Meu manual.',
           'loveStyle.shareAction' => ({required Object name}) => 'Mostrar para ${name}',
-          'loveStyle.revokeAction' => 'Tirar do widget dele(a)',
-          'loveStyle.shareToast' => 'Aparece no widget dele(a) se ele(a) permitir recados.',
-          'loveStyle.revokeToast' => 'Não aparece mais no widget dele(a).',
+          'loveStyle.revokeAction' => ({required Object name}) => 'Deixar de mostrar para ${name}',
+          'loveStyle.shareConfirmTitle' => ({required Object name}) => 'Mostrar para ${name}?',
+          'loveStyle.shareConfirmText' => ({
+            required Object name,
+          }) => 'Só o resultado aparece, nunca as suas respostas. ${name} recebe um aviso e pode escolher não responder nada.',
+          'loveStyle.shareConfirm' => 'Mostrar',
+          'loveStyle.shareCancel' => 'Agora não',
+          'loveStyle.shareToast' => ({
+            required Object name,
+          }) => 'Pronto. Agora ${name} vê o resultado.',
+          'loveStyle.revokeToast' => ({required Object name}) => 'Não aparece mais para ${name}.',
           'loveStyle.shareSoloNote' =>
-            'Quando vocês estiverem conectados, você pode mostrar isso no widget do seu par.',
+            'Fica só com você. Quando alguém entrar, você decide se mostra.',
+          'loveStyle.inviteAction' => 'Convidar minha pessoa',
+          'loveStyle.compareAction' => 'Comparar os dois',
+          'loveStyle.compareTitle' => 'Vocês dois',
+          'loveStyle.compareHeadline' => 'O que faz vocês se sentirem amados',
+          'loveStyle.compareHighlight' => 'amados',
+          'loveStyle.compareYou' => 'Você',
+          'loveStyle.compareMost' => 'Mais importante',
+          'loveStyle.compareNext' => 'Depois',
+          'loveStyle.compareCommon' => 'Em comum',
+          'loveStyle.compareCommonText' => ({
+            required Object label,
+          }) => 'Os dois valorizam ${label}.',
+          'loveStyle.comparePlan' => 'Planejar um tempo só nosso',
+          'loveStyle.compareMissingTitle' => 'A comparação ainda não está pronta',
+          'loveStyle.compareMissingText' => 'Ela aparece quando os dois mostrarem o resultado.',
           'loveStyle.partnerFallback' => 'seu par',
           'loveStyle.pairingErrorNote' => 'Não deu para verificar seu par agora.',
           'loveStyle.retryPairing' => 'Tentar de novo',
-          'loveStyle.retake' => 'Refazer o exercício',
+          'loveStyle.retake' => 'Refazer o quiz',
           'loveStyle.loadErrorTitle' => 'Não deu para carregar',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.loadErrorText' => 'Não deu para abrir seu resultado agora. Tente de novo.',
           'loveStyle.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'loveStyle.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
@@ -12785,7 +12848,7 @@ extension on Translations {
           'loveStyle.shareErrors.other' => 'Não deu para mostrar agora. Tente de novo.',
           'loveStyle.revokeErrors.RATE_LIMITED' =>
             'Muitas tentativas seguidas. Espere um instante.',
-          'loveStyle.revokeErrors.other' => 'Não deu para tirar do widget agora. Tente de novo.',
+          'loveStyle.revokeErrors.other' => 'Não deu para deixar de mostrar agora. Tente de novo.',
           'memories.title' => 'Memórias',
           'memories.historyLabel' => 'NOSSA HISTÓRIA',
           'memories.historyTitle' => 'Nossa história',
@@ -13296,6 +13359,9 @@ extension on Translations {
           'plus.errors.storeUnavailable' => 'A loja não está disponível neste aparelho agora.',
           'plus.errors.manageUnavailable' => 'Não há uma página da loja para esta assinatura aqui.',
           'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
+          _ => null,
+        } ??
+        switch (path) {
           'privacy.title' => 'Privacidade e segurança',
           'privacy.partnerTitle' => 'O que o parceiro vê',
           'privacy.partnerSlips' => 'Slips enviados',
@@ -13341,9 +13407,6 @@ extension on Translations {
           'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
           'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
-          _ => null,
-        } ??
-        switch (path) {
           'profileDetails.timeZones.America/Mexico_City' => 'Cidade do México',
           'profileDetails.timeZones.America/New_York' => 'Nova York',
           'profileDetails.timeZones.America/Los_Angeles' => 'Los Angeles',
@@ -13417,9 +13480,6 @@ extension on Translations {
           'programs.errorTitle' => 'Não deu para carregar',
           'programs.errorText' => 'Os programas continuam aqui. Tente de novo.',
           'programs.diaryLabel' => 'SÓ EU',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.diaryTitle' => 'Diário',
           'programs.diaryText' => 'Um lugar privado para escrever como você está.',
           'programs.start' => 'Começar',
@@ -13496,30 +13556,33 @@ extension on Translations {
           'pronouns.options.he' => 'Ele',
           'pronouns.options.nameOnly' => 'Só o nome',
           'pronouns.options.other' => 'Só o nome',
-          'questions.tag' => 'Pergunta para vocês dois',
-          'questions.eyebrow' => 'Pergunta do dia',
+          'questions.tag' => 'Pergunta do casal',
           'questions.answerCta' => 'Responder',
-          'questions.editCta' => 'Editar minha resposta',
+          'questions.introNote' => 'Uma pergunta por dia ou por semana.',
           'questions.answerHint' => 'Escreva o quanto quiser.',
           'questions.answerErrors.empty' => 'Escreva uma resposta',
           'questions.answerErrors.tooLong' => 'A resposta está muito longa',
-          'questions.privateNote' => 'Só você vê isto até seu par responder também.',
           'questions.partnerAnsweredNote' => 'Seu par já respondeu. Envie a sua para ver as duas.',
+          'questions.partnerSeesAfter' => ({
+            required Object name,
+          }) => 'Só depois que você enviar a sua e ${name} responder também.',
+          'questions.partnerSeesAfterFallback' =>
+            'Só depois que você enviar a sua e seu par responder também.',
           'questions.soloNote' =>
             'Sua resposta fica privada. Seu par vai ver depois que vocês se conectarem.',
           'questions.save' => 'Enviar',
           'questions.cancel' => 'Cancelar',
+          'questions.skip' => 'Pular',
           'questions.waitingTitle' => 'Sua resposta ficou guardada',
           'questions.waitingText' => 'Ela aparece aqui quando seu par responder também.',
           'questions.waitingSoloText' =>
             'Quando seu par entrar, ele vê a sua resposta e você vê a dele.',
           'questions.checkAgain' => 'Verificar de novo',
-          'questions.voiceSoon' => 'Recado de voz',
-          'questions.voiceSoonNote' => 'Por enquanto as respostas são escritas. A voz vem depois.',
-          'questions.revealTitle' => 'Suas respostas juntas',
-          'questions.revealHighlight' => 'juntas',
-          'questions.revealSubtitle' => 'Agora que os dois responderam, vocês veem as duas.',
-          'questions.revealNote' => 'Sem notas. Só o que cada um escreveu.',
+          'questions.revealTitle' => 'As duas lembranças',
+          'questions.revealHighlight' => 'lembranças',
+          'questions.keepPrompt' => 'Querem guardar isso na história de vocês?',
+          'questions.saveMilestone' => 'Salvar como marco',
+          'questions.notNow' => 'Agora não',
           'questions.you' => 'Você',
           'questions.partnerFallback' => 'Seu par',
           'questions.discardTitle' => 'Descartar esta resposta?',
@@ -13530,6 +13593,7 @@ extension on Translations {
           'questions.loadErrorText' => 'Nada foi perdido. Tente de novo.',
           'questions.close' => 'Fechar',
           'questions.errors.other' => 'Não deu para salvar agora. Tente de novo.',
+          'questions.editCta' => 'Editar minha resposta',
           'questionsEntry.label' => 'PERGUNTA DO DIA',
           'questionsEntry.title' => 'Pergunta do dia',
           'questionsEntry.text' => 'Uma pergunta para os dois responderem.',
@@ -13872,6 +13936,9 @@ extension on Translations {
           'rituals.weekdays.2' => 'terça',
           'rituals.weekdays.3' => 'quarta',
           'rituals.weekdays.4' => 'quinta',
+          _ => null,
+        } ??
+        switch (path) {
           'rituals.weekdays.5' => 'sexta',
           'rituals.weekdays.6' => 'sábado',
           'rituals.createTitle' => 'Novo ritual',
@@ -13951,9 +14018,6 @@ extension on Translations {
           'share.cardLabels.counter' => 'Nosso tempo',
           'share.cardLabels.moon' => 'A lua do nosso dia',
           'share.cardLabels.timeline' => 'Nossa linha do tempo',
-          _ => null,
-        } ??
-        switch (path) {
           'share.cardLabels.quote' => 'De um cartão',
           'share.cardLabels.other' => '',
           'share.counterEyebrow' => 'NOSSO TEMPO',
@@ -14005,9 +14069,6 @@ extension on Translations {
           'share.phases.other' => '',
           'share.productMark' => 'Mingo',
           'share.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -14464,6 +14525,9 @@ extension on Translations {
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
           'tabs.touchLabel' => 'TOQUE',
           'tabs.touchTitle' => 'Cartas de toque',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.touchText' => 'Neutras, para fazer ou pular.',
           'tabs.distanceLabel' => 'DISTÂNCIA',
           'tabs.distanceTitle' => 'Nossos dois relógios',
@@ -14495,8 +14559,6 @@ extension on Translations {
           'tabs.learningTitle' => 'O que você aprendeu',
           'tabs.learningText' => 'Anotações privadas que você pode apagar.',
           'tabs.fightStyleLabel' => 'SÓ PARA VOCÊ',
-          'tabs.fightStyleTitle' => 'Como eu reajo numa briga',
-          'tabs.fightStyleText' => 'Uma reflexão curta e privada sobre o seu jeito.',
           'tabs.guidesLabel' => 'CONVERSAS',
           'tabs.guidesTitle' => 'Conversas difíceis',
           'tabs.guidesText' => 'Um passo de cada vez, só para você.',
@@ -14508,7 +14570,6 @@ extension on Translations {
           'tabs.sectionTools' => 'Ferramentas',
           'tabs.sectionMore' => 'Mais',
           'tabs.sectionPrivate' => 'Só seu',
-          'tabs.sectionPatterns' => 'Meus padrões',
           'tabs.logisticsMeta' => '15 min · semanal',
           'tabs.ritualsMeta' => 'Pequenos hábitos',
           'tabs.dateNightMeta' => 'Para vocês dois',
@@ -14542,11 +14603,6 @@ extension on Translations {
           'tabs.notesMeta' => 'Quando quiser',
           'tabs.learningMeta' => 'Anotações privadas',
           'tabs.partnerMeta' => 'Só para você',
-          'tabs.fightStyleMeta' => 'Como você reage',
-          'tabs.loveStyleMeta' => 'Como você se sente amado',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.chatMeta' => 'Uma conversa calma',
           'tabs.listsNone' => 'Nenhuma ainda',
           'tabs.needsBoth' => 'Precisa dos dois · Convidar',
@@ -14744,9 +14800,6 @@ extension on Translations {
           'today.conflict.tag' => 'Agora',
           'today.conflict.title' => 'Primeiro, cuidar de vocês',
           'today.conflict.highlight' => 'cuidar',
-          _ => null,
-        } ??
-        switch (path) {
           'today.conflict.text' =>
             'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.',
           'today.conflict.repair' => 'Começar o reparo',

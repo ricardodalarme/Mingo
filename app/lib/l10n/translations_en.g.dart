@@ -1563,12 +1563,6 @@ class _Translations$fightStyle$en extends Translations$fightStyle$pt {
 
   // Translations
   @override
-  String get exerciseTitle => 'How I react in a fight';
-  @override
-  String get exerciseHighlight => 'react';
-  @override
-  String get exerciseSubtitle => 'Six quick questions, just for you.';
-  @override
   String questionOf({required Object current, required Object total}) =>
       'Question ${current} of ${total}';
   @override
@@ -1579,6 +1573,15 @@ class _Translations$fightStyle$en extends Translations$fightStyle$pt {
     'What bothers you most in a fight?',
     'When you notice you went too far, you...',
     'What helps you feel normal again?',
+  ];
+  @override
+  List<String> get questionHighlights => [
+    'first',
+    'goes quiet',
+    'happens',
+    'bothers',
+    'went too far',
+    'back to normal',
   ];
   @override
   Map<String, String> get options1 => {
@@ -1684,6 +1687,8 @@ class _Translations$fightStyle$en extends Translations$fightStyle$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t add it right now. Try again.',
   };
+  @override
+  String get resultBarTitle => 'Result';
 }
 
 // Path: firstSlip
@@ -1759,8 +1764,6 @@ class _Translations$games$en extends Translations$games$pt {
   @override
   late final _Translations$games$noPartner$en noPartner = _Translations$games$noPartner$en._(_root);
   @override
-  late final _Translations$games$common$en common = _Translations$games$common$en._(_root);
-  @override
   String get loadErrorTitle => 'Could not open the game';
   @override
   String get loadErrorText => 'Nothing was lost. Try again.';
@@ -1775,6 +1778,8 @@ class _Translations$games$en extends Translations$games$pt {
     'ANSWER_LOCKED': 'This game\'s answers are closed. You can\'t edit them now.',
     'other': 'Could not do that right now. Try again.',
   };
+  @override
+  late final _Translations$games$common$en common = _Translations$games$common$en._(_root);
 }
 
 // Path: gentleRequest
@@ -3192,18 +3197,6 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
 
   // Translations
   @override
-  String get entryLabel => 'ONLY FOR YOU';
-  @override
-  String get entryTitle => 'What makes me feel loved';
-  @override
-  String get entryText => 'Six quick questions to notice what makes you feel loved.';
-  @override
-  String get exerciseTitle => 'How I feel loved';
-  @override
-  String get exerciseHighlight => 'loved';
-  @override
-  String get exerciseSubtitle => 'Six quick questions, just for you.';
-  @override
   String questionOf({required Object current, required Object total}) =>
       'Question ${current} of ${total}';
   @override
@@ -3214,6 +3207,15 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
     'Which of these gestures warms your heart?',
     'What makes you feel important to someone?',
     'If you could choose one gesture for today, what would it be?',
+  ];
+  @override
+  List<String> get questionHighlights => [
+    'loved',
+    'comforts',
+    'care',
+    'heart',
+    'important',
+    'gesture',
   ];
   @override
   Map<String, String> get options1 => {
@@ -3282,9 +3284,25 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
   @override
   String get resultHighlight => 'loved';
   @override
-  String get resultSubtitle => 'A description of what makes you feel loved, in your own way.';
+  String get resultSubtitle => 'A reading of what fits you best.';
   @override
-  String get topTag => 'What fits you best';
+  Map<String, String> get labels => {
+    'time': 'Time just for us',
+    'words': 'Words of care',
+    'acts': 'Help with tasks',
+    'gifts': 'Small gifts',
+    'touch': 'Touch and hugs',
+    'other': '',
+  };
+  @override
+  Map<String, String> get commonLabels => {
+    'time': 'time just for us',
+    'words': 'words of care',
+    'acts': 'help with tasks',
+    'gifts': 'small gifts',
+    'touch': 'touch and hugs',
+    'other': '',
+  };
   @override
   Map<String, String> get descriptions => {
     'time': 'You feel loved when you have real time with someone you care about: unhurried, no screens, just presence.',
@@ -3295,17 +3313,8 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
     'other': '',
   };
   @override
-  Map<String, String> get shareDescriptions => {
-    'time': 'I feel loved when we spend unhurried time together, with no screens.',
-    'words': 'I feel loved when I hear, honestly, what you feel for me.',
-    'acts': 'I feel loved when you notice what I need and help without me asking.',
-    'gifts': 'I feel loved when you remember me in a small detail, chosen with care.',
-    'touch': 'I feel loved when a hug, a held hand or a caress says what words cannot.',
-    'other': '',
-  };
-  @override
   String get resultPrivacyNote =>
-      'Saved only for you. Showing it on your partner\'s widget is your choice, and you can undo it.';
+      'Saved only for you until you show it. You can undo it whenever you want.';
   @override
   String get saveManualAction => 'Save to My manual';
   @override
@@ -3315,14 +3324,49 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
   @override
   String shareAction({required Object name}) => 'Show ${name}';
   @override
-  String get revokeAction => 'Remove from their widget';
+  String revokeAction({required Object name}) => 'Stop showing ${name}';
   @override
-  String get shareToast => 'It appears on their widget if they allow notes.';
+  String shareConfirmTitle({required Object name}) => 'Show ${name}?';
   @override
-  String get revokeToast => 'It\'s no longer on their widget.';
+  String shareConfirmText({required Object name}) =>
+      'Only the result appears, never your answers. ${name} gets a notice and may choose not to respond.';
+  @override
+  String get shareConfirm => 'Show';
+  @override
+  String get shareCancel => 'Not now';
+  @override
+  String shareToast({required Object name}) => 'Done. ${name} can see the result now.';
+  @override
+  String revokeToast({required Object name}) => '${name} can no longer see it.';
   @override
   String get shareSoloNote =>
-      'When you\'re connected with a partner, you can show this on their widget.';
+      'It stays with you. When someone joins, you decide whether to show it.';
+  @override
+  String get inviteAction => 'Invite my person';
+  @override
+  String get compareAction => 'Compare the two';
+  @override
+  String get compareTitle => 'The two of you';
+  @override
+  String get compareHeadline => 'What makes you both feel loved';
+  @override
+  String get compareHighlight => 'both';
+  @override
+  String get compareYou => 'You';
+  @override
+  String get compareMost => 'Most important';
+  @override
+  String get compareNext => 'Then';
+  @override
+  String get compareCommon => 'In common';
+  @override
+  String compareCommonText({required Object label}) => 'You both value ${label}.';
+  @override
+  String get comparePlan => 'Plan time just for us';
+  @override
+  String get compareMissingTitle => 'The comparison is not ready yet';
+  @override
+  String get compareMissingText => 'It appears when both of you have shown your result.';
   @override
   String get partnerFallback => 'your partner';
   @override
@@ -3330,7 +3374,7 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
   @override
   String get retryPairing => 'Try again';
   @override
-  String get retake => 'Take it again';
+  String get retake => 'Take the quiz again';
   @override
   String get loadErrorTitle => 'Couldn\'t load';
   @override
@@ -3354,7 +3398,7 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
   @override
   Map<String, String> get revokeErrors => {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
-    'other': 'Couldn\'t remove it from their widget right now. Try again.',
+    'other': 'Couldn\'t stop showing it right now. Try again.',
   };
 }
 
@@ -4653,51 +4697,51 @@ class _Translations$questions$en extends Translations$questions$pt {
 
   // Translations
   @override
-  String get tag => 'Question for you two';
-  @override
-  String get eyebrow => 'Question of the day';
+  String get tag => 'Couple question';
   @override
   String get answerCta => 'Answer';
   @override
-  String get editCta => 'Edit my answer';
+  String get introNote => 'One question a day or a week.';
   @override
-  String get answerHint => 'Write as much or as little as you want.';
+  String get answerHint => 'Write as much as you like.';
   @override
   Map<String, String> get answerErrors => {
     'empty': 'Write an answer',
     'tooLong': 'The answer is too long',
   };
   @override
-  String get privateNote => 'Only you can see this until your partner answers too.';
-  @override
   String get partnerAnsweredNote => 'Your partner already answered. Send yours to see both.';
   @override
-  String get soloNote => 'Your answer stays private. Your partner will see it after you connect.';
+  String partnerSeesAfter({required Object name}) =>
+      'Only after you send yours and ${name} answers too.';
+  @override
+  String get partnerSeesAfterFallback => 'Only after you send yours and your partner answers too.';
+  @override
+  String get soloNote => 'Your answer stays private. Your partner sees it after you connect.';
   @override
   String get save => 'Send';
   @override
   String get cancel => 'Cancel';
   @override
+  String get skip => 'Skip';
+  @override
   String get waitingTitle => 'Your answer is saved';
   @override
   String get waitingText => 'It appears here when your partner answers too.';
   @override
-  String get waitingSoloText =>
-      'When your partner joins, they will see your answer and you can see theirs.';
+  String get waitingSoloText => 'When your partner joins, they see your answer and you see theirs.';
   @override
   String get checkAgain => 'Check again';
   @override
-  String get voiceSoon => 'Voice note';
+  String get revealTitle => 'The two memories';
   @override
-  String get voiceSoonNote => 'For now answers are written. Voice will come later.';
+  String get revealHighlight => 'memories';
   @override
-  String get revealTitle => 'Your answers together';
+  String get keepPrompt => 'Do you want to keep this in your story?';
   @override
-  String get revealHighlight => 'together';
+  String get saveMilestone => 'Save as milestone';
   @override
-  String get revealSubtitle => 'Now that you both answered, you can see each one.';
-  @override
-  String get revealNote => 'No scores. Just what each of you wrote.';
+  String get notNow => 'Not now';
   @override
   String get you => 'You';
   @override
@@ -4711,13 +4755,15 @@ class _Translations$questions$en extends Translations$questions$pt {
   @override
   String get keepWriting => 'Keep writing';
   @override
-  String get loadErrorTitle => 'Couldn\'t open the question';
+  String get loadErrorTitle => 'Could not open the question';
   @override
   String get loadErrorText => 'Nothing was lost. Try again.';
   @override
   String get close => 'Close';
   @override
-  Map<String, String> get errors => {'other': 'Couldn\'t save that now. Try again.'};
+  Map<String, String> get errors => {'other': 'Could not save right now. Try again.'};
+  @override
+  String get editCta => 'Edit my answer';
 }
 
 // Path: questionsEntry
@@ -6018,10 +6064,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get fightStyleLabel => 'JUST FOR YOU';
   @override
-  String get fightStyleTitle => 'How I react in a fight';
-  @override
-  String get fightStyleText => 'A short, private reflection on your own way.';
-  @override
   String get guidesLabel => 'CONVERSATIONS';
   @override
   String get guidesTitle => 'Difficult conversations';
@@ -6043,8 +6085,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get sectionMore => 'More';
   @override
   String get sectionPrivate => 'Only yours';
-  @override
-  String get sectionPatterns => 'My patterns';
   @override
   String get logisticsMeta => '15 min · weekly';
   @override
@@ -6104,10 +6144,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get learningMeta => 'Private notes';
   @override
   String get partnerMeta => 'Only for you';
-  @override
-  String get fightStyleMeta => 'How you react';
-  @override
-  String get loveStyleMeta => 'How you feel loved';
   @override
   String get chatMeta => 'A calm conversation';
   @override
@@ -7085,8 +7121,6 @@ class _Translations$games$playing$en extends Translations$games$playing$pt {
   String guessProgress({required Object current, required Object total}) =>
       'Guess ${current} of ${total}';
   @override
-  String get you => 'You';
-  @override
   String get me => 'Me';
   @override
   String get both => 'Both';
@@ -7264,6 +7298,10 @@ class _Translations$games$finished$en extends Translations$games$finished$pt {
   String get playAgain => 'Play again';
   @override
   String get chooseAnother => 'Choose another game';
+  @override
+  String get missingTitle => 'This round is no longer available';
+  @override
+  String get missingText => 'The content changed since you played. You can start another one.';
 }
 
 // Path: games.notFound
@@ -7318,8 +7356,6 @@ class _Translations$games$common$en extends Translations$games$common$pt {
   final TranslationsEn _root; // ignore: unused_field
 
   // Translations
-  @override
-  String get close => 'Close';
   @override
   String get back => 'Back';
 }
@@ -9441,9 +9477,6 @@ extension on TranslationsEn {
           'distance.addReunion' => 'Save a date',
           'distance.errorTitle' => 'Couldn\'t load',
           'distance.errorText' => 'Try again in a moment.',
-          'fightStyle.exerciseTitle' => 'How I react in a fight',
-          'fightStyle.exerciseHighlight' => 'react',
-          'fightStyle.exerciseSubtitle' => 'Six quick questions, just for you.',
           'fightStyle.questionOf' => ({
             required Object current,
             required Object total,
@@ -9454,6 +9487,12 @@ extension on TranslationsEn {
           'fightStyle.questions.3' => 'What bothers you most in a fight?',
           'fightStyle.questions.4' => 'When you notice you went too far, you...',
           'fightStyle.questions.5' => 'What helps you feel normal again?',
+          'fightStyle.questionHighlights.0' => 'first',
+          'fightStyle.questionHighlights.1' => 'goes quiet',
+          'fightStyle.questionHighlights.2' => 'happens',
+          'fightStyle.questionHighlights.3' => 'bothers',
+          'fightStyle.questionHighlights.4' => 'went too far',
+          'fightStyle.questionHighlights.5' => 'back to normal',
           'fightStyle.options1.pursue' => 'I keep talking until it\'s settled.',
           'fightStyle.options1.withdraw' => 'I need some time before going on.',
           'fightStyle.options1.repair' => 'I try to lighten the mood.',
@@ -9521,6 +9560,7 @@ extension on TranslationsEn {
           'fightStyle.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
           'fightStyle.addErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'fightStyle.addErrors.other' => 'Couldn\'t add it right now. Try again.',
+          'fightStyle.resultBarTitle' => 'Result',
           'firstSlip.title' => 'Start with one good thing',
           'firstSlip.titleHighlight' => 'one good thing',
           'firstSlip.subtitle' => 'What did your partner do lately that made you smile? 30 seconds is enough. No account yet.',
@@ -9611,7 +9651,6 @@ extension on TranslationsEn {
             required Object current,
             required Object total,
           }) => 'Guess ${current} of ${total}',
-          'games.playing.you' => 'You',
           'games.playing.me' => 'Me',
           'games.playing.both' => 'Both',
           'games.playing.partnerFallback' => 'Your partner',
@@ -9720,6 +9759,9 @@ extension on TranslationsEn {
           'games.finished.replayText' => 'Each round brings new content. When it runs out, the app tells you and mixes in what you already saw.',
           'games.finished.playAgain' => 'Play again',
           'games.finished.chooseAnother' => 'Choose another game',
+          'games.finished.missingTitle' => 'This round is no longer available',
+          'games.finished.missingText' =>
+            'The content changed since you played. You can start another one.',
           'games.notFound.title' => 'This game does not exist',
           'games.notFound.text' =>
             'It may have changed or never existed. Go back and pick another one.',
@@ -9730,8 +9772,6 @@ extension on TranslationsEn {
           'games.cancel.keep' => 'Keep playing',
           'games.noPartner.title' => 'Games are for two',
           'games.noPartner.text' => 'When your partner joins, you can play together.',
-          'games.common.close' => 'Close',
-          'games.common.back' => 'Back',
           'games.loadErrorTitle' => 'Could not open the game',
           'games.loadErrorText' => 'Nothing was lost. Try again.',
           'games.errors.NOT_PAIRED' => 'Games need both of you connected.',
@@ -9745,6 +9785,7 @@ extension on TranslationsEn {
           'games.errors.ANSWER_LOCKED' =>
             'This game\'s answers are closed. You can\'t edit them now.',
           'games.errors.other' => 'Could not do that right now. Try again.',
+          'games.common.back' => 'Back',
           'gentleRequest.title' => 'Gentle request',
           'gentleRequest.titleHighlight' => 'Gentle',
           'gentleRequest.whenLabel' => 'When…',
@@ -9913,6 +9954,9 @@ extension on TranslationsEn {
           }) => 'Step ${current} of ${total}',
           'hardConversation.whatTitle' => 'What happened?',
           'hardConversation.whatHint' => 'If you want, tell me in your own words',
+          _ => null,
+        } ??
+        switch (path) {
           'hardConversation.whatIgnored' => 'She felt ignored',
           'hardConversation.whatMoney' => 'We fought about money',
           'hardConversation.whatMisunderstanding' => 'It was a misunderstanding',
@@ -9936,9 +9980,6 @@ extension on TranslationsEn {
           'hardConversation.sent' => 'Note sent',
           'hardConversation.exit' => 'Leave',
           'hardConversation.next' => 'Next',
-          _ => null,
-        } ??
-        switch (path) {
           'hardConversation.back' => 'Back',
           'hardConversation.retry' => 'Try again',
           'hardConversation.generationFailed' => 'Couldn\'t write a sentence right now.',
@@ -9970,9 +10011,6 @@ extension on TranslationsEn {
           'help.emptyText' => 'We\'re preparing more suggestions.',
           'help.errorTitle' => 'Couldn\'t load',
           'help.errorText' => 'Try again in a moment.',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.title' => 'Help',
           'helpSupport.contactTitle' => 'Talk to support',
           'helpSupport.reportBug' => 'Report a bug',
@@ -10560,12 +10598,6 @@ extension on TranslationsEn {
           'logistics.confirm' => 'Confirm',
           'logistics.waitingYou' => 'Waiting for you',
           'logistics.waitingPartner' => 'Waiting for the other person',
-          'loveStyle.entryLabel' => 'ONLY FOR YOU',
-          'loveStyle.entryTitle' => 'What makes me feel loved',
-          'loveStyle.entryText' => 'Six quick questions to notice what makes you feel loved.',
-          'loveStyle.exerciseTitle' => 'How I feel loved',
-          'loveStyle.exerciseHighlight' => 'loved',
-          'loveStyle.exerciseSubtitle' => 'Six quick questions, just for you.',
           'loveStyle.questionOf' => ({
             required Object current,
             required Object total,
@@ -10576,6 +10608,12 @@ extension on TranslationsEn {
           'loveStyle.questions.3' => 'Which of these gestures warms your heart?',
           'loveStyle.questions.4' => 'What makes you feel important to someone?',
           'loveStyle.questions.5' => 'If you could choose one gesture for today, what would it be?',
+          'loveStyle.questionHighlights.0' => 'loved',
+          'loveStyle.questionHighlights.1' => 'comforts',
+          'loveStyle.questionHighlights.2' => 'care',
+          'loveStyle.questionHighlights.3' => 'heart',
+          'loveStyle.questionHighlights.4' => 'important',
+          'loveStyle.questionHighlights.5' => 'gesture',
           'loveStyle.options1.time' => 'Spending unhurried time together.',
           'loveStyle.options1.words' => 'Hearing that I matter.',
           'loveStyle.options1.acts' => 'Seeing the person help me with something.',
@@ -10593,6 +10631,9 @@ extension on TranslationsEn {
           'loveStyle.options3.acts' => 'When the person notices what I need and does it.',
           'loveStyle.options3.gifts' => 'When the person remembers something I like.',
           'loveStyle.options3.touch' => 'When the person touches me lightly as they pass.',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.options3.other' => '',
           'loveStyle.options4.time' => 'A quiet date, just the two of us.',
           'loveStyle.options4.words' => 'A conversation where I feel heard.',
@@ -10617,14 +10658,21 @@ extension on TranslationsEn {
           'loveStyle.back' => 'Back',
           'loveStyle.privateNote' =>
             'Only you see your answers. You choose whether to show the result.',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.resultTitle' => 'What makes you feel loved',
           'loveStyle.resultHighlight' => 'loved',
-          'loveStyle.resultSubtitle' =>
-            'A description of what makes you feel loved, in your own way.',
-          'loveStyle.topTag' => 'What fits you best',
+          'loveStyle.resultSubtitle' => 'A reading of what fits you best.',
+          'loveStyle.labels.time' => 'Time just for us',
+          'loveStyle.labels.words' => 'Words of care',
+          'loveStyle.labels.acts' => 'Help with tasks',
+          'loveStyle.labels.gifts' => 'Small gifts',
+          'loveStyle.labels.touch' => 'Touch and hugs',
+          'loveStyle.labels.other' => '',
+          'loveStyle.commonLabels.time' => 'time just for us',
+          'loveStyle.commonLabels.words' => 'words of care',
+          'loveStyle.commonLabels.acts' => 'help with tasks',
+          'loveStyle.commonLabels.gifts' => 'small gifts',
+          'loveStyle.commonLabels.touch' => 'touch and hugs',
+          'loveStyle.commonLabels.other' => '',
           'loveStyle.descriptions.time' => 'You feel loved when you have real time with someone you care about: unhurried, no screens, just presence.',
           'loveStyle.descriptions.words' =>
             'You feel loved when you hear, honestly, what the other person feels for you.',
@@ -10635,35 +10683,43 @@ extension on TranslationsEn {
           'loveStyle.descriptions.touch' =>
             'You feel loved when a hug, a held hand or a caress says what words cannot.',
           'loveStyle.descriptions.other' => '',
-          'loveStyle.shareDescriptions.time' =>
-            'I feel loved when we spend unhurried time together, with no screens.',
-          'loveStyle.shareDescriptions.words' =>
-            'I feel loved when I hear, honestly, what you feel for me.',
-          'loveStyle.shareDescriptions.acts' =>
-            'I feel loved when you notice what I need and help without me asking.',
-          'loveStyle.shareDescriptions.gifts' =>
-            'I feel loved when you remember me in a small detail, chosen with care.',
-          'loveStyle.shareDescriptions.touch' =>
-            'I feel loved when a hug, a held hand or a caress says what words cannot.',
-          'loveStyle.shareDescriptions.other' => '',
-          'loveStyle.resultPrivacyNote' => 'Saved only for you. Showing it on your partner\'s widget is your choice, and you can undo it.',
+          'loveStyle.resultPrivacyNote' =>
+            'Saved only for you until you show it. You can undo it whenever you want.',
           'loveStyle.saveManualAction' => 'Save to My manual',
           'loveStyle.savedManualAction' => 'Saved to My manual',
           'loveStyle.manualToast' => 'Saved to My manual.',
           'loveStyle.shareAction' => ({required Object name}) => 'Show ${name}',
-          'loveStyle.revokeAction' => 'Remove from their widget',
-          'loveStyle.shareToast' => 'It appears on their widget if they allow notes.',
-          'loveStyle.revokeToast' => 'It\'s no longer on their widget.',
+          'loveStyle.revokeAction' => ({required Object name}) => 'Stop showing ${name}',
+          'loveStyle.shareConfirmTitle' => ({required Object name}) => 'Show ${name}?',
+          'loveStyle.shareConfirmText' => ({
+            required Object name,
+          }) => 'Only the result appears, never your answers. ${name} gets a notice and may choose not to respond.',
+          'loveStyle.shareConfirm' => 'Show',
+          'loveStyle.shareCancel' => 'Not now',
+          'loveStyle.shareToast' => ({
+            required Object name,
+          }) => 'Done. ${name} can see the result now.',
+          'loveStyle.revokeToast' => ({required Object name}) => '${name} can no longer see it.',
           'loveStyle.shareSoloNote' =>
-            'When you\'re connected with a partner, you can show this on their widget.',
+            'It stays with you. When someone joins, you decide whether to show it.',
+          'loveStyle.inviteAction' => 'Invite my person',
+          'loveStyle.compareAction' => 'Compare the two',
+          'loveStyle.compareTitle' => 'The two of you',
+          'loveStyle.compareHeadline' => 'What makes you both feel loved',
+          'loveStyle.compareHighlight' => 'both',
+          'loveStyle.compareYou' => 'You',
+          'loveStyle.compareMost' => 'Most important',
+          'loveStyle.compareNext' => 'Then',
+          'loveStyle.compareCommon' => 'In common',
+          'loveStyle.compareCommonText' => ({required Object label}) => 'You both value ${label}.',
+          'loveStyle.comparePlan' => 'Plan time just for us',
+          'loveStyle.compareMissingTitle' => 'The comparison is not ready yet',
+          'loveStyle.compareMissingText' => 'It appears when both of you have shown your result.',
           'loveStyle.partnerFallback' => 'your partner',
           'loveStyle.pairingErrorNote' => 'Couldn\'t check your partner right now.',
           'loveStyle.retryPairing' => 'Try again',
-          'loveStyle.retake' => 'Take it again',
+          'loveStyle.retake' => 'Take the quiz again',
           'loveStyle.loadErrorTitle' => 'Couldn\'t load',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.loadErrorText' => 'Couldn\'t open your result right now. Try again.',
           'loveStyle.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'loveStyle.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
@@ -10673,8 +10729,7 @@ extension on TranslationsEn {
           'loveStyle.shareErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'loveStyle.shareErrors.other' => 'Couldn\'t show it right now. Try again.',
           'loveStyle.revokeErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          'loveStyle.revokeErrors.other' =>
-            'Couldn\'t remove it from their widget right now. Try again.',
+          'loveStyle.revokeErrors.other' => 'Couldn\'t stop showing it right now. Try again.',
           'memories.title' => 'Memories',
           'memories.historyLabel' => 'OUR HISTORY',
           'memories.historyTitle' => 'Our history',
@@ -11177,6 +11232,9 @@ extension on TranslationsEn {
           'plus.errors.storeUnavailable' => 'The store isn\'t available on this device right now.',
           'plus.errors.manageUnavailable' => 'There\'s no store page for this subscription here.',
           'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
+          _ => null,
+        } ??
+        switch (path) {
           'privacy.title' => 'Privacy and security',
           'privacy.partnerTitle' => 'What your partner sees',
           'privacy.partnerSlips' => 'Sent slips',
@@ -11222,9 +11280,6 @@ extension on TranslationsEn {
           'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
           'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
-          _ => null,
-        } ??
-        switch (path) {
           'profileDetails.timeZones.America/Mexico_City' => 'Mexico City',
           'profileDetails.timeZones.America/New_York' => 'New York',
           'profileDetails.timeZones.America/Los_Angeles' => 'Los Angeles',
@@ -11298,9 +11353,6 @@ extension on TranslationsEn {
           'programs.errorTitle' => 'Couldn\'t load',
           'programs.errorText' => 'The programs are still here. Try again.',
           'programs.diaryLabel' => 'JUST ME',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.diaryTitle' => 'Diary',
           'programs.diaryText' => 'A private place to write how you are.',
           'programs.start' => 'Start',
@@ -11377,41 +11429,45 @@ extension on TranslationsEn {
           'pronouns.options.he' => 'He',
           'pronouns.options.nameOnly' => 'Name only',
           'pronouns.options.other' => 'Name only',
-          'questions.tag' => 'Question for you two',
-          'questions.eyebrow' => 'Question of the day',
+          'questions.tag' => 'Couple question',
           'questions.answerCta' => 'Answer',
-          'questions.editCta' => 'Edit my answer',
-          'questions.answerHint' => 'Write as much or as little as you want.',
+          'questions.introNote' => 'One question a day or a week.',
+          'questions.answerHint' => 'Write as much as you like.',
           'questions.answerErrors.empty' => 'Write an answer',
           'questions.answerErrors.tooLong' => 'The answer is too long',
-          'questions.privateNote' => 'Only you can see this until your partner answers too.',
           'questions.partnerAnsweredNote' =>
             'Your partner already answered. Send yours to see both.',
+          'questions.partnerSeesAfter' => ({
+            required Object name,
+          }) => 'Only after you send yours and ${name} answers too.',
+          'questions.partnerSeesAfterFallback' =>
+            'Only after you send yours and your partner answers too.',
           'questions.soloNote' =>
-            'Your answer stays private. Your partner will see it after you connect.',
+            'Your answer stays private. Your partner sees it after you connect.',
           'questions.save' => 'Send',
           'questions.cancel' => 'Cancel',
+          'questions.skip' => 'Skip',
           'questions.waitingTitle' => 'Your answer is saved',
           'questions.waitingText' => 'It appears here when your partner answers too.',
           'questions.waitingSoloText' =>
-            'When your partner joins, they will see your answer and you can see theirs.',
+            'When your partner joins, they see your answer and you see theirs.',
           'questions.checkAgain' => 'Check again',
-          'questions.voiceSoon' => 'Voice note',
-          'questions.voiceSoonNote' => 'For now answers are written. Voice will come later.',
-          'questions.revealTitle' => 'Your answers together',
-          'questions.revealHighlight' => 'together',
-          'questions.revealSubtitle' => 'Now that you both answered, you can see each one.',
-          'questions.revealNote' => 'No scores. Just what each of you wrote.',
+          'questions.revealTitle' => 'The two memories',
+          'questions.revealHighlight' => 'memories',
+          'questions.keepPrompt' => 'Do you want to keep this in your story?',
+          'questions.saveMilestone' => 'Save as milestone',
+          'questions.notNow' => 'Not now',
           'questions.you' => 'You',
           'questions.partnerFallback' => 'Your partner',
           'questions.discardTitle' => 'Discard this answer?',
           'questions.discardText' => 'The text you wrote was not saved.',
           'questions.discard' => 'Discard',
           'questions.keepWriting' => 'Keep writing',
-          'questions.loadErrorTitle' => 'Couldn\'t open the question',
+          'questions.loadErrorTitle' => 'Could not open the question',
           'questions.loadErrorText' => 'Nothing was lost. Try again.',
           'questions.close' => 'Close',
-          'questions.errors.other' => 'Couldn\'t save that now. Try again.',
+          'questions.errors.other' => 'Could not save right now. Try again.',
+          'questions.editCta' => 'Edit my answer',
           'questionsEntry.label' => 'QUESTION OF THE DAY',
           'questionsEntry.title' => 'Question of the day',
           'questionsEntry.text' => 'One question for both of you to answer.',
@@ -11751,6 +11807,9 @@ extension on TranslationsEn {
           'rituals.weekdays.2' => 'Tuesday',
           'rituals.weekdays.3' => 'Wednesday',
           'rituals.weekdays.4' => 'Thursday',
+          _ => null,
+        } ??
+        switch (path) {
           'rituals.weekdays.5' => 'Friday',
           'rituals.weekdays.6' => 'Saturday',
           'rituals.createTitle' => 'New ritual',
@@ -11829,9 +11888,6 @@ extension on TranslationsEn {
           'share.cardLabels.counter' => 'Our time',
           'share.cardLabels.moon' => 'The moon of our day',
           'share.cardLabels.timeline' => 'Our timeline',
-          _ => null,
-        } ??
-        switch (path) {
           'share.cardLabels.quote' => 'From a card',
           'share.cardLabels.other' => '',
           'share.counterEyebrow' => 'OUR TIME',
@@ -11880,9 +11936,6 @@ extension on TranslationsEn {
           'share.phases.other' => '',
           'share.productMark' => 'Mingo',
           'share.errors.other' => 'Couldn\'t share right now. Try again.',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -12343,6 +12396,9 @@ extension on TranslationsEn {
           'tabs.usText' => 'A light tap for your partner, no pressure.',
           'tabs.touchLabel' => 'TOUCH',
           'tabs.touchTitle' => 'Touch cards',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.touchText' => 'Neutral, to do or skip.',
           'tabs.distanceLabel' => 'DISTANCE',
           'tabs.distanceTitle' => 'Our two clocks',
@@ -12374,8 +12430,6 @@ extension on TranslationsEn {
           'tabs.learningTitle' => 'What you learned',
           'tabs.learningText' => 'Private notes you can delete.',
           'tabs.fightStyleLabel' => 'JUST FOR YOU',
-          'tabs.fightStyleTitle' => 'How I react in a fight',
-          'tabs.fightStyleText' => 'A short, private reflection on your own way.',
           'tabs.guidesLabel' => 'CONVERSATIONS',
           'tabs.guidesTitle' => 'Difficult conversations',
           'tabs.guidesText' => 'One step at a time, just for you.',
@@ -12387,7 +12441,6 @@ extension on TranslationsEn {
           'tabs.sectionTools' => 'Tools',
           'tabs.sectionMore' => 'More',
           'tabs.sectionPrivate' => 'Only yours',
-          'tabs.sectionPatterns' => 'My patterns',
           'tabs.logisticsMeta' => '15 min · weekly',
           'tabs.ritualsMeta' => 'Small habits',
           'tabs.dateNightMeta' => 'For you two',
@@ -12421,11 +12474,6 @@ extension on TranslationsEn {
           'tabs.notesMeta' => 'When you want',
           'tabs.learningMeta' => 'Private notes',
           'tabs.partnerMeta' => 'Only for you',
-          'tabs.fightStyleMeta' => 'How you react',
-          'tabs.loveStyleMeta' => 'How you feel loved',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.chatMeta' => 'A calm conversation',
           'tabs.listsNone' => 'None yet',
           'tabs.needsBoth' => 'Needs both of you · Invite',
@@ -12622,9 +12670,6 @@ extension on TranslationsEn {
           'today.conflict.tag' => 'Now',
           'today.conflict.title' => 'First, take care of you two',
           'today.conflict.highlight' => 'care',
-          _ => null,
-        } ??
-        switch (path) {
           'today.conflict.text' =>
             'No common cards for now. Start with a repair or sort out what to say.',
           'today.conflict.repair' => 'Start the repair',
