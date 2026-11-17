@@ -1,3 +1,4 @@
+import 'package:app/features/widgets/data/data_sources/remote/mutations/generated/UpdateWidgetSettings.graphql.dart';
 import 'package:app/features/widgets/data/data_sources/remote/queries/generated/WidgetCardStatus.graphql.dart';
 import 'package:app/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
 import 'package:network/network.dart';
@@ -30,5 +31,23 @@ class WidgetsDataSource({required final GQLClient _client}) {
     final card = validateResponseData(response, getData: (data) => data);
 
     return card.cardsByPk?.status.name;
+  }
+
+  Future<void> updateSettings({
+    required String userId,
+    required bool showNames,
+    required bool allowPartnerNotes,
+  }) async {
+    final response = await _client.mutate(
+      OptionsMutationUpdateWidgetSettings(
+        variables: VariablesMutationUpdateWidgetSettings(
+          userId: userId,
+          showNames: showNames,
+          allowPartnerNotes: allowPartnerNotes,
+        ),
+      ),
+    );
+
+    validateResponse(response);
   }
 }

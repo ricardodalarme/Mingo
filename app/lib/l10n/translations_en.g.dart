@@ -6616,7 +6616,7 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get ownIdeaDefault => 'Leave a small note today';
   @override
-  String get ownIdeaHint => 'Tap to open';
+  String get ownIdeaHint => 'One idea for today.';
   @override
   String get ownJarLabel => 'BAD DAY JAR';
   @override
@@ -6804,6 +6804,255 @@ class _Translations$widgets$en extends Translations$widgets$pt {
   @override
   String get howToAddIosLockNote =>
       'On iOS 16 or newer, you can also add the widget to the lock screen.';
+  @override
+  String get coupleLabel => 'COUPLE';
+  @override
+  String get gallerySubtitle => 'Small pieces of the app on your home screen.';
+  @override
+  String get favoritesGroup => 'Most loved';
+  @override
+  String get mediumGroup => 'Medium';
+  @override
+  String get ownSmallGroup => 'Log and remember';
+  @override
+  String get ownGroupHint => 'Work without a partner and only show what is yours.';
+  @override
+  String get ownSmallEntryTitle => 'Small';
+  @override
+  String get ownSmallEntryHint => 'Log, remember and the Sunday card.';
+  @override
+  String get ownMediumEntryTitle => 'Medium';
+  @override
+  String get ownMediumEntryHint => 'Your week, an idea and the next date.';
+  @override
+  String get ownSmallTitle => 'Just mine: small';
+  @override
+  String get ownMediumTitle => 'Just mine: medium';
+  @override
+  String get counterEyebrow => 'TOGETHER';
+  @override
+  String get counterNeedDate => 'Set your relationship date';
+  @override
+  String counterDaysUnit({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '${count} day',
+        other: '${count} days',
+      );
+  @override
+  String counterBreakdown({required Object years, required Object months, required Object days}) =>
+      '${years} years, ${months} months and ${days} days';
+  @override
+  String get counterToday => 'Today';
+  @override
+  String counterSince({required Object date}) => 'Since ${date}';
+  @override
+  String get partnerMoodLabel => 'PARTNER MOOD';
+  @override
+  String partnerMoodNow({required Object name}) => '${name} now';
+  @override
+  String get partnerMoodNowAnonymous => 'Now';
+  @override
+  String get partnerMoodHidden => 'Mood appears when your partner shares it.';
+  @override
+  String get longingLabel => 'MISSING US';
+  @override
+  String get longingAction => 'Send some missing';
+  @override
+  String get longingReceived => 'Your partner misses you';
+  @override
+  String get longingHint => 'One tap and they feel it.';
+  @override
+  String get ritualLabel => 'RITUAL';
+  @override
+  String get ritualEmptyTitle => 'Create a ritual';
+  @override
+  String get ritualEmptyHint => 'A moment that is yours.';
+  @override
+  String noteFromPartner({required Object time}) => 'from your partner · ${time}';
+  @override
+  String noteFromName({required Object name, required Object time}) => 'from ${name} · ${time}';
+  @override
+  String get noteEmpty => 'No note here yet';
+  @override
+  String get noteEmptyHint => 'A note appears when your partner chooses to send one.';
+  @override
+  String get noteDisabled => 'Notes are off';
+  @override
+  String get noteDisabledHint => 'Turn on “Notes on the widget” to see them.';
+  @override
+  String nextEncounterInDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: 'in ${count} day',
+        other: 'in ${count} days',
+      );
+  @override
+  String get cardSundayTitle => 'Sunday card';
+  @override
+  String cardSendAt({required Object day, required Object time}) => 'out ${day}, ${time}';
+  @override
+  String get cardReadyShort => 'A card arrived';
+  @override
+  String get cardSentShort => 'Card sent';
+  @override
+  String get cardNoneShort => 'Sunday card';
+  @override
+  String get distanceLabel => 'LONG DISTANCE';
+  @override
+  String get distanceHidden => 'Your partner\'s timezone is not set';
+  @override
+  String get distanceHint => 'Each in their own timezone.';
+  @override
+  String distanceUntil({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '${count} day until you meet',
+        other: '${count} days until you meet',
+      );
+  @override
+  String get distanceNoReunion => 'Next meeting without a date';
+  @override
+  String distanceYou({required Object city}) => '${city} · you';
+  @override
+  String get ownNextDateLabel => 'NEXT DATE';
+  @override
+  String get ownNextDateHint => 'Tap to see the dates';
+  @override
+  String ownDateCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '${count} day',
+        other: '${count} days',
+      );
+  @override
+  String get ownWeekTitle => 'My week';
+  @override
+  String ownWeekCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '${count} slip',
+        other: '${count} slips',
+      );
+  @override
+  List<String> get weekdays => ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+  @override
+  Map<String, String> get familyLabels => {
+    'counter': 'Counter',
+    'counterMedium': 'Counter',
+    'partnerMood': 'Partner mood',
+    'longing': 'Missing us',
+    'ritual': 'Ritual',
+    'partnerNote': 'Partner note',
+    'cardEncounter': 'Card & date',
+    'distance': 'Long distance',
+    'ownSlip': 'Log slip',
+    'ownNextDate': 'Next date',
+    'ownRitual': 'Ritual',
+    'ownSundayCard': 'Sunday card',
+    'ownWeek': 'My week',
+    'ownIdea': 'Idea of the day',
+    'ownMediumDate': 'Next date',
+    'other': 'Widget',
+  };
+  @override
+  String get moodJustNow => 'just now';
+  @override
+  String moodMinutesAgo({required Object minutes}) => '${minutes} min ago';
+  @override
+  String moodHoursAgo({required Object hours}) => '${hours} h ago';
+  @override
+  String moodDaysAgo({required Object days}) => '${days} d ago';
+  @override
+  String get ownSlipQuestion => 'How was your day?';
+  @override
+  String get ownSlipAction => 'Log a slip';
+  @override
+  String get howToAddAction => 'How to add';
+  @override
+  String get howToAddTitle => 'How to add';
+  @override
+  String get howToAddSubtitle => 'Straight from the home screen, with no extra Mingo permission.';
+  @override
+  String get howToAddIosStep1 => 'Touch and hold an empty spot on the home screen.';
+  @override
+  String get howToAddIosStep2 => 'Tap + in the top corner.';
+  @override
+  String get howToAddIosStep3 => 'Choose Mingo and the widget size.';
+  @override
+  String get howToAddAndroidStep1 => 'Touch and hold an empty spot on the home screen.';
+  @override
+  String get howToAddAndroidStep2 => 'Tap Widgets.';
+  @override
+  String get howToAddAndroidStep3 => 'Choose Mingo and drag it to the screen.';
+  @override
+  String get howToAddLockIosStep1 => 'Touch and hold the lock screen.';
+  @override
+  String get howToAddLockIosStep2 => 'Tap Customize.';
+  @override
+  String get howToAddLockIosStep3 => 'Add the Mingo widget below the clock.';
+  @override
+  String get howToAddNote => 'You can remove the widget whenever you want; nothing is deleted.';
+  @override
+  String get widgetPrivacyTitle => 'What appears on widgets';
+  @override
+  String get showNamesTitle => 'Names and initials';
+  @override
+  String get showNamesHint => 'When off, widgets show only the content.';
+  @override
+  String get allowNotesTitle => 'Notes on the widget';
+  @override
+  String get allowNotesHint => 'Only notes your partner marked for the widget.';
+  @override
+  String get privacySectionHint =>
+      'Follows your privacy choices. What is hidden in the app stays hidden here.';
+  @override
+  String get settingsSaved => 'Preferences updated.';
+  @override
+  String get lockScreenCircular => 'Circular';
+  @override
+  String get lockScreenRectangular => 'Rectangular';
+  @override
+  String get lockScreenInline => 'Inline';
+  @override
+  String get lockScreenNeutralLabel => 'NEUTRAL TEXT';
+  @override
+  String get lockScreenNeutralPhrase => 'No names on the lock screen';
+  @override
+  String get lockScreenAndroidUnavailable =>
+      'The Android lock screen does not accept widgets. Use the home-screen widgets.';
+  @override
+  String get ownNextDateDefault => 'Next date';
+  @override
+  String get ownSundayCardLabel => 'SUNDAY CARD';
+  @override
+  String get ownGroupTitle => 'Just mine';
+  @override
+  String get soloBanner => 'Couple widgets appear once you connect.';
+  @override
+  String get previewSmall => 'Small';
+  @override
+  String get previewMedium => 'Medium';
+  @override
+  String get counterSmallLabel => 'Small';
+  @override
+  String get counterMediumLabel => 'Medium, with timeline';
+  @override
+  String get partnerNotePageTitle => 'Partner note';
+  @override
+  String get partnerNotePrivacy => 'Only what your partner chose to send to the widget appears.';
+  @override
+  String get moodLongingPageTitle => 'Mood and missing';
+  @override
+  String get partnerMoodPrivacy => 'Mood only appears if your partner shared it.';
+  @override
+  String get longingPrivacy => 'Missing appears when your partner sends it.';
+  @override
+  String get moodUpdateAction => 'Update my mood';
+  @override
+  String get openDatesAction => 'See dates';
+  @override
+  String get lockReminderShortLabel => 'Reminder';
 }
 
 // Path: acceptInvite.connected
@@ -12784,7 +13033,7 @@ extension on TranslationsEn {
           'widgets.ownSlipSubtitle' => 'Tap to log',
           'widgets.ownIdeaLabel' => 'DAILY IDEA',
           'widgets.ownIdeaDefault' => 'Leave a small note today',
-          'widgets.ownIdeaHint' => 'Tap to open',
+          'widgets.ownIdeaHint' => 'One idea for today.',
           'widgets.ownJarLabel' => 'BAD DAY JAR',
           'widgets.ownJarTitle' => 'Open a saved slip',
           'widgets.ownJarPrivacy' => 'Private: only on your device',
@@ -12900,6 +13149,174 @@ extension on TranslationsEn {
           'widgets.howToAddAndroidLockNote' => 'On modern Android the widgets live on the home screen. The lock screen only uses neutral notification icons.',
           'widgets.howToAddIosLockNote' =>
             'On iOS 16 or newer, you can also add the widget to the lock screen.',
+          'widgets.coupleLabel' => 'COUPLE',
+          'widgets.gallerySubtitle' => 'Small pieces of the app on your home screen.',
+          'widgets.favoritesGroup' => 'Most loved',
+          'widgets.mediumGroup' => 'Medium',
+          'widgets.ownSmallGroup' => 'Log and remember',
+          'widgets.ownGroupHint' => 'Work without a partner and only show what is yours.',
+          'widgets.ownSmallEntryTitle' => 'Small',
+          'widgets.ownSmallEntryHint' => 'Log, remember and the Sunday card.',
+          'widgets.ownMediumEntryTitle' => 'Medium',
+          'widgets.ownMediumEntryHint' => 'Your week, an idea and the next date.',
+          'widgets.ownSmallTitle' => 'Just mine: small',
+          'widgets.ownMediumTitle' => 'Just mine: medium',
+          'widgets.counterEyebrow' => 'TOGETHER',
+          'widgets.counterNeedDate' => 'Set your relationship date',
+          'widgets.counterDaysUnit' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '${count} day',
+                  other: '${count} days',
+                ),
+          'widgets.counterBreakdown' => ({
+            required Object years,
+            required Object months,
+            required Object days,
+          }) => '${years} years, ${months} months and ${days} days',
+          'widgets.counterToday' => 'Today',
+          'widgets.counterSince' => ({required Object date}) => 'Since ${date}',
+          'widgets.partnerMoodLabel' => 'PARTNER MOOD',
+          'widgets.partnerMoodNow' => ({required Object name}) => '${name} now',
+          'widgets.partnerMoodNowAnonymous' => 'Now',
+          'widgets.partnerMoodHidden' => 'Mood appears when your partner shares it.',
+          'widgets.longingLabel' => 'MISSING US',
+          'widgets.longingAction' => 'Send some missing',
+          'widgets.longingReceived' => 'Your partner misses you',
+          'widgets.longingHint' => 'One tap and they feel it.',
+          'widgets.ritualLabel' => 'RITUAL',
+          'widgets.ritualEmptyTitle' => 'Create a ritual',
+          'widgets.ritualEmptyHint' => 'A moment that is yours.',
+          'widgets.noteFromPartner' => ({required Object time}) => 'from your partner · ${time}',
+          'widgets.noteFromName' => ({
+            required Object name,
+            required Object time,
+          }) => 'from ${name} · ${time}',
+          'widgets.noteEmpty' => 'No note here yet',
+          'widgets.noteEmptyHint' => 'A note appears when your partner chooses to send one.',
+          'widgets.noteDisabled' => 'Notes are off',
+          'widgets.noteDisabledHint' => 'Turn on “Notes on the widget” to see them.',
+          'widgets.nextEncounterInDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: 'in ${count} day',
+                  other: 'in ${count} days',
+                ),
+          'widgets.cardSundayTitle' => 'Sunday card',
+          'widgets.cardSendAt' => ({
+            required Object day,
+            required Object time,
+          }) => 'out ${day}, ${time}',
+          'widgets.cardReadyShort' => 'A card arrived',
+          'widgets.cardSentShort' => 'Card sent',
+          'widgets.cardNoneShort' => 'Sunday card',
+          'widgets.distanceLabel' => 'LONG DISTANCE',
+          'widgets.distanceHidden' => 'Your partner\'s timezone is not set',
+          'widgets.distanceHint' => 'Each in their own timezone.',
+          'widgets.distanceUntil' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '${count} day until you meet',
+                  other: '${count} days until you meet',
+                ),
+          'widgets.distanceNoReunion' => 'Next meeting without a date',
+          'widgets.distanceYou' => ({required Object city}) => '${city} · you',
+          'widgets.ownNextDateLabel' => 'NEXT DATE',
+          'widgets.ownNextDateHint' => 'Tap to see the dates',
+          'widgets.ownDateCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '${count} day',
+                  other: '${count} days',
+                ),
+          'widgets.ownWeekTitle' => 'My week',
+          'widgets.ownWeekCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '${count} slip',
+                  other: '${count} slips',
+                ),
+          'widgets.weekdays.0' => 'mon',
+          'widgets.weekdays.1' => 'tue',
+          'widgets.weekdays.2' => 'wed',
+          'widgets.weekdays.3' => 'thu',
+          'widgets.weekdays.4' => 'fri',
+          'widgets.weekdays.5' => 'sat',
+          'widgets.weekdays.6' => 'sun',
+          'widgets.familyLabels.counter' => 'Counter',
+          'widgets.familyLabels.counterMedium' => 'Counter',
+          'widgets.familyLabels.partnerMood' => 'Partner mood',
+          'widgets.familyLabels.longing' => 'Missing us',
+          'widgets.familyLabels.ritual' => 'Ritual',
+          'widgets.familyLabels.partnerNote' => 'Partner note',
+          'widgets.familyLabels.cardEncounter' => 'Card & date',
+          'widgets.familyLabels.distance' => 'Long distance',
+          'widgets.familyLabels.ownSlip' => 'Log slip',
+          'widgets.familyLabels.ownNextDate' => 'Next date',
+          'widgets.familyLabels.ownRitual' => 'Ritual',
+          'widgets.familyLabels.ownSundayCard' => 'Sunday card',
+          'widgets.familyLabels.ownWeek' => 'My week',
+          'widgets.familyLabels.ownIdea' => 'Idea of the day',
+          'widgets.familyLabels.ownMediumDate' => 'Next date',
+          'widgets.familyLabels.other' => 'Widget',
+          'widgets.moodJustNow' => 'just now',
+          'widgets.moodMinutesAgo' => ({required Object minutes}) => '${minutes} min ago',
+          'widgets.moodHoursAgo' => ({required Object hours}) => '${hours} h ago',
+          'widgets.moodDaysAgo' => ({required Object days}) => '${days} d ago',
+          'widgets.ownSlipQuestion' => 'How was your day?',
+          'widgets.ownSlipAction' => 'Log a slip',
+          'widgets.howToAddAction' => 'How to add',
+          'widgets.howToAddTitle' => 'How to add',
+          'widgets.howToAddSubtitle' =>
+            'Straight from the home screen, with no extra Mingo permission.',
+          'widgets.howToAddIosStep1' => 'Touch and hold an empty spot on the home screen.',
+          'widgets.howToAddIosStep2' => 'Tap + in the top corner.',
+          'widgets.howToAddIosStep3' => 'Choose Mingo and the widget size.',
+          'widgets.howToAddAndroidStep1' => 'Touch and hold an empty spot on the home screen.',
+          'widgets.howToAddAndroidStep2' => 'Tap Widgets.',
+          'widgets.howToAddAndroidStep3' => 'Choose Mingo and drag it to the screen.',
+          'widgets.howToAddLockIosStep1' => 'Touch and hold the lock screen.',
+          'widgets.howToAddLockIosStep2' => 'Tap Customize.',
+          'widgets.howToAddLockIosStep3' => 'Add the Mingo widget below the clock.',
+          'widgets.howToAddNote' =>
+            'You can remove the widget whenever you want; nothing is deleted.',
+          'widgets.widgetPrivacyTitle' => 'What appears on widgets',
+          'widgets.showNamesTitle' => 'Names and initials',
+          'widgets.showNamesHint' => 'When off, widgets show only the content.',
+          'widgets.allowNotesTitle' => 'Notes on the widget',
+          'widgets.allowNotesHint' => 'Only notes your partner marked for the widget.',
+          'widgets.privacySectionHint' =>
+            'Follows your privacy choices. What is hidden in the app stays hidden here.',
+          'widgets.settingsSaved' => 'Preferences updated.',
+          'widgets.lockScreenCircular' => 'Circular',
+          'widgets.lockScreenRectangular' => 'Rectangular',
+          'widgets.lockScreenInline' => 'Inline',
+          'widgets.lockScreenNeutralLabel' => 'NEUTRAL TEXT',
+          'widgets.lockScreenNeutralPhrase' => 'No names on the lock screen',
+          'widgets.lockScreenAndroidUnavailable' =>
+            'The Android lock screen does not accept widgets. Use the home-screen widgets.',
+          'widgets.ownNextDateDefault' => 'Next date',
+          'widgets.ownSundayCardLabel' => 'SUNDAY CARD',
+          'widgets.ownGroupTitle' => 'Just mine',
+          'widgets.soloBanner' => 'Couple widgets appear once you connect.',
+          'widgets.previewSmall' => 'Small',
+          'widgets.previewMedium' => 'Medium',
+          'widgets.counterSmallLabel' => 'Small',
+          'widgets.counterMediumLabel' => 'Medium, with timeline',
+          'widgets.partnerNotePageTitle' => 'Partner note',
+          'widgets.partnerNotePrivacy' =>
+            'Only what your partner chose to send to the widget appears.',
+          'widgets.moodLongingPageTitle' => 'Mood and missing',
+          'widgets.partnerMoodPrivacy' => 'Mood only appears if your partner shared it.',
+          'widgets.longingPrivacy' => 'Missing appears when your partner sends it.',
+          'widgets.moodUpdateAction' => 'Update my mood',
+          'widgets.openDatesAction' => 'See dates',
+          'widgets.lockReminderShortLabel' => 'Reminder',
           _ => null,
         };
   }

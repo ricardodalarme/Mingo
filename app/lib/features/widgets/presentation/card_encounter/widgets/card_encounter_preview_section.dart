@@ -1,90 +1,37 @@
+import 'package:app/features/widgets/data/models/widget_family.dart';
 import 'package:app/features/widgets/data/models/widget_payload.dart';
-import 'package:app/features/widgets/presentation/shared/widget_surface_preview.dart';
+import 'package:app/features/widgets/presentation/shared/widget_family_preview.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 
-class const CardEncounterPreviewSection({
-  required final WidgetPayload payload,
-  required final bool isDarkPreview,
-  super.key,
-}) extends StatelessWidget {
+/// Medium and small previews of the card and next encounter widget (`X-153`).
+class const CardEncounterPreviewSection({required final WidgetPayload payload, super.key})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.widgets;
-
-    if (!payload.isSignedIn) {
-      return WidgetSurfacePreview(
-        isDark: isDarkPreview,
-        categoryLabel: l10n.signedOutLabel,
-        title: l10n.signedOutBody,
-        subtitle: l10n.ownIdeaHint,
-        deepLinkUri: Uri.parse('mingo://sign-in'),
-      );
-    }
-
-    if (!payload.isPaired) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          WidgetSurfacePreview(
-            isDark: isDarkPreview,
-            categoryLabel: l10n.cardEncounterLabel,
-            title: l10n.statesUnpairedTitle,
-            subtitle: l10n.unpairedBanner,
-            badgeText: l10n.statesUnpairedAction,
-            onTapOverride: () => context.pushRoute(const InviteRoute()),
-          ),
-        ],
-      );
-    }
-
-    final now = clock.now();
-    final (cardTitle, cardSubtitle) = switch (payload.cardState) {
-      'ready' => (l10n.cardReadyTitle, l10n.cardReadySubtitle),
-      'sent' => (l10n.cardSentTitle, l10n.cardSentSubtitle),
-      _ => (l10n.cardNoneTitle, l10n.cardNoneSubtitle),
-    };
-
-    final daysUntilDate = payload.daysUntilNextDateOn(now);
-    final encounterTitle = daysUntilDate != null
-        ? l10n.ownSmallDateDays(count: daysUntilDate)
-        : l10n.nextEncounterEmptyTitle;
-    final encounterSubtitle = daysUntilDate != null && (payload.nextDateTitle?.isNotEmpty ?? false)
-        ? payload.nextDateTitle!
-        : l10n.nextEncounterEmptySubtitle;
+    final colors = context.colors;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: WidgetSurfacePreview(
-                isDark: isDarkPreview,
-                categoryLabel: l10n.cardWeeklyLabel,
-                title: cardTitle,
-                subtitle: cardSubtitle,
-                onTapOverride: () => context.pushRoute(const SundayCardRoute()),
-              ),
-            ),
-            const SizedBox(width: AppSpace.s12),
-            Expanded(
-              child: WidgetSurfacePreview(
-                isDark: isDarkPreview,
-                categoryLabel: l10n.nextEncounterLabel,
-                title: encounterTitle,
-                subtitle: encounterSubtitle,
-                onTapOverride: () => context.pushRoute(const DatesRoute()),
-              ),
-            ),
-          ],
-        ),
+        Text(l10n.previewMedium, style: context.text.label.copyWith(color: colors.textSecondary)),
+        const SizedBox(height: AppSpace.s8),
+        WidgetFamilyPreview(family: WidgetFamily.cardEncounter, payload: payload),
+        const SizedBox(height: AppSpace.s20),
+        Text(l10n.previewSmall, style: context.text.label.copyWith(color: colors.textSecondary)),
+        const SizedBox(height: AppSpace.s8),
+        WidgetFamilyPreview(family: WidgetFamily.ownSundayCard, payload: payload),
         const SizedBox(height: AppSpace.s16),
         BaseNote(text: l10n.cardEncounterPrivacyNote, icon: AppIcons.shield),
+        const SizedBox(height: AppSpace.s8),
+        BaseButton(
+          text: l10n.nextEncounterEmptySubtitle,
+          variant: BaseButtonVariant.secondary,
+          onPressed: () => context.pushRoute(const DatesRoute()),
+        ),
       ],
     );
   }

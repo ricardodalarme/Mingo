@@ -27,9 +27,6 @@ class const CoupleCounterWidgetPage({super.key})
     final overviewResource = context.select(
       (CoupleCounterWidgetCubit cubit) => cubit.state.overview,
     );
-    final isDarkPreview = context.select(
-      (CoupleCounterWidgetCubit cubit) => cubit.state.isDarkPreview,
-    );
     final cubit = context.read<CoupleCounterWidgetCubit>();
 
     return BaseView(
@@ -44,18 +41,7 @@ class const CoupleCounterWidgetPage({super.key})
             actionText: l10n.retryAction,
             onAction: cubit.load,
           ),
-          successBuilder: (overview) => Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              BaseSegmented(
-                segments: [l10n.themeLight, l10n.themeDark],
-                selectedIndex: isDarkPreview ? 1 : 0,
-                onSelectionChanged: (index) => cubit.setDarkPreview(isDark: index == 1),
-              ),
-              const SizedBox(height: AppSpace.s16),
-              CoupleCounterPreviewCards(payload: overview.payload, isDarkPreview: isDarkPreview),
-            ],
-          ),
+          successBuilder: (overview) => CoupleCounterPreviewCards(payload: overview.payload),
         ),
       ),
     );

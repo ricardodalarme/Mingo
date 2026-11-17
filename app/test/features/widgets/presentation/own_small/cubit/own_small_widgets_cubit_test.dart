@@ -1,6 +1,7 @@
 import 'package:app/features/widgets/data/models/widget_models.dart';
 import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:app/features/widgets/presentation/own_small/cubit/own_small_widgets_cubit.dart';
+import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -14,17 +15,39 @@ void main() {
     repository = _MockWidgetsRepository();
   });
 
-  test('load emits Success and setDarkPreview toggles theme preview', () async {
-    final overview = WidgetOverview.fake();
-    when(() => repository.loadAndSync()).thenAnswer((_) async => overview);
+  final overview = WidgetOverview.fake();
 
-    final cubit = OwnSmallWidgetsCubit(repository: repository);
-    await cubit.load();
+  blocTest<OwnSmallWidgetsCubit, OwnSmallWidgetsState>(
+    'emits Loading then Success on load',
+    build: () {
+      when(() => repository.loadAndSync()).thenAnswer((_) async => overview);
+      return OwnSmallWidgetsCubit(repository: repository);
+    },
+    act: (cubit) => cubit.load(),
+    expect: () => [
+      const OwnSmallWidgetsState(overview: Loading()),
+      OwnSmallWidgetsState(overview: Success(overview)),
+    ],
+  );
 
-    expect(cubit.state.overview, Success(overview));
-    expect(cubit.state.isDarkPreview, isFalse);
-
-    cubit.setDarkPreview(isDark: true);
-    expect(cubit.state.isDarkPreview, isTrue);
-  });
+  blocTest<OwnSmallWidgetsCubit, OwnSmallWidgetsState>(
+    'keeps the loaded overview when a refresh fails',
+    build: () {
+      var calls = 0;
+      when(() => repository.loadAndSync()).thenAnswer((_) async {
+        calls += 1;
+        if (calls == 1) return overview;
+        throw Exception('offline');
+      });
+      return OwnSmallWidgetsCubit(repository: repository);
+    },
+    act: (cubit) async {
+      await cubit.load();
+      await cubit.load();
+    },
+    expect: () => [
+      const OwnSmallWidgetsState(overview: Loading()),
+      OwnSmallWidgetsState(overview: Success(overview)),
+    ],
+  );
 }

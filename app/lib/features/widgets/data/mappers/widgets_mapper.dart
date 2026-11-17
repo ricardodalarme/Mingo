@@ -1,3 +1,4 @@
+import 'package:app/features/distance/data/models/distance_info.dart';
 import 'package:app/features/mood/data/mappers/mood_enum_mapper.dart';
 import 'package:app/features/profile/data/mappers/relationship_phase_mapper.dart';
 import 'package:app/features/widgets/data/data_sources/remote/queries/generated/WidgetOverview.graphql.dart';
@@ -13,6 +14,7 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
     String? cardStatus,
     String? cachedPhotoPath,
     bool hasPhoto = false,
+    DistanceInfo? distance,
     String? localeCode,
     DateTime? now,
   }) {
@@ -53,7 +55,9 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
 
     final moodNode = myMood.firstOrNull;
     final partnerNoteNode = partnerNote.firstOrNull;
+    final partnerMoodNode = partnerMood.firstOrNull;
     final referenceNow = now ?? clock.now();
+    final settingsRow = notificationSettingsByPk;
 
     final rawPayload = WidgetPayload(
       isSignedIn: true,
@@ -66,6 +70,7 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
       togetherSince: togetherSince,
       relationshipPhase: settingsState?.phase?.toModel(),
       partnerName: todayState?.partnerName,
+      ownName: me?.displayName,
       nextDateTitle: nextDateTitle,
       nextDateOn: nextDateOn,
       unopenedCards: unopenedCards,
@@ -73,13 +78,26 @@ extension QueryWidgetOverviewMapper on QueryWidgetOverview {
       partnerNote: partnerNoteNode?.body,
       partnerNoteMedia: partnerNoteNode?.mediaFileId,
       partnerNoteAt: partnerNoteNode?.createdAt.toUtc().toIso8601String(),
-      partnerMood: partnerMood.firstOrNull?.mood.toModel()?.name,
+      partnerMood: partnerMoodNode?.mood.toModel()?.name,
+      partnerMoodAt: partnerMoodNode?.updatedAt.toUtc().toIso8601String(),
+      partnerMissedAt: partnerMiss.firstOrNull?.createdAt.toUtc().toIso8601String(),
       myMood: moodNode?.mood.toModel()?.name,
       ritualTitle: ritualNode?.title,
       ritualSchedule: ritualSchedule,
       dailyIdeaTitle: idea.firstOrNull?.title,
-      slipsCount: todayState?.slipsTotal ?? todayState?.slipsThisWeek ?? 0,
+      slipsCount: todayState?.slipsTotal ?? 0,
+      slipsThisWeek: todayState?.slipsThisWeek ?? 0,
+      slipDays: todayState?.slipDays?.map(_formatDateOnly).toList() ?? const <String>[],
       cachedPhotoPath: cachedPhotoPath,
+      cardSendDay: settingsRow?.cardDay,
+      cardSendHour: settingsRow?.cardHour,
+      ownZone: distance?.own.zone,
+      partnerZone: distance?.partner?.zone,
+      ownLocalTime: _formatClock(distance?.own.time),
+      partnerLocalTime: _formatClock(distance?.partner?.time),
+      reunionTitle: distance?.reunionTitle,
+      reunionOn: distance?.nextReunion != null ? _formatDateOnly(distance!.nextReunion!) : null,
+      reunionDays: distance?.daysToReunion,
       updatedAt: referenceNow.toUtc().toIso8601String(),
     ).sanitized(referenceNow: referenceNow);
 
@@ -101,6 +119,13 @@ String _formatDateOnly(DateTime date) {
   final month = date.month.toString().padLeft(2, '0');
   final day = date.day.toString().padLeft(2, '0');
   return '$year-$month-$day';
+}
+
+String? _formatClock(DateTime? time) {
+  if (time == null) return null;
+  final hour = time.hour.toString().padLeft(2, '0');
+  final minute = time.minute.toString().padLeft(2, '0');
+  return '$hour:$minute';
 }
 
 String? _formatRitualSchedule({required String locale, int? weekday, String? atTime}) {

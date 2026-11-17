@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/distance/data/models/distance_info.dart';
+import 'package:app/features/distance/data/repositories/distance_repository.dart';
 import 'package:app/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
 import 'package:app/features/widgets/data/data_sources/remote/widgets_data_source.dart';
 import 'package:app/features/widgets/data/mappers/widgets_mapper.dart';
@@ -8,6 +10,7 @@ import 'package:app/features/widgets/data/models/widget_models.dart';
 import 'package:app/features/widgets/data/models/widget_payload.dart';
 import 'package:app/features/widgets/data/repositories/couple_photo_repository.dart';
 import 'package:app/features/widgets/data/services/widget_data_service.dart';
+import 'package:core/core.dart';
 import 'package:logger/logger.dart';
 
 /// Coordinates server widget reads, local privacy/rotation settings, and the shared native store.
@@ -19,6 +22,7 @@ class WidgetsRepository({
   required final WidgetDataService _widgetDataService,
   required final CouplePhotoRepository _couplePhotoRepository,
   required final AuthenticationRepository _authenticationRepository,
+  required final DistanceRepository _distanceRepository,
 }) {
   final Logger _logger = Logger('WidgetsRepository');
   Future<void> _writeQueue = Future<void>.value();
@@ -40,6 +44,15 @@ class WidgetsRepository({
       final isPaired = today?.coupleId != null;
       final hasPlus = response.overview.plusStates.firstOrNull?.hasPlus ?? false;
 
+      DistanceInfo? distance;
+      if (isPaired) {
+        try {
+          distance = await _distanceRepository.getDistance(now: now);
+        } on Object {
+          distance = null;
+        }
+      }
+
       var hasPhoto = false;
       if (generation == _generation && isPaired) {
         try {
@@ -59,6 +72,7 @@ class WidgetsRepository({
         cardStatus: response.cardStatus,
         cachedPhotoPath: cachedPhotoPath,
         hasPhoto: hasPhoto,
+        distance: distance,
         now: now,
       );
 
@@ -102,6 +116,31 @@ class WidgetsRepository({
     } on Object {
       // Background sync failures keep the existing cached native state.
     }
+  }
+
+  /// Saves which families may show names and partner notes, then resyncs the payload.
+  Future<WidgetOverview> savePrivacy({
+    required bool showNames,
+    required bool allowPartnerNotes,
+    DateTime? now,
+  }) async {
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) {
+      throw const LocalizedException(l10nKey: 'WIDGET_PREFERENCES_SAVE_FAILED');
+    }
+    try {
+      await _dataSource.updateSettings(
+        userId: userId,
+        showNames: showNames,
+        allowPartnerNotes: allowPartnerNotes,
+      );
+    } on LocalizedException {
+      rethrow;
+    } on Object {
+      throw const LocalizedException(l10nKey: 'WIDGET_PREFERENCES_SAVE_FAILED');
+    }
+
+    return loadAndSync(now: now);
   }
 
   /// Writes a neutral signed-out payload and removes any cached personal state or photo.

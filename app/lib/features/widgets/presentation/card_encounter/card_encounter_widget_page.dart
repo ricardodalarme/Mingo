@@ -8,8 +8,8 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// Card & next encounter widget screen (`X-153`): displays only card state (`ready`, `sent`,
-/// `none`, `ready`, `sent`) and the next shared date label — never personal names or card text.
+/// Card & next encounter widget screen (`X-153`): card state and the next date
+/// label, never names or card text.
 @RoutePage()
 class const CardEncounterWidgetPage({super.key})
     extends StatelessWidget
@@ -28,9 +28,6 @@ class const CardEncounterWidgetPage({super.key})
     final overviewResource = context.select(
       (CardEncounterWidgetCubit cubit) => cubit.state.overview,
     );
-    final isDarkPreview = context.select(
-      (CardEncounterWidgetCubit cubit) => cubit.state.isDarkPreview,
-    );
     final cubit = context.read<CardEncounterWidgetCubit>();
 
     return BaseView(
@@ -45,18 +42,7 @@ class const CardEncounterWidgetPage({super.key})
             actionText: l10n.retryAction,
             onAction: cubit.load,
           ),
-          successBuilder: (overview) => Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              BaseSegmented(
-                segments: [l10n.themeLight, l10n.themeDark],
-                selectedIndex: isDarkPreview ? 1 : 0,
-                onSelectionChanged: (index) => cubit.setDarkPreview(isDark: index == 1),
-              ),
-              const SizedBox(height: AppSpace.s16),
-              CardEncounterPreviewSection(payload: overview.payload, isDarkPreview: isDarkPreview),
-            ],
-          ),
+          successBuilder: (overview) => CardEncounterPreviewSection(payload: overview.payload),
         ),
       ),
     );

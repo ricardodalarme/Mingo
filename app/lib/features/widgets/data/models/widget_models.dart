@@ -1,21 +1,17 @@
 import 'package:app/features/widgets/data/models/widget_payload.dart';
 import 'package:equatable/equatable.dart';
 
-/// Segment tab in the widgets gallery (`X-145`).
-enum WidgetGallerySegment() {
-  own,
-  couple,
-}
-
 /// Widget families offered by the app across home screen and lock screen.
 enum WidgetFamilyKind() {
   ownSmall,
   ownMedium,
   lockScreen,
   coupleCounter,
-  couplePhotos,
   partnerNote,
+  partnerMood,
+  longing,
   cardEncounter,
+  distance,
 }
 
 /// Content source selected in the widget configuration screen (`X-154`).

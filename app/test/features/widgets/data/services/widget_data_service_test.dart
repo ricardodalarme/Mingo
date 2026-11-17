@@ -71,6 +71,9 @@ void main() {
     expect(written.updatedAt, now.toIso8601String());
     expect(updatedIOSKinds, contains('MingoOwnSmallWidget'));
     expect(updatedIOSKinds, contains('MingoLockScreenWidget'));
+    expect(updatedIOSKinds, contains('MingoPartnerMoodWidget'));
+    expect(updatedIOSKinds, contains('MingoLongingWidget'));
+    expect(updatedIOSKinds, contains('MingoDistanceWidget'));
     expect(
       updatedAndroidProviders,
       contains('dev.dalarme.mingo.widgets.MingoOwnSmallWidgetProvider'),
@@ -79,7 +82,7 @@ void main() {
       scheduledMidnightProviders,
       containsAll([
         'dev.dalarme.mingo.widgets.MingoCoupleCounterWidgetProvider',
-        'dev.dalarme.mingo.widgets.MingoCouplePhotosWidgetProvider',
+        'dev.dalarme.mingo.widgets.MingoDistanceWidgetProvider',
         'dev.dalarme.mingo.widgets.MingoCardEncounterWidgetProvider',
       ]),
     );

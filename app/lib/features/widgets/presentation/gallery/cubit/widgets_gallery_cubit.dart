@@ -11,19 +11,34 @@ class WidgetsGalleryCubit({required final WidgetsRepository _repository})
   this : super(const WidgetsGalleryState());
 
   Future<void> load() async {
-    emit(state.copyWith(overview: const Loading()));
+    if (state.overview is! Success) emit(state.copyWith(overview: const Loading()));
     try {
       final overview = await _repository.loadAndSync();
       if (isClosed) return;
       emit(state.copyWith(overview: Success(overview)));
     } catch (exception) {
-      if (isClosed) return;
+      if (isClosed || state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }
   }
 
-  void selectSegment(WidgetGallerySegment segment) {
-    if (state.segment == segment) return;
-    emit(state.copyWith(segment: segment));
+  /// Saves the two widget privacy toggles and refreshes the payload.
+  Future<void> savePrivacy({required bool showNames, required bool allowPartnerNotes}) async {
+    if (state.saveAction is Loading) return;
+
+    emit(state.copyWith(saveAction: const Loading()));
+    try {
+      final overview = await _repository.savePrivacy(
+        showNames: showNames,
+        allowPartnerNotes: allowPartnerNotes,
+      );
+      if (isClosed) return;
+      emit(state.copyWith(overview: Success(overview), saveAction: const Success(null)));
+      emit(state.copyWith(saveAction: const Initial()));
+    } catch (exception) {
+      if (isClosed) return;
+      emit(state.copyWith(saveAction: Failure.fromObject(exception)));
+      emit(state.copyWith(saveAction: const Initial()));
+    }
   }
 }

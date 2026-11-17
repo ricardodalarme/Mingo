@@ -11,19 +11,14 @@ class OwnSmallWidgetsCubit({required final WidgetsRepository _repository})
   this : super(const OwnSmallWidgetsState());
 
   Future<void> load() async {
-    emit(state.copyWith(overview: const Loading()));
+    if (state.overview is! Success) emit(state.copyWith(overview: const Loading()));
     try {
       final overview = await _repository.loadAndSync();
       if (isClosed) return;
       emit(state.copyWith(overview: Success(overview)));
     } catch (exception) {
-      if (isClosed) return;
+      if (isClosed || state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }
-  }
-
-  void setDarkPreview({required bool isDark}) {
-    if (state.isDarkPreview == isDark) return;
-    emit(state.copyWith(isDarkPreview: isDark));
   }
 }

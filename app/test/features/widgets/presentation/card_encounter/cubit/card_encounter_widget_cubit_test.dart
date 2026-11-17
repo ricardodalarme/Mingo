@@ -20,19 +20,15 @@ void main() {
     final overview = WidgetOverview.fake();
 
     blocTest<CardEncounterWidgetCubit, CardEncounterWidgetState>(
-      'emits Loading then Success on load and toggles dark preview',
+      'emits Loading then Success on load',
       build: () {
         when(() => repository.loadAndSync()).thenAnswer((_) async => overview);
         return CardEncounterWidgetCubit(repository: repository);
       },
-      act: (cubit) async {
-        await cubit.load();
-        cubit.setDarkPreview(isDark: true);
-      },
+      act: (cubit) => cubit.load(),
       expect: () => [
         const CardEncounterWidgetState(overview: Loading()),
         CardEncounterWidgetState(overview: Success(overview)),
-        CardEncounterWidgetState(overview: Success(overview), isDarkPreview: true),
       ],
     );
 

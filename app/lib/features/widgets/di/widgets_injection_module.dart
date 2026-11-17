@@ -1,4 +1,5 @@
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
+import 'package:app/features/distance/data/repositories/distance_repository.dart';
 import 'package:app/features/widgets/data/data_sources/local/widgets_local_data_source.dart';
 import 'package:app/features/widgets/data/data_sources/remote/couple_photo_data_source.dart';
 import 'package:app/features/widgets/data/data_sources/remote/widgets_data_source.dart';
@@ -47,6 +48,7 @@ class WidgetsInjectionModule() implements InjectionModule {
           widgetDataService: injector.get<WidgetDataService>(),
           couplePhotoRepository: injector.get<CouplePhotoRepository>(),
           authenticationRepository: injector.get<AuthenticationRepository>(),
+          distanceRepository: injector.get<DistanceRepository>(),
         ),
       )
       ..registerFactory<WidgetsGalleryCubit>(

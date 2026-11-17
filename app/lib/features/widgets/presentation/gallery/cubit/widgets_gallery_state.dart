@@ -2,13 +2,14 @@ part of 'widgets_gallery_cubit.dart';
 
 final class const WidgetsGalleryState({
   final Resource<WidgetOverview> overview = const Loading(),
-  final WidgetGallerySegment segment = WidgetGallerySegment.own,
+  final Resource<void> saveAction = const Initial(),
 }) with Equatable {
-  WidgetsGalleryState copyWith({
-    Resource<WidgetOverview>? overview,
-    WidgetGallerySegment? segment,
-  }) => WidgetsGalleryState(overview: overview ?? this.overview, segment: segment ?? this.segment);
+  WidgetsGalleryState copyWith({Resource<WidgetOverview>? overview, Resource<void>? saveAction}) =>
+      WidgetsGalleryState(
+        overview: overview ?? this.overview,
+        saveAction: saveAction ?? this.saveAction,
+      );
 
   @override
-  List<Object?> get props => [overview, segment];
+  List<Object?> get props => [overview, saveAction];
 }

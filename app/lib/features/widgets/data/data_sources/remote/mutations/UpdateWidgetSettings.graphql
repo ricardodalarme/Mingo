@@ -1,0 +1,8 @@
+mutation UpdateWidgetSettings($userId: uuid!, $showNames: Boolean!, $allowPartnerNotes: Boolean!) {
+  updateUserSettings(
+    where: { userId: { _eq: $userId } }
+    _set: { widgetShowNames: $showNames, widgetAllowPartnerNotes: $allowPartnerNotes }
+  ) {
+    affected_rows
+  }
+}

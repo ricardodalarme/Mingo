@@ -133,8 +133,10 @@ import 'package:app/features/widgets/presentation/couple_counter/couple_counter_
 import 'package:app/features/widgets/presentation/couple_photos/couple_photos_widget_page.dart';
 import 'package:app/features/widgets/presentation/gallery/widgets_gallery_page.dart';
 import 'package:app/features/widgets/presentation/lock_screen/lock_screen_widget_page.dart';
+import 'package:app/features/widgets/presentation/mood_longing/mood_longing_widget_page.dart';
 import 'package:app/features/widgets/presentation/own_medium/own_medium_widgets_page.dart';
 import 'package:app/features/widgets/presentation/own_small/own_small_widgets_page.dart';
+import 'package:app/features/widgets/presentation/partner_note/partner_note_widget_page.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 
@@ -320,6 +322,8 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: LockRouteWidgetRoute.page),
     AutoRoute(page: CoupleCounterWidgetRoute.page),
     AutoRoute(page: CouplePhotosWidgetRoute.page),
+    AutoRoute(page: PartnerNoteWidgetRoute.page),
+    AutoRoute(page: MoodLongingWidgetRoute.page),
     AutoRoute(page: CardEncounterWidgetRoute.page),
   ];
 }

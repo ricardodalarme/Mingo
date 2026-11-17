@@ -25,7 +25,7 @@ class CouplePhotosWidgetCubit({
       if (isClosed) return;
       emit(state.copyWith(overview: Success(overview)));
     } catch (exception) {
-      if (isClosed) return;
+      if (isClosed || state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }
   }

@@ -1,3 +1,4 @@
+import 'package:app/features/mood/data/models/mood_kind.dart';
 import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:app/features/widgets/data/models/widget_payload.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -39,6 +40,64 @@ void main() {
         payload.copyWith(isSignedIn: false).sanitized(referenceNow: now).cachedPhotoPath,
         isNull,
       );
+    });
+  });
+
+  group('WidgetPayload family visibility', () {
+    final paired = WidgetPayload.fake().copyWith(
+      partnerName: 'Marina',
+      ownName: 'Luanna',
+      partnerNote: 'Boa sorte!',
+      partnerMood: 'loving',
+      partnerMoodAt: '2026-11-11T10:00:00.000Z',
+      partnerMissedAt: '2026-11-11T09:00:00.000Z',
+      partnerZone: 'Europe/Lisbon',
+      ownZone: 'America/Sao_Paulo',
+      ownLocalTime: '19:40',
+      partnerLocalTime: '22:40',
+    );
+
+    test('names are gated by the names setting', () {
+      final visible = paired.sanitized(referenceNow: now);
+      final hidden = paired.copyWith(showNames: false).sanitized(referenceNow: now);
+
+      expect(visible.visiblePartnerName, 'Marina');
+      expect(visible.visibleOwnName, 'Luanna');
+      expect(hidden.visiblePartnerName, isNull);
+      expect(hidden.visibleOwnName, isNull);
+    });
+
+    test('notes are gated by the notes setting', () {
+      expect(paired.sanitized(referenceNow: now).visiblePartnerNote, 'Boa sorte!');
+      expect(
+        paired.copyWith(allowPartnerNotes: false).sanitized(referenceNow: now).visiblePartnerNote,
+        isNull,
+      );
+    });
+
+    test('the partner mood needs a pair and a shared mood', () {
+      expect(paired.sanitized(referenceNow: now).visiblePartnerMood, MoodKind.loving);
+      expect(
+        paired.copyWith(isPaired: false).sanitized(referenceNow: now).visiblePartnerMood,
+        isNull,
+      );
+      expect(
+        paired.copyWith(partnerMood: 'unknown').sanitized(referenceNow: now).visiblePartnerMood,
+        isNull,
+      );
+    });
+
+    test('the distance is only kept when both zones differ', () {
+      final visible = paired.sanitized(referenceNow: now);
+      final sameZone = paired
+          .copyWith(partnerZone: 'America/Sao_Paulo')
+          .sanitized(referenceNow: now);
+
+      expect(visible.hasDistance, isTrue);
+      expect(visible.partnerZone, 'Europe/Lisbon');
+      expect(sameZone.hasDistance, isFalse);
+      expect(sameZone.partnerZone, isNull);
+      expect(paired.copyWith(isPaired: false).sanitized(referenceNow: now).hasDistance, isFalse);
     });
   });
 
