@@ -55,6 +55,8 @@ String webSocketUrlFor(String serverUrl) {
 Link buildSubscriptionLink({
   required String webSocketUrl,
   FutureOr<String?> Function()? tokenCallback,
+  Future<bool> Function()? refreshSession,
+  Stream<ToggleConnectionState>? toggleConnection,
   Duration reconnectDelay = const Duration(seconds: 3),
 }) {
   return WebSocketLink(
@@ -62,6 +64,14 @@ Link buildSubscriptionLink({
     subProtocol: GraphQLProtocol.graphqlTransportWs,
     config: SocketClientConfig(
       delayBetweenReconnectionAttempts: reconnectDelay,
+      toggleConnection: toggleConnection,
+      onConnectionLost: (code, reason) async {
+        if (!_isAuthClose(code)) return null;
+
+        final isRenewed = await refreshSession?.call() ?? false;
+
+        return isRenewed ? Duration.zero : null;
+      },
       initialPayload: () async {
         final accessToken = await tokenCallback?.call();
         if (accessToken == null || accessToken.isEmpty) return <String, dynamic>{};
@@ -73,3 +83,6 @@ Link buildSubscriptionLink({
     ),
   );
 }
+
+/// Whether a closed socket was refused for its token, which a renewed session fixes.
+bool _isAuthClose(int? code) => code == 4401 || code == 4403;

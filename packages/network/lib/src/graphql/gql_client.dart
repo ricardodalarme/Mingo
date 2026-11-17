@@ -5,7 +5,10 @@ import 'package:graphql/client.dart';
 import 'package:graphql_query_compress/graphql_query_compress.dart';
 import 'package:network/src/graphql/links/link_chain.dart';
 
-class GQLClient._(final GraphQLClient _client) {
+class GQLClient._(
+  final GraphQLClient _client, [
+  final StreamController<ToggleConnectionState>? _toggle,
+]) {
   factory({
     required String serverUrl,
     FutureOr<String?> Function()? tokenCallback,
@@ -14,6 +17,8 @@ class GQLClient._(final GraphQLClient _client) {
     Duration queryTimeout = const Duration(seconds: 10),
     Duration mutationTimeout = const Duration(seconds: 30),
   }) {
+    // ignore: close_sinks, the client lives as long as the app
+    final toggle = StreamController<ToggleConnectionState>.broadcast();
     final link = buildGraphQLLink(
       terminatingLink: HttpLink(
         serverUrl,
@@ -27,6 +32,8 @@ class GQLClient._(final GraphQLClient _client) {
       subscriptionLink: buildSubscriptionLink(
         webSocketUrl: webSocketUrlFor(serverUrl),
         tokenCallback: tokenCallback,
+        refreshSession: refreshSession,
+        toggleConnection: toggle.stream,
       ),
     );
 
@@ -44,6 +51,7 @@ class GQLClient._(final GraphQLClient _client) {
           ),
         ),
       ),
+      toggle,
     );
   }
 
@@ -114,6 +122,13 @@ class GQLClient._(final GraphQLClient _client) {
 
     return controller.stream;
   }
+
+  /// Closes the subscription socket and stops it reconnecting, such as while the app is in the
+  /// background; the open subscriptions resume with [resumeSubscriptions].
+  void pauseSubscriptions() => _toggle?.add(ToggleConnectionState.disconnect);
+
+  /// Opens the subscription socket again after [pauseSubscriptions].
+  void resumeSubscriptions() => _toggle?.add(ToggleConnectionState.connect);
 
   /// Drops everything cached, such as when another person signs in.
   void resetCache() {

@@ -20,6 +20,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:network/network.dart';
 
 class const App({super.key}) extends StatelessWidget {
   @override
@@ -132,8 +133,19 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed && widget.cubit.state == AppState.authenticated) {
-      unawaited(AppInjector.instance.get<WidgetsRepository>().syncQuietly());
+    final client = AppInjector.instance.get<GQLClient>();
+    switch (state) {
+      case AppLifecycleState.paused:
+      case AppLifecycleState.hidden:
+        client.pauseSubscriptions();
+      case AppLifecycleState.resumed:
+        client.resumeSubscriptions();
+        if (widget.cubit.state == AppState.authenticated) {
+          unawaited(AppInjector.instance.get<WidgetsRepository>().syncQuietly());
+        }
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.detached:
+        break;
     }
   }
 
