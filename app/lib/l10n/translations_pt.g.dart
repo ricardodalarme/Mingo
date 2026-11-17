@@ -4234,6 +4234,8 @@ class Translations$memories$pt {
   String get jarEmptyAction => 'Ver meus slips';
 
   late final Translations$memories$menu$pt menu = Translations$memories$menu$pt.internal(_root);
+  late final Translations$memories$onThisDay$pt onThisDay =
+      Translations$memories$onThisDay$pt.internal(_root);
 }
 
 // Path: mood
@@ -9237,6 +9239,32 @@ class Translations$memories$menu$pt {
 
   /// pt: 'Só seu, nunca vai para a outra pessoa'
   String get diaryText => 'Só seu, nunca vai para a outra pessoa';
+
+  /// pt: 'Ideias de presente'
+  String get gifts => 'Ideias de presente';
+
+  /// pt: 'Desejos de cada um e ideias para o outro'
+  String get giftsText => 'Desejos de cada um e ideias para o outro';
+}
+
+// Path: memories.onThisDay
+class Translations$memories$onThisDay$pt {
+  Translations$memories$onThisDay$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'NESTE DIA'
+  String get label => 'NESTE DIA';
+
+  /// pt: '(one) {Há 1 ano} (other) {Há {count} anos}'
+  String yearsAgo({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'Há 1 ano',
+        other: 'Há ${count} anos',
+      );
 }
 
 // Path: need.sent
@@ -12541,6 +12569,16 @@ extension on Translations {
           'memories.menu.datesText' => 'Aniversários, feriados e contagens',
           'memories.menu.diary' => 'Diário',
           'memories.menu.diaryText' => 'Só seu, nunca vai para a outra pessoa',
+          'memories.menu.gifts' => 'Ideias de presente',
+          'memories.menu.giftsText' => 'Desejos de cada um e ideias para o outro',
+          'memories.onThisDay.label' => 'NESTE DIA',
+          'memories.onThisDay.yearsAgo' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'Há 1 ano',
+                  other: 'Há ${count} anos',
+                ),
           'mood.title' => 'Como você está hoje?',
           'mood.titleHighlight' => 'hoje',
           'mood.subtitle' => 'Um toque. A etiqueta “Preciso de...” é opcional.',
@@ -13025,13 +13063,13 @@ extension on Translations {
           'profileSetup.nameLabel' => 'Seu nome',
           'profileSetup.nameHint' => 'Seu primeiro nome',
           'profileSetup.nameErrors.empty' => 'Seu nome não pode ficar vazio.',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.nameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileSetup.partnerNameLabel' => 'Nome do parceiro',
           'profileSetup.partnerNameHint' => 'O primeiro nome dele ou dela',
           'profileSetup.partnerNameErrors.tooLong' => 'Use no máximo 30 caracteres.',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.dateLabel' => 'Quando começaram?',
           'profileSetup.dateHint' => 'Escolha uma data',
           'profileSetup.dateErrors.empty' => 'Escolha a data de vocês.',
@@ -13606,13 +13644,13 @@ extension on Translations {
           'share.monthsLong.2' => 'março',
           'share.monthsLong.3' => 'abril',
           'share.monthsLong.4' => 'maio',
+          _ => null,
+        } ??
+        switch (path) {
           'share.monthsLong.5' => 'junho',
           'share.monthsLong.6' => 'julho',
           'share.monthsLong.7' => 'agosto',
           'share.monthsLong.8' => 'setembro',
-          _ => null,
-        } ??
-        switch (path) {
           'share.monthsLong.9' => 'outubro',
           'share.monthsLong.10' => 'novembro',
           'share.monthsLong.11' => 'dezembro',
@@ -14215,13 +14253,13 @@ extension on Translations {
           'temperature.levels.turbulent' => 'Turbulento',
           'temperature.levels.fight' => 'Uma briga',
           'temperature.levels.other' => '',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.continueAction' => 'Continuar',
           'temperature.back' => 'Voltar',
           'temperature.skip' => 'Agora não',
           'temperature.intensityTitle' => 'Qual a intensidade?',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.intensityHighlight' => 'intensidade',
           'temperature.intensityHint' =>
             'Abaixo de 7 dá para conversar. Acima de 7, faça uma pausa primeiro.',

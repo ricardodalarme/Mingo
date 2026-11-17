@@ -68,6 +68,15 @@
     "dates": "Dates and numbers",
     "datesText": "Anniversaries, holidays and counts",
     "diary": "Diary",
-    "diaryText": "Only yours, never goes to the other person"
+    "diaryText": "Only yours, never goes to the other person",
+    "gifts": "Gift ideas",
+    "giftsText": "Each one's wishes and ideas for the other"
+  },
+  "onThisDay": {
+    "label": "ON THIS DAY",
+    "yearsAgo(plural, param=count)": {
+      "one": "1 year ago",
+      "other": "{count} years ago"
+    }
   }
 }

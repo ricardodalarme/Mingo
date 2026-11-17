@@ -34,3 +34,12 @@ final class const Memory({
   @override
   List<Object?> get props => [id, title, happenedOn, body, place];
 }
+
+/// The memories that happened on this calendar day in an earlier year, oldest first.
+List<Memory> memoriesOnThisDay(List<Memory> memories, {required DateTime today}) => [
+  for (final memory in memories)
+    if (memory.happenedOn.month == today.month &&
+        memory.happenedOn.day == today.day &&
+        memory.happenedOn.year < today.year)
+      memory,
+]..sort((a, b) => a.happenedOn.compareTo(b.happenedOn));

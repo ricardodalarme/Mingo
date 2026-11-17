@@ -3459,6 +3459,10 @@ class _Translations$memories$en extends Translations$memories$pt {
   String get jarEmptyAction => 'See my slips';
   @override
   late final _Translations$memories$menu$en menu = _Translations$memories$menu$en._(_root);
+  @override
+  late final _Translations$memories$onThisDay$en onThisDay = _Translations$memories$onThisDay$en._(
+    _root,
+  );
 }
 
 // Path: mood
@@ -7388,6 +7392,30 @@ class _Translations$memories$menu$en extends Translations$memories$menu$pt {
   String get diary => 'Diary';
   @override
   String get diaryText => 'Only yours, never goes to the other person';
+  @override
+  String get gifts => 'Gift ideas';
+  @override
+  String get giftsText => 'Each one\'s wishes and ideas for the other';
+}
+
+// Path: memories.onThisDay
+class _Translations$memories$onThisDay$en extends Translations$memories$onThisDay$pt {
+  _Translations$memories$onThisDay$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get label => 'ON THIS DAY';
+  @override
+  String yearsAgo({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 year ago',
+        other: '${count} years ago',
+      );
 }
 
 // Path: need.sent
@@ -10478,6 +10506,16 @@ extension on TranslationsEn {
           'memories.menu.datesText' => 'Anniversaries, holidays and counts',
           'memories.menu.diary' => 'Diary',
           'memories.menu.diaryText' => 'Only yours, never goes to the other person',
+          'memories.menu.gifts' => 'Gift ideas',
+          'memories.menu.giftsText' => 'Each one\'s wishes and ideas for the other',
+          'memories.onThisDay.label' => 'ON THIS DAY',
+          'memories.onThisDay.yearsAgo' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 year ago',
+                  other: '${count} years ago',
+                ),
           'mood.title' => 'How are you today?',
           'mood.titleHighlight' => 'today',
           'mood.subtitle' => 'One tap. The “I need…” tag is optional.',
@@ -10956,13 +10994,13 @@ extension on TranslationsEn {
           'profileSetup.nameLabel' => 'Your name',
           'profileSetup.nameHint' => 'Your first name',
           'profileSetup.nameErrors.empty' => 'Your name cannot be empty.',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.nameErrors.tooLong' => 'Use at most 30 characters.',
           'profileSetup.partnerNameLabel' => 'Partner\'s name',
           'profileSetup.partnerNameHint' => 'Their first name',
           'profileSetup.partnerNameErrors.tooLong' => 'Use at most 30 characters.',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.dateLabel' => 'When did you start?',
           'profileSetup.dateHint' => 'Pick a date',
           'profileSetup.dateErrors.empty' => 'Pick the date you started.',
@@ -11531,13 +11569,13 @@ extension on TranslationsEn {
           'share.monthsLong.2' => 'March',
           'share.monthsLong.3' => 'April',
           'share.monthsLong.4' => 'May',
+          _ => null,
+        } ??
+        switch (path) {
           'share.monthsLong.5' => 'June',
           'share.monthsLong.6' => 'July',
           'share.monthsLong.7' => 'August',
           'share.monthsLong.8' => 'September',
-          _ => null,
-        } ??
-        switch (path) {
           'share.monthsLong.9' => 'October',
           'share.monthsLong.10' => 'November',
           'share.monthsLong.11' => 'December',
@@ -12144,13 +12182,13 @@ extension on TranslationsEn {
           'temperature.levels.turbulent' => 'Turbulent',
           'temperature.levels.fight' => 'An argument',
           'temperature.levels.other' => '',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.continueAction' => 'Continue',
           'temperature.back' => 'Back',
           'temperature.skip' => 'Not now',
           'temperature.intensityTitle' => 'How strong is it?',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.intensityHighlight' => 'strong',
           'temperature.intensityHint' => 'Under 7 you can talk. Over 7, take a pause first.',
           'temperature.intensityHigh' => 'High value: how about a pause first?',
