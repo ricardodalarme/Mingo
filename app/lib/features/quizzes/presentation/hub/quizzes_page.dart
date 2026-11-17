@@ -99,7 +99,6 @@ class const _QuizRow({required final QuizKind kind, final DateTime? doneAt})
       subtitle: quizMeta(context),
       value: doneAt == null ? l10n.start : quizDoneLabel(context, doneAt!),
       showsChevron: true,
-      showsDivider: true,
       onTap: () async {
         await switch (kind) {
           QuizKind.loved => context.pushRoute(const LoveStyleRoute()),

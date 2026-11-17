@@ -52,7 +52,6 @@ class const LoveStyleResultView({super.key}) extends StatelessWidget {
                 BaseListTile(
                   leading: _RankBadge(number: index + 1),
                   title: l10n.labels.selectOrFallback(top[index]),
-                  showsDivider: true,
                 ),
             ],
           ),

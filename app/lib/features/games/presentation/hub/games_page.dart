@@ -163,7 +163,6 @@ class const _GameTile({
       showsChevron: hasPartner,
       trailing: hasPartner ? null : BaseTag(text: l10n.lockChip),
       isEnabled: hasPartner,
-      showsDivider: true,
       onTap: () async {
         final cubit = context.read<GamesCubit>();
         await context.pushRoute(GameRoute(game: entry.kind.key));
