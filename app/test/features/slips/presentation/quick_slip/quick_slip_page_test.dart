@@ -164,6 +164,29 @@ void main() {
 
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('the saved slip and its undo fit at 200% text', (tester) async {
+    final cubit = _buildCubit(_savingRepository());
+    addTearDown(cubit.close);
+    cubit
+      ..start()
+      ..onTextChanged('Fez café sem eu pedir');
+    await cubit.save();
+
+    await tester.pumpApp(
+      Builder(
+        builder: (context) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(2)),
+          child: BlocProvider.value(value: cubit, child: const QuickSlipPage()),
+        ),
+      ),
+    );
+    await tester.pump();
+
+    expect(tester.takeException(), isNull);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
 }
 
 QuickSlipCubit _buildCubit(SlipRepository repository) =>
