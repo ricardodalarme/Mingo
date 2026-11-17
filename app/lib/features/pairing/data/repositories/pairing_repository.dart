@@ -14,11 +14,8 @@ class PairingRepository({
   required final AuthenticationRepository _authenticationRepository,
 }) {
   final Logger _logger = Logger('PairingRepository');
-  final StreamController<void> _changes = StreamController<void>.broadcast();
 
   /// Emits when the couple forms or ends, so screens that show the partner can read again.
-  Stream<void> get onChanged => _changes.stream;
-
   /// The invite already created and still valid, or a new one.
   Future<ActiveInvite> getOrCreateInvite(DateTime now) async {
     final stored = await _localDataSource.read();
@@ -56,7 +53,6 @@ class PairingRepository({
       final connected = await _pairingDataSource.acceptInvite(code);
       if (connected) {
         await _localDataSource.clear();
-        _changes.add(null);
       }
       return connected;
     } catch (e, stack) {
@@ -103,7 +99,6 @@ class PairingRepository({
     try {
       await _pairingDataSource.unpair();
       await _localDataSource.clear();
-      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to unpair', error: e, stackTrace: stack);
       rethrow;

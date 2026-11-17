@@ -14,10 +14,6 @@ import 'package:logger/logger.dart';
 
 class TogetherRepository({required final TogetherDataSource _dataSource}) {
   final Logger _logger = Logger('TogetherRepository');
-  final StreamController<void> _changes = StreamController<void>.broadcast();
-
-  /// Emits whenever a shared item is changed on this device, so lists can read again.
-  Stream<void> get onChanged => _changes.stream;
 
   /// The id of the couple the person is in, or null when they are on their own.
   Future<String?> getCoupleId() => _dataSource.getCoupleId();
@@ -70,7 +66,6 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
         assigneeId: assigneeId,
         coupleId: coupleId,
       );
-      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to add a logistic item', error: e, stackTrace: stack);
       rethrow;
@@ -143,7 +138,6 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
           plannerId: ritual.plannerId,
         );
       }
-      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to save a ritual', error: e, stackTrace: stack);
       rethrow;
@@ -199,7 +193,6 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
         slug: slug,
         coupleId: await _dataSource.getCoupleId(),
       );
-      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to save a date idea', error: e, stackTrace: stack);
       rethrow;
@@ -215,7 +208,6 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
         day: day,
         coupleId: await _dataSource.getCoupleId(),
       );
-      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to plan a date', error: e, stackTrace: stack);
       rethrow;
@@ -251,7 +243,6 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
   Future<void> _run(String what, Future<void> Function() action) async {
     try {
       await action();
-      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to $what', error: e, stackTrace: stack);
       rethrow;

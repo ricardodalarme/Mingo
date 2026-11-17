@@ -20,7 +20,6 @@ void main() {
 
   setUp(() {
     repository = _MockSlipRepository();
-    when(() => repository.onChanged).thenAnswer((_) => const Stream.empty());
     AppInjector.instance.registerFactory<JarCubit>(() => JarCubit(slipRepository: repository));
     addTearDown(() => AppInjector.instance.unregister<JarCubit>());
   });

@@ -50,13 +50,9 @@ class SlipRepository({
   final Random? _random,
 }) {
   final Logger _logger = Logger('SlipRepository');
-  final StreamController<void> _changes = StreamController<void>.broadcast();
 
   /// How many slips are waiting on the device for a connection.
   int get pendingCount => _localDataSource.readPending().length;
-
-  /// Emits whenever a slip is saved, undone or sent, so lists can read again.
-  Stream<void> get onChanged => _changes.stream;
 
   /// Saves a slip, or keeps it on the device when there is no connection.
   ///
@@ -85,7 +81,6 @@ class SlipRepository({
     );
     try {
       await _send(slip);
-      _changes.add(null);
       return SlipSaveOutcome.synced;
     } catch (e, stack) {
       if (!_isOffline(e)) {
@@ -93,7 +88,6 @@ class SlipRepository({
         rethrow;
       }
       await _enqueue(slip);
-      _changes.add(null);
       return SlipSaveOutcome.queued;
     }
   }
@@ -139,7 +133,6 @@ class SlipRepository({
         category: slip.category?.toRemote(),
         workArea: slip.workArea?.toRemote(),
       );
-      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to update a slip', error: e, stackTrace: stack);
       rethrow;
@@ -173,7 +166,6 @@ class SlipRepository({
   Future<void> setArchived({required String id, required bool archived}) async {
     try {
       await _slipDataSource.archiveSlip(id: id, archived: archived);
-      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to archive a slip', error: e, stackTrace: stack);
       rethrow;
@@ -183,7 +175,6 @@ class SlipRepository({
   Future<void> deleteSlip(String id) async {
     try {
       await _slipDataSource.deleteSlip(id);
-      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to delete a slip', error: e, stackTrace: stack);
       rethrow;
@@ -300,13 +291,11 @@ class SlipRepository({
     final pending = _localDataSource.readPending();
     if (pending.any((slip) => slip.id == id)) {
       await _localDataSource.writePending(pending.where((slip) => slip.id != id).toList());
-      _changes.add(null);
       return;
     }
 
     try {
       await _slipDataSource.deleteSlip(id);
-      _changes.add(null);
     } catch (e, stack) {
       _logger.error('Failed to undo a slip', error: e, stackTrace: stack);
       rethrow;
@@ -324,7 +313,6 @@ class SlipRepository({
       }
       final remaining = _localDataSource.readPending().where((item) => item.id != slip.id);
       await _localDataSource.writePending(remaining.toList());
-      _changes.add(null);
     }
   }
 
@@ -344,7 +332,6 @@ class SlipRepository({
   Future<SlipSendOutcome> sendNow(String slipId) async {
     try {
       final status = await _slipDataSource.sendSlipNow(slipId);
-      _changes.add(null);
 
       return switch (status) {
         EnumCardStatus_enum.sent => SlipSendOutcome.sent,
