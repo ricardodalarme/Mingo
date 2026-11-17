@@ -1,6 +1,5 @@
 query MyDeletionRequest($userId: uuid!) {
   deletionRequestsByPk(userId: $userId) {
-    requestedAt
-    purgeAfter
+    ...DeletionRequestFragment
   }
 }

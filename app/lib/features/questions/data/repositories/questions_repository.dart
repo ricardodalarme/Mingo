@@ -24,7 +24,7 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
 
     for (final row in answers.rows) {
       if (row.coupleId != prompt.coupleId) continue;
-      final answer = QuestionAnswer(id: row.id, body: row.body);
+      final answer = row.toModel();
       if (row.isMine) {
         own = answer;
       } else {

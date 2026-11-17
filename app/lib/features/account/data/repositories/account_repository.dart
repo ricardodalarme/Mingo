@@ -1,4 +1,5 @@
 import 'package:app/features/account/data/data_sources/remote/account_data_source.dart';
+import 'package:app/features/account/data/mappers/deletion_request_mapper.dart';
 import 'package:app/features/account/data/models/deletion_request.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:core/core.dart';
@@ -23,7 +24,7 @@ class AccountRepository({
       final row = await _dataSource.getDeletion(_userId);
       if (row == null) return null;
 
-      return DeletionRequest(requestedAt: row.requestedAt, purgeAfter: row.purgeAfter);
+      return row.toModel();
     } catch (e, stack) {
       _logger.error('Failed to read the deletion request', error: e, stackTrace: stack);
       rethrow;
@@ -34,7 +35,7 @@ class AccountRepository({
     try {
       final row = await _dataSource.requestDeletion();
 
-      return DeletionRequest(requestedAt: row.requestedAt, purgeAfter: row.purgeAfter);
+      return row.toModel();
     } catch (e, stack) {
       _logger.error('Failed to request account deletion', error: e, stackTrace: stack);
       rethrow;

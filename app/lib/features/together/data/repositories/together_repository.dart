@@ -5,6 +5,7 @@ import 'package:app/features/_shared/data/models/content_kind.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/together/data/data_sources/remote/together_data_source.dart';
 import 'package:app/features/together/data/mappers/date_idea_mapper.dart';
+import 'package:app/features/together/data/mappers/help_item_mapper.dart';
 import 'package:app/features/together/data/mappers/logistic_item_mapper.dart';
 import 'package:app/features/together/data/mappers/ritual_mapper.dart';
 import 'package:app/features/together/data/mappers/together_enum_mapper.dart';
@@ -240,7 +241,7 @@ class TogetherRepository({
     try {
       return [
         for (final node in await _dataSource.getHelpContent(kind: kind.toRemote(), locale: locale))
-          HelpItem(slug: node.slug, title: node.title, body: node.body),
+          node.toModel(),
       ];
     } catch (e, stack) {
       _logger.error('Failed to read help content', error: e, stackTrace: stack);

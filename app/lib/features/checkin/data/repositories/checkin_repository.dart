@@ -1,5 +1,6 @@
 import 'package:app/features/checkin/data/data_sources/local/checkin_local_data_source.dart';
 import 'package:app/features/checkin/data/data_sources/remote/checkin_data_source.dart';
+import 'package:app/features/checkin/data/mappers/checkin_answer_mapper.dart';
 import 'package:app/features/checkin/data/models/checkin_answer.dart';
 import 'package:app/features/checkin/data/models/checkin_week.dart';
 import 'package:core/core.dart';
@@ -34,7 +35,7 @@ class CheckinRepository({
     final partnerAnswers = <int, CheckinAnswer>{};
 
     for (final row in result.answers) {
-      final answer = CheckinAnswer(id: row.id, question: row.question, body: row.body);
+      final answer = row.toModel();
       if (row.isMine) {
         ownAnswers[answer.question] = answer;
       } else {
@@ -96,7 +97,7 @@ class CheckinRepository({
   }) async {
     final record = await _dataSource.saveAnswer(id: week.ownRowId, question: question, body: body);
 
-    return CheckinAnswer(id: record.id, question: record.question, body: record.body);
+    return record.toModel();
   }
 
   /// Clears one answer so a skipped question returns to being blank.

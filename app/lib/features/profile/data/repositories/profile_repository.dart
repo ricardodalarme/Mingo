@@ -4,8 +4,10 @@ import 'package:app/features/authentication/data/repositories/authentication_rep
 import 'package:app/features/profile/data/data_sources/remote/profile_data_source.dart';
 import 'package:app/features/profile/data/mappers/account_settings_mapper.dart';
 import 'package:app/features/profile/data/mappers/partner_intent_mapper.dart';
+import 'package:app/features/profile/data/mappers/profile_details_mapper.dart';
 import 'package:app/features/profile/data/mappers/profile_mapper.dart';
 import 'package:app/features/profile/data/mappers/pronoun_mapper.dart';
+import 'package:app/features/profile/data/mappers/relationship_details_mapper.dart';
 import 'package:app/features/profile/data/mappers/relationship_goal_mapper.dart';
 import 'package:app/features/profile/data/mappers/relationship_phase_mapper.dart';
 import 'package:app/features/profile/data/mappers/relationship_status_mapper.dart';
@@ -53,13 +55,7 @@ class ProfileRepository({
       final userId = _userId;
       final profile = await _profileDataSource.getMyProfile(userId);
       final settings = await _profileDataSource.getMySettings(userId);
-      return ProfileDetails(
-        profileId: profile.id,
-        displayName: profile.displayName ?? '',
-        pronouns: profile.pronouns?.toModel(),
-        timeZone: settings.profile.timeZone,
-        theme: settings.theme.toVariant(),
-      );
+      return profile.toDetails(settings: settings);
     } catch (e, stack) {
       _logger.error('Failed to load the profile details', error: e, stackTrace: stack);
       rethrow;
@@ -69,12 +65,7 @@ class ProfileRepository({
   Future<RelationshipDetails> getRelationshipDetails() async {
     try {
       final settings = await _profileDataSource.getMySettings(_userId);
-      return RelationshipDetails(
-        profileId: settings.userId,
-        phase: settings.phase?.toModel(),
-        togetherSince: settings.togetherSince,
-        relationshipStatus: settings.relationshipStatus.toModel(),
-      );
+      return settings.toRelationshipDetails();
     } catch (e, stack) {
       _logger.error('Failed to load the relationship details', error: e, stackTrace: stack);
       rethrow;

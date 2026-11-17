@@ -8,4 +8,11 @@ void main() {
     expect(answer.id, 'a1');
     expect(answer.body, 'Um café juntos');
   });
+
+  test('an answer row read from the server keeps its id and text', () {
+    final answer = (id: 'a1', isMine: false, coupleId: 'c1', body: 'Um café juntos').toModel();
+
+    expect(answer.id, 'a1');
+    expect(answer.body, 'Um café juntos');
+  });
 }

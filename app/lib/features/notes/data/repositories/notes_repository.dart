@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/notes/data/data_sources/remote/notes_data_source.dart';
 import 'package:app/features/notes/data/mappers/message_kind_mapper.dart';
+import 'package:app/features/notes/data/mappers/sent_message_mapper.dart';
 import 'package:app/features/notes/data/models/sent_message.dart';
 import 'package:logger/logger.dart';
 import 'package:storage_service/storage_service.dart';
@@ -30,15 +31,7 @@ class NotesRepository({
         for (final node in nodes)
           () async {
             final fileId = node.mediaFileId;
-            return SentMessage(
-              id: node.id,
-              kind: node.kind.toModel(),
-              createdAt: node.createdAt,
-              forWidget: node.forWidget,
-              body: node.body,
-              mediaFileId: fileId,
-              imageUrl: fileId == null ? null : await _signedUrl(fileId),
-            );
+            return node.toModel(imageUrl: fileId == null ? null : await _signedUrl(fileId));
           }(),
       ]);
     } catch (e, stack) {

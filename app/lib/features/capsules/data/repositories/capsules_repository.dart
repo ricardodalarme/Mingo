@@ -1,5 +1,6 @@
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/capsules/data/data_sources/remote/capsules_data_source.dart';
+import 'package:app/features/capsules/data/mappers/capsule_mapper.dart';
 import 'package:app/features/capsules/data/models/capsule.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:clock/clock.dart';
@@ -21,15 +22,7 @@ class CapsulesRepository({
 
       return [
         for (final node in await _dataSource.getCapsules())
-          Capsule(
-            id: node.id,
-            opensOn: node.opensOn,
-            isMine: node.authorId == userId,
-            isShared: node.coupleId != null,
-            body: DateTime(node.opensOn.year, node.opensOn.month, node.opensOn.day).isAfter(today)
-                ? null
-                : node.body,
-          ),
+          node.toModel(userId: userId, today: today),
       ];
     } catch (e, stack) {
       _logger.error('Failed to read capsules', error: e, stackTrace: stack);

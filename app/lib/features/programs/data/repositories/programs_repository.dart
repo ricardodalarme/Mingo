@@ -1,6 +1,10 @@
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/programs/data/data_sources/remote/programs_data_source.dart';
+import 'package:app/features/programs/data/mappers/diary_entry_mapper.dart';
+import 'package:app/features/programs/data/mappers/lesson_progress_mapper.dart';
 import 'package:app/features/programs/data/mappers/lesson_status_mapper.dart';
+import 'package:app/features/programs/data/mappers/program_enrollment_mapper.dart';
+import 'package:app/features/programs/data/mappers/program_mapper.dart';
 import 'package:app/features/programs/data/models/diary_entry.dart';
 import 'package:app/features/programs/data/models/program.dart';
 import 'package:clock/clock.dart';
@@ -16,45 +20,25 @@ class ProgramsRepository({
   Future<List<Program>> getPrograms() => _run('read the programs', () async {
     final record = await _dataSource.getPrograms(await _locale());
 
-    return _programs(record);
+    return record.toModel();
   });
 
   Future<Program> getProgram(String slug) => _run('read one program', () async {
     final record = await _dataSource.getProgram(slug: slug, locale: await _locale());
-    final program = record.program;
+    final program = record.toModel();
     if (program == null) throw StateError('Program $slug is missing');
 
-    return Program(
-      slug: program.slug,
-      title: program.title,
-      body: program.body,
-      plusOnly: program.plusOnly,
-      lessons: _lessons(record),
-    );
+    return program;
   });
 
   Future<ProgramEnrollment?> getEnrollment(String slug) => _run(
     'read the program enrollment',
-    () async => switch (await _dataSource.getEnrollment(slug)) {
-      final enrollment? => ProgramEnrollment(
-        programSlug: enrollment.programSlug,
-        currentDay: enrollment.currentDay,
-        completedAt: enrollment.completedAt,
-      ),
-      null => null,
-    },
+    () async => (await _dataSource.getEnrollment(slug))?.toModel(),
   );
 
   Future<List<LessonProgress>> getLessonProgress(String slug) => _run(
     'read the lesson progress',
-    () async => [
-      for (final row in await _dataSource.getLessonProgress(slug))
-        LessonProgress(
-          programSlug: row.programSlug,
-          lessonDay: row.lessonDay,
-          status: row.status.toModel(),
-        ),
-    ],
+    () async => [for (final row in await _dataSource.getLessonProgress(slug)) row.toModel()],
   );
 
   Future<void> startProgram({required String slug, required int day}) => _run(
@@ -113,10 +97,7 @@ class ProgramsRepository({
 
   Future<List<DiaryEntry>> getDiaryEntries() => _run(
     'read the diary',
-    () async => [
-      for (final entry in await _dataSource.getJournalEntries())
-        DiaryEntry(id: entry.id, entryDate: entry.entryDate, body: entry.body, mood: entry.mood),
-    ],
+    () async => [for (final entry in await _dataSource.getJournalEntries()) entry.toModel()],
   );
 
   /// Inserts the first entry for a day, or replaces [id] when it already exists.
@@ -144,49 +125,6 @@ class ProgramsRepository({
       _run('delete a diary entry', () => _dataSource.deleteJournalEntry(id));
 
   Future<String> _locale() async => (await _profileRepository.getMySettings()).locale;
-
-  List<Program> _programs(ProgramsRecord record) {
-    final lessonsByParent = <String, List<ProgramLessonDraft>>{};
-    for (final lesson in record.lessons) {
-      final parent = lesson.parentSlug;
-      if (parent == null) continue;
-      lessonsByParent.putIfAbsent(parent, () => []).add((lesson: lesson, day: lesson.position));
-    }
-
-    final programs = [
-      for (final program in record.programs)
-        (
-          program: program,
-          lessons: [...?lessonsByParent[program.slug]]..sort((a, b) => a.day.compareTo(b.day)),
-        ),
-    ]..sort((a, b) => a.program.position.compareTo(b.program.position));
-
-    return [
-      for (final entry in programs)
-        Program(
-          slug: entry.program.slug,
-          title: entry.program.title,
-          body: entry.program.body,
-          plusOnly: entry.program.plusOnly,
-          lessons: [for (final lesson in entry.lessons) _lesson(lesson)],
-        ),
-    ];
-  }
-
-  List<Lesson> _lessons(ProgramRecord record) {
-    final lessons = [for (final lesson in record.lessons) (lesson: lesson, day: lesson.position)]
-      ..sort((a, b) => a.day.compareTo(b.day));
-
-    return [for (final lesson in lessons) _lesson(lesson)];
-  }
-
-  Lesson _lesson(ProgramLessonDraft draft) => Lesson(
-    slug: draft.lesson.slug,
-    title: draft.lesson.title,
-    day: draft.day,
-    body: draft.lesson.body,
-    plusOnly: draft.lesson.plusOnly,
-  );
 
   Future<T> _run<T>(String what, Future<T> Function() action) async {
     try {

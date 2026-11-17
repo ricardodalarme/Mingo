@@ -1,8 +1,5 @@
 mutation SaveAnnoyance($body: String!) {
   insertAnnoyancesOne(object: { body: $body }) {
-    id
-    body
-    createdAt
-    expiresAt
+    ...AnnoyanceFragment
   }
 }

@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:app/features/dates/data/data_sources/remote/dates_data_source.dart';
+import 'package:app/features/dates/data/mappers/holiday_mapper.dart';
 import 'package:app/features/dates/data/mappers/important_date_enum_mapper.dart';
+import 'package:app/features/dates/data/mappers/important_date_mapper.dart';
 import 'package:app/features/dates/data/models/dates_models.dart';
 import 'package:app/features/dates/data/models/important_date_kind.dart';
 import 'package:app/features/gifts/data/mappers/gift_enum_mapper.dart';
@@ -18,18 +20,7 @@ class DatesRepository({
 
   Future<List<ImportantDate>> getDates() => _run(
     'read dates',
-    () async => [
-      for (final node in await _dataSource.getDates())
-        ImportantDate(
-          id: node.id,
-          title: node.title,
-          kind: node.kind.toModel(),
-          month: node.month,
-          day: node.day,
-          year: node.year,
-          isYearly: node.yearly,
-        ),
-    ],
+    () async => [for (final node in await _dataSource.getDates()) node.toModel()],
   );
 
   /// Adds a date shared with the partner when there is one, reminded 7 and 1 days before.
@@ -93,11 +84,7 @@ class DatesRepository({
 
   Future<List<Holiday>> getHolidays(String locale) => _run(
     'read holidays',
-    () async => [
-      for (final node in await _dataSource.getHolidays(locale))
-        if (node.month != null && node.day != null)
-          Holiday(slug: node.slug, title: node.title, month: node.month!, day: node.day!),
-    ],
+    () async => [for (final node in await _dataSource.getHolidays(locale)) ?node.toModel()],
   );
 
   Future<T> _run<T>(String what, Future<T> Function() action) async {

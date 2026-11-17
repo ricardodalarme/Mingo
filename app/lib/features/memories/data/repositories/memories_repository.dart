@@ -1,4 +1,5 @@
 import 'package:app/features/memories/data/data_sources/remote/memories_data_source.dart';
+import 'package:app/features/memories/data/mappers/memory_mapper.dart';
 import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:logger/logger.dart';
@@ -11,16 +12,7 @@ class MemoriesRepository({
 
   Future<List<Memory>> getMemories() => _run(
     'read memories',
-    () async => [
-      for (final node in await _dataSource.getMemories())
-        Memory(
-          id: node.id,
-          title: node.title,
-          body: node.body,
-          happenedOn: node.happenedOn,
-          place: node.place,
-        ),
-    ],
+    () async => [for (final node in await _dataSource.getMemories()) node.toModel()],
   );
 
   /// Saves a memory shared with the partner when there is one; the client [id] makes retries safe.

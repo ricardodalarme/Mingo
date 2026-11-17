@@ -1,4 +1,5 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/annoyances/data/data_sources/remote/fragments/generated/AnnoyanceFragment.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/fragments/generated/GentleRequestFragment.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/DeleteAnnoyance.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/MarkGentleRequestSeen.graphql.dart';
@@ -12,7 +13,7 @@ import 'package:app/features/annoyances/data/data_sources/remote/subscriptions/g
 import 'package:network/network.dart';
 
 class AnnoyanceDataSource({required final GQLClient _client}) {
-  Future<MutationSaveAnnoyanceinsertAnnoyancesOne> save(String body) async {
+  Future<FragmentAnnoyanceFragment> save(String body) async {
     final response = await _client.mutate(
       OptionsMutationSaveAnnoyance(variables: VariablesMutationSaveAnnoyance(body: body)),
     );
@@ -21,7 +22,7 @@ class AnnoyanceDataSource({required final GQLClient _client}) {
   }
 
   /// The annoyance, or null when it is gone or not the person's.
-  Future<QueryMyAnnoyanceannoyancesByPk?> get(String id) async {
+  Future<FragmentAnnoyanceFragment?> get(String id) async {
     final response = await _client.query(
       OptionsQueryMyAnnoyance(
         variables: VariablesQueryMyAnnoyance(id: id),

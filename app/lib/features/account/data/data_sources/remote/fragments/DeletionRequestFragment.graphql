@@ -1,0 +1,4 @@
+fragment DeletionRequestFragment on deletionRequests {
+  requestedAt
+  purgeAfter
+}

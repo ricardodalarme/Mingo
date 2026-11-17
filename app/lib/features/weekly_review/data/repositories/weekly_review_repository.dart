@@ -1,4 +1,5 @@
 import 'package:app/features/weekly_review/data/data_sources/remote/weekly_review_data_source.dart';
+import 'package:app/features/weekly_review/data/mappers/weekly_review_mapper.dart';
 import 'package:app/features/weekly_review/data/models/weekly_review.dart';
 import 'package:logger/logger.dart';
 
@@ -9,13 +10,7 @@ class WeeklyReviewRepository({required final WeeklyReviewDataSource _dataSource}
     try {
       final row = await _dataSource.get();
 
-      return WeeklyReview(
-        weekStart: row.weekStart,
-        slips: row.slips,
-        moodDays: row.moodsLogged,
-        rituals: row.ritualsDone,
-        isQuiet: row.lowData,
-      );
+      return row.toModel();
     } catch (e, stack) {
       _logger.error('Failed to load the weekly review', error: e, stackTrace: stack);
       rethrow;

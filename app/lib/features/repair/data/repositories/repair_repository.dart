@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:app/features/repair/data/data_sources/remote/repair_data_source.dart';
+import 'package:app/features/repair/data/mappers/learning_mapper.dart';
+import 'package:app/features/repair/data/mappers/received_signal_mapper.dart';
 import 'package:app/features/repair/data/mappers/repair_enum_mapper.dart';
+import 'package:app/features/repair/data/mappers/signal_answer_mapper.dart';
 import 'package:app/features/repair/data/models/guided_session.dart';
 import 'package:app/features/repair/data/models/received_signal.dart';
 import 'package:app/features/repair/data/models/repair_path.dart';
@@ -97,15 +100,7 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
 
   Future<List<Learning>> getLearnings() async {
     try {
-      return [
-        for (final node in await _dataSource.getLearnings())
-          Learning(
-            id: node.id,
-            kind: node.kind.toModel(),
-            note: node.note,
-            createdAt: node.createdAt,
-          ),
-      ];
+      return [for (final node in await _dataSource.getLearnings()) node.toModel()];
     } catch (e, stack) {
       _logger.error('Failed to read learnings', error: e, stackTrace: stack);
       rethrow;
@@ -143,19 +138,7 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
   /// The partner's messages the person has not answered yet, newest first.
   Future<List<ReceivedSignal>> getReceivedSignals(String recipientId) async {
     try {
-      return [
-        for (final node in await _dataSource.getReceivedSignals(recipientId))
-          ReceivedSignal(
-            id: node.id,
-            kind: node.kind.toModel(),
-            createdAt: node.createdAt,
-            value: node.value,
-            body: node.body,
-            response: node.response?.toModel(),
-            respondedAt: node.respondedAt,
-            seenAt: node.seenAt,
-          ),
-      ];
+      return [for (final node in await _dataSource.getReceivedSignals(recipientId)) node.toModel()];
     } catch (e, stack) {
       _logger.error('Failed to read received messages', error: e, stackTrace: stack);
       rethrow;
@@ -171,11 +154,7 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
         response: response?.toRemote(),
       );
 
-      return SignalAnswer(
-        response: node.response?.toModel(),
-        respondedAt: node.respondedAt,
-        seenAt: node.seenAt,
-      );
+      return node.toModel();
     } catch (e, stack) {
       _logger.error('Failed to answer a message', error: e, stackTrace: stack);
       rethrow;

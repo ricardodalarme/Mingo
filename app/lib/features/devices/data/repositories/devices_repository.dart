@@ -1,6 +1,6 @@
 import 'package:app/features/_shared/data/data_sources/local/device_marker_store.dart';
 import 'package:app/features/devices/data/data_sources/remote/devices_data_source.dart';
-import 'package:app/features/devices/data/mappers/device_platform_mapper.dart';
+import 'package:app/features/devices/data/mappers/device_mapper.dart';
 import 'package:app/features/devices/data/models/device.dart';
 import 'package:core/core.dart';
 import 'package:logger/logger.dart';
@@ -19,21 +19,8 @@ class DevicesRepository({
     try {
       final rows = await _dataSource.getDevices();
       final marker = await _markerStore.readMarker();
-      final devices = <Device>[];
-      for (final row in rows) {
-        final parts = _parts(row.label);
-        devices.add(
-          Device(
-            id: row.id,
-            platform: row.platform.toModel(),
-            label: parts.name,
-            lastSeenAt: row.lastSeenAt,
-            isCurrent: marker != null && parts.markerValue == marker,
-          ),
-        );
-      }
 
-      return devices;
+      return [for (final row in rows) row.toModel(currentMarker: marker)];
     } catch (exception, stack) {
       _logger.error('Failed to load devices', error: exception, stackTrace: stack);
       if (exception is LocalizedException) rethrow;
@@ -67,12 +54,5 @@ class DevicesRepository({
     } finally {
       await _markerStore.clear();
     }
-  }
-
-  ({String? name, String? markerValue}) _parts(String? label) {
-    final index = label?.lastIndexOf('#') ?? -1;
-    if (index == -1) return (name: label, markerValue: null);
-
-    return (name: label!.substring(0, index), markerValue: label.substring(index + 1));
   }
 }

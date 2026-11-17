@@ -1,5 +1,6 @@
 import 'package:app/features/chat/data/data_sources/remote/learned_items_data_source.dart';
 import 'package:app/features/chat/data/mappers/learned_item_enum_mapper.dart';
+import 'package:app/features/chat/data/mappers/learned_item_mapper.dart';
 import 'package:app/features/chat/data/models/learned_item.dart';
 import 'package:logger/logger.dart';
 
@@ -8,17 +9,7 @@ class LearnedItemsRepository({required final LearnedItemsDataSource _dataSource}
 
   Future<List<LearnedItem>> getItems() async {
     try {
-      return [
-        for (final node in await _dataSource.getItems())
-          LearnedItem(
-            id: node.id,
-            target: node.target.toModel(),
-            text: node.text,
-            excerpt: node.excerpt,
-            status: node.status.toModel(),
-            createdAt: node.createdAt,
-          ),
-      ];
+      return [for (final node in await _dataSource.getItems()) node.toModel()];
     } catch (e, stack) {
       _logger.error('Failed to read learnings', error: e, stackTrace: stack);
       rethrow;

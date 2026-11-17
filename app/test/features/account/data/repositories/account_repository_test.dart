@@ -1,6 +1,5 @@
 import 'package:app/features/account/data/data_sources/remote/account_data_source.dart';
-import 'package:app/features/account/data/data_sources/remote/mutations/generated/RequestAccountDeletion.graphql.dart';
-import 'package:app/features/account/data/data_sources/remote/queries/generated/MyDeletionRequest.graphql.dart';
+import 'package:app/features/account/data/data_sources/remote/fragments/generated/DeletionRequestFragment.graphql.dart';
 import 'package:app/features/account/data/repositories/account_repository.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -33,7 +32,7 @@ void main() {
 
   test('the request keeps both dates', () async {
     when(() => dataSource.getDeletion('u1')).thenAnswer(
-      (_) async => QueryMyDeletionRequestdeletionRequestsByPk(
+      (_) async => FragmentDeletionRequestFragment(
         requestedAt: DateTime(2026, 11, 10),
         purgeAfter: DateTime(2026, 11, 24),
       ),
@@ -47,7 +46,7 @@ void main() {
 
   test('requesting returns the purge date', () async {
     when(() => dataSource.requestDeletion()).thenAnswer(
-      (_) async => MutationRequestAccountDeletioninsertDeletionRequestsOne(
+      (_) async => FragmentDeletionRequestFragment(
         requestedAt: DateTime(2026, 11, 10),
         purgeAfter: DateTime(2026, 11, 24),
       ),

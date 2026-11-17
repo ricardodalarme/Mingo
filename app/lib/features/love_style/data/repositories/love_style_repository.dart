@@ -1,5 +1,6 @@
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/love_style/data/data_sources/remote/love_style_data_source.dart';
+import 'package:app/features/love_style/data/mappers/love_style_entry_mapper.dart';
 import 'package:app/features/love_style/data/models/love_style_entry.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
@@ -20,7 +21,7 @@ class LoveStyleRepository({
       LoveStyleEntry? own;
       LoveStyleEntry? partner;
       for (final row in record.rows) {
-        final entry = LoveStyleEntry(id: row.id, ranked: row.ranked, sharedAt: row.sharedAt);
+        final entry = row.toModel();
         if (row.authorId == record.selfId) {
           own = entry;
         } else {

@@ -1,4 +1,5 @@
 import 'package:app/features/annoyances/data/data_sources/remote/annoyance_data_source.dart';
+import 'package:app/features/annoyances/data/mappers/annoyance_mapper.dart';
 import 'package:app/features/annoyances/data/mappers/gentle_request_mapper.dart';
 import 'package:app/features/annoyances/data/mappers/gentle_response_mapper.dart';
 import 'package:app/features/annoyances/data/models/annoyance.dart';
@@ -15,12 +16,7 @@ class AnnoyanceRepository({required final AnnoyanceDataSource _dataSource}) {
     try {
       final row = await _dataSource.save(body.trim());
 
-      return Annoyance(
-        id: row.id,
-        body: row.body,
-        createdAt: row.createdAt,
-        expiresAt: row.expiresAt,
-      );
+      return row.toModel();
     } catch (e, stack) {
       _logger.error('Failed to save an annoyance', error: e, stackTrace: stack);
       rethrow;
@@ -33,12 +29,7 @@ class AnnoyanceRepository({required final AnnoyanceDataSource _dataSource}) {
       final row = await _dataSource.get(id);
       if (row == null) return null;
 
-      return Annoyance(
-        id: row.id,
-        body: row.body,
-        createdAt: row.createdAt,
-        expiresAt: row.expiresAt,
-      );
+      return row.toModel();
     } catch (e, stack) {
       _logger.error('Failed to load an annoyance', error: e, stackTrace: stack);
       rethrow;

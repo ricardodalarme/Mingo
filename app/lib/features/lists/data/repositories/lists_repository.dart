@@ -1,4 +1,6 @@
+import 'package:app/features/lists/data/data_sources/remote/fragments/generated/ListItemFragment.graphql.dart';
 import 'package:app/features/lists/data/data_sources/remote/lists_data_source.dart';
+import 'package:app/features/lists/data/mappers/list_detail_mapper.dart';
 import 'package:app/features/lists/data/mappers/list_enum_mapper.dart';
 import 'package:app/features/lists/data/mappers/list_mapper.dart';
 import 'package:app/features/lists/data/models/list_item_status.dart';
@@ -29,9 +31,8 @@ class ListsRepository({
     final node = await _dataSource.getList(id);
     if (node == null) throw const LocalizedException(l10nKey: listNotFoundCode);
 
-    return ListDetail(
-      list: node.toModel(currentUserId: await _togetherRepository.getCurrentUserId()),
-      items: [for (final item in node.items) item.toModel()],
+    return (list: node, items: List<FragmentListItemFragment>.of(node.items)).toModel(
+      currentUserId: await _togetherRepository.getCurrentUserId(),
       currentCoupleId: await _togetherRepository.getCoupleId(),
     );
   });
@@ -77,11 +78,7 @@ class ListsRepository({
         .map((record) {
           if (record == null) throw const LocalizedException(l10nKey: listNotFoundCode);
 
-          return ListDetail(
-            list: record.list.toModel(currentUserId: currentUserId),
-            items: [for (final item in record.items) item.toModel()],
-            currentCoupleId: coupleId,
-          );
+          return record.toModel(currentUserId: currentUserId, currentCoupleId: coupleId);
         })
         .handleError((Object e, StackTrace stack) {
           _logger.error('The list subscription failed', error: e, stackTrace: stack);

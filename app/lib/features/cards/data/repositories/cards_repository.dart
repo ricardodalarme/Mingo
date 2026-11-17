@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/cards/data/data_sources/remote/cards_data_source.dart';
+import 'package:app/features/cards/data/mappers/card_detail_mapper.dart';
 import 'package:app/features/cards/data/mappers/card_mapper.dart';
+import 'package:app/features/cards/data/mappers/card_summary_mapper.dart';
 import 'package:app/features/cards/data/models/card_detail.dart';
 import 'package:app/features/cards/data/models/card_summary.dart';
 import 'package:app/features/cards/data/models/sunday_card.dart';
@@ -34,24 +36,11 @@ class CardsRepository({
   Future<CardSummaryPage> getHistory({int offset = 0}) async {
     try {
       final rows = await _dataSource.getCards(limit: cardPageSize + 1, offset: offset);
-      final pageRows = rows.take(cardPageSize).toList();
-      final userId = _authenticationRepository.currentUserId;
 
-      return CardSummaryPage(
-        items: [
-          for (final row in pageRows)
-            CardSummary(
-              id: row.id,
-              isMine: row.authorId == userId,
-              sentAt: row.sentAt ?? row.weekStart,
-              itemCount: row.items.length,
-              reaction: row.reaction?.reaction,
-              hasReply: (row.reaction?.reply ?? '').isNotEmpty,
-              isOpened: row.open != null,
-            ),
-        ],
-        hasNext: rows.length > cardPageSize,
-        offset: offset + pageRows.length,
+      return rows.toPage(
+        offset: offset,
+        pageSize: cardPageSize,
+        userId: _authenticationRepository.currentUserId,
       );
     } catch (e, stack) {
       _logger.error('Failed to load the card history', error: e, stackTrace: stack);
@@ -65,14 +54,7 @@ class CardsRepository({
       final node = await _dataSource.getCard(id);
       if (node == null) throw const LocalizedException(l10nKey: 'CARD_NOT_FOUND');
 
-      return CardDetail(
-        card: node.toModel(),
-        isMine: node.authorId == _authenticationRepository.currentUserId,
-        authorName: node.author.displayName,
-        recipientName: node.recipient?.displayName,
-        reaction: node.reaction?.reaction,
-        reply: node.reaction?.reply,
-      );
+      return node.toDetail(userId: _authenticationRepository.currentUserId);
     } catch (e, stack) {
       _logger.error('Failed to load the card', error: e, stackTrace: stack);
       rethrow;

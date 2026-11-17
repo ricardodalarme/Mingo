@@ -5,6 +5,7 @@ import 'package:app/features/authentication/data/repositories/authentication_rep
 import 'package:app/features/devices/data/models/device_platform.dart';
 import 'package:app/features/notifications/data/data_sources/local/notifications_local_data_source.dart';
 import 'package:app/features/notifications/data/data_sources/remote/notifications_data_source.dart';
+import 'package:app/features/notifications/data/mappers/notification_preferences_mapper.dart';
 import 'package:app/features/notifications/data/models/notification_preferences.dart';
 import 'package:core/core.dart';
 import 'package:device_info_service/device_info_service.dart';
@@ -106,13 +107,7 @@ class NotificationsRepository({
     try {
       final settings = await _dataSource.getSettings(_userId);
 
-      return NotificationPreferences(
-        isEnabled: settings.isEnabled,
-        mutedTypes: settings.mutedTypes,
-        cardDay: settings.cardDay,
-        cardHour: settings.cardHour,
-        dailyMax: settings.dailyMax,
-      );
+      return settings.toModel();
     } catch (e, stack) {
       _logger.error('Failed to load notification settings', error: e, stackTrace: stack);
       rethrow;

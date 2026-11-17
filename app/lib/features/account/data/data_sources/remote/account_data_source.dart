@@ -1,3 +1,4 @@
+import 'package:app/features/account/data/data_sources/remote/fragments/generated/DeletionRequestFragment.graphql.dart';
 import 'package:app/features/account/data/data_sources/remote/mutations/generated/CancelAccountDeletion.graphql.dart';
 import 'package:app/features/account/data/data_sources/remote/mutations/generated/RequestAccountDeletion.graphql.dart';
 import 'package:app/features/account/data/data_sources/remote/queries/generated/MyDeletionRequest.graphql.dart';
@@ -5,7 +6,7 @@ import 'package:network/network.dart';
 
 class AccountDataSource({required final GQLClient _client, required final RestClient _restClient}) {
   /// The pending deletion, or `null` when there is none.
-  Future<QueryMyDeletionRequestdeletionRequestsByPk?> getDeletion(String userId) async {
+  Future<FragmentDeletionRequestFragment?> getDeletion(String userId) async {
     final response = await _client.query(
       OptionsQueryMyDeletionRequest(
         variables: VariablesQueryMyDeletionRequest(userId: userId),
@@ -17,7 +18,7 @@ class AccountDataSource({required final GQLClient _client, required final RestCl
     return data.deletionRequestsByPk;
   }
 
-  Future<MutationRequestAccountDeletioninsertDeletionRequestsOne> requestDeletion() async {
+  Future<FragmentDeletionRequestFragment> requestDeletion() async {
     final response = await _client.mutate(OptionsMutationRequestAccountDeletion());
 
     return validateResponseData(response, getData: (data) => data.insertDeletionRequestsOne);

@@ -1,6 +1,7 @@
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/plus/data/data_sources/remote/plus_data_source.dart';
-import 'package:app/features/plus/data/mappers/plus_enum_mapper.dart';
+import 'package:app/features/plus/data/mappers/plan_price_mapper.dart';
+import 'package:app/features/plus/data/mappers/plus_state_mapper.dart';
 import 'package:app/features/plus/data/models/plus_state.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
@@ -55,15 +56,7 @@ class PlusRepository({
     try {
       final plus = await _dataSource.getPlus(_userId);
 
-      return PlusState(
-        hasPlus: plus.hasPlus ?? false,
-        isPaidByPartner: plus.paidByPartner ?? false,
-        gamesLeft: plus.gamesLeftThisWeek ?? 0,
-        ritualsLeft: plus.ritualsLeft ?? 0,
-        listsLeft: plus.listsLeft ?? 0,
-        plan: plus.entitlement?.plan.toModel(),
-        status: plus.entitlement?.status.toModel(),
-      );
+      return plus.toModel();
     } catch (e, stack) {
       _logger.error('Failed to read the plan', error: e, stackTrace: stack);
       rethrow;
@@ -77,16 +70,7 @@ class PlusRepository({
     try {
       final packages = await _purchaseService.getPackages();
       _packages = {for (final package in packages) package.identifier: package};
-      final prices = [
-        for (final package in packages)
-          if (package.packageType == PackageType.monthly ||
-              package.packageType == PackageType.annual)
-            PlanPrice(
-              id: package.identifier,
-              price: package.storeProduct.priceString,
-              isYearly: package.packageType == PackageType.annual,
-            ),
-      ];
+      final prices = [for (final package in packages) ?package.toPlanPrice()];
       if (prices.isEmpty) throw StateError('The store returned no plans');
 
       return prices;

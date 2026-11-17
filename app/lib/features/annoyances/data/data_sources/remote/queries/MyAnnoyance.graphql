@@ -1,8 +1,5 @@
 query MyAnnoyance($id: uuid!) {
   annoyancesByPk(id: $id) {
-    id
-    body
-    createdAt
-    expiresAt
+    ...AnnoyanceFragment
   }
 }

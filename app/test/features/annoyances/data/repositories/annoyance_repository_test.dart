@@ -1,7 +1,7 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/annoyance_data_source.dart';
+import 'package:app/features/annoyances/data/data_sources/remote/fragments/generated/AnnoyanceFragment.graphql.dart';
 import 'package:app/features/annoyances/data/data_sources/remote/fragments/generated/GentleRequestFragment.graphql.dart';
-import 'package:app/features/annoyances/data/data_sources/remote/mutations/generated/SaveAnnoyance.graphql.dart';
 import 'package:app/features/annoyances/data/repositories/annoyance_repository.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,7 +20,7 @@ void main() {
 
   test('saving trims the text and returns the annoyance with its expiry', () async {
     when(() => remote.save('Chegou tarde')).thenAnswer(
-      (_) async => MutationSaveAnnoyanceinsertAnnoyancesOne(
+      (_) async => FragmentAnnoyanceFragment(
         id: 'a1',
         body: 'Chegou tarde',
         createdAt: DateTime.utc(2026, 11, 1),

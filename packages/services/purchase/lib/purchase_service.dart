@@ -5,6 +5,7 @@ export 'package:purchases_flutter/purchases_flutter.dart'
         EntitlementInfos,
         Package,
         PackageType,
+        PresentedOfferingContext,
         PurchaseResult,
         PurchasesErrorCode,
         PurchasesErrorHelper,

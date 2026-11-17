@@ -1,5 +1,6 @@
 import 'package:app/features/partner/data/data_sources/remote/partner_data_source.dart';
 import 'package:app/features/partner/data/mappers/partner_fact_category_mapper.dart';
+import 'package:app/features/partner/data/mappers/partner_fact_mapper.dart';
 import 'package:app/features/partner/data/models/partner_fact.dart';
 import 'package:app/features/partner/data/models/partner_fact_category.dart';
 import 'package:logger/logger.dart';
@@ -9,15 +10,7 @@ class PartnerRepository({required final PartnerDataSource _dataSource}) {
 
   Future<List<PartnerFact>> getFacts() async {
     try {
-      return [
-        for (final node in await _dataSource.getFacts())
-          PartnerFact(
-            id: node.id,
-            label: node.label,
-            value: node.value,
-            category: node.category?.toModel(),
-          ),
-      ];
+      return [for (final node in await _dataSource.getFacts()) node.toModel()];
     } catch (e, stack) {
       _logger.error('Failed to read partner notes', error: e, stackTrace: stack);
       rethrow;

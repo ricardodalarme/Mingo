@@ -1,0 +1,6 @@
+fragment AnnoyanceFragment on annoyances {
+  id
+  body
+  createdAt
+  expiresAt
+}
