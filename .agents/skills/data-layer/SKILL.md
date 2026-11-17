@@ -221,6 +221,13 @@ same entity with the same fields updates every open watch at once, before the re
 - An entity without an `id` needs a key in `gqlDataId` (`userSettings` is keyed by `userId`), or the cache cannot match it.
 - Only entities a watched query reads gain from this. A one-shot read can keep its own selection.
 
+**Every call is logged by the client.** `LoggingLink` writes one line per call under the `GraphQL` logger, such as
+`query MySlips ok 142ms`, `query Holidays slow 2310ms` or `mutation SaveSlip failed 312ms FREE_LIMIT_REACHED`. A failed or slow call
+is a warning and a call that went well is a debug line, so the global `Logger.level` decides whether the good ones show (all of
+them in debug builds, none in release). A line holds the operation name, the outcome, the time and a stable error code, never
+variables, data or an error message. A subscription logs when it starts, ends or fails, not for each event. Name every operation,
+since the name is the log line.
+
 **Spend requests carefully.** The backend allows 600 a minute per client, and every successful mutation refetches each open watch.
 
 - Never query the person or couple id. Use `AuthenticationRepository.currentUserId` and `TogetherRepository.getCoupleId()`.

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:graphql/client.dart';
+import 'package:logger/logger.dart';
 import 'package:network/src/graphql/links/link_chain.dart';
 import 'package:network/src/graphql/links/timeout_link.dart';
 import 'package:test/test.dart';
@@ -216,6 +217,61 @@ void main() {
     test('keeps the endpoint and swaps the scheme', () {
       expect(webSocketUrlFor('https://x.graphql.nhost.run/v1'), 'wss://x.graphql.nhost.run/v1');
       expect(webSocketUrlFor('http://localhost:8080/v1/graphql'), 'ws://localhost:8080/v1/graphql');
+    });
+  });
+
+  group('logging', () {
+    late List<LogRecord> records;
+    late StreamSubscription<LogRecord> listener;
+
+    setUp(() {
+      records = [];
+      listener = Logger.records
+          .where((record) => record.loggerName == 'GraphQL')
+          .listen(records.add);
+    });
+
+    tearDown(() => listener.cancel());
+
+    test(
+      'a failed query on the http chain is logged once, after retries and the deadline',
+      () async {
+        final link = buildGraphQLLink(
+          terminatingLink: terminating((request) => Stream.error(transportError())),
+          queryTimeout: const Duration(milliseconds: 60),
+          retryDelay: Duration.zero,
+        );
+
+        try {
+          await link.request(queryRequest()).toList();
+        } on Object {
+          // The failure is what the test reads from the log.
+        }
+
+        expect(records, hasLength(1));
+        expect(records.single.level, LogLevel.WARNING);
+        expect(records.single.message, startsWith('query Probe failed '));
+      },
+    );
+
+    test('a good query is a debug line', () async {
+      final link = build(handler: (_) => Stream.value(okResponse()));
+
+      await link.request(queryRequest()).toList();
+
+      expect(records.single.level, LogLevel.FINE);
+      expect(records.single.message, startsWith('query Probe ok '));
+    });
+
+    test('a subscription is logged when it starts', () async {
+      final link = buildGraphQLLink(
+        terminatingLink: terminating((request) => Stream.value(okResponse())),
+        subscriptionLink: terminating((request) => Stream.value(okResponse())),
+      );
+
+      await link.request(subscriptionRequest()).toList();
+
+      expect(records.first.message, 'subscription Probe started');
     });
   });
 }

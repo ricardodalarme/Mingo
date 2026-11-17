@@ -119,4 +119,37 @@ void main() {
       expect(stream.first, throwsA(isA<NoDataException>()));
     });
   });
+
+  group('error codes for logging', () {
+    test('a message that is a code is that code', () {
+      expect(graphQLErrorCode(const GraphQLError(message: 'NOT_PAIRED')), 'NOT_PAIRED');
+    });
+
+    test('a message that ends with a code gives that code', () {
+      const error = GraphQLError(message: 'Check constraint violation. FREE_LIMIT_REACHED');
+
+      expect(graphQLErrorCode(error), 'FREE_LIMIT_REACHED');
+    });
+
+    test('free text falls back to the code the server attached', () {
+      const error = GraphQLError(
+        message: 'something went wrong here',
+        extensions: {'code': 'validation-failed'},
+      );
+
+      expect(graphQLErrorCode(error), 'validation-failed');
+    });
+
+    test('free text with no attached code has no code', () {
+      expect(graphQLErrorCode(const GraphQLError(message: 'something went wrong here')), isNull);
+    });
+
+    test('a request that timed out is a timeout and any other link failure is the network', () {
+      expect(
+        linkExceptionCode(const RequestTimeoutException(Duration(seconds: 1))),
+        timeoutErrorCode,
+      );
+      expect(linkExceptionCode(Exception('socket closed')), networkErrorCode);
+    });
+  });
 }

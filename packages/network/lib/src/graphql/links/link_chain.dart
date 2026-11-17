@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:graphql/client.dart';
 import 'package:network/src/graphql/links/auth_refresh_link.dart';
+import 'package:network/src/graphql/links/logging_link.dart';
 import 'package:network/src/graphql/links/retry_link.dart';
 import 'package:network/src/graphql/links/timeout_link.dart';
 
@@ -29,6 +30,7 @@ Link buildGraphQLLink({
 
   final httpLink = Link.from([
     DedupeLink(shouldDedupe: (request) => request.isQuery),
+    LoggingLink(),
     RetryLink(maxAttempts: maxQueryAttempts, baseDelay: retryDelay),
     TimeoutLink(queryTimeout: queryTimeout, mutationTimeout: mutationTimeout),
     if (refreshSession != null) AuthRefreshLink(refreshSession: refreshSession),
@@ -38,7 +40,11 @@ Link buildGraphQLLink({
 
   if (subscriptionLink == null) return httpLink;
 
-  return Link.split((request) => request.isSubscription, subscriptionLink, httpLink);
+  return Link.split(
+    (request) => request.isSubscription,
+    Link.from([LoggingLink(), subscriptionLink]),
+    httpLink,
+  );
 }
 
 /// The WebSocket address of a GraphQL [serverUrl]: the same endpoint over `ws` or `wss`.

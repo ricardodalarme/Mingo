@@ -12,6 +12,8 @@ dependencies:
   gql: ^1.0.1
   graphql: ^5.2.4
   graphql_query_compress: ^1.0.0
+  logger:
+    path: ../logger
 
 dev_dependencies:
   http: ^1.6.0

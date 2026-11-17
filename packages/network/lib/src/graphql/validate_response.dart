@@ -17,23 +17,32 @@ ServerResponseException? mapResponseException(QueryResult response) {
   }
 
   if (exception.linkException != null && exception.graphqlErrors.isEmpty) {
-    final link = exception.linkException.toString().toLowerCase();
-    final isTimeout =
-        exception.linkException is RequestTimeoutException || link.contains('timeout');
-
-    return ServerResponseException(isTimeout ? timeoutErrorCode : networkErrorCode, exception);
+    return ServerResponseException(linkExceptionCode(exception.linkException!), exception);
   }
 
   final firstError = exception.graphqlErrors.firstOrNull;
-  final message = firstError?.message;
-  final code = message != null && _stableCode.hasMatch(message)
-      ? message
-      : _trailingCode(message) ??
-            firstError?.extensions?['code']?.toString() ??
-            firstError?.extensions?['error_code']?.toString() ??
-            message;
+  final code = firstError == null ? null : graphQLErrorCode(firstError) ?? firstError.message;
 
   return ServerResponseException(code, exception);
+}
+
+/// A short stable code for a GraphQL error: the code the message is made of or ends with, or the
+/// code the server attached. It is never the free text of the message, so it is safe to log.
+String? graphQLErrorCode(GraphQLError error) {
+  final message = error.message;
+  if (_stableCode.hasMatch(message)) return message;
+
+  return _trailingCode(message) ??
+      error.extensions?['code']?.toString() ??
+      error.extensions?['error_code']?.toString();
+}
+
+/// The code for a request that never got an answer: [timeoutErrorCode] or [networkErrorCode].
+String linkExceptionCode(Object error) {
+  final isTimeout =
+      error is RequestTimeoutException || error.toString().toLowerCase().contains('timeout');
+
+  return isTimeout ? timeoutErrorCode : networkErrorCode;
 }
 
 /// The code reported when the request never reached the server.

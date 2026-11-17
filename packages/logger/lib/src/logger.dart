@@ -5,6 +5,9 @@ import 'package:logging/logging.dart' as ext;
 /// Log levels for the Logger class
 typedef LogLevel = ext.Level;
 
+/// One line a [Logger] wrote: its name, level, message, error and stack trace.
+typedef LogRecord = ext.LogRecord;
+
 /// A logger utility.
 class Logger(String name) {
   this {
@@ -16,6 +19,16 @@ class Logger(String name) {
 
   static bool _isConfigured = false;
   static LogLevel _level = LogLevel.ALL;
+
+  /// Every record any [Logger] writes at the current level, as it is written.
+  ///
+  /// For tests and for code that reacts to what was logged; the records are also written to the
+  /// console as usual.
+  static Stream<LogRecord> get records {
+    _ensureConfigured();
+
+    return ext.Logger.root.onRecord;
+  }
 
   /// Gets the current global log level.
   static LogLevel get level => _level;
