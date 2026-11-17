@@ -3,10 +3,12 @@ import 'dart:math';
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/JarSlips.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/models/pending_slip.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_draft.dart';
+import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -26,6 +28,7 @@ void main() {
   setUpAll(() {
     registerFallbackValue(<PendingSlip>[]);
     registerFallbackValue(SlipDraft(text: '', savedAt: DateTime(2026)));
+    registerFallbackValue(const SlipFilter());
     registerFallbackValue(EnumSlipKind_enum.quick);
     registerFallbackValue(EnumSlipCategory_enum.did);
     registerFallbackValue(EnumWorkArea_enum.other);
@@ -278,6 +281,59 @@ void main() {
       final drawn = await seeded.drawFromJar();
 
       expect(['a', 'b'], contains(drawn!.id));
+    });
+  });
+
+  group('watchSlips', () {
+    QueryMySlipsslips row(String id) => QueryMySlipsslips(
+      id: id,
+      body: id,
+      kind: EnumSlipKind_enum.quick,
+      forCard: false,
+      createdAt: createdAt,
+    );
+
+    test('asks for one row more than the page to know whether another follows', () async {
+      when(
+        () => remote.watchSlips(
+          limit: any(named: 'limit'),
+          offset: any(named: 'offset'),
+          filter: any(named: 'filter'),
+        ),
+      ).thenAnswer((_) => Stream.value([row('a'), row('b'), row('c')]));
+
+      final page = await repository.watchSlips(count: 2).first;
+
+      expect(page.items.map((slip) => slip.id), ['a', 'b']);
+      expect(page.hasNext, isTrue);
+      expect(page.offset, 2);
+      verify(() => remote.watchSlips(limit: 3, offset: 0, filter: any(named: 'filter'))).called(1);
+    });
+
+    test('the last page has no next one', () async {
+      when(
+        () => remote.watchSlips(
+          limit: any(named: 'limit'),
+          offset: any(named: 'offset'),
+          filter: any(named: 'filter'),
+        ),
+      ).thenAnswer((_) => Stream.value([row('a')]));
+
+      final page = await repository.watchSlips(count: 2).first;
+
+      expect(page.hasNext, isFalse);
+    });
+
+    test('passes a failure on so the screen can show it', () {
+      when(
+        () => remote.watchSlips(
+          limit: any(named: 'limit'),
+          offset: any(named: 'offset'),
+          filter: any(named: 'filter'),
+        ),
+      ).thenAnswer((_) => Stream.error(const NoDataException()));
+
+      expect(repository.watchSlips(), emitsError(isA<NoDataException>()));
     });
   });
 }

@@ -73,31 +73,55 @@ class SlipDataSource({required final GQLClient _client}) {
     required int offset,
     SlipFilter filter = const SlipFilter(),
   }) async {
-    final text = filter.text.trim();
     final response = await _client.query(
       OptionsQueryMySlips(
         fetchPolicy: FetchPolicy.networkOnly,
-        variables: VariablesQueryMySlips(
-          limit: limit,
-          offset: offset,
-          where: Inputslips_bool_exp(
-            archivedAt: Inputtimestamptz_comparison_exp($_is_null: true),
-            createdAt: filter.since == null
-                ? null
-                : Inputtimestamptz_comparison_exp($_gte: filter.since),
-            forCard: filter.inCard == null
-                ? null
-                : InputBoolean_comparison_exp($_eq: filter.inCard),
-            kind: filter.onlyInvisible
-                ? InputSlipKind_enum_comparison_exp($_eq: EnumSlipKind_enum.invisible)
-                : null,
-            body: text.isEmpty ? null : InputString_comparison_exp($_ilike: '%$text%'),
-          ),
-        ),
+        variables: _slipsVariables(limit: limit, offset: offset, filter: filter),
       ),
     );
 
     return validateResponseData(response, getData: (data) => data.slips);
+  }
+
+  /// Emits the person's own slips that match [filter], newest first, then again whenever a slip
+  /// they read changes or a mutation succeeds.
+  Stream<List<QueryMySlipsslips>> watchSlips({
+    required int limit,
+    required int offset,
+    SlipFilter filter = const SlipFilter(),
+  }) {
+    return _client
+        .watch(
+          WatchOptionsQueryMySlips(
+            fetchPolicy: FetchPolicy.cacheAndNetwork,
+            variables: _slipsVariables(limit: limit, offset: offset, filter: filter),
+          ),
+        )
+        .mapResponseData((data) => data.slips);
+  }
+
+  VariablesQueryMySlips _slipsVariables({
+    required int limit,
+    required int offset,
+    required SlipFilter filter,
+  }) {
+    final text = filter.text.trim();
+
+    return VariablesQueryMySlips(
+      limit: limit,
+      offset: offset,
+      where: Inputslips_bool_exp(
+        archivedAt: Inputtimestamptz_comparison_exp($_is_null: true),
+        createdAt: filter.since == null
+            ? null
+            : Inputtimestamptz_comparison_exp($_gte: filter.since),
+        forCard: filter.inCard == null ? null : InputBoolean_comparison_exp($_eq: filter.inCard),
+        kind: filter.onlyInvisible
+            ? InputSlipKind_enum_comparison_exp($_eq: EnumSlipKind_enum.invisible)
+            : null,
+        body: text.isEmpty ? null : InputString_comparison_exp($_ilike: '%$text%'),
+      ),
+    );
   }
 
   /// Reads one slip of the person, or null when it is gone or not theirs.

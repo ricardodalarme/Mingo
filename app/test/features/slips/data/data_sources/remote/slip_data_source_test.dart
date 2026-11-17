@@ -8,6 +8,10 @@ class const _StubGQLClient(final Map<String, dynamic> _data) implements GQLClien
       QueryResult.loading(options: options, data: _data);
 
   @override
+  Stream<QueryResult<T>> watch<T>(WatchQueryOptions<T> options) =>
+      Stream.value(QueryResult.loading(options: options, data: _data));
+
+  @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
@@ -86,5 +90,28 @@ void main() {
     );
 
     expect(await dataSource.getForCardDefault(), isFalse);
+  });
+
+  test('watching the slips emits the rows of each result', () async {
+    final dataSource = SlipDataSource(
+      client: const _StubGQLClient({
+        'slips': [
+          {
+            'id': 's1',
+            'body': 'Obrigado pelo café',
+            'kind': 'quick',
+            'category': null,
+            'forCard': false,
+            'createdAt': '2026-11-10T10:00:00Z',
+            '__typename': 'slips',
+          },
+        ],
+        '__typename': 'query_root',
+      }),
+    );
+
+    final rows = await dataSource.watchSlips(limit: 21, offset: 0).first;
+
+    expect(rows.map((row) => row.id), ['s1']);
   });
 }

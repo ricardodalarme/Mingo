@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
+import 'package:app/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/mappers/slip_enum_mapper.dart';
 import 'package:app/features/slips/data/models/drawn_slip.dart';
@@ -241,27 +242,50 @@ class SlipRepository({
         offset: offset,
         filter: filter,
       );
-      final pageRows = rows.take(pageSize).toList();
 
-      return SlipPage(
-        items: [
-          for (final row in pageRows)
-            SlipEntry(
-              id: row.id,
-              body: row.body,
-              kind: row.kind.toModel() ?? SlipKind.quick,
-              category: row.category?.toModel(),
-              forCard: row.forCard,
-              createdAt: row.createdAt,
-            ),
-        ],
-        hasNext: rows.length > pageSize,
-        offset: offset + pageRows.length,
-      );
+      return _page(rows, offset: offset, pageSize: pageSize);
     } catch (e, stack) {
       _logger.error('Failed to load slips', error: e, stackTrace: stack);
       rethrow;
     }
+  }
+
+  /// Emits the first [count] slips that match [filter], newest first, now and again whenever one
+  /// is saved, edited, archived or deleted by this person.
+  ///
+  /// A failure is logged and passed on, so a screen can show it when it has nothing yet.
+  Stream<SlipPage> watchSlips({int count = slipPageSize, SlipFilter filter = const SlipFilter()}) {
+    return _slipDataSource
+        .watchSlips(limit: count + 1, offset: 0, filter: filter)
+        .map((rows) => _page(rows, offset: 0, pageSize: count))
+        .transform(
+          StreamTransformer.fromHandlers(
+            handleError: (error, stack, sink) {
+              _logger.error('Failed to watch slips', error: error, stackTrace: stack);
+              sink.addError(error, stack);
+            },
+          ),
+        );
+  }
+
+  SlipPage _page(List<QueryMySlipsslips> rows, {required int offset, required int pageSize}) {
+    final pageRows = rows.take(pageSize).toList();
+
+    return SlipPage(
+      items: [
+        for (final row in pageRows)
+          SlipEntry(
+            id: row.id,
+            body: row.body,
+            kind: row.kind.toModel() ?? SlipKind.quick,
+            category: row.category?.toModel(),
+            forCard: row.forCard,
+            createdAt: row.createdAt,
+          ),
+      ],
+      hasNext: rows.length > pageSize,
+      offset: offset + pageRows.length,
+    );
   }
 
   /// Keeps a slip only on the device; it is sent once there is a signed-in session.

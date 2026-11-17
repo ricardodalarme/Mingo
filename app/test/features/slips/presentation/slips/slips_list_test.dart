@@ -17,25 +17,23 @@ void main() {
   setUpAll(() => registerFallbackValue(const SlipFilter()));
 
   late SlipRepository repository;
-  late StreamController<void> changes;
+  late StreamController<SlipPage> pages;
 
   setUp(() {
     repository = _MockSlipRepository();
-    changes = StreamController<void>.broadcast();
-    when(() => repository.onChanged).thenAnswer((_) => changes.stream);
+    pages = StreamController<SlipPage>.broadcast();
+    addTearDown(pages.close);
   });
-
-  tearDown(() => changes.close());
 
   SlipsListCubit build() => SlipsListCubit(slipRepository: repository);
 
-  void stubPage(SlipPage page, {int offset = 0}) => when(
-    () => repository.getSlips(
-      offset: offset,
+  /// Answers each watch with [page] straight away.
+  void stubPage(SlipPage page) => when(
+    () => repository.watchSlips(
+      count: any(named: 'count'),
       filter: any(named: 'filter'),
-      pageSize: any(named: 'pageSize'),
     ),
-  ).thenAnswer((_) async => page);
+  ).thenAnswer((_) => Stream.value(page));
 
   group('groupByWeek', () {
     test('puts slips from the same Monday-to-Sunday week together, keeping the order', () {
@@ -55,6 +53,7 @@ void main() {
     test('load shows the first page', () async {
       stubPage(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: true, offset: 1));
       final cubit = build();
+      addTearDown(cubit.close);
 
       await cubit.load();
 
@@ -66,112 +65,151 @@ void main() {
     test('an empty page is a success with no items, never an error', () async {
       stubPage(const SlipPage(items: [], hasNext: false));
       final cubit = build();
+      addTearDown(cubit.close);
 
       await cubit.load();
 
       expect((cubit.state.slips as Success<List<SlipEntry>>).value, isEmpty);
     });
 
-    test('loadMore appends the next page without duplicates', () async {
+    test('loadMore watches one page more and keeps every loaded slip', () async {
       stubPage(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: true, offset: 1));
       final cubit = build();
+      addTearDown(cubit.close);
       await cubit.load();
 
       stubPage(
         SlipPage(
           items: [_slip('a', DateTime(2026, 11, 9)), _slip('b', DateTime(2026, 11, 2))],
           hasNext: false,
-          offset: 3,
+          offset: 2,
         ),
-        offset: 1,
       );
       await cubit.loadMore();
 
       final items = (cubit.state.slips as Success<List<SlipEntry>>).value;
       expect(items.map((slip) => slip.id), ['a', 'b']);
       expect(cubit.state.hasNext, isFalse);
-      expect(cubit.state.offset, 3);
+      expect(cubit.state.isLoadingMore, isFalse);
+      verify(
+        () => repository.watchSlips(
+          count: slipPageSize * 2,
+          filter: any(named: 'filter'),
+        ),
+      ).called(1);
     });
 
     test('loadMore does nothing when there is no next page', () async {
       stubPage(const SlipPage(items: [], hasNext: false));
       final cubit = build();
+      addTearDown(cubit.close);
       await cubit.load();
       await cubit.loadMore();
 
       verify(
-        () => repository.getSlips(
-          offset: any(named: 'offset'),
+        () => repository.watchSlips(
+          count: any(named: 'count'),
           filter: any(named: 'filter'),
-          pageSize: any(named: 'pageSize'),
         ),
       ).called(1);
     });
 
-    test('changing the scope reads the list again from the start', () async {
+    test('changing the scope watches the list again from the start', () async {
       stubPage(const SlipPage(items: [], hasNext: false));
       final cubit = build();
+      addTearDown(cubit.close);
       await cubit.load();
 
       await cubit.changeScope(SlipsScope.all);
 
       expect(cubit.state.scope, SlipsScope.all);
-      verify(
-        () => repository.getSlips(
-          offset: 0,
-          filter: const SlipFilter(),
-          pageSize: any(named: 'pageSize'),
-        ),
-      ).called(1);
+      verify(() => repository.watchSlips(count: slipPageSize, filter: const SlipFilter()))
+          .called(1);
     });
 
-    test('the private scope reads the slips kept out of the weekly card', () async {
+    test('the private scope watches the slips kept out of the weekly card', () async {
       stubPage(const SlipPage(items: [], hasNext: false));
       final cubit = build();
+      addTearDown(cubit.close);
       await cubit.load();
 
       await cubit.changeScope(SlipsScope.private);
 
       verify(
-        () => repository.getSlips(
-          offset: 0,
-          filter: const SlipFilter(inCard: false),
-          pageSize: any(named: 'pageSize'),
-        ),
+        () => repository.watchSlips(count: slipPageSize, filter: const SlipFilter(inCard: false)),
       ).called(1);
     });
 
     test('a failed first load shows a failure', () async {
       when(
-        () => repository.getSlips(
-          offset: any(named: 'offset'),
+        () => repository.watchSlips(
+          count: any(named: 'count'),
           filter: any(named: 'filter'),
-          pageSize: any(named: 'pageSize'),
         ),
-      ).thenAnswer((_) async => throw Exception());
+      ).thenAnswer((_) => Stream.error(Exception()));
       final cubit = build();
+      addTearDown(cubit.close);
 
       await cubit.load();
 
       expect(cubit.state.slips, isA<Failure>());
     });
 
-    test('a saved slip reloads the list', () async {
-      stubPage(const SlipPage(items: [], hasNext: false));
-      final cubit = build()..start();
-      await Future<void>.delayed(Duration.zero);
-
-      changes.add(null);
-      await Future<void>.delayed(Duration.zero);
-
-      verify(
-        () => repository.getSlips(
-          offset: any(named: 'offset'),
+    test('a failed update keeps the list on screen', () async {
+      when(
+        () => repository.watchSlips(
+          count: any(named: 'count'),
           filter: any(named: 'filter'),
-          pageSize: any(named: 'pageSize'),
         ),
-      ).called(2);
+      ).thenAnswer((_) => pages.stream);
+      final cubit = build()..start();
+      addTearDown(cubit.close);
+      pages.add(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: false, offset: 1));
+      await pumpEventQueue();
+
+      pages.addError(Exception());
+      await pumpEventQueue();
+
+      expect(cubit.state.slips, isA<Success<List<SlipEntry>>>());
+    });
+
+    test('a slip saved from another screen shows up without reading again', () async {
+      when(
+        () => repository.watchSlips(
+          count: any(named: 'count'),
+          filter: any(named: 'filter'),
+        ),
+      ).thenAnswer((_) => pages.stream);
+      final cubit = build()..start();
+      addTearDown(cubit.close);
+      pages.add(const SlipPage(items: [], hasNext: false));
+      await pumpEventQueue();
+
+      pages.add(SlipPage(items: [_slip('a', DateTime(2026, 11, 9))], hasNext: false, offset: 1));
+      await pumpEventQueue();
+
+      final items = (cubit.state.slips as Success<List<SlipEntry>>).value;
+      expect(items.map((slip) => slip.id), ['a']);
+      verify(
+        () => repository.watchSlips(
+          count: any(named: 'count'),
+          filter: any(named: 'filter'),
+        ),
+      ).called(1);
+    });
+
+    test('stops watching when it closes', () async {
+      when(
+        () => repository.watchSlips(
+          count: any(named: 'count'),
+          filter: any(named: 'filter'),
+        ),
+      ).thenAnswer((_) => pages.stream);
+      final cubit = build()..start();
+
       await cubit.close();
+
+      expect(pages.hasListener, isFalse);
     });
   });
 }

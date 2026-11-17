@@ -14,72 +14,73 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
     extends Cubit<SlipsListState> {
   this : super(const SlipsListState());
 
-  StreamSubscription<void>? _changes;
+  StreamSubscription<SlipPage>? _slips;
+  int _count = slipPageSize;
 
-  /// Loads the list and reads it again whenever a slip is saved, undone or sent.
-  void start() {
-    _changes = _slipRepository.onChanged.listen((_) => load());
-    load();
-  }
+  /// Starts following the list; it updates itself when a slip is saved, edited or removed.
+  void start() => unawaited(load());
 
-  /// Reads the first page again; the list on screen stays until the new one arrives.
-  Future<void> load() async {
-    if (state.scope == SlipsScope.jar) return;
+  /// Follows the first slips of the scope again; the list on screen stays until new ones arrive.
+  Future<void> load() {
+    if (state.scope == SlipsScope.jar) return Future.value();
     if (state.slips is! Success) emit(state.copyWith(slips: const Loading()));
-    try {
-      final page = await _slipRepository.getSlips(filter: _filter(state.scope, clock.now()));
-      emit(
-        SlipsListState(
-          slips: Success(page.items),
-          scope: state.scope,
-          hasNext: page.hasNext,
-          offset: page.offset,
-        ),
-      );
-    } catch (exception) {
-      if (state.slips is Success) return;
-      emit(state.copyWith(slips: Failure.fromObject(exception)));
-    }
+
+    return _watch();
   }
 
   Future<void> changeScope(SlipsScope scope) async {
     if (scope == state.scope) return;
 
+    _count = slipPageSize;
     emit(SlipsListState(scope: scope));
-    if (scope != SlipsScope.jar) await load();
+    await load();
   }
 
-  /// Appends the next page; ignored while one is loading or when there is none.
+  /// Asks for the next page; ignored while one is loading or when there is none.
   Future<void> loadMore() async {
-    final current = state.slips;
-    if (current is! Success<List<SlipEntry>> || !state.hasNext || state.isLoadingMore) return;
+    if (state.slips is! Success<List<SlipEntry>> || !state.hasNext || state.isLoadingMore) return;
 
+    _count += slipPageSize;
     emit(state.copyWith(isLoadingMore: true));
-    try {
-      final page = await _slipRepository.getSlips(
-        offset: state.offset,
-        filter: _filter(state.scope, clock.now()),
-      );
-      final knownIds = current.value.map((slip) => slip.id).toSet();
-      emit(
-        SlipsListState(
-          slips: Success([
-            ...current.value,
-            ...page.items.where((slip) => !knownIds.contains(slip.id)),
-          ]),
-          scope: state.scope,
-          hasNext: page.hasNext,
-          offset: page.offset,
-        ),
-      );
-    } on Object {
-      emit(state.copyWith(isLoadingMore: false));
-    }
+    await _watch();
+  }
+
+  /// Watches the first [_count] slips, so one list holds every loaded page and a change anywhere
+  /// in it keeps the pages consistent. Completes with the first result or error.
+  Future<void> _watch() {
+    unawaited(_slips?.cancel());
+    final first = Completer<void>();
+    _slips = _slipRepository
+        .watchSlips(count: _count, filter: _filter(state.scope, clock.now()))
+        .listen(
+          (page) {
+            emit(
+              SlipsListState(
+                slips: Success(page.items),
+                scope: state.scope,
+                hasNext: page.hasNext,
+                offset: page.offset,
+              ),
+            );
+            if (!first.isCompleted) first.complete();
+          },
+          onError: (Object exception) {
+            if (state.slips is Success) {
+              emit(state.copyWith(isLoadingMore: false));
+            } else {
+              emit(state.copyWith(slips: Failure.fromObject(exception)));
+            }
+            if (!first.isCompleted) first.complete();
+          },
+        );
+
+    return first.future;
   }
 
   @override
   Future<void> close() async {
-    await _changes?.cancel();
+    await _slips?.cancel();
+
     return super.close();
   }
 

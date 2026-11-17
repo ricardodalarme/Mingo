@@ -44,24 +44,18 @@ void main() {
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
   late SlipRepository repository;
-  late StreamController<void> changes;
 
   setUp(() {
     repository = _MockSlipRepository();
-    changes = StreamController<void>.broadcast();
-    when(() => repository.onChanged).thenAnswer((_) => changes.stream);
   });
-
-  tearDown(() => changes.close());
 
   void stubPage(List<SlipEntry> items) {
     when(
-      () => repository.getSlips(
-        offset: any(named: 'offset'),
+      () => repository.watchSlips(
+        count: any(named: 'count'),
         filter: any(named: 'filter'),
-        pageSize: any(named: 'pageSize'),
       ),
-    ).thenAnswer((_) async => SlipPage(items: items, hasNext: false));
+    ).thenAnswer((_) => Stream.value(SlipPage(items: items, hasNext: false)));
   }
 
   Future<SlipsListCubit> build() async {
@@ -200,12 +194,11 @@ void main() {
 
   testWidgets('a failed read shows the shared error with a retry', (tester) async {
     when(
-      () => repository.getSlips(
-        offset: any(named: 'offset'),
+      () => repository.watchSlips(
+        count: any(named: 'count'),
         filter: any(named: 'filter'),
-        pageSize: any(named: 'pageSize'),
       ),
-    ).thenAnswer((_) async => throw Exception());
+    ).thenAnswer((_) => Stream.error(Exception()));
     final cubit = await build();
 
     await pumpPage(tester, cubit);
