@@ -35,6 +35,7 @@ class const CardSettingsPage({super.key}) extends StatelessWidget implements Aut
           fakeValue: const NotificationPreferences(),
           successBuilder: (value) => _Content(preferences: value),
           failureBuilder: (failure) => BaseEmptyState(
+            face: FaceKind.sad,
             title: l10n.errorTitle,
             text: l10n.errors.selectOrFallback(failure.l10nKey),
             actionText: context.l10n.common.retry,

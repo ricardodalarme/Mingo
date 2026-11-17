@@ -56,6 +56,7 @@ class const FightStylePage({super.key}) extends StatelessWidget implements AutoR
         body: switch (result) {
           Loading() => const Center(child: BaseLoadingDots()),
           Failure() => BaseEmptyState(
+            face: FaceKind.sad,
             title: l10n.loadErrorTitle,
             text: l10n.loadErrorText,
             actionText: context.l10n.common.retry,

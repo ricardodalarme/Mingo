@@ -53,6 +53,7 @@ class const WidgetsGalleryPage({super.key}) extends StatelessWidget implements A
             overviewResource,
             fakeValue: WidgetOverview.fake(),
             failureBuilder: (_) => BaseEmptyState(
+              face: FaceKind.sad,
               title: l10n.loadErrorTitle,
               text: l10n.loadErrorBody,
               actionText: l10n.retryAction,

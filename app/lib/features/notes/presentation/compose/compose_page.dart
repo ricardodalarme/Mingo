@@ -167,6 +167,7 @@ class const _SentSection() extends StatelessWidget {
                   ],
                 ),
           failureBuilder: (_) => BaseEmptyState(
+            face: FaceKind.sad,
             title: l10n.errorTitle,
             text: l10n.errorText,
             actionText: context.l10n.common.retry,

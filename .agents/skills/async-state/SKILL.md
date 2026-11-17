@@ -137,6 +137,7 @@ template is in `new-feature`. Points that matter here:
   not add an `isRefreshing` flag.
 - Failures render with `AppErrorView(exception:, onRetry:)`, and retry is the cubit method that failed. Never show
   `exception.l10nKey` or `toString()` to the user; a feature error map uses `errors.selectOrFallback(exception.l10nKey)`.
+  A failure that needs its own copy uses `BaseEmptyState(face: FaceKind.sad, ...)`: never the default smile.
 - A list is an `InfiniteListView`, which owns pull-to-refresh and pagination. It has no empty builder: render one `BaseEmptyState`
   row for zero items. An empty list is a successful result, not a failure.
 

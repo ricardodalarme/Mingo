@@ -112,6 +112,7 @@ class const DiaryPage({super.key}) extends StatelessWidget implements AutoRouteW
                         ],
                       ),
                 failureBuilder: (_) => BaseEmptyState(
+                  face: FaceKind.sad,
                   title: l10n.diaryErrorTitle,
                   text: l10n.diaryErrorText,
                   actionText: context.l10n.common.retry,

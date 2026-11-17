@@ -65,6 +65,7 @@ class const ProgramDetailPage({@PathParam('slug') required final String slug, su
               onOpen: (lesson) => _openLesson(context, cubit, program, lesson),
             ),
             failureBuilder: (_) => BaseEmptyState(
+              face: FaceKind.sad,
               title: l10n.errorTitle,
               text: l10n.errorText,
               actionText: context.l10n.common.retry,

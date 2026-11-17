@@ -36,6 +36,7 @@ class const RelationshipPage({super.key}) extends StatelessWidget implements Aut
           fakeValue: RelationshipDetails.fake(),
           successBuilder: (_) => const _RelationshipForm(),
           failureBuilder: (_) => BaseEmptyState(
+            face: FaceKind.sad,
             title: l10n.loadErrorTitle,
             text: l10n.loadErrorText,
             actionText: context.l10n.common.retry,

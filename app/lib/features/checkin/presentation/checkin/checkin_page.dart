@@ -77,6 +77,7 @@ class _CheckinPageState() extends State<CheckinPage> with WidgetsBindingObserver
             fakeValue: CheckinWeek.fake(),
             successBuilder: (week) => _CheckinBody(week: week),
             failureBuilder: (_) => BaseEmptyState(
+              face: FaceKind.sad,
               title: l10n.loadErrorTitle,
               text: l10n.loadErrorText,
               actionText: context.l10n.common.retry,

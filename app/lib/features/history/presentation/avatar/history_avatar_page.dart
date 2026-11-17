@@ -46,6 +46,7 @@ class const HistoryAvatarPage({super.key}) extends StatelessWidget implements Au
             fakeValue: HistoryOverview.fake(),
             successBuilder: (overview) => AvatarPickerBody(overview: overview),
             failureBuilder: (_) => BaseEmptyState(
+              face: FaceKind.sad,
               title: l10n.errorTitle,
               text: l10n.errorText,
               actionText: context.l10n.common.retry,

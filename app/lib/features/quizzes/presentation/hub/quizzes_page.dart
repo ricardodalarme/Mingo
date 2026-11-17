@@ -42,6 +42,7 @@ class _QuizzesPageState() extends State<QuizzesPage> {
           child: _QuizzesBody(progress: value),
         ),
         failureBuilder: (_) => BaseEmptyState(
+          face: FaceKind.sad,
           title: l10n.loadErrorTitle,
           text: l10n.loadErrorText,
           actionText: context.l10n.common.retry,

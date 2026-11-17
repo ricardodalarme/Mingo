@@ -31,6 +31,7 @@ class const WeeklyReviewPage({super.key}) extends StatelessWidget implements Aut
         fakeValue: WeeklyReview.fake(),
         successBuilder: (value) => WeeklyReviewBody(review: value),
         failureBuilder: (failure) => BaseEmptyState(
+          face: FaceKind.sad,
           title: l10n.errorTitle,
           text: l10n.errors.selectOrFallback(failure.l10nKey),
           actionText: context.l10n.common.retry,

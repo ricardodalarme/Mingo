@@ -90,6 +90,7 @@ class const StoryPage({super.key}) extends StatelessWidget implements AutoRouteW
                   ),
                 ),
           failureBuilder: (_) => BaseEmptyState(
+            face: FaceKind.sad,
             title: l10n.errorTitle,
             text: l10n.errorText,
             actionText: context.l10n.common.retry,

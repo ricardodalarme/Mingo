@@ -41,6 +41,7 @@ class const LoveStyleComparePage({super.key}) extends StatelessWidget implements
               )
             : _ComparisonBody(comparison: value, partnerName: partnerName),
         failureBuilder: (_) => BaseEmptyState(
+          face: FaceKind.sad,
           title: l10n.loadErrorTitle,
           text: l10n.loadErrorText,
           actionText: context.l10n.common.retry,

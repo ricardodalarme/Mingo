@@ -45,6 +45,7 @@ class const ReceivedSignalsPage({super.key}) extends StatelessWidget implements 
           successBuilder: (items) =>
               items.isEmpty ? _Done(hasAnswered: answered > 0) : _SignalView(signal: items.first),
           failureBuilder: (_) => BaseEmptyState(
+            face: FaceKind.sad,
             title: l10n.errorTitle,
             text: l10n.errorText,
             actionText: context.l10n.common.retry,

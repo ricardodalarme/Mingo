@@ -74,6 +74,7 @@ class const LoveStylePage({super.key}) extends StatelessWidget implements AutoRo
         body: switch (result) {
           Loading() => const Center(child: BaseLoadingDots()),
           Failure() => BaseEmptyState(
+            face: FaceKind.sad,
             title: l10n.loadErrorTitle,
             text: l10n.loadErrorText,
             actionText: context.l10n.common.retry,

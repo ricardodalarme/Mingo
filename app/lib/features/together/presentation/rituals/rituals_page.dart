@@ -64,6 +64,7 @@ class const RitualsPage({super.key}) extends StatelessWidget implements AutoRout
                           children: [for (final ritual in list) _RitualTile(ritual: ritual)],
                         ),
                   failureBuilder: (_) => BaseEmptyState(
+                    face: FaceKind.sad,
                     title: l10n.errorTitle,
                     text: l10n.errorText,
                     actionText: context.l10n.common.retry,

@@ -41,6 +41,7 @@ class const ProfileSettingsPage({super.key}) extends StatelessWidget implements 
             fakeValue: const ProfileDetails.fake(),
             successBuilder: (_) => const _ProfileForm(),
             failureBuilder: (_) => BaseEmptyState(
+              face: FaceKind.sad,
               title: l10n.loadErrorTitle,
               text: l10n.loadErrorText,
               actionText: context.l10n.common.retry,

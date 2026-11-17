@@ -73,6 +73,7 @@ class const LogisticsPage({super.key}) extends StatelessWidget implements AutoRo
                       ? BaseEmptyState(title: l10n.emptyTitle, text: l10n.emptyText)
                       : _Items(items: list),
                   failureBuilder: (_) => BaseEmptyState(
+                    face: FaceKind.sad,
                     title: l10n.errorTitle,
                     text: l10n.errorText,
                     actionText: context.l10n.common.retry,

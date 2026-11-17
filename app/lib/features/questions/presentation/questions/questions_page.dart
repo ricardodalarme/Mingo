@@ -81,6 +81,7 @@ class _QuestionsPageState() extends State<QuestionsPage> with WidgetsBindingObse
             fakeValue: QuestionThread.fake(),
             successBuilder: (thread) => _QuestionsBody(thread: thread, onSkip: _skip),
             failureBuilder: (_) => BaseEmptyState(
+              face: FaceKind.sad,
               title: l10n.loadErrorTitle,
               text: l10n.loadErrorText,
               actionText: context.l10n.common.retry,

@@ -42,6 +42,7 @@ class const StoryDatesPage({super.key}) extends StatelessWidget implements AutoR
             fakeValue: HistoryOverview.fake(),
             successBuilder: (overview) => StoryDatesList(overview: overview),
             failureBuilder: (_) => BaseEmptyState(
+              face: FaceKind.sad,
               title: l10n.errorTitle,
               text: l10n.errorText,
               actionText: context.l10n.common.retry,

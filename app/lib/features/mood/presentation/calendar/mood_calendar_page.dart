@@ -75,6 +75,7 @@ class const MoodCalendarPage({super.key}) extends StatelessWidget implements Aut
           ),
         ),
         failureBuilder: (_) => BaseEmptyState(
+          face: FaceKind.sad,
           title: l10n.calendarErrorTitle,
           text: l10n.calendarErrorText,
           actionText: context.l10n.common.retry,

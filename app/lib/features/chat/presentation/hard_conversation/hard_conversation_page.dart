@@ -104,6 +104,7 @@ class const _Body({
         ),
       ),
       HardConversationGate.unavailable => BaseEmptyState(
+        face: FaceKind.sad,
         title: chat.unavailableTitle,
         text: chat.unavailableText,
       ),

@@ -36,6 +36,7 @@ class const OwnSmallWidgetsPage({super.key}) extends StatelessWidget implements 
           overviewResource,
           fakeValue: WidgetOverview.fake(),
           failureBuilder: (_) => BaseEmptyState(
+            face: FaceKind.sad,
             title: l10n.loadErrorTitle,
             text: l10n.loadErrorBody,
             actionText: l10n.retryAction,

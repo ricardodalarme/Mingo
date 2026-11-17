@@ -30,6 +30,7 @@ class const OwnInviteCode({super.key}) extends StatelessWidget {
         ],
       ),
       Failure(:final exception) => BaseEmptyState(
+        face: FaceKind.sad,
         title: context.l10n.invite.errorTitle,
         text: context.l10n.invite.errors.selectOrFallback(exception.l10nKey),
         actionText: context.l10n.common.retry,
