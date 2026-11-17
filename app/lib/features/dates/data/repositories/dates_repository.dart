@@ -7,13 +7,12 @@ import 'package:app/features/dates/data/models/important_date_kind.dart';
 import 'package:app/features/gifts/data/mappers/gift_enum_mapper.dart';
 import 'package:app/features/gifts/data/models/gift_idea_status.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
-import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:logger/logger.dart';
 
 class DatesRepository({
   required final DatesDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
-  final WidgetsRepository? _widgetsRepository,
+  final Future<void> Function()? _onDatesChanged,
 }) {
   final Logger _logger = Logger('DatesRepository');
 
@@ -59,12 +58,12 @@ class DatesRepository({
       holidayKey: holidayKey,
       coupleId: await _togetherRepository.getCoupleId(),
     );
-    unawaited(_widgetsRepository?.syncQuietly());
+    unawaited(_onDatesChanged?.call() ?? Future<void>.value());
   });
 
   Future<void> deleteDate(String id) => _run('delete a date', () async {
     await _dataSource.deleteDate(id);
-    unawaited(_widgetsRepository?.syncQuietly());
+    unawaited(_onDatesChanged?.call() ?? Future<void>.value());
   });
 
   Future<List<GiftIdea>> getGiftIdeas() => _run('read gift ideas', () async {

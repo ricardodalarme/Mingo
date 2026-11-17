@@ -17,7 +17,8 @@ class DatesInjectionModule() implements InjectionModule {
       () => DatesRepository(
         dataSource: injector.get<DatesDataSource>(),
         togetherRepository: injector.get<TogetherRepository>(),
-        widgetsRepository: injector.get<WidgetsRepository>(),
+        // Resolved when a date changes: the widgets read the distance, which reads the dates.
+        onDatesChanged: () => injector.get<WidgetsRepository>().syncQuietly(),
       ),
     )
     ..registerFactory<DatesCubit>(
