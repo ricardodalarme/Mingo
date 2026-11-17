@@ -79,6 +79,7 @@ class const _Facts({required final SlipDetail slip}) extends StatelessWidget {
         : slip.forCard
         ? l10n.visibilityCard
         : l10n.visibilityPrivate;
+    final isInCard = slip.wasInCard || (slip.forCard && slip.canGoInCard);
 
     return BaseListGroup(
       children: [
@@ -94,7 +95,7 @@ class const _Facts({required final SlipDetail slip}) extends StatelessWidget {
           showsDivider: true,
           onTap: () => _chooseVisibility(context, slip),
         ),
-        BaseListTile(title: l10n.factInCard, value: slip.wasInCard ? l10n.yes : l10n.no),
+        BaseListTile(title: l10n.factInCard, value: isInCard ? l10n.yes : l10n.no),
       ],
     );
   }

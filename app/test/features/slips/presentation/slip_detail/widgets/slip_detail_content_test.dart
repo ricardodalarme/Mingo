@@ -106,6 +106,9 @@ void main() {
     when(() => repository.getSlip('s1')).thenAnswer((_) async => slip.copyWith(forCard: true));
     final cubit = await build(tester);
 
+    expect(find.text('No cartão semanal'), findsOneWidget);
+    expect(find.text('Sim'), findsOneWidget);
+
     await tester.tap(find.text('Visibilidade'));
     await tester.pumpAndSettle();
     expect(find.text('Quem vê este slip?'), findsOneWidget);
