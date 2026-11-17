@@ -1720,6 +1720,22 @@ class MoodCalendarRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MoodLongingWidgetPage]
+class MoodLongingWidgetRoute extends PageRouteInfo<void> {
+  const MoodLongingWidgetRoute({List<PageRouteInfo>? children})
+    : super(MoodLongingWidgetRoute.name, initialChildren: children);
+
+  static const String name = 'MoodLongingWidgetRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const MoodLongingWidgetPage());
+    },
+  );
+}
+
+/// generated route for
 /// [MoodPage]
 class MoodRoute extends PageRouteInfo<MoodRouteArgs> {
   MoodRoute({String? initialMood, Key? key, List<PageRouteInfo>? children})
@@ -1875,6 +1891,22 @@ class OwnSmallWidgetsRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const OwnSmallWidgetsPage());
+    },
+  );
+}
+
+/// generated route for
+/// [PartnerNoteWidgetPage]
+class PartnerNoteWidgetRoute extends PageRouteInfo<void> {
+  const PartnerNoteWidgetRoute({List<PageRouteInfo>? children})
+    : super(PartnerNoteWidgetRoute.name, initialChildren: children);
+
+  static const String name = 'PartnerNoteWidgetRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const PartnerNoteWidgetPage());
     },
   );
 }

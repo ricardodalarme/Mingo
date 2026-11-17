@@ -20,6 +20,11 @@ const Set<String> _sensitiveRouteNames = {
   'MoodRoute',
   'NeedRoute',
   'FightStyleRoute',
+  'SpiceRoute',
+  'SpiceCardsRoute',
+  'SpiceDesiresRoute',
+  'SpiceChallengeRoute',
+  'SpiceSettingsRoute',
 };
 
 /// The screen name safe to send, or null when the route has no name.
