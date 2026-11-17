@@ -25,6 +25,10 @@ void main() {
     );
   });
 
+  test("a signal opens what the partner's note says", () {
+    expect(inboxRouteFor(_item(NotificationKind.signal)), isA<ReceivedSignalsRoute>());
+  });
+
   test('a kind that points at a record needs the record id', () {
     expect(inboxRouteFor(_item(NotificationKind.annoyanceCheck)), isNull);
   });

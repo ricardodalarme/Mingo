@@ -150,6 +150,7 @@ PageRouteInfo<void>? inboxRouteFor(InboxItem item) {
     NotificationKind.gentleRequest ||
     NotificationKind.gentleRequestAnswered when id != null => GentleRequestDetailRoute(id: id),
     NotificationKind.cardReceived || NotificationKind.cardReaction => const CardsListRoute(),
+    NotificationKind.signal => const ReceivedSignalsRoute(),
     NotificationKind.cardReady => const SundayCardRoute(),
     _ => null,
   };
