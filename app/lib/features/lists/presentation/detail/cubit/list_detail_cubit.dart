@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/lists/data/models/list_item_status.dart';
 import 'package:app/features/lists/data/models/list_models.dart';
 import 'package:app/features/lists/data/repositories/lists_repository.dart';
@@ -13,6 +15,8 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
   this : super(const ListDetailState());
 
   final Uuid _uuid = const Uuid();
+  StreamSubscription<ListDetail>? _live;
+  String? _watchedId;
 
   /// Reads the list and its items; the list on screen stays while it reloads.
   Future<void> load(String listId) async {
@@ -20,6 +24,7 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
     try {
       final detail = await _listsRepository.getList(listId);
       emit(state.copyWith(listId: listId, detail: Success(detail)));
+      _watch(listId);
     } catch (exception) {
       final failure = Failure.fromObject(exception);
       if (state.detail is! Success || failure.exception.l10nKey == listNotFoundCode) {
@@ -194,5 +199,35 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
       emit(state.copyWith(detail: Success(previous), changeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(changeAction: const Initial()));
+  }
+
+  /// Follows the list after the first read, so an item the partner adds, changes or removes shows
+  /// up while the page is open, and a list the partner deletes reads as gone.
+  void _watch(String listId) {
+    if (_watchedId == listId) return;
+
+    unawaited(_live?.cancel());
+    _watchedId = listId;
+    _live = _listsRepository
+        .watchList(listId)
+        .listen(
+          (detail) {
+            if (state.changeAction.isLoading) return;
+            emit(state.copyWith(detail: Success(detail)));
+          },
+          onError: (Object exception) {
+            final failure = Failure.fromObject(exception);
+            if (failure.exception.l10nKey == listNotFoundCode) {
+              emit(state.copyWith(detail: failure));
+            }
+          },
+        );
+  }
+
+  @override
+  Future<void> close() async {
+    await _live?.cancel();
+
+    return super.close();
   }
 }

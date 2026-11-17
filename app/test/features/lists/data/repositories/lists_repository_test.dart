@@ -283,4 +283,63 @@ void main() {
     expect([for (final stored in items) stored.id], ['i2', 'i1']);
     verify(() => dataSource.reorderItems(listId: 'l1', itemIds: ['i2', 'i1'])).called(1);
   });
+
+  group('live reads', () {
+    test('watching the lists marks the ones the person wrote', () async {
+      when(dataSource.watchLists).thenAnswer(
+        (_) => Stream.value([list(), list(id: 'l2', authorId: 'user-2', coupleId: 'couple-1')]),
+      );
+
+      final lists = await repository.watchLists().first;
+
+      expect([for (final item in lists) item.isMine], [true, false]);
+    });
+
+    test('watching a list returns it with its items and the couple of the person', () async {
+      when(togetherRepository.getCoupleId).thenAnswer((_) async => 'couple-1');
+      when(() => dataSource.watchList('l1')).thenAnswer(
+        (_) => Stream.value((
+          list: list(coupleId: 'couple-1'),
+          items: [
+            item(),
+            item(id: 'i2'),
+          ],
+        )),
+      );
+
+      final detail = await repository.watchList('l1').first;
+
+      expect(detail.items.map((item) => item.id), ['i1', 'i2']);
+      expect(detail.currentCoupleId, 'couple-1');
+    });
+
+    test('a list that is gone fails with the not found code', () {
+      when(() => dataSource.watchList('l1')).thenAnswer((_) => Stream.value(null));
+
+      expect(
+        repository.watchList('l1'),
+        emitsError(isA<LocalizedException>().having((e) => e.l10nKey, 'l10nKey', listNotFoundCode)),
+      );
+    });
+
+    test('a failed event is skipped and the stream goes on', () async {
+      when(() => dataSource.watchList('l1')).thenAnswer(
+        (_) =>
+            Stream<ListDetailRecord?>.fromIterable([
+                  null,
+                  (list: list(), items: [item()]),
+                ])
+                .map((record) => record)
+                .asyncExpand(
+                  (record) => record == null
+                      ? Stream<ListDetailRecord?>.error(Exception('offline'))
+                      : Stream.value(record),
+                ),
+      );
+
+      final details = await repository.watchList('l1').toList();
+
+      expect(details, hasLength(1));
+    });
+  });
 }

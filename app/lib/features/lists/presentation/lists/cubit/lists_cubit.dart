@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/lists/data/models/list_kind.dart';
 import 'package:app/features/lists/data/models/list_models.dart';
 import 'package:app/features/lists/data/repositories/lists_repository.dart';
@@ -12,6 +14,7 @@ class ListsCubit({required final ListsRepository _listsRepository}) extends Cubi
   this : super(const ListsState());
 
   final Uuid _uuid = const Uuid();
+  StreamSubscription<List<CoupleList>>? _live;
 
   /// Reads the couple's lists and whether they are shared with a partner.
   Future<void> load() async {
@@ -22,6 +25,7 @@ class ListsCubit({required final ListsRepository _listsRepository}) extends Cubi
         _listsRepository.getLists(),
       ).wait;
       emit(state.copyWith(lists: Success(lists), coupleId: coupleId));
+      _watch();
     } catch (exception) {
       if (state.lists is Success) return;
       emit(state.copyWith(lists: Failure.fromObject(exception)));
@@ -124,4 +128,20 @@ class ListsCubit({required final ListsRepository _listsRepository}) extends Cubi
     for (final item in state.currentLists)
       if (item.id == saved.id) saved else item,
   ];
+
+  /// Follows the lists after the first read, so a list the partner shares or deletes shows up
+  /// while the page is open.
+  void _watch() {
+    _live ??= _listsRepository.watchLists().listen((lists) {
+      if (state.createAction.isLoading || state.changeAction.isLoading) return;
+      emit(state.copyWith(lists: Success(lists)));
+    });
+  }
+
+  @override
+  Future<void> close() async {
+    await _live?.cancel();
+
+    return super.close();
+  }
 }

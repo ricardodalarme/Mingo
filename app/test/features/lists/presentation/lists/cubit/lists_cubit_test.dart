@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/lists/data/models/list_kind.dart';
 import 'package:app/features/lists/data/models/list_models.dart';
 import 'package:app/features/lists/data/repositories/lists_repository.dart';
@@ -10,6 +12,7 @@ class _MockListsRepository() extends Mock implements ListsRepository;
 
 void main() {
   late ListsRepository repository;
+  late StreamController<List<CoupleList>> live;
 
   const shared = CoupleList(
     id: 'l1',
@@ -22,6 +25,9 @@ void main() {
 
   setUp(() {
     repository = _MockListsRepository();
+    live = StreamController<List<CoupleList>>.broadcast();
+    addTearDown(live.close);
+    when(repository.watchLists).thenAnswer((_) => live.stream);
     when(repository.getCoupleId).thenAnswer((_) async => 'couple-1');
     when(repository.getLists).thenAnswer((_) async => [shared, solo]);
     when(
@@ -257,5 +263,26 @@ void main() {
         .thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
     await cubit.delete(solo);
     expect(cubit.state.currentLists, [solo]);
+  });
+
+  test('a list the partner shares shows up while the page is open', () async {
+    final cubit = ListsCubit(listsRepository: repository);
+    addTearDown(cubit.close);
+    await cubit.load();
+
+    live.add([shared, solo, const CoupleList(id: 'l3', title: 'Casa', kind: ListKind.travel)]);
+    await pumpEventQueue();
+
+    expect(cubit.state.currentLists.map((list) => list.id), ['l1', 'l2', 'l3']);
+  });
+
+  test('stops following the lists when it closes', () async {
+    final cubit = ListsCubit(listsRepository: repository);
+    await cubit.load();
+    expect(live.hasListener, isTrue);
+
+    await cubit.close();
+
+    expect(live.hasListener, isFalse);
   });
 }

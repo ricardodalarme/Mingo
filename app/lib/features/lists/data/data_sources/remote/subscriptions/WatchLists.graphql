@@ -1,0 +1,5 @@
+subscription WatchLists {
+  lists(order_by: [{ createdAt: desc_nulls_last }], limit: 100) {
+    ...ListFragment
+  }
+}

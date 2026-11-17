@@ -36,6 +36,58 @@ class ListsRepository({
     );
   });
 
+  /// Emits the lists now and each time the partner or the person changes them.
+  ///
+  /// A failed event is logged and skipped, so a screen keeps what it shows.
+  Stream<List<CoupleList>> watchLists() async* {
+    final String? currentUserId;
+    try {
+      currentUserId = await _togetherRepository.getCurrentUserId();
+    } catch (e, stack) {
+      _logger.error('Failed to start the lists subscription', error: e, stackTrace: stack);
+
+      return;
+    }
+
+    yield* _dataSource
+        .watchLists()
+        .map((nodes) => [for (final node in nodes) node.toModel(currentUserId: currentUserId)])
+        .handleError((Object e, StackTrace stack) {
+          _logger.error('The lists subscription failed', error: e, stackTrace: stack);
+        });
+  }
+
+  /// Emits the list and its items now and each time either changes.
+  ///
+  /// Fails with [listNotFoundCode] once the list is gone, such as when the partner deletes it.
+  Stream<ListDetail> watchList(String id) async* {
+    final String? currentUserId;
+    final String? coupleId;
+    try {
+      currentUserId = await _togetherRepository.getCurrentUserId();
+      coupleId = await _togetherRepository.getCoupleId();
+    } catch (e, stack) {
+      _logger.error('Failed to start the list subscription', error: e, stackTrace: stack);
+
+      return;
+    }
+
+    yield* _dataSource
+        .watchList(id)
+        .map((record) {
+          if (record == null) throw const LocalizedException(l10nKey: listNotFoundCode);
+
+          return ListDetail(
+            list: record.list.toModel(currentUserId: currentUserId),
+            items: [for (final item in record.items) item.toModel()],
+            currentCoupleId: coupleId,
+          );
+        })
+        .handleError((Object e, StackTrace stack) {
+          _logger.error('The list subscription failed', error: e, stackTrace: stack);
+        }, test: (e) => !(e is LocalizedException && e.l10nKey == listNotFoundCode));
+  }
+
   /// Creates the list and returns it as the server stored it.
   Future<CoupleList> createList({
     required String id,

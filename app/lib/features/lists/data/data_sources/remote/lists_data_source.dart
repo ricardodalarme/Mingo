@@ -11,7 +11,11 @@ import 'package:app/features/lists/data/data_sources/remote/mutations/generated/
 import 'package:app/features/lists/data/data_sources/remote/mutations/generated/SetListVisibility.graphql.dart';
 import 'package:app/features/lists/data/data_sources/remote/queries/generated/ListDetail.graphql.dart';
 import 'package:app/features/lists/data/data_sources/remote/queries/generated/Lists.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/subscriptions/generated/WatchListDetail.graphql.dart';
+import 'package:app/features/lists/data/data_sources/remote/subscriptions/generated/WatchLists.graphql.dart';
 import 'package:network/network.dart';
+
+typedef ListDetailRecord = ({FragmentListFragment list, List<FragmentListItemFragment> items});
 
 class ListsDataSource({required final GQLClient _client}) {
   Future<List<FragmentListFragment>> getLists() async {
@@ -33,6 +37,31 @@ class ListsDataSource({required final GQLClient _client}) {
     validateResponse(response);
 
     return response.parsedData?.listsByPk;
+  }
+
+  /// Emits the lists now and each time one is created, renamed, shared or deleted.
+  Stream<List<FragmentListFragment>> watchLists() {
+    return _client
+        .subscribe(OptionsSubscriptionWatchLists())
+        .mapResponseData((data) => List<FragmentListFragment>.of(data.lists));
+  }
+
+  /// Emits the list and its items now and each time either changes; null once the list is gone.
+  Stream<ListDetailRecord?> watchList(String id) {
+    return _client
+        .subscribe(
+          OptionsSubscriptionWatchListDetail(
+            variables: VariablesSubscriptionWatchListDetail(id: id),
+          ),
+        )
+        .map((response) {
+          validateResponse(response);
+          final node = response.parsedData?.listsByPk;
+
+          return node == null
+              ? null
+              : (list: node, items: List<FragmentListItemFragment>.of(node.items));
+        });
   }
 
   Future<FragmentListFragment> createList({

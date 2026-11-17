@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/lists/data/models/list_item_status.dart';
 import 'package:app/features/lists/data/models/list_kind.dart';
 import 'package:app/features/lists/data/models/list_models.dart';
@@ -11,6 +13,7 @@ class _MockListsRepository() extends Mock implements ListsRepository;
 
 void main() {
   late ListsRepository repository;
+  late StreamController<ListDetail> live;
 
   const list = CoupleList(
     id: 'l1',
@@ -49,6 +52,9 @@ void main() {
 
   setUp(() {
     repository = _MockListsRepository();
+    live = StreamController<ListDetail>.broadcast();
+    addTearDown(live.close);
+    when(() => repository.watchList(any())).thenAnswer((_) => live.stream);
     when(() => repository.getList(any())).thenAnswer((_) async => detail);
     when(repository.getCoupleId).thenAnswer((_) async => 'couple-1');
     when(
@@ -364,5 +370,53 @@ void main() {
     await cubit.refresh();
 
     expect(cubit.state.detail, isA<Failure>());
+  });
+
+  group('live list', () {
+    test('an item the partner adds shows up while the page is open', () async {
+      final cubit = ListDetailCubit(listsRepository: repository);
+      addTearDown(cubit.close);
+      await cubit.load('l1');
+
+      live.add(
+        detail.copyWith(
+          items: [
+            ...detail.items,
+            const ListItem(
+              id: 'i4',
+              listId: 'l1',
+              title: 'Porto',
+              status: ListItemStatus.dream,
+              position: 3,
+            ),
+          ],
+        ),
+      );
+      await pumpEventQueue();
+
+      final value = (cubit.state.detail as Success<ListDetail>).value;
+      expect(value.items.map((item) => item.id), ['i1', 'i2', 'i3', 'i4']);
+    });
+
+    test('a list the partner deletes reads as gone', () async {
+      final cubit = ListDetailCubit(listsRepository: repository);
+      addTearDown(cubit.close);
+      await cubit.load('l1');
+
+      live.addError(const LocalizedException(l10nKey: listNotFoundCode));
+      await pumpEventQueue();
+
+      expect(cubit.state.detail, isA<Failure>());
+    });
+
+    test('stops following the list when it closes', () async {
+      final cubit = ListDetailCubit(listsRepository: repository);
+      await cubit.load('l1');
+      expect(live.hasListener, isTrue);
+
+      await cubit.close();
+
+      expect(live.hasListener, isFalse);
+    });
   });
 }

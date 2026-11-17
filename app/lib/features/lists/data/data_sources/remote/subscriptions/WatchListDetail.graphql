@@ -1,0 +1,8 @@
+subscription WatchListDetail($id: uuid!) {
+  listsByPk(id: $id) {
+    ...ListFragment
+    items(order_by: [{ position: asc_nulls_last }, { createdAt: asc_nulls_last }], limit: 500) {
+      ...ListItemFragment
+    }
+  }
+}

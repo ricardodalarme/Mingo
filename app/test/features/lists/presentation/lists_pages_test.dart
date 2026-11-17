@@ -36,6 +36,8 @@ void main() {
 
   setUp(() {
     repository = _MockListsRepository();
+    when(repository.watchLists).thenAnswer((_) => const Stream<List<CoupleList>>.empty());
+    when(() => repository.watchList(any())).thenAnswer((_) => const Stream<ListDetail>.empty());
     when(repository.getCoupleId).thenAnswer((_) async => 'couple-1');
     when(repository.getLists).thenAnswer((_) async => [shared, solo]);
     when(() => repository.getList(any()))
