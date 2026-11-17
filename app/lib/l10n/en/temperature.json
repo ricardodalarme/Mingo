@@ -41,5 +41,15 @@
   "errors(map)": {
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't save right now. Your answers are still here."
+  },
+  "history": {
+    "action": "See the last weeks",
+    "title": "Last 8 weeks",
+    "titleHighlight": "8 weeks",
+    "subtitle": "One point per week, with the last answer given in it.",
+    "chartLabel": "Temperature of each week, from calmest to a fight",
+    "emptyTitle": "Nothing here yet",
+    "emptyText": "When you answer how things are between you, the weeks show up here.",
+    "note": "Only you see this. It never becomes a note and never goes to the other person."
   }
 }

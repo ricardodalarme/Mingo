@@ -133,5 +133,18 @@
     "pause": "Respirar um pouco",
     "guided": "Começar o reparo guiado",
     "quick": "Enviar um reparo"
+  },
+  "sos": {
+    "title": "Estamos brigando",
+    "titleHighlight": "brigando",
+    "subtitle": "Escolha por onde começar. Nada é enviado sem você confirmar.",
+    "softStartTitle": "Começo suave",
+    "softStartText": "Um modelo para abrir a conversa sem culpa",
+    "repairTitle": "Reparar",
+    "repairText": "Ver como está e escolher um passo",
+    "talkTitle": "Preparar o que dizer",
+    "talkText": "Organize as ideias antes de falar",
+    "note": "Funciona sem internet e fica só com você.",
+    "action": "Estamos brigando"
   }
 }

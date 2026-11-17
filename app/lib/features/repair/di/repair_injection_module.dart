@@ -4,6 +4,7 @@ import 'package:app/features/reminders/data/services/reminder_sync_service.dart'
 import 'package:app/features/repair/data/data_sources/remote/repair_data_source.dart';
 import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:app/features/repair/presentation/guided/cubit/guided_repair_cubit.dart';
+import 'package:app/features/repair/presentation/history/cubit/temperature_history_cubit.dart';
 import 'package:app/features/repair/presentation/learning/cubit/learning_cubit.dart';
 import 'package:app/features/repair/presentation/quick_repair/cubit/quick_repair_cubit.dart';
 import 'package:app/features/repair/presentation/received/cubit/received_signals_cubit.dart';
@@ -42,6 +43,9 @@ class RepairInjectionModule() implements InjectionModule {
     )
     ..registerFactory<QuickRepairCubit>(
       () => QuickRepairCubit(repairRepository: injector.get<RepairRepository>()),
+    )
+    ..registerFactory<TemperatureHistoryCubit>(
+      () => TemperatureHistoryCubit(repairRepository: injector.get<RepairRepository>()),
     )
     ..registerFactory<TemperatureCubit>(
       () => TemperatureCubit(repairRepository: injector.get<RepairRepository>()),

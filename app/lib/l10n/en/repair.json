@@ -133,5 +133,18 @@
     "pause": "Breathe a little",
     "guided": "Start the guided repair",
     "quick": "Send a repair"
+  },
+  "sos": {
+    "title": "We are fighting",
+    "titleHighlight": "fighting",
+    "subtitle": "Pick where to start. Nothing is sent until you confirm.",
+    "softStartTitle": "Soft start",
+    "softStartText": "A model to open the talk without blame",
+    "repairTitle": "Repair",
+    "repairText": "See how it is and choose a step",
+    "talkTitle": "Prepare what to say",
+    "talkText": "Sort your thoughts before you talk",
+    "note": "Works offline and stays only with you.",
+    "action": "We are fighting"
   }
 }

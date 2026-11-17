@@ -60,6 +60,11 @@ class const TodayHeader({
               mainAxisSize: MainAxisSize.min,
               spacing: AppSpace.s8,
               children: [
+                BaseRoundButton(
+                  icon: AppIcons.shield,
+                  semanticLabel: context.l10n.repair.sos.action,
+                  onPressed: () => context.pushRoute(const SosRoute()),
+                ),
                 const InboxBellButton(),
                 BaseRoundButton(
                   icon: AppIcons.settings,

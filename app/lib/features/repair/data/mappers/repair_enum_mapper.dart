@@ -12,6 +12,16 @@ extension TemperatureMapper on Temperature {
   };
 }
 
+extension EnumTemperatureLevelMapper on EnumTemperatureLevel_enum {
+  Temperature toModel() => switch (this) {
+    EnumTemperatureLevel_enum.good => Temperature.good,
+    EnumTemperatureLevel_enum.so_so => Temperature.soSo,
+    EnumTemperatureLevel_enum.turbulent => Temperature.turbulent,
+    EnumTemperatureLevel_enum.fight => Temperature.fight,
+    EnumTemperatureLevel_enum.$unknown => Temperature.soSo,
+  };
+}
+
 extension RepairPathMapper on RepairPath {
   EnumRepairPath_enum toRemote() => switch (this) {
     RepairPath.pause => EnumRepairPath_enum.pause,

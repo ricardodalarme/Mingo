@@ -2484,6 +2484,22 @@ class SoftStartRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SosPage]
+class SosRoute extends PageRouteInfo<void> {
+  const SosRoute({List<PageRouteInfo>? children})
+    : super(SosRoute.name, initialChildren: children);
+
+  static const String name = 'SosRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SosPage();
+    },
+  );
+}
+
+/// generated route for
 /// [SpicePage]
 class SpiceRoute extends PageRouteInfo<void> {
   const SpiceRoute({List<PageRouteInfo>? children})
@@ -2612,6 +2628,22 @@ class SupportRouteArgs {
 
   @override
   int get hashCode => topic.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [TemperatureHistoryPage]
+class TemperatureHistoryRoute extends PageRouteInfo<void> {
+  const TemperatureHistoryRoute({List<PageRouteInfo>? children})
+    : super(TemperatureHistoryRoute.name, initialChildren: children);
+
+  static const String name = 'TemperatureHistoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const TemperatureHistoryPage());
+    },
+  );
 }
 
 /// generated route for

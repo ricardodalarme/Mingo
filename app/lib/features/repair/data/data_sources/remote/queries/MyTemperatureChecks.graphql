@@ -1,0 +1,7 @@
+query MyTemperatureChecks {
+  temperatureChecks(order_by: { createdAt: desc }, limit: 200) {
+    id
+    level
+    createdAt
+  }
+}

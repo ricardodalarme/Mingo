@@ -41,5 +41,15 @@
   "errors(map)": {
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para salvar agora. Suas respostas continuam aqui."
+  },
+  "history": {
+    "action": "Ver as últimas semanas",
+    "title": "Últimas 8 semanas",
+    "titleHighlight": "8 semanas",
+    "subtitle": "Um ponto por semana, com a última resposta dela.",
+    "chartLabel": "Temperatura de cada semana, da mais calma à briga",
+    "emptyTitle": "Nada por aqui ainda",
+    "emptyText": "Quando você responder como está entre vocês, as semanas aparecem aqui.",
+    "note": "Só você vê isto. Nunca vira nota e nunca vai para a outra pessoa."
   }
 }

@@ -18,6 +18,13 @@ void main() {
     expect(Temperature.fight.toRemote(), EnumTemperatureLevel_enum.fight);
   });
 
+  test('a temperature survives a trip to the remote enum and back', () {
+    for (final value in Temperature.values) {
+      expect(value.toRemote().toModel(), value);
+    }
+    expect(EnumTemperatureLevel_enum.$unknown.toModel(), Temperature.soSo);
+  });
+
   test('maps every repair path and feeling', () {
     expect(RepairPath.pause.toRemote(), EnumRepairPath_enum.pause);
     expect(RepairPath.quick.toRemote(), EnumRepairPath_enum.quick);

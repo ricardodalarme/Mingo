@@ -4925,6 +4925,8 @@ class _Translations$repair$en extends Translations$repair$pt {
   late final _Translations$repair$learning$en learning = _Translations$repair$learning$en._(_root);
   @override
   late final _Translations$repair$next$en next = _Translations$repair$next$en._(_root);
+  @override
+  late final _Translations$repair$sos$en sos = _Translations$repair$sos$en._(_root);
 }
 
 // Path: rituals
@@ -5972,6 +5974,10 @@ class _Translations$temperature$en extends Translations$temperature$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t save right now. Your answers are still here.',
   };
+  @override
+  late final _Translations$temperature$history$en history = _Translations$temperature$history$en._(
+    _root,
+  );
 }
 
 // Path: timeInApp
@@ -7469,6 +7475,37 @@ class _Translations$repair$next$en extends Translations$repair$next$pt {
   String get quick => 'Send a repair';
 }
 
+// Path: repair.sos
+class _Translations$repair$sos$en extends Translations$repair$sos$pt {
+  _Translations$repair$sos$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'We are fighting';
+  @override
+  String get titleHighlight => 'fighting';
+  @override
+  String get subtitle => 'Pick where to start. Nothing is sent until you confirm.';
+  @override
+  String get softStartTitle => 'Soft start';
+  @override
+  String get softStartText => 'A model to open the talk without blame';
+  @override
+  String get repairTitle => 'Repair';
+  @override
+  String get repairText => 'See how it is and choose a step';
+  @override
+  String get talkTitle => 'Prepare what to say';
+  @override
+  String get talkText => 'Sort your thoughts before you talk';
+  @override
+  String get note => 'Works offline and stays only with you.';
+  @override
+  String get action => 'We are fighting';
+}
+
 // Path: slipDetail.visibility
 class _Translations$slipDetail$visibility$en extends Translations$slipDetail$visibility$pt {
   _Translations$slipDetail$visibility$en._(TranslationsEn root)
@@ -7716,6 +7753,34 @@ class _Translations$temperature$result$en extends Translations$temperature$resul
       _Translations$temperature$result$quick$en._(_root);
   @override
   String get done => 'Done';
+}
+
+// Path: temperature.history
+class _Translations$temperature$history$en extends Translations$temperature$history$pt {
+  _Translations$temperature$history$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get action => 'See the last weeks';
+  @override
+  String get title => 'Last 8 weeks';
+  @override
+  String get titleHighlight => '8 weeks';
+  @override
+  String get subtitle => 'One point per week, with the last answer given in it.';
+  @override
+  String get chartLabel => 'Temperature of each week, from calmest to a fight';
+  @override
+  String get emptyTitle => 'Nothing here yet';
+  @override
+  String get emptyText => 'When you answer how things are between you, the weeks show up here.';
+  @override
+  String get note =>
+      'Only you see this. It never becomes a note and never goes to the other person.';
 }
 
 // Path: unpair.done
@@ -10806,6 +10871,17 @@ extension on TranslationsEn {
           'repair.next.pause' => 'Breathe a little',
           'repair.next.guided' => 'Start the guided repair',
           'repair.next.quick' => 'Send a repair',
+          'repair.sos.title' => 'We are fighting',
+          'repair.sos.titleHighlight' => 'fighting',
+          'repair.sos.subtitle' => 'Pick where to start. Nothing is sent until you confirm.',
+          'repair.sos.softStartTitle' => 'Soft start',
+          'repair.sos.softStartText' => 'A model to open the talk without blame',
+          'repair.sos.repairTitle' => 'Repair',
+          'repair.sos.repairText' => 'See how it is and choose a step',
+          'repair.sos.talkTitle' => 'Prepare what to say',
+          'repair.sos.talkText' => 'Sort your thoughts before you talk',
+          'repair.sos.note' => 'Works offline and stays only with you.',
+          'repair.sos.action' => 'We are fighting',
           'rituals.title' => 'Rituals',
           'rituals.subtitle' => 'Small habits you want to protect. No streaks, no pressure.',
           'rituals.emptyTitle' => 'No rituals yet',
@@ -11004,6 +11080,9 @@ extension on TranslationsEn {
           'slipDetail.weekdaysShort.0' => 'Mon',
           'slipDetail.weekdaysShort.1' => 'Tue',
           'slipDetail.weekdaysShort.2' => 'Wed',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.weekdaysShort.3' => 'Thu',
           'slipDetail.weekdaysShort.4' => 'Fri',
           'slipDetail.weekdaysShort.5' => 'Sat',
@@ -11019,9 +11098,6 @@ extension on TranslationsEn {
           'slipDetail.factInCard' => 'Included in a card',
           'slipDetail.visibilityPrivate' => 'Private',
           'slipDetail.visibilityCard' => 'In the weekly card',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.visibilitySent' => 'Sent',
           'slipDetail.yes' => 'Yes',
           'slipDetail.no' => 'No',
@@ -11448,6 +11524,16 @@ extension on TranslationsEn {
           'temperature.result.done' => 'Done',
           'temperature.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'temperature.errors.other' => 'Couldn\'t save right now. Your answers are still here.',
+          'temperature.history.action' => 'See the last weeks',
+          'temperature.history.title' => 'Last 8 weeks',
+          'temperature.history.titleHighlight' => '8 weeks',
+          'temperature.history.subtitle' => 'One point per week, with the last answer given in it.',
+          'temperature.history.chartLabel' => 'Temperature of each week, from calmest to a fight',
+          'temperature.history.emptyTitle' => 'Nothing here yet',
+          'temperature.history.emptyText' =>
+            'When you answer how things are between you, the weeks show up here.',
+          'temperature.history.note' =>
+            'Only you see this. It never becomes a note and never goes to the other person.',
           'timeInApp.title' => 'Time in the app',
           'timeInApp.titleHighlight' => 'app',
           'timeInApp.text' => 'We hide cards and reminders until you come back.',
@@ -11645,6 +11731,9 @@ extension on TranslationsEn {
           'weeklyReview.quietCardTitle' => 'No rush',
           'weeklyReview.quietCardText' =>
             'Writing a good thing takes 30 seconds. Start whenever you like.',
+          _ => null,
+        } ??
+        switch (path) {
           'weeklyReview.quietNote' => 'Never compared with other weeks.',
           'weeklyReview.writeSlip' => 'Write a slip',
           'weeklyReview.errorTitle' => 'We could not open your week',
@@ -11664,9 +11753,6 @@ extension on TranslationsEn {
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Just mine',
           'widgets.segmentCouple' => 'Couple',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.ownSlipLabel' => 'LOG SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Tap to log',

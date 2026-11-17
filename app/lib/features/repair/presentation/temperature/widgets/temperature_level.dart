@@ -2,6 +2,7 @@ import 'package:app/features/repair/data/models/repair_path.dart';
 import 'package:app/features/repair/presentation/temperature/cubit/temperature_cubit.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,6 +56,12 @@ class const TemperatureLevel({super.key}) extends StatelessWidget {
             isEnabled: selected != null,
             isLoading: isLoading,
             onPressed: cubit.continueFromLevel,
+          ),
+          const SizedBox(height: AppSpace.s10),
+          BaseButton(
+            text: l10n.history.action,
+            variant: .secondary,
+            onPressed: () => context.pushRoute(const TemperatureHistoryRoute()),
           ),
           const SizedBox(height: AppSpace.s10),
           BaseButton(

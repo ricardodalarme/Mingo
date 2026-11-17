@@ -6082,6 +6082,7 @@ class Translations$repair$pt {
     _root,
   );
   late final Translations$repair$next$pt next = Translations$repair$next$pt.internal(_root);
+  late final Translations$repair$sos$pt sos = Translations$repair$sos$pt.internal(_root);
 }
 
 // Path: rituals
@@ -7440,6 +7441,8 @@ class Translations$temperature$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para salvar agora. Suas respostas continuam aqui.',
   };
+  late final Translations$temperature$history$pt history =
+      Translations$temperature$history$pt.internal(_root);
 }
 
 // Path: timeInApp
@@ -9333,6 +9336,48 @@ class Translations$repair$next$pt {
   String get quick => 'Enviar um reparo';
 }
 
+// Path: repair.sos
+class Translations$repair$sos$pt {
+  Translations$repair$sos$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Estamos brigando'
+  String get title => 'Estamos brigando';
+
+  /// pt: 'brigando'
+  String get titleHighlight => 'brigando';
+
+  /// pt: 'Escolha por onde começar. Nada é enviado sem você confirmar.'
+  String get subtitle => 'Escolha por onde começar. Nada é enviado sem você confirmar.';
+
+  /// pt: 'Começo suave'
+  String get softStartTitle => 'Começo suave';
+
+  /// pt: 'Um modelo para abrir a conversa sem culpa'
+  String get softStartText => 'Um modelo para abrir a conversa sem culpa';
+
+  /// pt: 'Reparar'
+  String get repairTitle => 'Reparar';
+
+  /// pt: 'Ver como está e escolher um passo'
+  String get repairText => 'Ver como está e escolher um passo';
+
+  /// pt: 'Preparar o que dizer'
+  String get talkTitle => 'Preparar o que dizer';
+
+  /// pt: 'Organize as ideias antes de falar'
+  String get talkText => 'Organize as ideias antes de falar';
+
+  /// pt: 'Funciona sem internet e fica só com você.'
+  String get note => 'Funciona sem internet e fica só com você.';
+
+  /// pt: 'Estamos brigando'
+  String get action => 'Estamos brigando';
+}
+
 // Path: slipDetail.visibility
 class Translations$slipDetail$visibility$pt {
   Translations$slipDetail$visibility$pt.internal(this._root);
@@ -9624,6 +9669,39 @@ class Translations$temperature$result$pt {
 
   /// pt: 'Pronto'
   String get done => 'Pronto';
+}
+
+// Path: temperature.history
+class Translations$temperature$history$pt {
+  Translations$temperature$history$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Ver as últimas semanas'
+  String get action => 'Ver as últimas semanas';
+
+  /// pt: 'Últimas 8 semanas'
+  String get title => 'Últimas 8 semanas';
+
+  /// pt: '8 semanas'
+  String get titleHighlight => '8 semanas';
+
+  /// pt: 'Um ponto por semana, com a última resposta dela.'
+  String get subtitle => 'Um ponto por semana, com a última resposta dela.';
+
+  /// pt: 'Temperatura de cada semana, da mais calma à briga'
+  String get chartLabel => 'Temperatura de cada semana, da mais calma à briga';
+
+  /// pt: 'Nada por aqui ainda'
+  String get emptyTitle => 'Nada por aqui ainda';
+
+  /// pt: 'Quando você responder como está entre vocês, as semanas aparecem aqui.'
+  String get emptyText => 'Quando você responder como está entre vocês, as semanas aparecem aqui.';
+
+  /// pt: 'Só você vê isto. Nunca vira nota e nunca vai para a outra pessoa.'
+  String get note => 'Só você vê isto. Nunca vira nota e nunca vai para a outra pessoa.';
 }
 
 // Path: unpair.done
@@ -12749,6 +12827,17 @@ extension on Translations {
           'repair.next.pause' => 'Respirar um pouco',
           'repair.next.guided' => 'Começar o reparo guiado',
           'repair.next.quick' => 'Enviar um reparo',
+          'repair.sos.title' => 'Estamos brigando',
+          'repair.sos.titleHighlight' => 'brigando',
+          'repair.sos.subtitle' => 'Escolha por onde começar. Nada é enviado sem você confirmar.',
+          'repair.sos.softStartTitle' => 'Começo suave',
+          'repair.sos.softStartText' => 'Um modelo para abrir a conversa sem culpa',
+          'repair.sos.repairTitle' => 'Reparar',
+          'repair.sos.repairText' => 'Ver como está e escolher um passo',
+          'repair.sos.talkTitle' => 'Preparar o que dizer',
+          'repair.sos.talkText' => 'Organize as ideias antes de falar',
+          'repair.sos.note' => 'Funciona sem internet e fica só com você.',
+          'repair.sos.action' => 'Estamos brigando',
           'rituals.title' => 'Rituais',
           'rituals.subtitle' =>
             'Pequenos hábitos que vocês querem proteger. Sem sequências, sem cobrança.',
@@ -12953,6 +13042,9 @@ extension on Translations {
           'slipDetail.weekdaysShort.0' => 'Seg',
           'slipDetail.weekdaysShort.1' => 'Ter',
           'slipDetail.weekdaysShort.2' => 'Qua',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.weekdaysShort.3' => 'Qui',
           'slipDetail.weekdaysShort.4' => 'Sex',
           'slipDetail.weekdaysShort.5' => 'Sáb',
@@ -12968,9 +13060,6 @@ extension on Translations {
           'slipDetail.factInCard' => 'Incluído no cartão',
           'slipDetail.visibilityPrivate' => 'Privado',
           'slipDetail.visibilityCard' => 'No cartão semanal',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.visibilitySent' => 'Enviado',
           'slipDetail.yes' => 'Sim',
           'slipDetail.no' => 'Não',
@@ -13397,6 +13486,16 @@ extension on Translations {
           'temperature.result.done' => 'Pronto',
           'temperature.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'temperature.errors.other' => 'Não deu para salvar agora. Suas respostas continuam aqui.',
+          'temperature.history.action' => 'Ver as últimas semanas',
+          'temperature.history.title' => 'Últimas 8 semanas',
+          'temperature.history.titleHighlight' => '8 semanas',
+          'temperature.history.subtitle' => 'Um ponto por semana, com a última resposta dela.',
+          'temperature.history.chartLabel' => 'Temperatura de cada semana, da mais calma à briga',
+          'temperature.history.emptyTitle' => 'Nada por aqui ainda',
+          'temperature.history.emptyText' =>
+            'Quando você responder como está entre vocês, as semanas aparecem aqui.',
+          'temperature.history.note' =>
+            'Só você vê isto. Nunca vira nota e nunca vai para a outra pessoa.',
           'timeInApp.title' => 'Um tempo no app',
           'timeInApp.titleHighlight' => 'app',
           'timeInApp.text' => 'Escondemos cartões e lembretes até você voltar.',
@@ -13594,6 +13693,9 @@ extension on Translations {
           'weeklyReview.quietCardTitle' => 'Sem pressa',
           'weeklyReview.quietCardText' =>
             'Anotar uma coisa boa leva 30 segundos. Começa quando você quiser.',
+          _ => null,
+        } ??
+        switch (path) {
           'weeklyReview.quietNote' => 'Sem comparação com outras semanas.',
           'weeklyReview.writeSlip' => 'Anotar um slip',
           'weeklyReview.errorTitle' => 'Não deu para abrir sua semana',
@@ -13613,9 +13715,6 @@ extension on Translations {
           'widgets.galleryTitle' => 'Widgets',
           'widgets.segmentOwn' => 'Só meus',
           'widgets.segmentCouple' => 'Do casal',
-          _ => null,
-        } ??
-        switch (path) {
           'widgets.ownSlipLabel' => 'ANOTAR SLIP',
           'widgets.ownSlipTitle' => '+ Slip',
           'widgets.ownSlipSubtitle' => 'Toque para anotar',

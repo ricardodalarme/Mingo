@@ -6,6 +6,7 @@ import 'package:app/features/repair/data/models/guided_session.dart';
 import 'package:app/features/repair/data/models/received_signal.dart';
 import 'package:app/features/repair/data/models/repair_path.dart';
 import 'package:app/features/repair/data/models/signal_answer.dart';
+import 'package:app/features/repair/data/models/temperature_history.dart';
 import 'package:clock/clock.dart';
 import 'package:logger/logger.dart';
 
@@ -18,6 +19,19 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
       await _dataSource.recordTemperature(level.toRemote());
     } catch (e, stack) {
       _logger.error('Failed to record the temperature', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// The person's own temperature answers, newest first.
+  Future<List<TemperatureCheck>> getTemperatureChecks() async {
+    try {
+      return [
+        for (final node in await _dataSource.getTemperatureChecks())
+          TemperatureCheck(level: node.level.toModel(), at: node.createdAt),
+      ];
+    } catch (e, stack) {
+      _logger.error('Failed to read the temperature history', error: e, stackTrace: stack);
       rethrow;
     }
   }

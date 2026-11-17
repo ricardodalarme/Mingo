@@ -88,10 +88,12 @@ import 'package:app/features/programs/presentation/programs/programs_page.dart';
 import 'package:app/features/questions/presentation/questions/questions_page.dart';
 import 'package:app/features/repair/presentation/calm/calm_page.dart';
 import 'package:app/features/repair/presentation/guided/guided_repair_page.dart';
+import 'package:app/features/repair/presentation/history/temperature_history_page.dart';
 import 'package:app/features/repair/presentation/learning/learning_page.dart';
 import 'package:app/features/repair/presentation/quick_repair/quick_repair_page.dart';
 import 'package:app/features/repair/presentation/received/received_signals_page.dart';
 import 'package:app/features/repair/presentation/soft_start/soft_start_page.dart';
+import 'package:app/features/repair/presentation/sos/sos_page.dart';
 import 'package:app/features/repair/presentation/temperature/temperature_page.dart';
 import 'package:app/features/settings/presentation/home/settings_home_page.dart';
 import 'package:app/features/settings/presentation/language/language_page.dart';
@@ -169,6 +171,8 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: NeedRoute.page, fullscreenDialog: true),
     AutoRoute(page: TemperatureRoute.page, fullscreenDialog: true),
     AutoRoute(page: CalmRoute.page, fullscreenDialog: true),
+    AutoRoute(page: SosRoute.page, fullscreenDialog: true),
+    AutoRoute(page: TemperatureHistoryRoute.page),
     AutoRoute(page: TimeInAppRoute.page, fullscreenDialog: true),
     AutoRoute(page: ReceivedSignalsRoute.page),
     AutoRoute(page: LogisticsRoute.page),

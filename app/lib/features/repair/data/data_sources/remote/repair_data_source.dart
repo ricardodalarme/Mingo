@@ -8,6 +8,7 @@ import 'package:app/features/repair/data/data_sources/remote/mutations/generated
 import 'package:app/features/repair/data/data_sources/remote/mutations/generated/SendRepairSignal.graphql.dart';
 import 'package:app/features/repair/data/data_sources/remote/mutations/generated/StartRepairSession.graphql.dart';
 import 'package:app/features/repair/data/data_sources/remote/queries/generated/MyLearnings.graphql.dart';
+import 'package:app/features/repair/data/data_sources/remote/queries/generated/MyTemperatureChecks.graphql.dart';
 import 'package:app/features/repair/data/data_sources/remote/queries/generated/OpenGuidedSession.graphql.dart';
 import 'package:app/features/repair/data/data_sources/remote/queries/generated/ReceivedSignals.graphql.dart';
 import 'package:network/network.dart';
@@ -67,6 +68,14 @@ class RepairDataSource({required final GQLClient _client}) {
     );
 
     validateResponse(response);
+  }
+
+  Future<List<QueryMyTemperatureCheckstemperatureChecks>> getTemperatureChecks() async {
+    final response = await _client.query(
+      OptionsQueryMyTemperatureChecks(fetchPolicy: FetchPolicy.networkOnly),
+    );
+
+    return validateResponseData(response, getData: (data) => data.temperatureChecks);
   }
 
   Future<List<QueryMyLearningsrepairLearnings>> getLearnings() async {
