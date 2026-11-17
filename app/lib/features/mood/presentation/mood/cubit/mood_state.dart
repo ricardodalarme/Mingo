@@ -22,6 +22,12 @@ final class const MoodState({
   /// The audience of the saved mood; without a partner nothing is ever shared.
   MoodShare get audience => hasPartner ? share : MoodShare.none;
 
+  /// What the server has for today, before any choice still in progress on the share step.
+  MoodShare get savedAudience => switch (entry) {
+    Success(:final value) => hasPartner ? (value?.share ?? MoodShare.none) : MoodShare.none,
+    _ => MoodShare.none,
+  };
+
   MoodState copyWith({
     Resource<MoodEntry?>? entry,
     PartnerMood? partnerMood,

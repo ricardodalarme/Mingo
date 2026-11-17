@@ -3,8 +3,8 @@
   "titleHighlight": "today",
   "subtitle": "One tap. The “I need…” tag is optional.",
   "privateCue": "Only you see this",
-  "sharedCue": "{name} sees it",
-  "sharedCueNoName": "your partner sees it",
+  "sharedCue": "shared with {name}",
+  "sharedCueNoName": "shared with your partner",
   "moods(map)": {
     "happy": "Happy",
     "tired": "Tired",

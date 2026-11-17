@@ -1,5 +1,5 @@
 {
-  "title": "Us",
+  "title": "I miss us",
   "text": "Send “I miss us” with one tap. Light, no guilt. Your partner doesn't have to answer.",
   "send": "Send with care",
   "plan": "Suggest a small plan",
@@ -7,5 +7,6 @@
   "errors(map)": {
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't send right now. Try again."
-  }
+  },
+  "titleHighlight": "us"
 }

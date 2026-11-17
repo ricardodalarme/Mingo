@@ -1,8 +1,10 @@
+import 'package:app/features/mood/data/models/mood_entry.dart';
 import 'package:app/features/mood/data/models/mood_kind.dart';
 import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/data/models/need_kind.dart';
 import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -45,6 +47,25 @@ void main() {
     final alone = shared.copyWith(hasPartner: false);
     expect(alone.audience, MoodShare.none);
     expect(alone.share, MoodShare.moodNeed);
+  });
+
+  test('the saved audience comes from the row, not from a choice in progress', () {
+    final entry = MoodEntry(
+      id: 'm1',
+      day: DateTime(2026, 11, 10),
+      mood: MoodKind.happy,
+      share: MoodShare.mood,
+    );
+    final state = MoodState(
+      entry: Success<MoodEntry?>(entry),
+      hasPartner: true,
+      share: MoodShare.none,
+    );
+
+    expect(state.savedAudience, MoodShare.mood);
+
+    expect(state.copyWith(hasPartner: false).savedAudience, MoodShare.none);
+    expect(const MoodState().savedAudience, MoodShare.none);
   });
 
   test('canSave needs a mood and a need when both are shared', () {

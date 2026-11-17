@@ -35,7 +35,14 @@ class const UsPage({super.key}) extends StatelessWidget implements AutoRouteWrap
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
+              Semantics(
+                header: true,
+                child: AppHighlightedText(
+                  text: l10n.title,
+                  highlight: l10n.titleHighlight,
+                  style: context.text.titleXl,
+                ),
+              ),
               const SizedBox(height: AppSpace.s8),
               Text(
                 l10n.text,

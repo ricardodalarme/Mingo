@@ -34,7 +34,7 @@ class const MoodPage({final String? initialMood, super.key})
   Widget build(BuildContext context) {
     final l10n = context.l10n.mood;
     final entry = context.select((MoodCubit cubit) => cubit.state.entry);
-    final audience = context.select((MoodCubit cubit) => cubit.state.audience);
+    final audience = context.select((MoodCubit cubit) => cubit.state.savedAudience);
     final partnerName = context.select((MoodCubit cubit) => cubit.state.partnerName);
     final isChoosingShare = context.select((MoodCubit cubit) => cubit.state.isChoosingShare);
     final hasName = partnerName != null && partnerName.isNotEmpty;

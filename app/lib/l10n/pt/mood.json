@@ -3,8 +3,8 @@
   "titleHighlight": "hoje",
   "subtitle": "Um toque. A etiqueta “Preciso de...” é opcional.",
   "privateCue": "só você vê",
-  "sharedCue": "{name} vê",
-  "sharedCueNoName": "seu par vê",
+  "sharedCue": "compartilhado com {name}",
+  "sharedCueNoName": "compartilhado com seu par",
   "moods(map)": {
     "happy": "Feliz",
     "tired": "Cansado(a)",
