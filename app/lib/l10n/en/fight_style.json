@@ -8,6 +8,14 @@
     "When you notice you went too far, you...",
     "What helps you feel normal again?"
   ],
+  "questionHighlights": [
+    "first",
+    "goes quiet",
+    "happens",
+    "bothers",
+    "went too far",
+    "back to normal"
+  ],
   "options1(map)": {
     "pursue": "I keep talking until it's settled.",
     "withdraw": "I need some time before going on.",

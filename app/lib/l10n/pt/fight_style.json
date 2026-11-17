@@ -8,6 +8,14 @@
     "Quando percebe que exagerou, você...",
     "O que te ajuda a voltar ao normal?"
   ],
+  "questionHighlights": [
+    "primeiro",
+    "cala",
+    "acontecer",
+    "incomoda",
+    "exagerou",
+    "normal"
+  ],
   "options1(map)": {
     "pursue": "Continuo falando até resolver.",
     "withdraw": "Preciso de um tempo antes de continuar.",
