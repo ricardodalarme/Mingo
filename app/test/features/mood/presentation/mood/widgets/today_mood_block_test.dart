@@ -380,4 +380,31 @@ void main() {
       findsOneWidget,
     );
   });
+
+  testWidgets('a long partner name shrinks the privacy label instead of overflowing', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    when(() => repository.getTodayMood()).thenAnswer(
+      (_) async => today(
+        value: entry,
+        partnerName: 'Ana Beatriz de Albuquerque Nascimento',
+        partner: PartnerMood(day: day, mood: MoodKind.happy),
+      ),
+    );
+    final cubit = build();
+    await cubit.load();
+
+    await tester.pumpApp(
+      SingleChildScrollView(
+        child: BlocProvider.value(value: cubit, child: const TodayMoodBlock()),
+      ),
+    );
+    await tester.pump();
+
+    expect(tester.takeException(), isNull);
+    expect(find.text('Ana Beatriz de Albuquerque Nascimento vê'), findsOneWidget);
+  });
 }

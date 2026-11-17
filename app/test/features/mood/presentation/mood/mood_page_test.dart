@@ -6,6 +6,7 @@ import 'package:app/features/mood/presentation/mood/cubit/mood_cubit.dart';
 import 'package:app/features/mood/presentation/mood/mood_page.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -70,5 +71,18 @@ void main() {
     await pumpPage(tester, build(share: MoodShare.mood, hasPartner: false, partnerName: null));
 
     expect(find.text('só você vê'), findsOneWidget);
+  });
+
+  testWidgets('a long partner name fits the app bar', (tester) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+
+    await pumpPage(
+      tester,
+      build(share: MoodShare.mood, partnerName: 'Ana Beatriz de Albuquerque Nascimento'),
+    );
+
+    expect(tester.takeException(), isNull);
   });
 }

@@ -26,17 +26,34 @@ class const MoodRow({
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(child: Text(title, style: context.text.titleSm)),
-            if (action != null)
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: onAction,
-                child: Text(
-                  action,
-                  style: context.text.bodySm.copyWith(color: colors.textSecondary),
+            Flexible(
+              flex: 3,
+              child: Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: context.text.titleSm,
+              ),
+            ),
+            if (action != null) ...[
+              const SizedBox(width: AppSpace.s8),
+              Flexible(
+                flex: 2,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: onAction,
+                  child: Text(
+                    action,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.end,
+                    style: context.text.bodySm.copyWith(color: colors.textSecondary),
+                  ),
                 ),
               ),
+            ],
           ],
         ),
         if (supportText != null) ...[

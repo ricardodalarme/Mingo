@@ -38,17 +38,27 @@ class const MoodPage({final String? initialMood, super.key})
     final partnerName = context.select((MoodCubit cubit) => cubit.state.partnerName);
     final isChoosingShare = context.select((MoodCubit cubit) => cubit.state.isChoosingShare);
     final hasName = partnerName != null && partnerName.isNotEmpty;
+    final cueMaxWidth = MediaQuery.sizeOf(context).width * 0.45;
 
     return BaseView(
       appBar: isChoosingShare
           ? BaseAppBar(onBack: context.read<MoodCubit>().back)
           : BaseAppBar(
               onClose: () => context.router.maybePop(),
-              trailing: Text(switch (audience) {
-                MoodShare.none => l10n.privateCue,
-                MoodShare.mood || MoodShare.moodNeed =>
-                  hasName ? l10n.sharedCue(name: partnerName) : l10n.sharedCueNoName,
-              }, style: context.text.body.copyWith(color: context.colors.textSecondary)),
+              trailing: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: cueMaxWidth),
+                child: Text(
+                  switch (audience) {
+                    MoodShare.none => l10n.privateCue,
+                    MoodShare.mood || MoodShare.moodNeed =>
+                      hasName ? l10n.sharedCue(name: partnerName) : l10n.sharedCueNoName,
+                  },
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.end,
+                  style: context.text.body.copyWith(color: context.colors.textSecondary),
+                ),
+              ),
             ),
       body: BlocListener<MoodCubit, MoodState>(
         listenWhen: (previous, current) => previous.saveAction != current.saveAction,
