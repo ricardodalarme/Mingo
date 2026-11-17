@@ -31,9 +31,7 @@ class HardConversationCubit({
       emit(
         state.copyWith(
           status: const Success(null),
-          gate: !status.hasPlus
-              ? HardConversationGate.plusRequired
-              : status.messagesLeft <= 0
+          gate: status.messagesLeft <= 0
               ? HardConversationGate.limitReached
               : HardConversationGate.ready,
           hasPlus: status.hasPlus,

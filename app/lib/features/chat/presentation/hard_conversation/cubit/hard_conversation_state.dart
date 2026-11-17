@@ -2,7 +2,6 @@ part of 'hard_conversation_cubit.dart';
 
 /// What the page shows before the three steps can start.
 enum HardConversationGate() {
-  plusRequired,
   limitReached,
   unavailable,
   ready,

@@ -103,12 +103,18 @@ void main() {
     expect(cubit.state.message.value, 'Podemos falar com calma?');
   });
 
-  test('the gate follows Plus and today usage', () async {
+  test('the gate follows today usage, not the plan', () async {
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 0, limit: 0, hasPlus: false));
+        .thenAnswer((_) async => (messagesLeft: 5, limit: 5, hasPlus: false));
     var cubit = build();
     await cubit.load();
-    expect(cubit.state.gate, HardConversationGate.plusRequired);
+    expect(cubit.state.gate, HardConversationGate.ready);
+
+    when(chatRepository.getStatus)
+        .thenAnswer((_) async => (messagesLeft: 0, limit: 5, hasPlus: false));
+    cubit = build();
+    await cubit.load();
+    expect(cubit.state.gate, HardConversationGate.limitReached);
 
     when(chatRepository.getStatus)
         .thenAnswer((_) async => (messagesLeft: 5, limit: 20, hasPlus: true));

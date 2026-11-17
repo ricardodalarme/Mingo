@@ -83,26 +83,6 @@ class const _Body({
     final chat = context.l10n.chat;
 
     return switch (gate) {
-      HardConversationGate.plusRequired => BaseStackedContent(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Semantics(
-              header: true,
-              child: Text(context.l10n.hardConversation.title, style: context.text.titleXl),
-            ),
-            const SizedBox(height: AppSpace.s16),
-            PlusLock(
-              title: context.l10n.hardConversation.plusTitle,
-              text: context.l10n.hardConversation.plusText,
-            ),
-          ],
-        ),
-        footer: BaseButton(
-          text: context.l10n.hardConversation.plusCta,
-          onPressed: () => context.pushRoute(const PlansRoute()),
-        ),
-      ),
       HardConversationGate.limitReached => BaseStackedContent(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
