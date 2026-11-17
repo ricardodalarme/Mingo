@@ -1,16 +1,6 @@
 import 'dart:async';
 
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveIntroAnswers.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/SaveProfileSetup.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdatePartnerIntent.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdatePronouns.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipPhase.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateRelationshipStatus.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateTheme.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateTimeZone.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateTogetherSince.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/profile_data_source.dart';
 import 'package:app/features/profile/data/mappers/account_settings_mapper.dart';
 import 'package:app/features/profile/data/mappers/partner_intent_mapper.dart';
@@ -94,7 +84,8 @@ class ProfileRepository({
   Future<void> updateDisplayName({required String profileId, required String displayName}) async {
     try {
       final affected = await _profileDataSource.updateDisplayName(
-        VariablesMutationUpdateDisplayName(profileId: profileId, displayName: displayName),
+        profileId: profileId,
+        displayName: displayName,
       );
       _ensureUpdated(affected);
     } catch (e, stack) {
@@ -106,7 +97,8 @@ class ProfileRepository({
   Future<void> updatePronouns({required String profileId, required Pronoun? pronouns}) async {
     try {
       final affected = await _profileDataSource.updatePronouns(
-        VariablesMutationUpdatePronouns(profileId: profileId, pronouns: pronouns?.toRemote()),
+        profileId: profileId,
+        pronouns: pronouns?.toRemote(),
       );
       _ensureUpdated(affected);
     } catch (e, stack) {
@@ -121,7 +113,8 @@ class ProfileRepository({
   }) async {
     try {
       final affected = await _profileDataSource.updatePartnerIntent(
-        VariablesMutationUpdatePartnerIntent(profileId: profileId, intent: intent?.toRemote()),
+        profileId: profileId,
+        intent: intent?.toRemote(),
       );
       _ensureUpdated(affected);
     } catch (e, stack) {
@@ -133,7 +126,8 @@ class ProfileRepository({
   Future<void> updateTheme({required String profileId, required AppThemeVariant theme}) async {
     try {
       final affected = await _profileDataSource.updateTheme(
-        VariablesMutationUpdateTheme(profileId: profileId, theme: theme.toServerTheme()),
+        profileId: profileId,
+        theme: theme.toServerTheme(),
       );
       _ensureUpdated(affected);
     } catch (e, stack) {
@@ -145,7 +139,8 @@ class ProfileRepository({
   Future<void> updateTimeZone({required String profileId, required String timeZone}) async {
     try {
       final affected = await _profileDataSource.updateTimeZone(
-        VariablesMutationUpdateTimeZone(profileId: profileId, timeZone: timeZone),
+        profileId: profileId,
+        timeZone: timeZone,
       );
       _ensureUpdated(affected);
     } catch (e, stack) {
@@ -160,7 +155,8 @@ class ProfileRepository({
   }) async {
     try {
       final affected = await _profileDataSource.updateRelationshipPhase(
-        VariablesMutationUpdateRelationshipPhase(profileId: profileId, phase: phase?.toRemote()),
+        profileId: profileId,
+        phase: phase?.toRemote(),
       );
       _ensureUpdated(affected);
     } catch (e, stack) {
@@ -175,7 +171,8 @@ class ProfileRepository({
   }) async {
     try {
       final affected = await _profileDataSource.updateTogetherSince(
-        VariablesMutationUpdateTogetherSince(profileId: profileId, togetherSince: togetherSince),
+        profileId: profileId,
+        togetherSince: togetherSince,
       );
       _ensureUpdated(affected);
     } catch (e, stack) {
@@ -190,7 +187,8 @@ class ProfileRepository({
   }) async {
     try {
       final affected = await _profileDataSource.updateRelationshipStatus(
-        VariablesMutationUpdateRelationshipStatus(profileId: profileId, status: status.toRemote()),
+        profileId: profileId,
+        status: status.toRemote(),
       );
       _ensureUpdated(affected);
     } catch (e, stack) {
@@ -255,12 +253,10 @@ class ProfileRepository({
   }) async {
     try {
       await _profileDataSource.saveIntroAnswers(
-        VariablesMutationSaveIntroAnswers(
-          profileId: profileId,
-          phase: phase?.toRemote(),
-          goal: goals.map((goal) => goal.toPrimaryRemote()).nonNulls.firstOrNull,
-          goals: goals.isEmpty ? null : [for (final goal in goals) goal.toRemote()],
-        ),
+        profileId: profileId,
+        phase: phase?.toRemote(),
+        goal: goals.map((goal) => goal.toPrimaryRemote()).nonNulls.firstOrNull,
+        goals: goals.isEmpty ? null : [for (final goal in goals) goal.toRemote()],
       );
     } catch (e, stack) {
       _logger.error('Failed to save the introduction answers', error: e, stackTrace: stack);
@@ -281,16 +277,14 @@ class ProfileRepository({
   }) async {
     try {
       await _profileDataSource.saveProfileSetup(
-        VariablesMutationSaveProfileSetup(
-          profileId: profileId,
-          displayName: displayName,
-          pronouns: pronouns?.toRemote(),
-          theme: theme.toServerTheme(),
-          partnerName: partnerName,
-          partnerPronouns: partnerPronouns?.toRemote(),
-          togetherSince: togetherSince,
-          onboardedAt: clock.now().toUtc(),
-        ),
+        profileId: profileId,
+        displayName: displayName,
+        pronouns: pronouns?.toRemote(),
+        theme: theme.toServerTheme(),
+        partnerName: partnerName,
+        partnerPronouns: partnerPronouns?.toRemote(),
+        togetherSince: togetherSince,
+        onboardedAt: clock.now().toUtc(),
       );
     } catch (e, stack) {
       _logger.error('Failed to save the profile setup', error: e, stackTrace: stack);

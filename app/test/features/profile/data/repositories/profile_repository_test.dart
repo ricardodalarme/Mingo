@@ -1,10 +1,10 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/profile/data/data_sources/remote/fragments/generated/ProfileFragment.graphql.dart';
-import 'package:app/features/profile/data/data_sources/remote/mutations/generated/UpdateDisplayName.graphql.dart';
 import 'package:app/features/profile/data/data_sources/remote/profile_data_source.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:core/core.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -15,12 +15,6 @@ class _MockAuthenticationRepository() extends Mock implements AuthenticationRepo
 void main() {
   late ProfileDataSource dataSource;
   late ProfileRepository repository;
-
-  setUpAll(
-    () => registerFallbackValue(
-      VariablesMutationUpdateDisplayName(profileId: 'p1', displayName: 'Marina'),
-    ),
-  );
 
   setUp(() {
     dataSource = _MockProfileDataSource();
@@ -33,10 +27,47 @@ void main() {
   });
 
   test('a mutation that updates zero rows fails', () async {
-    when(() => dataSource.updateDisplayName(any())).thenAnswer((_) async => 0);
+    when(
+      () => dataSource.updateDisplayName(
+        profileId: any(named: 'profileId'),
+        displayName: any(named: 'displayName'),
+      ),
+    ).thenAnswer((_) async => 0);
 
     await expectLater(
       repository.updateDisplayName(profileId: 'p1', displayName: 'Marina'),
+      throwsA(isA<LocalizedException>()),
+    );
+  });
+
+  test('a saved name goes to the server for the profile', () async {
+    when(() => dataSource.updateDisplayName(profileId: 'p1', displayName: 'Marina'))
+        .thenAnswer((_) async => 1);
+
+    await repository.updateDisplayName(profileId: 'p1', displayName: 'Marina');
+
+    verify(() => dataSource.updateDisplayName(profileId: 'p1', displayName: 'Marina')).called(1);
+  });
+
+  test('a theme goes to the server in the server spelling', () async {
+    when(() => dataSource.updateTheme(profileId: 'p1', theme: EnumAppTheme_enum.azul))
+        .thenAnswer((_) async => 1);
+
+    await repository.updateTheme(profileId: 'p1', theme: AppThemeVariant.blue);
+
+    verify(() => dataSource.updateTheme(profileId: 'p1', theme: EnumAppTheme_enum.azul)).called(1);
+  });
+
+  test('a theme that updates zero rows fails', () async {
+    when(
+      () => dataSource.updateTheme(
+        profileId: 'p1',
+        theme: any(named: 'theme'),
+      ),
+    ).thenAnswer((_) async => 0);
+
+    await expectLater(
+      repository.updateTheme(profileId: 'p1', theme: AppThemeVariant.rose),
       throwsA(isA<LocalizedException>()),
     );
   });
