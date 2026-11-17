@@ -43,6 +43,8 @@ class const PartnerMoodHelpSheet({required final MoodKind mood, super.key})
           if (index > 0) const SizedBox(height: AppSpace.s10),
           options[index],
         ],
+        const SizedBox(height: AppSpace.s20),
+        BaseNote(text: l10n.noDiagnosisNote, icon: AppIcons.info),
       ],
     );
   }

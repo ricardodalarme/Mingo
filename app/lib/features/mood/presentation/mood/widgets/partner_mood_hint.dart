@@ -59,7 +59,7 @@ class const PartnerMoodHint({
       children: [
         BaseListTile(
           title: line,
-          subtitle: needLine,
+          subtitle: needLine ?? l10n.partnerSharedChoice(name: name),
           leading: BaseFace(kind: mood.face, size: FaceSize.small),
           trailing: isGoodMood && onReact != null
               ? BaseRoundButton(

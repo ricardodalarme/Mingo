@@ -78,6 +78,12 @@ void main() {
     });
   }
 
+  testWidgets('the shared row says the partner chose to share it', (tester) async {
+    await pumpHint(tester, value: MoodKind.loving);
+
+    expect(find.text('Marina escolheu compartilhar isso com você.'), findsOneWidget);
+  });
+
   testWidgets('a tired partner opens how to help with the chore first', (tester) async {
     await pumpHint(tester, value: MoodKind.tired);
 

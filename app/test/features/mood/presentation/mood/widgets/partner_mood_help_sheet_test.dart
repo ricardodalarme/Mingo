@@ -51,6 +51,13 @@ void main() {
     }
   });
 
+  testWidgets('the sheet says the ideas are not a diagnosis', (tester) async {
+    await tester.pumpApp(const PartnerMoodHelpSheet(mood: MoodKind.tired));
+    await tester.pump();
+
+    expect(find.text('Sugestões do app, sem diagnóstico. Sem pressa.'), findsOneWidget);
+  });
+
   testWidgets('only the message is a card; the real-world acts are suggestions', (tester) async {
     await tester.pumpApp(const PartnerMoodHelpSheet(mood: MoodKind.tired));
     await tester.pump();
