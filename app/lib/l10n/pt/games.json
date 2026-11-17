@@ -82,7 +82,6 @@
   "playing": {
     "progress": "Pergunta {current} de {total}",
     "guessProgress": "Palpite {current} de {total}",
-    "you": "Você",
     "me": "Eu",
     "both": "Os dois",
     "partnerFallback": "Seu par",
@@ -182,10 +181,6 @@
     "title": "Os jogos são para os dois",
     "text": "Quando seu par entrar, vocês podem jogar juntos."
   },
-  "common": {
-    "close": "Fechar",
-    "back": "Voltar"
-  },
   "loadErrorTitle": "Não deu para abrir o jogo",
   "loadErrorText": "Nada foi perdido. Tente de novo.",
   "errors(map)": {
@@ -197,5 +192,8 @@
     "INVALID_GAME_INDEX": "Essa pergunta mudou. Vamos atualizar.",
     "ANSWER_LOCKED": "As respostas deste jogo já foram fechadas. Não dá para editar agora.",
     "other": "Não deu para fazer isso agora. Tente de novo."
+  },
+  "common": {
+    "back": "Voltar"
   }
 }

@@ -82,7 +82,6 @@
   "playing": {
     "progress": "Question {current} of {total}",
     "guessProgress": "Guess {current} of {total}",
-    "you": "You",
     "me": "Me",
     "both": "Both",
     "partnerFallback": "Your partner",
@@ -182,10 +181,6 @@
     "title": "Games are for two",
     "text": "When your partner joins, you can play together."
   },
-  "common": {
-    "close": "Close",
-    "back": "Back"
-  },
   "loadErrorTitle": "Could not open the game",
   "loadErrorText": "Nothing was lost. Try again.",
   "errors(map)": {
@@ -197,5 +192,8 @@
     "INVALID_GAME_INDEX": "That question changed. We'll refresh.",
     "ANSWER_LOCKED": "This game's answers are closed. You can't edit them now.",
     "other": "Could not do that right now. Try again."
+  },
+  "common": {
+    "back": "Back"
   }
 }
