@@ -1,5 +1,5 @@
 import 'package:app/features/agreements/data/data_sources/remote/agreements_data_source.dart';
-import 'package:app/features/agreements/data/data_sources/remote/fragments/generated/AgreementFragment.graphql.dart';
+import 'package:app/features/agreements/data/mappers/agreement_mapper.dart';
 import 'package:app/features/agreements/data/models/agreement.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:clock/clock.dart';
@@ -18,7 +18,7 @@ class AgreementsRepository({
     final userId = await _togetherRepository.getCurrentUserId();
 
     return [
-      for (final node in await _dataSource.getAgreements()) _toModel(node, currentUserId: userId),
+      for (final node in await _dataSource.getAgreements()) node.toModel(currentUserId: userId),
     ];
   });
 
@@ -37,7 +37,7 @@ class AgreementsRepository({
 
     yield* _dataSource
         .watchAgreements()
-        .map((nodes) => [for (final node in nodes) _toModel(node, currentUserId: userId)])
+        .map((nodes) => [for (final node in nodes) node.toModel(currentUserId: userId)])
         .handleError((Object e, StackTrace stack) {
           _logger.error('The agreements subscription failed', error: e, stackTrace: stack);
         });
@@ -49,26 +49,18 @@ class AgreementsRepository({
         final coupleId = await _togetherRepository.getCoupleId();
         final saved = await _dataSource.addAgreement(id: id, body: body.trim(), coupleId: coupleId);
 
-        return _toModel(saved, currentUserId: await _togetherRepository.getCurrentUserId());
+        return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
       });
 
   Future<Agreement> confirmAgreement(String id) => _run('confirm an agreement', () async {
     final saved = await _dataSource.confirmAgreement(id);
 
-    return _toModel(saved, currentUserId: await _togetherRepository.getCurrentUserId());
+    return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
   });
 
   Future<void> archiveAgreement(String id) => _run(
     'archive an agreement',
     () => _dataSource.archiveAgreement(id: id, archivedAt: clock.now()),
-  );
-
-  Agreement _toModel(FragmentAgreementFragment node, {required String? currentUserId}) => Agreement(
-    id: node.id,
-    body: node.body,
-    isMine: node.authorId == currentUserId,
-    isShared: node.coupleId != null,
-    isConfirmed: node.confirmedAt != null,
   );
 
   Future<T> _run<T>(String what, Future<T> Function() action) async {
