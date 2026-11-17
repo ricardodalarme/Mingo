@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:graphql/client.dart';
 import 'package:graphql_query_compress/graphql_query_compress.dart';
@@ -73,18 +74,34 @@ class GQLClient._(final GraphQLClient _client) {
   /// Opens a watched query that emits the cached result first, then the network result, and
   /// again whenever the cache entries it reads change or a mutation succeeds.
   ///
-  /// Results with neither data nor an error (the empty first loading result) are skipped. The
-  /// query closes when the stream is cancelled.
+  /// Results with neither data nor an error (the empty first loading result) are skipped, and so
+  /// is a result whose data equals the one before, such as the read after a mutation that changed
+  /// nothing this query shows. The query closes when the stream is cancelled.
   Stream<QueryResult<T>> watch<T>(WatchQueryOptions<T> options) {
     late final ObservableQuery<T> query;
     StreamSubscription<QueryResult<T>>? subscription;
     late final StreamController<QueryResult<T>> controller;
+    String? lastData;
+    bool isNew(QueryResult<T> result) {
+      if (result.hasException) {
+        lastData = null;
+
+        return true;
+      }
+      final data = jsonEncode(result.data);
+      final changed = data != lastData;
+      lastData = data;
+
+      return changed;
+    }
+
     controller = StreamController<QueryResult<T>>(
       onListen: () {
         query = _client.watchQuery(options);
         _watched.add(query);
         subscription = query.stream
             .where((result) => result.data != null || result.hasException)
+            .where(isNew)
             .listen(controller.add, onError: controller.addError, onDone: controller.close);
         if (!options.fetchResults) query.fetchResults();
       },

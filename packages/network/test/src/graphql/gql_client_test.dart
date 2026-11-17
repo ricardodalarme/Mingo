@@ -67,6 +67,22 @@ void main() {
     await subscription.cancel();
   });
 
+  test('a read that returns the same data does not emit again', () async {
+    final results = <Object?>[];
+    final subscription = client.watch(watchOptions()).listen((result) {
+      results.add(result.data?['a']);
+    });
+    await pumpEventQueue();
+    value -= 1;
+
+    await client.mutate(mutationOptions());
+    await pumpEventQueue();
+
+    expect(results, [1]);
+    expect(reads, greaterThanOrEqualTo(2));
+    await subscription.cancel();
+  });
+
   test('a cancelled watch is not read again after a mutation', () async {
     final subscription = client.watch(watchOptions()).listen((_) {});
     await pumpEventQueue();
