@@ -4105,15 +4105,6 @@ class Translations$memories$pt {
   /// pt: 'Marcos, datas, lugares e a nossa história em números.'
   String get historyText => 'Marcos, datas, lugares e a nossa história em números.';
 
-  /// pt: 'COMPARTILHAR'
-  String get storyLabel => 'COMPARTILHAR';
-
-  /// pt: 'Imagem para compartilhar'
-  String get storyTitle => 'Imagem para compartilhar';
-
-  /// pt: 'Seus números em uma imagem, só com o que você escolher.'
-  String get storyText => 'Seus números em uma imagem, só com o que você escolher.';
-
   /// pt: 'LUGARES'
   String get placesLabel => 'LUGARES';
 
@@ -4226,8 +4217,7 @@ class Translations$memories$pt {
   /// pt: 'Ver meus slips'
   String get jarEmptyAction => 'Ver meus slips';
 
-  /// pt: 'Mais'
-  String get moreTitle => 'Mais';
+  late final Translations$memories$menu$pt menu = Translations$memories$menu$pt.internal(_root);
 }
 
 // Path: mood
@@ -9133,6 +9123,42 @@ class Translations$intro$theme$pt {
   String get footnote => 'Dá para trocar depois em Configurações, Aparência.';
 }
 
+// Path: memories.menu
+class Translations$memories$menu$pt {
+  Translations$memories$menu$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Linha do tempo'
+  String get timeline => 'Linha do tempo';
+
+  /// pt: 'Memórias que vocês guardaram'
+  String get timelineText => 'Memórias que vocês guardaram';
+
+  /// pt: 'Potinho'
+  String get jar => 'Potinho';
+
+  /// pt: 'Um slip bom para um dia ruim'
+  String get jarText => 'Um slip bom para um dia ruim';
+
+  /// pt: 'Marcos, lugares e números'
+  String get storyText => 'Marcos, lugares e números';
+
+  /// pt: 'Datas e números'
+  String get dates => 'Datas e números';
+
+  /// pt: 'Aniversários, feriados e contagens'
+  String get datesText => 'Aniversários, feriados e contagens';
+
+  /// pt: 'Diário'
+  String get diary => 'Diário';
+
+  /// pt: 'Só seu, nunca vai para a outra pessoa'
+  String get diaryText => 'Só seu, nunca vai para a outra pessoa';
+}
+
 // Path: need.sent
 class Translations$need$sent$pt {
   Translations$need$sent$pt.internal(this._root);
@@ -12128,9 +12154,6 @@ extension on Translations {
           'memories.historyLabel' => 'NOSSA HISTÓRIA',
           'memories.historyTitle' => 'Nossa história',
           'memories.historyText' => 'Marcos, datas, lugares e a nossa história em números.',
-          'memories.storyLabel' => 'COMPARTILHAR',
-          'memories.storyTitle' => 'Imagem para compartilhar',
-          'memories.storyText' => 'Seus números em uma imagem, só com o que você escolher.',
           'memories.placesLabel' => 'LUGARES',
           'memories.placesText' => 'Só o nome do lugar, nunca a localização.',
           'memories.placeLabel' => 'Lugar (opcional)',
@@ -12182,7 +12205,15 @@ extension on Translations {
           'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
           'memories.jarEmptyTitle' => 'O potinho está vazio',
           'memories.jarEmptyAction' => 'Ver meus slips',
-          'memories.moreTitle' => 'Mais',
+          'memories.menu.timeline' => 'Linha do tempo',
+          'memories.menu.timelineText' => 'Memórias que vocês guardaram',
+          'memories.menu.jar' => 'Potinho',
+          'memories.menu.jarText' => 'Um slip bom para um dia ruim',
+          'memories.menu.storyText' => 'Marcos, lugares e números',
+          'memories.menu.dates' => 'Datas e números',
+          'memories.menu.datesText' => 'Aniversários, feriados e contagens',
+          'memories.menu.diary' => 'Diário',
+          'memories.menu.diaryText' => 'Só seu, nunca vai para a outra pessoa',
           'mood.title' => 'Como você está hoje?',
           'mood.titleHighlight' => 'hoje',
           'mood.subtitle' => 'Um toque. A etiqueta “Preciso de...” é opcional.',
@@ -12672,14 +12703,14 @@ extension on Translations {
           'profileSetup.months.1' => 'fevereiro',
           'profileSetup.months.2' => 'março',
           'profileSetup.months.3' => 'abril',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.months.4' => 'maio',
           'profileSetup.months.5' => 'junho',
           'profileSetup.months.6' => 'julho',
           'profileSetup.months.7' => 'agosto',
           'profileSetup.months.8' => 'setembro',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.months.9' => 'outubro',
           'profileSetup.months.10' => 'novembro',
           'profileSetup.months.11' => 'dezembro',
@@ -13249,6 +13280,9 @@ extension on Translations {
           'share.phases.waningCrescent' => 'Lua minguante',
           'share.phases.other' => '',
           'share.productMark' => 'Mingo',
+          _ => null,
+        } ??
+        switch (path) {
           'share.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
           'slipDetail.dateLine' => ({
             required Object weekday,
@@ -13258,9 +13292,6 @@ extension on Translations {
           'slipDetail.weekdays.0' => 'segunda',
           'slipDetail.weekdays.1' => 'terça',
           'slipDetail.weekdays.2' => 'quarta',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.weekdays.3' => 'quinta',
           'slipDetail.weekdays.4' => 'sexta',
           'slipDetail.weekdays.5' => 'sábado',
@@ -13878,15 +13909,15 @@ extension on Translations {
                   other: '${count} nesta semana',
                 ),
           'today.conflict.tag' => 'Agora',
+          _ => null,
+        } ??
+        switch (path) {
           'today.conflict.title' => 'Primeiro, cuidar de vocês',
           'today.conflict.highlight' => 'cuidar',
           'today.conflict.text' =>
             'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.',
           'today.conflict.repair' => 'Começar o reparo',
           'today.conflict.chat' => 'Conversar para me organizar',
-          _ => null,
-        } ??
-        switch (path) {
           'unpair.appBarTitle' => 'Desvincular',
           'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
           'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',

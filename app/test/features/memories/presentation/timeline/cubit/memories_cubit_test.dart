@@ -1,7 +1,6 @@
-import 'package:app/features/memories/data/models/drawn_slip.dart';
 import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/memories/data/repositories/memories_repository.dart';
-import 'package:app/features/memories/presentation/memories/cubit/memories_cubit.dart';
+import 'package:app/features/memories/presentation/timeline/cubit/memories_cubit.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -74,23 +73,6 @@ void main() {
 
     expect(actions.whereType<Failure>(), isNotEmpty);
     expect(cubit.state.saveAction, isA<Initial>());
-  });
-
-  test('the jar returns a slip, or null when it is empty, and can be closed', () async {
-    when(() => repository.drawFromJar())
-        .thenAnswer((_) async => const DrawnSlip(id: 's1', body: 'Fez café'));
-    final cubit = build();
-
-    await cubit.drawFromJar();
-    expect((cubit.state.jarAction as Success<DrawnSlip?>).value?.id, 's1');
-    expect((cubit.state.jarAction as Success<DrawnSlip?>).value?.body, 'Fez café');
-
-    when(() => repository.drawFromJar()).thenAnswer((_) async => null);
-    await cubit.drawFromJar();
-    expect((cubit.state.jarAction as Success<DrawnSlip?>).value, isNull);
-
-    cubit.closeJar();
-    expect(cubit.state.jarAction, isA<Initial>());
   });
 
   test('deleting reads the memories again', () async {

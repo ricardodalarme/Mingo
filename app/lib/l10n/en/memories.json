@@ -3,9 +3,6 @@
   "historyLabel": "OUR HISTORY",
   "historyTitle": "Our history",
   "historyText": "Milestones, dates, places and our story in numbers.",
-  "storyLabel": "SHARE",
-  "storyTitle": "Image to share",
-  "storyText": "Your numbers in an image, with only what you choose.",
   "placesLabel": "PLACES",
   "placesText": "Only the name of the place, never the location.",
   "placeLabel": "Place (optional)",
@@ -62,5 +59,15 @@
   },
   "jarEmptyTitle": "The jar is empty",
   "jarEmptyAction": "See my slips",
-  "moreTitle": "More"
+  "menu": {
+    "timeline": "Timeline",
+    "timelineText": "Memories you kept",
+    "jar": "Jar",
+    "jarText": "A good slip for a bad day",
+    "storyText": "Milestones, places and numbers",
+    "dates": "Dates and numbers",
+    "datesText": "Anniversaries, holidays and counts",
+    "diary": "Diary",
+    "diaryText": "Only yours, never goes to the other person"
+  }
 }

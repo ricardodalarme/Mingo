@@ -3,9 +3,6 @@
   "historyLabel": "NOSSA HISTÓRIA",
   "historyTitle": "Nossa história",
   "historyText": "Marcos, datas, lugares e a nossa história em números.",
-  "storyLabel": "COMPARTILHAR",
-  "storyTitle": "Imagem para compartilhar",
-  "storyText": "Seus números em uma imagem, só com o que você escolher.",
   "placesLabel": "LUGARES",
   "placesText": "Só o nome do lugar, nunca a localização.",
   "placeLabel": "Lugar (opcional)",
@@ -62,5 +59,15 @@
   },
   "jarEmptyTitle": "O potinho está vazio",
   "jarEmptyAction": "Ver meus slips",
-  "moreTitle": "Mais"
+  "menu": {
+    "timeline": "Linha do tempo",
+    "timelineText": "Memórias que vocês guardaram",
+    "jar": "Potinho",
+    "jarText": "Um slip bom para um dia ruim",
+    "storyText": "Marcos, lugares e números",
+    "dates": "Datas e números",
+    "datesText": "Aniversários, feriados e contagens",
+    "diary": "Diário",
+    "diaryText": "Só seu, nunca vai para a outra pessoa"
+  }
 }

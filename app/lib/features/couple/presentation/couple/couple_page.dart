@@ -56,7 +56,7 @@ class const CouplePage({final CoupleSection section = CoupleSection.together, su
               index: selected.index,
               children: [
                 const TogetherPage(isEmbedded: true).wrappedRoute(context),
-                const MemoriesPage(isEmbedded: true).wrappedRoute(context),
+                const MemoriesPage(isEmbedded: true),
               ],
             ),
           ),

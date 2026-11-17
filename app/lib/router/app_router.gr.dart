@@ -1253,6 +1253,22 @@ class InviteRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [JarPage]
+class JarRoute extends PageRouteInfo<void> {
+  const JarRoute({List<PageRouteInfo>? children})
+    : super(JarRoute.name, initialChildren: children);
+
+  static const String name = 'JarRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const JarPage());
+    },
+  );
+}
+
+/// generated route for
 /// [LanguagePage]
 class LanguageRoute extends PageRouteInfo<void> {
   const LanguageRoute({List<PageRouteInfo>? children})
@@ -1548,9 +1564,7 @@ class MemoriesRoute extends PageRouteInfo<MemoriesRouteArgs> {
       final args = data.argsAs<MemoriesRouteArgs>(
         orElse: () => const MemoriesRouteArgs(),
       );
-      return WrappedRoute(
-        child: MemoriesPage(isEmbedded: args.isEmbedded, key: args.key),
-      );
+      return MemoriesPage(isEmbedded: args.isEmbedded, key: args.key);
     },
   );
 }
@@ -1576,6 +1590,22 @@ class MemoriesRouteArgs {
 
   @override
   int get hashCode => isEmbedded.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [MemoriesTimelinePage]
+class MemoriesTimelineRoute extends PageRouteInfo<void> {
+  const MemoriesTimelineRoute({List<PageRouteInfo>? children})
+    : super(MemoriesTimelineRoute.name, initialChildren: children);
+
+  static const String name = 'MemoriesTimelineRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const MemoriesTimelinePage());
+    },
+  );
 }
 
 /// generated route for

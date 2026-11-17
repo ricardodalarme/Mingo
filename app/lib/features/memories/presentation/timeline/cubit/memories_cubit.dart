@@ -1,4 +1,3 @@
-import 'package:app/features/memories/data/models/drawn_slip.dart';
 import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/memories/data/repositories/memories_repository.dart';
 import 'package:clock/clock.dart';
@@ -24,13 +23,6 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
       if (state.memories is Success) return;
       emit(state.copyWith(memories: Failure.fromObject(exception)));
     }
-  }
-
-  /// Switches view; opening the jar draws a slip when none is showing.
-  Future<void> onViewChanged(MemoriesView view) async {
-    if (view == state.view) return;
-    emit(state.copyWith(view: view));
-    if (view == MemoriesView.jar && state.jarAction is! Success) await drawFromJar();
   }
 
   /// Saves one memory dated today; on failure the sheet keeps the text so it can be sent again.
@@ -64,19 +56,4 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
       emit(state.copyWith(saveAction: const Initial()));
     }
   }
-
-  /// Draws one slip from the jar; an empty jar says so instead of inventing something.
-  Future<void> drawFromJar() async {
-    if (state.jarAction.isLoading) return;
-
-    emit(state.copyWith(jarAction: const Loading()));
-    try {
-      emit(state.copyWith(jarAction: Success(await _memoriesRepository.drawFromJar())));
-    } catch (exception) {
-      emit(state.copyWith(jarAction: Failure.fromObject(exception)));
-    }
-  }
-
-  /// Closes the drawn slip.
-  void closeJar() => emit(state.copyWith(jarAction: const Initial(), view: MemoriesView.timeline));
 }

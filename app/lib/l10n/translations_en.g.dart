@@ -3361,12 +3361,6 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get historyText => 'Milestones, dates, places and our story in numbers.';
   @override
-  String get storyLabel => 'SHARE';
-  @override
-  String get storyTitle => 'Image to share';
-  @override
-  String get storyText => 'Your numbers in an image, with only what you choose.';
-  @override
   String get placesLabel => 'PLACES';
   @override
   String get placesText => 'Only the name of the place, never the location.';
@@ -3453,7 +3447,7 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get jarEmptyAction => 'See my slips';
   @override
-  String get moreTitle => 'More';
+  late final _Translations$memories$menu$en menu = _Translations$memories$menu$en._(_root);
 }
 
 // Path: mood
@@ -7302,6 +7296,33 @@ class _Translations$intro$theme$en extends Translations$intro$theme$pt {
   String get footnote => 'You can change it later in Settings, Appearance.';
 }
 
+// Path: memories.menu
+class _Translations$memories$menu$en extends Translations$memories$menu$pt {
+  _Translations$memories$menu$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get timeline => 'Timeline';
+  @override
+  String get timelineText => 'Memories you kept';
+  @override
+  String get jar => 'Jar';
+  @override
+  String get jarText => 'A good slip for a bad day';
+  @override
+  String get storyText => 'Milestones, places and numbers';
+  @override
+  String get dates => 'Dates and numbers';
+  @override
+  String get datesText => 'Anniversaries, holidays and counts';
+  @override
+  String get diary => 'Diary';
+  @override
+  String get diaryText => 'Only yours, never goes to the other person';
+}
+
 // Path: need.sent
 class _Translations$need$sent$en extends Translations$need$sent$pt {
   _Translations$need$sent$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -10131,9 +10152,6 @@ extension on TranslationsEn {
           'memories.historyLabel' => 'OUR HISTORY',
           'memories.historyTitle' => 'Our history',
           'memories.historyText' => 'Milestones, dates, places and our story in numbers.',
-          'memories.storyLabel' => 'SHARE',
-          'memories.storyTitle' => 'Image to share',
-          'memories.storyText' => 'Your numbers in an image, with only what you choose.',
           'memories.placesLabel' => 'PLACES',
           'memories.placesText' => 'Only the name of the place, never the location.',
           'memories.placeLabel' => 'Place (optional)',
@@ -10185,7 +10203,15 @@ extension on TranslationsEn {
           'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
           'memories.jarEmptyTitle' => 'The jar is empty',
           'memories.jarEmptyAction' => 'See my slips',
-          'memories.moreTitle' => 'More',
+          'memories.menu.timeline' => 'Timeline',
+          'memories.menu.timelineText' => 'Memories you kept',
+          'memories.menu.jar' => 'Jar',
+          'memories.menu.jarText' => 'A good slip for a bad day',
+          'memories.menu.storyText' => 'Milestones, places and numbers',
+          'memories.menu.dates' => 'Dates and numbers',
+          'memories.menu.datesText' => 'Anniversaries, holidays and counts',
+          'memories.menu.diary' => 'Diary',
+          'memories.menu.diaryText' => 'Only yours, never goes to the other person',
           'mood.title' => 'How are you today?',
           'mood.titleHighlight' => 'today',
           'mood.subtitle' => 'One tap. The “I need…” tag is optional.',
@@ -10669,14 +10695,14 @@ extension on TranslationsEn {
           'profileSetup.months.1' => 'February',
           'profileSetup.months.2' => 'March',
           'profileSetup.months.3' => 'April',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.months.4' => 'May',
           'profileSetup.months.5' => 'June',
           'profileSetup.months.6' => 'July',
           'profileSetup.months.7' => 'August',
           'profileSetup.months.8' => 'September',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.months.9' => 'October',
           'profileSetup.months.10' => 'November',
           'profileSetup.months.11' => 'December',
@@ -11240,6 +11266,9 @@ extension on TranslationsEn {
           'share.phases.waningCrescent' => 'Waning crescent',
           'share.phases.other' => '',
           'share.productMark' => 'Mingo',
+          _ => null,
+        } ??
+        switch (path) {
           'share.errors.other' => 'Couldn\'t share right now. Try again.',
           'slipDetail.dateLine' => ({
             required Object weekday,
@@ -11249,9 +11278,6 @@ extension on TranslationsEn {
           'slipDetail.weekdays.0' => 'Monday',
           'slipDetail.weekdays.1' => 'Tuesday',
           'slipDetail.weekdays.2' => 'Wednesday',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.weekdays.3' => 'Thursday',
           'slipDetail.weekdays.4' => 'Friday',
           'slipDetail.weekdays.5' => 'Saturday',
@@ -11869,15 +11895,15 @@ extension on TranslationsEn {
                   other: '${count} this week',
                 ),
           'today.conflict.tag' => 'Now',
+          _ => null,
+        } ??
+        switch (path) {
           'today.conflict.title' => 'First, take care of you two',
           'today.conflict.highlight' => 'care',
           'today.conflict.text' =>
             'No common cards for now. Start with a repair or sort out what to say.',
           'today.conflict.repair' => 'Start the repair',
           'today.conflict.chat' => 'Talk to get organized',
-          _ => null,
-        } ??
-        switch (path) {
           'unpair.appBarTitle' => 'Unpair',
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
           'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
