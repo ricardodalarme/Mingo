@@ -62,7 +62,7 @@ class SharedInjectionModule() implements InjectionModule {
       ),
     )
     ..registerLazySingleton<RestClient>(
-      () => RestClientImpl(
+      () => RestClient(
         baseUrl: EnvVariables.functionsUrl,
         tokenCallback: injector.get<AuthenticationRepository>().getFreshAccessToken,
         refreshSession: injector.get<AuthenticationRepository>().refreshSession,

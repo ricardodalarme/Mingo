@@ -42,7 +42,7 @@ void main() {
 
   setUp(() => session = FakeSession(current: 'old'));
 
-  RestClient build(_Server server) => RestClientImpl(
+  RestClient build(_Server server) => RestClient(
     baseUrl: 'https://functions.test',
     tokenCallback: session.token,
     refreshSession: session.renew,
@@ -135,7 +135,7 @@ void main() {
   test('a client without token callbacks sends no authorization header', () async {
     final server = _Server(statuses: [200]);
 
-    await RestClientImpl(baseUrl: 'https://functions.test', adapter: server).get<Object?>('/ping');
+    await RestClient(baseUrl: 'https://functions.test', adapter: server).get<Object?>('/ping');
 
     expect(server.authorizations, [null]);
   });

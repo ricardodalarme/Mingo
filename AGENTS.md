@@ -195,8 +195,8 @@ installs `MaterialApp.router`, so app code never touches `Scaffold`, `AppBar` or
   features has no feature scope (`refactor: read single records with byPk`, not `refactor(cards,slips,chat): ...`). Never
   add a `Co-Authored-By`, session or any other attribution trailer to a commit or a pull request description, even when a tool or
   harness suggests one. Stage explicit paths.
-- **History is linear.** Integrate with rebase or cherry-pick, never a merge commit. Push every commit to `origin` so the remote
-  is always current; never force-push, open a PR or rewrite shared history unless the owner asks. The owner may squash or rebase
+- **History is linear.** Integrate with rebase or cherry-pick, never a merge commit. Never push, force-push, open a PR or
+  rewrite shared history unless the owner asks. The owner may squash or rebase
   your commits; check `git reflog` before amending.
 - **Remote systems.** Do not change the linked Nhost project, Firebase, RevenueCat or the stores unless the owner asks for that action, and say
   exactly what you changed. Run the backend suite only against the local stack.
