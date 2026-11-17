@@ -50,8 +50,9 @@ Only `AppTheme.light(variant)` exists (variants `rose`, `blue`, `neutral`); ther
   bar), or the page's own viewport for infinite lists, `WebView`, `PageView` and dynamic lists. Modal sheets use `BaseSheetTemplate`.
 - **Lists:** `BaseListView` (owns the empty state through `emptyBuilder` and pull-to-refresh) for static lists, `InfiniteListView`
   only when `hasNextPage` can change.
-- **Empty and failure:** `BaseEmptyState(title, text, actionText, onAction, face)`; a failed read uses `FaceKind.sad` and a retry (in
-  features, `AppErrorView`). Never reintroduce `EmptyIndicator` or `ErrorIndicator`.
+- **Empty and failure:** `BaseEmptyState(title, text, actionText, onAction, face)` is for an empty collection only. A failed read or
+  action uses `BaseErrorState(title, text, actionText, onAction)`, which always shows the sad face (in features, `AppErrorView`
+  builds on it). Never reintroduce `EmptyIndicator` or `ErrorIndicator`.
 - **Loading:** `BaseLoadingDots`, or `SkeletonizerResourceWidget` for a `Resource<T>`; pull-to-refresh is `BaseRefreshable`, for network
   lists only. Never `CircularProgressIndicator`, `CupertinoActivityIndicator` or a `RefreshIndicator` spinner.
 - **Feedback:** `BaseToast.show(context, message)` (variant `error` for a background failure), `BaseSheet.show`,

@@ -64,15 +64,13 @@ class const GuidePage({@PathParam('slug') final String slug = '', super.key})
         appBar: BaseAppBar(title: guide?.title, onClose: () => context.router.maybePop()),
         body: switch (resource) {
           Loading() => const Center(child: BaseLoadingDots()),
-          Failure() => BaseEmptyState(
-            face: FaceKind.sad,
+          Failure() => BaseErrorState(
             title: l10n.loadErrorTitle,
             text: l10n.loadErrorText,
             actionText: context.l10n.common.retry,
             onAction: () => cubit.start(slug),
           ),
-          _ when isLocked => BaseEmptyState(
-            face: FaceKind.sad,
+          _ when isLocked => BaseErrorState(
             title: guide?.title ?? l10n.loadErrorTitle,
             text: context.l10n.plus.lockText,
             actionText: context.l10n.plus.seePlus,

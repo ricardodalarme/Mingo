@@ -4,11 +4,11 @@ const double _topInset = 80;
 const double _textMaxWidth = 260;
 const double _gap = AppSpace.s8;
 
-/// A centred invitation shown when a collection is empty or a read failed.
+/// A centred invitation shown when a collection is empty.
 ///
 /// A 64 point face, a title, up to two lines of text and one action, starting 80 points from the top.
 /// There is no container: the page draws behind it. The caller supplies the face, title and supporting
-/// line; a failed read uses [FaceKind.sad] and a retry action.
+/// line. A failed read uses [BaseErrorState] instead.
 class const BaseEmptyState({
   required final String title,
   required final String text,

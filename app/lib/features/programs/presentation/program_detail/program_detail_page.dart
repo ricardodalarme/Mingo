@@ -64,8 +64,7 @@ class const ProgramDetailPage({@PathParam('slug') required final String slug, su
               isCompleted: enrollment?.isCompleted ?? false,
               onOpen: (lesson) => _openLesson(context, cubit, program, lesson),
             ),
-            failureBuilder: (_) => BaseEmptyState(
-              face: FaceKind.sad,
+            failureBuilder: (_) => BaseErrorState(
               title: l10n.errorTitle,
               text: l10n.errorText,
               actionText: context.l10n.common.retry,

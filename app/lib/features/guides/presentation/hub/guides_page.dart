@@ -29,8 +29,7 @@ class const GuidesPage({super.key}) extends StatelessWidget implements AutoRoute
     return BaseView(
       body: switch (guides) {
         Loading() || Initial() => const Center(child: BaseLoadingDots()),
-        Failure() => BaseEmptyState(
-          face: FaceKind.sad,
+        Failure() => BaseErrorState(
           title: l10n.loadErrorTitle,
           text: l10n.loadErrorText,
           actionText: context.l10n.common.retry,

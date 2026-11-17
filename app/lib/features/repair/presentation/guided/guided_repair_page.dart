@@ -44,8 +44,7 @@ class const GuidedRepairPage({super.key}) extends StatelessWidget implements Aut
               : value.step >= guidedWrittenSteps
               ? const GuidedFinalStep()
               : const GuidedWrittenStep(),
-          failureBuilder: (_) => BaseEmptyState(
-            face: FaceKind.sad,
+          failureBuilder: (_) => BaseErrorState(
             title: l10n.loadErrorTitle,
             text: l10n.loadErrorText,
             actionText: context.l10n.common.retry,

@@ -109,8 +109,7 @@ class const LessonPage({
                     ],
                   ),
                 ),
-          failureBuilder: (_) => BaseEmptyState(
-            face: FaceKind.sad,
+          failureBuilder: (_) => BaseErrorState(
             title: l10n.errorTitle,
             text: l10n.errorText,
             actionText: context.l10n.common.retry,

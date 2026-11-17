@@ -42,7 +42,7 @@ class const RitualEditPage({@QueryParam('id') final String? id, super.key})
           }
         },
         child: state.load is Failure
-            ? BaseEmptyState(face: FaceKind.sad, title: l10n.errorTitle, text: l10n.errorText)
+            ? BaseErrorState(title: l10n.errorTitle, text: l10n.errorText)
             : BaseStackedContent(
                 body: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,

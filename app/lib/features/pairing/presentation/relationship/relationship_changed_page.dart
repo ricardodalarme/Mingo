@@ -52,8 +52,7 @@ class const RelationshipChangedPage({super.key})
           details,
           fakeValue: RelationshipDetails.fake(),
           successBuilder: (_) => const _Options(),
-          failureBuilder: (_) => BaseEmptyState(
-            face: FaceKind.sad,
+          failureBuilder: (_) => BaseErrorState(
             title: context.l10n.relationshipSettings.loadErrorTitle,
             text: context.l10n.relationshipSettings.loadErrorText,
             actionText: context.l10n.common.retry,

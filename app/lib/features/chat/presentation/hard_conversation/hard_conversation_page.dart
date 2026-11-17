@@ -103,8 +103,7 @@ class const _Body({
           onPressed: () => context.pushRoute(const PlansRoute()),
         ),
       ),
-      HardConversationGate.unavailable => BaseEmptyState(
-        face: FaceKind.sad,
+      HardConversationGate.unavailable => BaseErrorState(
         title: chat.unavailableTitle,
         text: chat.unavailableText,
       ),

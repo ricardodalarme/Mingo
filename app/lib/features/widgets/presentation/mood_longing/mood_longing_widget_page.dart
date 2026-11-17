@@ -31,8 +31,7 @@ class const MoodLongingWidgetPage({super.key}) extends StatelessWidget implement
         body: SkeletonizerResourceWidget<WidgetOverview>(
           overviewResource,
           fakeValue: WidgetOverview.fake(),
-          failureBuilder: (_) => BaseEmptyState(
-            face: FaceKind.sad,
+          failureBuilder: (_) => BaseErrorState(
             title: l10n.loadErrorTitle,
             text: l10n.loadErrorBody,
             actionText: l10n.retryAction,

@@ -6,7 +6,7 @@ final WidgetbookNode emptyStateExample = WidgetbookComponent(
   name: 'Empty state',
   useCases: [
     WidgetbookUseCase(
-      name: 'Primary, secondary and error action',
+      name: 'Primary and secondary action',
       builder: (context) => GalleryPage(
         title: 'Empty state',
         children: [
@@ -31,19 +31,6 @@ final WidgetbookNode emptyStateExample = WidgetbookComponent(
                 isSecondaryAction: true,
                 actionText: 'See how it works',
                 onAction: () {},
-              ),
-            ],
-          ),
-          GallerySection(
-            title: 'Error action',
-            children: [
-              BaseEmptyState(
-                title: 'That did not load',
-                text: 'Check your connection and try again.',
-                actionText: 'Try again',
-                onAction: () {},
-                face: FaceKind.sad,
-                faceLabel: 'Sad face',
               ),
             ],
           ),

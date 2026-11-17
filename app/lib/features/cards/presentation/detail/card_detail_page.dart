@@ -44,8 +44,7 @@ class const CardDetailPage({@PathParam('id') required final String cardId, super
           failureBuilder: (failure) {
             final isMissing = failure.l10nKey == 'CARD_NOT_FOUND';
 
-            return BaseEmptyState(
-              face: FaceKind.sad,
+            return BaseErrorState(
               title: l10n.detailErrorTitle,
               text: isMissing ? l10n.notFound : l10n.errors.selectOrFallback(failure.l10nKey),
               actionText: isMissing ? null : context.l10n.common.retry,

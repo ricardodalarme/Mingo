@@ -62,8 +62,7 @@ class _NotificationPreferencesPageState()
           preferences,
           fakeValue: NotificationPreferences.fake(),
           successBuilder: (_) => const NotificationPreferencesContent(),
-          failureBuilder: (_) => BaseEmptyState(
-            face: FaceKind.sad,
+          failureBuilder: (_) => BaseErrorState(
             title: l10n.loadErrorTitle,
             text: l10n.loadErrorText,
             actionText: context.l10n.common.retry,

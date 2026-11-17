@@ -56,8 +56,7 @@ class const InvitePage({super.key}) extends StatelessWidget implements AutoRoute
             : switch (invite) {
                 Success<ActiveInvite>(:final value) =>
                   hasShared ? InviteSent(invite: value) : InviteCompose(invite: value),
-                Failure(:final exception) => BaseEmptyState(
-                  face: FaceKind.sad,
+                Failure(:final exception) => BaseErrorState(
                   title: l10n.errorTitle,
                   text: l10n.errors.selectOrFallback(exception.l10nKey),
                   actionText: context.l10n.common.retry,

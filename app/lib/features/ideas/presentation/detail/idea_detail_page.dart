@@ -36,8 +36,7 @@ class const IdeaDetailPage({@QueryParam('slug') final String? slug, super.key})
           successBuilder: (list) => list.isEmpty
               ? BaseEmptyState(title: l10n.emptyTitle, text: l10n.emptyText)
               : const IdeaContent(),
-          failureBuilder: (_) => BaseEmptyState(
-            face: FaceKind.sad,
+          failureBuilder: (_) => BaseErrorState(
             title: l10n.errorTitle,
             text: l10n.errorText,
             actionText: context.l10n.common.retry,

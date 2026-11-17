@@ -51,8 +51,7 @@ class const StarterPage({super.key}) extends StatelessWidget implements AutoRout
                 ),
                 footer: BaseButton(text: l10n.another, variant: .secondary, onPressed: cubit.next),
               ),
-        failureBuilder: (_) => BaseEmptyState(
-          face: FaceKind.sad,
+        failureBuilder: (_) => BaseErrorState(
           title: l10n.errorTitle,
           text: l10n.errorText,
           actionText: context.l10n.common.retry,

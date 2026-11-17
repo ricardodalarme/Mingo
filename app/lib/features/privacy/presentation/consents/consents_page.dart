@@ -61,8 +61,7 @@ class const ConsentsPage({super.key}) extends StatelessWidget implements AutoRou
               ],
             ),
           ),
-          Failure() => BaseEmptyState(
-            face: FaceKind.sad,
+          Failure() => BaseErrorState(
             title: l10n.errorTitle,
             text: l10n.errorText,
             actionText: context.l10n.common.retry,

@@ -36,8 +36,7 @@ class const SundayCardPage({super.key}) extends StatelessWidget implements AutoR
         },
         child: switch (card) {
           Success<SundayCard>(:final value) => SundayCardBody(card: value),
-          Failure() => BaseEmptyState(
-            face: FaceKind.sad,
+          Failure() => BaseErrorState(
             title: l10n.errorTitle,
             text: l10n.errorText,
             actionText: context.l10n.common.retry,

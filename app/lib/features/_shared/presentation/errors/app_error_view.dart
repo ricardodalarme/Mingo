@@ -32,8 +32,7 @@ class _AppErrorViewState() extends State<AppErrorView> {
     final l10n = context.l10n.globalErrors;
     final copy = _copy(l10n);
 
-    return BaseEmptyState(
-      face: FaceKind.sad,
+    return BaseErrorState(
       title: copy.title,
       text: copy.text,
       actionText: _cooldownSeconds > 0 ? l10n.retryIn(seconds: _cooldownSeconds) : l10n.retry,

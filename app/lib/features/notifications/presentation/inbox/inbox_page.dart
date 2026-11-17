@@ -59,10 +59,9 @@ class const InboxPage({super.key}) extends StatelessWidget implements AutoRouteW
                     isSecondaryAction: true,
                   )
                 : _InboxList(items: value, partnerName: partnerName),
-            failureBuilder: (failure) => BaseEmptyState(
+            failureBuilder: (failure) => BaseErrorState(
               title: l10n.errorTitle,
               text: l10n.errors.selectOrFallback(failure.l10nKey),
-              face: FaceKind.sad,
               actionText: context.l10n.common.retry,
               onAction: context.read<InboxCubit>().load,
             ),

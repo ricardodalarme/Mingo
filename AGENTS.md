@@ -79,7 +79,7 @@ waiting on (a partner accepting an invite): a repository `watchX()` stream a cub
 
 **UI.** Pages are `@RoutePage()` plus `AutoRouteWrapper` and create their cubit in `wrappedRoute`. Read state with
 `context.select`, act with `context.read`, and use `BlocListener` only for side effects. Render read slots with
-`SkeletonizerResourceWidget` (a fake value plus success and failure builders) and `BaseEmptyState`. Every page is
+`SkeletonizerResourceWidget` (a fake value plus success and failure builders), `BaseEmptyState` for empty results and `BaseErrorState` for failures. Every page is
 `BaseView(appBar:, body:)`; the body is a design-system content widget (`BaseFlowContent`, `BaseStackedContent`,
 `BaseMomentContent`, `BaseTabContent`) or the page's own viewport. A sheet with form state gets its own cubit in a
 `BlocProvider` inside the sheet.

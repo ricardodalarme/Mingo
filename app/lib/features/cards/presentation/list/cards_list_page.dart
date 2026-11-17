@@ -83,8 +83,7 @@ class _CardsListPageState() extends State<CardsListPage> {
                   child: Center(child: BaseLoadingDots()),
                 ),
         ),
-        failureBuilder: (failure) => BaseEmptyState(
-          face: FaceKind.sad,
+        failureBuilder: (failure) => BaseErrorState(
           title: l10n.errorTitle,
           text: l10n.errors.selectOrFallback(failure.l10nKey),
           actionText: context.l10n.common.retry,

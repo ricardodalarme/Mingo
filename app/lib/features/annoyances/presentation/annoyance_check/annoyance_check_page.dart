@@ -51,8 +51,7 @@ class const AnnoyanceCheckPage({required final String id, super.key})
           fakeValue: Annoyance.fake(),
           successBuilder: (value) =>
               value == null ? const _Gone() : _Check(annoyance: value, annoyanceId: id),
-          failureBuilder: (failure) => BaseEmptyState(
-            face: FaceKind.sad,
+          failureBuilder: (failure) => BaseErrorState(
             title: l10n.errorTitle,
             text: l10n.errors.selectOrFallback(failure.l10nKey),
             actionText: context.l10n.common.retry,

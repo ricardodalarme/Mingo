@@ -56,8 +56,7 @@ class _GamesPageState() extends State<GamesPage> with WidgetsBindingObserver {
           onRefresh: cubit.load,
           child: _GamesBody(overview: value),
         ),
-        failureBuilder: (_) => BaseEmptyState(
-          face: FaceKind.sad,
+        failureBuilder: (_) => BaseErrorState(
           title: l10n.loadErrorTitle,
           text: l10n.loadErrorText,
           actionText: context.l10n.common.retry,

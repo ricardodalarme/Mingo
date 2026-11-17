@@ -76,16 +76,14 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
         },
         child: switch (stage) {
           Loading() || Initial() => const Center(child: BaseLoadingDots()),
-          Failure() => BaseEmptyState(
-            face: FaceKind.sad,
+          Failure() => BaseErrorState(
             title: l10n.errorTitle,
             text: l10n.errorText,
             actionText: context.l10n.common.retry,
             onAction: cubit.load,
           ),
           Success(:final value) => switch (value) {
-            ChatStage.unavailable => BaseEmptyState(
-              face: FaceKind.sad,
+            ChatStage.unavailable => BaseErrorState(
               title: l10n.unavailableTitle,
               text: l10n.unavailableText,
             ),

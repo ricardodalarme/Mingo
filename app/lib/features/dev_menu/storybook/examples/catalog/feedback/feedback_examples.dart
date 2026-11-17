@@ -2,6 +2,7 @@ import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/banner
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/confirm_sheet_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/dialog_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/empty_state_example.dart';
+import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/error_state_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/illustrated_banner_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/legal_note_example.dart';
 import 'package:app/features/dev_menu/storybook/examples/catalog/feedback/list_group_example.dart';
@@ -27,6 +28,7 @@ final WidgetbookNode feedbackExamples = WidgetbookFolder(
     topNoticeExample,
     bannerExample,
     emptyStateExample,
+    errorStateExample,
     skeletonExample,
     confirmSheetExample,
     dialogExample,

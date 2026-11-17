@@ -72,8 +72,7 @@ class const DateNightPage({super.key}) extends StatelessWidget implements AutoRo
                   fakeValue: [DateIdea.fake()],
                   successBuilder: (list) =>
                       list.isEmpty ? _Suggestions(suggestions: suggestions) : _Ideas(ideas: list),
-                  failureBuilder: (_) => BaseEmptyState(
-                    face: FaceKind.sad,
+                  failureBuilder: (_) => BaseErrorState(
                     title: l10n.errorTitle,
                     text: l10n.errorText,
                     actionText: context.l10n.common.retry,

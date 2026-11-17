@@ -44,8 +44,7 @@ class const ReceivedSignalsPage({super.key}) extends StatelessWidget implements 
           fakeValue: [ReceivedSignal.fake()],
           successBuilder: (items) =>
               items.isEmpty ? _Done(hasAnswered: answered > 0) : _SignalView(signal: items.first),
-          failureBuilder: (_) => BaseEmptyState(
-            face: FaceKind.sad,
+          failureBuilder: (_) => BaseErrorState(
             title: l10n.errorTitle,
             text: l10n.errorText,
             actionText: context.l10n.common.retry,

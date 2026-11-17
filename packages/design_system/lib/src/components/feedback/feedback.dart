@@ -5,6 +5,7 @@ export 'base_banner.dart';
 export 'base_confirm_sheet.dart';
 export 'base_dialog.dart';
 export 'base_empty_state.dart';
+export 'base_error_state.dart';
 export 'base_illustrated_banner.dart';
 export 'base_legal_note.dart';
 export 'base_list_group.dart';

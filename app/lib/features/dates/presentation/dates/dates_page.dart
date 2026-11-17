@@ -178,8 +178,7 @@ class const _DatesList() extends StatelessWidget {
                   ),
               ],
             ),
-      failureBuilder: (_) => BaseEmptyState(
-        face: FaceKind.sad,
+      failureBuilder: (_) => BaseErrorState(
         title: l10n.errorTitle,
         text: l10n.errorText,
         actionText: context.l10n.common.retry,
@@ -246,8 +245,7 @@ class const _GiftsList() extends StatelessWidget {
                   ),
               ],
             ),
-      failureBuilder: (_) => BaseEmptyState(
-        face: FaceKind.sad,
+      failureBuilder: (_) => BaseErrorState(
         title: l10n.errorTitle,
         text: l10n.errorText,
         actionText: context.l10n.common.retry,
@@ -285,8 +283,7 @@ class const _HolidaysView() extends StatelessWidget {
                   ),
               ],
             ),
-      failureBuilder: (_) => BaseEmptyState(
-        face: FaceKind.sad,
+      failureBuilder: (_) => BaseErrorState(
         title: l10n.errorTitle,
         text: l10n.errorText,
         actionText: context.l10n.common.retry,
