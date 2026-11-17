@@ -1360,8 +1360,8 @@ class Translations$connectUs$pt {
 
   // Translations
 
-  /// pt: 'Nós'
-  String get title => 'Nós';
+  /// pt: 'Saudade de nós'
+  String get title => 'Saudade de nós';
 
   /// pt: 'Envie “sinto saudade de nós” com um toque. Leve, sem culpa. Seu par não precisa responder.'
   String get text =>
@@ -1380,6 +1380,9 @@ class Translations$connectUs$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para enviar agora. Tente de novo.',
   };
+
+  /// pt: 'nós'
+  String get titleHighlight => 'nós';
 }
 
 // Path: createAccount
@@ -4258,11 +4261,11 @@ class Translations$mood$pt {
   /// pt: 'só você vê'
   String get privateCue => 'só você vê';
 
-  /// pt: '{name} vê'
-  String sharedCue({required Object name}) => '${name} vê';
+  /// pt: 'compartilhado com {name}'
+  String sharedCue({required Object name}) => 'compartilhado com ${name}';
 
-  /// pt: 'seu par vê'
-  String get sharedCueNoName => 'seu par vê';
+  /// pt: 'compartilhado com seu par'
+  String get sharedCueNoName => 'compartilhado com seu par';
 
   Map<String, String> get moods => {
     'happy': 'Feliz',
@@ -4303,6 +4306,9 @@ class Translations$mood$pt {
 
   /// pt: 'Quem cria o dado decide. O padrão é privado.'
   String get shareSubtitle => 'Quem cria o dado decide. O padrão é privado.';
+
+  /// pt: 'Escolha um “Preciso de...” primeiro.'
+  String get shareNeedFirst => 'Escolha um “Preciso de...” primeiro.';
 
   Map<String, String> get share => {
     'none': 'Manter privado',
@@ -4405,6 +4411,9 @@ class Translations$mood$pt {
 
   /// pt: 'Seu par vê'
   String get homePrivacySharedNoName => 'Seu par vê';
+
+  /// pt: 'Não deu para carregar. Toque para abrir.'
+  String get homeLoadFailed => 'Não deu para carregar. Toque para abrir.';
 
   /// pt: 'O que seu par vê'
   String get homeDetailsLink => 'O que seu par vê';
@@ -11196,13 +11205,14 @@ extension on Translations {
           'connectTouch.errorText' => 'Tente de novo em instantes.',
           'connectTouch.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'connectTouch.errors.other' => 'Não deu para mudar agora. Tente de novo.',
-          'connectUs.title' => 'Nós',
+          'connectUs.title' => 'Saudade de nós',
           'connectUs.text' => 'Envie “sinto saudade de nós” com um toque. Leve, sem culpa. Seu par não precisa responder.',
           'connectUs.send' => 'Enviar com carinho',
           'connectUs.plan' => 'Sugerir um plano pequeno',
           'connectUs.sentNote' => 'Enviado. Sem pressa de resposta.',
           'connectUs.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'connectUs.errors.other' => 'Não deu para enviar agora. Tente de novo.',
+          'connectUs.titleHighlight' => 'nós',
           'createAccount.title' => 'Criar conta',
           'createAccount.headline' => 'Mantenha seguro',
           'createAccount.headlineHighlight' => 'seguro',
@@ -11226,10 +11236,10 @@ extension on Translations {
           'dateNight.monthsShort.1' => 'fev',
           'dateNight.monthsShort.2' => 'mar',
           'dateNight.monthsShort.3' => 'abr',
-          'dateNight.monthsShort.4' => 'mai',
           _ => null,
         } ??
         switch (path) {
+          'dateNight.monthsShort.4' => 'mai',
           'dateNight.monthsShort.5' => 'jun',
           'dateNight.monthsShort.6' => 'jul',
           'dateNight.monthsShort.7' => 'ago',
@@ -11835,10 +11845,10 @@ extension on Translations {
           'hardConversation.sent' => 'Recado enviado',
           'hardConversation.exit' => 'Sair',
           'hardConversation.next' => 'Próximo',
-          'hardConversation.back' => 'Voltar',
           _ => null,
         } ??
         switch (path) {
+          'hardConversation.back' => 'Voltar',
           'hardConversation.retry' => 'Tentar de novo',
           'hardConversation.generationFailed' => 'Não deu para escrever uma frase agora.',
           'hardConversation.privateNote' =>
@@ -12517,10 +12527,10 @@ extension on Translations {
           'loveStyle.back' => 'Voltar',
           'loveStyle.privateNote' =>
             'Só você vê as respostas. Você escolhe se quer mostrar o resultado.',
-          'loveStyle.resultTitle' => 'O que faz você se sentir querido(a)',
           _ => null,
         } ??
         switch (path) {
+          'loveStyle.resultTitle' => 'O que faz você se sentir querido(a)',
           'loveStyle.resultHighlight' => 'querido(a)',
           'loveStyle.resultSubtitle' =>
             'Uma descrição do que te faz sentir querido(a), do seu jeito.',
@@ -12646,8 +12656,8 @@ extension on Translations {
           'mood.titleHighlight' => 'hoje',
           'mood.subtitle' => 'Um toque. A etiqueta “Preciso de...” é opcional.',
           'mood.privateCue' => 'só você vê',
-          'mood.sharedCue' => ({required Object name}) => '${name} vê',
-          'mood.sharedCueNoName' => 'seu par vê',
+          'mood.sharedCue' => ({required Object name}) => 'compartilhado com ${name}',
+          'mood.sharedCueNoName' => 'compartilhado com seu par',
           'mood.moods.happy' => 'Feliz',
           'mood.moods.tired' => 'Cansado(a)',
           'mood.moods.sad' => 'Triste',
@@ -12670,6 +12680,7 @@ extension on Translations {
             'Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.',
           'mood.needSaved' => 'Salvo',
           'mood.shareSubtitle' => 'Quem cria o dado decide. O padrão é privado.',
+          'mood.shareNeedFirst' => 'Escolha um “Preciso de...” primeiro.',
           'mood.share.none' => 'Manter privado',
           'mood.share.mood' => 'Só meu humor',
           'mood.share.moodNeed' => 'Humor e o que preciso',
@@ -12717,6 +12728,7 @@ extension on Translations {
           'mood.homePrivacy' => 'Só você vê',
           'mood.homePrivacyShared' => ({required Object name}) => '${name} vê',
           'mood.homePrivacySharedNoName' => 'Seu par vê',
+          'mood.homeLoadFailed' => 'Não deu para carregar. Toque para abrir.',
           'mood.homeDetailsLink' => 'O que seu par vê',
           'mood.homeMoods.happy' => 'Bem',
           'mood.homeMoods.loving' => 'Carinhoso',
@@ -13128,6 +13140,9 @@ extension on Translations {
           'profileDetails.loginAccount' => 'Conta',
           'profileDetails.loginEmail' => 'E-mail',
           'profileDetails.loginApple' => 'Apple',
+          _ => null,
+        } ??
+        switch (path) {
           'profileDetails.loginGoogle' => 'Google',
           'profileDetails.photoNote' => 'Ainda não dá para enviar foto.',
           'profileDetails.saved' => 'Salvo',
@@ -13157,9 +13172,6 @@ extension on Translations {
           'profileSetup.nameLabel' => 'Seu nome',
           'profileSetup.nameHint' => 'Seu primeiro nome',
           'profileSetup.nameErrors.empty' => 'Seu nome não pode ficar vazio.',
-          _ => null,
-        } ??
-        switch (path) {
           'profileSetup.nameErrors.tooLong' => 'Use no máximo 30 caracteres.',
           'profileSetup.partnerNameLabel' => 'Nome do parceiro',
           'profileSetup.partnerNameHint' => 'O primeiro nome dele ou dela',
@@ -13206,9 +13218,6 @@ extension on Translations {
                   one: '1 lição',
                   other: '${count} lições',
                 ),
-          _ => null,
-        } ??
-        switch (path) {
           'programs.noLessons' => 'Lições chegando',
           'programs.emptyTitle' => 'Nenhum programa por aqui ainda',
           'programs.emptyText' => 'Novos programas chegam em breve. Volte quando quiser.',
@@ -13697,6 +13706,9 @@ extension on Translations {
           'settingsHome.connectedWith' => ({required Object name}) => 'Conectado com ${name}',
           'share.entryTitle' => 'Compartilhar imagem',
           'share.entrySubtitleToday' => 'O tempo de vocês e a lua do dia em que tudo começou.',
+          _ => null,
+        } ??
+        switch (path) {
           'share.entrySubtitleMemories' =>
             'Uma linha do tempo com os momentos que vocês guardaram.',
           'share.entrySubtitleCard' => 'Uma frase do cartão que chegou para você.',
@@ -13740,9 +13752,6 @@ extension on Translations {
           'share.monthsLong.2' => 'março',
           'share.monthsLong.3' => 'abril',
           'share.monthsLong.4' => 'maio',
-          _ => null,
-        } ??
-        switch (path) {
           'share.monthsLong.5' => 'junho',
           'share.monthsLong.6' => 'julho',
           'share.monthsLong.7' => 'agosto',
@@ -13787,9 +13796,6 @@ extension on Translations {
           'slipDetail.monthsShort.11' => 'dez',
           'slipDetail.kinds.quick' => 'Rápido',
           'slipDetail.kinds.specific' => 'Específico',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.kinds.ifThen' => 'Se… então',
           'slipDetail.kinds.invisible' => 'Invisível',
           'slipDetail.kinds.other' => '',
@@ -14292,6 +14298,9 @@ extension on Translations {
           'tabs.badDayMeta' => 'Três coisas pequenas',
           'tabs.distanceMeta' => 'Fusos e reencontro',
           'tabs.diaryMeta' => 'Só seu',
+          _ => null,
+        } ??
+        switch (path) {
           'tabs.moodCalendarTitle' => 'Meus humores',
           'tabs.moodCalendarMeta' => 'Seu mês, só você vê',
           'tabs.hardTalkMeta' => 'Notas antes de falar',
@@ -14354,9 +14363,6 @@ extension on Translations {
           'temperature.levels.fight' => 'Uma briga',
           'temperature.levels.other' => '',
           'temperature.continueAction' => 'Continuar',
-          _ => null,
-        } ??
-        switch (path) {
           'temperature.back' => 'Voltar',
           'temperature.skip' => 'Agora não',
           'temperature.intensityTitle' => 'Qual a intensidade?',
@@ -14528,9 +14534,6 @@ extension on Translations {
           'unpair.relationship.unpair' => ({required Object name}) => 'Desvincular da ${name}',
           'unpair.relationship.ended' => 'A relação terminou',
           'unpair.breakup.appBarTitle' => 'Terminamos',
-          _ => null,
-        } ??
-        switch (path) {
           'unpair.breakup.title' => 'Sinto muito',
           'unpair.breakup.highlight' => 'muito',
           'unpair.breakup.text' => 'Você decide o que guardar. Nada é apagado sem você querer.',
