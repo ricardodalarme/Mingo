@@ -6,3 +6,4 @@ export 'firebase_initializer.dart';
 export 'locale_initializer.dart';
 export 'notifications_initializer.dart';
 export 'preferences_initializer.dart';
+export 'query_cache_initializer.dart';
