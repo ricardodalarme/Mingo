@@ -53,6 +53,20 @@ class CheckinRepository({
     );
   });
 
+  /// Emits how many check-in rows of [week] are readable, now and on each change; empty when the
+  /// person has no couple. A failed event is logged and skipped.
+  Stream<int> watchRowCount(CheckinWeek week) {
+    final coupleId = week.coupleId;
+    if (coupleId == null) return const Stream.empty();
+
+    return _dataSource.watchRowCount(weekStart: week.weekStart, coupleId: coupleId).handleError((
+      Object e,
+      StackTrace stack,
+    ) {
+      _logger.error('The check-in subscription failed', error: e, stackTrace: stack);
+    });
+  }
+
   /// Inserts the row for this week or updates the answer before the reveal.
   Future<CheckinAnswer> saveAnswer({
     required CheckinWeek week,

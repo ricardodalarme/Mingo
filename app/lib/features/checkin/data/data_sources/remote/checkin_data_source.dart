@@ -2,6 +2,7 @@ import 'package:app/features/checkin/data/data_sources/remote/mutations/generate
 import 'package:app/features/checkin/data/data_sources/remote/mutations/generated/UpdateCheckinAnswer.graphql.dart';
 import 'package:app/features/checkin/data/data_sources/remote/queries/generated/CheckinAnswers.graphql.dart';
 import 'package:app/features/checkin/data/data_sources/remote/queries/generated/CheckinToday.graphql.dart';
+import 'package:app/features/checkin/data/data_sources/remote/subscriptions/generated/WatchCheckinRows.graphql.dart';
 import 'package:network/network.dart';
 
 typedef CheckinAnswerRecord = ({String id, bool isMine, int question, String body});
@@ -64,6 +65,22 @@ class CheckinDataSource({required final GQLClient _client}) {
               (id: row.id, isMine: row.authorId == selfId, question: question, body: body),
       ],
     );
+  }
+
+  /// Emits how many check-in rows of the week the person can read, now and on each change.
+  ///
+  /// The partner's row only becomes readable once both people finished all four answers.
+  Stream<int> watchRowCount({required DateTime weekStart, required String coupleId}) {
+    return _client
+        .subscribe(
+          OptionsSubscriptionWatchCheckinRows(
+            variables: VariablesSubscriptionWatchCheckinRows(
+              weekStart: weekStart,
+              coupleId: coupleId,
+            ),
+          ),
+        )
+        .mapResponseData((data) => data.checkins.length);
   }
 
   Future<CheckinAnswerWriteRecord> saveAnswer({

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/checkin/data/models/checkin_week.dart';
 import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
 import 'package:core/core.dart';
@@ -9,6 +11,9 @@ part 'checkin_state.dart';
 class CheckinCubit({required final CheckinRepository _repository}) extends Cubit<CheckinState> {
   this : super(const CheckinState());
 
+  StreamSubscription<int>? _partnerRows;
+  int? _rowCount;
+
   /// Reads this week and resumes wherever the person stopped.
   Future<void> load() async {
     if (isClosed) return;
@@ -17,6 +22,7 @@ class CheckinCubit({required final CheckinRepository _repository}) extends Cubit
       final week = await _repository.getWeek();
       if (isClosed) return;
       emit(_settle(week));
+      _watchPartner();
     } catch (exception) {
       if (isClosed || state.week is Success) return;
       emit(state.copyWith(week: Failure.fromObject(exception)));
@@ -94,6 +100,7 @@ class CheckinCubit({required final CheckinRepository _repository}) extends Cubit
         draft: week.answerFor(1)?.body ?? '',
       ),
     );
+    _watchPartner();
   }
 
   /// Remembers that the person chose not to check in this week.
@@ -189,5 +196,33 @@ class CheckinCubit({required final CheckinRepository _repository}) extends Cubit
       questionIndex: 0,
       draft: '',
     );
+  }
+
+  /// While the person waits for the partner, reads the week again when the rows they can see
+  /// change, which is how the reveal arrives with the screen open.
+  void _watchPartner() {
+    final week = state.current;
+    final isWaiting = state.step == CheckinStep.waiting && week != null && week.canParticipate;
+    if (!isWaiting) {
+      unawaited(_partnerRows?.cancel());
+      _partnerRows = null;
+
+      return;
+    }
+    if (_partnerRows != null) return;
+
+    _rowCount = null;
+    _partnerRows = _repository.watchRowCount(week).listen((rows) {
+      final previous = _rowCount;
+      _rowCount = rows;
+      if (previous != null && previous != rows) unawaited(load());
+    });
+  }
+
+  @override
+  Future<void> close() async {
+    await _partnerRows?.cancel();
+
+    return super.close();
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/checkin/data/models/checkin_answer.dart';
 import 'package:app/features/checkin/data/models/checkin_week.dart';
 import 'package:app/features/checkin/data/repositories/checkin_repository.dart';
@@ -11,6 +13,7 @@ class _MockCheckinRepository() extends Mock implements CheckinRepository;
 
 void main() {
   late CheckinRepository repository;
+  late StreamController<int> rows;
 
   final monday = DateTime(2026, 11, 2);
 
@@ -44,6 +47,9 @@ void main() {
 
   setUp(() {
     repository = _MockCheckinRepository();
+    rows = StreamController<int>.broadcast();
+    addTearDown(rows.close);
+    when(() => repository.watchRowCount(any())).thenAnswer((_) => rows.stream);
     when(() => repository.getWeek()).thenAnswer((_) async => week());
     when(
       () => repository.deleteAnswer(
@@ -389,5 +395,44 @@ void main() {
     await cubit.load();
 
     expect(cubit.state.week, isA<Failure>());
+  });
+
+  group('live reveal', () {
+    test('reads the week again when the partner finishes while the person waits', () async {
+      final reads = [week(own: answers(4)), week(own: answers(4), partner: answers(4))];
+      when(() => repository.getWeek()).thenAnswer((_) async => reads.removeAt(0));
+      final cubit = CheckinCubit(repository: repository);
+      addTearDown(cubit.close);
+      await cubit.load();
+      expect(cubit.state.step, CheckinStep.waiting);
+
+      rows.add(1);
+      await pumpEventQueue();
+      rows.add(2);
+      await pumpEventQueue();
+
+      expect(cubit.state.step, CheckinStep.reveal);
+      expect(rows.hasListener, isFalse);
+    });
+
+    test('does not listen before the person answered everything', () async {
+      final cubit = CheckinCubit(repository: repository);
+      addTearDown(cubit.close);
+
+      await cubit.load();
+
+      expect(rows.hasListener, isFalse);
+    });
+
+    test('stops listening when it closes', () async {
+      when(() => repository.getWeek()).thenAnswer((_) async => week(own: answers(4)));
+      final cubit = CheckinCubit(repository: repository);
+      await cubit.load();
+      expect(rows.hasListener, isTrue);
+
+      await cubit.close();
+
+      expect(rows.hasListener, isFalse);
+    });
   });
 }

@@ -49,6 +49,7 @@ void main() {
 
   setUp(() {
     repository = _MockCheckinRepository();
+    when(() => repository.watchRowCount(any())).thenAnswer((_) => const Stream<int>.empty());
   });
 
   testWidgets('a finished week without partner rows explains the privacy', (tester) async {
