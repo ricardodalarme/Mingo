@@ -63,4 +63,28 @@ void main() {
 
     expect(await dataSource.getSlip('s1'), isNull);
   });
+
+  test('reads whether new slips go on the card by default', () async {
+    final dataSource = SlipDataSource(
+      client: const _StubGQLClient({
+        'userSettings': [
+          {'slipsDefaultForCard': true, '__typename': 'user_settings'},
+        ],
+        '__typename': 'query_root',
+      }),
+    );
+
+    expect(await dataSource.getForCardDefault(), isTrue);
+  });
+
+  test('a person with no saved choice keeps new slips private', () async {
+    final dataSource = SlipDataSource(
+      client: const _StubGQLClient({
+        'userSettings': <Map<String, dynamic>>[],
+        '__typename': 'query_root',
+      }),
+    );
+
+    expect(await dataSource.getForCardDefault(), isFalse);
+  });
 }

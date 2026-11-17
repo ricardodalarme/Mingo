@@ -56,7 +56,7 @@ class SlipRepository({
 
   /// Saves a slip, or keeps it on the device when there is no connection.
   ///
-  /// The client-generated [id] makes retries safe.
+  /// The client-generated [id] makes retries safe. A slip stays private unless [forCard] is set.
   Future<SlipSaveOutcome> saveQuick({
     required String id,
     required String body,
@@ -66,6 +66,7 @@ class SlipRepository({
     String? feeling,
     String? planNote,
     SlipWorkArea? workArea,
+    bool forCard = false,
   }) async {
     final slip = PendingSlip(
       id: id,
@@ -76,6 +77,7 @@ class SlipRepository({
       feeling: feeling,
       planNote: planNote,
       workArea: workArea,
+      forCard: forCard,
     );
     try {
       await _send(slip);
@@ -316,6 +318,17 @@ class SlipRepository({
 
   Future<void> clearDraft() => _localDataSource.clearDraft();
 
+  /// Whether new slips go on the weekly card by default; private when it cannot be read.
+  Future<bool> getForCardDefault() async {
+    try {
+      return await _slipDataSource.getForCardDefault();
+    } catch (e, stack) {
+      _logger.warning('Failed to read the slip card preference', error: e, stackTrace: stack);
+
+      return false;
+    }
+  }
+
   Future<void> _send(PendingSlip slip) async {
     await _slipDataSource.saveSlip(
       id: slip.id,
@@ -324,6 +337,7 @@ class SlipRepository({
       kind: slip.kind.toRemote(),
       feeling: slip.feeling,
       planNote: slip.planNote,
+      forCard: slip.forCard,
       category: slip.category?.toRemote(),
       workArea: slip.workArea?.toRemote(),
     );

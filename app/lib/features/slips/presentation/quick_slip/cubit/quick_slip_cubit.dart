@@ -33,14 +33,24 @@ class QuickSlipCubit({
   /// The annoyance just saved, for the pages that go on from it.
   Annoyance? get savedAnnoyance => _savedAnnoyance;
 
-  /// Restores a draft left less than an hour ago.
+  /// Restores a draft left less than an hour ago and reads whether new slips go on the card.
   ///
   /// Only a good slip is ever kept on the device; what bothered the person is not written to it.
   void start() {
     final draft = _slipRepository.readDraft(clock.now());
-    if (draft == null) return;
+    if (draft != null) {
+      emit(state.copyWith(text: FormInput(draft.text), category: draft.category));
+    }
+    unawaited(_readForCardDefault());
+  }
 
-    emit(state.copyWith(text: FormInput(draft.text), category: draft.category));
+  Future<void> _readForCardDefault() async {
+    try {
+      final forCard = await _slipRepository.getForCardDefault();
+      if (!isClosed) emit(state.copyWith(forCardByDefault: forCard));
+    } on Object {
+      // A setting that cannot be read keeps the slip private, as the screen promises.
+    }
   }
 
   void onModeChanged(QuickSlipMode mode) {
@@ -96,10 +106,17 @@ class QuickSlipCubit({
         case QuickSlipMode.annoyance:
           if (_savedAnnoyance case final annoyance?) {
             await _annoyanceRepository.delete(annoyance.id);
+            _savedAnnoyance = null;
           }
       }
       _undoTimer?.cancel();
-      emit(state.copyWith(undoAction: const Success(null), canUndo: false));
+      emit(
+        state.copyWith(
+          saveAction: const Initial(),
+          undoAction: const Success(null),
+          canUndo: false,
+        ),
+      );
     } catch (exception) {
       emit(state.copyWith(undoAction: Failure.fromObject(exception)));
       emit(state.copyWith(undoAction: const Initial()));
@@ -114,6 +131,7 @@ class QuickSlipCubit({
       body: state.text.value.trim(),
       createdAt: clock.now(),
       category: state.category,
+      forCard: state.forCardByDefault,
     );
   }
 

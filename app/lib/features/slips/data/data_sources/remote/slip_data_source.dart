@@ -7,6 +7,7 @@ import 'package:app/features/slips/data/data_sources/remote/mutations/generated/
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SetSlipInJar.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/SlipDetail.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/queries/generated/SlipsPreference.graphql.dart';
 import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:network/network.dart';
 
@@ -15,6 +16,8 @@ typedef SlipRow = ({QuerySlipDetailslipsByPk slip, bool wasInCard});
 
 class SlipDataSource({required final GQLClient _client}) {
   /// Writes the slip; sending the same [id] again updates it instead of failing.
+  ///
+  /// A slip stays out of the weekly card unless [forCard] says otherwise.
   Future<void> saveSlip({
     required String id,
     required String body,
@@ -22,7 +25,7 @@ class SlipDataSource({required final GQLClient _client}) {
     EnumSlipKind_enum kind = EnumSlipKind_enum.quick,
     String? feeling,
     String? planNote,
-    bool forCard = true,
+    bool forCard = false,
     EnumSlipCategory_enum? category,
     EnumWorkArea_enum? workArea,
   }) async {
@@ -110,6 +113,18 @@ class SlipDataSource({required final GQLClient _client}) {
     if (data == null || slip == null) return null;
 
     return (slip: slip, wasInCard: data.cardItems.isNotEmpty);
+  }
+
+  /// Whether new slips go on the weekly card by default; private when the person never chose.
+  Future<bool> getForCardDefault() async {
+    final response = await _client.query(
+      OptionsQuerySlipsPreference(fetchPolicy: FetchPolicy.networkOnly),
+    );
+
+    return validateResponseData(
+      response,
+      getData: (data) => data.userSettings.firstOrNull?.slipsDefaultForCard ?? false,
+    );
   }
 
   Future<void> setInJar({required String id, required bool inJar}) async {

@@ -35,6 +35,7 @@ void main() {
     );
     when(() => annoyances.delete(any())).thenAnswer((_) async {});
     when(() => repository.readDraft(any())).thenReturn(null);
+    when(() => repository.getForCardDefault()).thenAnswer((_) async => false);
     when(
       () => repository.saveDraft(
         text: any(named: 'text'),
@@ -53,6 +54,7 @@ void main() {
         body: any(named: 'body'),
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
+        forCard: any(named: 'forCard'),
       ),
     ).thenAnswer((_) async => SlipSaveOutcome.synced);
     when(() => repository.undo(any())).thenAnswer((_) async {
@@ -89,6 +91,7 @@ void main() {
         body: any(named: 'body'),
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
+        forCard: any(named: 'forCard'),
       ),
     ),
   );
@@ -106,6 +109,7 @@ void main() {
         body: 'Fez café',
         createdAt: any(named: 'createdAt'),
         category: any(named: 'category'),
+        forCard: any(named: 'forCard'),
       ),
     ).called(1),
   );
@@ -127,6 +131,7 @@ void main() {
           body: any(named: 'body'),
           createdAt: any(named: 'createdAt'),
           category: any(named: 'category'),
+          forCard: any(named: 'forCard'),
         ),
       );
       expect(cubit.savedAnnoyance?.id, 'a1');
@@ -196,7 +201,7 @@ void main() {
           createdAt: any(named: 'createdAt'),
           category: any(named: 'category'),
         ),
-      ).thenAnswer((_) async => throw const LocalizedException(l10nKey: 'FREE_LIMIT_REACHED'));
+      ).thenAnswer((_) async => throw const LocalizedException(l10nKey: 'RATE_LIMITED'));
       return build();
     },
     act: (cubit) async {
@@ -223,6 +228,62 @@ void main() {
       expect(cubit.state.canUndo, isFalse);
     },
   );
+
+  test('undoing takes the form back with the text still there', () async {
+    final cubit = build();
+    addTearDown(cubit.close);
+    cubit.onTextChanged('Fez café');
+    await cubit.save();
+    await cubit.undo();
+
+    expect(cubit.state.isSaved, isFalse);
+    expect(cubit.state.text.value, 'Fez café');
+  });
+
+  test('a new slip starts private unless the person asked for the card', () async {
+    final cubit = build();
+    addTearDown(cubit.close);
+    cubit.onTextChanged('Fez café');
+    await cubit.save();
+
+    verify(
+      () => repository.saveQuick(
+        id: any(named: 'id'),
+        body: 'Fez café',
+        createdAt: any(named: 'createdAt'),
+        category: null,
+        forCard: false,
+      ),
+    ).called(1);
+  });
+
+  test('a new slip follows the saved card preference', () async {
+    when(() => repository.getForCardDefault()).thenAnswer((_) async => true);
+    final cubit = build()..start();
+    addTearDown(cubit.close);
+    await Future<void>.delayed(Duration.zero);
+    cubit.onTextChanged('Fez café');
+    await cubit.save();
+
+    verify(
+      () => repository.saveQuick(
+        id: any(named: 'id'),
+        body: 'Fez café',
+        createdAt: any(named: 'createdAt'),
+        category: null,
+        forCard: true,
+      ),
+    ).called(1);
+  });
+
+  test('a preference that cannot be read keeps the slip private', () async {
+    when(() => repository.getForCardDefault()).thenThrow(Exception());
+    final cubit = build()..start();
+    addTearDown(cubit.close);
+    await Future<void>.delayed(Duration.zero);
+
+    expect(cubit.state.forCardByDefault, isFalse);
+  });
 
   test('discarding clears the stored draft', () {
     final cubit = build()..onTextChanged('Rascunho');

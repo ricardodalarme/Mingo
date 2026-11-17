@@ -10,6 +10,7 @@ final class const QuickSlipState({
   final QuickSlipMode mode = QuickSlipMode.liked,
   final FormInput<String> text = const FormInput(''),
   final SlipCategory? category,
+  final bool forCardByDefault = false,
   final Resource<SlipSaveOutcome> saveAction = const Initial(),
   final Resource<void> undoAction = const Initial(),
   final bool canUndo = false,
@@ -24,6 +25,7 @@ final class const QuickSlipState({
     QuickSlipMode? mode,
     FormInput<String>? text,
     SlipCategory? category,
+    bool? forCardByDefault,
     bool clearCategory = false,
     Resource<SlipSaveOutcome>? saveAction,
     Resource<void>? undoAction,
@@ -33,6 +35,7 @@ final class const QuickSlipState({
       mode: mode ?? this.mode,
       text: text ?? this.text,
       category: clearCategory ? null : category ?? this.category,
+      forCardByDefault: forCardByDefault ?? this.forCardByDefault,
       saveAction: saveAction ?? this.saveAction,
       undoAction: undoAction ?? this.undoAction,
       canUndo: canUndo ?? this.canUndo,
@@ -40,5 +43,13 @@ final class const QuickSlipState({
   }
 
   @override
-  List<Object?> get props => [mode, text, category, saveAction, undoAction, canUndo];
+  List<Object?> get props => [
+    mode,
+    text,
+    category,
+    forCardByDefault,
+    saveAction,
+    undoAction,
+    canUndo,
+  ];
 }

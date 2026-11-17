@@ -1,0 +1,5 @@
+query SlipsPreference {
+  userSettings(limit: 1) {
+    slipsDefaultForCard
+  }
+}

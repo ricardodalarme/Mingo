@@ -13,6 +13,7 @@ final class const PendingSlip({
   final String? feeling,
   final String? planNote,
   final SlipWorkArea? workArea,
+  final bool forCard = false,
 }) with Equatable {
   factory fromMap(Map<String, dynamic> map) => PendingSlip(
     id: map['id'] as String,
@@ -23,6 +24,7 @@ final class const PendingSlip({
     feeling: map['feeling'] as String?,
     planNote: map['planNote'] as String?,
     workArea: SlipWorkArea.values.asNameMap()[map['workArea'] as String?],
+    forCard: map['forCard'] as bool? ?? false,
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -34,8 +36,19 @@ final class const PendingSlip({
     'feeling': feeling,
     'planNote': planNote,
     'workArea': workArea?.name,
+    'forCard': forCard,
   };
 
   @override
-  List<Object?> get props => [id, body, createdAt, category, kind, feeling, planNote, workArea];
+  List<Object?> get props => [
+    id,
+    body,
+    createdAt,
+    category,
+    kind,
+    feeling,
+    planNote,
+    workArea,
+    forCard,
+  ];
 }

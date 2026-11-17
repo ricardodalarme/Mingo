@@ -14,6 +14,7 @@ class const QuickSlipForm({super.key}) extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n.quickSlip;
     final mode = context.select((QuickSlipCubit cubit) => cubit.state.mode);
+    final forCardByDefault = context.select((QuickSlipCubit cubit) => cubit.state.forCardByDefault);
     final isAnnoyance = mode == QuickSlipMode.annoyance;
 
     return BaseStackedContent(
@@ -46,7 +47,13 @@ class const QuickSlipForm({super.key}) extends StatelessWidget {
           const _TextField(),
           if (!isAnnoyance) ...[const SizedBox(height: AppSpace.s16), const _CategoryChips()],
           const SizedBox(height: AppSpace.s16),
-          BaseNote(text: isAnnoyance ? l10n.annoyanceNote : l10n.privacyNote),
+          BaseNote(
+            text: isAnnoyance
+                ? l10n.annoyanceNote
+                : forCardByDefault
+                ? l10n.cardNote
+                : l10n.privacyNote,
+          ),
         ],
       ),
       footer: const _Footer(),

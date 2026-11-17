@@ -44,6 +44,7 @@ void main() {
         kind: any(named: 'kind'),
         feeling: any(named: 'feeling'),
         planNote: any(named: 'planNote'),
+        forCard: any(named: 'forCard'),
         category: any(named: 'category'),
         workArea: any(named: 'workArea'),
       ),
@@ -53,7 +54,7 @@ void main() {
   });
 
   group('saveQuick', () {
-    test('sends the slip with its category and reports synced', () async {
+    test('sends the slip private with its category and reports synced', () async {
       final outcome = await repository.saveQuick(
         id: 's1',
         body: 'Fez café',
@@ -70,7 +71,26 @@ void main() {
           kind: EnumSlipKind_enum.quick,
           feeling: null,
           planNote: null,
+          forCard: false,
           category: EnumSlipCategory_enum.did,
+          workArea: null,
+        ),
+      ).called(1);
+    });
+
+    test('the person can choose to start a slip on the weekly card', () async {
+      await repository.saveQuick(id: 's1', body: 'Fez café', createdAt: createdAt, forCard: true);
+
+      verify(
+        () => remote.saveSlip(
+          id: 's1',
+          body: 'Fez café',
+          createdAt: createdAt,
+          kind: EnumSlipKind_enum.quick,
+          feeling: null,
+          planNote: null,
+          forCard: true,
+          category: null,
           workArea: null,
         ),
       ).called(1);
@@ -85,6 +105,7 @@ void main() {
           kind: any(named: 'kind'),
           feeling: any(named: 'feeling'),
           planNote: any(named: 'planNote'),
+          forCard: any(named: 'forCard'),
           category: any(named: 'category'),
           workArea: any(named: 'workArea'),
         ),
@@ -95,6 +116,7 @@ void main() {
       expect(outcome, SlipSaveOutcome.queued);
       final saved = verify(() => local.writePending(captureAny())).captured.single;
       expect((saved as List<PendingSlip>).single.id, 's1');
+      expect(saved.single.forCard, isFalse);
     });
 
     test('rethrows a server rejection instead of queueing it', () {
@@ -106,16 +128,31 @@ void main() {
           kind: any(named: 'kind'),
           feeling: any(named: 'feeling'),
           planNote: any(named: 'planNote'),
+          forCard: any(named: 'forCard'),
           category: any(named: 'category'),
           workArea: any(named: 'workArea'),
         ),
-      ).thenAnswer((_) async => throw const LocalizedException(l10nKey: 'FREE_LIMIT_REACHED'));
+      ).thenAnswer((_) async => throw const LocalizedException(l10nKey: 'RATE_LIMITED'));
 
       expect(
         () => repository.saveQuick(id: 's1', body: 'x', createdAt: createdAt),
         throwsA(isA<LocalizedException>()),
       );
       verifyNever(() => local.writePending(any()));
+    });
+  });
+
+  group('getForCardDefault', () {
+    test('reads the saved preference', () async {
+      when(() => remote.getForCardDefault()).thenAnswer((_) async => true);
+
+      expect(await repository.getForCardDefault(), isTrue);
+    });
+
+    test('falls back to private when the preference cannot be read', () async {
+      when(() => remote.getForCardDefault()).thenThrow(Exception());
+
+      expect(await repository.getForCardDefault(), isFalse);
     });
   });
 
@@ -158,6 +195,7 @@ void main() {
           kind: EnumSlipKind_enum.quick,
           feeling: null,
           planNote: null,
+          forCard: false,
           category: null,
           workArea: null,
         ),
