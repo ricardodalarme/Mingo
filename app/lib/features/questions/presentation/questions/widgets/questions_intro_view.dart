@@ -19,7 +19,13 @@ class const QuestionsIntroView({required final QuestionThread thread, super.key}
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BaseTag(text: l10n.tag),
+            Row(
+              children: [
+                BaseTag(text: l10n.tag),
+                const Spacer(),
+                const BaseFace(kind: FaceKind.affectionate, size: FaceSize.small),
+              ],
+            ),
             const SizedBox(height: AppSpace.s14),
             Semantics(header: true, child: Text(thread.prompt.title, style: context.text.question)),
             if (body != null && body.trim().isNotEmpty) ...[
