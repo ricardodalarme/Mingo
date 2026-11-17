@@ -1,0 +1,10 @@
+query QuizResultsOverview {
+  today {
+    userId
+  }
+  quizResults(limit: 6, order_by: [{ updatedAt: desc_nulls_last }]) {
+    authorId
+    quizKey
+    updatedAt
+  }
+}

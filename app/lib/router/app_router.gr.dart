@@ -2176,6 +2176,22 @@ class QuickSlipRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [QuizzesPage]
+class QuizzesRoute extends PageRouteInfo<void> {
+  const QuizzesRoute({List<PageRouteInfo>? children})
+    : super(QuizzesRoute.name, initialChildren: children);
+
+  static const String name = 'QuizzesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const QuizzesPage());
+    },
+  );
+}
+
+/// generated route for
 /// [ReceivedSignalsPage]
 class ReceivedSignalsRoute extends PageRouteInfo<void> {
   const ReceivedSignalsRoute({List<PageRouteInfo>? children})

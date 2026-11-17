@@ -140,6 +140,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$questionsEntry$pt questionsEntry =
       Translations$questionsEntry$pt.internal(_root);
   late final Translations$quickSlip$pt quickSlip = Translations$quickSlip$pt.internal(_root);
+  late final Translations$quizzes$pt quizzes = Translations$quizzes$pt.internal(_root);
   late final Translations$received$pt received = Translations$received$pt.internal(_root);
   late final Translations$relationshipChanged$pt relationshipChanged =
       Translations$relationshipChanged$pt.internal(_root);
@@ -5990,6 +5991,84 @@ class Translations$quickSlip$pt {
 
   /// pt: 'Adicionar detalhes'
   String get addDetails => 'Adicionar detalhes';
+}
+
+// Path: quizzes
+class Translations$quizzes$pt {
+  Translations$quizzes$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Quizzes'
+  String get title => 'Quizzes';
+
+  /// pt: 'Se conhecer'
+  String get headline => 'Se conhecer';
+
+  /// pt: 'melhor'
+  String get headlineHighlight => 'melhor';
+
+  /// pt: 'Dois quizzes curtos, de 6 perguntas. Você vê o resultado primeiro e decide se mostra.'
+  String get intro =>
+      'Dois quizzes curtos, de 6 perguntas. Você vê o resultado primeiro e decide se mostra.';
+
+  /// pt: 'Quizzes'
+  String get entryTitle => 'Quizzes';
+
+  /// pt: 'Se conhecer melhor'
+  String get entryText => 'Se conhecer melhor';
+
+  /// pt: 'Como eu me sinto amado'
+  String get lovedTitle => 'Como eu me sinto amado';
+
+  /// pt: 'Como eu reajo numa briga'
+  String get fightTitle => 'Como eu reajo numa briga';
+
+  /// pt: '(one) {1 pergunta} (other) {{count} perguntas}'
+  String questionCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '1 pergunta',
+        other: '${count} perguntas',
+      );
+
+  /// pt: '{minutes} min'
+  String minutes({required Object minutes}) => '${minutes} min';
+
+  /// pt: '{questions} · {minutes}'
+  String meta({required Object questions, required Object minutes}) => '${questions} · ${minutes}';
+
+  /// pt: 'Começar'
+  String get start => 'Começar';
+
+  /// pt: 'Feito em {date}'
+  String lastDone({required Object date}) => 'Feito em ${date}';
+
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+
+  /// pt: 'Só você vê o resultado, até você tocar em Mostrar. Não é teste psicológico.'
+  String get note => 'Só você vê o resultado, até você tocar em Mostrar. Não é teste psicológico.';
+
+  /// pt: 'Não deu para abrir os quizzes'
+  String get loadErrorTitle => 'Não deu para abrir os quizzes';
+
+  /// pt: 'Nada foi perdido. Tente de novo.'
+  String get loadErrorText => 'Nada foi perdido. Tente de novo.';
 }
 
 // Path: received
@@ -13516,6 +13595,45 @@ extension on Translations {
           'quickSlip.gentleRequest' => 'Pedido gentil',
           'quickSlip.keep' => 'Guardar',
           'quickSlip.addDetails' => 'Adicionar detalhes',
+          'quizzes.title' => 'Quizzes',
+          'quizzes.headline' => 'Se conhecer',
+          'quizzes.headlineHighlight' => 'melhor',
+          'quizzes.intro' =>
+            'Dois quizzes curtos, de 6 perguntas. Você vê o resultado primeiro e decide se mostra.',
+          'quizzes.entryTitle' => 'Quizzes',
+          'quizzes.entryText' => 'Se conhecer melhor',
+          'quizzes.lovedTitle' => 'Como eu me sinto amado',
+          'quizzes.fightTitle' => 'Como eu reajo numa briga',
+          'quizzes.questionCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '1 pergunta',
+                  other: '${count} perguntas',
+                ),
+          'quizzes.minutes' => ({required Object minutes}) => '${minutes} min',
+          'quizzes.meta' => ({
+            required Object questions,
+            required Object minutes,
+          }) => '${questions} · ${minutes}',
+          'quizzes.start' => 'Começar',
+          'quizzes.lastDone' => ({required Object date}) => 'Feito em ${date}',
+          'quizzes.monthsShort.0' => 'jan',
+          'quizzes.monthsShort.1' => 'fev',
+          'quizzes.monthsShort.2' => 'mar',
+          'quizzes.monthsShort.3' => 'abr',
+          'quizzes.monthsShort.4' => 'mai',
+          'quizzes.monthsShort.5' => 'jun',
+          'quizzes.monthsShort.6' => 'jul',
+          'quizzes.monthsShort.7' => 'ago',
+          'quizzes.monthsShort.8' => 'set',
+          'quizzes.monthsShort.9' => 'out',
+          'quizzes.monthsShort.10' => 'nov',
+          'quizzes.monthsShort.11' => 'dez',
+          'quizzes.note' =>
+            'Só você vê o resultado, até você tocar em Mostrar. Não é teste psicológico.',
+          'quizzes.loadErrorTitle' => 'Não deu para abrir os quizzes',
+          'quizzes.loadErrorText' => 'Nada foi perdido. Tente de novo.',
           'received.kinds.repair' => 'Cartão de reparo',
           'received.kinds.need' => 'Preciso de…',
           'received.kinds.missUs' => 'Saudade',
@@ -13887,6 +14005,9 @@ extension on Translations {
           'share.phases.other' => '',
           'share.productMark' => 'Mingo',
           'share.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object day,
@@ -13919,9 +14040,6 @@ extension on Translations {
           'slipDetail.feeling' => 'Como você se sentiu',
           'slipDetail.plan' => 'Então eu…',
           'slipDetail.jarTitle' => 'Guardar no potinho',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.jarText' => 'Para abrir em um dia ruim. Só você vê.',
           'slipDetail.sentNote' => 'Este slip já foi em um cartão. O cartão enviado guarda a cópia de antes, mesmo que você edite ou apague aqui.',
           'slipDetail.draftBodyErrors.empty' => 'Escreva o slip primeiro',
@@ -14626,6 +14744,9 @@ extension on Translations {
           'today.conflict.tag' => 'Agora',
           'today.conflict.title' => 'Primeiro, cuidar de vocês',
           'today.conflict.highlight' => 'cuidar',
+          _ => null,
+        } ??
+        switch (path) {
           'today.conflict.text' =>
             'Sem cartões comuns por enquanto. Comece por um reparo ou organize o que dizer.',
           'today.conflict.repair' => 'Começar o reparo',
@@ -14660,9 +14781,6 @@ extension on Translations {
           'unpair.partnerNotice.title' => ({required Object name}) => 'A ${name} desvinculou',
           'unpair.partnerNotice.titleNoName' => 'Seu par desvinculou',
           'unpair.partnerNotice.highlight' => 'desvinculou',
-          _ => null,
-        } ??
-        switch (path) {
           'unpair.partnerNotice.text' =>
             'Seus dados continuam seus. Cartões compartilhados pararam.',
           'unpair.partnerNotice.ok' => 'Ok',

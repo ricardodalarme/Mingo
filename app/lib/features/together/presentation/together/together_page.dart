@@ -76,8 +76,6 @@ class const TogetherPage({final bool isEmbedded = false, super.key})
           const SizedBox(height: AppSpace.s24),
           const _PrivateSection(),
           const SizedBox(height: AppSpace.s24),
-          const _PatternsSection(),
-          const SizedBox(height: AppSpace.s24),
           const _PrivateMoreSection(),
         ],
       ),
@@ -165,6 +163,12 @@ class const _ToolsSection({
           title: l10n.gamesTitle,
           subtitle: hasPartner ? l10n.gamesMeta : l10n.needsBoth,
           onTap: () => context.pushRoute(const GamesRoute()),
+        ),
+        _row(
+          icon: AppIcons.sparkle,
+          title: context.l10n.quizzes.entryTitle,
+          subtitle: context.l10n.quizzes.entryText,
+          onTap: () => context.pushRoute(const QuizzesRoute()),
         ),
         _row(
           icon: AppIcons.note,
@@ -313,31 +317,6 @@ class const _PrivateSection() extends StatelessWidget {
           title: l10n.hardTalkTitle,
           subtitle: l10n.hardTalkMeta,
           onTap: () => context.pushRoute(const HardConversationRoute()),
-        ),
-      ],
-    );
-  }
-}
-
-class const _PatternsSection() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.tabs;
-
-    return _section(
-      title: l10n.sectionPatterns,
-      children: [
-        _row(
-          icon: AppIcons.twinkle,
-          title: l10n.fightStyleTitle,
-          subtitle: l10n.fightStyleMeta,
-          onTap: () => context.pushRoute(const FightStyleRoute()),
-        ),
-        _row(
-          icon: AppIcons.heart,
-          title: context.l10n.loveStyle.entryTitle,
-          subtitle: l10n.loveStyleMeta,
-          onTap: () => context.pushRoute(const LoveStyleRoute()),
         ),
       ],
     );

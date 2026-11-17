@@ -36,6 +36,7 @@ import 'package:app/features/privacy/di/privacy_injection_module.dart';
 import 'package:app/features/profile/di/profile_injection_module.dart';
 import 'package:app/features/programs/di/programs_injection_module.dart';
 import 'package:app/features/questions/di/questions_injection_module.dart';
+import 'package:app/features/quizzes/di/quizzes_injection_module.dart';
 import 'package:app/features/reminders/di/reminders_injection_module.dart';
 import 'package:app/features/repair/di/repair_injection_module.dart';
 import 'package:app/features/settings/di/settings_injection_module.dart';
@@ -107,6 +108,7 @@ void _registerModules() {
     ProfileInjectionModule(),
     ProgramsInjectionModule(),
     QuestionsInjectionModule(),
+    QuizzesInjectionModule(),
     CardsInjectionModule(),
     ChatInjectionModule(),
     CheckinInjectionModule(),

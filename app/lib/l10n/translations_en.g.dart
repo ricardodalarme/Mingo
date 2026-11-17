@@ -190,6 +190,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$quickSlip$en quickSlip = _Translations$quickSlip$en._(_root);
   @override
+  late final _Translations$quizzes$en quizzes = _Translations$quizzes$en._(_root);
+  @override
   late final _Translations$received$en received = _Translations$received$en._(_root);
   @override
   late final _Translations$relationshipChanged$en relationshipChanged =
@@ -4827,6 +4829,68 @@ class _Translations$quickSlip$en extends Translations$quickSlip$pt {
   String get keep => 'Keep';
   @override
   String get addDetails => 'Add details';
+}
+
+// Path: quizzes
+class _Translations$quizzes$en extends Translations$quizzes$pt {
+  _Translations$quizzes$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Quizzes';
+  @override
+  String get headline => 'Getting to know';
+  @override
+  String get headlineHighlight => 'each other';
+  @override
+  String get intro =>
+      'Two short quizzes, six questions each. You see the result first and decide whether to show it.';
+  @override
+  String get entryTitle => 'Quizzes';
+  @override
+  String get entryText => 'Get to know each other';
+  @override
+  String get lovedTitle => 'How I feel loved';
+  @override
+  String get fightTitle => 'How I react in a fight';
+  @override
+  String questionCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '1 question',
+        other: '${count} questions',
+      );
+  @override
+  String minutes({required Object minutes}) => '${minutes} min';
+  @override
+  String meta({required Object questions, required Object minutes}) => '${questions} · ${minutes}';
+  @override
+  String get start => 'Start';
+  @override
+  String lastDone({required Object date}) => 'Done on ${date}';
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  String get note => 'Only you see the result, until you tap Show. It is not a psychological test.';
+  @override
+  String get loadErrorTitle => 'Could not open the quizzes';
+  @override
+  String get loadErrorText => 'Nothing was lost. Try again.';
 }
 
 // Path: received
@@ -11415,6 +11479,44 @@ extension on TranslationsEn {
           'quickSlip.gentleRequest' => 'Gentle request',
           'quickSlip.keep' => 'Keep',
           'quickSlip.addDetails' => 'Add details',
+          'quizzes.title' => 'Quizzes',
+          'quizzes.headline' => 'Getting to know',
+          'quizzes.headlineHighlight' => 'each other',
+          'quizzes.intro' => 'Two short quizzes, six questions each. You see the result first and decide whether to show it.',
+          'quizzes.entryTitle' => 'Quizzes',
+          'quizzes.entryText' => 'Get to know each other',
+          'quizzes.lovedTitle' => 'How I feel loved',
+          'quizzes.fightTitle' => 'How I react in a fight',
+          'quizzes.questionCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '1 question',
+                  other: '${count} questions',
+                ),
+          'quizzes.minutes' => ({required Object minutes}) => '${minutes} min',
+          'quizzes.meta' => ({
+            required Object questions,
+            required Object minutes,
+          }) => '${questions} · ${minutes}',
+          'quizzes.start' => 'Start',
+          'quizzes.lastDone' => ({required Object date}) => 'Done on ${date}',
+          'quizzes.monthsShort.0' => 'Jan',
+          'quizzes.monthsShort.1' => 'Feb',
+          'quizzes.monthsShort.2' => 'Mar',
+          'quizzes.monthsShort.3' => 'Apr',
+          'quizzes.monthsShort.4' => 'May',
+          'quizzes.monthsShort.5' => 'Jun',
+          'quizzes.monthsShort.6' => 'Jul',
+          'quizzes.monthsShort.7' => 'Aug',
+          'quizzes.monthsShort.8' => 'Sep',
+          'quizzes.monthsShort.9' => 'Oct',
+          'quizzes.monthsShort.10' => 'Nov',
+          'quizzes.monthsShort.11' => 'Dec',
+          'quizzes.note' =>
+            'Only you see the result, until you tap Show. It is not a psychological test.',
+          'quizzes.loadErrorTitle' => 'Could not open the quizzes',
+          'quizzes.loadErrorText' => 'Nothing was lost. Try again.',
           'received.kinds.repair' => 'Repair card',
           'received.kinds.need' => 'I need…',
           'received.kinds.missUs' => 'Missing you',
@@ -11778,6 +11880,9 @@ extension on TranslationsEn {
           'share.phases.other' => '',
           'share.productMark' => 'Mingo',
           'share.errors.other' => 'Couldn\'t share right now. Try again.',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.dateLine' => ({
             required Object weekday,
             required Object month,
@@ -11810,9 +11915,6 @@ extension on TranslationsEn {
           'slipDetail.feeling' => 'How you felt',
           'slipDetail.plan' => 'Then I…',
           'slipDetail.jarTitle' => 'Keep in the jar',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.jarText' => 'To open on a bad day. Only you see it.',
           'slipDetail.sentNote' => 'This slip already went in a card. The sent card keeps the earlier copy, even if you edit or delete it here.',
           'slipDetail.draftBodyErrors.empty' => 'Write the slip first',
@@ -12520,6 +12622,9 @@ extension on TranslationsEn {
           'today.conflict.tag' => 'Now',
           'today.conflict.title' => 'First, take care of you two',
           'today.conflict.highlight' => 'care',
+          _ => null,
+        } ??
+        switch (path) {
           'today.conflict.text' =>
             'No common cards for now. Start with a repair or sort out what to say.',
           'today.conflict.repair' => 'Start the repair',
@@ -12555,9 +12660,6 @@ extension on TranslationsEn {
           'unpair.partnerNotice.title' => ({required Object name}) => '${name} unpaired',
           'unpair.partnerNotice.titleNoName' => 'Your partner unpaired',
           'unpair.partnerNotice.highlight' => 'unpaired',
-          _ => null,
-        } ??
-        switch (path) {
           'unpair.partnerNotice.text' => 'Your data stays yours. Shared cards stopped.',
           'unpair.partnerNotice.ok' => 'Ok',
           'unpair.errors.NETWORK' => 'No connection. Check your internet and try again.',

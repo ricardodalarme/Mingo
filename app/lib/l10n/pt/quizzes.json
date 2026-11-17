@@ -1,0 +1,22 @@
+{
+  "title": "Quizzes",
+  "headline": "Se conhecer",
+  "headlineHighlight": "melhor",
+  "intro": "Dois quizzes curtos, de 6 perguntas. Você vê o resultado primeiro e decide se mostra.",
+  "entryTitle": "Quizzes",
+  "entryText": "Se conhecer melhor",
+  "lovedTitle": "Como eu me sinto amado",
+  "fightTitle": "Como eu reajo numa briga",
+  "questionCount(plural, param=count)": {
+    "one": "1 pergunta",
+    "other": "{count} perguntas"
+  },
+  "minutes": "{minutes} min",
+  "meta": "{questions} · {minutes}",
+  "start": "Começar",
+  "lastDone": "Feito em {date}",
+  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "note": "Só você vê o resultado, até você tocar em Mostrar. Não é teste psicológico.",
+  "loadErrorTitle": "Não deu para abrir os quizzes",
+  "loadErrorText": "Nada foi perdido. Tente de novo."
+}

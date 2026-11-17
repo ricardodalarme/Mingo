@@ -1,0 +1,22 @@
+{
+  "title": "Quizzes",
+  "headline": "Getting to know",
+  "headlineHighlight": "each other",
+  "intro": "Two short quizzes, six questions each. You see the result first and decide whether to show it.",
+  "entryTitle": "Quizzes",
+  "entryText": "Get to know each other",
+  "lovedTitle": "How I feel loved",
+  "fightTitle": "How I react in a fight",
+  "questionCount(plural, param=count)": {
+    "one": "1 question",
+    "other": "{count} questions"
+  },
+  "minutes": "{minutes} min",
+  "meta": "{questions} · {minutes}",
+  "start": "Start",
+  "lastDone": "Done on {date}",
+  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "note": "Only you see the result, until you tap Show. It is not a psychological test.",
+  "loadErrorTitle": "Could not open the quizzes",
+  "loadErrorText": "Nothing was lost. Try again."
+}

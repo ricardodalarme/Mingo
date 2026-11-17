@@ -91,6 +91,7 @@ import 'package:app/features/programs/presentation/program_complete/program_comp
 import 'package:app/features/programs/presentation/program_detail/program_detail_page.dart';
 import 'package:app/features/programs/presentation/programs/programs_page.dart';
 import 'package:app/features/questions/presentation/questions/questions_page.dart';
+import 'package:app/features/quizzes/presentation/hub/quizzes_page.dart';
 import 'package:app/features/repair/presentation/calm/calm_page.dart';
 import 'package:app/features/repair/presentation/guided/guided_repair_page.dart';
 import 'package:app/features/repair/presentation/history/temperature_history_page.dart';
@@ -289,6 +290,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: HistoryAvatarRoute.page),
     AutoRoute(page: HistoryNumbersRoute.page),
     AutoRoute(page: DifferentDatesRoute.page),
+    AutoRoute(page: QuizzesRoute.page, path: '/quizzes'),
   ];
 
   /// Settings, privacy, plans and help.
