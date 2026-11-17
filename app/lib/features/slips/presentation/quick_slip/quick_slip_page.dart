@@ -28,10 +28,7 @@ class const QuickSlipPage({super.key}) extends StatelessWidget implements AutoRo
     final cubit = context.read<QuickSlipCubit>();
 
     return BaseView(
-      appBar: BaseAppBar(
-        onClose: () => context.router.maybePop(),
-        trailing: isSaved ? null : const _DateLine(),
-      ),
+      appBar: BaseAppBar(title: _dateLine(context), onClose: () => context.router.maybePop()),
       body: DirtyFormGuard(
         isDirty: !isSaved && hasDraft,
         title: l10n.discardTitle,
@@ -50,30 +47,21 @@ class const QuickSlipPage({super.key}) extends StatelessWidget implements AutoRo
 
   void _onStateChanged(BuildContext context, QuickSlipState state) {
     final errors = context.l10n.quickSlip.errors;
-
     final failure = switch ((state.saveAction, state.undoAction)) {
       (Failure(:final exception), _) || (_, Failure(:final exception)) => exception,
       _ => null,
     };
-    if (failure != null) {
-      BaseToast.show(context, errors.selectOrFallback(failure.l10nKey));
-      return;
-    }
-    if (state.undoAction is Success) context.router.maybePop();
+    if (failure != null) BaseToast.show(context, errors.selectOrFallback(failure.l10nKey));
   }
-}
 
-class const _DateLine() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  String _dateLine(BuildContext context) {
     final l10n = context.l10n.quickSlip;
     final now = clock.now();
-    final text = l10n.dateLine(
+
+    return l10n.dateLine(
       weekday: l10n.weekdays[now.weekday - 1],
       day: now.day,
       month: l10n.monthsShort[now.month - 1],
     );
-
-    return Text(text, style: context.text.body.copyWith(color: context.colors.textSecondary));
   }
 }

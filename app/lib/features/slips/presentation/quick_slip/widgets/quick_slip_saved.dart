@@ -11,12 +11,11 @@ class const QuickSlipSaved({super.key}) extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n.quickSlip.saved;
     final outcome = context.select((QuickSlipCubit cubit) => cubit.state.saveAction);
-    final canUndo = context.select((QuickSlipCubit cubit) => cubit.state.canUndo);
-    final isUndoing = context.select((QuickSlipCubit cubit) => cubit.state.undoAction.isLoading);
     final isAnnoyance = context.select(
       (QuickSlipCubit cubit) => cubit.state.mode == QuickSlipMode.annoyance,
     );
     final isQueued = outcome is Success<SlipSaveOutcome> && outcome.value == SlipSaveOutcome.queued;
+    final title = isAnnoyance ? l10n.annoyanceTitle : l10n.title;
 
     return BaseMomentContent(
       content: Column(
@@ -27,10 +26,11 @@ class const QuickSlipSaved({super.key}) extends StatelessWidget {
           Semantics(
             header: true,
             liveRegion: true,
-            child: Text(
-              isAnnoyance ? l10n.annoyanceTitle : l10n.title,
-              style: context.text.titleXl,
+            child: AppHighlightedText(
+              text: title,
+              highlight: title,
               textAlign: TextAlign.center,
+              style: context.text.titleXl,
             ),
           ),
           const SizedBox(height: AppSpace.s8),
@@ -43,31 +43,43 @@ class const QuickSlipSaved({super.key}) extends StatelessWidget {
             textAlign: TextAlign.center,
             style: context.text.body.copyWith(color: context.colors.textSecondary),
           ),
-          if (canUndo) ...[
-            const SizedBox(height: AppSpace.s8),
-            Text(
-              l10n.undoHint,
-              textAlign: TextAlign.center,
-              style: context.text.caption.copyWith(color: context.colors.textSecondary),
-            ),
-          ],
         ],
       ),
       footer: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (canUndo) ...[
-            BaseButton(
-              text: l10n.undo,
-              variant: .secondary,
-              isLoading: isUndoing,
-              onPressed: context.read<QuickSlipCubit>().undo,
-            ),
-            const SizedBox(height: AppSpace.s10),
-          ],
+          const _UndoToast(),
           BaseButton(text: l10n.done, onPressed: () => context.router.maybePop()),
         ],
+      ),
+    );
+  }
+}
+
+/// The 30 second undo, shown over the footer while the slip can still be taken back.
+class const _UndoToast() extends StatefulWidget {
+  @override
+  State<_UndoToast> createState() => _UndoToastState();
+}
+
+class _UndoToastState() extends State<_UndoToast> {
+  bool _isDismissed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final canUndo = context.select((QuickSlipCubit cubit) => cubit.state.canUndo);
+    if (!canUndo || _isDismissed) return const SizedBox.shrink();
+
+    final l10n = context.l10n.quickSlip.saved;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSpace.s10),
+      child: BaseToast(
+        message: l10n.undoHint,
+        actionLabel: l10n.undo,
+        onAction: context.read<QuickSlipCubit>().undo,
+        onDismissed: () => setState(() => _isDismissed = true),
       ),
     );
   }
