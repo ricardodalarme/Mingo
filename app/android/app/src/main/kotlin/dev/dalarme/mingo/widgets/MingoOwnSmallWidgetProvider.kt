@@ -37,15 +37,6 @@ class MingoOwnSmallWidgetProvider : AppWidgetProvider() {
                         ?: context.getString(R.string.mingo_widget_ritual_default_schedule),
                     deepLink = "mingo://rituals?homeWidget=1",
                 )
-                !payload.myMood.isNullOrBlank() -> MingoWidgetPayload.renderCard(
-                    context = context,
-                    appWidgetManager = appWidgetManager,
-                    appWidgetId = appWidgetId,
-                    label = context.getString(R.string.mingo_widget_mood_label),
-                    title = payload.myMood,
-                    subtitle = context.getString(R.string.mingo_widget_mood_subtitle),
-                    deepLink = "mingo://mood?homeWidget=1",
-                )
                 payload.cardState == "ready" || payload.cardState == "sent" -> MingoWidgetPayload.renderCard(
                     context = context,
                     appWidgetManager = appWidgetManager,
