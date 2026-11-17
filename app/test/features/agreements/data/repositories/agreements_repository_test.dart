@@ -61,4 +61,27 @@ void main() {
     expect(saved.isShared, isTrue);
     expect(saved.isWaitingForPartner, isTrue);
   });
+
+  test('watching maps each row with the ownership of the person', () async {
+    when(dataSource.watchAgreements)
+        .thenAnswer((_) => Stream.value([node(id: 'b', authorId: 'you', coupleId: 'c')]));
+
+    final agreements = await repository.watchAgreements().first;
+
+    expect(agreements.single.needsMyConfirmation, isTrue);
+  });
+
+  test('a failed event is skipped and the stream goes on', () async {
+    when(dataSource.watchAgreements).thenAnswer(
+      (_) => Stream.fromIterable([true, false]).map((isOk) {
+        if (!isOk) throw Exception('offline');
+
+        return [node(id: 'a', authorId: 'me')];
+      }),
+    );
+
+    final agreements = await repository.watchAgreements().toList();
+
+    expect(agreements, hasLength(1));
+  });
 }

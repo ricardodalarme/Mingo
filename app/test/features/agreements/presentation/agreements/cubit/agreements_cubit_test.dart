@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/agreements/data/models/agreement.dart';
 import 'package:app/features/agreements/data/repositories/agreements_repository.dart';
 import 'package:app/features/agreements/presentation/agreements/cubit/agreements_cubit.dart';
@@ -9,6 +11,7 @@ class _MockRepository() extends Mock implements AgreementsRepository;
 
 void main() {
   late AgreementsRepository repository;
+  late StreamController<List<Agreement>> live;
 
   const waiting = Agreement(
     id: 'a',
@@ -20,8 +23,39 @@ void main() {
 
   setUp(() {
     repository = _MockRepository();
+    live = StreamController<List<Agreement>>.broadcast();
+    addTearDown(live.close);
+    when(repository.watchAgreements).thenAnswer((_) => live.stream);
     when(repository.getCoupleId).thenAnswer((_) async => 'c');
     when(repository.getAgreements).thenAnswer((_) async => [waiting]);
+  });
+
+  test('the partner confirming an agreement updates the list while the page is open', () async {
+    const confirmed = Agreement(
+      id: 'a',
+      body: 'texto',
+      isMine: false,
+      isShared: true,
+      isConfirmed: true,
+    );
+    final cubit = AgreementsCubit(repository: repository);
+    addTearDown(cubit.close);
+    await cubit.load();
+
+    live.add([confirmed]);
+    await pumpEventQueue();
+
+    expect(cubit.state.current, [confirmed]);
+  });
+
+  test('stops following the agreements when it closes', () async {
+    final cubit = AgreementsCubit(repository: repository);
+    await cubit.load();
+    expect(live.hasListener, isTrue);
+
+    await cubit.close();
+
+    expect(live.hasListener, isFalse);
   });
 
   test('load reads the agreements and the couple', () async {

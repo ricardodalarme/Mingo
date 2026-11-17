@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/agreements/data/models/agreement.dart';
 import 'package:app/features/agreements/data/repositories/agreements_repository.dart';
 import 'package:core/core.dart';
@@ -12,6 +14,7 @@ class AgreementsCubit({required final AgreementsRepository _repository})
   this : super(const AgreementsState());
 
   final Uuid _uuid = const Uuid();
+  StreamSubscription<List<Agreement>>? _live;
 
   Future<void> load() async {
     if (state.agreements is! Success) emit(state.copyWith(agreements: const Loading()));
@@ -21,6 +24,7 @@ class AgreementsCubit({required final AgreementsRepository _repository})
         _repository.getAgreements(),
       ).wait;
       emit(state.copyWith(agreements: Success(agreements), coupleId: coupleId));
+      _watch();
     } catch (exception) {
       if (state.agreements is Success) return;
       emit(state.copyWith(agreements: Failure.fromObject(exception)));
@@ -86,5 +90,21 @@ class AgreementsCubit({required final AgreementsRepository _repository})
       emit(state.copyWith(changeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(changeAction: const Initial()));
+  }
+
+  /// Follows the agreements after the first read, so a proposal or confirmation by the partner
+  /// shows up while the page is open.
+  void _watch() {
+    _live ??= _repository.watchAgreements().listen((agreements) {
+      if (state.changeAction.isLoading) return;
+      emit(state.copyWith(agreements: Success(agreements)));
+    });
+  }
+
+  @override
+  Future<void> close() async {
+    await _live?.cancel();
+
+    return super.close();
   }
 }

@@ -22,6 +22,27 @@ class AgreementsRepository({
     ];
   });
 
+  /// Emits the open agreements now and each time the partner or the person changes one.
+  ///
+  /// A failed event is logged and skipped, so a screen keeps what it shows.
+  Stream<List<Agreement>> watchAgreements() async* {
+    final String? userId;
+    try {
+      userId = await _togetherRepository.getCurrentUserId();
+    } catch (e, stack) {
+      _logger.error('Failed to start the agreements subscription', error: e, stackTrace: stack);
+
+      return;
+    }
+
+    yield* _dataSource
+        .watchAgreements()
+        .map((nodes) => [for (final node in nodes) _toModel(node, currentUserId: userId)])
+        .handleError((Object e, StackTrace stack) {
+          _logger.error('The agreements subscription failed', error: e, stackTrace: stack);
+        });
+  }
+
   /// Saves the agreement, shared with the partner when the person has one, and returns it.
   Future<Agreement> addAgreement({required String id, required String body}) =>
       _run('add an agreement', () async {

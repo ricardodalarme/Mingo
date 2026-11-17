@@ -3,6 +3,7 @@ import 'package:app/features/agreements/data/data_sources/remote/mutations/gener
 import 'package:app/features/agreements/data/data_sources/remote/mutations/generated/ArchiveAgreement.graphql.dart';
 import 'package:app/features/agreements/data/data_sources/remote/mutations/generated/ConfirmAgreement.graphql.dart';
 import 'package:app/features/agreements/data/data_sources/remote/queries/generated/Agreements.graphql.dart';
+import 'package:app/features/agreements/data/data_sources/remote/subscriptions/generated/WatchAgreements.graphql.dart';
 import 'package:network/network.dart';
 
 class AgreementsDataSource({required final GQLClient _client}) {
@@ -14,6 +15,13 @@ class AgreementsDataSource({required final GQLClient _client}) {
     return List<FragmentAgreementFragment>.of(
       validateResponseData(response, getData: (data) => data.agreements),
     );
+  }
+
+  /// Emits the open agreements now and each time one is added, confirmed or archived.
+  Stream<List<FragmentAgreementFragment>> watchAgreements() {
+    return _client
+        .subscribe(OptionsSubscriptionWatchAgreements())
+        .mapResponseData((data) => List<FragmentAgreementFragment>.of(data.agreements));
   }
 
   Future<FragmentAgreementFragment> addAgreement({
