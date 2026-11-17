@@ -1,7 +1,9 @@
+import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/presentation/slips/widgets/slips_groups.dart';
 import 'package:app/features/slips/presentation/slips_search/cubit/slips_search_cubit.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
@@ -56,18 +58,39 @@ class const SlipsSearchPage({super.key}) extends StatelessWidget implements Auto
               results,
               fakeValue: [SlipEntry.fake(), SlipEntry.fake()],
               successBuilder: (items) => items.isEmpty
-                  ? BaseEmptyState(title: l10n.searchEmptyTitle, text: l10n.searchEmptyText)
+                  ? _Empty(query: query, hasFilters: filters.isNotEmpty)
                   : SlipsGroups(slips: items, showsHeaders: false),
-              failureBuilder: (_) => BaseEmptyState(
-                title: l10n.errorTitle,
-                text: l10n.errorText,
-                actionText: context.l10n.common.retry,
-                onAction: cubit.start,
-              ),
+              failureBuilder: (exception) =>
+                  AppErrorView(exception: exception, onRetry: cubit.start),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class const _Empty({required final String query, required final bool hasFilters})
+    extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.slipsList;
+    final hasQuery = query.trim().isNotEmpty;
+
+    if (!hasQuery && !hasFilters) {
+      return BaseEmptyState(
+        title: l10n.emptyTitle,
+        text: l10n.emptyText,
+        face: FaceKind.thinking,
+        actionText: l10n.emptyAction,
+        onAction: () => context.router.root.push(const QuickSlipRoute()),
+      );
+    }
+
+    return BaseEmptyState(
+      title: l10n.searchEmptyTitle,
+      text: hasQuery ? l10n.searchEmptyText : l10n.searchFiltersEmptyText,
+      face: FaceKind.thinking,
     );
   }
 }

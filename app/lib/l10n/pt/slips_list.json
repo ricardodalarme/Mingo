@@ -51,11 +51,13 @@
   "emptyTitle": "Nada ainda",
   "emptyText": "Um slip é uma coisa boa, em uma linha.",
   "emptyAction": "Adicionar um slip",
-  "errorTitle": "Não deu para carregar seus slips",
-  "errorText": "Eles continuam salvos. Tente de novo.",
+  "privateEmptyTitle": "Nada privado por aqui",
+  "privateEmptyText": "Os slips que você deixa fora do cartão aparecem aqui.",
+  "privateMarker": "Slip privado",
   "scopePrivate": "Privado",
   "freeNote": "Slips são sempre livres.",
   "filterThisMonth": "Este mês",
   "filterInCard": "Em um cartão",
-  "filterInvisible": "Trabalho invisível"
+  "filterInvisible": "Trabalho invisível",
+  "searchFiltersEmptyText": "Ajuste a busca ou os filtros."
 }

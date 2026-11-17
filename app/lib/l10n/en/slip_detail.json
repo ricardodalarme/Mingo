@@ -50,8 +50,6 @@
   "deleted": "Slip deleted",
   "notFoundTitle": "This slip no longer exists",
   "notFoundText": "It may have been deleted.",
-  "errorTitle": "Couldn't open this slip",
-  "errorText": "It is still saved. Try again.",
   "errors(map)": {
     "SLIP_NOT_FOUND": "This slip no longer exists.",
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",

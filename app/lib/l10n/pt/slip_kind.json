@@ -63,7 +63,6 @@
     "done": "Pronto"
   },
   "errors(map)": {
-    "FREE_LIMIT_REACHED": "Você chegou ao limite de slips do plano grátis.",
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para salvar agora. Seu texto continua aqui, tente de novo."
   }

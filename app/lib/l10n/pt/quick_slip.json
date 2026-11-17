@@ -42,6 +42,7 @@
     "other": ""
   },
   "privacyNote": "Fica privado. No domingo você escolhe o que vai para o cartão.",
+  "cardNote": "Entra no seu cartão semanal. Você pode tirar quando quiser.",
   "save": "Salvar",
   "discardTitle": "Descartar este slip?",
   "saved": {
@@ -55,7 +56,6 @@
     "annoyanceAdded": "Fica só com você e some sozinho em 14 dias."
   },
   "errors(map)": {
-    "FREE_LIMIT_REACHED": "Você chegou ao limite de slips do plano grátis.",
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para salvar agora. Seu texto continua aqui, tente de novo."
   },

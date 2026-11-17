@@ -38,7 +38,10 @@ class const SlipsGroups({
                     index: index,
                     child: BaseListTile(
                       title: slip.body,
+                      titleMaxLines: 2,
                       subtitle: _dayLine(context, slip),
+                      subtitleMaxLines: 2,
+                      trailing: slip.isPrivate ? const _PrivateMarker() : null,
                       showsChevron: true,
                       onTap: () => context.pushRoute(SlipDetailRoute(id: slip.id)),
                     ),
@@ -92,4 +95,17 @@ DateTime _monday(DateTime date) {
   final day = DateTime(date.year, date.month, date.day);
 
   return day.subtract(Duration(days: day.weekday - DateTime.monday));
+}
+
+/// The lock that says a slip stays out of the weekly card.
+class const _PrivateMarker() extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AppIcon(
+      icon: AppIcons.lock,
+      size: AppIconSize.sm,
+      color: context.colors.iconMuted,
+      semanticLabel: context.l10n.slipsList.privateMarker,
+    );
+  }
 }

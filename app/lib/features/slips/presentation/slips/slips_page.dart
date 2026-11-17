@@ -1,3 +1,4 @@
+import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
 import 'package:app/features/slips/presentation/slips/widgets/slips_groups.dart';
@@ -94,29 +95,35 @@ class _SlipsPageState() extends State<SlipsPage> {
                 slips,
                 fakeValue: [SlipEntry.fake(), SlipEntry.fake(), SlipEntry.fake()],
                 successBuilder: (items) => items.isEmpty
-                    ? BaseEmptyState(
-                        title: l10n.emptyTitle,
-                        text: l10n.emptyText,
-                        face: FaceKind.thinking,
-                        actionText: l10n.emptyAction,
-                        onAction: () => context.router.root.push(const QuickSlipRoute()),
-                      )
+                    ? _Empty(scope: scope)
                     : _Results(
                         items: items,
                         isLoaded: slips is Success<List<SlipEntry>>,
                         showsHeaders: scope == SlipsScope.all,
                       ),
-                failureBuilder: (_) => BaseEmptyState(
-                  title: l10n.errorTitle,
-                  text: l10n.errorText,
-                  actionText: context.l10n.common.retry,
-                  onAction: cubit.load,
-                ),
+                failureBuilder: (exception) =>
+                    AppErrorView(exception: exception, onRetry: cubit.load),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class const _Empty({required final SlipsScope scope}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.slipsList;
+    final isPrivate = scope == SlipsScope.private;
+
+    return BaseEmptyState(
+      title: isPrivate ? l10n.privateEmptyTitle : l10n.emptyTitle,
+      text: isPrivate ? l10n.privateEmptyText : l10n.emptyText,
+      face: FaceKind.thinking,
+      actionText: l10n.emptyAction,
+      onAction: () => context.router.root.push(const QuickSlipRoute()),
     );
   }
 }

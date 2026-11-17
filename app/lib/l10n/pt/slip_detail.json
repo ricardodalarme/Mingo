@@ -50,8 +50,6 @@
   "deleted": "Slip apagado",
   "notFoundTitle": "Este slip não existe mais",
   "notFoundText": "Ele pode ter sido apagado.",
-  "errorTitle": "Não deu para abrir este slip",
-  "errorText": "Ele continua salvo. Tente de novo.",
   "errors(map)": {
     "SLIP_NOT_FOUND": "Este slip não existe mais.",
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",

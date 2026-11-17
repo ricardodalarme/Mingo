@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
@@ -162,6 +163,78 @@ void main() {
 
       expect(_rowOpacity(tester, 0), 1);
       expect(find.text('Fez café sem eu pedir'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  });
+
+  testWidgets('a private slip carries the lock on its row', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      stubPage([
+        SlipEntry(id: 'a', body: 'Fez café', createdAt: clock.now(), forCard: false),
+        SlipEntry(id: 'b', body: 'Deixou um bilhete', createdAt: clock.now(), forCard: true),
+      ]);
+      final cubit = await build();
+      final semantics = tester.ensureSemantics();
+
+      await pumpPage(tester, cubit);
+
+      await tester.pump(AppMotion.stagger);
+      await tester.pump(AppMotion.stagger);
+
+      expect(find.byIcon(AppIcons.lock), findsOneWidget);
+      expect(find.bySemanticsLabel(RegExp('Slip privado')), findsOneWidget);
+      semantics.dispose();
+    });
+  });
+
+  testWidgets('the private scope with nothing in it says so', (tester) async {
+    stubPage(const []);
+    final cubit = await build();
+    await cubit.changeScope(SlipsScope.private);
+
+    await pumpPage(tester, cubit);
+
+    expect(find.text('Nada privado por aqui'), findsOneWidget);
+    expect(find.text('Nada ainda'), findsNothing);
+  });
+
+  testWidgets('a failed read shows the shared error with a retry', (tester) async {
+    when(
+      () => repository.getSlips(
+        offset: any(named: 'offset'),
+        filter: any(named: 'filter'),
+        pageSize: any(named: 'pageSize'),
+      ),
+    ).thenAnswer((_) async => throw Exception());
+    final cubit = await build();
+
+    await pumpPage(tester, cubit);
+
+    expect(find.byType(AppErrorView), findsOneWidget);
+  });
+
+  testWidgets('rows and filters fit at 200% text', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      stubPage([
+        SlipEntry(
+          id: 'a',
+          body: 'Ela ficou acordada para me levar ao aeroporto de madrugada',
+          createdAt: clock.now(),
+          forCard: false,
+        ),
+      ]);
+      final cubit = await build();
+
+      await tester.pumpApp(
+        Builder(
+          builder: (context) => MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(2)),
+            child: BlocProvider.value(value: cubit, child: const SlipsPage()),
+          ),
+        ),
+      );
+      await tester.pump();
+
       expect(tester.takeException(), isNull);
     });
   });

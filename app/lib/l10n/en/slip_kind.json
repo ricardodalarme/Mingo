@@ -63,7 +63,6 @@
     "done": "Done"
   },
   "errors(map)": {
-    "FREE_LIMIT_REACHED": "You reached the free plan's slip limit.",
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't save right now. Your text is still here, try again."
   }

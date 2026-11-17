@@ -1,3 +1,4 @@
+import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/_shared/presentation/forms/discard_changes.dart';
 import 'package:app/features/slips/data/models/slip_detail.dart';
 import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
@@ -55,11 +56,9 @@ class const SlipDetailPage({@PathParam('id') required final String id, super.key
             successBuilder: (value) => value == null
                 ? BaseEmptyState(title: l10n.notFoundTitle, text: l10n.notFoundText)
                 : const SlipDetailContent(),
-            failureBuilder: (_) => BaseEmptyState(
-              title: l10n.errorTitle,
-              text: l10n.errorText,
-              actionText: context.l10n.common.retry,
-              onAction: () => context.read<SlipDetailCubit>().load(id),
+            failureBuilder: (exception) => AppErrorView(
+              exception: exception,
+              onRetry: () => context.read<SlipDetailCubit>().load(id),
             ),
           ),
         ),

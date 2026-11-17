@@ -51,11 +51,13 @@
   "emptyTitle": "Nothing yet",
   "emptyText": "A slip is one good thing, in one line.",
   "emptyAction": "Add a slip",
-  "errorTitle": "Could not load your slips",
-  "errorText": "They are still saved. Try again.",
+  "privateEmptyTitle": "Nothing private here",
+  "privateEmptyText": "Slips you keep off the card show up here.",
+  "privateMarker": "Private slip",
   "scopePrivate": "Private",
   "freeNote": "Slips are always free.",
   "filterThisMonth": "This month",
   "filterInCard": "In a card",
-  "filterInvisible": "Invisible work"
+  "filterInvisible": "Invisible work",
+  "searchFiltersEmptyText": "Adjust the search or the filters."
 }

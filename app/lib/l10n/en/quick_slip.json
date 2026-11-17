@@ -42,6 +42,7 @@
     "other": ""
   },
   "privacyNote": "It stays private. On Sunday you choose what goes on the card.",
+  "cardNote": "It goes on your weekly card. You can take it out anytime.",
   "save": "Save",
   "discardTitle": "Discard this slip?",
   "saved": {
@@ -55,7 +56,6 @@
     "annoyanceAdded": "It stays with you and goes away on its own in 14 days."
   },
   "errors(map)": {
-    "FREE_LIMIT_REACHED": "You reached the free plan's slip limit.",
     "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
     "other": "Could not save right now. Your text is still here, try again."
   },
