@@ -37,13 +37,7 @@ class ChatCubit({
       final status = await _chatRepository.getStatus();
       emit(
         state.copyWith(
-          stage: Success(
-            !status.hasPlus
-                ? ChatStage.plusRequired
-                : status.messagesLeft <= 0
-                ? ChatStage.limitReached
-                : ChatStage.ready,
-          ),
+          stage: Success(status.messagesLeft <= 0 ? ChatStage.limitReached : ChatStage.ready),
           messagesLeft: status.messagesLeft,
           hasPlus: status.hasPlus,
         ),

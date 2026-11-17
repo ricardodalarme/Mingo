@@ -176,14 +176,23 @@ void main() {
     ).called(1);
   });
 
-  test('a free person sees the Plus gate', () async {
-    when(repository.getStatus).thenAnswer((_) async => (messagesLeft: 0, limit: 0, hasPlus: false));
+  test('a free person with messages left reaches the chat', () async {
+    when(repository.getStatus).thenAnswer((_) async => (messagesLeft: 5, limit: 5, hasPlus: false));
     final cubit = build();
 
     await cubit.load();
 
-    expect(cubit.state.stage, const Success(ChatStage.plusRequired));
+    expect(cubit.state.stage, const Success(ChatStage.ready));
     expect(cubit.state.hasPlus, isFalse);
+  });
+
+  test('a free person with nothing left sees the limit', () async {
+    when(repository.getStatus).thenAnswer((_) async => (messagesLeft: 0, limit: 5, hasPlus: false));
+    final cubit = build();
+
+    await cubit.load();
+
+    expect(cubit.state.stage, const Success(ChatStage.limitReached));
   });
 
   test('retry resends the interrupted turn, not the latest message', () async {

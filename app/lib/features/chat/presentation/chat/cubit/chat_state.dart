@@ -9,9 +9,6 @@ enum ChatStage() {
 
   /// The server has no model configured.
   unavailable,
-
-  /// The free plan has no messages.
-  plusRequired,
 }
 
 final class const ChatState({

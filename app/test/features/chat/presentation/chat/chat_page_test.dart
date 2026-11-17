@@ -115,16 +115,26 @@ void main() {
     expect(sendPressable.onTap, isNotNull);
   });
 
-  testWidgets('a free person sees the Plus gate instead of the composer', (tester) async {
+  testWidgets('a free person with messages left gets the composer', (tester) async {
     when(chatRepository.getStatus)
-        .thenAnswer((_) async => (messagesLeft: 0, limit: 0, hasPlus: false));
+        .thenAnswer((_) async => (messagesLeft: 5, limit: 5, hasPlus: false));
     final cubits = await build(isOnline: true);
 
     await pumpChat(tester, cubits.chat, cubits.connectivity);
 
-    expect(find.text('A conversa faz parte do Plus'), findsOneWidget);
-    expect(find.widgetWithText(BaseButton, 'Ver planos'), findsOneWidget);
-    expect(find.text('Ligar a conversa'), findsNothing);
+    expect(find.text('A conversa faz parte do Plus'), findsNothing);
+    expect(find.byKey(const ValueKey('chatSend')), findsOneWidget);
+  });
+
+  testWidgets('a free person with nothing left sees the limit, not the Plus gate', (tester) async {
+    when(chatRepository.getStatus)
+        .thenAnswer((_) async => (messagesLeft: 0, limit: 5, hasPlus: false));
+    final cubits = await build(isOnline: true);
+
+    await pumpChat(tester, cubits.chat, cubits.connectivity);
+
+    expect(find.text('A conversa faz parte do Plus'), findsNothing);
+    expect(find.byKey(const ValueKey('chatSend')), findsNothing);
   });
 
   testWidgets('the quota stays quiet until two messages are left', (tester) async {

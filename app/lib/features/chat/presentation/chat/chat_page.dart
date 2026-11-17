@@ -87,20 +87,6 @@ class const ChatPage({final ChatMode mode = ChatMode.free, super.key})
               title: l10n.unavailableTitle,
               text: l10n.unavailableText,
             ),
-            ChatStage.plusRequired => BaseStackedContent(
-              body: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
-                  const SizedBox(height: AppSpace.s16),
-                  PlusLock(title: l10n.plusTitle, text: l10n.plusText),
-                ],
-              ),
-              footer: BaseButton(
-                text: l10n.plusCta,
-                onPressed: () => context.pushRoute(const PlansRoute()),
-              ),
-            ),
             ChatStage.ready || ChatStage.limitReached => _Conversation(
               isLimitReached: value == ChatStage.limitReached,
             ),
