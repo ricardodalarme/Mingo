@@ -19,11 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// It reads [MoodCubit], so it paints as soon as the mood read returns instead of waiting for
 /// Hoje's home query. A face saves the mood on the tap; the need and the share choice have their
 /// own entries under the strip.
-class const TodayMoodBlock({
-  final bool isFirstDay = false,
-  final bool hasPendingInvite = false,
-  super.key,
-}) extends StatelessWidget {
+class const TodayMoodBlock({final bool isFirstDay = false, super.key}) extends StatelessWidget {
   static const _homeMoods = <MoodKind>[
     // Hoje shows the board's five-mood subset; the Mood screen keeps all six.
     MoodKind.happy,
@@ -61,7 +57,7 @@ class const TodayMoodBlock({
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (!isFirstDay && !hasPendingInvite)
+          if (!isFirstDay)
             SkeletonizerResourceWidget<MoodEntry?>(
               entry,
               fakeValue: null,

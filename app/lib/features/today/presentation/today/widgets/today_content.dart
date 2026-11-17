@@ -70,10 +70,7 @@ class const TodayContent({
     if (previous == TodayBlock.mood) return 0;
 
     return switch (block) {
-      TodayBlock.conflict ||
-      TodayBlock.firstDayCard ||
-      TodayBlock.privateCard ||
-      TodayBlock.mood => 0,
+      TodayBlock.conflict || TodayBlock.firstDayCard || TodayBlock.mood => 0,
       TodayBlock.nothingReceived ||
       TodayBlock.questionCard ||
       TodayBlock.weekCard ||
@@ -96,18 +93,7 @@ class const TodayContent({
     return switch (block) {
       TodayBlock.conflict => const ConflictSection(),
       TodayBlock.firstDayCard => _MainCard(home: home, isFirstDay: true),
-      TodayBlock.privateCard => BaseFeatureCard(
-        tag: l10n.privateTag,
-        question: l10n.privateQuestion,
-        highlightedWord: l10n.privateHighlight,
-        actionText: l10n.privateAction,
-        face: FaceKind.smile,
-        onAction: () => _openCapture(context),
-      ),
-      TodayBlock.mood => TodayMoodBlock(
-        isFirstDay: isFirstDay,
-        hasPendingInvite: home.hasPendingInvite,
-      ),
+      TodayBlock.mood => TodayMoodBlock(isFirstDay: isFirstDay),
       TodayBlock.questionCard => _MainCard(home: home, isFirstDay: false),
       TodayBlock.nothingReceived => BaseNote(text: l10n.nothingReceived, icon: AppIcons.info),
       TodayBlock.emptyWeekCard => BaseFeatureCard(

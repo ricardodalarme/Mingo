@@ -87,15 +87,19 @@ void main() {
       ]);
     });
 
-    test('a pending invite leaves only the private prompt', () {
+    test('a pending invite keeps everything that works alone, without a second invite card', () {
       expect(_blocks(home: _home(isPaired: false, hasPendingInvite: true)), [
-        TodayBlock.privateCard,
+        TodayBlock.mood,
+        TodayBlock.weekCard,
+        TodayBlock.forToday,
       ]);
     });
 
-    test('a pending invite outranks the first day', () {
+    test('a pending invite on the first day keeps the first day blocks', () {
       expect(_blocks(home: _home(isPaired: false, hasPendingInvite: true), isFirstDay: true), [
-        TodayBlock.privateCard,
+        TodayBlock.firstDayCard,
+        TodayBlock.weekCard,
+        TodayBlock.forToday,
       ]);
     });
 

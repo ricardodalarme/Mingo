@@ -152,15 +152,15 @@ void main() {
     expect(find.text('Para hoje'), findsNothing);
   });
 
-  testWidgets('a pending invite shows the invite notice and the private prompt only', (
+  testWidgets('a pending invite keeps the mood, the week and the ideas under the notice', (
     tester,
   ) async {
     await pump(tester, home(isPaired: false, hasPendingInvite: true));
 
     expect(find.text('CONVITE ENVIADO'), findsOneWidget);
-    expect(find.textContaining('Como foi o seu', findRichText: true), findsOneWidget);
-    expect(find.text('Como você está?'), findsNothing);
-    expect(find.text('Para hoje'), findsNothing);
+    expect(find.text('Como você está?'), findsOneWidget);
+    expect(find.text('Para hoje'), findsOneWidget);
+    expect(find.text('Convidar Rui'), findsNothing);
   });
 
   testWidgets('a fight answer keeps the screen to the repair and the conversation', (tester) async {

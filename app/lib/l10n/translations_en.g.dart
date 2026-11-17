@@ -6349,14 +6349,6 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String get inviteCardText => 'Shared cards and tools need both of you.';
   @override
-  String get privateTag => 'Only yours';
-  @override
-  String get privateQuestion => 'How was your day, really?';
-  @override
-  String get privateHighlight => 'day';
-  @override
-  String get privateAction => 'Note a slip';
-  @override
   String get emptyWeekTag => 'No rush';
   @override
   String get emptyWeekQuestion => 'What was one good thing today?';
@@ -12856,10 +12848,6 @@ extension on TranslationsEn {
           'today.inviteCardTitle' => ({required Object name}) => 'Invite ${name}',
           'today.inviteCardTitleNoName' => 'Invite your person',
           'today.inviteCardText' => 'Shared cards and tools need both of you.',
-          'today.privateTag' => 'Only yours',
-          'today.privateQuestion' => 'How was your day, really?',
-          'today.privateHighlight' => 'day',
-          'today.privateAction' => 'Note a slip',
           'today.emptyWeekTag' => 'No rush',
           'today.emptyWeekQuestion' => 'What was one good thing today?',
           'today.emptyWeekHighlight' => 'good',

@@ -4,7 +4,6 @@ import 'package:app/features/today/data/models/today_home.dart';
 enum TodayBlock() {
   conflict,
   firstDayCard,
-  privateCard,
   mood,
   questionCard,
   nothingReceived,
@@ -32,9 +31,10 @@ TodayBandKind todayBandFor({required TodayHome home, required bool isOffline}) {
 
 /// The blocks Hoje shows for [home], in order and only where there is content to fill them.
 ///
-/// The greeting and the band are not blocks: they always come first. On the first day and while
-/// an invite waits, the screen keeps to what the person can do alone; after a fight answer only
-/// the repair and the conversation remain.
+/// The greeting and the band are not blocks: they always come first. Someone who has not connected
+/// yet, or whose invite still waits, sees everything that works alone; the invite card steps aside
+/// while an invite is pending, since the band already says so. After a fight answer only the repair
+/// and the conversation remain.
 List<TodayBlock> todayBlocksFor({
   required TodayHome home,
   required bool isFirstDay,
@@ -42,7 +42,6 @@ List<TodayBlock> todayBlocksFor({
   required bool isSoloOnly,
 }) {
   if (isInConflict) return const [TodayBlock.conflict];
-  if (home.hasPendingInvite) return const [TodayBlock.privateCard];
   if (isFirstDay) {
     return const [TodayBlock.firstDayCard, TodayBlock.weekCard, TodayBlock.forToday];
   }
@@ -54,7 +53,7 @@ List<TodayBlock> todayBlocksFor({
     return [
       TodayBlock.mood,
       TodayBlock.weekCard,
-      if (canInvite) TodayBlock.inviteCard,
+      if (canInvite && !home.hasPendingInvite) TodayBlock.inviteCard,
       TodayBlock.forToday,
       if (home.togetherSince != null) TodayBlock.shareEntry,
     ];

@@ -7902,18 +7902,6 @@ class Translations$today$pt {
   /// pt: 'Cartões e ferramentas compartilhadas precisam dos dois.'
   String get inviteCardText => 'Cartões e ferramentas compartilhadas precisam dos dois.';
 
-  /// pt: 'Só seu'
-  String get privateTag => 'Só seu';
-
-  /// pt: 'Como foi o seu dia, de verdade?'
-  String get privateQuestion => 'Como foi o seu dia, de verdade?';
-
-  /// pt: 'dia'
-  String get privateHighlight => 'dia';
-
-  /// pt: 'Anotar um slip'
-  String get privateAction => 'Anotar um slip';
-
   /// pt: 'Sem pressa'
   String get emptyWeekTag => 'Sem pressa';
 
@@ -15082,10 +15070,6 @@ extension on Translations {
           'today.inviteCardTitle' => ({required Object name}) => 'Convidar ${name}',
           'today.inviteCardTitleNoName' => 'Convidar sua pessoa',
           'today.inviteCardText' => 'Cartões e ferramentas compartilhadas precisam dos dois.',
-          'today.privateTag' => 'Só seu',
-          'today.privateQuestion' => 'Como foi o seu dia, de verdade?',
-          'today.privateHighlight' => 'dia',
-          'today.privateAction' => 'Anotar um slip',
           'today.emptyWeekTag' => 'Sem pressa',
           'today.emptyWeekQuestion' => 'Qual foi uma coisa boa hoje?',
           'today.emptyWeekHighlight' => 'boa',
