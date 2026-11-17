@@ -113,6 +113,9 @@ class const _ShareStep() extends StatelessWidget {
               for (final option in [MoodShare.mood, MoodShare.moodNeed, MoodShare.none])
                 BaseOptionTile(
                   title: l10n.share.selectOrFallback(option.name),
+                  support: option == MoodShare.moodNeed && need == null
+                      ? l10n.shareNeedFirst
+                      : l10n.shareSupport.selectOrFallback(option.name),
                   leading: BaseIconTile(icon: icons[option]!),
                   isSelected: share == option,
                   isEnabled: !isSaving && (option != MoodShare.moodNeed || need != null),

@@ -30,6 +30,7 @@
   "needSheetSubtitle": "Uma coisa por dia. Só chega ao seu par se você compartilhar o humor.",
   "needSaved": "Salvo",
   "shareSubtitle": "Quem cria o dado decide. O padrão é privado.",
+  "shareNeedFirst": "Escolha um “Preciso de...” primeiro.",
   "share(map)": {
     "none": "Manter privado",
     "mood": "Só meu humor",

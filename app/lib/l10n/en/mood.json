@@ -30,6 +30,7 @@
   "needSheetSubtitle": "One thing a day. Your partner sees it only if you share your mood.",
   "needSaved": "Saved",
   "shareSubtitle": "You decide. Nothing is shared by default.",
+  "shareNeedFirst": "Pick an “I need…” first.",
   "share(map)": {
     "none": "Keep private",
     "mood": "Only my mood",

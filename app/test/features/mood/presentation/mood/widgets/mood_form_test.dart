@@ -160,4 +160,49 @@ void main() {
     expect(find.text('Compartilhar com a Marina?'), findsNothing);
     expect(find.text('Manter privado'), findsNothing);
   });
+
+  testWidgets('the share step spells out who sees each option', (tester) async {
+    final repository = _MockMoodRepository();
+    when(repository.getTodayMood).thenAnswer(
+      (_) async => (entry: null, partnerMood: null, partnerName: 'Marina', hasPartner: true),
+    );
+    final cubit = MoodCubit(moodRepository: repository, slipRepository: _MockSlipRepository());
+    await cubit.load();
+    addTearDown(cubit.close);
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const MoodForm()));
+    await tester.tap(find.text('Feliz'));
+    await tester.pump();
+    await tester.tap(find.text('Próximo'));
+    await tester.pump();
+
+    expect(find.text('Seu par vê o humor, sem o que você precisa.'), findsOneWidget);
+    expect(find.text('Escolha um “Preciso de...” primeiro.'), findsOneWidget);
+    expect(find.text('Nada é compartilhado.'), findsOneWidget);
+  });
+
+  testWidgets('a chosen need unlocks the mood and need option', (tester) async {
+    final repository = _MockMoodRepository();
+    when(repository.getTodayMood).thenAnswer(
+      (_) async => (entry: null, partnerMood: null, partnerName: 'Marina', hasPartner: true),
+    );
+    final cubit = MoodCubit(moodRepository: repository, slipRepository: _MockSlipRepository());
+    await cubit.load();
+    addTearDown(cubit.close);
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const MoodForm()));
+    await tester.tap(find.text('Feliz'));
+    await tester.tap(find.text('Uma opinião'));
+    await tester.pump();
+    await tester.tap(find.text('Próximo'));
+    await tester.pump();
+
+    expect(find.text('Seu par vê o humor e o que você precisa.'), findsOneWidget);
+    expect(find.text('Escolha um “Preciso de...” primeiro.'), findsNothing);
+
+    await tester.tap(find.text('Humor e o que preciso'));
+    await tester.pump();
+
+    expect(cubit.state.share, MoodShare.moodNeed);
+  });
 }
