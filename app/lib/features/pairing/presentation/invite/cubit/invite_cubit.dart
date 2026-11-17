@@ -6,7 +6,6 @@ import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_service/share_service.dart';
 
@@ -57,13 +56,8 @@ class InviteCubit({
       await _shareService.shareText(text: message);
       emit(state.copyWith(hasShared: true));
     } on Object {
-      // The share sheet may be unavailable; copying still works.
+      // The share sheet may be unavailable; the invite stays shown and can be sent again.
     }
-  }
-
-  Future<void> copy(String message) async {
-    await Clipboard.setData(ClipboardData(text: message));
-    emit(state.copyWith(hasShared: true));
   }
 
   Future<void> revoke() async {

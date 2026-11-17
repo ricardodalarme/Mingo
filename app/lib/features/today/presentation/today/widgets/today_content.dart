@@ -80,7 +80,6 @@ class const TodayContent({
       TodayBlock.emptyWeekCard ||
       TodayBlock.inviteCard => AppSpace.s12,
       TodayBlock.forToday => AppSpace.s24,
-      TodayBlock.haveCode => AppSpace.s16,
       TodayBlock.shareEntry => AppSpace.s24,
     };
   }
@@ -149,14 +148,6 @@ class const TodayContent({
                   context.l10n.moodHelp.sweetMessageBody,
                 ),
               ),
-      ),
-      TodayBlock.haveCode => Padding(
-        padding: const EdgeInsets.only(bottom: AppSpace.s2),
-        child: BaseButton(
-          text: l10n.haveCode,
-          variant: .secondary,
-          onPressed: () => context.pushRoute(AcceptInviteRoute()),
-        ),
       ),
       TodayBlock.shareEntry => TodayShareEntry(home: home),
     };

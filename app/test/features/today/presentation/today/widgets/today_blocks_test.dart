@@ -68,7 +68,6 @@ void main() {
         TodayBlock.weekCard,
         TodayBlock.inviteCard,
         TodayBlock.forToday,
-        TodayBlock.haveCode,
       ]);
     });
 

@@ -2691,6 +2691,8 @@ class _Translations$history$en extends Translations$history$pt {
   @override
   String readOnlyMilestoneBy({required Object name}) =>
       'Added by ${name}. Only its author can edit it.';
+  @override
+  String get shareAction => 'Image to share';
 }
 
 // Path: ideaDetail
@@ -2897,8 +2899,6 @@ class _Translations$invite$en extends Translations$invite$pt {
   @override
   String get share => 'Share invite';
   @override
-  String get copy => 'Copy invite';
-  @override
   String get sentTitle => 'Invite sent';
   @override
   String get sentHighlight => 'sent';
@@ -2925,6 +2925,8 @@ class _Translations$invite$en extends Translations$invite$pt {
   String get shareTitle => 'Share invite';
   @override
   String get waitingTitle => 'Waiting for your partner';
+  @override
+  String get haveCode => 'I already have a code';
 }
 
 // Path: language
@@ -6417,8 +6419,6 @@ class _Translations$today$en extends Translations$today$pt {
   String get weekReadySupportPrivate => 'A summary just for you.';
   @override
   String get weekReadyAction => 'See';
-  @override
-  String get haveCode => 'I already have a code';
   @override
   String get partnerProfile => 'Partner profile';
   @override
@@ -10593,6 +10593,7 @@ extension on TranslationsEn {
           'history.readOnlyMilestoneBy' => ({
             required Object name,
           }) => 'Added by ${name}. Only its author can edit it.',
+          'history.shareAction' => 'Image to share',
           'ideaDetail.label' => 'Idea of the day',
           'ideaDetail.whyTitle' => 'Why this idea',
           'ideaDetail.yourPhase' => 'Your phase',
@@ -10717,7 +10718,6 @@ extension on TranslationsEn {
             required Object days,
           }) => 'The invite is valid for ${days} days. Only the latest invite you create works.',
           'invite.share' => 'Share invite',
-          'invite.copy' => 'Copy invite',
           'invite.sentTitle' => 'Invite sent',
           'invite.sentHighlight' => 'sent',
           'invite.sentText' => ({
@@ -10734,6 +10734,7 @@ extension on TranslationsEn {
           'invite.errors.other' => 'Something went wrong. Try again.',
           'invite.shareTitle' => 'Share invite',
           'invite.waitingTitle' => 'Waiting for your partner',
+          'invite.haveCode' => 'I already have a code',
           'language.language' => 'Language',
           'language.languagePortuguese' => 'Portuguese (Brazil)',
           'language.languageEnglish' => 'English',
@@ -10879,10 +10880,10 @@ extension on TranslationsEn {
           'loveStyle.options3.words' => 'When the person praises something I did.',
           'loveStyle.options3.acts' => 'When the person notices what I need and does it.',
           'loveStyle.options3.gifts' => 'When the person remembers something I like.',
-          'loveStyle.options3.touch' => 'When the person touches me lightly as they pass.',
           _ => null,
         } ??
         switch (path) {
+          'loveStyle.options3.touch' => 'When the person touches me lightly as they pass.',
           'loveStyle.options3.other' => '',
           'loveStyle.options4.time' => 'A quiet date, just the two of us.',
           'loveStyle.options4.words' => 'A conversation where I feel heard.',
@@ -11480,10 +11481,10 @@ extension on TranslationsEn {
           'plus.done' => 'Done',
           'plus.errors.storeUnavailable' => 'The store isn\'t available on this device right now.',
           'plus.errors.manageUnavailable' => 'There\'s no store page for this subscription here.',
-          'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
           _ => null,
         } ??
         switch (path) {
+          'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
           'privacy.title' => 'Privacy and security',
           'privacy.partnerTitle' => 'What your partner sees',
           'privacy.partnerSlips' => 'Sent slips',
@@ -12055,10 +12056,10 @@ extension on TranslationsEn {
           'rituals.weekdays.1' => 'Monday',
           'rituals.weekdays.2' => 'Tuesday',
           'rituals.weekdays.3' => 'Wednesday',
-          'rituals.weekdays.4' => 'Thursday',
           _ => null,
         } ??
         switch (path) {
+          'rituals.weekdays.4' => 'Thursday',
           'rituals.weekdays.5' => 'Friday',
           'rituals.weekdays.6' => 'Saturday',
           'rituals.createTitle' => 'New ritual',
@@ -12644,10 +12645,10 @@ extension on TranslationsEn {
           'tabs.usTitle' => 'I miss us',
           'tabs.usText' => 'A light tap for your partner, no pressure.',
           'tabs.touchLabel' => 'TOUCH',
-          'tabs.touchTitle' => 'Touch cards',
           _ => null,
         } ??
         switch (path) {
+          'tabs.touchTitle' => 'Touch cards',
           'tabs.touchText' => 'Neutral, to do or skip.',
           'tabs.distanceLabel' => 'DISTANCE',
           'tabs.distanceTitle' => 'Our two clocks',
@@ -12905,7 +12906,6 @@ extension on TranslationsEn {
           'today.weekReadySupport' => 'A summary of what you two did.',
           'today.weekReadySupportPrivate' => 'A summary just for you.',
           'today.weekReadyAction' => 'See',
-          'today.haveCode' => 'I already have a code',
           'today.partnerProfile' => 'Partner profile',
           'today.privateWeekTitle' => 'Your private slips',
           'today.privateWeekCount' =>

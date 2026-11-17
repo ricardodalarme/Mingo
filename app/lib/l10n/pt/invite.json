@@ -5,7 +5,6 @@
   "message": "Comecei uma coisa pequena para nós. Para nos conectar no app, use o código {code}.",
   "expiryNote": "O convite vale por {days} dias. Só o último convite criado funciona.",
   "share": "Compartilhar convite",
-  "copy": "Copiar convite",
   "sentTitle": "Convite enviado",
   "sentHighlight": "enviado",
   "sentText": "{name} ainda não entrou. Enquanto isso, você pode usar o app sozinho.",
@@ -20,5 +19,6 @@
     "other": "Algo deu errado. Tente de novo."
   },
   "shareTitle": "Compartilhar convite",
-  "waitingTitle": "Esperando o parceiro"
+  "waitingTitle": "Esperando o parceiro",
+  "haveCode": "Já tenho um código"
 }

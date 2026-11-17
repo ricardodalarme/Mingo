@@ -4,7 +4,6 @@ import 'package:app/features/together/presentation/together/cubit/together_cubit
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +29,6 @@ class const TogetherPage({final bool isEmbedded = false, super.key})
     final listCount = context.select((TogetherCubit cubit) => cubit.state.listCount);
     final sharedGiftCount = context.select((TogetherCubit cubit) => cubit.state.sharedGiftCount);
     final phase = context.select((TogetherCubit cubit) => cubit.state.phase);
-    final since = context.select((TogetherCubit cubit) => cubit.state.togetherSince);
     final cubit = context.read<TogetherCubit>();
 
     final content = BaseStackedContent(
@@ -39,17 +37,6 @@ class const TogetherPage({final bool isEmbedded = false, super.key})
         children: [
           if (!isEmbedded)
             Semantics(header: true, child: Text(l10n.together, style: context.text.titleXl)),
-          if (!isEmbedded) const SizedBox(height: AppSpace.s8),
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: BaseChip.icon(
-              label: since != null && hasPartner
-                  ? _duration(l10n, since, clock.now())
-                  : l10n.storyChip,
-              icon: AppIcons.heart,
-              onTap: () => context.pushRoute(const StoryRoute()),
-            ),
-          ),
           const SizedBox(height: AppSpace.s16),
           if (!hasPartner) ...[
             BaseNote(text: l10n.soloNote),
@@ -333,12 +320,6 @@ class const _PrivateMoreSection() extends StatelessWidget {
       footer: l10n.forMeFooter,
       children: [
         _row(
-          icon: AppIcons.message,
-          title: l10n.chatTitle,
-          subtitle: l10n.chatMeta,
-          onTap: () => context.pushRoute(ChatRoute()),
-        ),
-        _row(
           icon: AppIcons.pencil,
           title: l10n.notesTitle,
           subtitle: l10n.notesMeta,
@@ -393,40 +374,5 @@ Widget _row({
     trailing: trailing,
     showsChevron: true,
     onTap: onTap,
-  );
-}
-
-/// How long the couple has been together, in the two largest units that apply.
-String _duration(Translations$tabs$pt l10n, DateTime since, DateTime now) {
-  var months = (now.year - since.year) * 12 + now.month - since.month;
-  if (now.day < since.day) months--;
-  final years = months ~/ 12;
-  final rest = months % 12;
-  final t = l10n;
-  if (years > 0 && rest > 0) {
-    return t.durationYearsMonths(
-      years: years,
-      yearsUnit: t.unitYear(count: years),
-      months: rest,
-      monthsUnit: t.unitMonth(count: rest),
-    );
-  }
-  if (years > 0) {
-    return t.durationYears(
-      years: years,
-      yearsUnit: t.unitYear(count: years),
-    );
-  }
-  if (months > 0) {
-    return t.durationMonths(
-      months: months,
-      monthsUnit: t.unitMonth(count: months),
-    );
-  }
-  final days = now.difference(since).inDays.clamp(0, 31);
-
-  return t.durationDays(
-    days: days,
-    daysUnit: t.unitDay(count: days),
   );
 }

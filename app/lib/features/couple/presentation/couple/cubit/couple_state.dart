@@ -6,8 +6,19 @@ enum CoupleSection() {
   memories,
 }
 
-final class const CoupleState({final CoupleSection section = CoupleSection.together})
-    with Equatable {
+final class const CoupleState({
+  final CoupleSection section = CoupleSection.together,
+  final DateTime? togetherSince,
+  final bool hasPartner = false,
+}) with Equatable {
+  CoupleState copyWith({CoupleSection? section, DateTime? togetherSince, bool? hasPartner}) {
+    return CoupleState(
+      section: section ?? this.section,
+      togetherSince: togetherSince ?? this.togetherSince,
+      hasPartner: hasPartner ?? this.hasPartner,
+    );
+  }
+
   @override
-  List<Object?> get props => [section];
+  List<Object?> get props => [section, togetherSince, hasPartner];
 }

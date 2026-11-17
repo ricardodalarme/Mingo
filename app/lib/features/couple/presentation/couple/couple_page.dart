@@ -1,4 +1,5 @@
 import 'package:app/features/couple/presentation/couple/cubit/couple_cubit.dart';
+import 'package:app/features/couple/presentation/couple/widgets/together_chip.dart';
 import 'package:app/features/memories/presentation/memories/memories_page.dart';
 import 'package:app/features/together/presentation/together/together_page.dart';
 import 'package:app/l10n/translations.g.dart';
@@ -15,7 +16,9 @@ class const CouplePage({final CoupleSection section = CoupleSection.together, su
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (_) => AppInjector.instance.get<CoupleCubit>()..select(section),
+      create: (_) => AppInjector.instance.get<CoupleCubit>()
+        ..select(section)
+        ..load(),
       child: this,
     );
   }
@@ -41,7 +44,13 @@ class const CouplePage({final CoupleSection section = CoupleSection.together, su
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Semantics(header: true, child: Text(l10n.couple, style: context.text.titleXl)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Semantics(header: true, child: Text(l10n.couple, style: context.text.titleXl)),
+                    const TogetherChip(),
+                  ],
+                ),
                 const SizedBox(height: AppSpace.s12),
                 BaseSegmented(
                   segments: [l10n.together, l10n.memories],

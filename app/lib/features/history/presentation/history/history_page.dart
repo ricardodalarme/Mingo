@@ -76,6 +76,7 @@ class const HistoryPage({super.key}) extends StatelessWidget implements AutoRout
                   onNumbersTap: () => _pushAndReload(context, const HistoryNumbersRoute()),
                   onVariationsTap: () => _pushAndReload(context, const CounterVariationsRoute()),
                   onAvatarTap: () => _pushAndReload(context, const HistoryAvatarRoute()),
+                  onShareTap: () => _pushAndReload(context, const StoryRoute()),
                 ),
               ],
             ),

@@ -82,7 +82,6 @@
   "weekReadySupport": "A summary of what you two did.",
   "weekReadySupportPrivate": "A summary just for you.",
   "weekReadyAction": "See",
-  "haveCode": "I already have a code",
   "partnerProfile": "Partner profile",
   "privateWeekTitle": "Your private slips",
   "privateWeekCount(plural, param=count)": {

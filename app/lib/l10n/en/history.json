@@ -211,5 +211,6 @@
     "other": "places"
   },
   "readOnlyMilestone": "This milestone was added by someone else. Only its author can edit it.",
-  "readOnlyMilestoneBy": "Added by {name}. Only its author can edit it."
+  "readOnlyMilestoneBy": "Added by {name}. Only its author can edit it.",
+  "shareAction": "Image to share"
 }

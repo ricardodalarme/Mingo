@@ -3242,6 +3242,9 @@ class Translations$history$pt {
   /// pt: 'Adicionado por {name}. Só quem criou pode editar.'
   String readOnlyMilestoneBy({required Object name}) =>
       'Adicionado por ${name}. Só quem criou pode editar.';
+
+  /// pt: 'Imagem para compartilhar'
+  String get shareAction => 'Imagem para compartilhar';
 }
 
 // Path: ideaDetail
@@ -3523,9 +3526,6 @@ class Translations$invite$pt {
   /// pt: 'Compartilhar convite'
   String get share => 'Compartilhar convite';
 
-  /// pt: 'Copiar convite'
-  String get copy => 'Copiar convite';
-
   /// pt: 'Convite enviado'
   String get sentTitle => 'Convite enviado';
 
@@ -3561,6 +3561,9 @@ class Translations$invite$pt {
 
   /// pt: 'Esperando o parceiro'
   String get waitingTitle => 'Esperando o parceiro';
+
+  /// pt: 'Já tenho um código'
+  String get haveCode => 'Já tenho um código';
 }
 
 // Path: language
@@ -8000,9 +8003,6 @@ class Translations$today$pt {
 
   /// pt: 'Ver'
   String get weekReadyAction => 'Ver';
-
-  /// pt: 'Já tenho um código'
-  String get haveCode => 'Já tenho um código';
 
   /// pt: 'Perfil do parceiro'
   String get partnerProfile => 'Perfil do parceiro';
@@ -12811,6 +12811,7 @@ extension on Translations {
           'history.readOnlyMilestoneBy' => ({
             required Object name,
           }) => 'Adicionado por ${name}. Só quem criou pode editar.',
+          'history.shareAction' => 'Imagem para compartilhar',
           'ideaDetail.label' => 'Ideia do dia',
           'ideaDetail.whyTitle' => 'Por que esta ideia',
           'ideaDetail.yourPhase' => 'Sua fase',
@@ -12934,7 +12935,6 @@ extension on Translations {
             required Object days,
           }) => 'O convite vale por ${days} dias. Só o último convite criado funciona.',
           'invite.share' => 'Compartilhar convite',
-          'invite.copy' => 'Copiar convite',
           'invite.sentTitle' => 'Convite enviado',
           'invite.sentHighlight' => 'enviado',
           'invite.sentText' => ({
@@ -12951,6 +12951,7 @@ extension on Translations {
           'invite.errors.other' => 'Algo deu errado. Tente de novo.',
           'invite.shareTitle' => 'Compartilhar convite',
           'invite.waitingTitle' => 'Esperando o parceiro',
+          'invite.haveCode' => 'Já tenho um código',
           'language.language' => 'Idioma',
           'language.languagePortuguese' => 'Português (Brasil)',
           'language.languageEnglish' => 'Inglês',
@@ -13096,10 +13097,10 @@ extension on Translations {
           'loveStyle.options3.words' => 'Quando a pessoa elogia algo que eu fiz.',
           'loveStyle.options3.acts' => 'Quando a pessoa percebe o que eu preciso e faz.',
           'loveStyle.options3.gifts' => 'Quando a pessoa lembra de algo que eu gosto.',
-          'loveStyle.options3.touch' => 'Quando a pessoa me toca de leve ao passar.',
           _ => null,
         } ??
         switch (path) {
+          'loveStyle.options3.touch' => 'Quando a pessoa me toca de leve ao passar.',
           'loveStyle.options3.other' => '',
           'loveStyle.options4.time' => 'Um encontro tranquilo, só nós dois.',
           'loveStyle.options4.words' => 'Uma conversa em que me sinto ouvido(a).',
@@ -13706,10 +13707,10 @@ extension on Translations {
           'plus.done' => 'Pronto',
           'plus.errors.storeUnavailable' => 'A loja não está disponível neste aparelho agora.',
           'plus.errors.manageUnavailable' => 'Não há uma página da loja para esta assinatura aqui.',
-          'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           _ => null,
         } ??
         switch (path) {
+          'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'privacy.title' => 'Privacidade e segurança',
           'privacy.partnerTitle' => 'O que o parceiro vê',
           'privacy.partnerSlips' => 'Slips enviados',
@@ -14283,10 +14284,10 @@ extension on Translations {
           'rituals.weekdays.1' => 'segunda',
           'rituals.weekdays.2' => 'terça',
           'rituals.weekdays.3' => 'quarta',
-          'rituals.weekdays.4' => 'quinta',
           _ => null,
         } ??
         switch (path) {
+          'rituals.weekdays.4' => 'quinta',
           'rituals.weekdays.5' => 'sexta',
           'rituals.weekdays.6' => 'sábado',
           'rituals.createTitle' => 'Novo ritual',
@@ -14872,10 +14873,10 @@ extension on Translations {
           'tabs.usTitle' => 'Sinto saudade de nós',
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
           'tabs.touchLabel' => 'TOQUE',
-          'tabs.touchTitle' => 'Cartas de toque',
           _ => null,
         } ??
         switch (path) {
+          'tabs.touchTitle' => 'Cartas de toque',
           'tabs.touchText' => 'Neutras, para fazer ou pular.',
           'tabs.distanceLabel' => 'DISTÂNCIA',
           'tabs.distanceTitle' => 'Nossos dois relógios',
@@ -15134,7 +15135,6 @@ extension on Translations {
           'today.weekReadySupport' => 'Um resumo do que vocês fizeram.',
           'today.weekReadySupportPrivate' => 'Um resumo só seu.',
           'today.weekReadyAction' => 'Ver',
-          'today.haveCode' => 'Já tenho um código',
           'today.partnerProfile' => 'Perfil do parceiro',
           'today.privateWeekTitle' => 'Seus slips privados',
           'today.privateWeekCount' =>

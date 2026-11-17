@@ -211,5 +211,6 @@
     "other": "lugares"
   },
   "readOnlyMilestone": "Este marco foi adicionado por outra pessoa. Só quem criou pode editar.",
-  "readOnlyMilestoneBy": "Adicionado por {name}. Só quem criou pode editar."
+  "readOnlyMilestoneBy": "Adicionado por {name}. Só quem criou pode editar.",
+  "shareAction": "Imagem para compartilhar"
 }

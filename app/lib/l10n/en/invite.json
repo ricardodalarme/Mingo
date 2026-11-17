@@ -5,7 +5,6 @@
   "message": "I started something small for us. To connect in the app, use the code {code}.",
   "expiryNote": "The invite is valid for {days} days. Only the latest invite you create works.",
   "share": "Share invite",
-  "copy": "Copy invite",
   "sentTitle": "Invite sent",
   "sentHighlight": "sent",
   "sentText": "{name} has not joined yet. In the meantime you can use the app on your own.",
@@ -20,5 +19,6 @@
     "other": "Something went wrong. Try again."
   },
   "shareTitle": "Share invite",
-  "waitingTitle": "Waiting for your partner"
+  "waitingTitle": "Waiting for your partner",
+  "haveCode": "I already have a code"
 }

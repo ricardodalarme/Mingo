@@ -8,6 +8,7 @@ class const HistoryQuickActions({
   required final VoidCallback onNumbersTap,
   required final VoidCallback onVariationsTap,
   required final VoidCallback onAvatarTap,
+  required final VoidCallback onShareTap,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -44,6 +45,7 @@ class const HistoryQuickActions({
                 onTap: onVariationsTap,
               ),
               BaseChoiceChip(label: l10n.avatarAction, icon: AppIcons.user, onTap: onAvatarTap),
+              BaseChoiceChip(label: l10n.shareAction, icon: AppIcons.share, onTap: onShareTap),
             ],
           ),
         );

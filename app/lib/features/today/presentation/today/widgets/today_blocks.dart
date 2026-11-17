@@ -12,7 +12,6 @@ enum TodayBlock() {
   emptyWeekCard,
   inviteCard,
   forToday,
-  haveCode,
   shareEntry,
 }
 
@@ -57,7 +56,6 @@ List<TodayBlock> todayBlocksFor({
       TodayBlock.weekCard,
       if (canInvite) TodayBlock.inviteCard,
       TodayBlock.forToday,
-      if (canInvite) TodayBlock.haveCode,
       if (home.togetherSince != null) TodayBlock.shareEntry,
     ];
   }

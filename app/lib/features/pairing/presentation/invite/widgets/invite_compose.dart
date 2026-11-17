@@ -1,6 +1,8 @@
 import 'package:app/features/pairing/data/models/active_invite.dart';
 import 'package:app/features/pairing/presentation/invite/cubit/invite_cubit.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/app_router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,10 +48,9 @@ class const InviteCompose({required final ActiveInvite invite, super.key}) exten
           BaseButton(text: l10n.share, icon: AppIcons.share, onPressed: () => cubit.share(message)),
           const SizedBox(height: AppSpace.s10),
           BaseButton(
-            text: l10n.copy,
+            text: l10n.haveCode,
             variant: .secondary,
-            icon: AppIcons.copy,
-            onPressed: () => cubit.copy(message),
+            onPressed: () => context.pushRoute(AcceptInviteRoute()),
           ),
         ],
       ),

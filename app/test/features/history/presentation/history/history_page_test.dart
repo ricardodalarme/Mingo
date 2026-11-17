@@ -166,7 +166,7 @@ void main() {
 
     final l10n = tester.element(find.byType(HistoryPage)).l10n.history;
     final firstChip = find.widgetWithText(BaseChoiceChip, l10n.storyDatesAction);
-    final lastChip = find.widgetWithText(BaseChoiceChip, l10n.avatarAction);
+    final lastChip = find.widgetWithText(BaseChoiceChip, l10n.shareAction);
 
     final scrollerRect = tester.getRect(scroller);
     expect(scrollerRect.left, moreOrLessEquals(0, epsilon: .001));

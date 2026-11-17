@@ -132,7 +132,7 @@ void main() {
     expect(find.text('Como você está?'), findsOneWidget);
     expect(yOf(tester, 'Seus slips privados'), lessThan(yOf(tester, 'Convidar Rui')));
     expect(yOf(tester, 'Convidar Rui'), lessThan(yOf(tester, 'Para hoje')));
-    expect(find.text('Já tenho um código'), findsOneWidget);
+    expect(find.text('Já tenho um código'), findsNothing);
   });
 
   testWidgets('the first day keeps the mood, the question and the invite card out', (tester) async {
