@@ -7,8 +7,8 @@
     <string name="mingo_widget_partner_note_label">Mingo · Recado do parceiro</string>
     <string name="mingo_widget_card_encounter_label">Mingo · Cartão e encontro</string>
 
-    <string name="mingo_widget_own_small_desc">Anotar slip, próxima data, humor ou ritual.</string>
-    <string name="mingo_widget_own_medium_desc">Ideia do dia ou potinho do dia ruim.</string>
+    <string name="mingo_widget_own_small_desc">Anotar slip, próxima data, ritual ou cartão.</string>
+    <string name="mingo_widget_own_medium_desc">Minha semana, ideia do dia ou próxima data.</string>
     <string name="mingo_widget_couple_counter_desc">Dias juntos, atualizado à meia-noite.</string>
     <string name="mingo_widget_couple_photos_desc">Foto em cache local ou cartão neutro.</string>
     <string name="mingo_widget_partner_note_desc">Recado curto marcado pelo seu par para o widget.</string>
@@ -61,4 +61,45 @@
     <string name="mingo_widget_card_encounter_subtitle">%1$d dias · %2$s</string>
     <string name="mingo_widget_card_ready_subtitle">Toque para abrir</string>
     <string name="mingo_widget_card_preparing_subtitle">Em preparação</string>
+    <string name="mingo_widget_partner_mood_label_short">Mingo · Humor do parceiro</string>
+    <string name="mingo_widget_longing_label_short">Mingo · Saudade de nós</string>
+    <string name="mingo_widget_distance_label_short">Mingo · Namoro à distância</string>
+    <string name="mingo_widget_partner_mood_desc">O humor que seu par escolheu compartilhar.</string>
+    <string name="mingo_widget_longing_desc">Mande ou receba saudade em um toque.</string>
+    <string name="mingo_widget_distance_desc">Os dois fusos e os dias até se verem.</string>
+    <string name="mingo_widget_partner_mood_label">HUMOR DO PARCEIRO</string>
+    <string name="mingo_widget_partner_mood_hidden">O humor aparece quando seu par compartilhar.</string>
+    <string name="mingo_widget_partner_mood_now">%1$s agora</string>
+    <string name="mingo_widget_partner_mood_now_anonymous">AGORA</string>
+    <string name="mingo_widget_mood_happy">Feliz</string>
+    <string name="mingo_widget_mood_tired">Cansado(a)</string>
+    <string name="mingo_widget_mood_sad">Triste</string>
+    <string name="mingo_widget_mood_stressed">Estressado(a)</string>
+    <string name="mingo_widget_mood_loving">Carinhoso(a)</string>
+    <string name="mingo_widget_mood_playful">Brincalhão(ona)</string>
+    <string name="mingo_widget_longing_label">SAUDADE DE NÓS</string>
+    <string name="mingo_widget_longing_action">Mandar saudade</string>
+    <string name="mingo_widget_longing_received">Seu par mandou saudade</string>
+    <string name="mingo_widget_longing_hint">Um toque e a pessoa sente.</string>
+    <string name="mingo_widget_distance_label">NAMORO À DISTÂNCIA</string>
+    <string name="mingo_widget_distance_missing">Fuso do seu par ainda não definido</string>
+    <string name="mingo_widget_distance_days">%1$d dias até se verem</string>
+    <string name="mingo_widget_distance_no_reunion">Próximo encontro sem data</string>
+    <string name="mingo_widget_distance_line">%1$s %2$s · %3$s %4$s</string>
+    <string name="mingo_widget_time_now">agora</string>
+    <string name="mingo_widget_time_minutes">há %1$d min</string>
+    <string name="mingo_widget_time_hours">há %1$d h</string>
+    <string name="mingo_widget_time_days">há %1$d d</string>
+    <string name="mingo_widget_week_label">MINHA SEMANA</string>
+    <string name="mingo_widget_week_count">%1$d slips</string>
+    <string name="mingo_widget_next_date_empty">Sem data futura</string>
+    <string-array name="mingo_widget_weekdays">
+        <item>seg</item>
+        <item>ter</item>
+        <item>qua</item>
+        <item>qui</item>
+        <item>sex</item>
+        <item>sáb</item>
+        <item>dom</item>
+    </string-array>
 </resources>

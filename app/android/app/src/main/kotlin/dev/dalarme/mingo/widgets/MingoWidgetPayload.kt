@@ -11,6 +11,8 @@ import dev.dalarme.mingo.R
 import es.antonborri.home_widget.HomeWidgetLaunchIntent
 import org.json.JSONObject
 import java.io.File
+import java.time.Duration
+import java.time.Instant
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
@@ -27,11 +29,27 @@ data class MingoWidgetPayload(
     val unopenedCards: Int,
     val cardState: String,
     val partnerNote: String?,
+    val partnerNoteAt: String?,
+    val partnerMood: String?,
+    val partnerMoodAt: String?,
+    val partnerMissedAt: String?,
     val myMood: String?,
     val dailyIdeaTitle: String?,
     val ritualTitle: String?,
     val ritualSchedule: String?,
     val slipsCount: Int,
+    val slipsThisWeek: Int,
+    val slipDays: List<String>,
+    val ownName: String?,
+    val cardSendDay: Int?,
+    val cardSendHour: Int?,
+    val ownZone: String?,
+    val partnerZone: String?,
+    val ownLocalTime: String?,
+    val partnerLocalTime: String?,
+    val reunionTitle: String?,
+    val reunionOn: String?,
+    val reunionDays: Int?,
     val cachedPhotoPath: String?,
 ) {
     fun daysTogether(today: LocalDate = LocalDate.now()): Long? {
@@ -121,11 +139,27 @@ data class MingoWidgetPayload(
                     unopenedCards = json.optInt("unopenedCards", 0),
                     cardState = json.optString("cardState", "none"),
                     partnerNote = json.optNullableString("partnerNote"),
+                    partnerNoteAt = json.optNullableString("partnerNoteAt"),
+                    partnerMood = json.optNullableString("partnerMood"),
+                    partnerMoodAt = json.optNullableString("partnerMoodAt"),
+                    partnerMissedAt = json.optNullableString("partnerMissedAt"),
                     myMood = json.optNullableString("myMood"),
                     dailyIdeaTitle = json.optNullableString("dailyIdeaTitle"),
                     ritualTitle = json.optNullableString("ritualTitle"),
                     ritualSchedule = json.optNullableString("ritualSchedule"),
                     slipsCount = json.optInt("slipsCount", 0),
+                    slipsThisWeek = json.optInt("slipsThisWeek", 0),
+                    slipDays = json.optStringList("slipDays"),
+                    ownName = json.optNullableString("ownName"),
+                    cardSendDay = json.optNullableInt("cardSendDay"),
+                    cardSendHour = json.optNullableInt("cardSendHour"),
+                    ownZone = json.optNullableString("ownZone"),
+                    partnerZone = json.optNullableString("partnerZone"),
+                    ownLocalTime = json.optNullableString("ownLocalTime"),
+                    partnerLocalTime = json.optNullableString("partnerLocalTime"),
+                    reunionTitle = json.optNullableString("reunionTitle"),
+                    reunionOn = json.optNullableString("reunionOn"),
+                    reunionDays = json.optNullableInt("reunionDays"),
                     cachedPhotoPath = resolvedPhotoPath,
                 )
             } catch (_: Exception) {
@@ -146,11 +180,27 @@ data class MingoWidgetPayload(
             unopenedCards = 0,
             cardState = "none",
             partnerNote = null,
+            partnerNoteAt = null,
+            partnerMood = null,
+            partnerMoodAt = null,
+            partnerMissedAt = null,
             myMood = null,
             dailyIdeaTitle = null,
             ritualTitle = null,
             ritualSchedule = null,
             slipsCount = 0,
+            slipsThisWeek = 0,
+            slipDays = emptyList(),
+            ownName = null,
+            cardSendDay = null,
+            cardSendHour = null,
+            ownZone = null,
+            partnerZone = null,
+            ownLocalTime = null,
+            partnerLocalTime = null,
+            reunionTitle = null,
+            reunionOn = null,
+            reunionDays = null,
             cachedPhotoPath = null,
         )
 
@@ -202,6 +252,43 @@ data class MingoWidgetPayload(
             if (isNull(key)) return null
             val v = optString(key, "").trim()
             return v.ifEmpty { null }
+        }
+
+        private fun JSONObject.optNullableInt(key: String): Int? {
+            if (!has(key) || isNull(key)) return null
+            return optInt(key)
+        }
+
+        private fun JSONObject.optStringList(key: String): List<String> {
+            if (!has(key) || isNull(key)) return emptyList()
+            val array = optJSONArray(key) ?: return emptyList()
+            return buildList {
+                for (index in 0 until array.length()) {
+                    val value = array.optString(index, "").trim()
+                    if (value.isNotEmpty()) add(value)
+                }
+            }
+        }
+
+        fun relativeTime(context: Context, iso: String?): String {
+            if (iso.isNullOrBlank()) return ""
+            val moment = try {
+                Instant.parse(iso)
+            } catch (_: Exception) {
+                return ""
+            }
+            val minutes = Duration.between(moment, Instant.now()).toMinutes().coerceAtLeast(0)
+            return when {
+                minutes < 1 -> context.getString(R.string.mingo_widget_time_now)
+                minutes < 60 -> context.getString(R.string.mingo_widget_time_minutes, minutes)
+                minutes < 60 * 24 -> context.getString(R.string.mingo_widget_time_hours, minutes / 60)
+                else -> context.getString(R.string.mingo_widget_time_days, minutes / (60 * 24))
+            }
+        }
+
+        fun distanceCity(zone: String?): String {
+            if (zone.isNullOrBlank()) return ""
+            return zone.substringAfterLast('/').replace('_', ' ')
         }
     }
 }

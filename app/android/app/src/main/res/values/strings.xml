@@ -7,8 +7,8 @@
     <string name="mingo_widget_partner_note_label">Mingo · Partner note</string>
     <string name="mingo_widget_card_encounter_label">Mingo · Card &amp; date</string>
 
-    <string name="mingo_widget_own_small_desc">Quick slip, next date, mood, or ritual.</string>
-    <string name="mingo_widget_own_medium_desc">Idea of the day or bad-day jar.</string>
+    <string name="mingo_widget_own_small_desc">Quick slip, next date, ritual, or card.</string>
+    <string name="mingo_widget_own_medium_desc">My week, idea of the day or next date.</string>
     <string name="mingo_widget_couple_counter_desc">Days together, updated at midnight.</string>
     <string name="mingo_widget_couple_photos_desc">Locally cached photo or neutral card.</string>
     <string name="mingo_widget_partner_note_desc">Short note marked by your partner for the widget.</string>
@@ -61,4 +61,45 @@
     <string name="mingo_widget_card_encounter_subtitle">%1$d days · %2$s</string>
     <string name="mingo_widget_card_ready_subtitle">Tap to open</string>
     <string name="mingo_widget_card_preparing_subtitle">In preparation</string>
+    <string name="mingo_widget_partner_mood_label_short">Mingo · Partner mood</string>
+    <string name="mingo_widget_longing_label_short">Mingo · Missing us</string>
+    <string name="mingo_widget_distance_label_short">Mingo · Long distance</string>
+    <string name="mingo_widget_partner_mood_desc">The mood your partner chose to share.</string>
+    <string name="mingo_widget_longing_desc">Send or receive a missing signal in one tap.</string>
+    <string name="mingo_widget_distance_desc">Both timezones and days until you meet.</string>
+    <string name="mingo_widget_partner_mood_label">PARTNER MOOD</string>
+    <string name="mingo_widget_partner_mood_hidden">Mood appears when your partner shares it.</string>
+    <string name="mingo_widget_partner_mood_now">%1$s now</string>
+    <string name="mingo_widget_partner_mood_now_anonymous">NOW</string>
+    <string name="mingo_widget_mood_happy">Happy</string>
+    <string name="mingo_widget_mood_tired">Tired</string>
+    <string name="mingo_widget_mood_sad">Sad</string>
+    <string name="mingo_widget_mood_stressed">Stressed</string>
+    <string name="mingo_widget_mood_loving">Affectionate</string>
+    <string name="mingo_widget_mood_playful">Playful</string>
+    <string name="mingo_widget_longing_label">MISSING US</string>
+    <string name="mingo_widget_longing_action">Send some missing</string>
+    <string name="mingo_widget_longing_received">Your partner misses you</string>
+    <string name="mingo_widget_longing_hint">One tap and they feel it.</string>
+    <string name="mingo_widget_distance_label">LONG DISTANCE</string>
+    <string name="mingo_widget_distance_missing">Your partner\'s timezone is not set</string>
+    <string name="mingo_widget_distance_days">%1$d days until you meet</string>
+    <string name="mingo_widget_distance_no_reunion">Next meeting without a date</string>
+    <string name="mingo_widget_distance_line">%1$s %2$s · %3$s %4$s</string>
+    <string name="mingo_widget_time_now">just now</string>
+    <string name="mingo_widget_time_minutes">%1$d min ago</string>
+    <string name="mingo_widget_time_hours">%1$d h ago</string>
+    <string name="mingo_widget_time_days">%1$d d ago</string>
+    <string name="mingo_widget_week_label">MY WEEK</string>
+    <string name="mingo_widget_week_count">%1$d slips</string>
+    <string name="mingo_widget_next_date_empty">No upcoming date</string>
+    <string-array name="mingo_widget_weekdays">
+        <item>mon</item>
+        <item>tue</item>
+        <item>wed</item>
+        <item>thu</item>
+        <item>fri</item>
+        <item>sat</item>
+        <item>sun</item>
+    </string-array>
 </resources>

@@ -87,17 +87,6 @@
                 android:resource="@xml/mingo_couple_counter_widget_info" />
         </receiver>
         <receiver
-            android:name=".widgets.MingoCouplePhotosWidgetProvider"
-            android:label="@string/mingo_widget_couple_photos_label"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/mingo_couple_photos_widget_info" />
-        </receiver>
-        <receiver
             android:name=".widgets.MingoPartnerNoteWidgetProvider"
             android:label="@string/mingo_widget_partner_note_label"
             android:exported="true">
@@ -107,6 +96,42 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/mingo_partner_note_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widgets.MingoPartnerMoodWidgetProvider"
+            android:label="@string/mingo_widget_partner_mood_label_short"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mingo_partner_mood_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widgets.MingoLongingWidgetProvider"
+            android:label="@string/mingo_widget_longing_label_short"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mingo_longing_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widgets.MingoDistanceWidgetProvider"
+            android:label="@string/mingo_widget_distance_label_short"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mingo_distance_widget_info" />
         </receiver>
         <receiver
             android:name=".widgets.MingoCardEncounterWidgetProvider"

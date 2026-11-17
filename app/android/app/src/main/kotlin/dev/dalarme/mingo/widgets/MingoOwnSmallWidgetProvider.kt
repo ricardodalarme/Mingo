@@ -46,6 +46,18 @@ class MingoOwnSmallWidgetProvider : AppWidgetProvider() {
                     subtitle = context.getString(R.string.mingo_widget_mood_subtitle),
                     deepLink = "mingo://mood?homeWidget=1",
                 )
+                payload.cardState == "ready" || payload.cardState == "sent" -> MingoWidgetPayload.renderCard(
+                    context = context,
+                    appWidgetManager = appWidgetManager,
+                    appWidgetId = appWidgetId,
+                    label = context.getString(R.string.mingo_widget_card_weekly_label),
+                    title = context.getString(
+                        if (payload.cardState == "ready") R.string.mingo_widget_card_ready_title
+                        else R.string.mingo_widget_card_sent_title,
+                    ),
+                    subtitle = context.getString(R.string.mingo_widget_card_ready_subtitle),
+                    deepLink = "mingo://card?homeWidget=1",
+                )
                 else -> MingoWidgetPayload.renderCard(
                     context = context,
                     appWidgetManager = appWidgetManager,
