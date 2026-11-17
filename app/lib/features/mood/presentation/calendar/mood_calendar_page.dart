@@ -24,8 +24,11 @@ class const MoodCalendarPage({super.key}) extends StatelessWidget implements Aut
   Widget build(BuildContext context) {
     final l10n = context.l10n.mood;
     final entries = context.select((MoodCalendarCubit cubit) => cubit.state.entries);
-    final month = context.select((MoodCalendarCubit cubit) => cubit.state.month);
+    final savedMonth = context.select((MoodCalendarCubit cubit) => cubit.state.month);
     final cubit = context.read<MoodCalendarCubit>();
+    final now = clock.now();
+    final month = savedMonth ?? now;
+    final monthStart = DateTime(month.year, month.month);
 
     return BaseView(
       appBar: BaseAppBar(title: l10n.calendarTitle),
@@ -38,21 +41,21 @@ class const MoodCalendarPage({super.key}) extends StatelessWidget implements Aut
             children: [
               BaseSectionHeader(
                 title: l10n.calendarMonth(
-                  month: l10n.monthNames[_monthOf(month).month - 1],
-                  year: _monthOf(month).year,
+                  month: l10n.monthNames[monthStart.month - 1],
+                  year: monthStart.year,
                 ),
               ),
               const SizedBox(height: AppSpace.s12),
               BaseSurfaceCard(
                 padding: const EdgeInsets.all(AppSpace.s12),
                 child: BaseCompactCalendar(
-                  month: _monthOf(month),
+                  month: monthStart,
                   marked: {
                     for (final entry in items)
                       if (entry.mood != null)
                         DateTime(entry.day.year, entry.day.month, entry.day.day),
                   },
-                  today: clock.now(),
+                  today: now,
                 ),
               ),
               if (items.isEmpty) ...[
@@ -79,11 +82,5 @@ class const MoodCalendarPage({super.key}) extends StatelessWidget implements Aut
         ),
       ),
     );
-  }
-
-  DateTime _monthOf(DateTime? month) {
-    final now = month ?? clock.now();
-
-    return DateTime(now.year, now.month);
   }
 }

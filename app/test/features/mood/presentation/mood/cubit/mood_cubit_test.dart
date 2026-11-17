@@ -326,6 +326,29 @@ void main() {
     );
   });
 
+  test('a share choice never confirmed does not leak through a Hoje tap', () async {
+    when(() => repository.getTodayMood()).thenAnswer(
+      (_) async => today(
+        value: MoodEntry(
+          id: 'm1',
+          day: day,
+          mood: MoodKind.tired,
+          need: NeedKind.hug,
+          share: MoodShare.none,
+        ),
+      ),
+    );
+    final cubit = build();
+    await cubit.load();
+
+    cubit.selectShare(MoodShare.moodNeed);
+    await cubit.saveTodayMood(MoodKind.happy);
+
+    verify(
+      () => repository.saveMood(mood: MoodKind.happy, need: NeedKind.hug, share: MoodShare.none),
+    ).called(1);
+  });
+
   test('a failed face tap puts back the mood on screen', () async {
     when(
       () => repository.saveMood(

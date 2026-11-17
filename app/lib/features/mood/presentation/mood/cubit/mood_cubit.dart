@@ -122,7 +122,7 @@ class MoodCubit({
       final entry = await _moodRepository.saveMood(
         mood: mood,
         need: state.need,
-        share: state.audience,
+        share: state.savedAudience,
       );
       if (isClosed) return;
       emit(_fromEntry(entry).copyWith(saveAction: const Success(null)));

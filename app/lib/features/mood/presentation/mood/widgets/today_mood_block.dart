@@ -39,7 +39,7 @@ class const TodayMoodBlock({
     final helpL10n = context.l10n.moodHelp;
     final entry = context.select((MoodCubit cubit) => cubit.state.entry);
     final mood = context.select((MoodCubit cubit) => cubit.state.mood);
-    final audience = context.select((MoodCubit cubit) => cubit.state.audience);
+    final audience = context.select((MoodCubit cubit) => cubit.state.savedAudience);
     final partnerMood = context.select((MoodCubit cubit) => cubit.state.partnerMood);
     final partnerName = context.select((MoodCubit cubit) => cubit.state.partnerName);
     final selectedIndex = mood == null ? null : _homeMoods.indexOf(mood);
