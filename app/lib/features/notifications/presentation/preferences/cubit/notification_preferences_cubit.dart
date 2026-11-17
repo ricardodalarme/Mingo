@@ -21,7 +21,8 @@ class NotificationPreferencesCubit({
     await refreshAccess();
     try {
       emit(state.copyWith(preferences: Success(await _notificationsRepository.getPreferences())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(preferences: Failure.fromObject(exception)));
     }
   }
@@ -67,7 +68,8 @@ class NotificationPreferencesCubit({
       await _notificationsRepository.savePreferences(next);
       await _mirrorOnDevice(next);
       emit(state.copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(
         state.copyWith(preferences: Success(current), saveAction: Failure.fromObject(exception)),
       );

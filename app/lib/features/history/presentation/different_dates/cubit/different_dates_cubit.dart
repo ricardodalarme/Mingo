@@ -15,7 +15,8 @@ class DifferentDatesCubit({required final HistoryRepository _historyRepository})
     try {
       final overview = await _historyRepository.getOverview();
       emit(state.copyWith(overview: Success(overview)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }
@@ -45,7 +46,8 @@ class DifferentDatesCubit({required final HistoryRepository _historyRepository})
         date: currentOverview.storyDates.partnerStartDate!,
       );
       emit(state.copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

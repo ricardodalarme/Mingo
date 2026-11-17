@@ -69,6 +69,7 @@ class AppCubit({
   }
 
   void _onAuthError(Object error, StackTrace stackTrace) {
+    addError(error, stackTrace);
     _authEpoch++;
     final epoch = _authEpoch;
     if (_wasAuthenticated) {

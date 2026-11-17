@@ -11,19 +11,11 @@ import 'package:app/features/repair/data/models/repair_path.dart';
 import 'package:app/features/repair/data/models/signal_answer.dart';
 import 'package:app/features/repair/data/models/temperature_history.dart';
 import 'package:clock/clock.dart';
-import 'package:logger/logger.dart';
 
 class RepairRepository({required final RepairDataSource _dataSource}) {
-  final Logger _logger = Logger('RepairRepository');
-
   /// Stores the private temperature answer.
   Future<void> recordTemperature(Temperature level) async {
-    try {
-      await _dataSource.recordTemperature(level.toRemote());
-    } catch (e, stack) {
-      _logger.error('Failed to record the temperature', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.recordTemperature(level.toRemote());
   }
 
   /// The person's own temperature answers from the last weeks, newest first.
@@ -39,49 +31,29 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
   }
 
   Future<List<TemperatureCheck>> _readTemperatureChecks({required int limit}) async {
-    try {
-      return [
-        for (final node in await _dataSource.getTemperatureChecks(limit: limit))
-          TemperatureCheck(level: node.level.toModel(), at: node.createdAt),
-      ];
-    } catch (e, stack) {
-      _logger.error('Failed to read the temperature history', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [
+      for (final node in await _dataSource.getTemperatureChecks(limit: limit))
+        TemperatureCheck(level: node.level.toModel(), at: node.createdAt),
+    ];
   }
 
   /// Sends the partner a short repair message; [preset] names a ready-made one, if used.
   Future<void> sendRepair({required String message, String? preset}) async {
-    try {
-      await _dataSource.sendRepair(body: message.trim(), value: preset);
-    } catch (e, stack) {
-      _logger.error('Failed to send a repair message', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.sendRepair(body: message.trim(), value: preset);
   }
 
   /// The guided repair the person left unfinished, if any.
   Future<GuidedSession?> openGuidedSession() async {
-    try {
-      final node = await _dataSource.openGuidedSession();
+    final node = await _dataSource.openGuidedSession();
 
-      return node == null
-          ? null
-          : GuidedSession.fromStored(id: node.id, step: node.step, draft: node.draft);
-    } catch (e, stack) {
-      _logger.error('Failed to read the guided repair', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return node == null
+        ? null
+        : GuidedSession.fromStored(id: node.id, step: node.step, draft: node.draft);
   }
 
   /// Saves where the person is in the guided repair, so it can be resumed later.
   Future<void> saveProgress(GuidedSession session) async {
-    try {
-      await _dataSource.saveProgress(id: session.id, step: session.step, draft: session.draft);
-    } catch (e, stack) {
-      _logger.error('Failed to save repair progress', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.saveProgress(id: session.id, step: session.step, draft: session.draft);
   }
 
   /// Closes the guided repair with how the person feels now.
@@ -90,21 +62,11 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
     required DateTime now,
     RepairFeeling? feeling,
   }) async {
-    try {
-      await _dataSource.completeSession(id: id, completedAt: now, feeling: feeling?.toRemote());
-    } catch (e, stack) {
-      _logger.error('Failed to complete the repair', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.completeSession(id: id, completedAt: now, feeling: feeling?.toRemote());
   }
 
   Future<List<Learning>> getLearnings() async {
-    try {
-      return [for (final node in await _dataSource.getLearnings()) node.toModel()];
-    } catch (e, stack) {
-      _logger.error('Failed to read learnings', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [for (final node in await _dataSource.getLearnings()) node.toModel()];
   }
 
   Future<void> saveLearning({
@@ -113,61 +75,36 @@ class RepairRepository({required final RepairDataSource _dataSource}) {
     required String note,
     String? sessionId,
   }) async {
-    try {
-      await _dataSource.saveLearning(
-        id: id,
-        kind: kind.toRemote(),
-        note: note.trim(),
-        sessionId: sessionId,
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to save a learning', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.saveLearning(
+      id: id,
+      kind: kind.toRemote(),
+      note: note.trim(),
+      sessionId: sessionId,
+    );
   }
 
   Future<void> deleteLearning(String id) async {
-    try {
-      await _dataSource.deleteLearning(id);
-    } catch (e, stack) {
-      _logger.error('Failed to delete a learning', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.deleteLearning(id);
   }
 
   /// The partner's messages the person has not answered yet, newest first.
   Future<List<ReceivedSignal>> getReceivedSignals(String recipientId) async {
-    try {
-      return [for (final node in await _dataSource.getReceivedSignals(recipientId)) node.toModel()];
-    } catch (e, stack) {
-      _logger.error('Failed to read received messages', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [for (final node in await _dataSource.getReceivedSignals(recipientId)) node.toModel()];
   }
 
   /// Answers a message from the partner; a null [response] only marks it seen.
   Future<SignalAnswer> respondToSignal({required String signalId, RepairResponse? response}) async {
-    try {
-      final node = await _dataSource.respondToSignal(
-        signalId: signalId,
-        at: clock.now(),
-        response: response?.toRemote(),
-      );
+    final node = await _dataSource.respondToSignal(
+      signalId: signalId,
+      at: clock.now(),
+      response: response?.toRemote(),
+    );
 
-      return node.toModel();
-    } catch (e, stack) {
-      _logger.error('Failed to answer a message', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return node.toModel();
   }
 
   /// Starts a private repair session with the chosen [path]; the client [id] makes retries safe.
   Future<void> startSession({required String id, required RepairPath path, int? intensity}) async {
-    try {
-      await _dataSource.startSession(id: id, path: path.toRemote(), intensity: intensity);
-    } catch (e, stack) {
-      _logger.error('Failed to start a repair session', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.startSession(id: id, path: path.toRemote(), intensity: intensity);
   }
 }

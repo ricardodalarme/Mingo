@@ -21,7 +21,8 @@ class ShareSheetCubit({required final ShareImageRepository _repository})
     try {
       await _repository.share(await capture());
       emit(state.copyWith(shareAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(shareAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(shareAction: const Initial()));

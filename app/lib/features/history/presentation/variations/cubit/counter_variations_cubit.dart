@@ -16,7 +16,8 @@ class CounterVariationsCubit({required final HistoryRepository _historyRepositor
     try {
       final overview = await _historyRepository.getOverview();
       emit(state.copyWith(overview: Success(overview), selectedPhase: overview.phase));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }
@@ -32,7 +33,8 @@ class CounterVariationsCubit({required final HistoryRepository _historyRepositor
 
     try {
       await _historyRepository.updatePhase(profileId: currentOverview.selfId, phase: phase);
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

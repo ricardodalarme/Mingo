@@ -21,7 +21,8 @@ class SpiceDesiresCubit({required final SpiceRepository _spiceRepository})
       final level = status.coupleLevel ?? status.myLevel;
       final (desires, matches) = await (_spiceRepository.getDesires(level), _readMatches()).wait;
       emit(state.copyWith(desires: Success(desires), matches: matches));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.desires is Success) return;
       emit(state.copyWith(desires: Failure.fromObject(exception)));
     }
@@ -44,7 +45,8 @@ class SpiceDesiresCubit({required final SpiceRepository _spiceRepository})
     try {
       await _spiceRepository.answerDesire(slug: desire.slug, answer: answer);
       emit(state.copyWith(answerAction: const Success(null), matches: await _readMatches()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(desires: current, answerAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(answerAction: const Initial()));
@@ -54,7 +56,8 @@ class SpiceDesiresCubit({required final SpiceRepository _spiceRepository})
   Future<List<SpiceMatch>?> _readMatches() async {
     try {
       return await _spiceRepository.getMatches();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (Failure.fromObject(exception).exception.l10nKey == plusRequiredCode) return null;
       rethrow;
     }

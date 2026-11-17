@@ -19,7 +19,8 @@ class SpiceChallengeCubit({required final SpiceRepository _spiceRepository})
     try {
       emit(state.copyWith(challenge: Success(await _spiceRepository.getChallenge())));
       _watch();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.challenge is Success) return;
       emit(state.copyWith(challenge: Failure.fromObject(exception)));
     }
@@ -32,7 +33,8 @@ class SpiceChallengeCubit({required final SpiceRepository _spiceRepository})
     try {
       final challenge = await _spiceRepository.actOnChallenge(action);
       emit(state.copyWith(challenge: Success(challenge), actAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(actAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(actAction: const Initial()));

@@ -24,7 +24,8 @@ class NeedCubit({required final SlipRepository _slipRepository}) extends Cubit<N
     try {
       await _slipRepository.sendNeed(need);
       emit(state.copyWith(sendAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(sendAction: Failure.fromObject(exception)));
       emit(state.copyWith(sendAction: const Initial()));
     }

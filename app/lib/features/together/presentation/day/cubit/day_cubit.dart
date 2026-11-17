@@ -45,7 +45,8 @@ class DayCubit({
           )),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(content: Failure.fromObject(exception)));
     }
   }

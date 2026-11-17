@@ -19,7 +19,8 @@ class JarCubit({required final SlipRepository _slipRepository}) extends Cubit<Ja
     emit(state.copyWith(slip: const Loading()));
     try {
       emit(state.copyWith(slip: Success(await _slipRepository.drawFromJar())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(slip: Failure.fromObject(exception)));
     } finally {
       _isDrawing = false;

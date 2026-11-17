@@ -44,7 +44,8 @@ class GameCubit({
       play = await _finishIfReady(play);
       if (isClosed) return;
       emit(_loaded(play, reset: reset));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.play is Success) return;
       emit(state.copyWith(play: Failure.fromObject(exception)));
     }
@@ -168,7 +169,8 @@ class GameCubit({
       if (next.isOwnDone) {
         try {
           next = await _finishIfReady(next);
-        } catch (exception) {
+        } catch (exception, stack) {
+          addError(exception, stack);
           finishFailure = exception;
         }
       }
@@ -185,7 +187,8 @@ class GameCubit({
       );
       if (finishFailure == null) return;
       emit(state.copyWith(action: const Initial()));
-    } on LocalizedException catch (exception) {
+    } on LocalizedException catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       final isLocked = exception.l10nKey == gameAnswerLockedCode;
       emit(
@@ -196,7 +199,8 @@ class GameCubit({
         ),
       );
       emit(state.copyWith(action: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(action: Failure.fromObject(exception)));
       emit(state.copyWith(action: const Initial()));
@@ -219,7 +223,8 @@ class GameCubit({
       await refresh();
       if (isClosed) return;
       emit(state.copyWith(action: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       _fail(exception);
     }
   }

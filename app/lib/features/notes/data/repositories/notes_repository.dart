@@ -21,59 +21,44 @@ class NotesRepository({
 
   /// The messages the user sent, newest first, with a readable link for each drawing.
   Future<List<SentMessage>> getSent() async {
-    try {
-      final userId = _authenticationRepository.currentUserId;
-      if (userId == null) return const [];
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) return const [];
 
-      final nodes = await _dataSource.getSent(userId);
+    final nodes = await _dataSource.getSent(userId);
 
-      return await Future.wait([
-        for (final node in nodes)
-          () async {
-            final fileId = node.mediaFileId;
-            return node.toModel(imageUrl: fileId == null ? null : await _signedUrl(fileId));
-          }(),
-      ]);
-    } catch (e, stack) {
-      _logger.error('Failed to read sent messages', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return await Future.wait([
+      for (final node in nodes)
+        () async {
+          final fileId = node.mediaFileId;
+          return node.toModel(imageUrl: fileId == null ? null : await _signedUrl(fileId));
+        }(),
+    ]);
   }
 
   Future<void> sendNote({required String body, required bool forWidget}) async {
-    try {
-      await _dataSource.send(
-        kind: MessageKind.note.toRemote(),
-        body: body.trim(),
-        forWidget: forWidget,
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to send a note', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.send(
+      kind: MessageKind.note.toRemote(),
+      body: body.trim(),
+      forWidget: forWidget,
+    );
   }
 
   /// Uploads the [png] and then sends it as a drawing.
   Future<void> sendDrawing({required Uint8List png, required bool forWidget}) async {
+    final fileId = await _storageService.upload(
+      bucket: _bucket,
+      bytes: png,
+      contentType: 'image/png',
+      name: '${_uuid.v4()}.png',
+    );
     try {
-      final fileId = await _storageService.upload(
-        bucket: _bucket,
-        bytes: png,
-        contentType: 'image/png',
-        name: '${_uuid.v4()}.png',
+      await _dataSource.send(
+        kind: MessageKind.drawing.toRemote(),
+        mediaFileId: fileId,
+        forWidget: forWidget,
       );
-      try {
-        await _dataSource.send(
-          kind: MessageKind.drawing.toRemote(),
-          mediaFileId: fileId,
-          forWidget: forWidget,
-        );
-      } catch (_) {
-        await _removeQuietly(fileId);
-        rethrow;
-      }
-    } catch (e, stack) {
-      _logger.error('Failed to send a drawing', error: e, stackTrace: stack);
+    } catch (_) {
+      await _removeQuietly(fileId);
       rethrow;
     }
   }
@@ -82,14 +67,9 @@ class NotesRepository({
   ///
   /// A row the server already removed still counts as success.
   Future<void> delete(SentMessage message) async {
-    try {
-      await _dataSource.delete(message.id);
-      final fileId = message.mediaFileId;
-      if (fileId != null) await _removeQuietly(fileId);
-    } catch (e, stack) {
-      _logger.error('Failed to delete a message', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.delete(message.id);
+    final fileId = message.mediaFileId;
+    if (fileId != null) await _removeQuietly(fileId);
   }
 
   Future<String?> _signedUrl(String fileId) async {

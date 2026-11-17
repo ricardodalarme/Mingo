@@ -26,7 +26,8 @@ class ListsCubit({required final ListsRepository _listsRepository}) extends Cubi
       ).wait;
       emit(state.copyWith(lists: Success(lists), coupleId: coupleId));
       _watch();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.lists is Success) return;
       emit(state.copyWith(lists: Failure.fromObject(exception)));
     }
@@ -65,7 +66,8 @@ class ListsCubit({required final ListsRepository _listsRepository}) extends Cubi
         coupleId: coupleId,
       );
       emit(state.copyWith(lists: Success(_replace(saved)), createAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(lists: previous, createAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(createAction: const Initial()));
@@ -117,7 +119,8 @@ class ListsCubit({required final ListsRepository _listsRepository}) extends Cubi
           changeAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(lists: Success(previous), changeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(changeAction: const Initial()));

@@ -20,7 +20,8 @@ class LanguageCubit({required final SettingsRepository _repository}) extends Cub
       LocaleSettings.setLocaleSync(locale);
       if (!isClosed) emit(state.copyWith(saveAction: const Success(null)));
       return true;
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!isClosed) {
         emit(state.copyWith(locale: previous, saveAction: Failure.fromObject(exception)));
         emit(state.copyWith(saveAction: const Initial()));

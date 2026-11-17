@@ -24,7 +24,8 @@ class HelpCubit({
       final settings = await _profileRepository.getMySettings();
       final items = await _togetherRepository.getHelpContent(kind: kind, locale: settings.locale);
       emit(state.copyWith(items: Success(items)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(items: Failure.fromObject(exception)));
     }
   }

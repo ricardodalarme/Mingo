@@ -20,7 +20,8 @@ class PartnerProfileCubit({required final PartnerRepository _partnerRepository})
     if (state.facts is! Success) emit(state.copyWith(facts: const Loading()));
     try {
       emit(state.copyWith(facts: Success(await _partnerRepository.getFacts())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.facts is Success) return;
       emit(state.copyWith(facts: Failure.fromObject(exception)));
     }
@@ -57,7 +58,8 @@ class PartnerProfileCubit({required final PartnerRepository _partnerRepository})
         ),
       );
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
@@ -67,7 +69,8 @@ class PartnerProfileCubit({required final PartnerRepository _partnerRepository})
     try {
       await _partnerRepository.deleteFact(fact.id);
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

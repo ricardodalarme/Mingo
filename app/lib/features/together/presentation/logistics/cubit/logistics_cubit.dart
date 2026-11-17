@@ -37,7 +37,8 @@ class LogisticsCubit({
         ),
       );
       _watch();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.items is Success) return;
       emit(state.copyWith(items: Failure.fromObject(exception)));
     }
@@ -58,7 +59,8 @@ class LogisticsCubit({
       );
       emit(state.copyWith(title: '', addAction: const Success(null)));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(addAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(addAction: const Initial()));
@@ -85,7 +87,8 @@ class LogisticsCubit({
     try {
       await action();
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(changeAction: Failure.fromObject(exception)));
       emit(state.copyWith(changeAction: const Initial()));
     }

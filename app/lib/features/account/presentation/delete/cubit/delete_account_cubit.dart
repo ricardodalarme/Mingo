@@ -26,7 +26,8 @@ class DeleteAccountCubit({
         _repository.getDeletion(),
       ).wait;
       emit(state.copyWith(deletion: Success(deletion), partnerName: partner?.displayName));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(deletion: Failure.fromObject(exception)));
     }
   }
@@ -52,7 +53,8 @@ class DeleteAccountCubit({
       }
       final deletion = await _repository.requestDeletion();
       emit(state.copyWith(deletion: Success(deletion), action: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(action: Failure.fromObject(exception)));
       emit(state.copyWith(action: const Initial()));
     }
@@ -65,7 +67,8 @@ class DeleteAccountCubit({
     try {
       await _repository.cancelDeletion();
       emit(state.copyWith(deletion: const Success(null), action: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(action: Failure.fromObject(exception)));
       emit(state.copyWith(action: const Initial()));
     }

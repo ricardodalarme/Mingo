@@ -4,7 +4,6 @@ import 'package:app/features/distance/data/data_sources/remote/distance_data_sou
 import 'package:app/features/distance/data/models/distance_info.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:clock/clock.dart';
-import 'package:logger/logger.dart';
 import 'package:timezone/data/latest_all.dart' as tz_data;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -13,28 +12,22 @@ class DistanceRepository({
   required final ProfileRepository _profileRepository,
   required final DatesRepository _datesRepository,
 }) {
-  final Logger _logger = Logger('DistanceRepository');
   bool _hasZones = false;
 
   /// Both clocks and the days until the next saved reunion date.
   Future<DistanceInfo> getDistance({DateTime? now}) async {
-    try {
-      final moment = now ?? clock.now();
-      final settings = await _profileRepository.getMySettings();
-      final partnerZone = await _dataSource.getPartnerTimeZone(settings.profileId);
-      final reunion = await _nextReunion(moment);
+    final moment = now ?? clock.now();
+    final settings = await _profileRepository.getMySettings();
+    final partnerZone = await _dataSource.getPartnerTimeZone(settings.profileId);
+    final reunion = await _nextReunion(moment);
 
-      return DistanceInfo(
-        own: _clock(settings.timeZone, moment),
-        partner: partnerZone == null ? null : _clock(partnerZone, moment),
-        nextReunion: reunion?.date,
-        daysToReunion: reunion?.days,
-        reunionTitle: reunion?.title,
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to read the distance', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return DistanceInfo(
+      own: _clock(settings.timeZone, moment),
+      partner: partnerZone == null ? null : _clock(partnerZone, moment),
+      nextReunion: reunion?.date,
+      daysToReunion: reunion?.days,
+      reunionTitle: reunion?.title,
+    );
   }
 
   ZoneClock _clock(String zone, DateTime moment) {

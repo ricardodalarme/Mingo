@@ -54,7 +54,8 @@ class RitualEditCubit({
               : const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(load: Failure.fromObject(exception)));
     }
   }
@@ -98,7 +99,8 @@ class RitualEditCubit({
       await _togetherRepository.saveRitual(state.ritual, isNew: state.isNew);
       await _reminderService.update(await _togetherRepository.getRituals());
       emit(state.copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }
@@ -113,7 +115,8 @@ class RitualEditCubit({
       await _togetherRepository.archiveRitual(state.ritual.id, now: clock.now());
       await _reminderService.update(await _togetherRepository.getRituals());
       emit(state.copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

@@ -25,7 +25,8 @@ class FightStyleCubit({
       final result = FightStyleResult.fromRecord(saved, partnerName: _partnerName);
       if (isClosed) return;
       emit(state.copyWith(result: Success<FightStyleResult?>(result), isAnswering: result == null));
-    } on LocalizedException catch (exception) {
+    } on LocalizedException catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(result: Failure.fromObject(exception), isAnswering: false));
     }
@@ -71,7 +72,8 @@ class FightStyleCubit({
       await _repository.addRepairTool(note);
       if (isClosed) return;
       emit(state.copyWith(isInTools: true, addAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(addAction: Failure.fromObject(exception)));
       emit(state.copyWith(addAction: const Initial()));
@@ -96,7 +98,8 @@ class FightStyleCubit({
           saveAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));

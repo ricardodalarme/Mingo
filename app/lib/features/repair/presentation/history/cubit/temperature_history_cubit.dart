@@ -15,7 +15,8 @@ class TemperatureHistoryCubit({required final RepairRepository _repairRepository
     try {
       final checks = await _repairRepository.getTemperatureChecks();
       emit(state.copyWith(checks: Success(checks)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.checks is Success) return;
       emit(state.copyWith(checks: Failure.fromObject(exception)));
     }

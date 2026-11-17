@@ -24,7 +24,8 @@ class GamesCubit({required final GamesRepository _repository}) extends Cubit<Gam
       final overview = await _repository.getOverview();
       if (isClosed) return;
       emit(state.copyWith(overview: Success(overview)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }

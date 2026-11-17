@@ -20,7 +20,8 @@ class CapsulesCubit({required final CapsulesRepository _capsulesRepository})
     if (state.capsules is! Success) emit(state.copyWith(capsules: const Loading()));
     try {
       emit(state.copyWith(capsules: Success(await _capsulesRepository.getCapsules())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.capsules is Success) return;
       emit(state.copyWith(capsules: Failure.fromObject(exception)));
     }
@@ -53,7 +54,8 @@ class CapsulesCubit({required final CapsulesRepository _capsulesRepository})
         state.copyWith(body: const FormInput(''), clearDate: true, saveAction: const Success(null)),
       );
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
@@ -78,7 +80,8 @@ class CapsulesCubit({required final CapsulesRepository _capsulesRepository})
       await _capsulesRepository.delete(capsule.id);
       emit(state.copyWith(deleteAction: const Initial()));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(deleteAction: Failure.fromObject(exception)));
       emit(state.copyWith(deleteAction: const Initial()));
     }

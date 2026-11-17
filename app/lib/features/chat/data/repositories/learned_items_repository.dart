@@ -2,64 +2,36 @@ import 'package:app/features/chat/data/data_sources/remote/learned_items_data_so
 import 'package:app/features/chat/data/mappers/learned_item_enum_mapper.dart';
 import 'package:app/features/chat/data/mappers/learned_item_mapper.dart';
 import 'package:app/features/chat/data/models/learned_item.dart';
-import 'package:logger/logger.dart';
 
 class LearnedItemsRepository({required final LearnedItemsDataSource _dataSource}) {
-  final Logger _logger = Logger('LearnedItemsRepository');
-
   Future<List<LearnedItem>> getItems() async {
-    try {
-      return [for (final node in await _dataSource.getItems()) node.toModel()];
-    } catch (e, stack) {
-      _logger.error('Failed to read learnings', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [for (final node in await _dataSource.getItems()) node.toModel()];
   }
 
   /// Saves a new pending learning; nothing is sent to the partner.
   Future<void> add({required LearnedTarget target, required String text, String? excerpt}) async {
-    try {
-      final trimmed = text.trim();
-      final trimmedExcerpt = excerpt?.trim();
-      await _dataSource.add(
-        target: target.toRemote(),
-        text: trimmed,
-        excerpt: trimmedExcerpt == null
-            ? null
-            : trimmedExcerpt.length > learnedExcerptMaxLength
-            ? trimmedExcerpt.substring(0, learnedExcerptMaxLength)
-            : trimmedExcerpt,
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to save a learning', error: e, stackTrace: stack);
-      rethrow;
-    }
+    final trimmed = text.trim();
+    final trimmedExcerpt = excerpt?.trim();
+    await _dataSource.add(
+      target: target.toRemote(),
+      text: trimmed,
+      excerpt: trimmedExcerpt == null
+          ? null
+          : trimmedExcerpt.length > learnedExcerptMaxLength
+          ? trimmedExcerpt.substring(0, learnedExcerptMaxLength)
+          : trimmedExcerpt,
+    );
   }
 
   Future<void> updateText(String id, String text) async {
-    try {
-      await _dataSource.updateText(id: id, text: text.trim());
-    } catch (e, stack) {
-      _logger.error('Failed to edit a learning', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.updateText(id: id, text: text.trim());
   }
 
   Future<void> setStatus(String id, LearnedStatus status) async {
-    try {
-      await _dataSource.setStatus(id: id, status: status.toRemote());
-    } catch (e, stack) {
-      _logger.error('Failed to change a learning status', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.setStatus(id: id, status: status.toRemote());
   }
 
   Future<void> delete(String id) async {
-    try {
-      await _dataSource.delete(id);
-    } catch (e, stack) {
-      _logger.error('Failed to delete a learning', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.delete(id);
   }
 }

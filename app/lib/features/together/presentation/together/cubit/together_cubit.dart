@@ -28,6 +28,7 @@ class TogetherCubit({
         .map((settings) => settings.phase)
         .distinct()
         .skip(1)
+        // A failed phase watcher keeps the hub as it is; a person's own action reads it again.
         .listen((_) => load(), onError: (Object _) {});
   }
 

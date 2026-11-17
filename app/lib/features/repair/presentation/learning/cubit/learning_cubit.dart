@@ -22,7 +22,8 @@ class LearningCubit({required final RepairRepository _repairRepository})
     if (state.learnings is! Success) emit(state.copyWith(learnings: const Loading()));
     try {
       emit(state.copyWith(learnings: Success(await _repairRepository.getLearnings())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.learnings is Success) return;
       emit(state.copyWith(learnings: Failure.fromObject(exception)));
     }
@@ -50,7 +51,8 @@ class LearningCubit({required final RepairRepository _repairRepository})
         state.copyWith(note: const FormInput(''), clearKind: true, saveAction: const Success(null)),
       );
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
@@ -80,7 +82,8 @@ class LearningCubit({required final RepairRepository _repairRepository})
           ),
         );
       }
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

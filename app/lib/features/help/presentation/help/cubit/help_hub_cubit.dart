@@ -30,7 +30,8 @@ class HelpHubCubit({
           discarded: dropped > 0 || wasDiscarded ? 1 : 0,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(flushAction: Failure.fromObject(exception)));
     }
   }

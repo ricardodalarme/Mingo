@@ -16,7 +16,8 @@ class UnpairDoneCubit({required final PairingRepository _pairingRepository})
     try {
       await _pairingRepository.resolveSharedItems(keep: choice.shouldKeep);
       emit(state.copyWith(resolveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(resolveAction: Failure.fromObject(exception)));
     }
   }

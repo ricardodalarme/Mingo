@@ -63,7 +63,8 @@ class ProfileSetupCubit({
       final settings = _settingsRepository.get();
       await _settingsRepository.save(settings.copyWith(themeVariant: state.theme.name));
       emit(state.copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

@@ -58,7 +58,8 @@ class SupportCubit({
       );
       if (isClosed) return;
       emit(state.copyWith(sendAction: Success(outcome)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(sendAction: Failure.fromObject(exception)));
       emit(state.copyWith(sendAction: const Initial()));

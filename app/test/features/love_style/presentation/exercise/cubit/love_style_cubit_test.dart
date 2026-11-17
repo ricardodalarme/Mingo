@@ -6,6 +6,7 @@ import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
 import 'package:core/core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -13,14 +14,22 @@ class _MockLoveStyleRepository() extends Mock implements LoveStyleRepository;
 
 class _MockPairingRepository() extends Mock implements PairingRepository;
 
+class _MockBlocObserver() extends Mock implements BlocObserver;
+
 void main() {
   late LoveStyleRepository repository;
   late PairingRepository pairingRepository;
+  late BlocObserver mockObserver;
 
   const ranked = ['touch', 'time', 'words', 'acts', 'gifts'];
 
+  setUp(() {
+    mockObserver = _MockBlocObserver();
+  });
+
   setUpAll(() {
     registerFallbackValue(<String>[]);
+    registerFallbackValue(StackTrace.empty);
   });
 
   setUp(() {
@@ -217,6 +226,21 @@ void main() {
     expect(cubit.state.answers.every((answer) => answer == 'words'), isTrue);
     expect(cubit.state.savedResult, isNull);
     expect(cubit.state.saveAction, isA<Initial>());
+  });
+
+  test('a failed save is handed to the observer', () async {
+    final previousObserver = Bloc.observer;
+    Bloc.observer = mockObserver;
+    addTearDown(() => Bloc.observer = previousObserver);
+    const failure = LocalizedException(l10nKey: 'NETWORK');
+    when(() => repository.saveRanked(any())).thenThrow(failure);
+    final cubit = build();
+    await cubit.load();
+
+    await answerAll(cubit, 'words');
+
+    // ignore: invalid_use_of_protected_member - the test drives the observer the cubit reports to
+    verify(() => mockObserver.onError(cubit, failure, any())).called(1);
   });
 
   test('saving to the manual writes the description once', () async {

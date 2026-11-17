@@ -2,24 +2,16 @@ import 'package:app/features/ideas/data/data_sources/local/ideas_local_data_sour
 import 'package:app/features/ideas/data/data_sources/remote/ideas_data_source.dart';
 import 'package:app/features/ideas/data/mappers/idea_mapper.dart';
 import 'package:app/features/ideas/data/models/idea.dart';
-import 'package:logger/logger.dart';
 
 class IdeasRepository({
   required final IdeasDataSource _dataSource,
   required final IdeasLocalDataSource _localDataSource,
 }) {
-  final Logger _logger = Logger('IdeasRepository');
-
   /// The ideas for [locale] in editorial order.
   Future<List<Idea>> getIdeas(String locale) async {
-    try {
-      final result = await _dataSource.getIdeas(locale);
+    final result = await _dataSource.getIdeas(locale);
 
-      return [for (final node in result) node.toModel()];
-    } catch (e, stack) {
-      _logger.error('Failed to load ideas', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [for (final node in result) node.toModel()];
   }
 
   /// Marks an idea as done; doing it again changes nothing.

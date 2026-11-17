@@ -73,53 +73,48 @@ class GuidesRepository({
     required String notes,
     required String? draft,
   }) async {
-    try {
-      final trimmedNotes = notes.trim();
-      final safeNotes = trimmedNotes.length > conversationNotesMaxLength
-          ? trimmedNotes.substring(0, conversationNotesMaxLength)
-          : trimmedNotes;
-      final trimmedDraft = draft?.trim();
-      final String? safeDraft;
-      if (trimmedDraft == null || trimmedDraft.isEmpty) {
-        safeDraft = null;
-      } else if (trimmedDraft.length > conversationDraftMaxLength) {
-        safeDraft = trimmedDraft.substring(0, conversationDraftMaxLength);
-      } else {
-        safeDraft = trimmedDraft;
-      }
-
-      if (prepId != null) {
-        try {
-          await _dataSource.updatePrep(
-            id: prepId,
-            guide: guide.toConversationGuide(),
-            topic: topic,
-            notes: safeNotes.isEmpty ? null : safeNotes,
-            draft: safeDraft,
-          );
-
-          return prepId;
-        } on NoDataException {
-          return await _dataSource.insertPrep(
-            id: _uuid.v4(),
-            guide: guide.toConversationGuide(),
-            topic: topic,
-            notes: safeNotes.isEmpty ? null : safeNotes,
-            draft: safeDraft,
-          );
-        }
-      }
-
-      return await _dataSource.insertPrep(
-        id: _uuid.v4(),
-        guide: guide.toConversationGuide(),
-        topic: topic,
-        notes: safeNotes.isEmpty ? null : safeNotes,
-        draft: safeDraft,
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to save a conversation preparation', error: e, stackTrace: stack);
-      rethrow;
+    final trimmedNotes = notes.trim();
+    final safeNotes = trimmedNotes.length > conversationNotesMaxLength
+        ? trimmedNotes.substring(0, conversationNotesMaxLength)
+        : trimmedNotes;
+    final trimmedDraft = draft?.trim();
+    final String? safeDraft;
+    if (trimmedDraft == null || trimmedDraft.isEmpty) {
+      safeDraft = null;
+    } else if (trimmedDraft.length > conversationDraftMaxLength) {
+      safeDraft = trimmedDraft.substring(0, conversationDraftMaxLength);
+    } else {
+      safeDraft = trimmedDraft;
     }
+
+    if (prepId != null) {
+      try {
+        await _dataSource.updatePrep(
+          id: prepId,
+          guide: guide.toConversationGuide(),
+          topic: topic,
+          notes: safeNotes.isEmpty ? null : safeNotes,
+          draft: safeDraft,
+        );
+
+        return prepId;
+      } on NoDataException {
+        return await _dataSource.insertPrep(
+          id: _uuid.v4(),
+          guide: guide.toConversationGuide(),
+          topic: topic,
+          notes: safeNotes.isEmpty ? null : safeNotes,
+          draft: safeDraft,
+        );
+      }
+    }
+
+    return await _dataSource.insertPrep(
+      id: _uuid.v4(),
+      guide: guide.toConversationGuide(),
+      topic: topic,
+      notes: safeNotes.isEmpty ? null : safeNotes,
+      draft: safeDraft,
+    );
   }
 }

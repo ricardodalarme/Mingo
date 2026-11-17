@@ -16,7 +16,8 @@ class ManagePlusCubit({required final PlusRepository _plusRepository})
       final plus = await _plusRepository.getPlus();
       if (isClosed) return;
       emit(state.copyWith(plus: Success(plus)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(plus: Failure.fromObject(exception)));
     }
@@ -37,7 +38,8 @@ class ManagePlusCubit({required final PlusRepository _plusRepository})
               : Success(url),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(manageAction: Failure.fromObject(exception)));
     }

@@ -15,7 +15,8 @@ class TouchCubit({required final ConnectRepository _connectRepository}) extends 
       final isEnabled = await _connectRepository.getTouchTopicsEnabled();
       final cards = isEnabled ? await _connectRepository.getTouchCards() : <HelpItem>[];
       emit(state.copyWith(isEnabled: Success(isEnabled), cards: cards, index: 0));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(isEnabled: Failure.fromObject(exception)));
     }
   }
@@ -29,7 +30,8 @@ class TouchCubit({required final ConnectRepository _connectRepository}) extends 
       await _connectRepository.setTouchTopicsEnabled(enabled: enabled);
       emit(state.copyWith(toggleAction: const Success(null)));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(toggleAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(toggleAction: const Initial()));

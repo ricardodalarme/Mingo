@@ -52,7 +52,6 @@ class TogetherRepository({
         if (!first.isCompleted) first.complete(id);
       },
       onError: (Object e, StackTrace stack) {
-        _logger.error('Failed to follow the couple', error: e, stackTrace: stack);
         if (first.isCompleted) return;
         _forgetCouple();
         first.completeError(e, stack);
@@ -70,12 +69,7 @@ class TogetherRepository({
   }
 
   Future<List<LogisticItem>> getLogisticItems() async {
-    try {
-      return [for (final node in await _dataSource.getLogisticItems()) node.toModel()];
-    } catch (e, stack) {
-      _logger.error('Failed to read logistics', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [for (final node in await _dataSource.getLogisticItems()) node.toModel()];
   }
 
   /// Emits the shared list now and each time the partner or the person changes it.
@@ -96,165 +90,104 @@ class TogetherRepository({
     required String title,
     String? assigneeId,
   }) async {
-    try {
-      final coupleId = await getCoupleId();
-      await _dataSource.addLogisticItem(
-        id: id,
-        title: title.trim(),
-        assigneeId: assigneeId,
-        coupleId: coupleId,
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to add a logistic item', error: e, stackTrace: stack);
-      rethrow;
-    }
+    final coupleId = await getCoupleId();
+    await _dataSource.addLogisticItem(
+      id: id,
+      title: title.trim(),
+      assigneeId: assigneeId,
+      coupleId: coupleId,
+    );
   }
 
   Future<void> setLogisticItemDone({required String id, required bool isDone, DateTime? now}) =>
-      _run(
-        'update a logistic item',
-        () => _dataSource.setLogisticItemDone(id: id, doneAt: isDone ? (now ?? clock.now()) : null),
-      );
+      _dataSource.setLogisticItemDone(id: id, doneAt: isDone ? (now ?? clock.now()) : null);
 
-  Future<void> setLogisticItemAssignee({required String id, String? assigneeId}) => _run(
-    'assign a logistic item',
-    () => _dataSource.setLogisticItemAssignee(id: id, assigneeId: assigneeId),
-  );
+  Future<void> setLogisticItemAssignee({required String id, String? assigneeId}) =>
+      _dataSource.setLogisticItemAssignee(id: id, assigneeId: assigneeId);
 
   /// Confirms an item the partner proposed, which turns it into something both agreed on.
-  Future<void> confirmLogisticItem(String id) =>
-      _run('confirm a logistic item', () => _dataSource.confirmLogisticItem(id));
+  Future<void> confirmLogisticItem(String id) => _dataSource.confirmLogisticItem(id);
 
-  Future<void> deleteLogisticItem(String id) =>
-      _run('delete a logistic item', () => _dataSource.deleteLogisticItem(id));
+  Future<void> deleteLogisticItem(String id) => _dataSource.deleteLogisticItem(id);
 
   Future<List<Ritual>> getRituals() async {
-    try {
-      return [for (final node in await _dataSource.getRituals()) node.toModel()];
-    } catch (e, stack) {
-      _logger.error('Failed to read rituals', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [for (final node in await _dataSource.getRituals()) node.toModel()];
   }
 
   /// Creates a new ritual shared with the partner, or saves the changes of an existing one.
   Future<void> saveRitual(Ritual ritual, {required bool isNew}) async {
-    try {
-      final time = '${ritual.hour.toString().padLeft(2, '0')}:00:00';
-      final weekday = ritual.needsWeekday ? ritual.weekday : null;
-      if (isNew) {
-        await _dataSource.addRitual(
-          id: ritual.id,
-          title: ritual.title.trim(),
-          cadence: ritual.cadence.toRemote(),
-          weekday: weekday,
-          atTime: time,
-          reminder: ritual.hasReminder,
-          coupleId: await getCoupleId(),
-          plannerId: ritual.plannerId,
-        );
-      } else {
-        await _dataSource.updateRitual(
-          id: ritual.id,
-          title: ritual.title.trim(),
-          cadence: ritual.cadence.toRemote(),
-          weekday: weekday,
-          atTime: time,
-          reminder: ritual.hasReminder,
-          plannerId: ritual.plannerId,
-        );
-      }
-    } catch (e, stack) {
-      _logger.error('Failed to save a ritual', error: e, stackTrace: stack);
-      rethrow;
+    final time = '${ritual.hour.toString().padLeft(2, '0')}:00:00';
+    final weekday = ritual.needsWeekday ? ritual.weekday : null;
+    if (isNew) {
+      await _dataSource.addRitual(
+        id: ritual.id,
+        title: ritual.title.trim(),
+        cadence: ritual.cadence.toRemote(),
+        weekday: weekday,
+        atTime: time,
+        reminder: ritual.hasReminder,
+        coupleId: await getCoupleId(),
+        plannerId: ritual.plannerId,
+      );
+    } else {
+      await _dataSource.updateRitual(
+        id: ritual.id,
+        title: ritual.title.trim(),
+        cadence: ritual.cadence.toRemote(),
+        weekday: weekday,
+        atTime: time,
+        reminder: ritual.hasReminder,
+        plannerId: ritual.plannerId,
+      );
     }
   }
 
   /// Hides a ritual; its history stays on the server.
   Future<void> archiveRitual(String id, {required DateTime now}) =>
-      _run('archive a ritual', () => _dataSource.archiveRitual(id: id, at: now));
+      _dataSource.archiveRitual(id: id, at: now);
 
   /// Records that the ritual happened today.
-  Future<void> completeRitual(String id, {required DateTime now}) => _run(
-    'complete a ritual',
-    () => _dataSource.completeRitual(id: id, day: DateTime(now.year, now.month, now.day)),
-  );
+  Future<void> completeRitual(String id, {required DateTime now}) =>
+      _dataSource.completeRitual(id: id, day: DateTime(now.year, now.month, now.day));
 
   Future<List<DateIdea>> getDateIdeas() async {
-    try {
-      return [for (final node in await _dataSource.getDateIdeas()) node.toModel()];
-    } catch (e, stack) {
-      _logger.error('Failed to read date ideas', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [for (final node in await _dataSource.getDateIdeas()) node.toModel()];
   }
 
   /// The editorial ideas offered when the couple has none of its own.
   Future<List<DateIdeaSuggestion>> getDateIdeaSuggestions(String locale) async {
-    try {
-      return [for (final node in await _dataSource.getDateIdeaSuggestions(locale)) node.toModel()];
-    } catch (e, stack) {
-      _logger.error('Failed to read date suggestions', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [for (final node in await _dataSource.getDateIdeaSuggestions(locale)) node.toModel()];
   }
 
   /// Saves an idea shared with the partner; [slug] names an editorial idea it came from.
   Future<void> addDateIdea({required String id, required String title, String? slug}) async {
-    try {
-      await _dataSource.addDateIdea(
-        id: id,
-        title: title.trim(),
-        slug: slug,
-        coupleId: await getCoupleId(),
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to save a date idea', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.addDateIdea(
+      id: id,
+      title: title.trim(),
+      slug: slug,
+      coupleId: await getCoupleId(),
+    );
   }
 
   /// Plans [idea] for [day] and adds the shared date that reminds both people.
   Future<void> planDateIdea(DateIdea idea, {required DateTime day}) async {
-    try {
-      await _dataSource.planDateIdea(id: idea.id, day: day);
-      await _dataSource.addSharedDate(title: idea.title, day: day, coupleId: await getCoupleId());
-    } catch (e, stack) {
-      _logger.error('Failed to plan a date', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.planDateIdea(id: idea.id, day: day);
+    await _dataSource.addSharedDate(title: idea.title, day: day, coupleId: await getCoupleId());
   }
 
-  Future<void> setDateIdeaDone({required String id, required bool isDone}) => _run(
-    'update a date idea',
-    () => _dataSource.setDateIdeaStatus(
-      id: id,
-      status: (isDone ? DateIdeaStatus.done : DateIdeaStatus.saved).toRemote(),
-    ),
-  );
+  Future<void> setDateIdeaDone({required String id, required bool isDone}) =>
+      _dataSource.setDateIdeaStatus(
+        id: id,
+        status: (isDone ? DateIdeaStatus.done : DateIdeaStatus.saved).toRemote(),
+      );
 
-  Future<void> deleteDateIdea(String id) =>
-      _run('delete a date idea', () => _dataSource.deleteDateIdea(id));
+  Future<void> deleteDateIdea(String id) => _dataSource.deleteDateIdea(id);
 
   /// Editorial help content of a [kind], such as [ContentKind.moodTip], in editorial order.
   Future<List<HelpItem>> getHelpContent({required ContentKind kind, required String locale}) async {
-    try {
-      return [
-        for (final node in await _dataSource.getHelpContent(kind: kind.toRemote(), locale: locale))
-          node.toModel(),
-      ];
-    } catch (e, stack) {
-      _logger.error('Failed to read help content', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
-
-  Future<void> _run(String what, Future<void> Function() action) async {
-    try {
-      await action();
-    } catch (e, stack) {
-      _logger.error('Failed to $what', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [
+      for (final node in await _dataSource.getHelpContent(kind: kind.toRemote(), locale: locale))
+        node.toModel(),
+    ];
   }
 }

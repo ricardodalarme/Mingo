@@ -38,7 +38,8 @@ class GuidedRepairCubit({
         session = GuidedSession(id: id);
       }
       emit(state.copyWith(session: Success(session)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(session: Failure.fromObject(exception)));
     }
   }
@@ -65,7 +66,8 @@ class GuidedRepairCubit({
     try {
       await _repairRepository.saveProgress(session);
       emit(state.copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
@@ -94,7 +96,8 @@ class GuidedRepairCubit({
         await _syncService.sync();
       }
       emit(state.copyWith(completeAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(completeAction: Failure.fromObject(exception)));
       emit(state.copyWith(completeAction: const Initial()));
     }
@@ -112,7 +115,8 @@ class GuidedRepairCubit({
     try {
       await _repairRepository.saveProgress(moved);
       emit(state.copyWith(saveAction: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

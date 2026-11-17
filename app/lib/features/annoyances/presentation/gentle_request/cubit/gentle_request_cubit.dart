@@ -45,7 +45,8 @@ class GentleRequestCubit({
         annoyanceId: annoyanceId,
       );
       emit(state.copyWith(sendAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(sendAction: Failure.fromObject(exception)));
       emit(state.copyWith(sendAction: const Initial()));
     }

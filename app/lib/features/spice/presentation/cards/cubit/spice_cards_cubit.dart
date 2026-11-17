@@ -15,7 +15,8 @@ class SpiceCardsCubit({required final SpiceRepository _spiceRepository})
     emit(state.copyWith(card: const Loading(), isAnswered: false));
     try {
       emit(state.copyWith(card: Success(await _spiceRepository.getNextCard())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(card: Failure.fromObject(exception)));
     }
   }
@@ -29,7 +30,8 @@ class SpiceCardsCubit({required final SpiceRepository _spiceRepository})
     try {
       await _spiceRepository.respondToCard(id: card.value!.id, accept: accept);
       emit(state.copyWith(respondAction: const Success(null), isAnswered: true));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(respondAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(respondAction: const Initial()));

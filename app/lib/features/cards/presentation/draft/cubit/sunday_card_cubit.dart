@@ -41,7 +41,8 @@ class SundayCardCubit({
         ),
       );
       _preferences = preferences;
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.card is Success) return;
       emit(state.copyWith(card: Failure.fromObject(exception)));
     }
@@ -130,7 +131,8 @@ class SundayCardCubit({
         ),
       );
       emit(state.copyWith(saveAction: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }
@@ -159,7 +161,8 @@ class SundayCardCubit({
       final card = await action(current.value);
       emit(state.copyWith(card: Success(card), deliverAction: const Success(null)));
       emit(state.copyWith(deliverAction: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(deliverAction: Failure.fromObject(exception)));
       emit(state.copyWith(deliverAction: const Initial()));
     }

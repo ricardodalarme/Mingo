@@ -20,7 +20,8 @@ class LearnedItemsCubit({
     if (state.items is! Success) emit(state.copyWith(items: const Loading()));
     try {
       emit(state.copyWith(items: Success(await _learnedItemsRepository.getItems())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.items is Success) return;
       emit(state.copyWith(items: Failure.fromObject(exception)));
     }
@@ -48,7 +49,8 @@ class LearnedItemsCubit({
       await change();
       emit(state.copyWith(action: const Success(null)));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(action: Failure.fromObject(exception)));
     }
     emit(state.copyWith(action: const Initial()));

@@ -47,7 +47,8 @@ class TemperatureCubit({required final RepairRepository _repairRepository})
         );
       }
       emit(state.copyWith(step: TemperatureStep.result, saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }
@@ -65,7 +66,8 @@ class TemperatureCubit({required final RepairRepository _repairRepository})
     try {
       await _repairRepository.recordTemperature(level);
       emit(state.copyWith(step: next, saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

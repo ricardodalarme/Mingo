@@ -37,7 +37,8 @@ class DebugSignInCubit({required final AuthenticationRepository _authenticationR
           awaitingEmailConfirmation: !_authenticationRepository.isAuthenticated,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(signInAction: Failure.fromObject(exception)));
       emit(state.copyWith(signInAction: const Initial()));
@@ -49,7 +50,8 @@ class DebugSignInCubit({required final AuthenticationRepository _authenticationR
     try {
       await action();
       emit(state.copyWith(signInAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(signInAction: Failure.fromObject(exception)));
       emit(state.copyWith(signInAction: const Initial()));
     }

@@ -21,7 +21,8 @@ class HistoryCubit({required final HistoryRepository _historyRepository})
       } else if (state.showUnknownOnly && !overview.hasUnknownYearMilestones) {
         emit(state.copyWith(showUnknownOnly: false));
       }
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }

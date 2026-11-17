@@ -65,7 +65,8 @@ class IdeaDetailCubit({
           isDone: ideas.isNotEmpty && _ideasRepository.isDone(ideas[index].slug),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(ideas: Failure.fromObject(exception)));
     }
   }
@@ -96,7 +97,8 @@ class IdeaDetailCubit({
       await _reminderSyncService.sync(now: now);
       emit(state.copyWith(reminderAction: Success(choice)));
       emit(state.copyWith(reminderAction: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(reminderAction: Failure.fromObject(exception)));
       emit(state.copyWith(reminderAction: const Initial()));
     }

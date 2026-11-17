@@ -41,7 +41,8 @@ class SignOutCubit({
         await _secureStorageService.clear();
       }
       if (!isClosed) emit(state.copyWith(action: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       _appCubit.cancelExplicitSignOut();
       if (!isClosed) emit(state.copyWith(action: Failure.fromObject(exception)));
     }

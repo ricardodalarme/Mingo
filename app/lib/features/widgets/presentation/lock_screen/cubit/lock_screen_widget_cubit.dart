@@ -16,7 +16,8 @@ class LockScreenWidgetCubit({required final WidgetsRepository _repository})
       final overview = await _repository.loadAndSync();
       if (isClosed) return;
       emit(state.copyWith(overview: Success(overview)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }

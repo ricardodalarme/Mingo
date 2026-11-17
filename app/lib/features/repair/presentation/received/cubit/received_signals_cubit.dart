@@ -23,7 +23,8 @@ class ReceivedSignalsCubit({
     try {
       final me = await _profileRepository.getMyProfile();
       emit(state.copyWith(signals: Success(await _repairRepository.getReceivedSignals(me.id))));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(signals: Failure.fromObject(exception)));
     }
   }
@@ -60,7 +61,8 @@ class ReceivedSignalsCubit({
           ),
         );
       }
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(respondAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(respondAction: const Initial()));

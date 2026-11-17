@@ -56,7 +56,8 @@ class SlipsSearchCubit({required final SlipRepository _slipRepository})
     try {
       final page = await _slipRepository.getSlips(filter: filter);
       if (!isClosed) emit(state.copyWith(results: Success(page.items)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!isClosed) emit(state.copyWith(results: Failure.fromObject(exception)));
     }
   }

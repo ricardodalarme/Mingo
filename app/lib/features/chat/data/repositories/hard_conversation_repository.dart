@@ -7,7 +7,6 @@ import 'package:app/features/chat/data/models/hard_conversation_draft.dart';
 import 'package:app/features/chat/data/repositories/chat_repository.dart';
 import 'package:app/features/notes/data/repositories/notes_repository.dart';
 import 'package:clock/clock.dart';
-import 'package:logger/logger.dart';
 
 /// The unfinished hard conversation is forgotten after a day.
 const Duration hardConversationDraftTtl = Duration(hours: 24);
@@ -18,8 +17,6 @@ class HardConversationRepository({
   required final HardConversationLocalDataSource _localDataSource,
   required final AuthenticationRepository _authenticationRepository,
 }) {
-  final Logger _logger = Logger('HardConversationRepository');
-
   /// The draft from the last day, or null when it expired or was never written.
   Future<HardConversationDraft?> readDraft() async {
     final userId = _authenticationRepository.currentUserId;
@@ -61,18 +58,13 @@ class HardConversationRepository({
     required String session,
     required HardConversationTone tone,
   }) {
-    try {
-      return _chatRepository.send(
-        message: _prompt(what: what, need: need, locale: locale, tone: tone),
-        history: const [],
-        locale: locale,
-        mode: ChatMode.hardConversation,
-        session: session,
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to start the hard-conversation reply', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return _chatRepository.send(
+      message: _prompt(what: what, need: need, locale: locale, tone: tone),
+      history: const [],
+      locale: locale,
+      mode: ChatMode.hardConversation,
+      session: session,
+    );
   }
 
   /// Sends the edited opening sentence to the partner as a widget note.

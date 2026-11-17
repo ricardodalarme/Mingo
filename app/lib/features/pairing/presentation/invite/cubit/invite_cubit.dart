@@ -35,7 +35,8 @@ class InviteCubit({
       final invite = await _pairingRepository.getOrCreateInvite(clock.now());
       emit(state.copyWith(invite: Success(invite), partnerName: partnerName));
       _watchConnection();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(invite: Failure.fromObject(exception), partnerName: partnerName));
     }
   }
@@ -45,7 +46,8 @@ class InviteCubit({
     emit(state.copyWith(invite: const Loading(), hasShared: false));
     try {
       emit(state.copyWith(invite: Success(await _pairingRepository.createInvite())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(invite: Failure.fromObject(exception)));
     }
   }
@@ -68,7 +70,8 @@ class InviteCubit({
     try {
       await _pairingRepository.cancelInvite(invite.value.id);
       emit(state.copyWith(revokeAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(revokeAction: Failure.fromObject(exception)));
       emit(state.copyWith(revokeAction: const Initial()));
     }
@@ -83,6 +86,7 @@ class InviteCubit({
       final wasAlone = _wasConnected == false;
       _wasConnected = isConnected;
       if (wasAlone && isConnected) unawaited(_markConnected());
+      // A failed connection watcher leaves the invite code on screen; the read that matters already ran.
     }, onError: (Object _) {});
   }
 

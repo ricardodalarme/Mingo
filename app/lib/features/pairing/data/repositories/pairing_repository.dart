@@ -26,52 +26,32 @@ class PairingRepository({
 
   /// The invite this person created and kept on the device, or `null`.
   Future<ActiveInvite?> getActiveInvite() async {
-    try {
-      return await _localDataSource.read();
-    } catch (e, stack) {
-      _logger.error('Failed to read the invite', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return await _localDataSource.read();
   }
 
   /// Creates an invite; the server cancels the previous one, so only the latest is valid.
   Future<ActiveInvite> createInvite() async {
-    try {
-      final created = await _pairingDataSource.createInvite();
-      final invite = ActiveInvite(id: created.id, code: created.code, expiresAt: created.expiresAt);
-      await _localDataSource.write(invite);
-      return invite;
-    } catch (e, stack) {
-      _logger.error('Failed to create an invite', error: e, stackTrace: stack);
-      rethrow;
-    }
+    final created = await _pairingDataSource.createInvite();
+    final invite = ActiveInvite(id: created.id, code: created.code, expiresAt: created.expiresAt);
+    await _localDataSource.write(invite);
+    return invite;
   }
 
   /// Whether [code] connected the two people. `false` covers every code that cannot be used.
   Future<bool> acceptInvite(String code) async {
-    try {
-      final connected = await _pairingDataSource.acceptInvite(code);
-      if (connected) {
-        await _localDataSource.clear();
-      }
-      return connected;
-    } catch (e, stack) {
-      _logger.error('Failed to accept an invite', error: e, stackTrace: stack);
-      rethrow;
+    final connected = await _pairingDataSource.acceptInvite(code);
+    if (connected) {
+      await _localDataSource.clear();
     }
+    return connected;
   }
 
   /// The connected partner, or `null` when the person is not paired.
   Future<Profile?> getPartner() async {
-    try {
-      final userId = _authenticationRepository.currentUserId;
-      if (userId == null) return null;
+    final userId = _authenticationRepository.currentUserId;
+    if (userId == null) return null;
 
-      return (await _pairingDataSource.getPartner(userId))?.toModel();
-    } catch (e, stack) {
-      _logger.error('Failed to load the partner', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return (await _pairingDataSource.getPartner(userId))?.toModel();
   }
 
   /// Emits whether the person is connected, now and each time that changes; empty when signed out.
@@ -84,33 +64,18 @@ class PairingRepository({
   }
 
   Future<void> cancelInvite(String inviteId) async {
-    try {
-      await _pairingDataSource.cancelInvite(inviteId);
-      await _localDataSource.clear();
-    } catch (e, stack) {
-      _logger.error('Failed to cancel the invite', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _pairingDataSource.cancelInvite(inviteId);
+    await _localDataSource.clear();
   }
 
   /// Ends the couple and clears the stored invite.
   Future<void> unpair() async {
-    try {
-      await _pairingDataSource.unpair();
-      await _localDataSource.clear();
-    } catch (e, stack) {
-      _logger.error('Failed to unpair', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _pairingDataSource.unpair();
+    await _localDataSource.clear();
   }
 
   /// Keeps the person's shared rows private or deletes them, after [unpair].
   Future<void> resolveSharedItems({required bool keep}) async {
-    try {
-      await _pairingDataSource.resolveSharedItems(keep: keep);
-    } catch (e, stack) {
-      _logger.error('Failed to resolve shared items', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _pairingDataSource.resolveSharedItems(keep: keep);
   }
 }

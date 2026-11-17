@@ -53,7 +53,9 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
 - The cubit has a primary constructor with a named private field, declares `part '<name>_state.dart'`, and passes the default state
   to `super`.
 - Emit `Loading` first so a retry clears the error at once, but not over an existing `Success`: refreshing keeps the content.
-- Catch without a type filter; the repository already normalized the failure. The cubit does not log or report it.
+- Catch without a type filter; the repository already normalized the failure. Hand it to `addError(exception, stack)` before
+  emitting `Failure`; the app's `BlocErrorObserver` logs expected errors and reports the rest to crash reporting. Never log in the
+  cubit.
 - Runtime data (ids, filters) goes into method parameters, never the constructor: the injector creates cubits with no arguments.
 
 ## Action cubit

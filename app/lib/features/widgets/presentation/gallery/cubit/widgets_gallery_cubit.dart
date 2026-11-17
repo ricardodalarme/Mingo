@@ -16,7 +16,8 @@ class WidgetsGalleryCubit({required final WidgetsRepository _repository})
       final overview = await _repository.loadAndSync();
       if (isClosed) return;
       emit(state.copyWith(overview: Success(overview)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }
@@ -35,7 +36,8 @@ class WidgetsGalleryCubit({required final WidgetsRepository _repository})
       if (isClosed) return;
       emit(state.copyWith(overview: Success(overview), saveAction: const Success(null)));
       emit(state.copyWith(saveAction: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));

@@ -26,7 +26,8 @@ class QuestionsCubit({required final QuestionsRepository _repository})
           hasStarted: false,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.thread is Success) return;
       emit(state.copyWith(thread: Failure.fromObject(exception)));
     }
@@ -76,7 +77,8 @@ class QuestionsCubit({required final QuestionsRepository _repository})
           saveAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
@@ -97,6 +99,7 @@ class QuestionsCubit({required final QuestionsRepository _repository})
     try {
       return await _repository.getThread();
     } catch (_) {
+      // A failed re-read keeps the answer just saved in the thread.
       return thread.withOwnAnswer(answer);
     }
   }

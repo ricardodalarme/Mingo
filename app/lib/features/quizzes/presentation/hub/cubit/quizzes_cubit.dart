@@ -17,7 +17,8 @@ class QuizzesCubit({required final QuizzesRepository _repository}) extends Cubit
       final progress = await _repository.getProgress();
       if (isClosed) return;
       emit(state.copyWith(progress: Success(progress)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.progress is Success) return;
       emit(state.copyWith(progress: Failure.fromObject(exception)));
     }

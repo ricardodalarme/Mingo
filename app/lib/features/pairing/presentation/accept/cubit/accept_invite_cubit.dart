@@ -79,7 +79,8 @@ class AcceptInviteCubit({
           selfName: self,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(acceptAction: Failure.fromObject(exception)));
       emit(state.copyWith(acceptAction: const Initial()));
     }

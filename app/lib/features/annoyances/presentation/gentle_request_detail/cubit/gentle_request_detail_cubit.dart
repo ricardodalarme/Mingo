@@ -32,7 +32,8 @@ class GentleRequestDetailCubit({
       if (request != null && userId == request.recipientId && request.seenAt == null) {
         await _annoyanceRepository.markSeen(id);
       }
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!isClosed) emit(state.copyWith(request: Failure.fromObject(exception)));
     }
   }
@@ -65,7 +66,8 @@ class GentleRequestDetailCubit({
       emit(state.copyWith(action: const Success(null)));
       emit(state.copyWith(action: const Initial()));
       await load(id);
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(action: Failure.fromObject(exception)));
       emit(state.copyWith(action: const Initial()));
     }

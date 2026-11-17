@@ -20,7 +20,8 @@ class NotificationPermissionCubit({
     final NotificationAccess access;
     try {
       access = await _repository.requestAccess();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(requestAction: Failure.fromObject(exception)));
       return;
     }
@@ -38,7 +39,8 @@ class NotificationPermissionCubit({
       emit(
         state.copyWith(registrationAction: const Success<void>(null), hasRegistrationFailed: false),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(
         state.copyWith(
           registrationAction: Failure.fromObject(exception),

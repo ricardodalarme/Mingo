@@ -4,18 +4,15 @@ import 'package:app/features/gifts/data/mappers/gift_mapper.dart';
 import 'package:app/features/gifts/data/models/gift_budget.dart';
 import 'package:app/features/gifts/data/models/gift_idea.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
-import 'package:logger/logger.dart';
 
 class GiftsRepository({
   required final GiftsDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
 }) {
-  final Logger _logger = Logger('GiftsRepository');
-
   /// The id of the couple the person is in, or null when they are on their own.
   Future<String?> getCoupleId() => _togetherRepository.getCoupleId();
 
-  Future<List<GiftIdea>> getGiftIdeas() => _run('read gift wishes', () async {
+  Future<List<GiftIdea>> getGiftIdeas() async {
     final currentUserId = await _togetherRepository.getCurrentUserId();
 
     return [
@@ -23,7 +20,7 @@ class GiftsRepository({
         if (node.authorId == currentUserId || node.coupleId != null)
           node.toModel(currentUserId: currentUserId),
     ];
-  });
+  }
 
   /// Adds the wish and returns it as the server stored it.
   Future<GiftIdea> addGiftWish({
@@ -32,7 +29,7 @@ class GiftsRepository({
     String? note,
     GiftBudget? budget,
     String? coupleId,
-  }) => _run('add a gift wish', () async {
+  }) async {
     final saved = await _dataSource.addGiftWish(
       id: id,
       title: title.trim(),
@@ -42,14 +39,14 @@ class GiftsRepository({
     );
 
     return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
-  });
+  }
 
   Future<GiftIdea> updateGiftWish({
     required String id,
     required String title,
     String? note,
     GiftBudget? budget,
-  }) => _run('update a gift wish', () async {
+  }) async {
     final saved = await _dataSource.updateGiftWish(
       id: id,
       title: title.trim(),
@@ -58,30 +55,19 @@ class GiftsRepository({
     );
 
     return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
-  });
+  }
 
-  Future<void> deleteGiftWish(String id) =>
-      _run('delete a gift wish', () => _dataSource.deleteGiftWish(id));
+  Future<void> deleteGiftWish(String id) => _dataSource.deleteGiftWish(id);
 
-  Future<GiftIdea> setGiftWishVisibility({required String id, String? coupleId}) =>
-      _run('change a gift wish visibility', () async {
-        final saved = await _dataSource.setGiftWishVisibility(id: id, coupleId: coupleId);
+  Future<GiftIdea> setGiftWishVisibility({required String id, String? coupleId}) async {
+    final saved = await _dataSource.setGiftWishVisibility(id: id, coupleId: coupleId);
 
-        return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
-      });
+    return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
+  }
 
   String? _clean(String? value) {
     final trimmed = value?.trim();
 
     return trimmed == null || trimmed.isEmpty ? null : trimmed;
-  }
-
-  Future<T> _run<T>(String what, Future<T> Function() action) async {
-    try {
-      return await action();
-    } catch (e, stack) {
-      _logger.error('Failed to $what', error: e, stackTrace: stack);
-      rethrow;
-    }
   }
 }

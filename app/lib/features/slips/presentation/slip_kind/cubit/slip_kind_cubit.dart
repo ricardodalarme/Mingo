@@ -75,7 +75,8 @@ class SlipKindCubit({required final SlipRepository _slipRepository}) extends Cub
         workArea: kind == SlipKind.invisible ? state.workArea : null,
       );
       emit(state.copyWith(saveAction: Success(outcome)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

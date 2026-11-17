@@ -4,30 +4,22 @@ import 'package:app/features/capsules/data/mappers/capsule_mapper.dart';
 import 'package:app/features/capsules/data/models/capsule.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:clock/clock.dart';
-import 'package:logger/logger.dart';
 
 class CapsulesRepository({
   required final CapsulesDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
   required final AuthenticationRepository _authenticationRepository,
 }) {
-  final Logger _logger = Logger('CapsulesRepository');
-
   /// The capsules the person can see, soonest first; text is kept only once the day has come.
   Future<List<Capsule>> getCapsules({DateTime? now}) async {
-    try {
-      final moment = now ?? clock.now();
-      final today = DateTime(moment.year, moment.month, moment.day);
-      final userId = _authenticationRepository.currentUserId;
+    final moment = now ?? clock.now();
+    final today = DateTime(moment.year, moment.month, moment.day);
+    final userId = _authenticationRepository.currentUserId;
 
-      return [
-        for (final node in await _dataSource.getCapsules())
-          node.toModel(userId: userId, today: today),
-      ];
-    } catch (e, stack) {
-      _logger.error('Failed to read capsules', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [
+      for (final node in await _dataSource.getCapsules())
+        node.toModel(userId: userId, today: today),
+    ];
   }
 
   /// Saves a capsule; when [isShared] the partner can read it from [opensOn] on.
@@ -37,21 +29,11 @@ class CapsulesRepository({
     required DateTime opensOn,
     required bool isShared,
   }) async {
-    try {
-      final coupleId = isShared ? await _togetherRepository.getCoupleId() : null;
-      await _dataSource.add(id: id, body: body.trim(), opensOn: opensOn, coupleId: coupleId);
-    } catch (e, stack) {
-      _logger.error('Failed to save a capsule', error: e, stackTrace: stack);
-      rethrow;
-    }
+    final coupleId = isShared ? await _togetherRepository.getCoupleId() : null;
+    await _dataSource.add(id: id, body: body.trim(), opensOn: opensOn, coupleId: coupleId);
   }
 
   Future<void> delete(String id) async {
-    try {
-      await _dataSource.delete(id);
-    } catch (e, stack) {
-      _logger.error('Failed to delete a capsule', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.delete(id);
   }
 }

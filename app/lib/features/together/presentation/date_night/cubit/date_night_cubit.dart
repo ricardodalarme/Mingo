@@ -49,7 +49,8 @@ class DateNightCubit({
       final ideas = await _togetherRepository.getDateIdeas();
       emit(state.copyWith(ideas: Success(ideas)));
       if (ideas.isEmpty && state.suggestions.isEmpty) await _loadSuggestions();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.ideas is Success) return;
       emit(state.copyWith(ideas: Failure.fromObject(exception)));
     }
@@ -68,7 +69,8 @@ class DateNightCubit({
       await _togetherRepository.addDateIdea(id: _uuid.v4(), title: title, slug: suggestion?.slug);
       emit(state.copyWith(title: '', addAction: const Success(null)));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(addAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(addAction: const Initial()));
@@ -97,7 +99,8 @@ class DateNightCubit({
     try {
       await action();
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(changeAction: Failure.fromObject(exception)));
       emit(state.copyWith(changeAction: const Initial()));
     }

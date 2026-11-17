@@ -16,7 +16,8 @@ class UsCubit({required final ConnectRepository _connectRepository}) extends Cub
     try {
       await _connectRepository.sendMissUs();
       emit(state.copyWith(sendAction: const Success(null), wasSent: true));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(sendAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(sendAction: const Initial()));

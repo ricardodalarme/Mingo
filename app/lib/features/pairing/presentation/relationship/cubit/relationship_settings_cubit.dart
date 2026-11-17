@@ -27,7 +27,8 @@ class RelationshipSettingsCubit({
       if (!_canEmit) return;
       emit(state.copyWith(details: Success(details)));
       await loadPartner();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!_canEmit) return;
       emit(state.copyWith(details: Failure.fromObject(exception)));
     }
@@ -84,7 +85,8 @@ class RelationshipSettingsCubit({
       if (!_canEmit) return;
       emit(state.copyWith(saveAction: const Success(null)));
       emit(state.copyWith(saveAction: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!_canEmit) return;
       final latest = state.current ?? previous;
       emit(
@@ -129,7 +131,8 @@ class RelationshipSettingsCubit({
       if (!_canEmit) return;
       emit(state.copyWith(saveAction: const Success(null)));
       emit(state.copyWith(saveAction: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!_canEmit) return;
       final latest = state.current ?? previous;
       emit(

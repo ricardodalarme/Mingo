@@ -8,7 +8,6 @@ import 'package:app/features/mood/data/models/mood_share.dart';
 import 'package:app/features/mood/data/models/need_kind.dart';
 import 'package:app/features/mood/data/models/partner_mood.dart';
 import 'package:core/core.dart';
-import 'package:logger/logger.dart';
 
 /// Today's own mood, the partner's shared mood and the partner's name for the share title.
 typedef MoodToday = ({
@@ -22,9 +21,7 @@ class MoodRepository({
   required final MoodDataSource _dataSource,
   required final MoodLocalDataSource _localDataSource,
 }) {
-  final Logger _logger = Logger('MoodRepository');
-
-  Future<MoodToday> getTodayMood() => _run("read today's mood", () async {
+  Future<MoodToday> getTodayMood() async {
     final today = await _dataSource.getTodayMood();
     final entry = today.mood?.toEntry();
     await _localDataSource.write(entry);
@@ -35,7 +32,7 @@ class MoodRepository({
       partnerName: today.partnerName,
       hasPartner: today.hasPartner,
     );
-  });
+  }
 
   /// Today's own mood kept on the device, so a cold start paints before the read returns.
   MoodEntry? readCachedTodayMood() => _localDataSource.readToday();
@@ -43,23 +40,25 @@ class MoodRepository({
   /// The person's own moods for [month], oldest first.
   ///
   /// The partner's shared mood is only ever today's row, so no other person's days arrive here.
-  Future<List<MoodEntry>> getMonthMoods({required DateTime month}) =>
-      _run('read the month of moods', () async {
-        final first = DateTime(month.year, month.month);
-        final last = DateTime(month.year, month.month + 1, 0);
-        final rows = await _dataSource.getMonthMoods(from: first, to: last);
+  Future<List<MoodEntry>> getMonthMoods({required DateTime month}) async {
+    final first = DateTime(month.year, month.month);
+    final last = DateTime(month.year, month.month + 1, 0);
+    final rows = await _dataSource.getMonthMoods(from: first, to: last);
 
-        return [for (final row in rows) row.toEntry()];
-      });
+    return [for (final row in rows) row.toEntry()];
+  }
 
   /// Updates today's row when it exists and inserts it otherwise, so the latest save wins.
-  Future<MoodEntry> saveMood({required MoodKind mood, required MoodShare share, NeedKind? need}) =>
-      _run("save today's mood", () async {
-        final saved = await _save(mood: mood, share: share, need: need);
-        await _localDataSource.write(saved);
+  Future<MoodEntry> saveMood({
+    required MoodKind mood,
+    required MoodShare share,
+    NeedKind? need,
+  }) async {
+    final saved = await _save(mood: mood, share: share, need: need);
+    await _localDataSource.write(saved);
 
-        return saved;
-      });
+    return saved;
+  }
 
   /// Forgets the cached mood, for sign-out and unpair.
   Future<void> clearCache() => _localDataSource.clear();
@@ -112,13 +111,4 @@ class MoodRepository({
 
   bool _isUniqueViolation(LocalizedException exception) =>
       exception.l10nKey == '23505' || exception.l10nKey.toLowerCase().contains('duplicate key');
-
-  Future<T> _run<T>(String what, Future<T> Function() action) async {
-    try {
-      return await action();
-    } catch (e, stack) {
-      _logger.error('Failed to $what', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
 }

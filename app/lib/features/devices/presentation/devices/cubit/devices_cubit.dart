@@ -13,7 +13,8 @@ class DevicesCubit({required final DevicesRepository _repository}) extends Cubit
     emit(state.copyWith(devices: const Loading()));
     try {
       emit(state.copyWith(devices: Success(await _repository.getDevices())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(devices: Failure.fromObject(exception)));
     }
   }
@@ -34,7 +35,8 @@ class DevicesCubit({required final DevicesRepository _repository}) extends Cubit
           revokeAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(devices: Success(previous), revokeAction: Failure.fromObject(exception)));
     }
   }

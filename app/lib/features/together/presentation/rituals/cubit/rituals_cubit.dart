@@ -21,7 +21,8 @@ class RitualsCubit({
       final rituals = await _togetherRepository.getRituals();
       emit(state.copyWith(rituals: Success(rituals)));
       await _reminderService.update(rituals);
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.rituals is Success) return;
       emit(state.copyWith(rituals: Failure.fromObject(exception)));
     }
@@ -36,7 +37,8 @@ class RitualsCubit({
       await _togetherRepository.completeRitual(ritual.id, now: clock.now());
       emit(state.copyWith(completeAction: const Success(null)));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(completeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(completeAction: const Initial()));

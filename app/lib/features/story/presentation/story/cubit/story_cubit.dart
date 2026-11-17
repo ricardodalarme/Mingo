@@ -23,7 +23,8 @@ class StoryCubit({
     try {
       final story = await _storyRepository.getStory();
       emit(state.copyWith(story: Success(story.card), names: story.names));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(story: Failure.fromObject(exception)));
     }
   }
@@ -58,7 +59,8 @@ class StoryCubit({
     try {
       await _storyRepository.share(await _renderStory(current, labels));
       emit(state.copyWith(shareAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(shareAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(shareAction: const Initial()));

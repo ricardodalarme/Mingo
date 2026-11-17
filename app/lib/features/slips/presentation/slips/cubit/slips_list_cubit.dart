@@ -65,7 +65,8 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
             );
             if (!first.isCompleted) first.complete();
           },
-          onError: (Object exception) {
+          onError: (Object exception, StackTrace stack) {
+            addError(exception, stack);
             if (state.slips is Success) {
               emit(state.copyWith(isLoadingMore: false));
             } else {

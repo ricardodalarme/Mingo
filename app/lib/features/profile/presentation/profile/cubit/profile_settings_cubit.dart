@@ -49,7 +49,8 @@ class ProfileSettingsCubit({
           loginProvider: _authenticationRepository.loginProvider,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!_canEmit) return;
       emit(state.copyWith(details: Failure.fromObject(exception)));
     }
@@ -106,7 +107,8 @@ class ProfileSettingsCubit({
           saveAction: const Initial(),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!_canEmit) return;
       final latest = state.current ?? previous;
       emit(
@@ -148,7 +150,8 @@ class ProfileSettingsCubit({
       if (!_canEmit) return;
       emit(state.copyWith(saveAction: const Success(null)));
       emit(state.copyWith(saveAction: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!_canEmit) return;
       final latest = state.current ?? previous;
       emit(
@@ -191,7 +194,8 @@ class ProfileSettingsCubit({
       if (!_canEmit) return;
       emit(state.copyWith(saveAction: const Success(null)));
       emit(state.copyWith(saveAction: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       await _rememberLocalTheme(previous.theme);
       if (!_canEmit) return;
       final latest = state.current ?? previous;
@@ -232,7 +236,8 @@ class ProfileSettingsCubit({
       if (!_canEmit) return;
       emit(state.copyWith(saveAction: const Success(null)));
       emit(state.copyWith(saveAction: const Initial()));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!_canEmit) return;
       final latest = state.current ?? previous;
       emit(

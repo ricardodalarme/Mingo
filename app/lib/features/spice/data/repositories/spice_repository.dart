@@ -31,11 +31,11 @@ class SpiceRepository({
 
   Future<String> _locale() async => (await _profileRepository.getMySettings()).locale;
 
-  Future<SpiceStatus> getStatus() => _run('read the mode', () async {
+  Future<SpiceStatus> getStatus() async {
     final node = await _dataSource.getState();
 
     return (state: node.state, myLevel: node.myLevel, coupleLevel: node.coupleLevel).toModel();
-  });
+  }
 
   /// Emits the mode now and each time either person changes it. A failed event is logged and
   /// skipped, so a screen keeps what it shows.
@@ -60,28 +60,28 @@ class SpiceRepository({
   }
 
   /// Confirms the person is an adult and switches the mode on for them only.
-  Future<void> turnOn() => _run('switch the mode on', () async {
+  Future<void> turnOn() async {
     await _dataSource.grantAdultConsent(adultConsentVersion);
     await _dataSource.setEnabled(userId: _userId, enabled: true);
-  });
+  }
 
   /// Switches the mode off for both people; what it kept is removed.
-  Future<void> turnOff() => _run('switch the mode off', _dataSource.turnOff);
+  Future<void> turnOff() => _dataSource.turnOff();
 
   /// The open evening card, or a new one; null when the cards are used up.
-  Future<SpiceCard?> getNextCard() => _run('read the next card', () async {
+  Future<SpiceCard?> getNextCard() async {
     final node = await _dataSource.nextCard();
     if (node == null) return null;
     final texts = await _dataSource.getTexts(slugs: [node.contentSlug], locale: await _locale());
 
     return node.toModel(text: texts[node.contentSlug] ?? '', userId: _userId);
-  });
+  }
 
   Future<void> respondToCard({required String id, required bool accept}) =>
-      _run('answer a card', () => _dataSource.respondToCard(playId: id, accept: accept));
+      _dataSource.respondToCard(playId: id, accept: accept);
 
   /// The desires up to the couple's level, each with the person's own answer.
-  Future<List<SpiceDesire>> getDesires(SpiceLevel maxLevel) => _run('read the desires', () async {
+  Future<List<SpiceDesire>> getDesires(SpiceLevel maxLevel) async {
     final (desires, answers) = await (
       _locale().then(
         (locale) => _dataSource.getDesires(locale: locale, maxLevel: maxLevel.toRemote()),
@@ -91,38 +91,30 @@ class SpiceRepository({
     final byId = {for (final answer in answers) answer.contentSlug: answer.answer.toModel()};
 
     return [for (final node in desires) node.toModel(answer: byId[node.slug])];
-  });
+  }
 
-  Future<void> answerDesire({required String slug, required SpiceAnswer answer}) => _run(
-    'answer a desire',
-    () => _dataSource.answerDesire(slug: slug, answer: answer.toRemote()),
-  );
+  Future<void> answerDesire({required String slug, required SpiceAnswer answer}) =>
+      _dataSource.answerDesire(slug: slug, answer: answer.toRemote());
 
-  Future<List<SpiceMatch>> getMatches() => _run('read the matches', () async {
+  Future<List<SpiceMatch>> getMatches() async {
     return [for (final node in await _dataSource.getMatches()) node.toModel()];
-  });
+  }
 
-  Future<SpiceChallenge?> getChallenge() =>
-      _run('read the challenge', () async => _toChallenge(await _dataSource.getChallenge()));
+  Future<SpiceChallenge?> getChallenge() async => _toChallenge(await _dataSource.getChallenge());
 
-  Future<SpiceChallenge?> actOnChallenge(SpiceChallengeAction action) => _run(
-    'act on the challenge',
-    () async => _toChallenge(await _dataSource.actOnChallenge(action.name)),
-  );
+  Future<SpiceChallenge?> actOnChallenge(SpiceChallengeAction action) async =>
+      _toChallenge(await _dataSource.actOnChallenge(action.name));
 
-  Future<SpiceSettings> getSettings() => _run('read the settings', () async {
+  Future<SpiceSettings> getSettings() async {
     final node = await _dataSource.getSettings(_userId);
 
     return node.toModel();
-  });
+  }
 
-  Future<void> setSettings(SpiceSettings settings) => _run(
-    'save the settings',
-    () => _dataSource.setSettings(
-      userId: _userId,
-      level: settings.maxLevel.toRemote(),
-      notifications: settings.notifications,
-    ),
+  Future<void> setSettings(SpiceSettings settings) => _dataSource.setSettings(
+    userId: _userId,
+    level: settings.maxLevel.toRemote(),
+    notifications: settings.notifications,
   );
 
   Future<SpiceChallenge?> _toChallenge(SpiceChallengeRecord? node) async {
@@ -130,14 +122,5 @@ class SpiceRepository({
     final texts = await _dataSource.getTexts(slugs: [node.contentSlug], locale: await _locale());
 
     return node.toModel(text: texts[node.contentSlug] ?? '', userId: _userId);
-  }
-
-  Future<T> _run<T>(String what, Future<T> Function() action) async {
-    try {
-      return await action();
-    } catch (e, stack) {
-      _logger.error('Failed to $what', error: e, stackTrace: stack);
-      rethrow;
-    }
   }
 }

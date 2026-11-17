@@ -3,6 +3,7 @@ export 'src/di/injection_module.dart';
 export 'src/di/injector.dart';
 export 'src/exceptions/localized_exception.dart';
 export 'src/exceptions/unknown_exception.dart';
+export 'src/extensions/error_extension.dart';
 export 'src/extensions/exception_extension.dart';
 export 'src/startup/initializer.dart';
 export 'src/startup/startup_pipeline.dart';

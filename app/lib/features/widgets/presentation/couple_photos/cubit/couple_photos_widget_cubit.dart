@@ -24,7 +24,8 @@ class CouplePhotosWidgetCubit({
       final overview = await _widgetsRepository.loadAndSync();
       if (isClosed) return;
       emit(state.copyWith(overview: Success(overview)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }
@@ -43,7 +44,8 @@ class CouplePhotosWidgetCubit({
     final PlatformFile? picked;
     try {
       picked = await _filePickerService.pickFile(type: FileType.image);
-    } catch (_) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(
         state.copyWith(
           chooseAction: const Failure(LocalizedException(l10nKey: 'COUPLE_PHOTO_PICK_FAILED')),
@@ -61,7 +63,8 @@ class CouplePhotosWidgetCubit({
     final Uint8List bytes;
     try {
       bytes = await picked.readAsBytes();
-    } catch (_) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(
         state.copyWith(
           chooseAction: const Failure(LocalizedException(l10nKey: 'COUPLE_PHOTO_READ_FAILED')),
@@ -93,7 +96,8 @@ class CouplePhotosWidgetCubit({
           clearLocalPreview: true,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(chooseAction: Failure.fromObject(exception), clearLocalPreview: true));
     }
@@ -116,7 +120,8 @@ class CouplePhotosWidgetCubit({
           removeAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(removeAction: Failure.fromObject(exception)));
     }

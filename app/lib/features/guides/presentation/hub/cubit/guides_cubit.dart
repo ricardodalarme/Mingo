@@ -26,7 +26,8 @@ class GuidesCubit({
       final hasPlus = await plan;
       if (isClosed) return;
       emit(state.copyWith(guides: Success(guides), hasPlus: hasPlus));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(guides: Failure.fromObject(exception)));
     }

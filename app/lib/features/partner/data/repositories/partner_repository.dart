@@ -3,18 +3,10 @@ import 'package:app/features/partner/data/mappers/partner_fact_category_mapper.d
 import 'package:app/features/partner/data/mappers/partner_fact_mapper.dart';
 import 'package:app/features/partner/data/models/partner_fact.dart';
 import 'package:app/features/partner/data/models/partner_fact_category.dart';
-import 'package:logger/logger.dart';
 
 class PartnerRepository({required final PartnerDataSource _dataSource}) {
-  final Logger _logger = Logger('PartnerRepository');
-
   Future<List<PartnerFact>> getFacts() async {
-    try {
-      return [for (final node in await _dataSource.getFacts()) node.toModel()];
-    } catch (e, stack) {
-      _logger.error('Failed to read partner notes', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [for (final node in await _dataSource.getFacts()) node.toModel()];
   }
 
   /// Saves a private note; the client [id] makes retries safe.
@@ -24,25 +16,15 @@ class PartnerRepository({required final PartnerDataSource _dataSource}) {
     required String value,
     PartnerFactCategory? category,
   }) async {
-    try {
-      await _dataSource.addFact(
-        id: id,
-        label: label.trim(),
-        value: value.trim(),
-        category: category?.toRemote(),
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to save a partner note', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.addFact(
+      id: id,
+      label: label.trim(),
+      value: value.trim(),
+      category: category?.toRemote(),
+    );
   }
 
   Future<void> deleteFact(String id) async {
-    try {
-      await _dataSource.deleteFact(id);
-    } catch (e, stack) {
-      _logger.error('Failed to delete a partner note', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.deleteFact(id);
   }
 }

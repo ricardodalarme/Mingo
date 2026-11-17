@@ -40,7 +40,8 @@ class DatesCubit({
     try {
       final dates = await _datesRepository.getDates();
       emit(state.copyWith(dates: Success(dates)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.dates is! Success) emit(state.copyWith(dates: Failure.fromObject(exception)));
     }
   }
@@ -49,7 +50,8 @@ class DatesCubit({
     try {
       final gifts = await _datesRepository.getGiftIdeas();
       emit(state.copyWith(gifts: Success(gifts)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.gifts is! Success) emit(state.copyWith(gifts: Failure.fromObject(exception)));
     }
   }
@@ -91,7 +93,8 @@ class DatesCubit({
         ),
       );
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
@@ -155,7 +158,8 @@ class DatesCubit({
       final settings = await _profileRepository.getMySettings();
       final holidays = await _datesRepository.getHolidays(settings.locale);
       emit(state.copyWith(holidays: Success(holidays)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(holidays: Failure.fromObject(exception)));
     }
   }
@@ -164,7 +168,8 @@ class DatesCubit({
     try {
       await action();
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

@@ -13,7 +13,7 @@ class CheckinRepository({
   final Logger _logger = Logger('CheckinRepository');
 
   /// Reads the current week from the server's local day, scoped to the person's couple.
-  Future<CheckinWeek> getWeek() => _run('read the weekly check-in', () async {
+  Future<CheckinWeek> getWeek() async {
     final today = await _dataSource.getToday();
     final weekStart = checkinWeekStart(today.localDate);
     final coupleId = today.coupleId;
@@ -52,7 +52,7 @@ class CheckinRepository({
       ownAnswers: ownAnswers,
       partnerAnswers: partnerAnswers,
     );
-  });
+  }
 
   /// Emits how many check-in rows of [week] are readable, now and on each change; empty when the
   /// person has no couple. A failed event is logged and skipped.
@@ -73,7 +73,7 @@ class CheckinRepository({
     required CheckinWeek week,
     required int question,
     required String body,
-  }) => _run('save a check-in answer', () async {
+  }) async {
     final coupleId = week.coupleId;
     if (coupleId == null) throw const LocalizedException(l10nKey: 'NO_COUPLE');
 
@@ -88,7 +88,7 @@ class CheckinRepository({
 
       return _write(week: fresh, question: question, body: text);
     }
-  });
+  }
 
   Future<CheckinAnswer> _write({
     required CheckinWeek week,
@@ -102,30 +102,18 @@ class CheckinRepository({
 
   /// Clears one answer so a skipped question returns to being blank.
   Future<void> deleteAnswer({required String id, required int question}) =>
-      _run('delete a check-in answer', () => _dataSource.deleteAnswer(id: id, question: question));
+      _dataSource.deleteAnswer(id: id, question: question);
 
   /// Records that this week's check-in was dismissed locally.
   Future<void> dismissWeek(DateTime weekStart) => _localDataSource.writeDismissedWeek(weekStart);
 
   /// Whether the person dismissed the check-in for the server's current week.
-  Future<bool> isCurrentWeekDismissed() => _run('read the check-in dismissal', () async {
+  Future<bool> isCurrentWeekDismissed() async {
     final today = await _dataSource.getToday();
 
     return _localDataSource.isDismissedFor(checkinWeekStart(today.localDate));
-  });
+  }
 
   bool _isUniqueViolation(LocalizedException exception) =>
       exception.l10nKey == '23505' || exception.l10nKey.toLowerCase().contains('duplicate key');
-
-  Future<T> _run<T>(String what, Future<T> Function() action) async {
-    try {
-      return await action();
-    } catch (exception) {
-      final key = exception is LocalizedException
-          ? exception.l10nKey
-          : exception.runtimeType.toString();
-      _logger.error('Failed to $what ($key)');
-      rethrow;
-    }
-  }
 }

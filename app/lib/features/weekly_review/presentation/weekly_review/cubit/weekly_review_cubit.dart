@@ -15,7 +15,8 @@ class WeeklyReviewCubit({required final WeeklyReviewRepository _repository})
     try {
       final review = await _repository.get();
       if (!isClosed) emit(WeeklyReviewState(review: Success(review)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!isClosed && state.review is! Success) {
         emit(WeeklyReviewState(review: Failure.fromObject(exception)));
       }

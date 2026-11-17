@@ -18,6 +18,7 @@ class ProgramsCubit({
     try {
       return (await _plusRepository.getPlus()).hasPlus;
     } catch (_) {
+      // An unreadable Plus state counts as no Plus, so paid content stays locked.
       return false;
     }
   }
@@ -29,7 +30,8 @@ class ProgramsCubit({
       final (hasPlus, programs) = await (_hasPlus(), _programsRepository.getPrograms()).wait;
       if (isClosed) return;
       emit(state.copyWith(programs: Success(programs), hasPlus: hasPlus));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.programs is Success) return;
       emit(state.copyWith(programs: Failure.fromObject(exception)));
     }

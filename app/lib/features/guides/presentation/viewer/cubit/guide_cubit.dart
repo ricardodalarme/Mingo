@@ -65,7 +65,8 @@ class GuideCubit({
           showSensitiveGate: showsGate,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(guide: Failure.fromObject(exception)));
     }
@@ -131,7 +132,8 @@ class GuideCubit({
       if (isClosed) return;
       emit(state.copyWith(prepId: prepId, isFinished: true, saveAction: const Success(null)));
       await _persist();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));

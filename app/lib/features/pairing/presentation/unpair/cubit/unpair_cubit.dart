@@ -37,7 +37,8 @@ class UnpairCubit({
         // The caches are replaced by the next read.
       }
       emit(state.copyWith(unpairAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(unpairAction: Failure.fromObject(exception)));
     }
   }

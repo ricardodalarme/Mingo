@@ -27,7 +27,8 @@ class SpiceCubit({
       ).wait;
       emit(state.copyWith(status: Success(status), hasPartner: partner != null));
       _watch();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.status is Success) return;
       emit(state.copyWith(status: Failure.fromObject(exception)));
     }
@@ -60,7 +61,8 @@ class SpiceCubit({
       await action();
       emit(state.copyWith(changeAction: const Success(null)));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(changeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(changeAction: const Initial()));

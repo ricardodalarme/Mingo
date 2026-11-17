@@ -47,11 +47,13 @@ class TodayCubit({
 
   void start() {
     WidgetsBinding.instance.addObserver(this);
+    // A failed profile watcher keeps Hoje as it is; the periodic read still runs.
     _profileChanges ??= _profileRepository.watchMyProfile().distinct().listen((profile) {
       final isChange = _profile != null && _profile != profile;
       _profile = profile;
       if (isChange) unawaited(load());
     }, onError: (Object _) {});
+    // A failed settings watcher keeps Hoje as it is; the periodic read still runs.
     _settingsChanges ??= _profileRepository.watchMySettings().distinct().listen((settings) {
       final isChange = _settings != null && _settings != settings;
       _settings = settings;
@@ -109,7 +111,8 @@ class TodayCubit({
                 : state.unpairedPartnerName,
           ),
         );
-      } catch (exception) {
+      } catch (exception, stack) {
+        addError(exception, stack);
         if (isClosed || state.home is Success) return;
         emit(state.copyWith(home: Failure.fromObject(exception), selfName: selfName));
       }

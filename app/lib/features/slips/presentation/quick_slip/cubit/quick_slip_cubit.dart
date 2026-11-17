@@ -87,7 +87,8 @@ class QuickSlipCubit({
       _undoTimer = Timer(undoWindow, () => emit(state.copyWith(canUndo: false)));
 
       return true;
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
 
@@ -117,7 +118,8 @@ class QuickSlipCubit({
           canUndo: false,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(undoAction: Failure.fromObject(exception)));
       emit(state.copyWith(undoAction: const Initial()));
     }

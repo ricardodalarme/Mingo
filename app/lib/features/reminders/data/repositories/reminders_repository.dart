@@ -4,7 +4,6 @@ import 'package:app/features/reminders/data/models/reminder_preferences.dart';
 import 'package:app/features/reminders/data/models/ritual_schedule.dart';
 import 'package:app/features/reminders/data/planner/reminder_planner.dart';
 import 'package:local_notification_service/local_notification_service.dart';
-import 'package:logger/logger.dart';
 
 /// How many days ahead reminders are planned.
 const int reminderHorizonDays = 14;
@@ -25,8 +24,6 @@ class RemindersRepository({
   required final RemindersLocalDataSource _localDataSource,
   required final LocalNotificationService _notificationService,
 }) {
-  final Logger _logger = Logger('RemindersRepository');
-
   ReminderPreferences getPreferences() => _localDataSource.read();
 
   Future<void> savePreferences(ReminderPreferences preferences) =>
@@ -84,20 +81,15 @@ class RemindersRepository({
       ],
       now: now,
     );
-    try {
-      await _notificationService.replaceAll([
-        for (final reminder in plan)
-          LocalNotificationRequest(
-            id: reminder.id,
-            at: reminder.at,
-            title: texts.title,
-            body: reminder.text,
-          ),
-      ]);
-    } catch (e, stack) {
-      _logger.warning('Could not schedule reminders', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _notificationService.replaceAll([
+      for (final reminder in plan)
+        LocalNotificationRequest(
+          id: reminder.id,
+          at: reminder.at,
+          title: texts.title,
+          body: reminder.text,
+        ),
+    ]);
 
     return plan;
   }

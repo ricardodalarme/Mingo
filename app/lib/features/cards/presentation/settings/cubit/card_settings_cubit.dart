@@ -22,7 +22,8 @@ class CardSettingsCubit({
       ).wait;
       if (isClosed) return;
       emit(state.copyWith(preferences: Success(preferences), slipsDefaultForCard: isDefault));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(preferences: Failure.fromObject(exception)));
     }

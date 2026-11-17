@@ -44,7 +44,8 @@ class LessonCubit({
           hasPlus: hasPlus,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(program: Failure.fromObject(exception)));
     }
@@ -55,6 +56,7 @@ class LessonCubit({
     try {
       return (await _plusRepository.getPlus()).hasPlus;
     } catch (_) {
+      // An unreadable Plus state counts as no Plus, so paid content stays locked.
       return false;
     }
   }
@@ -80,7 +82,8 @@ class LessonCubit({
       emit(state.copyWith(action: const Success(null), status: LessonStatus.done));
 
       return nextLesson == null ? LessonOutcome.completed : LessonOutcome.advanced;
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return LessonOutcome.failed;
       emit(state.copyWith(action: Failure.fromObject(exception)));
       emit(state.copyWith(action: const Initial()));
@@ -109,7 +112,8 @@ class LessonCubit({
       emit(state.copyWith(action: const Success(null), status: LessonStatus.saved));
 
       return true;
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return false;
       emit(state.copyWith(action: Failure.fromObject(exception)));
       emit(state.copyWith(action: const Initial()));

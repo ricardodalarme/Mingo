@@ -26,7 +26,8 @@ class CardDetailCubit({required final CardsRepository _cardsRepository})
         ),
       );
       await _markReadOnce(cardId, detail);
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.card is Success) return;
       emit(state.copyWith(card: Failure.fromObject(exception)));
     }
@@ -52,7 +53,8 @@ class CardDetailCubit({required final CardsRepository _cardsRepository})
           reactionAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(reactionAction: Failure.fromObject(exception)));
     }
   }

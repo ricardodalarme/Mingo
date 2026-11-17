@@ -104,31 +104,21 @@ class NotificationsRepository({
 
   /// Reads the notification choices kept on the server.
   Future<NotificationPreferences> getPreferences() async {
-    try {
-      final settings = await _dataSource.getSettings(_userId);
+    final settings = await _dataSource.getSettings(_userId);
 
-      return settings.toModel();
-    } catch (e, stack) {
-      _logger.error('Failed to load notification settings', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return settings.toModel();
   }
 
   /// Saves the notification choices on the server, where they apply to every push.
   Future<void> savePreferences(NotificationPreferences preferences) async {
-    try {
-      await _dataSource.updateSettings(
-        userId: _userId,
-        enabled: preferences.isEnabled,
-        mutedTypes: preferences.mutedTypes.toList(),
-        cardDay: preferences.cardDay,
-        cardHour: preferences.cardHour,
-        dailyMax: preferences.dailyMax,
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to save notification settings', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.updateSettings(
+      userId: _userId,
+      enabled: preferences.isEnabled,
+      mutedTypes: preferences.mutedTypes.toList(),
+      cardDay: preferences.cardDay,
+      cardHour: preferences.cardHour,
+      dailyMax: preferences.dailyMax,
+    );
   }
 
   /// Whether the person hid the reminders-off notice on this device.

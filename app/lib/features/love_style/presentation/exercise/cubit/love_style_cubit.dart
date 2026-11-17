@@ -43,7 +43,8 @@ class LoveStyleCubit({
           pairingFailed: partner.failed,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(result: Failure.fromObject(exception), isAnswering: false));
     }
@@ -90,7 +91,8 @@ class LoveStyleCubit({
       await _repository.saveManualEntry(description);
       if (isClosed) return;
       emit(state.copyWith(isInManual: true, manualAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(manualAction: Failure.fromObject(exception)));
       emit(state.copyWith(manualAction: const Initial()));
@@ -107,7 +109,8 @@ class LoveStyleCubit({
       await _repository.setShared(id: id, isShared: true);
       if (isClosed) return;
       emit(state.copyWith(isShared: true, shareAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(shareAction: Failure.fromObject(exception)));
       emit(state.copyWith(shareAction: const Initial()));
@@ -124,7 +127,8 @@ class LoveStyleCubit({
       await _repository.setShared(id: id, isShared: false);
       if (isClosed) return;
       emit(state.copyWith(isShared: false, revokeAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(revokeAction: Failure.fromObject(exception)));
       emit(state.copyWith(revokeAction: const Initial()));
@@ -150,7 +154,8 @@ class LoveStyleCubit({
           saveAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));

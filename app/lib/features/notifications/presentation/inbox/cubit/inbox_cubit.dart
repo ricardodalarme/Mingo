@@ -20,7 +20,8 @@ class InboxCubit({
       final items = await _inboxRepository.getItems();
       if (isClosed) return;
       emit(state.copyWith(items: Success(items), partnerName: partnerName));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.items is Success) return;
       emit(state.copyWith(items: Failure.fromObject(exception)));
     }
@@ -35,7 +36,8 @@ class InboxCubit({
       emit(state.copyWith(markAction: const Success(null)));
       emit(state.copyWith(markAction: const Initial()));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(markAction: Failure.fromObject(exception)));
       emit(state.copyWith(markAction: const Initial()));
     }

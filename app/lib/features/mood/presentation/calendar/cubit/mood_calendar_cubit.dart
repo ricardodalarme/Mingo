@@ -20,7 +20,8 @@ class MoodCalendarCubit({required final MoodRepository _moodRepository})
       final entries = await _moodRepository.getMonthMoods(month: now);
       if (isClosed) return;
       emit(state.copyWith(entries: Success(entries)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(entries: Failure.fromObject(exception)));
     }

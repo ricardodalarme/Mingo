@@ -3,49 +3,31 @@ import 'package:app/features/connect/data/data_sources/remote/connect_data_sourc
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/together/data/models/date_idea.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
-import 'package:logger/logger.dart';
 
 class ConnectRepository({
   required final ConnectDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
   required final ProfileRepository _profileRepository,
 }) {
-  final Logger _logger = Logger('ConnectRepository');
-
   /// Sends the light "I miss us" signal to the partner.
   Future<void> sendMissUs() async {
-    try {
-      await _dataSource.sendMissUs();
-    } catch (e, stack) {
-      _logger.error('Failed to send miss us', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.sendMissUs();
   }
 
   /// Whether touch topics are on for both; true when the person has no couple, since nothing is shared.
   Future<bool> getTouchTopicsEnabled() async {
-    try {
-      final settings = await _profileRepository.getMySettings();
-      final couple = await _dataSource.getTouchSetting(settings.profileId);
+    final settings = await _profileRepository.getMySettings();
+    final couple = await _dataSource.getTouchSetting(settings.profileId);
 
-      return couple?.touchTopicsEnabled ?? true;
-    } catch (e, stack) {
-      _logger.error('Failed to read touch topics', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return couple?.touchTopicsEnabled ?? true;
   }
 
   Future<void> setTouchTopicsEnabled({required bool enabled}) async {
-    try {
-      final settings = await _profileRepository.getMySettings();
-      final couple = await _dataSource.getTouchSetting(settings.profileId);
-      if (couple == null) return;
+    final settings = await _profileRepository.getMySettings();
+    final couple = await _dataSource.getTouchSetting(settings.profileId);
+    if (couple == null) return;
 
-      await _dataSource.setTouchTopics(coupleId: couple.coupleId, enabled: enabled);
-    } catch (e, stack) {
-      _logger.error('Failed to change touch topics', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.setTouchTopics(coupleId: couple.coupleId, enabled: enabled);
   }
 
   /// The neutral touch cards in the person's language, in editorial order.

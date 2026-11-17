@@ -74,11 +74,8 @@ class SlipRepository({
     try {
       await _send(slip);
       return SlipSaveOutcome.synced;
-    } catch (e, stack) {
-      if (!_isOffline(e)) {
-        _logger.error('Failed to save a slip', error: e, stackTrace: stack);
-        rethrow;
-      }
+    } catch (e) {
+      if (!_isOffline(e)) rethrow;
       await _enqueue(slip);
       return SlipSaveOutcome.queued;
     }
@@ -86,117 +83,67 @@ class SlipRepository({
 
   /// Reads one slip; returns null when it is deleted or not the person's.
   Future<SlipDetail?> getSlip(String id) async {
-    try {
-      final row = await _slipDataSource.getSlip(id);
-      if (row == null) return null;
+    final row = await _slipDataSource.getSlip(id);
+    if (row == null) return null;
 
-      return row.toModel();
-    } catch (e, stack) {
-      _logger.error('Failed to load a slip', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return row.toModel();
   }
 
   /// Saves the edited text and card choice of an existing slip.
   Future<void> updateSlip(SlipDetail slip) async {
-    try {
-      await _slipDataSource.saveSlip(
-        id: slip.id,
-        body: slip.body.trim(),
-        createdAt: slip.createdAt,
-        kind: slip.kind.toRemote(),
-        feeling: slip.feeling,
-        planNote: slip.planNote,
-        forCard: slip.forCard && slip.canGoInCard,
-        category: slip.category?.toRemote(),
-        workArea: slip.workArea?.toRemote(),
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to update a slip', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _slipDataSource.saveSlip(
+      id: slip.id,
+      body: slip.body.trim(),
+      createdAt: slip.createdAt,
+      kind: slip.kind.toRemote(),
+      feeling: slip.feeling,
+      planNote: slip.planNote,
+      forCard: slip.forCard && slip.canGoInCard,
+      category: slip.category?.toRemote(),
+      workArea: slip.workArea?.toRemote(),
+    );
   }
 
   /// Puts the slip in the jar of good moments, or takes it out.
   Future<void> setInJar({required String id, required bool inJar}) async {
-    try {
-      await _slipDataSource.setInJar(id: id, inJar: inJar);
-    } catch (e, stack) {
-      _logger.error('Failed to update the jar', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _slipDataSource.setInJar(id: id, inJar: inJar);
   }
 
   /// One random slip from the jar, or null when it is empty.
   Future<DrawnSlip?> drawFromJar() async {
-    try {
-      final slips = await _slipDataSource.getJarSlips();
-      if (slips.isEmpty) return null;
-      final slip = slips[(_random ?? Random()).nextInt(slips.length)];
+    final slips = await _slipDataSource.getJarSlips();
+    if (slips.isEmpty) return null;
+    final slip = slips[(_random ?? Random()).nextInt(slips.length)];
 
-      return slip.toModel();
-    } catch (e, stack) {
-      _logger.error('Failed to draw from the jar', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return slip.toModel();
   }
 
   Future<void> setArchived({required String id, required bool archived}) async {
-    try {
-      await _slipDataSource.archiveSlip(id: id, archived: archived);
-    } catch (e, stack) {
-      _logger.error('Failed to archive a slip', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _slipDataSource.archiveSlip(id: id, archived: archived);
   }
 
   Future<void> deleteSlip(String id) async {
-    try {
-      await _slipDataSource.deleteSlip(id);
-    } catch (e, stack) {
-      _logger.error('Failed to delete a slip', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _slipDataSource.deleteSlip(id);
   }
 
   /// Tells the partner something gentle, such as a need; throws when there is no partner.
   Future<void> sendNeed(String need) async {
-    try {
-      await _slipDataSource.sendNeed(value: need);
-    } catch (e, stack) {
-      _logger.error('Failed to send a need', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _slipDataSource.sendNeed(value: need);
   }
 
   /// Sends the partner a one-tap hug, the reaction to a good shared mood.
   Future<void> sendHug() async {
-    try {
-      await _slipDataSource.sendHug();
-    } catch (e, stack) {
-      _logger.error('Failed to send a hug', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _slipDataSource.sendHug();
   }
 
   /// Asks the partner if they want to talk, arriving as the need they can answer.
   Future<void> askToTalk() async {
-    try {
-      await _slipDataSource.sendNeed(value: 'talk');
-    } catch (e, stack) {
-      _logger.error('Failed to ask the partner to talk', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _slipDataSource.sendNeed(value: 'talk');
   }
 
   /// Sends the partner a hug carrying [body], a short message of a line or two.
   Future<void> sendSweetMessage(String body) async {
-    try {
-      await _slipDataSource.sendHug(body: body);
-    } catch (e, stack) {
-      _logger.error('Failed to send a sweet message', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _slipDataSource.sendHug(body: body);
   }
 
   /// Reads a page of the person's slips that match [filter], newest first.
@@ -205,39 +152,26 @@ class SlipRepository({
     SlipFilter filter = const SlipFilter(),
     int pageSize = slipPageSize,
   }) async {
-    try {
-      final rows = await _slipDataSource.getSlips(
-        limit: pageSize + 1,
-        offset: offset,
-        filter: filter,
-      );
+    final rows = await _slipDataSource.getSlips(
+      limit: pageSize + 1,
+      offset: offset,
+      filter: filter,
+    );
 
-      return rows.toPageInfo(offset: offset, pageSize: pageSize, map: (row) => row.toModel());
-    } catch (e, stack) {
-      _logger.error('Failed to load slips', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return rows.toPageInfo(offset: offset, pageSize: pageSize, map: (row) => row.toModel());
   }
 
   /// Emits the first [count] slips that match [filter], newest first, now and again whenever one
   /// is saved, edited, archived or deleted by this person.
   ///
-  /// A failure is logged and passed on, so a screen can show it when it has nothing yet.
+  /// A failure is passed on, so a screen can show it when it has nothing yet.
   Stream<PageInfo<SlipEntry>> watchSlips({
     int count = slipPageSize,
     SlipFilter filter = const SlipFilter(),
   }) {
     return _slipDataSource
         .watchSlips(limit: count + 1, offset: 0, filter: filter)
-        .map((rows) => rows.toPageInfo(offset: 0, pageSize: count, map: (row) => row.toModel()))
-        .transform(
-          StreamTransformer.fromHandlers(
-            handleError: (error, stack, sink) {
-              _logger.error('Failed to watch slips', error: error, stackTrace: stack);
-              sink.addError(error, stack);
-            },
-          ),
-        );
+        .map((rows) => rows.toPageInfo(offset: 0, pageSize: count, map: (row) => row.toModel()));
   }
 
   /// Keeps a slip only on the device; it is sent once there is a signed-in session.
@@ -255,12 +189,7 @@ class SlipRepository({
       return;
     }
 
-    try {
-      await _slipDataSource.deleteSlip(id);
-    } catch (e, stack) {
-      _logger.error('Failed to undo a slip', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _slipDataSource.deleteSlip(id);
   }
 
   /// Sends every slip kept on the device; stops at the first one that still cannot go.
@@ -291,14 +220,9 @@ class SlipRepository({
 
   /// Sends one slip to the partner now, without waiting for Sunday.
   Future<SlipSendOutcome> sendNow(String slipId) async {
-    try {
-      final status = await _slipDataSource.sendSlipNow(slipId);
+    final status = await _slipDataSource.sendSlipNow(slipId);
 
-      return status.toSlipSendOutcome();
-    } catch (e, stack) {
-      _logger.error('Failed to send a slip', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return status.toSlipSendOutcome();
   }
 
   Future<void> clearDraft() => _localDataSource.clearDraft();

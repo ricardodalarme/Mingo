@@ -23,7 +23,8 @@ class CheckinCubit({required final CheckinRepository _repository}) extends Cubit
       if (isClosed) return;
       emit(_settle(week));
       _watchPartner();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.week is Success) return;
       emit(state.copyWith(week: Failure.fromObject(exception)));
     }
@@ -72,7 +73,8 @@ class CheckinCubit({required final CheckinRepository _repository}) extends Cubit
       final updated = week.withOwnAnswer(answer);
       emit(state.copyWith(week: Success(updated), draft: '', saveAction: const Success(null)));
       await _advance(updated);
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
@@ -130,7 +132,8 @@ class CheckinCubit({required final CheckinRepository _repository}) extends Cubit
       final updated = week.withoutAnswer(existing.question);
       emit(state.copyWith(week: Success(updated), draft: '', saveAction: const Success(null)));
       await _advance(updated);
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));

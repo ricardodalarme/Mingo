@@ -36,7 +36,8 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
           clearEditing: today == null,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.entries is Success) return;
       emit(state.copyWith(entries: Failure.fromObject(exception)));
     }
@@ -93,7 +94,8 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
       if (isClosed) return;
       emit(state.copyWith(editingId: id, saveAction: const Success(null)));
       await _reloadEntries();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
@@ -122,7 +124,8 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
       }
       emit(state.copyWith(saveAction: const Success(null)));
       await _reloadEntries();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
@@ -134,7 +137,8 @@ class DiaryCubit({required final ProgramsRepository _programsRepository})
       final entries = await _programsRepository.getDiaryEntries();
       if (isClosed) return;
       emit(state.copyWith(entries: Success(entries)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(entries: Failure.fromObject(exception)));
     }

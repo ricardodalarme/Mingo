@@ -51,10 +51,7 @@ class SupportRepository({
       await _send(request);
       return SupportSendOutcome.sent;
     } catch (e) {
-      if (!_isOffline(e)) {
-        _logger.error('Failed to send a support request (${_errorCode(e)})');
-        rethrow;
-      }
+      if (!_isOffline(e)) rethrow;
       await _enqueue(request);
       return SupportSendOutcome.queued;
     }

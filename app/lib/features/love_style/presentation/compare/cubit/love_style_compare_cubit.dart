@@ -31,7 +31,8 @@ class LoveStyleCompareCubit({
           clearPartnerName: partner == null,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(comparison: Failure.fromObject(exception)));
     }

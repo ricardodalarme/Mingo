@@ -19,7 +19,8 @@ class RestorePurchasesCubit({required final PlusRepository _plusRepository})
       final outcome = await _plusRepository.restorePurchases();
       if (isClosed) return;
       emit(state.copyWith(restoreAction: Success(outcome)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(restoreAction: Failure.fromObject(exception)));
     }

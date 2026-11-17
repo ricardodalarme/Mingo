@@ -11,7 +11,6 @@ import 'package:app/features/widgets/data/models/widget_payload.dart';
 import 'package:app/features/widgets/data/repositories/couple_photo_repository.dart';
 import 'package:app/features/widgets/data/services/widget_data_service.dart';
 import 'package:core/core.dart';
-import 'package:logger/logger.dart';
 
 /// Coordinates server widget reads, local privacy/rotation settings, and the shared native store.
 ///
@@ -24,7 +23,6 @@ class WidgetsRepository({
   required final AuthenticationRepository _authenticationRepository,
   required final DistanceRepository _distanceRepository,
 }) {
-  final Logger _logger = Logger('WidgetsRepository');
   Future<void> _writeQueue = Future<void>.value();
   int _generation = 0;
 
@@ -83,7 +81,7 @@ class WidgetsRepository({
         return written;
       });
       return syncedPayload == null ? overview : overview.copyWith(payload: syncedPayload);
-    } catch (e, stack) {
+    } catch (e) {
       final cached = _localDataSource.readCachedPayload();
       if (cached != null) {
         final offlinePayload = cached.copyWith(isOffline: true).sanitized(referenceNow: now);
@@ -104,7 +102,6 @@ class WidgetsRepository({
           hasPhoto: offlinePayload.cachedPhotoPath != null,
         );
       }
-      _logger.error('Failed to load widget overview', error: e, stackTrace: stack);
       rethrow;
     }
   }

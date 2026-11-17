@@ -18,7 +18,8 @@ class SlipDetailCubit({required final SlipRepository _slipRepository})
     emit(state.copyWith(slip: const Loading()));
     try {
       emit(state.copyWith(slip: Success(await _slipRepository.getSlip(id))));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(slip: Failure.fromObject(exception)));
     }
   }
@@ -75,7 +76,8 @@ class SlipDetailCubit({required final SlipRepository _slipRepository})
           saveAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       _fail(exception);
     }
   }
@@ -93,7 +95,8 @@ class SlipDetailCubit({required final SlipRepository _slipRepository})
           saveAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       _fail(exception);
     }
   }
@@ -109,7 +112,8 @@ class SlipDetailCubit({required final SlipRepository _slipRepository})
       emit(state.copyWith(saveAction: const Initial()));
 
       return outcome;
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       _fail(exception);
 
       return null;
@@ -124,7 +128,8 @@ class SlipDetailCubit({required final SlipRepository _slipRepository})
     try {
       await _slipRepository.deleteSlip(slip.id);
       emit(state.copyWith(deleteAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(deleteAction: Failure.fromObject(exception)));
       emit(state.copyWith(deleteAction: const Initial()));
     }
@@ -143,7 +148,8 @@ class SlipDetailCubit({required final SlipRepository _slipRepository})
           saveAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       _fail(exception);
     }
   }

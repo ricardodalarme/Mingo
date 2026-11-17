@@ -19,7 +19,8 @@ class StoryDatesCubit({required final HistoryRepository _historyRepository})
     try {
       final overview = await _historyRepository.getOverview();
       emit(state.copyWith(overview: Success(overview)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.overview is Success) return;
       emit(state.copyWith(overview: Failure.fromObject(exception)));
     }
@@ -62,7 +63,8 @@ class StoryDatesCubit({required final HistoryRepository _historyRepository})
       );
       emit(state.copyWith(saveAction: const Success(null)));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));

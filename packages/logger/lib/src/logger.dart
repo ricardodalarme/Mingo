@@ -1,6 +1,7 @@
 import 'dart:developer' as developer;
 
 import 'package:logging/logging.dart' as ext;
+import 'package:stack_trace/stack_trace.dart';
 
 /// Log levels for the Logger class
 typedef LogLevel = ext.Level;
@@ -55,10 +56,13 @@ class Logger(String name) {
         level: record.level.value,
         name: record.loggerName,
         error: record.error,
-        stackTrace: record.stackTrace,
+        stackTrace: _readableStackTrace(record.stackTrace),
       );
     });
   }
+
+  static StackTrace? _readableStackTrace(StackTrace? stackTrace) =>
+      stackTrace == null ? null : Trace.from(stackTrace).terse;
 
   /// Trace log
   void trace(dynamic message, {Object? error, StackTrace? stackTrace}) {

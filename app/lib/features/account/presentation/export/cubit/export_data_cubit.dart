@@ -16,7 +16,8 @@ class ExportDataCubit({required final AccountRepository _repository})
     emit(state.copyWith(exportAction: const Loading()));
     try {
       emit(state.copyWith(exportAction: Success(await _repository.exportData())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(exportAction: Failure.fromObject(exception)));
     }
   }

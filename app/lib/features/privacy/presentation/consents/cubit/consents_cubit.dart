@@ -13,7 +13,8 @@ class ConsentsCubit({required final PrivacyRepository _repository}) extends Cubi
     emit(state.copyWith(consents: const Loading()));
     try {
       emit(state.copyWith(consents: Success(await _repository.getConsents())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(consents: Failure.fromObject(exception)));
     }
   }
@@ -30,7 +31,8 @@ class ConsentsCubit({required final PrivacyRepository _repository}) extends Cubi
     try {
       await _repository.setConsent(kind, granted: next);
       emit(state.copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(consents: Success(previous), saveAction: Failure.fromObject(exception)));
     }
   }

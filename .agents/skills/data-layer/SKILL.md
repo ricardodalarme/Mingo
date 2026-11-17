@@ -136,28 +136,21 @@ extension GiftBudgetMapper on GiftBudget {
 
 ```dart
 class GiftsRepository({required final GiftsDataSource _dataSource, ...}) {
-  final Logger _logger = Logger('GiftsRepository');
-
-  Future<List<GiftIdea>> getGiftIdeas() => _run('read gift wishes', () async => [
+  Future<List<GiftIdea>> getGiftIdeas() async => [
     for (final node in await _dataSource.getGiftIdeas()) if (node.isMine == true || node.isShared == true) node.toModel(),
-  ]);
-
-  Future<T> _run<T>(String what, Future<T> Function() action) async {
-    try {
-      return await action();
-    } catch (e, stack) {
-      _logger.error('Failed to $what', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
+  ];
 }
 ```
 
-- A concrete `<Feature>Repository` with a `Logger` from `package:logger/logger.dart` and the data source injected. It returns domain
-  models, never generated types and never `Resource`.
-- Network failures are already `LocalizedException`s (`ServerResponseException`): log with context and `rethrow`. Translate a
-  third-party exception (`LocalizedException(l10nKey: exception.code)`), and make sure the key exists in the feature's error map with
-  an `other` fallback.
+- A concrete `<Feature>Repository` with the data source injected. It returns domain models, never generated types and never
+  `Resource`.
+- Do not wrap a call in a `try`/`catch` that only logs and rethrows: `LoggingLink` already logs the call, and the cubit reports the
+  exception once through `addError`. Keep a `catch` only when it changes the error (translate a third-party exception into
+  `LocalizedException`) or recovers (a cached fallback, a queued write, a unique-violation retry).
+- A `catch` that swallows an error the rest of the app never sees is the one place a repository keeps a `Logger`, with a one-line
+  comment saying why.
+- Translate a third-party exception (`LocalizedException(l10nKey: exception.code)`), and make sure the key exists in the feature's
+  error map with an `other` fallback.
 - Trim and normalize user input here (`title.trim()`, empty note to `null`), not in the data source.
 
 ## 7. Errors in the UI

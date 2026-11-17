@@ -25,7 +25,8 @@ class AgreementsCubit({required final AgreementsRepository _repository})
       ).wait;
       emit(state.copyWith(agreements: Success(agreements), coupleId: coupleId));
       _watch();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.agreements is Success) return;
       emit(state.copyWith(agreements: Failure.fromObject(exception)));
     }
@@ -44,7 +45,8 @@ class AgreementsCubit({required final AgreementsRepository _repository})
           changeAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(changeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(changeAction: const Initial()));
@@ -65,7 +67,8 @@ class AgreementsCubit({required final AgreementsRepository _repository})
           changeAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(changeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(changeAction: const Initial()));
@@ -86,7 +89,8 @@ class AgreementsCubit({required final AgreementsRepository _repository})
           changeAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(changeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(changeAction: const Initial()));

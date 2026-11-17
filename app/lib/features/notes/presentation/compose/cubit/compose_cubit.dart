@@ -29,7 +29,8 @@ class ComposeCubit({
     final isPaired = await _readIsPaired();
     try {
       emit(state.copyWith(sent: Success(await _notesRepository.getSent()), isPaired: isPaired));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.sent is Success) return;
       emit(state.copyWith(sent: Failure.fromObject(exception), isPaired: isPaired));
     }
@@ -100,7 +101,8 @@ class ComposeCubit({
           emit(state.copyWith(strokes: const [], sendAction: const Success(null)));
       }
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(sendAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(sendAction: const Initial()));
@@ -126,7 +128,8 @@ class ComposeCubit({
       await _notesRepository.delete(message);
       emit(state.copyWith(deleteAction: const Success(null)));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(deleteAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(deleteAction: const Initial()));

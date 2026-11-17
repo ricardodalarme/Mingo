@@ -14,13 +14,13 @@ class AgreementsRepository({
   /// The id of the couple the person is in, or null when they are on their own.
   Future<String?> getCoupleId() => _togetherRepository.getCoupleId();
 
-  Future<List<Agreement>> getAgreements() => _run('read agreements', () async {
+  Future<List<Agreement>> getAgreements() async {
     final userId = await _togetherRepository.getCurrentUserId();
 
     return [
       for (final node in await _dataSource.getAgreements()) node.toModel(currentUserId: userId),
     ];
-  });
+  }
 
   /// Emits the open agreements now and each time the partner or the person changes one.
   ///
@@ -44,31 +44,19 @@ class AgreementsRepository({
   }
 
   /// Saves the agreement, shared with the partner when the person has one, and returns it.
-  Future<Agreement> addAgreement({required String id, required String body}) =>
-      _run('add an agreement', () async {
-        final coupleId = await _togetherRepository.getCoupleId();
-        final saved = await _dataSource.addAgreement(id: id, body: body.trim(), coupleId: coupleId);
+  Future<Agreement> addAgreement({required String id, required String body}) async {
+    final coupleId = await _togetherRepository.getCoupleId();
+    final saved = await _dataSource.addAgreement(id: id, body: body.trim(), coupleId: coupleId);
 
-        return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
-      });
+    return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
+  }
 
-  Future<Agreement> confirmAgreement(String id) => _run('confirm an agreement', () async {
+  Future<Agreement> confirmAgreement(String id) async {
     final saved = await _dataSource.confirmAgreement(id);
 
     return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
-  });
-
-  Future<void> archiveAgreement(String id) => _run(
-    'archive an agreement',
-    () => _dataSource.archiveAgreement(id: id, archivedAt: clock.now()),
-  );
-
-  Future<T> _run<T>(String what, Future<T> Function() action) async {
-    try {
-      return await action();
-    } catch (e, stack) {
-      _logger.error('Failed to $what', error: e, stackTrace: stack);
-      rethrow;
-    }
   }
+
+  Future<void> archiveAgreement(String id) =>
+      _dataSource.archiveAgreement(id: id, archivedAt: clock.now());
 }

@@ -16,7 +16,8 @@ class AnnoyanceCheckCubit({required final AnnoyanceRepository _annoyanceReposito
     try {
       final annoyance = await _annoyanceRepository.get(id);
       if (!isClosed) emit(state.copyWith(annoyance: Success(annoyance)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (!isClosed) emit(state.copyWith(annoyance: Failure.fromObject(exception)));
     }
   }
@@ -29,7 +30,8 @@ class AnnoyanceCheckCubit({required final AnnoyanceRepository _annoyanceReposito
     try {
       await _annoyanceRepository.delete(id);
       emit(state.copyWith(letGoAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(letGoAction: Failure.fromObject(exception)));
       emit(state.copyWith(letGoAction: const Initial()));
     }

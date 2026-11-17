@@ -2,18 +2,14 @@ import 'package:app/features/memories/data/data_sources/remote/memories_data_sou
 import 'package:app/features/memories/data/mappers/memory_mapper.dart';
 import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
-import 'package:logger/logger.dart';
 
 class MemoriesRepository({
   required final MemoriesDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
 }) {
-  final Logger _logger = Logger('MemoriesRepository');
-
-  Future<List<Memory>> getMemories() => _run(
-    'read memories',
-    () async => [for (final node in await _dataSource.getMemories()) node.toModel()],
-  );
+  Future<List<Memory>> getMemories() async => [
+    for (final node in await _dataSource.getMemories()) node.toModel(),
+  ];
 
   /// Saves a memory shared with the partner when there is one; the client [id] makes retries safe.
   Future<void> addMemory({
@@ -22,27 +18,14 @@ class MemoriesRepository({
     required DateTime happenedOn,
     String? body,
     String? place,
-  }) => _run(
-    'add a memory',
-    () async => _dataSource.addMemory(
-      id: id,
-      title: title.trim(),
-      body: body == null || body.trim().isEmpty ? null : body.trim(),
-      happenedOn: DateTime(happenedOn.year, happenedOn.month, happenedOn.day),
-      place: place == null || place.trim().isEmpty ? null : place.trim(),
-      coupleId: await _togetherRepository.getCoupleId(),
-    ),
+  }) async => _dataSource.addMemory(
+    id: id,
+    title: title.trim(),
+    body: body == null || body.trim().isEmpty ? null : body.trim(),
+    happenedOn: DateTime(happenedOn.year, happenedOn.month, happenedOn.day),
+    place: place == null || place.trim().isEmpty ? null : place.trim(),
+    coupleId: await _togetherRepository.getCoupleId(),
   );
 
-  Future<void> deleteMemory(String id) =>
-      _run('delete a memory', () => _dataSource.deleteMemory(id));
-
-  Future<T> _run<T>(String what, Future<T> Function() action) async {
-    try {
-      return await action();
-    } catch (e, stack) {
-      _logger.error('Failed to $what', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
+  Future<void> deleteMemory(String id) => _dataSource.deleteMemory(id);
 }

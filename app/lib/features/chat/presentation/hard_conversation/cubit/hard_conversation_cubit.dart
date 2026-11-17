@@ -43,7 +43,8 @@ class HardConversationCubit({
           message: FormInput(draft?.message ?? ''),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(status: Failure.fromObject(exception)));
     }
@@ -138,7 +139,8 @@ class HardConversationCubit({
       await _repository.clearDraft();
       if (isClosed) return;
       emit(state.copyWith(sendAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(sendAction: Failure.fromObject(exception)));
     }
@@ -209,7 +211,8 @@ class HardConversationCubit({
       }
       emit(state.copyWith(isGenerating: false, generateAction: const Success(null)));
       await _persist();
-    } on Object catch (exception) {
+    } on Object catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(isGenerating: false, generateAction: Failure.fromObject(exception)));
     }

@@ -38,7 +38,8 @@ class ProgramDetailCubit({
           hasPlus: hasPlus,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.program is Success) return;
       emit(state.copyWith(program: Failure.fromObject(exception)));
     }
@@ -49,6 +50,7 @@ class ProgramDetailCubit({
     try {
       return (await _plusRepository.getPlus()).hasPlus;
     } catch (_) {
+      // An unreadable Plus state counts as no Plus, so paid content stays locked.
       return false;
     }
   }
@@ -74,7 +76,8 @@ class ProgramDetailCubit({
       emit(state.copyWith(action: const Success(null)));
 
       return day;
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return null;
       emit(state.copyWith(action: Failure.fromObject(exception)));
       emit(state.copyWith(action: const Initial()));

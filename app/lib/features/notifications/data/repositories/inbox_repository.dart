@@ -11,23 +11,13 @@ class InboxRepository({required final InboxDataSource _dataSource}) {
   final Logger _logger = Logger('InboxRepository');
 
   Future<List<InboxItem>> getItems() async {
-    try {
-      final rows = await _dataSource.getItems(inboxLimit);
+    final rows = await _dataSource.getItems(inboxLimit);
 
-      return [for (final row in rows) ?row.toModel()];
-    } catch (e, stack) {
-      _logger.error('Failed to load the inbox', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return [for (final row in rows) ?row.toModel()];
   }
 
   Future<void> markAllRead() async {
-    try {
-      await _dataSource.markAllRead(clock.now().toUtc());
-    } catch (e, stack) {
-      _logger.error('Failed to mark the inbox read', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.markAllRead(clock.now().toUtc());
   }
 
   /// Emits how many items are unread, now and each time that changes.

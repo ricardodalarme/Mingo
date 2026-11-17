@@ -14,7 +14,8 @@ class SpiceSettingsCubit({required final SpiceRepository _spiceRepository})
     if (state.settings is! Success) emit(state.copyWith(settings: const Loading()));
     try {
       emit(state.copyWith(settings: Success(await _spiceRepository.getSettings())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.settings is Success) return;
       emit(state.copyWith(settings: Failure.fromObject(exception)));
     }
@@ -36,7 +37,8 @@ class SpiceSettingsCubit({required final SpiceRepository _spiceRepository})
     try {
       await _spiceRepository.setSettings(next);
       emit(state.copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(settings: current, saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));

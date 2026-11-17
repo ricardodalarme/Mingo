@@ -15,12 +15,7 @@ class SettingsRepository({required final SettingsLocalDataSource _localDataSourc
 
   Future<void> save(Settings settings) async {
     _logger.info('Saving settings');
-    try {
-      await _localDataSource.save(settings);
-      _logger.info('Settings saved');
-    } catch (e, stack) {
-      _logger.error('Failed to save settings', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _localDataSource.save(settings);
+    _logger.info('Settings saved');
   }
 }

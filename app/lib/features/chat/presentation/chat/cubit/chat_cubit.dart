@@ -43,7 +43,8 @@ class ChatCubit({
           hasPlus: status.hasPlus,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(stage: Failure.fromObject(exception)));
     }
   }
@@ -109,7 +110,8 @@ class ChatCubit({
         .timeout(_idleTimeout)
         .listen(
           (event) => _onEvent(reply.id, event),
-          onError: (Object _) {
+          onError: (Object exception, StackTrace stack) {
+            addError(exception, stack);
             _interrupt(reply.id);
             completer.complete();
           },
@@ -138,7 +140,8 @@ class ChatCubit({
     try {
       await _chatRepository.saveAsSlip(message.text);
       emit(state.copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
@@ -156,7 +159,8 @@ class ChatCubit({
     try {
       await _learnedItemsRepository.add(target: target, text: text, excerpt: excerpt);
       emit(state.copyWith(saveLearningAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveLearningAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveLearningAction: const Initial()));
@@ -202,7 +206,8 @@ class ChatCubit({
     try {
       await action.prepared.run();
       _setStatus(messageId, index, ChatActionStatus.done);
-    } catch (_) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       _setStatus(messageId, index, ChatActionStatus.failed);
     }
   }

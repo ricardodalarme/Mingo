@@ -13,6 +13,7 @@ class InboxBadgeCubit({required final InboxRepository _inboxRepository}) extends
   void start() {
     if (_subscription != null) return;
 
+    // A failed count watcher keeps the last count instead of clearing the bell.
     _subscription = _inboxRepository.watchUnreadCount().listen(emit, onError: (Object _) {});
   }
 

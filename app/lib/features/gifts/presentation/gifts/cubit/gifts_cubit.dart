@@ -22,7 +22,8 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
         _giftsRepository.getGiftIdeas(),
       ).wait;
       emit(state.copyWith(gifts: Success(gifts), coupleId: coupleId));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.gifts is Success) return;
       emit(state.copyWith(gifts: Failure.fromObject(exception)));
     }
@@ -62,7 +63,8 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
         coupleId: coupleId,
       );
       emit(state.copyWith(gifts: Success(_replace(saved)), saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(gifts: previous, saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
@@ -159,7 +161,8 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
           saveAction: const Success(null),
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(gifts: Success(previous), saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));

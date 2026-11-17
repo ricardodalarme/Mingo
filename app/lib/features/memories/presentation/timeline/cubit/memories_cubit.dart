@@ -19,7 +19,8 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
     if (state.memories is! Success) emit(state.copyWith(memories: const Loading()));
     try {
       emit(state.copyWith(memories: Success(await _memoriesRepository.getMemories())));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (state.memories is Success) return;
       emit(state.copyWith(memories: Failure.fromObject(exception)));
     }
@@ -41,7 +42,8 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
       _pendingId = null;
       emit(state.copyWith(saveAction: const Success(null)));
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(saveAction: const Initial()));
@@ -51,7 +53,8 @@ class MemoriesCubit({required final MemoriesRepository _memoriesRepository})
     try {
       await _memoriesRepository.deleteMemory(memory.id);
       await load();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }

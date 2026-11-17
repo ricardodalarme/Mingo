@@ -23,7 +23,8 @@ class ChatSettingsCubit({required final ChatRepository _chatRepository})
           hasPlus: status.hasPlus,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(status: Failure.fromObject(exception)));
     }

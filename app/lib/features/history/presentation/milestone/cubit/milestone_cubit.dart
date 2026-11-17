@@ -94,7 +94,8 @@ class MilestoneCubit({required final HistoryRepository _historyRepository})
       );
       _pendingId = null;
       emit(state.copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
     }
@@ -123,7 +124,8 @@ class MilestoneCubit({required final HistoryRepository _historyRepository})
     try {
       await _historyRepository.deleteMilestone(existing);
       emit(state.copyWith(deleteAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(deleteAction: Failure.fromObject(exception)));
       emit(state.copyWith(deleteAction: const Initial()));
     }

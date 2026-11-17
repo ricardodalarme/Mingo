@@ -12,7 +12,6 @@ import 'package:app/features/cards/data/models/card_summary.dart';
 import 'package:app/features/cards/data/models/sunday_card.dart';
 import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:core/core.dart';
-import 'package:logger/logger.dart';
 
 /// How many cards one page of the history holds.
 const int cardPageSize = 20;
@@ -22,70 +21,43 @@ class CardsRepository({
   required final AuthenticationRepository _authenticationRepository,
   final WidgetsRepository? _widgetsRepository,
 }) {
-  final Logger _logger = Logger('CardsRepository');
-
   /// This week's card, creating the draft from the week's slips when there is none yet.
   Future<SundayCard> getDraft() async {
-    try {
-      return (await _dataSource.prepareCard()).toModel();
-    } catch (e, stack) {
-      _logger.error('Failed to load the card draft', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return (await _dataSource.prepareCard()).toModel();
   }
 
   /// One page of the sent and received cards, newest first.
   Future<PageInfo<CardSummary>> getHistory({int offset = 0}) async {
-    try {
-      final rows = await _dataSource.getCards(limit: cardPageSize + 1, offset: offset);
+    final rows = await _dataSource.getCards(limit: cardPageSize + 1, offset: offset);
 
-      final userId = _authenticationRepository.currentUserId;
+    final userId = _authenticationRepository.currentUserId;
 
-      return rows.toPageInfo(
-        offset: offset,
-        pageSize: cardPageSize,
-        map: (row) => row.toModel(userId: userId),
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to load the card history', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return rows.toPageInfo(
+      offset: offset,
+      pageSize: cardPageSize,
+      map: (row) => row.toModel(userId: userId),
+    );
   }
 
   /// One card with its author and the answer, or a not-found failure.
   Future<CardDetail> getDetail({required String id}) async {
-    try {
-      final node = await _dataSource.getCard(id);
-      if (node == null) throw const LocalizedException(l10nKey: 'CARD_NOT_FOUND');
+    final node = await _dataSource.getCard(id);
+    if (node == null) throw const LocalizedException(l10nKey: 'CARD_NOT_FOUND');
 
-      return node.toDetail(userId: _authenticationRepository.currentUserId);
-    } catch (e, stack) {
-      _logger.error('Failed to load the card', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return node.toDetail(userId: _authenticationRepository.currentUserId);
   }
 
   /// Records that the recipient opened the card, so the sender sees it when receipts are on.
   Future<void> markRead(String cardId) async {
-    try {
-      await _dataSource.markRead(cardId);
-      unawaited(_widgetsRepository?.syncQuietly());
-    } catch (e, stack) {
-      _logger.error('Failed to mark the card as read', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.markRead(cardId);
+    unawaited(_widgetsRepository?.syncQuietly());
   }
 
   /// Sets the recipient's one reaction to the card.
   Future<String?> react({required String cardId, required String reaction, String? reply}) async {
-    try {
-      final result = await _dataSource.react(cardId: cardId, reaction: reaction, reply: reply);
-      unawaited(_widgetsRepository?.syncQuietly());
-      return result;
-    } catch (e, stack) {
-      _logger.error('Failed to react to the card', error: e, stackTrace: stack);
-      rethrow;
-    }
+    final result = await _dataSource.react(cardId: cardId, reaction: reaction, reply: reply);
+    unawaited(_widgetsRepository?.syncQuietly());
+    return result;
   }
 
   /// Sends the card to the connected partner. A card that cannot go any more answers with a
@@ -93,74 +65,44 @@ class CardsRepository({
   ///
   /// Wording that matches a rule holds the card with a reason; [anyway] sends it regardless.
   Future<SundayCard> send(String cardId, {bool anyway = false}) async {
-    try {
-      final model = (await _dataSource.sendCard(cardId, anyway: anyway)).toModel();
-      unawaited(_widgetsRepository?.syncQuietly());
-      return model;
-    } catch (e, stack) {
-      _logger.error('Failed to send the card', error: e, stackTrace: stack);
-      rethrow;
-    }
+    final model = (await _dataSource.sendCard(cardId, anyway: anyway)).toModel();
+    unawaited(_widgetsRepository?.syncQuietly());
+    return model;
   }
 
   /// Takes a held card back to a draft so the wording can be rewritten.
   Future<SundayCard> reopen(String cardId) async {
-    try {
-      return (await _dataSource.reopenCard(cardId)).toModel();
-    } catch (e, stack) {
-      _logger.error('Failed to reopen the card', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return (await _dataSource.reopenCard(cardId)).toModel();
   }
 
   /// Keeps the card for later; nothing is lost and it can still be sent.
   Future<SundayCard> hold(String cardId) async {
-    try {
-      final model = (await _dataSource.holdCard(cardId)).toModel();
-      unawaited(_widgetsRepository?.syncQuietly());
-      return model;
-    } catch (e, stack) {
-      _logger.error('Failed to hold the card', error: e, stackTrace: stack);
-      rethrow;
-    }
+    final model = (await _dataSource.holdCard(cardId)).toModel();
+    unawaited(_widgetsRepository?.syncQuietly());
+    return model;
   }
 
   /// Saves the card's closing note, the order of its items and the items taken off it.
   Future<SundayCard> saveDraft(SundayCard card, {List<String> removedItemIds = const []}) async {
-    try {
-      return (await _dataSource.updateDraft(
-        cardId: card.id,
-        note: card.note,
-        items: [
-          for (var index = 0; index < card.items.length; index++)
-            (id: card.items[index].id, position: index),
-        ],
-        removedItemIds: removedItemIds,
-      )).toModel();
-    } catch (e, stack) {
-      _logger.error('Failed to save the card draft', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return (await _dataSource.updateDraft(
+      cardId: card.id,
+      note: card.note,
+      items: [
+        for (var index = 0; index < card.items.length; index++)
+          (id: card.items[index].id, position: index),
+      ],
+      removedItemIds: removedItemIds,
+    )).toModel();
   }
 
   /// Whether new slips go on the weekly card by default.
   Future<bool> getSlipsDefaultForCard() async {
-    try {
-      return await _dataSource.getSlipsDefaultForCard(_userId);
-    } catch (e, stack) {
-      _logger.error('Failed to read the card default', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return await _dataSource.getSlipsDefaultForCard(_userId);
   }
 
   /// Sets whether new slips go on the weekly card by default.
   Future<void> setSlipsDefaultForCard({required bool value}) async {
-    try {
-      await _dataSource.setSlipsDefaultForCard(userId: _userId, value: value);
-    } catch (e, stack) {
-      _logger.error('Failed to save the card default', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _dataSource.setSlipsDefaultForCard(userId: _userId, value: value);
   }
 
   String get _userId {

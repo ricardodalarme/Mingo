@@ -4,7 +4,6 @@ import 'package:app/features/love_style/data/mappers/love_style_entry_mapper.dar
 import 'package:app/features/love_style/data/models/love_style_entry.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
-import 'package:logger/logger.dart';
 
 class LoveStyleRepository({
   required final LoveStyleDataSource _dataSource,
@@ -12,81 +11,58 @@ class LoveStyleRepository({
 }) {
   static const int _manualValueLimit = 1000;
 
-  final Logger _logger = Logger('LoveStyleRepository');
-
   /// The person's own result and the partner's result when it was shown.
   Future<LoveStyleOverview> getOverview() async {
-    try {
-      final record = await _dataSource.getResults();
-      LoveStyleEntry? own;
-      LoveStyleEntry? partner;
-      for (final row in record.rows) {
-        final entry = row.toModel();
-        if (row.authorId == record.selfId) {
-          own = entry;
-        } else {
-          partner = entry;
-        }
+    final record = await _dataSource.getResults();
+    LoveStyleEntry? own;
+    LoveStyleEntry? partner;
+    for (final row in record.rows) {
+      final entry = row.toModel();
+      if (row.authorId == record.selfId) {
+        own = entry;
+      } else {
+        partner = entry;
       }
-
-      return LoveStyleOverview(own: own, partner: partner);
-    } catch (e, stack) {
-      _logger.error('Failed to read the love-style result', error: e, stackTrace: stack);
-      rethrow;
     }
+
+    return LoveStyleOverview(own: own, partner: partner);
   }
 
   /// Stores the latest ranking, updating the saved row so a retake replaces it.
   ///
   /// Returns the row id, which the share action needs.
   Future<String> saveRanked(List<String> ranked) async {
+    final overview = await getOverview();
+    final saved = overview.own;
+    if (saved != null) {
+      await _dataSource.updateResult(id: saved.id, ranked: ranked);
+
+      return saved.id;
+    }
+
     try {
-      final overview = await getOverview();
-      final saved = overview.own;
-      if (saved != null) {
-        await _dataSource.updateResult(id: saved.id, ranked: ranked);
+      return await _dataSource.insertResult(ranked);
+    } on LocalizedException catch (exception) {
+      if (!_isUniqueViolation(exception)) rethrow;
+      final raced = await getOverview();
+      final row = raced.own;
+      if (row == null) rethrow;
+      await _dataSource.updateResult(id: row.id, ranked: ranked);
 
-        return saved.id;
-      }
-
-      try {
-        return await _dataSource.insertResult(ranked);
-      } on LocalizedException catch (exception) {
-        if (!_isUniqueViolation(exception)) rethrow;
-        final raced = await getOverview();
-        final row = raced.own;
-        if (row == null) rethrow;
-        await _dataSource.updateResult(id: row.id, ranked: ranked);
-
-        return row.id;
-      }
-    } catch (e, stack) {
-      _logger.error('Failed to save the love-style result', error: e, stackTrace: stack);
-      rethrow;
+      return row.id;
     }
   }
 
   /// Shows the person's own result to the partner, or hides it again.
-  Future<void> setShared({required String id, required bool isShared}) async {
-    try {
-      await _dataSource.setShared(id: id, sharedAt: isShared ? clock.now().toUtc() : null);
-    } catch (e, stack) {
-      _logger.error('Failed to update the love-style share', error: e, stackTrace: stack);
-      rethrow;
-    }
-  }
+  Future<void> setShared({required String id, required bool isShared}) =>
+      _dataSource.setShared(id: id, sharedAt: isShared ? clock.now().toUtc() : null);
 
   /// The saved `loved` manual value, whether it is private or shared with the partner.
   Future<String?> getManualEntry() async {
     final userId = _authenticationRepository.currentUserId;
     if (userId == null) return null;
 
-    try {
-      return (await _dataSource.getManualEntry(userId))?.value;
-    } catch (e, stack) {
-      _logger.error('Failed to read the love-style manual entry', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return (await _dataSource.getManualEntry(userId))?.value;
   }
 
   /// Inserts the `loved` manual entry, or updates it when the person already has one.
@@ -99,25 +75,20 @@ class LoveStyleRepository({
     final userId = _authenticationRepository.currentUserId;
     if (userId == null) throw const LocalizedException(l10nKey: 'UNAUTHENTICATED');
 
+    final saved = await _dataSource.getManualEntry(userId);
+    if (saved != null) {
+      await _dataSource.updateManualEntry(id: saved.id, value: bounded);
+
+      return;
+    }
+
     try {
-      final saved = await _dataSource.getManualEntry(userId);
-      if (saved != null) {
-        await _dataSource.updateManualEntry(id: saved.id, value: bounded);
-
-        return;
-      }
-
-      try {
-        await _dataSource.insertManualEntry(bounded);
-      } on LocalizedException catch (exception) {
-        if (!_isUniqueViolation(exception)) rethrow;
-        final raced = await _dataSource.getManualEntry(userId);
-        if (raced == null) rethrow;
-        await _dataSource.updateManualEntry(id: raced.id, value: bounded);
-      }
-    } catch (e, stack) {
-      _logger.error('Failed to save the love-style manual entry', error: e, stackTrace: stack);
-      rethrow;
+      await _dataSource.insertManualEntry(bounded);
+    } on LocalizedException catch (exception) {
+      if (!_isUniqueViolation(exception)) rethrow;
+      final raced = await _dataSource.getManualEntry(userId);
+      if (raced == null) rethrow;
+      await _dataSource.updateManualEntry(id: raced.id, value: bounded);
     }
   }
 

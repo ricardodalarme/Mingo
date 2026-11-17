@@ -9,14 +9,14 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
   final Logger _logger = Logger('QuestionsRepository');
 
   /// The current question and couple context, without reading any answers.
-  Future<QuestionPrompt> getPrompt() => _run('read the weekly question', () async {
+  Future<QuestionPrompt> getPrompt() async {
     final record = await _dataSource.getPrompt();
 
     return record.toModel();
-  });
+  }
 
   /// Reads the question and the answer rows the server allows this person to see.
-  Future<QuestionThread> getThread() => _run('read the weekly question and answers', () async {
+  Future<QuestionThread> getThread() async {
     final prompt = await getPrompt();
     final answers = await _dataSource.getAnswers(questionSlug: prompt.slug, selfId: prompt.selfId);
     QuestionAnswer? own;
@@ -38,26 +38,25 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
       partnerAnswer: partner,
       partnerHasAnswered: answers.partnerAnswered,
     );
-  });
+  }
 
   /// Inserts the first answer or replaces the person's own row when editing.
   ///
   /// The backend grants insert and delete only, so an edit removes the row and
   /// inserts the new text.
-  Future<QuestionAnswer> saveAnswer({required QuestionThread thread, required String body}) =>
-      _run('save the weekly answer', () async {
-        final text = body.trim();
-        final existing = thread.ownAnswer;
-        if (existing == null) return _insert(thread.prompt, text);
+  Future<QuestionAnswer> saveAnswer({required QuestionThread thread, required String body}) async {
+    final text = body.trim();
+    final existing = thread.ownAnswer;
+    if (existing == null) return _insert(thread.prompt, text);
 
-        await _dataSource.deleteAnswer(existing.id);
-        try {
-          return await _insert(thread.prompt, text);
-        } catch (_) {
-          await _restore(thread.prompt, existing.body);
-          rethrow;
-        }
-      });
+    await _dataSource.deleteAnswer(existing.id);
+    try {
+      return await _insert(thread.prompt, text);
+    } catch (_) {
+      await _restore(thread.prompt, existing.body);
+      rethrow;
+    }
+  }
 
   Future<void> _restore(QuestionPrompt prompt, String body) async {
     try {
@@ -86,16 +85,4 @@ class QuestionsRepository({required final QuestionsDataSource _dataSource}) {
 
   bool _isUniqueViolation(LocalizedException exception) =>
       exception.l10nKey == '23505' || exception.l10nKey.toLowerCase().contains('duplicate key');
-
-  Future<T> _run<T>(String what, Future<T> Function() action) async {
-    try {
-      return await action();
-    } catch (exception) {
-      final key = exception is LocalizedException
-          ? exception.l10nKey
-          : exception.runtimeType.toString();
-      _logger.error('Failed to $what ($key)');
-      rethrow;
-    }
-  }
 }

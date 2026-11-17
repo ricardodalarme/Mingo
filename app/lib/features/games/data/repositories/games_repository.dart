@@ -24,11 +24,11 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
   final Logger _logger = Logger('GamesRepository');
 
   /// The couple's games with their latest sessions; no answers are read.
-  Future<GamesOverview> getOverview() => _run('read the games', () async {
+  Future<GamesOverview> getOverview() async {
     final record = await _dataSource.getSessions();
 
     return record.toModel();
-  });
+  }
 
   /// Emits the couple's sessions now and each time one is created or changes.
   ///
@@ -47,64 +47,63 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
   /// When there is no session, the items a new one could start with are read instead. A
   /// cancelled or expired session is kept so the start screen can explain what happened. A
   /// game without published content comes back with no items.
-  Future<GamePlay> getPlay({required GameKind kind, required String locale, DateTime? now}) =>
-      _run('read a game', () async {
-        final record = await _dataSource.getSessions();
-        final overview = record.toModel();
-        if (!record.hasCouple) {
-          return GamePlay(kind: kind, selfId: record.selfId, hasPartner: false);
-        }
+  Future<GamePlay> getPlay({required GameKind kind, required String locale, DateTime? now}) async {
+    final record = await _dataSource.getSessions();
+    final overview = record.toModel();
+    if (!record.hasCouple) {
+      return GamePlay(kind: kind, selfId: record.selfId, hasPartner: false);
+    }
 
-        final session = overview.latestFor(kind);
-        final isOpen = session != null && session.isOpen(now ?? clock.now());
-        final isFinished = session?.status == GameStatus.finished;
-        final available = isOpen ? const <GameItem>[] : await _available(kind, locale);
-        if (session == null) {
-          return GamePlay(
-            kind: kind,
-            selfId: record.selfId,
-            partnerName: record.partnerName,
-            available: available,
-          );
-        }
-        if (!isOpen && !isFinished) {
-          return GamePlay(
-            kind: kind,
-            selfId: record.selfId,
-            partnerName: record.partnerName,
-            session: session,
-            available: available,
-          );
-        }
+    final session = overview.latestFor(kind);
+    final isOpen = session != null && session.isOpen(now ?? clock.now());
+    final isFinished = session?.status == GameStatus.finished;
+    final available = isOpen ? const <GameItem>[] : await _available(kind, locale);
+    if (session == null) {
+      return GamePlay(
+        kind: kind,
+        selfId: record.selfId,
+        partnerName: record.partnerName,
+        available: available,
+      );
+    }
+    if (!isOpen && !isFinished) {
+      return GamePlay(
+        kind: kind,
+        selfId: record.selfId,
+        partnerName: record.partnerName,
+        session: session,
+        available: available,
+      );
+    }
 
-        final items = await _items(kind, locale, session.itemSlugs);
-        final answers = session.status == GameStatus.invited
-            ? const <GameAnswerRecord>[]
-            : await _dataSource.getAnswers(sessionId: session.id, selfId: record.selfId);
+    final items = await _items(kind, locale, session.itemSlugs);
+    final answers = session.status == GameStatus.invited
+        ? const <GameAnswerRecord>[]
+        : await _dataSource.getAnswers(sessionId: session.id, selfId: record.selfId);
 
-        return GamePlay(
-          kind: kind,
-          selfId: record.selfId,
-          partnerName: record.partnerName,
-          session: session,
-          items: items,
-          available: available,
-          own: {
-            for (final row in answers)
-              if (row.isMine) row.idx: row.answer,
-          },
-          partner: {
-            for (final row in answers)
-              if (!row.isMine) row.idx: row.answer,
-          },
-        );
-      });
+    return GamePlay(
+      kind: kind,
+      selfId: record.selfId,
+      partnerName: record.partnerName,
+      session: session,
+      items: items,
+      available: available,
+      own: {
+        for (final row in answers)
+          if (row.isMine) row.idx: row.answer,
+      },
+      partner: {
+        for (final row in answers)
+          if (!row.isMine) row.idx: row.answer,
+      },
+    );
+  }
 
   /// Starts a session of [kind] with the next questions the content offers.
   ///
   /// The server serves unseen questions first and recycles the oldest ones when the
   /// pool runs out, so a replay does not repeat the same round.
-  Future<GameSession> invite(GameKind kind) => _run('invite to a game', () async {
+  Future<GameSession> invite(GameKind kind) async {
     final items = await _dataSource.nextItems(game: kind.key, count: kind.itemCount);
     final slugs = [for (final item in items) item.slug];
     if (slugs.isEmpty) throw const NoDataException();
@@ -114,18 +113,15 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
     );
 
     return record.toModel()!;
-  });
+  }
 
-  Future<GameSession> join(GameSession session) => _update('join a game', session, 'join');
+  Future<GameSession> join(GameSession session) => _update(session, 'join');
 
-  Future<GameSession> cancel(GameSession session) => _update('cancel a game', session, 'cancel');
+  Future<GameSession> cancel(GameSession session) => _update(session, 'cancel');
 
   /// Saves one answer; answering the same [step] again replaces it.
   Future<void> answer({required GameSession session, required int step, required String answer}) =>
-      _run(
-        'save a game answer',
-        () => _dataSource.answer(sessionId: session.id, idx: step, answer: answer.trim()),
-      );
+      _dataSource.answer(sessionId: session.id, idx: step, answer: answer.trim());
 
   /// Finishes the session when both people answered every item, or returns null when the
   /// partner is still answering.
@@ -136,17 +132,15 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
       return record.toModel();
     } on LocalizedException catch (exception) {
       if (exception.l10nKey == gameNotCompleteCode) return null;
-      _logger.error('Failed to finish a game (${exception.l10nKey})');
       rethrow;
     }
   }
 
-  Future<GameSession> _update(String what, GameSession session, String action) =>
-      _run(what, () async {
-        final record = await _dataSource.update(sessionId: session.id, action: action);
+  Future<GameSession> _update(GameSession session, String action) async {
+    final record = await _dataSource.update(sessionId: session.id, action: action);
 
-        return record.toModel()!;
-      });
+    return record.toModel()!;
+  }
 
   Future<List<GameItem>> _available(GameKind kind, String locale) async {
     final contentKind = kind.contentKind;
@@ -171,17 +165,5 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
     final bySlug = {for (final record in records) record.slug: record.toModel()};
 
     return [for (final slug in slugs) ?bySlug[slug]];
-  }
-
-  Future<T> _run<T>(String what, Future<T> Function() action) async {
-    try {
-      return await action();
-    } catch (exception) {
-      final key = exception is LocalizedException
-          ? exception.l10nKey
-          : exception.runtimeType.toString();
-      _logger.error('Failed to $what ($key)');
-      rethrow;
-    }
   }
 }

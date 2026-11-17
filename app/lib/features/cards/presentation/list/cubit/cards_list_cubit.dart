@@ -28,7 +28,8 @@ class CardsListCubit({required final CardsRepository _cardsRepository})
           isLoadingMore: false,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (generation != _generation) return;
       if (state.cards is Success) return;
       emit(state.copyWith(cards: Failure.fromObject(exception)));

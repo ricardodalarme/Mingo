@@ -39,12 +39,11 @@ class TodayRepository({
         wasUnpaired: wasUnpaired,
         previousPartnerName: wasUnpaired ? previous.partnerName : null,
       );
-    } catch (e, stack) {
+    } catch (e) {
       final cached = _localDataSource.read();
       if (cached != null && e is LocalizedException && e.l10nKey == networkErrorCode) {
         return (home: cached, isFromCache: true, wasUnpaired: false, previousPartnerName: null);
       }
-      _logger.error('Failed to load Hoje', error: e, stackTrace: stack);
       rethrow;
     }
   }

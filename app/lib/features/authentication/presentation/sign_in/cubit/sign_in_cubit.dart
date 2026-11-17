@@ -35,7 +35,8 @@ class SignInCubit({required final AuthenticationRepository _authenticationReposi
     try {
       await action();
       emit(state.copyWith(signInAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       final failure = Failure.fromObject(exception);
       // A dismissed provider sheet is not an error and shows nothing.
       if (cancelledCodes.contains(failure.exception.l10nKey)) {

@@ -12,7 +12,6 @@ import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/relationship_phase.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
-import 'package:logger/logger.dart';
 
 const String notOwnerCode = 'NOT_OWNER';
 
@@ -20,16 +19,14 @@ class HistoryRepository({
   required final HistoryDataSource _dataSource,
   required final AuthenticationRepository _authenticationRepository,
 }) {
-  final Logger _logger = Logger('HistoryRepository');
-
-  Future<HistoryOverview> getOverview({DateTime? now}) => _run('load history overview', () async {
+  Future<HistoryOverview> getOverview({DateTime? now}) async {
     final currentNow = now ?? clock.now();
     final userId = _authenticationRepository.currentUserId;
     if (userId == null) throw StateError('The history overview needs a signed-in person');
     final raw = await _dataSource.getOverview(userId: userId, year: currentNow.year);
 
     return raw.toModel(now: currentNow);
-  });
+  }
 
   /// Creates or updates a milestone, supporting known dates (`day`/`month`/`year`)
   /// and unknown dates (stored in `important_dates` with `year: null`).
@@ -44,7 +41,7 @@ class HistoryRepository({
     String? body,
     String? coupleId,
     HistoryMilestone? existing,
-  }) => _run('save milestone', () async {
+  }) async {
     if (existing != null && !existing.isMine) {
       throw const LocalizedException(l10nKey: notOwnerCode);
     }
@@ -146,9 +143,9 @@ class HistoryRepository({
       );
       if (existing != null) await deleteMilestone(existing);
     }
-  });
+  }
 
-  Future<void> deleteMilestone(HistoryMilestone milestone) => _run('delete milestone', () async {
+  Future<void> deleteMilestone(HistoryMilestone milestone) async {
     if (!milestone.isMine) {
       throw const LocalizedException(l10nKey: notOwnerCode);
     }
@@ -157,7 +154,7 @@ class HistoryRepository({
       .memory => _dataSource.deleteMemory(milestone.id),
       .importantDate => _dataSource.deleteImportantDate(milestone.id),
     };
-  });
+  }
 
   /// Saves one of the four canonical story dates (`met`, `dating`, `engaged`, `married`)
   /// and syncs `together_since` when `dating` or `met` is updated.
@@ -174,7 +171,7 @@ class HistoryRepository({
     bool existingEventIsMine = true,
     String? coupleId,
     bool updateTogetherSince = false,
-  }) => _run('save story date', () async {
+  }) async {
     if (existingEventId != null && !existingEventIsMine) {
       throw const LocalizedException(l10nKey: notOwnerCode);
     }
@@ -202,32 +199,17 @@ class HistoryRepository({
     if (updateTogetherSince && profileId.isNotEmpty) {
       await _dataSource.updateTogetherSince(profileId: profileId, togetherSince: normalized);
     }
-  });
-
-  Future<void> updateTogetherSince({required String profileId, required DateTime date}) => _run(
-    'update together since',
-    () => _dataSource.updateTogetherSince(
-      profileId: profileId,
-      togetherSince: DateTime.utc(date.year, date.month, date.day),
-    ),
-  );
-
-  Future<void> updateAvatarKind({required String profileId, required AvatarKind kind}) => _run(
-    'update avatar kind',
-    () => _dataSource.updateAvatarKind(profileId: profileId, avatarKind: kind.toRemote()),
-  );
-
-  Future<void> updatePhase({required String profileId, required RelationshipPhase phase}) => _run(
-    'update relationship phase',
-    () => _dataSource.updatePhase(profileId: profileId, phase: phase.toRemote()),
-  );
-
-  Future<T> _run<T>(String what, Future<T> Function() action) async {
-    try {
-      return await action();
-    } catch (e, stack) {
-      _logger.error('Failed to $what', error: e, stackTrace: stack);
-      rethrow;
-    }
   }
+
+  Future<void> updateTogetherSince({required String profileId, required DateTime date}) =>
+      _dataSource.updateTogetherSince(
+        profileId: profileId,
+        togetherSince: DateTime.utc(date.year, date.month, date.day),
+      );
+
+  Future<void> updateAvatarKind({required String profileId, required AvatarKind kind}) =>
+      _dataSource.updateAvatarKind(profileId: profileId, avatarKind: kind.toRemote());
+
+  Future<void> updatePhase({required String profileId, required RelationshipPhase phase}) =>
+      _dataSource.updatePhase(profileId: profileId, phase: phase.toRemote());
 }

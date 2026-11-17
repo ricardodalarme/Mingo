@@ -7,7 +7,6 @@ import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:clock/clock.dart';
-import 'package:logger/logger.dart';
 import 'package:uuid/uuid.dart';
 
 /// The longest slip body, so a long reply is cut instead of refused.
@@ -23,27 +22,21 @@ class ChatRepository({
   required final SlipRepository _slipRepository,
   required final PlusRepository _plusRepository,
 }) {
-  final Logger _logger = Logger('ChatRepository');
   final Uuid _uuid = const Uuid();
 
   /// How many messages are left today and whether the person has Plus.
   Future<ChatStatus> getStatus() async {
-    try {
-      final (settings, plus) = await (
-        _profileRepository.getMySettings(),
-        _plusRepository.getPlus(),
-      ).wait;
-      final status = await _dataSource.getStatus(settings.profileId);
+    final (settings, plus) = await (
+      _profileRepository.getMySettings(),
+      _plusRepository.getPlus(),
+    ).wait;
+    final status = await _dataSource.getStatus(settings.profileId);
 
-      return (
-        messagesLeft: status.messagesLeft,
-        limit: plus.hasPlus ? status.plusLimit : status.freeLimit,
-        hasPlus: plus.hasPlus,
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to read the chat status', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return (
+      messagesLeft: status.messagesLeft,
+      limit: plus.hasPlus ? status.plusLimit : status.freeLimit,
+      hasPlus: plus.hasPlus,
+    );
   }
 
   /// Streams the reply to [message], with the last turns of [history] for context.
@@ -81,15 +74,10 @@ class ChatRepository({
   /// Turns a reply into a slip, cut to the slip limit; a queued save is fine when offline.
   Future<void> saveAsSlip(String text) async {
     final body = text.trim();
-    try {
-      await _slipRepository.saveQuick(
-        id: _uuid.v4(),
-        body: body.length > _slipMaxLength ? body.substring(0, _slipMaxLength) : body,
-        createdAt: clock.now(),
-      );
-    } catch (e, stack) {
-      _logger.error('Failed to save a reply as a slip', error: e, stackTrace: stack);
-      rethrow;
-    }
+    await _slipRepository.saveQuick(
+      id: _uuid.v4(),
+      body: body.length > _slipMaxLength ? body.substring(0, _slipMaxLength) : body,
+      createdAt: clock.now(),
+    );
   }
 }

@@ -17,7 +17,8 @@ class RelationshipChangedCubit({required final ProfileRepository _profileReposit
       final details = await _profileRepository.getRelationshipDetails();
       if (isClosed) return;
       emit(state.copyWith(details: Success(details), selected: details.relationshipStatus));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(details: Failure.fromObject(exception)));
     }
@@ -54,7 +55,8 @@ class RelationshipChangedCubit({required final ProfileRepository _profileReposit
       );
       emit(state.copyWith(saveAction: const Initial()));
       return true;
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return false;
       emit(
         state.copyWith(

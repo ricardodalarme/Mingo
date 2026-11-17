@@ -44,7 +44,6 @@ class PlusRepository({
       if (PurchasesErrorHelper.getErrorCode(e) == PurchasesErrorCode.purchaseCancelledError) {
         return PurchaseOutcome.cancelled;
       }
-      _logger.error('Purchase failed', error: e);
       rethrow;
     }
 
@@ -53,31 +52,21 @@ class PlusRepository({
 
   /// What the server says the person has; Plus from the partner counts for the couple.
   Future<PlusState> getPlus() async {
-    try {
-      final plus = await _dataSource.getPlus(_userId);
+    final plus = await _dataSource.getPlus(_userId);
 
-      return plus.toModel();
-    } catch (e, stack) {
-      _logger.error('Failed to read the plan', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return plus.toModel();
   }
 
   /// The monthly and yearly prices from the store; throws when the store cannot be reached.
   ///
   /// Prices are never written in the app, so there is nothing to show without the store.
   Future<List<PlanPrice>> getPrices() async {
-    try {
-      final packages = await _purchaseService.getPackages();
-      _packages = {for (final package in packages) package.identifier: package};
-      final prices = [for (final package in packages) ?package.toPlanPrice()];
-      if (prices.isEmpty) throw StateError('The store returned no plans');
+    final packages = await _purchaseService.getPackages();
+    _packages = {for (final package in packages) package.identifier: package};
+    final prices = [for (final package in packages) ?package.toPlanPrice()];
+    if (prices.isEmpty) throw StateError('The store returned no plans');
 
-      return prices;
-    } catch (e, stack) {
-      _logger.warning('Could not load the plan prices', error: e, stackTrace: stack);
-      rethrow;
-    }
+    return prices;
   }
 
   /// Re-applies store purchases and returns what the store and the server report.
@@ -90,9 +79,6 @@ class PlusRepository({
     } on PurchaseUnavailableException catch (e) {
       _logger.warning('Could not restore purchases', error: e);
       throw const LocalizedException(l10nKey: 'storeUnavailable');
-    } catch (e, stack) {
-      _logger.error('Could not restore purchases', error: e, stackTrace: stack);
-      rethrow;
     }
 
     if (info.activeSubscriptions.isEmpty && info.entitlements.active.isEmpty) {
@@ -111,9 +97,6 @@ class PlusRepository({
     } on PurchaseUnavailableException catch (e) {
       _logger.warning('Could not read the management page', error: e);
       throw const LocalizedException(l10nKey: 'storeUnavailable');
-    } catch (e, stack) {
-      _logger.error('Could not read the management page', error: e, stackTrace: stack);
-      rethrow;
     }
   }
 

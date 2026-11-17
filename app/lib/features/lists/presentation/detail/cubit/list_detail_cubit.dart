@@ -25,7 +25,8 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
       final detail = await _listsRepository.getList(listId);
       emit(state.copyWith(listId: listId, detail: Success(detail)));
       _watch(listId);
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       final failure = Failure.fromObject(exception);
       if (state.detail is! Success || failure.exception.l10nKey == listNotFoundCode) {
         emit(state.copyWith(listId: listId, detail: failure));
@@ -80,7 +81,8 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
     String? coupleId;
     try {
       coupleId = isShared ? await _listsRepository.getCoupleId() : null;
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(changeAction: Failure.fromObject(exception)));
       emit(state.copyWith(changeAction: const Initial()));
 
@@ -195,7 +197,8 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
     try {
       await action();
       emit(state.copyWith(changeAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       emit(state.copyWith(detail: Success(previous), changeAction: Failure.fromObject(exception)));
     }
     emit(state.copyWith(changeAction: const Initial()));
@@ -215,7 +218,8 @@ class ListDetailCubit({required final ListsRepository _listsRepository})
             if (state.changeAction.isLoading) return;
             emit(state.copyWith(detail: Success(detail)));
           },
-          onError: (Object exception) {
+          onError: (Object exception, StackTrace stack) {
+            addError(exception, stack);
             final failure = Failure.fromObject(exception);
             if (failure.exception.l10nKey == listNotFoundCode) {
               emit(state.copyWith(detail: failure));

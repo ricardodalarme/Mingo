@@ -43,7 +43,8 @@ class MoodCubit({
           clearPartnerName: true,
         ),
       );
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed || state.entry is Success) return;
       emit(state.copyWith(entry: Failure.fromObject(exception)));
     }
@@ -97,7 +98,8 @@ class MoodCubit({
       );
       if (isClosed) return;
       emit(_fromEntry(entry).copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(saveAction: Failure.fromObject(exception)));
       emit(state.copyWith(saveAction: const Initial()));
@@ -126,7 +128,8 @@ class MoodCubit({
       );
       if (isClosed) return;
       emit(_fromEntry(entry).copyWith(saveAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(previous.copyWith(saveAction: Failure.fromObject(exception)));
       emit(previous.copyWith(saveAction: const Initial()));
@@ -149,7 +152,8 @@ class MoodCubit({
       );
       if (isClosed) return;
       emit(_fromEntry(entry).copyWith(needAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(needAction: Failure.fromObject(exception)));
       emit(state.copyWith(needAction: const Initial()));
@@ -165,7 +169,8 @@ class MoodCubit({
       await _slipRepository.sendHug();
       if (isClosed) return;
       emit(state.copyWith(reactAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(reactAction: Failure.fromObject(exception)));
     }
@@ -181,7 +186,8 @@ class MoodCubit({
       await _slipRepository.askToTalk();
       if (isClosed) return;
       emit(state.copyWith(talkAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(talkAction: Failure.fromObject(exception)));
     }
@@ -197,7 +203,8 @@ class MoodCubit({
       await _slipRepository.sendSweetMessage(body);
       if (isClosed) return;
       emit(state.copyWith(messageAction: const Success(null)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(messageAction: Failure.fromObject(exception)));
     }

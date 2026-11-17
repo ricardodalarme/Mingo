@@ -17,7 +17,8 @@ class PlansCubit({required final PlusRepository _plusRepository}) extends Cubit<
       if (isClosed) return;
       emit(state.copyWith(plus: Success(plus)));
       if (!plus.hasPlus) await loadPrices();
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(plus: Failure.fromObject(exception)));
     }
@@ -44,7 +45,8 @@ class PlansCubit({required final PlusRepository _plusRepository}) extends Cubit<
         if (isClosed) return;
         emit(state.copyWith(plus: Success(plus)));
       }
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(purchaseAction: Failure.fromObject(exception)));
       if (isClosed) return;
@@ -59,7 +61,8 @@ class PlansCubit({required final PlusRepository _plusRepository}) extends Cubit<
       final prices = await _plusRepository.getPrices();
       if (isClosed) return;
       emit(state.copyWith(prices: Success(prices)));
-    } catch (exception) {
+    } catch (exception, stack) {
+      addError(exception, stack);
       if (isClosed) return;
       emit(state.copyWith(prices: Failure.fromObject(exception)));
     }
