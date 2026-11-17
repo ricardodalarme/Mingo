@@ -19,8 +19,7 @@ import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// The home-driven body of Hoje, in the board's order: the header and one band, then the mood,
-/// the question, the week and "Para hoje".
+/// The body of Hoje: the header and one band, then the mood, the question, the week and "Para hoje".
 ///
 /// Each block is only built when the state has content for it, and the state decides what the
 /// person can see: alone, waiting for an invite, on the first day, after a fight or with no slips

@@ -4,10 +4,9 @@ import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// The reminder choices drawn the way the board draws them: the daily cap, the types and the rule.
+/// The reminder choices: the daily cap, the types and the rule that bounds both.
 ///
-/// The card's day and hour moved to the card settings, where they belong, and quiet hours are not
-/// a server choice, so the screen keeps only what the backend enforces.
+/// Every row saves to the server, which is what decides whether a push goes out.
 class const NotificationPreferencesContent({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

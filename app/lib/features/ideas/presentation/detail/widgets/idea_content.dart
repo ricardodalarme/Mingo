@@ -4,7 +4,7 @@ import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// The idea as the board draws it: a hero card with the idea, why it was chosen, and the actions.
+/// The idea detail: a hero card with the idea, why it was chosen, and the actions.
 class const IdeaContent({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

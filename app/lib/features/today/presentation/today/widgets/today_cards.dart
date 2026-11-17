@@ -2,8 +2,8 @@ import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 
-/// A card "Para hoje" can show, in the board's fixed order: what is urgent, then what is for the
-/// two of you, then what is yours, the invite and the tip last.
+/// A card "Para hoje" can show, in the fixed order: what is urgent, then what is for the two of
+/// you, then what is yours, the invite and the tip last.
 enum TodayCardKind() {
   receivedCard,
   ownCard,
