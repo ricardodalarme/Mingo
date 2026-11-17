@@ -91,19 +91,15 @@ void main() {
     await pump(tester, []);
 
     expect(find.text('Nada novo por aqui'), findsOneWidget);
-    expect(
-      find.text('Quando alguém mandar um cartão ou responder, aparece aqui.'),
-      findsOneWidget,
-    );
+    expect(find.text('Quando alguém mandar um cartão ou responder, aparece aqui.'), findsOneWidget);
     expect(find.text('Ajustes de notificação'), findsOneWidget);
   });
 
   testWidgets('the failed read keeps a way back', (tester) async {
     when(inbox.getItems).thenThrow(Exception());
     final profile = _MockProfileRepository();
-    when(profile.getMySettings).thenAnswer(
-      (_) async => const AccountSettings(theme: AppThemeVariant.rose),
-    );
+    when(profile.getMySettings)
+        .thenAnswer((_) async => const AccountSettings(theme: AppThemeVariant.rose));
     final cubit = InboxCubit(inboxRepository: inbox, profileRepository: profile);
     addTearDown(cubit.close);
     await cubit.load();
