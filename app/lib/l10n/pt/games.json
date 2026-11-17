@@ -164,7 +164,9 @@
     "replayMission": "Uma nova missão para vocês",
     "replayText": "Cada rodada traz conteúdo novo. Quando acabar, o app avisa e mistura o que já passou.",
     "playAgain": "Jogar de novo",
-    "chooseAnother": "Escolher outro jogo"
+    "chooseAnother": "Escolher outro jogo",
+    "missingTitle": "Esta rodada não está mais disponível",
+    "missingText": "O conteúdo mudou desde que vocês jogaram. Vocês podem começar outra."
   },
   "notFound": {
     "title": "Este jogo não existe",

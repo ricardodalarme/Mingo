@@ -164,7 +164,9 @@
     "replayMission": "A new mission for you",
     "replayText": "Each round brings new content. When it runs out, the app tells you and mixes in what you already saw.",
     "playAgain": "Play again",
-    "chooseAnother": "Choose another game"
+    "chooseAnother": "Choose another game",
+    "missingTitle": "This round is no longer available",
+    "missingText": "The content changed since you played. You can start another one."
   },
   "notFound": {
     "title": "This game does not exist",

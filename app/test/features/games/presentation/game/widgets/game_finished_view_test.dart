@@ -108,6 +108,40 @@ void main() {
     expect(find.text('Voltar'), findsOneWidget);
   });
 
+  testWidgets('a round whose content changed says so instead of showing an empty reveal', (
+    tester,
+  ) async {
+    final cubit = await seeded(
+      GamePlay(
+        kind: GameKind.meOrYou,
+        selfId: 'me',
+        partnerName: 'Bia',
+        session: GameSession(
+          id: 's1',
+          game: GameKind.meOrYou,
+          status: GameStatus.finished,
+          invitedBy: 'me',
+          itemSlugs: const ['a', 'b'],
+          createdAt: created,
+        ),
+        own: const {0: pickSelf, 1: pickBoth},
+        partner: const {0: pickPartner, 1: pickBoth},
+      ),
+    );
+
+    await tester.pumpApp(
+      BlocProvider.value(
+        value: cubit,
+        child: GameFinishedView(play: cubit.state.current!),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Esta rodada não está mais disponível'), findsOneWidget);
+    expect(find.textContaining('O conteúdo mudou'), findsOneWidget);
+    expect(find.text('Escolher outro jogo'), findsOneWidget);
+  });
+
   testWidgets('a finished round with content offers a new round', (tester) async {
     final cubit = await seeded(finished(hasItems: true));
     when(() => repository.invite(any())).thenAnswer(

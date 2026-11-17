@@ -18,6 +18,16 @@ class const GameFinishedView({required final GamePlay play, super.key}) extends 
     final name = gamePartnerName(play.partnerName, l10n.playing.partnerFallback);
     final canReplay = play.available.isNotEmpty;
 
+    if (!play.hasAllItems) {
+      return BaseStackedContent(
+        body: BaseEmptyState(title: l10n.finished.missingTitle, text: l10n.finished.missingText),
+        footer: BaseButton.primary(
+          text: l10n.finished.chooseAnother,
+          onPressed: () => context.router.maybePop(),
+        ),
+      );
+    }
+
     return BaseStackedContent(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
