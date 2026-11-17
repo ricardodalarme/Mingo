@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/repair/data/repositories/repair_repository.dart';
-import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/today/data/data_sources/local/today_local_data_source.dart';
 import 'package:app/features/today/data/data_sources/remote/queries/generated/TodayHome.graphql.dart';
 import 'package:app/features/today/data/data_sources/remote/today_data_source.dart';
@@ -25,14 +23,23 @@ class _MockTodayRepository() extends Mock implements TodayRepository;
 
 class _MockProfileRepository() extends Mock implements ProfileRepository;
 
-class _MockPairingRepository() extends Mock implements PairingRepository;
-
-class _MockSlipRepository() extends Mock implements SlipRepository;
-
 class _MockRepairRepository() extends Mock implements RepairRepository;
 
 QueryTodayHome _query({QueryTodayHometoday? today}) =>
     QueryTodayHome(today: today == null ? const [] : [today], question: const [], idea: const []);
+
+TodaySignals _signals({int unseenSignals = 0}) => (
+  localDate: DateTime(2026, 3, 10),
+  partnerId: 'p',
+  partnerName: 'Rui',
+  unopenedCards: 0,
+  slipsThisWeek: 1,
+  slipsTotal: 4,
+  hasPendingInvite: false,
+  unseenSignals: unseenSignals,
+  cardStatus: null,
+  hasPlus: false,
+);
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -182,20 +189,18 @@ void main() {
   group('TodayCubit', () {
     late TodayRepository today;
     late ProfileRepository profile;
-    late PairingRepository pairing;
-    late SlipRepository slip;
+    late StreamController<TodaySignals> signals;
     late RepairRepository repair;
 
     setUp(() {
       today = _MockTodayRepository();
       profile = _MockProfileRepository();
-      pairing = _MockPairingRepository();
-      slip = _MockSlipRepository();
+      signals = StreamController<TodaySignals>.broadcast();
+      addTearDown(signals.close);
+      when(today.watchSignals).thenAnswer((_) => signals.stream);
       repair = _MockRepairRepository();
       when(repair.isInConflict).thenAnswer((_) async => false);
-      when(() => pairing.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => profile.onChanged).thenAnswer((_) => const Stream.empty());
-      when(() => slip.onChanged).thenAnswer((_) => const Stream.empty());
       when(() => profile.getMyProfile()).thenAnswer(
         (_) async => const Profile(id: 'me', avatarKind: AvatarKind.initials, displayName: 'Ana'),
       );
@@ -210,8 +215,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
       );
 
@@ -225,8 +228,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
       );
 
@@ -244,8 +245,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
       );
 
@@ -264,9 +263,7 @@ void main() {
       await changes.close();
     });
 
-    test('a saved slip reads Hoje again', () async {
-      final changes = StreamController<void>.broadcast();
-      when(() => slip.onChanged).thenAnswer((_) => changes.stream);
+    test('a change the server reports reads Hoje again', () async {
       var reads = 0;
       when(() => today.getToday()).thenAnswer((_) async {
         reads++;
@@ -276,8 +273,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
       );
 
@@ -285,12 +280,31 @@ void main() {
       await pumpEventQueue();
       expect(reads, 1);
 
-      changes.add(null);
+      signals.add(_signals());
+      await pumpEventQueue();
+      expect(reads, 1);
+
+      signals.add(_signals(unseenSignals: 1));
       await pumpEventQueue();
 
       expect(reads, 2);
       await cubit.close();
-      await changes.close();
+    });
+
+    test('stops listening to the server when it closes', () async {
+      when(() => today.getToday()).thenAnswer((_) async => result());
+      final cubit = TodayCubit(
+        todayRepository: today,
+        profileRepository: profile,
+        repairRepository: repair,
+      );
+      unawaited(Future<void>.microtask(cubit.start));
+      await pumpEventQueue();
+      expect(signals.hasListener, isTrue);
+
+      await cubit.close();
+
+      expect(signals.hasListener, isFalse);
     });
 
     test('a foreground refresh reads Hoje again', () async {
@@ -304,8 +318,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
         refreshInterval: const Duration(seconds: 1),
         timerFactory: (_, onTick) {
@@ -345,8 +357,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
         refreshInterval: const Duration(seconds: 1),
         timerFactory: (_, onTick) {
@@ -373,8 +383,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
       );
 
@@ -388,8 +396,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
       );
 
@@ -403,8 +409,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
       );
       await cubit.load();
@@ -422,8 +426,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
       );
 
@@ -449,8 +451,6 @@ void main() {
       final cubit = TodayCubit(
         todayRepository: today,
         profileRepository: profile,
-        pairingRepository: pairing,
-        slipRepository: slip,
         repairRepository: repair,
       );
 

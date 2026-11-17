@@ -1,0 +1,18 @@
+subscription WatchTodaySignals {
+  today {
+    localDate
+    partnerId
+    partnerName
+    unopenedCards
+    slipsThisWeek
+    slipsTotal
+    hasPendingInvite
+    unseenSignals
+    card {
+      status
+    }
+    plus {
+      hasPlus
+    }
+  }
+}

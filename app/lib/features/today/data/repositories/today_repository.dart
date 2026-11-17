@@ -49,6 +49,15 @@ class TodayRepository({
     }
   }
 
+  /// Emits what Hoje shows that the server can change, now and on each change.
+  ///
+  /// A failed event is logged and skipped, so Hoje keeps what it shows.
+  Stream<TodaySignals> watchSignals() {
+    return _dataSource.watchSignals().handleError((Object e, StackTrace stack) {
+      _logger.error('The Hoje subscription failed', error: e, stackTrace: stack);
+    });
+  }
+
   /// Marks the unpair notice as seen so it does not come back.
   Future<void> acknowledgeUnpair() => _localDataSource.writeRelationship(wasPaired: false);
 

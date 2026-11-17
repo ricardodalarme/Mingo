@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/models/partner_intent.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/repair/data/repositories/repair_repository.dart';
-import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/features/today/data/data_sources/remote/today_data_source.dart';
 import 'package:app/features/today/data/models/today_home.dart';
 import 'package:app/features/today/data/repositories/today_repository.dart';
 import 'package:clock/clock.dart';
@@ -28,17 +27,15 @@ Timer _periodicTimer(Duration interval, void Function() onTick) =>
 class TodayCubit({
   required final TodayRepository _todayRepository,
   required final ProfileRepository _profileRepository,
-  required final PairingRepository _pairingRepository,
-  required final SlipRepository _slipRepository,
   required final RepairRepository _repairRepository,
   final Duration _refreshInterval = todayRefreshInterval,
   final TodayRefreshTimerFactory _timerFactory = _periodicTimer,
 }) extends Cubit<TodayState> with WidgetsBindingObserver {
   this : super(const TodayState());
 
-  StreamSubscription<void>? _pairingChanges;
   StreamSubscription<void>? _profileChanges;
-  StreamSubscription<void>? _slipChanges;
+  StreamSubscription<TodaySignals>? _signals;
+  TodaySignals? _lastSignals;
   Timer? _refreshTimer;
   bool _isLoading = false;
   bool _reloadRequested = false;
@@ -46,11 +43,18 @@ class TodayCubit({
 
   void start() {
     WidgetsBinding.instance.addObserver(this);
-    _pairingChanges ??= _pairingRepository.onChanged.listen((_) => load());
     _profileChanges ??= _profileRepository.onChanged.listen((_) => load());
-    _slipChanges ??= _slipRepository.onChanged.listen((_) => load());
+    _signals ??= _todayRepository.watchSignals().listen(_onSignals);
     _refreshTimer ??= _timerFactory(_refreshInterval, _onRefreshTick);
     load();
+  }
+
+  /// Reads Hoje again when the server changed something it shows, such as the partner joining,
+  /// a card opening or a signal arriving; the first event only sets the baseline.
+  void _onSignals(TodaySignals signals) {
+    final previous = _lastSignals;
+    _lastSignals = signals;
+    if (previous != null && previous != signals) unawaited(load());
   }
 
   void _onRefreshTick() {
@@ -164,9 +168,8 @@ class TodayCubit({
   @override
   Future<void> close() async {
     _refreshTimer?.cancel();
-    await _pairingChanges?.cancel();
     await _profileChanges?.cancel();
-    await _slipChanges?.cancel();
+    await _signals?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     return super.close();
   }
