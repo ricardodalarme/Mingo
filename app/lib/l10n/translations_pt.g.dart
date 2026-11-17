@@ -6350,8 +6350,8 @@ class Translations$settingsHome$pt {
   /// pt: 'Plus'
   String get planPlus => 'Plus';
 
-  /// pt: 'Momentos a dois'
-  String get spice => 'Momentos a dois';
+  /// pt: 'Tempero'
+  String get spice => 'Tempero';
 
   /// pt: 'Privacidade e segurança'
   String get privacy => 'Privacidade e segurança';
@@ -6865,12 +6865,34 @@ class Translations$spice$pt {
 
   // Translations
 
-  /// pt: 'Momentos a dois'
-  String get title => 'Momentos a dois';
+  /// pt: 'Tempero'
+  String get title => 'Tempero';
 
-  /// pt: 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.'
-  String get offText =>
-      'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.';
+  /// pt: 'Tempero, só para vocês dois'
+  String get introTitle => 'Tempero, só para vocês dois';
+
+  /// pt: 'vocês dois'
+  String get introHighlight => 'vocês dois';
+
+  /// pt: 'Um espaço para adultos, opcional, com cartas e desejos para o casal. Só 18+.'
+  String get introText =>
+      'Um espaço para adultos, opcional, com cartas e desejos para o casal. Só 18+.';
+
+  /// pt: 'A outra pessoa quis ligar. Só começa quando você também ligar.'
+  String get partnerWantsText => 'A outra pessoa quis ligar. Só começa quando você também ligar.';
+
+  List<String> get promises => [
+    'Só vale quando vocês dois ligam.',
+    'Qualquer um desliga a qualquer momento, e tudo some para os dois.',
+    'Suas respostas são só suas. Só aparece o que os dois querem.',
+    'Um "hoje não" nunca é explicado nem avisado.',
+  ];
+
+  /// pt: 'Tenho 18 anos ou mais'
+  String get adultLabel => 'Tenho 18 anos ou mais';
+
+  /// pt: 'Confirme para continuar.'
+  String get adultError => 'Confirme para continuar.';
 
   /// pt: 'Ligar'
   String get turnOn => 'Ligar';
@@ -6878,28 +6900,42 @@ class Translations$spice$pt {
   /// pt: 'Agora não'
   String get notNow => 'Agora não';
 
-  /// pt: 'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.'
-  String get waitingText =>
-      'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.';
-
-  /// pt: 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.'
-  String get readyText => 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.';
-
-  /// pt: 'Tirar uma carta'
-  String get drawCard => 'Tirar uma carta';
-
   /// pt: 'Desligar'
   String get turnOff => 'Desligar';
 
-  /// pt: 'Não deu para carregar'
-  String get errorTitle => 'Não deu para carregar';
+  /// pt: 'Esperando a outra pessoa'
+  String get waitingTitle => 'Esperando a outra pessoa';
 
-  /// pt: 'Tente de novo em instantes.'
-  String get errorText => 'Tente de novo em instantes.';
+  /// pt: 'Nada foi avisado. Quando ela também ligar, o Tempero abre para vocês dois.'
+  String get waitingText =>
+      'Nada foi avisado. Quando ela também ligar, o Tempero abre para vocês dois.';
 
+  /// pt: 'O Tempero é a dois'
+  String get soloTitle => 'O Tempero é a dois';
+
+  /// pt: 'Precisa de duas pessoas conectadas. Quando a outra pessoa entrar, ele fica disponível.'
+  String get soloText =>
+      'Precisa de duas pessoas conectadas. Quando a outra pessoa entrar, ele fica disponível.';
+
+  /// pt: 'Voltar'
+  String get soloAction => 'Voltar';
+
+  late final Translations$spice$home$pt home = Translations$spice$home$pt.internal(_root);
+  late final Translations$spice$cards$pt cards = Translations$spice$cards$pt.internal(_root);
+  late final Translations$spice$desires$pt desires = Translations$spice$desires$pt.internal(_root);
+  late final Translations$spice$challenge$pt challenge = Translations$spice$challenge$pt.internal(
+    _root,
+  );
+  late final Translations$spice$settingsPage$pt settingsPage =
+      Translations$spice$settingsPage$pt.internal(_root);
   Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'Você usou as cartas grátis desta semana. O Plus libera mais.',
+    'PLUS_REQUIRED': 'Isso faz parte do Plus.',
+    'ADULT_REQUIRED': 'Confirme que você tem 18 anos ou mais.',
+    'SPICE_NOT_ON': 'O Tempero não está ligado para os dois.',
+    'SWAP_LIMIT': 'Você já trocou o desafio três vezes esta semana.',
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para mudar agora. Tente de novo.',
+    'other': 'Não deu para concluir agora. Tente de novo.',
   };
 }
 
@@ -9703,6 +9739,248 @@ class Translations$slipKind$saved$pt {
 
   /// pt: 'Pronto'
   String get done => 'Pronto';
+}
+
+// Path: spice.home
+class Translations$spice$home$pt {
+  Translations$spice$home$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Tudo aqui é opcional e fica entre vocês.'
+  String get subtitle => 'Tudo aqui é opcional e fica entre vocês.';
+
+  /// pt: 'Cartas da noite'
+  String get cards => 'Cartas da noite';
+
+  /// pt: 'Uma carta de cada vez'
+  String get cardsText => 'Uma carta de cada vez';
+
+  /// pt: 'Desejos'
+  String get desires => 'Desejos';
+
+  /// pt: 'Responda em segredo e veja o que os dois querem'
+  String get desiresText => 'Responda em segredo e veja o que os dois querem';
+
+  /// pt: 'Desafio da semana'
+  String get challenge => 'Desafio da semana';
+
+  /// pt: 'Um convite, sem pontos nem prazo'
+  String get challengeText => 'Um convite, sem pontos nem prazo';
+
+  /// pt: 'Configurações'
+  String get settings => 'Configurações';
+
+  /// pt: 'Seu limite e os avisos'
+  String get settingsText => 'Seu limite e os avisos';
+}
+
+// Path: spice.cards
+class Translations$spice$cards$pt {
+  Translations$spice$cards$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Cartas da noite'
+  String get title => 'Cartas da noite';
+
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'Você usou as cartas grátis desta semana. O Plus libera mais.',
+    'PLUS_REQUIRED': 'Isso faz parte do Plus.',
+    'ADULT_REQUIRED': 'Confirme que você tem 18 anos ou mais.',
+    'SPICE_NOT_ON': 'O Tempero não está ligado para os dois.',
+    'SWAP_LIMIT': 'Você já trocou o desafio três vezes esta semana.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para concluir agora. Tente de novo.',
+  };
+
+  /// pt: 'Combinado'
+  String get answeredTitle => 'Combinado';
+
+  /// pt: 'Quando quiserem, tem outra carta.'
+  String get answeredText => 'Quando quiserem, tem outra carta.';
+
+  /// pt: 'Outra carta'
+  String get next => 'Outra carta';
+
+  /// pt: 'Acabaram as cartas'
+  String get emptyTitle => 'Acabaram as cartas';
+
+  /// pt: 'Por enquanto não há mais cartas neste nível.'
+  String get emptyText => 'Por enquanto não há mais cartas neste nível.';
+
+  /// pt: 'Você propôs esta carta. A outra pessoa responde quando quiser.'
+  String get mineHint => 'Você propôs esta carta. A outra pessoa responde quando quiser.';
+
+  /// pt: 'A outra pessoa propôs esta carta. Você escolhe.'
+  String get theirsHint => 'A outra pessoa propôs esta carta. Você escolhe.';
+
+  /// pt: 'Ver se já respondeu'
+  String get refresh => 'Ver se já respondeu';
+
+  /// pt: 'Quero'
+  String get accept => 'Quero';
+
+  /// pt: 'Hoje não'
+  String get notToday => 'Hoje não';
+}
+
+// Path: spice.desires
+class Translations$spice$desires$pt {
+  Translations$spice$desires$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Desejos'
+  String get title => 'Desejos';
+
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'Você usou as cartas grátis desta semana. O Plus libera mais.',
+    'PLUS_REQUIRED': 'Isso faz parte do Plus.',
+    'ADULT_REQUIRED': 'Confirme que você tem 18 anos ou mais.',
+    'SPICE_NOT_ON': 'O Tempero não está ligado para os dois.',
+    'SWAP_LIMIT': 'Você já trocou o desafio três vezes esta semana.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para concluir agora. Tente de novo.',
+  };
+
+  /// pt: 'Só você vê o que responde. Se os dois quiserem, aparece em "Os dois querem".'
+  String get subtitle =>
+      'Só você vê o que responde. Se os dois quiserem, aparece em "Os dois querem".';
+
+  /// pt: 'Nada por aqui ainda'
+  String get emptyTitle => 'Nada por aqui ainda';
+
+  /// pt: 'Quando houver desejos neste nível, eles aparecem aqui.'
+  String get emptyText => 'Quando houver desejos neste nível, eles aparecem aqui.';
+
+  /// pt: 'Os dois querem'
+  String get matchesTitle => 'Os dois querem';
+
+  /// pt: 'Ainda nada em comum. Sem pressa.'
+  String get matchesEmpty => 'Ainda nada em comum. Sem pressa.';
+
+  Map<String, String> get answers => {
+    'want': 'Quero',
+    'maybe': 'Talvez',
+    'notToday': 'Hoje não',
+    'other': '',
+  };
+}
+
+// Path: spice.challenge
+class Translations$spice$challenge$pt {
+  Translations$spice$challenge$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Desafio da semana'
+  String get title => 'Desafio da semana';
+
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'Você usou as cartas grátis desta semana. O Plus libera mais.',
+    'PLUS_REQUIRED': 'Isso faz parte do Plus.',
+    'ADULT_REQUIRED': 'Confirme que você tem 18 anos ou mais.',
+    'SPICE_NOT_ON': 'O Tempero não está ligado para os dois.',
+    'SWAP_LIMIT': 'Você já trocou o desafio três vezes esta semana.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para concluir agora. Tente de novo.',
+  };
+
+  /// pt: 'Sem desafio agora'
+  String get emptyTitle => 'Sem desafio agora';
+
+  /// pt: 'Volte na semana que vem.'
+  String get emptyText => 'Volte na semana que vem.';
+
+  /// pt: 'Um convite para vocês. Sem pontos e sem prazo.'
+  String get subtitle => 'Um convite para vocês. Sem pontos e sem prazo.';
+
+  /// pt: 'Você fez. Obrigado por cuidar disso.'
+  String get statusDone => 'Você fez. Obrigado por cuidar disso.';
+
+  /// pt: 'Os dois toparam.'
+  String get statusBothAccepted => 'Os dois toparam.';
+
+  /// pt: 'Você topou. Esperando a outra pessoa.'
+  String get statusWaitingPartner => 'Você topou. Esperando a outra pessoa.';
+
+  /// pt: 'A outra pessoa topou.'
+  String get statusPartnerAccepted => 'A outra pessoa topou.';
+
+  /// pt: 'Ninguém respondeu ainda.'
+  String get statusNew => 'Ninguém respondeu ainda.';
+
+  /// pt: 'Topo'
+  String get accept => 'Topo';
+
+  /// pt: 'Já fizemos'
+  String get done => 'Já fizemos';
+
+  /// pt: 'Trocar o desafio'
+  String get swap => 'Trocar o desafio';
+}
+
+// Path: spice.settingsPage
+class Translations$spice$settingsPage$pt {
+  Translations$spice$settingsPage$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Configurações do Tempero'
+  String get title => 'Configurações do Tempero';
+
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'Você usou as cartas grátis desta semana. O Plus libera mais.',
+    'PLUS_REQUIRED': 'Isso faz parte do Plus.',
+    'ADULT_REQUIRED': 'Confirme que você tem 18 anos ou mais.',
+    'SPICE_NOT_ON': 'O Tempero não está ligado para os dois.',
+    'SWAP_LIMIT': 'Você já trocou o desafio três vezes esta semana.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para concluir agora. Tente de novo.',
+  };
+
+  /// pt: 'Até onde ir'
+  String get levelTitle => 'Até onde ir';
+
+  Map<String, String> get levels => {
+    'soft': 'Suave',
+    'warm': 'Quente',
+    'hot': 'Picante',
+    'other': '',
+  };
+
+  /// pt: 'Vale o mais suave dos dois limites. A outra pessoa não vê o seu.'
+  String get levelNote => 'Vale o mais suave dos dois limites. A outra pessoa não vê o seu.';
+
+  /// pt: 'Avisos do Tempero'
+  String get notifications => 'Avisos do Tempero';
+
+  /// pt: 'Um aviso curto, sem dizer nada do conteúdo.'
+  String get notificationsText => 'Um aviso curto, sem dizer nada do conteúdo.';
+
+  /// pt: 'Desligar o Tempero'
+  String get turnOff => 'Desligar o Tempero';
+
+  /// pt: 'Desligar o Tempero?'
+  String get turnOffTitle => 'Desligar o Tempero?';
+
+  /// pt: 'Desliga para vocês dois e apaga respostas, cartas e desafios. Não dá para desfazer.'
+  String get turnOffText =>
+      'Desliga para vocês dois e apaga respostas, cartas e desafios. Não dá para desfazer.';
+
+  /// pt: 'Desligar'
+  String get turnOffConfirm => 'Desligar';
 }
 
 // Path: sundayCard.send
@@ -13193,7 +13471,7 @@ extension on Translations {
           'settingsHome.plan' => 'Plano',
           'settingsHome.planFree' => 'Grátis',
           'settingsHome.planPlus' => 'Plus',
-          'settingsHome.spice' => 'Momentos a dois',
+          'settingsHome.spice' => 'Tempero',
           'settingsHome.privacy' => 'Privacidade e segurança',
           'settingsHome.privacyStatus' => 'Quem vê o quê',
           'settingsHome.signOut' => 'Sair',
@@ -13484,18 +13762,130 @@ extension on Translations {
           'slipsList.filterThisMonth' => 'Este mês',
           'slipsList.filterInCard' => 'Em um cartão',
           'slipsList.filterInvisible' => 'Trabalho invisível',
-          'spice.title' => 'Momentos a dois',
-          'spice.offText' => 'Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.',
+          'spice.title' => 'Tempero',
+          'spice.introTitle' => 'Tempero, só para vocês dois',
+          'spice.introHighlight' => 'vocês dois',
+          'spice.introText' =>
+            'Um espaço para adultos, opcional, com cartas e desejos para o casal. Só 18+.',
+          'spice.partnerWantsText' =>
+            'A outra pessoa quis ligar. Só começa quando você também ligar.',
+          'spice.promises.0' => 'Só vale quando vocês dois ligam.',
+          'spice.promises.1' => 'Qualquer um desliga a qualquer momento, e tudo some para os dois.',
+          'spice.promises.2' => 'Suas respostas são só suas. Só aparece o que os dois querem.',
+          'spice.promises.3' => 'Um "hoje não" nunca é explicado nem avisado.',
+          'spice.adultLabel' => 'Tenho 18 anos ou mais',
+          'spice.adultError' => 'Confirme para continuar.',
           'spice.turnOn' => 'Ligar',
           'spice.notNow' => 'Agora não',
-          'spice.waitingText' => 'Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.',
-          'spice.readyText' => 'Cartas leves para vocês dois. Fazer ou pular, sem pressão.',
-          'spice.drawCard' => 'Tirar uma carta',
           'spice.turnOff' => 'Desligar',
-          'spice.errorTitle' => 'Não deu para carregar',
-          'spice.errorText' => 'Tente de novo em instantes.',
+          'spice.waitingTitle' => 'Esperando a outra pessoa',
+          'spice.waitingText' =>
+            'Nada foi avisado. Quando ela também ligar, o Tempero abre para vocês dois.',
+          'spice.soloTitle' => 'O Tempero é a dois',
+          'spice.soloText' => 'Precisa de duas pessoas conectadas. Quando a outra pessoa entrar, ele fica disponível.',
+          'spice.soloAction' => 'Voltar',
+          'spice.home.subtitle' => 'Tudo aqui é opcional e fica entre vocês.',
+          'spice.home.cards' => 'Cartas da noite',
+          'spice.home.cardsText' => 'Uma carta de cada vez',
+          'spice.home.desires' => 'Desejos',
+          'spice.home.desiresText' => 'Responda em segredo e veja o que os dois querem',
+          'spice.home.challenge' => 'Desafio da semana',
+          'spice.home.challengeText' => 'Um convite, sem pontos nem prazo',
+          'spice.home.settings' => 'Configurações',
+          'spice.home.settingsText' => 'Seu limite e os avisos',
+          'spice.cards.title' => 'Cartas da noite',
+          'spice.cards.errors.FREE_LIMIT_REACHED' =>
+            'Você usou as cartas grátis desta semana. O Plus libera mais.',
+          'spice.cards.errors.PLUS_REQUIRED' => 'Isso faz parte do Plus.',
+          'spice.cards.errors.ADULT_REQUIRED' => 'Confirme que você tem 18 anos ou mais.',
+          'spice.cards.errors.SPICE_NOT_ON' => 'O Tempero não está ligado para os dois.',
+          'spice.cards.errors.SWAP_LIMIT' => 'Você já trocou o desafio três vezes esta semana.',
+          'spice.cards.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'spice.cards.errors.other' => 'Não deu para concluir agora. Tente de novo.',
+          'spice.cards.answeredTitle' => 'Combinado',
+          'spice.cards.answeredText' => 'Quando quiserem, tem outra carta.',
+          'spice.cards.next' => 'Outra carta',
+          'spice.cards.emptyTitle' => 'Acabaram as cartas',
+          'spice.cards.emptyText' => 'Por enquanto não há mais cartas neste nível.',
+          'spice.cards.mineHint' =>
+            'Você propôs esta carta. A outra pessoa responde quando quiser.',
+          'spice.cards.theirsHint' => 'A outra pessoa propôs esta carta. Você escolhe.',
+          'spice.cards.refresh' => 'Ver se já respondeu',
+          'spice.cards.accept' => 'Quero',
+          'spice.cards.notToday' => 'Hoje não',
+          'spice.desires.title' => 'Desejos',
+          'spice.desires.errors.FREE_LIMIT_REACHED' =>
+            'Você usou as cartas grátis desta semana. O Plus libera mais.',
+          'spice.desires.errors.PLUS_REQUIRED' => 'Isso faz parte do Plus.',
+          'spice.desires.errors.ADULT_REQUIRED' => 'Confirme que você tem 18 anos ou mais.',
+          'spice.desires.errors.SPICE_NOT_ON' => 'O Tempero não está ligado para os dois.',
+          'spice.desires.errors.SWAP_LIMIT' => 'Você já trocou o desafio três vezes esta semana.',
+          'spice.desires.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'spice.desires.errors.other' => 'Não deu para concluir agora. Tente de novo.',
+          'spice.desires.subtitle' =>
+            'Só você vê o que responde. Se os dois quiserem, aparece em "Os dois querem".',
+          'spice.desires.emptyTitle' => 'Nada por aqui ainda',
+          'spice.desires.emptyText' => 'Quando houver desejos neste nível, eles aparecem aqui.',
+          'spice.desires.matchesTitle' => 'Os dois querem',
+          'spice.desires.matchesEmpty' => 'Ainda nada em comum. Sem pressa.',
+          'spice.desires.answers.want' => 'Quero',
+          'spice.desires.answers.maybe' => 'Talvez',
+          'spice.desires.answers.notToday' => 'Hoje não',
+          'spice.desires.answers.other' => '',
+          'spice.challenge.title' => 'Desafio da semana',
+          'spice.challenge.errors.FREE_LIMIT_REACHED' =>
+            'Você usou as cartas grátis desta semana. O Plus libera mais.',
+          'spice.challenge.errors.PLUS_REQUIRED' => 'Isso faz parte do Plus.',
+          'spice.challenge.errors.ADULT_REQUIRED' => 'Confirme que você tem 18 anos ou mais.',
+          'spice.challenge.errors.SPICE_NOT_ON' => 'O Tempero não está ligado para os dois.',
+          'spice.challenge.errors.SWAP_LIMIT' => 'Você já trocou o desafio três vezes esta semana.',
+          'spice.challenge.errors.RATE_LIMITED' =>
+            'Muitas tentativas seguidas. Espere um instante.',
+          'spice.challenge.errors.other' => 'Não deu para concluir agora. Tente de novo.',
+          'spice.challenge.emptyTitle' => 'Sem desafio agora',
+          'spice.challenge.emptyText' => 'Volte na semana que vem.',
+          'spice.challenge.subtitle' => 'Um convite para vocês. Sem pontos e sem prazo.',
+          'spice.challenge.statusDone' => 'Você fez. Obrigado por cuidar disso.',
+          'spice.challenge.statusBothAccepted' => 'Os dois toparam.',
+          'spice.challenge.statusWaitingPartner' => 'Você topou. Esperando a outra pessoa.',
+          'spice.challenge.statusPartnerAccepted' => 'A outra pessoa topou.',
+          'spice.challenge.statusNew' => 'Ninguém respondeu ainda.',
+          'spice.challenge.accept' => 'Topo',
+          'spice.challenge.done' => 'Já fizemos',
+          'spice.challenge.swap' => 'Trocar o desafio',
+          'spice.settingsPage.title' => 'Configurações do Tempero',
+          'spice.settingsPage.errors.FREE_LIMIT_REACHED' =>
+            'Você usou as cartas grátis desta semana. O Plus libera mais.',
+          'spice.settingsPage.errors.PLUS_REQUIRED' => 'Isso faz parte do Plus.',
+          'spice.settingsPage.errors.ADULT_REQUIRED' => 'Confirme que você tem 18 anos ou mais.',
+          'spice.settingsPage.errors.SPICE_NOT_ON' => 'O Tempero não está ligado para os dois.',
+          'spice.settingsPage.errors.SWAP_LIMIT' =>
+            'Você já trocou o desafio três vezes esta semana.',
+          'spice.settingsPage.errors.RATE_LIMITED' =>
+            'Muitas tentativas seguidas. Espere um instante.',
+          'spice.settingsPage.errors.other' => 'Não deu para concluir agora. Tente de novo.',
+          'spice.settingsPage.levelTitle' => 'Até onde ir',
+          'spice.settingsPage.levels.soft' => 'Suave',
+          'spice.settingsPage.levels.warm' => 'Quente',
+          'spice.settingsPage.levels.hot' => 'Picante',
+          'spice.settingsPage.levels.other' => '',
+          'spice.settingsPage.levelNote' =>
+            'Vale o mais suave dos dois limites. A outra pessoa não vê o seu.',
+          'spice.settingsPage.notifications' => 'Avisos do Tempero',
+          'spice.settingsPage.notificationsText' => 'Um aviso curto, sem dizer nada do conteúdo.',
+          'spice.settingsPage.turnOff' => 'Desligar o Tempero',
+          'spice.settingsPage.turnOffTitle' => 'Desligar o Tempero?',
+          'spice.settingsPage.turnOffText' =>
+            'Desliga para vocês dois e apaga respostas, cartas e desafios. Não dá para desfazer.',
+          'spice.settingsPage.turnOffConfirm' => 'Desligar',
+          'spice.errors.FREE_LIMIT_REACHED' =>
+            'Você usou as cartas grátis desta semana. O Plus libera mais.',
+          'spice.errors.PLUS_REQUIRED' => 'Isso faz parte do Plus.',
+          'spice.errors.ADULT_REQUIRED' => 'Confirme que você tem 18 anos ou mais.',
+          'spice.errors.SPICE_NOT_ON' => 'O Tempero não está ligado para os dois.',
+          'spice.errors.SWAP_LIMIT' => 'Você já trocou o desafio três vezes esta semana.',
           'spice.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'spice.errors.other' => 'Não deu para mudar agora. Tente de novo.',
+          'spice.errors.other' => 'Não deu para concluir agora. Tente de novo.',
           'story.title' => 'Imagem para compartilhar',
           'story.privacyNote' => 'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.',
           'story.days' => 'dias',
@@ -13778,6 +14168,9 @@ extension on Translations {
           'temperature.result.guided.title' => 'Dá para conversar com cuidado',
           'temperature.result.guided.text' => 'Um passo de cada vez, no seu ritmo.',
           'temperature.result.quick.title' => 'Um ajuste pequeno basta',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.result.quick.text' => 'Algo leve e rápido pode resolver.',
           'temperature.result.done' => 'Pronto',
           'temperature.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
@@ -13909,9 +14302,6 @@ extension on Translations {
                   other: '${count} nesta semana',
                 ),
           'today.conflict.tag' => 'Agora',
-          _ => null,
-        } ??
-        switch (path) {
           'today.conflict.title' => 'Primeiro, cuidar de vocês',
           'today.conflict.highlight' => 'cuidar',
           'today.conflict.text' =>

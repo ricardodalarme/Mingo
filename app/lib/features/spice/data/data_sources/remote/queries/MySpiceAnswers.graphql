@@ -1,0 +1,6 @@
+query MySpiceAnswers {
+  spiceDesireAnswers(limit: 200) {
+    contentSlug
+    answer
+  }
+}

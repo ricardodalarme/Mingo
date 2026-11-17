@@ -1,0 +1,8 @@
+mutation SetSpiceSettings($userId: uuid!, $level: smallint!, $notifications: Boolean!) {
+  updateUserSettingsByPk(
+    pk_columns: { userId: $userId }
+    _set: { spiceMaxLevel: $level, spiceNotifications: $notifications }
+  ) {
+    userId
+  }
+}

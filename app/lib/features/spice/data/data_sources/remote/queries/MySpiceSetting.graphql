@@ -1,6 +1,0 @@
-query MySpiceSetting($userId: uuid!) {
-  userSettingsByPk(userId: $userId) {
-    userId
-    spiceEnabled
-  }
-}

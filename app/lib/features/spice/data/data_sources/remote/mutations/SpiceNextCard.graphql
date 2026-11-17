@@ -1,0 +1,7 @@
+mutation SpiceNextCard {
+  spiceNextCard {
+    id
+    contentSlug
+    proposedBy
+  }
+}

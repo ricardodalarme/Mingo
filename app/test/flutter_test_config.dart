@@ -35,7 +35,7 @@ import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
 import 'package:app/features/slips/data/models/slip_work_area.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
-import 'package:app/features/spice/data/repositories/spice_repository.dart';
+import 'package:app/features/spice/data/models/spice_models.dart';
 import 'package:app/features/together/data/models/date_idea_status.dart';
 import 'package:app/features/together/data/models/ritual_cadence.dart';
 import 'package:app/features/widgets/data/models/widget_models.dart';
@@ -137,6 +137,9 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(SlipWorkArea.planning);
   registerFallbackValue(SlipSaveOutcome.synced);
   registerFallbackValue(SpiceStage.off);
+  registerFallbackValue(SpiceLevel.soft);
+  registerFallbackValue(SpiceAnswer.want);
+  registerFallbackValue(SpiceChallengeAction.accept);
   registerFallbackValue(DateIdeaStatus.saved);
   registerFallbackValue(RitualCadence.daily);
   registerFallbackValue(WidgetGallerySegment.own);

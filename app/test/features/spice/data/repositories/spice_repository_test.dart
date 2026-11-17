@@ -1,118 +1,132 @@
+import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:app/features/plus/data/models/plus_state.dart';
-import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
+import 'package:app/features/spice/data/data_sources/remote/fragments/generated/SpiceChallengeFragment.graphql.dart';
+import 'package:app/features/spice/data/data_sources/remote/mutations/generated/SpiceNextCard.graphql.dart';
+import 'package:app/features/spice/data/data_sources/remote/queries/generated/MySpiceAnswers.graphql.dart';
+import 'package:app/features/spice/data/data_sources/remote/queries/generated/SpiceDesires.graphql.dart';
+import 'package:app/features/spice/data/data_sources/remote/queries/generated/SpiceState.graphql.dart';
 import 'package:app/features/spice/data/data_sources/remote/spice_data_source.dart';
+import 'package:app/features/spice/data/models/spice_models.dart';
 import 'package:app/features/spice/data/repositories/spice_repository.dart';
-import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class _MockSpiceDataSource() extends Mock implements SpiceDataSource;
+class _MockDataSource() extends Mock implements SpiceDataSource;
 
 class _MockProfileRepository() extends Mock implements ProfileRepository;
-
-class _MockPlusRepository() extends Mock implements PlusRepository;
 
 class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
 
 void main() {
   late SpiceDataSource dataSource;
   late ProfileRepository profile;
-  late PlusRepository plus;
-  late AuthenticationRepository authenticationRepository;
+  late AuthenticationRepository authentication;
   late SpiceRepository repository;
 
-  setUpAll(() => registerFallbackValue(''));
-
   setUp(() {
-    dataSource = _MockSpiceDataSource();
+    dataSource = _MockDataSource();
     profile = _MockProfileRepository();
-    plus = _MockPlusRepository();
-    authenticationRepository = _MockAuthenticationRepository();
+    authentication = _MockAuthenticationRepository();
     repository = SpiceRepository(
       dataSource: dataSource,
       profileRepository: profile,
-      plusRepository: plus,
-      authenticationRepository: authenticationRepository,
+      authenticationRepository: authentication,
     );
-
-    when(() => authenticationRepository.currentUserId).thenReturn('u1');
-    when(() => plus.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: true));
-    when(profile.getMySettings)
-        .thenAnswer((_) async => const AccountSettings(theme: .rose, locale: 'pt-BR'));
+    when(() => authentication.currentUserId).thenReturn('me');
+    when(profile.getMySettings).thenAnswer((_) async => const AccountSettings(theme: .rose));
   });
 
-  test('a free person gets the Plus entry without reading cards', () async {
-    when(() => plus.getPlus()).thenAnswer((_) async => const PlusState(hasPlus: false));
+  test('the state becomes a stage and the levels', () async {
+    when(
+      dataSource.getState,
+    ).thenAnswer((_) async => QuerySpiceStatespiceState(state: 'on', myLevel: 3, coupleLevel: 1));
 
-    final view = await repository.getView();
+    final status = await repository.getStatus();
 
-    expect(view.stage, SpiceStage.plusLocked);
-    verifyNever(() => dataSource.getEnabled(any()));
-    verifyNever(() => dataSource.getCards(any()));
+    expect(status.stage, SpiceStage.on);
+    expect(status.myLevel, SpiceLevel.hot);
+    expect(status.coupleLevel, SpiceLevel.soft);
   });
 
-  test('a person who has not opted in sees the off stage without cards', () async {
-    when(() => dataSource.getEnabled('u1')).thenAnswer((_) async => false);
-
-    final view = await repository.getView();
-
-    expect(view.stage, SpiceStage.off);
-    verifyNever(() => dataSource.getCards(any()));
-  });
-
-  test('opted in without cards stays waiting', () async {
-    when(() => dataSource.getEnabled('u1')).thenAnswer((_) async => true);
-    when(() => dataSource.getCards('pt-BR')).thenAnswer((_) async => []);
-
-    final view = await repository.getView();
-
-    expect(view.stage, SpiceStage.waiting);
-    expect(view.cards, isEmpty);
-  });
-
-  test('both opted in with cards is ready', () async {
-    when(() => dataSource.getEnabled('u1')).thenAnswer((_) async => true);
-    when(() => dataSource.getCards('pt-BR')).thenAnswer((_) async => ['Uma carta']);
-
-    final view = await repository.getView();
-
-    expect(view.stage, SpiceStage.ready);
-    expect(view.cards, ['Uma carta']);
-  });
-
-  test('a change that matched no row is a failure', () async {
+  test('turning on confirms the adult declaration first', () async {
+    when(() => dataSource.grantAdultConsent(any())).thenAnswer((_) async {});
     when(
       () => dataSource.setEnabled(
         userId: any(named: 'userId'),
         enabled: any(named: 'enabled'),
       ),
-    ).thenAnswer((_) async => 0);
+    ).thenAnswer((_) async {});
 
-    await expectLater(
-      repository.setEnabled(enabled: true),
-      throwsA(
-        isA<LocalizedException>().having(
-          (exception) => exception.l10nKey,
-          'l10nKey',
-          'UPDATE_FAILED',
-        ),
-      ),
-    );
+    await repository.turnOn();
+
+    verifyInOrder([
+      () => dataSource.grantAdultConsent(adultConsentVersion),
+      () => dataSource.setEnabled(userId: 'me', enabled: true),
+    ]);
   });
 
-  test('a change that matched the saved row succeeds', () async {
+  test('a card carries its text and whether the person proposed it', () async {
+    when(dataSource.nextCard).thenAnswer(
+      (_) async =>
+          MutationSpiceNextCardspiceNextCard(id: 'c1', contentSlug: 's1', proposedBy: 'me'),
+    );
     when(
-      () => dataSource.setEnabled(
-        userId: any(named: 'userId'),
-        enabled: any(named: 'enabled'),
+      () => dataSource.getTexts(
+        slugs: ['s1'],
+        locale: any(named: 'locale'),
       ),
-    ).thenAnswer((_) async => 1);
+    ).thenAnswer((_) async => {'s1': 'Uma massagem'});
 
-    await repository.setEnabled(enabled: true);
+    final card = await repository.getNextCard();
 
-    verify(() => dataSource.setEnabled(userId: 'u1', enabled: true)).called(1);
+    expect(card, const SpiceCard(id: 'c1', text: 'Uma massagem', isMine: true));
+  });
+
+  test('a desire carries the answer the person gave', () async {
+    when(
+      () => dataSource.getDesires(
+        locale: any(named: 'locale'),
+        maxLevel: any(named: 'maxLevel'),
+      ),
+    ).thenAnswer(
+      (_) async => [QuerySpiceDesirescontentItems(slug: 'd1', title: 'Um jantar', level: 1)],
+    );
+    when(dataSource.getAnswers).thenAnswer(
+      (_) async => [
+        QueryMySpiceAnswersspiceDesireAnswers(contentSlug: 'd1', answer: EnumSpiceAnswer_enum.want),
+      ],
+    );
+
+    final desires = await repository.getDesires(SpiceLevel.warm);
+
+    expect(desires.single.answer, SpiceAnswer.want);
+    verify(() => dataSource.getDesires(locale: any(named: 'locale'), maxLevel: 2)).called(1);
+  });
+
+  test('the challenge shows who accepted and how many swaps are left', () async {
+    when(dataSource.getChallenge).thenAnswer(
+      (_) async => FragmentSpiceChallengeFragment(
+        id: 'ch',
+        contentSlug: 's1',
+        acceptedBy: ['me', 'you'],
+        doneBy: [],
+        swaps: 1,
+      ),
+    );
+    when(
+      () => dataSource.getTexts(
+        slugs: ['s1'],
+        locale: any(named: 'locale'),
+      ),
+    ).thenAnswer((_) async => {'s1': 'Uma noite sem telas'});
+
+    final challenge = await repository.getChallenge();
+
+    expect(challenge!.acceptedByMe, isTrue);
+    expect(challenge.acceptedByPartner, isTrue);
+    expect(challenge.doneByMe, isFalse);
+    expect(challenge.swapsLeft, 2);
   });
 }

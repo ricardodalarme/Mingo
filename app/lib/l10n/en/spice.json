@@ -1,16 +1,137 @@
 {
-  "title": "Moments for two",
-  "offText": "This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.",
+  "title": "Tempero",
+  "introTitle": "Tempero, just for the two of you",
+  "introHighlight": "the two of you",
+  "introText": "An optional space for adults, with cards and desires for the couple. 18+ only.",
+  "partnerWantsText": "The other person wanted to turn it on. It only starts when you turn it on too.",
+  "promises": [
+    "It only counts when you both turn it on.",
+    "Either of you can turn it off any time, and everything disappears for both.",
+    "Your answers are only yours. Only what you both want shows.",
+    "A \"not today\" is never explained or announced."
+  ],
+  "adultLabel": "I am 18 or older",
+  "adultError": "Confirm to continue.",
   "turnOn": "Turn on",
   "notNow": "Not now",
-  "waitingText": "You both need to accept. Nothing is sent to your partner; when they turn it on too, the cards show up here.",
-  "readyText": "Light cards for the two of you. Do it or skip it, no pressure.",
-  "drawCard": "Draw a card",
   "turnOff": "Turn off",
-  "errorTitle": "Couldn't load",
-  "errorText": "Try again in a moment.",
+  "waitingTitle": "Waiting for the other person",
+  "waitingText": "Nothing was announced. When they turn it on too, Tempero opens for both of you.",
+  "soloTitle": "Tempero is for two",
+  "soloText": "It needs two connected people. When the other person joins, it becomes available.",
+  "soloAction": "Back",
+  "home": {
+    "subtitle": "Everything here is optional and stays between you.",
+    "cards": "Evening cards",
+    "cardsText": "One card at a time",
+    "desires": "Desires",
+    "desiresText": "Answer in secret and see what you both want",
+    "challenge": "Challenge of the week",
+    "challengeText": "An invitation, with no points or deadline",
+    "settings": "Settings",
+    "settingsText": "Your limit and the alerts"
+  },
+  "cards": {
+    "title": "Evening cards",
+    "errors(map)": {
+      "FREE_LIMIT_REACHED": "You used this week's free cards. Plus unlocks more.",
+      "PLUS_REQUIRED": "This is part of Plus.",
+      "ADULT_REQUIRED": "Confirm you are 18 or older.",
+      "SPICE_NOT_ON": "Tempero is not on for both of you.",
+      "SWAP_LIMIT": "You already swapped the challenge three times this week.",
+      "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
+      "other": "We could not finish that now. Try again."
+    },
+    "answeredTitle": "Agreed",
+    "answeredText": "Whenever you like, there is another card.",
+    "next": "Another card",
+    "emptyTitle": "No more cards",
+    "emptyText": "There are no more cards at this level for now.",
+    "mineHint": "You proposed this card. The other person answers when they like.",
+    "theirsHint": "The other person proposed this card. You choose.",
+    "refresh": "Check if they answered",
+    "accept": "I want to",
+    "notToday": "Not today"
+  },
+  "desires": {
+    "title": "Desires",
+    "errors(map)": {
+      "FREE_LIMIT_REACHED": "You used this week's free cards. Plus unlocks more.",
+      "PLUS_REQUIRED": "This is part of Plus.",
+      "ADULT_REQUIRED": "Confirm you are 18 or older.",
+      "SPICE_NOT_ON": "Tempero is not on for both of you.",
+      "SWAP_LIMIT": "You already swapped the challenge three times this week.",
+      "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
+      "other": "We could not finish that now. Try again."
+    },
+    "subtitle": "Only you see what you answer. If you both want it, it shows in \"You both want\".",
+    "emptyTitle": "Nothing here yet",
+    "emptyText": "When there are desires at this level, they show up here.",
+    "matchesTitle": "You both want",
+    "matchesEmpty": "Nothing in common yet. No rush.",
+    "answers(map)": {
+      "want": "I want",
+      "maybe": "Maybe",
+      "notToday": "Not today",
+      "other": ""
+    }
+  },
+  "challenge": {
+    "title": "Challenge of the week",
+    "errors(map)": {
+      "FREE_LIMIT_REACHED": "You used this week's free cards. Plus unlocks more.",
+      "PLUS_REQUIRED": "This is part of Plus.",
+      "ADULT_REQUIRED": "Confirm you are 18 or older.",
+      "SPICE_NOT_ON": "Tempero is not on for both of you.",
+      "SWAP_LIMIT": "You already swapped the challenge three times this week.",
+      "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
+      "other": "We could not finish that now. Try again."
+    },
+    "emptyTitle": "No challenge now",
+    "emptyText": "Come back next week.",
+    "subtitle": "An invitation for you two. No points and no deadline.",
+    "statusDone": "You did it. Thank you for caring for this.",
+    "statusBothAccepted": "You both said yes.",
+    "statusWaitingPartner": "You said yes. Waiting for the other person.",
+    "statusPartnerAccepted": "The other person said yes.",
+    "statusNew": "Nobody answered yet.",
+    "accept": "I am in",
+    "done": "We did it",
+    "swap": "Swap the challenge"
+  },
+  "settingsPage": {
+    "title": "Tempero settings",
+    "errors(map)": {
+      "FREE_LIMIT_REACHED": "You used this week's free cards. Plus unlocks more.",
+      "PLUS_REQUIRED": "This is part of Plus.",
+      "ADULT_REQUIRED": "Confirm you are 18 or older.",
+      "SPICE_NOT_ON": "Tempero is not on for both of you.",
+      "SWAP_LIMIT": "You already swapped the challenge three times this week.",
+      "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
+      "other": "We could not finish that now. Try again."
+    },
+    "levelTitle": "How far to go",
+    "levels(map)": {
+      "soft": "Soft",
+      "warm": "Warm",
+      "hot": "Spicy",
+      "other": ""
+    },
+    "levelNote": "The gentler of the two limits applies. The other person does not see yours.",
+    "notifications": "Tempero alerts",
+    "notificationsText": "A short alert that says nothing about the content.",
+    "turnOff": "Turn off Tempero",
+    "turnOffTitle": "Turn off Tempero?",
+    "turnOffText": "It turns off for both of you and erases answers, cards and challenges. This cannot be undone.",
+    "turnOffConfirm": "Turn off"
+  },
   "errors(map)": {
-    "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
-    "other": "Couldn't change that right now. Try again."
+    "FREE_LIMIT_REACHED": "You used this week's free cards. Plus unlocks more.",
+    "PLUS_REQUIRED": "This is part of Plus.",
+    "ADULT_REQUIRED": "Confirm you are 18 or older.",
+    "SPICE_NOT_ON": "Tempero is not on for both of you.",
+    "SWAP_LIMIT": "You already swapped the challenge three times this week.",
+    "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
+    "other": "We could not finish that now. Try again."
   }
 }

@@ -1,3 +1,5 @@
+import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
+import 'package:app/features/spice/data/models/spice_models.dart';
 import 'package:app/features/spice/data/repositories/spice_repository.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
@@ -5,53 +7,57 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'spice_state.dart';
 
-class SpiceCubit({required final SpiceRepository _spiceRepository}) extends Cubit<SpiceState> {
+class SpiceCubit({
+  required final SpiceRepository _spiceRepository,
+  required final PairingRepository _pairingRepository,
+}) extends Cubit<SpiceState> {
   this : super(const SpiceState());
 
-  bool _hadCards = false;
-
+  /// Reads the mode and whether the person has a partner; what is on screen stays while it reloads.
   Future<void> load() async {
-    emit(state.copyWith(view: const Loading()));
-    await _read();
-  }
-
-  /// Reads the mode again without showing the skeleton.
-  ///
-  /// A partner change is observed here on resume or pull-to-refresh, not in realtime.
-  Future<void> refresh() async {
-    await _read();
-  }
-
-  /// Turns the mode on or off for this person only and reads the state again.
-  Future<void> setEnabled({required bool enabled}) async {
-    if (state.toggleAction.isLoading) return;
-
-    emit(state.copyWith(toggleAction: const Loading()));
+    if (state.status is! Success) emit(state.copyWith(status: const Loading()));
     try {
-      await _spiceRepository.setEnabled(enabled: enabled);
-      emit(state.copyWith(toggleAction: const Success(null)));
+      final (status, partner) = await (
+        _spiceRepository.getStatus(),
+        _pairingRepository.getPartner(),
+      ).wait;
+      emit(state.copyWith(status: Success(status), hasPartner: partner != null));
+    } catch (exception) {
+      if (state.status is Success) return;
+      emit(state.copyWith(status: Failure.fromObject(exception)));
+    }
+  }
+
+  void onAdultChanged({required bool isAdult}) =>
+      emit(state.copyWith(isAdult: isAdult, showAdultError: false));
+
+  /// Switches the mode on for this person once they said they are an adult.
+  Future<void> turnOn() async {
+    if (state.changeAction.isLoading) return;
+    if (!state.isAdult) {
+      emit(state.copyWith(showAdultError: true));
+
+      return;
+    }
+
+    await _change(_spiceRepository.turnOn);
+  }
+
+  Future<void> turnOff() async {
+    if (state.changeAction.isLoading) return;
+
+    await _change(_spiceRepository.turnOff);
+  }
+
+  Future<void> _change(Future<void> Function() action) async {
+    emit(state.copyWith(changeAction: const Loading()));
+    try {
+      await action();
+      emit(state.copyWith(changeAction: const Success(null)));
       await load();
     } catch (exception) {
-      emit(state.copyWith(toggleAction: Failure.fromObject(exception)));
+      emit(state.copyWith(changeAction: Failure.fromObject(exception)));
     }
-    emit(state.copyWith(toggleAction: const Initial()));
-  }
-
-  /// Moves to the next card, wrapping around.
-  void next() {
-    final view = state.view;
-    if (view is! Success<SpiceView> || view.value.cards.isEmpty) return;
-    emit(state.copyWith(index: (state.index + 1) % view.value.cards.length));
-  }
-
-  Future<void> _read() async {
-    try {
-      final view = await _spiceRepository.getView();
-      final shouldExit = _hadCards && view.stage != SpiceStage.ready;
-      _hadCards = view.stage == SpiceStage.ready;
-      emit(state.copyWith(view: Success(view), index: 0, shouldExit: shouldExit));
-    } catch (exception) {
-      emit(state.copyWith(view: Failure.fromObject(exception)));
-    }
+    emit(state.copyWith(changeAction: const Initial()));
   }
 }

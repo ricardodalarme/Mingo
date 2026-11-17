@@ -2562,6 +2562,54 @@ class SosRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SpiceCardsPage]
+class SpiceCardsRoute extends PageRouteInfo<void> {
+  const SpiceCardsRoute({List<PageRouteInfo>? children})
+    : super(SpiceCardsRoute.name, initialChildren: children);
+
+  static const String name = 'SpiceCardsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SpiceCardsPage());
+    },
+  );
+}
+
+/// generated route for
+/// [SpiceChallengePage]
+class SpiceChallengeRoute extends PageRouteInfo<void> {
+  const SpiceChallengeRoute({List<PageRouteInfo>? children})
+    : super(SpiceChallengeRoute.name, initialChildren: children);
+
+  static const String name = 'SpiceChallengeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SpiceChallengePage());
+    },
+  );
+}
+
+/// generated route for
+/// [SpiceDesiresPage]
+class SpiceDesiresRoute extends PageRouteInfo<void> {
+  const SpiceDesiresRoute({List<PageRouteInfo>? children})
+    : super(SpiceDesiresRoute.name, initialChildren: children);
+
+  static const String name = 'SpiceDesiresRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SpiceDesiresPage());
+    },
+  );
+}
+
+/// generated route for
 /// [SpicePage]
 class SpiceRoute extends PageRouteInfo<void> {
   const SpiceRoute({List<PageRouteInfo>? children})
@@ -2573,6 +2621,22 @@ class SpiceRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const SpicePage());
+    },
+  );
+}
+
+/// generated route for
+/// [SpiceSettingsPage]
+class SpiceSettingsRoute extends PageRouteInfo<void> {
+  const SpiceSettingsRoute({List<PageRouteInfo>? children})
+    : super(SpiceSettingsRoute.name, initialChildren: children);
+
+  static const String name = 'SpiceSettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SpiceSettingsPage());
     },
   );
 }

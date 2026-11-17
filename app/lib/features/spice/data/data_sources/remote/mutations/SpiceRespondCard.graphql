@@ -1,0 +1,5 @@
+mutation SpiceRespondCard($playId: uuid!, $accept: Boolean!) {
+  spiceRespondCard(args: { playId: $playId, accept: $accept }) {
+    id
+  }
+}

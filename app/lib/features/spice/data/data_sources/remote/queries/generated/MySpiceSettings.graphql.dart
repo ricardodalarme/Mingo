@@ -4,17 +4,17 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
-class VariablesQueryMySpiceSetting {
-  factory VariablesQueryMySpiceSetting({required String userId}) =>
-      VariablesQueryMySpiceSetting._({r'userId': userId});
+class VariablesQueryMySpiceSettings {
+  factory VariablesQueryMySpiceSettings({required String userId}) =>
+      VariablesQueryMySpiceSettings._({r'userId': userId});
 
-  VariablesQueryMySpiceSetting._(this._$data);
+  VariablesQueryMySpiceSettings._(this._$data);
 
-  factory VariablesQueryMySpiceSetting.fromJson(Map<String, dynamic> data) {
+  factory VariablesQueryMySpiceSettings.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$userId = data['userId'];
     result$data['userId'] = (l$userId as String);
-    return VariablesQueryMySpiceSetting._(result$data);
+    return VariablesQueryMySpiceSettings._(result$data);
   }
 
   Map<String, dynamic> _$data;
@@ -33,7 +33,7 @@ class VariablesQueryMySpiceSetting {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! VariablesQueryMySpiceSetting || runtimeType != other.runtimeType) {
+    if (other is! VariablesQueryMySpiceSettings || runtimeType != other.runtimeType) {
       return false;
     }
     final l$userId = userId;
@@ -51,23 +51,23 @@ class VariablesQueryMySpiceSetting {
   }
 }
 
-class QueryMySpiceSetting {
-  QueryMySpiceSetting({this.userSettingsByPk, this.$__typename = 'query_root'});
+class QueryMySpiceSettings {
+  QueryMySpiceSettings({this.userSettingsByPk, this.$__typename = 'query_root'});
 
-  factory QueryMySpiceSetting.fromJson(Map<String, dynamic> json) {
+  factory QueryMySpiceSettings.fromJson(Map<String, dynamic> json) {
     final l$userSettingsByPk = json['userSettingsByPk'];
     final l$$__typename = json['__typename'];
-    return QueryMySpiceSetting(
+    return QueryMySpiceSettings(
       userSettingsByPk: l$userSettingsByPk == null
           ? null
-          : QueryMySpiceSettinguserSettingsByPk.fromJson(
+          : QueryMySpiceSettingsuserSettingsByPk.fromJson(
               (l$userSettingsByPk as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final QueryMySpiceSettinguserSettingsByPk? userSettingsByPk;
+  final QueryMySpiceSettingsuserSettingsByPk? userSettingsByPk;
 
   final String $__typename;
 
@@ -92,7 +92,7 @@ class QueryMySpiceSetting {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMySpiceSetting || runtimeType != other.runtimeType) {
+    if (other is! QueryMySpiceSettings || runtimeType != other.runtimeType) {
       return false;
     }
     final l$userSettingsByPk = userSettingsByPk;
@@ -109,11 +109,11 @@ class QueryMySpiceSetting {
   }
 }
 
-const documentNodeQueryMySpiceSetting = DocumentNode(
+const documentNodeQueryMySpiceSettings = DocumentNode(
   definitions: [
     OperationDefinitionNode(
       type: OperationType.query,
-      name: NameNode(value: 'MySpiceSetting'),
+      name: NameNode(value: 'MySpiceSettings'),
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'userId')),
@@ -145,7 +145,14 @@ const documentNodeQueryMySpiceSetting = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'spiceEnabled'),
+                  name: NameNode(value: 'spiceMaxLevel'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'spiceNotifications'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -173,30 +180,30 @@ const documentNodeQueryMySpiceSetting = DocumentNode(
     ),
   ],
 );
-QueryMySpiceSetting _parserFnQueryMySpiceSetting(Map<String, dynamic> data) =>
-    QueryMySpiceSetting.fromJson(data);
-typedef OnQueryCompleteQueryMySpiceSetting = FutureOr<void> Function(
+QueryMySpiceSettings _parserFnQueryMySpiceSettings(Map<String, dynamic> data) =>
+    QueryMySpiceSettings.fromJson(data);
+typedef OnQueryCompleteQueryMySpiceSettings = FutureOr<void> Function(
   Map<String, dynamic>?,
-  QueryMySpiceSetting?,
+  QueryMySpiceSettings?,
 );
 
-class OptionsQueryMySpiceSetting extends graphql.QueryOptions<QueryMySpiceSetting> {
-  OptionsQueryMySpiceSetting({
+class OptionsQueryMySpiceSettings extends graphql.QueryOptions<QueryMySpiceSettings> {
+  OptionsQueryMySpiceSettings({
     String? operationName,
-    required VariablesQueryMySpiceSetting variables,
+    required VariablesQueryMySpiceSettings variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    QueryMySpiceSetting? typedOptimisticResult,
+    QueryMySpiceSettings? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-    OnQueryCompleteQueryMySpiceSetting? onComplete,
+    OnQueryCompleteQueryMySpiceSettings? onComplete,
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName ?? 'MySpiceSetting',
+         operationName: operationName ?? 'MySpiceSettings',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -205,13 +212,14 @@ class OptionsQueryMySpiceSetting extends graphql.QueryOptions<QueryMySpiceSettin
          context: context,
          onComplete: onComplete == null
              ? null
-             : (data) => onComplete(data, data == null ? null : _parserFnQueryMySpiceSetting(data)),
+             : (data) =>
+                   onComplete(data, data == null ? null : _parserFnQueryMySpiceSettings(data)),
          onError: onError,
-         document: documentNodeQueryMySpiceSetting,
-         parserFn: _parserFnQueryMySpiceSetting,
+         document: documentNodeQueryMySpiceSettings,
+         parserFn: _parserFnQueryMySpiceSettings,
        );
 
-  final OnQueryCompleteQueryMySpiceSetting? onCompleteWithParsed;
+  final OnQueryCompleteQueryMySpiceSettings? onCompleteWithParsed;
 
   @override
   List<Object?> get properties => [
@@ -222,15 +230,15 @@ class OptionsQueryMySpiceSetting extends graphql.QueryOptions<QueryMySpiceSettin
   ];
 }
 
-class WatchOptionsQueryMySpiceSetting extends graphql.WatchQueryOptions<QueryMySpiceSetting> {
-  WatchOptionsQueryMySpiceSetting({
+class WatchOptionsQueryMySpiceSettings extends graphql.WatchQueryOptions<QueryMySpiceSettings> {
+  WatchOptionsQueryMySpiceSettings({
     String? operationName,
-    required VariablesQueryMySpiceSetting variables,
+    required VariablesQueryMySpiceSettings variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    QueryMySpiceSetting? typedOptimisticResult,
+    QueryMySpiceSettings? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -238,90 +246,95 @@ class WatchOptionsQueryMySpiceSetting extends graphql.WatchQueryOptions<QueryMyS
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName ?? 'MySpiceSetting',
+         operationName: operationName ?? 'MySpiceSettings',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
          context: context,
-         document: documentNodeQueryMySpiceSetting,
+         document: documentNodeQueryMySpiceSettings,
          pollInterval: pollInterval,
          eagerlyFetchResults: eagerlyFetchResults,
          carryForwardDataOnException: carryForwardDataOnException,
          fetchResults: fetchResults,
-         parserFn: _parserFnQueryMySpiceSetting,
+         parserFn: _parserFnQueryMySpiceSettings,
        );
 }
 
-class FetchMoreOptionsQueryMySpiceSetting extends graphql.FetchMoreOptions {
-  FetchMoreOptionsQueryMySpiceSetting({
+class FetchMoreOptionsQueryMySpiceSettings extends graphql.FetchMoreOptions {
+  FetchMoreOptionsQueryMySpiceSettings({
     required graphql.UpdateQuery updateQuery,
-    required VariablesQueryMySpiceSetting variables,
+    required VariablesQueryMySpiceSettings variables,
   }) : super(
          updateQuery: updateQuery,
          variables: variables.toJson(),
-         document: documentNodeQueryMySpiceSetting,
+         document: documentNodeQueryMySpiceSettings,
        );
 }
 
-extension ClientExtensionQueryMySpiceSetting on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QueryMySpiceSetting>> queryMySpiceSetting(
-    OptionsQueryMySpiceSetting options,
+extension ClientExtensionQueryMySpiceSettings on graphql.GraphQLClient {
+  Future<graphql.QueryResult<QueryMySpiceSettings>> queryMySpiceSettings(
+    OptionsQueryMySpiceSettings options,
   ) async => await this.query(options);
 
-  graphql.ObservableQuery<QueryMySpiceSetting> watchQueryMySpiceSetting(
-    WatchOptionsQueryMySpiceSetting options,
+  graphql.ObservableQuery<QueryMySpiceSettings> watchQueryMySpiceSettings(
+    WatchOptionsQueryMySpiceSettings options,
   ) => this.watchQuery(options);
 
-  void writeQueryMySpiceSetting({
-    required QueryMySpiceSetting data,
-    required VariablesQueryMySpiceSetting variables,
+  void writeQueryMySpiceSettings({
+    required QueryMySpiceSettings data,
+    required VariablesQueryMySpiceSettings variables,
     bool broadcast = true,
   }) => this.writeQuery(
     graphql.Request(
-      operation: graphql.Operation(document: documentNodeQueryMySpiceSetting),
+      operation: graphql.Operation(document: documentNodeQueryMySpiceSettings),
       variables: variables.toJson(),
     ),
     data: data.toJson(),
     broadcast: broadcast,
   );
 
-  QueryMySpiceSetting? readQueryMySpiceSetting({
-    required VariablesQueryMySpiceSetting variables,
+  QueryMySpiceSettings? readQueryMySpiceSettings({
+    required VariablesQueryMySpiceSettings variables,
     bool optimistic = true,
   }) {
     final result = this.readQuery(
       graphql.Request(
-        operation: graphql.Operation(document: documentNodeQueryMySpiceSetting),
+        operation: graphql.Operation(document: documentNodeQueryMySpiceSettings),
         variables: variables.toJson(),
       ),
       optimistic: optimistic,
     );
-    return result == null ? null : QueryMySpiceSetting.fromJson(result);
+    return result == null ? null : QueryMySpiceSettings.fromJson(result);
   }
 }
 
-class QueryMySpiceSettinguserSettingsByPk {
-  QueryMySpiceSettinguserSettingsByPk({
+class QueryMySpiceSettingsuserSettingsByPk {
+  QueryMySpiceSettingsuserSettingsByPk({
     required this.userId,
-    required this.spiceEnabled,
+    required this.spiceMaxLevel,
+    required this.spiceNotifications,
     this.$__typename = 'userSettings',
   });
 
-  factory QueryMySpiceSettinguserSettingsByPk.fromJson(Map<String, dynamic> json) {
+  factory QueryMySpiceSettingsuserSettingsByPk.fromJson(Map<String, dynamic> json) {
     final l$userId = json['userId'];
-    final l$spiceEnabled = json['spiceEnabled'];
+    final l$spiceMaxLevel = json['spiceMaxLevel'];
+    final l$spiceNotifications = json['spiceNotifications'];
     final l$$__typename = json['__typename'];
-    return QueryMySpiceSettinguserSettingsByPk(
+    return QueryMySpiceSettingsuserSettingsByPk(
       userId: (l$userId as String),
-      spiceEnabled: (l$spiceEnabled as bool),
+      spiceMaxLevel: (l$spiceMaxLevel as int),
+      spiceNotifications: (l$spiceNotifications as bool),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String userId;
 
-  final bool spiceEnabled;
+  final int spiceMaxLevel;
+
+  final bool spiceNotifications;
 
   final String $__typename;
 
@@ -329,8 +342,10 @@ class QueryMySpiceSettinguserSettingsByPk {
     final _resultData = <String, dynamic>{};
     final l$userId = userId;
     _resultData['userId'] = l$userId;
-    final l$spiceEnabled = spiceEnabled;
-    _resultData['spiceEnabled'] = l$spiceEnabled;
+    final l$spiceMaxLevel = spiceMaxLevel;
+    _resultData['spiceMaxLevel'] = l$spiceMaxLevel;
+    final l$spiceNotifications = spiceNotifications;
+    _resultData['spiceNotifications'] = l$spiceNotifications;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -339,9 +354,10 @@ class QueryMySpiceSettinguserSettingsByPk {
   @override
   int get hashCode {
     final l$userId = userId;
-    final l$spiceEnabled = spiceEnabled;
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final l$spiceNotifications = spiceNotifications;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$userId, l$spiceEnabled, l$$__typename]);
+    return Object.hashAll([l$userId, l$spiceMaxLevel, l$spiceNotifications, l$$__typename]);
   }
 
   @override
@@ -349,7 +365,7 @@ class QueryMySpiceSettinguserSettingsByPk {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QueryMySpiceSettinguserSettingsByPk || runtimeType != other.runtimeType) {
+    if (other is! QueryMySpiceSettingsuserSettingsByPk || runtimeType != other.runtimeType) {
       return false;
     }
     final l$userId = userId;
@@ -357,9 +373,14 @@ class QueryMySpiceSettinguserSettingsByPk {
     if (l$userId != lOther$userId) {
       return false;
     }
-    final l$spiceEnabled = spiceEnabled;
-    final lOther$spiceEnabled = other.spiceEnabled;
-    if (l$spiceEnabled != lOther$spiceEnabled) {
+    final l$spiceMaxLevel = spiceMaxLevel;
+    final lOther$spiceMaxLevel = other.spiceMaxLevel;
+    if (l$spiceMaxLevel != lOther$spiceMaxLevel) {
+      return false;
+    }
+    final l$spiceNotifications = spiceNotifications;
+    final lOther$spiceNotifications = other.spiceNotifications;
+    if (l$spiceNotifications != lOther$spiceNotifications) {
       return false;
     }
     final l$$__typename = $__typename;

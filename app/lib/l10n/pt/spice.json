@@ -1,16 +1,137 @@
 {
-  "title": "Momentos a dois",
-  "offText": "Esta seção fica oculta por padrão, atrás desta configuração. São cartas leves e brincalhonas, nada explícito. Só aparecem quando vocês dois ligam, e qualquer um pode desligar a qualquer momento, sem aviso.",
+  "title": "Tempero",
+  "introTitle": "Tempero, só para vocês dois",
+  "introHighlight": "vocês dois",
+  "introText": "Um espaço para adultos, opcional, com cartas e desejos para o casal. Só 18+.",
+  "partnerWantsText": "A outra pessoa quis ligar. Só começa quando você também ligar.",
+  "promises": [
+    "Só vale quando vocês dois ligam.",
+    "Qualquer um desliga a qualquer momento, e tudo some para os dois.",
+    "Suas respostas são só suas. Só aparece o que os dois querem.",
+    "Um \"hoje não\" nunca é explicado nem avisado."
+  ],
+  "adultLabel": "Tenho 18 anos ou mais",
+  "adultError": "Confirme para continuar.",
   "turnOn": "Ligar",
   "notNow": "Agora não",
-  "waitingText": "Os dois precisam aceitar. Nada é avisado ao seu par; quando ele também ligar, as cartas aparecem aqui.",
-  "readyText": "Cartas leves para vocês dois. Fazer ou pular, sem pressão.",
-  "drawCard": "Tirar uma carta",
   "turnOff": "Desligar",
-  "errorTitle": "Não deu para carregar",
-  "errorText": "Tente de novo em instantes.",
+  "waitingTitle": "Esperando a outra pessoa",
+  "waitingText": "Nada foi avisado. Quando ela também ligar, o Tempero abre para vocês dois.",
+  "soloTitle": "O Tempero é a dois",
+  "soloText": "Precisa de duas pessoas conectadas. Quando a outra pessoa entrar, ele fica disponível.",
+  "soloAction": "Voltar",
+  "home": {
+    "subtitle": "Tudo aqui é opcional e fica entre vocês.",
+    "cards": "Cartas da noite",
+    "cardsText": "Uma carta de cada vez",
+    "desires": "Desejos",
+    "desiresText": "Responda em segredo e veja o que os dois querem",
+    "challenge": "Desafio da semana",
+    "challengeText": "Um convite, sem pontos nem prazo",
+    "settings": "Configurações",
+    "settingsText": "Seu limite e os avisos"
+  },
+  "cards": {
+    "title": "Cartas da noite",
+    "errors(map)": {
+      "FREE_LIMIT_REACHED": "Você usou as cartas grátis desta semana. O Plus libera mais.",
+      "PLUS_REQUIRED": "Isso faz parte do Plus.",
+      "ADULT_REQUIRED": "Confirme que você tem 18 anos ou mais.",
+      "SPICE_NOT_ON": "O Tempero não está ligado para os dois.",
+      "SWAP_LIMIT": "Você já trocou o desafio três vezes esta semana.",
+      "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+      "other": "Não deu para concluir agora. Tente de novo."
+    },
+    "answeredTitle": "Combinado",
+    "answeredText": "Quando quiserem, tem outra carta.",
+    "next": "Outra carta",
+    "emptyTitle": "Acabaram as cartas",
+    "emptyText": "Por enquanto não há mais cartas neste nível.",
+    "mineHint": "Você propôs esta carta. A outra pessoa responde quando quiser.",
+    "theirsHint": "A outra pessoa propôs esta carta. Você escolhe.",
+    "refresh": "Ver se já respondeu",
+    "accept": "Quero",
+    "notToday": "Hoje não"
+  },
+  "desires": {
+    "title": "Desejos",
+    "errors(map)": {
+      "FREE_LIMIT_REACHED": "Você usou as cartas grátis desta semana. O Plus libera mais.",
+      "PLUS_REQUIRED": "Isso faz parte do Plus.",
+      "ADULT_REQUIRED": "Confirme que você tem 18 anos ou mais.",
+      "SPICE_NOT_ON": "O Tempero não está ligado para os dois.",
+      "SWAP_LIMIT": "Você já trocou o desafio três vezes esta semana.",
+      "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+      "other": "Não deu para concluir agora. Tente de novo."
+    },
+    "subtitle": "Só você vê o que responde. Se os dois quiserem, aparece em \"Os dois querem\".",
+    "emptyTitle": "Nada por aqui ainda",
+    "emptyText": "Quando houver desejos neste nível, eles aparecem aqui.",
+    "matchesTitle": "Os dois querem",
+    "matchesEmpty": "Ainda nada em comum. Sem pressa.",
+    "answers(map)": {
+      "want": "Quero",
+      "maybe": "Talvez",
+      "notToday": "Hoje não",
+      "other": ""
+    }
+  },
+  "challenge": {
+    "title": "Desafio da semana",
+    "errors(map)": {
+      "FREE_LIMIT_REACHED": "Você usou as cartas grátis desta semana. O Plus libera mais.",
+      "PLUS_REQUIRED": "Isso faz parte do Plus.",
+      "ADULT_REQUIRED": "Confirme que você tem 18 anos ou mais.",
+      "SPICE_NOT_ON": "O Tempero não está ligado para os dois.",
+      "SWAP_LIMIT": "Você já trocou o desafio três vezes esta semana.",
+      "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+      "other": "Não deu para concluir agora. Tente de novo."
+    },
+    "emptyTitle": "Sem desafio agora",
+    "emptyText": "Volte na semana que vem.",
+    "subtitle": "Um convite para vocês. Sem pontos e sem prazo.",
+    "statusDone": "Você fez. Obrigado por cuidar disso.",
+    "statusBothAccepted": "Os dois toparam.",
+    "statusWaitingPartner": "Você topou. Esperando a outra pessoa.",
+    "statusPartnerAccepted": "A outra pessoa topou.",
+    "statusNew": "Ninguém respondeu ainda.",
+    "accept": "Topo",
+    "done": "Já fizemos",
+    "swap": "Trocar o desafio"
+  },
+  "settingsPage": {
+    "title": "Configurações do Tempero",
+    "errors(map)": {
+      "FREE_LIMIT_REACHED": "Você usou as cartas grátis desta semana. O Plus libera mais.",
+      "PLUS_REQUIRED": "Isso faz parte do Plus.",
+      "ADULT_REQUIRED": "Confirme que você tem 18 anos ou mais.",
+      "SPICE_NOT_ON": "O Tempero não está ligado para os dois.",
+      "SWAP_LIMIT": "Você já trocou o desafio três vezes esta semana.",
+      "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+      "other": "Não deu para concluir agora. Tente de novo."
+    },
+    "levelTitle": "Até onde ir",
+    "levels(map)": {
+      "soft": "Suave",
+      "warm": "Quente",
+      "hot": "Picante",
+      "other": ""
+    },
+    "levelNote": "Vale o mais suave dos dois limites. A outra pessoa não vê o seu.",
+    "notifications": "Avisos do Tempero",
+    "notificationsText": "Um aviso curto, sem dizer nada do conteúdo.",
+    "turnOff": "Desligar o Tempero",
+    "turnOffTitle": "Desligar o Tempero?",
+    "turnOffText": "Desliga para vocês dois e apaga respostas, cartas e desafios. Não dá para desfazer.",
+    "turnOffConfirm": "Desligar"
+  },
   "errors(map)": {
+    "FREE_LIMIT_REACHED": "Você usou as cartas grátis desta semana. O Plus libera mais.",
+    "PLUS_REQUIRED": "Isso faz parte do Plus.",
+    "ADULT_REQUIRED": "Confirme que você tem 18 anos ou mais.",
+    "SPICE_NOT_ON": "O Tempero não está ligado para os dois.",
+    "SWAP_LIMIT": "Você já trocou o desafio três vezes esta semana.",
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
-    "other": "Não deu para mudar agora. Tente de novo."
+    "other": "Não deu para concluir agora. Tente de novo."
   }
 }

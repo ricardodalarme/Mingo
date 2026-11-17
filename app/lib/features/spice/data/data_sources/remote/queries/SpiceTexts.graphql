@@ -1,0 +1,6 @@
+query SpiceTexts($slugs: [String!]!, $locale: String!) {
+  contentItems(where: { slug: { _in: $slugs }, locale: { _eq: $locale }, published: { _eq: true } }) {
+    slug
+    title
+  }
+}

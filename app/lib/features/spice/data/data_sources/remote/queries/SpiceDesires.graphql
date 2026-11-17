@@ -1,0 +1,16 @@
+query SpiceDesires($locale: String!, $maxLevel: smallint!) {
+  contentItems(
+    where: {
+      kind: { _eq: spice_desire }
+      locale: { _eq: $locale }
+      published: { _eq: true }
+      level: { _lte: $maxLevel }
+    }
+    order_by: [{ level: asc }, { position: asc }]
+    limit: 100
+  ) {
+    slug
+    title
+    level
+  }
+}

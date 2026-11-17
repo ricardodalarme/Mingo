@@ -1,25 +1,28 @@
 part of 'spice_cubit.dart';
 
 final class const SpiceState({
-  final Resource<SpiceView> view = const Loading(),
-  final int index = 0,
-  final bool shouldExit = false,
-  final Resource<void> toggleAction = const Initial(),
+  final Resource<SpiceStatus> status = const Loading(),
+  final bool hasPartner = false,
+  final bool isAdult = false,
+  final bool showAdultError = false,
+  final Resource<void> changeAction = const Initial(),
 }) with Equatable {
   SpiceState copyWith({
-    Resource<SpiceView>? view,
-    int? index,
-    bool? shouldExit,
-    Resource<void>? toggleAction,
+    Resource<SpiceStatus>? status,
+    bool? hasPartner,
+    bool? isAdult,
+    bool? showAdultError,
+    Resource<void>? changeAction,
   }) {
     return SpiceState(
-      view: view ?? this.view,
-      index: index ?? this.index,
-      shouldExit: shouldExit ?? this.shouldExit,
-      toggleAction: toggleAction ?? this.toggleAction,
+      status: status ?? this.status,
+      hasPartner: hasPartner ?? this.hasPartner,
+      isAdult: isAdult ?? this.isAdult,
+      showAdultError: showAdultError ?? this.showAdultError,
+      changeAction: changeAction ?? this.changeAction,
     );
   }
 
   @override
-  List<Object?> get props => [view, index, shouldExit, toggleAction];
+  List<Object?> get props => [status, hasPartner, isAdult, showAdultError, changeAction];
 }

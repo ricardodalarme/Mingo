@@ -1,0 +1,7 @@
+query SpiceMatches {
+  spiceMatches {
+    slug
+    title
+    body
+  }
+}

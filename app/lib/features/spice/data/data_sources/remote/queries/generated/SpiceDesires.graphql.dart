@@ -4,27 +4,33 @@ import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
-class VariablesQuerySpiceCards {
-  factory VariablesQuerySpiceCards({required String locale}) =>
-      VariablesQuerySpiceCards._({r'locale': locale});
+class VariablesQuerySpiceDesires {
+  factory VariablesQuerySpiceDesires({required String locale, required int maxLevel}) =>
+      VariablesQuerySpiceDesires._({r'locale': locale, r'maxLevel': maxLevel});
 
-  VariablesQuerySpiceCards._(this._$data);
+  VariablesQuerySpiceDesires._(this._$data);
 
-  factory VariablesQuerySpiceCards.fromJson(Map<String, dynamic> data) {
+  factory VariablesQuerySpiceDesires.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$locale = data['locale'];
     result$data['locale'] = (l$locale as String);
-    return VariablesQuerySpiceCards._(result$data);
+    final l$maxLevel = data['maxLevel'];
+    result$data['maxLevel'] = (l$maxLevel as int);
+    return VariablesQuerySpiceDesires._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
   String get locale => (_$data['locale'] as String);
 
+  int get maxLevel => (_$data['maxLevel'] as int);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$locale = locale;
     result$data['locale'] = l$locale;
+    final l$maxLevel = maxLevel;
+    result$data['maxLevel'] = l$maxLevel;
     return result$data;
   }
 
@@ -33,12 +39,17 @@ class VariablesQuerySpiceCards {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! VariablesQuerySpiceCards || runtimeType != other.runtimeType) {
+    if (other is! VariablesQuerySpiceDesires || runtimeType != other.runtimeType) {
       return false;
     }
     final l$locale = locale;
     final lOther$locale = other.locale;
     if (l$locale != lOther$locale) {
+      return false;
+    }
+    final l$maxLevel = maxLevel;
+    final lOther$maxLevel = other.maxLevel;
+    if (l$maxLevel != lOther$maxLevel) {
       return false;
     }
     return true;
@@ -47,25 +58,26 @@ class VariablesQuerySpiceCards {
   @override
   int get hashCode {
     final l$locale = locale;
-    return Object.hashAll([l$locale]);
+    final l$maxLevel = maxLevel;
+    return Object.hashAll([l$locale, l$maxLevel]);
   }
 }
 
-class QuerySpiceCards {
-  QuerySpiceCards({required this.contentItems, this.$__typename = 'query_root'});
+class QuerySpiceDesires {
+  QuerySpiceDesires({required this.contentItems, this.$__typename = 'query_root'});
 
-  factory QuerySpiceCards.fromJson(Map<String, dynamic> json) {
+  factory QuerySpiceDesires.fromJson(Map<String, dynamic> json) {
     final l$contentItems = json['contentItems'];
     final l$$__typename = json['__typename'];
-    return QuerySpiceCards(
+    return QuerySpiceDesires(
       contentItems: (l$contentItems as List<dynamic>)
-          .map((e) => QuerySpiceCardscontentItems.fromJson((e as Map<String, dynamic>)))
+          .map((e) => QuerySpiceDesirescontentItems.fromJson((e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final List<QuerySpiceCardscontentItems> contentItems;
+  final List<QuerySpiceDesirescontentItems> contentItems;
 
   final String $__typename;
 
@@ -90,7 +102,7 @@ class QuerySpiceCards {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QuerySpiceCards || runtimeType != other.runtimeType) {
+    if (other is! QuerySpiceDesires || runtimeType != other.runtimeType) {
       return false;
     }
     final l$contentItems = contentItems;
@@ -114,15 +126,21 @@ class QuerySpiceCards {
   }
 }
 
-const documentNodeQuerySpiceCards = DocumentNode(
+const documentNodeQuerySpiceDesires = DocumentNode(
   definitions: [
     OperationDefinitionNode(
       type: OperationType.query,
-      name: NameNode(value: 'SpiceCards'),
+      name: NameNode(value: 'SpiceDesires'),
       variableDefinitions: [
         VariableDefinitionNode(
           variable: VariableNode(name: NameNode(value: 'locale')),
           type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'maxLevel')),
+          type: NamedTypeNode(name: NameNode(value: 'smallint'), isNonNull: true),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -135,10 +153,6 @@ const documentNodeQuerySpiceCards = DocumentNode(
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'limit'),
-                value: IntValueNode(value: '30'),
-              ),
-              ArgumentNode(
                 name: NameNode(value: 'where'),
                 value: ObjectValueNode(
                   fields: [
@@ -148,7 +162,7 @@ const documentNodeQuerySpiceCards = DocumentNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: '_eq'),
-                            value: EnumValueNode(name: NameNode(value: 'spice_card')),
+                            value: EnumValueNode(name: NameNode(value: 'spice_desire')),
                           ),
                         ],
                       ),
@@ -175,19 +189,46 @@ const documentNodeQuerySpiceCards = DocumentNode(
                         ],
                       ),
                     ),
+                    ObjectFieldNode(
+                      name: NameNode(value: 'level'),
+                      value: ObjectValueNode(
+                        fields: [
+                          ObjectFieldNode(
+                            name: NameNode(value: '_lte'),
+                            value: VariableNode(name: NameNode(value: 'maxLevel')),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
               ArgumentNode(
                 name: NameNode(value: 'order_by'),
-                value: ObjectValueNode(
-                  fields: [
-                    ObjectFieldNode(
-                      name: NameNode(value: 'position'),
-                      value: EnumValueNode(name: NameNode(value: 'asc')),
+                value: ListValueNode(
+                  values: [
+                    ObjectValueNode(
+                      fields: [
+                        ObjectFieldNode(
+                          name: NameNode(value: 'level'),
+                          value: EnumValueNode(name: NameNode(value: 'asc')),
+                        ),
+                      ],
+                    ),
+                    ObjectValueNode(
+                      fields: [
+                        ObjectFieldNode(
+                          name: NameNode(value: 'position'),
+                          value: EnumValueNode(name: NameNode(value: 'asc')),
+                        ),
+                      ],
                     ),
                   ],
                 ),
+              ),
+              ArgumentNode(
+                name: NameNode(value: 'limit'),
+                value: IntValueNode(value: '100'),
               ),
             ],
             directives: [],
@@ -202,6 +243,13 @@ const documentNodeQuerySpiceCards = DocumentNode(
                 ),
                 FieldNode(
                   name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'level'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -229,30 +277,30 @@ const documentNodeQuerySpiceCards = DocumentNode(
     ),
   ],
 );
-QuerySpiceCards _parserFnQuerySpiceCards(Map<String, dynamic> data) =>
-    QuerySpiceCards.fromJson(data);
-typedef OnQueryCompleteQuerySpiceCards = FutureOr<void> Function(
+QuerySpiceDesires _parserFnQuerySpiceDesires(Map<String, dynamic> data) =>
+    QuerySpiceDesires.fromJson(data);
+typedef OnQueryCompleteQuerySpiceDesires = FutureOr<void> Function(
   Map<String, dynamic>?,
-  QuerySpiceCards?,
+  QuerySpiceDesires?,
 );
 
-class OptionsQuerySpiceCards extends graphql.QueryOptions<QuerySpiceCards> {
-  OptionsQuerySpiceCards({
+class OptionsQuerySpiceDesires extends graphql.QueryOptions<QuerySpiceDesires> {
+  OptionsQuerySpiceDesires({
     String? operationName,
-    required VariablesQuerySpiceCards variables,
+    required VariablesQuerySpiceDesires variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    QuerySpiceCards? typedOptimisticResult,
+    QuerySpiceDesires? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-    OnQueryCompleteQuerySpiceCards? onComplete,
+    OnQueryCompleteQuerySpiceDesires? onComplete,
     graphql.OnQueryError? onError,
   }) : onCompleteWithParsed = onComplete,
        super(
          variables: variables.toJson(),
-         operationName: operationName ?? 'SpiceCards',
+         operationName: operationName ?? 'SpiceDesires',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
@@ -261,13 +309,13 @@ class OptionsQuerySpiceCards extends graphql.QueryOptions<QuerySpiceCards> {
          context: context,
          onComplete: onComplete == null
              ? null
-             : (data) => onComplete(data, data == null ? null : _parserFnQuerySpiceCards(data)),
+             : (data) => onComplete(data, data == null ? null : _parserFnQuerySpiceDesires(data)),
          onError: onError,
-         document: documentNodeQuerySpiceCards,
-         parserFn: _parserFnQuerySpiceCards,
+         document: documentNodeQuerySpiceDesires,
+         parserFn: _parserFnQuerySpiceDesires,
        );
 
-  final OnQueryCompleteQuerySpiceCards? onCompleteWithParsed;
+  final OnQueryCompleteQuerySpiceDesires? onCompleteWithParsed;
 
   @override
   List<Object?> get properties => [
@@ -278,15 +326,15 @@ class OptionsQuerySpiceCards extends graphql.QueryOptions<QuerySpiceCards> {
   ];
 }
 
-class WatchOptionsQuerySpiceCards extends graphql.WatchQueryOptions<QuerySpiceCards> {
-  WatchOptionsQuerySpiceCards({
+class WatchOptionsQuerySpiceDesires extends graphql.WatchQueryOptions<QuerySpiceDesires> {
+  WatchOptionsQuerySpiceDesires({
     String? operationName,
-    required VariablesQuerySpiceCards variables,
+    required VariablesQuerySpiceDesires variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    QuerySpiceCards? typedOptimisticResult,
+    QuerySpiceDesires? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -294,83 +342,86 @@ class WatchOptionsQuerySpiceCards extends graphql.WatchQueryOptions<QuerySpiceCa
     bool fetchResults = false,
   }) : super(
          variables: variables.toJson(),
-         operationName: operationName ?? 'SpiceCards',
+         operationName: operationName ?? 'SpiceDesires',
          fetchPolicy: fetchPolicy,
          errorPolicy: errorPolicy,
          cacheRereadPolicy: cacheRereadPolicy,
          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
          context: context,
-         document: documentNodeQuerySpiceCards,
+         document: documentNodeQuerySpiceDesires,
          pollInterval: pollInterval,
          eagerlyFetchResults: eagerlyFetchResults,
          carryForwardDataOnException: carryForwardDataOnException,
          fetchResults: fetchResults,
-         parserFn: _parserFnQuerySpiceCards,
+         parserFn: _parserFnQuerySpiceDesires,
        );
 }
 
-class FetchMoreOptionsQuerySpiceCards extends graphql.FetchMoreOptions {
-  FetchMoreOptionsQuerySpiceCards({
+class FetchMoreOptionsQuerySpiceDesires extends graphql.FetchMoreOptions {
+  FetchMoreOptionsQuerySpiceDesires({
     required graphql.UpdateQuery updateQuery,
-    required VariablesQuerySpiceCards variables,
+    required VariablesQuerySpiceDesires variables,
   }) : super(
          updateQuery: updateQuery,
          variables: variables.toJson(),
-         document: documentNodeQuerySpiceCards,
+         document: documentNodeQuerySpiceDesires,
        );
 }
 
-extension ClientExtensionQuerySpiceCards on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QuerySpiceCards>> querySpiceCards(
-    OptionsQuerySpiceCards options,
+extension ClientExtensionQuerySpiceDesires on graphql.GraphQLClient {
+  Future<graphql.QueryResult<QuerySpiceDesires>> querySpiceDesires(
+    OptionsQuerySpiceDesires options,
   ) async => await this.query(options);
 
-  graphql.ObservableQuery<QuerySpiceCards> watchQuerySpiceCards(
-    WatchOptionsQuerySpiceCards options,
+  graphql.ObservableQuery<QuerySpiceDesires> watchQuerySpiceDesires(
+    WatchOptionsQuerySpiceDesires options,
   ) => this.watchQuery(options);
 
-  void writeQuerySpiceCards({
-    required QuerySpiceCards data,
-    required VariablesQuerySpiceCards variables,
+  void writeQuerySpiceDesires({
+    required QuerySpiceDesires data,
+    required VariablesQuerySpiceDesires variables,
     bool broadcast = true,
   }) => this.writeQuery(
     graphql.Request(
-      operation: graphql.Operation(document: documentNodeQuerySpiceCards),
+      operation: graphql.Operation(document: documentNodeQuerySpiceDesires),
       variables: variables.toJson(),
     ),
     data: data.toJson(),
     broadcast: broadcast,
   );
 
-  QuerySpiceCards? readQuerySpiceCards({
-    required VariablesQuerySpiceCards variables,
+  QuerySpiceDesires? readQuerySpiceDesires({
+    required VariablesQuerySpiceDesires variables,
     bool optimistic = true,
   }) {
     final result = this.readQuery(
       graphql.Request(
-        operation: graphql.Operation(document: documentNodeQuerySpiceCards),
+        operation: graphql.Operation(document: documentNodeQuerySpiceDesires),
         variables: variables.toJson(),
       ),
       optimistic: optimistic,
     );
-    return result == null ? null : QuerySpiceCards.fromJson(result);
+    return result == null ? null : QuerySpiceDesires.fromJson(result);
   }
 }
 
-class QuerySpiceCardscontentItems {
-  QuerySpiceCardscontentItems({
+class QuerySpiceDesirescontentItems {
+  QuerySpiceDesirescontentItems({
     required this.slug,
     required this.title,
+    this.level,
     this.$__typename = 'contentItems',
   });
 
-  factory QuerySpiceCardscontentItems.fromJson(Map<String, dynamic> json) {
+  factory QuerySpiceDesirescontentItems.fromJson(Map<String, dynamic> json) {
     final l$slug = json['slug'];
     final l$title = json['title'];
+    final l$level = json['level'];
     final l$$__typename = json['__typename'];
-    return QuerySpiceCardscontentItems(
+    return QuerySpiceDesirescontentItems(
       slug: (l$slug as String),
       title: (l$title as String),
+      level: (l$level as int?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -378,6 +429,8 @@ class QuerySpiceCardscontentItems {
   final String slug;
 
   final String title;
+
+  final int? level;
 
   final String $__typename;
 
@@ -387,6 +440,8 @@ class QuerySpiceCardscontentItems {
     _resultData['slug'] = l$slug;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$level = level;
+    _resultData['level'] = l$level;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -396,8 +451,9 @@ class QuerySpiceCardscontentItems {
   int get hashCode {
     final l$slug = slug;
     final l$title = title;
+    final l$level = level;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$slug, l$title, l$$__typename]);
+    return Object.hashAll([l$slug, l$title, l$level, l$$__typename]);
   }
 
   @override
@@ -405,7 +461,7 @@ class QuerySpiceCardscontentItems {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! QuerySpiceCardscontentItems || runtimeType != other.runtimeType) {
+    if (other is! QuerySpiceDesirescontentItems || runtimeType != other.runtimeType) {
       return false;
     }
     final l$slug = slug;
@@ -416,6 +472,11 @@ class QuerySpiceCardscontentItems {
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
+      return false;
+    }
+    final l$level = level;
+    final lOther$level = other.level;
+    if (l$level != lOther$level) {
       return false;
     }
     final l$$__typename = $__typename;

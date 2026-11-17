@@ -5132,7 +5132,7 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get planPlus => 'Plus';
   @override
-  String get spice => 'Moments for two';
+  String get spice => 'Tempero';
   @override
   String get privacy => 'Privacy and security';
   @override
@@ -5561,31 +5561,66 @@ class _Translations$spice$en extends Translations$spice$pt {
 
   // Translations
   @override
-  String get title => 'Moments for two';
+  String get title => 'Tempero';
   @override
-  String get offText =>
-      'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.';
+  String get introTitle => 'Tempero, just for the two of you';
+  @override
+  String get introHighlight => 'the two of you';
+  @override
+  String get introText =>
+      'An optional space for adults, with cards and desires for the couple. 18+ only.';
+  @override
+  String get partnerWantsText =>
+      'The other person wanted to turn it on. It only starts when you turn it on too.';
+  @override
+  List<String> get promises => [
+    'It only counts when you both turn it on.',
+    'Either of you can turn it off any time, and everything disappears for both.',
+    'Your answers are only yours. Only what you both want shows.',
+    'A "not today" is never explained or announced.',
+  ];
+  @override
+  String get adultLabel => 'I am 18 or older';
+  @override
+  String get adultError => 'Confirm to continue.';
   @override
   String get turnOn => 'Turn on';
   @override
   String get notNow => 'Not now';
   @override
-  String get waitingText =>
-      'You both need to accept. Nothing is sent to your partner; when they turn it on too, the cards show up here.';
-  @override
-  String get readyText => 'Light cards for the two of you. Do it or skip it, no pressure.';
-  @override
-  String get drawCard => 'Draw a card';
-  @override
   String get turnOff => 'Turn off';
   @override
-  String get errorTitle => 'Couldn\'t load';
+  String get waitingTitle => 'Waiting for the other person';
   @override
-  String get errorText => 'Try again in a moment.';
+  String get waitingText =>
+      'Nothing was announced. When they turn it on too, Tempero opens for both of you.';
+  @override
+  String get soloTitle => 'Tempero is for two';
+  @override
+  String get soloText =>
+      'It needs two connected people. When the other person joins, it becomes available.';
+  @override
+  String get soloAction => 'Back';
+  @override
+  late final _Translations$spice$home$en home = _Translations$spice$home$en._(_root);
+  @override
+  late final _Translations$spice$cards$en cards = _Translations$spice$cards$en._(_root);
+  @override
+  late final _Translations$spice$desires$en desires = _Translations$spice$desires$en._(_root);
+  @override
+  late final _Translations$spice$challenge$en challenge = _Translations$spice$challenge$en._(_root);
+  @override
+  late final _Translations$spice$settingsPage$en settingsPage =
+      _Translations$spice$settingsPage$en._(_root);
   @override
   Map<String, String> get errors => {
-    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
-    'other': 'Couldn\'t change that right now. Try again.',
+    'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
+    'PLUS_REQUIRED': 'This is part of Plus.',
+    'ADULT_REQUIRED': 'Confirm you are 18 or older.',
+    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
+    'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
+    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
+    'other': 'We could not finish that now. Try again.',
   };
 }
 
@@ -7764,6 +7799,199 @@ class _Translations$slipKind$saved$en extends Translations$slipKind$saved$pt {
   String get queued => 'Saved on this phone. We\'ll send it when the connection is back.';
   @override
   String get done => 'Done';
+}
+
+// Path: spice.home
+class _Translations$spice$home$en extends Translations$spice$home$pt {
+  _Translations$spice$home$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get subtitle => 'Everything here is optional and stays between you.';
+  @override
+  String get cards => 'Evening cards';
+  @override
+  String get cardsText => 'One card at a time';
+  @override
+  String get desires => 'Desires';
+  @override
+  String get desiresText => 'Answer in secret and see what you both want';
+  @override
+  String get challenge => 'Challenge of the week';
+  @override
+  String get challengeText => 'An invitation, with no points or deadline';
+  @override
+  String get settings => 'Settings';
+  @override
+  String get settingsText => 'Your limit and the alerts';
+}
+
+// Path: spice.cards
+class _Translations$spice$cards$en extends Translations$spice$cards$pt {
+  _Translations$spice$cards$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Evening cards';
+  @override
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
+    'PLUS_REQUIRED': 'This is part of Plus.',
+    'ADULT_REQUIRED': 'Confirm you are 18 or older.',
+    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
+    'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
+    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
+    'other': 'We could not finish that now. Try again.',
+  };
+  @override
+  String get answeredTitle => 'Agreed';
+  @override
+  String get answeredText => 'Whenever you like, there is another card.';
+  @override
+  String get next => 'Another card';
+  @override
+  String get emptyTitle => 'No more cards';
+  @override
+  String get emptyText => 'There are no more cards at this level for now.';
+  @override
+  String get mineHint => 'You proposed this card. The other person answers when they like.';
+  @override
+  String get theirsHint => 'The other person proposed this card. You choose.';
+  @override
+  String get refresh => 'Check if they answered';
+  @override
+  String get accept => 'I want to';
+  @override
+  String get notToday => 'Not today';
+}
+
+// Path: spice.desires
+class _Translations$spice$desires$en extends Translations$spice$desires$pt {
+  _Translations$spice$desires$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Desires';
+  @override
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
+    'PLUS_REQUIRED': 'This is part of Plus.',
+    'ADULT_REQUIRED': 'Confirm you are 18 or older.',
+    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
+    'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
+    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
+    'other': 'We could not finish that now. Try again.',
+  };
+  @override
+  String get subtitle =>
+      'Only you see what you answer. If you both want it, it shows in "You both want".';
+  @override
+  String get emptyTitle => 'Nothing here yet';
+  @override
+  String get emptyText => 'When there are desires at this level, they show up here.';
+  @override
+  String get matchesTitle => 'You both want';
+  @override
+  String get matchesEmpty => 'Nothing in common yet. No rush.';
+  @override
+  Map<String, String> get answers => {
+    'want': 'I want',
+    'maybe': 'Maybe',
+    'notToday': 'Not today',
+    'other': '',
+  };
+}
+
+// Path: spice.challenge
+class _Translations$spice$challenge$en extends Translations$spice$challenge$pt {
+  _Translations$spice$challenge$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Challenge of the week';
+  @override
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
+    'PLUS_REQUIRED': 'This is part of Plus.',
+    'ADULT_REQUIRED': 'Confirm you are 18 or older.',
+    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
+    'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
+    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
+    'other': 'We could not finish that now. Try again.',
+  };
+  @override
+  String get emptyTitle => 'No challenge now';
+  @override
+  String get emptyText => 'Come back next week.';
+  @override
+  String get subtitle => 'An invitation for you two. No points and no deadline.';
+  @override
+  String get statusDone => 'You did it. Thank you for caring for this.';
+  @override
+  String get statusBothAccepted => 'You both said yes.';
+  @override
+  String get statusWaitingPartner => 'You said yes. Waiting for the other person.';
+  @override
+  String get statusPartnerAccepted => 'The other person said yes.';
+  @override
+  String get statusNew => 'Nobody answered yet.';
+  @override
+  String get accept => 'I am in';
+  @override
+  String get done => 'We did it';
+  @override
+  String get swap => 'Swap the challenge';
+}
+
+// Path: spice.settingsPage
+class _Translations$spice$settingsPage$en extends Translations$spice$settingsPage$pt {
+  _Translations$spice$settingsPage$en._(TranslationsEn root)
+    : this._root = root,
+      super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Tempero settings';
+  @override
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
+    'PLUS_REQUIRED': 'This is part of Plus.',
+    'ADULT_REQUIRED': 'Confirm you are 18 or older.',
+    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
+    'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
+    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
+    'other': 'We could not finish that now. Try again.',
+  };
+  @override
+  String get levelTitle => 'How far to go';
+  @override
+  Map<String, String> get levels => {'soft': 'Soft', 'warm': 'Warm', 'hot': 'Spicy', 'other': ''};
+  @override
+  String get levelNote =>
+      'The gentler of the two limits applies. The other person does not see yours.';
+  @override
+  String get notifications => 'Tempero alerts';
+  @override
+  String get notificationsText => 'A short alert that says nothing about the content.';
+  @override
+  String get turnOff => 'Turn off Tempero';
+  @override
+  String get turnOffTitle => 'Turn off Tempero?';
+  @override
+  String get turnOffText =>
+      'It turns off for both of you and erases answers, cards and challenges. This cannot be undone.';
+  @override
+  String get turnOffConfirm => 'Turn off';
 }
 
 // Path: sundayCard.send
@@ -11183,7 +11411,7 @@ extension on TranslationsEn {
           'settingsHome.plan' => 'Plan',
           'settingsHome.planFree' => 'Free',
           'settingsHome.planPlus' => 'Plus',
-          'settingsHome.spice' => 'Moments for two',
+          'settingsHome.spice' => 'Tempero',
           'settingsHome.privacy' => 'Privacy and security',
           'settingsHome.privacyStatus' => 'Who sees what',
           'settingsHome.signOut' => 'Sign out',
@@ -11471,18 +11699,133 @@ extension on TranslationsEn {
           'slipsList.filterThisMonth' => 'This month',
           'slipsList.filterInCard' => 'In a card',
           'slipsList.filterInvisible' => 'Invisible work',
-          'spice.title' => 'Moments for two',
-          'spice.offText' => 'This section is hidden by default, behind this setting. It is light, playful cards, nothing explicit. They only show up when you both turn it on, and either of you can turn it off at any time, without notice.',
+          'spice.title' => 'Tempero',
+          'spice.introTitle' => 'Tempero, just for the two of you',
+          'spice.introHighlight' => 'the two of you',
+          'spice.introText' =>
+            'An optional space for adults, with cards and desires for the couple. 18+ only.',
+          'spice.partnerWantsText' =>
+            'The other person wanted to turn it on. It only starts when you turn it on too.',
+          'spice.promises.0' => 'It only counts when you both turn it on.',
+          'spice.promises.1' =>
+            'Either of you can turn it off any time, and everything disappears for both.',
+          'spice.promises.2' => 'Your answers are only yours. Only what you both want shows.',
+          'spice.promises.3' => 'A "not today" is never explained or announced.',
+          'spice.adultLabel' => 'I am 18 or older',
+          'spice.adultError' => 'Confirm to continue.',
           'spice.turnOn' => 'Turn on',
           'spice.notNow' => 'Not now',
-          'spice.waitingText' => 'You both need to accept. Nothing is sent to your partner; when they turn it on too, the cards show up here.',
-          'spice.readyText' => 'Light cards for the two of you. Do it or skip it, no pressure.',
-          'spice.drawCard' => 'Draw a card',
           'spice.turnOff' => 'Turn off',
-          'spice.errorTitle' => 'Couldn\'t load',
-          'spice.errorText' => 'Try again in a moment.',
-          'spice.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          'spice.errors.other' => 'Couldn\'t change that right now. Try again.',
+          'spice.waitingTitle' => 'Waiting for the other person',
+          'spice.waitingText' =>
+            'Nothing was announced. When they turn it on too, Tempero opens for both of you.',
+          'spice.soloTitle' => 'Tempero is for two',
+          'spice.soloText' =>
+            'It needs two connected people. When the other person joins, it becomes available.',
+          'spice.soloAction' => 'Back',
+          'spice.home.subtitle' => 'Everything here is optional and stays between you.',
+          'spice.home.cards' => 'Evening cards',
+          'spice.home.cardsText' => 'One card at a time',
+          'spice.home.desires' => 'Desires',
+          'spice.home.desiresText' => 'Answer in secret and see what you both want',
+          'spice.home.challenge' => 'Challenge of the week',
+          'spice.home.challengeText' => 'An invitation, with no points or deadline',
+          'spice.home.settings' => 'Settings',
+          'spice.home.settingsText' => 'Your limit and the alerts',
+          'spice.cards.title' => 'Evening cards',
+          'spice.cards.errors.FREE_LIMIT_REACHED' =>
+            'You used this week\'s free cards. Plus unlocks more.',
+          'spice.cards.errors.PLUS_REQUIRED' => 'This is part of Plus.',
+          'spice.cards.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
+          'spice.cards.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
+          'spice.cards.errors.SWAP_LIMIT' =>
+            'You already swapped the challenge three times this week.',
+          'spice.cards.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'spice.cards.errors.other' => 'We could not finish that now. Try again.',
+          'spice.cards.answeredTitle' => 'Agreed',
+          'spice.cards.answeredText' => 'Whenever you like, there is another card.',
+          'spice.cards.next' => 'Another card',
+          'spice.cards.emptyTitle' => 'No more cards',
+          'spice.cards.emptyText' => 'There are no more cards at this level for now.',
+          'spice.cards.mineHint' =>
+            'You proposed this card. The other person answers when they like.',
+          'spice.cards.theirsHint' => 'The other person proposed this card. You choose.',
+          'spice.cards.refresh' => 'Check if they answered',
+          'spice.cards.accept' => 'I want to',
+          'spice.cards.notToday' => 'Not today',
+          'spice.desires.title' => 'Desires',
+          'spice.desires.errors.FREE_LIMIT_REACHED' =>
+            'You used this week\'s free cards. Plus unlocks more.',
+          'spice.desires.errors.PLUS_REQUIRED' => 'This is part of Plus.',
+          'spice.desires.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
+          'spice.desires.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
+          'spice.desires.errors.SWAP_LIMIT' =>
+            'You already swapped the challenge three times this week.',
+          'spice.desires.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'spice.desires.errors.other' => 'We could not finish that now. Try again.',
+          'spice.desires.subtitle' =>
+            'Only you see what you answer. If you both want it, it shows in "You both want".',
+          'spice.desires.emptyTitle' => 'Nothing here yet',
+          'spice.desires.emptyText' => 'When there are desires at this level, they show up here.',
+          'spice.desires.matchesTitle' => 'You both want',
+          'spice.desires.matchesEmpty' => 'Nothing in common yet. No rush.',
+          'spice.desires.answers.want' => 'I want',
+          'spice.desires.answers.maybe' => 'Maybe',
+          'spice.desires.answers.notToday' => 'Not today',
+          'spice.desires.answers.other' => '',
+          'spice.challenge.title' => 'Challenge of the week',
+          'spice.challenge.errors.FREE_LIMIT_REACHED' =>
+            'You used this week\'s free cards. Plus unlocks more.',
+          'spice.challenge.errors.PLUS_REQUIRED' => 'This is part of Plus.',
+          'spice.challenge.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
+          'spice.challenge.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
+          'spice.challenge.errors.SWAP_LIMIT' =>
+            'You already swapped the challenge three times this week.',
+          'spice.challenge.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'spice.challenge.errors.other' => 'We could not finish that now. Try again.',
+          'spice.challenge.emptyTitle' => 'No challenge now',
+          'spice.challenge.emptyText' => 'Come back next week.',
+          'spice.challenge.subtitle' => 'An invitation for you two. No points and no deadline.',
+          'spice.challenge.statusDone' => 'You did it. Thank you for caring for this.',
+          'spice.challenge.statusBothAccepted' => 'You both said yes.',
+          'spice.challenge.statusWaitingPartner' => 'You said yes. Waiting for the other person.',
+          'spice.challenge.statusPartnerAccepted' => 'The other person said yes.',
+          'spice.challenge.statusNew' => 'Nobody answered yet.',
+          'spice.challenge.accept' => 'I am in',
+          'spice.challenge.done' => 'We did it',
+          'spice.challenge.swap' => 'Swap the challenge',
+          'spice.settingsPage.title' => 'Tempero settings',
+          'spice.settingsPage.errors.FREE_LIMIT_REACHED' =>
+            'You used this week\'s free cards. Plus unlocks more.',
+          'spice.settingsPage.errors.PLUS_REQUIRED' => 'This is part of Plus.',
+          'spice.settingsPage.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
+          'spice.settingsPage.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
+          'spice.settingsPage.errors.SWAP_LIMIT' =>
+            'You already swapped the challenge three times this week.',
+          'spice.settingsPage.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'spice.settingsPage.errors.other' => 'We could not finish that now. Try again.',
+          'spice.settingsPage.levelTitle' => 'How far to go',
+          'spice.settingsPage.levels.soft' => 'Soft',
+          'spice.settingsPage.levels.warm' => 'Warm',
+          'spice.settingsPage.levels.hot' => 'Spicy',
+          'spice.settingsPage.levels.other' => '',
+          'spice.settingsPage.levelNote' =>
+            'The gentler of the two limits applies. The other person does not see yours.',
+          'spice.settingsPage.notifications' => 'Tempero alerts',
+          'spice.settingsPage.notificationsText' =>
+            'A short alert that says nothing about the content.',
+          'spice.settingsPage.turnOff' => 'Turn off Tempero',
+          'spice.settingsPage.turnOffTitle' => 'Turn off Tempero?',
+          'spice.settingsPage.turnOffText' => 'It turns off for both of you and erases answers, cards and challenges. This cannot be undone.',
+          'spice.settingsPage.turnOffConfirm' => 'Turn off',
+          'spice.errors.FREE_LIMIT_REACHED' =>
+            'You used this week\'s free cards. Plus unlocks more.',
+          'spice.errors.PLUS_REQUIRED' => 'This is part of Plus.',
+          'spice.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
+          'spice.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
+          'spice.errors.SWAP_LIMIT' => 'You already swapped the challenge three times this week.',
+          'spice.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'spice.errors.other' => 'We could not finish that now. Try again.',
           'story.title' => 'Image to share',
           'story.privacyNote' =>
             'The image is made on your device and carries no names or text unless you choose.',
@@ -11764,6 +12107,9 @@ extension on TranslationsEn {
           'temperature.result.guided.title' => 'You can talk with care',
           'temperature.result.guided.text' => 'One step at a time, at your pace.',
           'temperature.result.quick.title' => 'A small fix is enough',
+          _ => null,
+        } ??
+        switch (path) {
           'temperature.result.quick.text' => 'Something light and quick can do it.',
           'temperature.result.done' => 'Done',
           'temperature.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
@@ -11895,9 +12241,6 @@ extension on TranslationsEn {
                   other: '${count} this week',
                 ),
           'today.conflict.tag' => 'Now',
-          _ => null,
-        } ??
-        switch (path) {
           'today.conflict.title' => 'First, take care of you two',
           'today.conflict.highlight' => 'care',
           'today.conflict.text' =>

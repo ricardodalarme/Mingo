@@ -1,0 +1,7 @@
+fragment SpiceChallengeFragment on spiceChallenges {
+  id
+  contentSlug
+  acceptedBy
+  doneBy
+  swaps
+}

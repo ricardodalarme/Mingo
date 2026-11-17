@@ -1,0 +1,5 @@
+mutation SpiceChallengeAct($action: String!) {
+  spiceChallengeAct(args: { action: $action }) {
+    ...SpiceChallengeFragment
+  }
+}

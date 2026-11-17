@@ -1,0 +1,8 @@
+mutation AnswerSpiceDesire($slug: String!, $answer: SpiceAnswer_enum!) {
+  insertSpiceDesireAnswersOne(
+    object: { contentSlug: $slug, answer: $answer }
+    on_conflict: { constraint: spice_desire_answers_pkey, update_columns: [answer] }
+  ) {
+    contentSlug
+  }
+}

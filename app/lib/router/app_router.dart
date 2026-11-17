@@ -109,6 +109,10 @@ import 'package:app/features/slips/presentation/slip_detail/slip_detail_page.dar
 import 'package:app/features/slips/presentation/slip_kind/slip_kind_page.dart';
 import 'package:app/features/slips/presentation/slips/slips_page.dart';
 import 'package:app/features/slips/presentation/slips_search/slips_search_page.dart';
+import 'package:app/features/spice/presentation/cards/spice_cards_page.dart';
+import 'package:app/features/spice/presentation/challenge/spice_challenge_page.dart';
+import 'package:app/features/spice/presentation/desires/spice_desires_page.dart';
+import 'package:app/features/spice/presentation/settings/spice_settings_page.dart';
 import 'package:app/features/spice/presentation/spice/spice_page.dart';
 import 'package:app/features/story/presentation/story/story_page.dart';
 import 'package:app/features/today/presentation/today/today_page.dart';
@@ -191,6 +195,10 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: HardConversationRoute.page),
     AutoRoute(page: LearnedItemsRoute.page),
     AutoRoute(page: SpiceRoute.page),
+    AutoRoute(page: SpiceCardsRoute.page),
+    AutoRoute(page: SpiceDesiresRoute.page),
+    AutoRoute(page: SpiceChallengeRoute.page),
+    AutoRoute(page: SpiceSettingsRoute.page),
     AutoRoute(page: ComposeRoute.page),
     AutoRoute(page: UsRoute.page),
     AutoRoute(page: TouchRoute.page),

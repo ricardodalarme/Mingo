@@ -1,0 +1,7 @@
+query MySpiceSettings($userId: uuid!) {
+  userSettingsByPk(userId: $userId) {
+    userId
+    spiceMaxLevel
+    spiceNotifications
+  }
+}

@@ -1,0 +1,5 @@
+mutation GrantAdultConsent($version: String!) {
+  insertConsents(objects: [{ kind: adult, granted: true, version: $version }]) {
+    affected_rows
+  }
+}
