@@ -1,0 +1,5 @@
+mutation ConfirmAgreement($id: uuid!) {
+  confirmAgreement(args: { agreementId: $id }) {
+    ...AgreementFragment
+  }
+}

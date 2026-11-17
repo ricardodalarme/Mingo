@@ -98,6 +98,14 @@ class const _ForYouSection({required final bool hasPartner}) extends StatelessWi
           onTap: () => context.pushRoute(const LogisticsRoute()),
         ),
         _row(
+          icon: AppIcons.check,
+          title: context.l10n.agreements.title,
+          subtitle: hasPartner
+              ? context.l10n.agreements.metaShared
+              : context.l10n.agreements.metaPrivate,
+          onTap: () => context.pushRoute(const AgreementsRoute()),
+        ),
+        _row(
           icon: AppIcons.rings,
           title: l10n.ritualsTitle,
           subtitle: hasPartner ? l10n.ritualsMeta : l10n.needsBoth,

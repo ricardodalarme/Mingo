@@ -1,0 +1,5 @@
+mutation AddAgreement($id: uuid!, $body: String!, $coupleId: uuid) {
+  insertAgreementsOne(object: { id: $id, body: $body, coupleId: $coupleId }) {
+    ...AgreementFragment
+  }
+}

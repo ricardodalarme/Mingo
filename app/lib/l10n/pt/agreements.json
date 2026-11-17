@@ -1,0 +1,34 @@
+{
+  "title": "Acordos",
+  "add": "Novo acordo",
+  "addTitle": "Novo acordo",
+  "bodyLabel": "O que vocês combinam",
+  "bodyHint": "Ex.: Conversar sobre dinheiro uma vez por mês",
+  "bodyErrors(map)": {
+    "empty": "Escreva o acordo.",
+    "tooLong": "Use no máximo 200 caracteres."
+  },
+  "propose": "Propor",
+  "confirm": "Confirmar",
+  "options": "Opções do acordo",
+  "subtitleShared": "Frases curtas que vocês combinam. Só valem quando a outra pessoa confirma.",
+  "subtitlePrivate": "Anotações suas. Quando você tiver alguém por perto, viram acordos.",
+  "emptyTitle": "Nenhum acordo ainda",
+  "emptyTextShared": "Combine algo pequeno e peça para a outra pessoa confirmar.",
+  "emptyTextPrivate": "Anote algo que você gostaria de combinar.",
+  "statusPrivate": "Só você vê",
+  "statusConfirmed": "Confirmado pelos dois",
+  "statusWaitingPartner": "Esperando a outra pessoa",
+  "statusWaitingYou": "Esperando você",
+  "archiveTitle": "Guardar este acordo?",
+  "archiveTextShared": "Ele sai da lista para vocês dois.",
+  "archiveTextPrivate": "Ele sai da sua lista.",
+  "archiveConfirm": "Guardar",
+  "metaShared": "O que vocês combinaram",
+  "metaPrivate": "Anotações suas",
+  "errors(map)": {
+    "FREE_LIMIT_REACHED": "Você chegou ao limite de acordos do plano grátis. Guarde um ou conheça o Plus.",
+    "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
+    "other": "Não deu para concluir agora. Tente de novo."
+  }
+}

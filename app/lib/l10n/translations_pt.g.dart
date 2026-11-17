@@ -57,6 +57,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$account$pt account = Translations$account$pt.internal(_root);
+  late final Translations$agreements$pt agreements = Translations$agreements$pt.internal(_root);
   late final Translations$annoyanceCheck$pt annoyanceCheck =
       Translations$annoyanceCheck$pt.internal(_root);
   late final Translations$authentication$pt authentication =
@@ -350,6 +351,98 @@ class Translations$account$pt {
     'other': 'Não deu para concluir agora. Tente de novo.',
   };
   late final Translations$account$export$pt export = Translations$account$export$pt.internal(_root);
+}
+
+// Path: agreements
+class Translations$agreements$pt {
+  Translations$agreements$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Acordos'
+  String get title => 'Acordos';
+
+  /// pt: 'Novo acordo'
+  String get add => 'Novo acordo';
+
+  /// pt: 'Novo acordo'
+  String get addTitle => 'Novo acordo';
+
+  /// pt: 'O que vocês combinam'
+  String get bodyLabel => 'O que vocês combinam';
+
+  /// pt: 'Ex.: Conversar sobre dinheiro uma vez por mês'
+  String get bodyHint => 'Ex.: Conversar sobre dinheiro uma vez por mês';
+
+  Map<String, String> get bodyErrors => {
+    'empty': 'Escreva o acordo.',
+    'tooLong': 'Use no máximo 200 caracteres.',
+  };
+
+  /// pt: 'Propor'
+  String get propose => 'Propor';
+
+  /// pt: 'Confirmar'
+  String get confirm => 'Confirmar';
+
+  /// pt: 'Opções do acordo'
+  String get options => 'Opções do acordo';
+
+  /// pt: 'Frases curtas que vocês combinam. Só valem quando a outra pessoa confirma.'
+  String get subtitleShared =>
+      'Frases curtas que vocês combinam. Só valem quando a outra pessoa confirma.';
+
+  /// pt: 'Anotações suas. Quando você tiver alguém por perto, viram acordos.'
+  String get subtitlePrivate =>
+      'Anotações suas. Quando você tiver alguém por perto, viram acordos.';
+
+  /// pt: 'Nenhum acordo ainda'
+  String get emptyTitle => 'Nenhum acordo ainda';
+
+  /// pt: 'Combine algo pequeno e peça para a outra pessoa confirmar.'
+  String get emptyTextShared => 'Combine algo pequeno e peça para a outra pessoa confirmar.';
+
+  /// pt: 'Anote algo que você gostaria de combinar.'
+  String get emptyTextPrivate => 'Anote algo que você gostaria de combinar.';
+
+  /// pt: 'Só você vê'
+  String get statusPrivate => 'Só você vê';
+
+  /// pt: 'Confirmado pelos dois'
+  String get statusConfirmed => 'Confirmado pelos dois';
+
+  /// pt: 'Esperando a outra pessoa'
+  String get statusWaitingPartner => 'Esperando a outra pessoa';
+
+  /// pt: 'Esperando você'
+  String get statusWaitingYou => 'Esperando você';
+
+  /// pt: 'Guardar este acordo?'
+  String get archiveTitle => 'Guardar este acordo?';
+
+  /// pt: 'Ele sai da lista para vocês dois.'
+  String get archiveTextShared => 'Ele sai da lista para vocês dois.';
+
+  /// pt: 'Ele sai da sua lista.'
+  String get archiveTextPrivate => 'Ele sai da sua lista.';
+
+  /// pt: 'Guardar'
+  String get archiveConfirm => 'Guardar';
+
+  /// pt: 'O que vocês combinaram'
+  String get metaShared => 'O que vocês combinaram';
+
+  /// pt: 'Anotações suas'
+  String get metaPrivate => 'Anotações suas';
+
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED':
+        'Você chegou ao limite de acordos do plano grátis. Guarde um ou conheça o Plus.',
+    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
+    'other': 'Não deu para concluir agora. Tente de novo.',
+  };
 }
 
 // Path: annoyanceCheck
@@ -10159,6 +10252,38 @@ extension on Translations {
             'Você já gerou um arquivo hoje. Tente de novo amanhã.',
           'account.export.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'account.export.errors.other' => 'Não deu para gerar o arquivo agora. Tente de novo.',
+          'agreements.title' => 'Acordos',
+          'agreements.add' => 'Novo acordo',
+          'agreements.addTitle' => 'Novo acordo',
+          'agreements.bodyLabel' => 'O que vocês combinam',
+          'agreements.bodyHint' => 'Ex.: Conversar sobre dinheiro uma vez por mês',
+          'agreements.bodyErrors.empty' => 'Escreva o acordo.',
+          'agreements.bodyErrors.tooLong' => 'Use no máximo 200 caracteres.',
+          'agreements.propose' => 'Propor',
+          'agreements.confirm' => 'Confirmar',
+          'agreements.options' => 'Opções do acordo',
+          'agreements.subtitleShared' =>
+            'Frases curtas que vocês combinam. Só valem quando a outra pessoa confirma.',
+          'agreements.subtitlePrivate' =>
+            'Anotações suas. Quando você tiver alguém por perto, viram acordos.',
+          'agreements.emptyTitle' => 'Nenhum acordo ainda',
+          'agreements.emptyTextShared' =>
+            'Combine algo pequeno e peça para a outra pessoa confirmar.',
+          'agreements.emptyTextPrivate' => 'Anote algo que você gostaria de combinar.',
+          'agreements.statusPrivate' => 'Só você vê',
+          'agreements.statusConfirmed' => 'Confirmado pelos dois',
+          'agreements.statusWaitingPartner' => 'Esperando a outra pessoa',
+          'agreements.statusWaitingYou' => 'Esperando você',
+          'agreements.archiveTitle' => 'Guardar este acordo?',
+          'agreements.archiveTextShared' => 'Ele sai da lista para vocês dois.',
+          'agreements.archiveTextPrivate' => 'Ele sai da sua lista.',
+          'agreements.archiveConfirm' => 'Guardar',
+          'agreements.metaShared' => 'O que vocês combinaram',
+          'agreements.metaPrivate' => 'Anotações suas',
+          'agreements.errors.FREE_LIMIT_REACHED' =>
+            'Você chegou ao limite de acordos do plano grátis. Guarde um ou conheça o Plus.',
+          'agreements.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
+          'agreements.errors.other' => 'Não deu para concluir agora. Tente de novo.',
           'annoyanceCheck.title' => 'Isso ainda incomoda?',
           'annoyanceCheck.titleHighlight' => 'incomoda',
           'annoyanceCheck.age' => ({
@@ -10651,6 +10776,9 @@ extension on Translations {
           'dateNight.monthsShort.7' => 'ago',
           'dateNight.monthsShort.8' => 'set',
           'dateNight.monthsShort.9' => 'out',
+          _ => null,
+        } ??
+        switch (path) {
           'dateNight.monthsShort.10' => 'nov',
           'dateNight.monthsShort.11' => 'dez',
           'dateNight.planChoices.today' => 'Planejar para hoje',
@@ -10679,9 +10807,6 @@ extension on Translations {
           'dates.kinds.relationship' => 'Namoro',
           'dates.kinds.birthday' => 'Aniversário',
           'dates.kinds.first' => 'Uma primeira vez',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.kinds.trip' => 'Viagem',
           'dates.kinds.custom' => 'Outra',
           'dates.kinds.holiday' => 'Feriado',
@@ -11261,6 +11386,9 @@ extension on Translations {
             'A mascote só vê o que você escreve aqui. Os dados do seu par nunca são enviados.',
           'hardConversation.offline' => 'Sem conexão. A frase de abertura precisa de internet.',
           'hardConversation.emptyTitle' => 'Não deu para carregar',
+          _ => null,
+        } ??
+        switch (path) {
           'hardConversation.emptyText' => 'Tente de novo em instantes.',
           'hardConversation.plusTitle' => 'Preparar uma conversa faz parte do Plus',
           'hardConversation.plusText' => 'As três etapas e a sugestão de abertura estão no Plus.',
@@ -11293,9 +11421,6 @@ extension on Translations {
           'helpSupport.faqQuestions.replyTime' => 'Quando vou receber uma resposta?',
           'helpSupport.faqQuestions.offline' => 'E se eu enviar sem internet?',
           'helpSupport.faqQuestions.privacy' => 'Quem lê o que eu envio?',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.faqQuestions.reportBug' => 'Como relato um erro?',
           'helpSupport.faqAnswers.replyTime' => 'Respondemos em até 2 dias úteis.',
           'helpSupport.faqAnswers.offline' =>
@@ -11943,6 +12068,9 @@ extension on Translations {
           'loveStyle.descriptions.acts' => 'Você se sente querido(a) quando alguém percebe o que você precisa e ajuda sem que você peça.',
           'loveStyle.descriptions.gifts' => 'Você se sente querido(a) quando alguém lembra de você num detalhe pequeno, escolhido com carinho.',
           'loveStyle.descriptions.touch' => 'Você se sente querido(a) quando um abraço, uma mão dada ou um carinho dizem o que as palavras não dizem.',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.descriptions.other' => '',
           'loveStyle.shareDescriptions.time' =>
             'Eu me sinto querido(a) quando a gente passa um tempo junto, sem pressa e sem telas.',
@@ -11977,9 +12105,6 @@ extension on Translations {
             'Não deu para salvar no Meu manual agora. Tente de novo.',
           'loveStyle.shareErrors.NOT_PAIRED' => 'Você ainda não tem um par conectado.',
           'loveStyle.shareErrors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.shareErrors.other' => 'Não deu para mostrar agora. Tente de novo.',
           'loveStyle.revokeErrors.RATE_LIMITED' =>
             'Muitas tentativas seguidas. Espere um instante.',
@@ -12540,6 +12665,9 @@ extension on Translations {
           'profileSetup.months.9' => 'outubro',
           'profileSetup.months.10' => 'novembro',
           'profileSetup.months.11' => 'dezembro',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.continueButton' => 'Continuar',
           'profileSetup.errors.INVALID_DATE' =>
             'Essa data não parece certa. Escolha uma entre 1950 e hoje.',
@@ -12575,9 +12703,6 @@ extension on Translations {
           'programs.restart' => 'Começar de novo',
           'programs.restartConfirmTitle' => 'Começar de novo?',
           'programs.restartConfirmText' => 'Isto limpa suas marcações e volta à primeira lição.',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.restartConfirm' => 'Começar de novo',
           'programs.completed' => 'Concluído',
           'programs.lessonsTitle' => 'Lições',
@@ -13121,6 +13246,9 @@ extension on Translations {
           'slipDetail.weekdays.3' => 'quinta',
           'slipDetail.weekdays.4' => 'sexta',
           'slipDetail.weekdays.5' => 'sábado',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.weekdays.6' => 'domingo',
           'slipDetail.monthsShort.0' => 'jan',
           'slipDetail.monthsShort.1' => 'fev',
@@ -13149,9 +13277,6 @@ extension on Translations {
           'slipDetail.edit' => 'Editar',
           'slipDetail.editSave' => 'Salvar',
           'slipDetail.editCancel' => 'Cancelar',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.delete' => 'Apagar',
           'slipDetail.deleteTitle' => 'Apagar este slip?',
           'slipDetail.deleteText' => 'Será removido da sua semana e da linha do tempo.',
@@ -13747,6 +13872,9 @@ extension on Translations {
           'unpair.title' => ({required Object name}) => 'Desvincular da ${name}?',
           'unpair.text' => 'Cartões e listas compartilhados param. Suas notas continuam com você.',
           'unpair.confirm' => 'Desvincular',
+          _ => null,
+        } ??
+        switch (path) {
           'unpair.cancel' => 'Cancelar',
           'unpair.unnamedPartner' => 'sua pessoa',
           'unpair.done.title' => 'Desvinculado',
@@ -13776,9 +13904,6 @@ extension on Translations {
           'unpair.errors.other' => 'Não deu para desvincular agora. Tente de novo.',
           'weeklyReview.title' => 'Sua semana',
           'weeklyReview.titleHighlight' => 'semana',
-          _ => null,
-        } ??
-        switch (path) {
           'weeklyReview.range' => ({
             required Object start,
             required Object end,

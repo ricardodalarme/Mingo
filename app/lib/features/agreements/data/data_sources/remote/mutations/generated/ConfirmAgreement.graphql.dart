@@ -1,0 +1,271 @@
+// dart format width=100
+import '../../fragments/generated/AgreementFragment.graphql.dart';
+
+import 'dart:async';
+
+import 'package:gql/ast.dart';
+import 'package:graphql/client.dart' as graphql;
+
+class VariablesMutationConfirmAgreement {
+  factory VariablesMutationConfirmAgreement({required String id}) =>
+      VariablesMutationConfirmAgreement._({r'id': id});
+
+  VariablesMutationConfirmAgreement._(this._$data);
+
+  factory VariablesMutationConfirmAgreement.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    return VariablesMutationConfirmAgreement._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    return result$data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! VariablesMutationConfirmAgreement || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    return Object.hashAll([l$id]);
+  }
+}
+
+class MutationConfirmAgreement {
+  MutationConfirmAgreement({required this.confirmAgreement, this.$__typename = 'mutation_root'});
+
+  factory MutationConfirmAgreement.fromJson(Map<String, dynamic> json) {
+    final l$confirmAgreement = json['confirmAgreement'];
+    final l$$__typename = json['__typename'];
+    return MutationConfirmAgreement(
+      confirmAgreement: (l$confirmAgreement as List<dynamic>)
+          .map((e) => FragmentAgreementFragment.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<FragmentAgreementFragment> confirmAgreement;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$confirmAgreement = confirmAgreement;
+    _resultData['confirmAgreement'] = l$confirmAgreement.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$confirmAgreement = confirmAgreement;
+    final l$$__typename = $__typename;
+    return Object.hashAll([Object.hashAll(l$confirmAgreement.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! MutationConfirmAgreement || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$confirmAgreement = confirmAgreement;
+    final lOther$confirmAgreement = other.confirmAgreement;
+    if (l$confirmAgreement.length != lOther$confirmAgreement.length) {
+      return false;
+    }
+    for (int i = 0; i < l$confirmAgreement.length; i++) {
+      final l$confirmAgreement$entry = l$confirmAgreement[i];
+      final lOther$confirmAgreement$entry = lOther$confirmAgreement[i];
+      if (l$confirmAgreement$entry != lOther$confirmAgreement$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+const documentNodeMutationConfirmAgreement = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'ConfirmAgreement'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'id')),
+          type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'confirmAgreement'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                name: NameNode(value: 'args'),
+                value: ObjectValueNode(
+                  fields: [
+                    ObjectFieldNode(
+                      name: NameNode(value: 'agreementId'),
+                      value: VariableNode(name: NameNode(value: 'id')),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FragmentSpreadNode(
+                  name: NameNode(value: 'AgreementFragment'),
+                  directives: [],
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ],
+      ),
+    ),
+    fragmentDefinitionAgreementFragment,
+  ],
+);
+MutationConfirmAgreement _parserFnMutationConfirmAgreement(Map<String, dynamic> data) =>
+    MutationConfirmAgreement.fromJson(data);
+typedef OnMutationCompletedMutationConfirmAgreement = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  MutationConfirmAgreement?,
+);
+
+class OptionsMutationConfirmAgreement extends graphql.MutationOptions<MutationConfirmAgreement> {
+  OptionsMutationConfirmAgreement({
+    String? operationName,
+    required VariablesMutationConfirmAgreement variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    MutationConfirmAgreement? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompletedMutationConfirmAgreement? onCompleted,
+    graphql.OnMutationUpdate<MutationConfirmAgreement>? update,
+    graphql.OnError? onError,
+  }) : onCompletedWithParsed = onCompleted,
+       super(
+         variables: variables.toJson(),
+         operationName: operationName ?? 'ConfirmAgreement',
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         onCompleted: onCompleted == null
+             ? null
+             : (data) =>
+                   onCompleted(data, data == null ? null : _parserFnMutationConfirmAgreement(data)),
+         update: update,
+         onError: onError,
+         document: documentNodeMutationConfirmAgreement,
+         parserFn: _parserFnMutationConfirmAgreement,
+       );
+
+  final OnMutationCompletedMutationConfirmAgreement? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+    ...super.onCompleted == null
+        ? super.properties
+        : super.properties.where((property) => property != onCompleted),
+    onCompletedWithParsed,
+  ];
+}
+
+class WatchOptionsMutationConfirmAgreement
+    extends graphql.WatchQueryOptions<MutationConfirmAgreement> {
+  WatchOptionsMutationConfirmAgreement({
+    String? operationName,
+    required VariablesMutationConfirmAgreement variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    MutationConfirmAgreement? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+         variables: variables.toJson(),
+         operationName: operationName ?? 'ConfirmAgreement',
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeMutationConfirmAgreement,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFnMutationConfirmAgreement,
+       );
+}
+
+extension ClientExtensionMutationConfirmAgreement on graphql.GraphQLClient {
+  Future<graphql.QueryResult<MutationConfirmAgreement>> mutateConfirmAgreement(
+    OptionsMutationConfirmAgreement options,
+  ) async => await this.mutate(options);
+
+  graphql.ObservableQuery<MutationConfirmAgreement> watchMutationConfirmAgreement(
+    WatchOptionsMutationConfirmAgreement options,
+  ) => this.watchMutation(options);
+}

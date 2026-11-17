@@ -1,6 +1,7 @@
 import 'package:app/app.dart';
 import 'package:app/features/_shared/di/shared_injection_module.dart';
 import 'package:app/features/account/di/account_injection_module.dart';
+import 'package:app/features/agreements/di/agreements_injection_module.dart';
 import 'package:app/features/annoyances/di/annoyances_injection_module.dart';
 import 'package:app/features/app/di/app_injection_module.dart';
 import 'package:app/features/authentication/di/authentication_injection_module.dart';
@@ -84,6 +85,7 @@ void _registerModules() {
     GuidesInjectionModule(),
     IdeasInjectionModule(),
     ListsInjectionModule(),
+    AgreementsInjectionModule(),
     NotesInjectionModule(),
     ConnectInjectionModule(),
     DistanceInjectionModule(),

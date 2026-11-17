@@ -62,6 +62,22 @@ class AcceptInviteRouteArgs {
 }
 
 /// generated route for
+/// [AgreementsPage]
+class AgreementsRoute extends PageRouteInfo<void> {
+  const AgreementsRoute({List<PageRouteInfo>? children})
+    : super(AgreementsRoute.name, initialChildren: children);
+
+  static const String name = 'AgreementsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const AgreementsPage());
+    },
+  );
+}
+
+/// generated route for
 /// [AnnoyanceCheckPage]
 class AnnoyanceCheckRoute extends PageRouteInfo<AnnoyanceCheckRouteArgs> {
   AnnoyanceCheckRoute({

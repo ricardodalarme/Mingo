@@ -1,0 +1,7 @@
+fragment AgreementFragment on agreements {
+  id
+  body
+  authorId
+  coupleId
+  confirmedAt
+}

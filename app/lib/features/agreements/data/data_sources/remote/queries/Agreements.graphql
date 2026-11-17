@@ -1,0 +1,5 @@
+query Agreements {
+  agreements(where: { archivedAt: { _is_null: true } }, order_by: [{ createdAt: desc }], limit: 100) {
+    ...AgreementFragment
+  }
+}

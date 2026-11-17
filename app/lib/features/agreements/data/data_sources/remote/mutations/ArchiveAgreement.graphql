@@ -1,0 +1,5 @@
+mutation ArchiveAgreement($id: uuid!, $archivedAt: timestamptz!) {
+  updateAgreementsByPk(pk_columns: { id: $id }, _set: { archivedAt: $archivedAt }) {
+    id
+  }
+}

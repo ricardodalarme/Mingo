@@ -56,6 +56,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$account$en account = _Translations$account$en._(_root);
   @override
+  late final _Translations$agreements$en agreements = _Translations$agreements$en._(_root);
+  @override
   late final _Translations$annoyanceCheck$en annoyanceCheck = _Translations$annoyanceCheck$en._(
     _root,
   );
@@ -380,6 +382,75 @@ class _Translations$account$en extends Translations$account$pt {
   };
   @override
   late final _Translations$account$export$en export = _Translations$account$export$en._(_root);
+}
+
+// Path: agreements
+class _Translations$agreements$en extends Translations$agreements$pt {
+  _Translations$agreements$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Agreements';
+  @override
+  String get add => 'New agreement';
+  @override
+  String get addTitle => 'New agreement';
+  @override
+  String get bodyLabel => 'What you agree on';
+  @override
+  String get bodyHint => 'E.g. Talk about money once a month';
+  @override
+  Map<String, String> get bodyErrors => {
+    'empty': 'Write the agreement.',
+    'tooLong': 'Use 200 characters at most.',
+  };
+  @override
+  String get propose => 'Propose';
+  @override
+  String get confirm => 'Confirm';
+  @override
+  String get options => 'Agreement options';
+  @override
+  String get subtitleShared =>
+      'Short sentences you agree on. They only count once the other person confirms.';
+  @override
+  String get subtitlePrivate =>
+      'Notes for yourself. When someone joins you they become agreements.';
+  @override
+  String get emptyTitle => 'No agreements yet';
+  @override
+  String get emptyTextShared => 'Agree on something small and ask the other person to confirm.';
+  @override
+  String get emptyTextPrivate => 'Note something you would like to agree on.';
+  @override
+  String get statusPrivate => 'Only you see it';
+  @override
+  String get statusConfirmed => 'Confirmed by both';
+  @override
+  String get statusWaitingPartner => 'Waiting for the other person';
+  @override
+  String get statusWaitingYou => 'Waiting for you';
+  @override
+  String get archiveTitle => 'Put this agreement away?';
+  @override
+  String get archiveTextShared => 'It leaves the list for both of you.';
+  @override
+  String get archiveTextPrivate => 'It leaves your list.';
+  @override
+  String get archiveConfirm => 'Put away';
+  @override
+  String get metaShared => 'What you agreed on';
+  @override
+  String get metaPrivate => 'Notes for yourself';
+  @override
+  Map<String, String> get errors => {
+    'FREE_LIMIT_REACHED':
+        'You reached the free plan limit of agreements. Put one away or see Plus.',
+    'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
+    'other': 'We could not finish that now. Try again.',
+  };
 }
 
 // Path: annoyanceCheck
@@ -8200,6 +8271,38 @@ extension on TranslationsEn {
             'You already built a file today. Try again tomorrow.',
           'account.export.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'account.export.errors.other' => 'We could not build the file now. Try again.',
+          'agreements.title' => 'Agreements',
+          'agreements.add' => 'New agreement',
+          'agreements.addTitle' => 'New agreement',
+          'agreements.bodyLabel' => 'What you agree on',
+          'agreements.bodyHint' => 'E.g. Talk about money once a month',
+          'agreements.bodyErrors.empty' => 'Write the agreement.',
+          'agreements.bodyErrors.tooLong' => 'Use 200 characters at most.',
+          'agreements.propose' => 'Propose',
+          'agreements.confirm' => 'Confirm',
+          'agreements.options' => 'Agreement options',
+          'agreements.subtitleShared' =>
+            'Short sentences you agree on. They only count once the other person confirms.',
+          'agreements.subtitlePrivate' =>
+            'Notes for yourself. When someone joins you they become agreements.',
+          'agreements.emptyTitle' => 'No agreements yet',
+          'agreements.emptyTextShared' =>
+            'Agree on something small and ask the other person to confirm.',
+          'agreements.emptyTextPrivate' => 'Note something you would like to agree on.',
+          'agreements.statusPrivate' => 'Only you see it',
+          'agreements.statusConfirmed' => 'Confirmed by both',
+          'agreements.statusWaitingPartner' => 'Waiting for the other person',
+          'agreements.statusWaitingYou' => 'Waiting for you',
+          'agreements.archiveTitle' => 'Put this agreement away?',
+          'agreements.archiveTextShared' => 'It leaves the list for both of you.',
+          'agreements.archiveTextPrivate' => 'It leaves your list.',
+          'agreements.archiveConfirm' => 'Put away',
+          'agreements.metaShared' => 'What you agreed on',
+          'agreements.metaPrivate' => 'Notes for yourself',
+          'agreements.errors.FREE_LIMIT_REACHED' =>
+            'You reached the free plan limit of agreements. Put one away or see Plus.',
+          'agreements.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
+          'agreements.errors.other' => 'We could not finish that now. Try again.',
           'annoyanceCheck.title' => 'Does this still bother you?',
           'annoyanceCheck.titleHighlight' => 'bother',
           'annoyanceCheck.age' => ({
@@ -8684,6 +8787,9 @@ extension on TranslationsEn {
           'dateNight.monthsShort.7' => 'Aug',
           'dateNight.monthsShort.8' => 'Sep',
           'dateNight.monthsShort.9' => 'Oct',
+          _ => null,
+        } ??
+        switch (path) {
           'dateNight.monthsShort.10' => 'Nov',
           'dateNight.monthsShort.11' => 'Dec',
           'dateNight.planChoices.today' => 'Plan for today',
@@ -8712,9 +8818,6 @@ extension on TranslationsEn {
           'dates.kinds.relationship' => 'Relationship',
           'dates.kinds.birthday' => 'Birthday',
           'dates.kinds.first' => 'A first time',
-          _ => null,
-        } ??
-        switch (path) {
           'dates.kinds.trip' => 'Trip',
           'dates.kinds.custom' => 'Other',
           'dates.kinds.holiday' => 'Holiday',
@@ -9290,6 +9393,9 @@ extension on TranslationsEn {
             'The mascot only sees what you write here. Your partner\'s data is never sent.',
           'hardConversation.offline' => 'You\'re offline. The opening sentence needs a connection.',
           'hardConversation.emptyTitle' => 'Couldn\'t load',
+          _ => null,
+        } ??
+        switch (path) {
           'hardConversation.emptyText' => 'Try again in a moment.',
           'hardConversation.plusTitle' => 'Preparing a conversation is part of Plus',
           'hardConversation.plusText' => 'The three steps and the opening suggestion are in Plus.',
@@ -9321,9 +9427,6 @@ extension on TranslationsEn {
           'helpSupport.faqQuestions.replyTime' => 'When will I get an answer?',
           'helpSupport.faqQuestions.offline' => 'What if I send without internet?',
           'helpSupport.faqQuestions.privacy' => 'Who reads what I send?',
-          _ => null,
-        } ??
-        switch (path) {
           'helpSupport.faqQuestions.reportBug' => 'How do I report a bug?',
           'helpSupport.faqAnswers.replyTime' => 'We reply within 2 business days.',
           'helpSupport.faqAnswers.offline' =>
@@ -9972,6 +10075,9 @@ extension on TranslationsEn {
             'You feel loved when someone remembers you in a small detail, chosen with care.',
           'loveStyle.descriptions.touch' =>
             'You feel loved when a hug, a held hand or a caress says what words cannot.',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.descriptions.other' => '',
           'loveStyle.shareDescriptions.time' =>
             'I feel loved when we spend unhurried time together, with no screens.',
@@ -10006,9 +10112,6 @@ extension on TranslationsEn {
           'loveStyle.manualErrors.other' => 'Couldn\'t save to My manual right now. Try again.',
           'loveStyle.shareErrors.NOT_PAIRED' => 'You don\'t have a connected partner yet.',
           'loveStyle.shareErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.shareErrors.other' => 'Couldn\'t show it right now. Try again.',
           'loveStyle.revokeErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'loveStyle.revokeErrors.other' =>
@@ -10563,6 +10666,9 @@ extension on TranslationsEn {
           'profileSetup.months.9' => 'October',
           'profileSetup.months.10' => 'November',
           'profileSetup.months.11' => 'December',
+          _ => null,
+        } ??
+        switch (path) {
           'profileSetup.continueButton' => 'Continue',
           'profileSetup.errors.INVALID_DATE' =>
             'That date does not look right. Pick one between 1950 and today.',
@@ -10599,9 +10705,6 @@ extension on TranslationsEn {
           'programs.restartConfirmTitle' => 'Start over?',
           'programs.restartConfirmText' =>
             'This clears your lesson marks and returns to the first lesson.',
-          _ => null,
-        } ??
-        switch (path) {
           'programs.restartConfirm' => 'Start over',
           'programs.completed' => 'Completed',
           'programs.lessonsTitle' => 'Lessons',
@@ -11138,6 +11241,9 @@ extension on TranslationsEn {
           'slipDetail.weekdays.3' => 'Thursday',
           'slipDetail.weekdays.4' => 'Friday',
           'slipDetail.weekdays.5' => 'Saturday',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.weekdays.6' => 'Sunday',
           'slipDetail.monthsShort.0' => 'Jan',
           'slipDetail.monthsShort.1' => 'Feb',
@@ -11166,9 +11272,6 @@ extension on TranslationsEn {
           'slipDetail.edit' => 'Edit',
           'slipDetail.editSave' => 'Save',
           'slipDetail.editCancel' => 'Cancel',
-          _ => null,
-        } ??
-        switch (path) {
           'slipDetail.delete' => 'Delete',
           'slipDetail.deleteTitle' => 'Delete this slip?',
           'slipDetail.deleteText' => 'It will be removed from your week and your timeline.',
@@ -11764,6 +11867,9 @@ extension on TranslationsEn {
           'unpair.title' => ({required Object name}) => 'Unpair from ${name}?',
           'unpair.text' => 'Shared cards and lists stop. Your notes stay with you.',
           'unpair.confirm' => 'Unpair',
+          _ => null,
+        } ??
+        switch (path) {
           'unpair.cancel' => 'Cancel',
           'unpair.unnamedPartner' => 'your person',
           'unpair.done.title' => 'Unpaired',
@@ -11793,9 +11899,6 @@ extension on TranslationsEn {
           'unpair.errors.other' => 'Could not unpair right now. Try again.',
           'weeklyReview.title' => 'Your week',
           'weeklyReview.titleHighlight' => 'week',
-          _ => null,
-        } ??
-        switch (path) {
           'weeklyReview.range' => ({
             required Object month,
             required Object start,
