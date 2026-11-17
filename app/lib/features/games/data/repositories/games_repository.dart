@@ -1,6 +1,9 @@
 import 'package:app/features/_shared/data/mappers/content_kind_mapper.dart';
 import 'package:app/features/games/data/data_sources/remote/games_data_source.dart';
 import 'package:app/features/games/data/mappers/game_enum_mapper.dart';
+import 'package:app/features/games/data/mappers/game_item_mapper.dart';
+import 'package:app/features/games/data/mappers/game_session_mapper.dart';
+import 'package:app/features/games/data/mappers/games_overview_mapper.dart';
 import 'package:app/features/games/data/models/game_item.dart';
 import 'package:app/features/games/data/models/game_kind.dart';
 import 'package:app/features/games/data/models/game_play.dart';
@@ -24,7 +27,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
   Future<GamesOverview> getOverview() => _run('read the games', () async {
     final record = await _dataSource.getSessions();
 
-    return _overview(record);
+    return record.toModel();
   });
 
   /// Emits the couple's sessions now and each time one is created or changes.
@@ -33,7 +36,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
   Stream<List<GameSession>> watchSessions() {
     return _dataSource
         .watchSessions()
-        .map((records) => [for (final record in records) ?_session(record)])
+        .map((records) => [for (final record in records) ?record.toModel()])
         .handleError((Object e, StackTrace stack) {
           _logger.error('The game sessions subscription failed', error: e, stackTrace: stack);
         });
@@ -47,7 +50,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
   Future<GamePlay> getPlay({required GameKind kind, required String locale, DateTime? now}) =>
       _run('read a game', () async {
         final record = await _dataSource.getSessions();
-        final overview = _overview(record);
+        final overview = record.toModel();
         if (!record.hasCouple) {
           return GamePlay(kind: kind, selfId: record.selfId, hasPartner: false);
         }
@@ -110,7 +113,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
       itemSlugs: kind.asksTwice ? [...slugs, ...slugs] : slugs,
     );
 
-    return _session(record)!;
+    return record.toModel()!;
   });
 
   Future<GameSession> join(GameSession session) => _update('join a game', session, 'join');
@@ -130,7 +133,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
     try {
       final record = await _dataSource.update(sessionId: session.id, action: 'finish');
 
-      return _session(record);
+      return record.toModel();
     } on LocalizedException catch (exception) {
       if (exception.l10nKey == gameNotCompleteCode) return null;
       _logger.error('Failed to finish a game (${exception.l10nKey})');
@@ -142,7 +145,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
       _run(what, () async {
         final record = await _dataSource.update(sessionId: session.id, action: action);
 
-        return _session(record)!;
+        return record.toModel()!;
       });
 
   Future<List<GameItem>> _available(GameKind kind, String locale) async {
@@ -154,7 +157,7 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
       limit: kind.itemCount,
     );
 
-    return [for (final record in records) _item(record)];
+    return [for (final record in records) record.toModel()];
   }
 
   Future<List<GameItem>> _items(GameKind kind, String locale, List<String> slugs) async {
@@ -165,34 +168,9 @@ class GamesRepository({required final GamesDataSource _dataSource}) {
       locale: locale,
       slugs: slugs.toSet().toList(),
     );
-    final bySlug = {for (final record in records) record.slug: _item(record)};
+    final bySlug = {for (final record in records) record.slug: record.toModel()};
 
     return [for (final slug in slugs) ?bySlug[slug]];
-  }
-
-  GamesOverview _overview(GameSessionsRecord record) => GamesOverview(
-    selfId: record.selfId,
-    hasPartner: record.hasCouple,
-    partnerName: record.partnerName,
-    sessions: [for (final session in record.sessions) ?_session(session)],
-  );
-
-  GameItem _item(GameItemRecord record) =>
-      GameItem(slug: record.slug, title: record.title, body: record.body);
-
-  /// Maps a session row, or null when the app has no screens for its game.
-  GameSession? _session(GameSessionRecord record) {
-    final game = record.game.toModel();
-    if (game == null) return null;
-
-    return GameSession(
-      id: record.id,
-      game: game,
-      status: record.status.toModel(),
-      invitedBy: record.invitedBy,
-      itemSlugs: record.itemSlugs,
-      createdAt: record.createdAt,
-    );
   }
 
   Future<T> _run<T>(String what, Future<T> Function() action) async {
