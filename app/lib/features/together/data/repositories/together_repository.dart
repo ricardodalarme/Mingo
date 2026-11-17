@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:app/features/_shared/data/mappers/content_kind_mapper.dart';
 import 'package:app/features/_shared/data/models/content_kind.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
-import 'package:app/features/together/data/data_sources/remote/fragments/generated/LogisticItemFragment.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/together_data_source.dart';
+import 'package:app/features/together/data/mappers/date_idea_mapper.dart';
+import 'package:app/features/together/data/mappers/logistic_item_mapper.dart';
+import 'package:app/features/together/data/mappers/ritual_mapper.dart';
 import 'package:app/features/together/data/mappers/together_enum_mapper.dart';
 import 'package:app/features/together/data/models/date_idea.dart';
 import 'package:app/features/together/data/models/date_idea_status.dart';
@@ -68,7 +70,7 @@ class TogetherRepository({
 
   Future<List<LogisticItem>> getLogisticItems() async {
     try {
-      return [for (final node in await _dataSource.getLogisticItems()) _logisticItem(node)];
+      return [for (final node in await _dataSource.getLogisticItems()) node.toModel()];
     } catch (e, stack) {
       _logger.error('Failed to read logistics', error: e, stackTrace: stack);
       rethrow;
@@ -81,21 +83,11 @@ class TogetherRepository({
   Stream<List<LogisticItem>> watchLogisticItems() {
     return _dataSource
         .watchLogisticItems()
-        .map((nodes) => [for (final node in nodes) _logisticItem(node)])
+        .map((nodes) => [for (final node in nodes) node.toModel()])
         .handleError((Object e, StackTrace stack) {
           _logger.error('The logistics subscription failed', error: e, stackTrace: stack);
         });
   }
-
-  LogisticItem _logisticItem(FragmentLogisticItemFragment node) => LogisticItem(
-    id: node.id,
-    title: node.title,
-    assigneeId: node.assigneeId,
-    authorId: node.authorId,
-    isShared: node.coupleId != null,
-    isConfirmed: node.confirmedAt != null,
-    isDone: node.doneAt != null,
-  );
 
   /// Adds an item shared with the partner when there is one; the client [id] makes retries safe.
   Future<void> addLogisticItem({
@@ -137,19 +129,7 @@ class TogetherRepository({
 
   Future<List<Ritual>> getRituals() async {
     try {
-      return [
-        for (final node in await _dataSource.getRituals())
-          Ritual(
-            id: node.id,
-            title: node.title,
-            cadence: node.cadence.toModel(),
-            weekday: node.weekday,
-            hour: _hourOf(node.atTime),
-            hasReminder: node.reminder,
-            plannerId: node.plannerId,
-            lastDoneOn: node.logs.firstOrNull?.doneOn,
-          ),
-      ];
+      return [for (final node in await _dataSource.getRituals()) node.toModel()];
     } catch (e, stack) {
       _logger.error('Failed to read rituals', error: e, stackTrace: stack);
       rethrow;
@@ -201,15 +181,7 @@ class TogetherRepository({
 
   Future<List<DateIdea>> getDateIdeas() async {
     try {
-      return [
-        for (final node in await _dataSource.getDateIdeas())
-          DateIdea(
-            id: node.id,
-            title: node.title,
-            status: node.status.toModel(),
-            plannedFor: node.plannedFor,
-          ),
-      ];
+      return [for (final node in await _dataSource.getDateIdeas()) node.toModel()];
     } catch (e, stack) {
       _logger.error('Failed to read date ideas', error: e, stackTrace: stack);
       rethrow;
@@ -219,10 +191,7 @@ class TogetherRepository({
   /// The editorial ideas offered when the couple has none of its own.
   Future<List<DateIdeaSuggestion>> getDateIdeaSuggestions(String locale) async {
     try {
-      return [
-        for (final node in await _dataSource.getDateIdeaSuggestions(locale))
-          DateIdeaSuggestion(slug: node.slug, title: node.title),
-      ];
+      return [for (final node in await _dataSource.getDateIdeaSuggestions(locale)) node.toModel()];
     } catch (e, stack) {
       _logger.error('Failed to read date suggestions', error: e, stackTrace: stack);
       rethrow;
@@ -278,8 +247,6 @@ class TogetherRepository({
       rethrow;
     }
   }
-
-  int _hourOf(String? time) => time == null ? 19 : int.tryParse(time.split(':').first) ?? 19;
 
   Future<void> _run(String what, Future<void> Function() action) async {
     try {
