@@ -1,4 +1,5 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/together/data/data_sources/remote/fragments/generated/LogisticItemFragment.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/AddDateIdea.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/AddLogisticItem.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/AddRitual.graphql.dart';
@@ -19,6 +20,7 @@ import 'package:app/features/together/data/data_sources/remote/queries/generated
 import 'package:app/features/together/data/data_sources/remote/queries/generated/LogisticItems.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/queries/generated/MyCouple.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/queries/generated/Rituals.graphql.dart';
+import 'package:app/features/together/data/data_sources/remote/subscriptions/generated/WatchLogisticItems.graphql.dart';
 import 'package:network/network.dart';
 
 class TogetherDataSource({required final GQLClient _client}) {
@@ -37,12 +39,21 @@ class TogetherDataSource({required final GQLClient _client}) {
     return response.parsedData?.today.firstOrNull;
   }
 
-  Future<List<QueryLogisticItemslogisticItems>> getLogisticItems() async {
+  Future<List<FragmentLogisticItemFragment>> getLogisticItems() async {
     final response = await _client.query(
       OptionsQueryLogisticItems(fetchPolicy: FetchPolicy.networkOnly),
     );
 
-    return validateResponseData(response, getData: (data) => data.logisticItems);
+    return List<FragmentLogisticItemFragment>.of(
+      validateResponseData(response, getData: (data) => data.logisticItems),
+    );
+  }
+
+  /// Emits the shared list now and each time an item is added, assigned, done or removed.
+  Stream<List<FragmentLogisticItemFragment>> watchLogisticItems() {
+    return _client
+        .subscribe(OptionsSubscriptionWatchLogisticItems())
+        .mapResponseData((data) => List<FragmentLogisticItemFragment>.of(data.logisticItems));
   }
 
   Future<void> addLogisticItem({

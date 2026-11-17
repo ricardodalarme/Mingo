@@ -1,11 +1,5 @@
 query LogisticItems {
   logisticItems(order_by: [{ createdAt: desc_nulls_last }], limit: 200) {
-    id
-    title
-    assigneeId
-    authorId
-    coupleId
-    doneAt
-    confirmedAt
+    ...LogisticItemFragment
   }
 }

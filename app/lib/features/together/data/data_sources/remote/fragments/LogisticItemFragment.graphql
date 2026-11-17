@@ -1,0 +1,9 @@
+fragment LogisticItemFragment on logisticItems {
+  id
+  title
+  assigneeId
+  authorId
+  coupleId
+  doneAt
+  confirmedAt
+}

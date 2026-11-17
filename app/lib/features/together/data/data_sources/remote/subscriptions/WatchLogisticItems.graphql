@@ -1,0 +1,5 @@
+subscription WatchLogisticItems {
+  logisticItems(order_by: [{ createdAt: desc_nulls_last }], limit: 200) {
+    ...LogisticItemFragment
+  }
+}

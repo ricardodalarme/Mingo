@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/together/data/models/logistic_item.dart';
@@ -17,6 +19,7 @@ class LogisticsCubit({
   this : super(const LogisticsState());
 
   final Uuid _uuid = const Uuid();
+  StreamSubscription<List<LogisticItem>>? _live;
 
   /// Reads the list and who the person shares it with; the list on screen stays while it reloads.
   Future<void> load() async {
@@ -35,6 +38,7 @@ class LogisticsCubit({
           partnerName: partner?.displayName,
         ),
       );
+      _watch();
     } catch (exception) {
       if (state.items is Success) return;
       emit(state.copyWith(items: Failure.fromObject(exception)));
@@ -87,5 +91,21 @@ class LogisticsCubit({
       emit(state.copyWith(changeAction: Failure.fromObject(exception)));
       emit(state.copyWith(changeAction: const Initial()));
     }
+  }
+
+  /// Follows the list after the first read, so an item the partner adds, assigns or ticks
+  /// shows up while the page is open.
+  void _watch() {
+    _live ??= _togetherRepository.watchLogisticItems().listen((items) {
+      if (state.items is! Success) return;
+      emit(state.copyWith(items: Success(items)));
+    });
+  }
+
+  @override
+  Future<void> close() async {
+    await _live?.cancel();
+
+    return super.close();
   }
 }

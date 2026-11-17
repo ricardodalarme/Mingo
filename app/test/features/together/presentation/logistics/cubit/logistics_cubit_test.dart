@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
@@ -19,11 +21,15 @@ void main() {
   late TogetherRepository together;
   late ProfileRepository profile;
   late PairingRepository pairing;
+  late StreamController<List<LogisticItem>> live;
 
   const item = LogisticItem(id: 'i1', title: 'Comprar pão');
 
   setUp(() {
     together = _MockTogetherRepository();
+    live = StreamController<List<LogisticItem>>.broadcast();
+    addTearDown(live.close);
+    when(() => together.watchLogisticItems()).thenAnswer((_) => live.stream);
     profile = _MockProfileRepository();
     pairing = _MockPairingRepository();
     when(() => profile.getMyProfile()).thenAnswer(
@@ -166,5 +172,35 @@ void main() {
 
     verify(() => together.confirmLogisticItem('i1')).called(1);
     verify(() => together.getLogisticItems()).called(2);
+  });
+
+  test('an item the partner adds shows up while the page is open', () async {
+    const added = LogisticItem(id: 'i2', title: 'Ligar para o hotel');
+    final cubit = LogisticsCubit(
+      togetherRepository: together,
+      profileRepository: profile,
+      pairingRepository: pairing,
+    );
+    addTearDown(cubit.close);
+    await cubit.load();
+
+    live.add([added, item]);
+    await pumpEventQueue();
+
+    expect((cubit.state.items as Success<List<LogisticItem>>).value, [added, item]);
+  });
+
+  test('stops following the list when it closes', () async {
+    final cubit = LogisticsCubit(
+      togetherRepository: together,
+      profileRepository: profile,
+      pairingRepository: pairing,
+    );
+    await cubit.load();
+    expect(live.hasListener, isTrue);
+
+    await cubit.close();
+
+    expect(live.hasListener, isFalse);
   });
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/features/_shared/data/mappers/content_kind_mapper.dart';
 import 'package:app/features/_shared/data/models/content_kind.dart';
+import 'package:app/features/together/data/data_sources/remote/fragments/generated/LogisticItemFragment.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/together_data_source.dart';
 import 'package:app/features/together/data/mappers/together_enum_mapper.dart';
 import 'package:app/features/together/data/models/date_idea.dart';
@@ -26,23 +27,34 @@ class TogetherRepository({required final TogetherDataSource _dataSource}) {
 
   Future<List<LogisticItem>> getLogisticItems() async {
     try {
-      return [
-        for (final node in await _dataSource.getLogisticItems())
-          LogisticItem(
-            id: node.id,
-            title: node.title,
-            assigneeId: node.assigneeId,
-            authorId: node.authorId,
-            isShared: node.coupleId != null,
-            isConfirmed: node.confirmedAt != null,
-            isDone: node.doneAt != null,
-          ),
-      ];
+      return [for (final node in await _dataSource.getLogisticItems()) _logisticItem(node)];
     } catch (e, stack) {
       _logger.error('Failed to read logistics', error: e, stackTrace: stack);
       rethrow;
     }
   }
+
+  /// Emits the shared list now and each time the partner or the person changes it.
+  ///
+  /// A failed event is logged and skipped, so a screen keeps what it shows.
+  Stream<List<LogisticItem>> watchLogisticItems() {
+    return _dataSource
+        .watchLogisticItems()
+        .map((nodes) => [for (final node in nodes) _logisticItem(node)])
+        .handleError((Object e, StackTrace stack) {
+          _logger.error('The logistics subscription failed', error: e, stackTrace: stack);
+        });
+  }
+
+  LogisticItem _logisticItem(FragmentLogisticItemFragment node) => LogisticItem(
+    id: node.id,
+    title: node.title,
+    assigneeId: node.assigneeId,
+    authorId: node.authorId,
+    isShared: node.coupleId != null,
+    isConfirmed: node.confirmedAt != null,
+    isDone: node.doneAt != null,
+  );
 
   /// Adds an item shared with the partner when there is one; the client [id] makes retries safe.
   Future<void> addLogisticItem({
