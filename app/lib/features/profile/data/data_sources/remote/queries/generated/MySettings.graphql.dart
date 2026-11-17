@@ -1,5 +1,6 @@
 // dart format width=100
 import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import '../../fragments/generated/SettingsFragment.graphql.dart';
 
 import 'dart:async';
 
@@ -137,89 +138,9 @@ const documentNodeQueryMySettings = DocumentNode(
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'userId'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'SettingsFragment'),
                   directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'theme'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'partnerName'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'partnerPronouns'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'partnerIntent'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'togetherSince'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'relationshipStatus'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'onboardedAt'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'shareReadReceipts'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'phase'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'goals'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'locale'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: 'profile'),
@@ -265,6 +186,7 @@ const documentNodeQueryMySettings = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionSettingsFragment,
   ],
 );
 QueryMySettings _parserFnQueryMySettings(Map<String, dynamic> data) =>
@@ -395,7 +317,7 @@ extension ClientExtensionQueryMySettings on graphql.GraphQLClient {
   }
 }
 
-class QueryMySettingsuserSettingsByPk {
+class QueryMySettingsuserSettingsByPk implements FragmentSettingsFragment {
   QueryMySettingsuserSettingsByPk({
     required this.userId,
     required this.theme,
@@ -409,8 +331,8 @@ class QueryMySettingsuserSettingsByPk {
     this.phase,
     required this.goals,
     required this.locale,
-    required this.profile,
     this.$__typename = 'userSettings',
+    required this.profile,
   });
 
   factory QueryMySettingsuserSettingsByPk.fromJson(Map<String, dynamic> json) {
@@ -426,8 +348,8 @@ class QueryMySettingsuserSettingsByPk {
     final l$phase = json['phase'];
     final l$goals = json['goals'];
     final l$locale = json['locale'];
-    final l$profile = json['profile'];
     final l$$__typename = json['__typename'];
+    final l$profile = json['profile'];
     return QueryMySettingsuserSettingsByPk(
       userId: (l$userId as String),
       theme: fromJsonEnumAppTheme_enum((l$theme as String)),
@@ -445,8 +367,8 @@ class QueryMySettingsuserSettingsByPk {
       phase: l$phase == null ? null : fromJsonEnumRelationshipPhase_enum((l$phase as String)),
       goals: (l$goals as List<dynamic>).map((e) => (e as String)).toList(),
       locale: (l$locale as String),
-      profile: QueryMySettingsuserSettingsByPkprofile.fromJson((l$profile as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
+      profile: QueryMySettingsuserSettingsByPkprofile.fromJson((l$profile as Map<String, dynamic>)),
     );
   }
 
@@ -474,9 +396,9 @@ class QueryMySettingsuserSettingsByPk {
 
   final String locale;
 
-  final QueryMySettingsuserSettingsByPkprofile profile;
-
   final String $__typename;
+
+  final QueryMySettingsuserSettingsByPkprofile profile;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -512,10 +434,10 @@ class QueryMySettingsuserSettingsByPk {
     _resultData['goals'] = l$goals.map((e) => e).toList();
     final l$locale = locale;
     _resultData['locale'] = l$locale;
-    final l$profile = profile;
-    _resultData['profile'] = l$profile.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
+    final l$profile = profile;
+    _resultData['profile'] = l$profile.toJson();
     return _resultData;
   }
 
@@ -533,8 +455,8 @@ class QueryMySettingsuserSettingsByPk {
     final l$phase = phase;
     final l$goals = goals;
     final l$locale = locale;
-    final l$profile = profile;
     final l$$__typename = $__typename;
+    final l$profile = profile;
     return Object.hashAll([
       l$userId,
       l$theme,
@@ -548,8 +470,8 @@ class QueryMySettingsuserSettingsByPk {
       l$phase,
       Object.hashAll(l$goals.map((v) => v)),
       l$locale,
-      l$profile,
       l$$__typename,
+      l$profile,
     ]);
   }
 
@@ -628,14 +550,14 @@ class QueryMySettingsuserSettingsByPk {
     if (l$locale != lOther$locale) {
       return false;
     }
-    final l$profile = profile;
-    final lOther$profile = other.profile;
-    if (l$profile != lOther$profile) {
-      return false;
-    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    final l$profile = profile;
+    final lOther$profile = other.profile;
+    if (l$profile != lOther$profile) {
       return false;
     }
     return true;

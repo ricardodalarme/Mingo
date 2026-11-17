@@ -1,5 +1,5 @@
 mutation UpdateDisplayName($profileId: uuid!, $displayName: String!) {
-  updateProfiles(where: { id: { _eq: $profileId } }, _set: { displayName: $displayName }) {
-    affected_rows
+  updateProfilesByPk(pk_columns: { id: $profileId }, _set: { displayName: $displayName }) {
+    ...ProfileFragment
   }
 }

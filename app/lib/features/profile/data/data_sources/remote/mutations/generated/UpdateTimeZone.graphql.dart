@@ -64,29 +64,29 @@ class VariablesMutationUpdateTimeZone {
 }
 
 class MutationUpdateTimeZone {
-  MutationUpdateTimeZone({this.updateProfiles, this.$__typename = 'mutation_root'});
+  MutationUpdateTimeZone({this.updateProfilesByPk, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateTimeZone.fromJson(Map<String, dynamic> json) {
-    final l$updateProfiles = json['updateProfiles'];
+    final l$updateProfilesByPk = json['updateProfilesByPk'];
     final l$$__typename = json['__typename'];
     return MutationUpdateTimeZone(
-      updateProfiles: l$updateProfiles == null
+      updateProfilesByPk: l$updateProfilesByPk == null
           ? null
-          : MutationUpdateTimeZoneupdateProfiles.fromJson(
-              (l$updateProfiles as Map<String, dynamic>),
+          : MutationUpdateTimeZoneupdateProfilesByPk.fromJson(
+              (l$updateProfilesByPk as Map<String, dynamic>),
             ),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateTimeZoneupdateProfiles? updateProfiles;
+  final MutationUpdateTimeZoneupdateProfilesByPk? updateProfilesByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProfiles = updateProfiles;
-    _resultData['updateProfiles'] = l$updateProfiles?.toJson();
+    final l$updateProfilesByPk = updateProfilesByPk;
+    _resultData['updateProfilesByPk'] = l$updateProfilesByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -94,9 +94,9 @@ class MutationUpdateTimeZone {
 
   @override
   int get hashCode {
-    final l$updateProfiles = updateProfiles;
+    final l$updateProfilesByPk = updateProfilesByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateProfiles, l$$__typename]);
+    return Object.hashAll([l$updateProfilesByPk, l$$__typename]);
   }
 
   @override
@@ -107,9 +107,9 @@ class MutationUpdateTimeZone {
     if (other is! MutationUpdateTimeZone || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProfiles = updateProfiles;
-    final lOther$updateProfiles = other.updateProfiles;
-    if (l$updateProfiles != lOther$updateProfiles) {
+    final l$updateProfilesByPk = updateProfilesByPk;
+    final lOther$updateProfilesByPk = other.updateProfilesByPk;
+    if (l$updateProfilesByPk != lOther$updateProfilesByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -144,23 +144,16 @@ const documentNodeMutationUpdateTimeZone = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProfiles'),
+            name: NameNode(value: 'updateProfilesByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'where'),
+                name: NameNode(value: 'pk_columns'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
                       name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: '_eq'),
-                            value: VariableNode(name: NameNode(value: 'profileId')),
-                          ),
-                        ],
-                      ),
+                      value: VariableNode(name: NameNode(value: 'profileId')),
                     ),
                   ],
                 ),
@@ -181,7 +174,14 @@ const documentNodeMutationUpdateTimeZone = DocumentNode(
             selectionSet: SelectionSetNode(
               selections: [
                 FieldNode(
-                  name: NameNode(value: 'affected_rows'),
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                FieldNode(
+                  name: NameNode(value: 'timeZone'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -300,29 +300,36 @@ extension ClientExtensionMutationUpdateTimeZone on graphql.GraphQLClient {
   ) => this.watchMutation(options);
 }
 
-class MutationUpdateTimeZoneupdateProfiles {
-  MutationUpdateTimeZoneupdateProfiles({
-    required this.affected_rows,
-    this.$__typename = 'profiles_mutation_response',
+class MutationUpdateTimeZoneupdateProfilesByPk {
+  MutationUpdateTimeZoneupdateProfilesByPk({
+    required this.id,
+    required this.timeZone,
+    this.$__typename = 'profiles',
   });
 
-  factory MutationUpdateTimeZoneupdateProfiles.fromJson(Map<String, dynamic> json) {
-    final l$affected_rows = json['affected_rows'];
+  factory MutationUpdateTimeZoneupdateProfilesByPk.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$timeZone = json['timeZone'];
     final l$$__typename = json['__typename'];
-    return MutationUpdateTimeZoneupdateProfiles(
-      affected_rows: (l$affected_rows as int),
+    return MutationUpdateTimeZoneupdateProfilesByPk(
+      id: (l$id as String),
+      timeZone: (l$timeZone as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int affected_rows;
+  final String id;
+
+  final String timeZone;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$affected_rows = affected_rows;
-    _resultData['affected_rows'] = l$affected_rows;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$timeZone = timeZone;
+    _resultData['timeZone'] = l$timeZone;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -330,9 +337,10 @@ class MutationUpdateTimeZoneupdateProfiles {
 
   @override
   int get hashCode {
-    final l$affected_rows = affected_rows;
+    final l$id = id;
+    final l$timeZone = timeZone;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$affected_rows, l$$__typename]);
+    return Object.hashAll([l$id, l$timeZone, l$$__typename]);
   }
 
   @override
@@ -340,12 +348,17 @@ class MutationUpdateTimeZoneupdateProfiles {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! MutationUpdateTimeZoneupdateProfiles || runtimeType != other.runtimeType) {
+    if (other is! MutationUpdateTimeZoneupdateProfilesByPk || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$affected_rows = affected_rows;
-    final lOther$affected_rows = other.affected_rows;
-    if (l$affected_rows != lOther$affected_rows) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$timeZone = timeZone;
+    final lOther$timeZone = other.timeZone;
+    if (l$timeZone != lOther$timeZone) {
       return false;
     }
     final l$$__typename = $__typename;

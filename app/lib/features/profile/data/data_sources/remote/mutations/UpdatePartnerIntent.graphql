@@ -1,5 +1,5 @@
 mutation UpdatePartnerIntent($profileId: uuid!, $intent: PartnerIntent_enum) {
-  updateUserSettings(where: { userId: { _eq: $profileId } }, _set: { partnerIntent: $intent }) {
-    affected_rows
+  updateUserSettingsByPk(pk_columns: { userId: $profileId }, _set: { partnerIntent: $intent }) {
+    ...SettingsFragment
   }
 }

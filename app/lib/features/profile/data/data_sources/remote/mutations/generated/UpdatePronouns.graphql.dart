@@ -1,5 +1,6 @@
 // dart format width=100
 import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import '../../fragments/generated/ProfileFragment.graphql.dart';
 
 import 'dart:async';
 
@@ -80,29 +81,27 @@ class VariablesMutationUpdatePronouns {
 }
 
 class MutationUpdatePronouns {
-  MutationUpdatePronouns({this.updateProfiles, this.$__typename = 'mutation_root'});
+  MutationUpdatePronouns({this.updateProfilesByPk, this.$__typename = 'mutation_root'});
 
   factory MutationUpdatePronouns.fromJson(Map<String, dynamic> json) {
-    final l$updateProfiles = json['updateProfiles'];
+    final l$updateProfilesByPk = json['updateProfilesByPk'];
     final l$$__typename = json['__typename'];
     return MutationUpdatePronouns(
-      updateProfiles: l$updateProfiles == null
+      updateProfilesByPk: l$updateProfilesByPk == null
           ? null
-          : MutationUpdatePronounsupdateProfiles.fromJson(
-              (l$updateProfiles as Map<String, dynamic>),
-            ),
+          : FragmentProfileFragment.fromJson((l$updateProfilesByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdatePronounsupdateProfiles? updateProfiles;
+  final FragmentProfileFragment? updateProfilesByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateProfiles = updateProfiles;
-    _resultData['updateProfiles'] = l$updateProfiles?.toJson();
+    final l$updateProfilesByPk = updateProfilesByPk;
+    _resultData['updateProfilesByPk'] = l$updateProfilesByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -110,9 +109,9 @@ class MutationUpdatePronouns {
 
   @override
   int get hashCode {
-    final l$updateProfiles = updateProfiles;
+    final l$updateProfilesByPk = updateProfilesByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateProfiles, l$$__typename]);
+    return Object.hashAll([l$updateProfilesByPk, l$$__typename]);
   }
 
   @override
@@ -123,9 +122,9 @@ class MutationUpdatePronouns {
     if (other is! MutationUpdatePronouns || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateProfiles = updateProfiles;
-    final lOther$updateProfiles = other.updateProfiles;
-    if (l$updateProfiles != lOther$updateProfiles) {
+    final l$updateProfilesByPk = updateProfilesByPk;
+    final lOther$updateProfilesByPk = other.updateProfilesByPk;
+    if (l$updateProfilesByPk != lOther$updateProfilesByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -160,23 +159,16 @@ const documentNodeMutationUpdatePronouns = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateProfiles'),
+            name: NameNode(value: 'updateProfilesByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'where'),
+                name: NameNode(value: 'pk_columns'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
                       name: NameNode(value: 'id'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: '_eq'),
-                            value: VariableNode(name: NameNode(value: 'profileId')),
-                          ),
-                        ],
-                      ),
+                      value: VariableNode(name: NameNode(value: 'profileId')),
                     ),
                   ],
                 ),
@@ -196,12 +188,9 @@ const documentNodeMutationUpdatePronouns = DocumentNode(
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'affected_rows'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'ProfileFragment'),
                   directives: [],
-                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -223,6 +212,7 @@ const documentNodeMutationUpdatePronouns = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionProfileFragment,
   ],
 );
 MutationUpdatePronouns _parserFnMutationUpdatePronouns(Map<String, dynamic> data) =>
@@ -314,61 +304,4 @@ extension ClientExtensionMutationUpdatePronouns on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationUpdatePronouns> watchMutationUpdatePronouns(
     WatchOptionsMutationUpdatePronouns options,
   ) => this.watchMutation(options);
-}
-
-class MutationUpdatePronounsupdateProfiles {
-  MutationUpdatePronounsupdateProfiles({
-    required this.affected_rows,
-    this.$__typename = 'profiles_mutation_response',
-  });
-
-  factory MutationUpdatePronounsupdateProfiles.fromJson(Map<String, dynamic> json) {
-    final l$affected_rows = json['affected_rows'];
-    final l$$__typename = json['__typename'];
-    return MutationUpdatePronounsupdateProfiles(
-      affected_rows: (l$affected_rows as int),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int affected_rows;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$affected_rows = affected_rows;
-    _resultData['affected_rows'] = l$affected_rows;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$affected_rows = affected_rows;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$affected_rows, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationUpdatePronounsupdateProfiles || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$affected_rows = affected_rows;
-    final lOther$affected_rows = other.affected_rows;
-    if (l$affected_rows != lOther$affected_rows) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
 }

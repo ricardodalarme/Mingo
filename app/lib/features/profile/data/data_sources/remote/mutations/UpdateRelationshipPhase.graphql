@@ -1,5 +1,5 @@
 mutation UpdateRelationshipPhase($profileId: uuid!, $phase: RelationshipPhase_enum) {
-  updateUserSettings(where: { userId: { _eq: $profileId } }, _set: { phase: $phase }) {
-    affected_rows
+  updateUserSettingsByPk(pk_columns: { userId: $profileId }, _set: { phase: $phase }) {
+    ...SettingsFragment
   }
 }

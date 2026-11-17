@@ -1,5 +1,5 @@
 mutation UpdateTogetherSince($profileId: uuid!, $togetherSince: date) {
-  updateUserSettings(where: { userId: { _eq: $profileId } }, _set: { togetherSince: $togetherSince }) {
-    affected_rows
+  updateUserSettingsByPk(pk_columns: { userId: $profileId }, _set: { togetherSince: $togetherSince }) {
+    ...SettingsFragment
   }
 }

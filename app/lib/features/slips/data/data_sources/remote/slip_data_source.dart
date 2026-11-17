@@ -1,4 +1,5 @@
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/fragments/generated/SlipSummaryFragment.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/ArchiveSlip.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/DeleteSlip.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SaveSlip.graphql.dart';
@@ -68,7 +69,7 @@ class SlipDataSource({required final GQLClient _client}) {
   Future<void> sendHug({String? body}) => sendSignal(kind: EnumSignalKind_enum.hug, body: body);
 
   /// Reads one page of the person's own slips that match [filter], newest first.
-  Future<List<QueryMySlipsslips>> getSlips({
+  Future<List<FragmentSlipSummaryFragment>> getSlips({
     required int limit,
     required int offset,
     SlipFilter filter = const SlipFilter(),
@@ -85,7 +86,7 @@ class SlipDataSource({required final GQLClient _client}) {
 
   /// Emits the person's own slips that match [filter], newest first, then again whenever a slip
   /// they read changes or a mutation succeeds.
-  Stream<List<QueryMySlipsslips>> watchSlips({
+  Stream<List<FragmentSlipSummaryFragment>> watchSlips({
     required int limit,
     required int offset,
     SlipFilter filter = const SlipFilter(),

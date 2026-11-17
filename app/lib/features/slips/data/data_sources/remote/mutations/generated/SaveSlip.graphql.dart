@@ -1,5 +1,6 @@
 // dart format width=100
 import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import '../../fragments/generated/SlipSummaryFragment.graphql.dart';
 
 import 'dart:async';
 
@@ -237,12 +238,12 @@ class MutationSaveSlip {
     return MutationSaveSlip(
       insertSlipsOne: l$insertSlipsOne == null
           ? null
-          : MutationSaveSlipinsertSlipsOne.fromJson((l$insertSlipsOne as Map<String, dynamic>)),
+          : FragmentSlipSummaryFragment.fromJson((l$insertSlipsOne as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationSaveSlipinsertSlipsOne? insertSlipsOne;
+  final FragmentSlipSummaryFragment? insertSlipsOne;
 
   final String $__typename;
 
@@ -424,12 +425,9 @@ const documentNodeMutationSaveSlip = DocumentNode(
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'SlipSummaryFragment'),
                   directives: [],
-                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -451,6 +449,7 @@ const documentNodeMutationSaveSlip = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionSlipSummaryFragment,
   ],
 );
 MutationSaveSlip _parserFnMutationSaveSlip(Map<String, dynamic> data) =>
@@ -541,58 +540,4 @@ extension ClientExtensionMutationSaveSlip on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationSaveSlip> watchMutationSaveSlip(
     WatchOptionsMutationSaveSlip options,
   ) => this.watchMutation(options);
-}
-
-class MutationSaveSlipinsertSlipsOne {
-  MutationSaveSlipinsertSlipsOne({required this.id, this.$__typename = 'slips'});
-
-  factory MutationSaveSlipinsertSlipsOne.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$$__typename = json['__typename'];
-    return MutationSaveSlipinsertSlipsOne(
-      id: (l$id as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationSaveSlipinsertSlipsOne || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
 }

@@ -1,4 +1,6 @@
 // dart format width=100
+import '../../fragments/generated/SettingsFragment.graphql.dart';
+
 import 'dart:async';
 
 import 'package:gql/ast.dart';
@@ -83,29 +85,27 @@ class VariablesMutationUpdateTogetherSince {
 }
 
 class MutationUpdateTogetherSince {
-  MutationUpdateTogetherSince({this.updateUserSettings, this.$__typename = 'mutation_root'});
+  MutationUpdateTogetherSince({this.updateUserSettingsByPk, this.$__typename = 'mutation_root'});
 
   factory MutationUpdateTogetherSince.fromJson(Map<String, dynamic> json) {
-    final l$updateUserSettings = json['updateUserSettings'];
+    final l$updateUserSettingsByPk = json['updateUserSettingsByPk'];
     final l$$__typename = json['__typename'];
     return MutationUpdateTogetherSince(
-      updateUserSettings: l$updateUserSettings == null
+      updateUserSettingsByPk: l$updateUserSettingsByPk == null
           ? null
-          : MutationUpdateTogetherSinceupdateUserSettings.fromJson(
-              (l$updateUserSettings as Map<String, dynamic>),
-            ),
+          : FragmentSettingsFragment.fromJson((l$updateUserSettingsByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateTogetherSinceupdateUserSettings? updateUserSettings;
+  final FragmentSettingsFragment? updateUserSettingsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateUserSettings = updateUserSettings;
-    _resultData['updateUserSettings'] = l$updateUserSettings?.toJson();
+    final l$updateUserSettingsByPk = updateUserSettingsByPk;
+    _resultData['updateUserSettingsByPk'] = l$updateUserSettingsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -113,9 +113,9 @@ class MutationUpdateTogetherSince {
 
   @override
   int get hashCode {
-    final l$updateUserSettings = updateUserSettings;
+    final l$updateUserSettingsByPk = updateUserSettingsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateUserSettings, l$$__typename]);
+    return Object.hashAll([l$updateUserSettingsByPk, l$$__typename]);
   }
 
   @override
@@ -126,9 +126,9 @@ class MutationUpdateTogetherSince {
     if (other is! MutationUpdateTogetherSince || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateUserSettings = updateUserSettings;
-    final lOther$updateUserSettings = other.updateUserSettings;
-    if (l$updateUserSettings != lOther$updateUserSettings) {
+    final l$updateUserSettingsByPk = updateUserSettingsByPk;
+    final lOther$updateUserSettingsByPk = other.updateUserSettingsByPk;
+    if (l$updateUserSettingsByPk != lOther$updateUserSettingsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -163,23 +163,16 @@ const documentNodeMutationUpdateTogetherSince = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateUserSettings'),
+            name: NameNode(value: 'updateUserSettingsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'where'),
+                name: NameNode(value: 'pk_columns'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
                       name: NameNode(value: 'userId'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: '_eq'),
-                            value: VariableNode(name: NameNode(value: 'profileId')),
-                          ),
-                        ],
-                      ),
+                      value: VariableNode(name: NameNode(value: 'profileId')),
                     ),
                   ],
                 ),
@@ -199,12 +192,9 @@ const documentNodeMutationUpdateTogetherSince = DocumentNode(
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'affected_rows'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'SettingsFragment'),
                   directives: [],
-                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -226,6 +216,7 @@ const documentNodeMutationUpdateTogetherSince = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionSettingsFragment,
   ],
 );
 MutationUpdateTogetherSince _parserFnMutationUpdateTogetherSince(Map<String, dynamic> data) =>
@@ -321,62 +312,4 @@ extension ClientExtensionMutationUpdateTogetherSince on graphql.GraphQLClient {
   graphql.ObservableQuery<MutationUpdateTogetherSince> watchMutationUpdateTogetherSince(
     WatchOptionsMutationUpdateTogetherSince options,
   ) => this.watchMutation(options);
-}
-
-class MutationUpdateTogetherSinceupdateUserSettings {
-  MutationUpdateTogetherSinceupdateUserSettings({
-    required this.affected_rows,
-    this.$__typename = 'userSettings_mutation_response',
-  });
-
-  factory MutationUpdateTogetherSinceupdateUserSettings.fromJson(Map<String, dynamic> json) {
-    final l$affected_rows = json['affected_rows'];
-    final l$$__typename = json['__typename'];
-    return MutationUpdateTogetherSinceupdateUserSettings(
-      affected_rows: (l$affected_rows as int),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int affected_rows;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$affected_rows = affected_rows;
-    _resultData['affected_rows'] = l$affected_rows;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$affected_rows = affected_rows;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$affected_rows, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationUpdateTogetherSinceupdateUserSettings ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$affected_rows = affected_rows;
-    final lOther$affected_rows = other.affected_rows;
-    if (l$affected_rows != lOther$affected_rows) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
 }

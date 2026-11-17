@@ -1,5 +1,5 @@
 mutation UpdatePronouns($profileId: uuid!, $pronouns: Pronoun_enum) {
-  updateProfiles(where: { id: { _eq: $profileId } }, _set: { pronouns: $pronouns }) {
-    affected_rows
+  updateProfilesByPk(pk_columns: { id: $profileId }, _set: { pronouns: $pronouns }) {
+    ...ProfileFragment
   }
 }

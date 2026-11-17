@@ -210,6 +210,17 @@ Stream<List<QueryMySlipsslips>> watchSlips(...) => _client
 - Return an empty stream while signed out. The cache is in memory and is cleared on sign-out by `QueryCacheInitializer`.
 - A data source and a repository each have a test for the stream, including the failure path.
 
+**Fragments keep the cache in step.** A watched query reads entities from the normalized cache, so a mutation that returns the
+same entity with the same fields updates every open watch at once, before the refetch lands.
+
+- Put the fields a list shows in one fragment and use it in the list query and in the mutations that edit those rows
+  (`SlipSummaryFragment` in `MySlips` and `SaveSlip`; `SettingsFragment` in `MySettings` and every settings mutation).
+- Update by primary key (`updateXByPk`) and return the fragment. A row the person may not touch comes back `null`, which is the "nothing
+  updated" signal; a bulk `where` update returns only `affected_rows` and updates no cache entry.
+- Creating and deleting rows change which rows a list holds, which the cache cannot infer; the refetch after the mutation covers that.
+- An entity without an `id` needs a key in `gqlDataId` (`userSettings` is keyed by `userId`), or the cache cannot match it.
+- Only entities a watched query reads gain from this. A one-shot read can keep its own selection.
+
 **Spend requests carefully.** The backend allows 600 a minute per client, and every successful mutation refetches each open watch.
 
 - Never query the person or couple id. Use `AuthenticationRepository.currentUserId` and `TogetherRepository.getCoupleId()`.

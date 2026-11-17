@@ -77,7 +77,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfiles?.affected_rows ?? 0,
+      getData: (data) => data.updateProfilesByPk == null ? 0 : 1,
     );
   }
 
@@ -86,7 +86,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfiles?.affected_rows ?? 0,
+      getData: (data) => data.updateProfilesByPk == null ? 0 : 1,
     );
   }
 
@@ -95,7 +95,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
+      getData: (data) => data.updateUserSettingsByPk == null ? 0 : 1,
     );
   }
 
@@ -104,7 +104,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
+      getData: (data) => data.updateUserSettingsByPk == null ? 0 : 1,
     );
   }
 
@@ -113,7 +113,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateProfiles?.affected_rows ?? 0,
+      getData: (data) => data.updateProfilesByPk == null ? 0 : 1,
     );
   }
 
@@ -124,7 +124,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
+      getData: (data) => data.updateUserSettingsByPk == null ? 0 : 1,
     );
   }
 
@@ -135,7 +135,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
+      getData: (data) => data.updateUserSettingsByPk == null ? 0 : 1,
     );
   }
 
@@ -144,7 +144,7 @@ class ProfileDataSource({required final GQLClient _client}) {
 
     return validateResponseData(
       response,
-      getData: (data) => data.updateUserSettings?.affected_rows ?? 0,
+      getData: (data) => data.updateUserSettingsByPk == null ? 0 : 1,
     );
   }
 }

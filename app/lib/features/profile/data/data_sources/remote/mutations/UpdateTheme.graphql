@@ -1,5 +1,5 @@
 mutation UpdateTheme($profileId: uuid!, $theme: AppTheme_enum!) {
-  updateUserSettings(where: { userId: { _eq: $profileId } }, _set: { theme: $theme }) {
-    affected_rows
+  updateUserSettingsByPk(pk_columns: { userId: $profileId }, _set: { theme: $theme }) {
+    ...SettingsFragment
   }
 }

@@ -1,17 +1,6 @@
 query MySettings($userId: uuid!) {
   userSettingsByPk(userId: $userId) {
-    userId
-    theme
-    partnerName
-    partnerPronouns
-    partnerIntent
-    togetherSince
-    relationshipStatus
-    onboardedAt
-    shareReadReceipts
-    phase
-    goals
-    locale
+    ...SettingsFragment
     profile {
       timeZone
     }

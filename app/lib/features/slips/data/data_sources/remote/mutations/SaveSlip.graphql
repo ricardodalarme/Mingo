@@ -26,6 +26,6 @@ mutation SaveSlip(
       update_columns: [body, kind, feeling, planNote, forCard, category, workArea]
     }
   ) {
-    id
+    ...SlipSummaryFragment
   }
 }

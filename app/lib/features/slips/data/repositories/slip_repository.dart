@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
-import 'package:app/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/fragments/generated/SlipSummaryFragment.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/mappers/slip_enum_mapper.dart';
 import 'package:app/features/slips/data/models/drawn_slip.dart';
@@ -259,7 +259,11 @@ class SlipRepository({
         );
   }
 
-  SlipPage _page(List<QueryMySlipsslips> rows, {required int offset, required int pageSize}) {
+  SlipPage _page(
+    List<FragmentSlipSummaryFragment> rows, {
+    required int offset,
+    required int pageSize,
+  }) {
     final pageRows = rows.take(pageSize).toList();
 
     return SlipPage(

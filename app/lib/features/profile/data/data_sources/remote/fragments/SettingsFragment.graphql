@@ -1,0 +1,14 @@
+fragment SettingsFragment on userSettings {
+  userId
+  theme
+  partnerName
+  partnerPronouns
+  partnerIntent
+  togetherSince
+  relationshipStatus
+  onboardedAt
+  shareReadReceipts
+  phase
+  goals
+  locale
+}

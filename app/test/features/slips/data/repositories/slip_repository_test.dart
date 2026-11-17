@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
+import 'package:app/features/slips/data/data_sources/remote/fragments/generated/SlipSummaryFragment.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/JarSlips.graphql.dart';
-import 'package:app/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/models/pending_slip.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
@@ -285,7 +285,7 @@ void main() {
   });
 
   group('watchSlips', () {
-    QueryMySlipsslips row(String id) => QueryMySlipsslips(
+    FragmentSlipSummaryFragment row(String id) => FragmentSlipSummaryFragment(
       id: id,
       body: id,
       kind: EnumSlipKind_enum.quick,

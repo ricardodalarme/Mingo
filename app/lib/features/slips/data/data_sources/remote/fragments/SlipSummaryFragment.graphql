@@ -1,0 +1,8 @@
+fragment SlipSummaryFragment on slips {
+  id
+  body
+  kind
+  category
+  forCard
+  createdAt
+}

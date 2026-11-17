@@ -1,10 +1,5 @@
 query MySlips($limit: Int, $offset: Int, $where: slips_bool_exp) {
   slips(limit: $limit, offset: $offset, where: $where, order_by: [{ createdAt: desc }]) {
-    id
-    body
-    kind
-    category
-    forCard
-    createdAt
+    ...SlipSummaryFragment
   }
 }

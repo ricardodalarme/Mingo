@@ -1,5 +1,6 @@
 mutation UpdateTimeZone($profileId: uuid!, $timeZone: String!) {
-  updateProfiles(where: { id: { _eq: $profileId } }, _set: { timeZone: $timeZone }) {
-    affected_rows
+  updateProfilesByPk(pk_columns: { id: $profileId }, _set: { timeZone: $timeZone }) {
+    id
+    timeZone
   }
 }

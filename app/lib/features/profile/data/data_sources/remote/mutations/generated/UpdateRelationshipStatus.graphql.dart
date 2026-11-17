@@ -1,5 +1,6 @@
 // dart format width=100
 import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
+import '../../fragments/generated/SettingsFragment.graphql.dart';
 
 import 'dart:async';
 
@@ -68,29 +69,30 @@ class VariablesMutationUpdateRelationshipStatus {
 }
 
 class MutationUpdateRelationshipStatus {
-  MutationUpdateRelationshipStatus({this.updateUserSettings, this.$__typename = 'mutation_root'});
+  MutationUpdateRelationshipStatus({
+    this.updateUserSettingsByPk,
+    this.$__typename = 'mutation_root',
+  });
 
   factory MutationUpdateRelationshipStatus.fromJson(Map<String, dynamic> json) {
-    final l$updateUserSettings = json['updateUserSettings'];
+    final l$updateUserSettingsByPk = json['updateUserSettingsByPk'];
     final l$$__typename = json['__typename'];
     return MutationUpdateRelationshipStatus(
-      updateUserSettings: l$updateUserSettings == null
+      updateUserSettingsByPk: l$updateUserSettingsByPk == null
           ? null
-          : MutationUpdateRelationshipStatusupdateUserSettings.fromJson(
-              (l$updateUserSettings as Map<String, dynamic>),
-            ),
+          : FragmentSettingsFragment.fromJson((l$updateUserSettingsByPk as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final MutationUpdateRelationshipStatusupdateUserSettings? updateUserSettings;
+  final FragmentSettingsFragment? updateUserSettingsByPk;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$updateUserSettings = updateUserSettings;
-    _resultData['updateUserSettings'] = l$updateUserSettings?.toJson();
+    final l$updateUserSettingsByPk = updateUserSettingsByPk;
+    _resultData['updateUserSettingsByPk'] = l$updateUserSettingsByPk?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -98,9 +100,9 @@ class MutationUpdateRelationshipStatus {
 
   @override
   int get hashCode {
-    final l$updateUserSettings = updateUserSettings;
+    final l$updateUserSettingsByPk = updateUserSettingsByPk;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$updateUserSettings, l$$__typename]);
+    return Object.hashAll([l$updateUserSettingsByPk, l$$__typename]);
   }
 
   @override
@@ -111,9 +113,9 @@ class MutationUpdateRelationshipStatus {
     if (other is! MutationUpdateRelationshipStatus || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$updateUserSettings = updateUserSettings;
-    final lOther$updateUserSettings = other.updateUserSettings;
-    if (l$updateUserSettings != lOther$updateUserSettings) {
+    final l$updateUserSettingsByPk = updateUserSettingsByPk;
+    final lOther$updateUserSettingsByPk = other.updateUserSettingsByPk;
+    if (l$updateUserSettingsByPk != lOther$updateUserSettingsByPk) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -148,23 +150,16 @@ const documentNodeMutationUpdateRelationshipStatus = DocumentNode(
       selectionSet: SelectionSetNode(
         selections: [
           FieldNode(
-            name: NameNode(value: 'updateUserSettings'),
+            name: NameNode(value: 'updateUserSettingsByPk'),
             alias: null,
             arguments: [
               ArgumentNode(
-                name: NameNode(value: 'where'),
+                name: NameNode(value: 'pk_columns'),
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
                       name: NameNode(value: 'userId'),
-                      value: ObjectValueNode(
-                        fields: [
-                          ObjectFieldNode(
-                            name: NameNode(value: '_eq'),
-                            value: VariableNode(name: NameNode(value: 'profileId')),
-                          ),
-                        ],
-                      ),
+                      value: VariableNode(name: NameNode(value: 'profileId')),
                     ),
                   ],
                 ),
@@ -184,12 +179,9 @@ const documentNodeMutationUpdateRelationshipStatus = DocumentNode(
             directives: [],
             selectionSet: SelectionSetNode(
               selections: [
-                FieldNode(
-                  name: NameNode(value: 'affected_rows'),
-                  alias: null,
-                  arguments: [],
+                FragmentSpreadNode(
+                  name: NameNode(value: 'SettingsFragment'),
                   directives: [],
-                  selectionSet: null,
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -211,6 +203,7 @@ const documentNodeMutationUpdateRelationshipStatus = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionSettingsFragment,
   ],
 );
 MutationUpdateRelationshipStatus _parserFnMutationUpdateRelationshipStatus(
@@ -307,62 +300,4 @@ extension ClientExtensionMutationUpdateRelationshipStatus on graphql.GraphQLClie
   graphql.ObservableQuery<MutationUpdateRelationshipStatus> watchMutationUpdateRelationshipStatus(
     WatchOptionsMutationUpdateRelationshipStatus options,
   ) => this.watchMutation(options);
-}
-
-class MutationUpdateRelationshipStatusupdateUserSettings {
-  MutationUpdateRelationshipStatusupdateUserSettings({
-    required this.affected_rows,
-    this.$__typename = 'userSettings_mutation_response',
-  });
-
-  factory MutationUpdateRelationshipStatusupdateUserSettings.fromJson(Map<String, dynamic> json) {
-    final l$affected_rows = json['affected_rows'];
-    final l$$__typename = json['__typename'];
-    return MutationUpdateRelationshipStatusupdateUserSettings(
-      affected_rows: (l$affected_rows as int),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int affected_rows;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$affected_rows = affected_rows;
-    _resultData['affected_rows'] = l$affected_rows;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$affected_rows = affected_rows;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$affected_rows, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! MutationUpdateRelationshipStatusupdateUserSettings ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$affected_rows = affected_rows;
-    final lOther$affected_rows = other.affected_rows;
-    if (l$affected_rows != lOther$affected_rows) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
 }
