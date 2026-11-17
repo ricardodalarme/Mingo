@@ -1,6 +1,5 @@
 import 'package:app/features/memories/data/data_sources/remote/mutations/generated/AddMemory.graphql.dart';
 import 'package:app/features/memories/data/data_sources/remote/mutations/generated/DeleteMemory.graphql.dart';
-import 'package:app/features/memories/data/data_sources/remote/queries/generated/JarSlips.graphql.dart';
 import 'package:app/features/memories/data/data_sources/remote/queries/generated/Memories.graphql.dart';
 import 'package:network/network.dart';
 
@@ -43,14 +42,5 @@ class MemoriesDataSource({required final GQLClient _client}) {
     );
 
     validateResponse(response);
-  }
-
-  /// The slips the person put in the jar, newest first.
-  Future<List<QueryJarSlipsslips>> getJarSlips() async {
-    final response = await _client.query(
-      OptionsQueryJarSlips(fetchPolicy: FetchPolicy.networkOnly),
-    );
-
-    return validateResponseData(response, getData: (data) => data.slips);
   }
 }

@@ -1253,22 +1253,6 @@ class InviteRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [JarPage]
-class JarRoute extends PageRouteInfo<void> {
-  const JarRoute({List<PageRouteInfo>? children})
-    : super(JarRoute.name, initialChildren: children);
-
-  static const String name = 'JarRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const JarPage());
-    },
-  );
-}
-
-/// generated route for
 /// [LanguagePage]
 class LanguageRoute extends PageRouteInfo<void> {
   const LanguageRoute({List<PageRouteInfo>? children})

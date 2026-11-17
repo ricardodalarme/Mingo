@@ -5,6 +5,7 @@ import 'package:app/features/slips/data/data_sources/remote/mutations/generated/
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SendSignal.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SendSlipNow.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/mutations/generated/SetSlipInJar.graphql.dart';
+import 'package:app/features/slips/data/data_sources/remote/queries/generated/JarSlips.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/MySlips.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/SlipDetail.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/queries/generated/SlipsPreference.graphql.dart';
@@ -167,5 +168,14 @@ class SlipDataSource({required final GQLClient _client}) {
     validateResponse(response);
 
     return response.parsedData?.sendSlip.firstOrNull?.status;
+  }
+
+  /// The slips the person put in the jar, newest first.
+  Future<List<QueryJarSlipsslips>> getJarSlips() async {
+    final response = await _client.query(
+      OptionsQueryJarSlips(fetchPolicy: FetchPolicy.networkOnly),
+    );
+
+    return validateResponseData(response, getData: (data) => data.slips);
   }
 }

@@ -59,5 +59,11 @@
   "filterThisMonth": "Este mês",
   "filterInCard": "Em um cartão",
   "filterInvisible": "Trabalho invisível",
-  "searchFiltersEmptyText": "Ajuste a busca ou os filtros."
+  "searchFiltersEmptyText": "Ajuste a busca ou os filtros.",
+  "scopeJar": "Potinho",
+  "jarEmptyTitle": "O potinho está vazio",
+  "jarEmpty": "Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.",
+  "jarEmptyAction": "Ver meus slips",
+  "jarAnother": "Outro",
+  "jarClose": "Fechar"
 }

@@ -1,6 +1,7 @@
 import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/presentation/slips/cubit/slips_list_cubit.dart';
+import 'package:app/features/slips/presentation/slips/widgets/jar_section.dart';
 import 'package:app/features/slips/presentation/slips/widgets/slips_groups.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
@@ -84,6 +85,7 @@ class _SlipsPageState() extends State<SlipsPage> {
                         SlipsScope.week => l10n.scopeWeek,
                         SlipsScope.all => l10n.scopeAll,
                         SlipsScope.private => l10n.scopePrivate,
+                        SlipsScope.jar => l10n.scopeJar,
                       },
                       isSelected: scope == option,
                       onTap: () => cubit.changeScope(option),
@@ -91,19 +93,22 @@ class _SlipsPageState() extends State<SlipsPage> {
                 ],
               ),
               const SizedBox(height: AppSpace.s16),
-              SkeletonizerResourceWidget<List<SlipEntry>>(
-                slips,
-                fakeValue: [SlipEntry.fake(), SlipEntry.fake(), SlipEntry.fake()],
-                successBuilder: (items) => items.isEmpty
-                    ? _Empty(scope: scope)
-                    : _Results(
-                        items: items,
-                        isLoaded: slips is Success<List<SlipEntry>>,
-                        showsHeaders: scope == SlipsScope.all,
-                      ),
-                failureBuilder: (exception) =>
-                    AppErrorView(exception: exception, onRetry: cubit.load),
-              ),
+              if (scope == SlipsScope.jar)
+                const JarSection()
+              else
+                SkeletonizerResourceWidget<List<SlipEntry>>(
+                  slips,
+                  fakeValue: [SlipEntry.fake(), SlipEntry.fake(), SlipEntry.fake()],
+                  successBuilder: (items) => items.isEmpty
+                      ? _Empty(scope: scope)
+                      : _Results(
+                          items: items,
+                          isLoaded: slips is Success<List<SlipEntry>>,
+                          showsHeaders: scope == SlipsScope.all,
+                        ),
+                  failureBuilder: (exception) =>
+                      AppErrorView(exception: exception, onRetry: cubit.load),
+                ),
             ],
           ),
         ),

@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:app/features/memories/data/data_sources/remote/memories_data_source.dart';
-import 'package:app/features/memories/data/models/drawn_slip.dart';
 import 'package:app/features/memories/data/models/memory.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
 import 'package:logger/logger.dart';
@@ -9,7 +6,6 @@ import 'package:logger/logger.dart';
 class MemoriesRepository({
   required final MemoriesDataSource _dataSource,
   required final TogetherRepository _togetherRepository,
-  final Random? _random,
 }) {
   final Logger _logger = Logger('MemoriesRepository');
 
@@ -48,15 +44,6 @@ class MemoriesRepository({
 
   Future<void> deleteMemory(String id) =>
       _run('delete a memory', () => _dataSource.deleteMemory(id));
-
-  /// One random slip from the jar, or null when it is empty.
-  Future<DrawnSlip?> drawFromJar() => _run('draw from the jar', () async {
-    final slips = await _dataSource.getJarSlips();
-    if (slips.isEmpty) return null;
-    final slip = slips[(_random ?? Random()).nextInt(slips.length)];
-
-    return DrawnSlip(id: slip.id, body: slip.body);
-  });
 
   Future<T> _run<T>(String what, Future<T> Function() action) async {
     try {

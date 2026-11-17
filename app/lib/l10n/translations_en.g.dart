@@ -3432,14 +3432,6 @@ class _Translations$memories$en extends Translations$memories$pt {
   @override
   String get segmentTimeline => 'Timeline';
   @override
-  String get segmentJar => 'Jar';
-  @override
-  String get jarEmpty => 'When a slip feels good, keep it in the jar from its details.';
-  @override
-  String get jarAnother => 'Another';
-  @override
-  String get jarClose => 'Close';
-  @override
   String get titleLabel => 'A memory';
   @override
   String get titleHint => 'E.g. our first dinner';
@@ -3501,10 +3493,6 @@ class _Translations$memories$en extends Translations$memories$pt {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
     'other': 'Couldn\'t do that right now. Your text is still here.',
   };
-  @override
-  String get jarEmptyTitle => 'The jar is empty';
-  @override
-  String get jarEmptyAction => 'See my slips';
   @override
   late final _Translations$memories$menu$en menu = _Translations$memories$menu$en._(_root);
   @override
@@ -5719,6 +5707,18 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   String get filterInvisible => 'Invisible work';
   @override
   String get searchFiltersEmptyText => 'Adjust the search or the filters.';
+  @override
+  String get scopeJar => 'Jar';
+  @override
+  String get jarEmptyTitle => 'The jar is empty';
+  @override
+  String get jarEmpty => 'When a slip does you good, keep it in the jar from its details.';
+  @override
+  String get jarEmptyAction => 'See my slips';
+  @override
+  String get jarAnother => 'Another';
+  @override
+  String get jarClose => 'Close';
 }
 
 // Path: spice
@@ -7798,10 +7798,6 @@ class _Translations$memories$menu$en extends Translations$memories$menu$pt {
   String get timeline => 'Timeline';
   @override
   String get timelineText => 'Memories you kept';
-  @override
-  String get jar => 'Jar';
-  @override
-  String get jarText => 'A good slip for a bad day';
   @override
   String get storyText => 'Milestones, places and numbers';
   @override
@@ -10991,10 +10987,6 @@ extension on TranslationsEn {
           'memories.placeAddressNote' =>
             'Prefer just the name of the place, with no address or number.',
           'memories.segmentTimeline' => 'Timeline',
-          'memories.segmentJar' => 'Jar',
-          'memories.jarEmpty' => 'When a slip feels good, keep it in the jar from its details.',
-          'memories.jarAnother' => 'Another',
-          'memories.jarClose' => 'Close',
           'memories.titleLabel' => 'A memory',
           'memories.titleHint' => 'E.g. our first dinner',
           'memories.titleErrors.empty' => 'Give this memory a title',
@@ -11033,12 +11025,8 @@ extension on TranslationsEn {
           'memories.errorText' => 'Your memories are still saved. Try again.',
           'memories.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
-          'memories.jarEmptyTitle' => 'The jar is empty',
-          'memories.jarEmptyAction' => 'See my slips',
           'memories.menu.timeline' => 'Timeline',
           'memories.menu.timelineText' => 'Memories you kept',
-          'memories.menu.jar' => 'Jar',
-          'memories.menu.jarText' => 'A good slip for a bad day',
           'memories.menu.storyText' => 'Milestones, places and numbers',
           'memories.menu.dates' => 'Dates and numbers',
           'memories.menu.datesText' => 'Anniversaries, holidays and counts',
@@ -11481,9 +11469,6 @@ extension on TranslationsEn {
           'plus.done' => 'Done',
           'plus.errors.storeUnavailable' => 'The store isn\'t available on this device right now.',
           'plus.errors.manageUnavailable' => 'There\'s no store page for this subscription here.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.errors.other' => 'Couldn\'t do that right now. Try again.',
           'privacy.title' => 'Privacy and security',
           'privacy.partnerTitle' => 'What your partner sees',
@@ -11492,6 +11477,9 @@ extension on TranslationsEn {
           'privacy.partnerPrivateSlips' => 'Private slips',
           'privacy.partnerTemperature' => 'Temperature',
           'privacy.partnerJournal' => 'Journal',
+          _ => null,
+        } ??
+        switch (path) {
           'privacy.never' => 'Never',
           'privacy.partnerNote' => 'Whoever makes the data decides who sees it.',
           'privacy.ourTitle' => 'What we can see',
@@ -12056,9 +12044,6 @@ extension on TranslationsEn {
           'rituals.weekdays.1' => 'Monday',
           'rituals.weekdays.2' => 'Tuesday',
           'rituals.weekdays.3' => 'Wednesday',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.weekdays.4' => 'Thursday',
           'rituals.weekdays.5' => 'Friday',
           'rituals.weekdays.6' => 'Saturday',
@@ -12067,6 +12052,9 @@ extension on TranslationsEn {
           'rituals.nameLabel' => 'Name',
           'rituals.nameHint' => 'E.g. Friday dinner',
           'rituals.cadenceLabel' => 'How often',
+          _ => null,
+        } ??
+        switch (path) {
           'rituals.weekdayLabel' => 'On which day',
           'rituals.hourLabel' => 'What time',
           'rituals.hourFormat' => ({required Object hour}) => '${hour}:00',
@@ -12386,6 +12374,12 @@ extension on TranslationsEn {
           'slipsList.filterInCard' => 'In a card',
           'slipsList.filterInvisible' => 'Invisible work',
           'slipsList.searchFiltersEmptyText' => 'Adjust the search or the filters.',
+          'slipsList.scopeJar' => 'Jar',
+          'slipsList.jarEmptyTitle' => 'The jar is empty',
+          'slipsList.jarEmpty' => 'When a slip does you good, keep it in the jar from its details.',
+          'slipsList.jarEmptyAction' => 'See my slips',
+          'slipsList.jarAnother' => 'Another',
+          'slipsList.jarClose' => 'Close',
           'spice.title' => 'Tempero',
           'spice.introTitle' => 'Tempero, just for the two of you',
           'spice.introHighlight' => 'the two of you',
@@ -12645,11 +12639,11 @@ extension on TranslationsEn {
           'tabs.usTitle' => 'I miss us',
           'tabs.usText' => 'A light tap for your partner, no pressure.',
           'tabs.touchLabel' => 'TOUCH',
+          'tabs.touchTitle' => 'Touch cards',
+          'tabs.touchText' => 'Neutral, to do or skip.',
           _ => null,
         } ??
         switch (path) {
-          'tabs.touchTitle' => 'Touch cards',
-          'tabs.touchText' => 'Neutral, to do or skip.',
           'tabs.distanceLabel' => 'DISTANCE',
           'tabs.distanceTitle' => 'Our two clocks',
           'tabs.distanceText' => 'Time zones and the countdown to seeing each other.',

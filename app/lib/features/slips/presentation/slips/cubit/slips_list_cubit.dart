@@ -24,6 +24,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
 
   /// Reads the first page again; the list on screen stays until the new one arrives.
   Future<void> load() async {
+    if (state.scope == SlipsScope.jar) return;
     if (state.slips is! Success) emit(state.copyWith(slips: const Loading()));
     try {
       final page = await _slipRepository.getSlips(filter: _filter(state.scope, clock.now()));
@@ -45,7 +46,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
     if (scope == state.scope) return;
 
     emit(SlipsListState(scope: scope));
-    await load();
+    if (scope != SlipsScope.jar) await load();
   }
 
   /// Appends the next page; ignored while one is loading or when there is none.
@@ -92,6 +93,7 @@ class SlipsListCubit({required final SlipRepository _slipRepository})
       ),
       SlipsScope.all => const SlipFilter(),
       SlipsScope.private => const SlipFilter(inCard: false),
+      SlipsScope.jar => const SlipFilter(),
     };
   }
 }

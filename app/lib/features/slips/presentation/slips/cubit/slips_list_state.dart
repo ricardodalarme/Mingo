@@ -10,6 +10,9 @@ enum SlipsScope() {
 
   /// Slips kept out of the weekly card.
   private,
+
+  /// The jar of good moments; it draws one slip instead of listing them.
+  jar,
 }
 
 final class const SlipsListState({

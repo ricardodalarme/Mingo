@@ -35,13 +35,6 @@ class const MemoriesPage({final bool isEmbedded = false, super.key}) extends Sta
                   onTap: () => context.pushRoute(const MemoriesTimelineRoute()),
                 ),
                 BaseListTile(
-                  icon: AppIcons.heart,
-                  title: l10n.menu.jar,
-                  subtitle: l10n.menu.jarText,
-                  showsChevron: true,
-                  onTap: () => context.pushRoute(const JarRoute()),
-                ),
-                BaseListTile(
                   icon: AppIcons.rings,
                   title: l10n.historyTitle,
                   subtitle: l10n.menu.storyText,

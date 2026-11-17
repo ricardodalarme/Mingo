@@ -4195,18 +4195,6 @@ class Translations$memories$pt {
   /// pt: 'Linha do tempo'
   String get segmentTimeline => 'Linha do tempo';
 
-  /// pt: 'Potinho'
-  String get segmentJar => 'Potinho';
-
-  /// pt: 'Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.'
-  String get jarEmpty => 'Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.';
-
-  /// pt: 'Outro'
-  String get jarAnother => 'Outro';
-
-  /// pt: 'Fechar'
-  String get jarClose => 'Fechar';
-
   /// pt: 'Uma memória'
   String get titleLabel => 'Uma memória';
 
@@ -4282,13 +4270,6 @@ class Translations$memories$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'other': 'Não deu para fazer isso agora. Seu texto continua aqui.',
   };
-
-  /// pt: 'O potinho está vazio'
-  String get jarEmptyTitle => 'O potinho está vazio';
-
-  /// pt: 'Ver meus slips'
-  String get jarEmptyAction => 'Ver meus slips';
-
   late final Translations$memories$menu$pt menu = Translations$memories$menu$pt.internal(_root);
   late final Translations$memories$onThisDay$pt onThisDay =
       Translations$memories$onThisDay$pt.internal(_root);
@@ -7070,6 +7051,24 @@ class Translations$slipsList$pt {
 
   /// pt: 'Ajuste a busca ou os filtros.'
   String get searchFiltersEmptyText => 'Ajuste a busca ou os filtros.';
+
+  /// pt: 'Potinho'
+  String get scopeJar => 'Potinho';
+
+  /// pt: 'O potinho está vazio'
+  String get jarEmptyTitle => 'O potinho está vazio';
+
+  /// pt: 'Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.'
+  String get jarEmpty => 'Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.';
+
+  /// pt: 'Ver meus slips'
+  String get jarEmptyAction => 'Ver meus slips';
+
+  /// pt: 'Outro'
+  String get jarAnother => 'Outro';
+
+  /// pt: 'Fechar'
+  String get jarClose => 'Fechar';
 }
 
 // Path: spice
@@ -9786,12 +9785,6 @@ class Translations$memories$menu$pt {
 
   /// pt: 'Memórias que vocês guardaram'
   String get timelineText => 'Memórias que vocês guardaram';
-
-  /// pt: 'Potinho'
-  String get jar => 'Potinho';
-
-  /// pt: 'Um slip bom para um dia ruim'
-  String get jarText => 'Um slip bom para um dia ruim';
 
   /// pt: 'Marcos, lugares e números'
   String get storyText => 'Marcos, lugares e números';
@@ -13208,11 +13201,6 @@ extension on Translations {
           'memories.placeHint' => 'Ex.: Paraty',
           'memories.placeAddressNote' => 'Prefira só o nome do lugar, sem endereço ou número.',
           'memories.segmentTimeline' => 'Linha do tempo',
-          'memories.segmentJar' => 'Potinho',
-          'memories.jarEmpty' =>
-            'Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.',
-          'memories.jarAnother' => 'Outro',
-          'memories.jarClose' => 'Fechar',
           'memories.titleLabel' => 'Uma memória',
           'memories.titleHint' => 'Ex.: nosso primeiro jantar',
           'memories.titleErrors.empty' => 'Dê um título a esta memória',
@@ -13251,12 +13239,8 @@ extension on Translations {
           'memories.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
           'memories.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
-          'memories.jarEmptyTitle' => 'O potinho está vazio',
-          'memories.jarEmptyAction' => 'Ver meus slips',
           'memories.menu.timeline' => 'Linha do tempo',
           'memories.menu.timelineText' => 'Memórias que vocês guardaram',
-          'memories.menu.jar' => 'Potinho',
-          'memories.menu.jarText' => 'Um slip bom para um dia ruim',
           'memories.menu.storyText' => 'Marcos, lugares e números',
           'memories.menu.dates' => 'Datas e números',
           'memories.menu.datesText' => 'Aniversários, feriados e contagens',
@@ -13707,9 +13691,6 @@ extension on Translations {
           'plus.done' => 'Pronto',
           'plus.errors.storeUnavailable' => 'A loja não está disponível neste aparelho agora.',
           'plus.errors.manageUnavailable' => 'Não há uma página da loja para esta assinatura aqui.',
-          _ => null,
-        } ??
-        switch (path) {
           'plus.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'privacy.title' => 'Privacidade e segurança',
           'privacy.partnerTitle' => 'O que o parceiro vê',
@@ -13718,6 +13699,9 @@ extension on Translations {
           'privacy.partnerPrivateSlips' => 'Slips privados',
           'privacy.partnerTemperature' => 'Temperatura',
           'privacy.partnerJournal' => 'Diário',
+          _ => null,
+        } ??
+        switch (path) {
           'privacy.never' => 'Nunca',
           'privacy.partnerNote' => 'Quem produz o dado decide quem vê.',
           'privacy.ourTitle' => 'O que podemos ver',
@@ -14284,9 +14268,6 @@ extension on Translations {
           'rituals.weekdays.1' => 'segunda',
           'rituals.weekdays.2' => 'terça',
           'rituals.weekdays.3' => 'quarta',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.weekdays.4' => 'quinta',
           'rituals.weekdays.5' => 'sexta',
           'rituals.weekdays.6' => 'sábado',
@@ -14295,6 +14276,9 @@ extension on Translations {
           'rituals.nameLabel' => 'Nome',
           'rituals.nameHint' => 'Ex.: jantar de sexta',
           'rituals.cadenceLabel' => 'Com que frequência',
+          _ => null,
+        } ??
+        switch (path) {
           'rituals.weekdayLabel' => 'Em que dia',
           'rituals.hourLabel' => 'Que horas',
           'rituals.hourFormat' => ({required Object hour}) => '${hour}:00',
@@ -14617,6 +14601,13 @@ extension on Translations {
           'slipsList.filterInCard' => 'Em um cartão',
           'slipsList.filterInvisible' => 'Trabalho invisível',
           'slipsList.searchFiltersEmptyText' => 'Ajuste a busca ou os filtros.',
+          'slipsList.scopeJar' => 'Potinho',
+          'slipsList.jarEmptyTitle' => 'O potinho está vazio',
+          'slipsList.jarEmpty' =>
+            'Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.',
+          'slipsList.jarEmptyAction' => 'Ver meus slips',
+          'slipsList.jarAnother' => 'Outro',
+          'slipsList.jarClose' => 'Fechar',
           'spice.title' => 'Tempero',
           'spice.introTitle' => 'Tempero, só para vocês dois',
           'spice.introHighlight' => 'vocês dois',
@@ -14873,11 +14864,11 @@ extension on Translations {
           'tabs.usTitle' => 'Sinto saudade de nós',
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
           'tabs.touchLabel' => 'TOQUE',
+          'tabs.touchTitle' => 'Cartas de toque',
+          'tabs.touchText' => 'Neutras, para fazer ou pular.',
           _ => null,
         } ??
         switch (path) {
-          'tabs.touchTitle' => 'Cartas de toque',
-          'tabs.touchText' => 'Neutras, para fazer ou pular.',
           'tabs.distanceLabel' => 'DISTÂNCIA',
           'tabs.distanceTitle' => 'Nossos dois relógios',
           'tabs.distanceText' => 'Fusos e a contagem até o reencontro.',

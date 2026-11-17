@@ -9,10 +9,6 @@
   "placeHint": "Ex.: Paraty",
   "placeAddressNote": "Prefira só o nome do lugar, sem endereço ou número.",
   "segmentTimeline": "Linha do tempo",
-  "segmentJar": "Potinho",
-  "jarEmpty": "Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.",
-  "jarAnother": "Outro",
-  "jarClose": "Fechar",
   "titleLabel": "Uma memória",
   "titleHint": "Ex.: nosso primeiro jantar",
   "titleErrors(map)": {
@@ -57,13 +53,9 @@
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um instante.",
     "other": "Não deu para fazer isso agora. Seu texto continua aqui."
   },
-  "jarEmptyTitle": "O potinho está vazio",
-  "jarEmptyAction": "Ver meus slips",
   "menu": {
     "timeline": "Linha do tempo",
     "timelineText": "Memórias que vocês guardaram",
-    "jar": "Potinho",
-    "jarText": "Um slip bom para um dia ruim",
     "storyText": "Marcos, lugares e números",
     "dates": "Datas e números",
     "datesText": "Aniversários, feriados e contagens",

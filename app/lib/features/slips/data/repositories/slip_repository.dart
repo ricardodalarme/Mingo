@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/mappers/slip_enum_mapper.dart';
+import 'package:app/features/slips/data/models/drawn_slip.dart';
 import 'package:app/features/slips/data/models/pending_slip.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_detail.dart';
@@ -44,6 +46,7 @@ enum SlipSaveOutcome() {
 class SlipRepository({
   required final SlipDataSource _slipDataSource,
   required final SlipLocalDataSource _localDataSource,
+  final Random? _random,
 }) {
   final Logger _logger = Logger('SlipRepository');
   final StreamController<void> _changes = StreamController<void>.broadcast();
@@ -148,6 +151,20 @@ class SlipRepository({
       await _slipDataSource.setInJar(id: id, inJar: inJar);
     } catch (e, stack) {
       _logger.error('Failed to update the jar', error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  /// One random slip from the jar, or null when it is empty.
+  Future<DrawnSlip?> drawFromJar() async {
+    try {
+      final slips = await _slipDataSource.getJarSlips();
+      if (slips.isEmpty) return null;
+      final slip = slips[(_random ?? Random()).nextInt(slips.length)];
+
+      return DrawnSlip(id: slip.id, body: slip.body);
+    } catch (e, stack) {
+      _logger.error('Failed to draw from the jar', error: e, stackTrace: stack);
       rethrow;
     }
   }

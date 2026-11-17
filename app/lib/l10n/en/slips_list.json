@@ -59,5 +59,11 @@
   "filterThisMonth": "This month",
   "filterInCard": "In a card",
   "filterInvisible": "Invisible work",
-  "searchFiltersEmptyText": "Adjust the search or the filters."
+  "searchFiltersEmptyText": "Adjust the search or the filters.",
+  "scopeJar": "Jar",
+  "jarEmptyTitle": "The jar is empty",
+  "jarEmpty": "When a slip does you good, keep it in the jar from its details.",
+  "jarEmptyAction": "See my slips",
+  "jarAnother": "Another",
+  "jarClose": "Close"
 }

@@ -86,7 +86,7 @@ void main() {
     await pumpPage(tester, cubit);
 
     expect(find.byType(BaseEmptyState), findsOneWidget);
-    expect(find.byType(BaseChoiceChip), findsNWidgets(3));
+    expect(find.byType(BaseChoiceChip), findsNWidgets(4));
     expect(find.text('Privado'), findsOneWidget);
     expect(find.byType(BaseRoundButton), findsOneWidget);
     expect(find.byType(SlipsGroups), findsNothing);
@@ -101,7 +101,7 @@ void main() {
       await pumpPage(tester, cubit);
 
       expect(find.byType(BaseEmptyState), findsNothing);
-      expect(find.byType(BaseChoiceChip), findsNWidgets(3));
+      expect(find.byType(BaseChoiceChip), findsNWidgets(4));
       expect(find.byType(SlipsGroups), findsOneWidget);
       expect(find.text('Fez café sem eu pedir'), findsOneWidget);
       expect(find.text('Slips são sempre livres.'), findsOneWidget);

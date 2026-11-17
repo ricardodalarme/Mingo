@@ -20,7 +20,7 @@ void main() {
     when(repository.getMemories).thenAnswer((_) async => []);
   });
 
-  testWidgets('the menu lists the five things the couple keeps', (tester) async {
+  testWidgets('the menu lists what the couple keeps', (tester) async {
     AppInjector.instance.registerFactory<OnThisDayCubit>(
       () => OnThisDayCubit(memoriesRepository: repository),
     );
@@ -29,7 +29,7 @@ void main() {
     await tester.pump();
 
     expect(find.text('Linha do tempo'), findsOneWidget);
-    expect(find.text('Potinho'), findsOneWidget);
+    expect(find.text('Potinho'), findsNothing);
     expect(find.text('Nossa história'), findsOneWidget);
     expect(find.text('Datas e números'), findsOneWidget);
     expect(find.text('Diário'), findsOneWidget);

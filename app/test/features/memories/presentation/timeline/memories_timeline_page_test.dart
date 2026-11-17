@@ -32,7 +32,6 @@ void main() {
     when(() => repository.deleteMemory(any())).thenAnswer((_) async {
       return;
     });
-    when(() => repository.drawFromJar()).thenAnswer((_) async => null);
     when(
       () => repository.addMemory(
         id: any(named: 'id'),

@@ -9,10 +9,6 @@
   "placeHint": "E.g. Lisbon",
   "placeAddressNote": "Prefer just the name of the place, with no address or number.",
   "segmentTimeline": "Timeline",
-  "segmentJar": "Jar",
-  "jarEmpty": "When a slip feels good, keep it in the jar from its details.",
-  "jarAnother": "Another",
-  "jarClose": "Close",
   "titleLabel": "A memory",
   "titleHint": "E.g. our first dinner",
   "titleErrors(map)": {
@@ -57,13 +53,9 @@
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't do that right now. Your text is still here."
   },
-  "jarEmptyTitle": "The jar is empty",
-  "jarEmptyAction": "See my slips",
   "menu": {
     "timeline": "Timeline",
     "timelineText": "Memories you kept",
-    "jar": "Jar",
-    "jarText": "A good slip for a bad day",
     "storyText": "Milestones, places and numbers",
     "dates": "Dates and numbers",
     "datesText": "Anniversaries, holidays and counts",

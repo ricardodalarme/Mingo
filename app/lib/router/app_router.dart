@@ -53,7 +53,6 @@ import 'package:app/features/lists/presentation/detail/list_detail_page.dart';
 import 'package:app/features/lists/presentation/lists/lists_page.dart';
 import 'package:app/features/love_style/presentation/compare/love_style_compare_page.dart';
 import 'package:app/features/love_style/presentation/exercise/love_style_page.dart';
-import 'package:app/features/memories/presentation/jar/jar_page.dart';
 import 'package:app/features/memories/presentation/memories/memories_page.dart';
 import 'package:app/features/memories/presentation/timeline/memories_timeline_page.dart';
 import 'package:app/features/mood/presentation/calendar/mood_calendar_page.dart';
@@ -262,7 +261,6 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: TogetherRoute.page),
     AutoRoute(page: MemoriesRoute.page),
     AutoRoute(page: MemoriesTimelineRoute.page),
-    AutoRoute(page: JarRoute.page),
     AutoRoute(page: DistanceRoute.page),
     AutoRoute(page: CapsulesRoute.page),
     AutoRoute(page: DatesRoute.page),

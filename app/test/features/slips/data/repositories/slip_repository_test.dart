@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import 'package:app/features/slips/data/data_sources/local/slip_local_data_source.dart';
+import 'package:app/features/slips/data/data_sources/remote/queries/generated/JarSlips.graphql.dart';
 import 'package:app/features/slips/data/data_sources/remote/slip_data_source.dart';
 import 'package:app/features/slips/data/models/pending_slip.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
@@ -249,6 +252,32 @@ void main() {
       when(() => local.readDraft()).thenReturn(draft);
 
       expect(repository.readDraft(now), draft);
+    });
+  });
+
+  group('the jar', () {
+    test('an empty jar draws nothing', () async {
+      when(() => remote.getJarSlips()).thenAnswer((_) async => []);
+
+      expect(await repository.drawFromJar(), isNull);
+    });
+
+    test('a slip is drawn at random from the jar', () async {
+      when(() => remote.getJarSlips()).thenAnswer(
+        (_) async => [
+          QueryJarSlipsslips(id: 'a', body: 'um'),
+          QueryJarSlipsslips(id: 'b', body: 'dois'),
+        ],
+      );
+      final seeded = SlipRepository(
+        slipDataSource: remote,
+        localDataSource: local,
+        random: Random(1),
+      );
+
+      final drawn = await seeded.drawFromJar();
+
+      expect(['a', 'b'], contains(drawn!.id));
     });
   });
 }
