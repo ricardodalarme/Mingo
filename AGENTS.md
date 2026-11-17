@@ -74,8 +74,10 @@ entry in `HomePage`'s `routes`; keep the two in sync.
 
 **State.** Cubit with `Resource<T>` (`Initial`, `Loading`, `Success`, `Failure`). Name read slots after the data (`slips`) and
 action slots with an `Action` suffix (`saveAction`). Reads start as `const Loading()`, actions as `const Initial()`. On failure
-emit `Failure.fromObject(exception)`. Reads are Futures: a cubit awaits a repository `getX()`. The exception is a live signal the person is
-waiting on (a partner accepting an invite): a repository `watchX()` stream a cubit listens to and cancels in `close()`.
+emit `Failure.fromObject(exception)`. Reads are Futures: a cubit awaits a repository `getX()`. Two things are live, and a cubit listens to
+the repository `watchX()` stream and cancels it in `close()`: what the partner can change while the person looks (an invite
+accepted, a shared list edited) comes from a subscription, and what the person's own writes change on another screen (the slips
+list, the profile) comes from a watched query.
 
 **UI.** Pages are `@RoutePage()` plus `AutoRouteWrapper` and create their cubit in `wrappedRoute`. Read state with
 `context.select`, act with `context.read`, and use `BlocListener` only for side effects. Render read slots with
@@ -111,9 +113,17 @@ Never write the old separate form (`const SlipCard({required this.slip});` in th
 - **Feature data uses GraphQL.** Each feature keeps its `queries/`, `mutations/` and `fragments/` under
   `data/data_sources/remote/`; the schema snapshot is `app/lib/features/_shared/data/data_sources/remote/schema.graphql`.
   `RestClient` is for Functions and other REST APIs only.
-- **Subscriptions** live in `data/data_sources/remote/subscriptions/` and are used only for such waiting signals. Data sources wrap their stream with `mapResponseData`, the stream form of `validateResponseData`. They run over a
+- **Subscriptions** live in `data/data_sources/remote/subscriptions/` and are used for what the partner changes while a screen is
+  open or waiting. Data sources wrap their stream with `mapResponseData`, the stream form of `validateResponseData`. They run over a
   WebSocket on the same endpoint; `GQLClient.subscribe` handles the connection and the token. Codegen leaves `__typename` off
-  subscription roots (`addTypenameExcludedPaths` in `app/build.yaml`) because the server allows one root field.
+  subscription roots (`addTypenameExcludedPaths` in `app/build.yaml`) because the server allows one root field. A subscription
+  needs a `select` permission for the `user` role, which Hasura already applies to subscriptions. A screen keeps its first one-shot
+  read and starts the subscription after it, so a failed connection leaves what is on screen.
+- **Watched queries** use `GQLClient.watch`, which emits the cache first, then the network, and reads again whenever any mutation
+  through `GQLClient.mutate` succeeds. A data source passes the generated `WatchOptionsQuery<Name>` with
+  `FetchPolicy.cacheAndNetwork`; the repository exposes `watchX()` and passes failures on. Use it for what the person's own writes
+  change on other screens, so no repository announces changes by hand. Select `id` on every entity so the normalized cache can
+  match it. The cache lives in memory and `QueryCacheInitializer` clears it on sign-out; nothing is stored on disk.
 - **Data sources** are concrete classes that call `GQLClient` from `package:network/network.dart`, wrap one-shot queries in
   `validateResponseData`, and never let generated GraphQL types escape the data layer. **Repositories** are concrete classes with a
   `Logger` that return models. There is no domain layer, no use cases and no repository interfaces.

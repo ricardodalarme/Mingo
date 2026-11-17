@@ -10,8 +10,9 @@ description: Implement a feature's data layer — GraphQL query, mutation and fr
 ```
 
 Data sources and repositories are plain concrete classes with constructor injection: no interface and implementation split, no
-use cases and no DTO layer. Reads are one-shot `Future`s: the repository awaits one `GQLClient` call. There is no `watchX` or stream
-convention. `features/gifts` is the reference.
+use cases and no DTO layer. Reads are one-shot `Future`s: the repository awaits one `GQLClient` call. A screen that must stay current
+adds a live stream beside the read (section 9). `features/gifts` is the reference for reads, `features/agreements` for a subscription
+and `features/slips` for a watched query.
 
 ## 1. GraphQL files
 
@@ -175,6 +176,39 @@ or exception message.
 The backend lives in this repository under `nhost/`. A feature that needs a new table, column, query or mutation adds a migration
 and a permission entry first (see the `nhost` skill), then refreshes the snapshot with
 `melos graphql:schema`, then `melos gen`. Ask before inventing backend surface.
+
+## 9. Live reads
+
+Two live shapes sit beside the one-shot read. Pick by who changes the data.
+
+**Subscription, for what the partner changes while a screen is open.** Put one operation per file in
+`data/data_sources/remote/subscriptions/` (`WatchAgreements.graphql`), sharing the query's fragment so both return one type. The
+server allows one root field per subscription, and the `user` select permission already covers it.
+
+```dart
+Stream<List<FragmentAgreementFragment>> watchAgreements() => _client
+    .subscribe(OptionsSubscriptionWatchAgreements())
+    .mapResponseData((data) => List<FragmentAgreementFragment>.of(data.agreements));
+```
+
+A subscription whose data is too composed to map (a game with its content and answers) emits only the small row that signals a
+change, and the cubit reads the full screen again when it differs from what it holds.
+
+**Watched query, for what the person's own writes change on another screen.** `GQLClient.watch` emits the cache, then the network,
+and reads every open watch again after any successful `GQLClient.mutate`. Pass the generated watch options:
+
+```dart
+Stream<List<QueryMySlipsslips>> watchSlips(...) => _client
+    .watch(WatchOptionsQueryMySlips(fetchPolicy: FetchPolicy.cacheAndNetwork, variables: ...))
+    .mapResponseData((data) => data.slips);
+```
+
+- Select `id` on every entity so the normalized cache matches it across queries. A paginated list watches the first N rows and widens
+  N to load more, so one result holds every loaded page.
+- A repository `watchX()` maps to models. A subscription logs a failed event and skips it, so a screen keeps what it shows; a watched
+  read logs it and passes it on, so the screen can show a failure while it has nothing yet.
+- Return an empty stream while signed out. The cache is in memory and is cleared on sign-out by `QueryCacheInitializer`.
+- A data source and a repository each have a test for the stream, including the failure path.
 
 ## Gotchas
 

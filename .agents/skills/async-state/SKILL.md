@@ -6,7 +6,8 @@ description: Implement Cubit state in this app with the sealed Resource pattern 
 # Async state
 
 Every async value in `app/lib` lives in a `flutter_bloc` **Cubit** (never a `Bloc`) as a sealed `Resource<T>`. Reads are one-shot:
-the cubit emits `Loading`, awaits a repository `Future`, then emits `Success` or `Failure`. There is no stream layer.
+the cubit emits `Loading`, awaits a repository `Future`, then emits `Success` or `Failure`. A screen that has to stay current also
+follows a repository `watchX()` stream after the first read (see Live reads).
 
 ```
 page.wrappedRoute -> BlocProvider(create: get<GiftsCubit>()..load())
@@ -77,6 +78,35 @@ Future<void> save() async {
 - Resetting to `Initial` after a `Failure` lets the same failure fire the `BlocListener` again on the next attempt, because the
   listener compares the slot. Do not reset after `Success` when the listener navigates away.
 - Do not emit `Failure` for a cancelled user action.
+
+## Live reads
+
+A subscription or a watched query (see `data-layer`) feeds a cubit through a `StreamSubscription` that `close()` cancels.
+
+```dart
+StreamSubscription<List<Agreement>>? _live;
+
+void _watch() {
+  _live ??= _repository.watchAgreements().listen((agreements) {
+    if (state.changeAction.isLoading) return; // a write in flight owns the list until it ends
+    emit(state.copyWith(agreements: Success(agreements)));
+  });
+}
+
+@override
+Future<void> close() async {
+  await _live?.cancel();
+  return super.close();
+}
+```
+
+- Start it after the first successful read, so a failed connection keeps what is on screen.
+- Ignore an event while an action of the same cubit is running; the action's own result already updates the slot.
+- A stream that only signals (a game session, the Hoje row) compares with what the cubit holds and calls the existing read when it
+  differs. The first event is a baseline, not a change.
+- A watched read that replaces `load()` completes with its first result or error, so pull to refresh and retry still await it.
+- In tests, stub the stream on every mocked repository, use a `StreamController.broadcast()` to push events, and assert
+  `hasListener` is false after `close()`.
 
 ## State
 
