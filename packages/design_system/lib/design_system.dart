@@ -10,6 +10,7 @@ export 'package:material_ui/material_ui.dart' show GlobalMaterialLocalizations, 
 export 'package:skeletonizer/skeletonizer.dart';
 
 export 'src/components/actions/actions.dart';
+export 'src/components/faces/faces.dart';
 export 'src/components/feedback/feedback.dart';
 export 'src/components/identity/identity.dart';
 export 'src/components/input/input.dart';

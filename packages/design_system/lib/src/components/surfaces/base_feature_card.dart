@@ -1,5 +1,5 @@
 import 'package:design_system/src/components/actions/actions.dart';
-import 'package:design_system/src/components/surfaces/base_face.dart';
+import 'package:design_system/src/components/faces/base_face.dart';
 import 'package:design_system/src/components/surfaces/base_tag.dart';
 import 'package:design_system/src/drawings/app_squiggle.dart';
 import 'package:design_system/src/drawings/app_wash.dart';
@@ -54,7 +54,7 @@ class const BaseFeatureCard({
                       child: BaseTag(text: tag),
                     ),
                   ),
-                  if (face != null) BaseFace(kind: face!),
+                  if (face != null) BaseFace(kind: face!, motion: .idle),
                 ],
               ),
               const SizedBox(height: AppSpace.s20),

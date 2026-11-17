@@ -1,3 +1,4 @@
+import 'package:app/features/dev_menu/storybook/helpers/widgets/face_motion_playground.dart';
 import 'package:app/features/dev_menu/storybook/helpers/widgets/gallery_widgets.dart';
 import 'package:design_system/design_system.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -21,13 +22,16 @@ final WidgetbookNode faceSelectorExample = WidgetbookComponent(
   useCases: <WidgetbookUseCase>[
     WidgetbookUseCase(
       name: 'Labeled and unlabeled',
-      builder: (context) => const GalleryPage(
-        title: 'Face selector',
-        children: <Widget>[
-          _Selector(options: _mood),
-          SizedBox(height: AppSpace.s24),
-          _Selector(options: _reactions, isLabeled: false),
-        ],
+      builder: (context) => withFaceMotionKnobs(
+        context,
+        const GalleryPage(
+          title: 'Face selector',
+          children: <Widget>[
+            _Selector(options: _mood),
+            SizedBox(height: AppSpace.s24),
+            _Selector(options: _reactions, isLabeled: false),
+          ],
+        ),
       ),
     ),
     WidgetbookUseCase(

@@ -1,3 +1,4 @@
+import 'package:app/features/dev_menu/storybook/helpers/widgets/face_motion_playground.dart';
 import 'package:app/features/dev_menu/storybook/helpers/widgets/gallery_widgets.dart';
 import 'package:design_system/design_system.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -18,50 +19,76 @@ final WidgetbookNode faceExample = WidgetbookComponent(
           (FaceKind.smile, 'Smile'),
         ];
 
-        return GalleryPage(
-          title: 'Face',
-          children: <Widget>[
-            GallerySection(
-              title: 'Seven kinds',
-              children: <Widget>[
-                Wrap(
-                  spacing: AppSpace.s16,
-                  runSpacing: AppSpace.s16,
-                  children: <Widget>[
-                    for (final (kind, label) in faceLabels)
-                      GalleryItem(
-                        label: label,
-                        child: BaseFace(kind: kind, semanticLabel: '$label face'),
-                      ),
-                  ],
-                ),
-              ],
-            ),
-            GallerySection(
-              title: 'Five sizes',
-              children: <Widget>[
-                GalleryRow(
-                  children: <Widget>[
-                    for (final size in FaceSize.values)
-                      GalleryItem(
-                        label: size.name,
-                        child: BaseFace(kind: FaceKind.smile, size: size),
-                      ),
-                  ],
-                ),
-              ],
-            ),
-            GallerySection(
-              title: 'Selected',
-              children: <Widget>[
-                GalleryRow(
-                  children: <Widget>[
-                    for (final (kind, _) in faceLabels) BaseFace(kind: kind, selected: true),
-                  ],
-                ),
-              ],
-            ),
-          ],
+        final knobs = readFaceKnobs(context);
+
+        return FaceMotionPlayground(
+          isReduced: knobs.isReduced,
+          builder: (context, popToken) => GalleryPage(
+            title: 'Face',
+            children: <Widget>[
+              GallerySection(
+                title: 'Seven kinds',
+                children: <Widget>[
+                  Wrap(
+                    spacing: AppSpace.s16,
+                    runSpacing: AppSpace.s16,
+                    children: <Widget>[
+                      for (final (kind, label) in faceLabels)
+                        GalleryItem(
+                          label: label,
+                          child: BaseFace(
+                            kind: kind,
+                            size: knobs.size,
+                            semanticLabel: '$label face',
+                            motion: knobs.motion,
+                            popToken: popToken,
+                            tint: knobs.tint,
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+              GallerySection(
+                title: 'Five sizes',
+                children: <Widget>[
+                  GalleryRow(
+                    children: <Widget>[
+                      for (final size in FaceSize.values)
+                        GalleryItem(
+                          label: size.name,
+                          child: BaseFace(
+                            kind: FaceKind.smile,
+                            size: size,
+                            motion: knobs.motion,
+                            popToken: popToken,
+                            tint: knobs.tint,
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+              GallerySection(
+                title: 'Selected',
+                children: <Widget>[
+                  GalleryRow(
+                    children: <Widget>[
+                      for (final (kind, _) in faceLabels)
+                        BaseFace(
+                          kind: kind,
+                          size: knobs.size,
+                          selected: true,
+                          motion: knobs.motion,
+                          popToken: popToken,
+                          tint: knobs.tint,
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         );
       },
     ),

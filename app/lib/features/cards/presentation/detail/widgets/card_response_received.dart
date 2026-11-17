@@ -25,7 +25,7 @@ class const CardResponseReceived({required final CardDetail detail, super.key})
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const BaseFace(kind: FaceKind.affectionate, size: FaceSize.reaction),
+          const BaseFace(kind: FaceKind.affectionate, size: FaceSize.reaction, motion: .enter),
           const SizedBox(width: AppSpace.s14),
           Expanded(
             child: Column(
