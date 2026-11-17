@@ -3618,7 +3618,7 @@ class _Translations$mood$en extends Translations$mood$pt {
   @override
   String calendarMonth({required Object month, required Object year}) => '${month} ${year}';
   @override
-  String get calendarEmpty => 'No mood in this month yet.';
+  String get calendarEmpty => 'No mood recorded this month yet.';
   @override
   String get calendarPrivacyNote =>
       'Only you see this. It never shows up for your partner unless it was shared for the day.';
@@ -10648,7 +10648,7 @@ extension on TranslationsEn {
             required Object month,
             required Object year,
           }) => '${month} ${year}',
-          'mood.calendarEmpty' => 'No mood in this month yet.',
+          'mood.calendarEmpty' => 'No mood recorded this month yet.',
           'mood.calendarPrivacyNote' => 'Only you see this. It never shows up for your partner unless it was shared for the day.',
           'mood.calendarAction' => 'Record my mood',
           'mood.calendarErrorTitle' => 'Couldn\'t open your moods',

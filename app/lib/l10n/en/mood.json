@@ -90,7 +90,7 @@
   "shareHeadlineNoNameHighlight": "your person",
   "calendarTitle": "My moods",
   "calendarMonth": "{month} {year}",
-  "calendarEmpty": "No mood in this month yet.",
+  "calendarEmpty": "No mood recorded this month yet.",
   "calendarPrivacyNote": "Only you see this. It never shows up for your partner unless it was shared for the day.",
   "calendarAction": "Record my mood",
   "calendarErrorTitle": "Couldn't open your moods",
