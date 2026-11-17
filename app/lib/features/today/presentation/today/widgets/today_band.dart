@@ -26,6 +26,7 @@ class const TodayBand({
           categoryLabel: l10n.pendingInviteTitle,
           category: AppCategory.invite,
           title: l10n.pendingInviteText,
+          face: FaceKind.smile,
           onTap: () => openInvite(context),
         ),
       ),
