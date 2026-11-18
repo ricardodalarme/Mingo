@@ -4407,18 +4407,6 @@ enum userSettings_select_column {
   column name
   """
   userId
-  """
-  column name
-  """
-  widgetAllowPartnerNotes
-  """
-  column name
-  """
-  widgetOnLockScreen
-  """
-  column name
-  """
-  widgetShowNames
 }
 """
 select columns of table "weekly_reviews"
@@ -21104,9 +21092,6 @@ type userSettings {
   togetherSince: date
   updatedAt: timestamptz!
   userId: uuid!
-  widgetAllowPartnerNotes: Boolean!
-  widgetOnLockScreen: Boolean!
-  widgetShowNames: Boolean!
 }
 """
 response of any mutation on the table "user_settings"
@@ -28951,9 +28936,6 @@ input userSettings_bool_exp {
   togetherSince: date_comparison_exp
   updatedAt: timestamptz_comparison_exp
   userId: uuid_comparison_exp
-  widgetAllowPartnerNotes: Boolean_comparison_exp
-  widgetOnLockScreen: Boolean_comparison_exp
-  widgetShowNames: Boolean_comparison_exp
 }
 """
 input type for incrementing numeric columns in table "user_settings"
@@ -28990,9 +28972,6 @@ input userSettings_order_by {
   togetherSince: order_by
   updatedAt: order_by
   userId: order_by
-  widgetAllowPartnerNotes: order_by
-  widgetOnLockScreen: order_by
-  widgetShowNames: order_by
 }
 """
 primary key columns input for table: user_settings
@@ -29024,9 +29003,6 @@ input userSettings_set_input {
   spiceNotifications: Boolean
   theme: AppTheme_enum
   togetherSince: date
-  widgetAllowPartnerNotes: Boolean
-  widgetOnLockScreen: Boolean
-  widgetShowNames: Boolean
 }
 """
 Streaming cursor of the table "userSettings"
@@ -29068,9 +29044,6 @@ input userSettings_stream_cursor_value_input {
   togetherSince: date
   updatedAt: timestamptz
   userId: uuid
-  widgetAllowPartnerNotes: Boolean
-  widgetOnLockScreen: Boolean
-  widgetShowNames: Boolean
 }
 input userSettings_updates {
   """

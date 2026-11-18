@@ -16,8 +16,8 @@ test('the catalog has the 25 final tool names and marks what reaches the partner
     [
       'add_logistic_item_for_both',
       'add_to_private_list',
+      'change_card_time',
       'change_distance_count',
-      'change_widget_or_time',
       'create_calendar_event',
       'create_private_reminder',
       'create_private_slip',
@@ -47,8 +47,8 @@ test('the catalog has the 25 final tool names and marks what reaches the partner
     .sort();
   assert.deepEqual(confirm, [
     'add_logistic_item_for_both',
+    'change_card_time',
     'change_distance_count',
-    'change_widget_or_time',
     'create_calendar_event',
     'create_shared_date',
     'invite_to_game',

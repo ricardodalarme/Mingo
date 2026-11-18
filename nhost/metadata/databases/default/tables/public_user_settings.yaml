@@ -49,12 +49,6 @@ configuration:
       custom_name: updatedAt
     user_id:
       custom_name: userId
-    widget_allow_partner_notes:
-      custom_name: widgetAllowPartnerNotes
-    widget_on_lock_screen:
-      custom_name: widgetOnLockScreen
-    widget_show_names:
-      custom_name: widgetShowNames
   custom_column_names:
     card_channel: cardChannel
     card_theme: cardTheme
@@ -79,9 +73,6 @@ configuration:
     together_since: togetherSince
     updated_at: updatedAt
     user_id: userId
-    widget_allow_partner_notes: widgetAllowPartnerNotes
-    widget_on_lock_screen: widgetOnLockScreen
-    widget_show_names: widgetShowNames
   custom_name: userSettings
   custom_root_fields:
     delete: deleteUserSettings
@@ -134,9 +125,6 @@ select_permissions:
         - together_since
         - updated_at
         - user_id
-        - widget_allow_partner_notes
-        - widget_on_lock_screen
-        - widget_show_names
       filter:
         user_id:
           _eq: X-Hasura-User-Id
@@ -158,9 +146,6 @@ update_permissions:
         - card_channel
         - card_theme
         - slips_default_for_card
-        - widget_allow_partner_notes
-        - widget_on_lock_screen
-        - widget_show_names
         - spice_enabled
         - low_stimulation
         - chat_store_facts

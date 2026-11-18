@@ -169,14 +169,14 @@ export const TOOLS = defineTools({
       value: text(20),
     },
   },
-  change_widget_or_time: {
+  change_card_time: {
     confirm: true,
-    description: 'Change a widget or the card time.',
+    description: 'Change the card time.',
     params: {
       setting: {
         type: 'string',
         max: 24,
-        values: ['widget_on_lock_screen', 'widget_show_names', 'card_day', 'card_hour'],
+        values: ['card_day', 'card_hour'],
       },
       value: text(20),
     },
