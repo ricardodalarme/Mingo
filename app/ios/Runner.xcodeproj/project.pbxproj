@@ -20,6 +20,27 @@
 		D40410032F00000100000001 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40410042F00000100000001 /* WidgetKit.framework */; };
 		D40410052F00000100000001 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40410062F00000100000001 /* SwiftUI.framework */; };
 		D40410072F00000100000001 /* MingoWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D40410082F00000100000001 /* MingoWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D4042000010100000001 /* MingoComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000010200000001 /* MingoComponents.swift */; };
+		D4042000010300000001 /* MingoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000010400000001 /* MingoEntry.swift */; };
+		D4042000010500000001 /* MingoFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000010600000001 /* MingoFormat.swift */; };
+		D4042000010700000001 /* MingoPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000010800000001 /* MingoPalette.swift */; };
+		D4042000010900000001 /* MingoPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000010A00000001 /* MingoPayload.swift */; };
+		D4042000010B00000001 /* CardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000010C00000001 /* CardWidget.swift */; };
+		D4042000010D00000001 /* CounterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000010E00000001 /* CounterWidget.swift */; };
+		D4042000010F00000001 /* DistanceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000011000000001 /* DistanceWidget.swift */; };
+		D4042000011100000001 /* IdeaWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000011200000001 /* IdeaWidget.swift */; };
+		D4042000011300000001 /* LongingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000011400000001 /* LongingWidget.swift */; };
+		D4042000011500000001 /* NextDateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000011600000001 /* NextDateWidget.swift */; };
+		D4042000011700000001 /* PartnerMoodWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000011800000001 /* PartnerMoodWidget.swift */; };
+		D4042000011900000001 /* PartnerNoteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000011A00000001 /* PartnerNoteWidget.swift */; };
+		D4042000011B00000001 /* RitualWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000011C00000001 /* RitualWidget.swift */; };
+		D4042000011D00000001 /* SlipWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000011E00000001 /* SlipWidget.swift */; };
+		D4042000011F00000001 /* WeekWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4042000012000000001 /* WeekWidget.swift */; };
+		D4042000012100000001 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D4042000012200000001 /* Localizable.xcstrings */; };
+		D4042000012300000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4042000012400000001 /* Assets.xcassets */; };
+		D4042000012500000001 /* Caveat-Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4042000012600000001 /* Caveat-Variable.ttf */; };
+		D40429000100000001 /* MingoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40429000200000001 /* MingoLink.swift */; };
+		D40429000300000001 /* MingoMood+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40429000400000001 /* MingoMood+Display.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +101,27 @@
 		D404100C2F00000100000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D404100D2F00000100000001 /* MingoWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MingoWidgets.entitlements; sourceTree = "<group>"; };
 		D404100E2F00000100000001 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
+		D4042000010200000001 /* MingoComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MingoComponents.swift; sourceTree = "<group>"; };
+		D4042000010400000001 /* MingoEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MingoEntry.swift; sourceTree = "<group>"; };
+		D4042000010600000001 /* MingoFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MingoFormat.swift; sourceTree = "<group>"; };
+		D4042000010800000001 /* MingoPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MingoPalette.swift; sourceTree = "<group>"; };
+		D4042000010A00000001 /* MingoPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MingoPayload.swift; sourceTree = "<group>"; };
+		D4042000010C00000001 /* CardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWidget.swift; sourceTree = "<group>"; };
+		D4042000010E00000001 /* CounterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterWidget.swift; sourceTree = "<group>"; };
+		D4042000011000000001 /* DistanceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceWidget.swift; sourceTree = "<group>"; };
+		D4042000011200000001 /* IdeaWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeaWidget.swift; sourceTree = "<group>"; };
+		D4042000011400000001 /* LongingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongingWidget.swift; sourceTree = "<group>"; };
+		D4042000011600000001 /* NextDateWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDateWidget.swift; sourceTree = "<group>"; };
+		D4042000011800000001 /* PartnerMoodWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerMoodWidget.swift; sourceTree = "<group>"; };
+		D4042000011A00000001 /* PartnerNoteWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerNoteWidget.swift; sourceTree = "<group>"; };
+		D4042000011C00000001 /* RitualWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RitualWidget.swift; sourceTree = "<group>"; };
+		D4042000011E00000001 /* SlipWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlipWidget.swift; sourceTree = "<group>"; };
+		D4042000012000000001 /* WeekWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekWidget.swift; sourceTree = "<group>"; };
+		D4042000012200000001 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		D4042000012400000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4042000012600000001 /* Caveat-Variable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Caveat-Variable.ttf; sourceTree = "<group>"; };
+		D40429000200000001 /* MingoLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MingoLink.swift"; sourceTree = "<group>"; };
+		D40429000400000001 /* MingoMood+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MingoMood+Display.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				D40410022F00000100000001 /* MingoWidgets.swift */,
+				D4042000012700000001 /* Core */,
+				D4042000012800000001 /* Widgets */,
+				D4042000012900000001 /* Resources */,
 				D404100C2F00000100000001 /* Info.plist */,
 				D404100D2F00000100000001 /* MingoWidgets.entitlements */,
 			);
@@ -170,6 +215,56 @@
 				D40410062F00000100000001 /* SwiftUI.framework */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		D4042000012700000001 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D40429000200000001 /* MingoLink.swift */,
+				D40429000400000001 /* MingoMood+Display.swift */,
+				D4042000010200000001 /* MingoComponents.swift */,
+				D4042000010400000001 /* MingoEntry.swift */,
+				D4042000010600000001 /* MingoFormat.swift */,
+				D4042000010800000001 /* MingoPalette.swift */,
+				D4042000010A00000001 /* MingoPayload.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D4042000012800000001 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				D4042000010C00000001 /* CardWidget.swift */,
+				D4042000010E00000001 /* CounterWidget.swift */,
+				D4042000011000000001 /* DistanceWidget.swift */,
+				D4042000011200000001 /* IdeaWidget.swift */,
+				D4042000011400000001 /* LongingWidget.swift */,
+				D4042000011600000001 /* NextDateWidget.swift */,
+				D4042000011800000001 /* PartnerMoodWidget.swift */,
+				D4042000011A00000001 /* PartnerNoteWidget.swift */,
+				D4042000011C00000001 /* RitualWidget.swift */,
+				D4042000011E00000001 /* SlipWidget.swift */,
+				D4042000012000000001 /* WeekWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		D4042000012900000001 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D4042000012200000001 /* Localizable.xcstrings */,
+				D4042000012400000001 /* Assets.xcassets */,
+				D4042000012A00000001 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D4042000012A00000001 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D4042000012600000001 /* Caveat-Variable.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +340,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = 97C146E51CF9000F007C117D;
 			packageReferences = (
@@ -277,6 +373,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4042000012100000001 /* Localizable.xcstrings in Resources */,
+				D4042000012300000001 /* Assets.xcassets in Resources */,
+				D4042000012500000001 /* Caveat-Variable.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +472,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				D40410012F00000100000001 /* MingoWidgets.swift in Sources */,
+				D40429000100000001 /* MingoLink.swift in Sources */,
+				D40429000300000001 /* MingoMood+Display.swift in Sources */,
+				D4042000010100000001 /* MingoComponents.swift in Sources */,
+				D4042000010300000001 /* MingoEntry.swift in Sources */,
+				D4042000010500000001 /* MingoFormat.swift in Sources */,
+				D4042000010700000001 /* MingoPalette.swift in Sources */,
+				D4042000010900000001 /* MingoPayload.swift in Sources */,
+				D4042000010B00000001 /* CardWidget.swift in Sources */,
+				D4042000010D00000001 /* CounterWidget.swift in Sources */,
+				D4042000010F00000001 /* DistanceWidget.swift in Sources */,
+				D4042000011100000001 /* IdeaWidget.swift in Sources */,
+				D4042000011300000001 /* LongingWidget.swift in Sources */,
+				D4042000011500000001 /* NextDateWidget.swift in Sources */,
+				D4042000011700000001 /* PartnerMoodWidget.swift in Sources */,
+				D4042000011900000001 /* PartnerNoteWidget.swift in Sources */,
+				D4042000011B00000001 /* RitualWidget.swift in Sources */,
+				D4042000011D00000001 /* SlipWidget.swift in Sources */,
+				D4042000011F00000001 /* WeekWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,7 +1000,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MingoWidgets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -892,6 +1009,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.dev.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -909,7 +1027,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MingoWidgets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -918,6 +1036,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.dev.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -934,7 +1053,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MingoWidgets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -943,6 +1062,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.dev.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -959,7 +1079,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MingoWidgets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -968,6 +1088,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -985,7 +1106,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MingoWidgets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -994,6 +1115,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1010,7 +1132,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MingoWidgets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1019,6 +1141,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.dalarme.mingo.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
