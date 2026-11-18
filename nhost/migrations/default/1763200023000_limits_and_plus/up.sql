@@ -83,7 +83,7 @@ language sql stable as $$
   select count(*)::integer from public.lists where author_id = p_user_id;
 $$;
 
--- Replaced when the Tempero tables exist.
+-- Replaced when the Spice tables exist.
 create function private.spice_cards_this_week(p_user_id uuid) returns integer
 language sql stable as $$ select 0; $$;
 
@@ -174,7 +174,7 @@ create trigger user_settings_card_theme before update of card_theme on public.us
   for each row execute function private.before_card_theme_change();
 
 -- Plus-only content keeps its title and loses its body for a person without Plus, so the app can show the lock.
--- Tempero kinds are returned only while both people switched the mode on.
+-- Spice kinds are returned only while both people switched the mode on.
 create function private.spice_on(p_user_id uuid) returns boolean
 language sql stable as $$
   select coalesce((select spice_enabled from public.user_settings where user_id = p_user_id), false)

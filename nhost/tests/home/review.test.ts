@@ -76,7 +76,7 @@ test('together shows only counts: the partner cards, shared rituals and a check-
   assert.equal((await review(b)).ritualsDone, 1);
 });
 
-test('the review does not read annoyances, notes or Tempero', async () => {
+test('the review does not read annoyances, notes or Spice', async () => {
   const a = await person();
   await ok(a, `mutation { insertAnnoyancesOne(object: {body: "segredo"}) { id } }`);
   const text = JSON.stringify(await review(a));

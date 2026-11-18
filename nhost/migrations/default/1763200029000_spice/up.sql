@@ -1,4 +1,4 @@
--- Tempero: an adult mode that exists only while both people switched it on. Answers stay private, only a match is shown,
+-- Spice: an adult mode that exists only while both people switched it on. Answers stay private, only a match is shown,
 -- and turning it off removes everything for both.
 
 alter table public.user_settings
@@ -78,7 +78,7 @@ language sql stable as $$
     and p.created_at >= (private.local_week_start(p_user_id)::timestamp at time zone (select time_zone from public.profiles where id = p_user_id));
 $$;
 
--- Everything Tempero keeps about a couple.
+-- Everything Spice keeps about a couple.
 create function private.wipe_spice_couple(p_couple_id uuid) returns void
 language plpgsql volatile as $$
 begin
@@ -259,7 +259,7 @@ begin
   return query select s.* from public.user_settings s where s.user_id = v_uid;
 end $$;
 
--- A push about Tempero needs the person's explicit yes; the inbox row is always there.
+-- A push about Spice needs the person's explicit yes; the inbox row is always there.
 create or replace function private.claim_notification(notification_id uuid) returns setof public.devices
 language plpgsql volatile as $$
 declare
@@ -291,7 +291,7 @@ begin
   return query select d.* from public.devices d where d.user_id = n.user_id;
 end $$;
 
--- Tempero kinds are returned by the catalog only while both people have the mode on.
+-- Spice kinds are returned by the catalog only while both people have the mode on.
 create or replace function public.content_catalog(session json, kind text default null, locale text default null)
 returns setof public.catalog_items language sql stable as $$
   select c.id, c.kind, c.slug, c.locale, c.title,

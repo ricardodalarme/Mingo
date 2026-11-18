@@ -13,14 +13,14 @@ import * as system from './spec/system.mjs';
 import * as plus_content from './spec/plus-content.mjs';
 import * as account from './spec/account.mjs';
 import * as chat from './spec/chat.mjs';
-import * as tempero from './spec/tempero.mjs';
+import * as spice from './spec/spice.mjs';
 import * as partner from './spec/partner.mjs';
 import * as games from './spec/games.mjs';
 import * as private_space from './spec/private-space.mjs';
 import * as shared_space from './spec/shared-space.mjs';
 import * as home from './spec/home.mjs';
 
-const domains = [identity, slips_cards, annoyances, notifications, system, plus_content, account, chat, tempero, partner, games, private_space, shared_space, home];
+const domains = [identity, slips_cards, annoyances, notifications, system, plus_content, account, chat, spice, partner, games, private_space, shared_space, home];
 
 export const tables = Object.assign({}, ...domains.map((d) => d.tables));
 

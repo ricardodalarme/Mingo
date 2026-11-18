@@ -4,7 +4,7 @@ import { adult, assert, couple, denied, ok, person, signUp, sql, upload, downloa
 const enableSpice = (who: { id: string }) =>
   `mutation { updateUserSettingsByPk(pk_columns: {userId: "${who.id}"}, _set: {spiceEnabled: true}) { spiceEnabled } }`;
 
-test('Tempero needs the adult declaration, and withdrawing it blocks a later enable', async () => {
+test('Spice needs the adult declaration, and withdrawing it blocks a later enable', async () => {
   const a = await person();
   const refused = await denied(a, enableSpice(a));
   assert.match(JSON.stringify(refused.errors), /ADULT_REQUIRED/);

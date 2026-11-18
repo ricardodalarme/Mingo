@@ -1,4 +1,4 @@
--- Tempero content. Everything is sensitive and an invitation that can be declined. Cards are free within the weekly limit; desires are Plus.
+-- Spice content. Everything is sensitive and an invitation that can be declined. Cards are free within the weekly limit; desires are Plus.
 
 update public.content_items set level = 1, plus_only = false where kind = 'spice_card' and level is null and slug in ('whisper-like', 'slow-new');
 update public.content_items set plus_only = false where kind = 'spice_card' and slug not like 'sc-%';

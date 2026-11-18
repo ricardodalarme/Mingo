@@ -211,7 +211,7 @@ test('unpairing removes the mode for both, with everything it kept, and says not
   assert.equal((await inbox(b, 'unpaired')).length, 1);
 });
 
-test('the catalog and direct reads hide Tempero content unless both are on', async () => {
+test('the catalog and direct reads hide Spice content unless both are on', async () => {
   const { a } = await couple();
   const read = (who: Person) => ok(who, `{ contentCatalog(args: {kind: "spice_card"}, where: {slug: {_like: "tt-%"}}) { slug } contentItems(where: {slug: {_like: "tt-%"}}) { slug } }`);
   assert.deepEqual(await read(a), { contentCatalog: [], contentItems: [] });
@@ -231,11 +231,11 @@ test('plays and challenges are read by the couple while the mode is on, and by n
   assert.equal((await gql('public', `{ spiceCardPlays { id } }`)).data, undefined);
 });
 
-test('no other table or type can reach Tempero by joining', async () => {
+test('no other table or type can reach Spice by joining', async () => {
   const files = readdirSync(metadataDir).filter((f) => f.endsWith('.yaml') && f !== 'tables.yaml' && !f.includes('spice_'));
   for (const file of files) {
     const text = readFileSync(join(metadataDir, file), 'utf8');
-    assert.doesNotMatch(text, /name: spice_(desire_answers|card_plays|challenges)/, `${file} points at a Tempero table`);
+    assert.doesNotMatch(text, /name: spice_(desire_answers|card_plays|challenges)/, `${file} points at a Spice table`);
   }
   const { data } = await gql({ id: (await person()).id }, `{ __schema { types { name kind fields { name type { name kind ofType { name kind ofType { name kind ofType { name } } } } } } } }`);
   const named = (t: any): string => (t.name ?? (t.ofType ? named(t.ofType) : ''));

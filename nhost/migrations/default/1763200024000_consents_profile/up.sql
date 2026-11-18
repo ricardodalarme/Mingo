@@ -1,6 +1,6 @@
 -- Adult declaration, the avatar colour and illustration, and the relationship start date.
 
--- WP-03: consent to being an adult, needed before Tempero can be switched on. `consents` is append-only; the newest row wins.
+-- WP-03: consent to being an adult, needed before Spice can be switched on. `consents` is append-only; the newest row wins.
 insert into public.consent_kind (value) values ('adult') on conflict do nothing;
 
 create function private.consent_granted(p_user_id uuid, p_kind text) returns boolean

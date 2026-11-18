@@ -32,7 +32,7 @@ test('no loader runs unless the request names it', async () => {
   assert.doesNotMatch(slips.text, /mood|plan:/);
 });
 
-test('with every loader on, nothing the partner keeps private, no annoyance, no Tempero and no repair text comes back', async () => {
+test('with every loader on, nothing the partner keeps private, no annoyance, no Spice and no repair text comes back', async () => {
   const { a, b, coupleId } = await pairSessions();
   await ok(b, `mutation { insertSlipsOne(object: {body: "slip-privado-de-b"}) { id } insertAnnoyancesOne(object: {body: "incomodo-de-b"}) { id }
     insertMoodsOne(object: {day: "2026-01-01", mood: sad}) { id } insertTemperatureChecksOne(object: {level: fight, note: "nota-de-b"}) { id }

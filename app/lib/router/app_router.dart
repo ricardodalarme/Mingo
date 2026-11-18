@@ -240,7 +240,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: QuickRepairRoute.page, fullscreenDialog: true),
   ];
 
-  /// The mascot chat and Tempero.
+  /// The mascot chat and Spice.
   List<AutoRoute> get _conversationRoutes => [
     AutoRoute(page: ChatRoute.page),
     AutoRoute(page: ChatSettingsRoute.page),

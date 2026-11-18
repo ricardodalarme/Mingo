@@ -1,5 +1,5 @@
 // What the mascot may read to answer well. Every loader runs as the caller, so the database permissions decide what is
-// readable: nothing the partner keeps private can come back, and an annoyance, a Tempero row or a repair draft is never
+// readable: nothing the partner keeps private can come back, and an annoyance, a Spice row or a repair draft is never
 // asked for. A loader runs only when the request names it; a journal entry only when the request lists its id.
 /** Runs a GraphQL query as the caller, so the caller's permissions apply. */
 export type CallerQuery = (query: string, variables?: Record<string, unknown>) => Promise<any>;

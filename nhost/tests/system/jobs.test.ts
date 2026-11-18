@@ -144,7 +144,7 @@ test('a person cannot run a job, read the job history or make one up', async () 
   assert.ok((await denied('admin', `mutation { runJob(args: {job: "not_a_job"}) { id } }`)).errors?.length);
 });
 
-test('the daily prune drops old inbox rows, unanswered Tempero cards and expired exports', async () => {
+test('the daily prune drops old inbox rows, unanswered Spice cards and expired exports', async () => {
   const { a } = await couple();
   const old = await sql(`insert into public.inbox_items (user_id, type, created_at) values ('${a.id}', 'card_received', now() - interval '31 days'), ('${a.id}', 'card_received', now()) returning id`);
   await sql(`insert into public.spice_card_plays (couple_id, content_slug, proposed_by, created_at)

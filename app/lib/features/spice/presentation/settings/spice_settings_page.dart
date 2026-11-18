@@ -10,7 +10,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// The person's own limits for Tempero, and the way to turn it off for both.
+/// The person's own limits for Spice, and the way to turn it off for both.
 @RoutePage()
 class const SpiceSettingsPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override

@@ -20,7 +20,7 @@ create table public.weekly_reviews (
 );
 
 -- The week of `weekStart` (a Monday, or any day of that week), the current week of the person when omitted. It reads the
--- caller's own counts and a few counts of the couple, and never any text, annoyance or Tempero table.
+-- caller's own counts and a few counts of the couple, and never any text, annoyance or Spice table.
 create function public.weekly_review(session json, "weekStart" date default null) returns setof public.weekly_reviews
 language plpgsql stable security definer set search_path = '' as $$
 declare

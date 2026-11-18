@@ -1,4 +1,4 @@
-// Tempero: the adult mode that exists only while both people switched it on.
+// Spice: the adult mode that exists only while both people switched it on.
 import { ME, mine, and, inMyCouple, coupleMembers, spiceAllowed, resultTable } from './_shared.mjs';
 
 export const tables = {

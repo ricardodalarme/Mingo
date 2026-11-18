@@ -1,6 +1,6 @@
 {
-  "title": "Tempero",
-  "introTitle": "Tempero, just for the two of you",
+  "title": "Spice",
+  "introTitle": "Spice, just for the two of you",
   "introHighlight": "the two of you",
   "introText": "An optional space for adults, with cards and desires for the couple. 18+ only.",
   "partnerWantsText": "The other person wanted to turn it on. It only starts when you turn it on too.",
@@ -16,8 +16,8 @@
   "notNow": "Not now",
   "turnOff": "Turn off",
   "waitingTitle": "Waiting for the other person",
-  "waitingText": "Nothing was announced. When they turn it on too, Tempero opens for both of you.",
-  "soloTitle": "Tempero is for two",
+  "waitingText": "Nothing was announced. When they turn it on too, Spice opens for both of you.",
+  "soloTitle": "Spice is for two",
   "soloText": "It needs two connected people. When the other person joins, it becomes available.",
   "soloAction": "Back",
   "home": {
@@ -37,7 +37,7 @@
       "FREE_LIMIT_REACHED": "You used this week's free cards. Plus unlocks more.",
       "PLUS_REQUIRED": "This is part of Plus.",
       "ADULT_REQUIRED": "Confirm you are 18 or older.",
-      "SPICE_NOT_ON": "Tempero is not on for both of you.",
+      "SPICE_NOT_ON": "Spice is not on for both of you.",
       "SWAP_LIMIT": "You already swapped the challenge three times this week.",
       "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
       "other": "We could not finish that now. Try again."
@@ -59,7 +59,7 @@
       "FREE_LIMIT_REACHED": "You used this week's free cards. Plus unlocks more.",
       "PLUS_REQUIRED": "This is part of Plus.",
       "ADULT_REQUIRED": "Confirm you are 18 or older.",
-      "SPICE_NOT_ON": "Tempero is not on for both of you.",
+      "SPICE_NOT_ON": "Spice is not on for both of you.",
       "SWAP_LIMIT": "You already swapped the challenge three times this week.",
       "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
       "other": "We could not finish that now. Try again."
@@ -82,7 +82,7 @@
       "FREE_LIMIT_REACHED": "You used this week's free cards. Plus unlocks more.",
       "PLUS_REQUIRED": "This is part of Plus.",
       "ADULT_REQUIRED": "Confirm you are 18 or older.",
-      "SPICE_NOT_ON": "Tempero is not on for both of you.",
+      "SPICE_NOT_ON": "Spice is not on for both of you.",
       "SWAP_LIMIT": "You already swapped the challenge three times this week.",
       "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
       "other": "We could not finish that now. Try again."
@@ -100,12 +100,12 @@
     "swap": "Swap the challenge"
   },
   "settingsPage": {
-    "title": "Tempero settings",
+    "title": "Spice settings",
     "errors(map)": {
       "FREE_LIMIT_REACHED": "You used this week's free cards. Plus unlocks more.",
       "PLUS_REQUIRED": "This is part of Plus.",
       "ADULT_REQUIRED": "Confirm you are 18 or older.",
-      "SPICE_NOT_ON": "Tempero is not on for both of you.",
+      "SPICE_NOT_ON": "Spice is not on for both of you.",
       "SWAP_LIMIT": "You already swapped the challenge three times this week.",
       "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
       "other": "We could not finish that now. Try again."
@@ -118,10 +118,10 @@
       "other": ""
     },
     "levelNote": "The gentler of the two limits applies. The other person does not see yours.",
-    "notifications": "Tempero alerts",
+    "notifications": "Spice alerts",
     "notificationsText": "A short alert that says nothing about the content.",
-    "turnOff": "Turn off Tempero",
-    "turnOffTitle": "Turn off Tempero?",
+    "turnOff": "Turn off Spice",
+    "turnOffTitle": "Turn off Spice?",
     "turnOffText": "It turns off for both of you and erases answers, cards and challenges. This cannot be undone.",
     "turnOffConfirm": "Turn off"
   },
@@ -129,7 +129,7 @@
     "FREE_LIMIT_REACHED": "You used this week's free cards. Plus unlocks more.",
     "PLUS_REQUIRED": "This is part of Plus.",
     "ADULT_REQUIRED": "Confirm you are 18 or older.",
-    "SPICE_NOT_ON": "Tempero is not on for both of you.",
+    "SPICE_NOT_ON": "Spice is not on for both of you.",
     "SWAP_LIMIT": "You already swapped the challenge three times this week.",
     "RATE_LIMITED": "Too many tries in a row. Wait a moment.",
     "other": "We could not finish that now. Try again."

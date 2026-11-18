@@ -72,7 +72,7 @@ void main() {
     expect(find.text('Configurações'), findsOneWidget);
   });
 
-  testWidgets('without a partner it says Tempero is for two', (tester) async {
+  testWidgets('without a partner it says Spice is for two', (tester) async {
     when(pairing.getPartner).thenAnswer((_) async => null);
 
     await pump(tester, SpiceStage.off);

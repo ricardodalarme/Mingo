@@ -12,7 +12,7 @@ alter table public.cards drop constraint cards_held_reason_check;
 alter table public.cards
   add constraint cards_held_reason_fkey foreign key (held_reason) references public.held_reason (value);
 
--- Where Tempero stands for a person: off, only they are on, only the partner is on, or both.
+-- Where Spice stands for a person: off, only they are on, only the partner is on, or both.
 select private.create_enum('spice_stage', 'off', 'waiting_partner', 'partner_wants', 'on');
 alter table public.spice_states
   add constraint spice_states_state_fkey foreign key (state) references public.spice_stage (value);

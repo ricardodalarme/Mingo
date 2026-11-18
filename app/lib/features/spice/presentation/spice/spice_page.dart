@@ -10,7 +10,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// Tempero, an adult mode that exists only while both people switched it on.
+/// Spice, an adult mode that exists only while both people switched it on.
 @RoutePage()
 class const SpicePage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override

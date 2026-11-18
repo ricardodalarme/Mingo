@@ -2833,11 +2833,11 @@ class _Translations$inbox$en extends Translations$inbox$pt {
   @override
   String quizSharedTitle({required Object name}) => '${name} showed a quiz';
   @override
-  String get spiceInviteTitle => 'An invite from Tempero';
+  String get spiceInviteTitle => 'An invite from Spice';
   @override
   String get spiceInviteText => 'It only shows up if you both turn it on';
   @override
-  String get spiceOffTitle => 'Tempero was turned off';
+  String get spiceOffTitle => 'Spice was turned off';
   @override
   String get spiceOffText => 'Nothing from the mode was kept';
   @override
@@ -5289,7 +5289,7 @@ class _Translations$settingsHome$en extends Translations$settingsHome$pt {
   @override
   String get planPlus => 'Plus';
   @override
-  String get spice => 'Tempero';
+  String get spice => 'Spice';
   @override
   String get privacy => 'Privacy and security';
   @override
@@ -5729,9 +5729,9 @@ class _Translations$spice$en extends Translations$spice$pt {
 
   // Translations
   @override
-  String get title => 'Tempero';
+  String get title => 'Spice';
   @override
-  String get introTitle => 'Tempero, just for the two of you';
+  String get introTitle => 'Spice, just for the two of you';
   @override
   String get introHighlight => 'the two of you';
   @override
@@ -5761,9 +5761,9 @@ class _Translations$spice$en extends Translations$spice$pt {
   String get waitingTitle => 'Waiting for the other person';
   @override
   String get waitingText =>
-      'Nothing was announced. When they turn it on too, Tempero opens for both of you.';
+      'Nothing was announced. When they turn it on too, Spice opens for both of you.';
   @override
-  String get soloTitle => 'Tempero is for two';
+  String get soloTitle => 'Spice is for two';
   @override
   String get soloText =>
       'It needs two connected people. When the other person joins, it becomes available.';
@@ -5785,7 +5785,7 @@ class _Translations$spice$en extends Translations$spice$pt {
     'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
     'PLUS_REQUIRED': 'This is part of Plus.',
     'ADULT_REQUIRED': 'Confirm you are 18 or older.',
-    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
+    'SPICE_NOT_ON': 'Spice is not on for both of you.',
     'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'We could not finish that now. Try again.',
@@ -8346,7 +8346,7 @@ class _Translations$spice$cards$en extends Translations$spice$cards$pt {
     'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
     'PLUS_REQUIRED': 'This is part of Plus.',
     'ADULT_REQUIRED': 'Confirm you are 18 or older.',
-    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
+    'SPICE_NOT_ON': 'Spice is not on for both of you.',
     'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'We could not finish that now. Try again.',
@@ -8387,7 +8387,7 @@ class _Translations$spice$desires$en extends Translations$spice$desires$pt {
     'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
     'PLUS_REQUIRED': 'This is part of Plus.',
     'ADULT_REQUIRED': 'Confirm you are 18 or older.',
-    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
+    'SPICE_NOT_ON': 'Spice is not on for both of you.',
     'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'We could not finish that now. Try again.',
@@ -8426,7 +8426,7 @@ class _Translations$spice$challenge$en extends Translations$spice$challenge$pt {
     'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
     'PLUS_REQUIRED': 'This is part of Plus.',
     'ADULT_REQUIRED': 'Confirm you are 18 or older.',
-    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
+    'SPICE_NOT_ON': 'Spice is not on for both of you.',
     'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'We could not finish that now. Try again.',
@@ -8465,13 +8465,13 @@ class _Translations$spice$settingsPage$en extends Translations$spice$settingsPag
 
   // Translations
   @override
-  String get title => 'Tempero settings';
+  String get title => 'Spice settings';
   @override
   Map<String, String> get errors => {
     'FREE_LIMIT_REACHED': 'You used this week\'s free cards. Plus unlocks more.',
     'PLUS_REQUIRED': 'This is part of Plus.',
     'ADULT_REQUIRED': 'Confirm you are 18 or older.',
-    'SPICE_NOT_ON': 'Tempero is not on for both of you.',
+    'SPICE_NOT_ON': 'Spice is not on for both of you.',
     'SWAP_LIMIT': 'You already swapped the challenge three times this week.',
     'RATE_LIMITED': 'Too many tries in a row. Wait a moment.',
     'other': 'We could not finish that now. Try again.',
@@ -8484,13 +8484,13 @@ class _Translations$spice$settingsPage$en extends Translations$spice$settingsPag
   String get levelNote =>
       'The gentler of the two limits applies. The other person does not see yours.';
   @override
-  String get notifications => 'Tempero alerts';
+  String get notifications => 'Spice alerts';
   @override
   String get notificationsText => 'A short alert that says nothing about the content.';
   @override
-  String get turnOff => 'Turn off Tempero';
+  String get turnOff => 'Turn off Spice';
   @override
-  String get turnOffTitle => 'Turn off Tempero?';
+  String get turnOffTitle => 'Turn off Spice?';
   @override
   String get turnOffText =>
       'It turns off for both of you and erases answers, cards and challenges. This cannot be undone.';
@@ -10647,9 +10647,9 @@ extension on TranslationsEn {
           'inbox.annoyanceCheckTitle' => 'Does this still bother you?',
           'inbox.annoyanceCheckText' => 'One of your notes goes away soon',
           'inbox.quizSharedTitle' => ({required Object name}) => '${name} showed a quiz',
-          'inbox.spiceInviteTitle' => 'An invite from Tempero',
+          'inbox.spiceInviteTitle' => 'An invite from Spice',
           'inbox.spiceInviteText' => 'It only shows up if you both turn it on',
-          'inbox.spiceOffTitle' => 'Tempero was turned off',
+          'inbox.spiceOffTitle' => 'Spice was turned off',
           'inbox.spiceOffText' => 'Nothing from the mode was kept',
           'inbox.memoryProposedTitle' => ({
             required Object name,
@@ -12082,7 +12082,7 @@ extension on TranslationsEn {
           'settingsHome.plan' => 'Plan',
           'settingsHome.planFree' => 'Free',
           'settingsHome.planPlus' => 'Plus',
-          'settingsHome.spice' => 'Tempero',
+          'settingsHome.spice' => 'Spice',
           'settingsHome.privacy' => 'Privacy and security',
           'settingsHome.privacyStatus' => 'Who sees what',
           'settingsHome.signOut' => 'Sign out',
@@ -12372,8 +12372,8 @@ extension on TranslationsEn {
           'slipsList.jarEmptyAction' => 'See my slips',
           'slipsList.jarAnother' => 'Another',
           'slipsList.jarClose' => 'Close',
-          'spice.title' => 'Tempero',
-          'spice.introTitle' => 'Tempero, just for the two of you',
+          'spice.title' => 'Spice',
+          'spice.introTitle' => 'Spice, just for the two of you',
           'spice.introHighlight' => 'the two of you',
           'spice.introText' =>
             'An optional space for adults, with cards and desires for the couple. 18+ only.',
@@ -12391,8 +12391,8 @@ extension on TranslationsEn {
           'spice.turnOff' => 'Turn off',
           'spice.waitingTitle' => 'Waiting for the other person',
           'spice.waitingText' =>
-            'Nothing was announced. When they turn it on too, Tempero opens for both of you.',
-          'spice.soloTitle' => 'Tempero is for two',
+            'Nothing was announced. When they turn it on too, Spice opens for both of you.',
+          'spice.soloTitle' => 'Spice is for two',
           'spice.soloText' =>
             'It needs two connected people. When the other person joins, it becomes available.',
           'spice.soloAction' => 'Back',
@@ -12410,7 +12410,7 @@ extension on TranslationsEn {
             'You used this week\'s free cards. Plus unlocks more.',
           'spice.cards.errors.PLUS_REQUIRED' => 'This is part of Plus.',
           'spice.cards.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
-          'spice.cards.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
+          'spice.cards.errors.SPICE_NOT_ON' => 'Spice is not on for both of you.',
           'spice.cards.errors.SWAP_LIMIT' =>
             'You already swapped the challenge three times this week.',
           'spice.cards.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
@@ -12431,7 +12431,7 @@ extension on TranslationsEn {
             'You used this week\'s free cards. Plus unlocks more.',
           'spice.desires.errors.PLUS_REQUIRED' => 'This is part of Plus.',
           'spice.desires.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
-          'spice.desires.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
+          'spice.desires.errors.SPICE_NOT_ON' => 'Spice is not on for both of you.',
           'spice.desires.errors.SWAP_LIMIT' =>
             'You already swapped the challenge three times this week.',
           'spice.desires.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
@@ -12451,7 +12451,7 @@ extension on TranslationsEn {
             'You used this week\'s free cards. Plus unlocks more.',
           'spice.challenge.errors.PLUS_REQUIRED' => 'This is part of Plus.',
           'spice.challenge.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
-          'spice.challenge.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
+          'spice.challenge.errors.SPICE_NOT_ON' => 'Spice is not on for both of you.',
           'spice.challenge.errors.SWAP_LIMIT' =>
             'You already swapped the challenge three times this week.',
           'spice.challenge.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
@@ -12467,12 +12467,12 @@ extension on TranslationsEn {
           'spice.challenge.accept' => 'I am in',
           'spice.challenge.done' => 'We did it',
           'spice.challenge.swap' => 'Swap the challenge',
-          'spice.settingsPage.title' => 'Tempero settings',
+          'spice.settingsPage.title' => 'Spice settings',
           'spice.settingsPage.errors.FREE_LIMIT_REACHED' =>
             'You used this week\'s free cards. Plus unlocks more.',
           'spice.settingsPage.errors.PLUS_REQUIRED' => 'This is part of Plus.',
           'spice.settingsPage.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
-          'spice.settingsPage.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
+          'spice.settingsPage.errors.SPICE_NOT_ON' => 'Spice is not on for both of you.',
           'spice.settingsPage.errors.SWAP_LIMIT' =>
             'You already swapped the challenge three times this week.',
           'spice.settingsPage.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
@@ -12484,18 +12484,18 @@ extension on TranslationsEn {
           'spice.settingsPage.levels.other' => '',
           'spice.settingsPage.levelNote' =>
             'The gentler of the two limits applies. The other person does not see yours.',
-          'spice.settingsPage.notifications' => 'Tempero alerts',
+          'spice.settingsPage.notifications' => 'Spice alerts',
           'spice.settingsPage.notificationsText' =>
             'A short alert that says nothing about the content.',
-          'spice.settingsPage.turnOff' => 'Turn off Tempero',
-          'spice.settingsPage.turnOffTitle' => 'Turn off Tempero?',
+          'spice.settingsPage.turnOff' => 'Turn off Spice',
+          'spice.settingsPage.turnOffTitle' => 'Turn off Spice?',
           'spice.settingsPage.turnOffText' => 'It turns off for both of you and erases answers, cards and challenges. This cannot be undone.',
           'spice.settingsPage.turnOffConfirm' => 'Turn off',
           'spice.errors.FREE_LIMIT_REACHED' =>
             'You used this week\'s free cards. Plus unlocks more.',
           'spice.errors.PLUS_REQUIRED' => 'This is part of Plus.',
           'spice.errors.ADULT_REQUIRED' => 'Confirm you are 18 or older.',
-          'spice.errors.SPICE_NOT_ON' => 'Tempero is not on for both of you.',
+          'spice.errors.SPICE_NOT_ON' => 'Spice is not on for both of you.',
           'spice.errors.SWAP_LIMIT' => 'You already swapped the challenge three times this week.',
           'spice.errors.RATE_LIMITED' => 'Too many tries in a row. Wait a moment.',
           'spice.errors.other' => 'We could not finish that now. Try again.',

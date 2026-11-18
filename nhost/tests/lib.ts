@@ -68,7 +68,7 @@ export async function sql(text: string): Promise<string[][]> {
   return (body.result ?? []).slice(1);
 }
 
-/** Records the adult declaration the app collects before Tempero can be switched on. */
+/** Records the adult declaration the app collects before Spice can be switched on. */
 export async function adult(p: { id: string }, granted = true): Promise<void> {
   await sql(`insert into public.consents (user_id, kind, granted, version) values ('${p.id}', 'adult', ${granted}, '1')`);
 }
