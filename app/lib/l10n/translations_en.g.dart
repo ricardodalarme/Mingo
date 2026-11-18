@@ -3632,6 +3632,8 @@ class _Translations$mood$en extends Translations$mood$pt {
   @override
   String get homePrivacySharedNoName => 'Your partner sees it';
   @override
+  String get homeHoldHint => 'Hold to open details';
+  @override
   String get homeLoadFailed => 'Couldn\'t load it. Tap to open.';
   @override
   String get homeDetailsLink => 'What your partner sees';
@@ -11105,6 +11107,7 @@ extension on TranslationsEn {
           'mood.homePrivacy' => 'Only you see it',
           'mood.homePrivacyShared' => ({required Object name}) => '${name} sees it',
           'mood.homePrivacySharedNoName' => 'Your partner sees it',
+          'mood.homeHoldHint' => 'Hold to open details',
           'mood.homeLoadFailed' => 'Couldn\'t load it. Tap to open.',
           'mood.homeDetailsLink' => 'What your partner sees',
           'mood.homeMoods.happy' => 'Good',
@@ -11468,10 +11471,10 @@ extension on TranslationsEn {
           'privacy.partnerSlipsText' => 'Only what you send',
           'privacy.partnerPrivateSlips' => 'Private slips',
           'privacy.partnerTemperature' => 'Temperature',
-          'privacy.partnerJournal' => 'Journal',
           _ => null,
         } ??
         switch (path) {
+          'privacy.partnerJournal' => 'Journal',
           'privacy.never' => 'Never',
           'privacy.partnerNote' => 'Whoever makes the data decides who sees it.',
           'privacy.ourTitle' => 'What we can see',
@@ -12043,10 +12046,10 @@ extension on TranslationsEn {
           'rituals.editTitle' => 'Your ritual',
           'rituals.nameLabel' => 'Name',
           'rituals.nameHint' => 'E.g. Friday dinner',
-          'rituals.cadenceLabel' => 'How often',
           _ => null,
         } ??
         switch (path) {
+          'rituals.cadenceLabel' => 'How often',
           'rituals.weekdayLabel' => 'On which day',
           'rituals.hourLabel' => 'What time',
           'rituals.hourFormat' => ({required Object hour}) => '${hour}:00',
@@ -12632,10 +12635,10 @@ extension on TranslationsEn {
           'tabs.usText' => 'A light tap for your partner, no pressure.',
           'tabs.touchLabel' => 'TOUCH',
           'tabs.touchTitle' => 'Touch cards',
-          'tabs.touchText' => 'Neutral, to do or skip.',
           _ => null,
         } ??
         switch (path) {
+          'tabs.touchText' => 'Neutral, to do or skip.',
           'tabs.distanceLabel' => 'DISTANCE',
           'tabs.distanceTitle' => 'Our two clocks',
           'tabs.distanceText' => 'Time zones and the countdown to seeing each other.',

@@ -15,10 +15,6 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Hoje's first block: the person's own mood and the partner's shared mood.
-///
-/// It reads [MoodCubit], so it paints as soon as the mood read returns instead of waiting for
-/// Hoje's home query. A face saves the mood on the tap; the need and the share choice have their
-/// own entries under the strip.
 class const TodayMoodBlock({final bool isFirstDay = false, super.key}) extends StatelessWidget {
   static const _homeMoods = <MoodKind>[
     // Hoje shows the board's five-mood subset; the Mood screen keeps all six.
@@ -68,6 +64,8 @@ class const TodayMoodBlock({final bool isFirstDay = false, super.key}) extends S
                     title: l10n.homeTitle,
                     actionLabel: privacyLabel,
                     onAction: () => _openDetails(context),
+                    longPressHint: l10n.homeHoldHint,
+                    onLongPressed: (index) => _openDetails(context, mood: _homeMoods[index]),
                     options: [
                       for (final option in _homeMoods)
                         MoodRowOption(
@@ -107,8 +105,8 @@ class const TodayMoodBlock({final bool isFirstDay = false, super.key}) extends S
     );
   }
 
-  Future<void> _openDetails(BuildContext context) async {
-    await context.pushRoute(MoodRoute());
+  Future<void> _openDetails(BuildContext context, {MoodKind? mood}) async {
+    await context.pushRoute(MoodRoute(initialMood: mood?.name));
     if (context.mounted) await context.read<MoodCubit>().load();
   }
 

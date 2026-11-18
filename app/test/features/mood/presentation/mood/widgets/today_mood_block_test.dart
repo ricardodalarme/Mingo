@@ -92,6 +92,33 @@ void main() {
     await tester.pump();
   }
 
+  StackRouter routedRouter() {
+    final router = _MockStackRouter();
+    when(() => router.push<Object?>(any(), onFailure: any(named: 'onFailure')))
+        .thenAnswer((_) async => null);
+
+    return router;
+  }
+
+  Future<void> pumpRoutedBlock(WidgetTester tester, MoodCubit cubit, StackRouter router) async {
+    await tester.pumpApp(
+      StackRouterScope(
+        controller: router,
+        stateHash: 0,
+        child: BlocProvider.value(value: cubit, child: const TodayMoodBlock()),
+      ),
+    );
+    await tester.pump();
+  }
+
+  MoodRoute pushedRoute(StackRouter router) {
+    final route = verify(
+      () => router.push<Object?>(captureAny(), onFailure: any(named: 'onFailure')),
+    ).captured.single;
+
+    return route as MoodRoute;
+  }
+
   testWidgets('paints the mood strip without waiting for the home query', (tester) async {
     final cubit = build();
     await cubit.load();
@@ -255,27 +282,62 @@ void main() {
         ),
       ),
     );
-    final router = _MockStackRouter();
-    when(() => router.push<Object?>(any(), onFailure: any(named: 'onFailure')))
-        .thenAnswer((_) async => null);
+    final router = routedRouter();
     final cubit = build();
     await cubit.load();
 
-    await tester.pumpApp(
-      StackRouterScope(
-        controller: router,
-        stateHash: 0,
-        child: BlocProvider.value(value: cubit, child: const TodayMoodBlock()),
-      ),
-    );
+    await pumpRoutedBlock(tester, cubit, router);
 
     await tester.tap(find.text('Só você vê'));
     await tester.pump();
 
-    final route = verify(
-      () => router.push<Object?>(captureAny(), onFailure: any(named: 'onFailure')),
-    ).captured.single;
-    expect(route, isA<MoodRoute>());
+    expect(pushedRoute(router).args?.initialMood, isNull);
+  });
+
+  testWidgets('holding a face opens the mood card on it and saves nothing', (tester) async {
+    final router = routedRouter();
+    final cubit = build();
+    await cubit.load();
+
+    await pumpRoutedBlock(tester, cubit, router);
+    await tester.longPress(find.text('Bem'));
+    await tester.pump();
+
+    expect(pushedRoute(router).args?.initialMood, MoodKind.happy.name);
+    verify(() => repository.getTodayMood()).called(2);
+    verifyNever(
+      () => repository.saveMood(
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+      ),
+    );
+    expect(cubit.state.mood, MoodKind.tired);
+    expect(
+      find.byWidgetPredicate(
+        (widget) => widget is BaseFace && widget.selected && widget.kind == FaceKind.tired,
+      ),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('holding the face already saved still opens the mood card', (tester) async {
+    final router = routedRouter();
+    final cubit = build();
+    await cubit.load();
+
+    await pumpRoutedBlock(tester, cubit, router);
+    await tester.longPress(find.text('Cansado'));
+    await tester.pump();
+
+    expect(pushedRoute(router).args?.initialMood, MoodKind.tired.name);
+    verifyNever(
+      () => repository.saveMood(
+        mood: any(named: 'mood'),
+        need: any(named: 'need'),
+        share: any(named: 'share'),
+      ),
+    );
   });
 
   testWidgets('a mood shared today says the partner sees it', (tester) async {

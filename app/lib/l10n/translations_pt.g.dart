@@ -4446,6 +4446,9 @@ class Translations$mood$pt {
   /// pt: 'Seu par vê'
   String get homePrivacySharedNoName => 'Seu par vê';
 
+  /// pt: 'Segure para abrir os detalhes'
+  String get homeHoldHint => 'Segure para abrir os detalhes';
+
   /// pt: 'Não deu para carregar. Toque para abrir.'
   String get homeLoadFailed => 'Não deu para carregar. Toque para abrir.';
 
@@ -13320,6 +13323,7 @@ extension on Translations {
           'mood.homePrivacy' => 'Só você vê',
           'mood.homePrivacyShared' => ({required Object name}) => '${name} vê',
           'mood.homePrivacySharedNoName' => 'Seu par vê',
+          'mood.homeHoldHint' => 'Segure para abrir os detalhes',
           'mood.homeLoadFailed' => 'Não deu para carregar. Toque para abrir.',
           'mood.homeDetailsLink' => 'O que seu par vê',
           'mood.homeMoods.happy' => 'Bem',
@@ -13686,10 +13690,10 @@ extension on Translations {
           'privacy.partnerSlipsText' => 'Só o que você envia',
           'privacy.partnerPrivateSlips' => 'Slips privados',
           'privacy.partnerTemperature' => 'Temperatura',
-          'privacy.partnerJournal' => 'Diário',
           _ => null,
         } ??
         switch (path) {
+          'privacy.partnerJournal' => 'Diário',
           'privacy.never' => 'Nunca',
           'privacy.partnerNote' => 'Quem produz o dado decide quem vê.',
           'privacy.ourTitle' => 'O que podemos ver',
@@ -14263,10 +14267,10 @@ extension on Translations {
           'rituals.editTitle' => 'Seu ritual',
           'rituals.nameLabel' => 'Nome',
           'rituals.nameHint' => 'Ex.: jantar de sexta',
-          'rituals.cadenceLabel' => 'Com que frequência',
           _ => null,
         } ??
         switch (path) {
+          'rituals.cadenceLabel' => 'Com que frequência',
           'rituals.weekdayLabel' => 'Em que dia',
           'rituals.hourLabel' => 'Que horas',
           'rituals.hourFormat' => ({required Object hour}) => '${hour}:00',
@@ -14853,10 +14857,10 @@ extension on Translations {
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
           'tabs.touchLabel' => 'TOQUE',
           'tabs.touchTitle' => 'Cartas de toque',
-          'tabs.touchText' => 'Neutras, para fazer ou pular.',
           _ => null,
         } ??
         switch (path) {
+          'tabs.touchText' => 'Neutras, para fazer ou pular.',
           'tabs.distanceLabel' => 'DISTÂNCIA',
           'tabs.distanceTitle' => 'Nossos dois relógios',
           'tabs.distanceText' => 'Fusos e a contagem até o reencontro.',

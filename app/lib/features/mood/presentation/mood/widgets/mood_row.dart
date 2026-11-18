@@ -6,11 +6,14 @@ class const MoodRowOption({required final FaceKind face, required final String l
 /// A section header with a row of tappable faces and their labels.
 ///
 /// The row is a selector: [selectedIndex] fills the chosen option, and every option answers the
-/// tap at once.
+/// tap at once. A hold reports the held option through [onLongPressed] without selecting it;
+/// [longPressHint] is what a screen reader says the hold does.
 class const MoodRow({
   required final String title,
   required final List<MoodRowOption> options,
   required final ValueChanged<int> onSelected,
+  final ValueChanged<int>? onLongPressed,
+  final String? longPressHint,
   final String? supportText,
   final String? actionLabel,
   final VoidCallback? onAction,
@@ -41,15 +44,18 @@ class const MoodRow({
               const SizedBox(width: AppSpace.s8),
               Flexible(
                 flex: 2,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: onAction,
-                  child: Text(
-                    action,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.end,
-                    style: context.text.bodySm.copyWith(color: colors.textSecondary),
+                child: Semantics(
+                  button: true,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: onAction,
+                    child: Text(
+                      action,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.end,
+                      style: context.text.bodySm.copyWith(color: colors.textSecondary),
+                    ),
                   ),
                 ),
               ),
@@ -71,6 +77,8 @@ class const MoodRow({
                   option: options[index],
                   isSelected: selectedIndex == index,
                   onTap: () => onSelected(index),
+                  onLongPress: onLongPressed == null ? null : () => onLongPressed!(index),
+                  longPressHint: longPressHint,
                 ),
               ),
           ],
@@ -84,42 +92,56 @@ class const _MoodOption({
   required final MoodRowOption option,
   required final bool isSelected,
   required final VoidCallback onTap,
+  final VoidCallback? onLongPress,
+  final String? longPressHint,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final longPress = onLongPress;
 
-    return AppPressable(
-      onTap: onTap,
-      semanticLabel: option.label,
-      isSelected: isSelected,
-      enforceMinTapTarget: true,
-      borderRadius: BorderRadius.circular(AppRadius.card),
-      child: SizedBox(
-        width: double.infinity,
-        child: AnimatedContainer(
-          duration: context.motionDuration(AppMotion.fast),
-          padding: const EdgeInsets.symmetric(vertical: AppSpace.s8),
-          decoration: BoxDecoration(
-            color: isSelected ? colors.accentSoft : null,
-            borderRadius: BorderRadius.circular(AppRadius.card),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              BaseFace(kind: option.face, size: FaceSize.large, selected: isSelected),
-              const SizedBox(height: AppSpace.s6),
-              Text(
-                option.label,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: context.text.micro.copyWith(
-                  color: isSelected ? colors.accentLabel : colors.textSecondary,
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                ),
+    return Semantics(
+      hint: longPress == null ? null : longPressHint,
+      child: AppPressable(
+        onTap: onTap,
+        onLongPress: longPress == null
+            ? null
+            : () {
+                AppHaptics.light();
+                longPress();
+              },
+        semanticLabel: option.label,
+        isSelected: isSelected,
+        enforceMinTapTarget: true,
+        borderRadius: BorderRadius.circular(AppRadius.card),
+        child: ExcludeSemantics(
+          child: SizedBox(
+            width: double.infinity,
+            child: AnimatedContainer(
+              duration: context.motionDuration(AppMotion.fast),
+              padding: const EdgeInsets.symmetric(vertical: AppSpace.s8),
+              decoration: BoxDecoration(
+                color: isSelected ? colors.accentSoft : null,
+                borderRadius: BorderRadius.circular(AppRadius.card),
               ),
-            ],
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  BaseFace(kind: option.face, size: FaceSize.large, selected: isSelected),
+                  const SizedBox(height: AppSpace.s6),
+                  Text(
+                    option.label,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: context.text.micro.copyWith(
+                      color: isSelected ? colors.accentLabel : colors.textSecondary,
+                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),

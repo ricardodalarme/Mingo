@@ -74,6 +74,7 @@
   "homePrivacy": "Only you see it",
   "homePrivacyShared": "{name} sees it",
   "homePrivacySharedNoName": "Your partner sees it",
+  "homeHoldHint": "Hold to open details",
   "homeLoadFailed": "Couldn't load it. Tap to open.",
   "homeDetailsLink": "What your partner sees",
   "homeMoods(map)": {
