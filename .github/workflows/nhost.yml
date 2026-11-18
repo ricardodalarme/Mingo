@@ -48,6 +48,10 @@ jobs:
         with:
           node-version: 24
 
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: functions/package.json
+
       - name: Install the Nhost CLI
         run: curl -sSL https://raw.githubusercontent.com/nhost/nhost/main/cli/get.sh | bash
 
@@ -60,8 +64,8 @@ jobs:
       - name: Start the stack from migrations, metadata and seeds
         run: nhost/tools/up.sh --apply-seeds
 
-      - name: Unit test the functions
-        run: cd functions && npm test
+      - name: Check the functions
+        run: cd functions && pnpm install --frozen-lockfile && pnpm check
 
       - name: Run the backend suite
         run: cd nhost && npm test

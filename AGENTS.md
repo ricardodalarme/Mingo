@@ -45,7 +45,7 @@ Product, design and ticket documents are in `.work/` (local only, never committe
 | `nhost/tools/up.sh` | Start or reload the local backend with seeds |
 | `nhost/tools/reset.sh` | Clean backend replay from migrations, metadata and seeds |
 | `cd nhost && npm test` | Backend suite |
-| `cd functions && npm test` | Functions unit tests |
+| `cd functions && pnpm check` | Functions typecheck, lint and unit tests |
 | `nhost/tools/dump-schemas.sh` | Refresh the per-role GraphQL snapshots |
 
 Melos is configured under `melos:` in the root `pubspec.yaml` (there is no `melos.yaml`). Generated files are committed and CI

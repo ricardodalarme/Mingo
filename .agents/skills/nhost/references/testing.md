@@ -31,7 +31,7 @@ The proof lives at the GraphQL layer, where the authorization is. A change is no
 
 - Backend: TypeScript with the Node test runner under `nhost/tests/<domain>/` (same domains as `nhost/tools/spec/`), no dependencies; `lib.ts` creates people, pairs them, runs GraphQL as a role and asserts
   allowed/denied/exact rows. `cd nhost && npm test` runs the suite.
-- Functions: TypeScript with the Node test runner next to the code in `functions/<feature>/_tests/`; `cd functions && npm test`.
+- Functions: TypeScript with the Node test runner next to the code in `functions/<feature>/_tests/`; `cd functions && pnpm check`.
 - The suite reads the local endpoints and the admin/webhook secrets from `.secrets`; it never runs against cloud.
 
 ## CI

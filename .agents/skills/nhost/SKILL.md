@@ -62,7 +62,7 @@ Keep `.secrets` and `.nhost/` in `.gitignore`. Secrets are referenced from `nhos
 | `nhost/tools/up.sh` | Start or reload the local stack with fixed localhost ports and seeds. |
 | `nhost/tools/reset.sh` | Clean replay: `down --volumes`, then up with seeds. |
 | `cd nhost && npm test` | Backend suite. |
-| `cd functions && npm test` | Functions unit tests. |
+| `cd functions && pnpm check` | Functions typecheck, lint and unit tests. |
 | `nhost/tools/dump-schemas.sh` | Re-dump `nhost/schema/{user,public}.graphqls`. |
 | `nhost/tools/schema-diff.sh a b` | Compare two SDL dumps. |
 | `nhost schema dump --subdomain <s> --role <r>` | Per-role snapshot of a cloud project. |

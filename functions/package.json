@@ -3,6 +3,16 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "test": "node --test \"{_lib,chat,export,purchases,events}/**/*.test.ts\""
-  }
+    "test": "node --test \"{_lib,chat,export,purchases,events}/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "check": "pnpm typecheck && pnpm lint && pnpm test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.8",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  },
+  "packageManager": "pnpm@12.21.0"
 }
