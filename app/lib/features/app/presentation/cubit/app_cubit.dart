@@ -30,7 +30,6 @@ class AppCubit({
   this : super(AppState.unauthenticated) {
     _authStateChangesSubscription = _authenticationRepository.isAuthenticatedStream.listen(
       _onStatusChanged,
-      onError: _onAuthError,
     );
     _connectivitySubscription = _connectivityService.onStatusChange.listen((isOnline) {
       if (isOnline) unawaited(_flushSupport());
@@ -44,15 +43,12 @@ class AppCubit({
   int _authEpoch = 0;
 
   void _onStatusChanged(bool isAuthenticated) {
+    _authEpoch++;
     if (isAuthenticated) {
-      _authEpoch++;
-      _explicitSignOut = false;
       unawaited(_resolve(true));
       return;
     }
 
-    _authEpoch++;
-    final epoch = _authEpoch;
     if (_explicitSignOut) {
       _explicitSignOut = false;
       unawaited(_resolve(false));
@@ -61,20 +57,7 @@ class AppCubit({
 
     if (_wasAuthenticated) {
       _wasAuthenticated = false;
-      unawaited(_expireSession(epoch));
-      return;
-    }
-
-    unawaited(_resolve(false));
-  }
-
-  void _onAuthError(Object error, StackTrace stackTrace) {
-    addError(error, stackTrace);
-    _authEpoch++;
-    final epoch = _authEpoch;
-    if (_wasAuthenticated) {
-      _wasAuthenticated = false;
-      unawaited(_expireSession(epoch));
+      unawaited(_expireSession(_authEpoch));
       return;
     }
 

@@ -196,23 +196,6 @@ void main() {
       verifyNever(() => notificationsRepository.unregisterCurrentDevice());
     });
 
-    test('an auth stream error expires the session and wipes widget data', () async {
-      final statuses = StreamController<bool>();
-      when(() => authenticationRepository.isAuthenticatedStream).thenAnswer((_) => statuses.stream);
-      final cubit = build();
-      addTearDown(() async {
-        await statuses.close();
-        await cubit.close();
-      });
-
-      await cubit.initialize();
-      statuses.addError(Exception('auth stream failed'));
-      await pumpEventQueue();
-
-      expect(cubit.state, AppState.sessionExpired);
-      verify(() => widgetsRepository.clearOnSignOut()).called(1);
-    });
-
     test('a late profile read cannot overwrite the expired state', () async {
       final statuses = StreamController<bool>();
       final profile = Completer<Profile>();
