@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
@@ -20,6 +21,8 @@ class _MockTodayDataSource() extends Mock implements TodayDataSource;
 
 class _MockTodayLocalDataSource() extends Mock implements TodayLocalDataSource;
 
+class _MockAuthenticationRepository() extends Mock implements AuthenticationRepository;
+
 class _MockTodayRepository() extends Mock implements TodayRepository;
 
 class _MockProfileRepository() extends Mock implements ProfileRepository;
@@ -28,6 +31,9 @@ class _MockRepairRepository() extends Mock implements RepairRepository;
 
 QueryTodayHome _query({QueryTodayHometoday? today}) =>
     QueryTodayHome(today: today == null ? const [] : [today], question: const [], idea: const []);
+
+TodayHomeRead _read({QueryTodayHometoday? today, bool isFromCache = false}) =>
+    (home: _query(today: today), isFromCache: isFromCache);
 
 TodaySignals _signals({int unseenSignals = 0}) => (
   localDate: DateTime(2026, 3, 10),
@@ -52,6 +58,7 @@ void main() {
     slipsTotal: 2,
     hasPendingInvite: false,
     hasPlus: false,
+    partnerId: 'p1',
     partnerName: 'Rui',
   );
 
@@ -87,19 +94,27 @@ void main() {
   group('TodayRepository', () {
     late TodayDataSource remote;
     late TodayLocalDataSource local;
+    late AuthenticationRepository authentication;
     late TodayRepository repository;
 
     setUp(() {
       remote = _MockTodayDataSource();
       local = _MockTodayLocalDataSource();
-      repository = TodayRepository(dataSource: remote, localDataSource: local);
+      authentication = _MockAuthenticationRepository();
+      repository = TodayRepository(
+        dataSource: remote,
+        localDataSource: local,
+        authenticationRepository: authentication,
+      );
+      when(() => authentication.currentUserId).thenReturn('me');
       when(() => local.write(any())).thenAnswer((_) async {
         return;
       });
-      when(() => local.readRelationship()).thenReturn((wasPaired: false, partnerName: null));
+      when(() => local.readPairing()).thenReturn(null);
       when(
-        () => local.writeRelationship(
-          wasPaired: any(named: 'wasPaired'),
+        () => local.writePairing(
+          userId: any(named: 'userId'),
+          partnerId: any(named: 'partnerId'),
           partnerName: any(named: 'partnerName'),
         ),
       ).thenAnswer((_) async {
@@ -136,15 +151,15 @@ void main() {
     });
 
     test('a server row without today fails instead of showing nothing', () {
-      when(() => remote.getHome()).thenAnswer((_) async => _query());
+      when(() => remote.getHome()).thenAnswer((_) async => _read());
       when(() => local.read()).thenReturn(null);
 
       expect(repository.getToday, throwsA(isA<NoDataException>()));
     });
 
-    test('a paired read remembers the partner name', () async {
+    test('a paired read stores the person, the partner id and the name', () async {
       when(() => remote.getHome()).thenAnswer(
-        (_) async => _query(
+        (_) async => _read(
           today: QueryTodayHometoday(partnerId: 'p1', partnerName: 'Rui'),
         ),
       );
@@ -152,12 +167,13 @@ void main() {
 
       await repository.getToday();
 
-      verify(() => local.writeRelationship(wasPaired: true, partnerName: 'Rui')).called(1);
+      verify(() => local.writePairing(userId: 'me', partnerId: 'p1', partnerName: 'Rui')).called(1);
     });
 
     test('an unpair reports the stored partner name once', () async {
-      when(() => remote.getHome()).thenAnswer((_) async => _query(today: QueryTodayHometoday()));
-      when(() => local.readRelationship()).thenReturn((wasPaired: true, partnerName: 'Rui'));
+      when(() => remote.getHome()).thenAnswer((_) async => _read(today: QueryTodayHometoday()));
+      when(() => local.readPairing())
+          .thenReturn((userId: 'me', partnerId: 'p1', partnerName: 'Rui'));
 
       final result = await repository.getToday();
 
@@ -165,22 +181,54 @@ void main() {
       expect(result.previousPartnerName, 'Rui');
     });
 
-    test('acknowledging the unpair clears the stored pairing state', () async {
-      await repository.acknowledgeUnpair();
-
-      verify(() => local.writeRelationship(wasPaired: false)).called(1);
-    });
-
-    test('an unpair already acknowledged is not reported again', () async {
-      when(() => remote.getHome()).thenAnswer((_) async => _query(today: QueryTodayHometoday()));
+    test('a pairing stored for another person never reports an unpair', () async {
+      when(() => remote.getHome()).thenAnswer((_) async => _read(today: QueryTodayHometoday()));
+      when(() => local.readPairing())
+          .thenReturn((userId: 'someone-else', partnerId: 'p1', partnerName: 'Rui'));
 
       final result = await repository.getToday();
 
       expect(result.wasUnpaired, isFalse);
       expect(result.previousPartnerName, isNull);
       verifyNever(
-        () => local.writeRelationship(
-          wasPaired: any(named: 'wasPaired'),
+        () => local.writePairing(
+          userId: any(named: 'userId'),
+          partnerId: any(named: 'partnerId'),
+          partnerName: any(named: 'partnerName'),
+        ),
+      );
+    });
+
+    test('a read served from the saved cache is offline and never reports an unpair', () async {
+      when(() => remote.getHome())
+          .thenAnswer((_) async => _read(today: QueryTodayHometoday(), isFromCache: true));
+      when(() => local.readPairing())
+          .thenReturn((userId: 'me', partnerId: 'p1', partnerName: 'Rui'));
+
+      final result = await repository.getToday();
+
+      expect(result.isFromCache, isTrue);
+      expect(result.wasUnpaired, isFalse);
+      expect(result.previousPartnerName, isNull);
+    });
+
+    test('acknowledging the unpair clears the stored partner for this person', () async {
+      await repository.acknowledgeUnpair();
+
+      verify(() => local.writePairing(userId: 'me')).called(1);
+    });
+
+    test('an unpair already acknowledged is not reported again', () async {
+      when(() => remote.getHome()).thenAnswer((_) async => _read(today: QueryTodayHometoday()));
+
+      final result = await repository.getToday();
+
+      expect(result.wasUnpaired, isFalse);
+      expect(result.previousPartnerName, isNull);
+      verifyNever(
+        () => local.writePairing(
+          userId: any(named: 'userId'),
+          partnerId: any(named: 'partnerId'),
           partnerName: any(named: 'partnerName'),
         ),
       );

@@ -17,6 +17,7 @@ extension TodayHomeMapper on QueryTodayHome {
       hasPendingInvite: state.hasPendingInvite ?? false,
       hasPlus: state.plus?.hasPlus ?? false,
       unseenSignals: state.unseenSignals ?? 0,
+      partnerId: state.partnerId,
       partnerName: state.partnerName,
       localDate: state.localDate,
       cardStatus: state.card?.status.name,

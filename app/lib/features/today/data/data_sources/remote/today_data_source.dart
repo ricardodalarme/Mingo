@@ -16,13 +16,19 @@ typedef TodaySignals = ({
   bool? hasPlus,
 });
 
+/// The Hoje query and whether it was answered from the saved copy instead of the server.
+typedef TodayHomeRead = ({QueryTodayHome home, bool isFromCache});
+
 class TodayDataSource({required final GQLClient _client}) {
-  Future<QueryTodayHome> getHome() async {
+  Future<TodayHomeRead> getHome() async {
     final response = await _client.query(
       OptionsQueryTodayHome(fetchPolicy: FetchPolicy.networkOnly),
     );
 
-    return validateResponseData(response);
+    return (
+      home: validateResponseData<QueryTodayHome, QueryTodayHome>(response),
+      isFromCache: response.source == QueryResultSource.cache,
+    );
   }
 
   /// Emits the signals of Hoje now and each time the server changes one of them.

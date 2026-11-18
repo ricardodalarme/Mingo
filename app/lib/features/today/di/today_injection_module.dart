@@ -1,3 +1,4 @@
+import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/repair/data/repositories/repair_repository.dart';
 import 'package:app/features/today/data/data_sources/local/today_local_data_source.dart';
@@ -21,6 +22,7 @@ class TodayInjectionModule() implements InjectionModule {
       () => TodayRepository(
         dataSource: injector.get<TodayDataSource>(),
         localDataSource: injector.get<TodayLocalDataSource>(),
+        authenticationRepository: injector.get<AuthenticationRepository>(),
       ),
     )
     ..registerFactory<TodayCubit>(
