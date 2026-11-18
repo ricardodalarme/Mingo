@@ -8,9 +8,10 @@ value = '{{ secrets.FCM_SERVICE_ACCOUNT }}'
 name = 'REVENUECAT_WEBHOOK_AUTH'
 value = '{{ secrets.REVENUECAT_WEBHOOK_AUTH }}'
 
+# The gateway address and the model name are public; only the key is a secret.
 [[global.environment]]
 name = 'CHAT_API_URL'
-value = '{{ secrets.CHAT_API_URL }}'
+value = 'https://opencode.ai/zen/go/v1'
 
 [[global.environment]]
 name = 'CHAT_API_KEY'
@@ -18,7 +19,7 @@ value = '{{ secrets.CHAT_API_KEY }}'
 
 [[global.environment]]
 name = 'CHAT_MODEL'
-value = '{{ secrets.CHAT_MODEL }}'
+value = 'deepseek-v4.1-flash'
 
 # OpenCode Go routes by session and answers without reasoning when it is disabled; neither value is secret.
 [[global.environment]]

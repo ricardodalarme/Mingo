@@ -35,9 +35,7 @@ GOOGLE_CLIENT_SECRET = ''
 GOOGLE_AUDIENCE = ''
 FCM_SERVICE_ACCOUNT = ''
 REVENUECAT_WEBHOOK_AUTH = 'local-revenuecat-secret'
-CHAT_API_URL = ''
 CHAT_API_KEY = ''
-CHAT_MODEL = ''
 EOF
 
 echo "wrote .secrets with development-only values"
