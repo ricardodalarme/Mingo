@@ -1,19 +1,14 @@
-import 'dart:async';
-
 import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
-import 'package:app/features/app/presentation/cubit/app_cubit.dart';
-import 'package:app/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
-import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.dart';
-import 'package:app/features/app/presentation/version/update_required_page.dart';
+import 'package:app/features/app/presentation/time_in_app/widgets/time_in_app_wrapper.dart';
+import 'package:app/features/app/presentation/version/widgets/update_app_wrapper.dart';
 import 'package:app/l10n/translations.g.dart';
-import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// Wraps the navigator with the forced-update block, the time-in-app prompt and
-/// the toast shown when the connection drops.
+/// Composes the forced-update block, the time-in-app prompt and the offline toast
+/// around the navigator.
 class const AppShell({required final Widget child, final RootStackRouter? router, super.key})
     extends StatefulWidget {
   @override
@@ -21,30 +16,19 @@ class const AppShell({required final Widget child, final RootStackRouter? router
 }
 
 class _AppShellState() extends State<AppShell> {
-  bool _isShowingPrompt = false;
-
   RootStackRouter get _router => widget.router ?? AppInjector.instance.get<RootStackRouter>();
 
   @override
-  Widget build(BuildContext context) {
-    final updateRequired = context.select((VersionGateCubit cubit) => cubit.state.updateRequired);
-    if (updateRequired) return const UpdateRequiredPage();
-
-    final isAuthenticated = context.select(
-      (AppCubit cubit) => cubit.state == AppState.authenticated,
-    );
-
-    return BlocListener<ConnectivityCubit, ConnectivityState>(
-      listenWhen: (previous, current) => !previous.isOffline && current.isOffline,
-      listener: (context, _) => _showOfflineToast(context),
-      child: BlocListener<TimeInAppCubit, TimeInAppState>(
-        listenWhen: (previous, current) =>
-            isAuthenticated && !previous.shouldPrompt && current.shouldPrompt,
-        listener: (context, _) => _showTimeInAppPrompt(),
+  Widget build(BuildContext context) => UpdateAppWrapper(
+    child: TimeInAppWrapper(
+      router: widget.router,
+      child: BlocListener<ConnectivityCubit, ConnectivityState>(
+        listenWhen: (previous, current) => !previous.isOffline && current.isOffline,
+        listener: (context, _) => _showOfflineToast(context),
         child: widget.child,
       ),
-    );
-  }
+    ),
+  );
 
   void _showOfflineToast(BuildContext context) {
     final message = context.l10n.globalErrors.offline;
@@ -62,10 +46,4 @@ class _AppShellState() extends State<AppShell> {
 
   /// Clears the tab bar; the default footer offset would sit inside it on a tab screen.
   static const double _toastBottom = AppSpace.tabBarHeight + AppSpace.s16;
-
-  void _showTimeInAppPrompt() {
-    if (_isShowingPrompt) return;
-    _isShowingPrompt = true;
-    unawaited(_router.push(const TimeInAppRoute()).whenComplete(() => _isShowingPrompt = false));
-  }
 }

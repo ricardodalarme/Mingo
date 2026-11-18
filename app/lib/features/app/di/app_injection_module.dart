@@ -42,13 +42,13 @@ class AppInjectionModule() implements InjectionModule {
     ..registerLazySingleton<ConnectivityCubit>(
       () => ConnectivityCubit(connectivityService: injector.get<ConnectivityService>()),
     )
-    ..registerLazySingleton<VersionGateCubit>(
+    ..registerFactory<VersionGateCubit>(
       () => VersionGateCubit(
         repository: injector.get<AppConfigRepository>(),
         appInfoService: injector.get<AppInfoService>(),
       ),
     )
-    ..registerLazySingleton<TimeInAppCubit>(
+    ..registerFactory<TimeInAppCubit>(
       () => TimeInAppCubit(preferencesService: injector.get<PreferencesService>()),
     )
     ..registerLazySingleton<AppCubit>(

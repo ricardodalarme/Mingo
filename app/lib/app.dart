@@ -4,8 +4,6 @@ import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cu
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/app/presentation/navigation/app_state_navigator.dart';
 import 'package:app/features/app/presentation/shell/app_shell.dart';
-import 'package:app/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
-import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.dart';
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
@@ -47,8 +45,6 @@ class const App({super.key}) extends StatelessWidget {
                 return MultiBlocProvider(
                   providers: [
                     BlocProvider.value(value: injector.get<ConnectivityCubit>()..start()),
-                    BlocProvider.value(value: injector.get<VersionGateCubit>()..check()),
-                    BlocProvider.value(value: injector.get<TimeInAppCubit>()..start()),
                   ],
                   child: BaseApp.router(
                     theme: theme,

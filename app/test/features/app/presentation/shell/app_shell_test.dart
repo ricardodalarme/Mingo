@@ -10,9 +10,11 @@ import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 class _MockAppCubit() extends MockCubit<AppState> implements AppCubit;
 
@@ -50,9 +52,14 @@ void main() {
 
     whenListen(timeInAppCubit, timeStates.stream, initialState: const TimeInAppState());
     whenListen(versionGateCubit, versionStates.stream, initialState: const VersionGateState());
+    when(() => versionGateCubit.check()).thenAnswer((_) async {});
+    AppInjector.instance.registerFactory<TimeInAppCubit>(() => timeInAppCubit);
+    AppInjector.instance.registerFactory<VersionGateCubit>(() => versionGateCubit);
   });
 
   tearDown(() async {
+    AppInjector.instance.unregister<TimeInAppCubit>();
+    AppInjector.instance.unregister<VersionGateCubit>();
     await timeStates.close();
     await versionStates.close();
     await connectivityStates.close();
@@ -80,8 +87,6 @@ void main() {
           child: MultiBlocProvider(
             providers: [
               BlocProvider.value(value: appCubit),
-              BlocProvider.value(value: timeInAppCubit),
-              BlocProvider.value(value: versionGateCubit),
               BlocProvider.value(value: connectivityCubit),
             ],
             child: Builder(
@@ -123,30 +128,6 @@ void main() {
     await tester.pump(const Duration(seconds: 4));
     await tester.pump();
   }
-
-  testWidgets('no prompt while unauthenticated', (tester) async {
-    stubConnectivity();
-    whenListen(appCubit, const Stream<AppState>.empty(), initialState: AppState.unauthenticated);
-    final router = _TestRouter();
-    await pumpShell(tester, router);
-
-    timeStates.add(const TimeInAppState(shouldPrompt: true));
-    await settle(tester);
-
-    expect(router.stack.map((route) => route.name), isNot(contains(TimeInAppRoute.name)));
-  });
-
-  testWidgets('one prompt when authenticated', (tester) async {
-    stubConnectivity();
-    whenListen(appCubit, const Stream<AppState>.empty(), initialState: AppState.authenticated);
-    final router = _TestRouter();
-    await pumpShell(tester, router);
-
-    timeStates.add(const TimeInAppState(shouldPrompt: true));
-    await settle(tester);
-
-    expect(router.stack.where((route) => route.name == TimeInAppRoute.name), hasLength(1));
-  });
 
   group('offline toast', () {
     const padding = EdgeInsets.only(top: 59, bottom: 34);
@@ -224,16 +205,30 @@ void main() {
       expect(mediaOf(tester, find.byType(Navigator)).padding, padding);
       await endToast(tester);
     });
+  });
 
-    testWidgets('leaves the update-required page alone', (tester) async {
+  group('forced update', () {
+    const padding = EdgeInsets.only(top: 59, bottom: 34);
+
+    setUp(() {
+      whenListen(appCubit, const Stream<AppState>.empty(), initialState: AppState.authenticated);
+    });
+
+    testWidgets('replaces everything, so neither the toast nor the prompt runs', (tester) async {
       stubConnectivity();
-      await pumpShell(tester, _TestRouter(), padding: padding);
+      final router = _TestRouter();
+      await pumpShell(tester, router, padding: padding);
       versionStates.add(const VersionGateState(updateRequired: true));
-      connectivityStates.add(const ConnectivityState(isOnline: false));
       await settle(tester);
 
       expect(find.byType(UpdateRequiredPage), findsOneWidget);
+
+      connectivityStates.add(const ConnectivityState(isOnline: false));
+      timeStates.add(const TimeInAppState(shouldPrompt: true));
+      await settle(tester);
+
       expect(find.text(offlineCopy(tester)), findsNothing);
+      expect(router.stack.map((route) => route.name), isNot(contains(TimeInAppRoute.name)));
       expect(mediaOf(tester, find.byType(UpdateRequiredPage)).padding, padding);
     });
   });
