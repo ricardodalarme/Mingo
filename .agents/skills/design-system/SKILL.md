@@ -10,8 +10,8 @@ the app consistent and skinnable. Read the source before assuming a token or com
 inventory:
 
 - `lib/src/tokens/` space, radius, border, color, typography, motion, icon size, shadows, layers
-- `lib/src/theme/` `AppTheme`, `AppThemeHost`, `AppPressable`, `BaseApp`
-- `lib/src/components/<group>/` the `Base*` components; `lib/src/templates/` the content widgets and `BaseSheetTemplate`
+- `lib/src/theme/` `AppTheme`, `AppThemeHost`, `BaseApp`, the skeleton theme
+- `lib/src/components/<group>/` the `Base*` components, plus `interaction/` for the `AppPressable` and `HitSlop` primitives; `lib/src/templates/` the content widgets and `BaseSheetTemplate`
 - `lib/src/icons/` generated `AppIcons`; `lib/design_system.dart` the barrel (if it is not exported there, app code cannot use it)
 - `packages/common_ui/` shared non-design widgets (`BaseListView`, `InfiniteListView`, `SkeletonizerResourceWidget`, `WebView`)
   and the generated `Assets`
