@@ -31,7 +31,7 @@ The snapshot is pinned (see `.work/nhost-docs/SOURCE.md`). Refresh it from the N
 
 ## Tools you have
 
-- **Nhost CLI** (`nhost`). Needs Docker for the local stack. Check `nhost --help` before using a flag you have not seen.
+- **Nhost CLI** (`nhost`). Needs a container engine for the local stack: Colima (`colima start`), never Docker Desktop. Check `nhost --help` before using a flag you have not seen.
 - **CLI MCP** (`nhost mcp start`, config in `.nhost/mcp-nhost.toml`). Tools: `get-schema`, `graphql-query` (runs as a role and optional user id), `manage-graphql` (metadata, migrations, permissions, remote schemas; needs `admin_secret` and `manage_metadata = true`, local development only in practice), `cloud-graphql-query` (organizations, projects, configuration; mutations need `enable_mutations = true` and a personal access token), `search` (docs). Resources: `schema://nhost-cloud`, `schema://graphql-management`, `schema://nhost.toml` (the CUE schema of the config file).
 - Anything the MCP edits must end up as files under `nhost/` and in git. A change that exists only in a database or the dashboard does not exist.
 

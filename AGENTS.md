@@ -53,6 +53,9 @@ does not run codegen.
 
 The backend workflow, schema layout, permissions and tests are in `nhost/` and the `nhost` skill. Run the suite only against the local stack.
 
+The container engine is **Colima**, not Docker Desktop: run `colima start` before anything that needs containers (`nhost/tools/up.sh`, the
+Nhost CLI) and `colima stop` when done. The `docker` and `docker compose` CLIs are unchanged.
+
 ## Repository layout
 
 `app/` (package `app`, flavors `development` and `production`), `packages/` (`core`, `network`, `design_system`,
