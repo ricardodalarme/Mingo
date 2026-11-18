@@ -57,6 +57,10 @@ export const asAdmin = <T>(query: string, variables: Record<string, unknown> = {
 export const asCaller = <T>(req: Req, query: string, variables: Record<string, unknown> = {}) =>
   post<T>({ authorization: header(req, 'authorization') }, query, variables);
 
+/** Swallows a rejection from cleanup that is allowed to fail. */
+export const ignoreError = (): void => undefined;
+
 /** One log line per event, as JSON. Never pass message text, tokens or secrets. */
 export const log = (event: string, fields: Record<string, unknown> = {}) =>
+  // biome-ignore lint/suspicious/noConsole: stdout is the platform log sink
   console.log(JSON.stringify({ event, ...fields }));

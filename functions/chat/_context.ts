@@ -8,7 +8,11 @@ export const CONTEXT_FLAGS = ['slips', 'mood', 'week', 'dates', 'lists', 'logist
 export type ContextFlag = (typeof CONTEXT_FLAGS)[number];
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const clip = (value: unknown, max = 140) => String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
+const clip = (value: unknown, max = 140) =>
+  String(value ?? '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, max);
 
 type Loader = { query: string; lines: (data: any) => string[] };
 
@@ -29,7 +33,11 @@ const LOADERS: Record<ContextFlag, Loader> = {
   },
   week: {
     query: `{ weeklyReview(args: {}) { slips activeDays streakDays moodsLogged ritualsDone cardsSent cardsReceived lowData missing } }`,
-    lines: (d) => d.weeklyReview.map((w: any) => `this week: ${w.slips} slips, ${w.activeDays} active days, ${w.moodsLogged} moods, ${w.ritualsDone} rituals, ${w.cardsSent} cards sent, ${w.cardsReceived} received${w.lowData ? ', little data' : ''}`),
+    lines: (d) =>
+      d.weeklyReview.map(
+        (w: any) =>
+          `this week: ${w.slips} slips, ${w.activeDays} active days, ${w.moodsLogged} moods, ${w.ritualsDone} rituals, ${w.cardsSent} cards sent, ${w.cardsReceived} received${w.lowData ? ', little data' : ''}`,
+      ),
   },
   dates: {
     query: `{ importantDates(where: { hidden: { _eq: false } }, limit: 10) { title month day } }`,
@@ -37,7 +45,8 @@ const LOADERS: Record<ContextFlag, Loader> = {
   },
   lists: {
     query: `{ lists(limit: 5) { title items(limit: 6) { title status } } }`,
-    lines: (d) => d.lists.map((l: any) => `list ${clip(l.title, 60)}: ${l.items.map((i: any) => clip(i.title, 40)).join(', ')}`),
+    lines: (d) =>
+      d.lists.map((l: any) => `list ${clip(l.title, 60)}: ${l.items.map((i: any) => clip(i.title, 40)).join(', ')}`),
   },
   logistics: {
     query: `{ logisticItems(where: { doneAt: { _is_null: true } }, limit: 10) { title dueOn } }`,
@@ -49,11 +58,20 @@ const LOADERS: Record<ContextFlag, Loader> = {
   },
   plan: {
     query: `{ plusStates { hasPlus chatMessagesLeftToday chatMessagesLimit } }`,
-    lines: (d) => d.plusStates.map((p: any) => `plan: ${p.hasPlus ? 'Plus' : 'Free'}, ${p.chatMessagesLeftToday} of ${p.chatMessagesLimit} chat messages left today`),
+    lines: (d) =>
+      d.plusStates.map(
+        (p: any) =>
+          `plan: ${p.hasPlus ? 'Plus' : 'Free'}, ${p.chatMessagesLeftToday} of ${p.chatMessagesLimit} chat messages left today`,
+      ),
   },
 };
 
-export type Context = { text: string; pronouns: string | null; partnerPronouns: string | null; partnerName: string | null };
+export type Context = {
+  text: string;
+  pronouns: string | null;
+  partnerPronouns: string | null;
+  partnerName: string | null;
+};
 
 /** The pronouns the person and their partner use, as the person stated them; never guessed. */
 async function loadPronouns(asCaller: CallerQuery): Promise<Omit<Context, 'text'>> {
@@ -72,10 +90,18 @@ async function loadPronouns(asCaller: CallerQuery): Promise<Omit<Context, 'text'
  * Loads the pronouns always and the named blocks on request. A block that fails is left out, so the chat still answers.
  * [journalEntryIds] are read only when the caller owns them, which the database enforces.
  */
-export async function loadContext(asCaller: CallerQuery, flags: unknown, journalEntryIds: unknown = []): Promise<Context> {
+export async function loadContext(
+  asCaller: CallerQuery,
+  flags: unknown,
+  journalEntryIds: unknown = [],
+): Promise<Context> {
   const wanted = (Array.isArray(flags) ? flags : []).filter((f): f is ContextFlag => CONTEXT_FLAGS.includes(f));
   const lines: string[] = [];
-  const base = await loadPronouns(asCaller).catch(() => ({ pronouns: null, partnerPronouns: null, partnerName: null }));
+  const base = await loadPronouns(asCaller).catch(() => ({
+    pronouns: null,
+    partnerPronouns: null,
+    partnerName: null,
+  }));
   await Promise.all(
     [...new Set(wanted)].map(async (flag) => {
       try {
@@ -85,11 +111,20 @@ export async function loadContext(asCaller: CallerQuery, flags: unknown, journal
       }
     }),
   );
-  const ids = (Array.isArray(journalEntryIds) ? journalEntryIds : []).filter((id) => typeof id === 'string' && UUID.test(id)).slice(0, 3);
+  const ids = (Array.isArray(journalEntryIds) ? journalEntryIds : [])
+    .filter((id) => typeof id === 'string' && UUID.test(id))
+    .slice(0, 3);
   if (ids.length) {
     try {
-      const data = await asCaller(`query ($ids: [uuid!]!) { journalEntries(where: { id: { _in: $ids } }) { entryDate body } }`, { ids });
-      lines.push(...data.journalEntries.map((e: any) => `diary ${e.entryDate} (shared by the person for this chat): ${clip(e.body, 600)}`));
+      const data = await asCaller(
+        `query ($ids: [uuid!]!) { journalEntries(where: { id: { _in: $ids } }) { entryDate body } }`,
+        { ids },
+      );
+      lines.push(
+        ...data.journalEntries.map(
+          (e: any) => `diary ${e.entryDate} (shared by the person for this chat): ${clip(e.body, 600)}`,
+        ),
+      );
     } catch {
       /* left out */
     }

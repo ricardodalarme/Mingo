@@ -1,5 +1,5 @@
-import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { test } from 'node:test';
 import { toPurchaseEvent } from '../_event.ts';
 
 const USER = '0b7b1f1e-6f0a-4f4e-8a34-2f6a1c9d3b21';
@@ -45,7 +45,10 @@ test('each event type maps to the state it leaves behind', () => {
 });
 
 test('a support refund is recorded as refunded', () => {
-  assert.equal(toPurchaseEvent(revenueCat({ type: 'CANCELLATION', cancel_reason: 'CUSTOMER_SUPPORT' }).event)?.status, 'refunded');
+  assert.equal(
+    toPurchaseEvent(revenueCat({ type: 'CANCELLATION', cancel_reason: 'CUSTOMER_SUPPORT' }).event)?.status,
+    'refunded',
+  );
 });
 
 test('a trial is recorded as trialing', () => {

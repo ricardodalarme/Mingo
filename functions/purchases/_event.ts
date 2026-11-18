@@ -1,13 +1,26 @@
 // Maps a RevenueCat webhook event to the entitlement it leaves behind.
 
 const STATUS: Record<string, string> = {
-  INITIAL_PURCHASE: 'active', RENEWAL: 'active', UNCANCELLATION: 'active', PRODUCT_CHANGE: 'active',
-  CANCELLATION: 'active', BILLING_ISSUE: 'billing_issue', EXPIRATION: 'expired', SUBSCRIPTION_PAUSED: 'expired',
+  INITIAL_PURCHASE: 'active',
+  RENEWAL: 'active',
+  UNCANCELLATION: 'active',
+  PRODUCT_CHANGE: 'active',
+  CANCELLATION: 'active',
+  BILLING_ISSUE: 'billing_issue',
+  EXPIRATION: 'expired',
+  SUBSCRIPTION_PAUSED: 'expired',
 };
 
 export type PurchaseEvent = {
-  eventId: string; userId: string; type: string; eventAt: string; plan: string; status: string;
-  expiresAt: string | null; willRenew: boolean; store: string;
+  eventId: string;
+  userId: string;
+  type: string;
+  eventAt: string;
+  plan: string;
+  status: string;
+  expiresAt: string | null;
+  willRenew: boolean;
+  store: string;
 };
 
 /** The entitlement change of an event, or null for an event that changes nothing (unknown type, anonymous user). */
@@ -22,7 +35,12 @@ export function toPurchaseEvent(event: any): PurchaseEvent | null {
     userId: event.app_user_id,
     type: event.type,
     eventAt: new Date(event.event_timestamp_ms ?? Date.now()).toISOString(),
-    plan: event.period_type === 'PROMOTIONAL' ? 'plus_gift' : /annual|year/i.test(event.product_id ?? '') ? 'plus_annual' : 'plus_monthly',
+    plan:
+      event.period_type === 'PROMOTIONAL'
+        ? 'plus_gift'
+        : /annual|year/i.test(event.product_id ?? '')
+          ? 'plus_annual'
+          : 'plus_monthly',
     status,
     expiresAt: event.expiration_at_ms ? new Date(event.expiration_at_ms).toISOString() : null,
     willRenew: !['CANCELLATION', 'EXPIRATION', 'BILLING_ISSUE'].includes(event.type),

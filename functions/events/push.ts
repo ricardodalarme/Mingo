@@ -21,8 +21,9 @@ export default async (req: Req, res: Res) => {
   }
 
   // A retried event claims again: a settled row returns no device, so a notification is never sent twice after success.
-  const { claimNotification: devices } = await asAdmin<{ claimNotification: Device[] }>(
-    `mutation ($id: uuid!) { claimNotification(args: { notification_id: $id }) { token } }`, { id: row.id });
+  const { claimNotification: devices } = await asAdmin<{
+    claimNotification: Device[];
+  }>(`mutation ($id: uuid!) { claimNotification(args: { notification_id: $id }) { token } }`, { id: row.id });
   if (devices.length === 0) return res.status(200).json({ sent: 0 });
 
   let bearer: string;
@@ -37,7 +38,11 @@ export default async (req: Req, res: Res) => {
   let delivered = 0;
   let transient = 0;
   for (const { token } of devices) {
-    const outcome = await send(account, bearer, token, { id: row.id, type: row.type, refId: row.ref_id });
+    const outcome = await send(account, bearer, token, {
+      id: row.id,
+      type: row.type,
+      refId: row.ref_id,
+    });
     if (outcome === 'sent') delivered++;
     else if (outcome === 'dead') dead.push(token);
     else transient++;
@@ -46,8 +51,10 @@ export default async (req: Req, res: Res) => {
     log('push_retry', { type: row.type });
     return res.status(500).json({ error: 'FCM_UNAVAILABLE' });
   }
-  await asAdmin(`mutation ($id: uuid!, $dead: jsonb!) { completeNotification(args: { notification_id: $id, failed_tokens: $dead }) { id } }`,
-    { id: row.id, dead });
+  await asAdmin(
+    `mutation ($id: uuid!, $dead: jsonb!) { completeNotification(args: { notification_id: $id, failed_tokens: $dead }) { id } }`,
+    { id: row.id, dead },
+  );
   log('push_sent', { type: row.type, delivered, dead: dead.length });
   return res.status(200).json({ sent: delivered });
 };

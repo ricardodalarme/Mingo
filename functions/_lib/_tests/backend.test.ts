@@ -1,9 +1,9 @@
-import { afterEach, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { isTrigger, safeEqual, type Req } from '../backend.ts';
+import { afterEach, test } from 'node:test';
+import { isTrigger, type Req, safeEqual } from '../backend.ts';
 
 const request = (headers: Record<string, string>): Req =>
-  ({ method: 'POST', headers, body: {}, on: () => {} }) as unknown as Req;
+  ({ method: 'POST', headers, body: {}, on: () => undefined }) as unknown as Req;
 
 afterEach(() => {
   delete process.env.NHOST_WEBHOOK_SECRET;

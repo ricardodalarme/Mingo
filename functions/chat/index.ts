@@ -11,10 +11,10 @@
 // Needs CHAT_API_URL (an OpenAI-compatible base, e.g. https://host/v1), CHAT_API_KEY and CHAT_MODEL;
 // CHAT_EXTRA_BODY and CHAT_EXTRA_HEADERS (JSON objects) are optional.
 import { randomUUID } from 'node:crypto';
-import { asAdmin, asCaller, header, log, type Req, type Res } from '../_lib/backend';
-import { type ChatEvent, jsonEnv, relay } from './_relay';
-import { systemPrompt } from './_prompts/index.ts';
+import { asAdmin, asCaller, header, ignoreError, log, type Req, type Res } from '../_lib/backend';
 import { loadContext } from './_context';
+import { systemPrompt } from './_prompts/index.ts';
+import { type ChatEvent, jsonEnv, relay } from './_relay';
 import { toolDefinitions, validateAction } from './_tools';
 
 const MAX_MESSAGE = 1000;
@@ -36,7 +36,9 @@ export default async (req: Req, res: Res) => {
   if (!/^Bearer\s+\S+/i.test(header(req, 'authorization'))) return res.status(401).json({ error: 'UNAUTHORIZED' });
 
   const body = req.body ?? {};
-  const message = String(body.message ?? '').trim().slice(0, MAX_MESSAGE);
+  const message = String(body.message ?? '')
+    .trim()
+    .slice(0, MAX_MESSAGE);
   if (!message) return res.status(400).json({ error: 'EMPTY_MESSAGE' });
   const locale = String(body.locale ?? 'pt-BR');
   const mode = body.mode === 'hard_conversation' ? 'hard_conversation' : 'free';
@@ -60,7 +62,10 @@ export default async (req: Req, res: Res) => {
     return res.status(401).json({ error: 'UNAUTHORIZED' });
   }
   if (!turnId) return oneEvent(res, 429, { type: 'error', code: 'CHAT_LIMIT' });
-  const refund = () => asAdmin(`mutation ($id: uuid!) { deleteChatTurnsByPk(id: $id) { id } }`, { id: turnId }).catch(() => {});
+  const refund = () =>
+    asAdmin(`mutation ($id: uuid!) { deleteChatTurnsByPk(id: $id) { id } }`, {
+      id: turnId,
+    }).catch(ignoreError);
 
   if (!apiUrl || !apiKey || !model) {
     await refund();
@@ -68,25 +73,41 @@ export default async (req: Req, res: Res) => {
   }
 
   // What the person lets the mascot read, and the pronouns, both loaded as the caller. A failure only leaves them out.
-  const context = await loadContext((query, variables) => asCaller(req, query, variables), body.context, body.journalEntryIds).catch(() => null);
+  const context = await loadContext(
+    (query, variables) => asCaller(req, query, variables),
+    body.context,
+    body.journalEntryIds,
+  ).catch(() => null);
   const actions = body.actions !== false && process.env.CHAT_TOOLS !== 'off';
   const prompt = systemPrompt(locale, mode, {
-    pronouns: context?.pronouns, partnerPronouns: context?.partnerPronouns, partnerName: context?.partnerName,
-    context: context?.text, actions,
+    pronouns: context?.pronouns,
+    partnerPronouns: context?.partnerPronouns,
+    partnerName: context?.partnerName,
+    context: context?.text,
+    actions,
   });
 
   const extraHeaders = Object.fromEntries(
-    Object.entries(jsonEnv('CHAT_EXTRA_HEADERS')).map(([k, v]) => [k, String(v).replace('{session}', session)]));
+    Object.entries(jsonEnv('CHAT_EXTRA_HEADERS')).map(([k, v]) => [k, String(v).replace('{session}', session)]),
+  );
   const upstream = await fetch(`${apiUrl.replace(/\/$/, '')}/chat/completions`, {
     method: 'POST',
     signal: AbortSignal.timeout(30_000),
     // The gateway routes by session; without it a request is refused before the model runs.
-    headers: { 'content-type': 'application/json', authorization: `Bearer ${apiKey}`, 'x-opencode-session': session, ...extraHeaders },
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${apiKey}`,
+      'x-opencode-session': session,
+      ...extraHeaders,
+    },
     body: JSON.stringify({
       model,
       messages: [
         { role: 'system', content: prompt },
-        ...history.map((t) => ({ role: t.role === 'mascot' ? 'assistant' : 'user', content: t.text })),
+        ...history.map((t) => ({
+          role: t.role === 'mascot' ? 'assistant' : 'user',
+          content: t.text,
+        })),
         { role: 'user', content: message },
       ],
       stream: true,

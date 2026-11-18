@@ -4,13 +4,21 @@ export const OPTIONS_MARKER = '[[options:';
 
 export type ChatEvent =
   | { type: 'delta'; text: string }
-  | { type: 'action'; tool: string; args: Record<string, unknown>; confirm: boolean }
+  | {
+      type: 'action';
+      tool: string;
+      args: Record<string, unknown>;
+      confirm: boolean;
+    }
   | { type: 'done'; options: string[] }
   | { type: 'error'; code: string };
 
 const MAX_ACTIONS = 3;
 /** Turns a streamed tool call into a validated action, or null when it is not one the app can run. */
-export type ActionValidator = (name: string, args: unknown) => { tool: string; args: Record<string, unknown>; confirm: boolean } | null;
+export type ActionValidator = (
+  name: string,
+  args: unknown,
+) => { tool: string; args: Record<string, unknown>; confirm: boolean } | null;
 
 /** Reads the answer chips from the end of a full reply, or an empty list when there are none. */
 export function parseOptions(full: string): string[] {
@@ -30,7 +38,11 @@ export function parseOptions(full: string): string[] {
  * Reads the upstream stream and calls [send] for each piece of text and once at the end.
  * Text from a possible options marker on is held back, so the chips never show up as text.
  */
-export async function relay(chunks: AsyncIterable<Uint8Array>, send: (event: ChatEvent) => void, validate?: ActionValidator): Promise<void> {
+export async function relay(
+  chunks: AsyncIterable<Uint8Array>,
+  send: (event: ChatEvent) => void,
+  validate?: ActionValidator,
+): Promise<void> {
   const decoder = new TextDecoder();
   let buffered = '';
   let full = '';
