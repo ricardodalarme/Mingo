@@ -16,9 +16,11 @@ abstract final class AppSkeleton() {
         (colors, brightness),
         () => SkeletonizerConfigData(
           brightness: brightness,
-          containersColor: colors.accentSoft,
-          effectResolver: (_) =>
-              ShimmerEffect(baseColor: colors.accentSoft, highlightColor: colors.bgSurface),
+          containersColor: colors.bgSkeleton,
+          effectResolver: (_) => ShimmerEffect(
+            baseColor: colors.bgSkeleton,
+            highlightColor: colors.bgSkeletonHighlight,
+          ),
         ),
       );
 }

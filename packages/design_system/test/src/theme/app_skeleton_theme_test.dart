@@ -29,14 +29,20 @@ Future<(SkeletonizerConfigData, ResolvedSkeletonizerConfigData)> _pumpSkeleton(
 
 void main() {
   for (final variant in AppThemeVariant.values) {
-    testWidgets('takes the skeleton colours from the ${variant.name} theme tokens', (tester) async {
+    testWidgets('takes the neutral skeleton colours from the ${variant.name} theme tokens', (
+      tester,
+    ) async {
       final (installed, resolved) = await _pumpSkeleton(tester, variant);
       final colors = AppColors.forVariant(variant);
       final effect = resolved.effect as ShimmerEffect;
 
       expect(installed.brightness, Brightness.light);
-      expect(resolved.containersColor, colors.accentSoft);
-      expect(effect.colors, [colors.accentSoft, colors.bgSurface, colors.accentSoft]);
+      expect(resolved.containersColor, colors.bgSkeleton);
+      expect(effect.colors, [colors.bgSkeleton, colors.bgSkeletonHighlight, colors.bgSkeleton]);
+      expect(resolved.containersColor, isNot(colors.accentSoft));
+      expect(resolved.containersColor, isNot(colors.bgSurface));
+      expect(resolved.containersColor, isNot(colors.bgScreen));
+      expect(effect.colors, isNot(contains(colors.accentSoft)));
     });
   }
 
@@ -52,11 +58,13 @@ void main() {
     expect(darkInstalled, lightInstalled);
     expect(darkResolved, lightResolved);
     expect(darkInstalled.brightness, Brightness.light);
-    expect(darkResolved.containersColor, colors.accentSoft);
+    expect(darkResolved.containersColor, colors.bgSkeleton);
     expect((darkResolved.effect as ShimmerEffect).colors, [
-      colors.accentSoft,
-      colors.bgSurface,
-      colors.accentSoft,
+      colors.bgSkeleton,
+      colors.bgSkeletonHighlight,
+      colors.bgSkeleton,
     ]);
+    expect(darkResolved.containersColor, isNot(colors.accentSoft));
+    expect((darkResolved.effect as ShimmerEffect).colors, isNot(contains(colors.accentSoft)));
   });
 }
