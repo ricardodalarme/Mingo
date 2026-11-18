@@ -1,7 +1,6 @@
 // Calm chat with the mascot. Signed-in people only; the reply streams as server-sent events.
-//   POST /chat  { message, history?: [{ role: "user" | "mascot", text }], locale?: "pt-BR" | "en", mode?: "free" | "hard_conversation", session?,
-//               context?: ("slips" | "mood" | "week" | "dates" | "lists" | "logistics" | "rituals" | "plan")[], journalEntryIds?: uuid[], actions?: boolean }
-//   -> text/event-stream, one JSON object per `data:` line:
+//   POST /chat  { message, history?, locale?, mode?, session?, context?, journalEntryIds?, actions? }  (see ChatRequest)
+//   -> text/event-stream, one JSON object per `data:` line (see ChatEvent):
 //        { type: "delta", text }       a piece of the reply
 //        { type: "action", tool, args, confirm }  an action the app may run; `confirm` means it needs the person's yes first
 //        { type: "done", options }     the end, with up to three short answer chips
@@ -10,76 +9,30 @@
 // counts against the daily allowance, and that is all.
 // Needs CHAT_API_URL (an OpenAI-compatible base, e.g. https://host/v1), CHAT_API_KEY and CHAT_MODEL;
 // CHAT_EXTRA_BODY and CHAT_EXTRA_HEADERS (JSON objects) are optional.
-import { randomUUID } from 'node:crypto';
-import { asAdmin, asCaller, header, ignoreError, log, type Req, type Res } from '../_lib/backend';
-import { loadContext } from './_context';
+
+import { env } from '../_lib/env.ts';
+import { callerQuery } from '../_lib/graphql.ts';
+import { handler } from '../_lib/handler.ts';
+import { fail, type Req, type Res } from '../_lib/http.ts';
+import { log } from '../_lib/log.ts';
+import { type Context, loadContext } from './_context.ts';
+import { type ModelConfig, modelConfig, startCompletion } from './_model.ts';
 import { systemPrompt } from './_prompts/index.ts';
-import { type ChatEvent, jsonEnv, relay } from './_relay';
-import { toolDefinitions, validateAction } from './_tools';
+import { relay } from './_relay.ts';
+import { type ChatRequest, parseChatRequest } from './_request.ts';
+import { endWithError, openStream } from './_sse.ts';
+import { validateAction } from './_tools.ts';
+import { refundTurn, takeTurn } from './_turns.ts';
 
-const MAX_MESSAGE = 1000;
-const MAX_HISTORY = 12;
-const SESSION = /^[A-Za-z0-9_-]{1,80}$/;
+/** What the person lets the mascot read, and the pronouns, both loaded as the caller. A failure only leaves them out. */
+const readContext = (req: Req, request: ChatRequest): Promise<Context | null> =>
+  loadContext(callerQuery(req), request.contextFlags, request.journalEntryIds).catch(() => null);
 
-type Turn = { role: 'user' | 'mascot'; text: string };
-
-function oneEvent(res: Res, status: number, event: ChatEvent) {
-  res.status(status);
-  res.setHeader('content-type', 'text/event-stream');
-  res.setHeader('cache-control', 'no-store');
-  res.write(`data: ${JSON.stringify(event)}\n\n`);
-  res.end();
-}
-
-export default async (req: Req, res: Res) => {
-  if (req.method !== 'POST') return res.status(405).json({ error: 'METHOD_NOT_ALLOWED' });
-  if (!/^Bearer\s+\S+/i.test(header(req, 'authorization'))) return res.status(401).json({ error: 'UNAUTHORIZED' });
-
-  const body = req.body ?? {};
-  const message = String(body.message ?? '')
-    .trim()
-    .slice(0, MAX_MESSAGE);
-  if (!message) return res.status(400).json({ error: 'EMPTY_MESSAGE' });
-  const locale = String(body.locale ?? 'pt-BR');
-  const mode = body.mode === 'hard_conversation' ? 'hard_conversation' : 'free';
-  const session = typeof body.session === 'string' && SESSION.test(body.session) ? body.session : randomUUID();
-  const history: Turn[] = (Array.isArray(body.history) ? body.history : [])
-    .filter((t: Turn) => (t?.role === 'user' || t?.role === 'mascot') && typeof t?.text === 'string')
-    .slice(-MAX_HISTORY)
-    .map((t: Turn) => ({ role: t.role, text: t.text.slice(0, MAX_MESSAGE) }));
-
-  const apiUrl = process.env.CHAT_API_URL;
-  const apiKey = process.env.CHAT_API_KEY;
-  const model = process.env.CHAT_MODEL;
-
-  // The turn is taken as the caller, so the token is verified by the GraphQL engine and the person's own
-  // setting and allowance apply. No row means the chat is switched off or today's allowance is gone.
-  let turnId: string | undefined;
-  try {
-    const data = await asCaller<{ takeChatTurn: { id: string }[] }>(req, `mutation { takeChatTurn { id } }`);
-    turnId = data.takeChatTurn[0]?.id;
-  } catch {
-    return res.status(401).json({ error: 'UNAUTHORIZED' });
-  }
-  if (!turnId) return oneEvent(res, 429, { type: 'error', code: 'CHAT_LIMIT' });
-  const refund = () =>
-    asAdmin(`mutation ($id: uuid!) { deleteChatTurnsByPk(id: $id) { id } }`, {
-      id: turnId,
-    }).catch(ignoreError);
-
-  if (!apiUrl || !apiKey || !model) {
-    await refund();
-    return oneEvent(res, 503, { type: 'error', code: 'CHAT_UNAVAILABLE' });
-  }
-
-  // What the person lets the mascot read, and the pronouns, both loaded as the caller. A failure only leaves them out.
-  const context = await loadContext(
-    (query, variables) => asCaller(req, query, variables),
-    body.context,
-    body.journalEntryIds,
-  ).catch(() => null);
-  const actions = body.actions !== false && process.env.CHAT_TOOLS !== 'off';
-  const prompt = systemPrompt(locale, mode, {
+/** Answers a request that already holds a turn. Resolves once the reply has been written or refused. */
+async function answer(req: Req, res: Res, request: ChatRequest, config: ModelConfig, turnId: string): Promise<void> {
+  const context = await readContext(req, request);
+  const actions = request.actions && env('CHAT_TOOLS') !== 'off';
+  const prompt = systemPrompt(request.locale, request.mode, {
     pronouns: context?.pronouns,
     partnerPronouns: context?.partnerPronouns,
     partnerName: context?.partnerName,
@@ -87,54 +40,58 @@ export default async (req: Req, res: Res) => {
     actions,
   });
 
-  const extraHeaders = Object.fromEntries(
-    Object.entries(jsonEnv('CHAT_EXTRA_HEADERS')).map(([k, v]) => [k, String(v).replace('{session}', session)]),
-  );
-  const upstream = await fetch(`${apiUrl.replace(/\/$/, '')}/chat/completions`, {
-    method: 'POST',
-    signal: AbortSignal.timeout(30_000),
-    // The gateway routes by session; without it a request is refused before the model runs.
-    headers: {
-      'content-type': 'application/json',
-      authorization: `Bearer ${apiKey}`,
-      'x-opencode-session': session,
-      ...extraHeaders,
-    },
-    body: JSON.stringify({
-      model,
-      messages: [
-        { role: 'system', content: prompt },
-        ...history.map((t) => ({
-          role: t.role === 'mascot' ? 'assistant' : 'user',
-          content: t.text,
-        })),
-        { role: 'user', content: message },
-      ],
-      stream: true,
-      ...(actions ? { tools: toolDefinitions() } : {}),
-      temperature: 0.6,
-      max_tokens: 600,
-      ...jsonEnv('CHAT_EXTRA_BODY'),
-    }),
-  }).catch(() => null);
-  if (!upstream?.ok || !upstream.body) {
-    await refund();
-    log('chat_upstream_failed', { status: upstream?.status ?? 0 });
-    return oneEvent(res, 502, { type: 'error', code: 'UPSTREAM' });
+  const clientLeft = new AbortController();
+  res.on('close', () => {
+    if (!res.writableEnded) clientLeft.abort();
+  });
+  const upstream = await startCompletion(config, {
+    prompt,
+    history: request.history,
+    message: request.message,
+    session: request.session,
+    actions,
+    signal: clientLeft.signal,
+  });
+  if (!upstream?.body) {
+    await refundTurn(turnId);
+    return endWithError(res, 'UPSTREAM');
   }
 
-  res.status(200);
-  res.setHeader('content-type', 'text/event-stream');
-  res.setHeader('cache-control', 'no-store');
-  res.setHeader('x-accel-buffering', 'no');
-  res.flushHeaders?.();
-  const send = (event: ChatEvent) => res.write(`data: ${JSON.stringify(event)}\n\n`);
+  const send = openStream(res);
   try {
-    await relay(upstream.body as unknown as AsyncIterable<Uint8Array>, send, actions ? validateAction : undefined);
+    await relay(upstream.body, send, actions ? validateAction : undefined);
   } catch {
     // A break after the first token keeps the charge: the person already saw part of the reply.
-    log('chat_stream_failed');
-    send({ type: 'error', code: 'UPSTREAM' });
+    if (clientLeft.signal.aborted) log.info('chat_client_left');
+    else {
+      log.warn('chat_stream_failed');
+      send({ type: 'error', code: 'UPSTREAM' });
+    }
   }
   res.end();
-};
+}
+
+export default handler({ method: 'POST', guard: { kind: 'bearer' } }, async (req, res) => {
+  const request = parseChatRequest(req.body);
+  if (!request) return fail(res, 'EMPTY_MESSAGE');
+
+  let turnId: string | null;
+  try {
+    turnId = await takeTurn(req);
+  } catch {
+    return fail(res, 'UNAUTHORIZED');
+  }
+  if (!turnId) return endWithError(res, 'CHAT_LIMIT');
+
+  const config = modelConfig();
+  if (!config) {
+    await refundTurn(turnId);
+    return endWithError(res, 'CHAT_UNAVAILABLE');
+  }
+  try {
+    await answer(req, res, request, config, turnId);
+  } catch (error) {
+    await refundTurn(turnId);
+    throw error;
+  }
+});

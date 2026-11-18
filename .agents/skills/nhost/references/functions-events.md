@@ -37,6 +37,13 @@ Functions get these variables: `NHOST_ADMIN_SECRET`, `NHOST_WEBHOOK_SECRET`, `NH
   streams the mascot reply as SSE (the prompts are in `chat/_prompts/`, one file per piece with its text in both languages); `export/` builds the data export. Each feature is a folder (`index.ts` is the route) with its helpers and tests under
   underscore names (`_relay.ts`, `_tests/`), which the runtime never routes; a helper without the underscore would become an endpoint. Code shared by
   several features lives in `functions/_lib/`.
+- Function code conventions: every route is `export default handler({ method, guard }, run)` from `_lib/handler.ts`, which answers the wrong method,
+  a caller the guard refuses and a throw (logged, then 500), so a route holds only its own logic. GraphQL documents are typed `operation<Data, Variables>()`
+  values in the feature's `_operations.ts`, run with `asAdmin` or `asCaller`; payloads from outside (triggers, webhooks) are parsed with valibot
+  schemas, never cast. Error codes are the `ErrorCode` union in `_lib/http.ts`, each tied to one status; environment variables go through `_lib/env.ts`
+  (`requireEnv` fails with a clear error); timeouts and limits are named constants in `_lib/config.ts` or at the top of the file that owns them; log with
+  `log.info`, `log.warn` or `log.error`, which sets the level the platform records. Relative imports end in `.ts`. `pnpm check` runs the typecheck, Biome
+  and the tests; handler tests stub `fetch` with the helpers in `_lib/_testing.ts`.
 - Streams from Functions are not documented. SSE was verified on the local stack (first byte ~100 ms, deltas in step with the upstream, no buffering); if a
   future runtime buffers or times out, move the chat to a Run service and record the decision.
 

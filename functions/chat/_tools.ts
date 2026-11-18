@@ -212,23 +212,42 @@ const isToolName = (name: string): name is ToolName => Object.hasOwn(TOOLS, name
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const TIME = /^([01]\d|2[0-3]):[0-5]\d$/;
 
-function check(field: Field, value: unknown): unknown {
+type Of<T extends Field['type']> = Extract<Field, { type: T }>;
+
+function checkString(field: Of<'string'>, value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  if (!trimmed || trimmed.length > field.max) return null;
+  return field.values && !field.values.includes(trimmed) ? null : trimmed;
+}
+
+function checkInteger(field: Of<'integer'>, value: unknown): number | null {
+  return typeof value === 'number' && Number.isInteger(value) && value >= field.min && value <= field.max
+    ? value
+    : null;
+}
+
+const checkBoolean = (value: unknown): boolean | null => (typeof value === 'boolean' ? value : null);
+
+const checkDate = (value: unknown): string | null =>
+  typeof value === 'string' && DATE.test(value) && !Number.isNaN(Date.parse(value)) ? value : null;
+
+const checkTime = (value: unknown): string | null => (typeof value === 'string' && TIME.test(value) ? value : null);
+
+/** The value when it fits the field, undefined for an optional field left out, null when it does not fit. */
+function check(field: Field, value: unknown): string | number | boolean | null | undefined {
   if (value === undefined || value === null) return field.optional ? undefined : null;
   switch (field.type) {
-    case 'string': {
-      if (typeof value !== 'string') return null;
-      const trimmed = value.trim();
-      if (!trimmed || trimmed.length > field.max) return null;
-      return field.values && !field.values.includes(trimmed) ? null : trimmed;
-    }
+    case 'string':
+      return checkString(field, value);
     case 'integer':
-      return Number.isInteger(value) && (value as number) >= field.min && (value as number) <= field.max ? value : null;
+      return checkInteger(field, value);
     case 'boolean':
-      return typeof value === 'boolean' ? value : null;
+      return checkBoolean(value);
     case 'date':
-      return typeof value === 'string' && DATE.test(value) && !Number.isNaN(Date.parse(value)) ? value : null;
+      return checkDate(value);
     case 'time':
-      return typeof value === 'string' && TIME.test(value) ? value : null;
+      return checkTime(value);
   }
 }
 

@@ -127,10 +127,11 @@ test('an unknown tool, an extra or missing argument and a value out of bounds ar
 test('the tool definitions are strict objects with the bounds of the catalog', () => {
   const defs = toolDefinitions();
   assert.equal(defs.length, Object.keys(TOOLS).length);
-  const slip = defs.find((d) => d.function.name === 'create_private_slip')!;
+  const slip = defs.find((d) => d.function.name === 'create_private_slip');
+  assert.ok(slip);
   assert.equal(slip.function.parameters.additionalProperties, false);
   assert.deepEqual(slip.function.parameters.required, ['body']);
-  assert.deepEqual((slip.function.parameters.properties as any).body, {
+  assert.deepEqual(slip.function.parameters.properties.body, {
     type: 'string',
     maxLength: 280,
   });

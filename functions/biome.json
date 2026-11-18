@@ -9,15 +9,16 @@
       "correctness": {
         "noUnusedVariables": "error",
         "noUnusedImports": "error",
-        "noUnusedFunctionParameters": "error"
+        "noUnusedFunctionParameters": "error",
+        "useImportExtensions": "error"
       },
       "suspicious": {
         "noConsole": "error",
         "noEmptyBlockStatements": "error",
-        "noExplicitAny": "warn"
+        "noExplicitAny": "error"
       },
-      "style": { "noNonNullAssertion": "warn" },
-      "complexity": { "noExcessiveCognitiveComplexity": "warn" }
+      "style": { "noNonNullAssertion": "error" },
+      "complexity": { "noExcessiveCognitiveComplexity": "error" }
     }
   }
 }
