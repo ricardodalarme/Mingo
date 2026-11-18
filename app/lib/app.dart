@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/app/presentation/navigation/app_state_navigator.dart';
 import 'package:app/features/app/presentation/shell/app_shell.dart';
@@ -42,22 +41,17 @@ class const App({super.key}) extends StatelessWidget {
             child: Builder(
               builder: (context) {
                 final theme = AppTheme.light(AppThemeScope.of(context));
-                return MultiBlocProvider(
-                  providers: [
-                    BlocProvider.value(value: injector.get<ConnectivityCubit>()..start()),
-                  ],
-                  child: BaseApp.router(
-                    theme: theme,
-                    onGenerateTitle: (context) => context.l10n.common.appName,
-                    routerConfig: appRouter.config(
-                      navigatorObservers: () => navigatorObservers,
-                      deepLinkTransformer: transformWidgetDeepLinkUri,
-                      deepLinkBuilder: _deepLinkBuilder,
-                    ),
-                    locale: TranslationProvider.of(context).flutterLocale,
-                    supportedLocales: AppLocaleUtils.supportedLocales,
-                    builder: (context, child) => AppShell(child: child ?? const SizedBox.shrink()),
+                return BaseApp.router(
+                  theme: theme,
+                  onGenerateTitle: (context) => context.l10n.common.appName,
+                  routerConfig: appRouter.config(
+                    navigatorObservers: () => navigatorObservers,
+                    deepLinkTransformer: transformWidgetDeepLinkUri,
+                    deepLinkBuilder: _deepLinkBuilder,
                   ),
+                  locale: TranslationProvider.of(context).flutterLocale,
+                  supportedLocales: AppLocaleUtils.supportedLocales,
+                  builder: (context, child) => AppShell(child: child ?? const SizedBox.shrink()),
                 );
               },
             ),

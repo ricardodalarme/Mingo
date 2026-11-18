@@ -39,7 +39,7 @@ class AppInjectionModule() implements InjectionModule {
     ..registerLazySingleton<AppConfigRepository>(
       () => AppConfigRepository(dataSource: injector.get<AppConfigDataSource>()),
     )
-    ..registerLazySingleton<ConnectivityCubit>(
+    ..registerFactory<ConnectivityCubit>(
       () => ConnectivityCubit(connectivityService: injector.get<ConnectivityService>()),
     )
     ..registerFactory<VersionGateCubit>(

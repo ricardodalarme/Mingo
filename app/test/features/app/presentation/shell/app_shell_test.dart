@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:app/features/app/presentation/connectivity/cubit/connectivity_cubit.dart';
+import 'package:app/features/app/presentation/connectivity/widgets/connectivity_wrapper.dart';
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/app/presentation/shell/app_shell.dart';
 import 'package:app/features/app/presentation/time_in_app/cubit/time_in_app_cubit.dart';
+import 'package:app/features/app/presentation/time_in_app/widgets/time_in_app_wrapper.dart';
 import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.dart';
 import 'package:app/features/app/presentation/version/update_required_page.dart';
+import 'package:app/features/app/presentation/version/widgets/update_app_wrapper.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
@@ -52,28 +55,29 @@ void main() {
 
     whenListen(timeInAppCubit, timeStates.stream, initialState: const TimeInAppState());
     whenListen(versionGateCubit, versionStates.stream, initialState: const VersionGateState());
+    whenListen(
+      connectivityCubit,
+      connectivityStates.stream,
+      initialState: const ConnectivityState(isOnline: true),
+    );
     when(() => versionGateCubit.check()).thenAnswer((_) async {});
+    when(() => connectivityCubit.start()).thenAnswer((_) async {});
+    whenListen(appCubit, const Stream<AppState>.empty(), initialState: AppState.authenticated);
     AppInjector.instance.registerFactory<TimeInAppCubit>(() => timeInAppCubit);
     AppInjector.instance.registerFactory<VersionGateCubit>(() => versionGateCubit);
+    AppInjector.instance.registerFactory<ConnectivityCubit>(() => connectivityCubit);
   });
 
   tearDown(() async {
     AppInjector.instance.unregister<TimeInAppCubit>();
     AppInjector.instance.unregister<VersionGateCubit>();
+    AppInjector.instance.unregister<ConnectivityCubit>();
     await timeStates.close();
     await versionStates.close();
     await connectivityStates.close();
     await versionGateCubit.close();
     await connectivityCubit.close();
   });
-
-  void stubConnectivity({bool? isOnline = true}) {
-    whenListen(
-      connectivityCubit,
-      connectivityStates.stream,
-      initialState: ConnectivityState(isOnline: isOnline),
-    );
-  }
 
   Future<void> pumpShell(
     WidgetTester tester,
@@ -84,11 +88,8 @@ void main() {
       TranslationProvider(
         child: AppThemeHost(
           initialVariant: AppThemeVariant.rose,
-          child: MultiBlocProvider(
-            providers: [
-              BlocProvider.value(value: appCubit),
-              BlocProvider.value(value: connectivityCubit),
-            ],
+          child: BlocProvider.value(
+            value: appCubit,
             child: Builder(
               builder: (context) => BaseApp.router(
                 routerConfig: router.config(),
@@ -118,118 +119,46 @@ void main() {
   String offlineCopy(WidgetTester tester) =>
       tester.element(find.byType(AppShell)).l10n.globalErrors.offline;
 
-  Future<void> dropConnection(WidgetTester tester) async {
-    connectivityStates.add(const ConnectivityState(isOnline: false));
+  testWidgets('wraps the navigator with the three wrappers in order', (tester) async {
+    await pumpShell(tester, _TestRouter());
     await tester.pump();
-    await tester.pump();
-  }
 
-  Future<void> endToast(WidgetTester tester) async {
-    await tester.pump(const Duration(seconds: 4));
-    await tester.pump();
-  }
-
-  group('offline toast', () {
-    const padding = EdgeInsets.only(top: 59, bottom: 34);
-
-    setUp(() {
-      whenListen(appCubit, const Stream<AppState>.empty(), initialState: AppState.authenticated);
-    });
-
-    testWidgets('shows the copy when the connection drops', (tester) async {
-      stubConnectivity();
-      await pumpShell(tester, _TestRouter());
-      await tester.pump();
-
-      await dropConnection(tester);
-
-      expect(find.text(offlineCopy(tester)), findsOneWidget);
-      await endToast(tester);
-    });
-
-    testWidgets('shows the copy when the app starts offline', (tester) async {
-      stubConnectivity(isOnline: null);
-      await pumpShell(tester, _TestRouter());
-      await tester.pump();
-
-      expect(find.text(offlineCopy(tester)), findsNothing);
-
-      await dropConnection(tester);
-
-      expect(find.text(offlineCopy(tester)), findsOneWidget);
-      await endToast(tester);
-    });
-
-    testWidgets('shows nothing while online', (tester) async {
-      stubConnectivity();
-      await pumpShell(tester, _TestRouter());
-      await settle(tester);
-
-      expect(find.text(offlineCopy(tester)), findsNothing);
-    });
-
-    testWidgets('shows the copy again after the connection comes back and drops', (tester) async {
-      stubConnectivity();
-      await pumpShell(tester, _TestRouter());
-      await dropConnection(tester);
-      await endToast(tester);
-
-      connectivityStates.add(const ConnectivityState(isOnline: true));
-      await tester.pump();
-      expect(find.text(offlineCopy(tester)), findsNothing);
-
-      await dropConnection(tester);
-
-      expect(find.text(offlineCopy(tester)), findsOneWidget);
-      await endToast(tester);
-    });
-
-    testWidgets('does not restart the toast on a repeated offline state', (tester) async {
-      stubConnectivity();
-      await pumpShell(tester, _TestRouter());
-      await dropConnection(tester);
-
-      await tester.pump(const Duration(seconds: 3));
-      await dropConnection(tester);
-      await tester.pump(const Duration(milliseconds: 1100));
-
-      expect(find.text(offlineCopy(tester)), findsNothing);
-    });
-
-    testWidgets('leaves the navigator top padding alone', (tester) async {
-      stubConnectivity();
-      await pumpShell(tester, _TestRouter(), padding: padding);
-      await dropConnection(tester);
-
-      expect(find.text(offlineCopy(tester)), findsOneWidget);
-      expect(mediaOf(tester, find.byType(Navigator)).padding, padding);
-      await endToast(tester);
-    });
+    expect(
+      find.descendant(of: find.byType(UpdateAppWrapper), matching: find.byType(TimeInAppWrapper)),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(
+        of: find.byType(TimeInAppWrapper),
+        matching: find.byType(ConnectivityWrapper),
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(of: find.byType(ConnectivityWrapper), matching: find.byType(Navigator)),
+      findsOneWidget,
+    );
   });
 
-  group('forced update', () {
+  testWidgets('forced update replaces everything, so neither the toast nor the prompt runs', (
+    tester,
+  ) async {
     const padding = EdgeInsets.only(top: 59, bottom: 34);
+    final router = _TestRouter();
+    await pumpShell(tester, router, padding: padding);
+    versionStates.add(const VersionGateState(updateRequired: true));
+    await settle(tester);
 
-    setUp(() {
-      whenListen(appCubit, const Stream<AppState>.empty(), initialState: AppState.authenticated);
-    });
+    expect(find.byType(UpdateRequiredPage), findsOneWidget);
+    expect(find.byType(TimeInAppWrapper), findsNothing);
+    expect(find.byType(ConnectivityWrapper), findsNothing);
 
-    testWidgets('replaces everything, so neither the toast nor the prompt runs', (tester) async {
-      stubConnectivity();
-      final router = _TestRouter();
-      await pumpShell(tester, router, padding: padding);
-      versionStates.add(const VersionGateState(updateRequired: true));
-      await settle(tester);
+    connectivityStates.add(const ConnectivityState(isOnline: false));
+    timeStates.add(const TimeInAppState(shouldPrompt: true));
+    await settle(tester);
 
-      expect(find.byType(UpdateRequiredPage), findsOneWidget);
-
-      connectivityStates.add(const ConnectivityState(isOnline: false));
-      timeStates.add(const TimeInAppState(shouldPrompt: true));
-      await settle(tester);
-
-      expect(find.text(offlineCopy(tester)), findsNothing);
-      expect(router.stack.map((route) => route.name), isNot(contains(TimeInAppRoute.name)));
-      expect(mediaOf(tester, find.byType(UpdateRequiredPage)).padding, padding);
-    });
+    expect(find.text(offlineCopy(tester)), findsNothing);
+    expect(router.stack.map((route) => route.name), isNot(contains(TimeInAppRoute.name)));
+    expect(mediaOf(tester, find.byType(UpdateRequiredPage)).padding, padding);
   });
 }
