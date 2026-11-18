@@ -7,6 +7,7 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 val keystoreProperties = Properties()
@@ -68,6 +69,10 @@ android {
         }
     }
 
+    buildFeatures {
+        compose = true
+    }
+
     lint {
         // The release lint task crashes analysing FlutterFirebaseCorePlugin.kt with this
         // AGP/JDK pair; Dart analysis stays gated by `melos lint`.
@@ -87,4 +92,5 @@ flutter {
 
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    implementation("androidx.glance:glance-appwidget:1.2.0")
 }

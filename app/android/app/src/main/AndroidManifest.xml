@@ -54,53 +54,19 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".widgets.MingoOwnSmallWidgetProvider"
-            android:label="@string/mingo_widget_own_small_label"
+            android:name=".widgets.MingoCounterWidgetReceiver"
+            android:label="@string/widget_counter_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/mingo_own_small_widget_info" />
+                android:resource="@xml/mingo_counter_widget_info" />
         </receiver>
         <receiver
-            android:name=".widgets.MingoOwnMediumWidgetProvider"
-            android:label="@string/mingo_widget_own_medium_label"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/mingo_own_medium_widget_info" />
-        </receiver>
-        <receiver
-            android:name=".widgets.MingoCoupleCounterWidgetProvider"
-            android:label="@string/mingo_widget_couple_counter_label"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/mingo_couple_counter_widget_info" />
-        </receiver>
-        <receiver
-            android:name=".widgets.MingoPartnerNoteWidgetProvider"
-            android:label="@string/mingo_widget_partner_note_label"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/mingo_partner_note_widget_info" />
-        </receiver>
-
-        <receiver
-            android:name=".widgets.MingoPartnerMoodWidgetProvider"
-            android:label="@string/mingo_widget_partner_mood_label_short"
+            android:name=".widgets.MingoPartnerMoodWidgetReceiver"
+            android:label="@string/widget_partner_mood_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -109,10 +75,9 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/mingo_partner_mood_widget_info" />
         </receiver>
-
         <receiver
-            android:name=".widgets.MingoLongingWidgetProvider"
-            android:label="@string/mingo_widget_longing_label_short"
+            android:name=".widgets.MingoLongingWidgetReceiver"
+            android:label="@string/widget_longing_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -121,10 +86,86 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/mingo_longing_widget_info" />
         </receiver>
-
         <receiver
-            android:name=".widgets.MingoDistanceWidgetProvider"
-            android:label="@string/mingo_widget_distance_label_short"
+            android:name=".widgets.MingoRitualWidgetReceiver"
+            android:label="@string/widget_ritual_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mingo_ritual_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.MingoPartnerNoteWidgetReceiver"
+            android:label="@string/widget_partner_note_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mingo_partner_note_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.MingoSlipWidgetReceiver"
+            android:label="@string/widget_slip_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mingo_slip_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.MingoNextDateWidgetReceiver"
+            android:label="@string/widget_next_date_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mingo_next_date_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.MingoCardWidgetReceiver"
+            android:label="@string/widget_card_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mingo_card_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.MingoWeekWidgetReceiver"
+            android:label="@string/widget_week_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mingo_week_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.MingoIdeaWidgetReceiver"
+            android:label="@string/widget_idea_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mingo_idea_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.MingoDistanceWidgetReceiver"
+            android:label="@string/widget_distance_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -132,17 +173,6 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/mingo_distance_widget_info" />
-        </receiver>
-        <receiver
-            android:name=".widgets.MingoCardEncounterWidgetProvider"
-            android:label="@string/mingo_widget_card_encounter_label"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/mingo_card_encounter_widget_info" />
         </receiver>
         <receiver
             android:name="es.antonborri.home_widget.HomeWidgetScheduledUpdateReceiver"
