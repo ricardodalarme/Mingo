@@ -10,7 +10,7 @@ import 'package:app/features/cards/data/mappers/card_summary_mapper.dart';
 import 'package:app/features/cards/data/models/card_detail.dart';
 import 'package:app/features/cards/data/models/card_summary.dart';
 import 'package:app/features/cards/data/models/sunday_card.dart';
-import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
+import 'package:app/features/home_widgets/data/repositories/home_widgets_repository.dart';
 import 'package:core/core.dart';
 
 /// How many cards one page of the history holds.
@@ -19,7 +19,7 @@ const int cardPageSize = 20;
 class CardsRepository({
   required final CardsDataSource _dataSource,
   required final AuthenticationRepository _authenticationRepository,
-  final WidgetsRepository? _widgetsRepository,
+  final HomeWidgetsRepository? _homeWidgetsRepository,
 }) {
   /// This week's card, creating the draft from the week's slips when there is none yet.
   Future<SundayCard> getDraft() async {
@@ -50,13 +50,13 @@ class CardsRepository({
   /// Records that the recipient opened the card, so the sender sees it when receipts are on.
   Future<void> markRead(String cardId) async {
     await _dataSource.markRead(cardId);
-    unawaited(_widgetsRepository?.syncQuietly());
+    unawaited(_homeWidgetsRepository?.syncQuietly());
   }
 
   /// Sets the recipient's one reaction to the card.
   Future<String?> react({required String cardId, required String reaction, String? reply}) async {
     final result = await _dataSource.react(cardId: cardId, reaction: reaction, reply: reply);
-    unawaited(_widgetsRepository?.syncQuietly());
+    unawaited(_homeWidgetsRepository?.syncQuietly());
     return result;
   }
 
@@ -66,7 +66,7 @@ class CardsRepository({
   /// Wording that matches a rule holds the card with a reason; [anyway] sends it regardless.
   Future<SundayCard> send(String cardId, {bool anyway = false}) async {
     final model = (await _dataSource.sendCard(cardId, anyway: anyway)).toModel();
-    unawaited(_widgetsRepository?.syncQuietly());
+    unawaited(_homeWidgetsRepository?.syncQuietly());
     return model;
   }
 
@@ -78,7 +78,7 @@ class CardsRepository({
   /// Keeps the card for later; nothing is lost and it can still be sent.
   Future<SundayCard> hold(String cardId) async {
     final model = (await _dataSource.holdCard(cardId)).toModel();
-    unawaited(_widgetsRepository?.syncQuietly());
+    unawaited(_homeWidgetsRepository?.syncQuietly());
     return model;
   }
 

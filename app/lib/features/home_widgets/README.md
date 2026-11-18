@@ -1,81 +1,70 @@
-# Widget payload contract
+# Home widgets
 
-One compact JSON document is written to the shared native store and read by both widget extensions. The app is the only
-writer: `WidgetDataService.writePayload` sanitizes the model before serializing it, and sign-out overwrites the store with a
-neutral payload. Native code never writes a payload and never asks the server for extra data. Each platform decodes the keys
-it renders and ignores the optional keys it does not.
+Eleven home widgets ship with the app, one per function, on iOS (WidgetKit) and Android (Jetpack Glance). There is nothing to
+configure: what a home widget shows is what the server already lets the person read (a note only appears when the partner marked
+it for the home widget, a mood only when the partner shared it). The gallery in the app only shows the home widgets and teaches how to
+add one; its previews are images and do nothing when tapped.
+
+## Contract
+
+The app is the only writer. `HomeWidgetDataService.writePayload` sanitizes a `HomeWidgetPayload` and stores it as one JSON string; the
+widgets only read it and never reach the network. The payload carries facts (dates, IANA zones, enum names, times as `HH:mm`),
+never display text, so each platform formats dates, plurals, relative times and mood names in the system language.
 
 - iOS: App Group `group.dev.dalarme.mingo`, key `mingo_widget_payload`
 - Android: `HomeWidgetPreferences`, key `mingo_widget_payload`
-- Photo cache (Plus, paired only): `mingo_widget_photo_path`, with `mingo_widget_photo_updated_at`
+- Sign-out overwrites the store with the signed-out payload.
 
-## Keys
+| Key | Type | Meaning |
+| --- | --- | --- |
+| `isSignedIn`, `isPaired` | bool | Session and couple state; partner fields are cleared when unpaired |
+| `updatedAt` | ISO 8601 | When the payload was written |
+| `theme` | `rose`, `blue`, `neutral` | The person's app theme, used as the widget accent |
+| `ownName`, `partnerName` | string? | Display names, for the initials |
+| `togetherSince` | `YYYY-MM-DD`? | Relationship start |
+| `milestones` | `{title, on}[]` | The two latest shared story events |
+| `nextDateTitle`, `nextDateOn` | string?, date? | Next important date; cleared once past |
+| `cardState` | `none`, `ready`, `sent` | Where the Sunday card stands |
+| `cardSendDay`, `cardSendHour` | int? | When the card goes out (`0` is Sunday) |
+| `partnerNote`, `partnerNoteAt` | string?, ISO 8601? | The latest note the partner marked for the widget |
+| `partnerMood`, `partnerMoodAt` | mood name?, ISO 8601? | The mood the partner shared |
+| `partnerMissedAt` | ISO 8601? | The latest "missing you" from the partner |
+| `ritualTitle`, `ritualWeekday`, `ritualTime` | string?, 1 to 7?, `HH:mm`? | The latest active ritual |
+| `dailyIdeaTitle` | string? | The idea of the day |
+| `slipsThisWeek`, `slipDays` | int, date[] | The person's own slips this week |
+| `ownZone`, `partnerZone` | IANA zone? | Both clocks; `partnerZone` is cleared when equal to `ownZone` |
+| `reunionTitle`, `reunionOn` | string?, date? | Next time the couple meets |
 
-| Key | Type | What it carries | Privacy |
-| --- | --- | --- | --- |
-| `isSignedIn` | bool | Whether a session wrote this payload | Sign-out replaces the whole payload |
-| `isPaired` | bool | Whether there is an active couple | Couple families show a neutral invite state otherwise |
-| `hasPlus` | bool | Whether the couple photo family may run | Photos stay after v1; the gallery hides the family |
-| `showNames` | bool | Names and initials are allowed | `partnerName`, `ownName` are cleared when false |
-| `allowPartnerNotes` | bool | Partner notes are allowed | `partnerNote*` is cleared when false |
-| `onLockScreen` | bool | Lock-screen family is allowed | The family itself never reads personal fields |
-| `isOffline` | bool | Last write came from the cached payload | UI only; native does not show a special banner |
-| `togetherSince` | date `YYYY-MM-DD` | Relationship start, local date | Counter and duration only |
-| `relationshipPhase` | string | `dating`, `married`, `livingTogether`, ... | Counter subtitle only |
-| `partnerName` | string? | Partner display name | Cleared when `showNames` is false or unpaired |
-| `ownName` | string? | Viewer display name | Cleared when `showNames` is false |
-| `nextDateTitle` | string? | Next important date title | Cleared when the date is in the past or unpaired |
-| `nextDateOn` | date `YYYY-MM-DD`? | Next important date | Same as above |
-| `unopenedCards` | int | Number of cards not opened | Zero when unpaired; never a score |
-| `cardState` | string | `none`, `ready`, `sent` | `none` when unpaired |
-| `cardSendDay` | int? | Notification card day, `0` = Sunday | Cleared when unpaired |
-| `cardSendHour` | int? | Notification card hour | Cleared when unpaired |
-| `partnerNote` | string? | Latest note the partner marked `forWidget` | Cleared when `allowPartnerNotes` is false or unpaired |
-| `partnerNoteMedia` | string? | Optional media file id for that note | Same as `partnerNote` |
-| `partnerNoteAt` | ISO 8601? | When the note arrived | Same as `partnerNote` |
-| `partnerMood` | string? | Mood the partner chose to share | Only read from `shared_moods`; cleared when unpaired |
-| `partnerMoodAt` | ISO 8601? | When the shared mood was updated | Cleared when `partnerMood` is absent |
-| `partnerMissedAt` | ISO 8601? | Latest `miss_us` signal from the partner | Cleared when unpaired |
-| `myMood` | string? | Viewer's latest mood | Private; never a partner field |
-| `ritualTitle` | string? | Latest active ritual title | Shared in-app; no text from slips |
-| `ritualSchedule` | string? | Formatted weekday and time | Same as `ritualTitle` |
-| `dailyIdeaTitle` | string? | Daily idea title | Public content |
-| `slipsCount` | int | Total slips the viewer saved | Personal; never compared |
-| `slipsThisWeek` | int | Slips saved this week | Personal; powers "Minha semana" |
-| `slipDays` | string[] | Dates (local) with a saved slip this week | Personal; only weekday marks are shown |
-| `suggestionKey` | string? | Reserved for an in-app suggestion | Not rendered natively |
-| `cachedPhotoPath` | string? | Local cached photo path | Cleared unless paired and Plus |
-| `ownZone` | string? | Viewer IANA time zone | Only for the distance family |
-| `partnerZone` | string? | Partner IANA time zone | Cleared when unpaired or equal to `ownZone` |
-| `ownLocalTime` | `HH:mm`? | Viewer local time | Only for the distance family |
-| `partnerLocalTime` | `HH:mm`? | Partner local time | Only for the distance family |
-| `reunionTitle` | string? | Next reunion date title | Only for the distance family |
-| `reunionOn` | date? | Next reunion date | Only for the distance family |
-| `reunionDays` | int? | Days until the reunion | Only for the distance family |
-| `updatedAt` | ISO 8601 | When the payload was written | Debugging only |
+## Widgets
 
-## Native families
+| `HomeWidgetKind` | iOS `kind` | Android receiver | Sizes | Works alone |
+| --- | --- | --- | --- | --- |
+| `counter` | `MingoCounterWidget` | `MingoCounterWidgetReceiver` | small, medium | yes |
+| `partnerMood` | `MingoPartnerMoodWidget` | `MingoPartnerMoodWidgetReceiver` | small | no |
+| `longing` | `MingoLongingWidget` | `MingoLongingWidgetReceiver` | small | no |
+| `ritual` | `MingoRitualWidget` | `MingoRitualWidgetReceiver` | small | yes |
+| `partnerNote` | `MingoPartnerNoteWidget` | `MingoPartnerNoteWidgetReceiver` | small, medium | no |
+| `card` | `MingoCardWidget` | `MingoCardWidgetReceiver` | small, medium | yes |
+| `distance` | `MingoDistanceWidget` | `MingoDistanceWidgetReceiver` | medium | no |
+| `slip` | `MingoSlipWidget` | `MingoSlipWidgetReceiver` | small | yes |
+| `nextDate` | `MingoNextDateWidget` | `MingoNextDateWidgetReceiver` | small, medium | yes |
+| `week` | `MingoWeekWidget` | `MingoWeekWidgetReceiver` | medium | yes |
+| `idea` | `MingoIdeaWidget` | `MingoIdeaWidgetReceiver` | medium | yes |
 
-| Dart `WidgetFamilyKind` | iOS `kind` | Android provider | Shape |
-| --- | --- | --- | --- |
-| `ownSmall` | `MingoOwnSmallWidget` | `MingoOwnSmallWidgetProvider` | 2×2 |
-| `ownMedium` | `MingoOwnMediumWidget` | `MingoOwnMediumWidgetProvider` | 4×2 |
-| `lockScreen` | `MingoLockScreenWidget` | — | accessory (iOS only) |
-| `coupleCounter` | `MingoCoupleCounterWidget` | `MingoCoupleCounterWidgetProvider` | 2×2 / 4×2 |
-| `couplePhotos` | `MingoCouplePhotosWidget` (not in the bundle) | `MingoCouplePhotosWidgetProvider` (not in the manifest) | deferred after v1; kept in the data layer |
-| `partnerNote` | `MingoPartnerNoteWidget` | `MingoPartnerNoteWidgetProvider` | 2×2 / 4×2 |
-| `partnerMood` | `MingoPartnerMoodWidget` | `MingoPartnerMoodWidgetProvider` | 2×2 |
-| `longing` | `MingoLongingWidget` | `MingoLongingWidgetProvider` | 2×2 |
-| `cardEncounter` | `MingoCardEncounterWidget` | `MingoCardEncounterWidgetProvider` | 2×2 / 4×2 |
-| `distance` | `MingoDistanceWidget` | `MingoDistanceWidgetProvider` | 4×2 |
+Names derive from the kind (`HomeWidgetKindNativeNames`), so a new kind needs its Swift widget, its Kotlin widget and receiver, and
+its manifest entry.
 
-The small and medium personal widgets rotate through their content; the gallery previews each content variant but labels the
-actual native family. The lock-screen family only exists on iOS; Android shows the honest explanation instead of a preview.
+## Native code
+
+- iOS: `app/ios/MingoWidgets/`. `Core/` holds the payload, palette, formatting, shared views and the typed `MingoLink`; `Widgets/`
+  has one file per widget. Text lives in `Resources/Localizable.xcstrings` (`en`, `pt-BR`) and is used through Xcode's generated
+  symbols (`Text(.counterEyebrow)`); mood faces are template SVGs in `Assets.xcassets`. The extension targets iOS 17.
+- Android: `app/android/app/src/main/kotlin/dev/dalarme/mingo/widgets/`. `core/` holds the payload, palette, bitmaps, formatting
+  and base class; one file per widget with its receiver. Text lives in `res/values/mingo_widgets.xml` and `res/values-pt/`
+  (plurals included) and is read through `R.string` and `R.plurals`. `MingoHomeWidgetPreviews` publishes generated previews.
 
 ## Adding a key
 
-1. Add it to `WidgetPayload`, `fromJson`, `sanitized`, `copyWith`, `toJson` and `props`.
-2. Decide its privacy gate in `sanitized`; never clear it in native code.
-3. Mirror it in `MingoWidgetPayload` (Swift) and `MingoWidgetPayload` (Kotlin); both decode optional keys.
-4. Add a contract test in `test/features/widgets/data/models/widget_payload_contract_test.dart`.
-5. Update this table.
+1. Add it to `HomeWidgetPayload` (`fromJson`, `sanitized`, `toJson`, `props`) and decide its privacy rule in `sanitized`.
+2. Mirror it in `MingoPayload` (Swift) and `MingoPayload` (Kotlin).
+3. Add it to the contract test in `test/features/home_widgets/data/models/home_widget_payload_contract_test.dart` and to the table above.

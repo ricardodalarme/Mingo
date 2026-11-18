@@ -116177,9 +116177,6 @@ class InputuserSettings_bool_exp {
     Inputdate_comparison_exp? togetherSince,
     Inputtimestamptz_comparison_exp? updatedAt,
     Inputuuid_comparison_exp? userId,
-    InputBoolean_comparison_exp? widgetAllowPartnerNotes,
-    InputBoolean_comparison_exp? widgetOnLockScreen,
-    InputBoolean_comparison_exp? widgetShowNames,
   }) => InputuserSettings_bool_exp._({
     if ($_and != null) r'_and': $_and,
     if ($_not != null) r'_not': $_not,
@@ -116209,9 +116206,6 @@ class InputuserSettings_bool_exp {
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (updatedAt != null) r'updatedAt': updatedAt,
     if (userId != null) r'userId': userId,
-    if (widgetAllowPartnerNotes != null) r'widgetAllowPartnerNotes': widgetAllowPartnerNotes,
-    if (widgetOnLockScreen != null) r'widgetOnLockScreen': widgetOnLockScreen,
-    if (widgetShowNames != null) r'widgetShowNames': widgetShowNames,
   });
 
   InputuserSettings_bool_exp._(this._$data);
@@ -116390,26 +116384,6 @@ class InputuserSettings_bool_exp {
           ? null
           : Inputuuid_comparison_exp.fromJson((l$userId as Map<String, dynamic>));
     }
-    if (data.containsKey('widgetAllowPartnerNotes')) {
-      final l$widgetAllowPartnerNotes = data['widgetAllowPartnerNotes'];
-      result$data['widgetAllowPartnerNotes'] = l$widgetAllowPartnerNotes == null
-          ? null
-          : InputBoolean_comparison_exp.fromJson(
-              (l$widgetAllowPartnerNotes as Map<String, dynamic>),
-            );
-    }
-    if (data.containsKey('widgetOnLockScreen')) {
-      final l$widgetOnLockScreen = data['widgetOnLockScreen'];
-      result$data['widgetOnLockScreen'] = l$widgetOnLockScreen == null
-          ? null
-          : InputBoolean_comparison_exp.fromJson((l$widgetOnLockScreen as Map<String, dynamic>));
-    }
-    if (data.containsKey('widgetShowNames')) {
-      final l$widgetShowNames = data['widgetShowNames'];
-      result$data['widgetShowNames'] = l$widgetShowNames == null
-          ? null
-          : InputBoolean_comparison_exp.fromJson((l$widgetShowNames as Map<String, dynamic>));
-    }
     return InputuserSettings_bool_exp._(result$data);
   }
 
@@ -116491,15 +116465,6 @@ class InputuserSettings_bool_exp {
       (_$data['updatedAt'] as Inputtimestamptz_comparison_exp?);
 
   Inputuuid_comparison_exp? get userId => (_$data['userId'] as Inputuuid_comparison_exp?);
-
-  InputBoolean_comparison_exp? get widgetAllowPartnerNotes =>
-      (_$data['widgetAllowPartnerNotes'] as InputBoolean_comparison_exp?);
-
-  InputBoolean_comparison_exp? get widgetOnLockScreen =>
-      (_$data['widgetOnLockScreen'] as InputBoolean_comparison_exp?);
-
-  InputBoolean_comparison_exp? get widgetShowNames =>
-      (_$data['widgetShowNames'] as InputBoolean_comparison_exp?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -116614,18 +116579,6 @@ class InputuserSettings_bool_exp {
     if (_$data.containsKey('userId')) {
       final l$userId = userId;
       result$data['userId'] = l$userId?.toJson();
-    }
-    if (_$data.containsKey('widgetAllowPartnerNotes')) {
-      final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-      result$data['widgetAllowPartnerNotes'] = l$widgetAllowPartnerNotes?.toJson();
-    }
-    if (_$data.containsKey('widgetOnLockScreen')) {
-      final l$widgetOnLockScreen = widgetOnLockScreen;
-      result$data['widgetOnLockScreen'] = l$widgetOnLockScreen?.toJson();
-    }
-    if (_$data.containsKey('widgetShowNames')) {
-      final l$widgetShowNames = widgetShowNames;
-      result$data['widgetShowNames'] = l$widgetShowNames?.toJson();
     }
     return result$data;
   }
@@ -116887,32 +116840,6 @@ class InputuserSettings_bool_exp {
     if (l$userId != lOther$userId) {
       return false;
     }
-    final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-    final lOther$widgetAllowPartnerNotes = other.widgetAllowPartnerNotes;
-    if (_$data.containsKey('widgetAllowPartnerNotes') !=
-        other._$data.containsKey('widgetAllowPartnerNotes')) {
-      return false;
-    }
-    if (l$widgetAllowPartnerNotes != lOther$widgetAllowPartnerNotes) {
-      return false;
-    }
-    final l$widgetOnLockScreen = widgetOnLockScreen;
-    final lOther$widgetOnLockScreen = other.widgetOnLockScreen;
-    if (_$data.containsKey('widgetOnLockScreen') !=
-        other._$data.containsKey('widgetOnLockScreen')) {
-      return false;
-    }
-    if (l$widgetOnLockScreen != lOther$widgetOnLockScreen) {
-      return false;
-    }
-    final l$widgetShowNames = widgetShowNames;
-    final lOther$widgetShowNames = other.widgetShowNames;
-    if (_$data.containsKey('widgetShowNames') != other._$data.containsKey('widgetShowNames')) {
-      return false;
-    }
-    if (l$widgetShowNames != lOther$widgetShowNames) {
-      return false;
-    }
     return true;
   }
 
@@ -116946,9 +116873,6 @@ class InputuserSettings_bool_exp {
     final l$togetherSince = togetherSince;
     final l$updatedAt = updatedAt;
     final l$userId = userId;
-    final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-    final l$widgetOnLockScreen = widgetOnLockScreen;
-    final l$widgetShowNames = widgetShowNames;
     return Object.hashAll([
       _$data.containsKey('_and')
           ? l$$_and == null
@@ -116986,9 +116910,6 @@ class InputuserSettings_bool_exp {
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
       _$data.containsKey('userId') ? l$userId : const {},
-      _$data.containsKey('widgetAllowPartnerNotes') ? l$widgetAllowPartnerNotes : const {},
-      _$data.containsKey('widgetOnLockScreen') ? l$widgetOnLockScreen : const {},
-      _$data.containsKey('widgetShowNames') ? l$widgetShowNames : const {},
     ]);
   }
 }
@@ -117074,9 +116995,6 @@ class InputuserSettings_order_by {
     Enumorder_by? togetherSince,
     Enumorder_by? updatedAt,
     Enumorder_by? userId,
-    Enumorder_by? widgetAllowPartnerNotes,
-    Enumorder_by? widgetOnLockScreen,
-    Enumorder_by? widgetShowNames,
   }) => InputuserSettings_order_by._({
     if (cardChannel != null) r'cardChannel': cardChannel,
     if (cardTheme != null) r'cardTheme': cardTheme,
@@ -117103,9 +117021,6 @@ class InputuserSettings_order_by {
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (updatedAt != null) r'updatedAt': updatedAt,
     if (userId != null) r'userId': userId,
-    if (widgetAllowPartnerNotes != null) r'widgetAllowPartnerNotes': widgetAllowPartnerNotes,
-    if (widgetOnLockScreen != null) r'widgetOnLockScreen': widgetOnLockScreen,
-    if (widgetShowNames != null) r'widgetShowNames': widgetShowNames,
   });
 
   InputuserSettings_order_by._(this._$data);
@@ -117254,24 +117169,6 @@ class InputuserSettings_order_by {
       final l$userId = data['userId'];
       result$data['userId'] = l$userId == null ? null : fromJsonEnumorder_by((l$userId as String));
     }
-    if (data.containsKey('widgetAllowPartnerNotes')) {
-      final l$widgetAllowPartnerNotes = data['widgetAllowPartnerNotes'];
-      result$data['widgetAllowPartnerNotes'] = l$widgetAllowPartnerNotes == null
-          ? null
-          : fromJsonEnumorder_by((l$widgetAllowPartnerNotes as String));
-    }
-    if (data.containsKey('widgetOnLockScreen')) {
-      final l$widgetOnLockScreen = data['widgetOnLockScreen'];
-      result$data['widgetOnLockScreen'] = l$widgetOnLockScreen == null
-          ? null
-          : fromJsonEnumorder_by((l$widgetOnLockScreen as String));
-    }
-    if (data.containsKey('widgetShowNames')) {
-      final l$widgetShowNames = data['widgetShowNames'];
-      result$data['widgetShowNames'] = l$widgetShowNames == null
-          ? null
-          : fromJsonEnumorder_by((l$widgetShowNames as String));
-    }
     return InputuserSettings_order_by._(result$data);
   }
 
@@ -117327,12 +117224,6 @@ class InputuserSettings_order_by {
   Enumorder_by? get updatedAt => (_$data['updatedAt'] as Enumorder_by?);
 
   Enumorder_by? get userId => (_$data['userId'] as Enumorder_by?);
-
-  Enumorder_by? get widgetAllowPartnerNotes => (_$data['widgetAllowPartnerNotes'] as Enumorder_by?);
-
-  Enumorder_by? get widgetOnLockScreen => (_$data['widgetOnLockScreen'] as Enumorder_by?);
-
-  Enumorder_by? get widgetShowNames => (_$data['widgetShowNames'] as Enumorder_by?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -117459,24 +117350,6 @@ class InputuserSettings_order_by {
     if (_$data.containsKey('userId')) {
       final l$userId = userId;
       result$data['userId'] = l$userId == null ? null : toJsonEnumorder_by(l$userId);
-    }
-    if (_$data.containsKey('widgetAllowPartnerNotes')) {
-      final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-      result$data['widgetAllowPartnerNotes'] = l$widgetAllowPartnerNotes == null
-          ? null
-          : toJsonEnumorder_by(l$widgetAllowPartnerNotes);
-    }
-    if (_$data.containsKey('widgetOnLockScreen')) {
-      final l$widgetOnLockScreen = widgetOnLockScreen;
-      result$data['widgetOnLockScreen'] = l$widgetOnLockScreen == null
-          ? null
-          : toJsonEnumorder_by(l$widgetOnLockScreen);
-    }
-    if (_$data.containsKey('widgetShowNames')) {
-      final l$widgetShowNames = widgetShowNames;
-      result$data['widgetShowNames'] = l$widgetShowNames == null
-          ? null
-          : toJsonEnumorder_by(l$widgetShowNames);
     }
     return result$data;
   }
@@ -117692,32 +117565,6 @@ class InputuserSettings_order_by {
     if (l$userId != lOther$userId) {
       return false;
     }
-    final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-    final lOther$widgetAllowPartnerNotes = other.widgetAllowPartnerNotes;
-    if (_$data.containsKey('widgetAllowPartnerNotes') !=
-        other._$data.containsKey('widgetAllowPartnerNotes')) {
-      return false;
-    }
-    if (l$widgetAllowPartnerNotes != lOther$widgetAllowPartnerNotes) {
-      return false;
-    }
-    final l$widgetOnLockScreen = widgetOnLockScreen;
-    final lOther$widgetOnLockScreen = other.widgetOnLockScreen;
-    if (_$data.containsKey('widgetOnLockScreen') !=
-        other._$data.containsKey('widgetOnLockScreen')) {
-      return false;
-    }
-    if (l$widgetOnLockScreen != lOther$widgetOnLockScreen) {
-      return false;
-    }
-    final l$widgetShowNames = widgetShowNames;
-    final lOther$widgetShowNames = other.widgetShowNames;
-    if (_$data.containsKey('widgetShowNames') != other._$data.containsKey('widgetShowNames')) {
-      return false;
-    }
-    if (l$widgetShowNames != lOther$widgetShowNames) {
-      return false;
-    }
     return true;
   }
 
@@ -117748,9 +117595,6 @@ class InputuserSettings_order_by {
     final l$togetherSince = togetherSince;
     final l$updatedAt = updatedAt;
     final l$userId = userId;
-    final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-    final l$widgetOnLockScreen = widgetOnLockScreen;
-    final l$widgetShowNames = widgetShowNames;
     return Object.hashAll([
       _$data.containsKey('cardChannel') ? l$cardChannel : const {},
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
@@ -117777,9 +117621,6 @@ class InputuserSettings_order_by {
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
       _$data.containsKey('userId') ? l$userId : const {},
-      _$data.containsKey('widgetAllowPartnerNotes') ? l$widgetAllowPartnerNotes : const {},
-      _$data.containsKey('widgetOnLockScreen') ? l$widgetOnLockScreen : const {},
-      _$data.containsKey('widgetShowNames') ? l$widgetShowNames : const {},
     ]);
   }
 }
@@ -117853,9 +117694,6 @@ class InputuserSettings_set_input {
     bool? spiceNotifications,
     EnumAppTheme_enum? theme,
     DateTime? togetherSince,
-    bool? widgetAllowPartnerNotes,
-    bool? widgetOnLockScreen,
-    bool? widgetShowNames,
   }) => InputuserSettings_set_input._({
     if (cardChannel != null) r'cardChannel': cardChannel,
     if (cardTheme != null) r'cardTheme': cardTheme,
@@ -117877,9 +117715,6 @@ class InputuserSettings_set_input {
     if (spiceNotifications != null) r'spiceNotifications': spiceNotifications,
     if (theme != null) r'theme': theme,
     if (togetherSince != null) r'togetherSince': togetherSince,
-    if (widgetAllowPartnerNotes != null) r'widgetAllowPartnerNotes': widgetAllowPartnerNotes,
-    if (widgetOnLockScreen != null) r'widgetOnLockScreen': widgetOnLockScreen,
-    if (widgetShowNames != null) r'widgetShowNames': widgetShowNames,
   });
 
   InputuserSettings_set_input._(this._$data);
@@ -117984,18 +117819,6 @@ class InputuserSettings_set_input {
           ? null
           : DateTime.parse((l$togetherSince as String));
     }
-    if (data.containsKey('widgetAllowPartnerNotes')) {
-      final l$widgetAllowPartnerNotes = data['widgetAllowPartnerNotes'];
-      result$data['widgetAllowPartnerNotes'] = (l$widgetAllowPartnerNotes as bool?);
-    }
-    if (data.containsKey('widgetOnLockScreen')) {
-      final l$widgetOnLockScreen = data['widgetOnLockScreen'];
-      result$data['widgetOnLockScreen'] = (l$widgetOnLockScreen as bool?);
-    }
-    if (data.containsKey('widgetShowNames')) {
-      final l$widgetShowNames = data['widgetShowNames'];
-      result$data['widgetShowNames'] = (l$widgetShowNames as bool?);
-    }
     return InputuserSettings_set_input._(result$data);
   }
 
@@ -118041,12 +117864,6 @@ class InputuserSettings_set_input {
   EnumAppTheme_enum? get theme => (_$data['theme'] as EnumAppTheme_enum?);
 
   DateTime? get togetherSince => (_$data['togetherSince'] as DateTime?);
-
-  bool? get widgetAllowPartnerNotes => (_$data['widgetAllowPartnerNotes'] as bool?);
-
-  bool? get widgetOnLockScreen => (_$data['widgetOnLockScreen'] as bool?);
-
-  bool? get widgetShowNames => (_$data['widgetShowNames'] as bool?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -118141,18 +117958,6 @@ class InputuserSettings_set_input {
       result$data['togetherSince'] = l$togetherSince == null
           ? null
           : ((v) => v.toIso8601String().substring(0, 10))(l$togetherSince);
-    }
-    if (_$data.containsKey('widgetAllowPartnerNotes')) {
-      final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-      result$data['widgetAllowPartnerNotes'] = l$widgetAllowPartnerNotes;
-    }
-    if (_$data.containsKey('widgetOnLockScreen')) {
-      final l$widgetOnLockScreen = widgetOnLockScreen;
-      result$data['widgetOnLockScreen'] = l$widgetOnLockScreen;
-    }
-    if (_$data.containsKey('widgetShowNames')) {
-      final l$widgetShowNames = widgetShowNames;
-      result$data['widgetShowNames'] = l$widgetShowNames;
     }
     return result$data;
   }
@@ -118339,32 +118144,6 @@ class InputuserSettings_set_input {
     if (l$togetherSince != lOther$togetherSince) {
       return false;
     }
-    final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-    final lOther$widgetAllowPartnerNotes = other.widgetAllowPartnerNotes;
-    if (_$data.containsKey('widgetAllowPartnerNotes') !=
-        other._$data.containsKey('widgetAllowPartnerNotes')) {
-      return false;
-    }
-    if (l$widgetAllowPartnerNotes != lOther$widgetAllowPartnerNotes) {
-      return false;
-    }
-    final l$widgetOnLockScreen = widgetOnLockScreen;
-    final lOther$widgetOnLockScreen = other.widgetOnLockScreen;
-    if (_$data.containsKey('widgetOnLockScreen') !=
-        other._$data.containsKey('widgetOnLockScreen')) {
-      return false;
-    }
-    if (l$widgetOnLockScreen != lOther$widgetOnLockScreen) {
-      return false;
-    }
-    final l$widgetShowNames = widgetShowNames;
-    final lOther$widgetShowNames = other.widgetShowNames;
-    if (_$data.containsKey('widgetShowNames') != other._$data.containsKey('widgetShowNames')) {
-      return false;
-    }
-    if (l$widgetShowNames != lOther$widgetShowNames) {
-      return false;
-    }
     return true;
   }
 
@@ -118390,9 +118169,6 @@ class InputuserSettings_set_input {
     final l$spiceNotifications = spiceNotifications;
     final l$theme = theme;
     final l$togetherSince = togetherSince;
-    final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-    final l$widgetOnLockScreen = widgetOnLockScreen;
-    final l$widgetShowNames = widgetShowNames;
     return Object.hashAll([
       _$data.containsKey('cardChannel') ? l$cardChannel : const {},
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
@@ -118418,9 +118194,6 @@ class InputuserSettings_set_input {
       _$data.containsKey('spiceNotifications') ? l$spiceNotifications : const {},
       _$data.containsKey('theme') ? l$theme : const {},
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
-      _$data.containsKey('widgetAllowPartnerNotes') ? l$widgetAllowPartnerNotes : const {},
-      _$data.containsKey('widgetOnLockScreen') ? l$widgetOnLockScreen : const {},
-      _$data.containsKey('widgetShowNames') ? l$widgetShowNames : const {},
     ]);
   }
 }
@@ -118529,9 +118302,6 @@ class InputuserSettings_stream_cursor_value_input {
     DateTime? togetherSince,
     DateTime? updatedAt,
     String? userId,
-    bool? widgetAllowPartnerNotes,
-    bool? widgetOnLockScreen,
-    bool? widgetShowNames,
   }) => InputuserSettings_stream_cursor_value_input._({
     if (cardChannel != null) r'cardChannel': cardChannel,
     if (cardTheme != null) r'cardTheme': cardTheme,
@@ -118556,9 +118326,6 @@ class InputuserSettings_stream_cursor_value_input {
     if (togetherSince != null) r'togetherSince': togetherSince,
     if (updatedAt != null) r'updatedAt': updatedAt,
     if (userId != null) r'userId': userId,
-    if (widgetAllowPartnerNotes != null) r'widgetAllowPartnerNotes': widgetAllowPartnerNotes,
-    if (widgetOnLockScreen != null) r'widgetOnLockScreen': widgetOnLockScreen,
-    if (widgetShowNames != null) r'widgetShowNames': widgetShowNames,
   });
 
   InputuserSettings_stream_cursor_value_input._(this._$data);
@@ -118679,18 +118446,6 @@ class InputuserSettings_stream_cursor_value_input {
       final l$userId = data['userId'];
       result$data['userId'] = (l$userId as String?);
     }
-    if (data.containsKey('widgetAllowPartnerNotes')) {
-      final l$widgetAllowPartnerNotes = data['widgetAllowPartnerNotes'];
-      result$data['widgetAllowPartnerNotes'] = (l$widgetAllowPartnerNotes as bool?);
-    }
-    if (data.containsKey('widgetOnLockScreen')) {
-      final l$widgetOnLockScreen = data['widgetOnLockScreen'];
-      result$data['widgetOnLockScreen'] = (l$widgetOnLockScreen as bool?);
-    }
-    if (data.containsKey('widgetShowNames')) {
-      final l$widgetShowNames = data['widgetShowNames'];
-      result$data['widgetShowNames'] = (l$widgetShowNames as bool?);
-    }
     return InputuserSettings_stream_cursor_value_input._(result$data);
   }
 
@@ -118742,12 +118497,6 @@ class InputuserSettings_stream_cursor_value_input {
   DateTime? get updatedAt => (_$data['updatedAt'] as DateTime?);
 
   String? get userId => (_$data['userId'] as String?);
-
-  bool? get widgetAllowPartnerNotes => (_$data['widgetAllowPartnerNotes'] as bool?);
-
-  bool? get widgetOnLockScreen => (_$data['widgetOnLockScreen'] as bool?);
-
-  bool? get widgetShowNames => (_$data['widgetShowNames'] as bool?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -118858,18 +118607,6 @@ class InputuserSettings_stream_cursor_value_input {
     if (_$data.containsKey('userId')) {
       final l$userId = userId;
       result$data['userId'] = l$userId;
-    }
-    if (_$data.containsKey('widgetAllowPartnerNotes')) {
-      final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-      result$data['widgetAllowPartnerNotes'] = l$widgetAllowPartnerNotes;
-    }
-    if (_$data.containsKey('widgetOnLockScreen')) {
-      final l$widgetOnLockScreen = widgetOnLockScreen;
-      result$data['widgetOnLockScreen'] = l$widgetOnLockScreen;
-    }
-    if (_$data.containsKey('widgetShowNames')) {
-      final l$widgetShowNames = widgetShowNames;
-      result$data['widgetShowNames'] = l$widgetShowNames;
     }
     return result$data;
   }
@@ -119080,32 +118817,6 @@ class InputuserSettings_stream_cursor_value_input {
     if (l$userId != lOther$userId) {
       return false;
     }
-    final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-    final lOther$widgetAllowPartnerNotes = other.widgetAllowPartnerNotes;
-    if (_$data.containsKey('widgetAllowPartnerNotes') !=
-        other._$data.containsKey('widgetAllowPartnerNotes')) {
-      return false;
-    }
-    if (l$widgetAllowPartnerNotes != lOther$widgetAllowPartnerNotes) {
-      return false;
-    }
-    final l$widgetOnLockScreen = widgetOnLockScreen;
-    final lOther$widgetOnLockScreen = other.widgetOnLockScreen;
-    if (_$data.containsKey('widgetOnLockScreen') !=
-        other._$data.containsKey('widgetOnLockScreen')) {
-      return false;
-    }
-    if (l$widgetOnLockScreen != lOther$widgetOnLockScreen) {
-      return false;
-    }
-    final l$widgetShowNames = widgetShowNames;
-    final lOther$widgetShowNames = other.widgetShowNames;
-    if (_$data.containsKey('widgetShowNames') != other._$data.containsKey('widgetShowNames')) {
-      return false;
-    }
-    if (l$widgetShowNames != lOther$widgetShowNames) {
-      return false;
-    }
     return true;
   }
 
@@ -119134,9 +118845,6 @@ class InputuserSettings_stream_cursor_value_input {
     final l$togetherSince = togetherSince;
     final l$updatedAt = updatedAt;
     final l$userId = userId;
-    final l$widgetAllowPartnerNotes = widgetAllowPartnerNotes;
-    final l$widgetOnLockScreen = widgetOnLockScreen;
-    final l$widgetShowNames = widgetShowNames;
     return Object.hashAll([
       _$data.containsKey('cardChannel') ? l$cardChannel : const {},
       _$data.containsKey('cardTheme') ? l$cardTheme : const {},
@@ -119165,9 +118873,6 @@ class InputuserSettings_stream_cursor_value_input {
       _$data.containsKey('togetherSince') ? l$togetherSince : const {},
       _$data.containsKey('updatedAt') ? l$updatedAt : const {},
       _$data.containsKey('userId') ? l$userId : const {},
-      _$data.containsKey('widgetAllowPartnerNotes') ? l$widgetAllowPartnerNotes : const {},
-      _$data.containsKey('widgetOnLockScreen') ? l$widgetOnLockScreen : const {},
-      _$data.containsKey('widgetShowNames') ? l$widgetShowNames : const {},
     ]);
   }
 }
@@ -132582,9 +132287,6 @@ enum EnumuserSettings_select_column {
   togetherSince,
   updatedAt,
   userId,
-  widgetAllowPartnerNotes,
-  widgetOnLockScreen,
-  widgetShowNames,
   $unknown;
 
   factory EnumuserSettings_select_column.fromJson(String value) =>
@@ -132641,12 +132343,6 @@ String toJsonEnumuserSettings_select_column(EnumuserSettings_select_column e) {
       return r'updatedAt';
     case EnumuserSettings_select_column.userId:
       return r'userId';
-    case EnumuserSettings_select_column.widgetAllowPartnerNotes:
-      return r'widgetAllowPartnerNotes';
-    case EnumuserSettings_select_column.widgetOnLockScreen:
-      return r'widgetOnLockScreen';
-    case EnumuserSettings_select_column.widgetShowNames:
-      return r'widgetShowNames';
     case EnumuserSettings_select_column.$unknown:
       return r'$unknown';
   }
@@ -132700,12 +132396,6 @@ EnumuserSettings_select_column fromJsonEnumuserSettings_select_column(String val
       return EnumuserSettings_select_column.updatedAt;
     case r'userId':
       return EnumuserSettings_select_column.userId;
-    case r'widgetAllowPartnerNotes':
-      return EnumuserSettings_select_column.widgetAllowPartnerNotes;
-    case r'widgetOnLockScreen':
-      return EnumuserSettings_select_column.widgetOnLockScreen;
-    case r'widgetShowNames':
-      return EnumuserSettings_select_column.widgetShowNames;
     default:
       return EnumuserSettings_select_column.$unknown;
   }

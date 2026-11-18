@@ -92,7 +92,7 @@ void main() {
     expect(find.text(l10n.settingsHome.notifications), findsNothing);
     expect(find.text(l10n.settingsHome.devices), findsNothing);
     expect(find.text(l10n.settingsHome.weeklyCard), findsNothing);
-    expect(find.text(l10n.widgets.settingsTitle), findsNothing);
+    expect(find.text(l10n.homeWidgets.settingsTitle), findsNothing);
     expect(find.text(l10n.settingsHome.signOut), findsNothing);
     expect(find.text(l10n.settingsHome.deleteAccount), findsNothing);
     expect(find.text(l10n.settingsHome.relationship), findsNothing);

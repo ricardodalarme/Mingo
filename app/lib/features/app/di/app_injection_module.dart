@@ -8,13 +8,13 @@ import 'package:app/features/app/presentation/version/cubit/version_gate_cubit.d
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/devices/data/repositories/devices_repository.dart';
 import 'package:app/features/help/data/repositories/support_repository.dart';
+import 'package:app/features/home_widgets/data/repositories/home_widgets_repository.dart';
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
-import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:app/router/pending_route.dart';
 import 'package:app_info_service/app_info_service.dart';
 import 'package:auto_route/auto_route.dart' hide PageInfo;
@@ -62,7 +62,7 @@ class AppInjectionModule() implements InjectionModule {
         connectivityService: injector.get<ConnectivityService>(),
         notificationsRepository: injector.get<NotificationsRepository>(),
         devicesRepository: injector.get<DevicesRepository>(),
-        widgetsRepository: injector.get<WidgetsRepository>(),
+        homeWidgetsRepository: injector.get<HomeWidgetsRepository>(),
       ),
     );
 }

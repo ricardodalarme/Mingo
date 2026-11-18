@@ -1,0 +1,5 @@
+query HomeWidgetCardStatus($cardId: uuid!) {
+  cardsByPk(id: $cardId) {
+    status
+  }
+}

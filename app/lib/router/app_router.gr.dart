@@ -244,22 +244,6 @@ class CardDetailRouteArgs {
 }
 
 /// generated route for
-/// [CardEncounterWidgetPage]
-class CardEncounterWidgetRoute extends PageRouteInfo<void> {
-  const CardEncounterWidgetRoute({List<PageRouteInfo>? children})
-    : super(CardEncounterWidgetRoute.name, initialChildren: children);
-
-  static const String name = 'CardEncounterWidgetRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const CardEncounterWidgetPage());
-    },
-  );
-}
-
-/// generated route for
 /// [CardSettingsPage]
 class CardSettingsRoute extends PageRouteInfo<void> {
   const CardSettingsRoute({List<PageRouteInfo>? children})
@@ -439,22 +423,6 @@ class CounterVariationsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [CoupleCounterWidgetPage]
-class CoupleCounterWidgetRoute extends PageRouteInfo<void> {
-  const CoupleCounterWidgetRoute({List<PageRouteInfo>? children})
-    : super(CoupleCounterWidgetRoute.name, initialChildren: children);
-
-  static const String name = 'CoupleCounterWidgetRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const CoupleCounterWidgetPage());
-    },
-  );
-}
-
-/// generated route for
 /// [CouplePage]
 class CoupleRoute extends PageRouteInfo<CoupleRouteArgs> {
   CoupleRoute({
@@ -503,22 +471,6 @@ class CoupleRouteArgs {
 
   @override
   int get hashCode => section.hashCode ^ key.hashCode;
-}
-
-/// generated route for
-/// [CouplePhotosWidgetPage]
-class CouplePhotosWidgetRoute extends PageRouteInfo<void> {
-  const CouplePhotosWidgetRoute({List<PageRouteInfo>? children})
-    : super(CouplePhotosWidgetRoute.name, initialChildren: children);
-
-  static const String name = 'CouplePhotosWidgetRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const CouplePhotosWidgetPage());
-    },
-  );
 }
 
 /// generated route for
@@ -1123,6 +1075,22 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [HomeWidgetsGalleryPage]
+class HomeWidgetsGalleryRoute extends PageRouteInfo<void> {
+  const HomeWidgetsGalleryRoute({List<PageRouteInfo>? children})
+    : super(HomeWidgetsGalleryRoute.name, initialChildren: children);
+
+  static const String name = 'HomeWidgetsGalleryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const HomeWidgetsGalleryPage());
+    },
+  );
+}
+
+/// generated route for
 /// [IdeaDetailPage]
 class IdeaDetailRoute extends PageRouteInfo<IdeaDetailRouteArgs> {
   IdeaDetailRoute({String? slug, Key? key, List<PageRouteInfo>? children})
@@ -1464,22 +1432,6 @@ class ListsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [LockScreenWidgetPage]
-class LockRouteWidgetRoute extends PageRouteInfo<void> {
-  const LockRouteWidgetRoute({List<PageRouteInfo>? children})
-    : super(LockRouteWidgetRoute.name, initialChildren: children);
-
-  static const String name = 'LockRouteWidgetRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const LockScreenWidgetPage());
-    },
-  );
-}
-
-/// generated route for
 /// [LogisticsPage]
 class LogisticsRoute extends PageRouteInfo<void> {
   const LogisticsRoute({List<PageRouteInfo>? children})
@@ -1704,22 +1656,6 @@ class MoodCalendarRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MoodLongingWidgetPage]
-class MoodLongingWidgetRoute extends PageRouteInfo<void> {
-  const MoodLongingWidgetRoute({List<PageRouteInfo>? children})
-    : super(MoodLongingWidgetRoute.name, initialChildren: children);
-
-  static const String name = 'MoodLongingWidgetRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const MoodLongingWidgetPage());
-    },
-  );
-}
-
-/// generated route for
 /// [MoodPage]
 class MoodRoute extends PageRouteInfo<MoodRouteArgs> {
   MoodRoute({String? initialMood, Key? key, List<PageRouteInfo>? children})
@@ -1843,54 +1779,6 @@ class OurViewRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const OurViewPage();
-    },
-  );
-}
-
-/// generated route for
-/// [OwnMediumWidgetsPage]
-class OwnMediumWidgetsRoute extends PageRouteInfo<void> {
-  const OwnMediumWidgetsRoute({List<PageRouteInfo>? children})
-    : super(OwnMediumWidgetsRoute.name, initialChildren: children);
-
-  static const String name = 'OwnMediumWidgetsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const OwnMediumWidgetsPage());
-    },
-  );
-}
-
-/// generated route for
-/// [OwnSmallWidgetsPage]
-class OwnSmallWidgetsRoute extends PageRouteInfo<void> {
-  const OwnSmallWidgetsRoute({List<PageRouteInfo>? children})
-    : super(OwnSmallWidgetsRoute.name, initialChildren: children);
-
-  static const String name = 'OwnSmallWidgetsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const OwnSmallWidgetsPage());
-    },
-  );
-}
-
-/// generated route for
-/// [PartnerNoteWidgetPage]
-class PartnerNoteWidgetRoute extends PageRouteInfo<void> {
-  const PartnerNoteWidgetRoute({List<PageRouteInfo>? children})
-    : super(PartnerNoteWidgetRoute.name, initialChildren: children);
-
-  static const String name = 'PartnerNoteWidgetRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const PartnerNoteWidgetPage());
     },
   );
 }
@@ -3027,22 +2915,6 @@ class WelcomeRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const WelcomePage();
-    },
-  );
-}
-
-/// generated route for
-/// [WidgetsGalleryPage]
-class WidgetsGalleryRoute extends PageRouteInfo<void> {
-  const WidgetsGalleryRoute({List<PageRouteInfo>? children})
-    : super(WidgetsGalleryRoute.name, initialChildren: children);
-
-  static const String name = 'WidgetsGalleryRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const WidgetsGalleryPage());
     },
   );
 }

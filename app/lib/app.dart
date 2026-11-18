@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/app/presentation/navigation/app_state_navigator.dart';
 import 'package:app/features/app/presentation/shell/app_shell.dart';
+import 'package:app/features/home_widgets/data/repositories/home_widgets_repository.dart';
+import 'package:app/features/home_widgets/data/services/home_widget_data_service.dart';
+import 'package:app/features/home_widgets/presentation/navigation/home_widget_deep_link_resolver.dart';
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
-import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
-import 'package:app/features/widgets/data/services/widget_data_service.dart';
-import 'package:app/features/widgets/presentation/navigation/widget_deep_link_resolver.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/observers/analytics_router_observer.dart';
 import 'package:app/router/observers/log_router_observer.dart';
@@ -46,7 +46,7 @@ class const App({super.key}) extends StatelessWidget {
                   onGenerateTitle: (context) => context.l10n.common.appName,
                   routerConfig: appRouter.config(
                     navigatorObservers: () => navigatorObservers,
-                    deepLinkTransformer: transformWidgetDeepLinkUri,
+                    deepLinkTransformer: transformHomeWidgetDeepLinkUri,
                     deepLinkBuilder: _deepLinkBuilder,
                   ),
                   locale: TranslationProvider.of(context).flutterLocale,
@@ -85,9 +85,9 @@ class const App({super.key}) extends StatelessWidget {
     if (inviteRoutes != null) {
       return DeepLink(inviteRoutes);
     }
-    final widgetRoutes = resolveWidgetDeepLinkUri(deepLink.uri, appState: appCubit.state);
-    if (widgetRoutes != null) {
-      return DeepLink(widgetRoutes);
+    final homeWidgetRoutes = resolveHomeWidgetDeepLinkUri(deepLink.uri, appState: appCubit.state);
+    if (homeWidgetRoutes != null) {
+      return DeepLink(homeWidgetRoutes);
     }
     return deepLink.initial ? DeepLink.single(_resolveRouteForState(appCubit.state)) : deepLink;
   }
@@ -116,9 +116,9 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
     _subscription = widget.cubit.stream.listen(_onStateChanged);
     final injector = AppInjector.instance;
     if (_previous == AppState.authenticated) _watchProfile();
-    final widgetDataService = injector.get<WidgetDataService>();
-    _widgetClickSubscription = widgetDataService.widgetClicked.listen(_handleWidgetDeepLink);
-    unawaited(widgetDataService.initiallyLaunchedFromHomeWidget().then(_handleWidgetDeepLink));
+    final homeWidgetDataService = injector.get<HomeWidgetDataService>();
+    _widgetClickSubscription = homeWidgetDataService.widgetClicked.listen(_handleWidgetDeepLink);
+    unawaited(homeWidgetDataService.initiallyLaunchedFromHomeWidget().then(_handleWidgetDeepLink));
   }
 
   @override
@@ -131,7 +131,7 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
       case AppLifecycleState.resumed:
         client.resumeSubscriptions();
         if (widget.cubit.state == AppState.authenticated) {
-          unawaited(AppInjector.instance.get<WidgetsRepository>().syncQuietly());
+          unawaited(AppInjector.instance.get<HomeWidgetsRepository>().syncQuietly());
         }
       case AppLifecycleState.inactive:
       case AppLifecycleState.detached:
@@ -145,7 +145,7 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
 
     final injector = AppInjector.instance;
     final repository = injector.get<ProfileRepository>();
-    void sync(Object? _) => unawaited(injector.get<WidgetsRepository>().syncQuietly());
+    void sync(Object? _) => unawaited(injector.get<HomeWidgetsRepository>().syncQuietly());
     _profileSubscriptions.addAll([
       repository.watchMyProfile().distinct().skip(1).listen(sync, onError: (Object _) {}),
       repository.watchMySettings().distinct().skip(1).listen(sync, onError: (Object _) {}),
@@ -160,7 +160,7 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
   }
 
   void _handleWidgetDeepLink(Uri? uri) {
-    final routes = resolveWidgetDeepLinkUri(uri, appState: widget.cubit.state);
+    final routes = resolveHomeWidgetDeepLinkUri(uri, appState: widget.cubit.state);
     if (routes == null) return;
     unawaited(AppInjector.instance.get<RootStackRouter>().replaceAll(routes));
   }

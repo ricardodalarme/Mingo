@@ -1,4 +1,4 @@
-query WidgetOverview($userId: uuid!) {
+query HomeWidgetOverview($userId: uuid!, $today: date!) {
   today(limit: 1) {
     userId
     coupleId
@@ -7,7 +7,6 @@ query WidgetOverview($userId: uuid!) {
     cardId
     unopenedCards
     slipsThisWeek
-    slipsTotal
     slipDays
     nextDateOn
     nextDate {
@@ -19,18 +18,21 @@ query WidgetOverview($userId: uuid!) {
   }
   settings: userSettingsByPk(userId: $userId) {
     userId
-    phase
+    theme
     togetherSince
-    widgetAllowPartnerNotes
-    widgetOnLockScreen
-    widgetShowNames
   }
   notificationSettingsByPk(userId: $userId) {
     cardDay
     cardHour
   }
-  plusStates(where: { userId: { _eq: $userId } }, limit: 1) {
-    hasPlus
+  milestones: storyEvents(
+    where: { happenedOn: { _lte: $today } }
+    order_by: [{ happenedOn: desc }]
+    limit: 2
+  ) {
+    id
+    title
+    happenedOn
   }
   partnerNote: partnerMessages(
     where: { forWidget: { _eq: true }, senderId: { _neq: $userId }, recipientId: { _eq: $userId } }
@@ -38,8 +40,6 @@ query WidgetOverview($userId: uuid!) {
     limit: 1
   ) {
     body
-    kind
-    mediaFileId
     createdAt
   }
   partnerMood: sharedMoods(
@@ -57,9 +57,6 @@ query WidgetOverview($userId: uuid!) {
   ) {
     createdAt
   }
-  myMood: moods(where: { authorId: { _eq: $userId } }, order_by: [{ day: desc_nulls_last }], limit: 1) {
-    mood
-  }
   rituals(
     where: { archivedAt: { _is_null: true } }
     order_by: [{ createdAt: desc_nulls_last }]
@@ -67,13 +64,11 @@ query WidgetOverview($userId: uuid!) {
   ) {
     id
     title
-    cadence
     weekday
     atTime
   }
   idea: dailyContent(args: { kind: "daily_idea" }, limit: 1) {
     slug
     title
-    body
   }
 }

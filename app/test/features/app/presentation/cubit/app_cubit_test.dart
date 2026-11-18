@@ -4,6 +4,8 @@ import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/devices/data/repositories/devices_repository.dart';
 import 'package:app/features/help/data/repositories/support_repository.dart';
+import 'package:app/features/home_widgets/data/models/home_widget_payload.dart';
+import 'package:app/features/home_widgets/data/repositories/home_widgets_repository.dart';
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:app/features/profile/data/models/account_settings.dart';
 import 'package:app/features/profile/data/models/profile.dart';
@@ -12,8 +14,6 @@ import 'package:app/features/reminders/data/services/reminder_sync_service.dart'
 import 'package:app/features/settings/data/models/settings.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
-import 'package:app/features/widgets/data/models/widget_payload.dart';
-import 'package:app/features/widgets/data/repositories/widgets_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:connectivity_service/connectivity_service.dart';
 import 'package:design_system/design_system.dart';
@@ -38,7 +38,7 @@ class _MockNotificationsRepository() extends Mock implements NotificationsReposi
 
 class _MockDevicesRepository() extends Mock implements DevicesRepository;
 
-class _MockWidgetsRepository() extends Mock implements WidgetsRepository;
+class _MockHomeWidgetsRepository() extends Mock implements HomeWidgetsRepository;
 
 void main() {
   late AuthenticationRepository authenticationRepository;
@@ -50,7 +50,7 @@ void main() {
   late ConnectivityService connectivityService;
   late NotificationsRepository notificationsRepository;
   late DevicesRepository devicesRepository;
-  late WidgetsRepository widgetsRepository;
+  late HomeWidgetsRepository homeWidgetsRepository;
 
   AppCubit build() => AppCubit(
     authenticationRepository: authenticationRepository,
@@ -62,7 +62,7 @@ void main() {
     connectivityService: connectivityService,
     notificationsRepository: notificationsRepository,
     devicesRepository: devicesRepository,
-    widgetsRepository: widgetsRepository,
+    homeWidgetsRepository: homeWidgetsRepository,
   );
 
   setUpAll(() => registerFallbackValue(const Settings.empty()));
@@ -77,14 +77,14 @@ void main() {
     connectivityService = _MockConnectivityService();
     notificationsRepository = _MockNotificationsRepository();
     devicesRepository = _MockDevicesRepository();
-    widgetsRepository = _MockWidgetsRepository();
+    homeWidgetsRepository = _MockHomeWidgetsRepository();
     when(() => notificationsRepository.unregisterCurrentDevice()).thenAnswer((_) async => true);
     when(() => devicesRepository.revokeCurrentDevice()).thenAnswer((_) async {
       return;
     });
-    when(() => widgetsRepository.clearOnSignOut())
-        .thenAnswer((_) async => WidgetPayload.signedOut());
-    when(() => widgetsRepository.syncQuietly()).thenAnswer((_) async {
+    when(() => homeWidgetsRepository.clearOnSignOut())
+        .thenAnswer((_) async => HomeWidgetPayload.signedOut());
+    when(() => homeWidgetsRepository.syncQuietly()).thenAnswer((_) async {
       return;
     });
     when(() => reminderSyncService.sync()).thenAnswer((_) async {
@@ -190,7 +190,7 @@ void main() {
       await pumpEventQueue();
 
       expect(cubit.state, AppState.sessionExpired);
-      verify(() => widgetsRepository.clearOnSignOut()).called(1);
+      verify(() => homeWidgetsRepository.clearOnSignOut()).called(1);
       verifyNever(() => supportRepository.clearPending());
       verifyNever(() => authenticationRepository.logOut());
       verifyNever(() => notificationsRepository.unregisterCurrentDevice());
@@ -234,7 +234,7 @@ void main() {
 
       expect(cubit.state, AppState.unauthenticated);
       verify(() => supportRepository.clearPending()).called(1);
-      verify(() => widgetsRepository.clearOnSignOut()).called(1);
+      verify(() => homeWidgetsRepository.clearOnSignOut()).called(1);
     });
 
     blocTest<AppCubit, AppState>(

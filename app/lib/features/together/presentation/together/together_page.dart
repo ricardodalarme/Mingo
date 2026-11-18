@@ -216,9 +216,9 @@ class const _ToolsSection({
         ),
         _row(
           icon: AppIcons.smartphone,
-          title: context.l10n.widgets.togetherTitle,
-          subtitle: l10n.widgetsMeta,
-          onTap: () => context.pushRoute(const WidgetsGalleryRoute()),
+          title: context.l10n.homeWidgets.togetherTitle,
+          subtitle: l10n.homeWidgetsMeta,
+          onTap: () => context.pushRoute(const HomeWidgetsGalleryRoute()),
         ),
       ],
     );

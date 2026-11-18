@@ -20,6 +20,7 @@ import 'package:app/features/gifts/di/gifts_injection_module.dart';
 import 'package:app/features/guides/di/guides_injection_module.dart';
 import 'package:app/features/help/di/help_injection_module.dart';
 import 'package:app/features/history/di/history_injection_module.dart';
+import 'package:app/features/home_widgets/di/home_widgets_injection_module.dart';
 import 'package:app/features/ideas/di/ideas_injection_module.dart';
 import 'package:app/features/lists/di/lists_injection_module.dart';
 import 'package:app/features/love_style/di/love_style_injection_module.dart';
@@ -46,7 +47,6 @@ import 'package:app/features/story/di/story_injection_module.dart';
 import 'package:app/features/today/di/today_injection_module.dart';
 import 'package:app/features/together/di/together_injection_module.dart';
 import 'package:app/features/weekly_review/di/weekly_review_injection_module.dart';
-import 'package:app/features/widgets/di/widgets_injection_module.dart';
 import 'package:core/core.dart';
 
 /// Registers every feature module, in the order the app resolves them at startup.
@@ -102,7 +102,7 @@ void registerInjectionModules() {
     StoryInjectionModule(),
     TodayInjectionModule(),
     TogetherInjectionModule(),
-    WidgetsInjectionModule(),
+    HomeWidgetsInjectionModule(),
   ];
 
   for (final injectionModule in modules) {

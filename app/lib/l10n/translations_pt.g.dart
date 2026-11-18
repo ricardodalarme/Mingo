@@ -105,6 +105,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
   late final Translations$history$pt history = Translations$history$pt.internal(_root);
+  late final Translations$homeWidgets$pt homeWidgets = Translations$homeWidgets$pt.internal(_root);
   late final Translations$ideaDetail$pt ideaDetail = Translations$ideaDetail$pt.internal(_root);
   late final Translations$inbox$pt inbox = Translations$inbox$pt.internal(_root);
   late final Translations$intro$pt intro = Translations$intro$pt.internal(_root);
@@ -170,7 +171,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     _root,
   );
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
-  late final Translations$widgets$pt widgets = Translations$widgets$pt.internal(_root);
 }
 
 // Path: acceptInvite
@@ -3245,6 +3245,309 @@ class Translations$history$pt {
 
   /// pt: 'Imagem para compartilhar'
   String get shareAction => 'Imagem para compartilhar';
+}
+
+// Path: homeWidgets
+class Translations$homeWidgets$pt {
+  Translations$homeWidgets$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Widgets'
+  String get settingsTitle => 'Widgets';
+
+  /// pt: 'Na tela inicial'
+  String get settingsSubtitle => 'Na tela inicial';
+
+  /// pt: 'TELA INICIAL'
+  String get togetherCategory => 'TELA INICIAL';
+
+  /// pt: 'Widgets do Mingo'
+  String get togetherTitle => 'Widgets do Mingo';
+
+  /// pt: 'Lembretes calmos para você ou para vocês dois.'
+  String get togetherSubtitle => 'Lembretes calmos para você ou para vocês dois.';
+
+  /// pt: 'Widgets'
+  String get galleryTitle => 'Widgets';
+
+  /// pt: 'Pequenos pedaços do app na sua tela inicial.'
+  String get gallerySubtitle => 'Pequenos pedaços do app na sua tela inicial.';
+
+  /// pt: 'Os mais queridos'
+  String get favoritesGroup => 'Os mais queridos';
+
+  /// pt: 'Mais pequenos'
+  String get smallGroup => 'Mais pequenos';
+
+  /// pt: 'Médios'
+  String get mediumGroup => 'Médios';
+
+  /// pt: 'Os widgets que precisam de um par aparecem quando vocês se conectam.'
+  String get soloBanner => 'Os widgets que precisam de um par aparecem quando vocês se conectam.';
+
+  /// pt: 'Não deu para carregar os widgets'
+  String get loadErrorTitle => 'Não deu para carregar os widgets';
+
+  /// pt: 'Confira a conexão e tente de novo.'
+  String get loadErrorBody => 'Confira a conexão e tente de novo.';
+
+  /// pt: 'Tentar de novo'
+  String get retryAction => 'Tentar de novo';
+
+  /// pt: 'Só aparece o que seu par escolheu compartilhar.'
+  String get coupleNote => 'Só aparece o que seu par escolheu compartilhar.';
+
+  /// pt: 'Funcionam sem parceiro e só mostram o que é seu.'
+  String get ownNote => 'Funcionam sem parceiro e só mostram o que é seu.';
+
+  Map<String, String> get variantLabels => {
+    'counterSmall': 'Contador',
+    'counterMedium': 'Contador com linha do tempo',
+    'partnerMoodSmall': 'Humor do parceiro',
+    'longingSmall': 'Saudade de nós',
+    'ritualSmall': 'Ritual',
+    'partnerNoteSmall': 'Recado',
+    'partnerNoteMedium': 'Recado do parceiro',
+    'slipSmall': 'Anotar slip',
+    'nextDateSmall': 'Próxima data',
+    'nextDateMedium': 'Próxima data',
+    'cardSmall': 'Cartão de domingo',
+    'cardMedium': 'Cartão e encontro',
+    'weekMedium': 'Minha semana',
+    'ideaMedium': 'Ideia do dia',
+    'distanceMedium': 'Namoro à distância',
+    'other': 'Widget',
+  };
+
+  /// pt: 'Como adicionar'
+  String get howToAddAction => 'Como adicionar';
+
+  /// pt: 'Como adicionar'
+  String get howToAddTitle => 'Como adicionar';
+
+  /// pt: 'Direto na tela inicial, sem nenhuma permissão extra do Mingo.'
+  String get howToAddSubtitle => 'Direto na tela inicial, sem nenhuma permissão extra do Mingo.';
+
+  /// pt: 'Toque e segure um espaço vazio da tela inicial.'
+  String get howToAddIosStep1 => 'Toque e segure um espaço vazio da tela inicial.';
+
+  /// pt: 'Toque em + no canto de cima.'
+  String get howToAddIosStep2 => 'Toque em + no canto de cima.';
+
+  /// pt: 'Escolha o Mingo e o tamanho do widget.'
+  String get howToAddIosStep3 => 'Escolha o Mingo e o tamanho do widget.';
+
+  /// pt: 'Toque e segure um espaço vazio da tela inicial.'
+  String get howToAddAndroidStep1 => 'Toque e segure um espaço vazio da tela inicial.';
+
+  /// pt: 'Toque em Widgets.'
+  String get howToAddAndroidStep2 => 'Toque em Widgets.';
+
+  /// pt: 'Escolha o Mingo e arraste para a tela.'
+  String get howToAddAndroidStep3 => 'Escolha o Mingo e arraste para a tela.';
+
+  /// pt: 'Você pode remover um widget quando quiser; nada é apagado.'
+  String get howToAddNote => 'Você pode remover um widget quando quiser; nada é apagado.';
+
+  /// pt: 'Convide seu par para ver aqui'
+  String get inviteTitle => 'Convide seu par para ver aqui';
+
+  /// pt: 'Convidar'
+  String get inviteAction => 'Convidar';
+
+  /// pt: 'Juntos'
+  String get counterEyebrow => 'Juntos';
+
+  /// pt: '(one) {dia} (other) {dias}'
+  String counterUnit({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'dia',
+        other: 'dias',
+      );
+
+  /// pt: 'Defina a data de vocês'
+  String get counterNeedDate => 'Defina a data de vocês';
+
+  /// pt: 'Hoje'
+  String get counterToday => 'Hoje';
+
+  /// pt: '(one) {{count} ano} (other) {{count} anos}'
+  String durationYears({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '${count} ano',
+        other: '${count} anos',
+      );
+
+  /// pt: '(one) {{count} mês} (other) {{count} meses}'
+  String durationMonths({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '${count} mês',
+        other: '${count} meses',
+      );
+
+  /// pt: '(one) {{count} dia} (other) {{count} dias}'
+  String durationDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '${count} dia',
+        other: '${count} dias',
+      );
+
+  /// pt: 'e'
+  String get durationAnd => 'e';
+
+  /// pt: '{name} agora'
+  String moodNow({required Object name}) => '${name} agora';
+
+  /// pt: 'Agora'
+  String get moodNowAnonymous => 'Agora';
+
+  /// pt: 'O humor aparece quando seu par compartilhar.'
+  String get moodHidden => 'O humor aparece quando seu par compartilhar.';
+
+  /// pt: 'agora'
+  String get agoNow => 'agora';
+
+  /// pt: '(one) {há {count} minuto} (other) {há {count} minutos}'
+  String agoMinutes({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'há ${count} minuto',
+        other: 'há ${count} minutos',
+      );
+
+  /// pt: '(one) {há {count} hora} (other) {há {count} horas}'
+  String agoHours({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'há ${count} hora',
+        other: 'há ${count} horas',
+      );
+
+  /// pt: '(one) {há {count} dia} (other) {há {count} dias}'
+  String agoDays({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'há ${count} dia',
+        other: 'há ${count} dias',
+      );
+
+  /// pt: 'Mandar saudade'
+  String get longingAction => 'Mandar saudade';
+
+  /// pt: 'Seu par mandou saudade'
+  String get longingReceived => 'Seu par mandou saudade';
+
+  /// pt: 'Ritual'
+  String get ritualEyebrow => 'Ritual';
+
+  /// pt: 'Crie um ritual'
+  String get ritualEmptyTitle => 'Crie um ritual';
+
+  /// pt: 'Um momento só de vocês.'
+  String get ritualEmptyHint => 'Um momento só de vocês.';
+
+  /// pt: 'hoje, {time}'
+  String ritualToday({required Object time}) => 'hoje, ${time}';
+
+  /// pt: 'amanhã, {time}'
+  String ritualTomorrow({required Object time}) => 'amanhã, ${time}';
+
+  /// pt: '{day}, {time}'
+  String ritualOn({required Object day, required Object time}) => '${day}, ${time}';
+
+  /// pt: 'de {name} · {time}'
+  String noteFromName({required Object name, required Object time}) => 'de ${name} · ${time}';
+
+  /// pt: 'do seu par · {time}'
+  String noteFromPartner({required Object time}) => 'do seu par · ${time}';
+
+  /// pt: 'Nenhum recado por aqui'
+  String get noteEmpty => 'Nenhum recado por aqui';
+
+  /// pt: 'O recado aparece quando seu par mandar um para o widget.'
+  String get noteEmptyHint => 'O recado aparece quando seu par mandar um para o widget.';
+
+  /// pt: 'Cartão de domingo'
+  String get cardTitle => 'Cartão de domingo';
+
+  /// pt: 'Chegou um cartão'
+  String get cardReady => 'Chegou um cartão';
+
+  /// pt: 'Cartão enviado'
+  String get cardSent => 'Cartão enviado';
+
+  /// pt: 'sai {when}'
+  String cardSends({required Object when}) => 'sai ${when}';
+
+  /// pt: '(one) {{count} coisa boa} (other) {{count} coisas boas}'
+  String goodThings({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '${count} coisa boa',
+        other: '${count} coisas boas',
+      );
+
+  /// pt: 'Próximo encontro'
+  String get encounterEyebrow => 'Próximo encontro';
+
+  /// pt: 'Nenhum encontro marcado'
+  String get encounterEmpty => 'Nenhum encontro marcado';
+
+  /// pt: '{city} · você'
+  String distanceYou({required Object city}) => '${city} · você';
+
+  /// pt: 'O fuso do seu par ainda não foi definido'
+  String get distanceMissing => 'O fuso do seu par ainda não foi definido';
+
+  /// pt: '(one) {dia até se verem} (other) {dias até se verem}'
+  String distanceUntil({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: 'dia até se verem',
+        other: 'dias até se verem',
+      );
+
+  /// pt: 'Ainda sem data para se verem'
+  String get distanceNoReunion => 'Ainda sem data para se verem';
+
+  /// pt: 'Como foi o seu dia?'
+  String get slipPrompt => 'Como foi\no seu dia?';
+
+  /// pt: 'Anotar um slip'
+  String get slipAction => 'Anotar um slip';
+
+  /// pt: 'Próxima data'
+  String get nextDateEyebrow => 'Próxima data';
+
+  /// pt: 'Nenhuma data por vir'
+  String get nextDateEmpty => 'Nenhuma data por vir';
+
+  /// pt: 'Minha semana'
+  String get weekEyebrow => 'Minha semana';
+
+  /// pt: '(one) {{count} slip} (other) {{count} slips}'
+  String weekCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '${count} slip',
+        other: '${count} slips',
+      );
+
+  /// pt: 'Ideia do dia'
+  String get ideaEyebrow => 'Ideia do dia';
+
+  /// pt: 'Sem ideia hoje'
+  String get ideaEmpty => 'Sem ideia hoje';
+
+  /// pt: 'Toque para ver'
+  String get ideaHint => 'Toque para ver';
 }
 
 // Path: ideaDetail
@@ -7623,7 +7926,7 @@ class Translations$tabs$pt {
   String get temperatureMeta => 'Privado, sem nota';
 
   /// pt: 'Na tela inicial'
-  String get widgetsMeta => 'Na tela inicial';
+  String get homeWidgetsMeta => 'Na tela inicial';
 
   /// pt: 'Um toque'
   String get usMeta => 'Um toque';
@@ -8190,673 +8493,6 @@ class Translations$welcome$pt {
 
   /// pt: 'Entrar (debug)'
   String get debugSignIn => 'Entrar (debug)';
-}
-
-// Path: widgets
-class Translations$widgets$pt {
-  Translations$widgets$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Widgets'
-  String get settingsTitle => 'Widgets';
-
-  /// pt: 'Na tela inicial'
-  String get settingsSubtitle => 'Na tela inicial';
-
-  /// pt: 'TELA INICIAL'
-  String get togetherCategory => 'TELA INICIAL';
-
-  /// pt: 'Widgets do Mingo'
-  String get togetherTitle => 'Widgets do Mingo';
-
-  /// pt: 'Lembretes calmos para você ou para vocês dois.'
-  String get togetherSubtitle => 'Lembretes calmos para você ou para vocês dois.';
-
-  /// pt: 'Widgets'
-  String get galleryTitle => 'Widgets';
-
-  /// pt: 'Só meus'
-  String get segmentOwn => 'Só meus';
-
-  /// pt: 'Do casal'
-  String get segmentCouple => 'Do casal';
-
-  /// pt: 'ANOTAR SLIP'
-  String get ownSlipLabel => 'ANOTAR SLIP';
-
-  /// pt: '+ Slip'
-  String get ownSlipTitle => '+ Slip';
-
-  /// pt: 'Toque para anotar'
-  String get ownSlipSubtitle => 'Toque para anotar';
-
-  /// pt: 'IDEIA DO DIA'
-  String get ownIdeaLabel => 'IDEIA DO DIA';
-
-  /// pt: 'Deixe um bilhete hoje'
-  String get ownIdeaDefault => 'Deixe um bilhete hoje';
-
-  /// pt: 'Uma ideia para hoje.'
-  String get ownIdeaHint => 'Uma ideia para hoje.';
-
-  /// pt: 'POTINHO DO DIA RUIM'
-  String get ownJarLabel => 'POTINHO DO DIA RUIM';
-
-  /// pt: 'Abrir um slip guardado'
-  String get ownJarTitle => 'Abrir um slip guardado';
-
-  /// pt: 'Privado: só no seu aparelho'
-  String get ownJarPrivacy => 'Privado: só no seu aparelho';
-
-  /// pt: 'TELA DE BLOQUEIO'
-  String get lockScreenLabel => 'TELA DE BLOQUEIO';
-
-  /// pt: 'Lembrete calmo · Sem nomes'
-  String get lockScreenDefault => 'Lembrete calmo · Sem nomes';
-
-  /// pt: 'CONTADOR'
-  String get coupleCounterLabel => 'CONTADOR';
-
-  /// pt: 'Defina a data do casal para ver os dias juntos'
-  String get coupleCounterUnset => 'Defina a data do casal para ver os dias juntos';
-
-  /// pt: '(one) {{count} dia juntos} (other) {{count} dias juntos}'
-  String coupleCounterDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '${count} dia juntos',
-        other: '${count} dias juntos',
-      );
-
-  /// pt: 'FOTOS DO CASAL · PLUS'
-  String get couplePhotosLabel => 'FOTOS DO CASAL · PLUS';
-
-  /// pt: 'Escolha uma foto de vocês dois'
-  String get couplePhotosPrompt => 'Escolha uma foto de vocês dois';
-
-  /// pt: 'Disponível no plano Plus'
-  String get couplePhotosPlusHint => 'Disponível no plano Plus';
-
-  /// pt: 'CARTÃO E ENCONTRO'
-  String get cardEncounterLabel => 'CARTÃO E ENCONTRO';
-
-  /// pt: 'Chegou um cartão · Toque para abrir'
-  String get cardStateReady => 'Chegou um cartão · Toque para abrir';
-
-  /// pt: 'Cartão enviado · Aguardando domingo'
-  String get cardStateSent => 'Cartão enviado · Aguardando domingo';
-
-  /// pt: 'Cartão de domingo em preparação'
-  String get cardStateNone => 'Cartão de domingo em preparação';
-
-  /// pt: 'Sem par conectado: os widgets do casal mostram o estado neutro.'
-  String get unpairedBanner => 'Sem par conectado: os widgets do casal mostram o estado neutro.';
-
-  /// pt: 'Mostrando o último dado salvo. Atualiza quando voltar a internet.'
-  String get offlineBanner => 'Mostrando o último dado salvo. Atualiza quando voltar a internet.';
-
-  /// pt: 'Não foi possível carregar os widgets'
-  String get loadErrorTitle => 'Não foi possível carregar os widgets';
-
-  /// pt: 'Verifique sua conexão e tente novamente.'
-  String get loadErrorBody => 'Verifique sua conexão e tente novamente.';
-
-  /// pt: 'Tentar novamente'
-  String get retryAction => 'Tentar novamente';
-
-  /// pt: 'Claro'
-  String get themeLight => 'Claro';
-
-  /// pt: 'Escuro'
-  String get themeDark => 'Escuro';
-
-  /// pt: 'Mingo'
-  String get signedOutLabel => 'Mingo';
-
-  /// pt: 'Toque para entrar'
-  String get signedOutBody => 'Toque para entrar';
-
-  /// pt: 'Widget · Meu (pequeno)'
-  String get ownSmallPageTitle => 'Widget · Meu (pequeno)';
-
-  /// pt: 'Anotar'
-  String get ownSmallSlipAction => 'Anotar';
-
-  /// pt: 'Próxima data'
-  String get ownSmallDateDefaultTitle => 'Próxima data';
-
-  /// pt: '(one) {{count} dia} (other) {{count} dias}'
-  String ownSmallDateDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '${count} dia',
-        other: '${count} dias',
-      );
-
-  /// pt: 'HUMOR'
-  String get ownSmallMoodLabel => 'HUMOR';
-
-  /// pt: 'Como você está?'
-  String get ownSmallMoodPrompt => 'Como você está?';
-
-  /// pt: 'Feliz · Cansado · Triste'
-  String get ownSmallMoodOptions => 'Feliz · Cansado · Triste';
-
-  /// pt: 'RITUAL'
-  String get ownSmallRitualLabel => 'RITUAL';
-
-  /// pt: 'Caminhada de domingo'
-  String get ownSmallRitualDefaultTitle => 'Caminhada de domingo';
-
-  /// pt: 'Dom · 10:00'
-  String get ownSmallRitualDefaultTime => 'Dom · 10:00';
-
-  /// pt: 'Widget · Meu (médio)'
-  String get ownMediumPageTitle => 'Widget · Meu (médio)';
-
-  /// pt: 'Toque para ver'
-  String get ownMediumIdeaAction => 'Toque para ver';
-
-  /// pt: 'Toque para abrir um slip guardado'
-  String get ownMediumJarTitle => 'Toque para abrir um slip guardado';
-
-  /// pt: 'Privado: só aparece no seu aparelho'
-  String get ownMediumJarPrivacy => 'Privado: só aparece no seu aparelho';
-
-  /// pt: 'Tela de bloqueio'
-  String get lockScreenPageTitle => 'Tela de bloqueio';
-
-  /// pt: '19:38'
-  String get lockScreenClockTime => '19:38';
-
-  /// pt: 'Sexta, 10 de abril'
-  String get lockScreenClockDate => 'Sexta, 10 de abril';
-
-  /// pt: 'Estou pronto'
-  String get lockScreenReadyAction => 'Estou pronto';
-
-  /// pt: 'Momento calmo'
-  String get lockScreenGenericPhrase => 'Momento calmo';
-
-  /// pt: 'Sem nomes nem mensagens na tela bloqueada.'
-  String get lockScreenPrivacyRule => 'Sem nomes nem mensagens na tela bloqueada.';
-
-  /// pt: 'O widget da tela de bloqueio está desativado nas configurações.'
-  String get lockScreenDisabledNote =>
-      'O widget da tela de bloqueio está desativado nas configurações.';
-
-  /// pt: 'Formatos no iOS (Circular, Retangular e Linha)'
-  String get lockScreenFamiliesTitle => 'Formatos no iOS (Circular, Retangular e Linha)';
-
-  /// pt: 'Widget · Contador'
-  String get counterPageTitle => 'Widget · Contador';
-
-  /// pt: '{years} anos · {months} meses'
-  String counterYearsMonthsTitle({required Object years, required Object months}) =>
-      '${years} anos · ${months} meses';
-
-  /// pt: '{months} meses · {days} dias'
-  String counterMonthsDaysSubtitle({required Object months, required Object days}) =>
-      '${months} meses · ${days} dias';
-
-  /// pt: 'Namorando'
-  String get counterStatusDating => 'Namorando';
-
-  /// pt: 'Morando juntos'
-  String get counterStatusLivingTogether => 'Morando juntos';
-
-  /// pt: 'Casados'
-  String get counterStatusMarried => 'Casados';
-
-  /// pt: 'Juntos'
-  String get counterStatusTogether => 'Juntos';
-
-  /// pt: 'O contador atualiza automaticamente à meia-noite no fuso local.'
-  String get counterMidnightNote =>
-      'O contador atualiza automaticamente à meia-noite no fuso local.';
-
-  /// pt: 'Definir data do relacionamento'
-  String get counterSetDateAction => 'Definir data do relacionamento';
-
-  /// pt: 'Widget · Fotos do casal'
-  String get photosPageTitle => 'Widget · Fotos do casal';
-
-  /// pt: 'PLUS'
-  String get photosPlusBadge => 'PLUS';
-
-  /// pt: 'Quando nenhuma foto local está salva, o widget mostra apenas o cartão neutro com o tempo juntos.'
-  String get photosNeutralFallbackNote =>
-      'Quando nenhuma foto local está salva, o widget mostra apenas o cartão neutro com o tempo juntos.';
-
-  /// pt: 'Conhecer o Plus'
-  String get photosUnlockPlusAction => 'Conhecer o Plus';
-
-  /// pt: 'Escolher foto'
-  String get photosChooseAction => 'Escolher foto';
-
-  /// pt: 'Remover foto'
-  String get photosRemoveAction => 'Remover foto';
-
-  /// pt: 'Foto salva no widget.'
-  String get photosSavedToast => 'Foto salva no widget.';
-
-  /// pt: 'Foto removida do widget.'
-  String get photosRemovedToast => 'Foto removida do widget.';
-
-  /// pt: 'Cartão e próximo encontro'
-  String get cardEncounterPageTitle => 'Cartão e próximo encontro';
-
-  /// pt: 'Cartão da semana'
-  String get cardWeeklyLabel => 'Cartão da semana';
-
-  /// pt: 'Chegou um cartão'
-  String get cardReadyTitle => 'Chegou um cartão';
-
-  /// pt: 'Toque para abrir'
-  String get cardReadySubtitle => 'Toque para abrir';
-
-  /// pt: 'Cartão enviado'
-  String get cardSentTitle => 'Cartão enviado';
-
-  /// pt: 'Aguardando domingo'
-  String get cardSentSubtitle => 'Aguardando domingo';
-
-  /// pt: 'Cartão de domingo'
-  String get cardNoneTitle => 'Cartão de domingo';
-
-  /// pt: 'Em preparação'
-  String get cardNoneSubtitle => 'Em preparação';
-
-  /// pt: 'Próximo encontro'
-  String get nextEncounterLabel => 'Próximo encontro';
-
-  /// pt: 'Sem data futura'
-  String get nextEncounterEmptyTitle => 'Sem data futura';
-
-  /// pt: 'Toque para agendar'
-  String get nextEncounterEmptySubtitle => 'Toque para agendar';
-
-  /// pt: 'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.'
-  String get cardEncounterPrivacyNote =>
-      'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.';
-
-  /// pt: 'Convide para ver aqui'
-  String get statesUnpairedTitle => 'Convide para ver aqui';
-
-  /// pt: 'Convidar'
-  String get statesUnpairedAction => 'Convidar';
-
-  Map<String, String> get errors => {
-    'WIDGET_PREFERENCES_SAVE_FAILED': 'Não foi possível salvar as preferências agora.',
-    'COUPLE_PHOTO_LOAD_FAILED': 'Não foi possível carregar a foto do casal agora.',
-    'COUPLE_PHOTO_UPLOAD_FAILED': 'Não foi possível salvar a foto do casal agora.',
-    'COUPLE_PHOTO_REMOVE_FAILED': 'Não foi possível remover a foto do casal agora.',
-    'COUPLE_PHOTO_INVALID': 'Escolha uma imagem JPG, PNG, WebP ou HEIC de até 8 MB.',
-    'COUPLE_PHOTO_READ_FAILED': 'Não foi possível ler o arquivo escolhido.',
-    'COUPLE_PHOTO_PICK_FAILED': 'Não foi possível abrir o seletor de fotos.',
-    'COUPLE_PHOTO_SIGNED_OUT': 'Entre na sua conta para escolher uma foto do casal.',
-    'COUPLE_PHOTO_NOT_PAIRED': 'Conecte-se com seu par para escolher uma foto do casal.',
-    'other': 'Não foi possível salvar as preferências agora.',
-  };
-
-  /// pt: 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.'
-  String get howToAddAndroidLockNote =>
-      'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.';
-
-  /// pt: 'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.'
-  String get howToAddIosLockNote =>
-      'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.';
-
-  /// pt: 'DO CASAL'
-  String get coupleLabel => 'DO CASAL';
-
-  /// pt: 'Pequenos pedaços do app na sua tela inicial.'
-  String get gallerySubtitle => 'Pequenos pedaços do app na sua tela inicial.';
-
-  /// pt: 'Os mais queridos'
-  String get favoritesGroup => 'Os mais queridos';
-
-  /// pt: 'Médios'
-  String get mediumGroup => 'Médios';
-
-  /// pt: 'Anotar e lembrar'
-  String get ownSmallGroup => 'Anotar e lembrar';
-
-  /// pt: 'Funcionam sem parceiro e só mostram o que é seu.'
-  String get ownGroupHint => 'Funcionam sem parceiro e só mostram o que é seu.';
-
-  /// pt: 'Pequenos'
-  String get ownSmallEntryTitle => 'Pequenos';
-
-  /// pt: 'Anotar, lembrar e o cartão de domingo.'
-  String get ownSmallEntryHint => 'Anotar, lembrar e o cartão de domingo.';
-
-  /// pt: 'Médios'
-  String get ownMediumEntryTitle => 'Médios';
-
-  /// pt: 'Sua semana, uma ideia e a próxima data.'
-  String get ownMediumEntryHint => 'Sua semana, uma ideia e a próxima data.';
-
-  /// pt: 'Só meus: pequenos'
-  String get ownSmallTitle => 'Só meus: pequenos';
-
-  /// pt: 'Só meus: médios'
-  String get ownMediumTitle => 'Só meus: médios';
-
-  /// pt: 'JUNTOS'
-  String get counterEyebrow => 'JUNTOS';
-
-  /// pt: 'Defina a data de vocês'
-  String get counterNeedDate => 'Defina a data de vocês';
-
-  /// pt: '(one) {{count} dia} (other) {{count} dias}'
-  String counterDaysUnit({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '${count} dia',
-        other: '${count} dias',
-      );
-
-  /// pt: '{years} anos, {months} meses e {days} dias'
-  String counterBreakdown({required Object years, required Object months, required Object days}) =>
-      '${years} anos, ${months} meses e ${days} dias';
-
-  /// pt: 'Hoje'
-  String get counterToday => 'Hoje';
-
-  /// pt: 'Desde {date}'
-  String counterSince({required Object date}) => 'Desde ${date}';
-
-  /// pt: 'HUMOR DO PARCEIRO'
-  String get partnerMoodLabel => 'HUMOR DO PARCEIRO';
-
-  /// pt: '{name} agora'
-  String partnerMoodNow({required Object name}) => '${name} agora';
-
-  /// pt: 'Agora'
-  String get partnerMoodNowAnonymous => 'Agora';
-
-  /// pt: 'O humor aparece quando seu par compartilhar.'
-  String get partnerMoodHidden => 'O humor aparece quando seu par compartilhar.';
-
-  /// pt: 'SAUDADE DE NÓS'
-  String get longingLabel => 'SAUDADE DE NÓS';
-
-  /// pt: 'Mandar saudade'
-  String get longingAction => 'Mandar saudade';
-
-  /// pt: 'Seu par mandou saudade'
-  String get longingReceived => 'Seu par mandou saudade';
-
-  /// pt: 'Um toque e a pessoa sente.'
-  String get longingHint => 'Um toque e a pessoa sente.';
-
-  /// pt: 'RITUAL'
-  String get ritualLabel => 'RITUAL';
-
-  /// pt: 'Criem um ritual'
-  String get ritualEmptyTitle => 'Criem um ritual';
-
-  /// pt: 'Um momento só de vocês.'
-  String get ritualEmptyHint => 'Um momento só de vocês.';
-
-  /// pt: 'do seu par · {time}'
-  String noteFromPartner({required Object time}) => 'do seu par · ${time}';
-
-  /// pt: 'de {name} · {time}'
-  String noteFromName({required Object name, required Object time}) => 'de ${name} · ${time}';
-
-  /// pt: 'Sem recado por aqui'
-  String get noteEmpty => 'Sem recado por aqui';
-
-  /// pt: 'Um recado aparece quando seu par escolhe mandar.'
-  String get noteEmptyHint => 'Um recado aparece quando seu par escolhe mandar.';
-
-  /// pt: 'Recados estão desligados'
-  String get noteDisabled => 'Recados estão desligados';
-
-  /// pt: 'Ligue em “Recados no widget” para ver.'
-  String get noteDisabledHint => 'Ligue em “Recados no widget” para ver.';
-
-  /// pt: '(one) {em {count} dia} (other) {em {count} dias}'
-  String nextEncounterInDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'em ${count} dia',
-        other: 'em ${count} dias',
-      );
-
-  /// pt: 'Cartão de domingo'
-  String get cardSundayTitle => 'Cartão de domingo';
-
-  /// pt: 'sai {day}, {time}'
-  String cardSendAt({required Object day, required Object time}) => 'sai ${day}, ${time}';
-
-  /// pt: 'Chegou um cartão'
-  String get cardReadyShort => 'Chegou um cartão';
-
-  /// pt: 'Cartão enviado'
-  String get cardSentShort => 'Cartão enviado';
-
-  /// pt: 'Cartão de domingo'
-  String get cardNoneShort => 'Cartão de domingo';
-
-  /// pt: 'NAMORO À DISTÂNCIA'
-  String get distanceLabel => 'NAMORO À DISTÂNCIA';
-
-  /// pt: 'Fuso do seu par ainda não definido'
-  String get distanceHidden => 'Fuso do seu par ainda não definido';
-
-  /// pt: 'Cada um no seu fuso.'
-  String get distanceHint => 'Cada um no seu fuso.';
-
-  /// pt: '(one) {{count} dia até se verem} (other) {{count} dias até se verem}'
-  String distanceUntil({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '${count} dia até se verem',
-        other: '${count} dias até se verem',
-      );
-
-  /// pt: 'Próximo encontro sem data'
-  String get distanceNoReunion => 'Próximo encontro sem data';
-
-  /// pt: '{city} · você'
-  String distanceYou({required Object city}) => '${city} · você';
-
-  /// pt: 'PRÓXIMA DATA'
-  String get ownNextDateLabel => 'PRÓXIMA DATA';
-
-  /// pt: 'Toque para ver as datas'
-  String get ownNextDateHint => 'Toque para ver as datas';
-
-  /// pt: '(one) {{count} dia} (other) {{count} dias}'
-  String ownDateCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '${count} dia',
-        other: '${count} dias',
-      );
-
-  /// pt: 'Minha semana'
-  String get ownWeekTitle => 'Minha semana';
-
-  /// pt: '(one) {{count} slip} (other) {{count} slips}'
-  String ownWeekCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '${count} slip',
-        other: '${count} slips',
-      );
-
-  List<String> get weekdays => ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom'];
-  Map<String, String> get familyLabels => {
-    'counter': 'Contador',
-    'counterMedium': 'Contador',
-    'partnerMood': 'Humor do parceiro',
-    'longing': 'Saudade de nós',
-    'ritual': 'Ritual',
-    'partnerNote': 'Recado do parceiro',
-    'cardEncounter': 'Cartão e encontro',
-    'distance': 'Namoro à distância',
-    'ownSlip': 'Anotar slip',
-    'ownNextDate': 'Próxima data',
-    'ownRitual': 'Ritual',
-    'ownSundayCard': 'Cartão de domingo',
-    'ownWeek': 'Minha semana',
-    'ownIdea': 'Ideia do dia',
-    'ownMediumDate': 'Próxima data',
-    'other': 'Widget',
-  };
-
-  /// pt: 'agora'
-  String get moodJustNow => 'agora';
-
-  /// pt: 'há {minutes} min'
-  String moodMinutesAgo({required Object minutes}) => 'há ${minutes} min';
-
-  /// pt: 'há {hours} h'
-  String moodHoursAgo({required Object hours}) => 'há ${hours} h';
-
-  /// pt: 'há {days} d'
-  String moodDaysAgo({required Object days}) => 'há ${days} d';
-
-  /// pt: 'Como foi o seu dia?'
-  String get ownSlipQuestion => 'Como foi o seu dia?';
-
-  /// pt: 'Anotar um slip'
-  String get ownSlipAction => 'Anotar um slip';
-
-  /// pt: 'Como adicionar'
-  String get howToAddAction => 'Como adicionar';
-
-  /// pt: 'Como adicionar'
-  String get howToAddTitle => 'Como adicionar';
-
-  /// pt: 'Direto da tela inicial, sem permissão extra do Mingo.'
-  String get howToAddSubtitle => 'Direto da tela inicial, sem permissão extra do Mingo.';
-
-  /// pt: 'Toque e segure em um espaço vazio da tela inicial.'
-  String get howToAddIosStep1 => 'Toque e segure em um espaço vazio da tela inicial.';
-
-  /// pt: 'Toque em + no canto superior.'
-  String get howToAddIosStep2 => 'Toque em + no canto superior.';
-
-  /// pt: 'Escolha Mingo e o tamanho do widget.'
-  String get howToAddIosStep3 => 'Escolha Mingo e o tamanho do widget.';
-
-  /// pt: 'Toque e segure em um espaço vazio da tela inicial.'
-  String get howToAddAndroidStep1 => 'Toque e segure em um espaço vazio da tela inicial.';
-
-  /// pt: 'Toque em Widgets.'
-  String get howToAddAndroidStep2 => 'Toque em Widgets.';
-
-  /// pt: 'Escolha Mingo e arraste para a tela.'
-  String get howToAddAndroidStep3 => 'Escolha Mingo e arraste para a tela.';
-
-  /// pt: 'Toque e segure na tela bloqueada.'
-  String get howToAddLockIosStep1 => 'Toque e segure na tela bloqueada.';
-
-  /// pt: 'Toque em Personalizar.'
-  String get howToAddLockIosStep2 => 'Toque em Personalizar.';
-
-  /// pt: 'Adicione o widget do Mingo na linha de baixo.'
-  String get howToAddLockIosStep3 => 'Adicione o widget do Mingo na linha de baixo.';
-
-  /// pt: 'Você pode remover o widget quando quiser; nada é apagado.'
-  String get howToAddNote => 'Você pode remover o widget quando quiser; nada é apagado.';
-
-  /// pt: 'O que aparece nos widgets'
-  String get widgetPrivacyTitle => 'O que aparece nos widgets';
-
-  /// pt: 'Nomes e iniciais'
-  String get showNamesTitle => 'Nomes e iniciais';
-
-  /// pt: 'Quando desligado, os widgets mostram só o conteúdo.'
-  String get showNamesHint => 'Quando desligado, os widgets mostram só o conteúdo.';
-
-  /// pt: 'Recados no widget'
-  String get allowNotesTitle => 'Recados no widget';
-
-  /// pt: 'Só recados que seu par marcou para o widget.'
-  String get allowNotesHint => 'Só recados que seu par marcou para o widget.';
-
-  /// pt: 'Segue as suas escolhas de privacidade. O que está oculto no app continua oculto aqui.'
-  String get privacySectionHint =>
-      'Segue as suas escolhas de privacidade. O que está oculto no app continua oculto aqui.';
-
-  /// pt: 'Preferências atualizadas.'
-  String get settingsSaved => 'Preferências atualizadas.';
-
-  /// pt: 'Circular'
-  String get lockScreenCircular => 'Circular';
-
-  /// pt: 'Retangular'
-  String get lockScreenRectangular => 'Retangular';
-
-  /// pt: 'Linha'
-  String get lockScreenInline => 'Linha';
-
-  /// pt: 'TEXTO NEUTRO'
-  String get lockScreenNeutralLabel => 'TEXTO NEUTRO';
-
-  /// pt: 'Sem nomes na tela bloqueada'
-  String get lockScreenNeutralPhrase => 'Sem nomes na tela bloqueada';
-
-  /// pt: 'A tela de bloqueio do Android não aceita widgets. Use os widgets da tela inicial.'
-  String get lockScreenAndroidUnavailable =>
-      'A tela de bloqueio do Android não aceita widgets. Use os widgets da tela inicial.';
-
-  /// pt: 'Próxima data'
-  String get ownNextDateDefault => 'Próxima data';
-
-  /// pt: 'CARTÃO DE DOMINGO'
-  String get ownSundayCardLabel => 'CARTÃO DE DOMINGO';
-
-  /// pt: 'Só meus'
-  String get ownGroupTitle => 'Só meus';
-
-  /// pt: 'Os widgets do casal aparecem quando vocês se conectarem.'
-  String get soloBanner => 'Os widgets do casal aparecem quando vocês se conectarem.';
-
-  /// pt: 'Pequeno'
-  String get previewSmall => 'Pequeno';
-
-  /// pt: 'Médio'
-  String get previewMedium => 'Médio';
-
-  /// pt: 'Pequeno'
-  String get counterSmallLabel => 'Pequeno';
-
-  /// pt: 'Médio, com linha do tempo'
-  String get counterMediumLabel => 'Médio, com linha do tempo';
-
-  /// pt: 'Recado do parceiro'
-  String get partnerNotePageTitle => 'Recado do parceiro';
-
-  /// pt: 'Só aparece o que seu par escolheu mandar para o widget.'
-  String get partnerNotePrivacy => 'Só aparece o que seu par escolheu mandar para o widget.';
-
-  /// pt: 'Humor e saudade'
-  String get moodLongingPageTitle => 'Humor e saudade';
-
-  /// pt: 'O humor só aparece se seu par compartilhou.'
-  String get partnerMoodPrivacy => 'O humor só aparece se seu par compartilhou.';
-
-  /// pt: 'A saudade aparece quando seu par manda.'
-  String get longingPrivacy => 'A saudade aparece quando seu par manda.';
-
-  /// pt: 'Atualizar meu humor'
-  String get moodUpdateAction => 'Atualizar meu humor';
-
-  /// pt: 'Ver datas'
-  String get openDatesAction => 'Ver datas';
-
-  /// pt: 'Lembrete'
-  String get lockReminderShortLabel => 'Lembrete';
 }
 
 // Path: acceptInvite.connected
@@ -12796,6 +12432,166 @@ extension on Translations {
             required Object name,
           }) => 'Adicionado por ${name}. Só quem criou pode editar.',
           'history.shareAction' => 'Imagem para compartilhar',
+          'homeWidgets.settingsTitle' => 'Widgets',
+          'homeWidgets.settingsSubtitle' => 'Na tela inicial',
+          'homeWidgets.togetherCategory' => 'TELA INICIAL',
+          'homeWidgets.togetherTitle' => 'Widgets do Mingo',
+          'homeWidgets.togetherSubtitle' => 'Lembretes calmos para você ou para vocês dois.',
+          'homeWidgets.galleryTitle' => 'Widgets',
+          'homeWidgets.gallerySubtitle' => 'Pequenos pedaços do app na sua tela inicial.',
+          'homeWidgets.favoritesGroup' => 'Os mais queridos',
+          'homeWidgets.smallGroup' => 'Mais pequenos',
+          'homeWidgets.mediumGroup' => 'Médios',
+          'homeWidgets.soloBanner' =>
+            'Os widgets que precisam de um par aparecem quando vocês se conectam.',
+          'homeWidgets.loadErrorTitle' => 'Não deu para carregar os widgets',
+          'homeWidgets.loadErrorBody' => 'Confira a conexão e tente de novo.',
+          'homeWidgets.retryAction' => 'Tentar de novo',
+          'homeWidgets.coupleNote' => 'Só aparece o que seu par escolheu compartilhar.',
+          'homeWidgets.ownNote' => 'Funcionam sem parceiro e só mostram o que é seu.',
+          'homeWidgets.variantLabels.counterSmall' => 'Contador',
+          'homeWidgets.variantLabels.counterMedium' => 'Contador com linha do tempo',
+          'homeWidgets.variantLabels.partnerMoodSmall' => 'Humor do parceiro',
+          'homeWidgets.variantLabels.longingSmall' => 'Saudade de nós',
+          'homeWidgets.variantLabels.ritualSmall' => 'Ritual',
+          'homeWidgets.variantLabels.partnerNoteSmall' => 'Recado',
+          'homeWidgets.variantLabels.partnerNoteMedium' => 'Recado do parceiro',
+          'homeWidgets.variantLabels.slipSmall' => 'Anotar slip',
+          'homeWidgets.variantLabels.nextDateSmall' => 'Próxima data',
+          'homeWidgets.variantLabels.nextDateMedium' => 'Próxima data',
+          'homeWidgets.variantLabels.cardSmall' => 'Cartão de domingo',
+          'homeWidgets.variantLabels.cardMedium' => 'Cartão e encontro',
+          'homeWidgets.variantLabels.weekMedium' => 'Minha semana',
+          'homeWidgets.variantLabels.ideaMedium' => 'Ideia do dia',
+          'homeWidgets.variantLabels.distanceMedium' => 'Namoro à distância',
+          'homeWidgets.variantLabels.other' => 'Widget',
+          'homeWidgets.howToAddAction' => 'Como adicionar',
+          'homeWidgets.howToAddTitle' => 'Como adicionar',
+          'homeWidgets.howToAddSubtitle' =>
+            'Direto na tela inicial, sem nenhuma permissão extra do Mingo.',
+          'homeWidgets.howToAddIosStep1' => 'Toque e segure um espaço vazio da tela inicial.',
+          'homeWidgets.howToAddIosStep2' => 'Toque em + no canto de cima.',
+          'homeWidgets.howToAddIosStep3' => 'Escolha o Mingo e o tamanho do widget.',
+          'homeWidgets.howToAddAndroidStep1' => 'Toque e segure um espaço vazio da tela inicial.',
+          'homeWidgets.howToAddAndroidStep2' => 'Toque em Widgets.',
+          'homeWidgets.howToAddAndroidStep3' => 'Escolha o Mingo e arraste para a tela.',
+          'homeWidgets.howToAddNote' =>
+            'Você pode remover um widget quando quiser; nada é apagado.',
+          'homeWidgets.inviteTitle' => 'Convide seu par para ver aqui',
+          'homeWidgets.inviteAction' => 'Convidar',
+          'homeWidgets.counterEyebrow' => 'Juntos',
+          'homeWidgets.counterUnit' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'dia',
+                  other: 'dias',
+                ),
+          'homeWidgets.counterNeedDate' => 'Defina a data de vocês',
+          'homeWidgets.counterToday' => 'Hoje',
+          'homeWidgets.durationYears' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '${count} ano',
+                  other: '${count} anos',
+                ),
+          'homeWidgets.durationMonths' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '${count} mês',
+                  other: '${count} meses',
+                ),
+          'homeWidgets.durationDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '${count} dia',
+                  other: '${count} dias',
+                ),
+          'homeWidgets.durationAnd' => 'e',
+          'homeWidgets.moodNow' => ({required Object name}) => '${name} agora',
+          'homeWidgets.moodNowAnonymous' => 'Agora',
+          'homeWidgets.moodHidden' => 'O humor aparece quando seu par compartilhar.',
+          'homeWidgets.agoNow' => 'agora',
+          'homeWidgets.agoMinutes' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'há ${count} minuto',
+                  other: 'há ${count} minutos',
+                ),
+          'homeWidgets.agoHours' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'há ${count} hora',
+                  other: 'há ${count} horas',
+                ),
+          'homeWidgets.agoDays' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'há ${count} dia',
+                  other: 'há ${count} dias',
+                ),
+          'homeWidgets.longingAction' => 'Mandar saudade',
+          'homeWidgets.longingReceived' => 'Seu par mandou saudade',
+          'homeWidgets.ritualEyebrow' => 'Ritual',
+          'homeWidgets.ritualEmptyTitle' => 'Crie um ritual',
+          'homeWidgets.ritualEmptyHint' => 'Um momento só de vocês.',
+          'homeWidgets.ritualToday' => ({required Object time}) => 'hoje, ${time}',
+          'homeWidgets.ritualTomorrow' => ({required Object time}) => 'amanhã, ${time}',
+          'homeWidgets.ritualOn' => ({
+            required Object day,
+            required Object time,
+          }) => '${day}, ${time}',
+          'homeWidgets.noteFromName' => ({
+            required Object name,
+            required Object time,
+          }) => 'de ${name} · ${time}',
+          'homeWidgets.noteFromPartner' => ({required Object time}) => 'do seu par · ${time}',
+          'homeWidgets.noteEmpty' => 'Nenhum recado por aqui',
+          'homeWidgets.noteEmptyHint' => 'O recado aparece quando seu par mandar um para o widget.',
+          'homeWidgets.cardTitle' => 'Cartão de domingo',
+          'homeWidgets.cardReady' => 'Chegou um cartão',
+          'homeWidgets.cardSent' => 'Cartão enviado',
+          'homeWidgets.cardSends' => ({required Object when}) => 'sai ${when}',
+          'homeWidgets.goodThings' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '${count} coisa boa',
+                  other: '${count} coisas boas',
+                ),
+          'homeWidgets.encounterEyebrow' => 'Próximo encontro',
+          'homeWidgets.encounterEmpty' => 'Nenhum encontro marcado',
+          'homeWidgets.distanceYou' => ({required Object city}) => '${city} · você',
+          'homeWidgets.distanceMissing' => 'O fuso do seu par ainda não foi definido',
+          'homeWidgets.distanceUntil' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: 'dia até se verem',
+                  other: 'dias até se verem',
+                ),
+          'homeWidgets.distanceNoReunion' => 'Ainda sem data para se verem',
+          'homeWidgets.slipPrompt' => 'Como foi\no seu dia?',
+          'homeWidgets.slipAction' => 'Anotar um slip',
+          'homeWidgets.nextDateEyebrow' => 'Próxima data',
+          'homeWidgets.nextDateEmpty' => 'Nenhuma data por vir',
+          'homeWidgets.weekEyebrow' => 'Minha semana',
+          'homeWidgets.weekCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '${count} slip',
+                  other: '${count} slips',
+                ),
+          'homeWidgets.ideaEyebrow' => 'Ideia do dia',
+          'homeWidgets.ideaEmpty' => 'Sem ideia hoje',
+          'homeWidgets.ideaHint' => 'Toque para ver',
           'ideaDetail.label' => 'Ideia do dia',
           'ideaDetail.whyTitle' => 'Por que esta ideia',
           'ideaDetail.yourPhase' => 'Sua fase',
@@ -12987,6 +12783,9 @@ extension on Translations {
           'lists.kinds.travel' => 'Viagem',
           'lists.kinds.restaurants' => 'Restaurantes',
           'lists.kinds.movies' => 'Filmes',
+          _ => null,
+        } ??
+        switch (path) {
           'lists.kinds.custom' => 'Outra',
           'lists.kinds.other' => '',
           'lists.shared' => 'Compartilhada',
@@ -13081,9 +12880,6 @@ extension on Translations {
           'loveStyle.options3.words' => 'Quando a pessoa elogia algo que eu fiz.',
           'loveStyle.options3.acts' => 'Quando a pessoa percebe o que eu preciso e faz.',
           'loveStyle.options3.gifts' => 'Quando a pessoa lembra de algo que eu gosto.',
-          _ => null,
-        } ??
-        switch (path) {
           'loveStyle.options3.touch' => 'Quando a pessoa me toca de leve ao passar.',
           'loveStyle.options3.other' => '',
           'loveStyle.options4.time' => 'Um encontro tranquilo, só nós dois.',
@@ -13573,6 +13369,9 @@ extension on Translations {
           'partnerProfile.valueErrors.tooLong' => 'Use no máximo 500 caracteres.',
           'partnerProfile.save' => 'Guardar nota',
           'partnerProfile.delete' => 'Apagar',
+          _ => null,
+        } ??
+        switch (path) {
           'partnerProfile.emptyTitle' => 'Nenhuma nota ainda',
           'partnerProfile.emptyText' =>
             'Pequenos detalhes ajudam a escolher um presente ou um gesto.',
@@ -13690,9 +13489,6 @@ extension on Translations {
           'privacy.partnerSlipsText' => 'Só o que você envia',
           'privacy.partnerPrivateSlips' => 'Slips privados',
           'privacy.partnerTemperature' => 'Temperatura',
-          _ => null,
-        } ??
-        switch (path) {
           'privacy.partnerJournal' => 'Diário',
           'privacy.never' => 'Nunca',
           'privacy.partnerNote' => 'Quem produz o dado decide quem vê.',
@@ -14167,6 +13963,9 @@ extension on Translations {
           'repair.guided.stepTitles.0' => 'O que aconteceu?',
           'repair.guided.stepTitles.1' => 'Do que você precisa?',
           'repair.guided.stepTitles.2' => 'O que você pode oferecer?',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.guided.stepHighlights.0' => 'aconteceu',
           'repair.guided.stepHighlights.1' => 'precisa',
           'repair.guided.stepHighlights.2' => 'oferecer',
@@ -14267,9 +14066,6 @@ extension on Translations {
           'rituals.editTitle' => 'Seu ritual',
           'rituals.nameLabel' => 'Nome',
           'rituals.nameHint' => 'Ex.: jantar de sexta',
-          _ => null,
-        } ??
-        switch (path) {
           'rituals.cadenceLabel' => 'Com que frequência',
           'rituals.weekdayLabel' => 'Em que dia',
           'rituals.hourLabel' => 'Que horas',
@@ -14746,6 +14542,9 @@ extension on Translations {
           'sundayCard.noteLabel' => 'Mensagem final',
           'sundayCard.noteHint' => 'Obrigada por essa semana.',
           'sundayCard.emptyTitle' => 'Semana sem slips',
+          _ => null,
+        } ??
+        switch (path) {
           'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
           'sundayCard.emptyAction' => 'Anotar um slip',
           'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
@@ -14857,9 +14656,6 @@ extension on Translations {
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
           'tabs.touchLabel' => 'TOQUE',
           'tabs.touchTitle' => 'Cartas de toque',
-          _ => null,
-        } ??
-        switch (path) {
           'tabs.touchText' => 'Neutras, para fazer ou pular.',
           'tabs.distanceLabel' => 'DISTÂNCIA',
           'tabs.distanceTitle' => 'Nossos dois relógios',
@@ -14923,7 +14719,7 @@ extension on Translations {
           'tabs.dayMeta' => 'Um dia de cada vez',
           'tabs.capsulesMeta' => 'Para o futuro',
           'tabs.temperatureMeta' => 'Privado, sem nota',
-          'tabs.widgetsMeta' => 'Na tela inicial',
+          'tabs.homeWidgetsMeta' => 'Na tela inicial',
           'tabs.usMeta' => 'Um toque',
           'tabs.touchMeta' => 'Cartas neutras',
           'tabs.badDayMeta' => 'Três coisas pequenas',
@@ -15228,304 +15024,6 @@ extension on Translations {
           'welcome.start' => 'Começar',
           'welcome.haveAccount' => 'Já tenho conta',
           'welcome.debugSignIn' => 'Entrar (debug)',
-          'widgets.settingsTitle' => 'Widgets',
-          'widgets.settingsSubtitle' => 'Na tela inicial',
-          'widgets.togetherCategory' => 'TELA INICIAL',
-          'widgets.togetherTitle' => 'Widgets do Mingo',
-          'widgets.togetherSubtitle' => 'Lembretes calmos para você ou para vocês dois.',
-          'widgets.galleryTitle' => 'Widgets',
-          'widgets.segmentOwn' => 'Só meus',
-          'widgets.segmentCouple' => 'Do casal',
-          'widgets.ownSlipLabel' => 'ANOTAR SLIP',
-          'widgets.ownSlipTitle' => '+ Slip',
-          'widgets.ownSlipSubtitle' => 'Toque para anotar',
-          'widgets.ownIdeaLabel' => 'IDEIA DO DIA',
-          'widgets.ownIdeaDefault' => 'Deixe um bilhete hoje',
-          'widgets.ownIdeaHint' => 'Uma ideia para hoje.',
-          'widgets.ownJarLabel' => 'POTINHO DO DIA RUIM',
-          'widgets.ownJarTitle' => 'Abrir um slip guardado',
-          'widgets.ownJarPrivacy' => 'Privado: só no seu aparelho',
-          'widgets.lockScreenLabel' => 'TELA DE BLOQUEIO',
-          'widgets.lockScreenDefault' => 'Lembrete calmo · Sem nomes',
-          'widgets.coupleCounterLabel' => 'CONTADOR',
-          'widgets.coupleCounterUnset' => 'Defina a data do casal para ver os dias juntos',
-          'widgets.coupleCounterDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '${count} dia juntos',
-                  other: '${count} dias juntos',
-                ),
-          'widgets.couplePhotosLabel' => 'FOTOS DO CASAL · PLUS',
-          'widgets.couplePhotosPrompt' => 'Escolha uma foto de vocês dois',
-          'widgets.couplePhotosPlusHint' => 'Disponível no plano Plus',
-          'widgets.cardEncounterLabel' => 'CARTÃO E ENCONTRO',
-          'widgets.cardStateReady' => 'Chegou um cartão · Toque para abrir',
-          'widgets.cardStateSent' => 'Cartão enviado · Aguardando domingo',
-          'widgets.cardStateNone' => 'Cartão de domingo em preparação',
-          'widgets.unpairedBanner' =>
-            'Sem par conectado: os widgets do casal mostram o estado neutro.',
-          'widgets.offlineBanner' =>
-            'Mostrando o último dado salvo. Atualiza quando voltar a internet.',
-          'widgets.loadErrorTitle' => 'Não foi possível carregar os widgets',
-          'widgets.loadErrorBody' => 'Verifique sua conexão e tente novamente.',
-          'widgets.retryAction' => 'Tentar novamente',
-          'widgets.themeLight' => 'Claro',
-          'widgets.themeDark' => 'Escuro',
-          'widgets.signedOutLabel' => 'Mingo',
-          'widgets.signedOutBody' => 'Toque para entrar',
-          'widgets.ownSmallPageTitle' => 'Widget · Meu (pequeno)',
-          'widgets.ownSmallSlipAction' => 'Anotar',
-          'widgets.ownSmallDateDefaultTitle' => 'Próxima data',
-          'widgets.ownSmallDateDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '${count} dia',
-                  other: '${count} dias',
-                ),
-          'widgets.ownSmallMoodLabel' => 'HUMOR',
-          'widgets.ownSmallMoodPrompt' => 'Como você está?',
-          'widgets.ownSmallMoodOptions' => 'Feliz · Cansado · Triste',
-          'widgets.ownSmallRitualLabel' => 'RITUAL',
-          'widgets.ownSmallRitualDefaultTitle' => 'Caminhada de domingo',
-          'widgets.ownSmallRitualDefaultTime' => 'Dom · 10:00',
-          'widgets.ownMediumPageTitle' => 'Widget · Meu (médio)',
-          'widgets.ownMediumIdeaAction' => 'Toque para ver',
-          'widgets.ownMediumJarTitle' => 'Toque para abrir um slip guardado',
-          'widgets.ownMediumJarPrivacy' => 'Privado: só aparece no seu aparelho',
-          'widgets.lockScreenPageTitle' => 'Tela de bloqueio',
-          'widgets.lockScreenClockTime' => '19:38',
-          'widgets.lockScreenClockDate' => 'Sexta, 10 de abril',
-          'widgets.lockScreenReadyAction' => 'Estou pronto',
-          'widgets.lockScreenGenericPhrase' => 'Momento calmo',
-          'widgets.lockScreenPrivacyRule' => 'Sem nomes nem mensagens na tela bloqueada.',
-          'widgets.lockScreenDisabledNote' =>
-            'O widget da tela de bloqueio está desativado nas configurações.',
-          'widgets.lockScreenFamiliesTitle' => 'Formatos no iOS (Circular, Retangular e Linha)',
-          'widgets.counterPageTitle' => 'Widget · Contador',
-          'widgets.counterYearsMonthsTitle' => ({
-            required Object years,
-            required Object months,
-          }) => '${years} anos · ${months} meses',
-          'widgets.counterMonthsDaysSubtitle' => ({
-            required Object months,
-            required Object days,
-          }) => '${months} meses · ${days} dias',
-          'widgets.counterStatusDating' => 'Namorando',
-          'widgets.counterStatusLivingTogether' => 'Morando juntos',
-          'widgets.counterStatusMarried' => 'Casados',
-          'widgets.counterStatusTogether' => 'Juntos',
-          'widgets.counterMidnightNote' =>
-            'O contador atualiza automaticamente à meia-noite no fuso local.',
-          'widgets.counterSetDateAction' => 'Definir data do relacionamento',
-          'widgets.photosPageTitle' => 'Widget · Fotos do casal',
-          'widgets.photosPlusBadge' => 'PLUS',
-          'widgets.photosNeutralFallbackNote' => 'Quando nenhuma foto local está salva, o widget mostra apenas o cartão neutro com o tempo juntos.',
-          'widgets.photosUnlockPlusAction' => 'Conhecer o Plus',
-          'widgets.photosChooseAction' => 'Escolher foto',
-          'widgets.photosRemoveAction' => 'Remover foto',
-          'widgets.photosSavedToast' => 'Foto salva no widget.',
-          'widgets.photosRemovedToast' => 'Foto removida do widget.',
-          'widgets.cardEncounterPageTitle' => 'Cartão e próximo encontro',
-          'widgets.cardWeeklyLabel' => 'Cartão da semana',
-          'widgets.cardReadyTitle' => 'Chegou um cartão',
-          'widgets.cardReadySubtitle' => 'Toque para abrir',
-          'widgets.cardSentTitle' => 'Cartão enviado',
-          'widgets.cardSentSubtitle' => 'Aguardando domingo',
-          'widgets.cardNoneTitle' => 'Cartão de domingo',
-          'widgets.cardNoneSubtitle' => 'Em preparação',
-          'widgets.nextEncounterLabel' => 'Próximo encontro',
-          'widgets.nextEncounterEmptyTitle' => 'Sem data futura',
-          'widgets.nextEncounterEmptySubtitle' => 'Toque para agendar',
-          'widgets.cardEncounterPrivacyNote' => 'Este widget mostra apenas o estado do cartão e a próxima data — nunca nomes nem o texto do cartão.',
-          'widgets.statesUnpairedTitle' => 'Convide para ver aqui',
-          'widgets.statesUnpairedAction' => 'Convidar',
-          'widgets.errors.WIDGET_PREFERENCES_SAVE_FAILED' =>
-            'Não foi possível salvar as preferências agora.',
-          'widgets.errors.COUPLE_PHOTO_LOAD_FAILED' =>
-            'Não foi possível carregar a foto do casal agora.',
-          'widgets.errors.COUPLE_PHOTO_UPLOAD_FAILED' =>
-            'Não foi possível salvar a foto do casal agora.',
-          'widgets.errors.COUPLE_PHOTO_REMOVE_FAILED' =>
-            'Não foi possível remover a foto do casal agora.',
-          'widgets.errors.COUPLE_PHOTO_INVALID' =>
-            'Escolha uma imagem JPG, PNG, WebP ou HEIC de até 8 MB.',
-          'widgets.errors.COUPLE_PHOTO_READ_FAILED' => 'Não foi possível ler o arquivo escolhido.',
-          'widgets.errors.COUPLE_PHOTO_PICK_FAILED' => 'Não foi possível abrir o seletor de fotos.',
-          'widgets.errors.COUPLE_PHOTO_SIGNED_OUT' =>
-            'Entre na sua conta para escolher uma foto do casal.',
-          'widgets.errors.COUPLE_PHOTO_NOT_PAIRED' =>
-            'Conecte-se com seu par para escolher uma foto do casal.',
-          'widgets.errors.other' => 'Não foi possível salvar as preferências agora.',
-          'widgets.howToAddAndroidLockNote' => 'No Android moderno os widgets ficam na tela inicial. A tela de bloqueio usa apenas ícones de notificação neutros.',
-          'widgets.howToAddIosLockNote' =>
-            'No iOS 16 ou mais novo, você também pode adicionar o widget na tela de bloqueio.',
-          'widgets.coupleLabel' => 'DO CASAL',
-          'widgets.gallerySubtitle' => 'Pequenos pedaços do app na sua tela inicial.',
-          'widgets.favoritesGroup' => 'Os mais queridos',
-          'widgets.mediumGroup' => 'Médios',
-          'widgets.ownSmallGroup' => 'Anotar e lembrar',
-          'widgets.ownGroupHint' => 'Funcionam sem parceiro e só mostram o que é seu.',
-          'widgets.ownSmallEntryTitle' => 'Pequenos',
-          'widgets.ownSmallEntryHint' => 'Anotar, lembrar e o cartão de domingo.',
-          'widgets.ownMediumEntryTitle' => 'Médios',
-          'widgets.ownMediumEntryHint' => 'Sua semana, uma ideia e a próxima data.',
-          'widgets.ownSmallTitle' => 'Só meus: pequenos',
-          'widgets.ownMediumTitle' => 'Só meus: médios',
-          'widgets.counterEyebrow' => 'JUNTOS',
-          'widgets.counterNeedDate' => 'Defina a data de vocês',
-          'widgets.counterDaysUnit' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '${count} dia',
-                  other: '${count} dias',
-                ),
-          'widgets.counterBreakdown' => ({
-            required Object years,
-            required Object months,
-            required Object days,
-          }) => '${years} anos, ${months} meses e ${days} dias',
-          'widgets.counterToday' => 'Hoje',
-          'widgets.counterSince' => ({required Object date}) => 'Desde ${date}',
-          'widgets.partnerMoodLabel' => 'HUMOR DO PARCEIRO',
-          'widgets.partnerMoodNow' => ({required Object name}) => '${name} agora',
-          'widgets.partnerMoodNowAnonymous' => 'Agora',
-          'widgets.partnerMoodHidden' => 'O humor aparece quando seu par compartilhar.',
-          'widgets.longingLabel' => 'SAUDADE DE NÓS',
-          'widgets.longingAction' => 'Mandar saudade',
-          'widgets.longingReceived' => 'Seu par mandou saudade',
-          'widgets.longingHint' => 'Um toque e a pessoa sente.',
-          'widgets.ritualLabel' => 'RITUAL',
-          'widgets.ritualEmptyTitle' => 'Criem um ritual',
-          'widgets.ritualEmptyHint' => 'Um momento só de vocês.',
-          'widgets.noteFromPartner' => ({required Object time}) => 'do seu par · ${time}',
-          'widgets.noteFromName' => ({
-            required Object name,
-            required Object time,
-          }) => 'de ${name} · ${time}',
-          'widgets.noteEmpty' => 'Sem recado por aqui',
-          'widgets.noteEmptyHint' => 'Um recado aparece quando seu par escolhe mandar.',
-          'widgets.noteDisabled' => 'Recados estão desligados',
-          'widgets.noteDisabledHint' => 'Ligue em “Recados no widget” para ver.',
-          'widgets.nextEncounterInDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'em ${count} dia',
-                  other: 'em ${count} dias',
-                ),
-          'widgets.cardSundayTitle' => 'Cartão de domingo',
-          'widgets.cardSendAt' => ({
-            required Object day,
-            required Object time,
-          }) => 'sai ${day}, ${time}',
-          'widgets.cardReadyShort' => 'Chegou um cartão',
-          'widgets.cardSentShort' => 'Cartão enviado',
-          'widgets.cardNoneShort' => 'Cartão de domingo',
-          'widgets.distanceLabel' => 'NAMORO À DISTÂNCIA',
-          'widgets.distanceHidden' => 'Fuso do seu par ainda não definido',
-          'widgets.distanceHint' => 'Cada um no seu fuso.',
-          'widgets.distanceUntil' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '${count} dia até se verem',
-                  other: '${count} dias até se verem',
-                ),
-          'widgets.distanceNoReunion' => 'Próximo encontro sem data',
-          'widgets.distanceYou' => ({required Object city}) => '${city} · você',
-          'widgets.ownNextDateLabel' => 'PRÓXIMA DATA',
-          'widgets.ownNextDateHint' => 'Toque para ver as datas',
-          'widgets.ownDateCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '${count} dia',
-                  other: '${count} dias',
-                ),
-          'widgets.ownWeekTitle' => 'Minha semana',
-          'widgets.ownWeekCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '${count} slip',
-                  other: '${count} slips',
-                ),
-          'widgets.weekdays.0' => 'seg',
-          'widgets.weekdays.1' => 'ter',
-          'widgets.weekdays.2' => 'qua',
-          'widgets.weekdays.3' => 'qui',
-          'widgets.weekdays.4' => 'sex',
-          'widgets.weekdays.5' => 'sáb',
-          'widgets.weekdays.6' => 'dom',
-          'widgets.familyLabels.counter' => 'Contador',
-          'widgets.familyLabels.counterMedium' => 'Contador',
-          'widgets.familyLabels.partnerMood' => 'Humor do parceiro',
-          'widgets.familyLabels.longing' => 'Saudade de nós',
-          'widgets.familyLabels.ritual' => 'Ritual',
-          'widgets.familyLabels.partnerNote' => 'Recado do parceiro',
-          'widgets.familyLabels.cardEncounter' => 'Cartão e encontro',
-          'widgets.familyLabels.distance' => 'Namoro à distância',
-          'widgets.familyLabels.ownSlip' => 'Anotar slip',
-          'widgets.familyLabels.ownNextDate' => 'Próxima data',
-          'widgets.familyLabels.ownRitual' => 'Ritual',
-          'widgets.familyLabels.ownSundayCard' => 'Cartão de domingo',
-          'widgets.familyLabels.ownWeek' => 'Minha semana',
-          'widgets.familyLabels.ownIdea' => 'Ideia do dia',
-          'widgets.familyLabels.ownMediumDate' => 'Próxima data',
-          'widgets.familyLabels.other' => 'Widget',
-          'widgets.moodJustNow' => 'agora',
-          'widgets.moodMinutesAgo' => ({required Object minutes}) => 'há ${minutes} min',
-          'widgets.moodHoursAgo' => ({required Object hours}) => 'há ${hours} h',
-          'widgets.moodDaysAgo' => ({required Object days}) => 'há ${days} d',
-          'widgets.ownSlipQuestion' => 'Como foi o seu dia?',
-          'widgets.ownSlipAction' => 'Anotar um slip',
-          'widgets.howToAddAction' => 'Como adicionar',
-          'widgets.howToAddTitle' => 'Como adicionar',
-          'widgets.howToAddSubtitle' => 'Direto da tela inicial, sem permissão extra do Mingo.',
-          'widgets.howToAddIosStep1' => 'Toque e segure em um espaço vazio da tela inicial.',
-          'widgets.howToAddIosStep2' => 'Toque em + no canto superior.',
-          'widgets.howToAddIosStep3' => 'Escolha Mingo e o tamanho do widget.',
-          'widgets.howToAddAndroidStep1' => 'Toque e segure em um espaço vazio da tela inicial.',
-          'widgets.howToAddAndroidStep2' => 'Toque em Widgets.',
-          'widgets.howToAddAndroidStep3' => 'Escolha Mingo e arraste para a tela.',
-          'widgets.howToAddLockIosStep1' => 'Toque e segure na tela bloqueada.',
-          'widgets.howToAddLockIosStep2' => 'Toque em Personalizar.',
-          'widgets.howToAddLockIosStep3' => 'Adicione o widget do Mingo na linha de baixo.',
-          'widgets.howToAddNote' => 'Você pode remover o widget quando quiser; nada é apagado.',
-          'widgets.widgetPrivacyTitle' => 'O que aparece nos widgets',
-          'widgets.showNamesTitle' => 'Nomes e iniciais',
-          'widgets.showNamesHint' => 'Quando desligado, os widgets mostram só o conteúdo.',
-          'widgets.allowNotesTitle' => 'Recados no widget',
-          'widgets.allowNotesHint' => 'Só recados que seu par marcou para o widget.',
-          'widgets.privacySectionHint' =>
-            'Segue as suas escolhas de privacidade. O que está oculto no app continua oculto aqui.',
-          'widgets.settingsSaved' => 'Preferências atualizadas.',
-          'widgets.lockScreenCircular' => 'Circular',
-          'widgets.lockScreenRectangular' => 'Retangular',
-          'widgets.lockScreenInline' => 'Linha',
-          'widgets.lockScreenNeutralLabel' => 'TEXTO NEUTRO',
-          'widgets.lockScreenNeutralPhrase' => 'Sem nomes na tela bloqueada',
-          'widgets.lockScreenAndroidUnavailable' =>
-            'A tela de bloqueio do Android não aceita widgets. Use os widgets da tela inicial.',
-          'widgets.ownNextDateDefault' => 'Próxima data',
-          'widgets.ownSundayCardLabel' => 'CARTÃO DE DOMINGO',
-          'widgets.ownGroupTitle' => 'Só meus',
-          'widgets.soloBanner' => 'Os widgets do casal aparecem quando vocês se conectarem.',
-          'widgets.previewSmall' => 'Pequeno',
-          'widgets.previewMedium' => 'Médio',
-          'widgets.counterSmallLabel' => 'Pequeno',
-          'widgets.counterMediumLabel' => 'Médio, com linha do tempo',
-          'widgets.partnerNotePageTitle' => 'Recado do parceiro',
-          'widgets.partnerNotePrivacy' => 'Só aparece o que seu par escolheu mandar para o widget.',
-          'widgets.moodLongingPageTitle' => 'Humor e saudade',
-          'widgets.partnerMoodPrivacy' => 'O humor só aparece se seu par compartilhou.',
-          'widgets.longingPrivacy' => 'A saudade aparece quando seu par manda.',
-          'widgets.moodUpdateAction' => 'Atualizar meu humor',
-          'widgets.openDatesAction' => 'Ver datas',
-          'widgets.lockReminderShortLabel' => 'Lembrete',
           _ => null,
         };
   }

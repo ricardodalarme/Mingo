@@ -48,6 +48,7 @@ import 'package:app/features/history/presentation/numbers/history_numbers_page.d
 import 'package:app/features/history/presentation/story_dates/story_dates_page.dart';
 import 'package:app/features/history/presentation/variations/counter_variations_page.dart';
 import 'package:app/features/home/presentation/home/home_page.dart';
+import 'package:app/features/home_widgets/presentation/gallery/home_widgets_gallery_page.dart';
 import 'package:app/features/ideas/presentation/detail/idea_detail_page.dart';
 import 'package:app/features/lists/presentation/detail/list_detail_page.dart';
 import 'package:app/features/lists/presentation/lists/lists_page.dart';
@@ -127,15 +128,6 @@ import 'package:app/features/together/presentation/ritual_edit/ritual_edit_page.
 import 'package:app/features/together/presentation/rituals/rituals_page.dart';
 import 'package:app/features/together/presentation/together/together_page.dart';
 import 'package:app/features/weekly_review/presentation/weekly_review/weekly_review_page.dart';
-import 'package:app/features/widgets/presentation/card_encounter/card_encounter_widget_page.dart';
-import 'package:app/features/widgets/presentation/couple_counter/couple_counter_widget_page.dart';
-import 'package:app/features/widgets/presentation/couple_photos/couple_photos_widget_page.dart';
-import 'package:app/features/widgets/presentation/gallery/widgets_gallery_page.dart';
-import 'package:app/features/widgets/presentation/lock_screen/lock_screen_widget_page.dart';
-import 'package:app/features/widgets/presentation/mood_longing/mood_longing_widget_page.dart';
-import 'package:app/features/widgets/presentation/own_medium/own_medium_widgets_page.dart';
-import 'package:app/features/widgets/presentation/own_small/own_small_widgets_page.dart';
-import 'package:app/features/widgets/presentation/partner_note/partner_note_widget_page.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 
@@ -157,7 +149,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     ..._conversationRoutes,
     ..._togetherRoutes,
     ..._settingsRoutes,
-    ..._widgetRoutes,
+    ..._homeWidgetRoutes,
     AutoRoute(
       page: HomeRoute.page,
       children: [
@@ -312,16 +304,6 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: DevicesRoute.page),
   ];
 
-  /// The home-screen widget screens.
-  List<AutoRoute> get _widgetRoutes => [
-    AutoRoute(page: WidgetsGalleryRoute.page),
-    AutoRoute(page: OwnSmallWidgetsRoute.page),
-    AutoRoute(page: OwnMediumWidgetsRoute.page),
-    AutoRoute(page: LockRouteWidgetRoute.page),
-    AutoRoute(page: CoupleCounterWidgetRoute.page),
-    AutoRoute(page: CouplePhotosWidgetRoute.page),
-    AutoRoute(page: PartnerNoteWidgetRoute.page),
-    AutoRoute(page: MoodLongingWidgetRoute.page),
-    AutoRoute(page: CardEncounterWidgetRoute.page),
-  ];
+  /// The home-screen widget gallery.
+  List<AutoRoute> get _homeWidgetRoutes => [AutoRoute(page: HomeWidgetsGalleryRoute.page)];
 }

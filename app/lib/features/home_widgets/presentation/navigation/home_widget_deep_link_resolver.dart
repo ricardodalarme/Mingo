@@ -11,7 +11,7 @@ import 'package:flutter/foundation.dart';
 
 /// Intercepts `mingo://<host>/<path>` deep links before AutoRoute matches them and
 /// normalizes the custom-scheme host + path into a canonical `/target` path.
-Future<Uri> transformWidgetDeepLinkUri(Uri uri) {
+Future<Uri> transformHomeWidgetDeepLinkUri(Uri uri) {
   if (uri.scheme != 'mingo') return SynchronousFuture(uri);
   final target = _extractNormalizedTarget(uri);
   final normalizedPath = target.isEmpty ? '/today' : '/$target';
@@ -26,8 +26,8 @@ Future<Uri> transformWidgetDeepLinkUri(Uri uri) {
 
 /// Resolves `mingo://` or normalized `?homeWidget=` deep-link URIs to auto_route page stacks.
 ///
-/// When the user is signed out, every widget tap opens the sign-in flow.
-List<PageRouteInfo<void>>? resolveWidgetDeepLinkUri(Uri? uri, {required AppState appState}) {
+/// When the user is signed out, every home widget tap opens the sign-in flow.
+List<PageRouteInfo<void>>? resolveHomeWidgetDeepLinkUri(Uri? uri, {required AppState appState}) {
   if (uri == null) return null;
   final isWidgetUri = uri.scheme == 'mingo' || uri.queryParameters.containsKey('homeWidget');
   if (!isWidgetUri) return null;
@@ -69,6 +69,10 @@ List<PageRouteInfo<void>>? resolveWidgetDeepLinkUri(Uri? uri, {required AppState
       HomeRoute(children: [CoupleRoute()]),
       const RitualsRoute(),
     ],
+    'distance' => [
+      HomeRoute(children: [CoupleRoute()]),
+      const DistanceRoute(),
+    ],
     'jar' || 'slips' => [
       const HomeRoute(children: [SlipsRoute()]),
     ],
@@ -78,7 +82,7 @@ List<PageRouteInfo<void>>? resolveWidgetDeepLinkUri(Uri? uri, {required AppState
     ],
     'widgets' => [
       const HomeRoute(children: [TodayRoute()]),
-      const WidgetsGalleryRoute(),
+      const HomeWidgetsGalleryRoute(),
     ],
     _ => [
       const HomeRoute(children: [TodayRoute()]),

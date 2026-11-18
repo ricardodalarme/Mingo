@@ -38,8 +38,6 @@ import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/spice/data/models/spice_models.dart';
 import 'package:app/features/together/data/models/date_idea_status.dart';
 import 'package:app/features/together/data/models/ritual_cadence.dart';
-import 'package:app/features/widgets/data/models/widget_family.dart';
-import 'package:app/features/widgets/data/models/widget_models.dart';
 import 'package:mocktail/mocktail.dart';
 
 /// Registers a fallback for every enum the app passes through `any(...)` in a mock.
@@ -146,10 +144,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(SpiceChallengeAction.accept);
   registerFallbackValue(DateIdeaStatus.saved);
   registerFallbackValue(RitualCadence.daily);
-  registerFallbackValue(WidgetFamily.counter);
-  registerFallbackValue(WidgetFamilyKind.ownSmall);
-  registerFallbackValue(WidgetContentSource.favorites);
-  registerFallbackValue(WidgetRotationCadence.daily);
 
   registerFallbackValue(Uint8List(0));
 

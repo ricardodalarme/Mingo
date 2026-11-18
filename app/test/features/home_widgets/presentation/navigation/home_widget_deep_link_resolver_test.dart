@@ -1,6 +1,6 @@
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
+import 'package:app/features/home_widgets/presentation/navigation/home_widget_deep_link_resolver.dart';
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
-import 'package:app/features/widgets/presentation/navigation/widget_deep_link_resolver.dart';
 import 'package:app/router/app_router.dart';
 import 'package:app/router/pending_route.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,7 +20,7 @@ class _FakeInviteCodeStore() implements InviteCodeStore {
 
 void main() {
   test('signed-out widget tap always resolves to WelcomeRoute + SignInRoute', () {
-    final routes = resolveWidgetDeepLinkUri(
+    final routes = resolveHomeWidgetDeepLinkUri(
       Uri.parse('mingo://today?homeWidget=1'),
       appState: AppState.unauthenticated,
     );
@@ -30,42 +30,59 @@ void main() {
   });
 
   test('authenticated deep links resolve to today, card and dates', () {
-    final todayRoutes = resolveWidgetDeepLinkUri(
+    final todayRoutes = resolveHomeWidgetDeepLinkUri(
       Uri.parse('mingo://today'),
       appState: AppState.authenticated,
     );
     expect(todayRoutes, isNotNull);
     expect(todayRoutes!.first.routeName, HomeRoute.name);
 
-    final cardRoutes = resolveWidgetDeepLinkUri(
+    final cardRoutes = resolveHomeWidgetDeepLinkUri(
       Uri.parse('mingo://card'),
       appState: AppState.authenticated,
     );
     expect(cardRoutes!.last.routeName, SundayCardRoute.name);
 
-    final datesRoutes = resolveWidgetDeepLinkUri(
+    final datesRoutes = resolveHomeWidgetDeepLinkUri(
       Uri.parse('mingo://dates'),
       appState: AppState.authenticated,
     );
     expect(datesRoutes!.last.routeName, DatesRoute.name);
 
-    final togetherRoutes = resolveWidgetDeepLinkUri(
+    final togetherRoutes = resolveHomeWidgetDeepLinkUri(
       Uri.parse('mingo://together?homeWidget=1'),
       appState: AppState.authenticated,
     );
     expect(togetherRoutes!.first.initialChildren?.first.routeName, CoupleRoute.name);
 
-    final memoriesRoutes = resolveWidgetDeepLinkUri(
+    final memoriesRoutes = resolveHomeWidgetDeepLinkUri(
       Uri.parse('mingo://memories?homeWidget=1'),
       appState: AppState.authenticated,
     );
     expect(memoriesRoutes!.first.initialChildren?.first.routeName, CoupleRoute.name);
 
-    final inviteRoutes = resolveWidgetDeepLinkUri(
+    final inviteRoutes = resolveHomeWidgetDeepLinkUri(
       Uri.parse('mingo://invite?homeWidget=1'),
       appState: AppState.authenticated,
     );
     expect(inviteRoutes!.last.routeName, InviteRoute.name);
+  });
+
+  test('every widget target resolves to a page', () {
+    for (final (target, last) in [
+      ('capture', QuickSlipRoute.name),
+      ('rituals', RitualsRoute.name),
+      ('distance', DistanceRoute.name),
+      ('card', SundayCardRoute.name),
+      ('dates', DatesRoute.name),
+    ]) {
+      final routes = resolveHomeWidgetDeepLinkUri(
+        Uri.parse('mingo://$target?homeWidget=1'),
+        appState: AppState.authenticated,
+      );
+
+      expect(routes!.last.routeName, last, reason: target);
+    }
   });
 
   group('invite deep link', () {
