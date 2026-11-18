@@ -13,7 +13,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Wraps the navigator with the forced-update block, the time-in-app prompt and
-/// the global offline banner.
+/// the toast shown when the connection drops.
 class const AppShell({required final Widget child, final RootStackRouter? router, super.key})
     extends StatefulWidget {
   @override
@@ -23,6 +23,8 @@ class const AppShell({required final Widget child, final RootStackRouter? router
 class _AppShellState() extends State<AppShell> {
   bool _isShowingPrompt = false;
 
+  RootStackRouter get _router => widget.router ?? AppInjector.instance.get<RootStackRouter>();
+
   @override
   Widget build(BuildContext context) {
     final updateRequired = context.select((VersionGateCubit cubit) => cubit.state.updateRequired);
@@ -31,41 +33,39 @@ class _AppShellState() extends State<AppShell> {
     final isAuthenticated = context.select(
       (AppCubit cubit) => cubit.state == AppState.authenticated,
     );
-    final isOffline = context.select((ConnectivityCubit cubit) => cubit.state.isOffline);
 
-    return BlocListener<TimeInAppCubit, TimeInAppState>(
-      listenWhen: (previous, current) =>
-          isAuthenticated && !previous.shouldPrompt && current.shouldPrompt,
-      listener: (context, _) => _showTimeInAppPrompt(),
-      child: Column(
-        children: [
-          if (isOffline)
-            SafeArea(
-              bottom: false,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSpace.screenMargin,
-                  AppSpace.s8,
-                  AppSpace.screenMargin,
-                  0,
-                ),
-                child: BaseBanner(
-                  text: context.l10n.globalErrors.offline,
-                  variant: BaseBannerVariant.warning,
-                  icon: AppIcons.wifi_off,
-                ),
-              ),
-            ),
-          Expanded(child: widget.child),
-        ],
+    return BlocListener<ConnectivityCubit, ConnectivityState>(
+      listenWhen: (previous, current) => !previous.isOffline && current.isOffline,
+      listener: (context, _) => _showOfflineToast(context),
+      child: BlocListener<TimeInAppCubit, TimeInAppState>(
+        listenWhen: (previous, current) =>
+            isAuthenticated && !previous.shouldPrompt && current.shouldPrompt,
+        listener: (context, _) => _showTimeInAppPrompt(),
+        child: widget.child,
       ),
     );
   }
 
+  void _showOfflineToast(BuildContext context) {
+    final message = context.l10n.globalErrors.offline;
+    final overlay = _router.navigatorKey.currentState?.overlay;
+    if (overlay != null) {
+      BaseToast.showIn(overlay, message, bottom: _toastBottom);
+      return;
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final retry = _router.navigatorKey.currentState?.overlay;
+      if (retry != null) BaseToast.showIn(retry, message, bottom: _toastBottom);
+    });
+  }
+
+  /// Clears the tab bar; the default footer offset would sit inside it on a tab screen.
+  static const double _toastBottom = AppSpace.tabBarHeight + AppSpace.s16;
+
   void _showTimeInAppPrompt() {
     if (_isShowingPrompt) return;
     _isShowingPrompt = true;
-    final router = widget.router ?? AppInjector.instance.get<RootStackRouter>();
-    unawaited(router.push(const TimeInAppRoute()).whenComplete(() => _isShowingPrompt = false));
+    unawaited(_router.push(const TimeInAppRoute()).whenComplete(() => _isShowingPrompt = false));
   }
 }

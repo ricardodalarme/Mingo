@@ -28,6 +28,42 @@ void main() {
     expect(find.text('Saved'), findsNothing);
   });
 
+  testWidgets('showIn inserts into the given overlay and removes itself after four seconds', (
+    tester,
+  ) async {
+    late OverlayState overlay;
+    await tester.pumpWidget(
+      materialAppFor(
+        Builder(
+          builder: (context) {
+            overlay = Overlay.of(context);
+            return const SizedBox.shrink();
+          },
+        ),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+
+    BaseToast.showIn(overlay, 'Offline');
+    await tester.pump();
+
+    expect(find.text('Offline'), findsOneWidget);
+
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pump();
+
+    expect(find.text('Offline'), findsNothing);
+
+    BaseToast.showIn(overlay, 'Offline', bottom: 100);
+    await tester.pump();
+
+    final screenHeight = tester.view.physicalSize.height / tester.view.devicePixelRatio;
+    expect(tester.getRect(find.byType(BaseToast)).bottom, screenHeight - 100);
+
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pump();
+  });
+
   for (final variant in AppThemeVariant.values) {
     testWidgets('toast dismisses after its window for ${variant.name}', (tester) async {
       var dismissed = 0;

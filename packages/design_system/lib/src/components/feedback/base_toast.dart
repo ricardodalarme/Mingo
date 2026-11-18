@@ -33,10 +33,33 @@ class const BaseToast({
     VoidCallback? onAction,
     VoidCallback? onDismissed,
   }) {
+    return showIn(
+      Overlay.of(context, rootOverlay: true),
+      message,
+      variant: variant,
+      actionLabel: actionLabel,
+      onAction: onAction,
+      onDismissed: onDismissed,
+    );
+  }
+
+  /// Shows a toast in [overlay] and returns a callback that removes it.
+  ///
+  /// Use it from a context above the navigator, which has no overlay ancestor.
+  /// [bottom] is the total distance from the bottom edge, for a toast that must
+  /// clear a bar; without it the toast follows the safe area above a footer.
+  static VoidCallback showIn(
+    OverlayState overlay,
+    String message, {
+    BaseToastVariant variant = BaseToastVariant.neutral,
+    String? actionLabel,
+    VoidCallback? onAction,
+    VoidCallback? onDismissed,
+    double? bottom,
+  }) {
     BaseToast._activeEntry?.remove();
     BaseToast._activeEntry = null;
 
-    final overlay = Overlay.of(context, rootOverlay: true);
     late final OverlayEntry entry;
 
     void removeEntry() {
@@ -45,24 +68,25 @@ class const BaseToast({
     }
 
     entry = OverlayEntry(
-      builder: (context) => Positioned(
-        left: AppSpace.screenMargin,
-        right: AppSpace.screenMargin,
-        bottom: AppSpace.footerBottom,
-        child: SafeArea(
-          top: false,
-          child: BaseToast(
-            message: message,
-            variant: variant,
-            actionLabel: actionLabel,
-            onAction: onAction,
-            onDismissed: () {
-              onDismissed?.call();
-              removeEntry();
-            },
-          ),
-        ),
-      ),
+      builder: (context) {
+        final toast = BaseToast(
+          message: message,
+          variant: variant,
+          actionLabel: actionLabel,
+          onAction: onAction,
+          onDismissed: () {
+            onDismissed?.call();
+            removeEntry();
+          },
+        );
+
+        return Positioned(
+          left: AppSpace.screenMargin,
+          right: AppSpace.screenMargin,
+          bottom: bottom ?? AppSpace.footerBottom,
+          child: bottom == null ? SafeArea(top: false, child: toast) : toast,
+        );
+      },
     );
     BaseToast._activeEntry = entry;
 
