@@ -1,5 +1,0 @@
-mutation InsertCouplePhoto($coupleId: uuid!, $fileId: uuid!) {
-  insertCouplePhotos(objects: [{ coupleId: $coupleId, fileId: $fileId }]) {
-    affected_rows
-  }
-}

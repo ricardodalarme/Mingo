@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="mingo_widget_bg">#1C1B1B</color>
-    <color name="mingo_widget_border">#322F2E</color>
-    <color name="mingo_widget_label">#D7B2A8</color>
-    <color name="mingo_widget_title">#F7F4F2</color>
-    <color name="mingo_widget_subtitle">#A8A09D</color>
-</resources>

@@ -1,5 +1,0 @@
-mutation DeleteCouplePhoto($coupleId: uuid!) {
-  deleteCouplePhotos(where: { coupleId: { _eq: $coupleId } }) {
-    affected_rows
-  }
-}

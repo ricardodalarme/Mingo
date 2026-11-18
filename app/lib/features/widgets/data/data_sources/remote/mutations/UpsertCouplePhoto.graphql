@@ -1,5 +1,0 @@
-mutation UpsertCouplePhoto($coupleId: uuid!, $fileId: uuid!) {
-  updateCouplePhotos(where: { coupleId: { _eq: $coupleId } }, _set: { fileId: $fileId }) {
-    affected_rows
-  }
-}

@@ -120,6 +120,7 @@ class const AppTypography({
     hand: TextStyle(
       color: AppPalette.neutral900,
       fontFamily: 'Caveat',
+      package: 'design_system',
       fontSize: 25,
       height: 29 / 25,
       fontWeight: FontWeight.w600,
