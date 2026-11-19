@@ -49,7 +49,7 @@ class const TogetherPage({final bool isEmbedded = false, super.key})
             ),
             const SizedBox(height: AppSpace.s12),
           ],
-          _ForYouSection(hasPartner: hasPartner),
+          _ForYouSection(hasPartner: hasPartner, phase: phase),
           const SizedBox(height: AppSpace.s24),
           _ToolsSection(
             cubit: cubit,
@@ -59,13 +59,9 @@ class const TogetherPage({final bool isEmbedded = false, super.key})
             sharedGiftCount: sharedGiftCount,
           ),
           const SizedBox(height: AppSpace.s24),
-          if (hasPartner || phase == RelationshipPhase.longDistance) ...[
-            _TogetherMoreSection(hasPartner: hasPartner, phase: phase),
-            const SizedBox(height: AppSpace.s24),
-          ],
           const _PrivateSection(),
           const SizedBox(height: AppSpace.s24),
-          const _PrivateMoreSection(),
+          const _MoreSection(),
         ],
       ),
     );
@@ -74,7 +70,10 @@ class const TogetherPage({final bool isEmbedded = false, super.key})
   }
 }
 
-class const _ForYouSection({required final bool hasPartner}) extends StatelessWidget {
+class const _ForYouSection({
+  required final bool hasPartner,
+  required final RelationshipPhase? phase,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.tabs;
@@ -108,6 +107,20 @@ class const _ForYouSection({required final bool hasPartner}) extends StatelessWi
           subtitle: l10n.dateNightMeta,
           onTap: () => context.pushRoute(const DateNightRoute()),
         ),
+        if (phase == RelationshipPhase.longDistance)
+          _row(
+            icon: AppIcons.map_pin,
+            title: l10n.distanceTitle,
+            subtitle: l10n.distanceMeta,
+            onTap: () => context.pushRoute(const DistanceRoute()),
+          ),
+        if (hasPartner)
+          _row(
+            icon: AppIcons.heart,
+            title: l10n.usTitle,
+            subtitle: l10n.usMeta,
+            onTap: () => context.pushRoute(const UsRoute()),
+          ),
       ],
     );
   }
@@ -192,18 +205,6 @@ class const _ToolsSection({
           subtitle: l10n.capsulesMeta,
           onTap: () => context.pushRoute(const CapsulesRoute()),
         ),
-        _row(
-          icon: AppIcons.smile,
-          title: l10n.temperatureTitle,
-          subtitle: l10n.temperatureMeta,
-          onTap: () => context.pushRoute(const TemperatureRoute()),
-        ),
-        _row(
-          icon: AppIcons.smartphone,
-          title: context.l10n.homeWidgets.togetherTitle,
-          subtitle: l10n.homeWidgetsMeta,
-          onTap: () => context.pushRoute(const HomeWidgetsGalleryRoute()),
-        ),
       ],
     );
   }
@@ -214,10 +215,7 @@ class const _ToolsSection({
   }
 }
 
-class const _TogetherMoreSection({
-  required final bool hasPartner,
-  required final RelationshipPhase? phase,
-}) extends StatelessWidget {
+class const _MoreSection() extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.tabs;
@@ -225,20 +223,12 @@ class const _TogetherMoreSection({
     return _section(
       title: l10n.sectionMore,
       children: [
-        if (phase == RelationshipPhase.longDistance)
-          _row(
-            icon: AppIcons.map_pin,
-            title: l10n.distanceTitle,
-            subtitle: l10n.distanceMeta,
-            onTap: () => context.pushRoute(const DistanceRoute()),
-          ),
-        if (hasPartner)
-          _row(
-            icon: AppIcons.heart,
-            title: l10n.usTitle,
-            subtitle: l10n.usMeta,
-            onTap: () => context.pushRoute(const UsRoute()),
-          ),
+        _row(
+          icon: AppIcons.smartphone,
+          title: context.l10n.homeWidgets.togetherTitle,
+          subtitle: l10n.homeWidgetsMeta,
+          onTap: () => context.pushRoute(const HomeWidgetsGalleryRoute()),
+        ),
       ],
     );
   }
@@ -251,6 +241,7 @@ class const _PrivateSection() extends StatelessWidget {
 
     return _section(
       title: l10n.sectionPrivate,
+      footer: l10n.forMeFooter,
       children: [
         _row(
           icon: AppIcons.calendar,
@@ -264,20 +255,12 @@ class const _PrivateSection() extends StatelessWidget {
           subtitle: l10n.diaryMeta,
           onTap: () => context.pushRoute(const DiaryRoute()),
         ),
-      ],
-    );
-  }
-}
-
-class const _PrivateMoreSection() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.tabs;
-
-    return _section(
-      title: l10n.sectionMore,
-      footer: l10n.forMeFooter,
-      children: [
+        _row(
+          icon: AppIcons.smile,
+          title: l10n.temperatureTitle,
+          subtitle: l10n.temperatureMeta,
+          onTap: () => context.pushRoute(const TemperatureRoute()),
+        ),
         _row(
           icon: AppIcons.lightbulb,
           title: l10n.learningTitle,
