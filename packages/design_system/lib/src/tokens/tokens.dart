@@ -12,6 +12,7 @@ export 'app_palette.dart';
 export 'app_radius.dart';
 export 'app_roles.dart';
 export 'app_shadows.dart';
+export 'app_slip_note.dart';
 export 'app_space.dart';
 export 'app_theme_variant.dart';
 export 'app_typography.dart';

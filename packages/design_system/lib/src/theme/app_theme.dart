@@ -14,7 +14,7 @@ abstract final class AppTheme() {
       brightness: Brightness.light,
       scaffoldBackgroundColor: colors.bgScreen,
       canvasColor: colors.bgScreen,
-      extensions: [colors, AppTypography.system],
+      extensions: [colors, AppTypography.system, AppSlipNoteColors.standard],
       colorScheme: ColorScheme.light(
         primary: colors.actionPrimary,
         onPrimary: colors.textOnAction,
@@ -34,6 +34,9 @@ extension AppThemeLookup on ThemeData {
 
   /// Type scale of the active theme.
   AppTypography get type => extension<AppTypography>()!;
+
+  /// Slip note colours.
+  AppSlipNoteColors get slipNote => extension<AppSlipNoteColors>() ?? AppSlipNoteColors.standard;
 }
 
 extension AppContextTheme on BuildContext {
@@ -42,6 +45,9 @@ extension AppContextTheme on BuildContext {
 
   /// Type scale tokens.
   AppTypography get text => Theme.of(this).type;
+
+  /// Slip note colour pairs.
+  AppSlipNoteColors get slipNote => Theme.of(this).slipNote;
 
   /// Screen margin, capped on wide screens by a centred single column.
   double get screenMargin => 20;
