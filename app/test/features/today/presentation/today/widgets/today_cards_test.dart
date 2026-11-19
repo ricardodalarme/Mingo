@@ -37,39 +37,28 @@ void main() {
         TodayCardKind.receivedCard,
         TodayCardKind.ownCard,
         TodayCardKind.partnerMoment,
-        TodayCardKind.question,
         TodayCardKind.weekSummary,
       ]);
     });
 
-    test('a received card, a question, the week and the idea make four cards', () {
+    test('a received card, the week and the idea make three cards', () {
       final kinds = todayCardsFor(
         home: _home(unopenedCards: 1, slipsThisWeek: 2),
         isSoloOnly: false,
         partnerMoodVisible: false,
       );
 
-      expect(kinds, [
-        TodayCardKind.receivedCard,
-        TodayCardKind.question,
-        TodayCardKind.weekSummary,
-        TodayCardKind.idea,
-      ]);
+      expect(kinds, [TodayCardKind.receivedCard, TodayCardKind.weekSummary, TodayCardKind.idea]);
     });
 
-    test('on your own the private question and the invite come first', () {
+    test('on your own the invite comes first', () {
       final kinds = todayCardsFor(
         home: _home(isPaired: false, slipsThisWeek: 2),
         isSoloOnly: false,
         partnerMoodVisible: false,
       );
 
-      expect(kinds, [
-        TodayCardKind.question,
-        TodayCardKind.invite,
-        TodayCardKind.weekSummary,
-        TodayCardKind.idea,
-      ]);
+      expect(kinds, [TodayCardKind.invite, TodayCardKind.weekSummary, TodayCardKind.idea]);
     });
 
     test('solo-only drops the invite', () {
@@ -160,9 +149,8 @@ void main() {
       expect(todayCardRoute(TodayCardKind.invite, home: home), isA<InviteRoute>());
     });
 
-    test('the moment and the question act on Hoje', () {
+    test('the moment acts on Hoje', () {
       expect(todayCardRoute(TodayCardKind.partnerMoment, home: home), isNull);
-      expect(todayCardRoute(TodayCardKind.question, home: home), isNull);
     });
   });
 }

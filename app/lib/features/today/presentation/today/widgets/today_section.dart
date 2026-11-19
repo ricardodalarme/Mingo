@@ -114,14 +114,6 @@ class const TodaySection({
         category: AppCategory.card,
         face: FaceKind.smile,
       ),
-      TodayCardKind.question => (
-        tag: l10n.questionTag,
-        title: home.question?.title ?? '',
-        support: null,
-        action: l10n.answer,
-        category: AppCategory.card,
-        face: FaceKind.smile,
-      ),
       TodayCardKind.invite => (
         tag: l10n.inviteCardLabel,
         title: partnerHint == null
@@ -155,8 +147,6 @@ class const TodaySection({
     switch (kind) {
       case TodayCardKind.partnerMoment:
         return onSeeIdeas;
-      case TodayCardKind.question:
-        return () => context.router.root.push(const QuickSlipRoute());
       case TodayCardKind.invite:
         return () => openInvite(context);
       case TodayCardKind.receivedCard:

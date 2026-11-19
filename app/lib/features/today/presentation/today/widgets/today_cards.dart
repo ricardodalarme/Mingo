@@ -8,7 +8,6 @@ enum TodayCardKind() {
   receivedCard,
   ownCard,
   partnerMoment,
-  question,
   invite,
   weekSummary,
   idea,
@@ -37,7 +36,6 @@ List<TodayCardKind> todayCardsFor({
     if (home.unopenedCards > 0) TodayCardKind.receivedCard,
     if (home.hasCardToSend) TodayCardKind.ownCard,
     if (!isAlone && partnerMoodVisible) TodayCardKind.partnerMoment,
-    if (home.question != null) TodayCardKind.question,
     if (canInvite) TodayCardKind.invite,
     if (home.slipsThisWeek > 0) TodayCardKind.weekSummary,
     if (home.idea != null) TodayCardKind.idea,
@@ -52,6 +50,6 @@ PageRouteInfo<void>? todayCardRoute(TodayCardKind kind, {required TodayHome home
     TodayCardKind.weekSummary => const WeeklyReviewRoute(),
     TodayCardKind.idea => IdeaDetailRoute(slug: home.idea?.slug ?? ''),
     TodayCardKind.invite => const InviteRoute(),
-    TodayCardKind.partnerMoment || TodayCardKind.question => null,
+    TodayCardKind.partnerMoment => null,
   };
 }
