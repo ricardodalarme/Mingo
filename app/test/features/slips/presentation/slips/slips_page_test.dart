@@ -88,7 +88,7 @@ void main() {
     expect(find.text('Slips'), findsOneWidget);
   });
 
-  testWidgets('a populated list shows the slips and the free note', (tester) async {
+  testWidgets('a populated list shows the slips', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
       stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now())]);
       final cubit = await build();
@@ -99,7 +99,7 @@ void main() {
       expect(find.byType(BaseChoiceChip), findsNWidgets(4));
       expect(find.byType(SlipsGroups), findsOneWidget);
       expect(find.text('Fez café sem eu pedir'), findsOneWidget);
-      expect(find.text('Slips são sempre livres.'), findsOneWidget);
+      expect(find.text('Slips são sempre livres.'), findsNothing);
     });
   });
 

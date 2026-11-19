@@ -140,20 +140,11 @@ class const _Results({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.slipsList;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SlipsGroups(
-          slips: items,
-          isLoaded: isLoaded,
-          showsHeaders: showsHeaders,
-          isLoadingMore: context.select((SlipsListCubit cubit) => cubit.state.isLoadingMore),
-        ),
-        const SizedBox(height: AppSpace.s8),
-        BaseNote(text: l10n.freeNote, icon: AppIcons.info),
-      ],
+    return SlipsGroups(
+      slips: items,
+      isLoaded: isLoaded,
+      showsHeaders: showsHeaders,
+      isLoadingMore: context.select((SlipsListCubit cubit) => cubit.state.isLoadingMore),
     );
   }
 }

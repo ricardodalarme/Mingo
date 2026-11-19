@@ -7343,9 +7343,6 @@ class Translations$slipsList$pt {
   /// pt: 'Privado'
   String get scopePrivate => 'Privado';
 
-  /// pt: 'Slips são sempre livres.'
-  String get freeNote => 'Slips são sempre livres.';
-
   /// pt: 'Este mês'
   String get filterThisMonth => 'Este mês';
 
@@ -14384,7 +14381,6 @@ extension on Translations {
           'slipsList.privateEmptyText' => 'Os slips que você deixa fora do cartão aparecem aqui.',
           'slipsList.privateMarker' => 'Slip privado',
           'slipsList.scopePrivate' => 'Privado',
-          'slipsList.freeNote' => 'Slips são sempre livres.',
           'slipsList.filterThisMonth' => 'Este mês',
           'slipsList.filterInCard' => 'Em um cartão',
           'slipsList.filterInvisible' => 'Trabalho invisível',
@@ -14542,10 +14538,10 @@ extension on Translations {
           'sundayCard.noteLabel' => 'Mensagem final',
           'sundayCard.noteHint' => 'Obrigada por essa semana.',
           'sundayCard.emptyTitle' => 'Semana sem slips',
+          'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
           _ => null,
         } ??
         switch (path) {
-          'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
           'sundayCard.emptyAction' => 'Anotar um slip',
           'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
           'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',

@@ -5928,8 +5928,6 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   @override
   String get scopePrivate => 'Private';
   @override
-  String get freeNote => 'Slips are always free.';
-  @override
   String get filterThisMonth => 'This month';
   @override
   String get filterInCard => 'In a card';
@@ -12281,7 +12279,6 @@ extension on TranslationsEn {
           'slipsList.privateEmptyText' => 'Slips you keep off the card show up here.',
           'slipsList.privateMarker' => 'Private slip',
           'slipsList.scopePrivate' => 'Private',
-          'slipsList.freeNote' => 'Slips are always free.',
           'slipsList.filterThisMonth' => 'This month',
           'slipsList.filterInCard' => 'In a card',
           'slipsList.filterInvisible' => 'Invisible work',
@@ -12442,10 +12439,10 @@ extension on TranslationsEn {
           'sundayCard.noteLabel' => 'Closing note',
           'sundayCard.noteHint' => 'Thank you for this week.',
           'sundayCard.emptyTitle' => 'A week without slips',
+          'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
           _ => null,
         } ??
         switch (path) {
-          'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
           'sundayCard.emptyAction' => 'Note a slip',
           'sundayCard.errorTitle' => 'Could not load the card',
           'sundayCard.errorText' => 'Your slips are still saved. Try again.',
