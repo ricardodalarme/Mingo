@@ -4187,67 +4187,6 @@ enum userSettings_select_column {
   userId
 }
 """
-select columns of table "weekly_reviews"
-"""
-enum weeklyReviews_select_column {
-  """
-  column name
-  """
-  activeDays
-  """
-  column name
-  """
-  bothCheckinDone
-  """
-  column name
-  """
-  cardsReceived
-  """
-  column name
-  """
-  cardsSent
-  """
-  column name
-  """
-  checkinDone
-  """
-  column name
-  """
-  coupleRitualsDone
-  """
-  column name
-  """
-  lowData
-  """
-  column name
-  """
-  missing
-  """
-  column name
-  """
-  moodsLogged
-  """
-  column name
-  """
-  partnerCardsSent
-  """
-  column name
-  """
-  ritualsDone
-  """
-  column name
-  """
-  slips
-  """
-  column name
-  """
-  streakDays
-  """
-  column name
-  """
-  weekStart
-}
-"""
 select columns of table "year_recaps"
 """
 enum yearRecaps_select_column {
@@ -13718,69 +13657,6 @@ type query_root {
   """
   userSettingsByPk(userId: uuid!): userSettings
   """
-  execute function "weekly_review" which returns "weekly_reviews"
-  """
-  weeklyReview(
-    """
-    input parameters for function "weeklyReview"
-    """
-    args: weeklyReview_args
-
-    """
-    distinct select on columns
-    """
-    distinct_on: [weeklyReviews_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [weeklyReviews_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: weeklyReviews_bool_exp
-  ): [weeklyReviews!]!
-  """
-  fetch data from the table: "weekly_reviews"
-  """
-  weeklyReviews(
-    """
-    distinct select on columns
-    """
-    distinct_on: [weeklyReviews_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [weeklyReviews_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: weeklyReviews_bool_exp
-  ): [weeklyReviews!]!
-  """
   fetch data from the table: "year_recaps"
   """
   yearRecaps(
@@ -19481,88 +19357,6 @@ type subscription_root {
     where: userSettings_bool_exp
   ): [userSettings!]!
   """
-  execute function "weekly_review" which returns "weekly_reviews"
-  """
-  weeklyReview(
-    """
-    input parameters for function "weeklyReview"
-    """
-    args: weeklyReview_args
-
-    """
-    distinct select on columns
-    """
-    distinct_on: [weeklyReviews_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [weeklyReviews_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: weeklyReviews_bool_exp
-  ): [weeklyReviews!]!
-  """
-  fetch data from the table: "weekly_reviews"
-  """
-  weeklyReviews(
-    """
-    distinct select on columns
-    """
-    distinct_on: [weeklyReviews_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [weeklyReviews_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: weeklyReviews_bool_exp
-  ): [weeklyReviews!]!
-  """
-  fetch data from the table in a streaming manner: "weekly_reviews"
-  """
-  weeklyReviewsStream(
-    """
-    maximum number of rows returned in a single batch
-    """
-    batch_size: Int!
-
-    """
-    cursor to stream the results returned by the query
-    """
-    cursor: [weeklyReviews_stream_cursor_input]!
-
-    """
-    filter the rows returned
-    """
-    where: weeklyReviews_bool_exp
-  ): [weeklyReviews!]!
-  """
   fetch data from the table: "year_recaps"
   """
   yearRecaps(
@@ -19829,25 +19623,6 @@ type userSettings_mutation_response {
   data from the rows affected by the mutation
   """
   returning: [userSettings!]!
-}
-"""
-columns and relationships of "weekly_reviews"
-"""
-type weeklyReviews {
-  activeDays: Int!
-  bothCheckinDone: Boolean
-  cardsReceived: Int!
-  cardsSent: Int!
-  checkinDone: Boolean!
-  coupleRitualsDone: Int
-  lowData: Boolean!
-  missing: [String!]!
-  moodsLogged: Int!
-  partnerCardsSent: Int
-  ritualsDone: Int!
-  slips: Int!
-  streakDays: Int!
-  weekStart: date!
 }
 """
 columns and relationships of "year_recaps"
@@ -27452,82 +27227,6 @@ input uuid_comparison_exp {
   _lte: uuid
   _neq: uuid
   _nin: [uuid!]
-}
-input weeklyReview_args {
-  weekStart: date
-}
-"""
-Boolean expression to filter rows from the table "weekly_reviews". All fields are combined with a logical 'AND'.
-"""
-input weeklyReviews_bool_exp {
-  _and: [weeklyReviews_bool_exp!]
-  _not: weeklyReviews_bool_exp
-  _or: [weeklyReviews_bool_exp!]
-  activeDays: Int_comparison_exp
-  bothCheckinDone: Boolean_comparison_exp
-  cardsReceived: Int_comparison_exp
-  cardsSent: Int_comparison_exp
-  checkinDone: Boolean_comparison_exp
-  coupleRitualsDone: Int_comparison_exp
-  lowData: Boolean_comparison_exp
-  missing: String_array_comparison_exp
-  moodsLogged: Int_comparison_exp
-  partnerCardsSent: Int_comparison_exp
-  ritualsDone: Int_comparison_exp
-  slips: Int_comparison_exp
-  streakDays: Int_comparison_exp
-  weekStart: date_comparison_exp
-}
-"""
-Ordering options when selecting data from "weekly_reviews".
-"""
-input weeklyReviews_order_by {
-  activeDays: order_by
-  bothCheckinDone: order_by
-  cardsReceived: order_by
-  cardsSent: order_by
-  checkinDone: order_by
-  coupleRitualsDone: order_by
-  lowData: order_by
-  missing: order_by
-  moodsLogged: order_by
-  partnerCardsSent: order_by
-  ritualsDone: order_by
-  slips: order_by
-  streakDays: order_by
-  weekStart: order_by
-}
-"""
-Streaming cursor of the table "weeklyReviews"
-"""
-input weeklyReviews_stream_cursor_input {
-  """
-  Stream column input with initial value
-  """
-  initial_value: weeklyReviews_stream_cursor_value_input!
-  """
-  cursor ordering
-  """
-  ordering: cursor_ordering
-}
-"""
-Initial value of the column from where the streaming should start
-"""
-input weeklyReviews_stream_cursor_value_input {
-  activeDays: Int
-  bothCheckinDone: Boolean
-  cardsReceived: Int
-  cardsSent: Int
-  checkinDone: Boolean
-  coupleRitualsDone: Int
-  lowData: Boolean
-  missing: [String!]
-  moodsLogged: Int
-  partnerCardsSent: Int
-  ritualsDone: Int
-  slips: Int
-  streakDays: Int
-  weekStart: date
 }
 """
 Boolean expression to filter rows from the table "year_recaps". All fields are combined with a logical 'AND'.

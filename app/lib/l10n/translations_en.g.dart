@@ -227,8 +227,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$unpair$en unpair = _Translations$unpair$en._(_root);
   @override
-  late final _Translations$weeklyReview$en weeklyReview = _Translations$weeklyReview$en._(_root);
-  @override
   late final _Translations$welcome$en welcome = _Translations$welcome$en._(_root);
 }
 
@@ -6205,17 +6203,9 @@ class _Translations$today$en extends Translations$today$pt {
   @override
   String get carouselCardAction => 'Open';
   @override
-  String get weekTag => 'Your week';
-  @override
-  String get weekReadyTitle => 'Your week is ready';
-  @override
-  String get weekReadySupport => 'A summary of what you two did.';
-  @override
-  String get weekReadySupportPrivate => 'A summary just for you.';
+  String get partnerProfile => 'Partner profile';
   @override
   String get weekReadyAction => 'See';
-  @override
-  String get partnerProfile => 'Partner profile';
   @override
   String get privateWeekTitle => 'Your private slips';
   @override
@@ -6274,85 +6264,6 @@ class _Translations$unpair$en extends Translations$unpair$pt {
     'NETWORK': 'No connection. Check your internet and try again.',
     'STILL_PAIRED': 'The relationship is still active. Try again.',
     'other': 'Could not unpair right now. Try again.',
-  };
-}
-
-// Path: weeklyReview
-class _Translations$weeklyReview$en extends Translations$weeklyReview$pt {
-  _Translations$weeklyReview$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Your week';
-  @override
-  String get titleHighlight => 'week';
-  @override
-  String range({required Object month, required Object start, required Object end}) =>
-      '${month} ${start} to ${end}';
-  @override
-  List<String> get months => [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  @override
-  String slips({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: 'slip',
-        other: 'slips',
-      );
-  @override
-  String moodDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        zero: 'mood days',
-        one: 'mood day',
-        other: 'mood days',
-      );
-  @override
-  String rituals({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        zero: 'rituals done',
-        one: 'ritual done',
-        other: 'rituals done',
-      );
-  @override
-  String get note => 'Counted by the app, no AI. Only you see it.';
-  @override
-  String get talk => 'Talk about it';
-  @override
-  String get close => 'Close';
-  @override
-  String get quietTitle => 'A quiet week';
-  @override
-  String get quietHighlight => 'quiet';
-  @override
-  String get quietCardTitle => 'No rush';
-  @override
-  String get quietCardText => 'Writing a good thing takes 30 seconds. Start whenever you like.';
-  @override
-  String get quietNote => 'Never compared with other weeks.';
-  @override
-  String get writeSlip => 'Write a slip';
-  @override
-  String get errorTitle => 'We could not open your week';
-  @override
-  Map<String, String> get errors => {
-    'NETWORK': 'No connection. Try again.',
-    'other': 'Something went wrong. Try again.',
   };
 }
 
@@ -11996,12 +11907,8 @@ extension on TranslationsEn {
           'today.carouselCardTag' => 'Card',
           'today.carouselCardSupport' => 'Open to see the good things from this week.',
           'today.carouselCardAction' => 'Open',
-          'today.weekTag' => 'Your week',
-          'today.weekReadyTitle' => 'Your week is ready',
-          'today.weekReadySupport' => 'A summary of what you two did.',
-          'today.weekReadySupportPrivate' => 'A summary just for you.',
-          'today.weekReadyAction' => 'See',
           'today.partnerProfile' => 'Partner profile',
+          'today.weekReadyAction' => 'See',
           'today.privateWeekTitle' => 'Your private slips',
           'today.privateWeekCount' =>
             ({required num count}) =>
@@ -12054,61 +11961,6 @@ extension on TranslationsEn {
           'unpair.errors.NETWORK' => 'No connection. Check your internet and try again.',
           'unpair.errors.STILL_PAIRED' => 'The relationship is still active. Try again.',
           'unpair.errors.other' => 'Could not unpair right now. Try again.',
-          'weeklyReview.title' => 'Your week',
-          'weeklyReview.titleHighlight' => 'week',
-          'weeklyReview.range' => ({
-            required Object month,
-            required Object start,
-            required Object end,
-          }) => '${month} ${start} to ${end}',
-          'weeklyReview.months.0' => 'January',
-          'weeklyReview.months.1' => 'February',
-          'weeklyReview.months.2' => 'March',
-          'weeklyReview.months.3' => 'April',
-          'weeklyReview.months.4' => 'May',
-          'weeklyReview.months.5' => 'June',
-          'weeklyReview.months.6' => 'July',
-          'weeklyReview.months.7' => 'August',
-          'weeklyReview.months.8' => 'September',
-          'weeklyReview.months.9' => 'October',
-          'weeklyReview.months.10' => 'November',
-          'weeklyReview.months.11' => 'December',
-          'weeklyReview.slips' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: 'slip',
-                  other: 'slips',
-                ),
-          'weeklyReview.moodDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  zero: 'mood days',
-                  one: 'mood day',
-                  other: 'mood days',
-                ),
-          'weeklyReview.rituals' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  zero: 'rituals done',
-                  one: 'ritual done',
-                  other: 'rituals done',
-                ),
-          'weeklyReview.note' => 'Counted by the app, no AI. Only you see it.',
-          'weeklyReview.talk' => 'Talk about it',
-          'weeklyReview.close' => 'Close',
-          'weeklyReview.quietTitle' => 'A quiet week',
-          'weeklyReview.quietHighlight' => 'quiet',
-          'weeklyReview.quietCardTitle' => 'No rush',
-          'weeklyReview.quietCardText' =>
-            'Writing a good thing takes 30 seconds. Start whenever you like.',
-          'weeklyReview.quietNote' => 'Never compared with other weeks.',
-          'weeklyReview.writeSlip' => 'Write a slip',
-          'weeklyReview.errorTitle' => 'We could not open your week',
-          'weeklyReview.errors.NETWORK' => 'No connection. Try again.',
-          'weeklyReview.errors.other' => 'Something went wrong. Try again.',
           'welcome.headline' => 'Small good things, said out loud.',
           'welcome.headlineHighlight' => 'said out loud',
           'welcome.subtitle' => 'A light way to notice what the other does well, every week.',

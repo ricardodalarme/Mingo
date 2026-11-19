@@ -18,7 +18,7 @@ async function pairSessions() {
   return { a, b, coupleId };
 }
 
-const ALL = ['slips', 'mood', 'week', 'dates', 'lists', 'logistics', 'rituals', 'plan'];
+const ALL = ['slips', 'mood', 'dates', 'lists', 'logistics', 'rituals', 'plan'];
 
 test('no loader runs unless the request names it', async () => {
   const { a } = await pairSessions();

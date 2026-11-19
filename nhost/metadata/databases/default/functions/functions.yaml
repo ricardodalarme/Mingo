@@ -43,4 +43,3 @@
 - "!include public_try_accept_invite.yaml"
 - "!include public_unpair.yaml"
 - "!include public_update_game.yaml"
-- "!include public_weekly_review.yaml"

@@ -44,7 +44,6 @@ import 'package:app/features/spice/di/spice_injection_module.dart';
 import 'package:app/features/story/di/story_injection_module.dart';
 import 'package:app/features/today/di/today_injection_module.dart';
 import 'package:app/features/together/di/together_injection_module.dart';
-import 'package:app/features/weekly_review/di/weekly_review_injection_module.dart';
 import 'package:core/core.dart';
 
 /// Registers every feature module, in the order the app resolves them at startup.
@@ -76,7 +75,6 @@ void registerInjectionModules() {
     OnboardingInjectionModule(),
     AnnoyancesInjectionModule(),
     CoupleInjectionModule(),
-    WeeklyReviewInjectionModule(),
     PairingInjectionModule(),
     DatesInjectionModule(),
     HelpInjectionModule(),

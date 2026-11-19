@@ -3,7 +3,7 @@
 // asked for. A loader runs only when the request names it; a journal entry only when the request lists its id.
 import { type CallerQuery, type Operation, operation } from '../_lib/graphql.ts';
 
-export const CONTEXT_FLAGS = ['slips', 'mood', 'week', 'dates', 'lists', 'logistics', 'rituals', 'plan'] as const;
+export const CONTEXT_FLAGS = ['slips', 'mood', 'dates', 'lists', 'logistics', 'rituals', 'plan'] as const;
 export type ContextFlag = (typeof CONTEXT_FLAGS)[number];
 
 export const isContextFlag = (value: unknown): value is ContextFlag => CONTEXT_FLAGS.some((flag) => flag === value);
@@ -45,26 +45,6 @@ const LOADERS: Record<ContextFlag, Loader> = {
       ...data.moods.map((entry) => `mood ${entry.day}: ${entry.mood}`),
       ...data.temperatureChecks.map((check) => `temperature ${clip(check.createdAt, CLIP.day)}: ${check.level}`),
     ],
-  ),
-  week: loader(
-    operation<{
-      weeklyReview: {
-        slips: number;
-        activeDays: number;
-        moodsLogged: number;
-        ritualsDone: number;
-        cardsSent: number;
-        cardsReceived: number;
-        lowData: boolean;
-      }[];
-    }>(
-      `{ weeklyReview(args: {}) { slips activeDays streakDays moodsLogged ritualsDone cardsSent cardsReceived lowData missing } }`,
-    ),
-    (data) =>
-      data.weeklyReview.map(
-        (week) =>
-          `this week: ${week.slips} slips, ${week.activeDays} active days, ${week.moodsLogged} moods, ${week.ritualsDone} rituals, ${week.cardsSent} cards sent, ${week.cardsReceived} received${week.lowData ? ', little data' : ''}`,
-      ),
   ),
   dates: loader(
     operation<{ importantDates: { title: string; month: number; day: number }[] }>(

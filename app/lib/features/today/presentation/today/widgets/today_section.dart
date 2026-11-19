@@ -124,14 +124,6 @@ class const TodaySection({
         category: AppCategory.invite,
         face: null,
       ),
-      TodayCardKind.weekSummary => (
-        tag: l10n.weekTag,
-        title: l10n.weekReadyTitle,
-        support: home.isPaired ? l10n.weekReadySupport : l10n.weekReadySupportPrivate,
-        action: l10n.weekReadyAction,
-        category: AppCategory.card,
-        face: FaceKind.smile,
-      ),
       TodayCardKind.idea => (
         tag: l10n.ideaLabel,
         title: home.idea?.title ?? '',
@@ -155,7 +147,6 @@ class const TodaySection({
           if (context.mounted) await context.read<TodayCubit>().load();
         };
       case TodayCardKind.ownCard:
-      case TodayCardKind.weekSummary:
       case TodayCardKind.idea:
         final route = todayCardRoute(kind, home: home);
         if (route == null) return null;

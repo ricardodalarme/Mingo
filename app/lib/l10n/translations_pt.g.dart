@@ -159,9 +159,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$timeInApp$pt timeInApp = Translations$timeInApp$pt.internal(_root);
   late final Translations$today$pt today = Translations$today$pt.internal(_root);
   late final Translations$unpair$pt unpair = Translations$unpair$pt.internal(_root);
-  late final Translations$weeklyReview$pt weeklyReview = Translations$weeklyReview$pt.internal(
-    _root,
-  );
   late final Translations$welcome$pt welcome = Translations$welcome$pt.internal(_root);
 }
 
@@ -7712,23 +7709,11 @@ class Translations$today$pt {
   /// pt: 'Abrir'
   String get carouselCardAction => 'Abrir';
 
-  /// pt: 'Sua semana'
-  String get weekTag => 'Sua semana';
-
-  /// pt: 'Sua semana está pronta'
-  String get weekReadyTitle => 'Sua semana está pronta';
-
-  /// pt: 'Um resumo do que vocês fizeram.'
-  String get weekReadySupport => 'Um resumo do que vocês fizeram.';
-
-  /// pt: 'Um resumo só seu.'
-  String get weekReadySupportPrivate => 'Um resumo só seu.';
+  /// pt: 'Perfil do parceiro'
+  String get partnerProfile => 'Perfil do parceiro';
 
   /// pt: 'Ver'
   String get weekReadyAction => 'Ver';
-
-  /// pt: 'Perfil do parceiro'
-  String get partnerProfile => 'Perfil do parceiro';
 
   /// pt: 'Seus slips privados'
   String get privateWeekTitle => 'Seus slips privados';
@@ -7800,101 +7785,6 @@ class Translations$unpair$pt {
     'NETWORK': 'Sem conexão. Confira a internet e tente de novo.',
     'STILL_PAIRED': 'A relação ainda está ativa. Tente de novo.',
     'other': 'Não deu para desvincular agora. Tente de novo.',
-  };
-}
-
-// Path: weeklyReview
-class Translations$weeklyReview$pt {
-  Translations$weeklyReview$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Sua semana'
-  String get title => 'Sua semana';
-
-  /// pt: 'semana'
-  String get titleHighlight => 'semana';
-
-  /// pt: '{start} a {end} de {month}'
-  String range({required Object start, required Object end, required Object month}) =>
-      '${start} a ${end} de ${month}';
-
-  List<String> get months => [
-    'janeiro',
-    'fevereiro',
-    'março',
-    'abril',
-    'maio',
-    'junho',
-    'julho',
-    'agosto',
-    'setembro',
-    'outubro',
-    'novembro',
-    'dezembro',
-  ];
-
-  /// pt: '(one) {slip} (other) {slips}'
-  String slips({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'slip',
-        other: 'slips',
-      );
-
-  /// pt: '(zero) {dias de humor} (one) {dia de humor} (other) {dias de humor}'
-  String moodDays({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        zero: 'dias de humor',
-        one: 'dia de humor',
-        other: 'dias de humor',
-      );
-
-  /// pt: '(zero) {rituais feitos} (one) {ritual feito} (other) {rituais feitos}'
-  String rituals({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        zero: 'rituais feitos',
-        one: 'ritual feito',
-        other: 'rituais feitos',
-      );
-
-  /// pt: 'Calculado pelo app, sem IA. Só você vê.'
-  String get note => 'Calculado pelo app, sem IA. Só você vê.';
-
-  /// pt: 'Conversar sobre isso'
-  String get talk => 'Conversar sobre isso';
-
-  /// pt: 'Fechar'
-  String get close => 'Fechar';
-
-  /// pt: 'Semana tranquila'
-  String get quietTitle => 'Semana tranquila';
-
-  /// pt: 'tranquila'
-  String get quietHighlight => 'tranquila';
-
-  /// pt: 'Sem pressa'
-  String get quietCardTitle => 'Sem pressa';
-
-  /// pt: 'Anotar uma coisa boa leva 30 segundos. Começa quando você quiser.'
-  String get quietCardText => 'Anotar uma coisa boa leva 30 segundos. Começa quando você quiser.';
-
-  /// pt: 'Sem comparação com outras semanas.'
-  String get quietNote => 'Sem comparação com outras semanas.';
-
-  /// pt: 'Anotar um slip'
-  String get writeSlip => 'Anotar um slip';
-
-  /// pt: 'Não deu para abrir sua semana'
-  String get errorTitle => 'Não deu para abrir sua semana';
-
-  Map<String, String> get errors => {
-    'NETWORK': 'Sem conexão. Tente de novo.',
-    'other': 'Algo deu errado. Tente de novo.',
   };
 }
 
@@ -13919,12 +13809,8 @@ extension on Translations {
           'today.carouselCardTag' => 'Cartão',
           'today.carouselCardSupport' => 'Abra para ver as coisas boas desta semana.',
           'today.carouselCardAction' => 'Abrir',
-          'today.weekTag' => 'Sua semana',
-          'today.weekReadyTitle' => 'Sua semana está pronta',
-          'today.weekReadySupport' => 'Um resumo do que vocês fizeram.',
-          'today.weekReadySupportPrivate' => 'Um resumo só seu.',
-          'today.weekReadyAction' => 'Ver',
           'today.partnerProfile' => 'Perfil do parceiro',
+          'today.weekReadyAction' => 'Ver',
           'today.privateWeekTitle' => 'Seus slips privados',
           'today.privateWeekCount' =>
             ({required num count}) =>
@@ -13977,61 +13863,6 @@ extension on Translations {
           'unpair.errors.NETWORK' => 'Sem conexão. Confira a internet e tente de novo.',
           'unpair.errors.STILL_PAIRED' => 'A relação ainda está ativa. Tente de novo.',
           'unpair.errors.other' => 'Não deu para desvincular agora. Tente de novo.',
-          'weeklyReview.title' => 'Sua semana',
-          'weeklyReview.titleHighlight' => 'semana',
-          'weeklyReview.range' => ({
-            required Object start,
-            required Object end,
-            required Object month,
-          }) => '${start} a ${end} de ${month}',
-          'weeklyReview.months.0' => 'janeiro',
-          'weeklyReview.months.1' => 'fevereiro',
-          'weeklyReview.months.2' => 'março',
-          'weeklyReview.months.3' => 'abril',
-          'weeklyReview.months.4' => 'maio',
-          'weeklyReview.months.5' => 'junho',
-          'weeklyReview.months.6' => 'julho',
-          'weeklyReview.months.7' => 'agosto',
-          'weeklyReview.months.8' => 'setembro',
-          'weeklyReview.months.9' => 'outubro',
-          'weeklyReview.months.10' => 'novembro',
-          'weeklyReview.months.11' => 'dezembro',
-          'weeklyReview.slips' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'slip',
-                  other: 'slips',
-                ),
-          'weeklyReview.moodDays' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  zero: 'dias de humor',
-                  one: 'dia de humor',
-                  other: 'dias de humor',
-                ),
-          'weeklyReview.rituals' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  zero: 'rituais feitos',
-                  one: 'ritual feito',
-                  other: 'rituais feitos',
-                ),
-          'weeklyReview.note' => 'Calculado pelo app, sem IA. Só você vê.',
-          'weeklyReview.talk' => 'Conversar sobre isso',
-          'weeklyReview.close' => 'Fechar',
-          'weeklyReview.quietTitle' => 'Semana tranquila',
-          'weeklyReview.quietHighlight' => 'tranquila',
-          'weeklyReview.quietCardTitle' => 'Sem pressa',
-          'weeklyReview.quietCardText' =>
-            'Anotar uma coisa boa leva 30 segundos. Começa quando você quiser.',
-          'weeklyReview.quietNote' => 'Sem comparação com outras semanas.',
-          'weeklyReview.writeSlip' => 'Anotar um slip',
-          'weeklyReview.errorTitle' => 'Não deu para abrir sua semana',
-          'weeklyReview.errors.NETWORK' => 'Sem conexão. Tente de novo.',
-          'weeklyReview.errors.other' => 'Algo deu errado. Tente de novo.',
           'welcome.headline' => 'Pequenas coisas boas, ditas em voz alta.',
           'welcome.headlineHighlight' => 'ditas em voz alta',
           'welcome.subtitle' => 'Um jeito leve de notar o que o outro faz de bom, a cada semana.',

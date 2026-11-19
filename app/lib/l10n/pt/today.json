@@ -73,12 +73,8 @@
   "carouselCardTag": "Cartão",
   "carouselCardSupport": "Abra para ver as coisas boas desta semana.",
   "carouselCardAction": "Abrir",
-  "weekTag": "Sua semana",
-  "weekReadyTitle": "Sua semana está pronta",
-  "weekReadySupport": "Um resumo do que vocês fizeram.",
-  "weekReadySupportPrivate": "Um resumo só seu.",
-  "weekReadyAction": "Ver",
   "partnerProfile": "Perfil do parceiro",
+  "weekReadyAction": "Ver",
   "privateWeekTitle": "Seus slips privados",
   "privateWeekCount(plural, param=count)": {
     "zero": "sem pressa",

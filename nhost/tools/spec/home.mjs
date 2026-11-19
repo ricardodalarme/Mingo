@@ -1,5 +1,5 @@
-// Today, the yearly recap and the weekly review.
-import { mine, resultTable } from './_shared.mjs';
+// Today and the yearly recap.
+import { mine } from './_shared.mjs';
 
 export const tables = {
   today: {
@@ -12,9 +12,5 @@ export const tables = {
     roles: { user: { select: { columns: '*', filter: mine('user_id') } } },
   },
   year_recaps: { roles: { user: { select: { columns: '*', filter: mine('user_id') } } } },
-  weekly_reviews: resultTable(['user']),
 };
 
-export const functions = {
-  weekly_review: { session: true, roles: ['user'] },
-};

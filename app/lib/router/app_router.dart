@@ -114,7 +114,6 @@ import 'package:app/features/together/presentation/logistics/logistics_page.dart
 import 'package:app/features/together/presentation/ritual_edit/ritual_edit_page.dart';
 import 'package:app/features/together/presentation/rituals/rituals_page.dart';
 import 'package:app/features/together/presentation/together/together_page.dart';
-import 'package:app/features/weekly_review/presentation/weekly_review/weekly_review_page.dart';
 import 'package:app/router/utils/public_destination.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
@@ -187,7 +186,6 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: QuickSlipRoute.page, path: '/capture', fullscreenDialog: true),
     AutoRoute(page: GentleRequestRoute.page),
     AutoRoute(page: AnnoyanceCheckRoute.page),
-    AutoRoute(page: WeeklyReviewRoute.page),
     AutoRoute(page: GentleRequestDetailRoute.page),
     AutoRoute(page: SlipsSearchRoute.page),
     AutoRoute(page: SlipKindRoute.page, fullscreenDialog: true),

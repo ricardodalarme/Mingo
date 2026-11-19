@@ -37,18 +37,17 @@ void main() {
         TodayCardKind.receivedCard,
         TodayCardKind.ownCard,
         TodayCardKind.partnerMoment,
-        TodayCardKind.weekSummary,
       ]);
     });
 
-    test('a received card, the week and the idea make three cards', () {
+    test('a received card and the idea make two cards', () {
       final kinds = todayCardsFor(
         home: _home(unopenedCards: 1, slipsThisWeek: 2),
         isSoloOnly: false,
         partnerMoodVisible: false,
       );
 
-      expect(kinds, [TodayCardKind.receivedCard, TodayCardKind.weekSummary, TodayCardKind.idea]);
+      expect(kinds, [TodayCardKind.receivedCard, TodayCardKind.idea]);
     });
 
     test('on your own the invite comes first', () {
@@ -58,7 +57,7 @@ void main() {
         partnerMoodVisible: false,
       );
 
-      expect(kinds, [TodayCardKind.invite, TodayCardKind.weekSummary, TodayCardKind.idea]);
+      expect(kinds, [TodayCardKind.invite, TodayCardKind.idea]);
     });
 
     test('solo-only drops the invite', () {
@@ -81,15 +80,15 @@ void main() {
       expect(kinds, isNot(contains(TodayCardKind.invite)));
     });
 
-    test('never more than five cards', () {
+    test('never more than the board limit', () {
       final kinds = todayCardsFor(
         home: _home(unopenedCards: 1, slipsThisWeek: 2, cardStatus: 'held'),
         isSoloOnly: false,
         partnerMoodVisible: true,
       );
 
-      expect(kinds, hasLength(todayCardLimit));
-      expect(kinds, isNot(contains(TodayCardKind.idea)));
+      expect(kinds.length, lessThanOrEqualTo(todayCardLimit));
+      expect(kinds, contains(TodayCardKind.idea));
     });
 
     test('the first day keeps para hoje to the idea', () {
@@ -133,10 +132,6 @@ void main() {
 
     test('a ready card opens the Sunday card', () {
       expect(todayCardRoute(TodayCardKind.ownCard, home: home), isA<SundayCardRoute>());
-    });
-
-    test('the week summary opens the review', () {
-      expect(todayCardRoute(TodayCardKind.weekSummary, home: home), isA<WeeklyReviewRoute>());
     });
 
     test('the idea opens its own detail', () {

@@ -145,7 +145,6 @@
 - "!include public_today.yaml"
 - "!include public_user_goals.yaml"
 - "!include public_user_settings.yaml"
-- "!include public_weekly_reviews.yaml"
 - "!include public_work_area.yaml"
 - "!include public_year_recaps.yaml"
 - "!include storage_buckets.yaml"
