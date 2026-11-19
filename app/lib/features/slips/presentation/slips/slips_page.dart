@@ -191,17 +191,12 @@ class const _Empty({required final SlipsScope scope}) extends StatelessWidget {
     final l10n = context.l10n.slipsList;
     final isPrivate = scope == SlipsScope.private;
 
-    return Column(
-      children: [
-        if (!isPrivate) ...[const BaseSlipNoteGhost(), const SizedBox(height: AppSpace.s20)],
-        BaseEmptyState(
-          title: isPrivate ? l10n.privateEmptyTitle : l10n.emptyTitle,
-          text: isPrivate ? l10n.privateEmptyText : l10n.emptyText,
-          face: FaceKind.thinking,
-          actionText: l10n.emptyAction,
-          onAction: () => context.router.root.push(const QuickSlipRoute()),
-        ),
-      ],
+    return BaseEmptyState(
+      title: isPrivate ? l10n.privateEmptyTitle : l10n.emptyTitle,
+      text: isPrivate ? l10n.privateEmptyText : l10n.emptyText,
+      face: FaceKind.thinking,
+      actionText: l10n.emptyAction,
+      onAction: () => context.router.root.push(const QuickSlipRoute()),
     );
   }
 }

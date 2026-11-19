@@ -183,18 +183,12 @@ class const _Empty({required final String query, required final bool hasFilters}
     final hasQuery = query.trim().isNotEmpty;
 
     if (!hasQuery && !hasFilters) {
-      return Column(
-        children: [
-          const BaseSlipNoteGhost(),
-          const SizedBox(height: AppSpace.s20),
-          BaseEmptyState(
-            title: l10n.emptyTitle,
-            text: l10n.emptyText,
-            face: FaceKind.thinking,
-            actionText: l10n.emptyAction,
-            onAction: () => context.router.root.push(const QuickSlipRoute()),
-          ),
-        ],
+      return BaseEmptyState(
+        title: l10n.emptyTitle,
+        text: l10n.emptyText,
+        face: FaceKind.thinking,
+        actionText: l10n.emptyAction,
+        onAction: () => context.router.root.push(const QuickSlipRoute()),
       );
     }
 

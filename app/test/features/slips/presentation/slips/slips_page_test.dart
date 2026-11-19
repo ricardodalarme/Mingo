@@ -210,17 +210,6 @@ void main() {
     });
   });
 
-  testWidgets('the empty state shows the ghost notes above the face', (tester) async {
-    stubPage(const []);
-    final cubit = await build();
-
-    await pumpPage(tester, cubit);
-
-    expect(find.byType(BaseSlipNoteGhost), findsOneWidget);
-    expect(find.byType(BaseSlipNote), findsNothing);
-    expect(find.byType(BaseSlipNoteAdd), findsNothing);
-  });
-
   testWidgets('a long list builds lazily and asks for the next page near the end', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
       final items = [

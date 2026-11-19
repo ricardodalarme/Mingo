@@ -42,9 +42,6 @@ class const AppSlipNoteColors({
   /// Outline of the add card.
   static const Color addBorder = Color(0xFFC9C0C3);
 
-  /// Outline of a ghost note.
-  static const Color ghostBorder = Color(0xFFD8CED1);
-
   /// Add card label colour.
   static const Color muted = AppPalette.neutral600;
 
